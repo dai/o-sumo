@@ -1,0 +1,138 @@
+.banzuke-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.banzuke-table thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.banzuke-table th {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: 700;
+  padding: 1rem;
+  text-align: center;
+  border: none;
+}
+
+.banzuke-table tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.2s ease;
+}
+
+.banzuke-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.banzuke-table td {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+}
+
+.banzuke-table td.east {
+  background-color: #f0f4ff;
+}
+
+.banzuke-table td.west {
+  background-color: #fff0f4;
+}
+
+.rikishi-name {
+  font-weight: 700;
+  color: #333;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.rikishi-yomi {
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.rank-badge {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.rank-badge.yokozuna {
+  background-color: #d4af37;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(212, 175, 55, 0.3);
+}
+
+.rank-badge.ozeki {
+  background-color: #c0c0c0;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(192, 192, 192, 0.3);
+}
+
+.rank-badge.sekiwake {
+  background-color: #cd7f32;
+  color: white;
+  box-shadow: 0 2px 4px rgba(205, 127, 50, 0.3);
+}
+
+.rank-badge.komusubi {
+  background-color: #764ba2;
+  color: white;
+  box-shadow: 0 2px 4px rgba(118, 75, 162, 0.3);
+}
+
+.rank-badge.maegashira {
+  background-color: #667eea;
+  color: white;
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
+}
+
+.rank-badge.juryo {
+  background-color: #4db8a8;
+  color: white;
+  box-shadow: 0 2px 4px rgba(77, 184, 168, 0.3);
+}
+
+.record {
+  font-weight: 600;
+  color: #333;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.empty {
+  color: #ccc;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .banzuke-table th,
+  .banzuke-table td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .rikishi-name {
+    font-size: 1rem;
+  }
+
+  .rikishi-yomi {
+    font-size: 0.75rem;
+  }
+
+  .rank-badge {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.7rem;
+  }
+
+  .record {
+    font-size: 0.9rem;
+  }
+}

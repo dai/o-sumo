@@ -1,0 +1,43 @@
+{
+  "name": "o-sumo",
+  "version": "1.0.0",
+  "description": "大相撲、 All about the OO-SUMO.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vinext dev",
+    "build": "vinext build",
+    "start": "vinext start",
+    "deploy": "vinext deploy",
+    "dev:vinext": "vite dev --port 3001",
+    "build:vinext": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dai/o-sumo.git"
+  },
+  "keywords": [
+    "sumo",
+    "大相撲",
+    "banzuke",
+    "番付"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dai/o-sumo/issues"
+  },
+  "homepage": "https://github.com/dai/o-sumo#readme",
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "vinext": "^0.0.13"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1"
+  },
+  "type": "module"
+}

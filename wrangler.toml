@@ -1,0 +1,11 @@
+name = "o-sumo"
+main = "dist/index.js"
+compatibility_date = "2024-12-16"
+
+[env.production]
+routes = [
+  { pattern = "o-sumo.pages.dev", zone_name = "pages.dev" }
+]
+
+[[triggers.crons]]
+cron = "0 0 * * *"
