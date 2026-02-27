@@ -6,6 +6,8 @@
 
 o-sumoは、大相撲の番付情報と力士データを提供するモダンなWebアプリケーションです。令和8年3月場所（2026年3月）の幕内・十両力士の番付一覧を表示します。
 
+また、本プロジェクトの開発プロセスを再利用可能なスキルとして `.agents/skills/vinext-sumo-app-builder/` に格納しています。AIエージェントによる自動化された開発を支援します。
+
 ## 技術スタック
 
 - **フレームワーク**: [Cloudflare vinext](https://github.com/cloudflare/vinext) - Next.js API on Vite
@@ -146,6 +148,7 @@ ISC
 - [Cloudflare vinext](https://github.com/cloudflare/vinext)
 - [日本相撲協会](https://sumo.or.jp/)
 - [vinext ドキュメント](https://vinext.io/)
+- [Manus Skill Documentation](https://manus.im/docs/skills)
 
 ## 貢献
 
