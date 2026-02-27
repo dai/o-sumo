@@ -19,40 +19,38 @@
 
 .banzuke-table tbody tr {
   border-bottom: 1px solid #e0e0e0;
-  transition: background-color 0.2s ease;
-}
-
-.banzuke-table tbody tr:hover {
-  background-color: #f9f9f9;
 }
 
 .banzuke-table td {
   padding: 1.5rem 1rem;
   text-align: center;
   border: 1px solid #e0e0e0;
+  vertical-align: top;
 }
 
-.banzuke-table td.east {
-  background-color: #f0f4ff;
+.rikishi-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-.banzuke-table td.west {
-  background-color: #fff0f4;
+.rikishi-info {
+  margin-bottom: 0.5rem;
 }
 
 .rikishi-name {
   font-weight: 700;
   color: #333;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   margin-bottom: 0.25rem;
 }
 
 .rikishi-yomi {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: #666;
   font-style: italic;
   margin-bottom: 0.5rem;
-  display: block;
 }
 
 .rank-badge {
@@ -61,78 +59,55 @@
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 600;
-  margin-top: 0.5rem;
 }
 
-.rank-badge.yokozuna {
-  background-color: #d4af37;
-  color: #333;
-  box-shadow: 0 2px 4px rgba(212, 175, 55, 0.3);
-}
-
-.rank-badge.ozeki {
-  background-color: #c0c0c0;
-  color: #333;
-  box-shadow: 0 2px 4px rgba(192, 192, 192, 0.3);
-}
-
-.rank-badge.sekiwake {
-  background-color: #cd7f32;
-  color: white;
-  box-shadow: 0 2px 4px rgba(205, 127, 50, 0.3);
-}
-
-.rank-badge.komusubi {
-  background-color: #764ba2;
-  color: white;
-  box-shadow: 0 2px 4px rgba(118, 75, 162, 0.3);
-}
-
-.rank-badge.maegashira {
-  background-color: #667eea;
-  color: white;
-  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
-}
-
-.rank-badge.juryo {
-  background-color: #4db8a8;
-  color: white;
-  box-shadow: 0 2px 4px rgba(77, 184, 168, 0.3);
-}
+.rank-badge.yokozuna { background-color: #d4af37; color: #333; }
+.rank-badge.ozeki { background-color: #c0c0c0; color: #333; }
+.rank-badge.sekiwake { background-color: #cd7f32; color: white; }
+.rank-badge.komusubi { background-color: #764ba2; color: white; }
+.rank-badge.maegashira { background-color: #667eea; color: white; }
+.rank-badge.juryo { background-color: #4db8a8; color: white; }
 
 .record {
-  font-weight: 600;
+  font-weight: 700;
   color: #333;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  padding: 0.25rem 0.75rem;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* 星取表スタイル */
+.hoshitori-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px;
+  max-width: 150px;
   margin-top: 0.5rem;
 }
 
-.empty {
-  color: #ccc;
-  font-size: 1.5rem;
+.hoshi {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  font-size: 12px;
+  border-radius: 50%;
+  font-weight: bold;
 }
 
+.hoshi.win { color: #e53e3e; } /* 白星 ○ */
+.hoshi.loss { color: #2d3748; } /* 黒星 ● */
+.hoshi.draw { color: #a0aec0; } /* 休場 − */
+
+.empty { color: #ccc; font-size: 1.5rem; }
+
 @media (max-width: 768px) {
-  .banzuke-table th,
-  .banzuke-table td {
-    padding: 0.75rem 0.5rem;
-    font-size: 0.9rem;
-  }
-
-  .rikishi-name {
-    font-size: 1rem;
-  }
-
-  .rikishi-yomi {
-    font-size: 0.75rem;
-  }
-
-  .rank-badge {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.7rem;
-  }
-
-  .record {
-    font-size: 0.9rem;
-  }
+  .banzuke-table th, .banzuke-table td { padding: 0.75rem 0.5rem; }
+  .rikishi-name { font-size: 1.1rem; }
+  .hoshitori-container { max-width: 120px; }
+  .hoshi { width: 14px; height: 14px; font-size: 10px; }
 }
