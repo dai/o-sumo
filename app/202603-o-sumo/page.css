@@ -1,16 +1,16 @@
 .page-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   display: flex;
   flex-direction: column;
+  background: linear-gradient(180deg, #f5f3f0 0%, #ede8e3 100%);
 }
 
 .page-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--gradient-primary);
   color: white;
-  padding: 3rem 1rem;
+  padding: 3rem 2rem;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(26, 58, 82, 0.2);
 }
 
 .header-content {
@@ -20,30 +20,31 @@
 
 .page-title {
   font-size: 3rem;
-  font-weight: 800;
-  margin: 0 0 0.5rem 0;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+  color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .page-subtitle {
-  font-size: 1.75rem;
-  font-weight: 600;
-  margin: 0.5rem 0;
-  opacity: 0.95;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.5rem;
 }
 
 .page-description {
   font-size: 1rem;
-  margin: 1rem 0 0 0;
-  opacity: 0.9;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .page-main {
   flex: 1;
+  padding: 3rem 2rem;
   max-width: 1200px;
-  width: 100%;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  width: 100%;
 }
 
 .banzuke-section {
@@ -51,26 +52,31 @@
 }
 
 .section-heading {
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 700;
-  color: white;
+  color: var(--color-primary);
   margin-bottom: 1.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  border-bottom: 3px solid white;
-  padding-bottom: 0.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid var(--color-accent-gold);
 }
 
 .banzuke-list {
   display: grid;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .info-section {
   background: white;
-  border-radius: 12px;
   padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(26, 58, 82, 0.1);
+  border-left: 4px solid var(--color-secondary);
   margin-top: 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.info-section h2 {
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
 }
 
 .info-content {
@@ -79,7 +85,7 @@
 
 .info-content p {
   margin-bottom: 1rem;
-  color: #333;
+  color: #666;
   font-size: 1rem;
 }
 
@@ -88,51 +94,55 @@
 }
 
 .info-content strong {
-  color: #667eea;
+  color: var(--color-primary);
   font-weight: 600;
 }
 
 .info-content a {
-  color: #667eea;
+  color: var(--color-secondary);
   text-decoration: none;
   font-weight: 600;
-  transition: color 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .info-content a:hover {
-  color: #764ba2;
+  color: var(--color-primary);
   text-decoration: underline;
 }
 
 .page-footer {
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--color-primary);
   color: white;
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 2rem;
   margin-top: auto;
+  border-top: 4px solid var(--color-secondary);
 }
 
 .page-footer p {
-  margin: 0.5rem 0;
-  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
 }
 
 .page-footer a {
-  color: white;
+  color: var(--color-accent-gold);
   text-decoration: none;
   font-weight: 600;
-  transition: opacity 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .page-footer a:hover {
-  opacity: 0.8;
+  color: white;
   text-decoration: underline;
 }
 
-/* Responsive */
+/* レスポンシブ */
 @media (max-width: 768px) {
+  .page-header {
+    padding: 2rem 1rem;
+  }
+
   .page-title {
-    font-size: 2rem;
+    font-size: 2.25rem;
   }
 
   .page-subtitle {
@@ -140,15 +150,19 @@
   }
 
   .page-description {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 
   .page-main {
-    padding: 1rem 0.5rem;
+    padding: 1.5rem 1rem;
   }
 
   .section-heading {
     font-size: 1.5rem;
+  }
+
+  .banzuke-list {
+    gap: 1.5rem;
   }
 
   .info-section {
@@ -158,19 +172,11 @@
   .info-content p {
     font-size: 0.95rem;
   }
-
-  .page-footer {
-    padding: 1.5rem 1rem;
-  }
-
-  .page-footer p {
-    font-size: 0.9rem;
-  }
 }
 
 @media (max-width: 480px) {
   .page-header {
-    padding: 2rem 1rem;
+    padding: 1.5rem 1rem;
   }
 
   .page-title {
@@ -182,7 +188,7 @@
   }
 
   .page-description {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 
   .section-heading {

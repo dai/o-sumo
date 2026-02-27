@@ -1,113 +1,264 @@
-.banzuke-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
+.rank-group {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(26, 58, 82, 0.1);
+  border-top: 4px solid var(--color-secondary);
+  margin-bottom: 2rem;
 }
 
-.banzuke-table thead {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-.banzuke-table th {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+.rank-group-title {
+  font-size: 1.25rem;
   font-weight: 700;
-  padding: 1rem;
-  text-align: center;
-  border: none;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--color-accent-gold);
 }
 
-.banzuke-table tbody tr {
-  border-bottom: 1px solid #e0e0e0;
+.rikishi-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
 }
 
-.banzuke-table td {
-  padding: 1.5rem 1rem;
-  text-align: center;
-  border: 1px solid #e0e0e0;
-  vertical-align: top;
-}
-
-.rikishi-cell {
+.rikishi-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
+  padding: 1.25rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #f5f3f0 0%, #ede8e3 100%);
+  border: 1px solid var(--color-border);
+  transition: all 0.3s ease;
 }
 
-.rikishi-info {
-  margin-bottom: 0.5rem;
+.rikishi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 58, 82, 0.15);
+  border-color: var(--color-secondary);
+}
+
+.rikishi-card.east {
+  border-left: 4px solid #4a90e2;
+}
+
+.rikishi-card.west {
+  border-left: 4px solid #e24a4a;
+}
+
+.rikishi-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.rikishi-name-section {
+  flex: 1;
 }
 
 .rikishi-name {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
   font-weight: 700;
-  color: #333;
-  font-size: 1.25rem;
+  color: var(--color-primary);
   margin-bottom: 0.25rem;
 }
 
 .rikishi-yomi {
-  font-size: 0.9rem;
-  color: #666;
+  font-size: 0.85rem;
+  color: #999;
   font-style: italic;
-  margin-bottom: 0.5rem;
 }
 
 .rank-badge {
   display: inline-block;
   padding: 0.35rem 0.75rem;
+  background-color: var(--color-primary);
+  color: white;
   border-radius: 20px;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.rank-badge.yokozuna {
+  background: linear-gradient(135deg, #d4af37 0%, #c9a227 100%);
+  color: var(--color-primary);
+  box-shadow: 0 2px 6px rgba(212, 175, 55, 0.3);
+}
+
+.rank-badge.ozeki {
+  background: linear-gradient(135deg, #c0c0c0 0%, #a8a8a8 100%);
+  color: var(--color-primary);
+}
+
+.rank-badge.sekiwake {
+  background: linear-gradient(135deg, #cd7f32 0%, #b8691e 100%);
+  color: white;
+}
+
+.rank-badge.komusubi {
+  background: linear-gradient(135deg, #c41e3a 0%, #8b1538 100%);
+  color: white;
+}
+
+.rank-badge.maegashira {
+  background: linear-gradient(135deg, #1a3a52 0%, #0f2438 100%);
+  color: white;
+}
+
+.rank-badge.juryo {
+  background: linear-gradient(135deg, #4db8a8 0%, #3a8f7f 100%);
+  color: white;
+}
+
+.rikishi-record {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.record-label {
+  font-size: 0.85rem;
+  color: #999;
   font-weight: 600;
 }
 
-.rank-badge.yokozuna { background-color: #d4af37; color: #333; }
-.rank-badge.ozeki { background-color: #c0c0c0; color: #333; }
-.rank-badge.sekiwake { background-color: #cd7f32; color: white; }
-.rank-badge.komusubi { background-color: #764ba2; color: white; }
-.rank-badge.maegashira { background-color: #667eea; color: white; }
-.rank-badge.juryo { background-color: #4db8a8; color: white; }
-
-.record {
+.record-value {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
   font-weight: 700;
-  color: #333;
-  font-size: 1.1rem;
+  color: var(--color-primary);
+  background: white;
   padding: 0.25rem 0.75rem;
-  background: #fff;
-  border: 1px solid #ddd;
   border-radius: 4px;
+  border: 1px solid var(--color-border);
 }
 
-/* 星取表スタイル */
-.hoshitori-container {
+.hoshitori-display {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 2px;
-  max-width: 150px;
-  margin-top: 0.5rem;
+  gap: 3px;
+  margin-top: 0.75rem;
 }
 
 .hoshi {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 18px;
-  height: 18px;
-  font-size: 12px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 12px;
+  border: 1px solid var(--color-border);
 }
 
-.hoshi.win { color: #e53e3e; } /* 白星 ○ */
-.hoshi.loss { color: #2d3748; } /* 黒星 ● */
-.hoshi.draw { color: #a0aec0; } /* 休場 − */
+.hoshi.win {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+  color: white;
+  border-color: #ff5252;
+}
 
-.empty { color: #ccc; font-size: 1.5rem; }
+.hoshi.loss {
+  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+  color: white;
+  border-color: #2d3748;
+}
 
+.hoshi.draw {
+  background: #f0f0f0;
+  color: #999;
+  border-color: #ddd;
+}
+
+.hoshi.empty {
+  background: transparent;
+  color: #ddd;
+  border: none;
+  font-size: 14px;
+}
+
+/* レスポンシブ */
 @media (max-width: 768px) {
-  .banzuke-table th, .banzuke-table td { padding: 0.75rem 0.5rem; }
-  .rikishi-name { font-size: 1.1rem; }
-  .hoshitori-container { max-width: 120px; }
-  .hoshi { width: 14px; height: 14px; font-size: 10px; }
+  .rank-group {
+    padding: 1.5rem;
+  }
+
+  .rikishi-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .rikishi-card {
+    padding: 1rem;
+  }
+
+  .rikishi-name {
+    font-size: 1.1rem;
+  }
+
+  .rikishi-yomi {
+    font-size: 0.8rem;
+  }
+
+  .rank-badge {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+  }
+
+  .record-value {
+    font-size: 1.1rem;
+  }
+
+  .hoshi {
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rank-group {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .rank-group-title {
+    font-size: 1.1rem;
+  }
+
+  .rikishi-card {
+    padding: 0.75rem;
+  }
+
+  .rikishi-name {
+    font-size: 1rem;
+  }
+
+  .rikishi-yomi {
+    font-size: 0.75rem;
+  }
+
+  .rank-badge {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .record-value {
+    font-size: 1rem;
+  }
+
+  .hoshi {
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+  }
 }
