@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite dev --port 3001",
     "build": "vite build",
-    "start": "vite preview",
+    "preview": "vite preview",
     "pages:build": "npm run build"
   },
   "repository": {
@@ -27,7 +27,8 @@
   "homepage": "https://github.com/dai/o-sumo#readme",
   "dependencies": {
     "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "react-dom": "^19.2.4",
+    "react-router-dom": "^7.2.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20260305.0",

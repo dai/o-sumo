@@ -1,11 +1,6 @@
 import React from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import './index.css';
-
-export const metadata = {
-  title: 'o-sumo - 大相撲情報サイト',
-  description: '大相撲の番付、成績、力士情報を提供するサイト',
-};
 
 export default function Home() {
   return (
@@ -21,7 +16,7 @@ export default function Home() {
         <section className="hero-section">
           <h2>令和8年3月場所</h2>
           <p>最新の番付情報と力士データ</p>
-          <Link href="/202603-o-sumo" className="cta-button">
+          <Link to="/202603-o-sumo" className="cta-button">
             番付一覧を見る
           </Link>
         </section>

@@ -1,14 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import BanzukeTable from '../components/BanzukeTable';
 import { makuuchiData, juryo } from '../lib/sumo-data';
 import './page.css';
 
-export const metadata = {
-  title: '令和8年3月場所 番付一覧 - o-sumo',
-  description: '令和8年3月場所（2026年3月）の幕内・十両力士の番付一覧と成績表',
-};
-
-export default function Page() {
+export default function BanzukePage() {
   return (
     <div className="page-container">
       <header className="page-header">
@@ -57,6 +53,8 @@ export default function Page() {
       <footer className="page-footer">
         <p>&copy; 2026 o-sumo. All rights reserved.</p>
         <p>
+          <Link to="/">ホームに戻る</Link>
+          {" | "}
           <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">
             GitHub Repository
           </a>
