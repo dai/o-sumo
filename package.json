@@ -4,12 +4,10 @@
   "description": "大相撲、 All about the OO-SUMO.",
   "main": "index.js",
   "scripts": {
-    "dev": "vinext dev",
-    "build": "vinext build",
-    "start": "vinext start",
-    "deploy": "vinext deploy",
-    "dev:vinext": "vite dev --port 3001",
-    "build:vinext": "vite build"
+    "dev": "vite dev --port 3001",
+    "build": "vite build",
+    "start": "vite preview",
+    "pages:build": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -29,15 +27,17 @@
   "homepage": "https://github.com/dai/o-sumo#readme",
   "dependencies": {
     "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "vinext": "^0.0.13"
+    "react-dom": "^19.2.4"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260305.0",
     "@types/node": "^25.3.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.4",
     "typescript": "^5.9.3",
-    "vite": "^7.3.1"
+    "vite": "^7.3.1",
+    "wrangler": "^4.69.0"
   },
   "type": "module"
 }
