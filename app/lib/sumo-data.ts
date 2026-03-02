@@ -111,7 +111,18 @@ export const makuuchiData: RankGroup[] = [
         "results": []
       }
     ],
-    "west": []
+    "west": [
+      {
+        "name": "熱海富士",
+        "yomi": "あたみふじ",
+        "rank": "小結",
+        "side": "west",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": []
+      }
+    ]
   },
   {
     "title": "前頭1",
@@ -304,7 +315,18 @@ export const makuuchiData: RankGroup[] = [
   },
   {
     "title": "前頭9",
-    "east": [],
+    "east": [
+      {
+        "name": "時疾風",
+        "yomi": "ときはやて",
+        "rank": "前頭9",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": []
+      }
+    ],
     "west": [
       {
         "name": "玉鷲",
@@ -359,7 +381,18 @@ export const makuuchiData: RankGroup[] = [
         "results": []
       }
     ],
-    "west": []
+    "west": [
+      {
+        "name": "欧勝海",
+        "yomi": "おうしょううみ",
+        "rank": "前頭11",
+        "side": "west",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": []
+      }
+    ]
   },
   {
     "title": "前頭12",
@@ -402,7 +435,18 @@ export const makuuchiData: RankGroup[] = [
         "results": []
       }
     ],
-    "west": []
+    "west": [
+      {
+        "name": "藤青雲",
+        "yomi": "ふじせいうん",
+        "rank": "前頭13",
+        "side": "west",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": []
+      }
+    ]
   },
   {
     "title": "前頭14",
@@ -460,7 +504,18 @@ export const makuuchiData: RankGroup[] = [
   },
   {
     "title": "前頭16",
-    "east": [],
+    "east": [
+      {
+        "name": "朝白龍",
+        "yomi": "あさはくりゅう",
+        "rank": "前頭16",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": []
+      }
+    ],
     "west": [
       {
         "name": "金峰山",
@@ -476,7 +531,18 @@ export const makuuchiData: RankGroup[] = [
   },
   {
     "title": "前頭17",
-    "east": [],
+    "east": [
+      {
+        "name": "藤凌駕",
+        "yomi": "ふじりょうが",
+        "rank": "前頭17",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": []
+      }
+    ],
     "west": [
       {
         "name": "琴栄峰",
