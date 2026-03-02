@@ -68,8 +68,14 @@
 
 .rikishi-yomi {
   font-size: 0.85rem;
-  color: #999;
+  color: #7c8b9a;
   font-style: italic;
+}
+
+.rikishi-en {
+  font-size: 0.78rem;
+  color: #a3b1bf;
+  letter-spacing: 0.3px;
 }
 
 .rank-badge {
