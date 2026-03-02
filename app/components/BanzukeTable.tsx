@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { RankGroup, Rikishi } from '../lib/sumo-data';
+import { toRomaji } from '../lib/romaji';
 import '../styles/banzuke.css';
 
 interface BanzukeTableProps {
@@ -36,6 +37,7 @@ const RikishiCell = ({ rikishi }: { rikishi: Rikishi }) => {
       <div className="rikishi-info">
         <div className="rikishi-name">{rikishi.name}</div>
         <div className="rikishi-yomi">({rikishi.yomi})</div>
+        <div className="rikishi-en">{toRomaji(rikishi.yomi)}</div>
         <span className={`rank-badge ${getRankBadgeClass(rikishi.rank)}`}>
           {rikishi.rank}
         </span>
