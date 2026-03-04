@@ -59,7 +59,7 @@ export const toRomaji = (kana: string): string => {
 
     if (current === 'っ') {
       const nextPair = `${next}${normalized[i + 2] ?? ''}`;
-      const consonant = (DIGRAPH_MAP[nextPair] ?? KANA_MAP[next] ?? next).charAt(0);
+      const consonant = next === 'ち' ? 't' : (DIGRAPH_MAP[nextPair] ?? KANA_MAP[next] ?? next).charAt(0);
       out += consonant;
       continue;
     }
