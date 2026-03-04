@@ -18,7 +18,8 @@ export default function TorikumiPage() {
         } else {
           setMatches(data);
         }
-      } catch {
+      } catch (error) {
+        console.error('Failed to fetch torikumi data:', error);
         setMatches(fallbackTorikumi());
         setError('通信環境またはCORS制約により、番付ベースの暫定取組を表示しています。');
       } finally {
