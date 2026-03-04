@@ -1,0 +1,137 @@
+.torikumi-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(circle at top, #f9fafc 0%, #edf1f6 45%, #e3e8ef 100%);
+}
+
+.torikumi-header {
+  padding: 3rem 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, #1a3a52 0%, #2d5a7b 60%, #426f90 100%);
+  color: white;
+  box-shadow: 0 14px 30px rgba(10, 34, 52, 0.25);
+}
+
+.torikumi-header h1 {
+  color: white;
+  margin-bottom: 0.4rem;
+}
+
+.torikumi-header p {
+  opacity: 0.9;
+}
+
+.torikumi-main {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+
+.status-message {
+  margin-bottom: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  background: white;
+  border: 1px solid #d7e0ea;
+}
+
+.status-message.warning {
+  border-color: #e0b24b;
+  background: #fff8e7;
+}
+
+.division-section {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid #dce4ee;
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+  padding: 1.2rem;
+  box-shadow: 0 8px 20px rgba(28, 53, 85, 0.08);
+}
+
+.division-section h2 {
+  font-size: 1.35rem;
+  margin-bottom: 0.8rem;
+}
+
+.torikumi-head,
+.torikumi-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 160px minmax(0, 1fr);
+  gap: 0.7rem;
+}
+
+.torikumi-head {
+  margin-bottom: 0.6rem;
+}
+
+.cell {
+  border-radius: 12px;
+  padding: 0.7rem 0.9rem;
+}
+
+.torikumi-head .cell {
+  background: linear-gradient(120deg, #233f56 0%, #2f526f 100%);
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
+
+.torikumi-row {
+  margin-bottom: 0.6rem;
+}
+
+.rikishi-card {
+  background: white;
+  border: 1px solid #d9e2ed;
+}
+
+.rikishi-card .name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #18354d;
+}
+
+.rikishi-card .yomi {
+  color: #5f7186;
+  font-size: 0.82rem;
+}
+
+.rikishi-card .english {
+  color: #8fa0b3;
+  font-size: 0.78rem;
+}
+
+.kimarite-value {
+  background: linear-gradient(135deg, #f5f8fc 0%, #ecf2f8 100%);
+  border: 1px solid #d4deea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #2d4f6c;
+  text-align: center;
+}
+
+.torikumi-footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 1.3rem;
+  background: #1a3a52;
+}
+
+.torikumi-footer a {
+  color: #f6dd8b;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+@media (max-width: 860px) {
+  .torikumi-head,
+  .torikumi-row {
+    grid-template-columns: 1fr;
+  }
+}

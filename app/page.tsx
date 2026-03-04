@@ -16,9 +16,14 @@ export default function Home() {
         <section className="hero-section">
           <h2>令和8年3月場所</h2>
           <p>最新の番付情報と力士データ</p>
-          <Link to="/202603-o-sumo" className="cta-button">
-            番付一覧を見る
-          </Link>
+          <div className="hero-actions">
+            <Link to="/202603-o-sumo" className="cta-button">
+              番付一覧を見る
+            </Link>
+            <Link to="/202603-torikumi" className="cta-button secondary">
+              取組表を見る
+            </Link>
+          </div>
         </section>
 
         <section className="features-section">
@@ -29,8 +34,8 @@ export default function Home() {
               <p>幕内・十両力士の最新番付を表示</p>
             </div>
             <div className="feature-card">
-              <h3>⚡ 高速表示</h3>
-              <p>Cloudflare vinextで高速配信</p>
+              <h3>🥋 取組表</h3>
+              <p>東西同幅・決まり手付きのモダンUI</p>
             </div>
             <div className="feature-card">
               <h3>📱 レスポンシブ</h3>
