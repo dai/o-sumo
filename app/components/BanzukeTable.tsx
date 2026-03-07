@@ -56,6 +56,10 @@ export default function BanzukeTable({ rankGroup }: BanzukeTableProps) {
     <div className="rank-section">
       <h3 className="rank-title">{rankGroup.title}</h3>
       <table className="banzuke-table">
+        <colgroup>
+          <col style={{ width: '50%' }} />
+          <col style={{ width: '50%' }} />
+        </colgroup>
         <thead>
           <tr>
             <th>東</th>

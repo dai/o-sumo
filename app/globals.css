@@ -158,7 +158,14 @@ th {
 
 .banzuke-table {
   width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
+}
+
+
+.banzuke-table th,
+.banzuke-table td {
+  width: 50%;
 }
 
 .banzuke-table th {
