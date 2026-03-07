@@ -15,54 +15,20 @@ export default function Home() {
       <main className="home-main">
         <section className="hero-section">
           <h2>令和8年3月場所</h2>
-          <p>最新の番付情報と力士データ</p>
+          <p>メニューは番付表と星取表のみ</p>
           <div className="hero-actions">
             <Link to="/202603-o-sumo" className="cta-button">
-              番付一覧を見る
+              番付表
             </Link>
             <Link to="/202603-torikumi" className="cta-button secondary">
-              取組表を見る
+              星取表
             </Link>
-          </div>
-        </section>
-
-        <section className="features-section">
-          <h2>機能</h2>
-          <div className="features-grid">
-            <div className="feature-card">
-              <h3>📋 番付一覧</h3>
-              <p>幕内・十両力士の最新番付を表示</p>
-            </div>
-            <div className="feature-card">
-              <h3>🥋 取組表</h3>
-              <p>東西同幅・決まり手付きのモダンUI</p>
-            </div>
-            <div className="feature-card">
-              <h3>📱 レスポンシブ</h3>
-              <p>モバイル対応の見やすいデザイン</p>
-            </div>
-          </div>
-        </section>
-
-        <section className="tech-section">
-          <h2>技術スタック</h2>
-          <div className="tech-list">
-            <span className="tech-badge">Cloudflare vinext</span>
-            <span className="tech-badge">React</span>
-            <span className="tech-badge">TypeScript</span>
-            <span className="tech-badge">Vite</span>
-            <span className="tech-badge">CSS3</span>
           </div>
         </section>
       </main>
 
       <footer className="home-footer">
         <p>&copy; 2026 o-sumo. All rights reserved.</p>
-        <p>
-          <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">
-            GitHub
-          </a>
-        </p>
       </footer>
     </div>
   );
