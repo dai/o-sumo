@@ -1,173 +1,115 @@
 # o-sumo
 
-大相撲、 All about the OO-SUMO.
+日本語 / English
 
-## 概要
+大相撲の番付・星取・取組データを毎日更新して配信するWebアプリです。  
+A web app that publishes daily-updated sumo banzuke, hoshitori, and torikumi data.
 
-o-sumoは、大相撲の番付情報と力士データを提供するモダンなWebアプリケーションです。令和8年3月場所（2026年3月）の幕内・十両力士の番付一覧を表示します。
+## 1. 概要 / Overview
 
-また、本プロジェクトの開発プロセスを再利用可能なスキルとして `.agents/skills/vinext-sumo-app-builder/` に格納しています。AIエージェントによる自動化された開発を支援します。
+- フロントエンド: React + TypeScript + Vite
+- データ生成: Python (`scripts/update_sumo_data.py`)
+- 配信: Cloudflare Pages (`osada.us`)
+- 公開API（静的JSON）:
+  - `/api/v1/banzuke.json`
+  - `/api/v1/torikumi.json`
 
-## 技術スタック
+This project uses official Nihon Sumo Kyokai Ajax endpoints and generates validated static datasets.
 
-- **フレームワーク**: [Cloudflare vinext](https://github.com/cloudflare/vinext) - Next.js API on Vite
-- **フロントエンド**: React 19 + TypeScript
-- **ビルドツール**: Vite 7
-- **デプロイ**: Cloudflare Workers / Pages
-- **スタイリング**: CSS3（モダンなグラデーションとレスポンシブデザイン）
+## 2. 主な機能 / Key Features
 
-## 機能
+- 幕内42人・十両28人を厳密検証して番付データを生成
+- 今日の取組結果と明日の取組予定（幕内21番 + 十両14番 = 35番）を生成
+- 力士ごとに協会プロフィールURLを保持（将来のメモ追加に対応）
+- Cloudflare Pages でサイトとJSON APIを同時配信
 
-- 📋 **番付一覧**: 幕内・十両力士の最新番付を東西の欄で表示
-- 🔄 **自動更新**: 毎日、最新の番付・星取データを自動取得して更新
-- 📱 **レスポンシブデザイン**: モバイル・タブレット・デスクトップに対応
-- ⚡ **高速配信**: Cloudflare vinextによる最適化された配信
-- 🎨 **モダンUI**: グラデーションと洗練されたカラースキーム
+- Strict validation for banzuke counts (Makuuchi 42, Juryo 28)
+- Daily torikumi dataset for today results + tomorrow schedule (35 bouts)
+- Rikishi profile URLs included for future extension (notes, metadata)
+- Site + JSON API served together on Cloudflare Pages
 
-## ページ構成
+## 3. セットアップ / Setup
 
-- `/` - ホームページ
-- `/202603-o-sumo` - 令和8年3月場所の番付一覧（メインページ）
+### 必要要件 / Requirements
 
-## セットアップ
+- Node.js 18+
+- npm 9+
+- Python 3.10+
 
-### 自動更新の仕組み
-
-本プロジェクトは、以下の手順で最新データを自動取得しています。
-
-1. **スクリプト実行**: `scripts/update_sumo_data.py` が最新の番付・星取データを取得
-2. **データ更新**: `app/lib/sumo-data.ts` を新しいデータで上書き
-3. **自動コミット**: 変更があれば自動的にGitHubへコミット・プッシュ
-
-### 必要な環境
-
-- Node.js 18以上
-- npm または pnpm
-- Python 3.10以上 (データ更新用)
-
-### インストール
+### インストール / Install
 
 ```bash
-# リポジトリをクローン
 git clone https://github.com/dai/o-sumo.git
 cd o-sumo
-
-# 依存関係をインストール
 npm install
 ```
 
-### 開発サーバーの起動
+## 4. 開発コマンド / Commands
 
 ```bash
-# vinextの開発サーバーを起動（推奨）
+# 開発サーバー
 npm run dev
 
-# または、Viteの開発サーバーを起動
-npm run dev:vinext
-```
-
-ブラウザで `http://localhost:3000` または `http://localhost:3001` を開いてください。
-
-### ビルド
-
-```bash
-# vinextでビルド
+# 本番ビルド
 npm run build
 
-# または、Viteでビルド
-npm run build:vinext
+# ビルド結果プレビュー
+npm run preview
+
+# Pages用ビルド（現状は build のエイリアス）
+npm run pages:build
+
+# データ再生成（番付・取組・API JSON）
+python scripts/update_sumo_data.py
 ```
 
-### デプロイ
+## 5. データ更新 / Data Update
 
-```bash
-# Cloudflare Workersへデプロイ
-npm run deploy
-```
+`scripts/update_sumo_data.py` は以下を行います。
 
-## ディレクトリ構造
+1. 公式Ajaxから番付・星取・取組を取得
+2. 厳密バリデーション
+   - 幕内42 / 十両28
+   - 取組 35番（幕内21 + 十両14）
+3. 出力を更新
+   - `app/lib/sumo-data.ts`
+   - `app/lib/torikumi-data.ts`
+   - `public/api/v1/banzuke.json`
+   - `public/api/v1/torikumi.json`
 
-```
-o-sumo/
-├── app/
-│   ├── 202603-o-sumo/
-│   │   ├── page.tsx          # 番付一覧ページ
-│   │   └── page.css          # ページスタイル
-│   ├── components/
-│   │   └── BanzukeTable.tsx   # 番付表示コンポーネント
-│   ├── lib/
-│   │   └── sumo-data.ts       # 力士データ定義
-│   ├── styles/
-│   │   └── banzuke.css        # 番付表のスタイル
-│   ├── layout.tsx             # ルートレイアウト
-│   ├── page.tsx               # ホームページ
-│   ├── globals.css            # グローバルスタイル
-│   └── index.css              # ホームページスタイル
-├── public/                    # 静的ファイル
-├── vite.config.ts             # Vite設定
-├── tsconfig.json              # TypeScript設定
-├── package.json               # 依存関係
-├── wrangler.toml              # Cloudflare Workers設定
-└── README.md                  # このファイル
-```
+The script fails fast if counts are missing or inconsistent.
 
-## 力士データ
+## 6. 自動更新 / Daily Automation
 
-令和8年3月場所の幕内・十両力士データは `app/lib/sumo-data.ts` で定義されています。
+GitHub Actions:
 
-```typescript
-export interface Rikishi {
-  name: string;        // 四股名
-  yomi: string;        // 読み仮名
-  rank: string;        // 番付
-  side: 'east' | 'west'; // 東西
-  wins?: number;        // 勝数
-  losses?: number;      // 敗数
-  draws?: number;       // 休場数
-}
-```
+- `.github/workflows/daily-data-update.yml`
+- 毎日 18:00 JST (`cron: 0 9 * * *`)
+- 更新内容は `main` 直pushではなく、PRとして作成
 
-## スタイリング
+This keeps branch protection compatible with scheduled updates.
 
-このプロジェクトは、モダンなグラデーション（紫色系）を使用した洗練されたデザインを採用しています。
+## 7. API公開 / API Endpoints
 
-- **プライマリカラー**: `#667eea` (紫)
-- **セカンダリカラー**: `#764ba2` (濃い紫)
-- **背景グラデーション**: `linear-gradient(135deg, #667eea 0%, #764ba2 100%)`
+Cloudflare Pages デプロイ後:
 
-## レスポンシブブレークポイント
+- `https://osada.us/api/v1/banzuke.json`
+- `https://osada.us/api/v1/torikumi.json`
 
-- **デスクトップ**: 1200px以上
-- **タブレット**: 768px～1199px
-- **モバイル**: 480px～767px
-- **小型モバイル**: 479px以下
+These endpoints are static JSON files generated from official sources.
 
-## ブラウザ対応
+## 8. ディレクトリ / Important Paths
 
-- Chrome/Edge (最新版)
-- Firefox (最新版)
-- Safari (最新版)
-- モバイルブラウザ (iOS Safari, Chrome Mobile)
+- `app/202603-o-sumo/page.tsx` - 番付ページ
+- `app/202603-torikumi/page.tsx` - 取組ページ
+- `app/components/BanzukeTable.tsx` - 番付テーブル
+- `scripts/update_sumo_data.py` - データ生成の中核
+- `public/api/v1/` - 公開JSON API
 
-## ライセンス
+## 9. ライセンス / License
 
 ISC
 
-## 参考リンク
+## 10. 作者 / Author
 
-- [Cloudflare vinext](https://github.com/cloudflare/vinext)
-- [日本相撲協会](https://sumo.or.jp/)
-- [vinext ドキュメント](https://vinext.io/)
-- [Manus Skill Documentation](https://manus.im/docs/skills)
-
-## 貢献
-
-プルリクエストを歓迎します。大きな変更の場合は、まずissueを開いて変更内容を議論してください。
-
-## 作成者
-
-[dai](https://github.com/dai)
-
----
-
-**最終更新**: 2026年3月7日
+- [dai](https://github.com/dai)
