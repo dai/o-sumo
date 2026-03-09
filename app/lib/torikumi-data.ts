@@ -12,7 +12,7 @@ export interface TorikumiMatch {
   westRank: string;
   westProfileUrl: string;
   kimarite: string;
-  winner?: 'east' | 'west';
+  winner?: 'east' | 'west' | null;
 }
 
 export interface TorikumiDivisionDay {
@@ -28,12 +28,23 @@ export interface TorikumiDailyData {
   juryo: TorikumiDivisionDay;
 }
 
+export interface TorikumiArchiveDay {
+  day: number;
+  isoDate: string;
+  pathDate: string;
+  label: string;
+  dayHead: string;
+  data: TorikumiDailyData;
+}
+
 export interface TorikumiDataSet {
   bashoName: string;
   year: string;
   updatedAt: string;
-  today: TorikumiDailyData;
-  tomorrow: TorikumiDailyData;
+  today?: TorikumiDailyData;
+  tomorrow?: TorikumiDailyData;
+  resultDays?: TorikumiArchiveDay[];
+  scheduleDays?: TorikumiArchiveDay[];
 }
 
 export const torikumiData: TorikumiDataSet = {
@@ -1197,3 +1208,90 @@ export const torikumiData: TorikumiDataSet = {
     }
   }
 };
+
+const DAY_NAME_BY_NUMBER: Record<number, string> = {
+  1: '初日',
+  2: '二日目',
+  3: '三日目',
+  4: '四日目',
+  5: '五日目',
+  6: '六日目',
+  7: '七日目',
+  8: '中日',
+  9: '九日目',
+  10: '十日目',
+  11: '十一日目',
+  12: '十二日目',
+  13: '十三日目',
+  14: '十四日目',
+  15: '千秋楽',
+};
+
+function toIsoDate(dayHead: string): string {
+  const match = dayHead.match(/令和\d+年(\d+)月(\d+)日/);
+  if (!match) {
+    return '';
+  }
+
+  const month = match[1].padStart(2, '0');
+  const day = match[2].padStart(2, '0');
+  const year = torikumiData.updatedAt.slice(0, 4) || '2026';
+  return `${year}-${month}-${day}`;
+}
+
+function toPathDate(isoDate: string): string {
+  return isoDate.replaceAll('-', '');
+}
+
+function toLabel(day: number): string {
+  return DAY_NAME_BY_NUMBER[day] ?? `${day}日目`;
+}
+
+function toScheduleData(dayData: TorikumiDailyData): TorikumiDailyData {
+  const clearMatches = (division: TorikumiDivisionDay): TorikumiDivisionDay => ({
+    ...division,
+    matches: division.matches.map((match) => ({
+      ...match,
+      kimarite: '未定',
+      winner: null,
+    })),
+  });
+
+  return {
+    makuuchi: clearMatches(dayData.makuuchi),
+    juryo: clearMatches(dayData.juryo),
+  };
+}
+
+function buildArchiveDay(dayData: TorikumiDailyData, mode: 'result' | 'schedule'): TorikumiArchiveDay {
+  const isoDate = toIsoDate(dayData.makuuchi.dayHead);
+  const normalizedData = mode === 'result' ? dayData : toScheduleData(dayData);
+  return {
+    day: dayData.makuuchi.day,
+    isoDate,
+    pathDate: toPathDate(isoDate),
+    label: toLabel(dayData.makuuchi.day),
+    dayHead: dayData.makuuchi.dayHead,
+    data: normalizedData,
+  };
+}
+
+const fallbackResultDays = torikumiData.today ? [buildArchiveDay(torikumiData.today, 'result')] : [];
+const fallbackScheduleDays = [
+  torikumiData.today ? buildArchiveDay(torikumiData.today, 'schedule') : null,
+  torikumiData.tomorrow ? buildArchiveDay(torikumiData.tomorrow, 'schedule') : null,
+].filter((day): day is TorikumiArchiveDay => day !== null);
+
+export const torikumiArchive = {
+  bashoName: torikumiData.bashoName,
+  year: torikumiData.year,
+  updatedAt: torikumiData.updatedAt,
+  resultDays: torikumiData.resultDays ?? fallbackResultDays,
+  scheduleDays: torikumiData.scheduleDays ?? fallbackScheduleDays,
+};
+
+export const torikumiMonthKey = torikumiArchive.resultDays[0]?.pathDate.slice(0, 6)
+  ?? torikumiArchive.scheduleDays[0]?.pathDate.slice(0, 6)
+  ?? '202603';
+
+export const banzukePath = `/${torikumiMonthKey}-banduke`;

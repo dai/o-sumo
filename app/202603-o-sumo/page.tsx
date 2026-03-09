@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import BanzukeTable from '../components/BanzukeTable';
 import { makuuchiData, juryo } from '../lib/sumo-data';
+import { getHubPath } from '../lib/torikumi-routes';
 import './page.css';
 
 export default function BanzukePage() {
@@ -11,7 +12,7 @@ export default function BanzukePage() {
         <div className="header-content">
           <h1 className="page-title">大相撲</h1>
           <h2 className="page-subtitle">令和8年3月場所 番付一覧</h2>
-          <p className="page-description">2026年3月場所の幕内・十両力士の番付と成績</p>
+          <p className="page-description">2026年3月場所の幕内・十両力士の番付と成績 / URL: /202603-banduke</p>
         </div>
       </header>
 
@@ -46,6 +47,13 @@ export default function BanzukePage() {
             <p>
               技術スタック: <strong>Cloudflare vinext</strong>、<strong>React</strong>、<strong>TypeScript</strong>
             </p>
+            <p>
+              連絡先:
+              {' '}
+              <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">x.com/daisuke</a>
+              {' / '}
+              <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </p>
           </div>
         </section>
       </main>
@@ -54,6 +62,12 @@ export default function BanzukePage() {
         <p>&copy; 2026 o-sumo. All rights reserved.</p>
         <p>
           <Link to="/">ホームに戻る</Link>
+          {" | "}
+          <Link to={getHubPath('result')}>取組結果一覧</Link>
+          {" | "}
+          <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">
+            Daisuke on X
+          </a>
           {" | "}
           <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">
             GitHub Repository

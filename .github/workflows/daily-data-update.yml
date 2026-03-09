@@ -2,7 +2,7 @@ name: Daily Sumo Data Update
 
 on:
   schedule:
-    - cron: '0 9 * * *' # 18:00 JST
+    - cron: '0 10 * * *' # 19:00 JST
   workflow_dispatch:
 
 permissions:
@@ -30,9 +30,10 @@ jobs:
           commit-message: "chore: daily sumo data update"
           title: "chore: daily sumo data update"
           body: |
-            Automated daily update at 18:00 JST.
+            Automated daily update at 19:00 JST.
             - Refresh banzuke (幕内42 / 十両28 strict validation)
-            - Refresh torikumi (今日結果 / 明日予定, 35番 strict validation)
+            - Refresh torikumi result archive (初日から当日まで)
+            - Refresh torikumi schedule archive (初日から翌日まで)
             - Refresh API JSON under public/api/v1
           branch: codex/daily-sumo-data-update
           delete-branch: true
