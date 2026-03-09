@@ -18,5 +18,6 @@ describe('TorikumiDayPage', () => {
     expect(screen.getByText('← 前日なし')).toBeInTheDocument();
     expect(screen.getByText('翌日なし →')).toBeInTheDocument();
     expect(screen.getAllByRole('link', { name: 'x.com/daisuke' })[0]).toHaveAttribute('href', 'https://x.com/daisuke');
+    expect(screen.getByText('豊昇龍（ほうしょうりゅう）')).toBeInTheDocument();
   });
 });

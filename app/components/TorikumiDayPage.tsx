@@ -2,9 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { type TorikumiArchiveDay, type TorikumiDivisionDay, type TorikumiMatch, torikumiArchive } from '../lib/torikumi-data';
 import { banzukePath, getAdjacentDay, getDayPath, getHubPath, type TorikumiPageMode } from '../lib/torikumi-routes';
+import { juryo, makuuchiData } from '../lib/sumo-data';
 import '../202603-torikumi/page.css';
 
 const DIVISIONS: Array<'幕内' | '十両'> = ['幕内', '十両'];
+const rikishiNameByProfileUrl = new Map(
+  [...makuuchiData, ...juryo].flatMap((group) =>
+    [...group.east, ...group.west].map((rikishi) => [rikishi.profileUrl, rikishi.name] as const),
+  ),
+);
 
 function byDivision(day: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay }, division: '幕内' | '十両') {
   return division === '幕内' ? day.makuuchi.matches : day.juryo.matches;
@@ -22,6 +28,11 @@ function modeDescription(mode: TorikumiPageMode): string {
   return mode === 'result'
     ? '初日から順に結果を追えるアーカイブです。'
     : '初日から順に予定番付を確認できるアーカイブです。';
+}
+
+function displayName(name: string, yomi: string, profileUrl: string): string {
+  const canonicalName = rikishiNameByProfileUrl.get(profileUrl) ?? name;
+  return canonicalName === yomi ? canonicalName : `${canonicalName}（${yomi}）`;
 }
 
 function TorikumiTable({ title, dayData, mode }: { title: string; dayData: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay }; mode: TorikumiPageMode }) {
@@ -44,8 +55,7 @@ function TorikumiTable({ title, dayData, mode }: { title: string; dayData: { mak
               {matches.map((match: TorikumiMatch) => (
                 <div className="torikumi-row" role="row" key={`${title}-${division}-${match.boutNo}`}>
                   <div className="cell east rikishi-card">
-                    <div className="name">{match.eastName}</div>
-                    <div className="yomi">{match.eastYomi}</div>
+                    <div className="name">{displayName(match.eastName, match.eastYomi, match.eastProfileUrl)}</div>
                     <div className="english">{match.eastEnglish}</div>
                   </div>
                   <div className="cell kimarite kimarite-value">
@@ -54,8 +64,7 @@ function TorikumiTable({ title, dayData, mode }: { title: string; dayData: { mak
                       : '取組予定'}
                   </div>
                   <div className="cell west rikishi-card">
-                    <div className="name">{match.westName}</div>
-                    <div className="yomi">{match.westYomi}</div>
+                    <div className="name">{displayName(match.westName, match.westYomi, match.westProfileUrl)}</div>
                     <div className="english">{match.westEnglish}</div>
                   </div>
                 </div>
