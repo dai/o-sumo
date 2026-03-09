@@ -38,6 +38,8 @@ cd o-sumo
 npm install
 ```
 
+This repository does not commit a lockfile, so dependency installation is intentionally based on `npm install`.
+
 Run the dev server:
 
 ```bash
@@ -57,6 +59,12 @@ Production-style local check:
 ```bash
 npm run build
 npm run preview
+```
+
+Run tests:
+
+```bash
+npm test
 ```
 
 ## Data Update
@@ -88,6 +96,26 @@ GitHub Actions updates the data every day at 19:00 JST.
 
 - Workflow: `.github/workflows/daily-data-update.yml`
 - Changes are proposed by pull request instead of pushing directly to `main`
+
+## Testing
+
+A minimal automated test setup is included.
+
+- test runner: Vitest
+- component testing: Testing Library
+- workflow: `.github/workflows/test.yml`
+
+Current coverage:
+
+- routing helpers in `app/lib/torikumi-routes.ts`
+- main navigation on the home page
+- smoke coverage for the daily torikumi page
+
+GitHub Actions runs the following on pull requests and on pushes to `main` and `codex/**`:
+
+- `npm install`
+- `npm test`
+- `npm run build`
 
 ## Cloudflare Pages
 

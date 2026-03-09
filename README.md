@@ -38,6 +38,8 @@ cd o-sumo
 npm install
 ```
 
+このリポジトリでは lockfile を commit していないため、依存解決は `npm install` を前提にしています。
+
 開発サーバー:
 
 ```bash
@@ -57,6 +59,12 @@ npm run dev
 ```bash
 npm run build
 npm run preview
+```
+
+テスト実行:
+
+```bash
+npm test
 ```
 
 ## データ更新
@@ -88,6 +96,26 @@ GitHub Actions で毎日 19:00 JST に更新します。
 
 - Workflow: `.github/workflows/daily-data-update.yml`
 - `main` へ直接 push せず、更新用ブランチから PR を作成
+
+## テスト
+
+最小の自動テストを導入しています。
+
+- test runner: Vitest
+- component test: Testing Library
+- workflow: `.github/workflows/test.yml`
+
+現在の対象:
+
+- `app/lib/torikumi-routes.ts` のルーティング helper
+- ホームページの主要導線
+- 日別取組ページのスモークテスト
+
+GitHub Actions では PR と `main` / `codex/**` への push で以下を実行します。
+
+- `npm install`
+- `npm test`
+- `npm run build`
 
 ## Cloudflare Pages
 
