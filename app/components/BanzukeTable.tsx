@@ -10,7 +10,7 @@ interface BanzukeTableProps {
 }
 
 const Hoshitori = ({ results }: { results?: ('win' | 'loss' | 'draw')[] }) => {
-  if (!results) return null;
+  if (!results || results.length === 0) return null;
   return (
     <div className="hoshitori-container">
       {results.map((res, i) => (
@@ -32,6 +32,9 @@ const RikishiCell = ({ rikishi }: { rikishi: Rikishi }) => {
     return 'maegashira';
   };
 
+  const wins = rikishi.wins ?? 0;
+  const losses = rikishi.losses ?? 0;
+
   return (
     <div className="rikishi-cell">
       <div className="rikishi-info">
@@ -43,8 +46,12 @@ const RikishiCell = ({ rikishi }: { rikishi: Rikishi }) => {
         </span>
       </div>
       <div className="record">
-        {rikishi.wins}勝{rikishi.losses}敗
+        {wins}勝{losses}敗
         {rikishi.draws ? `${rikishi.draws}休` : ''}
+      </div>
+      <div className="record">
+        <a href={rikishi.profileUrl} target="_blank" rel="noreferrer">協会プロフィール</a>
+        {rikishi.memo ? ` / ${rikishi.memo}` : ''}
       </div>
       <Hoshitori results={rikishi.results} />
     </div>

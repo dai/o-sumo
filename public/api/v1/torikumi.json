@@ -1,42 +1,4 @@
-export interface TorikumiMatch {
-  division: '幕内' | '十両';
-  boutNo: number;
-  eastName: string;
-  eastYomi: string;
-  eastEnglish: string;
-  eastRank: string;
-  eastProfileUrl: string;
-  westName: string;
-  westYomi: string;
-  westEnglish: string;
-  westRank: string;
-  westProfileUrl: string;
-  kimarite: string;
-  winner?: 'east' | 'west';
-}
-
-export interface TorikumiDivisionDay {
-  day: number;
-  dayName: string;
-  dayHead: string;
-  division: '幕内' | '十両';
-  matches: TorikumiMatch[];
-}
-
-export interface TorikumiDailyData {
-  makuuchi: TorikumiDivisionDay;
-  juryo: TorikumiDivisionDay;
-}
-
-export interface TorikumiDataSet {
-  bashoName: string;
-  year: string;
-  updatedAt: string;
-  today: TorikumiDailyData;
-  tomorrow: TorikumiDailyData;
-}
-
-export const torikumiData: TorikumiDataSet = {
+{
   "bashoName": "三月場所",
   "year": "令和八年",
   "updatedAt": "2026-03-08",
@@ -1196,4 +1158,4 @@ export const torikumiData: TorikumiDataSet = {
       ]
     }
   }
-};
+}
