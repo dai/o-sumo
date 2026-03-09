@@ -32,6 +32,8 @@ export function getDayPath(day: TorikumiArchiveDay, mode: TorikumiPageMode): str
   return `/${day.pathDate}-${mode === 'result' ? 'torikumi' : 'yotei'}`;
 }
 
+export const legacyBanzukePath = `/${torikumiMonthKey}-o-sumo`;
+
 export function getAdjacentDay(
   current: TorikumiArchiveDay,
   mode: TorikumiPageMode,

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { findArchiveDay, getAdjacentDay, getDayPath, getHubPath, parseTopLevelSlug } from './torikumi-routes';
+import { findArchiveDay, getAdjacentDay, getDayPath, getHubPath, legacyBanzukePath, parseTopLevelSlug } from './torikumi-routes';
 import { torikumiArchive } from './torikumi-data';
 
 describe('torikumi route helpers', () => {
@@ -27,6 +27,7 @@ describe('torikumi route helpers', () => {
     expect(getHubPath('result')).toBe('/202603-torikumi');
     expect(getHubPath('schedule')).toBe('/202603-yotei');
     expect(getDayPath(day, 'result')).toBe('/20260308-torikumi');
+    expect(legacyBanzukePath).toBe('/202603-o-sumo');
   });
 
   it('resolves archive day and adjacent navigation', () => {
