@@ -17,6 +17,6 @@
       "@/*": ["./app/*"]
     }
   },
-  "include": ["app"],
+  "include": ["app", "app/test", "app/**/*.test.ts", "app/**/*.test.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
