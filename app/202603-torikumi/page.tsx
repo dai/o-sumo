@@ -1,72 +1,44 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { fetchTorikumiData, fallbackTorikumi, type TorikumiMatch } from '../lib/torikumi-data';
+import { torikumiData, type TorikumiDivisionDay, type TorikumiMatch } from '../lib/torikumi-data';
 import './page.css';
 
-export default function TorikumiPage() {
-  const [matches, setMatches] = useState<TorikumiMatch[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+const DIVISIONS: Array<'幕内' | '十両'> = ['幕内', '十両'];
 
-  useEffect(() => {
-    const load = async () => {
-      try {
-        const data = await fetchTorikumiData();
-        if (data.length === 0) {
-          setMatches(fallbackTorikumi());
-          setError('公式サイトの構造変更の可能性があるため、番付ベースの暫定取組を表示しています。');
-        } else {
-          setMatches(data);
-        }
-      } catch (error) {
-        console.error('Failed to fetch torikumi data:', error);
-        setMatches(fallbackTorikumi());
-        setError('通信環境またはCORS制約により、番付ベースの暫定取組を表示しています。');
-      } finally {
-        setLoading(false);
-      }
-    };
+const byDivision = (day: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay }, division: '幕内' | '十両') =>
+  division === '幕内' ? day.makuuchi.matches : day.juryo.matches;
 
-    load();
-  }, []);
+const sectionMeta = (day: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay }, division: '幕内' | '十両') =>
+  division === '幕内' ? day.makuuchi : day.juryo;
 
-  const grouped = useMemo(() => {
-    const map = new Map<string, TorikumiMatch[]>();
-    matches.forEach((match) => {
-      const key = match.division || 'その他';
-      map.set(key, [...(map.get(key) ?? []), match]);
-    });
-    return Array.from(map.entries());
-  }, [matches]);
-
+function TorikumiTable({ title, dayData }: { title: string; dayData: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay } }) {
   return (
-    <div className="torikumi-page">
-      <header className="torikumi-header">
-        <h1>令和8年3月場所 取組表</h1>
-        <p>東西の取組を同幅レイアウトで表示（取得元: 日本相撲協会）</p>
-      </header>
-
-      <main className="torikumi-main">
-        {loading && <p className="status-message">取組データを取得中...</p>}
-        {error && <p className="status-message warning">{error}</p>}
-
-        {!loading && grouped.map(([division, divisionMatches]) => (
-          <section key={division} className="division-section">
-            <h2>{division}</h2>
-            <div className="torikumi-table" role="table" aria-label={`${division}取組表`}>
+    <section className="division-section">
+      <h2>{title}</h2>
+      {DIVISIONS.map((division) => {
+        const meta = sectionMeta(dayData, division);
+        const matches = byDivision(dayData, division);
+        return (
+          <div key={`${title}-${division}`}>
+            <h3>{division} ({matches.length}番)</h3>
+            <p className="status-message">{meta.dayHead}</p>
+            <div className="torikumi-table" role="table" aria-label={`${title} ${division}`}>
               <div className="torikumi-head" role="rowgroup">
                 <div className="cell east">東</div>
                 <div className="cell kimarite">決まり手</div>
                 <div className="cell west">西</div>
               </div>
-              {divisionMatches.map((match, idx) => (
-                <div className="torikumi-row" role="row" key={`${division}-${idx}`}>
+              {matches.map((match: TorikumiMatch) => (
+                <div className="torikumi-row" role="row" key={`${title}-${division}-${match.boutNo}`}>
                   <div className="cell east rikishi-card">
                     <div className="name">{match.eastName}</div>
                     <div className="yomi">{match.eastYomi}</div>
                     <div className="english">{match.eastEnglish}</div>
                   </div>
-                  <div className="cell kimarite kimarite-value">{match.kimarite ?? '未定'}</div>
+                  <div className="cell kimarite kimarite-value">
+                    {match.kimarite}
+                    {match.winner ? ` (${match.winner === 'east' ? '東' : '西'}勝)` : ''}
+                  </div>
                   <div className="cell west rikishi-card">
                     <div className="name">{match.westName}</div>
                     <div className="yomi">{match.westYomi}</div>
@@ -75,8 +47,24 @@ export default function TorikumiPage() {
                 </div>
               ))}
             </div>
-          </section>
-        ))}
+          </div>
+        );
+      })}
+    </section>
+  );
+}
+
+export default function TorikumiPage() {
+  return (
+    <div className="torikumi-page">
+      <header className="torikumi-header">
+        <h1>{torikumiData.year}{torikumiData.bashoName} 取組表</h1>
+        <p>更新日: {torikumiData.updatedAt} / 毎日18:00(JST)更新</p>
+      </header>
+
+      <main className="torikumi-main">
+        <TorikumiTable title="今日の取組結果" dayData={torikumiData.today} />
+        <TorikumiTable title="明日の取組予定" dayData={torikumiData.tomorrow} />
       </main>
 
       <footer className="torikumi-footer">
