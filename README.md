@@ -2,7 +2,7 @@
 
 [English README](./README_en.md)
 
-o-sumo は、大相撲の番付と取組情報を配信する静的 Web アプリです。React + TypeScript + Vite で構成し、Cloudflare Pages で公開しています。
+o-sumo は、大相撲の番付と取組情報を配信する静的 Web アプリです。React + TypeScript + Vite で構成し、Cloudflare Pages で公開しています（記事末尾に令和8年3月場所現在のしこ名辞書ファイルへの導線があります）。
 
 ## 概要
 
@@ -143,6 +143,8 @@ branch preview の例:
 
 - X: https://x.com/daisuke
 - GitHub: https://github.com/dai/o-sumo
+
+- X: daisukeによる「[大相撲しこ名辞書最新版（20260227）](https://x.com/daisuke/status/2027263585244889097)」配布ページ
 
 ## ライセンス
 
