@@ -12,6 +12,23 @@ EXPECTED_RIKISHI_COUNT = {1: 42, 2: 28}
 EXPECTED_MATCH_COUNT = {1: 21, 2: 14}
 DIVISION_LABEL = {1: "幕内", 2: "十両"}
 RESULT_DAYS = tuple(str(day) for day in range(1, 16))
+DAY_LABEL = {
+    1: "初日",
+    2: "二日目",
+    3: "三日目",
+    4: "四日目",
+    5: "五日目",
+    6: "六日目",
+    7: "七日目",
+    8: "中日",
+    9: "九日目",
+    10: "十日目",
+    11: "十一日目",
+    12: "十二日目",
+    13: "十三日目",
+    14: "十四日目",
+    15: "千秋楽",
+}
 
 
 def post_json(path: str, payload: dict) -> dict:
@@ -53,6 +70,48 @@ def normalize_day_head(raw: str) -> str:
     if not match:
         return normalized
     return f"{match.group(1)}： {match.group(2)}"
+
+
+def extract_iso_date(day_head: str, gregorian_year: str) -> str:
+    match = re.search(r"(\d+)月(\d+)日", day_head)
+    if not match:
+        raise ValueError(f"日付抽出失敗: {day_head}")
+    month = int(match.group(1))
+    day = int(match.group(2))
+    return f"{int(gregorian_year):04d}-{month:02d}-{day:02d}"
+
+
+def make_schedule_daily_data(day_data: dict) -> dict:
+    def clear_division(division_data: dict) -> dict:
+        return {
+            **division_data,
+            "matches": [
+                {
+                    **match,
+                    "kimarite": "未定",
+                    "winner": None,
+                }
+                for match in division_data["matches"]
+            ],
+        }
+
+    return {
+        "makuuchi": clear_division(day_data["makuuchi"]),
+        "juryo": clear_division(day_data["juryo"]),
+    }
+
+
+def build_archive_day(day_data: dict, gregorian_year: str, mode: str) -> dict:
+    iso_date = extract_iso_date(day_data["makuuchi"]["dayHead"], gregorian_year)
+    normalized = day_data if mode == "result" else make_schedule_daily_data(day_data)
+    return {
+        "day": int(day_data["makuuchi"]["day"]),
+        "isoDate": iso_date,
+        "pathDate": iso_date.replace("-", ""),
+        "label": DAY_LABEL.get(int(day_data["makuuchi"]["day"]), f"{day_data['makuuchi']['day']}日目"),
+        "dayHead": day_data["makuuchi"]["dayHead"],
+        "data": normalized,
+    }
 
 
 def rank_title(rank: int, number: int) -> str:
@@ -233,23 +292,32 @@ def load_torikumi_day(basho_id: int, day: int, kakuzuke_id: int) -> dict:
     }
 
 
-def build_torikumi_dataset(basho_id: int, current_day: int) -> dict:
+def build_torikumi_dataset(basho_id: int, current_day: int, gregorian_year: str) -> dict:
     today_day = max(1, min(current_day, 15))
     tomorrow_day = min(today_day + 1, 15)
 
-    today = {
-        "makuuchi": load_torikumi_day(basho_id, today_day, 1),
-        "juryo": load_torikumi_day(basho_id, today_day, 2),
-    }
+    result_days = []
+    for day in range(1, today_day + 1):
+        result_days.append({
+            "makuuchi": load_torikumi_day(basho_id, day, 1),
+            "juryo": load_torikumi_day(basho_id, day, 2),
+        })
+
     tomorrow = {
         "makuuchi": load_torikumi_day(basho_id, tomorrow_day, 1),
         "juryo": load_torikumi_day(basho_id, tomorrow_day, 2),
     }
 
+    schedule_days = [build_archive_day(day_data, gregorian_year, "schedule") for day_data in result_days]
+    if tomorrow_day > today_day:
+        schedule_days.append(build_archive_day(tomorrow, gregorian_year, "schedule"))
+
     return {
         "updatedAt": None,
-        "today": today,
+        "today": result_days[-1],
         "tomorrow": tomorrow,
+        "resultDays": [build_archive_day(day_data, gregorian_year, "result") for day_data in result_days],
+        "scheduleDays": schedule_days,
     }
 
 
@@ -312,12 +380,23 @@ export interface TorikumiDailyData {{
   juryo: TorikumiDivisionDay;
 }}
 
+export interface TorikumiArchiveDay {{
+  day: number;
+  isoDate: string;
+  pathDate: string;
+  label: string;
+  dayHead: string;
+  data: TorikumiDailyData;
+}}
+
 export interface TorikumiDataSet {{
   bashoName: string;
   year: string;
   updatedAt: string;
-  today: TorikumiDailyData;
-  tomorrow: TorikumiDailyData;
+  today?: TorikumiDailyData;
+  tomorrow?: TorikumiDailyData;
+  resultDays?: TorikumiArchiveDay[];
+  scheduleDays?: TorikumiArchiveDay[];
 }}
 
 export const torikumiData: TorikumiDataSet = {json.dumps({
@@ -326,7 +405,96 @@ export const torikumiData: TorikumiDataSet = {json.dumps({
         "updatedAt": dataset["updatedAt"],
         "today": dataset["today"],
         "tomorrow": dataset["tomorrow"],
+        "resultDays": dataset["resultDays"],
+        "scheduleDays": dataset["scheduleDays"],
     }, ensure_ascii=False, indent=2)};
+
+const DAY_NAME_BY_NUMBER: Record<number, string> = {{
+  1: '初日',
+  2: '二日目',
+  3: '三日目',
+  4: '四日目',
+  5: '五日目',
+  6: '六日目',
+  7: '七日目',
+  8: '中日',
+  9: '九日目',
+  10: '十日目',
+  11: '十一日目',
+  12: '十二日目',
+  13: '十三日目',
+  14: '十四日目',
+  15: '千秋楽',
+}};
+
+function toIsoDate(dayHead: string): string {{
+  const match = dayHead.match(/令和\\d+年(\\d+)月(\\d+)日/);
+  if (!match) {{
+    return '';
+  }}
+
+  const month = match[1].padStart(2, '0');
+  const day = match[2].padStart(2, '0');
+  const year = torikumiData.updatedAt.slice(0, 4) || '2026';
+  return `${{year}}-${{month}}-${{day}}`;
+}}
+
+function toPathDate(isoDate: string): string {{
+  return isoDate.replaceAll('-', '');
+}}
+
+function toLabel(day: number): string {{
+  return DAY_NAME_BY_NUMBER[day] ?? `${{day}}日目`;
+}}
+
+function toScheduleData(dayData: TorikumiDailyData): TorikumiDailyData {{
+  const clearMatches = (division: TorikumiDivisionDay): TorikumiDivisionDay => ({{
+    ...division,
+    matches: division.matches.map((match) => ({{
+      ...match,
+      kimarite: '未定',
+      winner: null,
+    }})),
+  }});
+
+  return {{
+    makuuchi: clearMatches(dayData.makuuchi),
+    juryo: clearMatches(dayData.juryo),
+  }};
+}}
+
+function buildArchiveDay(dayData: TorikumiDailyData, mode: 'result' | 'schedule'): TorikumiArchiveDay {{
+  const isoDate = toIsoDate(dayData.makuuchi.dayHead);
+  const normalizedData = mode === 'result' ? dayData : toScheduleData(dayData);
+  return {{
+    day: dayData.makuuchi.day,
+    isoDate,
+    pathDate: toPathDate(isoDate),
+    label: toLabel(dayData.makuuchi.day),
+    dayHead: dayData.makuuchi.dayHead,
+    data: normalizedData,
+  }};
+}}
+
+const fallbackResultDays = torikumiData.today ? [buildArchiveDay(torikumiData.today, 'result')] : [];
+const fallbackScheduleDays = [
+  torikumiData.today ? buildArchiveDay(torikumiData.today, 'schedule') : null,
+  torikumiData.tomorrow ? buildArchiveDay(torikumiData.tomorrow, 'schedule') : null,
+].filter((day): day is TorikumiArchiveDay => day !== null);
+
+export const torikumiArchive = {{
+  bashoName: torikumiData.bashoName,
+  year: torikumiData.year,
+  updatedAt: torikumiData.updatedAt,
+  resultDays: torikumiData.resultDays ?? fallbackResultDays,
+  scheduleDays: torikumiData.scheduleDays ?? fallbackScheduleDays,
+}};
+
+export const torikumiMonthKey = torikumiArchive.resultDays[0]?.pathDate.slice(0, 6)
+  ?? torikumiArchive.scheduleDays[0]?.pathDate.slice(0, 6)
+  ?? '202603';
+
+export const banzukePath = `/${{torikumiMonthKey}}-banduke`;
 """
     TORIKUMI_OUTPUT.write_text(content, encoding="utf-8")
 
@@ -346,6 +514,8 @@ def write_api_json(makuuchi: list[dict], juryo: list[dict], torikumi_dataset: di
         "updatedAt": torikumi_dataset["updatedAt"],
         "today": torikumi_dataset["today"],
         "tomorrow": torikumi_dataset["tomorrow"],
+        "resultDays": torikumi_dataset["resultDays"],
+        "scheduleDays": torikumi_dataset["scheduleDays"],
     }
     (API_DIR / "banzuke.json").write_text(json.dumps(banzuke_json, ensure_ascii=False, indent=2), encoding="utf-8")
     (API_DIR / "torikumi.json").write_text(json.dumps(torikumi_json, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -360,8 +530,9 @@ def main() -> None:
     current_day = int(basho_info.get("day", 1))
     year_jp = str(makuuchi_meta.get("year_jp", ""))
     basho_name = str(makuuchi_meta.get("basho_name", ""))
+    gregorian_year = str(basho_info.get("today", "")).split("-")[0]
 
-    torikumi_dataset = build_torikumi_dataset(basho_id, current_day)
+    torikumi_dataset = build_torikumi_dataset(basho_id, current_day, gregorian_year)
     torikumi_dataset["updatedAt"] = basho_info.get("today", "")
 
     write_sumo_data(makuuchi, juryo)
@@ -372,7 +543,8 @@ def main() -> None:
         "updated: "
         f"makuuchi={EXPECTED_RIKISHI_COUNT[1]}, "
         f"juryo={EXPECTED_RIKISHI_COUNT[2]}, "
-        f"today_matches=35, tomorrow_matches=35"
+        f"result_days={len(torikumi_dataset['resultDays'])}, "
+        f"schedule_days={len(torikumi_dataset['scheduleDays'])}"
     )
 
 

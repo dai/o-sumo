@@ -1,76 +1,64 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { torikumiData, type TorikumiDivisionDay, type TorikumiMatch } from '../lib/torikumi-data';
+import { torikumiArchive } from '../lib/torikumi-data';
+import { banzukePath, getDayPath, getHubPath, type TorikumiPageMode } from '../lib/torikumi-routes';
 import './page.css';
 
-const DIVISIONS: Array<'幕内' | '十両'> = ['幕内', '十両'];
-
-const byDivision = (day: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay }, division: '幕内' | '十両') =>
-  division === '幕内' ? day.makuuchi.matches : day.juryo.matches;
-
-const sectionMeta = (day: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay }, division: '幕内' | '十両') =>
-  division === '幕内' ? day.makuuchi : day.juryo;
-
-function TorikumiTable({ title, dayData }: { title: string; dayData: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay } }) {
-  return (
-    <section className="division-section">
-      <h2>{title}</h2>
-      {DIVISIONS.map((division) => {
-        const meta = sectionMeta(dayData, division);
-        const matches = byDivision(dayData, division);
-        return (
-          <div key={`${title}-${division}`}>
-            <h3>{division} ({matches.length}番)</h3>
-            <p className="status-message">{meta.dayHead}</p>
-            <div className="torikumi-table" role="table" aria-label={`${title} ${division}`}>
-              <div className="torikumi-head" role="rowgroup">
-                <div className="cell east">東</div>
-                <div className="cell kimarite">決まり手</div>
-                <div className="cell west">西</div>
-              </div>
-              {matches.map((match: TorikumiMatch) => (
-                <div className="torikumi-row" role="row" key={`${title}-${division}-${match.boutNo}`}>
-                  <div className="cell east rikishi-card">
-                    <div className="name">{match.eastName}</div>
-                    <div className="yomi">{match.eastYomi}</div>
-                    <div className="english">{match.eastEnglish}</div>
-                  </div>
-                  <div className="cell kimarite kimarite-value">
-                    {match.kimarite}
-                    {match.winner ? ` (${match.winner === 'east' ? '東' : '西'}勝)` : ''}
-                  </div>
-                  <div className="cell west rikishi-card">
-                    <div className="name">{match.westName}</div>
-                    <div className="yomi">{match.westYomi}</div>
-                    <div className="english">{match.westEnglish}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        );
-      })}
-    </section>
-  );
+function modeLabel(mode: TorikumiPageMode): string {
+  return mode === 'result' ? '取組結果' : '取組予定';
 }
 
-export default function TorikumiPage() {
+export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
+  const days = mode === 'result' ? torikumiArchive.resultDays : torikumiArchive.scheduleDays;
+
   return (
     <div className="torikumi-page">
       <header className="torikumi-header">
-        <h1>{torikumiData.year}{torikumiData.bashoName} 取組表</h1>
-        <p>更新日: {torikumiData.updatedAt} / 毎日18:00(JST)更新</p>
+        <h1>{torikumiArchive.year}{torikumiArchive.bashoName} {modeLabel(mode)}一覧</h1>
+        <p>更新日: {torikumiArchive.updatedAt} / 毎日19:00(JST)更新</p>
       </header>
 
       <main className="torikumi-main">
-        <TorikumiTable title="今日の取組結果" dayData={torikumiData.today} />
-        <TorikumiTable title="明日の取組予定" dayData={torikumiData.tomorrow} />
+        <section className="day-summary-card">
+          <div>
+            <div className="archive-eyebrow">{mode === 'result' ? getHubPath('result').slice(1) : getHubPath('schedule').slice(1)}</div>
+            <h2>{modeLabel(mode)}の日別アーカイブ</h2>
+            <p>{mode === 'result' ? '初日から当日までの結果を日付ごとに辿れます。' : '初日から翌日分までの予定を日付ごとに確認できます。'}</p>
+            <p className="contact-inline">
+              連絡先:
+              {' '}
+              <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">x.com/daisuke</a>
+              {' / '}
+              <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </p>
+          </div>
+          <div className="archive-nav">
+            <Link to={getHubPath(mode === 'result' ? 'schedule' : 'result')} className="archive-link">
+              {mode === 'result' ? '予定一覧' : '結果一覧'}
+            </Link>
+            <Link to={banzukePath} className="archive-link">番付</Link>
+          </div>
+        </section>
+
+        <section className="archive-grid-section">
+          <div className="archive-grid">
+            {days.map((day) => (
+              <Link key={`${mode}-${day.pathDate}`} to={getDayPath(day, mode)} className="archive-card">
+                <div className="archive-card-date">{day.pathDate}</div>
+                <h3>{day.label}</h3>
+                <p>{day.dayHead}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
       </main>
 
       <footer className="torikumi-footer">
         <Link to="/">ホーム</Link>
         <span> | </span>
-        <Link to="/202603-o-sumo">番付一覧</Link>
+        <Link to={banzukePath}>番付一覧</Link>
+        <span> | </span>
+        <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">Daisuke on X</a>
       </footer>
     </div>
   );

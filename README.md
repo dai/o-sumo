@@ -1,42 +1,36 @@
 # o-sumo
 
-日本語 / English
+[English README](./README_en.md)
 
-大相撲の番付・星取・取組データを毎日更新して配信するWebアプリです。  
-A web app that publishes daily-updated sumo banzuke, hoshitori, and torikumi data.
+o-sumo は、大相撲の番付と取組情報を配信する静的 Web アプリです。React + TypeScript + Vite で構成し、Cloudflare Pages で公開しています。
 
-## 1. 概要 / Overview
+## 概要
 
-- フロントエンド: React + TypeScript + Vite
-- データ生成: Python (`scripts/update_sumo_data.py`)
-- 配信: Cloudflare Pages (`osada.us`)
-- 公開API（静的JSON）:
+- 番付ページ: `/202603-banduke`
+- 取組結果の月別ハブ: `/202603-torikumi`
+- 取組予定の月別ハブ: `/202603-yotei`
+- 日別の結果ページ: `/20260308-torikumi`, `/20260309-torikumi`
+- 日別の予定ページ: `/20260308-yotei`, `/20260309-yotei`
+- 公開 API:
   - `/api/v1/banzuke.json`
   - `/api/v1/torikumi.json`
 
-This project uses official Nihon Sumo Kyokai Ajax endpoints and generates validated static datasets.
+## 技術スタック
 
-## 2. 主な機能 / Key Features
+- フロントエンド: React 19, TypeScript, React Router, Vite
+- データ生成: Python (`scripts/update_sumo_data.py`)
+- 配信: Cloudflare Pages
+- データ取得元: 日本相撲協会の Ajax エンドポイント
 
-- 幕内42人・十両28人を厳密検証して番付データを生成
-- 今日の取組結果と明日の取組予定（幕内21番 + 十両14番 = 35番）を生成
-- 力士ごとに協会プロフィールURLを保持（将来のメモ追加に対応）
-- Cloudflare Pages でサイトとJSON APIを同時配信
+## ローカル開発
 
-- Strict validation for banzuke counts (Makuuchi 42, Juryo 28)
-- Daily torikumi dataset for today results + tomorrow schedule (35 bouts)
-- Rikishi profile URLs included for future extension (notes, metadata)
-- Site + JSON API served together on Cloudflare Pages
+前提:
 
-## 3. セットアップ / Setup
+- Node.js 18 以上
+- npm 9 以上
+- Python 3.10 以上
 
-### 必要要件 / Requirements
-
-- Node.js 18+
-- npm 9+
-- Python 3.10+
-
-### インストール / Install
+セットアップ:
 
 ```bash
 git clone https://github.com/dai/o-sumo.git
@@ -44,72 +38,112 @@ cd o-sumo
 npm install
 ```
 
-## 4. 開発コマンド / Commands
+このリポジトリでは lockfile を commit していないため、依存解決は `npm install` を前提にしています。
+
+開発サーバー:
 
 ```bash
-# 開発サーバー
 npm run dev
+```
 
-# 本番ビルド
+確認先:
+
+- `http://localhost:3001/`
+- `http://localhost:3001/202603-banduke`
+- `http://localhost:3001/202603-torikumi`
+- `http://localhost:3001/20260308-torikumi`
+- `http://localhost:3001/20260308-yotei`
+
+本番ビルド確認:
+
+```bash
 npm run build
-
-# ビルド結果プレビュー
 npm run preview
+```
 
-# Pages用ビルド（現状は build のエイリアス）
-npm run pages:build
+テスト実行:
 
-# データ再生成（番付・取組・API JSON）
+```bash
+npm test
+```
+
+## データ更新
+
+データ更新スクリプト:
+
+```bash
 python scripts/update_sumo_data.py
 ```
 
-## 5. データ更新 / Data Update
+このスクリプトは以下を更新します。
 
-`scripts/update_sumo_data.py` は以下を行います。
+- `app/lib/sumo-data.ts`
+- `app/lib/torikumi-data.ts`
+- `public/api/v1/banzuke.json`
+- `public/api/v1/torikumi.json`
 
-1. 公式Ajaxから番付・星取・取組を取得
-2. 厳密バリデーション
-   - 幕内42 / 十両28
-   - 取組 35番（幕内21 + 十両14）
-3. 出力を更新
-   - `app/lib/sumo-data.ts`
-   - `app/lib/torikumi-data.ts`
-   - `public/api/v1/banzuke.json`
-   - `public/api/v1/torikumi.json`
+主な検証内容:
 
-The script fails fast if counts are missing or inconsistent.
+- 幕内 42 人
+- 十両 28 人
+- 幕内 21 番 + 十両 14 番
+- 結果アーカイブは初日から当日まで生成
+- 予定アーカイブは初日から翌日まで生成
 
-## 6. 自動更新 / Daily Automation
+## 自動更新
 
-GitHub Actions:
+GitHub Actions で毎日 19:00 JST に更新します。
 
-- `.github/workflows/daily-data-update.yml`
-- 毎日 18:00 JST (`cron: 0 9 * * *`)
-- 更新内容は `main` 直pushではなく、PRとして作成
+- Workflow: `.github/workflows/daily-data-update.yml`
+- `main` へ直接 push せず、更新用ブランチから PR を作成
 
-This keeps branch protection compatible with scheduled updates.
+## テスト
 
-## 7. API公開 / API Endpoints
+最小の自動テストを導入しています。
 
-Cloudflare Pages デプロイ後:
+- test runner: Vitest
+- component test: Testing Library
+- workflow: `.github/workflows/test.yml`
 
-- `https://osada.us/api/v1/banzuke.json`
-- `https://osada.us/api/v1/torikumi.json`
+現在の対象:
 
-These endpoints are static JSON files generated from official sources.
+- `app/lib/torikumi-routes.ts` のルーティング helper
+- ホームページの主要導線
+- 日別取組ページのスモークテスト
 
-## 8. ディレクトリ / Important Paths
+GitHub Actions では PR と `main` / `codex/**` への push で以下を実行します。
 
-- `app/202603-o-sumo/page.tsx` - 番付ページ
-- `app/202603-torikumi/page.tsx` - 取組ページ
-- `app/components/BanzukeTable.tsx` - 番付テーブル
-- `scripts/update_sumo_data.py` - データ生成の中核
-- `public/api/v1/` - 公開JSON API
+- `npm install`
+- `npm test`
+- `npm run build`
 
-## 9. ライセンス / License
+## Cloudflare Pages
+
+本番:
+
+- `https://osada.us`
+
+branch preview の例:
+
+- `https://codex-202603-ux-routing.o-sumo.pages.dev`
+
+静的ホスティングでも日付 URL を直接開けるよう、`public/_redirects` で SPA fallback を設定しています。
+
+## 主要ファイル
+
+- `app/main.tsx`: ルーティング定義
+- `app/page.tsx`: ホーム
+- `app/202603-o-sumo/page.tsx`: 番付ページ
+- `app/202603-torikumi/page.tsx`: 取組一覧ハブ
+- `app/components/TorikumiDayPage.tsx`: 日別の結果/予定ページ
+- `app/lib/torikumi-routes.ts`: 日付 URL とナビゲーションの解決
+- `scripts/update_sumo_data.py`: 番付と取組データ生成
+
+## 連絡先
+
+- X: https://x.com/daisuke
+- GitHub: https://github.com/dai/o-sumo
+
+## ライセンス
 
 ISC
-
-## 10. 作者 / Author
-
-- [dai](https://github.com/dai)
