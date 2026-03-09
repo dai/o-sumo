@@ -46,6 +46,15 @@ def split_shikona(full_name: str) -> str:
     return normalized.split(" ")[0]
 
 
+def normalize_day_head(raw: str) -> str:
+    normalized = raw.replace("&nbsp;", " ").replace("\u00a0", " ")
+    normalized = re.sub(r"\s+", " ", normalized).strip()
+    match = re.match(r"^(.+?)\s+(.+)$", normalized)
+    if not match:
+        return normalized
+    return f"{match.group(1)}： {match.group(2)}"
+
+
 def rank_title(rank: int, number: int) -> str:
     if rank == 100:
         return "横綱"
@@ -218,7 +227,7 @@ def load_torikumi_day(basho_id: int, day: int, kakuzuke_id: int) -> dict:
     return {
         "day": day,
         "dayName": data.get("dayName", ""),
-        "dayHead": data.get("dayHead", ""),
+        "dayHead": normalize_day_head(str(data.get("dayHead", ""))),
         "division": DIVISION_LABEL[kakuzuke_id],
         "matches": parsed,
     }

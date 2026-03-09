@@ -44,7 +44,7 @@ export const torikumiData: TorikumiDataSet = {
     "makuuchi": {
       "day": 1,
       "dayName": "取組日 初日",
-      "dayHead": "初日&nbsp;&nbsp;&nbsp;令和8年3月8日(日)",
+      "dayHead": "初日： 令和8年3月8日(日)",
       "division": "幕内",
       "matches": [
         {
@@ -388,7 +388,7 @@ export const torikumiData: TorikumiDataSet = {
     "juryo": {
       "day": 1,
       "dayName": "取組日 初日",
-      "dayHead": "初日&nbsp;&nbsp;&nbsp;令和8年3月8日(日)",
+      "dayHead": "初日： 令和8年3月8日(日)",
       "division": "十両",
       "matches": [
         {
@@ -622,7 +622,7 @@ export const torikumiData: TorikumiDataSet = {
     "makuuchi": {
       "day": 2,
       "dayName": "取組日 二日目",
-      "dayHead": "二日目&nbsp;&nbsp;&nbsp;令和8年3月9日(月)",
+      "dayHead": "二日目： 令和8年3月9日(月)",
       "division": "幕内",
       "matches": [
         {
@@ -966,7 +966,7 @@ export const torikumiData: TorikumiDataSet = {
     "juryo": {
       "day": 2,
       "dayName": "取組日 二日目",
-      "dayHead": "二日目&nbsp;&nbsp;&nbsp;令和8年3月9日(月)",
+      "dayHead": "二日目： 令和8年3月9日(月)",
       "division": "十両",
       "matches": [
         {
