@@ -164,6 +164,7 @@ branch preview の例:
 ## 連絡先
 
 - X: https://x.com/daisuke
+   - X: https://x.com/daisuke/status/2027263585244889097 しこ名辞書 (v202603) 
 - GitHub: https://github.com/dai/o-sumo
 
 ## ライセンス
