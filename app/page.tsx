@@ -17,20 +17,15 @@ export default function Home() {
         <section className="hero-section">
           <h2>令和8年3月場所</h2>
           <p>番付、日別の取組結果、日別の取組予定をトップ階層で整理しました。</p>
-          <p className="contact-lead">
-            連絡先: <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">x.com/daisuke</a>
-            {' / '}
-            <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">GitHub</a>
-          </p>
           <div className="hero-actions">
             <Link to={banzukePath} className="cta-button">
               番付
             </Link>
-            <Link to="/20260308-torikumi" className="cta-button secondary">
-              初日結果
+            <Link to={getHubPath('schedule')} className="cta-button secondary">
+              取組予定
             </Link>
-            <Link to="/20260308-yotei" className="cta-button secondary">
-              初日予定
+            <Link to={getHubPath('result')} className="cta-button secondary">
+              結果
             </Link>
           </div>
         </section>

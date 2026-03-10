@@ -50,15 +50,46 @@
   margin-bottom: 0.35rem;
 }
 
-.contact-inline {
-  margin-top: 0.75rem;
-  color: #4f6479;
+.sort-toolbar-section {
+  margin-bottom: 1.25rem;
 }
 
-.contact-inline a {
-  color: #15344b;
+.sort-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.95rem 1rem;
+  border-radius: 14px;
+  border: 1px solid #d7e0ea;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.sort-toggle-label {
+  color: #3d5369;
   font-weight: 700;
-  text-decoration: none;
+}
+
+.sort-toggle-buttons {
+  display: inline-flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.sort-toggle-button {
+  border: 1px solid #bccbd8;
+  background: #f5f8fb;
+  color: #294661;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sort-toggle-button.active {
+  background: #15344b;
+  border-color: #15344b;
+  color: #fff;
 }
 
 .archive-nav {
@@ -109,6 +140,16 @@
   background: #fff8e7;
 }
 
+.empty-division-message {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px dashed #d3af55;
+  background: #fff8e7;
+  color: #715311;
+  font-weight: 600;
+}
+
 .division-section {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(8px);
@@ -149,6 +190,16 @@
   font-size: 0.8rem;
   color: #6d8196;
   margin-bottom: 0.45rem;
+}
+
+.archive-status {
+  margin-top: 0.75rem;
+  color: #3d5369;
+  font-weight: 700;
+}
+
+.archive-status.pending {
+  color: #8b5d00;
 }
 
 .torikumi-head,
@@ -225,7 +276,8 @@
 
 @media (max-width: 860px) {
   .day-summary-card,
-  .pager-nav {
+  .pager-nav,
+  .sort-toggle {
     flex-direction: column;
     align-items: flex-start;
   }

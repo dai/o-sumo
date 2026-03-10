@@ -32,8 +32,8 @@ jobs:
           body: |
             Automated daily update at 19:00 JST.
             - Refresh banzuke (幕内42 / 十両28 strict validation)
-            - Refresh torikumi result archive (初日から当日まで)
-            - Refresh torikumi schedule archive (初日から翌日まで)
+            - Refresh torikumi result archive (初日から千秋楽まで15日分)
+            - Refresh torikumi schedule archive (初日から千秋楽まで15日分)
             - Refresh API JSON under public/api/v1
           branch: codex/daily-sumo-data-update
           delete-branch: true

@@ -1,11 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import BanzukeTable from '../components/BanzukeTable';
+import SortToggle from '../components/SortToggle';
+import { type SortOrder, sortRankGroups } from '../lib/sorting';
 import { makuuchiData, juryo } from '../lib/sumo-data';
 import { getHubPath } from '../lib/torikumi-routes';
 import './page.css';
 
 export default function BanzukePage() {
+  const [sortOrder, setSortOrder] = React.useState<SortOrder>('asc');
+  const sortedMakuuchi = sortRankGroups(makuuchiData, sortOrder);
+  const sortedJuryo = sortRankGroups(juryo, sortOrder);
+
   return (
     <div className="page-container">
       <header className="page-header">
@@ -17,10 +23,14 @@ export default function BanzukePage() {
       </header>
 
       <main className="page-main">
+        <section className="page-toolbar">
+          <SortToggle value={sortOrder} onChange={setSortOrder} label="番付の並び順" />
+        </section>
+
         <section className="banzuke-section">
           <h2 className="section-heading">幕内</h2>
           <div className="banzuke-list">
-            {makuuchiData.map((rankGroup, index) => (
+            {sortedMakuuchi.map((rankGroup, index) => (
               <BanzukeTable key={index} rankGroup={rankGroup} />
             ))}
           </div>
@@ -29,7 +39,7 @@ export default function BanzukePage() {
         <section className="banzuke-section">
           <h2 className="section-heading">十両</h2>
           <div className="banzuke-list">
-            {juryo.map((rankGroup, index) => (
+            {sortedJuryo.map((rankGroup, index) => (
               <BanzukeTable key={index} rankGroup={rankGroup} />
             ))}
           </div>
@@ -45,14 +55,7 @@ export default function BanzukePage() {
               <strong>東</strong>と<strong>西</strong>の欄に力士の四股名と読み仮名、番付が表示されます。
             </p>
             <p>
-              技術スタック: <strong>Cloudflare vinext</strong>、<strong>React</strong>、<strong>TypeScript</strong>
-            </p>
-            <p>
-              連絡先:
-              {' '}
-              <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">x.com/daisuke</a>
-              {' / '}
-              <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">GitHub</a>
+              技術スタック: <strong>Cloudflare Pages</strong>、<strong>React</strong>、<strong>TypeScript</strong>
             </p>
           </div>
         </section>

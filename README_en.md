@@ -15,6 +15,13 @@ o-sumo is a static web app for publishing sumo banzuke and torikumi information.
   - `/api/v1/banzuke.json`
   - `/api/v1/torikumi.json`
 
+Key UX:
+
+- The homepage main navigation is `Banzuke / Schedule / Results`
+- Banzuke, monthly hub pages, and daily pages support `ascending / descending` sorting
+- Result and schedule pages are pre-generated for all 15 tournament days
+- Unpublished days stay available with empty-state messaging
+
 ## Tech Stack
 
 - Frontend: React 19, TypeScript, React Router, Vite
@@ -51,6 +58,7 @@ Useful URLs:
 - `http://localhost:3001/`
 - `http://localhost:3001/202603-banduke`
 - `http://localhost:3001/202603-torikumi`
+- `http://localhost:3001/202603-yotei`
 - `http://localhost:3001/20260308-torikumi`
 - `http://localhost:3001/20260308-yotei`
 
@@ -75,6 +83,12 @@ Update datasets with:
 python scripts/update_sumo_data.py
 ```
 
+For high-frequency torikumi-only refresh:
+
+```bash
+python scripts/update_sumo_data.py --torikumi-only
+```
+
 This updates:
 
 - `app/lib/sumo-data.ts`
@@ -86,16 +100,21 @@ Key validations:
 
 - 42 makuuchi rikishi
 - 28 juryo rikishi
-- 21 makuuchi bouts + 14 juryo bouts
-- Result archive generated from day 1 through the current day
-- Schedule archive generated from day 1 through the next day
+- Result and schedule archives generated for all 15 days
+- Published days are filled with source data when available
+- Unpublished days are emitted as pending placeholders
 
 ## Automated Update
 
-GitHub Actions updates the data every day at 19:00 JST.
+GitHub Actions uses separate normal and high-frequency update flows.
 
-- Workflow: `.github/workflows/daily-data-update.yml`
-- Changes are proposed by pull request instead of pushing directly to `main`
+- Daily update: `.github/workflows/daily-data-update.yml`
+  - runs every day at 19:00 JST
+  - refreshes banzuke and torikumi data
+- Realtime torikumi update: `.github/workflows/realtime-torikumi-update.yml`
+  - runs every 5 minutes from 15:00 to 18:55 JST
+  - refreshes torikumi results and schedules only
+- Both flows open pull requests instead of pushing directly to `main`
 
 ## Testing
 
@@ -108,8 +127,11 @@ A minimal automated test setup is included.
 Current coverage:
 
 - routing helpers in `app/lib/torikumi-routes.ts`
+- sorting helpers in `app/lib/sorting.ts`
 - main navigation on the home page
-- smoke coverage for the daily torikumi page
+- banzuke sort behavior
+- 15-day monthly hub rendering and sort behavior
+- daily torikumi sort and pending-state behavior
 
 GitHub Actions runs the following on pull requests and on pushes to `main` and `codex/**`:
 
@@ -125,7 +147,7 @@ Production:
 
 Example branch preview:
 
-- `https://codex-202603-ux-routing.o-sumo.pages.dev`
+- `https://codex-ux-15day-sort-live.o-sumo.pages.dev`
 
 SPA fallback for direct date-based URLs is configured in `public/_redirects`.
 
