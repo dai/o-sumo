@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SortToggle from '../components/SortToggle';
+import { bashoTitle } from '../lib/basho-meta';
 import { type SortOrder, sortArchiveDays } from '../lib/sorting';
 import { torikumiArchive } from '../lib/torikumi-data';
 import { banzukePath, getDayPath, getHubPath, type TorikumiPageMode } from '../lib/torikumi-routes';
@@ -18,7 +19,7 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
   return (
     <div className="torikumi-page">
       <header className="torikumi-header">
-        <h1>{torikumiArchive.year}{torikumiArchive.bashoName} {modeLabel(mode)}一覧</h1>
+        <h1>{bashoTitle} {modeLabel(mode)}一覧</h1>
         <p>更新日: {torikumiArchive.updatedAt} / 15:00-18:55(JST)は5分ごと / 19:00(JST)確定更新</p>
       </header>
 

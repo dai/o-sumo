@@ -5,7 +5,7 @@ import { type SortOrder, sortMatches } from '../lib/sorting';
 import { type TorikumiArchiveDay, type TorikumiDivisionDay, type TorikumiMatch, torikumiArchive } from '../lib/torikumi-data';
 import { banzukePath, getAdjacentDay, getDayPath, getHubPath, type TorikumiPageMode } from '../lib/torikumi-routes';
 import { juryo, makuuchiData } from '../lib/sumo-data';
-import '../202603-torikumi/page.css';
+import '../torikumi/page.css';
 
 const DIVISIONS: Array<'幕内' | '十両'> = ['幕内', '十両'];
 const rikishiNameByProfileUrl = new Map(

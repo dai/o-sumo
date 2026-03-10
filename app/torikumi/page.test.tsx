@@ -2,6 +2,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
+import { torikumiArchive } from '../lib/torikumi-data';
+import { getDayPath } from '../lib/torikumi-routes';
 import TorikumiHubPage from './page';
 
 describe('TorikumiHubPage', () => {
@@ -14,7 +16,8 @@ describe('TorikumiHubPage', () => {
       </MemoryRouter>,
     );
 
-    const dayLinks = screen.getAllByRole('link').filter((link) => /^\/202603\d{2}-torikumi$/.test(link.getAttribute('href') ?? ''));
+    const dayPaths = new Set(torikumiArchive.resultDays.map((day) => getDayPath(day, 'result')));
+    const dayLinks = screen.getAllByRole('link').filter((link) => dayPaths.has(link.getAttribute('href') ?? ''));
     expect(dayLinks).toHaveLength(15);
     expect(screen.getByText('初日')).toBeInTheDocument();
 

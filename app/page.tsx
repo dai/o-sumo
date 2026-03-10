@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { bashoTitle } from './lib/basho-meta';
 import { banzukePath, getHubPath } from './lib/torikumi-routes';
 import './index.css';
 
@@ -15,7 +16,7 @@ export default function Home() {
 
       <main className="home-main">
         <section className="hero-section">
-          <h2>令和8年3月場所</h2>
+          <h2>{bashoTitle}</h2>
           <p>最新の番付、日別の取組結果、日別の取組予定をご覧いただけます。</p>
           <div className="hero-actions">
             <Link to={banzukePath} className="cta-button">

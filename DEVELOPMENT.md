@@ -20,8 +20,9 @@ npm install
 
 補足:
 
-- このリポジトリは lockfile を commit していません
-- 依存解決は `npm install` 前提です
+- `package-lock.json` は commit します
+- 初回セットアップは `npm install`
+- 再現性確認や CI では `npm ci` を使います
 
 ## 開発コマンド
 
@@ -31,6 +32,9 @@ npm run dev
 
 # テスト
 npm test
+
+# 型チェック
+npm run typecheck
 
 # 本番ビルド
 npm run build
@@ -77,16 +81,21 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - Workflow: `.github/workflows/test.yml`
 - PR と `main` / `codex/**` push で実行
 - 実行内容:
-  - `npm install`
+  - `npm ci`
+  - `npm run typecheck`
   - `npm test`
   - `npm run build`
+  - `python scripts/update_sumo_data.py`
+  - `git diff --exit-code`
+
+生成スクリプトの実行後に差分が残る場合は、生成物が未反映とみなして fail します。
 
 ## 現在の主要ファイル
 
 - `app/main.tsx`: ルーティング定義
 - `app/page.tsx`: トップページ
-- `app/202603-o-sumo/page.tsx`: 番付ページ
-- `app/202603-torikumi/page.tsx`: 取組結果/予定の一覧ハブ
+- `app/banzuke/page.tsx`: 番付ページ
+- `app/torikumi/page.tsx`: 取組結果/予定の一覧ハブ
 - `app/components/TorikumiDayPage.tsx`: 日別の取組ページ
 - `app/lib/torikumi-routes.ts`: 月キーと日付 URL の解決
 - `app/lib/torikumi-data.ts`: 取組アーカイブデータ

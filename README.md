@@ -45,7 +45,7 @@ cd o-sumo
 npm install
 ```
 
-このリポジトリでは lockfile を commit していないため、依存解決は `npm install` を前提にしています。
+`package-lock.json` は commit します。初回セットアップは `npm install`、再現性を重視した再構築や CI は `npm ci` を使います。
 
 開発サーバー:
 
@@ -73,6 +73,12 @@ npm run preview
 
 ```bash
 npm test
+```
+
+型チェック:
+
+```bash
+npm run typecheck
 ```
 
 ## データ更新
@@ -135,9 +141,14 @@ GitHub Actions で通常更新と高頻度更新を分けています。
 
 GitHub Actions では PR と `main` / `codex/**` への push で以下を実行します。
 
-- `npm install`
+- `npm ci`
+- `npm run typecheck`
 - `npm test`
 - `npm run build`
+- `python scripts/update_sumo_data.py`
+- `git diff --exit-code`
+
+生成スクリプト実行後に差分が残る場合、生成物の commit 漏れとして CI を fail させます。
 
 ## Cloudflare Pages
 
@@ -155,8 +166,8 @@ branch preview の例:
 
 - `app/main.tsx`: ルーティング定義
 - `app/page.tsx`: ホーム
-- `app/202603-o-sumo/page.tsx`: 番付ページ
-- `app/202603-torikumi/page.tsx`: 取組一覧ハブ
+- `app/banzuke/page.tsx`: 番付ページ
+- `app/torikumi/page.tsx`: 取組一覧ハブ
 - `app/components/TorikumiDayPage.tsx`: 日別の結果/予定ページ
 - `app/lib/torikumi-routes.ts`: 日付 URL とナビゲーションの解決
 - `scripts/update_sumo_data.py`: 番付と取組データ生成

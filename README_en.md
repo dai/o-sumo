@@ -45,7 +45,7 @@ cd o-sumo
 npm install
 ```
 
-This repository does not commit a lockfile, so dependency installation is intentionally based on `npm install`.
+`package-lock.json` is committed. Use `npm install` for the initial setup, and use `npm ci` for reproducible reinstalls and CI.
 
 Run the dev server:
 
@@ -73,6 +73,12 @@ Run tests:
 
 ```bash
 npm test
+```
+
+Run type checks:
+
+```bash
+npm run typecheck
 ```
 
 ## Data Update
@@ -135,9 +141,14 @@ Current coverage:
 
 GitHub Actions runs the following on pull requests and on pushes to `main` and `codex/**`:
 
-- `npm install`
+- `npm ci`
+- `npm run typecheck`
 - `npm test`
 - `npm run build`
+- `python scripts/update_sumo_data.py`
+- `git diff --exit-code`
+
+If the generated files differ after running the update script, CI fails so that missing generated output cannot be merged.
 
 ## Cloudflare Pages
 
@@ -155,8 +166,8 @@ SPA fallback for direct date-based URLs is configured in `public/_redirects`.
 
 - `app/main.tsx`: route definitions
 - `app/page.tsx`: homepage
-- `app/202603-o-sumo/page.tsx`: banzuke page
-- `app/202603-torikumi/page.tsx`: torikumi hub pages
+- `app/banzuke/page.tsx`: banzuke page
+- `app/torikumi/page.tsx`: torikumi hub pages
 - `app/components/TorikumiDayPage.tsx`: daily result/schedule page
 - `app/lib/torikumi-routes.ts`: date URL resolution and navigation
 - `scripts/update_sumo_data.py`: banzuke and torikumi data generator

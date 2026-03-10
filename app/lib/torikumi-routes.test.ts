@@ -1,46 +1,56 @@
 import { describe, expect, it } from 'vitest';
-import { findArchiveDay, getAdjacentDay, getDayPath, getHubPath, legacyBanzukePath, parseTopLevelSlug } from './torikumi-routes';
-import { torikumiArchive } from './torikumi-data';
+import { banzukePath, findArchiveDay, getAdjacentDay, getDayPath, getHubPath, legacyBanzukePath, parseTopLevelSlug } from './torikumi-routes';
+import { torikumiArchive, torikumiMonthKey } from './torikumi-data';
 
 describe('torikumi route helpers', () => {
   it('parses dated top-level result slug', () => {
-    expect(parseTopLevelSlug('20260308-torikumi')).toEqual({
-      dateKey: '20260308',
+    const day = torikumiArchive.resultDays[0];
+
+    expect(parseTopLevelSlug(`${day.pathDate}-torikumi`)).toEqual({
+      dateKey: day.pathDate,
       mode: 'result',
     });
   });
 
   it('parses dated top-level schedule slug', () => {
-    expect(parseTopLevelSlug('20260308-yotei')).toEqual({
-      dateKey: '20260308',
+    const day = torikumiArchive.scheduleDays[0];
+
+    expect(parseTopLevelSlug(`${day.pathDate}-yotei`)).toEqual({
+      dateKey: day.pathDate,
       mode: 'schedule',
     });
   });
 
   it('rejects unsupported slugs', () => {
-    expect(parseTopLevelSlug('202603-banduke')).toBeNull();
+    expect(parseTopLevelSlug(banzukePath.slice(1))).toBeNull();
     expect(parseTopLevelSlug('invalid')).toBeNull();
   });
 
   it('builds hub and day paths from archive data', () => {
     const day = torikumiArchive.resultDays[0];
-    expect(getHubPath('result')).toBe('/202603-torikumi');
-    expect(getHubPath('schedule')).toBe('/202603-yotei');
-    expect(getDayPath(day, 'result')).toBe('/20260308-torikumi');
-    expect(legacyBanzukePath).toBe('/202603-o-sumo');
+    expect(getHubPath('result')).toBe(`/${torikumiMonthKey}-torikumi`);
+    expect(getHubPath('schedule')).toBe(`/${torikumiMonthKey}-yotei`);
+    expect(getDayPath(day, 'result')).toBe(`/${day.pathDate}-torikumi`);
+    expect(legacyBanzukePath).toBe(`/${torikumiMonthKey}-o-sumo`);
+    expect(banzukePath).toBe(`/${torikumiMonthKey}-banduke`);
   });
 
   it('resolves archive day and adjacent navigation', () => {
-    const day = findArchiveDay('20260308', 'result');
+    const firstResultDay = torikumiArchive.resultDays[0];
+    const secondResultDay = torikumiArchive.resultDays[1];
+    const day = findArchiveDay(firstResultDay.pathDate, 'result');
+
     expect(day?.label).toBe('初日');
     expect(getAdjacentDay(day!, 'result', 'prev')).toBeUndefined();
-    expect(getAdjacentDay(day!, 'result', 'next')?.pathDate).toBe('20260309');
+    expect(getAdjacentDay(day!, 'result', 'next')?.pathDate).toBe(secondResultDay.pathDate);
     expect(torikumiArchive.resultDays).toHaveLength(15);
     expect(torikumiArchive.scheduleDays).toHaveLength(15);
     expect(torikumiArchive.resultDays[1]?.status).toBe('published');
 
-    const scheduleDay = findArchiveDay('20260308', 'schedule');
-    expect(getAdjacentDay(scheduleDay!, 'schedule', 'next')?.pathDate).toBe('20260309');
+    const firstScheduleDay = torikumiArchive.scheduleDays[0];
+    const secondScheduleDay = torikumiArchive.scheduleDays[1];
+    const scheduleDay = findArchiveDay(firstScheduleDay.pathDate, 'schedule');
+    expect(getAdjacentDay(scheduleDay!, 'schedule', 'next')?.pathDate).toBe(secondScheduleDay.pathDate);
     expect(torikumiArchive.scheduleDays[1]?.status).toBe('published');
   });
 });

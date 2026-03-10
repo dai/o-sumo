@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import BanzukeTable from '../components/BanzukeTable';
 import SortToggle from '../components/SortToggle';
+import { bashoTitle, gregorianBashoLabel } from '../lib/basho-meta';
 import { type SortOrder, sortRankGroups } from '../lib/sorting';
 import { makuuchiData, juryo } from '../lib/sumo-data';
-import { getHubPath } from '../lib/torikumi-routes';
+import { banzukePath, getHubPath } from '../lib/torikumi-routes';
 import './page.css';
 
 export default function BanzukePage() {
@@ -17,8 +18,8 @@ export default function BanzukePage() {
       <header className="page-header">
         <div className="header-content">
           <h1 className="page-title">大相撲</h1>
-          <h2 className="page-subtitle">令和8年3月場所 番付一覧</h2>
-          <p className="page-description">2026年3月場所の幕内・十両力士の番付と成績 / URL: /202603-banduke</p>
+          <h2 className="page-subtitle">{bashoTitle} 番付一覧</h2>
+          <p className="page-description">{gregorianBashoLabel}の幕内・十両力士の番付と成績 / URL: {banzukePath}</p>
         </div>
       </header>
 
@@ -49,7 +50,7 @@ export default function BanzukePage() {
           <h2 className="section-heading">このページについて</h2>
           <div className="info-content">
             <p>
-              このページは、令和8年3月場所（2026年3月）の大相撲幕内・十両力士の番付一覧を表示しています。
+              このページは、{bashoTitle}（{gregorianBashoLabel}）の大相撲幕内・十両力士の番付一覧を表示しています。
             </p>
             <p>
               <strong>東</strong>と<strong>西</strong>の欄に力士の四股名と読み仮名、番付が表示されます。

@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import TorikumiDayPage from './TorikumiDayPage';
 import { torikumiArchive, type TorikumiArchiveDay } from '../lib/torikumi-data';
+import { banzukePath, getHubPath } from '../lib/torikumi-routes';
 
 function renderPage(day: TorikumiArchiveDay, mode: 'result' | 'schedule' = 'result') {
   render(
@@ -18,8 +19,8 @@ describe('TorikumiDayPage', () => {
     renderPage(torikumiArchive.resultDays[0], 'result');
 
     expect(screen.getByRole('heading', { level: 1, name: /取組結果/ })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: '一覧' })).toHaveAttribute('href', '/202603-torikumi');
-    expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202603-banduke');
+    expect(screen.getByRole('link', { name: '一覧' })).toHaveAttribute('href', getHubPath('result'));
+    expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', banzukePath);
     expect(screen.getByText('← 前日なし')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'GitHub' })).toHaveAttribute('href', 'https://github.com/dai/o-sumo');
     expect(screen.queryByText('連絡先:')).not.toBeInTheDocument();
