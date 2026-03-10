@@ -1,13 +1,11 @@
 # Dependencies
 node_modules/
-package-lock.json
 pnpm-lock.yaml
 yarn.lock
+Mode=Exclusive
 
 # Build output
 dist/
-.next/
-out/
 build/
 
 # Environment variables

@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import type { RankGroup, Rikishi } from '../lib/sumo-data';
 import { toRomaji } from '../lib/romaji';
