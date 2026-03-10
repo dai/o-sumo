@@ -1752,8 +1752,8 @@
       "pathDate": "20260309",
       "label": "二日目",
       "dayHead": "二日目： 令和8年3月9日(月)",
-      "status": "pending",
-      "statusMessage": "結果未更新",
+      "status": "published",
+      "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 2,

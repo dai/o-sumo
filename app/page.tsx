@@ -16,7 +16,7 @@ export default function Home() {
       <main className="home-main">
         <section className="hero-section">
           <h2>令和8年3月場所</h2>
-          <p>番付、日別の取組結果、日別の取組予定をトップ階層で整理しました。</p>
+          <p>最新の番付、日別の取組結果、日別の取組予定をご覧いただけます。</p>
           <div className="hero-actions">
             <Link to={banzukePath} className="cta-button">
               番付
@@ -35,15 +35,15 @@ export default function Home() {
           <div className="features-grid">
             <Link to={getHubPath('result')} className="feature-card">
               <h3>取組結果</h3>
-              <p>`/20260308-torikumi` から日ごとの結果ページへ移動できます。</p>
+              <p>結果ページを日別に一覧できます。</p>
             </Link>
             <Link to={getHubPath('schedule')} className="feature-card">
               <h3>取組予定</h3>
-              <p>`/20260308-yotei` から日ごとの予定ページへ移動できます。</p>
+              <p>取組予定を日別に一覧できます。</p>
             </Link>
             <Link to={banzukePath} className="feature-card">
               <h3>番付</h3>
-              <p>`/202603-banduke` を番付の固定入口にしました。</p>
+              <p>番付をセクションにわけています。</p>
             </Link>
           </div>
         </section>

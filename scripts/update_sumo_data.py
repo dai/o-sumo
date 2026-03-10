@@ -345,6 +345,14 @@ def has_any_matches(day_data: dict) -> bool:
     return bool(day_data["makuuchi"]["matches"] or day_data["juryo"]["matches"])
 
 
+def has_settled_matches(day_data: dict) -> bool:
+    return any(
+        match.get("winner") is not None
+        for division in (day_data["makuuchi"], day_data["juryo"])
+        for match in division["matches"]
+    )
+
+
 def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str) -> dict:
     today_day = max(1, min(current_day, 15))
     tomorrow_day = min(today_day + 1, 15)
@@ -368,7 +376,7 @@ def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str) -> 
         }
 
         schedule_status = "published" if has_any_matches(day_data) else "pending"
-        result_status = "published" if day <= today_day and has_any_matches(day_data) else "pending"
+        result_status = "published" if (day <= today_day and has_any_matches(day_data)) or has_settled_matches(day_data) else "pending"
 
         result_days.append(build_archive_day(day_data, gregorian_year, "result", result_status))
         schedule_days.append(build_archive_day(day_data, gregorian_year, "schedule", schedule_status))
