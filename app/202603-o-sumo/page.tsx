@@ -45,7 +45,7 @@ export default function BanzukePage() {
               <strong>東</strong>と<strong>西</strong>の欄に力士の四股名と読み仮名、番付が表示されます。
             </p>
             <p>
-              技術スタック: <strong>Cloudflare vinext</strong>、<strong>React</strong>、<strong>TypeScript</strong>
+              技術スタック: <strong>Cloudflare Pages</strong>、<strong>React</strong>、<strong>TypeScript</strong>
             </p>
             <p>
               連絡先:
