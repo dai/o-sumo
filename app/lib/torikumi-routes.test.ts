@@ -34,9 +34,12 @@ describe('torikumi route helpers', () => {
     const day = findArchiveDay('20260308', 'result');
     expect(day?.label).toBe('初日');
     expect(getAdjacentDay(day!, 'result', 'prev')).toBeUndefined();
-    expect(getAdjacentDay(day!, 'result', 'next')).toBeUndefined();
+    expect(getAdjacentDay(day!, 'result', 'next')?.pathDate).toBe('20260309');
+    expect(torikumiArchive.resultDays).toHaveLength(15);
+    expect(torikumiArchive.scheduleDays).toHaveLength(15);
 
     const scheduleDay = findArchiveDay('20260308', 'schedule');
     expect(getAdjacentDay(scheduleDay!, 'schedule', 'next')?.pathDate).toBe('20260309');
+    expect(torikumiArchive.resultDays[1]?.status).toBeDefined();
   });
 });

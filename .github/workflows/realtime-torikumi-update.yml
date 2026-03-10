@@ -1,0 +1,42 @@
+name: Realtime Torikumi Update
+
+on:
+  schedule:
+    - cron: '*/5 6-9 * * *' # 15:00-18:55 JST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-torikumi:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Generate torikumi data
+        run: python scripts/update_sumo_data.py --torikumi-only
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore: realtime torikumi update"
+          title: "chore: realtime torikumi update"
+          body: |
+            Automated torikumi refresh during live coverage hours.
+            - Runs every 5 minutes from 15:00 to 18:55 JST
+            - Refreshes torikumi result archive for all 15 days
+            - Refreshes torikumi schedule archive for all 15 days
+            - Refreshes torikumi API JSON under public/api/v1
+          branch: codex/realtime-torikumi-update
+          delete-branch: true
+          add-paths: |
+            app/lib/torikumi-data.ts
+            public/api/v1/torikumi.json
