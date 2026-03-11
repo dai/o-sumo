@@ -1,4 +1,3 @@
-import React from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import TorikumiDayPage from './components/TorikumiDayPage';
 import { findArchiveDay, getHubPath, parseTopLevelSlug } from './lib/torikumi-routes';

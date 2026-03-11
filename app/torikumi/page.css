@@ -202,6 +202,10 @@
   color: #8b5d00;
 }
 
+.torikumi-table {
+  overflow-x: auto;
+}
+
 .torikumi-head,
 .torikumi-row {
   display: grid;
@@ -284,6 +288,7 @@
 
   .torikumi-head,
   .torikumi-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(140px, 1fr) 120px minmax(140px, 1fr);
+    min-width: 420px;
   }
 }

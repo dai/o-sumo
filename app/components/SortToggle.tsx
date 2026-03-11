@@ -1,4 +1,3 @@
-import React from 'react';
 import type { SortOrder } from '../lib/sorting';
 
 interface SortToggleProps {
