@@ -15,6 +15,11 @@ o-sumo is a static web app for publishing sumo banzuke and torikumi information.
   - `/api/v1/banzuke.json`
   - `/api/v1/torikumi.json`
 
+API documentation:
+
+- Policy: [`docs/api/policy.md`](./docs/api/policy.md)
+- Changelog: [`docs/api/changelog.md`](./docs/api/changelog.md)
+
 Key UX:
 
 - The homepage main navigation is `Banzuke / Schedule / Results`
@@ -176,6 +181,13 @@ SPA fallback for direct date-based URLs is configured in `public/_redirects`.
 
 - X: https://x.com/daisuke
 - GitHub: https://github.com/dai/o-sumo
+
+
+## Notice (Operations / Incident Updates)
+
+- Incidents, update delays, and deprecation notices are announced via GitHub Issues:
+  - https://github.com/dai/o-sumo/issues
+- API response changes are recorded in `docs/api/changelog.md`.
 
 ## License
 
