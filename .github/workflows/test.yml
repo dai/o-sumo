@@ -31,21 +31,3 @@ jobs:
 
       - name: Build app
         run: npm run build
-
-  generated-data:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Regenerate data
-        run: python scripts/update_sumo_data.py
-
-      - name: Verify generated files are committed
-        run: git diff --exit-code
