@@ -15,6 +15,17 @@ o-sumo is a static web app for publishing sumo banzuke and torikumi information.
   - `/api/v1/banzuke.json`
   - `/api/v1/torikumi.json`
 
+API docs:
+
+- `docs/api/v1.md`
+- `docs/api/policy.md`
+- `docs/api/changelog.md`
+
+Skill publishing:
+
+- `SKILLS.md`
+- `skills/osumo-api/SKILL.md`
+
 Key UX:
 
 - The homepage main navigation is `Banzuke / Schedule / Results`
@@ -171,6 +182,8 @@ SPA fallback for direct date-based URLs is configured in `public/_redirects`.
 - `app/components/TorikumiDayPage.tsx`: daily result/schedule page
 - `app/lib/torikumi-routes.ts`: date URL resolution and navigation
 - `scripts/update_sumo_data.py`: banzuke and torikumi data generator
+- `docs/api/v1.md`: API specification
+- `skills/osumo-api/SKILL.md`: API usage skill
 
 ## Contact
 
