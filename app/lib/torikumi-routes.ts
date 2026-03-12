@@ -32,6 +32,16 @@ export function getDayPath(day: TorikumiArchiveDay, mode: TorikumiPageMode): str
   return `/${day.pathDate}-${mode === 'result' ? 'torikumi' : 'yotei'}`;
 }
 
+export function getArchiveUpdatedAt(mode: TorikumiPageMode): string {
+  return mode === 'result' ? torikumiArchive.resultUpdatedAt : torikumiArchive.scheduleUpdatedAt;
+}
+
+export function getArchiveUpdateMessage(mode: TorikumiPageMode): string {
+  return mode === 'result'
+    ? '15:00-18:00(JST)は30分ごと'
+    : '10:00 / 18:00(JST)更新';
+}
+
 export const legacyBanzukePath = `/${torikumiMonthKey}-o-sumo`;
 
 export function getAdjacentDay(
@@ -46,6 +56,14 @@ export function getAdjacentDay(
   }
 
   return direction === 'prev' ? days[index - 1] : days[index + 1];
+}
+
+export function isElapsedArchiveDay(day: TorikumiArchiveDay, referenceDate: string = torikumiArchive.updatedAt): boolean {
+  const referenceKey = referenceDate.replace(/-/g, '');
+  if (!/^\d{8}$/.test(referenceKey)) {
+    return false;
+  }
+  return day.pathDate < referenceKey;
 }
 
 export { banzukePath };

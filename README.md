@@ -126,11 +126,11 @@ python scripts/update_sumo_data.py --torikumi-only
 GitHub Actions で通常更新と高頻度更新を分けています。
 
 - 日次更新: `.github/workflows/daily-data-update.yml`
-  - 毎日 19:00 JST
-  - 番付と取組データを更新
+  - 毎日 10:00 JST / 18:00 JST
+  - 番付と取組予定データを更新
 - 高頻度更新: `.github/workflows/realtime-torikumi-update.yml`
-  - 15:00-18:55 JST に 5 分間隔
-  - 取組結果 / 取組予定だけを更新
+  - 15:00-18:00 JST に 30 分間隔
+  - 取組結果だけを更新
 - どちらも `main` へ直接 push せず、更新用ブランチから PR を作成
 
 ## テスト

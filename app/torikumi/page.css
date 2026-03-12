@@ -186,6 +186,23 @@
   box-shadow: 0 8px 20px rgba(28, 53, 85, 0.08);
 }
 
+.archive-card.elapsed {
+  background: rgba(255, 255, 255, 0.66);
+  border-color: #e3e9f0;
+  box-shadow: 0 5px 14px rgba(28, 53, 85, 0.04);
+}
+
+.archive-card.elapsed h3,
+.archive-card.elapsed p,
+.archive-card.elapsed .archive-card-date,
+.archive-card.elapsed .archive-status {
+  color: #7f8c99;
+}
+
+.archive-card.elapsed .archive-status.pending {
+  color: #9a7a36;
+}
+
 .archive-card-date {
   font-size: 0.8rem;
   color: #6d8196;

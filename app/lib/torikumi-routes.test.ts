@@ -1,5 +1,16 @@
 import { describe, expect, it } from 'vitest';
-import { banzukePath, findArchiveDay, getAdjacentDay, getDayPath, getHubPath, legacyBanzukePath, parseTopLevelSlug } from './torikumi-routes';
+import {
+  banzukePath,
+  findArchiveDay,
+  getAdjacentDay,
+  getArchiveUpdatedAt,
+  getArchiveUpdateMessage,
+  getDayPath,
+  getHubPath,
+  isElapsedArchiveDay,
+  legacyBanzukePath,
+  parseTopLevelSlug,
+} from './torikumi-routes';
 import { torikumiArchive, torikumiMonthKey } from './torikumi-data';
 
 describe('torikumi route helpers', () => {
@@ -31,6 +42,10 @@ describe('torikumi route helpers', () => {
     expect(getHubPath('result')).toBe(`/${torikumiMonthKey}-torikumi`);
     expect(getHubPath('schedule')).toBe(`/${torikumiMonthKey}-yotei`);
     expect(getDayPath(day, 'result')).toBe(`/${day.pathDate}-torikumi`);
+    expect(getArchiveUpdatedAt('result')).toBe(torikumiArchive.resultUpdatedAt);
+    expect(getArchiveUpdatedAt('schedule')).toBe(torikumiArchive.scheduleUpdatedAt);
+    expect(getArchiveUpdateMessage('result')).toContain('30分ごと');
+    expect(getArchiveUpdateMessage('schedule')).toContain('10:00');
     expect(legacyBanzukePath).toBe(`/${torikumiMonthKey}-o-sumo`);
     expect(banzukePath).toBe(`/${torikumiMonthKey}-banduke`);
   });
@@ -52,5 +67,17 @@ describe('torikumi route helpers', () => {
     const scheduleDay = findArchiveDay(firstScheduleDay.pathDate, 'schedule');
     expect(getAdjacentDay(scheduleDay!, 'schedule', 'next')?.pathDate).toBe(secondScheduleDay.pathDate);
     expect(torikumiArchive.scheduleDays[1]?.status).toBe('published');
+  });
+
+  it('detects elapsed archive days from the update date', () => {
+    const updatedKey = torikumiArchive.resultUpdatedAt.replace(/-/g, '');
+    const pastDay = torikumiArchive.resultDays.find((day) => day.pathDate < updatedKey);
+    const currentOrFutureDay = torikumiArchive.resultDays.find((day) => day.pathDate >= updatedKey);
+
+    expect(pastDay).toBeDefined();
+    expect(currentOrFutureDay).toBeDefined();
+    expect(isElapsedArchiveDay(pastDay!)).toBe(true);
+    expect(isElapsedArchiveDay(currentOrFutureDay!)).toBe(false);
+    expect(isElapsedArchiveDay(pastDay!, 'invalid')).toBe(false);
   });
 });
