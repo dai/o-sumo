@@ -3,6 +3,8 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import BanzukePage from './page';
+import BanzukeTable from '../components/BanzukeTable';
+import type { RankGroup } from '../lib/sumo-data';
 
 describe('BanzukePage', () => {
   it('keeps contact links in the footer and reverses rank-group sort order', async () => {
@@ -24,5 +26,34 @@ describe('BanzukePage', () => {
 
     const reversedFirstRank = screen.getAllByRole('heading', { level: 3 })[0];
     expect(reversedFirstRank.textContent).not.toBe('横綱');
+  });
+
+  it('renders win, loss, and rest markers distinctly', () => {
+    const rankGroup: RankGroup = {
+      title: '前頭1',
+      east: [
+        {
+          id: 1,
+          name: '東力士',
+          yomi: 'ひがしりきし',
+          rank: '前頭1',
+          side: 'east',
+          wins: 1,
+          losses: 1,
+          draws: 1,
+          results: ['win', 'loss', 'draw'],
+          profileUrl: 'https://example.com/east',
+          memo: '',
+        },
+      ],
+      west: [],
+    };
+
+    render(<BanzukeTable rankGroup={rankGroup} />);
+
+    expect(screen.getByText('1勝1敗1休')).toBeInTheDocument();
+    expect(screen.getByText('○')).toBeInTheDocument();
+    expect(screen.getByText('●')).toBeInTheDocument();
+    expect(screen.getByText('−')).toBeInTheDocument();
   });
 });

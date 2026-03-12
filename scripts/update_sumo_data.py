@@ -178,11 +178,11 @@ def make_result_marks(record: dict) -> list[str]:
     for day in RESULT_DAYS:
         day_data = record.get(day, {})
         alt = str(day_data.get("alt", ""))
-        if "白" in alt:
+        if "白" in alt or alt == "不戦勝":
             marks.append("win")
-        elif "黒" in alt:
+        elif "黒" in alt or alt == "不戦敗":
             marks.append("loss")
-        elif alt:
+        elif alt == "やすみ":
             marks.append("draw")
     return marks
 
