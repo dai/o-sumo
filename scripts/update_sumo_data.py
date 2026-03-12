@@ -1,10 +1,11 @@
 import argparse
 import json
 import re
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 from pathlib import Path
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
+from zoneinfo import ZoneInfo
 
 BASE_URL = "https://www.sumo.or.jp"
 SUMO_OUTPUT = Path("app/lib/sumo-data.ts")
@@ -31,6 +32,7 @@ DAY_LABEL = {
     15: "千秋楽",
 }
 WEEKDAY_JA = ("月", "火", "水", "木", "金", "土", "日")
+JST = ZoneInfo("Asia/Tokyo")
 
 
 def post_json(path: str, payload: dict) -> dict:
@@ -74,13 +76,20 @@ def normalize_day_head(raw: str) -> str:
     return f"{match.group(1)}： {match.group(2)}"
 
 
-def extract_iso_date(day_head: str, gregorian_year: str) -> str:
-    match = re.search(r"(\d+)月(\d+)日", day_head)
+def extract_actual_date(day_head: str, fallback_year: int | None = None) -> date:
+    match = re.search(r"(?:令和(\d+)年)?(\d+)月(\d+)日", day_head)
     if not match:
         raise ValueError(f"日付抽出失敗: {day_head}")
-    month = int(match.group(1))
-    day = int(match.group(2))
-    return f"{int(gregorian_year):04d}-{month:02d}-{day:02d}"
+    gregorian_year = (int(match.group(1)) + 2018) if match.group(1) else fallback_year
+    if gregorian_year is None:
+        raise ValueError(f"年抽出失敗: {day_head}")
+    month = int(match.group(2))
+    day = int(match.group(3))
+    return date(gregorian_year, month, day)
+
+
+def extract_iso_date(day_head: str, gregorian_year: str) -> str:
+    return extract_actual_date(day_head, int(gregorian_year)).isoformat()
 
 
 def safe_int(raw: object, default: int) -> int:
@@ -341,6 +350,33 @@ def try_load_torikumi_day(basho_id: int, day: int, kakuzuke_id: int) -> dict | N
         return None
 
 
+def resolve_basho_start_date(
+    loaded_days: dict[int, dict[str, dict | None]],
+    fallback_updated_at: str,
+    fallback_day: int,
+) -> date:
+    fallback_year = None
+    if fallback_updated_at:
+        fallback_year = date.fromisoformat(fallback_updated_at).year
+
+    inferred_start_dates = set()
+    for day, divisions in loaded_days.items():
+        reference = divisions["makuuchi"] or divisions["juryo"]
+        if reference is None:
+            continue
+        actual_date = extract_actual_date(reference["dayHead"], fallback_year)
+        inferred_start_dates.add(actual_date - timedelta(days=day - 1))
+
+    if len(inferred_start_dates) == 1:
+        return inferred_start_dates.pop()
+    if inferred_start_dates:
+        raise ValueError(f"開催初日を一意に特定できません: {sorted(inferred_start_dates)}")
+    if fallback_updated_at:
+        safe_day = max(1, min(fallback_day, 15))
+        return date.fromisoformat(fallback_updated_at) - timedelta(days=safe_day - 1)
+    return datetime.now(JST).date()
+
+
 def has_any_matches(day_data: dict) -> bool:
     return bool(day_data["makuuchi"]["matches"] or day_data["juryo"]["matches"])
 
@@ -354,11 +390,18 @@ def has_settled_matches(day_data: dict) -> bool:
 
 
 def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str) -> dict:
-    today_day = max(1, min(current_day, 15))
+    loaded_days = {}
+    for day in range(1, 16):
+        loaded_days[day] = {
+            "makuuchi": try_load_torikumi_day(basho_id, day, 1),
+            "juryo": try_load_torikumi_day(basho_id, day, 2),
+        }
+
+    start_date = resolve_basho_start_date(loaded_days, updated_at, current_day)
+    current_date = datetime.now(JST).date()
+    today_day = max(1, min((current_date - start_date).days + 1, 15))
     tomorrow_day = min(today_day + 1, 15)
-    current_date = date.fromisoformat(updated_at)
-    start_date = current_date - timedelta(days=today_day - 1)
-    gregorian_year = str(current_date.year)
+    gregorian_year = str(start_date.year)
 
     result_days = []
     schedule_days = []
@@ -368,8 +411,8 @@ def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str) -> 
     for day in range(1, 16):
         actual_date = start_date + timedelta(days=day - 1)
         placeholder = build_placeholder_day(day, actual_date)
-        makuuchi = try_load_torikumi_day(basho_id, day, 1) or placeholder["makuuchi"]
-        juryo = try_load_torikumi_day(basho_id, day, 2) or placeholder["juryo"]
+        makuuchi = loaded_days[day]["makuuchi"] or placeholder["makuuchi"]
+        juryo = loaded_days[day]["juryo"] or placeholder["juryo"]
         day_data = {
             "makuuchi": makuuchi,
             "juryo": juryo,
@@ -387,7 +430,7 @@ def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str) -> 
             tomorrow_data = day_data
 
     return {
-        "updatedAt": updated_at,
+        "updatedAt": current_date.isoformat(),
         "today": today_data,
         "tomorrow": tomorrow_data,
         "resultDays": result_days,

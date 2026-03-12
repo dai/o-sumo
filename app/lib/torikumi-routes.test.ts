@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { banzukePath, findArchiveDay, getAdjacentDay, getDayPath, getHubPath, legacyBanzukePath, parseTopLevelSlug } from './torikumi-routes';
+import { banzukePath, findArchiveDay, getAdjacentDay, getDayPath, getHubPath, isElapsedArchiveDay, legacyBanzukePath, parseTopLevelSlug } from './torikumi-routes';
 import { torikumiArchive, torikumiMonthKey } from './torikumi-data';
 
 describe('torikumi route helpers', () => {
@@ -52,5 +52,17 @@ describe('torikumi route helpers', () => {
     const scheduleDay = findArchiveDay(firstScheduleDay.pathDate, 'schedule');
     expect(getAdjacentDay(scheduleDay!, 'schedule', 'next')?.pathDate).toBe(secondScheduleDay.pathDate);
     expect(torikumiArchive.scheduleDays[1]?.status).toBe('published');
+  });
+
+  it('detects elapsed archive days from the update date', () => {
+    const updatedKey = torikumiArchive.updatedAt.replace(/-/g, '');
+    const pastDay = torikumiArchive.resultDays.find((day) => day.pathDate < updatedKey);
+    const currentOrFutureDay = torikumiArchive.resultDays.find((day) => day.pathDate >= updatedKey);
+
+    expect(pastDay).toBeDefined();
+    expect(currentOrFutureDay).toBeDefined();
+    expect(isElapsedArchiveDay(pastDay!)).toBe(true);
+    expect(isElapsedArchiveDay(currentOrFutureDay!)).toBe(false);
+    expect(isElapsedArchiveDay(pastDay!, 'invalid')).toBe(false);
   });
 });

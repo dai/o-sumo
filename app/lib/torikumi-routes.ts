@@ -48,4 +48,12 @@ export function getAdjacentDay(
   return direction === 'prev' ? days[index - 1] : days[index + 1];
 }
 
+export function isElapsedArchiveDay(day: TorikumiArchiveDay, referenceDate: string = torikumiArchive.updatedAt): boolean {
+  const referenceKey = referenceDate.replace(/-/g, '');
+  if (!/^\d{8}$/.test(referenceKey)) {
+    return false;
+  }
+  return day.pathDate < referenceKey;
+}
+
 export { banzukePath };

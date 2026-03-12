@@ -4,7 +4,7 @@ import SortToggle from '../components/SortToggle';
 import { bashoTitle } from '../lib/basho-meta';
 import { type SortOrder, sortArchiveDays } from '../lib/sorting';
 import { torikumiArchive } from '../lib/torikumi-data';
-import { banzukePath, getDayPath, getHubPath, type TorikumiPageMode } from '../lib/torikumi-routes';
+import { banzukePath, getDayPath, getHubPath, isElapsedArchiveDay, type TorikumiPageMode } from '../lib/torikumi-routes';
 import './page.css';
 
 function modeLabel(mode: TorikumiPageMode): string {
@@ -45,7 +45,11 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
         <section className="archive-grid-section">
           <div className="archive-grid">
             {days.map((day) => (
-              <Link key={`${mode}-${day.pathDate}`} to={getDayPath(day, mode)} className="archive-card">
+              <Link
+                key={`${mode}-${day.pathDate}`}
+                to={getDayPath(day, mode)}
+                className={`archive-card${isElapsedArchiveDay(day) ? ' elapsed' : ''}`}
+              >
                 <div className="archive-card-date">{day.pathDate}</div>
                 <h3>{day.label}</h3>
                 <p>{day.dayHead}</p>

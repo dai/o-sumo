@@ -26,4 +26,26 @@ describe('TorikumiHubPage', () => {
     const firstCardHeading = screen.getAllByRole('heading', { level: 3 })[0];
     expect(firstCardHeading).toHaveTextContent('千秋楽');
   });
+
+  it('mutes archive cards for elapsed days only', () => {
+    render(
+      <MemoryRouter>
+        <TorikumiHubPage mode="result" />
+      </MemoryRouter>,
+    );
+
+    const updatedKey = torikumiArchive.updatedAt.replace(/-/g, '');
+    const pastDay = torikumiArchive.resultDays.find((day) => day.pathDate < updatedKey);
+    const currentOrFutureDay = torikumiArchive.resultDays.find((day) => day.pathDate >= updatedKey);
+
+    expect(pastDay).toBeDefined();
+    expect(currentOrFutureDay).toBeDefined();
+
+    const pastLink = screen.getAllByRole('link').find((link) => link.getAttribute('href') === getDayPath(pastDay!, 'result'));
+    const currentLink = screen.getAllByRole('link').find((link) => link.getAttribute('href') === getDayPath(currentOrFutureDay!, 'result'));
+
+    expect(pastLink).toHaveClass('archive-card', 'elapsed');
+    expect(currentLink).toHaveClass('archive-card');
+    expect(currentLink).not.toHaveClass('elapsed');
+  });
 });
