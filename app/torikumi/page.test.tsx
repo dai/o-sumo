@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { torikumiArchive } from '../lib/torikumi-data';
-import { getDayPath } from '../lib/torikumi-routes';
+import { getArchiveUpdatedAt, getDayPath } from '../lib/torikumi-routes';
 import TorikumiHubPage from './page';
 
 describe('TorikumiHubPage', () => {
@@ -34,7 +34,7 @@ describe('TorikumiHubPage', () => {
       </MemoryRouter>,
     );
 
-    const updatedKey = torikumiArchive.updatedAt.replace(/-/g, '');
+    const updatedKey = getArchiveUpdatedAt('result').replace(/-/g, '');
     const pastDay = torikumiArchive.resultDays.find((day) => day.pathDate < updatedKey);
     const currentOrFutureDay = torikumiArchive.resultDays.find((day) => day.pathDate >= updatedKey);
 
@@ -47,5 +47,23 @@ describe('TorikumiHubPage', () => {
     expect(pastLink).toHaveClass('archive-card', 'elapsed');
     expect(currentLink).toHaveClass('archive-card');
     expect(currentLink).not.toHaveClass('elapsed');
+  });
+
+  it('shows mode-specific update cadence text', () => {
+    const { rerender } = render(
+      <MemoryRouter>
+        <TorikumiHubPage mode="result" />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByText(/15:00-18:00\(JST\)は30分ごと/)).toBeInTheDocument();
+
+    rerender(
+      <MemoryRouter>
+        <TorikumiHubPage mode="schedule" />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByText(/10:00 \/ 18:00\(JST\)更新/)).toBeInTheDocument();
   });
 });

@@ -115,11 +115,11 @@ Key validations:
 GitHub Actions uses separate normal and high-frequency update flows.
 
 - Daily update: `.github/workflows/daily-data-update.yml`
-  - runs every day at 19:00 JST
-  - refreshes banzuke and torikumi data
+  - runs every day at 10:00 JST and 18:00 JST
+  - refreshes banzuke and torikumi schedule data
 - Realtime torikumi update: `.github/workflows/realtime-torikumi-update.yml`
-  - runs every 5 minutes from 15:00 to 18:55 JST
-  - refreshes torikumi results and schedules only
+  - runs every 30 minutes from 15:00 to 18:00 JST
+  - refreshes torikumi results only
 - Both flows open pull requests instead of pushing directly to `main`
 
 ## Testing

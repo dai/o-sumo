@@ -33,6 +33,7 @@ DAY_LABEL = {
 }
 WEEKDAY_JA = ("月", "火", "水", "木", "金", "土", "日")
 JST = ZoneInfo("Asia/Tokyo")
+TORIKUMI_SCOPES = ("all", "result", "schedule")
 
 
 def post_json(path: str, payload: dict) -> dict:
@@ -431,11 +432,44 @@ def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str) -> 
 
     return {
         "updatedAt": current_date.isoformat(),
+        "resultUpdatedAt": current_date.isoformat(),
+        "scheduleUpdatedAt": current_date.isoformat(),
         "today": today_data,
         "tomorrow": tomorrow_data,
         "resultDays": result_days,
         "scheduleDays": schedule_days,
     }
+
+
+def load_existing_torikumi_json() -> dict | None:
+    path = API_DIR / "torikumi.json"
+    if not path.exists():
+        return None
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def apply_torikumi_scope(dataset: dict, scope: str, existing: dict | None = None) -> dict:
+    if scope == "all":
+        return dataset
+
+    existing = existing or {}
+    merged = dict(dataset)
+    result_updated_at = dataset["resultUpdatedAt"]
+    schedule_updated_at = dataset["scheduleUpdatedAt"]
+
+    if scope == "result":
+        merged["scheduleDays"] = existing.get("scheduleDays", dataset["scheduleDays"])
+        schedule_updated_at = existing.get("scheduleUpdatedAt") or existing.get("updatedAt") or schedule_updated_at
+    elif scope == "schedule":
+        merged["resultDays"] = existing.get("resultDays", dataset["resultDays"])
+        result_updated_at = existing.get("resultUpdatedAt") or existing.get("updatedAt") or result_updated_at
+    else:
+        raise ValueError(f"unsupported torikumi scope: {scope}")
+
+    merged["resultUpdatedAt"] = result_updated_at
+    merged["scheduleUpdatedAt"] = schedule_updated_at
+    merged["updatedAt"] = max(result_updated_at, schedule_updated_at)
+    return merged
 
 
 def write_sumo_data(makuuchi: list[dict], juryo: list[dict]) -> None:
@@ -512,6 +546,8 @@ export interface TorikumiDataSet {{
   bashoName: string;
   year: string;
   updatedAt: string;
+  resultUpdatedAt: string;
+  scheduleUpdatedAt: string;
   today?: TorikumiDailyData;
   tomorrow?: TorikumiDailyData;
   resultDays?: TorikumiArchiveDay[];
@@ -522,6 +558,8 @@ export const torikumiData: TorikumiDataSet = {json.dumps({
         "bashoName": basho_name,
         "year": year_jp,
         "updatedAt": dataset["updatedAt"],
+        "resultUpdatedAt": dataset["resultUpdatedAt"],
+        "scheduleUpdatedAt": dataset["scheduleUpdatedAt"],
         "today": dataset["today"],
         "tomorrow": dataset["tomorrow"],
         "resultDays": dataset["resultDays"],
@@ -532,6 +570,8 @@ export const torikumiArchive = {{
   bashoName: torikumiData.bashoName,
   year: torikumiData.year,
   updatedAt: torikumiData.updatedAt,
+  resultUpdatedAt: torikumiData.resultUpdatedAt,
+  scheduleUpdatedAt: torikumiData.scheduleUpdatedAt,
   resultDays: torikumiData.resultDays ?? [],
   scheduleDays: torikumiData.scheduleDays ?? [],
 }};
@@ -567,6 +607,8 @@ def write_api_json(
         "bashoName": basho_name,
         "year": year_jp,
         "updatedAt": torikumi_dataset["updatedAt"],
+        "resultUpdatedAt": torikumi_dataset["resultUpdatedAt"],
+        "scheduleUpdatedAt": torikumi_dataset["scheduleUpdatedAt"],
         "today": torikumi_dataset["today"],
         "tomorrow": torikumi_dataset["tomorrow"],
         "resultDays": torikumi_dataset["resultDays"],
@@ -578,6 +620,12 @@ def write_api_json(
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--torikumi-only", action="store_true", help="Only refresh torikumi outputs.")
+    parser.add_argument(
+        "--torikumi-scope",
+        choices=TORIKUMI_SCOPES,
+        default="all",
+        help="Choose whether to refresh all torikumi data, result pages only, or schedule pages only.",
+    )
     return parser.parse_args()
 
 
@@ -600,6 +648,11 @@ def main() -> None:
     updated_at = str(basho_info.get("today", ""))
 
     torikumi_dataset = build_torikumi_dataset(basho_id, current_day, updated_at)
+    torikumi_dataset = apply_torikumi_scope(
+        torikumi_dataset,
+        args.torikumi_scope,
+        load_existing_torikumi_json(),
+    )
 
     if makuuchi is not None and juryo is not None:
         write_sumo_data(makuuchi, juryo)
@@ -609,6 +662,7 @@ def main() -> None:
     print(
         "updated: "
         f"mode={'torikumi-only' if args.torikumi_only else 'full'}, "
+        f"scope={args.torikumi_scope}, "
         f"result_days={len(torikumi_dataset['resultDays'])}, "
         f"schedule_days={len(torikumi_dataset['scheduleDays'])}"
     )

@@ -43,6 +43,8 @@ export interface TorikumiDataSet {
   bashoName: string;
   year: string;
   updatedAt: string;
+  resultUpdatedAt: string;
+  scheduleUpdatedAt: string;
   today?: TorikumiDailyData;
   tomorrow?: TorikumiDailyData;
   resultDays?: TorikumiArchiveDay[];
@@ -53,6 +55,8 @@ export const torikumiData: TorikumiDataSet = {
   "bashoName": "三月場所",
   "year": "令和八年",
   "updatedAt": "2026-03-12",
+  "resultUpdatedAt": "2026-03-12",
+  "scheduleUpdatedAt": "2026-03-12",
   "today": {
     "makuuchi": {
       "day": 5,
@@ -433,8 +437,8 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "Tohakuryu",
           "westRank": "十両十枚目",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/",
-          "kimarite": "未定",
-          "winner": null
+          "kimarite": "寄り切り",
+          "winner": "east"
         },
         {
           "division": "十両",
@@ -449,8 +453,8 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "Hatsuyama",
           "westRank": "十両九枚目",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/",
-          "kimarite": "未定",
-          "winner": null
+          "kimarite": "引き落とし",
+          "winner": "west"
         },
         {
           "division": "十両",
@@ -465,8 +469,8 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "Kazuma",
           "westRank": "十両十一枚目",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/",
-          "kimarite": "未定",
-          "winner": null
+          "kimarite": "押し出し",
+          "winner": "west"
         },
         {
           "division": "十両",
@@ -481,8 +485,8 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "Kyokukaiyu",
           "westRank": "十両七枚目",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/",
-          "kimarite": "未定",
-          "winner": null
+          "kimarite": "押し倒し",
+          "winner": "east"
         },
         {
           "division": "十両",
@@ -497,8 +501,8 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "Shonannoumi",
           "westRank": "十両八枚目",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/",
-          "kimarite": "未定",
-          "winner": null
+          "kimarite": "叩き込み",
+          "winner": "west"
         },
         {
           "division": "十両",
@@ -513,8 +517,8 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "Shirokuma",
           "westRank": "十両五枚目",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/",
-          "kimarite": "未定",
-          "winner": null
+          "kimarite": "引き落とし",
+          "winner": "east"
         },
         {
           "division": "十両",
@@ -529,8 +533,8 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "Kayo",
           "westRank": "十両六枚目",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/",
-          "kimarite": "未定",
-          "winner": null
+          "kimarite": "押し出し",
+          "winner": "west"
         },
         {
           "division": "十両",
@@ -3609,8 +3613,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Tohakuryu",
               "westRank": "十両十枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "寄り切り",
+              "winner": "east"
             },
             {
               "division": "十両",
@@ -3625,8 +3629,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Hatsuyama",
               "westRank": "十両九枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "引き落とし",
+              "winner": "west"
             },
             {
               "division": "十両",
@@ -3641,8 +3645,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Kazuma",
               "westRank": "十両十一枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "押し出し",
+              "winner": "west"
             },
             {
               "division": "十両",
@@ -3657,8 +3661,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Kyokukaiyu",
               "westRank": "十両七枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "押し倒し",
+              "winner": "east"
             },
             {
               "division": "十両",
@@ -3673,8 +3677,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Shonannoumi",
               "westRank": "十両八枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "叩き込み",
+              "winner": "west"
             },
             {
               "division": "十両",
@@ -3689,8 +3693,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Shirokuma",
               "westRank": "十両五枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "引き落とし",
+              "winner": "east"
             },
             {
               "division": "十両",
@@ -3705,8 +3709,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Kayo",
               "westRank": "十両六枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "押し出し",
+              "winner": "west"
             },
             {
               "division": "十両",
@@ -7750,6 +7754,8 @@ export const torikumiArchive = {
   bashoName: torikumiData.bashoName,
   year: torikumiData.year,
   updatedAt: torikumiData.updatedAt,
+  resultUpdatedAt: torikumiData.resultUpdatedAt,
+  scheduleUpdatedAt: torikumiData.scheduleUpdatedAt,
   resultDays: torikumiData.resultDays ?? [],
   scheduleDays: torikumiData.scheduleDays ?? [],
 };

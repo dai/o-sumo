@@ -3,7 +3,15 @@ import { Link } from 'react-router-dom';
 import SortToggle from './SortToggle';
 import { type SortOrder, sortMatches } from '../lib/sorting';
 import { type TorikumiArchiveDay, type TorikumiDivisionDay, type TorikumiMatch, torikumiArchive } from '../lib/torikumi-data';
-import { banzukePath, getAdjacentDay, getDayPath, getHubPath, type TorikumiPageMode } from '../lib/torikumi-routes';
+import {
+  banzukePath,
+  getAdjacentDay,
+  getArchiveUpdatedAt,
+  getArchiveUpdateMessage,
+  getDayPath,
+  getHubPath,
+  type TorikumiPageMode,
+} from '../lib/torikumi-routes';
 import { juryo, makuuchiData } from '../lib/sumo-data';
 import '../torikumi/page.css';
 
@@ -103,14 +111,15 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
   const [sortOrder, setSortOrder] = React.useState<SortOrder>('asc');
   const prevDay = getAdjacentDay(day, mode, 'prev');
   const nextDay = getAdjacentDay(day, mode, 'next');
-  const liveUpdateMessage = '15:00-18:55(JST)は5分ごと / 19:00(JST)確定更新';
+  const updatedAt = getArchiveUpdatedAt(mode);
+  const liveUpdateMessage = getArchiveUpdateMessage(mode);
 
   return (
     <div className="torikumi-page">
       <header className="torikumi-header">
         <h1>{torikumiArchive.year}{torikumiArchive.bashoName} {modeLabel(mode)}</h1>
         <p>{day.dayHead}</p>
-        <p>更新日: {torikumiArchive.updatedAt} / {liveUpdateMessage}</p>
+        <p>更新日: {updatedAt} / {liveUpdateMessage}</p>
       </header>
 
       <main className="torikumi-main">

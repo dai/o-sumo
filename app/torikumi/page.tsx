@@ -4,7 +4,15 @@ import SortToggle from '../components/SortToggle';
 import { bashoTitle } from '../lib/basho-meta';
 import { type SortOrder, sortArchiveDays } from '../lib/sorting';
 import { torikumiArchive } from '../lib/torikumi-data';
-import { banzukePath, getDayPath, getHubPath, isElapsedArchiveDay, type TorikumiPageMode } from '../lib/torikumi-routes';
+import {
+  banzukePath,
+  getArchiveUpdatedAt,
+  getArchiveUpdateMessage,
+  getDayPath,
+  getHubPath,
+  isElapsedArchiveDay,
+  type TorikumiPageMode,
+} from '../lib/torikumi-routes';
 import './page.css';
 
 function modeLabel(mode: TorikumiPageMode): string {
@@ -15,12 +23,14 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
   const [sortOrder, setSortOrder] = React.useState<SortOrder>('asc');
   const sourceDays = mode === 'result' ? torikumiArchive.resultDays : torikumiArchive.scheduleDays;
   const days = sortArchiveDays(sourceDays, sortOrder);
+  const updatedAt = getArchiveUpdatedAt(mode);
+  const updateMessage = getArchiveUpdateMessage(mode);
 
   return (
     <div className="torikumi-page">
       <header className="torikumi-header">
         <h1>{bashoTitle} {modeLabel(mode)}一覧</h1>
-        <p>更新日: {torikumiArchive.updatedAt} / 15:00-18:55(JST)は5分ごと / 19:00(JST)確定更新</p>
+        <p>更新日: {updatedAt} / {updateMessage}</p>
       </header>
 
       <main className="torikumi-main">
@@ -48,7 +58,7 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
               <Link
                 key={`${mode}-${day.pathDate}`}
                 to={getDayPath(day, mode)}
-                className={`archive-card${isElapsedArchiveDay(day) ? ' elapsed' : ''}`}
+                className={`archive-card${isElapsedArchiveDay(day, updatedAt) ? ' elapsed' : ''}`}
               >
                 <div className="archive-card-date">{day.pathDate}</div>
                 <h3>{day.label}</h3>

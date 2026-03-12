@@ -1,5 +1,16 @@
 import { describe, expect, it } from 'vitest';
-import { banzukePath, findArchiveDay, getAdjacentDay, getDayPath, getHubPath, isElapsedArchiveDay, legacyBanzukePath, parseTopLevelSlug } from './torikumi-routes';
+import {
+  banzukePath,
+  findArchiveDay,
+  getAdjacentDay,
+  getArchiveUpdatedAt,
+  getArchiveUpdateMessage,
+  getDayPath,
+  getHubPath,
+  isElapsedArchiveDay,
+  legacyBanzukePath,
+  parseTopLevelSlug,
+} from './torikumi-routes';
 import { torikumiArchive, torikumiMonthKey } from './torikumi-data';
 
 describe('torikumi route helpers', () => {
@@ -31,6 +42,10 @@ describe('torikumi route helpers', () => {
     expect(getHubPath('result')).toBe(`/${torikumiMonthKey}-torikumi`);
     expect(getHubPath('schedule')).toBe(`/${torikumiMonthKey}-yotei`);
     expect(getDayPath(day, 'result')).toBe(`/${day.pathDate}-torikumi`);
+    expect(getArchiveUpdatedAt('result')).toBe(torikumiArchive.resultUpdatedAt);
+    expect(getArchiveUpdatedAt('schedule')).toBe(torikumiArchive.scheduleUpdatedAt);
+    expect(getArchiveUpdateMessage('result')).toContain('30分ごと');
+    expect(getArchiveUpdateMessage('schedule')).toContain('10:00');
     expect(legacyBanzukePath).toBe(`/${torikumiMonthKey}-o-sumo`);
     expect(banzukePath).toBe(`/${torikumiMonthKey}-banduke`);
   });
@@ -55,7 +70,7 @@ describe('torikumi route helpers', () => {
   });
 
   it('detects elapsed archive days from the update date', () => {
-    const updatedKey = torikumiArchive.updatedAt.replace(/-/g, '');
+    const updatedKey = torikumiArchive.resultUpdatedAt.replace(/-/g, '');
     const pastDay = torikumiArchive.resultDays.find((day) => day.pathDate < updatedKey);
     const currentOrFutureDay = torikumiArchive.resultDays.find((day) => day.pathDate >= updatedKey);
 

@@ -73,7 +73,7 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 ### データ更新
 
 - Workflow: `.github/workflows/daily-data-update.yml`
-- 毎日 19:00 JST に更新
+- 毎日 10:00 JST / 18:00 JST に更新
 - 更新内容は PR として作成
 
 ### テスト

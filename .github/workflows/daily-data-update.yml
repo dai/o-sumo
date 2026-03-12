@@ -2,7 +2,7 @@ name: Daily Sumo Data Update
 
 on:
   schedule:
-    - cron: '0 10 * * *' # 19:00 JST
+    - cron: '0 1,9 * * *' # 10:00 JST / 18:00 JST
   workflow_dispatch:
 
 permissions:
@@ -22,7 +22,7 @@ jobs:
           python-version: '3.11'
 
       - name: Generate data
-        run: python scripts/update_sumo_data.py
+        run: python scripts/update_sumo_data.py --torikumi-scope schedule
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
@@ -30,10 +30,10 @@ jobs:
           commit-message: "chore: daily sumo data update"
           title: "chore: daily sumo data update"
           body: |
-            Automated daily update at 19:00 JST.
+            Automated schedule-oriented update at 10:00 JST and 18:00 JST.
             - Refresh banzuke (幕内42 / 十両28 strict validation)
-            - Refresh torikumi result archive (初日から千秋楽まで15日分)
             - Refresh torikumi schedule archive (初日から千秋楽まで15日分)
+            - Preserve torikumi result archive between live result updates
             - Refresh API JSON under public/api/v1
           branch: codex/daily-sumo-data-update
           delete-branch: true
