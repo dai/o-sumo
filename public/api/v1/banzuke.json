@@ -39,7 +39,7 @@
             "loss",
             "loss",
             "loss",
-            "draw",
+            "loss",
             "draw"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/",
@@ -212,7 +212,7 @@
             "loss",
             "win",
             "loss",
-            "draw"
+            "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/",
           "memo": ""
@@ -363,7 +363,7 @@
           "results": [
             "loss",
             "loss",
-            "draw",
+            "loss",
             "draw",
             "draw"
           ],
@@ -383,7 +383,7 @@
           "draws": 0,
           "results": [
             "win",
-            "draw",
+            "win",
             "win",
             "win"
           ],
@@ -426,7 +426,7 @@
           "draws": 2,
           "results": [
             "loss",
-            "draw",
+            "loss",
             "draw",
             "draw"
           ],
@@ -450,7 +450,7 @@
           "results": [
             "win",
             "loss",
-            "draw",
+            "win",
             "loss"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/",
@@ -469,7 +469,7 @@
           "draws": 3,
           "results": [
             "loss",
-            "draw",
+            "loss",
             "draw",
             "draw",
             "draw"
@@ -513,7 +513,7 @@
           "draws": 0,
           "results": [
             "loss",
-            "draw",
+            "win",
             "win",
             "win"
           ],
