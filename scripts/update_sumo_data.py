@@ -420,7 +420,7 @@ def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str, exi
 
     start_date = resolve_basho_start_date(loaded_days, updated_at, current_day)
     current_date = datetime.now(JST).date()
-    today_day = max(1, min((current_date - start_date).days + 1, 15))
+    today_day = max(1, min(current_day, 15))
     tomorrow_day = min(today_day + 1, 15)
     gregorian_year = str(start_date.year)
 
