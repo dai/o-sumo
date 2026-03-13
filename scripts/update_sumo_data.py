@@ -269,17 +269,21 @@ def build_rank_groups(kakuzuke_id: int) -> tuple[list[dict], dict]:
 
 
 def parse_torikumi_match(raw: dict, division: str, bout_no: int) -> dict:
-    east = raw["east"]
-    west = raw["west"]
-    judge = int(raw.get("judge", 9))
+    east = raw.get("east") or {}
+    west = raw.get("west") or {}
+    judge = safe_int(raw.get("judge", 9), 9)
     kimarite = str(raw.get("technic_name", "")).strip()
     if kimarite in {"", "&nbsp;"}:
         kimarite = "未定"
 
     east_name = extract_alt_text(str(east.get("shikona", ""))) or str(east.get("shikona_kana", ""))
     west_name = extract_alt_text(str(west.get("shikona", ""))) or str(west.get("shikona_kana", ""))
+    if not east_name and not west_name:
+        raise ValueError("取組の東西名が欠落")
 
     winner = "east" if judge == 1 else "west" if judge == 2 else None
+    east_id = safe_int(east.get("rikishi_id", 0), 0)
+    west_id = safe_int(west.get("rikishi_id", 0), 0)
 
     return {
         "division": division,
@@ -288,12 +292,12 @@ def parse_torikumi_match(raw: dict, division: str, bout_no: int) -> dict:
         "eastYomi": str(east.get("shikona_kana", "")),
         "eastEnglish": str(east.get("shikona_eng", "")),
         "eastRank": str(east.get("banzuke_name", "")),
-        "eastProfileUrl": f"{BASE_URL}/ResultRikishiData/profile/{int(east['rikishi_id'])}/",
+        "eastProfileUrl": f"{BASE_URL}/ResultRikishiData/profile/{east_id}/" if east_id else "",
         "westName": west_name,
         "westYomi": str(west.get("shikona_kana", "")),
         "westEnglish": str(west.get("shikona_eng", "")),
         "westRank": str(west.get("banzuke_name", "")),
-        "westProfileUrl": f"{BASE_URL}/ResultRikishiData/profile/{int(west['rikishi_id'])}/",
+        "westProfileUrl": f"{BASE_URL}/ResultRikishiData/profile/{west_id}/" if west_id else "",
         "kimarite": kimarite,
         "winner": winner,
     }
@@ -313,10 +317,15 @@ def load_torikumi_day(basho_id: int, day: int, kakuzuke_id: int) -> dict:
     if not all_matches:
         raise ValueError(f"取組データ未公開: {DIVISION_LABEL[kakuzuke_id]} day={day}")
 
-    parsed = [
-        parse_torikumi_match(match, DIVISION_LABEL[kakuzuke_id], idx + 1)
-        for idx, match in enumerate(all_matches)
-    ]
+    parsed = []
+    for idx, match in enumerate(all_matches):
+        try:
+            parsed.append(parse_torikumi_match(match, DIVISION_LABEL[kakuzuke_id], idx + 1))
+        except Exception:
+            continue
+
+    if not parsed:
+        raise ValueError(f"取組データ解析失敗: {DIVISION_LABEL[kakuzuke_id]} day={day}")
 
     return {
         "day": day,
