@@ -282,17 +282,21 @@ def build_rank_groups(kakuzuke_id: int) -> tuple[list[dict], dict]:
 
 
 def parse_torikumi_match(raw: dict, division: str, bout_no: int) -> dict:
-    east = raw["east"]
-    west = raw["west"]
-    judge = int(raw.get("judge", 9))
+    east = raw.get("east") or {}
+    west = raw.get("west") or {}
+    judge = safe_int(raw.get("judge", 9), 9)
     kimarite = str(raw.get("technic_name", "")).strip()
     if kimarite in {"", "&nbsp;"}:
         kimarite = "未定"
 
     east_name = extract_alt_text(str(east.get("shikona", ""))) or str(east.get("shikona_kana", ""))
     west_name = extract_alt_text(str(west.get("shikona", ""))) or str(west.get("shikona_kana", ""))
+    if not east_name and not west_name:
+        raise ValueError("取組の東西名が欠落")
 
     winner = "east" if judge == 1 else "west" if judge == 2 else None
+    east_id = safe_int(east.get("rikishi_id", 0), 0)
+    west_id = safe_int(west.get("rikishi_id", 0), 0)
 
     return {
         "division": division,
@@ -301,12 +305,12 @@ def parse_torikumi_match(raw: dict, division: str, bout_no: int) -> dict:
         "eastYomi": str(east.get("shikona_kana", "")),
         "eastEnglish": str(east.get("shikona_eng", "")),
         "eastRank": str(east.get("banzuke_name", "")),
-        "eastProfileUrl": f"{BASE_URL}/ResultRikishiData/profile/{int(east['rikishi_id'])}/",
+        "eastProfileUrl": f"{BASE_URL}/ResultRikishiData/profile/{east_id}/" if east_id else "",
         "westName": west_name,
         "westYomi": str(west.get("shikona_kana", "")),
         "westEnglish": str(west.get("shikona_eng", "")),
         "westRank": str(west.get("banzuke_name", "")),
-        "westProfileUrl": f"{BASE_URL}/ResultRikishiData/profile/{int(west['rikishi_id'])}/",
+        "westProfileUrl": f"{BASE_URL}/ResultRikishiData/profile/{west_id}/" if west_id else "",
         "kimarite": kimarite,
         "winner": winner,
     }
@@ -326,10 +330,15 @@ def load_torikumi_day(basho_id: int, day: int, kakuzuke_id: int) -> dict:
     if not all_matches:
         raise ValueError(f"取組データ未公開: {DIVISION_LABEL[kakuzuke_id]} day={day}")
 
-    parsed = [
-        parse_torikumi_match(match, DIVISION_LABEL[kakuzuke_id], idx + 1)
-        for idx, match in enumerate(all_matches)
-    ]
+    parsed = []
+    for idx, match in enumerate(all_matches):
+        try:
+            parsed.append(parse_torikumi_match(match, DIVISION_LABEL[kakuzuke_id], idx + 1))
+        except Exception:
+            continue
+
+    if not parsed:
+        raise ValueError(f"取組データ解析失敗: {DIVISION_LABEL[kakuzuke_id]} day={day}")
 
     return {
         "day": day,
@@ -408,7 +417,27 @@ def has_settled_matches(day_data: dict) -> bool:
     )
 
 
-def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str) -> dict:
+def pick_existing_division_day(existing: dict | None, day: int, division: str) -> dict | None:
+    if not existing:
+        return None
+
+    candidates = []
+    for key in ("resultDays", "scheduleDays"):
+        for archive_day in existing.get(key, []):
+            if int(archive_day.get("day", 0)) != day:
+                continue
+            day_data = archive_day.get("data", {})
+            division_day = day_data.get(division)
+            if isinstance(division_day, dict):
+                candidates.append(division_day)
+
+    if not candidates:
+        return None
+
+    return max(candidates, key=lambda item: len(item.get("matches", [])))
+
+
+def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str, existing: dict | None = None) -> dict:
     loaded_days = {}
     for day in range(1, 16):
         loaded_days[day] = {
@@ -418,7 +447,7 @@ def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str) -> 
 
     start_date = resolve_basho_start_date(loaded_days, updated_at, current_day)
     current_date = datetime.now(JST).date()
-    today_day = max(1, min((current_date - start_date).days + 1, 15))
+    today_day = max(1, min(current_day, 15))
     tomorrow_day = min(today_day + 1, 15)
     gregorian_year = str(start_date.year)
 
@@ -430,8 +459,10 @@ def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str) -> 
     for day in range(1, 16):
         actual_date = start_date + timedelta(days=day - 1)
         placeholder = build_placeholder_day(day, actual_date)
-        makuuchi = loaded_days[day]["makuuchi"] or placeholder["makuuchi"]
-        juryo = loaded_days[day]["juryo"] or placeholder["juryo"]
+        existing_makuuchi = pick_existing_division_day(existing, day, "makuuchi")
+        existing_juryo = pick_existing_division_day(existing, day, "juryo")
+        makuuchi = loaded_days[day]["makuuchi"] or existing_makuuchi or placeholder["makuuchi"]
+        juryo = loaded_days[day]["juryo"] or existing_juryo or placeholder["juryo"]
         day_data = {
             "makuuchi": makuuchi,
             "juryo": juryo,
@@ -665,11 +696,12 @@ def main() -> None:
     basho_name = str(makuuchi_meta.get("basho_name", ""))
     updated_at = str(basho_info.get("today", ""))
 
-    torikumi_dataset = build_torikumi_dataset(basho_id, current_day, updated_at)
+    existing_torikumi = load_existing_torikumi_json()
+    torikumi_dataset = build_torikumi_dataset(basho_id, current_day, updated_at, existing_torikumi)
     torikumi_dataset = apply_torikumi_scope(
         torikumi_dataset,
         args.torikumi_scope,
-        load_existing_torikumi_json(),
+        existing_torikumi,
     )
 
     if makuuchi is not None and juryo is not None:
