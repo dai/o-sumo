@@ -390,7 +390,27 @@ def has_settled_matches(day_data: dict) -> bool:
     )
 
 
-def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str) -> dict:
+def pick_existing_division_day(existing: dict | None, day: int, division: str) -> dict | None:
+    if not existing:
+        return None
+
+    candidates = []
+    for key in ("resultDays", "scheduleDays"):
+        for archive_day in existing.get(key, []):
+            if int(archive_day.get("day", 0)) != day:
+                continue
+            day_data = archive_day.get("data", {})
+            division_day = day_data.get(division)
+            if isinstance(division_day, dict):
+                candidates.append(division_day)
+
+    if not candidates:
+        return None
+
+    return max(candidates, key=lambda item: len(item.get("matches", [])))
+
+
+def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str, existing: dict | None = None) -> dict:
     loaded_days = {}
     for day in range(1, 16):
         loaded_days[day] = {
@@ -412,8 +432,10 @@ def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str) -> 
     for day in range(1, 16):
         actual_date = start_date + timedelta(days=day - 1)
         placeholder = build_placeholder_day(day, actual_date)
-        makuuchi = loaded_days[day]["makuuchi"] or placeholder["makuuchi"]
-        juryo = loaded_days[day]["juryo"] or placeholder["juryo"]
+        existing_makuuchi = pick_existing_division_day(existing, day, "makuuchi")
+        existing_juryo = pick_existing_division_day(existing, day, "juryo")
+        makuuchi = loaded_days[day]["makuuchi"] or existing_makuuchi or placeholder["makuuchi"]
+        juryo = loaded_days[day]["juryo"] or existing_juryo or placeholder["juryo"]
         day_data = {
             "makuuchi": makuuchi,
             "juryo": juryo,
@@ -647,11 +669,12 @@ def main() -> None:
     basho_name = str(makuuchi_meta.get("basho_name", ""))
     updated_at = str(basho_info.get("today", ""))
 
-    torikumi_dataset = build_torikumi_dataset(basho_id, current_day, updated_at)
+    existing_torikumi = load_existing_torikumi_json()
+    torikumi_dataset = build_torikumi_dataset(basho_id, current_day, updated_at, existing_torikumi)
     torikumi_dataset = apply_torikumi_scope(
         torikumi_dataset,
         args.torikumi_scope,
-        load_existing_torikumi_json(),
+        existing_torikumi,
     )
 
     if makuuchi is not None and juryo is not None:
