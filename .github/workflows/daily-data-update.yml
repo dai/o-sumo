@@ -7,7 +7,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   update-data:
@@ -24,28 +23,12 @@ jobs:
       - name: Generate data
         run: python scripts/update_sumo_data.py --torikumi-scope schedule
 
-      - name: Create Pull Request
-        id: cpr
-        uses: peter-evans/create-pull-request@v6
-        with:
-          commit-message: "chore: daily sumo data update"
-          title: "chore: daily sumo data update"
-          body: |
-            Automated schedule-oriented update at 10:00 JST and 18:00 JST.
-            - Refresh banzuke (幕内42 / 十両28 strict validation)
-            - Refresh torikumi schedule archive (初日から千秋楽まで15日分)
-            - Preserve torikumi result archive between live result updates
-            - Refresh API JSON under public/api/v1
-          branch: codex/daily-sumo-data-update
-          delete-branch: true
-          add-paths: |
-            app/lib/sumo-data.ts
-            app/lib/torikumi-data.ts
-            public/api/v1/banzuke.json
-            public/api/v1/torikumi.json
-
-      - name: Enable auto-merge for update PR
-        if: steps.cpr.outputs.pull-request-number
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh pr merge "${{ steps.cpr.outputs.pull-request-number }}" --auto --squash
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/lib/sumo-data.ts app/lib/torikumi-data.ts public/api/v1/banzuke.json public/api/v1/torikumi.json
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: daily sumo data update"
+            git push origin HEAD:main
+          fi
