@@ -463,6 +463,12 @@ def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str, exi
         existing_juryo = pick_existing_division_day(existing, day, "juryo")
         makuuchi = loaded_days[day]["makuuchi"] or existing_makuuchi or placeholder["makuuchi"]
         juryo = loaded_days[day]["juryo"] or existing_juryo or placeholder["juryo"]
+
+        # Synchronize dayHead across both divisions using the calculated actual_date
+        canonical_day_head = build_day_head(day, actual_date)
+        makuuchi = {**makuuchi, "dayHead": canonical_day_head}
+        juryo = {**juryo, "dayHead": canonical_day_head}
+
         day_data = {
             "makuuchi": makuuchi,
             "juryo": juryo,
