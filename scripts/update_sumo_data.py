@@ -1,6 +1,8 @@
 import argparse
 import json
 import re
+import sys
+import time
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from urllib.parse import urlencode
@@ -48,8 +50,19 @@ def post_json(path: str, payload: dict) -> dict:
         },
         method="POST",
     )
-    with urlopen(req, timeout=30) as res:
-        return json.loads(res.read().decode("utf-8"))
+
+    last_error: Exception | None = None
+    for attempt in range(3):
+        try:
+            with urlopen(req, timeout=30) as res:
+                return json.loads(res.read().decode("utf-8"))
+        except Exception as exc:
+            last_error = exc
+            if attempt == 2:
+                break
+            time.sleep(1.5 * (attempt + 1))
+
+    raise RuntimeError(f"API request failed after retries: path={path}, payload={payload}") from last_error
 
 
 def extract_alt_text(html: str) -> str:
@@ -347,7 +360,12 @@ def build_placeholder_day(day: int, actual_date: date) -> dict:
 def try_load_torikumi_day(basho_id: int, day: int, kakuzuke_id: int) -> dict | None:
     try:
         return load_torikumi_day(basho_id, day, kakuzuke_id)
-    except Exception:
+    except Exception as exc:
+        print(
+            f"[warn] torikumi fetch failed: basho_id={basho_id}, day={day}, "
+            f"division={DIVISION_LABEL[kakuzuke_id]} ({exc})",
+            file=sys.stderr,
+        )
         return None
 
 

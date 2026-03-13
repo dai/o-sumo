@@ -2,8 +2,8 @@ name: Realtime Torikumi Update
 
 on:
   schedule:
-    - cron: '0,30 6-8 * * *' # 15:00-17:30 JST
-    - cron: '0 9 * * *' # 18:00 JST
+    - cron: '0,30 6-10 * * *' # 15:00-19:30 JST
+    - cron: '0 11 * * *' # 20:00 JST
   workflow_dispatch:
 
 permissions:
@@ -33,7 +33,7 @@ jobs:
           title: "chore: realtime torikumi update"
           body: |
             Automated torikumi refresh during live coverage hours.
-            - Runs every 30 minutes from 15:00 JST to 18:00 JST
+            - Runs every 30 minutes from 15:00 JST to 20:00 JST
             - Refreshes torikumi result archive for all 15 days
             - Preserves torikumi schedule archive between 10:00 / 18:00 schedule updates
             - Refreshes torikumi API JSON under public/api/v1
