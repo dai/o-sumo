@@ -77,8 +77,8 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "Tomokaze",
           "westRank": "十両二枚目",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/",
-          "kimarite": "未定",
-          "winner": null
+          "kimarite": "押し出し",
+          "winner": "east"
         },
         {
           "division": "幕内",
@@ -93,8 +93,8 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "Mitakeumi",
           "westRank": "前頭十五枚目",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/",
-          "kimarite": "未定",
-          "winner": null
+          "kimarite": "押し出し",
+          "winner": "east"
         },
         {
           "division": "幕内",
@@ -109,8 +109,8 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "Kinbozan",
           "westRank": "前頭十六枚目",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/",
-          "kimarite": "未定",
-          "winner": null
+          "kimarite": "寄り切り",
+          "winner": "east"
         },
         {
           "division": "幕内",
@@ -125,8 +125,8 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "Fujiseiun",
           "westRank": "前頭十三枚目",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/",
-          "kimarite": "未定",
-          "winner": null
+          "kimarite": "寄り倒し",
+          "winner": "east"
         },
         {
           "division": "幕内",
@@ -581,8 +581,8 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "Kagayaki",
           "westRank": "十両五枚目",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/",
-          "kimarite": "未定",
-          "winner": null
+          "kimarite": "押し出し",
+          "winner": "east"
         },
         {
           "division": "十両",
@@ -597,8 +597,8 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "Sadanoumi",
           "westRank": "十両筆頭",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/",
-          "kimarite": "未定",
-          "winner": null
+          "kimarite": "突き落とし",
+          "winner": "west"
         },
         {
           "division": "十両",
@@ -613,8 +613,8 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "Wakanosho",
           "westRank": "十両三枚目",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/",
-          "kimarite": "未定",
-          "winner": null
+          "kimarite": "突き倒し",
+          "winner": "west"
         }
       ]
     }
@@ -953,7 +953,232 @@ export const torikumiData: TorikumiDataSet = {
       "dayName": "取組日 中日",
       "dayHead": "中日： 令和8年3月15日(日)",
       "division": "十両",
-      "matches": []
+      "matches": [
+        {
+          "division": "十両",
+          "boutNo": 1,
+          "eastName": "にしきぎ",
+          "eastYomi": "にしきぎ",
+          "eastEnglish": "Nishikigi",
+          "eastRank": "十両十二枚目",
+          "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/",
+          "westName": "かぜけんおう",
+          "westYomi": "かぜけんおう",
+          "westEnglish": "Kazekeno",
+          "westRank": "十両十四枚目",
+          "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/",
+          "kimarite": "未定",
+          "winner": null
+        },
+        {
+          "division": "十両",
+          "boutNo": 2,
+          "eastName": "たかけんと",
+          "eastYomi": "たかけんと",
+          "eastEnglish": "Takakento",
+          "eastRank": "幕下三枚目",
+          "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3505/",
+          "westName": "つるぎしょう",
+          "westYomi": "つるぎしょう",
+          "westEnglish": "Tsurugisho",
+          "westRank": "十両十二枚目",
+          "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3504/",
+          "kimarite": "未定",
+          "winner": null
+        },
+        {
+          "division": "十両",
+          "boutNo": 3,
+          "eastName": "かずま",
+          "eastYomi": "かずま",
+          "eastEnglish": "Kazuma",
+          "eastRank": "十両十一枚目",
+          "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/",
+          "westName": "こうとくざん",
+          "westYomi": "こうとくざん",
+          "westEnglish": "Kotokuzan",
+          "westRank": "十両十四枚目",
+          "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3218/",
+          "kimarite": "未定",
+          "winner": null
+        },
+        {
+          "division": "十両",
+          "boutNo": 4,
+          "eastName": "しまづうみ",
+          "eastYomi": "しまづうみ",
+          "eastEnglish": "Shimazuumi",
+          "eastRank": "十両十三枚目",
+          "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3404/",
+          "westName": "としのふじ",
+          "westYomi": "としのふじ",
+          "westEnglish": "Toshinofuji",
+          "westRank": "十両十一枚目",
+          "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/",
+          "kimarite": "未定",
+          "winner": null
+        },
+        {
+          "division": "十両",
+          "boutNo": 5,
+          "eastName": "でわのりゅう",
+          "eastYomi": "でわのりゅう",
+          "eastEnglish": "Dewanoryu",
+          "eastRank": "十両十枚目",
+          "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/",
+          "westName": "ふじてんせい",
+          "westYomi": "ふじてんせい",
+          "westEnglish": "Fujitensei",
+          "westRank": "十両十三枚目",
+          "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4337/",
+          "kimarite": "未定",
+          "winner": null
+        },
+        {
+          "division": "十両",
+          "boutNo": 6,
+          "eastName": "しょうなんのうみ",
+          "eastYomi": "しょうなんのうみ",
+          "eastEnglish": "Shonannoumi",
+          "eastRank": "十両八枚目",
+          "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/",
+          "westName": "たましょうほう",
+          "westYomi": "たましょうほう",
+          "westEnglish": "Tamashoho",
+          "westRank": "十両九枚目",
+          "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/",
+          "kimarite": "未定",
+          "winner": null
+        },
+        {
+          "division": "十両",
+          "boutNo": 7,
+          "eastName": "とうはくりゅう",
+          "eastYomi": "とうはくりゅう",
+          "eastEnglish": "Tohakuryu",
+          "eastRank": "十両十枚目",
+          "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/",
+          "westName": "きたのわか",
+          "westYomi": "きたのわか",
+          "westEnglish": "Kitanowaka",
+          "westRank": "十両八枚目",
+          "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/",
+          "kimarite": "未定",
+          "winner": null
+        },
+        {
+          "division": "十両",
+          "boutNo": 8,
+          "eastName": "はつやま",
+          "eastYomi": "はつやま",
+          "eastEnglish": "Hatsuyama",
+          "eastRank": "十両九枚目",
+          "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/",
+          "westName": "きょくかいゆう",
+          "westYomi": "きょくかいゆう",
+          "westEnglish": "Kyokukaiyu",
+          "westRank": "十両七枚目",
+          "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/",
+          "kimarite": "未定",
+          "winner": null
+        },
+        {
+          "division": "十両",
+          "boutNo": 9,
+          "eastName": "にしのりゅう",
+          "eastYomi": "にしのりゅう",
+          "eastEnglish": "Nishinoryu",
+          "eastRank": "十両四枚目",
+          "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/",
+          "westName": "めいせい",
+          "westYomi": "めいせい",
+          "westEnglish": "Meisei",
+          "westRank": "十両七枚目",
+          "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/",
+          "kimarite": "未定",
+          "winner": null
+        },
+        {
+          "division": "十両",
+          "boutNo": 10,
+          "eastName": "かよう",
+          "eastYomi": "かよう",
+          "eastEnglish": "Kayo",
+          "eastRank": "十両六枚目",
+          "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/",
+          "westName": "わかのしょう",
+          "westYomi": "わかのしょう",
+          "westEnglish": "Wakanosho",
+          "westRank": "十両三枚目",
+          "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/",
+          "kimarite": "未定",
+          "winner": null
+        },
+        {
+          "division": "十両",
+          "boutNo": 11,
+          "eastName": "あさすいりゅう",
+          "eastYomi": "あさすいりゅう",
+          "eastEnglish": "Asasuiryu",
+          "eastRank": "十両二枚目",
+          "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/",
+          "westName": "ひとし",
+          "westYomi": "ひとし",
+          "westEnglish": "Hitoshi",
+          "westRank": "十両六枚目",
+          "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/",
+          "kimarite": "未定",
+          "winner": null
+        },
+        {
+          "division": "十両",
+          "boutNo": 12,
+          "eastName": "しろくま",
+          "eastYomi": "しろくま",
+          "eastEnglish": "Shirokuma",
+          "eastRank": "十両五枚目",
+          "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/",
+          "westName": "ともかぜ",
+          "westYomi": "ともかぜ",
+          "westEnglish": "Tomokaze",
+          "westRank": "十両二枚目",
+          "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/",
+          "kimarite": "未定",
+          "winner": null
+        },
+        {
+          "division": "十両",
+          "boutNo": 13,
+          "eastName": "りゅうでん",
+          "eastYomi": "りゅうでん",
+          "eastEnglish": "Ryuden",
+          "eastRank": "十両筆頭",
+          "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/",
+          "westName": "たけるふじ",
+          "westYomi": "たけるふじ",
+          "westEnglish": "Takerufuji",
+          "westRank": "十両四枚目",
+          "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/",
+          "kimarite": "未定",
+          "winner": null
+        },
+        {
+          "division": "十両",
+          "boutNo": 14,
+          "eastName": "かがやき",
+          "eastYomi": "かがやき",
+          "eastEnglish": "Kagayaki",
+          "eastRank": "十両五枚目",
+          "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/",
+          "westName": "さだのうみ",
+          "westYomi": "さだのうみ",
+          "westEnglish": "Sadanoumi",
+          "westRank": "十両筆頭",
+          "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/",
+          "kimarite": "未定",
+          "winner": null
+        }
+      ]
     }
   },
   "resultDays": [
@@ -4395,8 +4620,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Tomokaze",
               "westRank": "十両二枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "押し出し",
+              "winner": "east"
             },
             {
               "division": "幕内",
@@ -4411,8 +4636,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Mitakeumi",
               "westRank": "前頭十五枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "押し出し",
+              "winner": "east"
             },
             {
               "division": "幕内",
@@ -4427,8 +4652,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Kinbozan",
               "westRank": "前頭十六枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "寄り切り",
+              "winner": "east"
             },
             {
               "division": "幕内",
@@ -4443,8 +4668,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Fujiseiun",
               "westRank": "前頭十三枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "寄り倒し",
+              "winner": "east"
             },
             {
               "division": "幕内",
@@ -4899,8 +5124,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Kagayaki",
               "westRank": "十両五枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "押し出し",
+              "winner": "east"
             },
             {
               "division": "十両",
@@ -4915,8 +5140,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Sadanoumi",
               "westRank": "十両筆頭",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "突き落とし",
+              "winner": "west"
             },
             {
               "division": "十両",
@@ -4931,8 +5156,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Wakanosho",
               "westRank": "十両三枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "突き倒し",
+              "winner": "west"
             }
           ]
         }
@@ -5280,7 +5505,232 @@ export const torikumiData: TorikumiDataSet = {
           "dayName": "取組日 中日",
           "dayHead": "中日： 令和8年3月15日(日)",
           "division": "十両",
-          "matches": []
+          "matches": [
+            {
+              "division": "十両",
+              "boutNo": 1,
+              "eastName": "にしきぎ",
+              "eastYomi": "にしきぎ",
+              "eastEnglish": "Nishikigi",
+              "eastRank": "十両十二枚目",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/",
+              "westName": "かぜけんおう",
+              "westYomi": "かぜけんおう",
+              "westEnglish": "Kazekeno",
+              "westRank": "十両十四枚目",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/",
+              "kimarite": "未定",
+              "winner": null
+            },
+            {
+              "division": "十両",
+              "boutNo": 2,
+              "eastName": "たかけんと",
+              "eastYomi": "たかけんと",
+              "eastEnglish": "Takakento",
+              "eastRank": "幕下三枚目",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3505/",
+              "westName": "つるぎしょう",
+              "westYomi": "つるぎしょう",
+              "westEnglish": "Tsurugisho",
+              "westRank": "十両十二枚目",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3504/",
+              "kimarite": "未定",
+              "winner": null
+            },
+            {
+              "division": "十両",
+              "boutNo": 3,
+              "eastName": "かずま",
+              "eastYomi": "かずま",
+              "eastEnglish": "Kazuma",
+              "eastRank": "十両十一枚目",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/",
+              "westName": "こうとくざん",
+              "westYomi": "こうとくざん",
+              "westEnglish": "Kotokuzan",
+              "westRank": "十両十四枚目",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3218/",
+              "kimarite": "未定",
+              "winner": null
+            },
+            {
+              "division": "十両",
+              "boutNo": 4,
+              "eastName": "しまづうみ",
+              "eastYomi": "しまづうみ",
+              "eastEnglish": "Shimazuumi",
+              "eastRank": "十両十三枚目",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3404/",
+              "westName": "としのふじ",
+              "westYomi": "としのふじ",
+              "westEnglish": "Toshinofuji",
+              "westRank": "十両十一枚目",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/",
+              "kimarite": "未定",
+              "winner": null
+            },
+            {
+              "division": "十両",
+              "boutNo": 5,
+              "eastName": "でわのりゅう",
+              "eastYomi": "でわのりゅう",
+              "eastEnglish": "Dewanoryu",
+              "eastRank": "十両十枚目",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/",
+              "westName": "ふじてんせい",
+              "westYomi": "ふじてんせい",
+              "westEnglish": "Fujitensei",
+              "westRank": "十両十三枚目",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4337/",
+              "kimarite": "未定",
+              "winner": null
+            },
+            {
+              "division": "十両",
+              "boutNo": 6,
+              "eastName": "しょうなんのうみ",
+              "eastYomi": "しょうなんのうみ",
+              "eastEnglish": "Shonannoumi",
+              "eastRank": "十両八枚目",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/",
+              "westName": "たましょうほう",
+              "westYomi": "たましょうほう",
+              "westEnglish": "Tamashoho",
+              "westRank": "十両九枚目",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/",
+              "kimarite": "未定",
+              "winner": null
+            },
+            {
+              "division": "十両",
+              "boutNo": 7,
+              "eastName": "とうはくりゅう",
+              "eastYomi": "とうはくりゅう",
+              "eastEnglish": "Tohakuryu",
+              "eastRank": "十両十枚目",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/",
+              "westName": "きたのわか",
+              "westYomi": "きたのわか",
+              "westEnglish": "Kitanowaka",
+              "westRank": "十両八枚目",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/",
+              "kimarite": "未定",
+              "winner": null
+            },
+            {
+              "division": "十両",
+              "boutNo": 8,
+              "eastName": "はつやま",
+              "eastYomi": "はつやま",
+              "eastEnglish": "Hatsuyama",
+              "eastRank": "十両九枚目",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/",
+              "westName": "きょくかいゆう",
+              "westYomi": "きょくかいゆう",
+              "westEnglish": "Kyokukaiyu",
+              "westRank": "十両七枚目",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/",
+              "kimarite": "未定",
+              "winner": null
+            },
+            {
+              "division": "十両",
+              "boutNo": 9,
+              "eastName": "にしのりゅう",
+              "eastYomi": "にしのりゅう",
+              "eastEnglish": "Nishinoryu",
+              "eastRank": "十両四枚目",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/",
+              "westName": "めいせい",
+              "westYomi": "めいせい",
+              "westEnglish": "Meisei",
+              "westRank": "十両七枚目",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/",
+              "kimarite": "未定",
+              "winner": null
+            },
+            {
+              "division": "十両",
+              "boutNo": 10,
+              "eastName": "かよう",
+              "eastYomi": "かよう",
+              "eastEnglish": "Kayo",
+              "eastRank": "十両六枚目",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/",
+              "westName": "わかのしょう",
+              "westYomi": "わかのしょう",
+              "westEnglish": "Wakanosho",
+              "westRank": "十両三枚目",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/",
+              "kimarite": "未定",
+              "winner": null
+            },
+            {
+              "division": "十両",
+              "boutNo": 11,
+              "eastName": "あさすいりゅう",
+              "eastYomi": "あさすいりゅう",
+              "eastEnglish": "Asasuiryu",
+              "eastRank": "十両二枚目",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/",
+              "westName": "ひとし",
+              "westYomi": "ひとし",
+              "westEnglish": "Hitoshi",
+              "westRank": "十両六枚目",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/",
+              "kimarite": "未定",
+              "winner": null
+            },
+            {
+              "division": "十両",
+              "boutNo": 12,
+              "eastName": "しろくま",
+              "eastYomi": "しろくま",
+              "eastEnglish": "Shirokuma",
+              "eastRank": "十両五枚目",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/",
+              "westName": "ともかぜ",
+              "westYomi": "ともかぜ",
+              "westEnglish": "Tomokaze",
+              "westRank": "十両二枚目",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/",
+              "kimarite": "未定",
+              "winner": null
+            },
+            {
+              "division": "十両",
+              "boutNo": 13,
+              "eastName": "りゅうでん",
+              "eastYomi": "りゅうでん",
+              "eastEnglish": "Ryuden",
+              "eastRank": "十両筆頭",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/",
+              "westName": "たけるふじ",
+              "westYomi": "たけるふじ",
+              "westEnglish": "Takerufuji",
+              "westRank": "十両四枚目",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/",
+              "kimarite": "未定",
+              "winner": null
+            },
+            {
+              "division": "十両",
+              "boutNo": 14,
+              "eastName": "かがやき",
+              "eastYomi": "かがやき",
+              "eastEnglish": "Kagayaki",
+              "eastRank": "十両五枚目",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/",
+              "westName": "さだのうみ",
+              "westYomi": "さだのうみ",
+              "westEnglish": "Sadanoumi",
+              "westRank": "十両筆頭",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/",
+              "kimarite": "未定",
+              "winner": null
+            }
+          ]
         }
       }
     },
