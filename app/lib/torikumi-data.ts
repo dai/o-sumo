@@ -6461,8 +6461,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Tamawashi",
               "westRank": "前頭九枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "押し出し",
+              "winner": "west"
             },
             {
               "division": "幕内",
@@ -6477,8 +6477,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Hakunofuji",
               "westRank": "前頭七枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "上手投げ",
+              "winner": "west"
             },
             {
               "division": "幕内",
@@ -6493,8 +6493,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Tokihayate",
               "westRank": "前頭九枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "寄り切り",
+              "winner": "east"
             },
             {
               "division": "幕内",
@@ -6509,8 +6509,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Kotoshoho",
               "westRank": "前頭五枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "寄り倒し",
+              "winner": "east"
             },
             {
               "division": "幕内",
@@ -6525,8 +6525,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Fujinokawa",
               "westRank": "前頭二枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "押し出し",
+              "winner": "east"
             },
             {
               "division": "幕内",
@@ -6541,8 +6541,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Yoshinofuji",
               "westRank": "前頭筆頭",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "押し倒し",
+              "winner": "east"
             },
             {
               "division": "幕内",
@@ -6557,8 +6557,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Atamifuji",
               "westRank": "小結",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "押し出し",
+              "winner": "west"
             },
             {
               "division": "幕内",
@@ -6573,8 +6573,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Takanosho",
               "westRank": "前頭四枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "引き落とし",
+              "winner": "east"
             },
             {
               "division": "幕内",
