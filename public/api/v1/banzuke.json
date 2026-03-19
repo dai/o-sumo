@@ -1,7 +1,7 @@
 {
   "bashoName": "三月場所",
   "year": "令和八年",
-  "updatedAt": "2026-03-18",
+  "updatedAt": "2026-03-19",
   "makuuchi": [
     {
       "title": "横綱",
@@ -41,12 +41,13 @@
           "side": "west",
           "wins": 0,
           "losses": 4,
-          "draws": 7,
+          "draws": 8,
           "results": [
             "loss",
             "loss",
             "loss",
             "loss",
+            "draw",
             "draw",
             "draw",
             "draw",
@@ -554,7 +555,7 @@
           "side": "west",
           "wins": 1,
           "losses": 6,
-          "draws": 4,
+          "draws": 5,
           "results": [
             "loss",
             "loss",
@@ -565,6 +566,7 @@
             "loss",
             "loss",
             "loss",
+            "draw",
             "draw",
             "draw"
           ],
@@ -1040,8 +1042,9 @@
           "side": "east",
           "wins": 0,
           "losses": 0,
-          "draws": 11,
+          "draws": 12,
           "results": [
+            "draw",
             "draw",
             "draw",
             "draw",
@@ -1897,7 +1900,7 @@
           "side": "east",
           "wins": 2,
           "losses": 9,
-          "draws": 0,
+          "draws": 1,
           "results": [
             "win",
             "win",
@@ -1909,7 +1912,8 @@
             "loss",
             "loss",
             "loss",
-            "loss"
+            "loss",
+            "draw"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3404/",
           "memo": ""
