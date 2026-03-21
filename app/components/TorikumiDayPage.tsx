@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { divisionAnchorId } from '../lib/rikishi-display';
 import SortToggle from './SortToggle';
 import { type SortOrder, sortMatches } from '../lib/sorting';
 import { type TorikumiArchiveDay, type TorikumiDivisionDay, type TorikumiMatch, torikumiArchive } from '../lib/torikumi-data';
@@ -51,6 +52,14 @@ function emptyDivisionMessage(division: '幕内' | '十両', mode: TorikumiPageM
     : `${division}の取組予定はまだ更新されていません。`;
 }
 
+function winnerLabel(match: TorikumiMatch): string {
+  if (!match.winner) return match.kimarite;
+  const winnerName = match.winner === 'east'
+    ? rikishiNameByProfileUrl.get(match.eastProfileUrl) ?? match.eastName
+    : rikishiNameByProfileUrl.get(match.westProfileUrl) ?? match.westName;
+  return `${match.kimarite}（${winnerName}）`;
+}
+
 function TorikumiTable({
   title,
   dayData,
@@ -82,17 +91,15 @@ function TorikumiTable({
                   <div className="cell west">西</div>
                 </div>
                 {matches.map((match: TorikumiMatch) => (
-                  <div className="torikumi-row" role="row" key={`${title}-${division}-${match.boutNo}`}>
-                    <div className="cell east rikishi-card">
+                  <div className="torikumi-row" role="row" key={`${title}-${division}-${match.boutNo}`} id={divisionAnchorId(division, match.boutNo)}>
+                    <div className={`cell east rikishi-card ${match.winner === 'east' ? 'winner' : ''}`}>
                       <div className="name">{displayName(match.eastName, match.eastYomi, match.eastProfileUrl)}</div>
                       <div className="english">{match.eastEnglish}</div>
                     </div>
-                    <div className="cell kimarite kimarite-value">
-                      {mode === 'result'
-                        ? `${match.kimarite}${match.winner ? ` (${match.winner === 'east' ? '東' : '西'}勝)` : ''}`
-                        : '取組予定'}
+                    <div className={`cell kimarite kimarite-value ${mode === 'result' && match.winner ? `winner-${match.winner}` : ''}`}>
+                      {mode === 'result' ? winnerLabel(match) : '取組予定'}
                     </div>
-                    <div className="cell west rikishi-card">
+                    <div className={`cell west rikishi-card ${match.winner === 'west' ? 'winner' : ''}`}>
                       <div className="name">{displayName(match.westName, match.westYomi, match.westProfileUrl)}</div>
                       <div className="english">{match.westEnglish}</div>
                     </div>
