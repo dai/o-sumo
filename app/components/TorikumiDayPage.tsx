@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { divisionAnchorId } from '../lib/rikishi-display';
+import { canonicalShikona, divisionAnchorId } from '../lib/rikishi-display';
 import SortToggle from './SortToggle';
 import { type SortOrder, sortMatches } from '../lib/sorting';
 import { type TorikumiArchiveDay, type TorikumiDivisionDay, type TorikumiMatch, torikumiArchive } from '../lib/torikumi-data';
@@ -13,15 +13,9 @@ import {
   getHubPath,
   type TorikumiPageMode,
 } from '../lib/torikumi-routes';
-import { juryo, makuuchiData } from '../lib/sumo-data';
 import '../torikumi/page.css';
 
 const DIVISIONS: Array<'幕内' | '十両'> = ['幕内', '十両'];
-const rikishiNameByProfileUrl = new Map(
-  [...makuuchiData, ...juryo].flatMap((group) =>
-    [...group.east, ...group.west].map((rikishi) => [rikishi.profileUrl, rikishi.name] as const),
-  ),
-);
 
 function byDivision(day: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay }, division: '幕内' | '十両') {
   return division === '幕内' ? day.makuuchi.matches : day.juryo.matches;
@@ -41,9 +35,8 @@ function modeDescription(mode: TorikumiPageMode): string {
     : '初日から順に予定番付を確認できるアーカイブです。';
 }
 
-function displayName(name: string, yomi: string, profileUrl: string): string {
-  const canonicalName = rikishiNameByProfileUrl.get(profileUrl) ?? name;
-  return canonicalName === yomi ? canonicalName : `${canonicalName}（${yomi}）`;
+function displayName(name: string, _yomi: string, profileUrl: string): string {
+  return canonicalShikona(profileUrl, name);
 }
 
 function emptyDivisionMessage(division: '幕内' | '十両', mode: TorikumiPageMode): string {
@@ -55,8 +48,8 @@ function emptyDivisionMessage(division: '幕内' | '十両', mode: TorikumiPageM
 function winnerLabel(match: TorikumiMatch): string {
   if (!match.winner) return match.kimarite;
   const winnerName = match.winner === 'east'
-    ? rikishiNameByProfileUrl.get(match.eastProfileUrl) ?? match.eastName
-    : rikishiNameByProfileUrl.get(match.westProfileUrl) ?? match.westName;
+    ? canonicalShikona(match.eastProfileUrl, match.eastName)
+    : canonicalShikona(match.westProfileUrl, match.westName);
   return `${match.kimarite}（${winnerName}）`;
 }
 
