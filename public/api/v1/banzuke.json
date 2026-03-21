@@ -1,7 +1,7 @@
 {
   "bashoName": "三月場所",
   "year": "令和八年",
-  "updatedAt": "2026-03-20",
+  "updatedAt": "2026-03-21",
   "makuuchi": [
     {
       "title": "横綱",
@@ -43,12 +43,13 @@
           "side": "west",
           "wins": 0,
           "losses": 4,
-          "draws": 9,
+          "draws": 10,
           "results": [
             "loss",
             "loss",
             "loss",
             "loss",
+            "draw",
             "draw",
             "draw",
             "draw",
@@ -592,7 +593,7 @@
           "side": "west",
           "wins": 1,
           "losses": 6,
-          "draws": 6,
+          "draws": 7,
           "results": [
             "loss",
             "loss",
@@ -603,6 +604,7 @@
             "loss",
             "loss",
             "loss",
+            "draw",
             "draw",
             "draw",
             "draw",
@@ -1112,8 +1114,9 @@
           "side": "east",
           "wins": 0,
           "losses": 0,
-          "draws": 13,
+          "draws": 14,
           "results": [
+            "draw",
             "draw",
             "draw",
             "draw",
@@ -2029,7 +2032,7 @@
           "side": "east",
           "wins": 2,
           "losses": 9,
-          "draws": 2,
+          "draws": 3,
           "results": [
             "win",
             "win",
@@ -2042,6 +2045,7 @@
             "loss",
             "loss",
             "loss",
+            "draw",
             "draw",
             "draw"
           ],
