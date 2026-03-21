@@ -69,15 +69,16 @@ describe('torikumi route helpers', () => {
     expect(torikumiArchive.scheduleDays[1]?.status).toBe('published');
   });
 
-  it('detects elapsed archive days from the update date', () => {
-    const updatedKey = torikumiArchive.resultUpdatedAt.replace(/-/g, '');
-    const pastDay = torikumiArchive.resultDays.find((day) => day.pathDate < updatedKey);
-    const currentOrFutureDay = torikumiArchive.resultDays.find((day) => day.pathDate >= updatedKey);
+  it('detects elapsed archive days from the supplied reference date', () => {
+    const referenceDay = torikumiArchive.resultDays[7];
+    const pastDay = torikumiArchive.resultDays[6];
+    const currentDay = torikumiArchive.resultDays[7];
 
+    expect(referenceDay).toBeDefined();
     expect(pastDay).toBeDefined();
-    expect(currentOrFutureDay).toBeDefined();
-    expect(isElapsedArchiveDay(pastDay!)).toBe(true);
-    expect(isElapsedArchiveDay(currentOrFutureDay!)).toBe(false);
+    expect(currentDay).toBeDefined();
+    expect(isElapsedArchiveDay(pastDay!, referenceDay!.isoDate)).toBe(true);
+    expect(isElapsedArchiveDay(currentDay!, referenceDay!.isoDate)).toBe(false);
     expect(isElapsedArchiveDay(pastDay!, 'invalid')).toBe(false);
   });
 });

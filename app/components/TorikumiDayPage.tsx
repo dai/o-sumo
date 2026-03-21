@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { canonicalShikona, divisionAnchorId } from '../lib/rikishi-display';
 import SortToggle from './SortToggle';
 import { type SortOrder, sortMatches } from '../lib/sorting';
 import { type TorikumiArchiveDay, type TorikumiDivisionDay, type TorikumiMatch, torikumiArchive } from '../lib/torikumi-data';
@@ -12,15 +13,9 @@ import {
   getHubPath,
   type TorikumiPageMode,
 } from '../lib/torikumi-routes';
-import { juryo, makuuchiData } from '../lib/sumo-data';
 import '../torikumi/page.css';
 
 const DIVISIONS: Array<'幕内' | '十両'> = ['幕内', '十両'];
-const rikishiNameByProfileUrl = new Map(
-  [...makuuchiData, ...juryo].flatMap((group) =>
-    [...group.east, ...group.west].map((rikishi) => [rikishi.profileUrl, rikishi.name] as const),
-  ),
-);
 
 function byDivision(day: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay }, division: '幕内' | '十両') {
   return division === '幕内' ? day.makuuchi.matches : day.juryo.matches;
@@ -40,15 +35,22 @@ function modeDescription(mode: TorikumiPageMode): string {
     : '初日から順に予定番付を確認できるアーカイブです。';
 }
 
-function displayName(name: string, yomi: string, profileUrl: string): string {
-  const canonicalName = rikishiNameByProfileUrl.get(profileUrl) ?? name;
-  return canonicalName === yomi ? canonicalName : `${canonicalName}（${yomi}）`;
+function displayName(name: string, _yomi: string, profileUrl: string): string {
+  return canonicalShikona(profileUrl, name);
 }
 
 function emptyDivisionMessage(division: '幕内' | '十両', mode: TorikumiPageMode): string {
   return mode === 'result'
     ? `${division}の結果はまだ更新されていません。`
     : `${division}の取組予定はまだ更新されていません。`;
+}
+
+function winnerLabel(match: TorikumiMatch): string {
+  if (!match.winner) return match.kimarite;
+  const winnerName = match.winner === 'east'
+    ? canonicalShikona(match.eastProfileUrl, match.eastName)
+    : canonicalShikona(match.westProfileUrl, match.westName);
+  return `${match.kimarite}（${winnerName}）`;
 }
 
 function TorikumiTable({
@@ -82,18 +84,16 @@ function TorikumiTable({
                   <div className="cell west">西</div>
                 </div>
                 {matches.map((match: TorikumiMatch) => (
-                  <div className="torikumi-row" role="row" key={`${title}-${division}-${match.boutNo}`}>
-                    <div className="cell east rikishi-card">
-                      <div className="name">{displayName(match.eastName, match.eastYomi, match.eastProfileUrl)}</div>
+                  <div className="torikumi-row" role="row" key={`${title}-${division}-${match.boutNo}`} id={divisionAnchorId(division, match.boutNo)}>
+                    <div className={`cell east rikishi-card ${match.winner === 'east' ? 'winner' : ''}`}>
+                      <div className="name"><Link to={banzukePath} className="rikishi-name-link">{displayName(match.eastName, match.eastYomi, match.eastProfileUrl)}</Link></div>
                       <div className="english">{match.eastEnglish}</div>
                     </div>
-                    <div className="cell kimarite kimarite-value">
-                      {mode === 'result'
-                        ? `${match.kimarite}${match.winner ? ` (${match.winner === 'east' ? '東' : '西'}勝)` : ''}`
-                        : '取組予定'}
+                    <div className={`cell kimarite kimarite-value ${mode === 'result' && match.winner ? `winner-${match.winner}` : ''}`}>
+                      {mode === 'result' ? winnerLabel(match) : '取組予定'}
                     </div>
-                    <div className="cell west rikishi-card">
-                      <div className="name">{displayName(match.westName, match.westYomi, match.westProfileUrl)}</div>
+                    <div className={`cell west rikishi-card ${match.winner === 'west' ? 'winner' : ''}`}>
+                      <div className="name"><Link to={banzukePath} className="rikishi-name-link">{displayName(match.westName, match.westYomi, match.westProfileUrl)}</Link></div>
                       <div className="english">{match.westEnglish}</div>
                     </div>
                   </div>

@@ -30,12 +30,12 @@ describe('TorikumiDayPage', () => {
     renderPage(torikumiArchive.resultDays[0], 'result');
 
     const before = screen.getAllByRole('row').slice(0, 2).map((row) => row.textContent);
-    expect(before[0]).toContain('りゅうでん');
+    expect(before[0]).toContain('竜電');
 
     await user.click(screen.getByRole('button', { name: '降順' }));
 
     const after = screen.getAllByRole('row').slice(0, 2).map((row) => row.textContent);
-    expect(after[0]).toContain('ほうしょうりゅう');
+    expect(after[0]).toContain('豊昇龍');
   });
 
   it('shows pending empty-state messaging for unpublished days', () => {
