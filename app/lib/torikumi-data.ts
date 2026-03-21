@@ -381,8 +381,8 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "Kotozakura",
           "westRank": "大関",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/",
-          "kimarite": "未定",
-          "winner": null
+          "kimarite": "外掛け",
+          "winner": "west"
         }
       ]
     },
@@ -8359,8 +8359,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Kotozakura",
               "westRank": "大関",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "外掛け",
+              "winner": "west"
             }
           ]
         },
