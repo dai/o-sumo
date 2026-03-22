@@ -895,8 +895,8 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "Takayasu",
           "westRank": "関脇",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/",
-          "kimarite": "未定",
-          "winner": null
+          "kimarite": "上手捻り",
+          "winner": "west"
         },
         {
           "division": "幕内",
@@ -911,8 +911,8 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "Kotozakura",
           "westRank": "大関",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/",
-          "kimarite": "未定",
-          "winner": null
+          "kimarite": "押し出し",
+          "winner": "west"
         },
         {
           "division": "幕内",
@@ -927,8 +927,8 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "Aonishiki",
           "westRank": "大関",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/",
-          "kimarite": "未定",
-          "winner": null
+          "kimarite": "掛け投げ",
+          "winner": "east"
         }
       ]
     },
@@ -9428,8 +9428,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Takayasu",
               "westRank": "関脇",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "上手捻り",
+              "winner": "west"
             },
             {
               "division": "幕内",
@@ -9444,8 +9444,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Kotozakura",
               "westRank": "大関",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "押し出し",
+              "winner": "west"
             },
             {
               "division": "幕内",
@@ -9460,8 +9460,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Aonishiki",
               "westRank": "大関",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "掛け投げ",
+              "winner": "east"
             }
           ]
         },
