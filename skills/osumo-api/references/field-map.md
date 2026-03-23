@@ -31,6 +31,8 @@
 - `bashoName: string`
 - `year: string`
 - `updatedAt: YYYY-MM-DD`
+- `resultUpdatedAt: YYYY-MM-DD`
+- `scheduleUpdatedAt: YYYY-MM-DD`
 - `today: { makuuchi: DivisionCard, juryo: DivisionCard }`
 - `tomorrow: { makuuchi: DivisionCard, juryo: DivisionCard }`
 - `resultDays: DayArchive[]`
@@ -51,7 +53,7 @@
 - `eastName/eastYomi/eastEnglish/eastRank/eastProfileUrl`
 - `westName/westYomi/westEnglish/westRank/westProfileUrl`
 - `kimarite: string`
-- `winner: "east" | "west" | "draw" | ""`
+- `winner: "east" | "west" | null`
 
 `DayArchive`:
 
@@ -61,5 +63,5 @@
 - `label: string`
 - `dayHead: string`
 - `status: "published" | "pending"`
-- `statusMessage: string`
+- `statusMessage: string | null`
 - `data: { makuuchi: DivisionCard, juryo: DivisionCard }`
