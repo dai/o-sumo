@@ -1,14 +1,15 @@
 # 開発ガイド
 
+[English Version](./DEVELOPMENT_en.md)
+
 このドキュメントは、現在の `o-sumo` リポジトリの実装と運用に合わせた開発メモです。
 
 ## 前提
 
-- フロントエンドは React + TypeScript + Vite
+- フロントエンドは React 19 + TypeScript + Vite + React Router
 - 配信先は Cloudflare Pages
-- R2 は使いません
-- Cloudflare Workers / R2 Worker も使いません
 - データ更新は Python スクリプトで静的ファイルを生成します
+- 公開物は静的サイトと静的 JSON API です
 
 ## セットアップ
 
@@ -46,13 +47,23 @@ npm run preview
 python scripts/update_sumo_data.py
 ```
 
+データ更新の主なバリエーション:
+
+```bash
+python scripts/update_sumo_data.py --torikumi-only
+python scripts/update_sumo_data.py --torikumi-scope result
+python scripts/update_sumo_data.py --torikumi-scope schedule
+python scripts/update_sumo_data.py --torikumi-only --torikumi-scope result
+```
+
 ローカル確認先:
 
 - `http://localhost:3001/`
-- `http://localhost:3001/202603-banduke`
-- `http://localhost:3001/202603-torikumi`
-- `http://localhost:3001/20260308-torikumi`
-- `http://localhost:3001/20260308-yotei`
+- `http://localhost:3001/{YYYYMM}-banduke`
+- `http://localhost:3001/{YYYYMM}-torikumi`
+- `http://localhost:3001/{YYYYMM}-yotei`
+- `http://localhost:3001/{YYYYMMDD}-torikumi`
+- `http://localhost:3001/{YYYYMMDD}-yotei`
 
 ## デプロイ
 
@@ -73,8 +84,14 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 ### データ更新
 
 - Workflow: `.github/workflows/daily-data-update.yml`
-- 毎日 10:00 JST / 18:00 JST に更新
-- 変更がある場合は main ブランチに直接コミット・プッシュします
+- 実行時刻: 毎日 10:00 JST / 18:00 JST
+- 更新対象: 番付 + 取組予定
+- 変更がある場合は `main` ブランチに直接 commit / push
+
+- Workflow: `.github/workflows/realtime-torikumi-update.yml`
+- 実行時刻: 15:00-19:30 JST の 30 分間隔、および 20:00 JST
+- 更新対象: 取組結果のみ
+- 変更がある場合は `main` ブランチに直接 commit / push
 
 ### テスト
 
@@ -85,17 +102,13 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
   - `npm run typecheck`
   - `npm test`
   - `npm run build`
-  - `python scripts/update_sumo_data.py`
-  - `git diff --exit-code`
-
-生成スクリプトの実行後に差分が残る場合は、生成物が未反映とみなして fail します。
 
 ## 現在の主要ファイル
 
 - `app/main.tsx`: ルーティング定義
 - `app/page.tsx`: トップページ
 - `app/banzuke/page.tsx`: 番付ページ
-- `app/torikumi/page.tsx`: 取組結果/予定の一覧ハブ
+- `app/torikumi/page.tsx`: 取組結果 / 予定の一覧ハブ
 - `app/components/TorikumiDayPage.tsx`: 日別の取組ページ
 - `app/lib/torikumi-routes.ts`: 月キーと日付 URL の解決
 - `app/lib/torikumi-data.ts`: 取組アーカイブデータ
@@ -107,4 +120,4 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - `dist/` はビルド生成物です
 - `public/_redirects` で SPA fallback を設定しています
 - 月キー付きルートは `app/lib/torikumi-routes.ts` を基準に扱います
-- 将来の場所替わりでも、固定の `202603-*` を新規追加しない方針です
+- 固定の `202603-*` ルートをコードに追加するのではなく、生成データ由来の月キーを使います
