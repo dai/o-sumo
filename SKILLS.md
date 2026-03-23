@@ -1,5 +1,7 @@
 # o-sumo Skills
 
+[English Version](./SKILLS_en.md)
+
 このリポジトリで公開している Skill 一覧です。
 
 ## `osumo-api`
@@ -12,3 +14,12 @@
   - `pending` 日の扱い
 
 フィールド詳細は `skills/osumo-api/references/field-map.md` を参照してください。
+
+関連 API ドキュメント:
+
+- 日本語仕様: `docs/api/v1.md`
+- English spec: `docs/api/v1.en.md`
+- 日本語ポリシー: `docs/api/policy.md`
+- English policy: `docs/api/policy.en.md`
+- 日本語変更履歴: `docs/api/changelog.md`
+- English changelog: `docs/api/changelog.en.md`
