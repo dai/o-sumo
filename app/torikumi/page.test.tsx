@@ -34,18 +34,23 @@ describe('TorikumiHubPage', () => {
     );
 
     const updatedKey = getArchiveUpdatedAt('result').replace(/-/g, '');
-    const pastDay = torikumiArchive.resultDays.find((day) => day.pathDate < updatedKey);
-    const currentOrFutureDay = torikumiArchive.resultDays.find((day) => day.pathDate >= updatedKey);
+    const elapsedDays = torikumiArchive.resultDays.filter((day) => day.pathDate < updatedKey);
+    const activeDays = torikumiArchive.resultDays.filter((day) => day.pathDate >= updatedKey);
 
-    expect(pastDay).toBeDefined();
-    expect(currentOrFutureDay).toBeDefined();
+    expect(elapsedDays.length).toBeGreaterThan(0);
 
-    const pastLink = screen.getAllByRole('link').find((link) => link.getAttribute('href') === getDayPath(pastDay!, 'result'));
-    const currentLink = screen.getAllByRole('link').find((link) => link.getAttribute('href') === getDayPath(currentOrFutureDay!, 'result'));
+    const allLinks = screen.getAllByRole('link');
 
-    expect(pastLink).toHaveClass('archive-card', 'elapsed');
-    expect(currentLink).toHaveClass('archive-card');
-    expect(currentLink).not.toHaveClass('elapsed');
+    for (const day of elapsedDays) {
+      const link = allLinks.find((l) => l.getAttribute('href') === getDayPath(day, 'result'));
+      expect(link).toHaveClass('archive-card', 'elapsed');
+    }
+
+    for (const day of activeDays) {
+      const link = allLinks.find((l) => l.getAttribute('href') === getDayPath(day, 'result'));
+      expect(link).toHaveClass('archive-card');
+      expect(link).not.toHaveClass('elapsed');
+    }
   });
 
   it('shows mode-specific update cadence text', () => {

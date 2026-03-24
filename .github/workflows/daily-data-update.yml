@@ -1,8 +1,9 @@
 name: Daily Sumo Data Update
 
 on:
-  schedule:
-    - cron: '0 1,9 * * *' # 10:00 JST / 18:00 JST
+  # schedule:
+  #   - cron: '0 1,9 * * *' # 10:00 JST / 18:00 JST
+  # 大相撲休場中のため一時停止 (5月場所再開時に戻す)
   workflow_dispatch:
 
 permissions:
