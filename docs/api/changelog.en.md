@@ -6,10 +6,8 @@
 
 ### New Features
 
-- Added `GET /api/v1/rikishi.json` endpoint: list of basic rikishi information
-- Added `GET /api/v1/rikishi/{id}.json` endpoint: detailed rikishi profile data
-  - Includes birth date, height, weight, birthplace, debut, career stats, and profile photo URL
-  - Photo data depends on sumo.or.jp availability
+- Rikishi profile page at `/rikishi/{id}` - click rikishi names on banzuke page to view
+- Washin-modern UI refresh: Shippori Mincho font, refined color palette
 
 ### Data Model Extensions
 
@@ -20,11 +18,6 @@
 
 - Added `--rikishi-only` option: fetch rikishi profile data only
 - Added `--profile-limit N` option: limit number of rikishi profiles to fetch (for testing)
-
-### Public API
-
-- Added `public/api/v1/rikishi.json`
-- Generated `public/api/v1/rikishi/{id}.json` for all rikishi
 
 ## 2026-03-23
 

@@ -4,10 +4,8 @@
 
 ### 新機能
 
-- `GET /api/v1/rikishi.json` エンドポイント追加：全力士の基本情報一覧
-- `GET /api/v1/rikishi/{id}.json` エンドポイント追加：特定力士の詳細プロファイルデータ
-  - 生年月日、身長、体重、出身地、初土俵、通算成績、プロフィール写真URLを取得
-  - 写真データはsumo.or.jpの公開状態に依存
+- 番付ページの力士名クリックで力士詳細ページ `/rikishi/{id}` に遷移
+- 力和モダンUIへの刷新：Shippori Minchoフォント導入、カラーパレット刷新
 
 ### データモデル拡張
 
@@ -18,11 +16,6 @@
 
 - `--rikishi-only` オプション追加：力士プロファイルのみを取得
 - `--profile-limit N` オプション追加：取得する力士数を制限（テスト用）
-
-### 公開API
-
-- `public/api/v1/rikishi.json` 新規追加
-- `public/api/v1/rikishi/{id}.json` 全力士分行生成
 
 ## 2026-03-23
 

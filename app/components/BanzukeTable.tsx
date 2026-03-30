@@ -50,24 +50,31 @@ const RikishiCell = ({ rikishi }: { rikishi: Rikishi }) => {
   const draws = rikishi.draws ?? 0;
   const recordText = `${wins}勝${losses}敗${draws > 0 ? `${draws}休` : ''}`;
 
+  // Build photo URL from API photo field
+  const photoUrl = rikishi.photoUrl || profilePlaceholderSvg(name);
+
   return (
     <div className="rikishi-cell">
-      <Link to={`/rikishi/${rikishi.id}`} className="rikishi-photo-link" aria-label={`${name}のプロフィールを見る`}>
+      <a href={rikishi.profileUrl} target="_blank" rel="noreferrer" className="rikishi-photo-link" aria-label={`${name}のプロフィールを開く`}>
         <img
           className="rikishi-photo"
-          src={profilePlaceholderSvg(name)}
+          src={photoUrl}
           alt=""
           aria-hidden="true"
           loading="lazy"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            if (!target.src.includes('data:image')) {
+              target.src = profilePlaceholderSvg(name);
+            }
+          }}
         />
-      </Link>
-      <Link to={`/rikishi/${rikishi.id}`} className="rikishi-name-link">
-        <div className="rikishi-name">{name}</div>
-      </Link>
+      </a>
+      <div className="rikishi-name">{name}</div>
       <div className="rikishi-en">({toRomaji(rikishi.yomi)})</div>
       <div className="record">{recordText}</div>
       <div className="record">
-        <Link to={`/rikishi/${rikishi.id}`} className="profile-link">プロフィール</Link>
+        <a href={rikishi.profileUrl} target="_blank" rel="noreferrer">プロフィール</a>
         {rikishi.memo ? ` / ${rikishi.memo}` : ''}
       </div>
       <Hoshitori rikishi={rikishi} />

@@ -22,18 +22,14 @@ o-sumo is a static web app for publishing sumo banzuke and torikumi information.
   - Schedule hub: `/{YYYYMM}-yotei`
   - Daily result: `/{YYYYMMDD}-torikumi`
   - Daily schedule: `/{YYYYMMDD}-yotei`
-  - Rikishi profile: `/rikishi/{id}`
 - Current route examples:
   - `/202603-banduke`
   - `/202603-torikumi`
   - `/20260322-yotei`
-  - `/rikishi/3842`
 - The legacy banzuke URL `/{YYYYMM}-o-sumo` redirects to the current banzuke URL.
 - Public APIs:
   - `/api/v1/banzuke.json`
   - `/api/v1/torikumi.json`
-  - `/api/v1/rikishi.json`
-  - `/api/v1/rikishi/{id}.json`
 
 Related docs:
 
@@ -56,7 +52,6 @@ Skill publishing:
 
 - Direct navigation from the homepage to `Banzuke / Schedule / Results`
 - Banzuke pages for makuuchi and juryo rankings and records
-- Click rikishi names to view their profile pages at `/rikishi/{id}`
 - Monthly hub pages listing all 15 daily pages
 - Daily pages for makuuchi and juryo torikumi
 - `ascending / descending` sorting on banzuke, hub, and daily pages
@@ -120,26 +115,21 @@ Useful local URLs:
 - `http://localhost:3001/{YYYYMM}-yotei`
 - `http://localhost:3001/{YYYYMMDD}-torikumi`
 - `http://localhost:3001/{YYYYMMDD}-yotei`
-- `http://localhost:3001/rikishi/{id}`
 
 ## Data Updates
 
-Full refresh (banzuke + torikumi + rikishi profiles):
+Full refresh (banzuke + torikumi):
 
 ```bash
 python scripts/update_sumo_data.py
 ```
 
-Rikishi profile data only:
 
 ```bash
-python scripts/update_sumo_data.py --rikishi-only
 ```
 
-Limit rikishi profile fetch to first 10 (for testing):
 
 ```bash
-python scripts/update_sumo_data.py --rikishi-only --profile-limit 10
 ```
 
 Torikumi-only refresh:
@@ -168,8 +158,6 @@ Generated outputs:
 - `app/lib/torikumi-data.ts`
 - `public/api/v1/banzuke.json`
 - `public/api/v1/torikumi.json`
-- `public/api/v1/rikishi.json`
-- `public/api/v1/rikishi/{id}.json` (per rikishi)
 
 Key validations:
 
@@ -226,7 +214,6 @@ GitHub Actions runs the following on pull requests and pushes to `main` and `cod
 - `app/page.tsx`: homepage
 - `app/banzuke/page.tsx`: banzuke page
 - `app/torikumi/page.tsx`: monthly hubs for results and schedules
-- `app/rikishi/[id]/page.tsx`: rikishi profile page
 - `app/components/TorikumiDayPage.tsx`: daily result and schedule pages
 - `app/components/BanzukeTable.tsx`: banzuke table component
 - `app/lib/torikumi-routes.ts`: month-key URL resolution and navigation
