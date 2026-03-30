@@ -5,9 +5,15 @@ import sys
 import time
 from datetime import date, datetime, timedelta
 from pathlib import Path
-from urllib.parse import urlencode
+from urllib.parse import urlencode, urljoin
 from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
+
+# For HTML parsing of profile pages
+try:
+    from html.parser import HTMLParser
+except ImportError:
+    HTMLParser = None
 
 BASE_URL = "https://www.sumo.or.jp"
 SUMO_OUTPUT = Path("app/lib/sumo-data.ts")
@@ -672,14 +678,216 @@ def write_api_json(
     (API_DIR / "torikumi.json").write_text(json.dumps(torikumi_json, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
+# Profile page parser for extracting rikishi details from HTML
+class ProfileParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.photo_url = ""
+        self.birth_date = ""
+        self.height = 0
+        self.weight = 0
+        self.shusshin = ""
+        self.debut = ""
+        self.career_wins = 0
+        self.career_losses = 0
+        self.career_draws = 0
+        self.in_photo_img = False
+        self.current_alt = ""
+        self.current_data_label = ""
+        self.capture_photo = False
+        self.og_image = ""
+
+    def handle_starttag(self, tag, attrs):
+        attrs_dict = dict(attrs)
+        if tag == "meta":
+            prop = attrs_dict.get("property", "")
+            if prop == "og:image":
+                self.og_image = attrs_dict.get("content", "")
+        elif tag == "img":
+            # Look for profile photo
+            src = attrs_dict.get("src", "")
+            alt = attrs_dict.get("alt", "")
+            if "profile" in src.lower() or "rikishi" in src.lower():
+                self.photo_url = src
+            if alt:
+                self.current_alt = alt
+
+    def handle_data(self, data):
+        data = data.strip()
+        if not data:
+            return
+        # Parse table data labels
+        if "生年月日" in data or "誕生日" in data:
+            self.current_data_label = "birth"
+        elif "身長" in data:
+            self.current_data_label = "height"
+        elif "体重" in data:
+            self.current_data_label = "weight"
+        elif "出身地" in data or "出身" in data:
+            self.current_data_label = "shusshin"
+        elif "初土俵" in data:
+            self.current_data_label = "debut"
+        elif "通算成績" in data:
+            self.current_data_label = "career"
+        elif self.current_data_label:
+            if self.current_data_label == "birth":
+                self.birth_date = data
+                self.current_data_label = ""
+            elif self.current_data_label == "height":
+                match = re.search(r"\d+", data)
+                if match:
+                    self.height = int(match.group())
+                self.current_data_label = ""
+            elif self.current_data_label == "weight":
+                match = re.search(r"\d+", data)
+                if match:
+                    self.weight = int(match.group())
+                self.current_data_label = ""
+            elif self.current_data_label == "shusshin":
+                self.shusshin = data
+                self.current_data_label = ""
+            elif self.current_data_label == "debut":
+                self.debut = data
+                self.current_data_label = ""
+            elif self.current_data_label == "career":
+                # Parse win/loss/draw from "XXX勝XXX敗XX休" format
+                wins_match = re.search(r"(\d+)勝", data)
+                losses_match = re.search(r"(\d+)敗", data)
+                draws_match = re.search(r"(\d+)休", data)
+                if wins_match:
+                    self.career_wins = int(wins_match.group(1))
+                if losses_match:
+                    self.career_losses = int(losses_match.group(1))
+                if draws_match:
+                    self.career_draws = int(draws_match.group(1))
+                self.current_data_label = ""
+
+
+def fetch_profile_html(rikishi_id: int) -> str | None:
+    """Fetch profile page HTML from sumo.or.jp"""
+    url = f"{BASE_URL}/ResultRikishiData/profile/{rikishi_id}/"
+    req = Request(
+        url,
+        headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+            "Accept": "text/html,application/xhtml+xml,*/*",
+        },
+    )
+    for attempt in range(3):
+        try:
+            with urlopen(req, timeout=30) as res:
+                return res.read().decode("utf-8")
+        except Exception as exc:
+            if attempt == 2:
+                print(f"[warn] Failed to fetch profile {rikishi_id}: {exc}", file=sys.stderr)
+                return None
+            time.sleep(1.5 * (attempt + 1))
+    return None
+
+
+def parse_profile_html(html: str) -> dict | None:
+    """Parse profile HTML and extract rikishi details"""
+    if not HTMLParser:
+        return None
+    parser = ProfileParser()
+    try:
+        parser.feed(html)
+    except Exception as exc:
+        print(f"[warn] Failed to parse profile HTML: {exc}", file=sys.stderr)
+        return None
+
+    # Prefer og:image, fallback to img tag found
+    photo_url = parser.og_image or parser.photo_url
+
+    result = {
+        "birthDate": parser.birth_date,
+        "height": parser.height,
+        "weight": parser.weight,
+        "shusshin": parser.shusshin,
+        "debut": parser.debut,
+        "careerStats": {
+            "wins": parser.career_wins,
+            "losses": parser.career_losses,
+            "draws": parser.career_draws,
+        },
+        "photoUrl": photo_url,
+    }
+
+    # Only return if we got some meaningful data
+    if any([parser.birth_date, parser.height, parser.weight, parser.shusshin, parser.debut, photo_url]):
+        return result
+    return None
+
+
+def load_rikishi_profile(rikishi_id: int) -> dict | None:
+    """Load complete profile for a single rikishi"""
+    html = fetch_profile_html(rikishi_id)
+    if not html:
+        return None
+    return parse_profile_html(html)
+
+
+def build_rikishi_list(makuuchi: list[dict], juryo: list[dict]) -> list[dict]:
+    """Build a flat list of all rikishi from rank groups"""
+    rikishi_list = []
+    for group in makuuchi + juryo:
+        for side in ("east", "west"):
+            for rikishi in group.get(side, []):
+                rikishi_list.append({
+                    "id": rikishi["id"],
+                    "name": rikishi["name"],
+                    "yomi": rikishi["yomi"],
+                    "currentRank": rikishi["rank"],
+                    "profileUrl": rikishi["profileUrl"],
+                })
+    return rikishi_list
+
+
+def write_rikishi_json(rikishi_list: list[dict], profiles: dict[int, dict]) -> None:
+    """Write rikishi.json with basic list and detailed profiles"""
+    API_DIR.mkdir(parents=True, exist_ok=True)
+
+    # Write main rikishi.json with basic info
+    rikishi_json = {
+        "updatedAt": datetime.now(JST).date().isoformat(),
+        "rikishi": rikishi_list,
+    }
+    (API_DIR / "rikishi.json").write_text(
+        json.dumps(rikishi_json, ensure_ascii=False, indent=2),
+        encoding="utf-8"
+    )
+
+    # Write individual profile JSONs
+    profile_dir = API_DIR / "rikishi"
+    profile_dir.mkdir(exist_ok=True)
+    for rikishi_id, profile_data in profiles.items():
+        profile_json = {
+            "id": rikishi_id,
+            **profile_data,
+        }
+        (profile_dir / f"{rikishi_id}.json").write_text(
+            json.dumps(profile_json, ensure_ascii=False, indent=2),
+            encoding="utf-8"
+        )
+
+    print(f"[info] Wrote {len(rikishi_list)} rikishi to rikishi.json and {len(profiles)} profiles")
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--torikumi-only", action="store_true", help="Only refresh torikumi outputs.")
+    parser.add_argument("--rikishi-only", action="store_true", help="Only refresh rikishi profile data.")
     parser.add_argument(
         "--torikumi-scope",
         choices=TORIKUMI_SCOPES,
         default="all",
         help="Choose whether to refresh all torikumi data, result pages only, or schedule pages only.",
+    )
+    parser.add_argument(
+        "--profile-limit",
+        type=int,
+        default=0,
+        help="Limit number of rikishi profiles to fetch (0 = no limit).",
     )
     return parser.parse_args()
 
@@ -687,41 +895,87 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
 
-    if args.torikumi_only:
+    if args.rikishi_only:
+        # Only fetch rikishi profiles without refreshing banzuke/torikumi
         makuuchi = None
         juryo = None
         makuuchi_meta = load_banzuke_meta(1)
+        basho_name = str(makuuchi_meta.get("basho_name", ""))
+        year_jp = str(makuuchi_meta.get("year_jp", ""))
+
+        existing_banzuke_path = API_DIR / "banzuke.json"
+        if existing_banzuke_path.exists():
+            existing = json.loads(existing_banzuke_path.read_text(encoding="utf-8"))
+            makuuchi = existing.get("makuuchi", [])
+            juryo = existing.get("juryo", [])
+        else:
+            # Fall back to building rank groups
+            makuuchi, _ = build_rank_groups(1)
+            juryo, _ = build_rank_groups(2)
+    elif args.torikumi_only:
+        makuuchi = None
+        juryo = None
+        makuuchi_meta = load_banzuke_meta(1)
+        basho_name = str(makuuchi_meta.get("basho_name", ""))
+        year_jp = str(makuuchi_meta.get("year_jp", ""))
     else:
         makuuchi, makuuchi_meta = build_rank_groups(1)
         juryo, _ = build_rank_groups(2)
+        basho_name = str(makuuchi_meta.get("basho_name", ""))
+        year_jp = str(makuuchi_meta.get("year_jp", ""))
 
-    basho_info = makuuchi_meta["BashoInfo"]
-    basho_id = int(makuuchi_meta["basho_id"])
-    current_day = safe_int(basho_info.get("day", 1), 1)
-    year_jp = str(makuuchi_meta.get("year_jp", ""))
-    basho_name = str(makuuchi_meta.get("basho_name", ""))
-    updated_at = str(basho_info.get("today", ""))
-
-    existing_torikumi = load_existing_torikumi_json()
-    torikumi_dataset = build_torikumi_dataset(basho_id, current_day, updated_at, existing_torikumi)
-    torikumi_dataset = apply_torikumi_scope(
-        torikumi_dataset,
-        args.torikumi_scope,
-        existing_torikumi,
-    )
-
+    # Handle rikishi profile fetching
+    profiles: dict[int, dict] = {}
     if makuuchi is not None and juryo is not None:
-        write_sumo_data(makuuchi, juryo)
-    write_torikumi_data(torikumi_dataset, year_jp, basho_name)
-    write_api_json(torikumi_dataset, year_jp, basho_name, makuuchi, juryo)
+        rikishi_list = build_rikishi_list(makuuchi, juryo)
 
-    print(
-        "updated: "
-        f"mode={'torikumi-only' if args.torikumi_only else 'full'}, "
-        f"scope={args.torikumi_scope}, "
-        f"result_days={len(torikumi_dataset['resultDays'])}, "
-        f"schedule_days={len(torikumi_dataset['scheduleDays'])}"
-    )
+        limit = args.profile_limit
+        if limit > 0:
+            rikishi_list = rikishi_list[:limit]
+
+        print(f"[info] Fetching profiles for {len(rikishi_list)} rikishi...")
+        for i, rikishi in enumerate(rikishi_list):
+            if (i + 1) % 10 == 0:
+                print(f"[info] Progress: {i + 1}/{len(rikishi_list)}")
+            profile = load_rikishi_profile(rikishi["id"])
+            if profile:
+                profiles[rikishi["id"]] = profile
+            time.sleep(0.3)  # Be polite to the server
+
+        write_rikishi_json(rikishi_list, profiles)
+
+    # Handle torikumi/banzuke if needed
+    if not args.rikishi_only:
+        basho_info = makuuchi_meta["BashoInfo"]
+        basho_id = int(basho_info.get("basho_id", 1))
+        current_day = safe_int(basho_info.get("day", 1), 1)
+        updated_at = str(basho_info.get("today", ""))
+
+        existing_torikumi = load_existing_torikumi_json()
+        torikumi_dataset = build_torikumi_dataset(basho_id, current_day, updated_at, existing_torikumi)
+        torikumi_dataset = apply_torikumi_scope(
+            torikumi_dataset,
+            args.torikumi_scope,
+            existing_torikumi,
+        )
+
+        if makuuchi is not None and juryo is not None:
+            write_sumo_data(makuuchi, juryo)
+        write_torikumi_data(torikumi_dataset, year_jp, basho_name)
+        write_api_json(torikumi_dataset, year_jp, basho_name, makuuchi, juryo)
+
+        print(
+            "updated: "
+            f"mode={'rikishi-only' if args.rikishi_only else 'torikumi-only' if args.torikumi_only else 'full'}, "
+            f"scope={args.torikumi_scope}, "
+            f"result_days={len(torikumi_dataset['resultDays'])}, "
+            f"schedule_days={len(torikumi_dataset['scheduleDays'])}"
+        )
+    else:
+        print(
+            f"updated: rikishi_only, "
+            f"profiles_collected={len(profiles)}"
+        )
 
 
 if __name__ == "__main__":

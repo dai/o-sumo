@@ -1,5 +1,29 @@
 # API Changelog
 
+## 2026-03-30
+
+### 新機能
+
+- `GET /api/v1/rikishi.json` エンドポイント追加：全力士の基本情報一覧
+- `GET /api/v1/rikishi/{id}.json` エンドポイント追加：特定力士の詳細プロファイルデータ
+  - 生年月日、身長、体重、出身地、初土俵、通算成績、プロフィール写真URLを取得
+  - 写真データはsumo.or.jpの公開状態に依存
+
+### データモデル拡張
+
+- `Rikishi` インタフェースに以下を追加：`birthDate`, `height`, `weight`, `shusshin`, `debut`, `careerStats`, `photoUrl`
+- 新規 `RikishiProfile` インタフェース追加
+
+### Pythonスクリプト更新
+
+- `--rikishi-only` オプション追加：力士プロファイルのみを取得
+- `--profile-limit N` オプション追加：取得する力士数を制限（テスト用）
+
+### 公開API
+
+- `public/api/v1/rikishi.json` 新規追加
+- `public/api/v1/rikishi/{id}.json` 全力士分行生成
+
 ## 2026-03-23
 
 - `README.md` / `README_en.md` を現行のルート設計、更新コマンド、GitHub Actions 運用に合わせて更新

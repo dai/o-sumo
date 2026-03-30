@@ -52,7 +52,7 @@ const RikishiCell = ({ rikishi }: { rikishi: Rikishi }) => {
 
   return (
     <div className="rikishi-cell">
-      <a href={rikishi.profileUrl} target="_blank" rel="noreferrer" className="rikishi-photo-link" aria-label={`${name}のプロフィールを開く`}>
+      <Link to={`/rikishi/${rikishi.id}`} className="rikishi-photo-link" aria-label={`${name}のプロフィールを見る`}>
         <img
           className="rikishi-photo"
           src={profilePlaceholderSvg(name)}
@@ -60,12 +60,14 @@ const RikishiCell = ({ rikishi }: { rikishi: Rikishi }) => {
           aria-hidden="true"
           loading="lazy"
         />
-      </a>
-      <div className="rikishi-name">{name}</div>
+      </Link>
+      <Link to={`/rikishi/${rikishi.id}`} className="rikishi-name-link">
+        <div className="rikishi-name">{name}</div>
+      </Link>
       <div className="rikishi-en">({toRomaji(rikishi.yomi)})</div>
       <div className="record">{recordText}</div>
       <div className="record">
-        <a href={rikishi.profileUrl} target="_blank" rel="noreferrer">プロフィール</a>
+        <Link to={`/rikishi/${rikishi.id}`} className="profile-link">プロフィール</Link>
         {rikishi.memo ? ` / ${rikishi.memo}` : ''}
       </div>
       <Hoshitori rikishi={rikishi} />

@@ -10,12 +10,52 @@ export interface Rikishi {
   results?: ('win' | 'loss' | 'draw')[];
   profileUrl: string;
   memo?: string;
+  // Extended fields for profile page
+  birthDate?: string;
+  height?: number;
+  weight?: number;
+  shusshin?: string;
+  debut?: string;
+  careerStats?: {
+    wins: number;
+    losses: number;
+    draws: number;
+  };
+  photoUrl?: string;
 }
 
 export interface RankGroup {
   title: string;
   east: Rikishi[];
   west: Rikishi[];
+}
+
+// Rikishi profile data from rikishi.json API
+export interface RikishiProfile {
+  id: number;
+  name: string;
+  yomi: string;
+  englishName?: string;
+  currentRank: string;
+  basho?: string;
+  birthDate?: string;
+  height?: number;
+  weight?: number;
+  shusshin?: string;
+  debut?: string;
+  careerStats?: {
+    wins: number;
+    losses: number;
+    draws: number;
+  };
+  photoUrl?: string;
+  profileUrl: string;
+}
+
+// API response for rikishi list
+export interface RikishiListResponse {
+  updatedAt: string;
+  rikishi: Omit<RikishiProfile, 'englishName' | 'basho' | 'birthDate' | 'height' | 'weight' | 'shusshin' | 'debut' | 'careerStats' | 'photoUrl'>[];
 }
 
 export const makuuchiData: RankGroup[] = [

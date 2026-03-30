@@ -2,6 +2,30 @@
 
 [日本語版](./changelog.md)
 
+## 2026-03-30
+
+### New Features
+
+- Added `GET /api/v1/rikishi.json` endpoint: list of basic rikishi information
+- Added `GET /api/v1/rikishi/{id}.json` endpoint: detailed rikishi profile data
+  - Includes birth date, height, weight, birthplace, debut, career stats, and profile photo URL
+  - Photo data depends on sumo.or.jp availability
+
+### Data Model Extensions
+
+- Extended `Rikishi` interface with: `birthDate`, `height`, `weight`, `shusshin`, `debut`, `careerStats`, `photoUrl`
+- Added new `RikishiProfile` interface
+
+### Python Script Updates
+
+- Added `--rikishi-only` option: fetch rikishi profile data only
+- Added `--profile-limit N` option: limit number of rikishi profiles to fetch (for testing)
+
+### Public API
+
+- Added `public/api/v1/rikishi.json`
+- Generated `public/api/v1/rikishi/{id}.json` for all rikishi
+
 ## 2026-03-23
 
 - Updated `README.md` and `README_en.md` to match the current route design, update commands, and GitHub Actions operations

@@ -259,6 +259,32 @@
   line-height: 1.5;
 }
 
+.rikishi-name-link {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.rikishi-name-link:hover {
+  text-decoration: none;
+}
+
+.rikishi-name-link:hover .rikishi-name {
+  color: var(--color-secondary);
+}
+
+.profile-link {
+  color: var(--color-secondary);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.profile-link:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
 .hoshitori-container {
   display: flex;
   flex-wrap: wrap;

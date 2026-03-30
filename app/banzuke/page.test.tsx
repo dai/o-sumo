@@ -48,7 +48,11 @@ describe('BanzukePage', () => {
       west: [],
     };
 
-    render(<BanzukeTable rankGroup={rankGroup} />);
+    render(
+      <MemoryRouter>
+        <BanzukeTable rankGroup={rankGroup} />
+      </MemoryRouter>,
+    );
 
     expect(screen.getByText('1勝1敗1休')).toBeInTheDocument();
     expect(screen.getByText('○')).toBeInTheDocument();

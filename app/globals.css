@@ -1,24 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700;900&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Serif+JP:wght@400;500;600;700;900&display=swap');
 
 :root {
   /* 和モダンカラーパレット */
-  --color-primary: #1a3a52;        /* 紺 */
-  --color-secondary: #c41e3a;      /* えんじ */
+  --color-primary: #1a3a52;        /* 藍 */
+  --color-secondary: #c41e3a;      /* 紅 */
   --color-accent-gold: #d4af37;    /* 金 */
   --color-accent-silver: #c0c0c0;  /* 銀 */
   --color-accent-bronze: #cd7f32;  /* 銅 */
-  --color-light-bg: #f5f3f0;       /* 薄い生成色 */
-  --color-dark-text: #2c2c2c;      /* 濃いグレー */
-  --color-border: #d4ccc8;         /* 薄い茶色 */
-  
+  --color-light-bg: #faf8f5;       /* 生成り */
+  --color-dark-text: #2d2d2d;     /* 墨色 */
+  --color-border: #d4ccc8;         /* 薄茶 */
+  --color-surface: #ffffff;        /* 表面 */
+
   /* グラデーション */
   --gradient-primary: linear-gradient(135deg, #1a3a52 0%, #2d5a7b 100%);
   --gradient-secondary: linear-gradient(135deg, #c41e3a 0%, #8b1538 100%);
-  
+
   /* フォント */
-  --font-serif: 'Noto Serif JP', serif;
+  --font-serif: 'Shippori Mincho', 'Noto Serif JP', serif;
   --font-sans: 'Noto Sans JP', sans-serif;
-  
+
   /* スペーシング */
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
@@ -43,8 +44,8 @@ body {
   font-family: var(--font-sans);
   background-color: var(--color-light-bg);
   color: var(--color-dark-text);
-  line-height: 1.6;
-  letter-spacing: 0.3px;
+  line-height: 1.8;
+  letter-spacing: 0.5px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -54,12 +55,13 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   color: var(--color-primary);
   margin-bottom: var(--spacing-md);
+  letter-spacing: 2px;
 }
 
 h1 {
   font-size: 2.5rem;
-  font-weight: 900;
-  letter-spacing: 1px;
+  font-weight: 800;
+  letter-spacing: 3px;
 }
 
 h2 {
