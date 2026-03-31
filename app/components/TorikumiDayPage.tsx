@@ -130,10 +130,10 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
             <p>{modeDescription(mode)}</p>
             {day.status === 'pending' ? <p className="status-message warning">{day.statusMessage}</p> : null}
           </div>
-          <div className="archive-nav">
+          <nav className="archive-nav" aria-label={`${modeLabel(mode)}ページの主要導線`}>
             <Link to={getHubPath(mode)} className="archive-link">一覧</Link>
             <Link to={banzukePath} className="archive-link">番付</Link>
-          </div>
+          </nav>
         </section>
 
         <nav className="pager-nav" aria-label={`${modeLabel(mode)}の日別ナビゲーション`}>
@@ -149,6 +149,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
       </main>
 
       <footer className="torikumi-footer">
+        <nav aria-label={`${modeLabel(mode)}ページフッターリンク`}>
         <Link to="/">ホーム</Link>
         <span> | </span>
         <Link to={getHubPath('result')}>取組結果一覧</Link>
@@ -158,6 +159,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
         <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">Daisuke on X</a>
         <span> | </span>
         <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </nav>
       </footer>
     </div>
   );

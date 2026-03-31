@@ -40,12 +40,12 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
             <h2>{modeLabel(mode)}の日別アーカイブ</h2>
             <p>{mode === 'result' ? '初日から千秋楽までの結果ページを日付ごとに辿れます。未更新日は空状態で先に公開します。' : '初日から千秋楽までの予定ページを日付ごとに確認できます。未更新日は更新待ちとして表示します。'}</p>
           </div>
-          <div className="archive-nav">
+          <nav className="archive-nav" aria-label={`${modeLabel(mode)}一覧の主要導線`}>
             <Link to={getHubPath(mode === 'result' ? 'schedule' : 'result')} className="archive-link">
               {mode === 'result' ? '予定一覧' : '結果一覧'}
             </Link>
             <Link to={banzukePath} className="archive-link">番付</Link>
-          </div>
+          </nav>
         </section>
 
         <section className="sort-toolbar-section">
@@ -73,6 +73,7 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
       </main>
 
       <footer className="torikumi-footer">
+        <nav aria-label={`${modeLabel(mode)}一覧フッターリンク`}>
         <Link to="/">ホーム</Link>
         <span> | </span>
         <Link to={banzukePath}>番付一覧</Link>
@@ -80,6 +81,7 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
         <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">Daisuke on X</a>
         <span> | </span>
         <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </nav>
       </footer>
     </div>
   );

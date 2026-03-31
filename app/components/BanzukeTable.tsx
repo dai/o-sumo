@@ -87,14 +87,15 @@ export default function BanzukeTable({ rankGroup }: BanzukeTableProps) {
     <div className="rank-section">
       <h3 className="rank-title">{rankGroup.title}</h3>
       <table className="banzuke-table">
+        <caption className="sr-only">{rankGroup.title}の東西番付表</caption>
         <colgroup>
           <col style={{ width: '50%' }} />
           <col style={{ width: '50%' }} />
         </colgroup>
         <thead>
           <tr>
-            <th>東</th>
-            <th>西</th>
+            <th scope="col">東</th>
+            <th scope="col">西</th>
           </tr>
         </thead>
         <tbody>
