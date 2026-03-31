@@ -7,6 +7,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'prompt',
+      injectRegister: null,
       manifest: {
         name: 'o-sumo | 大相撲 番付・星取表',
         short_name: 'o-sumo',

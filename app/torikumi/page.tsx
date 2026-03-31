@@ -74,13 +74,13 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
 
       <footer className="torikumi-footer">
         <nav aria-label={`${modeLabel(mode)}一覧フッターリンク`}>
-        <Link to="/">ホーム</Link>
-        <span> | </span>
-        <Link to={banzukePath}>番付一覧</Link>
-        <span> | </span>
-        <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">Daisuke on X</a>
-        <span> | </span>
-        <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <Link to="/">ホーム</Link>
+          <span> | </span>
+          <Link to={banzukePath}>番付一覧</Link>
+          <span> | </span>
+          <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">Daisuke on X</a>
+          <span> | </span>
+          <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">GitHub</a>
         </nav>
       </footer>
     </div>
