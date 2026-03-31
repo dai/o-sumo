@@ -121,3 +121,9 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - `public/_redirects` で SPA fallback を設定しています
 - 月キー付きルートは `app/lib/torikumi-routes.ts` を基準に扱います
 - 固定の `202603-*` ルートをコードに追加するのではなく、生成データ由来の月キーを使います
+
+## 運用制約ポリシー（2026年5月場所向け）
+
+- Actions の休場中ストップ運用は維持し、`daily-data-update.yml` / `realtime-torikumi-update.yml` の `schedule` は復帰させない。
+- Cloudflare の従量抑制を優先し、`public/_headers` のキャッシュ方針（`/assets/*` 長期 immutable、`manifest` 1時間、`sw.js` 再検証、`/` 5分）を維持する。
+- PWA 更新は `vite-plugin-pwa` の `registerType: "prompt"` を維持し、利用者同意なしの即時更新を避ける。
