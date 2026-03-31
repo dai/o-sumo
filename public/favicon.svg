@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">o-sumo 綱モチーフアイコン</title>
+  <desc id="desc">綱をモチーフにしたミニマルな円形アイコン</desc>
+  <defs>
+    <linearGradient id="rope" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e6c792" />
+      <stop offset="48%" stop-color="#c89858" />
+      <stop offset="100%" stop-color="#a8753a" />
+    </linearGradient>
+    <linearGradient id="highlight" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#f8ecd2" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#f8ecd2" stop-opacity="0.15" />
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="#1a3a52" />
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="128" cy="128" r="76" stroke="url(#rope)" stroke-width="28" />
+    <circle cx="128" cy="128" r="76" stroke="url(#highlight)" stroke-width="8" />
+    <path d="M74 128h108" stroke="#8a5c2c" stroke-width="16" opacity="0.85" />
+    <path d="M93 92c13 13 26 26 39 39m31-39c-13 13-26 26-39 39m-31 32c13-13 26-26 39-39m31 39c-13-13-26-26-39-39"
+      stroke="#f2dfbc" stroke-width="7" opacity="0.9" />
+  </g>
+</svg>
