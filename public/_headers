@@ -1,0 +1,14 @@
+# 静的アセットは長期キャッシュ（ハッシュ前提）
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# PWA関連は中程度（更新検知のため）
+/manifest.webmanifest
+  Cache-Control: public, max-age=3600
+
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+# HTMLは短め
+/
+  Cache-Control: public, max-age=300
