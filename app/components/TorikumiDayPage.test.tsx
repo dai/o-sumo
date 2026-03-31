@@ -71,4 +71,14 @@ describe('TorikumiDayPage', () => {
     expect(screen.getByText('幕内の結果はまだ更新されていません。')).toBeInTheDocument();
     expect(screen.getByText('十両の結果はまだ更新されていません。')).toBeInTheDocument();
   });
+
+  it('renders schedule mode content and day navigation links', () => {
+    renderPage(torikumiArchive.scheduleDays[1], 'schedule');
+
+    expect(screen.getByRole('heading', { level: 1, name: /取組予定/ })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '一覧' })).toHaveAttribute('href', getHubPath('schedule'));
+    expect(screen.getByRole('link', { name: /← 初日/ })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /三日目 →/ })).toBeInTheDocument();
+    expect(screen.getAllByText('取組予定').length).toBeGreaterThan(0);
+  });
 });
