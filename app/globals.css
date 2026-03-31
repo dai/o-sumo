@@ -11,6 +11,7 @@
   --color-dark-text: #2d2d2d;     /* 墨色 */
   --color-border: #d4ccc8;         /* 薄茶 */
   --color-surface: #ffffff;        /* 表面 */
+  --color-focus: #0c5a8a;          /* フォーカスリング */
 
   /* グラデーション */
   --gradient-primary: linear-gradient(135deg, #1a3a52 0%, #2d5a7b 100%);
@@ -87,6 +88,15 @@ a {
 a:hover {
   color: var(--color-primary);
   text-decoration: underline;
+}
+
+a:focus-visible,
+button:focus-visible,
+[role='button']:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+  border-radius: 6px;
 }
 
 button, .btn-primary {
@@ -287,7 +297,19 @@ th {
 }
 
 .text-muted {
-  color: #666;
+  color: #4e4e4e;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap;
 }
 
 /* スクロールバーのスタイリング */

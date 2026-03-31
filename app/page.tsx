@@ -17,7 +17,7 @@ export default function Home() {
         <section className="hero-section">
           <h2>{bashoTitle}</h2>
           <p>最新の番付、日別の取組結果、日別の取組予定をご覧いただけます。</p>
-          <div className="hero-actions">
+          <nav className="hero-actions" aria-label="主要ページへの導線">
             <Link to={banzukePath} className="cta-button">
               番付
             </Link>
@@ -27,12 +27,12 @@ export default function Home() {
             <Link to={getHubPath('result')} className="cta-button secondary">
               結果
             </Link>
-          </div>
+          </nav>
         </section>
 
         <section className="features-section">
           <h2>日別アーカイブ</h2>
-          <div className="features-grid">
+          <nav className="features-grid" aria-label="日別アーカイブページへの導線">
             <Link to={getHubPath('result')} className="feature-card">
               <h3>取組結果</h3>
               <p>結果ページを日別に一覧できます。</p>
@@ -45,17 +45,17 @@ export default function Home() {
               <h3>番付</h3>
               <p>番付をセクションにわけています。</p>
             </Link>
-          </div>
+          </nav>
         </section>
       </main>
 
       <footer className="home-footer">
         <p>&copy; 2026 o-sumo. All rights reserved.</p>
-        <p>
+        <nav aria-label="ホームの外部リンク">
           <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">Daisuke on X</a>
           {' | '}
           <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">GitHub</a>
-        </p>
+        </nav>
       </footer>
     </div>
   );

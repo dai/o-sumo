@@ -64,7 +64,7 @@ export default function BanzukePage() {
 
       <footer className="page-footer">
         <p>&copy; 2026 o-sumo. All rights reserved.</p>
-        <p>
+        <nav aria-label="番付ページの関連リンク">
           <Link to="/">ホームに戻る</Link>
           {" | "}
           <Link to={getHubPath('result')}>取組結果一覧</Link>
@@ -76,7 +76,7 @@ export default function BanzukePage() {
           <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">
             GitHub Repository
           </a>
-        </p>
+        </nav>
       </footer>
     </div>
   );
