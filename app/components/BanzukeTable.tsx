@@ -2,6 +2,11 @@ import { Link } from 'react-router-dom';
 import type { RankGroup, Rikishi } from '../lib/sumo-data';
 import { buildProfileNameMap, buildResultLinkMap, displayShikona } from '../lib/rikishi-display';
 import { toRomaji } from '../lib/romaji';
+import {
+  basicRikishiPlaceholderDataUrl,
+  generatedRikishiAvatarDataUrl,
+  shouldGenerateRikishiAvatar,
+} from '../lib/rikishi-avatar';
 import '../styles/banzuke.css';
 
 interface BanzukeTableProps {
@@ -10,13 +15,6 @@ interface BanzukeTableProps {
 
 const profileNameMap = buildProfileNameMap();
 const resultLinkMap = buildResultLinkMap();
-
-function profilePlaceholderSvg(name: string): string {
-  const label = name.slice(0, 2);
-  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" width="112" height="112" viewBox="0 0 112 112"><rect width="112" height="112" rx="16" fill="#efe7dc"/><circle cx="56" cy="39" r="21" fill="#c9b49c"/><path d="M22 95c6-20 21-30 34-30s28 10 34 30" fill="#b9956f"/><text x="56" y="102" text-anchor="middle" font-size="12" fill="#6f5338" font-family="sans-serif">${label}</text></svg>`,
-  )}`;
-}
 
 const Hoshitori = ({ rikishi }: { rikishi: Rikishi }) => {
   if (!rikishi.results || rikishi.results.length === 0) return null;
@@ -49,9 +47,14 @@ const RikishiCell = ({ rikishi }: { rikishi: Rikishi }) => {
   const losses = rikishi.losses ?? 0;
   const draws = rikishi.draws ?? 0;
   const recordText = `${wins}勝${losses}敗${draws > 0 ? `${draws}休` : ''}`;
-
-  // Build photo URL from API photo field
-  const photoUrl = rikishi.photoUrl || profilePlaceholderSvg(name);
+  const fallbackPhotoUrl = shouldGenerateRikishiAvatar({ rank: rikishi.rank, name })
+    ? generatedRikishiAvatarDataUrl({
+      id: rikishi.id,
+      name,
+      side: rikishi.side,
+    })
+    : basicRikishiPlaceholderDataUrl(name);
+  const photoUrl = rikishi.photoUrl || fallbackPhotoUrl;
 
   return (
     <div className="rikishi-cell">
@@ -65,7 +68,7 @@ const RikishiCell = ({ rikishi }: { rikishi: Rikishi }) => {
           onError={(e) => {
             const target = e.target as HTMLImageElement;
             if (!target.src.includes('data:image')) {
-              target.src = profilePlaceholderSvg(name);
+              target.src = fallbackPhotoUrl;
             }
           }}
         />
