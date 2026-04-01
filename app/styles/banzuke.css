@@ -250,6 +250,7 @@
   height: 112px;
   border-radius: 16px;
   object-fit: cover;
+  object-position: 50% 20%;
   border: 1px solid var(--color-border);
   background: #f5f3f0;
 }
