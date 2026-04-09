@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed -i '/Rikishi profile/d' README_en.md)",
+      "Bash(sed -i '/rikishi\\\\/3842/d' README_en.md)",
+      "Bash(sed -i '/rikishi.json/d' README_en.md)",
+      "Bash(sed -i '/rikishi\\\\/{id}.json/d' README_en.md)",
+      "Bash(sed -i '/Click rikishi names to view their profile pages/d' README_en.md)",
+      "Bash(sed -i '/localhost:3001\\\\/rikishi/d' README_en.md)",
+      "Bash(sed -i 's/Full refresh \\(banzuke + torikumi + rikishi profiles\\):/Full refresh \\(banzuke + torikumi\\):/' README_en.md)",
+      "Bash(sed -i '/--rikishi-only/d' README_en.md)",
+      "Bash(sed -i '/Limit rikishi profile fetch/d' README_en.md)",
+      "Bash(sed -i '/for \\(testing\\):/d' README_en.md)",
+      "Bash(sed -i '/rikishi.json/d' docs/api/v1.md)",
+      "Bash(sed -i '/rikishi\\\\/{id}.json/d' docs/api/v1.md)",
+      "Bash(sed -i '/rikishi.json/d' docs/api/v1.en.md)",
+      "Bash(sed -i '/rikishi\\\\/{id}.json/d' docs/api/v1.en.md)"
+    ]
+  }
+}
