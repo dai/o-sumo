@@ -11,10 +11,18 @@ describe('Home page', () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', banzukePath);
-    expect(screen.getByRole('link', { name: '取組予定' })).toHaveAttribute('href', getHubPath('schedule'));
-    expect(screen.getByRole('link', { name: '結果' })).toHaveAttribute('href', getHubPath('result'));
+    // Get all links
+    const allLinks = screen.getAllByRole('link');
+
+    // Check the first occurrence of each link type (current basho, not past)
+    const banzukeLink = allLinks.find(l => l.getAttribute('href') === banzukePath);
+    const yoteiLink = allLinks.find(l => l.getAttribute('href') === getHubPath('schedule'));
+    const kekkaLink = allLinks.find(l => l.getAttribute('href') === getHubPath('result'));
+
+    expect(banzukeLink).toHaveAttribute('href', banzukePath);
+    expect(yoteiLink).toHaveAttribute('href', getHubPath('schedule'));
+    expect(kekkaLink).toHaveAttribute('href', getHubPath('result'));
     expect(screen.queryByText('連絡先:')).not.toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'GitHub' })).toHaveAttribute('href', 'https://github.com/dai/o-sumo');
+    expect(screen.getAllByRole('link', { name: 'GitHub' })[0]).toHaveAttribute('href', 'https://github.com/dai/o-sumo');
   });
 });

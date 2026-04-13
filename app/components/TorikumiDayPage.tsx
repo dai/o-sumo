@@ -151,7 +151,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
             {day.status === 'pending' ? <p className="status-message warning">{day.statusMessage}</p> : null}
           </div>
           <nav className="archive-nav" aria-label={`${modeLabel(mode)}ページの主要導線`}>
-            <Link to={mode === 'result' ? schedulePath : resultPath} className="archive-link">一覧</Link>
+            <Link to={mode === 'result' ? resultPath : schedulePath} className="archive-link">一覧</Link>
             <Link to={bandukePath} className="archive-link">番付</Link>
           </nav>
         </section>
