@@ -30,7 +30,6 @@ describe('TorikumiHubPage', () => {
     // May 2026 data: all days are >= updatedAt, so no elapsed days
     // This test verifies the logic works when there are no elapsed days
     const updatedKey = getArchiveUpdatedAt('result').replace(/-/g, '');
-    const elapsedDays = torikumiArchive.resultDays.filter((day) => day.pathDate < updatedKey);
 
     // For May 2026, all days are active (not elapsed)
     const activeDays = torikumiArchive.resultDays.filter((day) => day.pathDate >= updatedKey);
