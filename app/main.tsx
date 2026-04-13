@@ -7,7 +7,14 @@ import HomePage from './page'
 import TorikumiHubPage from './torikumi/page'
 import TopLevelSlugPage from './TopLevelSlugPage'
 import ArchivesPage from './archives/page'
-import { banzukePath, getHubPath, legacyBanzukePath } from './lib/torikumi-routes'
+import {
+  banzukePath,
+  MAY2026_RESULT_PATH,
+  MAY2026_SCHEDULE_PATH,
+  MARCH2026_RESULT_PATH,
+  MARCH2026_SCHEDULE_PATH,
+  MARCH2026_BANDUKE_PATH,
+} from './lib/torikumi-routes'
 import './globals.css'
 
 const updateSW = registerSW({
@@ -24,10 +31,17 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/archives" element={<ArchivesPage />} />
+        {/* May 2026 routes */}
         <Route path={banzukePath} element={<BanzukePage />} />
-        <Route path={legacyBanzukePath} element={<Navigate to={banzukePath} replace />} />
-        <Route path={getHubPath('result')} element={<TorikumiHubPage mode="result" />} />
-        <Route path={getHubPath('schedule')} element={<TorikumiHubPage mode="schedule" />} />
+        <Route path={MAY2026_RESULT_PATH} element={<TorikumiHubPage mode="result" />} />
+        <Route path={MAY2026_SCHEDULE_PATH} element={<TorikumiHubPage mode="schedule" />} />
+        {/* March 2026 routes */}
+        <Route path={MARCH2026_BANDUKE_PATH} element={<BanzukePage />} />
+        <Route path={MARCH2026_RESULT_PATH} element={<TorikumiHubPage mode="result" />} />
+        <Route path={MARCH2026_SCHEDULE_PATH} element={<TorikumiHubPage mode="schedule" />} />
+        {/* Legacy redirect */}
+        <Route path="/202603-o-sumo" element={<Navigate to={MARCH2026_BANDUKE_PATH} replace />} />
+        {/* Day pages (8-digit slugs) */}
         <Route path="/:slug" element={<TopLevelSlugPage />} />
       </Routes>
     </BrowserRouter>

@@ -1,17 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { canonicalShikona, divisionAnchorId } from '../lib/rikishi-display';
 import SortToggle from './SortToggle';
 import { type SortOrder, sortMatches } from '../lib/sorting';
-import { type TorikumiArchiveDay, type TorikumiDivisionDay, type TorikumiMatch, torikumiArchive } from '../lib/torikumi-data';
+import { type TorikumiArchiveDay, type TorikumiDivisionDay, type TorikumiMatch, torikumiArchive, MARCH2026_TORIKUMI_DATA } from '../lib/torikumi-data';
 import {
   banzukePath,
   getAdjacentDay,
-  getArchiveUpdatedAt,
-  getArchiveUpdateMessage,
   getDayPath,
-  getHubPath,
   type TorikumiPageMode,
+  MARCH2026_RESULT_PATH,
+  MARCH2026_SCHEDULE_PATH,
+  MARCH2026_BANDUKE_PATH,
+  MAY2026_RESULT_PATH,
+  MAY2026_SCHEDULE_PATH,
 } from '../lib/torikumi-routes';
 import '../torikumi/page.css';
 
@@ -26,7 +28,7 @@ function sectionMeta(day: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisi
 }
 
 function modeLabel(mode: TorikumiPageMode): string {
-  return mode === 'result' ? '取組結果' : '取組予定';
+  return mode === 'result' ? ' 取組結果' : ' 取組予定';
 }
 
 function modeDescription(mode: TorikumiPageMode): string {
@@ -42,7 +44,7 @@ function displayName(name: string, _yomi: string, profileUrl: string): string {
 function emptyDivisionMessage(division: '幕内' | '十両', mode: TorikumiPageMode): string {
   return mode === 'result'
     ? `${division}の結果はまだ更新されていません。`
-    : `${division}の取組予定はまだ更新されていません。`;
+    : `${division}の取扱い予定はまだ更新されていません。`;
 }
 
 function winnerLabel(match: TorikumiMatch): string {
@@ -90,7 +92,7 @@ function TorikumiTable({
                       <div className="english">{match.eastEnglish}</div>
                     </div>
                     <div className={`cell kimarite kimarite-value ${mode === 'result' && match.winner ? `winner-${match.winner}` : ''}`}>
-                      {mode === 'result' ? winnerLabel(match) : '取組予定'}
+                      {mode === 'result' ? winnerLabel(match) : ' 取組予定'}
                     </div>
                     <div className={`cell west rikishi-card ${match.winner === 'west' ? 'winner' : ''}`}>
                       <div className="name">{displayName(match.westName, match.westYomi, match.westProfileUrl)}</div>
@@ -107,19 +109,37 @@ function TorikumiTable({
   );
 }
 
+// Determine which archive to use based on pathDate
+function getArchiveForPath(pathDate: string) {
+  if (pathDate.startsWith('202603')) {
+    return {
+      archive: MARCH2026_TORIKUMI_DATA,
+      resultPath: MARCH2026_RESULT_PATH,
+      schedulePath: MARCH2026_SCHEDULE_PATH,
+      bandukePath: MARCH2026_BANDUKE_PATH,
+    };
+  }
+  // Default: May 2026
+  return {
+    archive: torikumiArchive,
+    resultPath: MAY2026_RESULT_PATH,
+    schedulePath: MAY2026_SCHEDULE_PATH,
+    bandukePath: banzukePath,
+  };
+}
+
 export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay; mode: TorikumiPageMode }) {
   const [sortOrder, setSortOrder] = React.useState<SortOrder>('asc');
+  const { archive, resultPath, schedulePath, bandukePath } = getArchiveForPath(day.pathDate);
   const prevDay = getAdjacentDay(day, mode, 'prev');
   const nextDay = getAdjacentDay(day, mode, 'next');
-  const updatedAt = getArchiveUpdatedAt(mode);
-  const liveUpdateMessage = getArchiveUpdateMessage(mode);
 
   return (
     <div className="torikumi-page">
       <header className="torikumi-header">
-        <h1>{torikumiArchive.year}{torikumiArchive.bashoName} {modeLabel(mode)}</h1>
+        <h1>{archive.year}{archive.bashoName}{modeLabel(mode)}</h1>
         <p>{day.dayHead}</p>
-        <p>更新日: {updatedAt} / {liveUpdateMessage}</p>
+        <p>更新日: {archive.updatedAt}</p>
       </header>
 
       <main className="torikumi-main">
@@ -131,8 +151,8 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
             {day.status === 'pending' ? <p className="status-message warning">{day.statusMessage}</p> : null}
           </div>
           <nav className="archive-nav" aria-label={`${modeLabel(mode)}ページの主要導線`}>
-            <Link to={getHubPath(mode)} className="archive-link">一覧</Link>
-            <Link to={banzukePath} className="archive-link">番付</Link>
+            <Link to={mode === 'result' ? schedulePath : resultPath} className="archive-link">一覧</Link>
+            <Link to={bandukePath} className="archive-link">番付</Link>
           </nav>
         </section>
 
@@ -150,15 +170,15 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
 
       <footer className="torikumi-footer">
         <nav aria-label={`${modeLabel(mode)}ページフッターリンク`}>
-        <Link to="/">ホーム</Link>
-        <span> | </span>
-        <Link to={getHubPath('result')}>取組結果一覧</Link>
-        <span> | </span>
-        <Link to={getHubPath('schedule')}>取組予定一覧</Link>
-        <span> | </span>
-        <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">Daisuke on X</a>
-        <span> | </span>
-        <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <Link to="/">ホーム</Link>
+          <span> | </span>
+          <Link to={resultPath}> 取組結果一覧</Link>
+          <span> | </span>
+          <Link to={schedulePath}> 取組予定一覧</Link>
+          <span> | </span>
+          <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">Daisuke on X</a>
+          <span> | </span>
+          <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">GitHub</a>
         </nav>
       </footer>
     </div>

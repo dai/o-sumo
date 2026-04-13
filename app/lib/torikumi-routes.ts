@@ -8,7 +8,8 @@ export interface ParsedTorikumiSlug {
 }
 
 export function parseTopLevelSlug(slug: string): ParsedTorikumiSlug | null {
-  const match = slug.match(/^(\d{8})-(torikumi|yotei)$/);
+  // Match both 8-digit day pages (20260314-torikumi) and 6-digit hub pages (202603-torikumi)
+  const match = slug.match(/^(\d{6,8})-(torikumi|yotei)$/);
   if (!match) {
     return null;
   }
@@ -19,16 +20,44 @@ export function parseTopLevelSlug(slug: string): ParsedTorikumiSlug | null {
   };
 }
 
+// May 2026 paths
+export const MAY2026_RESULT_PATH = '/202605-torikumi';
+export const MAY2026_SCHEDULE_PATH = '/202605-yotei';
+export const MAY2026_BANDUKE_PATH = '/202605-banduke';
+
+// March 2026 paths
+export const MARCH2026_RESULT_PATH = '/202603-torikumi';
+export const MARCH2026_SCHEDULE_PATH = '/202603-yotei';
+export const MARCH2026_BANDUKE_PATH = '/202603-banduke';
+
 export function findArchiveDay(dateKey: string, mode: TorikumiPageMode): TorikumiArchiveDay | undefined {
-  // Check March 2026 archive for 202603XX dateKeys
-  if (dateKey.startsWith('202603')) {
+  const isMarch2026 = dateKey.startsWith('202603');
+  const isMay2026 = dateKey.startsWith('202605');
+
+  if (isMarch2026) {
+    if (dateKey.length === 6) {
+      // Hub page - return first day for reference
+      const days = mode === 'result' ? MARCH2026_TORIKUMI_DATA.resultDays : MARCH2026_TORIKUMI_DATA.scheduleDays;
+      return days?.[0];
+    }
+    // Day page - find specific day
     const days = mode === 'result' ? MARCH2026_TORIKUMI_DATA.resultDays : MARCH2026_TORIKUMI_DATA.scheduleDays;
     return days?.find((day) => day.pathDate === dateKey);
   }
 
-  // Default: check current archive (May 2026)
-  const days = mode === 'result' ? torikumiArchive.resultDays : torikumiArchive.scheduleDays;
-  return days.find((day) => day.pathDate === dateKey);
+  if (isMay2026) {
+    if (dateKey.length === 6) {
+      // Hub page
+      const days = mode === 'result' ? torikumiArchive.resultDays : torikumiArchive.scheduleDays;
+      return days?.[0];
+    }
+    // Day page
+    const days = mode === 'result' ? torikumiArchive.resultDays : torikumiArchive.scheduleDays;
+    return days.find((day) => day.pathDate === dateKey);
+  }
+
+  // Fallback
+  return undefined;
 }
 
 export function getHubPath(mode: TorikumiPageMode): string {
