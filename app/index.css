@@ -207,6 +207,59 @@
   color: var(--color-primary);
 }
 
+/* Past basho section (March 2026) */
+.past-basho-section {
+  background: var(--surface-container-low);
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+.past-basho-heading {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+  font-family: var(--font-serif);
+  letter-spacing: 0.02em;
+}
+
+.past-basho-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.past-basho-days {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.past-basho-days-label {
+  font-size: 0.85rem;
+  color: var(--color-dark-text);
+  opacity: 0.7;
+  margin: 0;
+  margin-right: 0.5rem;
+}
+
+.past-basho-day-link {
+  background: var(--surface-container-lowest);
+  color: var(--color-primary);
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.past-basho-day-link:hover {
+  background: var(--color-primary);
+  color: white;
+  text-decoration: none;
+}
+
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));

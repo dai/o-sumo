@@ -1,4 +1,4 @@
-import { banzukePath, torikumiArchive, torikumiMonthKey, type TorikumiArchiveDay } from './torikumi-data';
+import { banzukePath, torikumiArchive, torikumiMonthKey, MARCH2026_TORIKUMI_DATA, type TorikumiArchiveDay } from './torikumi-data';
 
 export type TorikumiPageMode = 'result' | 'schedule';
 
@@ -20,6 +20,13 @@ export function parseTopLevelSlug(slug: string): ParsedTorikumiSlug | null {
 }
 
 export function findArchiveDay(dateKey: string, mode: TorikumiPageMode): TorikumiArchiveDay | undefined {
+  // Check March 2026 archive for 202603XX dateKeys
+  if (dateKey.startsWith('202603')) {
+    const days = mode === 'result' ? MARCH2026_TORIKUMI_DATA.resultDays : MARCH2026_TORIKUMI_DATA.scheduleDays;
+    return days?.find((day) => day.pathDate === dateKey);
+  }
+
+  // Default: check current archive (May 2026)
   const days = mode === 'result' ? torikumiArchive.resultDays : torikumiArchive.scheduleDays;
   return days.find((day) => day.pathDate === dateKey);
 }
