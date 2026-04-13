@@ -1,0 +1,122 @@
+.archives-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+}
+
+.archives-header {
+  background: rgba(250, 249, 246, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 3rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.archives-header h1 {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.archives-header p {
+  color: var(--color-dark-text);
+  opacity: 0.7;
+}
+
+.archives-main {
+  flex: 1;
+  padding: 3rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.archives-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.archive-item {
+  background: var(--surface-container-lowest);
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(26, 26, 26, 0.04);
+}
+
+.archive-item-header h2 {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  font-family: var(--font-serif);
+}
+
+.archive-item-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.archive-link {
+  background: var(--surface-container-low);
+  color: var(--color-primary);
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.archive-link:hover {
+  background: var(--color-primary);
+  color: white;
+  text-decoration: none;
+}
+
+.archives-empty {
+  text-align: center;
+  color: var(--color-dark-text);
+  opacity: 0.6;
+  padding: 3rem;
+}
+
+.archives-footer {
+  text-align: center;
+  padding: 2rem;
+  background: var(--surface-container-high);
+}
+
+.archives-footer a {
+  color: var(--color-secondary);
+  font-weight: 600;
+}
+
+.archives-footer a:hover {
+  color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  .archives-header {
+    padding: 2rem 1rem;
+  }
+
+  .archives-header h1 {
+    font-size: 2rem;
+  }
+
+  .archives-main {
+    padding: 1.5rem 1rem;
+  }
+
+  .archive-item {
+    padding: 1.5rem;
+  }
+
+  .archive-item-links {
+    flex-direction: column;
+  }
+
+  .archive-link {
+    text-align: center;
+  }
+}

@@ -51,7 +51,11 @@ export interface TorikumiDataSet {
   scheduleDays?: TorikumiArchiveDay[];
 }
 
-export const torikumiData: TorikumiDataSet = {
+// May 2026 data - imported from may2026-data.ts
+import { MAY2026_TORIKUMI_DATA } from './may2026-data';
+
+// March 2026 data - keeping for archive reference
+export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
   "bashoName": "三月場所",
   "year": "令和八年",
   "updatedAt": "2026-03-24",
@@ -18252,6 +18256,9 @@ export const torikumiData: TorikumiDataSet = {
     }
   ]
 };
+
+// Use May 2026 data as the primary torikumiData
+export const torikumiData: TorikumiDataSet = MAY2026_TORIKUMI_DATA;
 
 export const torikumiArchive = {
   bashoName: torikumiData.bashoName,

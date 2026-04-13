@@ -6,6 +6,7 @@ import BanzukePage from './banzuke/page'
 import HomePage from './page'
 import TorikumiHubPage from './torikumi/page'
 import TopLevelSlugPage from './TopLevelSlugPage'
+import ArchivesPage from './archives/page'
 import { banzukePath, getHubPath, legacyBanzukePath } from './lib/torikumi-routes'
 import './globals.css'
 
@@ -22,6 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/archives" element={<ArchivesPage />} />
         <Route path={banzukePath} element={<BanzukePage />} />
         <Route path={legacyBanzukePath} element={<Navigate to={banzukePath} replace />} />
         <Route path={getHubPath('result')} element={<TorikumiHubPage mode="result" />} />

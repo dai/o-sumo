@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { bashoTitle } from './lib/basho-meta';
 import { banzukePath, getHubPath } from './lib/torikumi-routes';
+import { PAST_BASHO } from './lib/archives-data';
 import './index.css';
 
 export default function Home() {
@@ -14,9 +15,10 @@ export default function Home() {
       </header>
 
       <main className="home-main">
+        {/* Current Basho - Hero Section */}
         <section className="hero-section">
           <h2>{bashoTitle}</h2>
-          <p>最新の番付、日別の取組結果、日別の取組予定をご覧いただけます。</p>
+          <p>最新の番付、日別の取組結果、日別の取組予定をご覧ください。</p>
           <nav className="hero-actions" aria-label="主要ページへの導線">
             <Link to={banzukePath} className="cta-button">
               番付
@@ -30,23 +32,30 @@ export default function Home() {
           </nav>
         </section>
 
-        <section className="features-section">
-          <h2>日別アーカイブ</h2>
-          <nav className="features-grid" aria-label="日別アーカイブページへの導線">
-            <Link to={getHubPath('result')} className="feature-card">
-              <h3>取組結果</h3>
-              <p>結果ページを日別に一覧できます。</p>
-            </Link>
-            <Link to={getHubPath('schedule')} className="feature-card">
-              <h3>取組予定</h3>
-              <p>取組予定を日別に一覧できます。</p>
-            </Link>
-            <Link to={banzukePath} className="feature-card">
-              <h3>番付</h3>
-              <p>番付をセクションにわけています。</p>
-            </Link>
-          </nav>
-        </section>
+        {/* Past Basho Archives */}
+        {PAST_BASHO.length > 0 && (
+          <section className="archives-section">
+            <h2 className="archives-heading">過去場所</h2>
+            <div className="archives-grid">
+              {PAST_BASHO.map((archive) => (
+                <Link
+                  key={archive.id}
+                  to={archive.resultPath}
+                  className="archive-card"
+                >
+                  <div className="archive-card-eyebrow">{archive.year}</div>
+                  <h3 className="archive-card-title">{archive.name}</h3>
+                  <p className="archive-card-meta">
+                    {archive.data.resultDays?.length ?? 0}日間
+                  </p>
+                </Link>
+              ))}
+            </div>
+            <p className="archives-footer">
+              <Link to="/archives">過去場所一覧</Link>
+            </p>
+          </section>
+        )}
       </main>
 
       <footer className="home-footer">

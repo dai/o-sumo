@@ -134,6 +134,79 @@
   letter-spacing: 0.02em;
 }
 
+/* Archives section */
+.archives-section {
+  margin-bottom: 3rem;
+  background: var(--surface-container-low);
+  padding: 2rem;
+}
+
+.archives-heading {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+  font-family: var(--font-serif);
+  letter-spacing: 0.02em;
+}
+
+.archives-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.archive-card {
+  display: block;
+  background: var(--surface-container-lowest);
+  padding: 1.25rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(26, 26, 26, 0.04);
+}
+
+.archive-card:hover {
+  background: var(--surface-container-high);
+  text-decoration: none;
+}
+
+.archive-card-eyebrow {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-secondary);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.archive-card-title {
+  font-size: 1.1rem;
+  color: var(--color-primary);
+  font-family: var(--font-serif);
+  margin-bottom: 0.5rem;
+}
+
+.archive-card-meta {
+  font-size: 0.85rem;
+  color: var(--color-dark-text);
+  opacity: 0.7;
+  margin: 0;
+}
+
+.archives-footer {
+  margin-top: 1.5rem;
+  text-align: right;
+}
+
+.archives-footer a {
+  color: var(--color-secondary);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.archives-footer a:hover {
+  color: var(--color-primary);
+}
+
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
