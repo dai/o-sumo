@@ -2,24 +2,31 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: radial-gradient(circle at top, #f9fafc 0%, #edf1f6 45%, #e3e8ef 100%);
+  background: var(--surface);
 }
 
+/* Glassmorphism header */
 .torikumi-header {
   padding: 3rem 2rem;
   text-align: center;
-  background: linear-gradient(135deg, #1a3a52 0%, #2d5a7b 60%, #426f90 100%);
-  color: white;
-  box-shadow: 0 14px 30px rgba(10, 34, 52, 0.25);
+  background: rgba(250, 249, 246, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: var(--color-dark-text);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .torikumi-header h1 {
-  color: white;
+  color: var(--color-primary);
   margin-bottom: 0.4rem;
+  font-family: var(--font-serif);
 }
 
 .torikumi-header p {
-  opacity: 0.9;
+  opacity: 0.7;
 }
 
 .torikumi-main {
@@ -29,12 +36,11 @@
   padding: 2rem 1rem 3rem;
 }
 
+/* Day summary - surface card */
 .day-summary-card {
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid #dce4ee;
-  border-radius: 18px;
-  padding: 1.25rem 1.35rem;
-  box-shadow: 0 10px 24px rgba(28, 53, 85, 0.08);
+  background: var(--surface-container-lowest);
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 4px 12px rgba(26, 26, 26, 0.04);
   display: flex;
   justify-content: space-between;
   gap: 1rem;
@@ -43,53 +49,58 @@
 }
 
 .archive-eyebrow {
-  font-size: 0.82rem;
-  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #5d7288;
+  color: var(--color-secondary);
   margin-bottom: 0.35rem;
+  font-weight: 600;
 }
 
 .sort-toolbar-section {
   margin-bottom: 1.25rem;
 }
 
+/* Sort toggle */
 .sort-toggle {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.95rem 1rem;
-  border-radius: 14px;
-  border: 1px solid #d7e0ea;
-  background: rgba(255, 255, 255, 0.9);
+  padding: 1rem 1.25rem;
+  background: var(--surface-container-lowest);
+  box-shadow: 0 2px 8px rgba(26, 26, 26, 0.04);
 }
 
 .sort-toggle-label {
-  color: #3d5369;
+  color: var(--color-primary);
   font-weight: 700;
 }
 
 .sort-toggle-buttons {
   display: inline-flex;
-  gap: 0.45rem;
+  gap: 0.5rem;
   flex-wrap: wrap;
 }
 
 .sort-toggle-button {
-  border: 1px solid #bccbd8;
-  background: #f5f8fb;
-  color: #294661;
-  padding: 0.55rem 0.9rem;
-  border-radius: 999px;
-  font-weight: 700;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-primary);
+  padding: 0.5rem 1rem;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sort-toggle-button:hover {
+  background: var(--surface-container-low);
 }
 
 .sort-toggle-button.active {
-  background: #15344b;
-  border-color: #15344b;
-  color: #fff;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
 }
 
 .archive-nav {
@@ -103,10 +114,16 @@
   align-items: center;
   justify-content: center;
   padding: 0.7rem 1rem;
-  border-radius: 999px;
-  background: #15344b;
-  color: #fff;
-  font-weight: 700;
+  background: var(--color-primary);
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.archive-link:hover {
+  background: var(--color-dark-text);
+  color: white;
   text-decoration: none;
 }
 
@@ -115,54 +132,55 @@
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 1.2rem;
-  padding: 0.9rem 1rem;
-  background: #fff;
-  border: 1px solid #d7e0ea;
-  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  background: var(--surface-container-lowest);
+  box-shadow: 0 2px 8px rgba(26, 26, 26, 0.04);
 }
 
 .pager-nav a {
-  color: #1d4765;
-  font-weight: 700;
+  color: var(--color-secondary);
+  font-weight: 600;
   text-decoration: none;
+}
+
+.pager-nav a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
 }
 
 .status-message {
   margin-bottom: 1rem;
-  padding: 0.85rem 1rem;
-  border-radius: 10px;
-  background: white;
-  border: 1px solid #d7e0ea;
+  padding: 1rem 1.25rem;
+  background: var(--surface-container-lowest);
+  box-shadow: 0 2px 8px rgba(26, 26, 26, 0.04);
 }
 
 .status-message.warning {
-  border-color: #e0b24b;
-  background: #fff8e7;
+  background: var(--surface-variant);
 }
 
 .empty-division-message {
   margin-bottom: 1rem;
-  padding: 1rem;
-  border-radius: 12px;
-  border: 1px dashed #d3af55;
-  background: #fff8e7;
-  color: #715311;
+  padding: 1rem 1.25rem;
+  background: var(--surface-container-low);
+  color: var(--color-secondary);
   font-weight: 600;
+  border-left: 3px solid var(--color-secondary);
 }
 
+/* Division section - surface hierarchy */
 .division-section {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(8px);
-  border: 1px solid #dce4ee;
-  border-radius: 16px;
+  background: var(--surface-container-lowest);
   margin-bottom: 1.5rem;
-  padding: 1.2rem;
-  box-shadow: 0 8px 20px rgba(28, 53, 85, 0.08);
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(26, 26, 26, 0.04);
 }
 
 .division-section h2 {
   font-size: 1.35rem;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+  font-family: var(--font-serif);
 }
 
 .archive-grid-section {
@@ -179,44 +197,42 @@
   display: block;
   text-decoration: none;
   color: inherit;
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid #dce4ee;
-  border-radius: 16px;
-  padding: 1rem;
-  box-shadow: 0 8px 20px rgba(28, 53, 85, 0.08);
+  background: var(--surface-container-lowest);
+  padding: 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.archive-card:hover {
+  background: var(--surface-container-low);
+  text-decoration: none;
 }
 
 .archive-card.elapsed {
-  background: rgba(255, 255, 255, 0.66);
-  border-color: #e3e9f0;
-  box-shadow: 0 5px 14px rgba(28, 53, 85, 0.04);
+  background: var(--surface-container-low);
 }
 
 .archive-card.elapsed h3,
 .archive-card.elapsed p,
 .archive-card.elapsed .archive-card-date,
 .archive-card.elapsed .archive-status {
-  color: #7f8c99;
-}
-
-.archive-card.elapsed .archive-status.pending {
-  color: #9a7a36;
+  opacity: 0.6;
 }
 
 .archive-card-date {
   font-size: 0.8rem;
-  color: #3e5b74;
+  color: var(--color-secondary);
   margin-bottom: 0.45rem;
+  font-weight: 600;
 }
 
 .archive-status {
   margin-top: 0.75rem;
-  color: #3d5369;
+  color: var(--color-primary);
   font-weight: 700;
 }
 
 .archive-status.pending {
-  color: #8b5d00;
+  color: var(--color-secondary);
 }
 
 .torikumi-table {
@@ -227,7 +243,7 @@
 .torikumi-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 160px minmax(0, 1fr);
-  gap: 0.7rem;
+  gap: 0.75rem;
 }
 
 .torikumi-head {
@@ -235,64 +251,70 @@
 }
 
 .cell {
-  border-radius: 12px;
-  padding: 0.7rem 0.9rem;
+  padding: 0.75rem 1rem;
 }
 
 .torikumi-head .cell {
-  background: linear-gradient(120deg, #233f56 0%, #2f526f 100%);
-  color: #fff;
+  background: var(--color-primary);
+  color: white;
   font-weight: 700;
   text-align: center;
+  font-family: var(--font-serif);
 }
 
 .torikumi-row {
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.75rem;
 }
 
 .rikishi-card {
-  background: white;
-  border: 1px solid #d9e2ed;
+  background: var(--surface-container-lowest);
 }
 
 .rikishi-card .name {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #18354d;
+  color: var(--color-primary);
+  font-family: var(--font-serif);
 }
 
 .rikishi-card .yomi {
-  color: #5f7186;
+  color: var(--color-dark-text);
+  opacity: 0.7;
   font-size: 0.82rem;
 }
 
 .rikishi-card .english {
-  color: #52677d;
+  color: var(--color-dark-text);
+  opacity: 0.6;
   font-size: 0.78rem;
 }
 
 .kimarite-value {
-  background: linear-gradient(135deg, #f5f8fc 0%, #ecf2f8 100%);
-  border: 1px solid #d4deea;
+  background: var(--surface-container-low);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  color: #2d4f6c;
+  color: var(--color-secondary);
   text-align: center;
 }
 
 .torikumi-footer {
   margin-top: auto;
   text-align: center;
-  padding: 1.3rem;
-  background: #1a3a52;
+  padding: 1.5rem;
+  background: var(--surface-container-high);
 }
 
 .torikumi-footer a {
-  color: #f6dd8b;
+  color: var(--color-secondary);
   text-decoration: none;
   font-weight: 700;
+}
+
+.torikumi-footer a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
 }
 
 @media (max-width: 860px) {
@@ -310,20 +332,17 @@
   }
 }
 
-
+/* Winner highlighting - subtle surface contrast */
 .rikishi-card.winner {
-  border-color: #d3af55;
-  box-shadow: 0 0 0 1px rgba(211, 175, 85, 0.22);
+  background: var(--surface-variant);
 }
 
 .kimarite-value.winner-east {
-  color: #1f5da8;
-  border-color: #99bbe8;
-  background: linear-gradient(135deg, #eef5ff 0%, #dfeefe 100%);
+  color: var(--color-secondary);
+  background: var(--surface-container-low);
 }
 
 .kimarite-value.winner-west {
-  color: #b03a3a;
-  border-color: #efb0b0;
-  background: linear-gradient(135deg, #fff1f1 0%, #ffe3e3 100%);
+  color: var(--color-primary);
+  background: var(--surface-container-high);
 }

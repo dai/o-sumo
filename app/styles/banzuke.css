@@ -1,10 +1,11 @@
+/* Banzuke components - Digital Washi style */
+
+/* Rank group - surface hierarchy, no borders */
 .rank-group {
-  background: white;
-  border-radius: 12px;
+  background: var(--surface-container-low);
   padding: 2rem;
-  box-shadow: 0 4px 12px rgba(26, 58, 82, 0.1);
-  border-top: 4px solid var(--color-secondary);
   margin-bottom: 2rem;
+  /* No border-radius - 0px enforced globally */
 }
 
 .rank-group-title {
@@ -13,7 +14,8 @@
   color: var(--color-primary);
   margin-bottom: 1.5rem;
   padding-bottom: 0.75rem;
-  border-bottom: 2px solid var(--color-accent-gold);
+  font-family: var(--font-serif);
+  border-bottom: 2px solid var(--surface-container-high);
 }
 
 .rikishi-row {
@@ -23,28 +25,37 @@
   margin-bottom: 1.5rem;
 }
 
+/* Rikishi card - surface elevation, left color stripe via pseudo-element */
 .rikishi-card {
   display: flex;
   flex-direction: column;
   padding: 1.25rem;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #f5f3f0 0%, #ede8e3 100%);
-  border: 1px solid var(--color-border);
-  transition: all 0.3s ease;
+  background: var(--surface-container-lowest);
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+/* East/West color coding via left border effect */
+.rikishi-card.east::before,
+.rikishi-card.west::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+}
+
+.rikishi-card.east::before {
+  background: #4a90e2;
+}
+
+.rikishi-card.west::before {
+  background: #e24a4a;
 }
 
 .rikishi-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(26, 58, 82, 0.15);
-  border-color: var(--color-secondary);
-}
-
-.rikishi-card.east {
-  border-left: 4px solid #4a90e2;
-}
-
-.rikishi-card.west {
-  border-left: 4px solid #e24a4a;
+  background: var(--surface-container-low);
 }
 
 .rikishi-header {
@@ -69,23 +80,25 @@
 
 .rikishi-yomi {
   font-size: 0.85rem;
-  color: #7c8b9a;
+  color: var(--color-dark-text);
+  opacity: 0.6;
   font-style: italic;
 }
 
 .rikishi-en {
   font-size: 0.9rem;
-  color: #3f5569;
+  color: var(--color-dark-text);
+  opacity: 0.7;
   letter-spacing: 0.3px;
   text-align: center;
 }
 
+/* Rank badges - 0px radius, surface elevation */
 .rank-badge {
   display: inline-block;
   padding: 0.35rem 0.75rem;
   background-color: var(--color-primary);
   color: white;
-  border-radius: 20px;
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -94,33 +107,32 @@
 }
 
 .rank-badge.yokozuna {
-  background: linear-gradient(135deg, #d4af37 0%, #c9a227 100%);
-  color: var(--color-primary);
-  box-shadow: 0 2px 6px rgba(212, 175, 55, 0.3);
+  background: var(--gradient-gold);
+  color: var(--color-dark-text);
 }
 
 .rank-badge.ozeki {
-  background: linear-gradient(135deg, #c0c0c0 0%, #a8a8a8 100%);
+  background-color: var(--color-accent-silver);
   color: var(--color-primary);
 }
 
 .rank-badge.sekiwake {
-  background: linear-gradient(135deg, #cd7f32 0%, #b8691e 100%);
+  background-color: var(--color-accent-bronze);
   color: white;
 }
 
 .rank-badge.komusubi {
-  background: linear-gradient(135deg, #c41e3a 0%, #8b1538 100%);
+  background-color: var(--color-secondary);
   color: white;
 }
 
 .rank-badge.maegashira {
-  background: linear-gradient(135deg, #1a3a52 0%, #0f2438 100%);
+  background-color: var(--color-primary);
   color: white;
 }
 
 .rank-badge.juryo {
-  background: linear-gradient(135deg, #4db8a8 0%, #3a8f7f 100%);
+  background-color: #4db8a8;
   color: white;
 }
 
@@ -130,12 +142,13 @@
   align-items: center;
   margin-top: 1rem;
   padding-top: 1rem;
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--surface-container-high);
 }
 
 .record-label {
   font-size: 0.85rem;
-  color: #999;
+  color: var(--color-dark-text);
+  opacity: 0.6;
   font-weight: 600;
 }
 
@@ -144,10 +157,8 @@
   font-size: 1.3rem;
   font-weight: 700;
   color: var(--color-primary);
-  background: white;
+  background: var(--surface-container-lowest);
   padding: 0.25rem 0.75rem;
-  border-radius: 4px;
-  border: 1px solid var(--color-border);
 }
 
 .hoshitori-display {
@@ -157,48 +168,43 @@
   margin-top: 0.75rem;
 }
 
+/* Hoshi - no border-radius */
 .hoshi {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 20px;
   height: 20px;
-  border-radius: 50%;
   font-weight: 700;
   font-size: 12px;
-  border: 1px solid var(--color-border);
+  background: var(--surface-container-lowest);
 }
 
 .hoshi.win {
-  background: white;
-  color: #d93025;
-  border-color: #ff5252;
+  background: var(--surface-container-lowest);
+  color: var(--color-secondary);
 }
 
 .hoshi.loss {
-  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+  background: var(--color-primary);
   color: white;
-  border-color: #2d3748;
 }
 
 .hoshi.draw {
-  background: #f0f0f0;
-  color: #999;
-  border-color: #ddd;
+  background: var(--surface-container-high);
+  color: var(--color-dark-text);
+  opacity: 0.5;
 }
 
 .hoshi.empty {
   background: transparent;
-  color: #ddd;
-  border: none;
+  color: var(--surface-container-high);
   font-size: 14px;
 }
 
 .rank-section {
-  background: white;
-  border-radius: 12px;
+  background: var(--surface-container-low);
   padding: 1.5rem;
-  box-shadow: 0 4px 12px rgba(26, 58, 82, 0.1);
 }
 
 .rank-title {
@@ -206,6 +212,7 @@
   font-weight: 700;
   color: var(--color-primary);
   margin-bottom: 1rem;
+  font-family: var(--font-serif);
 }
 
 .banzuke-table {
@@ -218,12 +225,13 @@
 .banzuke-table td {
   vertical-align: top;
   padding: 0.75rem;
+  background: var(--surface-container-lowest);
 }
 
 .banzuke-table th {
   color: var(--color-primary);
   text-align: center;
-  border-bottom: 2px solid #d9e2ed;
+  background: var(--surface-container-high);
 }
 
 .rikishi-cell {
@@ -248,15 +256,13 @@
 .rikishi-photo {
   width: 112px;
   height: 112px;
-  border-radius: 16px;
   object-fit: cover;
   object-position: 50% 20%;
-  border: 1px solid var(--color-border);
-  background: #f5f3f0;
+  background: var(--surface-container-low);
 }
 
 .record {
-  color: #2f4559;
+  color: var(--color-primary);
   line-height: 1.5;
 }
 
