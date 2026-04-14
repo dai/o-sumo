@@ -10127,13 +10127,30 @@ export const torikumiData: TorikumiDataSet = {
   ]
 };
 
-export const torikumiArchive = {
+// March 2026 historical basho data
+export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
   bashoName: torikumiData.bashoName,
   year: torikumiData.year,
   updatedAt: torikumiData.updatedAt,
   resultUpdatedAt: torikumiData.resultUpdatedAt,
   scheduleUpdatedAt: torikumiData.scheduleUpdatedAt,
-  resultDays: torikumiData.resultDays ?? [],
+  today: torikumiData.today,
+  tomorrow: torikumiData.tomorrow,
+  resultDays: torikumiData.resultDays,
+};
+
+// May 2026 current basho archive
+export const torikumiArchive = {
+  bashoName: '五月場所',
+  year: torikumiData.year,
+  updatedAt: torikumiData.updatedAt,
+  resultUpdatedAt: torikumiData.resultUpdatedAt,
+  scheduleUpdatedAt: torikumiData.scheduleUpdatedAt,
+  resultDays: (torikumiData.scheduleDays ?? []).map(day => ({
+    ...day,
+    status: 'pending' as const,
+    statusMessage: '結果未更新',
+  })),
   scheduleDays: torikumiData.scheduleDays ?? [],
 };
 
@@ -10142,6 +10159,3 @@ export const torikumiMonthKey = torikumiArchive.resultDays[0]?.pathDate.slice(0,
   ?? '202603';
 
 export const banzukePath = `/${torikumiMonthKey}-banduke`;
-
-// Alias for backward compatibility
-export const MARCH2026_TORIKUMI_DATA = torikumiData;
