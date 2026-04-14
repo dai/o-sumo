@@ -10127,30 +10127,13 @@ export const torikumiData: TorikumiDataSet = {
   ]
 };
 
-// March 2026 historical basho data
-export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
+export const torikumiArchive = {
   bashoName: torikumiData.bashoName,
   year: torikumiData.year,
   updatedAt: torikumiData.updatedAt,
   resultUpdatedAt: torikumiData.resultUpdatedAt,
   scheduleUpdatedAt: torikumiData.scheduleUpdatedAt,
-  today: torikumiData.today,
-  tomorrow: torikumiData.tomorrow,
-  resultDays: torikumiData.resultDays,
-};
-
-// May 2026 current basho archive
-export const torikumiArchive = {
-  bashoName: '五月場所',
-  year: torikumiData.year,
-  updatedAt: torikumiData.updatedAt,
-  resultUpdatedAt: torikumiData.resultUpdatedAt,
-  scheduleUpdatedAt: torikumiData.scheduleUpdatedAt,
-  resultDays: (torikumiData.scheduleDays ?? []).map(day => ({
-    ...day,
-    status: 'pending' as const,
-    statusMessage: '結果未更新',
-  })),
+  resultDays: torikumiData.resultDays ?? [],
   scheduleDays: torikumiData.scheduleDays ?? [],
 };
 
