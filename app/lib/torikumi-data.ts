@@ -10142,3 +10142,6 @@ export const torikumiMonthKey = torikumiArchive.resultDays[0]?.pathDate.slice(0,
   ?? '202603';
 
 export const banzukePath = `/${torikumiMonthKey}-banduke`;
+
+// Alias for backward compatibility
+export const MARCH2026_TORIKUMI_DATA = torikumiData;
