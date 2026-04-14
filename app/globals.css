@@ -1,36 +1,59 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;500;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 :root {
-  /* The Ink and Gold Palette - Digital Washi */
-  --color-primary: #5f5e5e;        /* Ink */
-  --color-secondary: #735c00;     /* Gold */
-  --color-secondary-light: #fed65b; /* Gold light */
-  --color-accent-gold: #fed65b;    /* Gold accent */
-  --color-accent-silver: #c0c0c0; /* Silver */
-  --color-accent-bronze: #cd7f32; /* Bronze */
+  /* Ronin palette */
+  --color-primary: #c1c6d9;
+  --color-primary-container: #2f3650;
+  --color-primary-muted: #959db5;
+  --color-secondary: #e6feff;
+  --color-secondary-light: #f3feff;
+  --color-secondary-dim: #90d9de;
+  --color-tertiary: #ecb1ff;
+  --color-tertiary-container: #3a2a42;
+  --color-accent-gold: var(--color-secondary-light);
+  --color-accent-silver: #aab3ca;
+  --color-accent-bronze: #8568a3;
 
-  /* Surface Hierarchy - stacked paper effect */
-  --surface: #faf9f6;              /* Base paper texture */
-  --surface-container-lowest: #ffffff; /* Floating cards - bleached highlight */
-  --surface-container-low: #f5f4f2;  /* Elevated sections */
-  --surface-container-high: #e9e8e5; /* Recessed areas */
-  --surface-variant: #e8e5de;       /* Subtle differentiation */
+  /* Surface hierarchy */
+  --surface: #111319;
+  --surface-container-lowest: #161a23;
+  --surface-container-low: #1b202c;
+  --surface-container-high: #242b3a;
+  --surface-variant: #202635;
+  --surface-bright: #2c3447;
 
-  /* Text colors */
-  --color-light-bg: #faf9f6;       /* Paper */
-  --color-dark-text: #1a1c1a;      /* on_surface - ink on paper */
-  --color-border: #d0c5af;         /* outline_variant - ghost border */
-  --color-surface: #ffffff;        /* surface */
-  --color-focus: #0c5a8a;          /* Focus ring */
+  /* Text and interaction */
+  --color-light-bg: #111319;
+  --color-dark-text: #c1c6d9;
+  --color-muted: #97a1bc;
+  --color-border: rgba(230, 254, 255, 0.35);
+  --color-surface: #161a23;
+  --color-focus: #e6feff;
+  --color-on-primary: #0f131d;
+  --color-on-secondary: #0b1518;
+  --color-on-tertiary: #140c1d;
+
+  /* Status accents */
+  --color-east: #9cefff;
+  --color-west: #ecb1ff;
+  --color-win: #e6feff;
+  --color-loss: #97a1bc;
+  --color-draw: #6e7894;
 
   /* Legacy mappings for compatibility */
-  --color-primary-legacy: #1a3a52;
-  --color-secondary-legacy: #c41e3a;
+  --color-primary-legacy: var(--color-primary-container);
+  --color-secondary-legacy: var(--color-tertiary);
 
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #5f5e5e 0%, #7a7878 100%);
-  --gradient-secondary: linear-gradient(135deg, #735c00 0%, #fed65b 100%); /* Gold touch */
-  --gradient-gold: linear-gradient(135deg, #735c00 0%, #fed65b 100%);
+  --gradient-primary: linear-gradient(135deg, #c1c6d9 0%, #737d99 100%);
+  --gradient-secondary: linear-gradient(135deg, #f0feff 0%, #90d9de 100%);
+  --gradient-gold: var(--gradient-secondary);
+
+  /* Atmospheric depth */
+  --shadow-soft: 0 14px 34px rgba(230, 254, 255, 0.1);
+  --shadow-ambient: 0 28px 56px rgba(236, 177, 255, 0.14);
+  --shadow-glow-secondary: 0 0 0 1px rgba(230, 254, 255, 0.45), 0 0 18px rgba(230, 254, 255, 0.24);
+  --shadow-glow-tertiary: 0 0 0 1px rgba(236, 177, 255, 0.4), 0 0 18px rgba(236, 177, 255, 0.2);
 
   /* Typography */
   --font-serif: 'Noto Serif JP', serif;
@@ -81,22 +104,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Extreme typographic scale - editorial look */
 h1 {
-  font-size: 3.5rem; /* display-lg equivalent */
-  font-weight: 900;
-  letter-spacing: 0.02em;
-}
-
-h2 {
-  font-size: 2rem;
-  font-weight: 700;
-}
-
-h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-
-h1 {
   font-size: 2.5rem;
   font-weight: 800;
   letter-spacing: 3px;
@@ -123,27 +130,27 @@ a {
 }
 
 a:hover {
-  color: var(--color-primary);
+  color: var(--color-tertiary);
   text-decoration: underline;
 }
 
-/* Ghost border fallback for accessibility - 15% opacity watermark effect */
+/* Neon focus fallback */
 a:focus-visible,
 button:focus-visible,
 [role='button']:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid var(--color-border);
+  outline: 2px solid rgba(230, 254, 255, 0.5);
   outline-offset: 3px;
-  opacity: 0.85;
+  box-shadow: var(--shadow-glow-secondary);
 }
 
-/* Primary Button - The Gold Touch */
+/* Primary Button */
 button, .btn-primary {
   font-family: var(--font-sans);
   padding: var(--spacing-md) var(--spacing-lg);
   border: none;
-  background: var(--gradient-gold);
-  color: #1a1c1a;
+  background: var(--gradient-secondary);
+  color: var(--color-on-secondary);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -154,50 +161,39 @@ button, .btn-primary {
 
 button:hover, .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(115, 92, 0, 0.2);
+  box-shadow: var(--shadow-soft);
 }
 
-/* Secondary Button - text-only with gold underline */
+/* Secondary Button */
 .btn-secondary {
-  background: transparent;
+  background: var(--surface-container-high);
   color: var(--color-secondary);
   border: none;
   padding: var(--spacing-sm) var(--spacing-md);
   font-weight: 600;
   cursor: pointer;
-  position: relative;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.btn-secondary::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--color-secondary);
-  transform: scaleX(0);
-  transition: transform 0.2s ease;
+.btn-secondary:hover {
+  background: var(--surface-bright);
+  color: var(--color-secondary-light);
 }
 
-.btn-secondary:hover::after {
-  transform: scaleX(1);
-}
-
-/* Tertiary - Ghost button with outline_variant */
+/* Tertiary Button */
 .btn-tertiary {
-  background: transparent;
+  background: var(--surface-variant);
   color: var(--color-primary);
-  border: 1px solid var(--color-border);
+  border: none;
   padding: var(--spacing-sm) var(--spacing-md);
   font-weight: 500;
   cursor: pointer;
-  opacity: 0.85;
-  transition: opacity 0.2s ease;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-tertiary:hover {
-  opacity: 1;
+  background: var(--surface-bright);
+  box-shadow: var(--shadow-soft);
 }
 
 /* Tables - No borders, use background for elevation */
@@ -213,8 +209,8 @@ th, td {
 }
 
 th {
-  background-color: var(--color-primary);
-  color: white;
+  background-color: var(--color-primary-container);
+  color: var(--color-primary);
   font-weight: 600;
   font-family: var(--font-serif);
   letter-spacing: 0.05em;
@@ -265,7 +261,7 @@ th {
 
 .banzuke-table th {
   background: var(--gradient-primary);
-  color: white;
+  color: var(--color-on-primary);
   font-weight: 600;
   padding: 1rem;
   text-align: center;
@@ -287,7 +283,7 @@ th {
 
 .rikishi-yomi {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--color-muted);
   font-style: italic;
 }
 
@@ -303,41 +299,41 @@ th {
 .rank-badge {
   display: inline-block;
   padding: 0.35rem 0.75rem;
-  background-color: var(--color-primary);
-  color: white;
+  background-color: var(--color-primary-container);
+  color: var(--color-primary);
   font-size: 0.85rem;
   font-weight: 600;
   /* 0px radius - enforced globally */
 }
 
 .rank-badge.yokozuna {
-  background: var(--gradient-gold);
-  color: var(--color-dark-text);
+  background: var(--gradient-secondary);
+  color: var(--color-on-secondary);
 }
 
 .rank-badge.ozeki {
   background-color: var(--color-accent-silver);
-  color: var(--color-primary);
+  color: var(--color-on-primary);
 }
 
 .rank-badge.sekiwake {
   background-color: var(--color-accent-bronze);
-  color: white;
+  color: var(--color-primary);
 }
 
 .rank-badge.komusubi {
-  background-color: var(--color-secondary);
-  color: white;
+  background-color: var(--color-tertiary);
+  color: var(--color-on-tertiary);
 }
 
 .rank-badge.maegashira {
-  background-color: var(--color-primary);
-  color: white;
+  background-color: var(--color-primary-container);
+  color: var(--color-primary);
 }
 
 .rank-badge.juryo {
-  background-color: #4db8a8;
-  color: white;
+  background-color: var(--color-secondary-dim);
+  color: var(--color-on-secondary);
 }
 
 .record {
@@ -369,18 +365,18 @@ th {
   font-weight: bold;
 }
 
-.hoshi.win { color: var(--color-secondary); }
-.hoshi.loss { color: #2d3748; }
-.hoshi.draw { color: var(--color-border); }
+.hoshi.win { color: var(--color-win); }
+.hoshi.loss { color: var(--color-loss); }
+.hoshi.draw { color: var(--color-draw); }
 
-.empty { color: var(--color-border); font-size: 1.5rem; }
+.empty { color: var(--color-muted); font-size: 1.5rem; }
 
 .text-center {
   text-align: center;
 }
 
 .text-muted {
-  color: #4e4e4e;
+  color: var(--color-muted);
 }
 
 .sr-only {
@@ -409,7 +405,7 @@ th {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary);
+  background: var(--color-secondary-dim);
 }
 
 /* Responsive */

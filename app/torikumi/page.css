@@ -5,18 +5,18 @@
   background: var(--surface);
 }
 
-/* Glassmorphism header */
+/* Dark glass header */
 .torikumi-header {
   padding: 3rem 2rem;
   text-align: center;
-  background: rgba(250, 249, 246, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(17, 19, 25, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   color: var(--color-dark-text);
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
 }
 
 .torikumi-header h1 {
@@ -26,7 +26,7 @@
 }
 
 .torikumi-header p {
-  opacity: 0.7;
+  opacity: 0.85;
 }
 
 .torikumi-main {
@@ -40,7 +40,7 @@
 .day-summary-card {
   background: var(--surface-container-lowest);
   padding: 1.25rem 1.5rem;
-  box-shadow: 0 4px 12px rgba(26, 26, 26, 0.04);
+  box-shadow: var(--shadow-soft);
   display: flex;
   justify-content: space-between;
   gap: 1rem;
@@ -69,7 +69,7 @@
   gap: 1rem;
   padding: 1rem 1.25rem;
   background: var(--surface-container-lowest);
-  box-shadow: 0 2px 8px rgba(26, 26, 26, 0.04);
+  box-shadow: var(--shadow-soft);
 }
 
 .sort-toggle-label {
@@ -84,8 +84,8 @@
 }
 
 .sort-toggle-button {
-  border: 1px solid var(--color-border);
-  background: transparent;
+  border: none;
+  background: var(--surface-container-high);
   color: var(--color-primary);
   padding: 0.5rem 1rem;
   font-weight: 600;
@@ -94,13 +94,13 @@
 }
 
 .sort-toggle-button:hover {
-  background: var(--surface-container-low);
+  background: var(--surface-bright);
 }
 
 .sort-toggle-button.active {
-  background: var(--color-primary);
-  border-color: var(--color-primary);
-  color: white;
+  background: var(--color-primary-container);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-glow-secondary);
 }
 
 .archive-nav {
@@ -114,16 +114,17 @@
   align-items: center;
   justify-content: center;
   padding: 0.7rem 1rem;
-  background: var(--color-primary);
-  color: white;
+  background: var(--color-primary-container);
+  color: var(--color-primary);
   font-weight: 600;
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
 .archive-link:hover {
-  background: var(--color-dark-text);
-  color: white;
+  background: var(--surface-bright);
+  color: var(--color-secondary);
+  box-shadow: var(--shadow-soft);
   text-decoration: none;
 }
 
@@ -134,7 +135,7 @@
   margin-bottom: 1.2rem;
   padding: 1rem 1.25rem;
   background: var(--surface-container-lowest);
-  box-shadow: 0 2px 8px rgba(26, 26, 26, 0.04);
+  box-shadow: var(--shadow-soft);
 }
 
 .pager-nav a {
@@ -144,7 +145,7 @@
 }
 
 .pager-nav a:hover {
-  color: var(--color-primary);
+  color: var(--color-tertiary);
   text-decoration: underline;
 }
 
@@ -152,20 +153,21 @@
   margin-bottom: 1rem;
   padding: 1rem 1.25rem;
   background: var(--surface-container-lowest);
-  box-shadow: 0 2px 8px rgba(26, 26, 26, 0.04);
+  box-shadow: var(--shadow-soft);
 }
 
 .status-message.warning {
-  background: var(--surface-variant);
+  background: var(--color-tertiary-container);
+  color: var(--color-primary);
 }
 
 .empty-division-message {
   margin-bottom: 1rem;
   padding: 1rem 1.25rem;
-  background: var(--surface-container-low);
+  background: var(--surface-container-high);
   color: var(--color-secondary);
   font-weight: 600;
-  border-left: 3px solid var(--color-secondary);
+  box-shadow: var(--shadow-soft);
 }
 
 /* Division section - surface hierarchy */
@@ -173,7 +175,7 @@
   background: var(--surface-container-lowest);
   margin-bottom: 1.5rem;
   padding: 1.5rem;
-  box-shadow: 0 4px 12px rgba(26, 26, 26, 0.04);
+  box-shadow: var(--shadow-soft);
 }
 
 .division-section h2 {
@@ -204,6 +206,7 @@
 
 .archive-card:hover {
   background: var(--surface-container-low);
+  box-shadow: var(--shadow-soft);
   text-decoration: none;
 }
 
@@ -255,8 +258,8 @@
 }
 
 .torikumi-head .cell {
-  background: var(--color-primary);
-  color: white;
+  background: var(--color-primary-container);
+  color: var(--color-primary);
   font-weight: 700;
   text-align: center;
   font-family: var(--font-serif);
@@ -295,7 +298,7 @@
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  color: var(--color-secondary);
+  color: var(--color-secondary-dim);
   text-align: center;
 }
 
@@ -313,7 +316,7 @@
 }
 
 .torikumi-footer a:hover {
-  color: var(--color-primary);
+  color: var(--color-tertiary);
   text-decoration: underline;
 }
 
@@ -334,15 +337,16 @@
 
 /* Winner highlighting - subtle surface contrast */
 .rikishi-card.winner {
-  background: var(--surface-variant);
+  background: var(--surface-bright);
+  box-shadow: var(--shadow-glow-tertiary);
 }
 
 .kimarite-value.winner-east {
-  color: var(--color-secondary);
-  background: var(--surface-container-low);
+  color: var(--color-east);
+  background: var(--surface-container-high);
 }
 
 .kimarite-value.winner-west {
-  color: var(--color-primary);
+  color: var(--color-west);
   background: var(--surface-container-high);
 }

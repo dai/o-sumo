@@ -6,12 +6,12 @@
 }
 
 .archives-header {
-  background: rgba(250, 249, 246, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(17, 19, 25, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   padding: 3rem 2rem;
   text-align: center;
-  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
 }
 
 .archives-header h1 {
@@ -22,7 +22,7 @@
 
 .archives-header p {
   color: var(--color-dark-text);
-  opacity: 0.7;
+  opacity: 0.85;
 }
 
 .archives-main {
@@ -42,7 +42,7 @@
 .archive-item {
   background: var(--surface-container-lowest);
   padding: 2rem;
-  box-shadow: 0 2px 8px rgba(26, 26, 26, 0.04);
+  box-shadow: var(--shadow-soft);
 }
 
 .archive-item-header h2 {
@@ -68,8 +68,9 @@
 }
 
 .archive-link:hover {
-  background: var(--color-primary);
-  color: white;
+  background: var(--color-primary-container);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-soft);
   text-decoration: none;
 }
 
@@ -92,7 +93,7 @@
 }
 
 .archives-footer a:hover {
-  color: var(--color-primary);
+  color: var(--color-tertiary);
 }
 
 @media (max-width: 768px) {

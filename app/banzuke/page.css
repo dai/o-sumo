@@ -5,18 +5,18 @@
   background: var(--surface);
 }
 
-/* Glassmorphism header */
+/* Dark glass header */
 .page-header {
-  background: rgba(250, 249, 246, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(17, 19, 25, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   color: var(--color-dark-text);
   padding: 3rem 2rem;
   text-align: center;
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
 }
 
 .header-content {
@@ -36,7 +36,7 @@
 .page-subtitle {
   font-size: 1.5rem;
   font-weight: 400;
-  color: var(--color-secondary);
+  color: var(--color-secondary-dim);
   margin-bottom: 0.5rem;
   font-family: var(--font-serif);
 }
@@ -67,7 +67,7 @@
   gap: 1rem;
   padding: 1rem 1.25rem;
   background: var(--surface-container-lowest);
-  box-shadow: 0 2px 8px rgba(26, 26, 26, 0.04);
+  box-shadow: var(--shadow-soft);
 }
 
 .sort-toggle-label {
@@ -82,23 +82,23 @@
 }
 
 .sort-toggle-button {
-  border: 1px solid var(--color-border);
-  background: transparent;
+  border: none;
+  background: var(--surface-container-high);
   color: var(--color-primary);
   padding: 0.5rem 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s ease, box-shadow 0.2s ease;
 }
 
 .sort-toggle-button:hover {
-  background: var(--surface-container-low);
+  background: var(--surface-bright);
 }
 
 .sort-toggle-button.active {
-  background: var(--color-primary);
-  border-color: var(--color-primary);
-  color: white;
+  background: var(--color-primary-container);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-glow-secondary);
 }
 
 .banzuke-section {
@@ -111,10 +111,8 @@
   font-weight: 700;
   color: var(--color-primary);
   margin-bottom: 1.5rem;
-  padding-bottom: 0.75rem;
+  padding-bottom: 0;
   font-family: var(--font-serif);
-  border-bottom: 2px solid var(--surface-container-high);
-  /* No gold line - use surface contrast */
 }
 
 .banzuke-list {
@@ -163,7 +161,7 @@
 }
 
 .info-content a:hover {
-  color: var(--color-primary);
+  color: var(--color-tertiary);
   text-decoration: underline;
 }
 
@@ -189,7 +187,7 @@
 }
 
 .page-footer a:hover {
-  color: var(--color-primary);
+  color: var(--color-tertiary);
   text-decoration: underline;
 }
 

@@ -13,9 +13,8 @@
   font-weight: 700;
   color: var(--color-primary);
   margin-bottom: 1.5rem;
-  padding-bottom: 0.75rem;
+  padding-bottom: 0;
   font-family: var(--font-serif);
-  border-bottom: 2px solid var(--surface-container-high);
 }
 
 .rikishi-row {
@@ -47,11 +46,11 @@
 }
 
 .rikishi-card.east::before {
-  background: #4a90e2;
+  background: var(--color-east);
 }
 
 .rikishi-card.west::before {
-  background: #e24a4a;
+  background: var(--color-west);
 }
 
 .rikishi-card:hover {
@@ -80,15 +79,13 @@
 
 .rikishi-yomi {
   font-size: 0.85rem;
-  color: var(--color-dark-text);
-  opacity: 0.6;
+  color: var(--color-muted);
   font-style: italic;
 }
 
 .rikishi-en {
   font-size: 0.9rem;
-  color: var(--color-dark-text);
-  opacity: 0.7;
+  color: var(--color-muted);
   letter-spacing: 0.3px;
   text-align: center;
 }
@@ -97,8 +94,8 @@
 .rank-badge {
   display: inline-block;
   padding: 0.35rem 0.75rem;
-  background-color: var(--color-primary);
-  color: white;
+  background-color: var(--color-primary-container);
+  color: var(--color-primary);
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -107,33 +104,33 @@
 }
 
 .rank-badge.yokozuna {
-  background: var(--gradient-gold);
-  color: var(--color-dark-text);
+  background: var(--gradient-secondary);
+  color: var(--color-on-secondary);
 }
 
 .rank-badge.ozeki {
   background-color: var(--color-accent-silver);
-  color: var(--color-primary);
+  color: var(--color-on-primary);
 }
 
 .rank-badge.sekiwake {
   background-color: var(--color-accent-bronze);
-  color: white;
+  color: var(--color-primary);
 }
 
 .rank-badge.komusubi {
-  background-color: var(--color-secondary);
-  color: white;
+  background-color: var(--color-tertiary);
+  color: var(--color-on-tertiary);
 }
 
 .rank-badge.maegashira {
-  background-color: var(--color-primary);
-  color: white;
+  background-color: var(--color-primary-container);
+  color: var(--color-primary);
 }
 
 .rank-badge.juryo {
-  background-color: #4db8a8;
-  color: white;
+  background-color: var(--color-secondary-dim);
+  color: var(--color-on-secondary);
 }
 
 .rikishi-record {
@@ -142,13 +139,14 @@
   align-items: center;
   margin-top: 1rem;
   padding-top: 1rem;
-  border-top: 1px solid var(--surface-container-high);
+  background: var(--surface-container-high);
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .record-label {
   font-size: 0.85rem;
-  color: var(--color-dark-text);
-  opacity: 0.6;
+  color: var(--color-muted);
   font-weight: 600;
 }
 
@@ -186,19 +184,18 @@
 }
 
 .hoshi.loss {
-  background: var(--color-primary);
-  color: white;
+  background: var(--surface-bright);
+  color: var(--color-loss);
 }
 
 .hoshi.draw {
   background: var(--surface-container-high);
-  color: var(--color-dark-text);
-  opacity: 0.5;
+  color: var(--color-draw);
 }
 
 .hoshi.empty {
   background: transparent;
-  color: var(--surface-container-high);
+  color: var(--color-muted);
   font-size: 14px;
 }
 
@@ -277,7 +274,7 @@
 }
 
 .rikishi-name-link:hover .rikishi-name {
-  color: var(--color-secondary);
+  color: var(--color-secondary-dim);
 }
 
 .profile-link {
@@ -288,7 +285,7 @@
 }
 
 .profile-link:hover {
-  color: var(--color-primary);
+  color: var(--color-tertiary);
   text-decoration: underline;
 }
 

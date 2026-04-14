@@ -5,18 +5,18 @@
   background: var(--surface);
 }
 
-/* Glassmorphism header */
+/* Dark glass header */
 .home-header {
-  background: rgba(250, 249, 246, 0.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(17, 19, 25, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   color: var(--color-dark-text);
   padding: 4rem 2rem;
   text-align: center;
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
 }
 
 .header-content {
@@ -36,7 +36,7 @@
 .home-subtitle {
   font-size: 1.25rem;
   font-weight: 400;
-  color: var(--color-secondary);
+  color: var(--color-secondary-dim);
   letter-spacing: 0.1em;
 }
 
@@ -50,11 +50,11 @@
 
 /* Hero section - surface hierarchy, no border */
 .hero-section {
-  background: var(--surface-container-lowest);
+  background: var(--surface-container-low);
   padding: 3rem 2.5rem;
   text-align: center;
   margin-bottom: 3rem;
-  box-shadow: 0 4px 16px rgba(26, 26, 26, 0.04);
+  box-shadow: var(--shadow-ambient);
 }
 
 .hero-section h2 {
@@ -79,11 +79,11 @@
 }
 
 .contact-lead a:hover {
-  color: var(--color-primary);
+  color: var(--color-tertiary);
   text-decoration: underline;
 }
 
-/* CTA Buttons - Gold gradient */
+/* CTA buttons */
 .hero-actions {
   display: flex;
   gap: 1rem;
@@ -92,8 +92,8 @@
 }
 
 .cta-button {
-  background: var(--gradient-gold);
-  color: var(--color-dark-text);
+  background: var(--gradient-secondary);
+  color: var(--color-on-secondary);
   padding: 1rem 2.5rem;
   font-size: 1.1rem;
   font-weight: 700;
@@ -105,20 +105,20 @@
 
 .cta-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(115, 92, 0, 0.25);
-  color: var(--color-dark-text);
+  box-shadow: var(--shadow-soft);
+  color: var(--color-on-secondary);
   text-decoration: none;
 }
 
 .cta-button.secondary {
-  background: var(--color-primary);
-  color: white;
+  background: var(--color-primary-container);
+  color: var(--color-primary);
 }
 
 .cta-button.secondary:hover {
-  background: var(--color-dark-text);
-  color: white;
-  box-shadow: 0 6px 20px rgba(26, 26, 26, 0.2);
+  background: var(--surface-bright);
+  color: var(--color-secondary);
+  box-shadow: var(--shadow-ambient);
 }
 
 .features-section {
@@ -161,11 +161,12 @@
   padding: 1.25rem;
   text-decoration: none;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(26, 26, 26, 0.04);
+  box-shadow: var(--shadow-soft);
 }
 
 .archive-card:hover {
   background: var(--surface-container-high);
+  box-shadow: var(--shadow-ambient);
   text-decoration: none;
 }
 
@@ -188,7 +189,7 @@
 .archive-card-meta {
   font-size: 0.85rem;
   color: var(--color-dark-text);
-  opacity: 0.7;
+  opacity: 0.8;
   margin: 0;
 }
 
@@ -204,7 +205,7 @@
 }
 
 .archives-footer a:hover {
-  color: var(--color-primary);
+  color: var(--color-tertiary);
 }
 
 /* Past basho section (March 2026) */
@@ -255,8 +256,9 @@
 }
 
 .past-basho-day-link:hover {
-  background: var(--color-primary);
-  color: white;
+  background: var(--color-primary-container);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-soft);
   text-decoration: none;
 }
 
@@ -274,12 +276,13 @@
   transition: all 0.2s ease;
   text-decoration: none;
   display: block;
-  box-shadow: 0 4px 12px rgba(26, 26, 26, 0.04);
+  box-shadow: var(--shadow-soft);
 }
 
 .feature-card:hover {
   background: var(--surface-container-low);
   transform: translateY(-2px);
+  box-shadow: var(--shadow-ambient);
   text-decoration: none;
 }
 
@@ -293,7 +296,7 @@
 
 .feature-card p {
   color: var(--color-dark-text);
-  opacity: 0.8;
+  opacity: 0.85;
   font-size: 0.95rem;
   line-height: 1.7;
 }
@@ -319,8 +322,8 @@
 }
 
 .tech-badge {
-  background: var(--color-primary);
-  color: white;
+  background: var(--color-primary-container);
+  color: var(--color-primary);
   padding: 0.5rem 1.25rem;
   font-size: 0.9rem;
   font-weight: 600;
@@ -347,7 +350,7 @@
 }
 
 .home-footer a:hover {
-  color: var(--color-primary);
+  color: var(--color-tertiary);
   text-decoration: underline;
 }
 
