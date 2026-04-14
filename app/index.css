@@ -9,7 +9,7 @@
 .home-header {
   background:
     linear-gradient(120deg, rgba(17, 19, 25, 0.8) 0%, rgba(17, 19, 25, 0.68) 40%, rgba(17, 19, 25, 0.88) 100%),
-    url('/images/header/dohyo-roof.svg') center/cover no-repeat;
+    url('./assets/header/dohyo-roof.svg') center/cover no-repeat;
   color: #f6f2e9;
   padding: 4rem 2rem;
   text-align: center;
@@ -24,7 +24,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: url('/images/header/yokozuna-tsuna.svg') right center / min(52vw, 540px) auto no-repeat;
+  background: url('./assets/header/yokozuna-tsuna.svg') right center / min(52vw, 540px) auto no-repeat;
   opacity: 0.45;
   pointer-events: none;
 }
