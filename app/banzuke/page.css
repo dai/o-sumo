@@ -5,12 +5,8 @@
   background: var(--surface);
 }
 
-/* Dark glass header */
+/* Shared background is defined in globals.css */
 .page-header {
-  background: rgba(17, 19, 25, 0.82);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  color: var(--color-dark-text);
   padding: 3rem 2rem;
   text-align: center;
   position: sticky;
@@ -29,21 +25,18 @@
   font-weight: 900;
   margin-bottom: 0.5rem;
   letter-spacing: 0.02em;
-  color: var(--color-primary);
   font-family: var(--font-serif);
 }
 
 .page-subtitle {
   font-size: 1.5rem;
   font-weight: 400;
-  color: var(--color-secondary-dim);
   margin-bottom: 0.5rem;
   font-family: var(--font-serif);
 }
 
 .page-description {
   font-size: 0.9rem;
-  color: var(--color-dark-text);
   opacity: 0.7;
 }
 

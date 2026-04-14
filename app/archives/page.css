@@ -6,9 +6,6 @@
 }
 
 .archives-header {
-  background: rgba(17, 19, 25, 0.82);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   padding: 3rem 2rem;
   text-align: center;
   box-shadow: var(--shadow-soft);
@@ -16,12 +13,10 @@
 
 .archives-header h1 {
   font-size: 2.5rem;
-  color: var(--color-primary);
   margin-bottom: 0.5rem;
 }
 
 .archives-header p {
-  color: var(--color-dark-text);
   opacity: 0.85;
 }
 
