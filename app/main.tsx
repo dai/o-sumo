@@ -7,6 +7,7 @@ import HomePage from './page'
 import TorikumiHubPage from './torikumi/page'
 import TopLevelSlugPage from './TopLevelSlugPage'
 import ArchivesPage from './archives/page'
+import ThemeToggle from './components/ThemeToggle'
 import {
   banzukePath,
   MAY2026_RESULT_PATH,
@@ -15,7 +16,10 @@ import {
   MARCH2026_SCHEDULE_PATH,
   MARCH2026_BANDUKE_PATH,
 } from './lib/torikumi-routes'
+import { bootstrapTheme } from './lib/theme'
 import './globals.css'
+
+bootstrapTheme()
 
 const updateSW = registerSW({
   onNeedRefresh() {
@@ -28,6 +32,7 @@ const updateSW = registerSW({
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
+      <ThemeToggle />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/archives" element={<ArchivesPage />} />

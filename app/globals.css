@@ -1,7 +1,65 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;500;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
-:root {
-  /* Ronin palette */
+:root,
+[data-theme='light'] {
+  /* Light palette (DESIGN.md) */
+  --color-primary: #5f5e5e;
+  --color-primary-container: #1f3348;
+  --color-primary-muted: #7d7d7c;
+  --color-secondary: #735c00;
+  --color-secondary-light: #fed65b;
+  --color-secondary-dim: #b79d46;
+  --color-tertiary: #7d4a9e;
+  --color-tertiary-container: #efe5f7;
+  --color-accent-gold: var(--color-secondary-light);
+  --color-accent-silver: #c0c0c0;
+  --color-accent-bronze: #cd7f32;
+
+  /* Surface hierarchy */
+  --surface: #faf9f6;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f5f4f2;
+  --surface-container-high: #eceae5;
+  --surface-variant: #e8e5de;
+  --surface-bright: #fdfcf9;
+
+  /* Text and interaction */
+  --color-light-bg: #faf9f6;
+  --color-dark-text: #1a1c1a;
+  --color-muted: #5f6368;
+  --color-border: rgba(95, 94, 94, 0.3);
+  --color-surface: #ffffff;
+  --color-focus: #0c5a8a;
+  --color-focus-outline: rgba(12, 90, 138, 0.45);
+  --color-on-primary: #f8f8f6;
+  --color-on-secondary: #1a1c1a;
+  --color-on-tertiary: #f8f8f6;
+
+  /* Status accents */
+  --color-east: #3977b6;
+  --color-west: #9a4b8b;
+  --color-win: #735c00;
+  --color-loss: #515b66;
+  --color-draw: #8a8f97;
+
+  /* Legacy mappings for compatibility */
+  --color-primary-legacy: var(--color-primary-container);
+  --color-secondary-legacy: var(--color-tertiary);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #1f3348 0%, #3a516a 100%);
+  --gradient-secondary: linear-gradient(135deg, #fed65b 0%, #d5a82d 100%);
+  --gradient-gold: var(--gradient-secondary);
+
+  /* Atmospheric depth */
+  --shadow-soft: 0 12px 28px rgba(31, 51, 72, 0.12);
+  --shadow-ambient: 0 24px 48px rgba(125, 74, 158, 0.16);
+  --shadow-glow-secondary: 0 0 0 1px rgba(115, 92, 0, 0.4), 0 0 14px rgba(254, 214, 91, 0.26);
+  --shadow-glow-tertiary: 0 0 0 1px rgba(125, 74, 158, 0.35), 0 0 14px rgba(125, 74, 158, 0.22);
+}
+
+[data-theme='dark'] {
+  /* Ronin palette (DESIGN-Ronin.md) */
   --color-primary: #c1c6d9;
   --color-primary-container: #2f3650;
   --color-primary-muted: #959db5;
@@ -29,6 +87,7 @@
   --color-border: rgba(230, 254, 255, 0.35);
   --color-surface: #161a23;
   --color-focus: #e6feff;
+  --color-focus-outline: rgba(230, 254, 255, 0.5);
   --color-on-primary: #0f131d;
   --color-on-secondary: #0b1518;
   --color-on-tertiary: #140c1d;
@@ -54,7 +113,9 @@
   --shadow-ambient: 0 28px 56px rgba(236, 177, 255, 0.14);
   --shadow-glow-secondary: 0 0 0 1px rgba(230, 254, 255, 0.45), 0 0 18px rgba(230, 254, 255, 0.24);
   --shadow-glow-tertiary: 0 0 0 1px rgba(236, 177, 255, 0.4), 0 0 18px rgba(236, 177, 255, 0.2);
+}
 
+:root {
   /* Typography */
   --font-serif: 'Noto Serif JP', serif;
   --font-sans: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif;
@@ -67,7 +128,6 @@
   --spacing-xl: 2rem;
   --spacing-2xl: 3rem;
 }
-
 /* The "No-Line" Rule: 0px radius globally */
 *, *::before, *::after {
   border-radius: 0;
@@ -139,7 +199,7 @@ a:focus-visible,
 button:focus-visible,
 [role='button']:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid rgba(230, 254, 255, 0.5);
+  outline: 2px solid var(--color-focus-outline);
   outline-offset: 3px;
   box-shadow: var(--shadow-glow-secondary);
 }
