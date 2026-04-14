@@ -7,21 +7,33 @@
 
 /* Dark glass header */
 .home-header {
-  background: rgba(17, 19, 25, 0.82);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  color: var(--color-dark-text);
+  background:
+    linear-gradient(120deg, rgba(17, 19, 25, 0.8) 0%, rgba(17, 19, 25, 0.68) 40%, rgba(17, 19, 25, 0.88) 100%),
+    url('./assets/header/dohyo-roof.svg') center/cover no-repeat;
+  color: #f6f2e9;
   padding: 4rem 2rem;
   text-align: center;
   position: sticky;
   top: 0;
   z-index: 100;
   box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+.home-header::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('./assets/header/yokozuna-tsuna.svg') right center / min(52vw, 540px) auto no-repeat;
+  opacity: 0.45;
+  pointer-events: none;
 }
 
 .header-content {
   max-width: 800px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .home-title {
@@ -29,14 +41,14 @@
   font-weight: 900;
   margin-bottom: 0.5rem;
   letter-spacing: 0.02em;
-  color: var(--color-primary);
+  color: #fff8ea;
   font-family: var(--font-serif);
 }
 
 .home-subtitle {
   font-size: 1.25rem;
   font-weight: 400;
-  color: var(--color-secondary-dim);
+  color: #ffe8bb;
   letter-spacing: 0.1em;
 }
 
@@ -420,5 +432,19 @@
   .tech-badge {
     font-size: 0.75rem;
     padding: 0.35rem 0.85rem;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .home-header {
+    padding: 3rem 1.25rem;
+    background-position: center top;
+  }
+
+  .home-header::after {
+    background-size: min(72vw, 380px) auto;
+    background-position: center 88%;
+    opacity: 0.35;
   }
 }

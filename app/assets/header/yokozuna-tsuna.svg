@@ -1,0 +1,21 @@
+<svg width="1200" height="600" viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111319"/>
+      <stop offset="1" stop-color="#2A1E14"/>
+    </linearGradient>
+    <linearGradient id="rope" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#D6B178"/>
+      <stop offset="1" stop-color="#F3D8A8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#bg2)"/>
+  <path d="M40 280C180 220 320 370 460 300C600 230 740 365 880 300C980 254 1080 260 1160 318" stroke="url(#rope)" stroke-width="64" stroke-linecap="round"/>
+  <path d="M120 282C260 222 400 370 540 302C680 234 820 366 960 304C1040 268 1110 270 1152 294" stroke="#8E6A3A" stroke-width="12" stroke-linecap="round" stroke-dasharray="6 20" opacity="0.5"/>
+  <g fill="#F5E6C8">
+    <path d="M270 332C310 380 296 438 262 470C238 438 232 382 270 332Z"/>
+    <path d="M482 332C522 380 508 438 474 470C450 438 444 382 482 332Z"/>
+    <path d="M690 332C730 380 716 438 682 470C658 438 652 382 690 332Z"/>
+    <path d="M894 332C934 380 920 438 886 470C862 438 856 382 894 332Z"/>
+  </g>
+</svg>
