@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;500;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;500;600;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 :root,
 [data-theme='light'] {
@@ -118,7 +118,7 @@
 :root {
   /* Typography */
   --font-serif: 'Noto Serif JP', serif;
-  --font-sans: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif;
+  --font-sans: 'Space Grotesk', 'Noto Sans JP', sans-serif;
 
   /* Spacing */
   --spacing-xs: 0.25rem;

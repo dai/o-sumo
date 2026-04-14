@@ -5,7 +5,7 @@
   background: var(--surface);
 }
 
-/* Dark glass header */
+/* Header */
 .home-header {
   padding: 4rem 2rem;
   text-align: center;
@@ -417,12 +417,5 @@
   .tech-badge {
     font-size: 0.75rem;
     padding: 0.35rem 0.85rem;
-  }
-}
-
-
-@media (max-width: 768px) {
-  .home-header {
-    padding: 3rem 1.25rem;
   }
 }

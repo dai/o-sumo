@@ -23,10 +23,10 @@ To add a premium edge, use Glassmorphism for floating navigation elements. Use a
 ---
  
 ## 3. Typography: The Modern Mincho
-The typographic system relies on the tension between the ceremonial `notoSerif` and the functional `plusJakartaSans`.
+The typographic system relies on the tension between the ceremonial `notoSerif` and the functional `Space Grotesk`.
  
 - **Display & Headlines (notoSerif):** These are your "brush strokes." Use `display-lg` (3.5rem) with generous letter-spacing to anchor pages. The serif reflects the elegance of Japanese calligraphy (Mincho style).
-- **Body & Labels (plusJakartaSans):** This is your "modern architecture." The sans-serif provides a clean, neutral counter-balance to the expressive headings.
+- **Body & Labels (Space Grotesk):** This is your "modern architecture." The sans-serif provides a clean, neutral counter-balance to the expressive headings.
 - **Hierarchy as Identity:** Use extreme scale—pairing a massive `display-md` headline with a tiny, all-caps `label-md` sub-header—to create an editorial, high-end look.
  
 ---
