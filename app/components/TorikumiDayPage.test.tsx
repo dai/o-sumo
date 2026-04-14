@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import TorikumiDayPage from './TorikumiDayPage';
-import { torikumiArchive, type TorikumiArchiveDay } from '../lib/torikumi-data';
+import { MARCH2026_TORIKUMI_DATA, torikumiArchive, type TorikumiArchiveDay } from '../lib/torikumi-data';
 import { banzukePath, getHubPath } from '../lib/torikumi-routes';
 
 function renderPage(day: TorikumiArchiveDay, mode: 'result' | 'schedule' = 'result') {
@@ -27,7 +27,9 @@ describe('TorikumiDayPage', () => {
 
   it('switches bout sorting between ascending and descending', async () => {
     const user = userEvent.setup();
-    renderPage(torikumiArchive.resultDays[0], 'result');
+    const marchFirstDay = MARCH2026_TORIKUMI_DATA.resultDays?.[0];
+    expect(marchFirstDay).toBeDefined();
+    renderPage(marchFirstDay!, 'result');
 
     const before = screen.getAllByRole('row').slice(0, 2).map((row) => row.textContent);
 
@@ -79,6 +81,16 @@ describe('TorikumiDayPage', () => {
     expect(screen.getByRole('link', { name: '一覧' })).toHaveAttribute('href', getHubPath('schedule'));
     expect(screen.getByRole('link', { name: /← 初日/ })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /三日目 →/ })).toBeInTheDocument();
-    expect(screen.getAllByText('取組予定').length).toBeGreaterThan(0);
+    expect(screen.getByText('取組予定未更新')).toBeInTheDocument();
+  });
+
+  it('keeps march day navigation and hub links in 202603', () => {
+    const marchDay = MARCH2026_TORIKUMI_DATA.resultDays?.[1];
+    expect(marchDay).toBeDefined();
+    renderPage(marchDay!, 'result');
+
+    expect(screen.getByRole('link', { name: '一覧' })).toHaveAttribute('href', '/202603-torikumi');
+    expect(screen.getByRole('link', { name: /← 初日/ })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /三日目 →/ })).toBeInTheDocument();
   });
 });

@@ -1,20 +1,6 @@
 import { Navigate, useParams } from 'react-router-dom';
 import TorikumiDayPage from './components/TorikumiDayPage';
-import { findArchiveDay, parseTopLevelSlug } from './lib/torikumi-routes';
-import {
-  MARCH2026_RESULT_PATH,
-  MARCH2026_SCHEDULE_PATH,
-  MAY2026_RESULT_PATH,
-  MAY2026_SCHEDULE_PATH,
-} from './lib/torikumi-routes';
-
-function getHubPathForDateKey(dateKey: string, mode: 'result' | 'schedule'): string {
-  if (dateKey.startsWith('202603')) {
-    return mode === 'result' ? MARCH2026_RESULT_PATH : MARCH2026_SCHEDULE_PATH;
-  }
-  // Default: May 2026
-  return mode === 'result' ? MAY2026_RESULT_PATH : MAY2026_SCHEDULE_PATH;
-}
+import { findArchiveDay, getHubPathForDateKey, parseTopLevelSlug } from './lib/torikumi-routes';
 
 export default function TopLevelSlugPage() {
   const { slug } = useParams<{ slug: string }>();

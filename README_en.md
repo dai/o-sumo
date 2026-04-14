@@ -23,9 +23,9 @@ o-sumo is a static web app for publishing sumo banzuke and torikumi information.
   - Daily result: `/{YYYYMMDD}-torikumi`
   - Daily schedule: `/{YYYYMMDD}-yotei`
 - Current route examples:
-  - `/202603-banduke`
-  - `/202603-torikumi`
-  - `/20260322-yotei`
+  - `/202605-banduke`
+  - `/202605-torikumi`
+  - `/20260524-yotei`
 - The legacy banzuke URL `/{YYYYMM}-o-sumo` redirects to the current banzuke URL.
 - Public APIs:
   - `/api/v1/banzuke.json`
@@ -172,11 +172,11 @@ Key validations:
 GitHub Actions uses separate daily and results-refresh workflows.
 
 - Daily update: `.github/workflows/daily-data-update.yml`
-  - schedule: 10:00 JST and 18:00 JST every day
+  - schedule: currently paused (`workflow_dispatch` only)
   - updates banzuke and torikumi schedules
   - commits and pushes directly to `main` when files change
 - Realtime results update: `.github/workflows/realtime-torikumi-update.yml`
-  - schedule: every 30 minutes from 15:00 JST through 19:30 JST, plus 20:00 JST
+  - schedule: every 30 minutes from 15:00 JST through 19:30 JST, plus 20:00 JST (cron enabled)
   - updates torikumi results only
   - commits and pushes directly to `main` when files change
 

@@ -1,17 +1,57 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import BanzukeTable from '../components/BanzukeTable';
 import SortToggle from '../components/SortToggle';
-import { bashoTitle, gregorianBashoLabel } from '../lib/basho-meta';
+import {
+  MARCH2026_BASHO_NAME,
+  MARCH2026_JURYO_DATA,
+  MARCH2026_MAKUUCHI_DATA,
+  MARCH2026_YEAR,
+} from '../lib/march2026-banzuke-data';
 import { type SortOrder, sortRankGroups } from '../lib/sorting';
 import { makuuchiData, juryo } from '../lib/sumo-data';
-import { banzukePath, getHubPath } from '../lib/torikumi-routes';
+import { getArchiveRouteConfigForPathname, getHubPathForMonthKey } from '../lib/torikumi-routes';
 import './page.css';
+
+function formatGregorianBashoLabel(monthKey: string): string {
+  const year = monthKey.slice(0, 4);
+  const month = String(Number(monthKey.slice(4, 6)));
+  return `${year}年${month}月場所`;
+}
+
+function useBanzukeContext() {
+  const location = useLocation();
+  const routeConfig = getArchiveRouteConfigForPathname(location.pathname);
+  const monthKey = routeConfig.monthKey;
+
+  if (monthKey === '202603') {
+    return {
+      monthKey,
+      bashoTitle: `${MARCH2026_YEAR}${MARCH2026_BASHO_NAME}`,
+      gregorianBashoLabel: formatGregorianBashoLabel(monthKey),
+      bandukePath: routeConfig.bandukePath,
+      resultPath: routeConfig.resultPath,
+      makuuchi: MARCH2026_MAKUUCHI_DATA,
+      juryo: MARCH2026_JURYO_DATA,
+    };
+  }
+
+  return {
+    monthKey,
+    bashoTitle: `${routeConfig.archive.year}${routeConfig.archive.bashoName}`,
+    gregorianBashoLabel: formatGregorianBashoLabel(monthKey),
+    bandukePath: routeConfig.bandukePath,
+    resultPath: routeConfig.resultPath,
+    makuuchi: makuuchiData,
+    juryo,
+  };
+}
 
 export default function BanzukePage() {
   const [sortOrder, setSortOrder] = React.useState<SortOrder>('asc');
-  const sortedMakuuchi = sortRankGroups(makuuchiData, sortOrder);
-  const sortedJuryo = sortRankGroups(juryo, sortOrder);
+  const { bashoTitle, gregorianBashoLabel, bandukePath, monthKey, makuuchi, juryo: juryoRanks } = useBanzukeContext();
+  const sortedMakuuchi = sortRankGroups(makuuchi, sortOrder);
+  const sortedJuryo = sortRankGroups(juryoRanks, sortOrder);
 
   return (
     <div className="page-container">
@@ -19,7 +59,7 @@ export default function BanzukePage() {
         <div className="header-content">
           <h1 className="page-title">大相撲</h1>
           <h2 className="page-subtitle">{bashoTitle} 番付一覧</h2>
-          <p className="page-description">{gregorianBashoLabel}の幕内・十両力士の番付と成績 / URL: {banzukePath}</p>
+          <p className="page-description">{gregorianBashoLabel}の幕内・十両力士の番付と成績 / URL: {bandukePath}</p>
         </div>
       </header>
 
@@ -32,7 +72,7 @@ export default function BanzukePage() {
           <h2 className="section-heading">幕内</h2>
           <div className="banzuke-list">
             {sortedMakuuchi.map((rankGroup, index) => (
-              <BanzukeTable key={index} rankGroup={rankGroup} />
+              <BanzukeTable key={index} rankGroup={rankGroup} monthKey={monthKey} />
             ))}
           </div>
         </section>
@@ -41,7 +81,7 @@ export default function BanzukePage() {
           <h2 className="section-heading">十両</h2>
           <div className="banzuke-list">
             {sortedJuryo.map((rankGroup, index) => (
-              <BanzukeTable key={index} rankGroup={rankGroup} />
+              <BanzukeTable key={index} rankGroup={rankGroup} monthKey={monthKey} />
             ))}
           </div>
         </section>
@@ -67,7 +107,7 @@ export default function BanzukePage() {
         <nav aria-label="番付ページの関連リンク">
           <Link to="/">ホームに戻る</Link>
           {" | "}
-          <Link to={getHubPath('result')}>取組結果一覧</Link>
+          <Link to={getHubPathForMonthKey(monthKey, 'result')}>取組結果一覧</Link>
           {" | "}
           <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">
             Daisuke on X

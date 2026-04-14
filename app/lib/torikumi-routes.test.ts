@@ -3,15 +3,17 @@ import {
   banzukePath,
   findArchiveDay,
   getAdjacentDay,
+  getArchiveRouteConfigForPathname,
   getArchiveUpdatedAt,
   getArchiveUpdateMessage,
   getDayPath,
   getHubPath,
+  getHubPathForDateKey,
   isElapsedArchiveDay,
   legacyBanzukePath,
   parseTopLevelSlug,
 } from './torikumi-routes';
-import { torikumiArchive, torikumiMonthKey } from './torikumi-data';
+import { MARCH2026_TORIKUMI_DATA, torikumiArchive, torikumiMonthKey } from './torikumi-data';
 
 describe('torikumi route helpers', () => {
   it('parses dated top-level result slug', () => {
@@ -60,13 +62,31 @@ describe('torikumi route helpers', () => {
     expect(getAdjacentDay(day!, 'result', 'next')?.pathDate).toBe(secondResultDay.pathDate);
     expect(torikumiArchive.resultDays).toHaveLength(15);
     expect(torikumiArchive.scheduleDays).toHaveLength(15);
-    expect(torikumiArchive.resultDays[1]?.status).toBe('published');
+    expect(torikumiArchive.resultDays[1]?.status).toBe('pending');
 
     const firstScheduleDay = torikumiArchive.scheduleDays[0];
     const secondScheduleDay = torikumiArchive.scheduleDays[1];
     const scheduleDay = findArchiveDay(firstScheduleDay.pathDate, 'schedule');
     expect(getAdjacentDay(scheduleDay!, 'schedule', 'next')?.pathDate).toBe(secondScheduleDay.pathDate);
-    expect(torikumiArchive.scheduleDays[1]?.status).toBe('published');
+    expect(torikumiArchive.scheduleDays[1]?.status).toBe('pending');
+  });
+
+  it('keeps adjacent navigation inside the same month archive', () => {
+    const marchFirstDay = MARCH2026_TORIKUMI_DATA.resultDays?.[0];
+    const marchSecondDay = MARCH2026_TORIKUMI_DATA.resultDays?.[1];
+    expect(marchFirstDay).toBeDefined();
+    expect(marchSecondDay).toBeDefined();
+    expect(getAdjacentDay(marchFirstDay!, 'result', 'prev')).toBeUndefined();
+    expect(getAdjacentDay(marchFirstDay!, 'result', 'next')?.pathDate).toBe(marchSecondDay!.pathDate);
+  });
+
+  it('resolves month config from pathname and date key', () => {
+    const marchConfig = getArchiveRouteConfigForPathname('/202603-banduke');
+    const mayConfig = getArchiveRouteConfigForPathname('/202605-torikumi');
+    expect(marchConfig.monthKey).toBe('202603');
+    expect(mayConfig.monthKey).toBe('202605');
+    expect(getHubPathForDateKey('20260322', 'result')).toBe('/202603-torikumi');
+    expect(getHubPathForDateKey('20260524', 'schedule')).toBe('/202605-yotei');
   });
 
   it('detects elapsed archive days from the supplied reference date', () => {

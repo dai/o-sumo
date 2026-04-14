@@ -2,16 +2,11 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SortToggle from '../components/SortToggle';
 import { type SortOrder, sortArchiveDays } from '../lib/sorting';
-import { torikumiArchive, MARCH2026_TORIKUMI_DATA, type TorikumiDataSet } from '../lib/torikumi-data';
+import { type TorikumiDataSet } from '../lib/torikumi-data';
 import {
-  banzukePath,
+  getArchiveRouteConfigForPathname,
   getDayPath,
   type TorikumiPageMode,
-  MARCH2026_RESULT_PATH,
-  MARCH2026_SCHEDULE_PATH,
-  MAY2026_RESULT_PATH,
-  MAY2026_SCHEDULE_PATH,
-  MARCH2026_BANDUKE_PATH,
 } from '../lib/torikumi-routes';
 import './page.css';
 
@@ -22,22 +17,12 @@ function modeLabel(mode: TorikumiPageMode): string {
 // Determine which archive to use based on current path
 function useArchive(): { archive: TorikumiDataSet; resultPath: string; schedulePath: string; bandukePath: string } {
   const location = useLocation();
-
-  if (location.pathname.startsWith('/202603')) {
-    return {
-      archive: MARCH2026_TORIKUMI_DATA,
-      resultPath: MARCH2026_RESULT_PATH,
-      schedulePath: MARCH2026_SCHEDULE_PATH,
-      bandukePath: MARCH2026_BANDUKE_PATH,
-    };
-  }
-
-  // Default: May 2026
+  const config = getArchiveRouteConfigForPathname(location.pathname);
   return {
-    archive: torikumiArchive,
-    resultPath: MAY2026_RESULT_PATH,
-    schedulePath: MAY2026_SCHEDULE_PATH,
-    bandukePath: banzukePath,
+    archive: config.archive,
+    resultPath: config.resultPath,
+    schedulePath: config.schedulePath,
+    bandukePath: config.bandukePath,
   };
 }
 
@@ -64,7 +49,7 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
             <p>
               {mode === 'result'
                 ? '初日から千秋楽までの結果ページを日付ごとに辿れます。未更新日は空状態で先に公開します。'
-                : '初日から千秋楽までの予定ページを日付ごとに確認できます。未更新日は更新待ちとして表示します。'}
+                : '初日から千秋楽までの予定ページを日付ごとに確認できます。未更新日は取組予定未更新として表示します。'}
             </p>
           </div>
           <nav className="archive-nav" aria-label={`${modeLabel(mode)}一覧の主要導線`}>

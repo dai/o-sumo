@@ -10,8 +10,8 @@ The o-sumo API is operated on a best-effort basis by an individual maintainer. N
 
 Current automated update flows:
 
-- Daily update for banzuke and torikumi schedules: every day at 10:00 JST and 18:00 JST
-- Realtime update for torikumi results only: every 30 minutes from 15:00 JST through 19:30 JST, plus 20:00 JST
+- Daily update for banzuke and torikumi schedules: currently paused (`workflow_dispatch` only)
+- Realtime update for torikumi results only: every 30 minutes from 15:00 JST through 19:30 JST, plus 20:00 JST (cron enabled)
 
 See the GitHub Actions workflows for the exact implementation.
 

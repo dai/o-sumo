@@ -55,4 +55,15 @@ describe('BanzukePage', () => {
     expect(screen.getByText('●')).toBeInTheDocument();
     expect(screen.getByText('−')).toBeInTheDocument();
   });
+
+  it('renders march archive data and links for 202603 route', () => {
+    render(
+      <MemoryRouter initialEntries={['/202603-banduke']}>
+        <BanzukePage />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByRole('heading', { level: 2, name: /三月場所 番付一覧/ })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '取組結果一覧' })).toHaveAttribute('href', '/202603-torikumi');
+  });
 });

@@ -1,5 +1,14 @@
 # API Changelog
 
+## 2026-04-14
+
+### 仕様・運用更新
+
+- 五月場所の `pending` 運用を正規化し、`statusMessage` を `結果未更新` / `取組予定未更新` に統一
+- 五月場所の日付を 15 日連続（`20260510` - `20260524`）に修正
+- 結果更新 workflow（`realtime-torikumi-update.yml`）の cron を再開、日次更新は `workflow_dispatch` 運用を維持
+- API ドキュメントの場所名例と pending 説明を現行運用に同期
+
 ## 2026-03-30
 
 ### 新機能

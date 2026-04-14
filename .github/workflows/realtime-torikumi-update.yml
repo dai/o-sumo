@@ -1,10 +1,9 @@
 name: Realtime Torikumi Update
 
 on:
-  # schedule:
-  #   - cron: '0,30 6-10 * * *' # 15:00-19:30 JST
-  #   - cron: '0 11 * * *' # 20:00 JST
-  # 大相撲休場中のため一時停止 (5月場所再開時に戻す)
+  schedule:
+    - cron: '0,30 6-10 * * *' # 15:00-19:30 JST
+    - cron: '0 11 * * *' # 20:00 JST
   workflow_dispatch:
 
 permissions:

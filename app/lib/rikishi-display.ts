@@ -1,4 +1,4 @@
-import { torikumiArchive } from './torikumi-data';
+import { MARCH2026_TORIKUMI_DATA, torikumiArchive, torikumiMonthKey } from './torikumi-data';
 import { getDayPath } from './torikumi-routes';
 import { juryo, makuuchiData, type RankGroup, type Rikishi } from './sumo-data';
 
@@ -17,9 +17,18 @@ export function buildProfileNameMap(): Map<string, string> {
   return new Map(canonicalNameMap);
 }
 
-export function buildResultLinkMap(): Map<string, string> {
+function getResultDaysByMonthKey(monthKey: string) {
+  if (monthKey === '202603') {
+    return MARCH2026_TORIKUMI_DATA.resultDays ?? [];
+  }
+  return torikumiArchive.resultDays;
+}
+
+export function buildResultLinkMap(monthKey: string = torikumiMonthKey): Map<string, string> {
   const map = new Map<string, string>();
-  for (const day of torikumiArchive.resultDays) {
+  const resultDays = getResultDaysByMonthKey(monthKey);
+
+  for (const day of resultDays) {
     for (const divisionDay of [day.data.makuuchi, day.data.juryo]) {
       for (const match of divisionDay.matches) {
         const href = `${getDayPath(day, 'result')}#${divisionAnchorId(divisionDay.division, match.boutNo)}`;

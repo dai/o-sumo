@@ -11,12 +11,12 @@ import '../styles/banzuke.css';
 
 interface BanzukeTableProps {
   rankGroup: RankGroup;
+  monthKey?: string;
 }
 
 const profileNameMap = buildProfileNameMap();
-const resultLinkMap = buildResultLinkMap();
 
-const Hoshitori = ({ rikishi }: { rikishi: Rikishi }) => {
+const Hoshitori = ({ rikishi, resultLinkMap }: { rikishi: Rikishi; resultLinkMap: Map<string, string> }) => {
   if (!rikishi.results || rikishi.results.length === 0) return null;
 
   return (
@@ -41,7 +41,7 @@ const Hoshitori = ({ rikishi }: { rikishi: Rikishi }) => {
   );
 };
 
-const RikishiCell = ({ rikishi }: { rikishi: Rikishi }) => {
+const RikishiCell = ({ rikishi, resultLinkMap }: { rikishi: Rikishi; resultLinkMap: Map<string, string> }) => {
   const name = displayShikona(rikishi, profileNameMap);
   const wins = rikishi.wins ?? 0;
   const losses = rikishi.losses ?? 0;
@@ -80,12 +80,14 @@ const RikishiCell = ({ rikishi }: { rikishi: Rikishi }) => {
         <a href={rikishi.profileUrl} target="_blank" rel="noreferrer">プロフィール</a>
         {rikishi.memo ? ` / ${rikishi.memo}` : ''}
       </div>
-      <Hoshitori rikishi={rikishi} />
+      <Hoshitori rikishi={rikishi} resultLinkMap={resultLinkMap} />
     </div>
   );
 };
 
-export default function BanzukeTable({ rankGroup }: BanzukeTableProps) {
+export default function BanzukeTable({ rankGroup, monthKey }: BanzukeTableProps) {
+  const resultLinkMap = buildResultLinkMap(monthKey);
+
   return (
     <div className="rank-section">
       <h3 className="rank-title">{rankGroup.title}</h3>
@@ -104,10 +106,10 @@ export default function BanzukeTable({ rankGroup }: BanzukeTableProps) {
         <tbody>
           <tr>
             <td className="east">
-              {rankGroup.east.length > 0 ? <RikishiCell rikishi={rankGroup.east[0]} /> : <span className="empty">—</span>}
+              {rankGroup.east.length > 0 ? <RikishiCell rikishi={rankGroup.east[0]} resultLinkMap={resultLinkMap} /> : <span className="empty">—</span>}
             </td>
             <td className="west">
-              {rankGroup.west.length > 0 ? <RikishiCell rikishi={rankGroup.west[0]} /> : <span className="empty">—</span>}
+              {rankGroup.west.length > 0 ? <RikishiCell rikishi={rankGroup.west[0]} resultLinkMap={resultLinkMap} /> : <span className="empty">—</span>}
             </td>
           </tr>
         </tbody>

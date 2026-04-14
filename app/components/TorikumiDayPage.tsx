@@ -3,17 +3,13 @@ import { Link } from 'react-router-dom';
 import { canonicalShikona, divisionAnchorId } from '../lib/rikishi-display';
 import SortToggle from './SortToggle';
 import { type SortOrder, sortMatches } from '../lib/sorting';
-import { type TorikumiArchiveDay, type TorikumiDivisionDay, type TorikumiMatch, torikumiArchive, MARCH2026_TORIKUMI_DATA } from '../lib/torikumi-data';
+import { type TorikumiArchiveDay, type TorikumiDivisionDay, type TorikumiMatch } from '../lib/torikumi-data';
 import {
-  banzukePath,
+  getArchiveRouteConfigByMonthKey,
+  getArchiveRouteConfigForDateKey,
   getAdjacentDay,
   getDayPath,
   type TorikumiPageMode,
-  MARCH2026_RESULT_PATH,
-  MARCH2026_SCHEDULE_PATH,
-  MARCH2026_BANDUKE_PATH,
-  MAY2026_RESULT_PATH,
-  MAY2026_SCHEDULE_PATH,
 } from '../lib/torikumi-routes';
 import '../torikumi/page.css';
 
@@ -44,7 +40,7 @@ function displayName(name: string, _yomi: string, profileUrl: string): string {
 function emptyDivisionMessage(division: '幕内' | '十両', mode: TorikumiPageMode): string {
   return mode === 'result'
     ? `${division}の結果はまだ更新されていません。`
-    : `${division}の取扱い予定はまだ更新されていません。`;
+    : `${division}の取組予定はまだ更新されていません。`;
 }
 
 function winnerLabel(match: TorikumiMatch): string {
@@ -111,20 +107,26 @@ function TorikumiTable({
 
 // Determine which archive to use based on pathDate
 function getArchiveForPath(pathDate: string) {
-  if (pathDate.startsWith('202603')) {
+  const config = getArchiveRouteConfigForDateKey(pathDate);
+  if (config) {
     return {
-      archive: MARCH2026_TORIKUMI_DATA,
-      resultPath: MARCH2026_RESULT_PATH,
-      schedulePath: MARCH2026_SCHEDULE_PATH,
-      bandukePath: MARCH2026_BANDUKE_PATH,
+      archive: config.archive,
+      resultPath: config.resultPath,
+      schedulePath: config.schedulePath,
+      bandukePath: config.bandukePath,
     };
   }
-  // Default: May 2026
+
+  const fallback = getArchiveRouteConfigByMonthKey('202605');
+  if (!fallback) {
+    throw new Error('Missing default archive route config for 202605');
+  }
+
   return {
-    archive: torikumiArchive,
-    resultPath: MAY2026_RESULT_PATH,
-    schedulePath: MAY2026_SCHEDULE_PATH,
-    bandukePath: banzukePath,
+    archive: fallback.archive,
+    resultPath: fallback.resultPath,
+    schedulePath: fallback.schedulePath,
+    bandukePath: fallback.bandukePath,
   };
 }
 

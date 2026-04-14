@@ -84,12 +84,12 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 ### Data Updates
 
 - Workflow: `.github/workflows/daily-data-update.yml`
-- Schedule: every day at 10:00 JST and 18:00 JST
+- Schedule: currently paused (`workflow_dispatch` only)
 - Scope: banzuke + torikumi schedule
 - If files change, the workflow commits and pushes directly to `main`
 
 - Workflow: `.github/workflows/realtime-torikumi-update.yml`
-- Schedule: every 30 minutes from 15:00 JST through 19:30 JST, plus 20:00 JST
+- Schedule: every 30 minutes from 15:00 JST through 19:30 JST, plus 20:00 JST (cron enabled)
 - Scope: torikumi results only
 - If files change, the workflow commits and pushes directly to `main`
 
@@ -120,4 +120,4 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - `dist/` is a build artifact
 - `public/_redirects` configures SPA fallback
 - Month-key routes should be handled based on `app/lib/torikumi-routes.ts`
-- Do not hardcode routes such as `202603-*`; use the month key derived from generated data
+- Do not add fixed `YYYYMM-*` routes; use month-key resolution derived from generated data

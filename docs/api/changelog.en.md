@@ -2,6 +2,15 @@
 
 [日本語版](./changelog.md)
 
+## 2026-04-14
+
+### Spec And Operations Updates
+
+- Normalized May basho `pending` behavior and unified `statusMessage` values to `結果未更新` / `取組予定未更新`
+- Corrected May date coverage to 15 consecutive days (`20260510` - `20260524`)
+- Re-enabled cron for realtime result updates (`realtime-torikumi-update.yml`) while keeping daily updates manual (`workflow_dispatch`)
+- Synced API docs examples and pending-state wording with current operations
+
 ## 2026-03-30
 
 ### New Features

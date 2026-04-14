@@ -84,12 +84,12 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 ### データ更新
 
 - Workflow: `.github/workflows/daily-data-update.yml`
-- 実行時刻: 毎日 10:00 JST / 18:00 JST
+- 実行時刻: 現在は停止（`workflow_dispatch` のみ）
 - 更新対象: 番付 + 取組予定
 - 変更がある場合は `main` ブランチに直接 commit / push
 
 - Workflow: `.github/workflows/realtime-torikumi-update.yml`
-- 実行時刻: 15:00-19:30 JST の 30 分間隔、および 20:00 JST
+- 実行時刻: 15:00-19:30 JST の 30 分間隔、および 20:00 JST（cron 有効）
 - 更新対象: 取組結果のみ
 - 変更がある場合は `main` ブランチに直接 commit / push
 
@@ -120,10 +120,10 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - `dist/` はビルド生成物です
 - `public/_redirects` で SPA fallback を設定しています
 - 月キー付きルートは `app/lib/torikumi-routes.ts` を基準に扱います
-- 固定の `202603-*` ルートをコードに追加するのではなく、生成データ由来の月キーを使います
+- 固定の `YYYYMM-*` ルートを増やすのではなく、生成データ由来の月キー解決を使います
 
 ## 運用制約ポリシー（2026年5月場所向け）
 
-- Actions の休場中ストップ運用は維持し、`daily-data-update.yml` / `realtime-torikumi-update.yml` の `schedule` は復帰させない。
+- `realtime-torikumi-update.yml` は `schedule` を有効化し、`daily-data-update.yml` は手動実行（`workflow_dispatch`）のまま運用する。
 - Cloudflare の従量抑制を優先し、`public/_headers` のキャッシュ方針（`/assets/*` 長期 immutable、`manifest` 1時間、`sw.js` 再検証、`/` 5分）を維持する。
 - PWA 更新は `vite-plugin-pwa` の `registerType: "prompt"` を維持し、利用者同意なしの即時更新を避ける。

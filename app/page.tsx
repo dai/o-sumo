@@ -20,7 +20,7 @@ export default function Home() {
         {/* Current Basho - Hero Section */}
         <section className="hero-section">
           <h2>{bashoTitle}</h2>
-          <p>最新の番付、日別の取組結果、日別の取扱い予定をご覧ください。</p>
+          <p>最新の番付、日別の取組結果、日別の取組予定をご覧ください。</p>
           <nav className="hero-actions" aria-label="主要ページへの導線">
             <Link to={banzukePath} className="cta-button">
               番付
