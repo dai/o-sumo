@@ -49,8 +49,8 @@ export interface TorikumiDataSet {
   scheduleUpdatedAt: string;
   today?: TorikumiDailyData;
   tomorrow?: TorikumiDailyData;
-  resultDays?: TorikumiArchiveDay[];
-  scheduleDays?: TorikumiArchiveDay[];
+  resultDays: TorikumiArchiveDay[];
+  scheduleDays: TorikumiArchiveDay[];
 }
 
 export const torikumiData: TorikumiDataSet = {
@@ -10139,7 +10139,7 @@ export const torikumiMonthKey = torikumiArchive.resultDays[0]?.pathDate.slice(0,
 
 export const banzukePath = `/${torikumiMonthKey}-banduke`;
 
-const MARCH2026_RESULT_DAYS = (torikumiData.resultDays ?? []).filter((day) => day.pathDate.startsWith('202603'));
+const MARCH2026_RESULT_DAYS = torikumiData.resultDays.filter((day) => day.pathDate.startsWith('202603'));
 
 function stripMatchResult(match: TorikumiMatch): TorikumiMatch {
   return {

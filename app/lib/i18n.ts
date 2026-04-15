@@ -16,6 +16,7 @@ i18n
       en: { common: enCommon },
       ja: { common: jaCommon },
     },
+    supportedLngs: [...SUPPORTED_LANGS],
     fallbackLng: 'ja',
     defaultNS: 'common',
     ns: ['common'],
@@ -23,12 +24,11 @@ i18n
       order: ['localStorage', 'navigator'],
       caches: ['localStorage'],
       lookupLocalStorage: LANG_STORAGE_KEY,
-      checkWhitelist: true,
-      languageToResolve: (requestedLang: string): SupportedLang => {
-        return SUPPORTED_LANGS.includes(requestedLang as SupportedLang)
-          ? (requestedLang as SupportedLang)
-          : 'ja';
-      },
+      convertDetectedLanguage: (requestedLang: string): string => (
+        SUPPORTED_LANGS.includes(requestedLang as SupportedLang)
+          ? requestedLang
+          : 'ja'
+      ),
     },
     interpolation: { escapeValue: false },
     react: { useSuspense: false },
