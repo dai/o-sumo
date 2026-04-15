@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom'
 import { registerSW } from 'virtual:pwa-register'
+import { useTranslation } from 'react-i18next'
 import './lib/i18n'
 import { i18n } from './lib/i18n'
 import BanzukePage from './banzuke/page'
@@ -12,7 +13,7 @@ import ArchivesPage from './archives/page'
 import ThemeToggle from './components/ThemeToggle'
 import LanguageToggle from './components/LanguageToggle'
 import {
-  banzukePath,
+  MAY2026_BANDUKE_PATH,
   MAY2026_RESULT_PATH,
   MAY2026_SCHEDULE_PATH,
   MARCH2026_RESULT_PATH,
@@ -32,9 +33,14 @@ const updateSW = registerSW({
   },
 })
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+function AppShell() {
+  const { t } = useTranslation('common')
+
+  return (
     <BrowserRouter>
+      <div className="global-notice-banner" role="status" aria-live="polite">
+        {t('global.may2026UpdateNotice')}
+      </div>
       <div className="top-right-controls">
         <ThemeToggle />
         <LanguageToggle />
@@ -43,7 +49,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/" element={<HomePage />} />
         <Route path="/archives" element={<ArchivesPage />} />
         {/* May 2026 routes */}
-        <Route path={banzukePath} element={<BanzukePage />} />
+        <Route path={MAY2026_BANDUKE_PATH} element={<BanzukePage />} />
         <Route path={MAY2026_RESULT_PATH} element={<TorikumiHubPage mode="result" />} />
         <Route path={MAY2026_SCHEDULE_PATH} element={<TorikumiHubPage mode="schedule" />} />
         {/* March 2026 routes */}
@@ -56,5 +62,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/:slug" element={<TopLevelSlugPage />} />
       </Routes>
     </BrowserRouter>
+  )
+}
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <AppShell />
   </React.StrictMode>,
 )

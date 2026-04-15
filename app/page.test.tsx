@@ -1,6 +1,15 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { banzukePath, getHubPath } from './lib/torikumi-routes';
+import {
+  MARCH2026_BANDUKE_PATH,
+  MARCH2026_RESULT_PATH,
+  MARCH2026_SCHEDULE_PATH,
+  MAY2026_BANDUKE_PATH,
+  MAY2026_RESULT_PATH,
+  MAY2026_SCHEDULE_PATH,
+} from './lib/torikumi-routes';
+import { MAY2026_TORIKUMI_DATA } from './lib/may2026-data';
+import { MARCH2026_TORIKUMI_DATA } from './lib/torikumi-data';
 import Home from './page';
 
 describe('Home page', () => {
@@ -14,14 +23,26 @@ describe('Home page', () => {
     // Get all links
     const allLinks = screen.getAllByRole('link');
 
-    // Check the first occurrence of each link type (current basho, not past)
-    const banzukeLink = allLinks.find(l => l.getAttribute('href') === banzukePath);
-    const yoteiLink = allLinks.find(l => l.getAttribute('href') === getHubPath('schedule'));
-    const kekkaLink = allLinks.find(l => l.getAttribute('href') === getHubPath('result'));
+    // Current basho links are May 2026.
+    const banzukeLink = allLinks.find((l) => l.getAttribute('href') === MAY2026_BANDUKE_PATH);
+    const yoteiLink = allLinks.find((l) => l.getAttribute('href') === MAY2026_SCHEDULE_PATH);
+    const kekkaLink = allLinks.find((l) => l.getAttribute('href') === MAY2026_RESULT_PATH);
+    const firstMayDay = MAY2026_TORIKUMI_DATA.resultDays?.[0];
+    // 2nd section links are March 2026.
+    const marchBanzukeLink = allLinks.find((l) => l.getAttribute('href') === MARCH2026_BANDUKE_PATH);
+    const marchYoteiLink = allLinks.find((l) => l.getAttribute('href') === MARCH2026_SCHEDULE_PATH);
+    const marchTorikumiLink = allLinks.find((l) => l.getAttribute('href') === MARCH2026_RESULT_PATH);
+    const firstMarchDay = MARCH2026_TORIKUMI_DATA.resultDays?.[0];
 
-    expect(banzukeLink).toHaveAttribute('href', banzukePath);
-    expect(yoteiLink).toHaveAttribute('href', getHubPath('schedule'));
-    expect(kekkaLink).toHaveAttribute('href', getHubPath('result'));
+    expect(banzukeLink).toHaveAttribute('href', MAY2026_BANDUKE_PATH);
+    expect(yoteiLink).toHaveAttribute('href', MAY2026_SCHEDULE_PATH);
+    expect(kekkaLink).toHaveAttribute('href', MAY2026_RESULT_PATH);
+    expect(firstMayDay).toBeDefined();
+    expect(marchBanzukeLink).toHaveAttribute('href', MARCH2026_BANDUKE_PATH);
+    expect(marchYoteiLink).toHaveAttribute('href', MARCH2026_SCHEDULE_PATH);
+    expect(marchTorikumiLink).toHaveAttribute('href', MARCH2026_RESULT_PATH);
+    expect(firstMarchDay).toBeDefined();
+    expect(allLinks.find((l) => l.getAttribute('href') === `/${firstMarchDay!.pathDate}-torikumi`)).toBeDefined();
     expect(screen.queryByText('連絡先:')).not.toBeInTheDocument();
     expect(screen.getAllByRole('link', { name: 'GitHub' })[0]).toHaveAttribute('href', 'https://github.com/dai/o-sumo');
   });

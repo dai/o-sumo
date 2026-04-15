@@ -70,8 +70,8 @@ describe('TorikumiDayPage', () => {
     renderPage(pendingDay, 'result');
 
     expect(screen.getByText('結果未更新')).toBeInTheDocument();
-    expect(screen.getByText('幕内の結果はまだ更新されていません。')).toBeInTheDocument();
-    expect(screen.getByText('十両の結果はまだ更新されていません。')).toBeInTheDocument();
+    expect(screen.getByText('幕内の取組結果はまだ更新されていません。')).toBeInTheDocument();
+    expect(screen.getByText('十両の取組結果はまだ更新されていません。')).toBeInTheDocument();
   });
 
   it('renders schedule mode content and day navigation links', () => {

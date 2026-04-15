@@ -85,6 +85,10 @@ describe('torikumi route helpers', () => {
   it('resolves month config from pathname and date key', () => {
     const marchConfig = getArchiveRouteConfigForPathname('/202603-banduke');
     const mayConfig = getArchiveRouteConfigForPathname('/202605-torikumi');
+    expect(torikumiMonthKey).toBe('202605');
+    expect(torikumiArchive.resultDays[0]?.pathDate.startsWith('202605')).toBe(true);
+    expect(MARCH2026_TORIKUMI_DATA.resultDays?.[0]?.pathDate.startsWith('202603')).toBe(true);
+    expect(MARCH2026_TORIKUMI_DATA.scheduleDays?.[0]?.pathDate.startsWith('202603')).toBe(true);
     expect(marchConfig.monthKey).toBe('202603');
     expect(mayConfig.monthKey).toBe('202605');
     expect(getHubPathForDateKey('20260322', 'result')).toBe('/202603-torikumi');

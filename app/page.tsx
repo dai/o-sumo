@@ -1,13 +1,20 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { bashoTitle } from './lib/basho-meta';
-import { banzukePath, getHubPath } from './lib/torikumi-routes';
+import {
+  MARCH2026_BANDUKE_PATH,
+  MARCH2026_RESULT_PATH,
+  MARCH2026_SCHEDULE_PATH,
+  MAY2026_BANDUKE_PATH,
+  MAY2026_RESULT_PATH,
+  MAY2026_SCHEDULE_PATH,
+} from './lib/torikumi-routes';
+import { MAY2026_TORIKUMI_DATA } from './lib/may2026-data';
 import { MARCH2026_TORIKUMI_DATA } from './lib/torikumi-data';
 import './index.css';
 
 export default function Home() {
   const { t } = useTranslation('common');
-  const marchPathDate = MARCH2026_TORIKUMI_DATA.resultDays?.[0]?.pathDate.slice(0, 6) ?? '202603';
 
   return (
     <div className="home-container">
@@ -24,13 +31,13 @@ export default function Home() {
           <h2>{bashoTitle}</h2>
           <p>{t('home.heroDescription')}</p>
           <nav className="hero-actions" aria-label="主要ページへの導線">
-            <Link to={banzukePath} className="cta-button">
+            <Link to={MAY2026_BANDUKE_PATH} className="cta-button">
               {t('home.heroBanzuke')}
             </Link>
-            <Link to={getHubPath('schedule')} className="cta-button secondary">
+            <Link to={MAY2026_SCHEDULE_PATH} className="cta-button secondary">
               {t('home.heroSchedule')}
             </Link>
-            <Link to={getHubPath('result')} className="cta-button secondary">
+            <Link to={MAY2026_RESULT_PATH} className="cta-button secondary">
               {t('home.heroResult')}
             </Link>
           </nav>
@@ -45,13 +52,13 @@ export default function Home() {
             })}
           </h2>
           <nav className="past-basho-actions" aria-label="三月場所への導線">
-            <Link to={`/${marchPathDate}-banduke`} className="cta-button secondary">
+            <Link to={MARCH2026_BANDUKE_PATH} className="cta-button secondary">
               {t('home.heroBanzuke')}
             </Link>
-            <Link to={`/${marchPathDate}-yotei`} className="cta-button secondary">
+            <Link to={MARCH2026_SCHEDULE_PATH} className="cta-button secondary">
               {t('home.heroSchedule')}
             </Link>
-            <Link to={`/${marchPathDate}-torikumi`} className="cta-button secondary">
+            <Link to={MARCH2026_RESULT_PATH} className="cta-button secondary">
               {t('home.heroResult')}
             </Link>
           </nav>

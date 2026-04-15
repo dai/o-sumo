@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
-import { torikumiArchive } from '../lib/torikumi-data';
+import { MARCH2026_TORIKUMI_DATA, torikumiArchive } from '../lib/torikumi-data';
+import { MAY2026_TORIKUMI_DATA } from '../lib/may2026-data';
 import { getArchiveUpdatedAt, getDayPath } from '../lib/torikumi-routes';
 import TorikumiHubPage from './page';
 
@@ -26,11 +27,9 @@ describe('TorikumiHubPage', () => {
     expect(firstCardHeading).toHaveTextContent('千秋楽');
   });
 
-  it('mutes archive cards for elapsed days only', () => {
-    // March 2026 resultDays: all published, no pending days
-    // This test verifies that published days have no 'pending' class
-    const publishedDays = torikumiArchive.resultDays.filter((day) => day.status === 'published');
-    expect(publishedDays.length).toBe(15); // All 15 result days are published
+  it('marks result archive cards as pending for unpublished days', () => {
+    const pendingDays = torikumiArchive.resultDays.filter((day) => day.status === 'pending');
+    expect(pendingDays.length).toBe(15);
 
     render(
       <MemoryRouter>
@@ -40,10 +39,10 @@ describe('TorikumiHubPage', () => {
 
     const allLinks = screen.getAllByRole('link');
 
-    for (const day of publishedDays) {
+    for (const day of pendingDays) {
       const link = allLinks.find((l) => l.getAttribute('href') === getDayPath(day, 'result'));
       expect(link).toHaveClass('archive-card');
-      expect(link).not.toHaveClass('pending');
+      expect(link).toHaveClass('pending');
     }
   });
 
@@ -73,7 +72,7 @@ describe('TorikumiHubPage', () => {
         <TorikumiHubPage mode="result" />
       </MemoryRouter>,
     );
-    expect(screen.getAllByText('公開中').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('結果未更新').length).toBeGreaterThan(0);
 
     rerender(
       <MemoryRouter>
@@ -83,7 +82,7 @@ describe('TorikumiHubPage', () => {
     expect(screen.getAllByText('取組予定未更新').length).toBeGreaterThan(0);
   });
 
-  it('renders 202603 hub route with march archive links', () => {
+  it('renders 202603 hub route with 202603 archive links', () => {
     render(
       <MemoryRouter initialEntries={['/202603-torikumi']}>
         <TorikumiHubPage mode="result" />
@@ -92,5 +91,34 @@ describe('TorikumiHubPage', () => {
 
     expect(screen.getByRole('heading', { level: 1, name: /三月場所/ })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202603-banduke');
+    expect(screen.getAllByRole('link').some((l) => l.getAttribute('href') === '/20260308-torikumi')).toBe(true);
+  });
+
+  it('renders 202605 hub route with may archive links', () => {
+    render(
+      <MemoryRouter initialEntries={['/202605-torikumi']}>
+        <TorikumiHubPage mode="result" />
+      </MemoryRouter>,
+    );
+
+    const firstMayDay = MAY2026_TORIKUMI_DATA.resultDays?.[0];
+    expect(screen.getByRole('heading', { level: 1, name: /五月場所/ })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202605-banduke');
+    expect(firstMayDay).toBeDefined();
+    expect(screen.getAllByRole('link').some((l) => l.getAttribute('href') === `/${firstMayDay!.pathDate}-torikumi`)).toBe(true);
+  });
+
+  it('renders 202603 schedule hub with 202603 day links', () => {
+    render(
+      <MemoryRouter initialEntries={['/202603-yotei']}>
+        <TorikumiHubPage mode="schedule" />
+      </MemoryRouter>,
+    );
+
+    const firstMarchScheduleDay = MARCH2026_TORIKUMI_DATA.scheduleDays?.[0];
+    expect(screen.getByRole('heading', { level: 1, name: /三月場所/ })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202603-banduke');
+    expect(firstMarchScheduleDay).toBeDefined();
+    expect(screen.getAllByRole('link').some((l) => l.getAttribute('href') === `/${firstMarchScheduleDay!.pathDate}-yotei`)).toBe(true);
   });
 });

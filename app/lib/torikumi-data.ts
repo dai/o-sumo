@@ -1,3 +1,5 @@
+import { MAY2026_TORIKUMI_DATA } from './may2026-data';
+
 export interface TorikumiMatch {
   division: '幕内' | '十両';
   boutNo: number;
@@ -10128,20 +10130,47 @@ export const torikumiData: TorikumiDataSet = {
 };
 
 export const torikumiArchive = {
-  bashoName: torikumiData.bashoName,
-  year: torikumiData.year,
-  updatedAt: torikumiData.updatedAt,
-  resultUpdatedAt: torikumiData.resultUpdatedAt,
-  scheduleUpdatedAt: torikumiData.scheduleUpdatedAt,
-  resultDays: torikumiData.resultDays ?? [],
-  scheduleDays: torikumiData.scheduleDays ?? [],
+  ...MAY2026_TORIKUMI_DATA,
 };
 
 export const torikumiMonthKey = torikumiArchive.resultDays[0]?.pathDate.slice(0, 6)
   ?? torikumiArchive.scheduleDays[0]?.pathDate.slice(0, 6)
-  ?? '202603';
+  ?? '202605';
 
 export const banzukePath = `/${torikumiMonthKey}-banduke`;
 
-// Legacy alias for MARCH2026_TORIKUMI_DATA - points to torikumiArchive which has resultDays/scheduleDays
-export const MARCH2026_TORIKUMI_DATA = torikumiArchive;
+const MARCH2026_RESULT_DAYS = (torikumiData.resultDays ?? []).filter((day) => day.pathDate.startsWith('202603'));
+
+function stripMatchResult(match: TorikumiMatch): TorikumiMatch {
+  return {
+    ...match,
+    kimarite: '',
+    winner: null,
+  };
+}
+
+const MARCH2026_SCHEDULE_DAYS = MARCH2026_RESULT_DAYS.map((day) => ({
+  ...day,
+  status: 'published' as const,
+  statusMessage: null,
+  data: {
+    makuuchi: {
+      ...day.data.makuuchi,
+      matches: day.data.makuuchi.matches.map(stripMatchResult),
+    },
+    juryo: {
+      ...day.data.juryo,
+      matches: day.data.juryo.matches.map(stripMatchResult),
+    },
+  },
+}));
+
+export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
+  bashoName: '三月場所',
+  year: '令和八年',
+  updatedAt: torikumiData.updatedAt,
+  resultUpdatedAt: torikumiData.resultUpdatedAt,
+  scheduleUpdatedAt: torikumiData.scheduleUpdatedAt,
+  resultDays: MARCH2026_RESULT_DAYS,
+  scheduleDays: MARCH2026_SCHEDULE_DAYS,
+};
