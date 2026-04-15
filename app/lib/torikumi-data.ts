@@ -1,5 +1,3 @@
-import { MAY2026_TORIKUMI_DATA } from './may2026-data';
-
 export interface TorikumiMatch {
   division: '幕内' | '十両';
   boutNo: number;
@@ -49,21 +47,21 @@ export interface TorikumiDataSet {
   scheduleUpdatedAt: string;
   today?: TorikumiDailyData;
   tomorrow?: TorikumiDailyData;
-  resultDays: TorikumiArchiveDay[];
-  scheduleDays: TorikumiArchiveDay[];
+  resultDays?: TorikumiArchiveDay[];
+  scheduleDays?: TorikumiArchiveDay[];
 }
 
 export const torikumiData: TorikumiDataSet = {
-  "bashoName": "五月場所",
+  "bashoName": "三月場所",
   "year": "令和八年",
-  "updatedAt": "2026-04-14",
-  "resultUpdatedAt": "2026-04-14",
+  "updatedAt": "2026-04-15",
+  "resultUpdatedAt": "2026-04-15",
   "scheduleUpdatedAt": "2026-04-14",
   "today": {
     "makuuchi": {
       "day": 1,
       "dayName": "取組日 初日",
-      "dayHead": "初日： 令和8年5月10日(日)",
+      "dayHead": "初日： 令和8年3月8日(日)",
       "division": "幕内",
       "matches": [
         {
@@ -407,7 +405,7 @@ export const torikumiData: TorikumiDataSet = {
     "juryo": {
       "day": 1,
       "dayName": "取組日 初日",
-      "dayHead": "初日： 令和8年5月10日(日)",
+      "dayHead": "初日： 令和8年3月8日(日)",
       "division": "十両",
       "matches": [
         {
@@ -641,7 +639,7 @@ export const torikumiData: TorikumiDataSet = {
     "makuuchi": {
       "day": 2,
       "dayName": "取組日 二日目",
-      "dayHead": "二日目： 令和8年5月11日(月)",
+      "dayHead": "二日目： 令和8年3月9日(月)",
       "division": "幕内",
       "matches": [
         {
@@ -1221,14 +1219,14 @@ export const torikumiData: TorikumiDataSet = {
       "isoDate": "2026-03-08",
       "pathDate": "20260308",
       "label": "初日",
-      "dayHead": "初日： 令和8年5月10日(日)",
+      "dayHead": "初日： 令和8年3月8日(日)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 1,
           "dayName": "取組日 初日",
-          "dayHead": "初日： 令和8年5月10日(日)",
+          "dayHead": "初日： 令和8年3月8日(日)",
           "division": "幕内",
           "matches": [
             {
@@ -1572,7 +1570,7 @@ export const torikumiData: TorikumiDataSet = {
         "juryo": {
           "day": 1,
           "dayName": "取組日 初日",
-          "dayHead": "初日： 令和8年5月10日(日)",
+          "dayHead": "初日： 令和8年3月8日(日)",
           "division": "十両",
           "matches": [
             {
@@ -10130,47 +10128,17 @@ export const torikumiData: TorikumiDataSet = {
 };
 
 export const torikumiArchive = {
-  ...MAY2026_TORIKUMI_DATA,
+  bashoName: torikumiData.bashoName,
+  year: torikumiData.year,
+  updatedAt: torikumiData.updatedAt,
+  resultUpdatedAt: torikumiData.resultUpdatedAt,
+  scheduleUpdatedAt: torikumiData.scheduleUpdatedAt,
+  resultDays: torikumiData.resultDays ?? [],
+  scheduleDays: torikumiData.scheduleDays ?? [],
 };
 
 export const torikumiMonthKey = torikumiArchive.resultDays[0]?.pathDate.slice(0, 6)
   ?? torikumiArchive.scheduleDays[0]?.pathDate.slice(0, 6)
-  ?? '202605';
+  ?? '202603';
 
 export const banzukePath = `/${torikumiMonthKey}-banduke`;
-
-const MARCH2026_RESULT_DAYS = torikumiData.resultDays.filter((day) => day.pathDate.startsWith('202603'));
-
-function stripMatchResult(match: TorikumiMatch): TorikumiMatch {
-  return {
-    ...match,
-    kimarite: '',
-    winner: null,
-  };
-}
-
-const MARCH2026_SCHEDULE_DAYS = MARCH2026_RESULT_DAYS.map((day) => ({
-  ...day,
-  status: 'published' as const,
-  statusMessage: null,
-  data: {
-    makuuchi: {
-      ...day.data.makuuchi,
-      matches: day.data.makuuchi.matches.map(stripMatchResult),
-    },
-    juryo: {
-      ...day.data.juryo,
-      matches: day.data.juryo.matches.map(stripMatchResult),
-    },
-  },
-}));
-
-export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
-  bashoName: '三月場所',
-  year: '令和八年',
-  updatedAt: torikumiData.updatedAt,
-  resultUpdatedAt: torikumiData.resultUpdatedAt,
-  scheduleUpdatedAt: torikumiData.scheduleUpdatedAt,
-  resultDays: MARCH2026_RESULT_DAYS,
-  scheduleDays: MARCH2026_SCHEDULE_DAYS,
-};
