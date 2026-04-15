@@ -2,12 +2,15 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom'
 import { registerSW } from 'virtual:pwa-register'
+import './lib/i18n'
+import { i18n } from './lib/i18n'
 import BanzukePage from './banzuke/page'
 import HomePage from './page'
 import TorikumiHubPage from './torikumi/page'
 import TopLevelSlugPage from './TopLevelSlugPage'
 import ArchivesPage from './archives/page'
 import ThemeToggle from './components/ThemeToggle'
+import LanguageToggle from './components/LanguageToggle'
 import {
   banzukePath,
   MAY2026_RESULT_PATH,
@@ -23,7 +26,7 @@ bootstrapTheme()
 
 const updateSW = registerSW({
   onNeedRefresh() {
-    if (window.confirm('新しい更新があります。再読み込みしますか？')) {
+    if (window.confirm(i18n.t('pwa.updateDialogTitle'))) {
       void updateSW(true)
     }
   },
@@ -32,7 +35,10 @@ const updateSW = registerSW({
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ThemeToggle />
+      <div className="top-right-controls">
+        <ThemeToggle />
+        <LanguageToggle />
+      </div>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/archives" element={<ArchivesPage />} />

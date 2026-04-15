@@ -1,18 +1,20 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { bashoTitle } from './lib/basho-meta';
 import { banzukePath, getHubPath } from './lib/torikumi-routes';
 import { MARCH2026_TORIKUMI_DATA } from './lib/torikumi-data';
 import './index.css';
 
 export default function Home() {
+  const { t } = useTranslation('common');
   const marchPathDate = MARCH2026_TORIKUMI_DATA.resultDays?.[0]?.pathDate.slice(0, 6) ?? '202603';
 
   return (
     <div className="home-container">
       <header className="home-header">
         <div className="header-content">
-          <h1 className="home-title">o-sumo</h1>
-          <p className="home-subtitle">大相撲情報サイト</p>
+          <h1 className="home-title">{t('home.siteTitle')}</h1>
+          <p className="home-subtitle">{t('home.siteSubtitle')}</p>
         </div>
       </header>
 
@@ -20,16 +22,16 @@ export default function Home() {
         {/* Current Basho - Hero Section */}
         <section className="hero-section">
           <h2>{bashoTitle}</h2>
-          <p>最新の番付、日別の取組結果、日別の取組予定をご覧ください。</p>
+          <p>{t('home.heroDescription')}</p>
           <nav className="hero-actions" aria-label="主要ページへの導線">
             <Link to={banzukePath} className="cta-button">
-              番付
+              {t('home.heroBanzuke')}
             </Link>
             <Link to={getHubPath('schedule')} className="cta-button secondary">
-              取組予定
+              {t('home.heroSchedule')}
             </Link>
             <Link to={getHubPath('result')} className="cta-button secondary">
-              結果
+              {t('home.heroResult')}
             </Link>
           </nav>
         </section>
@@ -37,21 +39,24 @@ export default function Home() {
         {/* Past Basho - March 2026 */}
         <section className="past-basho-section">
           <h2 className="past-basho-heading">
-            {MARCH2026_TORIKUMI_DATA.year} {MARCH2026_TORIKUMI_DATA.bashoName}
+            {t('home.pastBashoHeading', {
+              year: MARCH2026_TORIKUMI_DATA.year,
+              name: MARCH2026_TORIKUMI_DATA.bashoName,
+            })}
           </h2>
           <nav className="past-basho-actions" aria-label="三月場所への導線">
             <Link to={`/${marchPathDate}-banduke`} className="cta-button secondary">
-              番付
+              {t('home.heroBanzuke')}
             </Link>
             <Link to={`/${marchPathDate}-yotei`} className="cta-button secondary">
-              取組予定
+              {t('home.heroSchedule')}
             </Link>
             <Link to={`/${marchPathDate}-torikumi`} className="cta-button secondary">
-              結果
+              {t('home.heroResult')}
             </Link>
           </nav>
           <div className="past-basho-days">
-            <p className="past-basho-days-label">日別:</p>
+            <p className="past-basho-days-label">{t('home.pastBashoDays')}</p>
             {MARCH2026_TORIKUMI_DATA.resultDays?.map((day) => (
               <Link
                 key={day.pathDate}
@@ -66,11 +71,11 @@ export default function Home() {
       </main>
 
       <footer className="home-footer">
-        <p>&copy; 2026 o-sumo. All rights reserved.</p>
+        <p>{t('home.footerCopyright')}</p>
         <nav aria-label="ホームの外部リンク">
-          <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">Daisuke on X</a>
+          <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">{t('home.footerDaisuke')}</a>
           {' | '}
-          <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">{t('home.footerGithub')}</a>
         </nav>
       </footer>
     </div>

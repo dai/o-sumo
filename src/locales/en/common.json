@@ -1,0 +1,103 @@
+{
+  "pwa": {
+    "updateDialogTitle": "A new update is available. Reload now?"
+  },
+  "themeToggle": {
+    "ariaLabelDark": "Current theme is dark. Click to switch to light",
+    "ariaLabelLight": "Current theme is light. Click to switch to dark"
+  },
+  "sortToggle": {
+    "asc": "Asc",
+    "desc": "Desc",
+    "label": "Sort"
+  },
+  "home": {
+    "siteTitle": "o-sumo",
+    "siteSubtitle": "Sumo Wrestling Information",
+    "heroDescription": "Browse the latest banzuke, daily torikumi results, and scheduled matches.",
+    "heroBanzuke": "Banzuke",
+    "heroSchedule": "Schedule",
+    "heroResult": "Results",
+    "pastBashoHeading": "{{year}} {{name}}",
+    "pastBashoDays": "Days:",
+    "footerCopyright": "© 2026 o-sumo. All rights reserved.",
+    "footerDaisuke": "Daisuke on X",
+    "footerGithub": "GitHub"
+  },
+  "archives": {
+    "pageTitle": "Past Basho",
+    "pageDescription": "Banzuke and torikumi results from previous tournaments.",
+    "banduke": "Banzuke",
+    "result": "Results",
+    "schedule": "Schedule",
+    "list": "List",
+    "empty": "No past basho data available.",
+    "backToHome": "Back to Home"
+  },
+  "banzuke": {
+    "pageTitle": "Sumo",
+    "bandukeListTitle": "Banzuke",
+    "pageDescription": "Makuuchi and Juryo banzuke and records for {{gregorianBasho}} / URL: {{bandukePath}}",
+    "sortLabel": "Banzuke order",
+    "makuuchi": "Makuuchi",
+    "juryo": "Juryo",
+    "east": "East",
+    "west": "West",
+    "aboutThisPage": "About This Page",
+    "aboutDescription1": "This page displays the makuuchi and juryo banzuke and records for {{bashoTitle}} ({{gregorianBasho}}).",
+    "aboutDescription2": "The <strong>East</strong> and <strong>West</strong> columns show each rikishi's shikona, yomi (reading), and rank.",
+    "techStack": "Tech stack: <strong>Cloudflare Pages</strong>, <strong>React</strong>, <strong>TypeScript</strong>",
+    "footerCopyright": "© 2026 o-sumo. All rights reserved.",
+    "footerHome": "Back to Home",
+    "footerResult": "Torikumi Results",
+    "footerDaisuke": "Daisuke on X",
+    "footerGithub": "GitHub Repository",
+    "profileLink": "Profile",
+    "win": "Win",
+    "loss": "Loss",
+    "absence": "Absence",
+    "winShort": "W",
+    "lossShort": "L",
+    "absenceShort": "A"
+  },
+  "torikumi": {
+    "hub": {
+      "resultListTitle": "Results",
+      "scheduleListTitle": "Schedule",
+      "updateDate": "Updated: {{date}}",
+      "resultArchiveDescription": "Follow results from day 1 through senshuraku. Unpublished days are shown as placeholders.",
+      "scheduleArchiveDescription": "View scheduled matches from day 1 through senshuraku. Unpublished days are marked as upcoming.",
+      "navResult": "Schedule",
+      "navSchedule": "Results",
+      "navBanduke": "Banzuke",
+      "dayLabel": "Daily Archive",
+      "dayArchiveHeading": "Daily {{mode}} Archive",
+      "sortLabel": "{{mode}} list order",
+      "statusPublished": "Published",
+      "footerHome": "Home",
+      "footerBanduke": "Banzuke",
+      "footerDaisuke": "Daisuke on X",
+      "footerGithub": "GitHub"
+    },
+    "day": {
+      "modeResult": " Results",
+      "modeSchedule": " Schedule",
+      "modeDescriptionResult": "Follow results from day 1 in order.",
+      "modeDescriptionSchedule": "View scheduled matches from day 1 in order.",
+      "resultNotUpdated": "{{division}} results have not been published yet.",
+      "scheduleNotUpdated": "{{division}} schedule has not been published yet.",
+      "dayHead": "Day {{day}}",
+      "updateDate": "Updated: {{date}}",
+      "kimariteResult": "Kimarite",
+      "kimariteSchedule": "Scheduled",
+      "matchScheduled": "Scheduled match",
+      "prevDayNone": "← No previous day",
+      "nextDayNone": "No next day →",
+      "sortLabel": "{{mode}} sort order",
+      "footerHome": "Home",
+      "footerDaisuke": "Daisuke on X",
+      "footerGithub": "GitHub",
+      "divisionMatchCount": "{{division}} ({{count}} matches)"
+    }
+  }
+}

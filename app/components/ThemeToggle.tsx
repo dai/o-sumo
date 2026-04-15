@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import {
   applyTheme,
   persistTheme,
@@ -13,6 +14,7 @@ function nextTheme(theme: Theme): Theme {
 
 export default function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>(() => readThemeFromDataset() ?? 'light')
+  const { t } = useTranslation('common')
 
   useEffect(() => {
     const currentTheme = readThemeFromDataset()
@@ -30,13 +32,15 @@ export default function ThemeToggle() {
     setTheme(updatedTheme)
   }
 
+  const ariaLabel = isDark ? t('themeToggle.ariaLabelDark') : t('themeToggle.ariaLabelLight')
+
   return (
     <button
       type="button"
       className={`theme-toggle${isDark ? ' is-dark' : ''}`}
       onClick={handleToggle}
       aria-pressed={isDark}
-      aria-label={`現在のテーマは${isDark ? 'ダーク' : 'ライト'}。クリックで${isDark ? 'ライト' : 'ダーク'}に切り替え`}
+      aria-label={ariaLabel}
       title={`Theme: ${isDark ? 'DARK' : 'LIGHT'}`}
     >
       <span className="theme-toggle-track" aria-hidden="true">

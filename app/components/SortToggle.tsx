@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import type { SortOrder } from '../lib/sorting';
 
 interface SortToggleProps {
@@ -6,18 +7,21 @@ interface SortToggleProps {
   label?: string;
 }
 
-export default function SortToggle({ value, onChange, label = '並び順' }: SortToggleProps) {
+export default function SortToggle({ value, onChange, label }: SortToggleProps) {
+  const { t } = useTranslation('common');
+  const defaultLabel = t('sortToggle.label');
+
   return (
-    <div className="sort-toggle" aria-label={label}>
-      <span className="sort-toggle-label">{label}</span>
-      <div className="sort-toggle-buttons" role="group" aria-label={`${label}の切り替え`}>
+    <div className="sort-toggle" aria-label={label ?? defaultLabel}>
+      <span className="sort-toggle-label">{label ?? defaultLabel}</span>
+      <div className="sort-toggle-buttons" role="group" aria-label={`${label ?? defaultLabel}の切り替え`}>
         <button
           type="button"
           className={`sort-toggle-button${value === 'asc' ? ' active' : ''}`}
           aria-pressed={value === 'asc'}
           onClick={() => onChange('asc')}
         >
-          昇順
+          {t('sortToggle.asc')}
         </button>
         <button
           type="button"
@@ -25,7 +29,7 @@ export default function SortToggle({ value, onChange, label = '並び順' }: Sor
           aria-pressed={value === 'desc'}
           onClick={() => onChange('desc')}
         >
-          降順
+          {t('sortToggle.desc')}
         </button>
       </div>
     </div>

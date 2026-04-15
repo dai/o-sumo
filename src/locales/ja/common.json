@@ -1,0 +1,103 @@
+{
+  "pwa": {
+    "updateDialogTitle": "新しい更新があります。再読み込みしますか？"
+  },
+  "themeToggle": {
+    "ariaLabelDark": "現在のテーマはダーク。クリックでライトに切り替え",
+    "ariaLabelLight": "現在のテーマはライト。クリックでダークに切り替え"
+  },
+  "sortToggle": {
+    "asc": "昇順",
+    "desc": "降順",
+    "label": "並び順"
+  },
+  "home": {
+    "siteTitle": "o-sumo",
+    "siteSubtitle": "大相撲情報サイト",
+    "heroDescription": "最新の番付、日別の取組結果、日別の用料予定をご覧ください。",
+    "heroBanzuke": "番付",
+    "heroSchedule": "用料予定",
+    "heroResult": "結果",
+    "pastBashoHeading": "{{year}} {{name}}",
+    "pastBashoDays": "日別:",
+    "footerCopyright": "© 2026 o-sumo. All rights reserved.",
+    "footerDaisuke": "Daisuke on X",
+    "footerGithub": "GitHub"
+  },
+  "archives": {
+    "pageTitle": "過去場所一覧",
+    "pageDescription": "過去の場所の番付と用料結果です。",
+    "banduke": "番付",
+    "result": "用料結果",
+    "schedule": "用料予定",
+    "list": "一覧",
+    "empty": "過去場所データはありません。",
+    "backToHome": "ホームに戻る"
+  },
+  "banzuke": {
+    "pageTitle": "大相撲",
+    "bandukeListTitle": "番付一覧",
+    "pageDescription": "{{gregorianBasho}}の幕内・十両力士の番付と成績 / URL: {{bandukePath}}",
+    "sortLabel": "番付の並び順",
+    "makuuchi": "幕内",
+    "juryo": "十両",
+    "east": "東",
+    "west": "西",
+    "aboutThisPage": "このページについて",
+    "aboutDescription1": "このページは、{{bashoTitle}}（{{gregorianBasho}}）の大相撲幕内・十両力士の番付一覧を表示しています。",
+    "aboutDescription2": "<strong>東</strong>と<strong>西</strong>の欄に力士の四股名と読み仮名、番付が表示されます。",
+    "techStack": "技術スタック: <strong>Cloudflare Pages</strong>、<strong>React</strong>、<strong>TypeScript</strong>",
+    "footerCopyright": "© 2026 o-sumo. All rights reserved.",
+    "footerHome": "ホームに戻る",
+    "footerResult": "用料結果一覧",
+    "footerDaisuke": "Daisuke on X",
+    "footerGithub": "GitHub Repository",
+    "profileLink": "プロフィール",
+    "win": "勝ち",
+    "loss": "負け",
+    "absence": "休場",
+    "winShort": "勝",
+    "lossShort": "敗",
+    "absenceShort": "休"
+  },
+  "torikumi": {
+    "hub": {
+      "resultListTitle": "結果一覧",
+      "scheduleListTitle": "予定一覧",
+      "updateDate": "更新日: {{date}}",
+      "resultArchiveDescription": "初日から千秋楽までの結果ページを日付ごとに遡れます。未更新日は空状態で先に公開します。",
+      "scheduleArchiveDescription": "初日から千秋楽までの予定ページを日付ごとに確認できます。未更新日は用料予定未更新として表示します。",
+      "navResult": "予定一覧",
+      "navSchedule": "結果一覧",
+      "navBanduke": "番付",
+      "dayLabel": "日別アーカイブ",
+      "dayArchiveHeading": "{{mode}}の日別アーカイブ",
+      "sortLabel": "{{mode}}一覧の並び順",
+      "statusPublished": "公開中",
+      "footerHome": "ホーム",
+      "footerBanduke": "番付一覧",
+      "footerDaisuke": "Daisuke on X",
+      "footerGithub": "GitHub"
+    },
+    "day": {
+      "modeResult": " 取組結果",
+      "modeSchedule": " 用料予定",
+      "modeDescriptionResult": "初日から順に結果を追えるアーカイブです。",
+      "modeDescriptionSchedule": "初日から順に予定番付を確認できるアーカイブです。",
+      "resultNotUpdated": "{{division}}の用料結果はまだ更新されていません。",
+      "scheduleNotUpdated": "{{division}}の用料予定はまだ更新されていません。",
+      "dayHead": "{{day}}日",
+      "updateDate": "更新日: {{date}}",
+      "kimariteResult": "決まり手",
+      "kimariteSchedule": "予定",
+      "matchScheduled": "用料予定",
+      "prevDayNone": "← 前日なし",
+      "nextDayNone": "翌日なし →",
+      "sortLabel": "{{mode}}の並び順",
+      "footerHome": "ホーム",
+      "footerDaisuke": "Daisuke on X",
+      "footerGithub": "GitHub",
+      "divisionMatchCount": "{{division}} ({{count}}番)"
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import SortToggle from '../components/SortToggle';
 import { type SortOrder, sortArchiveDays } from '../lib/sorting';
 import { type TorikumiDataSet } from '../lib/torikumi-data';
@@ -10,11 +11,6 @@ import {
 } from '../lib/torikumi-routes';
 import './page.css';
 
-function modeLabel(mode: TorikumiPageMode): string {
-  return mode === 'result' ? ' 取組結果' : ' 取組予定';
-}
-
-// Determine which archive to use based on current path
 function useArchive(): { archive: TorikumiDataSet; resultPath: string; schedulePath: string; bandukePath: string } {
   const location = useLocation();
   const config = getArchiveRouteConfigForPathname(location.pathname);
@@ -31,12 +27,20 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
   const { archive, resultPath, schedulePath, bandukePath } = useArchive();
   const sourceDays = mode === 'result' ? archive.resultDays : archive.scheduleDays;
   const days = sortArchiveDays(sourceDays ?? [], sortOrder);
+  const { t } = useTranslation('common');
+
+  const modeLabel = mode === 'result'
+    ? t('torikumi.hub.resultListTitle')
+    : t('torikumi.hub.scheduleListTitle');
+  const navModeLabel = mode === 'result'
+    ? t('torikumi.hub.navResult')
+    : t('torikumi.hub.navSchedule');
 
   return (
     <div className="torikumi-page">
       <header className="torikumi-header">
-        <h1>{archive.year}{archive.bashoName}{modeLabel(mode)}一覧</h1>
-        <p>更新日: {archive.updatedAt}</p>
+        <h1>{archive.year}{archive.bashoName}{modeLabel}</h1>
+        <p>{t('torikumi.hub.updateDate', { date: archive.updatedAt })}</p>
       </header>
 
       <main className="torikumi-main">
@@ -45,21 +49,21 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
             <div className="archive-eyebrow">
               {mode === 'result' ? resultPath.slice(1) : schedulePath.slice(1)}
             </div>
-            <h2>{modeLabel(mode)}の日別アーカイブ</h2>
+            <h2>{t('torikumi.hub.dayArchiveHeading', { mode: modeLabel })}</h2>
             <p>
               {mode === 'result'
-                ? '初日から千秋楽までの結果ページを日付ごとに辿れます。未更新日は空状態で先に公開します。'
-                : '初日から千秋楽までの予定ページを日付ごとに確認できます。未更新日は取組予定未更新として表示します。'}
+                ? t('torikumi.hub.resultArchiveDescription')
+                : t('torikumi.hub.scheduleArchiveDescription')}
             </p>
           </div>
-          <nav className="archive-nav" aria-label={`${modeLabel(mode)}一覧の主要導線`}>
+          <nav className="archive-nav" aria-label={`${modeLabel}一覧の主要導線`}>
             <Link
               to={mode === 'result' ? schedulePath : resultPath}
               className="archive-link"
             >
-              {mode === 'result' ? '予定一覧' : '結果一覧'}
+              {navModeLabel}
             </Link>
-            <Link to={bandukePath} className="archive-link">番付</Link>
+            <Link to={bandukePath} className="archive-link">{t('torikumi.hub.navBanduke')}</Link>
           </nav>
         </section>
 
@@ -67,7 +71,7 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
           <SortToggle
             value={sortOrder}
             onChange={setSortOrder}
-            label={`${modeLabel(mode)}一覧の並び順`}
+            label={t('torikumi.hub.sortLabel', { mode: modeLabel })}
           />
         </section>
 
@@ -83,7 +87,7 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
                 <h3>{day.label}</h3>
                 <p>{day.dayHead}</p>
                 <p className={`archive-status${day.status === 'pending' ? ' pending' : ''}`}>
-                  {day.statusMessage ?? '公開中'}
+                  {day.statusMessage ?? t('torikumi.hub.statusPublished')}
                 </p>
               </Link>
             ))}
@@ -92,14 +96,14 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
       </main>
 
       <footer className="torikumi-footer">
-        <nav aria-label={`${modeLabel(mode)}一覧フッターリンク`}>
-          <Link to="/">ホーム</Link>
+        <nav aria-label={`${modeLabel}一覧フッターリンク`}>
+          <Link to="/">{t('torikumi.hub.footerHome')}</Link>
           <span> | </span>
-          <Link to={bandukePath}>番付一覧</Link>
+          <Link to={bandukePath}>{t('torikumi.hub.footerBanduke')}</Link>
           <span> | </span>
-          <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">Daisuke on X</a>
+          <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">{t('torikumi.hub.footerDaisuke')}</a>
           <span> | </span>
-          <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">{t('torikumi.hub.footerGithub')}</a>
         </nav>
       </footer>
     </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import BanzukeTable from '../components/BanzukeTable';
 import SortToggle from '../components/SortToggle';
 import {
@@ -49,6 +50,7 @@ function useBanzukeContext() {
 
 export default function BanzukePage() {
   const [sortOrder, setSortOrder] = React.useState<SortOrder>('asc');
+  const { t } = useTranslation('common');
   const { bashoTitle, gregorianBashoLabel, bandukePath, monthKey, makuuchi, juryo: juryoRanks } = useBanzukeContext();
   const sortedMakuuchi = sortRankGroups(makuuchi, sortOrder);
   const sortedJuryo = sortRankGroups(juryoRanks, sortOrder);
@@ -57,19 +59,19 @@ export default function BanzukePage() {
     <div className="page-container">
       <header className="page-header">
         <div className="header-content">
-          <h1 className="page-title">大相撲</h1>
-          <h2 className="page-subtitle">{bashoTitle} 番付一覧</h2>
-          <p className="page-description">{gregorianBashoLabel}の幕内・十両力士の番付と成績 / URL: {bandukePath}</p>
+          <h1 className="page-title">{t('banzuke.pageTitle')}</h1>
+          <h2 className="page-subtitle">{bashoTitle} {t('banzuke.bandukeListTitle')}</h2>
+          <p className="page-description">{t('banzuke.pageDescription', { gregorianBasho: gregorianBashoLabel, bandukePath })}</p>
         </div>
       </header>
 
       <main className="page-main">
         <section className="page-toolbar">
-          <SortToggle value={sortOrder} onChange={setSortOrder} label="番付の並び順" />
+          <SortToggle value={sortOrder} onChange={setSortOrder} label={t('banzuke.sortLabel')} />
         </section>
 
         <section className="banzuke-section">
-          <h2 className="section-heading">幕内</h2>
+          <h2 className="section-heading">{t('banzuke.makuuchi')}</h2>
           <div className="banzuke-list">
             {sortedMakuuchi.map((rankGroup, index) => (
               <BanzukeTable key={index} rankGroup={rankGroup} monthKey={monthKey} />
@@ -78,7 +80,7 @@ export default function BanzukePage() {
         </section>
 
         <section className="banzuke-section">
-          <h2 className="section-heading">十両</h2>
+          <h2 className="section-heading">{t('banzuke.juryo')}</h2>
           <div className="banzuke-list">
             {sortedJuryo.map((rankGroup, index) => (
               <BanzukeTable key={index} rankGroup={rankGroup} monthKey={monthKey} />
@@ -87,34 +89,34 @@ export default function BanzukePage() {
         </section>
 
         <section className="info-section">
-          <h2 className="section-heading">このページについて</h2>
+          <h2 className="section-heading">{t('banzuke.aboutThisPage')}</h2>
           <div className="info-content">
             <p>
-              このページは、{bashoTitle}（{gregorianBashoLabel}）の大相撲幕内・十両力士の番付一覧を表示しています。
+              {t('banzuke.aboutDescription1', { bashoTitle, gregorianBasho: gregorianBashoLabel })}
             </p>
             <p>
-              <strong>東</strong>と<strong>西</strong>の欄に力士の四股名と読み仮名、番付が表示されます。
+              {t('banzuke.aboutDescription2')}
             </p>
             <p>
-              技術スタック: <strong>Cloudflare Pages</strong>、<strong>React</strong>、<strong>TypeScript</strong>
+              {t('banzuke.techStack')}
             </p>
           </div>
         </section>
       </main>
 
       <footer className="page-footer">
-        <p>&copy; 2026 o-sumo. All rights reserved.</p>
+        <p>{t('banzuke.footerCopyright')}</p>
         <nav aria-label="番付ページの関連リンク">
-          <Link to="/">ホームに戻る</Link>
+          <Link to="/">{t('banzuke.footerHome')}</Link>
           {" | "}
-          <Link to={getHubPathForMonthKey(monthKey, 'result')}>取組結果一覧</Link>
+          <Link to={getHubPathForMonthKey(monthKey, 'result')}>{t('banzuke.footerResult')}</Link>
           {" | "}
           <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">
-            Daisuke on X
+            {t('banzuke.footerDaisuke')}
           </a>
           {" | "}
           <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">
-            GitHub Repository
+            {t('banzuke.footerGithub')}
           </a>
         </nav>
       </footer>
