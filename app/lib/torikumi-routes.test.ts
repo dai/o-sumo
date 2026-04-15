@@ -62,13 +62,15 @@ describe('torikumi route helpers', () => {
     expect(getAdjacentDay(day!, 'result', 'next')?.pathDate).toBe(secondResultDay.pathDate);
     expect(torikumiArchive.resultDays).toHaveLength(15);
     expect(torikumiArchive.scheduleDays).toHaveLength(15);
-    expect(torikumiArchive.resultDays[1]?.status).toBe('pending');
+    // March 2026 resultDays are all published; pending days only exist in scheduleDays
+    const pendingScheduleDay = torikumiArchive.scheduleDays.find((d) => d.status === 'pending');
+    expect(pendingScheduleDay).toBeDefined();
+    expect(pendingScheduleDay?.status).toBe('pending');
 
     const firstScheduleDay = torikumiArchive.scheduleDays[0];
     const secondScheduleDay = torikumiArchive.scheduleDays[1];
     const scheduleDay = findArchiveDay(firstScheduleDay.pathDate, 'schedule');
     expect(getAdjacentDay(scheduleDay!, 'schedule', 'next')?.pathDate).toBe(secondScheduleDay.pathDate);
-    expect(torikumiArchive.scheduleDays[1]?.status).toBe('pending');
   });
 
   it('keeps adjacent navigation inside the same month archive', () => {

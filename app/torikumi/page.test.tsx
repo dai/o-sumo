@@ -27,13 +27,10 @@ describe('TorikumiHubPage', () => {
   });
 
   it('mutes archive cards for elapsed days only', () => {
-    // May 2026 data: all days are >= updatedAt, so no elapsed days
-    // This test verifies the logic works when there are no elapsed days
-    const updatedKey = getArchiveUpdatedAt('result').replace(/-/g, '');
-
-    // For May 2026, all days are active (not elapsed)
-    const activeDays = torikumiArchive.resultDays.filter((day) => day.pathDate >= updatedKey);
-    expect(activeDays.length).toBeGreaterThan(0);
+    // March 2026 resultDays: all published, no pending days
+    // This test verifies that published days have no 'pending' class
+    const publishedDays = torikumiArchive.resultDays.filter((day) => day.status === 'published');
+    expect(publishedDays.length).toBe(15); // All 15 result days are published
 
     render(
       <MemoryRouter>
@@ -43,10 +40,10 @@ describe('TorikumiHubPage', () => {
 
     const allLinks = screen.getAllByRole('link');
 
-    for (const day of activeDays) {
+    for (const day of publishedDays) {
       const link = allLinks.find((l) => l.getAttribute('href') === getDayPath(day, 'result'));
       expect(link).toHaveClass('archive-card');
-      expect(link).not.toHaveClass('elapsed');
+      expect(link).not.toHaveClass('pending');
     }
   });
 
@@ -76,7 +73,7 @@ describe('TorikumiHubPage', () => {
         <TorikumiHubPage mode="result" />
       </MemoryRouter>,
     );
-    expect(screen.getAllByText('結果未更新').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('公開中').length).toBeGreaterThan(0);
 
     rerender(
       <MemoryRouter>

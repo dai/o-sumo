@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import TorikumiDayPage from './TorikumiDayPage';
 import { MARCH2026_TORIKUMI_DATA, torikumiArchive, type TorikumiArchiveDay } from '../lib/torikumi-data';
-import { banzukePath, getHubPath } from '../lib/torikumi-routes';
+import { banzukePath, getHubPath, getHubPathForDateKey } from '../lib/torikumi-routes';
 
 function renderPage(day: TorikumiArchiveDay, mode: 'result' | 'schedule' = 'result') {
   render(
@@ -75,10 +75,11 @@ describe('TorikumiDayPage', () => {
   });
 
   it('renders schedule mode content and day navigation links', () => {
-    renderPage(torikumiArchive.scheduleDays[1], 'schedule');
+    const scheduleDay = torikumiArchive.scheduleDays[1];
+    renderPage(scheduleDay, 'schedule');
 
     expect(screen.getByRole('heading', { level: 1, name: /取組予定/ })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: '一覧' })).toHaveAttribute('href', getHubPath('schedule'));
+    expect(screen.getByRole('link', { name: '一覧' })).toHaveAttribute('href', getHubPathForDateKey(scheduleDay.pathDate, 'schedule'));
     expect(screen.getByRole('link', { name: /← 初日/ })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /三日目 →/ })).toBeInTheDocument();
     expect(screen.getByText('取組予定未更新')).toBeInTheDocument();

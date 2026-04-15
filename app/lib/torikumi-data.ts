@@ -10142,3 +10142,6 @@ export const torikumiMonthKey = torikumiArchive.resultDays[0]?.pathDate.slice(0,
   ?? '202603';
 
 export const banzukePath = `/${torikumiMonthKey}-banduke`;
+
+// Legacy alias for MARCH2026_TORIKUMI_DATA - points to torikumiArchive which has resultDays/scheduleDays
+export const MARCH2026_TORIKUMI_DATA = torikumiArchive;
