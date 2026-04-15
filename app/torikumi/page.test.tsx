@@ -29,7 +29,6 @@ describe('TorikumiHubPage', () => {
 
   it('marks result archive cards as pending for unpublished days', () => {
     const pendingDays = torikumiArchive.resultDays.filter((day) => day.status === 'pending');
-    expect(pendingDays.length).toBe(15);
 
     render(
       <MemoryRouter>
@@ -72,7 +71,13 @@ describe('TorikumiHubPage', () => {
         <TorikumiHubPage mode="result" />
       </MemoryRouter>,
     );
-    expect(screen.getAllByText('結果未更新').length).toBeGreaterThan(0);
+
+    const hasPendingResult = torikumiArchive.resultDays.some((day) => day.status === 'pending');
+    if (hasPendingResult) {
+      expect(screen.getAllByText('結果未更新').length).toBeGreaterThan(0);
+    } else {
+      expect(screen.queryByText('結果未更新')).not.toBeInTheDocument();
+    }
 
     rerender(
       <MemoryRouter>

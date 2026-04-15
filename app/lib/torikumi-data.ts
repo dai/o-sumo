@@ -10127,6 +10127,8 @@ export const torikumiData: TorikumiDataSet = {
   ]
 };
 
+export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = torikumiData;
+
 export const torikumiArchive = {
   bashoName: torikumiData.bashoName,
   year: torikumiData.year,
