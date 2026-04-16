@@ -33,7 +33,9 @@ describe('Home page', () => {
     const marchYoteiLink = allLinks.find((l) => l.getAttribute('href') === MARCH2026_SCHEDULE_PATH);
     const marchTorikumiLink = allLinks.find((l) => l.getAttribute('href') === MARCH2026_RESULT_PATH);
     const firstMarchDay = MARCH2026_TORIKUMI_DATA.resultDays?.[0];
+    const mayHeroTitle = `${MAY2026_TORIKUMI_DATA.year}${MAY2026_TORIKUMI_DATA.bashoName}`;
 
+    expect(screen.getByRole('heading', { level: 2, name: mayHeroTitle })).toBeInTheDocument();
     expect(banzukeLink).toHaveAttribute('href', MAY2026_BANDUKE_PATH);
     expect(yoteiLink).toHaveAttribute('href', MAY2026_SCHEDULE_PATH);
     expect(kekkaLink).toHaveAttribute('href', MAY2026_RESULT_PATH);

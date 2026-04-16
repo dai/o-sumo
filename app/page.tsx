@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { bashoTitle } from './lib/basho-meta';
 import {
   MARCH2026_BANDUKE_PATH,
   MARCH2026_RESULT_PATH,
@@ -9,11 +8,13 @@ import {
   MAY2026_RESULT_PATH,
   MAY2026_SCHEDULE_PATH,
 } from './lib/torikumi-routes';
+import { MAY2026_TORIKUMI_DATA } from './lib/may2026-data';
 import { MARCH2026_TORIKUMI_DATA } from './lib/torikumi-data';
 import './index.css';
 
 export default function Home() {
   const { t } = useTranslation('common');
+  const currentBashoTitle = `${MAY2026_TORIKUMI_DATA.year}${MAY2026_TORIKUMI_DATA.bashoName}`;
 
   return (
     <div className="home-container">
@@ -27,7 +28,7 @@ export default function Home() {
       <main className="home-main">
         {/* Current Basho - Hero Section */}
         <section className="hero-section">
-          <h2>{bashoTitle}</h2>
+          <h2>{currentBashoTitle}</h2>
           <p>{t('home.heroDescription')}</p>
           <nav className="hero-actions" aria-label="主要ページへの導線">
             <Link to={MAY2026_BANDUKE_PATH} className="cta-button">
