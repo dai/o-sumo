@@ -1,9 +1,10 @@
 name: Realtime Torikumi Update
 
 on:
-  schedule:
-    - cron: '0,30 6-10 * * *' # 15:00-19:30 JST
-    - cron: '0 11 * * *' # 20:00 JST
+  # schedule:
+  #   - cron: '0,30 6-10 * * *' # 15:00-19:30 JST
+  #   - cron: '0 11 * * *' # 20:00 JST
+  # 5/1 まで定期更新は停止（手動実行のみ）
   workflow_dispatch:
 
 permissions:
