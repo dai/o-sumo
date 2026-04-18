@@ -10137,6 +10137,8 @@ export const torikumiArchive = {
   scheduleDays: torikumiData.scheduleDays ?? [],
 };
 
+export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = torikumiArchive;
+
 export const torikumiMonthKey = torikumiArchive.resultDays[0]?.pathDate.slice(0, 6)
   ?? torikumiArchive.scheduleDays[0]?.pathDate.slice(0, 6)
   ?? '202603';
