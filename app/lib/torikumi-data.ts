@@ -51,6 +51,11 @@ export interface TorikumiDataSet {
   scheduleDays?: TorikumiArchiveDay[];
 }
 
+export type TorikumiArchiveDataSet = Omit<TorikumiDataSet, 'resultDays' | 'scheduleDays'> & {
+  resultDays: TorikumiArchiveDay[];
+  scheduleDays: TorikumiArchiveDay[];
+};
+
 export const torikumiData: TorikumiDataSet = {
   "bashoName": "三月場所",
   "year": "令和八年",
@@ -10127,7 +10132,7 @@ export const torikumiData: TorikumiDataSet = {
   ]
 };
 
-export const torikumiArchive = {
+export const MARCH2026_TORIKUMI_DATA: TorikumiArchiveDataSet = {
   bashoName: torikumiData.bashoName,
   year: torikumiData.year,
   updatedAt: torikumiData.updatedAt,
@@ -10136,6 +10141,8 @@ export const torikumiArchive = {
   resultDays: torikumiData.resultDays ?? [],
   scheduleDays: torikumiData.scheduleDays ?? [],
 };
+
+export const torikumiArchive = MARCH2026_TORIKUMI_DATA;
 
 export const torikumiMonthKey = torikumiArchive.resultDays[0]?.pathDate.slice(0, 6)
   ?? torikumiArchive.scheduleDays[0]?.pathDate.slice(0, 6)
