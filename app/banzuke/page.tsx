@@ -14,12 +14,7 @@ import { makuuchiData, juryo } from '../lib/sumo-data';
 import { getArchiveRouteConfigForPathname, getHubPathForMonthKey } from '../lib/torikumi-routes';
 import './page.css';
 
-function formatGregorianBashoLabel(monthKey: string): string {
-  const year = monthKey.slice(0, 4);
-  const month = String(Number(monthKey.slice(4, 6)));
-  return `${year}年${month}月場所`;
-}
-
+import { formatGregorianBashoLabel } from '../lib/basho-meta';
 function useBanzukeContext() {
   const location = useLocation();
   const routeConfig = getArchiveRouteConfigForPathname(location.pathname);
