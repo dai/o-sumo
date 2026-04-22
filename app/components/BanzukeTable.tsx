@@ -1,7 +1,8 @@
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import type { RankGroup, Rikishi } from '../lib/sumo-data';
-import { buildProfileNameMap, buildResultLinkMap, displayShikona } from '../lib/rikishi-display';
+import { canonicalNameMap, buildResultLinkMap, displayShikona } from '../lib/rikishi-display';
 import { toRomaji } from '../lib/romaji';
 import {
   basicRikishiPlaceholderDataUrl,
@@ -15,7 +16,7 @@ interface BanzukeTableProps {
   monthKey?: string;
 }
 
-const profileNameMap = buildProfileNameMap();
+const profileNameMap = canonicalNameMap;
 
 const Hoshitori = ({ rikishi, resultLinkMap }: { rikishi: Rikishi; resultLinkMap: Map<string, string> }) => {
   const { t } = useTranslation('common');
@@ -34,7 +35,7 @@ const Hoshitori = ({ rikishi, resultLinkMap }: { rikishi: Rikishi; resultLinkMap
         const marker = <span className={`hoshi ${result}`}>{result === 'win' ? '○' : result === 'loss' ? '●' : '−'}</span>;
 
         return href ? (
-          <Link key={day} to={href} className="hoshi-link" aria-label={`${displayShikona(rikishi, profileNameMap)} ${day}日目の用料結果へ (${markerLabel})`}>
+          <Link key={day} to={href} className="hoshi-link" aria-label={`${displayShikona(rikishi, profileNameMap)} ${day}日目の取組結果へ (${markerLabel})`}>
             {marker}
           </Link>
         ) : (
@@ -94,7 +95,7 @@ const RikishiCell = ({ rikishi, resultLinkMap }: { rikishi: Rikishi; resultLinkM
 
 export default function BanzukeTable({ rankGroup, monthKey }: BanzukeTableProps) {
   const { t } = useTranslation('common');
-  const resultLinkMap = buildResultLinkMap(monthKey);
+  const resultLinkMap = useMemo(() => buildResultLinkMap(monthKey), [monthKey]);
 
   return (
     <div className="rank-section">

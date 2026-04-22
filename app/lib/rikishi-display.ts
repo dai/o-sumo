@@ -7,14 +7,10 @@ function allRikishi(groups: RankGroup[]): Rikishi[] {
 }
 
 const canonicalRikishi = [...allRikishi(makuuchiData), ...allRikishi(juryo)];
-const canonicalNameMap = new Map(canonicalRikishi.map((rikishi) => [rikishi.profileUrl, rikishi.name] as const));
+export const canonicalNameMap = new Map(canonicalRikishi.map((rikishi) => [rikishi.profileUrl, rikishi.name] as const));
 
 export function divisionAnchorId(division: '幕内' | '十両', boutNo: number): string {
   return `bout-${division === '幕内' ? 'makuuchi' : 'juryo'}-${boutNo}`;
-}
-
-export function buildProfileNameMap(): Map<string, string> {
-  return new Map(canonicalNameMap);
 }
 
 function getResultDaysByMonthKey(monthKey: string) {
