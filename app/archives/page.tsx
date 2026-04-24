@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { PAST_BASHO } from '../lib/archives-data';
+import HomeLink from '../components/HomeLink';
 import './page.css';
 
 export default function ArchivesPage() {
@@ -9,6 +10,9 @@ export default function ArchivesPage() {
   return (
     <div className="archives-page">
       <header className="archives-header">
+        <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
+          <HomeLink placement="header" />
+        </nav>
         <h1>{t('archives.pageTitle')}</h1>
         <p>{t('archives.pageDescription')}</p>
       </header>
@@ -41,7 +45,7 @@ export default function ArchivesPage() {
       </main>
 
       <footer className="archives-footer">
-        <Link to="/">{t('archives.backToHome')}</Link>
+        <HomeLink placement="footer" />
       </footer>
     </div>
   );

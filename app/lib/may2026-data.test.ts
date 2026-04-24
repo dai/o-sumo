@@ -1,22 +1,21 @@
 import { describe, expect, it } from 'vitest';
 import { MAY2026_TORIKUMI_DATA } from './may2026-data';
 
-function toYmd(value: string): string {
-  return `${value.slice(0, 4)}-${value.slice(4, 6)}-${value.slice(6, 8)}`;
-}
-
 describe('MAY2026_TORIKUMI_DATA', () => {
   it('keeps 15 consecutive days from 2026-05-10 to 2026-05-24', () => {
     const resultDays = MAY2026_TORIKUMI_DATA.resultDays ?? [];
     expect(resultDays).toHaveLength(15);
+    expect(resultDays[0]?.isoDate).toBe('2026-05-10');
     expect(resultDays[0]?.pathDate).toBe('20260510');
+    expect(resultDays[14]?.isoDate).toBe('2026-05-24');
     expect(resultDays[14]?.pathDate).toBe('20260524');
 
     for (let i = 0; i < resultDays.length; i += 1) {
-      const currentDate = new Date(toYmd(resultDays[i].pathDate));
+      const currentDate = new Date(resultDays[i].isoDate);
       const expectedDate = new Date('2026-05-10');
       expectedDate.setDate(expectedDate.getDate() + i);
       expect(currentDate.toISOString().slice(0, 10)).toBe(expectedDate.toISOString().slice(0, 10));
+      expect(resultDays[i].pathDate).toBe(resultDays[i].isoDate.replace(/-/g, ''));
     }
   });
 

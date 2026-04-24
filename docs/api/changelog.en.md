@@ -2,6 +2,15 @@
 
 [日本語版](./changelog.md)
 
+## 2026-04-24
+
+### May Basho Update Preparation
+
+- Added the manual update procedure for the May 2026 banzuke release on April 27, 2026 to the README, development guide, and API policy
+- Synced documentation with the current `realtime-torikumi-update.yml` state: `workflow_dispatch` only until May 1, 2026
+- Normalized May pending-data `isoDate` values to API-format `YYYY-MM-DD` while keeping `pathDate` as `YYYYMMDD`
+- Added homepage links to every page header and footer
+
 ## 2026-04-14
 
 ### Spec And Operations Updates

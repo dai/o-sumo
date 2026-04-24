@@ -12,6 +12,7 @@ import {
   getDayPath,
   type TorikumiPageMode,
 } from '../lib/torikumi-routes';
+import HomeLink from './HomeLink';
 import '../torikumi/page.css';
 
 const DIVISIONS: Array<'幕内' | '十両'> = ['幕内', '十両'];
@@ -138,6 +139,9 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
   return (
     <div className="torikumi-page">
       <header className="torikumi-header">
+        <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
+          <HomeLink placement="header" />
+        </nav>
         <h1>{archive.year}{archive.bashoName}{modeLabel}</h1>
         <p>{day.dayHead}</p>
         <p>{t('torikumi.day.updateDate', { date: archive.updatedAt })}</p>
@@ -171,7 +175,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
 
       <footer className="torikumi-footer">
         <nav aria-label={`${modeLabel}ページフッターリンク`}>
-          <Link to="/">{t('torikumi.day.footerHome')}</Link>
+          <HomeLink placement="footer" />
           <span> | </span>
           <Link to={resultPath}>{t('archives.result')}</Link>
           <span> | </span>

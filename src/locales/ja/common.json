@@ -1,6 +1,8 @@
 {
   "global": {
-    "may2026UpdateNotice": "令和八年五月場所の取組予定・番付は現在調整中です。決まり次第更新します。"
+    "may2026UpdateNotice": "令和八年五月場所の取組予定・番付は現在調整中です。決まり次第更新します。",
+    "homeLink": "ホーム",
+    "siteNavigation": "サイトナビゲーション"
   },
   "pwa": {
     "updateDialogTitle": "新しい更新があります。再読み込みしますか？"

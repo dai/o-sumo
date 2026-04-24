@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import BanzukePage from './page';
@@ -16,6 +16,8 @@ describe('BanzukePage', () => {
     );
 
     expect(screen.queryByText('連絡先:')).not.toBeInTheDocument();
+    expect(within(screen.getByRole('banner')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
+    expect(within(screen.getByRole('contentinfo')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
     expect(screen.getByRole('link', { name: 'GitHub Repository' })).toHaveAttribute('href', 'https://github.com/dai/o-sumo');
 
     const initialFirstRank = screen.getAllByRole('heading', { level: 3 })[0];

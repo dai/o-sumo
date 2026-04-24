@@ -10,6 +10,7 @@ import {
 } from './lib/torikumi-routes';
 import { MAY2026_TORIKUMI_DATA } from './lib/may2026-data';
 import { MARCH2026_TORIKUMI_DATA } from './lib/torikumi-data';
+import HomeLink from './components/HomeLink';
 import './index.css';
 
 export default function Home() {
@@ -19,6 +20,9 @@ export default function Home() {
   return (
     <div className="home-container">
       <header className="home-header">
+        <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
+          <HomeLink placement="header" />
+        </nav>
         <div className="header-content">
           <h1 className="home-title">{t('home.siteTitle')}</h1>
           <p className="home-subtitle">{t('home.siteSubtitle')}</p>
@@ -80,6 +84,8 @@ export default function Home() {
       <footer className="home-footer">
         <p>{t('home.footerCopyright')}</p>
         <nav aria-label="ホームの外部リンク">
+          <HomeLink placement="footer" />
+          {' | '}
           <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">{t('home.footerDaisuke')}</a>
           {' | '}
           <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">{t('home.footerGithub')}</a>

@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import TorikumiDayPage from './TorikumiDayPage';
@@ -18,6 +18,8 @@ describe('TorikumiDayPage', () => {
     renderPage(torikumiArchive.resultDays[0], 'result');
 
     expect(screen.getByRole('heading', { level: 1, name: /取組結果/ })).toBeInTheDocument();
+    expect(within(screen.getByRole('banner')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
+    expect(within(screen.getByRole('contentinfo')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
     expect(screen.getByRole('link', { name: '一覧' })).toHaveAttribute('href', getHubPath('result'));
     expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', banzukePath);
     expect(screen.getByText('← 前日なし')).toBeInTheDocument();

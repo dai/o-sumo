@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { MARCH2026_TORIKUMI_DATA, torikumiArchive } from '../lib/torikumi-data';
@@ -95,6 +95,8 @@ describe('TorikumiHubPage', () => {
     );
 
     expect(screen.getByRole('heading', { level: 1, name: /三月場所/ })).toBeInTheDocument();
+    expect(within(screen.getByRole('banner')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
+    expect(within(screen.getByRole('contentinfo')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
     expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202603-banduke');
     expect(screen.getAllByRole('link').some((l) => l.getAttribute('href') === '/20260308-torikumi')).toBe(true);
   });

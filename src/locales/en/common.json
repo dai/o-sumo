@@ -1,6 +1,8 @@
 {
   "global": {
-    "may2026UpdateNotice": "May 2026 basho schedule and banzuke are being finalized. We will update them as soon as they are confirmed."
+    "may2026UpdateNotice": "May 2026 basho schedule and banzuke are being finalized. We will update them as soon as they are confirmed.",
+    "homeLink": "Home",
+    "siteNavigation": "Site navigation"
   },
   "pwa": {
     "updateDialogTitle": "A new update is available. Reload now?"

@@ -9,6 +9,7 @@ import {
   getDayPath,
   type TorikumiPageMode,
 } from '../lib/torikumi-routes';
+import HomeLink from '../components/HomeLink';
 import './page.css';
 
 function useArchive(): { archive: TorikumiDataSet; resultPath: string; schedulePath: string; bandukePath: string } {
@@ -39,6 +40,9 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
   return (
     <div className="torikumi-page">
       <header className="torikumi-header">
+        <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
+          <HomeLink placement="header" />
+        </nav>
         <h1>{archive.year}{archive.bashoName}{modeLabel}</h1>
         <p>{t('torikumi.hub.updateDate', { date: archive.updatedAt })}</p>
       </header>
@@ -97,7 +101,7 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
 
       <footer className="torikumi-footer">
         <nav aria-label={`${modeLabel}一覧フッターリンク`}>
-          <Link to="/">{t('torikumi.hub.footerHome')}</Link>
+          <HomeLink placement="footer" />
           <span> | </span>
           <Link to={bandukePath}>{t('torikumi.hub.footerBanduke')}</Link>
           <span> | </span>

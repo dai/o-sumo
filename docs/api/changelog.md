@@ -1,5 +1,14 @@
 # API Changelog
 
+## 2026-04-24
+
+### 五月場所更新準備
+
+- 2026年4月27日の五月場所番付発表に向けた手動更新手順を README / 開発ガイド / API ポリシーに追加
+- `realtime-torikumi-update.yml` が2026年5月1日まで `workflow_dispatch` のみであることをドキュメントに同期
+- 五月場所 pending データの `isoDate` を API 仕様どおり `YYYY-MM-DD` に統一し、`pathDate` は `YYYYMMDD` を維持
+- 全ページのヘッダーとフッターにトップページリンクを追加
+
 ## 2026-04-14
 
 ### 仕様・運用更新

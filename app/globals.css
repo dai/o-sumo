@@ -231,6 +231,44 @@ p {
   color: var(--site-header-text-muted);
 }
 
+.site-header-nav {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.site-home-link {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.site-home-link--header {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--site-header-text);
+  padding: 0.35rem 0.85rem;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.site-home-link--header:hover {
+  color: var(--site-header-text);
+  background: rgba(255, 255, 255, 0.2);
+  text-decoration: none;
+}
+
+.site-home-link--footer {
+  color: var(--color-secondary);
+}
+
+.site-home-link--footer:hover {
+  color: var(--color-tertiary);
+  text-decoration: underline;
+}
+
 a {
   color: var(--color-secondary);
   text-decoration: none;

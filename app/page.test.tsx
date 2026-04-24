@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import {
   MARCH2026_BANDUKE_PATH,
@@ -46,6 +46,8 @@ describe('Home page', () => {
     expect(firstMarchDay).toBeDefined();
     expect(allLinks.find((l) => l.getAttribute('href') === `/${firstMarchDay!.pathDate}-torikumi`)).toBeDefined();
     expect(screen.queryByText('連絡先:')).not.toBeInTheDocument();
+    expect(within(screen.getByRole('banner')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
+    expect(within(screen.getByRole('contentinfo')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
     expect(screen.getAllByRole('link', { name: 'GitHub' })[0]).toHaveAttribute('href', 'https://github.com/dai/o-sumo');
   });
 });

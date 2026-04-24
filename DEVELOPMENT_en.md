@@ -56,6 +56,18 @@ python scripts/update_sumo_data.py --torikumi-scope schedule
 python scripts/update_sumo_data.py --torikumi-only --torikumi-scope result
 ```
 
+Procedure for the May 2026 banzuke release on April 27, 2026:
+
+```bash
+git pull --ff-only origin main
+python scripts/update_sumo_data.py --torikumi-scope schedule
+npm run typecheck
+npm test
+npm run build
+```
+
+Before publishing, verify that `public/api/v1/banzuke.json` has `bashoName: "五月場所"`, `year: "令和八年"`, 42 makuuchi rikishi, and 28 juryo rikishi.
+
 Useful local URLs:
 
 - `http://localhost:3001/`
@@ -89,9 +101,16 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - If files change, the workflow commits and pushes directly to `main`
 
 - Workflow: `.github/workflows/realtime-torikumi-update.yml`
-- Schedule: every 30 minutes from 15:00 JST through 19:30 JST, plus 20:00 JST (cron enabled)
+- Schedule: paused until May 1, 2026 (`workflow_dispatch` only)
 - Scope: torikumi results only
 - If files change, the workflow commits and pushes directly to `main`
+
+## Operations Policy For The May 2026 Basho
+
+- Keep both `daily-data-update.yml` and `realtime-torikumi-update.yml` on manual `workflow_dispatch` operation until May 1, 2026.
+- After the April 27, 2026 banzuke release, manually run `python scripts/update_sumo_data.py --torikumi-scope schedule` to sync the May banzuke, torikumi schedule placeholders, and static API files.
+- Keep the `public/_headers` cache policy unchanged to control Cloudflare usage.
+- Keep the PWA Service Worker on `registerType: "prompt"` and avoid immediate updates without user confirmation.
 
 ### Tests
 

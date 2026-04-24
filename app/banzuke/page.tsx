@@ -12,8 +12,8 @@ import {
 import { type SortOrder, sortRankGroups } from '../lib/sorting';
 import { makuuchiData, juryo } from '../lib/sumo-data';
 import { getArchiveRouteConfigForPathname, getHubPathForMonthKey } from '../lib/torikumi-routes';
+import HomeLink from '../components/HomeLink';
 import './page.css';
-
 import { formatGregorianBashoLabel } from '../lib/basho-meta';
 function useBanzukeContext() {
   const location = useLocation();
@@ -53,6 +53,9 @@ export default function BanzukePage() {
   return (
     <div className="page-container">
       <header className="page-header">
+        <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
+          <HomeLink placement="header" />
+        </nav>
         <div className="header-content">
           <h1 className="page-title">{t('banzuke.pageTitle')}</h1>
           <h2 className="page-subtitle">{bashoTitle} {t('banzuke.bandukeListTitle')}</h2>
@@ -102,7 +105,7 @@ export default function BanzukePage() {
       <footer className="page-footer">
         <p>{t('banzuke.footerCopyright')}</p>
         <nav aria-label="番付ページの関連リンク">
-          <Link to="/">{t('banzuke.footerHome')}</Link>
+          <HomeLink placement="footer" />
           {" | "}
           <Link to={getHubPathForMonthKey(monthKey, 'result')}>{t('banzuke.footerResult')}</Link>
           {" | "}

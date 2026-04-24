@@ -155,6 +155,18 @@ python scripts/update_sumo_data.py --torikumi-only --torikumi-scope result
 python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule
 ```
 
+For the May 2026 banzuke release on April 27, 2026, first confirm that the upstream source has switched to the May basho, then run:
+
+```bash
+git pull --ff-only origin main
+python scripts/update_sumo_data.py --torikumi-scope schedule
+npm run typecheck
+npm test
+npm run build
+```
+
+Before publishing to `main`, verify that `banzuke.json` has `bashoName: "五月場所"`, `year: "令和八年"`, 42 makuuchi rikishi, and 28 juryo rikishi.
+
 Generated outputs:
 
 - `app/lib/sumo-data.ts`
@@ -179,9 +191,16 @@ GitHub Actions uses separate daily and results-refresh workflows.
   - updates banzuke and torikumi schedules
   - commits and pushes directly to `main` when files change
 - Realtime results update: `.github/workflows/realtime-torikumi-update.yml`
-  - schedule: every 30 minutes from 15:00 JST through 19:30 JST, plus 20:00 JST (cron enabled)
+  - schedule: paused until May 1, 2026 (`workflow_dispatch` only)
   - updates torikumi results only
   - commits and pushes directly to `main` when files change
+
+## Operations Policy For The May 2026 Basho
+
+- Both `daily-data-update.yml` and `realtime-torikumi-update.yml` remain `workflow_dispatch`-only until May 1, 2026.
+- After the April 27, 2026 banzuke release, manually run `python scripts/update_sumo_data.py --torikumi-scope schedule` to sync the May banzuke, schedule placeholders, and static API files.
+- Keep the cache policy in `public/_headers` unchanged to control Cloudflare usage.
+- Keep the PWA Service Worker on `registerType: "prompt"` so updates are not applied without user confirmation.
 
 ## Testing
 
