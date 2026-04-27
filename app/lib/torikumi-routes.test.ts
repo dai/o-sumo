@@ -63,8 +63,8 @@ describe('torikumi route helpers', () => {
     expect(getAdjacentDay(day!, 'result', 'next')?.pathDate).toBe(secondResultDay.pathDate);
     expect(torikumiArchive.resultDays).toHaveLength(15);
     expect(torikumiArchive.scheduleDays).toHaveLength(15);
-    // March 2026 resultDays are all published; pending days only exist in scheduleDays
-    const pendingScheduleDay = torikumiArchive.scheduleDays.find((d) => d.status === 'pending');
+    // March 2026 resultDays are published and scheduleDays remain pending.
+    const pendingScheduleDay = MARCH2026_TORIKUMI_DATA.scheduleDays?.find((d) => d.status === 'pending');
     expect(pendingScheduleDay).toBeDefined();
     expect(pendingScheduleDay?.status).toBe('pending');
 

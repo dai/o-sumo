@@ -84,7 +84,11 @@ describe('TorikumiDayPage', () => {
     expect(screen.getByRole('link', { name: '一覧' })).toHaveAttribute('href', getHubPathForDateKey(scheduleDay.pathDate, 'schedule'));
     expect(screen.getByRole('link', { name: /← 初日/ })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /三日目 →/ })).toBeInTheDocument();
-    expect(screen.getByText('取組予定未更新')).toBeInTheDocument();
+    if (scheduleDay.status === 'pending') {
+      expect(screen.getByText('取組予定未更新')).toBeInTheDocument();
+    } else {
+      expect(screen.queryByText('取組予定未更新')).not.toBeInTheDocument();
+    }
   });
 
   it('keeps march day navigation and hub links in 202603', () => {
