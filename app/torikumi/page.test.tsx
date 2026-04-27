@@ -84,7 +84,12 @@ describe('TorikumiHubPage', () => {
         <TorikumiHubPage mode="schedule" />
       </MemoryRouter>,
     );
-    expect(screen.getAllByText('取組予定未更新').length).toBeGreaterThan(0);
+    const hasPendingSchedule = torikumiArchive.scheduleDays.some((day) => day.status === 'pending');
+    if (hasPendingSchedule) {
+      expect(screen.getAllByText('取組予定未更新').length).toBeGreaterThan(0);
+    } else {
+      expect(screen.queryByText('取組予定未更新')).not.toBeInTheDocument();
+    }
   });
 
   it('renders 202603 hub route with 202603 archive links', () => {
