@@ -4,6 +4,7 @@ export interface Rikishi {
   yomi: string;
   rank: string;
   side: 'east' | 'west';
+  photoUrl?: string;
   wins?: number;
   losses?: number;
   draws?: number;
