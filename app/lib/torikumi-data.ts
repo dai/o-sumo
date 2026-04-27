@@ -18295,6 +18295,9 @@ export const torikumiArchive = {
   scheduleDays: torikumiData.scheduleDays ?? [],
 };
 
+// Compatibility export used by existing tests/routes that still reference the March key.
+export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = torikumiData;
+
 export const torikumiMonthKey = torikumiArchive.resultDays[0]?.pathDate.slice(0, 6)
   ?? torikumiArchive.scheduleDays[0]?.pathDate.slice(0, 6)
   ?? '202603';
