@@ -219,7 +219,9 @@ def load_hoshitori(kakuzuke_id: int) -> dict:
 def build_rank_groups(kakuzuke_id: int) -> tuple[list[dict], dict]:
     banzuke = load_banzuke_meta(kakuzuke_id)
 
-    table = sorted(banzuke.get("BanzukeTable", []), key=lambda item: int(item["banzuke_id"]))
+    table = sorted(banzuke.get("BanzukeTable", []), key=lambda item: int(item["banzuke_id"]) if item.get("rikishi_id") else 0)
+    # Filter out empty/placeholder entries
+    table = [item for item in table if item.get("rikishi_id")]
     expected = EXPECTED_RIKISHI_COUNT[kakuzuke_id]
     if len(table) != expected:
         raise ValueError(

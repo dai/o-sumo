@@ -1,4 +1,5 @@
-import { MARCH2026_TORIKUMI_DATA, torikumiArchive, torikumiMonthKey } from './torikumi-data';
+import { torikumiArchive, torikumiMonthKey } from './torikumi-data';
+import { MARCH2026_TORIKUMI_DATA } from './march2026-torikumi-data';
 import { getDayPath } from './torikumi-routes';
 import { juryo, makuuchiData, type RankGroup, type Rikishi } from './sumo-data';
 

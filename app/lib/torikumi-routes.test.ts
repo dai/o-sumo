@@ -13,7 +13,8 @@ import {
   legacyBanzukePath,
   parseTopLevelSlug,
 } from './torikumi-routes';
-import { MARCH2026_TORIKUMI_DATA, torikumiArchive, torikumiMonthKey } from './torikumi-data';
+import { torikumiArchive, torikumiMonthKey } from './torikumi-data';
+import { MARCH2026_TORIKUMI_DATA } from './march2026-torikumi-data';
 
 describe('torikumi route helpers', () => {
   it('parses dated top-level result slug', () => {

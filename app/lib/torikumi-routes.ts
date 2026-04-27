@@ -2,10 +2,10 @@ import {
   banzukePath,
   torikumiArchive,
   torikumiMonthKey,
-  MARCH2026_TORIKUMI_DATA,
   type TorikumiArchiveDay,
   type TorikumiDataSet,
 } from './torikumi-data';
+import { MARCH2026_TORIKUMI_DATA } from './march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from './may2026-data';
 
 export type TorikumiPageMode = 'result' | 'schedule';

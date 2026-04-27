@@ -1,6 +1,6 @@
 // Archive basho places - ordered from newest to oldest
 import type { TorikumiDataSet } from './torikumi-data';
-import { MARCH2026_TORIKUMI_DATA } from './torikumi-data';
+import { MARCH2026_TORIKUMI_DATA } from './march2026-torikumi-data';
 
 export interface ArchiveBasho {
   id: string; // e.g., '202603'
