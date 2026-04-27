@@ -1,0 +1,495 @@
+{
+  "updatedAt": "2026-04-27",
+  "rikishi": [
+    {
+      "id": 3842,
+      "name": "豊昇龍",
+      "yomi": "ほうしょうりゅう",
+      "currentRank": "横綱",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+    },
+    {
+      "id": 4227,
+      "name": "大の里",
+      "yomi": "おおのさと",
+      "currentRank": "横綱",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
+    },
+    {
+      "id": 3661,
+      "name": "琴櫻",
+      "yomi": "ことざくら",
+      "currentRank": "大関",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+    },
+    {
+      "id": 3622,
+      "name": "霧島",
+      "yomi": "きりしま",
+      "currentRank": "大関",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"
+    },
+    {
+      "id": 4230,
+      "name": "安青錦",
+      "yomi": "あおにしき",
+      "currentRank": "大関",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+    },
+    {
+      "id": 4055,
+      "name": "熱海富士",
+      "yomi": "あたみふじ",
+      "currentRank": "関脇",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/"
+    },
+    {
+      "id": 3840,
+      "name": "琴勝峰",
+      "yomi": "ことしょうほう",
+      "currentRank": "関脇",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/"
+    },
+    {
+      "id": 3761,
+      "name": "若隆景",
+      "yomi": "わかたかかげ",
+      "currentRank": "小結",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+    },
+    {
+      "id": 2775,
+      "name": "高安",
+      "yomi": "たかやす",
+      "currentRank": "小結",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+    },
+    {
+      "id": 4191,
+      "name": "藤ノ川",
+      "yomi": "ふじのかわ",
+      "currentRank": "前頭1",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"
+    },
+    {
+      "id": 3265,
+      "name": "隆の勝",
+      "yomi": "たかのしょう",
+      "currentRank": "前頭1",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/"
+    },
+    {
+      "id": 4279,
+      "name": "義ノ富士",
+      "yomi": "よしのふじ",
+      "currentRank": "前頭2",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
+    },
+    {
+      "id": 3753,
+      "name": "一山本",
+      "yomi": "いちやまもと",
+      "currentRank": "前頭2",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/"
+    },
+    {
+      "id": 3705,
+      "name": "平戸海",
+      "yomi": "ひらどうみ",
+      "currentRank": "前頭3",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/"
+    },
+    {
+      "id": 3844,
+      "name": "王鵬",
+      "yomi": "おうほう",
+      "currentRank": "前頭3",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/"
+    },
+    {
+      "id": 3376,
+      "name": "大栄翔",
+      "yomi": "だいえいしょう",
+      "currentRank": "前頭4",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/"
+    },
+    {
+      "id": 4079,
+      "name": "豪ノ山",
+      "yomi": "ごうのやま",
+      "currentRank": "前頭4",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/"
+    },
+    {
+      "id": 3371,
+      "name": "若元春",
+      "yomi": "わかもとはる",
+      "currentRank": "前頭5",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/"
+    },
+    {
+      "id": 3521,
+      "name": "正代",
+      "yomi": "しょうだい",
+      "currentRank": "前頭5",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/"
+    },
+    {
+      "id": 3711,
+      "name": "美ノ海",
+      "yomi": "ちゅらのうみ",
+      "currentRank": "前頭6",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/"
+    },
+    {
+      "id": 4093,
+      "name": "藤青雲",
+      "yomi": "ふじせいうん",
+      "currentRank": "前頭6",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/"
+    },
+    {
+      "id": 3207,
+      "name": "千代翔馬",
+      "yomi": "ちよしょうま",
+      "currentRank": "前頭7",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/"
+    },
+    {
+      "id": 4101,
+      "name": "朝紅龍",
+      "yomi": "あさこうりゅう",
+      "currentRank": "前頭7",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+    },
+    {
+      "id": 4108,
+      "name": "欧勝馬",
+      "yomi": "おうしょうま",
+      "currentRank": "前頭8",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/"
+    },
+    {
+      "id": 4175,
+      "name": "朝白龍",
+      "yomi": "あさはくりゅう",
+      "currentRank": "前頭8",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/"
+    },
+    {
+      "id": 3485,
+      "name": "阿炎",
+      "yomi": "あび",
+      "currentRank": "前頭9",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+    },
+    {
+      "id": 3742,
+      "name": "錦富士",
+      "yomi": "にしきふじ",
+      "currentRank": "前頭9",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/"
+    },
+    {
+      "id": 3682,
+      "name": "朝乃山",
+      "yomi": "あさのやま",
+      "currentRank": "前頭10",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+    },
+    {
+      "id": 4187,
+      "name": "伯乃富士",
+      "yomi": "はくのふじ",
+      "currentRank": "前頭10",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+    },
+    {
+      "id": 3616,
+      "name": "宇良",
+      "yomi": "うら",
+      "currentRank": "前頭11",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/"
+    },
+    {
+      "id": 4112,
+      "name": "金峰山",
+      "yomi": "きんぼうざん",
+      "currentRank": "前頭11",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/"
+    },
+    {
+      "id": 3990,
+      "name": "獅司",
+      "yomi": "しし",
+      "currentRank": "前頭12",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+    },
+    {
+      "id": 3933,
+      "name": "時疾風",
+      "yomi": "ときはやて",
+      "currentRank": "前頭12",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
+    },
+    {
+      "id": 4120,
+      "name": "琴栄峰",
+      "yomi": "ことえいほう",
+      "currentRank": "前頭13",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/"
+    },
+    {
+      "id": 2629,
+      "name": "玉鷲",
+      "yomi": "たまわし",
+      "currentRank": "前頭13",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/"
+    },
+    {
+      "id": 3620,
+      "name": "御嶽海",
+      "yomi": "みたけうみ",
+      "currentRank": "前頭14",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/"
+    },
+    {
+      "id": 3907,
+      "name": "狼雅",
+      "yomi": "ろうが",
+      "currentRank": "前頭14",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/"
+    },
+    {
+      "id": 3594,
+      "name": "翔猿",
+      "yomi": "とびざる",
+      "currentRank": "前頭15",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/"
+    },
+    {
+      "id": 4025,
+      "name": "欧勝海",
+      "yomi": "おうしょううみ",
+      "currentRank": "前頭15",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+    },
+    {
+      "id": 4121,
+      "name": "若ノ勝",
+      "yomi": "わかのしょう",
+      "currentRank": "前頭16",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+    },
+    {
+      "id": 2890,
+      "name": "竜電",
+      "yomi": "りゅうでん",
+      "currentRank": "前頭16",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+    },
+    {
+      "id": 4336,
+      "name": "藤凌駕",
+      "yomi": "ふじりょうが",
+      "currentRank": "前頭17",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/"
+    },
+    {
+      "id": 4231,
+      "name": "阿武剋",
+      "yomi": "おうのかつ",
+      "currentRank": "十両1",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+    },
+    {
+      "id": 4116,
+      "name": "大青山",
+      "yomi": "だいせいざん",
+      "currentRank": "十両1",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+    },
+    {
+      "id": 2565,
+      "name": "佐田の海",
+      "yomi": "さだのうみ",
+      "currentRank": "十両2",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+    },
+    {
+      "id": 4171,
+      "name": "尊富士",
+      "yomi": "たけるふじ",
+      "currentRank": "十両2",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+    },
+    {
+      "id": 3983,
+      "name": "出羽ノ龍",
+      "yomi": "でわのりゅう",
+      "currentRank": "十両3",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/"
+    },
+    {
+      "id": 4124,
+      "name": "羽出山",
+      "yomi": "はつやま",
+      "currentRank": "十両3",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+    },
+    {
+      "id": 4232,
+      "name": "旭海雄",
+      "yomi": "きょくかいゆう",
+      "currentRank": "十両4",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+    },
+    {
+      "id": 4285,
+      "name": "朝翠龍",
+      "yomi": "あさすいりゅう",
+      "currentRank": "十両4",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
+    },
+    {
+      "id": 3818,
+      "name": "友風",
+      "yomi": "ともかぜ",
+      "currentRank": "十両5",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+    },
+    {
+      "id": 3939,
+      "name": "北の若",
+      "yomi": "きたのわか",
+      "currentRank": "十両5",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/"
+    },
+    {
+      "id": 4287,
+      "name": "一意",
+      "yomi": "かずま",
+      "currentRank": "十両6",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
+    },
+    {
+      "id": 3337,
+      "name": "明生",
+      "yomi": "めいせい",
+      "currentRank": "十両6",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+    },
+    {
+      "id": 3255,
+      "name": "輝",
+      "yomi": "かがやき",
+      "currentRank": "十両7",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/"
+    },
+    {
+      "id": 4243,
+      "name": "寿之富士",
+      "yomi": "としのふじ",
+      "currentRank": "十両7",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+    },
+    {
+      "id": 3553,
+      "name": "湘南乃海",
+      "yomi": "しょうなんのうみ",
+      "currentRank": "十両8",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/"
+    },
+    {
+      "id": 4164,
+      "name": "白熊",
+      "yomi": "しろくま",
+      "currentRank": "十両8",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/"
+    },
+    {
+      "id": 3914,
+      "name": "西ノ龍",
+      "yomi": "にしのりゅう",
+      "currentRank": "十両9",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+    },
+    {
+      "id": 4165,
+      "name": "嘉陽",
+      "yomi": "かよう",
+      "currentRank": "十両9",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/"
+    },
+    {
+      "id": 3969,
+      "name": "東白龍",
+      "yomi": "とうはくりゅう",
+      "currentRank": "十両10",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/"
+    },
+    {
+      "id": 3743,
+      "name": "翠富士",
+      "yomi": "みどりふじ",
+      "currentRank": "十両10",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+    },
+    {
+      "id": 4158,
+      "name": "風賢央",
+      "yomi": "かぜけんおう",
+      "currentRank": "十両11",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/"
+    },
+    {
+      "id": 2892,
+      "name": "錦木",
+      "yomi": "にしきぎ",
+      "currentRank": "十両11",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/"
+    },
+    {
+      "id": 4095,
+      "name": "日翔志",
+      "yomi": "ひとし",
+      "currentRank": "十両12",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+    },
+    {
+      "id": 3367,
+      "name": "玉正鳳",
+      "yomi": "たましょうほう",
+      "currentRank": "十両12",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/"
+    },
+    {
+      "id": 4275,
+      "name": "大花竜",
+      "yomi": "おおかりゅう",
+      "currentRank": "十両13",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+    },
+    {
+      "id": 3334,
+      "name": "白鷹山",
+      "yomi": "はくようざん",
+      "currentRank": "十両13",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+    },
+    {
+      "id": 3839,
+      "name": "栃大海",
+      "yomi": "とちたいかい",
+      "currentRank": "十両14",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+    },
+    {
+      "id": 3803,
+      "name": "炎鵬",
+      "yomi": "えんほう",
+      "currentRank": "十両14",
+      "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+    }
+  ]
+}
