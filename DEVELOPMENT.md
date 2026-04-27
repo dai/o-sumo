@@ -50,10 +50,13 @@ python scripts/update_sumo_data.py
 データ更新の主なバリエーション:
 
 ```bash
+python scripts/update_sumo_data.py --rikishi-only
+python scripts/update_sumo_data.py --rikishi-only --profile-limit 10
 python scripts/update_sumo_data.py --torikumi-only
 python scripts/update_sumo_data.py --torikumi-scope result
 python scripts/update_sumo_data.py --torikumi-scope schedule
 python scripts/update_sumo_data.py --torikumi-only --torikumi-scope result
+python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule
 ```
 
 2026年4月27日の五月場所番付発表時の手順:
@@ -71,6 +74,7 @@ npm run build
 ローカル確認先:
 
 - `http://localhost:3001/`
+- `http://localhost:3001/archives`
 - `http://localhost:3001/{YYYYMM}-banduke`
 - `http://localhost:3001/{YYYYMM}-torikumi`
 - `http://localhost:3001/{YYYYMM}-yotei`
@@ -119,9 +123,11 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 
 - `app/main.tsx`: ルーティング定義
 - `app/page.tsx`: トップページ
+- `app/archives/page.tsx`: 過去場所一覧ページ
 - `app/banzuke/page.tsx`: 番付ページ
 - `app/torikumi/page.tsx`: 取組結果 / 予定の一覧ハブ
 - `app/components/TorikumiDayPage.tsx`: 日別の取組ページ
+- `app/lib/archives-data.ts`: 過去場所データ
 - `app/lib/torikumi-routes.ts`: 月キーと日付 URL の解決
 - `app/lib/torikumi-data.ts`: 取組アーカイブデータ
 - `app/lib/sumo-data.ts`: 番付データ

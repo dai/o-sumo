@@ -2,6 +2,15 @@
 
 [日本語版](./changelog.md)
 
+## 2026-04-27
+
+### Documentation Sync
+
+- Updated `README.md` / `README_en.md` with the `/archives` route and rikishi API endpoint references (`rikishi.json`, `rikishi/{id}.json`)
+- Removed stale README references that no longer match the implementation (`app/rikishi/[id]/page.tsx` and `/rikishi/{id}` as a local UI route)
+- Updated `DEVELOPMENT.md` / `DEVELOPMENT_en.md` with `--rikishi-only` / `--profile-limit`, `/archives` local URL checks, and archives-related main files
+- Added `GET /api/v1/rikishi.json` and `GET /api/v1/rikishi/{id}.json` sections with response shapes/examples to `docs/api/v1.md` / `docs/api/v1.en.md`
+
 ## 2026-04-24
 
 ### May Basho Update Preparation

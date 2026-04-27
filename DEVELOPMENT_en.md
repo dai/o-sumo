@@ -50,10 +50,13 @@ python scripts/update_sumo_data.py
 Common data-update variants:
 
 ```bash
+python scripts/update_sumo_data.py --rikishi-only
+python scripts/update_sumo_data.py --rikishi-only --profile-limit 10
 python scripts/update_sumo_data.py --torikumi-only
 python scripts/update_sumo_data.py --torikumi-scope result
 python scripts/update_sumo_data.py --torikumi-scope schedule
 python scripts/update_sumo_data.py --torikumi-only --torikumi-scope result
+python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule
 ```
 
 Procedure for the May 2026 banzuke release on April 27, 2026:
@@ -71,6 +74,7 @@ Before publishing, verify that `public/api/v1/banzuke.json` has `bashoName: "五
 Useful local URLs:
 
 - `http://localhost:3001/`
+- `http://localhost:3001/archives`
 - `http://localhost:3001/{YYYYMM}-banduke`
 - `http://localhost:3001/{YYYYMM}-torikumi`
 - `http://localhost:3001/{YYYYMM}-yotei`
@@ -126,9 +130,11 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 
 - `app/main.tsx`: route definitions
 - `app/page.tsx`: homepage
+- `app/archives/page.tsx`: archives page
 - `app/banzuke/page.tsx`: banzuke page
 - `app/torikumi/page.tsx`: result / schedule hub page
 - `app/components/TorikumiDayPage.tsx`: daily torikumi page
+- `app/lib/archives-data.ts`: past basho dataset
 - `app/lib/torikumi-routes.ts`: month-key and date URL resolution
 - `app/lib/torikumi-data.ts`: torikumi archive data
 - `app/lib/sumo-data.ts`: banzuke data

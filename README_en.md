@@ -20,6 +20,7 @@ o-sumo is a static web app for publishing sumo banzuke and torikumi information.
 
 - Web routes:
   - Homepage: `/`
+  - Archives: `/archives`
   - Banzuke: `/{YYYYMM}-banduke`
   - Results hub: `/{YYYYMM}-torikumi`
   - Schedule hub: `/{YYYYMM}-yotei`
@@ -33,6 +34,8 @@ o-sumo is a static web app for publishing sumo banzuke and torikumi information.
 - Public APIs:
   - `/api/v1/banzuke.json`
   - `/api/v1/torikumi.json`
+  - `/api/v1/rikishi.json`
+  - `/api/v1/rikishi/{id}.json`
 
 Related docs:
 
@@ -113,6 +116,7 @@ npm run preview
 Useful local URLs:
 
 - `http://localhost:3001/`
+- `http://localhost:3001/archives`
 - `http://localhost:3001/{YYYYMM}-banduke`
 - `http://localhost:3001/{YYYYMM}-torikumi`
 - `http://localhost:3001/{YYYYMM}-yotei`
@@ -121,18 +125,22 @@ Useful local URLs:
 
 ## Data Updates
 
-Full refresh (banzuke + torikumi):
+Full refresh (banzuke + torikumi + rikishi profiles):
 
 ```bash
 python scripts/update_sumo_data.py
 ```
 
+Rikishi profiles only:
 
 ```bash
+python scripts/update_sumo_data.py --rikishi-only
 ```
 
+Rikishi profiles only, limited to the first 10 profiles (for testing):
 
 ```bash
+python scripts/update_sumo_data.py --rikishi-only --profile-limit 10
 ```
 
 Torikumi-only refresh:
@@ -173,6 +181,8 @@ Generated outputs:
 - `app/lib/torikumi-data.ts`
 - `public/api/v1/banzuke.json`
 - `public/api/v1/torikumi.json`
+- `public/api/v1/rikishi.json`
+- `public/api/v1/rikishi/{id}.json` (one file per rikishi)
 
 Key validations:
 
@@ -194,13 +204,6 @@ GitHub Actions uses separate daily and results-refresh workflows.
   - schedule: paused until May 1, 2026 (`workflow_dispatch` only)
   - updates torikumi results only
   - commits and pushes directly to `main` when files change
-
-## Operations Policy For The May 2026 Basho
-
-- Both `daily-data-update.yml` and `realtime-torikumi-update.yml` remain `workflow_dispatch`-only until May 1, 2026.
-- After the April 27, 2026 banzuke release, manually run `python scripts/update_sumo_data.py --torikumi-scope schedule` to sync the May banzuke, schedule placeholders, and static API files.
-- Keep the cache policy in `public/_headers` unchanged to control Cloudflare usage.
-- Keep the PWA Service Worker on `registerType: "prompt"` so updates are not applied without user confirmation.
 
 ## Testing
 
@@ -230,14 +233,23 @@ GitHub Actions runs the following on pull requests and pushes to `main` and `cod
 - SPA fallback file: `public/_redirects`
 - Direct access to date-based URLs falls back to `index.html`
 
+## Operations Policy For The May 2026 Basho
+
+- Both `daily-data-update.yml` and `realtime-torikumi-update.yml` remain `workflow_dispatch`-only until May 1, 2026.
+- After the April 27, 2026 banzuke release, manually run `python scripts/update_sumo_data.py --torikumi-scope schedule` to sync the May banzuke, schedule placeholders, and static API files.
+- Keep the cache policy in `public/_headers` unchanged to control Cloudflare usage.
+- Keep the PWA Service Worker on `registerType: "prompt"` so updates are not applied without user confirmation.
+
 ## Important Files
 
 - `app/main.tsx`: route definitions
 - `app/page.tsx`: homepage
+- `app/archives/page.tsx`: archives page
 - `app/banzuke/page.tsx`: banzuke page
 - `app/torikumi/page.tsx`: monthly hubs for results and schedules
 - `app/components/TorikumiDayPage.tsx`: daily result and schedule pages
 - `app/components/BanzukeTable.tsx`: banzuke table component
+- `app/lib/archives-data.ts`: past basho dataset
 - `app/lib/torikumi-routes.ts`: month-key URL resolution and navigation
 - `app/lib/sumo-data.ts`: banzuke data (includes rikishi type definitions)
 - `app/lib/torikumi-data.ts`: torikumi archive data

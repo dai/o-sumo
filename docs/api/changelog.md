@@ -1,5 +1,14 @@
 # API Changelog
 
+## 2026-04-27
+
+### ドキュメント同期
+
+- `README.md` / `README_en.md` に `/archives` ルートと `rikishi` API エンドポイント（`rikishi.json`, `rikishi/{id}.json`）の案内を追加
+- 実装と不一致だった README の記述（`app/rikishi/[id]/page.tsx` 参照、ローカル UI ルートとしての `/rikishi/{id}` 案内）を削除
+- `DEVELOPMENT.md` / `DEVELOPMENT_en.md` に `--rikishi-only` / `--profile-limit` を含む更新手順、`/archives` ローカル確認先、`archives` 関連主要ファイルを追記
+- `docs/api/v1.md` / `docs/api/v1.en.md` に `GET /api/v1/rikishi.json` と `GET /api/v1/rikishi/{id}.json` の仕様とレスポンス例を追加
+
 ## 2026-04-24
 
 ### 五月場所更新準備
