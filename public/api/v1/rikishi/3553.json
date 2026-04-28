@@ -1,5 +1,8 @@
 {
   "id": 3553,
+  "name": "湘南乃海",
+  "yomi": "しょうなんのうみ",
+  "currentRank": "十両8",
   "birthDate": "平成10年4月8日（28歳）",
   "height": 194,
   "weight": 186,
@@ -10,5 +13,7 @@
     "losses": 0,
     "draws": 0
   },
-  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif"
+  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif",
+  "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/",
+  "updatedAt": "2026-04-27"
 }

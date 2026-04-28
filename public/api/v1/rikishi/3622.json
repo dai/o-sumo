@@ -1,5 +1,8 @@
 {
   "id": 3622,
+  "name": "霧島",
+  "yomi": "きりしま",
+  "currentRank": "大関",
   "birthDate": "平成8年4月24日（30歳）",
   "height": 186,
   "weight": 149,
@@ -10,5 +13,7 @@
     "losses": 0,
     "draws": 0
   },
-  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif"
+  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif",
+  "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/",
+  "updatedAt": "2026-04-27"
 }

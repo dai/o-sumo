@@ -1,5 +1,8 @@
 {
   "id": 4336,
+  "name": "藤凌駕",
+  "yomi": "ふじりょうが",
+  "currentRank": "前頭17",
   "birthDate": "平成15年2月27日（23歳）",
   "height": 180,
   "weight": 183,
@@ -10,5 +13,7 @@
     "losses": 0,
     "draws": 0
   },
-  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif"
+  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif",
+  "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/",
+  "updatedAt": "2026-04-27"
 }

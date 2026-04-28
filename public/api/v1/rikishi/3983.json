@@ -1,5 +1,8 @@
 {
   "id": 3983,
+  "name": "出羽ノ龍",
+  "yomi": "でわのりゅう",
+  "currentRank": "十両3",
   "birthDate": "平成13年3月7日（25歳）",
   "height": 181,
   "weight": 152,
@@ -10,5 +13,7 @@
     "losses": 0,
     "draws": 0
   },
-  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif"
+  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif",
+  "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/",
+  "updatedAt": "2026-04-27"
 }

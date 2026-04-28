@@ -1,5 +1,8 @@
 {
   "id": 3939,
+  "name": "北の若",
+  "yomi": "きたのわか",
+  "currentRank": "十両5",
   "birthDate": "平成12年11月12日（25歳）",
   "height": 191,
   "weight": 161,
@@ -10,5 +13,7 @@
     "losses": 0,
     "draws": 0
   },
-  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif"
+  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif",
+  "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/",
+  "updatedAt": "2026-04-27"
 }

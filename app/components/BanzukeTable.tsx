@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import type { RankGroup, Rikishi } from '../lib/sumo-data';
 import { canonicalNameMap, buildResultLinkMap, displayShikona } from '../lib/rikishi-display';
+import { rikishiProfilePath } from '../lib/rikishi-profile';
 import { toRomaji } from '../lib/romaji';
 import {
   basicRikishiPlaceholderDataUrl,
@@ -66,7 +67,7 @@ const RikishiCell = ({ rikishi, resultLinkMap }: { rikishi: Rikishi; resultLinkM
 
   return (
     <div className="rikishi-cell">
-      <a href={rikishi.profileUrl} target="_blank" rel="noreferrer" className="rikishi-photo-link" aria-label={`${name}のプロフィールを開く`}>
+      <Link to={rikishiProfilePath(rikishi.id)} className="rikishi-photo-link" aria-label={`${name}のo-sumoプロフィールを開く`}>
         <img
           className="rikishi-photo"
           src={photoUrl}
@@ -80,8 +81,10 @@ const RikishiCell = ({ rikishi, resultLinkMap }: { rikishi: Rikishi; resultLinkM
             }
           }}
         />
-      </a>
-      <div className="rikishi-name">{name}</div>
+      </Link>
+      <Link to={rikishiProfilePath(rikishi.id)} className="rikishi-name-link">
+        <div className="rikishi-name">{name}</div>
+      </Link>
       <div className="rikishi-en">({toRomaji(rikishi.yomi)})</div>
       <div className="record">{recordText}</div>
       <div className="record">

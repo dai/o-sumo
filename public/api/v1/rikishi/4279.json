@@ -1,5 +1,8 @@
 {
   "id": 4279,
+  "name": "義ノ富士",
+  "yomi": "よしのふじ",
+  "currentRank": "前頭2",
   "birthDate": "平成13年6月25日（24歳）",
   "height": 185,
   "weight": 160,
@@ -10,5 +13,7 @@
     "losses": 0,
     "draws": 0
   },
-  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif"
+  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif",
+  "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/",
+  "updatedAt": "2026-04-27"
 }

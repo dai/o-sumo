@@ -1,5 +1,8 @@
 {
   "id": 4101,
+  "name": "朝紅龍",
+  "yomi": "あさこうりゅう",
+  "currentRank": "前頭7",
   "birthDate": "平成10年9月24日（27歳）",
   "height": 178,
   "weight": 125,
@@ -10,5 +13,7 @@
     "losses": 0,
     "draws": 0
   },
-  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif"
+  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif",
+  "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/",
+  "updatedAt": "2026-04-27"
 }

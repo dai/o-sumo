@@ -5,6 +5,7 @@ import { canonicalShikona, divisionAnchorId } from '../lib/rikishi-display';
 import SortToggle from './SortToggle';
 import { type SortOrder, sortMatches } from '../lib/sorting';
 import { type TorikumiArchiveDay, type TorikumiDivisionDay, type TorikumiMatch } from '../lib/torikumi-data';
+import { extractRikishiIdFromProfileUrl, rikishiProfilePath } from '../lib/rikishi-profile';
 import {
   getArchiveRouteConfigByMonthKey,
   getArchiveRouteConfigForDateKey,
@@ -27,6 +28,21 @@ function sectionMeta(day: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisi
 
 function displayName(name: string, profileUrl: string): string {
   return canonicalShikona(profileUrl, name);
+}
+
+function RikishiMatchName({ name, profileUrl }: { name: string; profileUrl: string }) {
+  const id = extractRikishiIdFromProfileUrl(profileUrl);
+  const shikona = displayName(name, profileUrl);
+
+  if (!id) {
+    return <div className="name">{shikona}</div>;
+  }
+
+  return (
+    <Link to={rikishiProfilePath(id)} className="torikumi-rikishi-link">
+      <span className="name">{shikona}</span>
+    </Link>
+  );
 }
 
 function winnerLabel(match: TorikumiMatch): string {
@@ -76,14 +92,14 @@ function TorikumiTable({
                 {matches.map((match: TorikumiMatch) => (
                   <div className="torikumi-row" role="row" key={`${title}-${division}-${match.boutNo}`} id={divisionAnchorId(division, match.boutNo)}>
                     <div className={`cell east rikishi-card ${match.winner === 'east' ? 'winner' : ''}`}>
-                      <div className="name">{displayName(match.eastName, match.eastProfileUrl)}</div>
+                      <RikishiMatchName name={match.eastName} profileUrl={match.eastProfileUrl} />
                       <div className="english">{match.eastEnglish}</div>
                     </div>
                     <div className={`cell kimarite kimarite-value ${mode === 'result' && match.winner ? `winner-${match.winner}` : ''}`}>
                       {mode === 'result' ? winnerLabel(match) : t('torikumi.day.matchScheduled')}
                     </div>
                     <div className={`cell west rikishi-card ${match.winner === 'west' ? 'winner' : ''}`}>
-                      <div className="name">{displayName(match.westName, match.westProfileUrl)}</div>
+                      <RikishiMatchName name={match.westName} profileUrl={match.westProfileUrl} />
                       <div className="english">{match.westEnglish}</div>
                     </div>
                   </div>

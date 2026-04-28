@@ -1,5 +1,8 @@
 {
   "id": 3594,
+  "name": "翔猿",
+  "yomi": "とびざる",
+  "currentRank": "前頭15",
   "birthDate": "平成4年4月24日（34歳）",
   "height": 173,
   "weight": 140,
@@ -10,5 +13,7 @@
     "losses": 0,
     "draws": 0
   },
-  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif"
+  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif",
+  "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/",
+  "updatedAt": "2026-04-27"
 }

@@ -59,6 +59,8 @@ python scripts/update_sumo_data.py --torikumi-only --torikumi-scope result
 python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule
 ```
 
+For the place-by-place rikishi profile refresh procedure, see `docs/rikishi-profile-refresh-runbook.md`.
+
 Procedure for the May 2026 banzuke release on April 27, 2026:
 
 ```bash
@@ -75,6 +77,8 @@ Useful local URLs:
 
 - `http://localhost:3001/`
 - `http://localhost:3001/archives`
+- `http://localhost:3001/rikishi`
+- `http://localhost:3001/rikishi/{id}`
 - `http://localhost:3001/{YYYYMM}-banduke`
 - `http://localhost:3001/{YYYYMM}-torikumi`
 - `http://localhost:3001/{YYYYMM}-yotei`

@@ -1,5 +1,8 @@
 {
   "id": 4055,
+  "name": "熱海富士",
+  "yomi": "あたみふじ",
+  "currentRank": "関脇",
   "birthDate": "平成14年9月3日（23歳）",
   "height": 187,
   "weight": 197,
@@ -10,5 +13,7 @@
     "losses": 0,
     "draws": 0
   },
-  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif"
+  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif",
+  "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/",
+  "updatedAt": "2026-04-27"
 }

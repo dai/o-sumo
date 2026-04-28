@@ -1,5 +1,8 @@
 {
   "id": 3485,
+  "name": "阿炎",
+  "yomi": "あび",
+  "currentRank": "前頭9",
   "birthDate": "平成6年5月4日（31歳）",
   "height": 188,
   "weight": 165,
@@ -10,5 +13,7 @@
     "losses": 0,
     "draws": 0
   },
-  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif"
+  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif",
+  "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/",
+  "updatedAt": "2026-04-27"
 }

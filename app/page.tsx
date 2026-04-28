@@ -44,6 +44,9 @@ export default function Home() {
             <Link to={MAY2026_RESULT_PATH} className="cta-button secondary">
               {t('home.heroResult')}
             </Link>
+            <Link to="/rikishi" className="cta-button secondary">
+              {t('home.heroRikishi')}
+            </Link>
           </nav>
         </section>
 

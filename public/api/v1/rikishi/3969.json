@@ -1,5 +1,8 @@
 {
   "id": 3969,
+  "name": "東白龍",
+  "yomi": "とうはくりゅう",
+  "currentRank": "十両10",
   "birthDate": "平成8年4月17日（30歳）",
   "height": 182,
   "weight": 135,
@@ -10,5 +13,7 @@
     "losses": 0,
     "draws": 0
   },
-  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif"
+  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif",
+  "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/",
+  "updatedAt": "2026-04-27"
 }

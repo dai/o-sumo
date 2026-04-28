@@ -27,7 +27,8 @@
     "pastBashoDays": "Days:",
     "footerCopyright": "© 2026 o-sumo. All rights reserved.",
     "footerDaisuke": "Daisuke on X",
-    "footerGithub": "GitHub"
+    "footerGithub": "GitHub",
+    "heroRikishi": "Rikishi Profiles"
   },
   "archives": {
     "pageTitle": "Past Basho",
@@ -104,5 +105,32 @@
       "footerGithub": "GitHub",
       "divisionMatchCount": "{{division}} ({{count}} matches)"
     }
+  },
+  "rikishi": {
+    "listTitle": "Rikishi Profiles",
+    "listDescription": "Browse o-sumo profile pages for makuuchi and juryo rikishi.",
+    "detailTitle": "Rikishi Profile",
+    "detailDescription": "Profile page for the selected rikishi ID.",
+    "updatedAt": "Updated: {{date}}",
+    "loading": "Loading profile data.",
+    "loadError": "Could not load profile data.",
+    "notFoundTitle": "Rikishi not found",
+    "notFoundDescription": "The requested rikishi ID is not in the current profile list.",
+    "backToList": "Back to rikishi list",
+    "indexJsonLink": "Rikishi index JSON",
+    "apiJsonLink": "o-sumo API JSON",
+    "kyokaiProfileLink": "View Kyokai profile",
+    "footerNavigation": "Rikishi profile related links",
+    "unknown": "Unknown",
+    "name": "Shikona",
+    "yomi": "Yomi",
+    "rank": "Rank",
+    "birthDate": "Birth date",
+    "height": "Height",
+    "weight": "Weight",
+    "shusshin": "Hometown",
+    "debut": "Debut",
+    "sourceHeading": "Source",
+    "sourceDescription": "Profile data is sourced from the Japan Sumo Association."
   }
 }

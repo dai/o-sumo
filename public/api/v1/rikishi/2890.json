@@ -1,5 +1,8 @@
 {
   "id": 2890,
+  "name": "竜電",
+  "yomi": "りゅうでん",
+  "currentRank": "前頭16",
   "birthDate": "平成2年11月10日（35歳）",
   "height": 189,
   "weight": 158,
@@ -10,5 +13,7 @@
     "losses": 0,
     "draws": 0
   },
-  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif"
+  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif",
+  "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/",
+  "updatedAt": "2026-04-27"
 }

@@ -1,5 +1,8 @@
 {
   "id": 4124,
+  "name": "羽出山",
+  "yomi": "はつやま",
+  "currentRank": "十両3",
   "birthDate": "平成11年11月5日（26歳）",
   "height": 195,
   "weight": 142,
@@ -10,5 +13,7 @@
     "losses": 0,
     "draws": 0
   },
-  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif"
+  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif",
+  "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/",
+  "updatedAt": "2026-04-27"
 }

@@ -1,5 +1,8 @@
 {
   "id": 3661,
+  "name": "琴櫻",
+  "yomi": "ことざくら",
+  "currentRank": "大関",
   "birthDate": "平成9年11月19日（28歳）",
   "height": 189,
   "weight": 179,
@@ -10,5 +13,7 @@
     "losses": 0,
     "draws": 0
   },
-  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif"
+  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif",
+  "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/",
+  "updatedAt": "2026-04-27"
 }

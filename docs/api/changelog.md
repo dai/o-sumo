@@ -1,5 +1,14 @@
 # API Changelog
 
+## 2026-04-28
+
+### 力士プロフィールページ
+
+- `/rikishi` と `/rikishi/{id}` の自前プロフィール画面を追加
+- 番付ページと取組日別ページから自前プロフィール画面への導線を追加し、既存の協会プロフィール外部リンクは維持
+- `public/api/v1/rikishi/{id}.json` に `name` / `yomi` / `currentRank` / `sourceUrl` / `updatedAt` を後方互換の追加フィールドとして追加
+- 場所ごとの力士プロフィール更新 Runbook を `docs/rikishi-profile-refresh-runbook.md` に追加
+
 ## 2026-04-27
 
 ### ドキュメント同期

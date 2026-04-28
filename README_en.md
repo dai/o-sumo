@@ -21,6 +21,8 @@ o-sumo is a static web app for publishing sumo banzuke and torikumi information.
 - Web routes:
   - Homepage: `/`
   - Archives: `/archives`
+  - Rikishi list: `/rikishi`
+  - Rikishi profile: `/rikishi/{id}`
   - Banzuke: `/{YYYYMM}-banduke`
   - Results hub: `/{YYYYMM}-torikumi`
   - Schedule hub: `/{YYYYMM}-yotei`
@@ -56,10 +58,10 @@ Skill publishing:
 
 ## Key Features
 
-- Direct navigation from the homepage to `Banzuke / Schedule / Results`
-- Banzuke pages for makuuchi and juryo rankings and records
+- Direct navigation from the homepage to `Banzuke / Schedule / Results / Rikishi Profiles`
+- Banzuke pages for makuuchi and juryo rankings and records, with links to rikishi profiles
 - Monthly hub pages listing all 15 daily pages
-- Daily pages for makuuchi and juryo torikumi
+- Daily pages for makuuchi and juryo torikumi, with profile links on wrestler names
 - `ascending / descending` sorting on banzuke, hub, and daily pages
 - Unpublished days remain available as `pending` pages with empty-state messaging
 - The month key is derived dynamically from generated data in `app/lib/torikumi-data.ts`
@@ -117,6 +119,8 @@ Useful local URLs:
 
 - `http://localhost:3001/`
 - `http://localhost:3001/archives`
+- `http://localhost:3001/rikishi`
+- `http://localhost:3001/rikishi/{id}`
 - `http://localhost:3001/{YYYYMM}-banduke`
 - `http://localhost:3001/{YYYYMM}-torikumi`
 - `http://localhost:3001/{YYYYMM}-yotei`
@@ -182,7 +186,7 @@ Generated outputs:
 - `public/api/v1/banzuke.json`
 - `public/api/v1/torikumi.json`
 - `public/api/v1/rikishi.json`
-- `public/api/v1/rikishi/{id}.json` (one file per rikishi)
+- `public/api/v1/rikishi/{id}.json` (one file per rikishi, including `name`, `yomi`, `currentRank`, `sourceUrl`, and `updatedAt`)
 
 Key validations:
 
