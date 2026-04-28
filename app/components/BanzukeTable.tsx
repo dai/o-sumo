@@ -88,7 +88,7 @@ const RikishiCell = ({ rikishi, resultLinkMap }: { rikishi: Rikishi; resultLinkM
       <div className="rikishi-en">({toRomaji(rikishi.yomi)})</div>
       <div className="record">{recordText}</div>
       <div className="record">
-        <a href={rikishi.profileUrl} target="_blank" rel="noreferrer">{t('banzuke.profileLink')}</a>
+        <Link to={rikishiProfilePath(rikishi.id)} className="profile-link">{t('banzuke.profileLink')}</Link>
         {rikishi.memo ? ` / ${rikishi.memo}` : ''}
       </div>
       <Hoshitori rikishi={rikishi} resultLinkMap={resultLinkMap} />

@@ -1,10 +1,14 @@
 name: Daily Sumo Data Update
 
 on:
-  # schedule:
-  #   - cron: '0 1,9 * * *' # 10:00 JST / 18:00 JST
-  # 日次更新は手動運用を維持
+  schedule:
+    # JST: 19:00 (torikumi schedule refresh for the next day)
+    - cron: '0 19 * * *'
+      timezone: 'Asia/Tokyo'
   workflow_dispatch:
+
+concurrency:
+  group: osumo-main-data-refresh
 
 permissions:
   contents: write

@@ -104,18 +104,18 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 ### Data Updates
 
 - Workflow: `.github/workflows/daily-data-update.yml`
-- Schedule: currently paused (`workflow_dispatch` only)
+- Schedule: JST 19:00
 - Scope: banzuke + torikumi schedule
 - If files change, the workflow commits and pushes directly to `main`
 
 - Workflow: `.github/workflows/realtime-torikumi-update.yml`
-- Schedule: paused until May 1, 2026 (`workflow_dispatch` only)
+- Schedule: during basho days, JST 14, 15, 16, 17, 17:30, 18:00
 - Scope: torikumi results only
 - If files change, the workflow commits and pushes directly to `main`
 
 ## Operations Policy For The May 2026 Basho
 
-- Keep both `daily-data-update.yml` and `realtime-torikumi-update.yml` on manual `workflow_dispatch` operation until May 1, 2026.
+- Run `daily-data-update.yml` (JST 19:00) and `realtime-torikumi-update.yml` (JST 14, 15, 16, 17, 17:30, 18:00) on schedule.
 - After the April 27, 2026 banzuke release, manually run `python scripts/update_sumo_data.py --torikumi-scope schedule` to sync the May banzuke, torikumi schedule placeholders, and static API files.
 - Keep the `public/_headers` cache policy unchanged to control Cloudflare usage.
 - Keep the PWA Service Worker on `registerType: "prompt"` and avoid immediate updates without user confirmation.

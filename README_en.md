@@ -201,11 +201,11 @@ Key validations:
 GitHub Actions uses separate daily and results-refresh workflows.
 
 - Daily update: `.github/workflows/daily-data-update.yml`
-  - schedule: currently paused (`workflow_dispatch` only)
+  - schedule: JST 19:00
   - updates banzuke and torikumi schedules
   - commits and pushes directly to `main` when files change
 - Realtime results update: `.github/workflows/realtime-torikumi-update.yml`
-  - schedule: paused until May 1, 2026 (`workflow_dispatch` only)
+  - schedule: during basho days, JST 14, 15, 16, 17, 17:30, 18:00
   - updates torikumi results only
   - commits and pushes directly to `main` when files change
 
@@ -239,7 +239,7 @@ GitHub Actions runs the following on pull requests and pushes to `main` and `cod
 
 ## Operations Policy For The May 2026 Basho
 
-- Both `daily-data-update.yml` and `realtime-torikumi-update.yml` remain `workflow_dispatch`-only until May 1, 2026.
+- GitHub Actions runs both the daily refresh (JST 19:00) and the realtime results refresh (JST 14, 15, 16, 17, 17:30, 18:00).
 - After the April 27, 2026 banzuke release, manually run `python scripts/update_sumo_data.py --torikumi-scope schedule` to sync the May banzuke, schedule placeholders, and static API files.
 - Keep the cache policy in `public/_headers` unchanged to control Cloudflare usage.
 - Keep the PWA Service Worker on `registerType: "prompt"` so updates are not applied without user confirmation.

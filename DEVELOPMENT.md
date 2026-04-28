@@ -104,12 +104,12 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 ### データ更新
 
 - Workflow: `.github/workflows/daily-data-update.yml`
-- 実行時刻: 現在は停止（`workflow_dispatch` のみ）
+- 実行時刻: JST 19:00
 - 更新対象: 番付 + 取組予定
 - 変更がある場合は `main` ブランチに直接 commit / push
 
 - Workflow: `.github/workflows/realtime-torikumi-update.yml`
-- 実行時刻: 2026年5月1日まで停止（`workflow_dispatch` のみ）
+- 実行時刻: 場所期間中は毎日 JST 14, 15, 16, 17, 17:30, 18:00
 - 更新対象: 取組結果のみ
 - 変更がある場合は `main` ブランチに直接 commit / push
 
@@ -146,7 +146,7 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 
 ## 運用制約ポリシー（2026年5月場所向け）
 
-- `daily-data-update.yml` と `realtime-torikumi-update.yml` は、2026年5月1日まで手動実行（`workflow_dispatch`）のまま運用する。
+- `daily-data-update.yml`（JST 19:00）と `realtime-torikumi-update.yml`（JST 14, 15, 16, 17, 17:30, 18:00）は自動実行する。
 - 2026年4月27日の番付発表後は、手動で `python scripts/update_sumo_data.py --torikumi-scope schedule` を実行し、五月場所の番付・取組予定・静的 API を同期する。
 - Cloudflare の従量抑制を優先し、`public/_headers` のキャッシュ方針（`/assets/*` 長期 immutable、`manifest` 1時間、`sw.js` 再検証、`/` 5分）を維持する。
 - PWA 更新は `vite-plugin-pwa` の `registerType: "prompt"` を維持し、利用者同意なしの即時更新を避ける。

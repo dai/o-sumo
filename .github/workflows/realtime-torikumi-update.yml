@@ -1,11 +1,17 @@
 name: Realtime Torikumi Update
 
 on:
-  # schedule:
-  #   - cron: '0,30 6-10 * * *' # 15:00-19:30 JST
-  #   - cron: '0 11 * * *' # 20:00 JST
-  # 5/1 まで定期更新は停止（手動実行のみ）
+  schedule:
+    # JST: 14:00, 15:00, 16:00, 17:00, 18:00
+    - cron: '0 14,15,16,17,18 * * *'
+      timezone: 'Asia/Tokyo'
+    # JST: 17:30
+    - cron: '30 17 * * *'
+      timezone: 'Asia/Tokyo'
   workflow_dispatch:
+
+concurrency:
+  group: osumo-main-data-refresh
 
 permissions:
   contents: write
