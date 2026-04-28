@@ -140,7 +140,7 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 ## 注意点
 
 - `dist/` はビルド生成物です
-- `public/_redirects` で SPA fallback を設定しています
+- `public/_redirects` で SPA fallback を設定しています（アプリルートのみ。`/api/v1/*` は静的 JSON をそのまま配信）
 - 月キー付きルートは `app/lib/torikumi-routes.ts` を基準に扱います
 - 固定の `YYYYMM-*` ルートを増やすのではなく、生成データ由来の月キー解決を使います
 

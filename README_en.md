@@ -234,7 +234,7 @@ GitHub Actions runs the following on pull requests and pushes to `main` and `cod
 ## Cloudflare Pages
 
 - Production URL: `https://osada.us`
-- SPA fallback file: `public/_redirects`
+- SPA fallback file: `public/_redirects` (app routes only; `/api/v1/*` serves static JSON as-is)
 - Direct access to date-based URLs falls back to `index.html`
 
 ## Operations Policy For The May 2026 Basho

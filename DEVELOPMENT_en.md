@@ -147,6 +147,6 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 ## Notes
 
 - `dist/` is a build artifact
-- `public/_redirects` configures SPA fallback
+- `public/_redirects` configures SPA fallback (app routes only; `/api/v1/*` serves static JSON as-is)
 - Month-key routes should be handled based on `app/lib/torikumi-routes.ts`
 - Do not add fixed `YYYYMM-*` routes; use month-key resolution derived from generated data
