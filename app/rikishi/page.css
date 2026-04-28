@@ -132,6 +132,7 @@
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 1rem;
+  align-items: center;
 }
 
 .rikishi-action-link {
@@ -149,6 +150,39 @@
   background: var(--surface-bright);
   color: var(--color-secondary);
   text-decoration: none;
+}
+
+.rikishi-api-json-path {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  padding: 0.55rem 0.65rem;
+  background: var(--surface-container-low);
+}
+
+.rikishi-api-json-label {
+  color: var(--color-secondary);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.rikishi-api-json-path code {
+  overflow-wrap: anywhere;
+  color: var(--color-primary);
+  font-size: 0.9rem;
+}
+
+.rikishi-copy-button {
+  padding: 0.45rem 0.7rem;
+  font-size: 0.85rem;
+}
+
+.rikishi-copy-status {
+  color: var(--color-tertiary);
+  font-size: 0.85rem;
+  font-weight: 700;
 }
 
 .rikishi-profile-fields {
