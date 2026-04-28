@@ -1,5 +1,8 @@
 {
   "id": 3711,
+  "name": "美ノ海",
+  "yomi": "ちゅらのうみ",
+  "currentRank": "前頭6",
   "birthDate": "平成5年5月6日（32歳）",
   "height": 178,
   "weight": 152,
@@ -10,5 +13,7 @@
     "losses": 0,
     "draws": 0
   },
-  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif"
+  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif",
+  "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/",
+  "updatedAt": "2026-04-27"
 }

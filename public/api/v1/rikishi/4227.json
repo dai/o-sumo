@@ -1,5 +1,8 @@
 {
   "id": 4227,
+  "name": "大の里",
+  "yomi": "おおのさと",
+  "currentRank": "横綱",
   "birthDate": "平成12年6月7日（25歳）",
   "height": 192,
   "weight": 184,
@@ -10,5 +13,7 @@
     "losses": 0,
     "draws": 0
   },
-  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif"
+  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif",
+  "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/",
+  "updatedAt": "2026-04-27"
 }

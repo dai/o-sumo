@@ -1,5 +1,8 @@
 {
   "id": 4158,
+  "name": "風賢央",
+  "yomi": "かぜけんおう",
+  "currentRank": "十両11",
   "birthDate": "平成11年6月4日（26歳）",
   "height": 187,
   "weight": 155,
@@ -10,5 +13,7 @@
     "losses": 0,
     "draws": 0
   },
-  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif"
+  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif",
+  "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/",
+  "updatedAt": "2026-04-27"
 }

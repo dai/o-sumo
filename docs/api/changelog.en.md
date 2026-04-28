@@ -2,6 +2,15 @@
 
 [日本語版](./changelog.md)
 
+## 2026-04-28
+
+### Rikishi Profile Pages
+
+- Added first-party profile pages at `/rikishi` and `/rikishi/{id}`
+- Added links from banzuke and daily torikumi pages to first-party profiles while preserving existing external Kyokai profile links
+- Added backward-compatible fields to `public/api/v1/rikishi/{id}.json`: `name`, `yomi`, `currentRank`, `sourceUrl`, and `updatedAt`
+- Added the place-by-place profile refresh runbook at `docs/rikishi-profile-refresh-runbook.md`
+
 ## 2026-04-27
 
 ### Documentation Sync

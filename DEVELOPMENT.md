@@ -59,6 +59,8 @@ python scripts/update_sumo_data.py --torikumi-only --torikumi-scope result
 python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule
 ```
 
+場所ごとの力士プロフィール更新手順は `docs/rikishi-profile-refresh-runbook.md` を参照してください。
+
 2026年4月27日の五月場所番付発表時の手順:
 
 ```bash
@@ -75,6 +77,8 @@ npm run build
 
 - `http://localhost:3001/`
 - `http://localhost:3001/archives`
+- `http://localhost:3001/rikishi`
+- `http://localhost:3001/rikishi/{id}`
 - `http://localhost:3001/{YYYYMM}-banduke`
 - `http://localhost:3001/{YYYYMM}-torikumi`
 - `http://localhost:3001/{YYYYMM}-yotei`

@@ -1,0 +1,218 @@
+.rikishi-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+}
+
+.rikishi-header {
+  padding: 3rem 2rem;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-soft);
+  background-image: var(--site-header-overlay), var(--site-header-bg-image);
+  background-size: cover;
+  background-position: center;
+  color: var(--site-header-text);
+}
+
+.rikishi-header h1,
+.rikishi-header p {
+  color: var(--site-header-text);
+}
+
+.rikishi-header p {
+  opacity: 0.86;
+}
+
+.rikishi-main {
+  flex: 1;
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+
+.rikishi-status {
+  padding: 1.25rem 1.5rem;
+  background: var(--surface-container-lowest);
+  box-shadow: var(--shadow-soft);
+}
+
+.rikishi-status.warning {
+  background: var(--color-tertiary-container);
+}
+
+.rikishi-grid-section {
+  margin-bottom: 1.5rem;
+}
+
+.rikishi-profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1rem;
+}
+
+.rikishi-profile-card {
+  display: grid;
+  gap: 0.25rem;
+  min-height: 150px;
+  padding: 1.2rem;
+  background: var(--surface-container-lowest);
+  color: inherit;
+  text-decoration: none;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.rikishi-profile-card:hover {
+  background: var(--surface-container-low);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.rikishi-card-rank,
+.rikishi-profile-rank {
+  color: var(--color-secondary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.rikishi-card-name {
+  color: var(--color-primary);
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.rikishi-card-yomi,
+.rikishi-card-romaji {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.rikishi-profile-detail {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.rikishi-profile-hero {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.5rem;
+  background: var(--surface-container-lowest);
+  box-shadow: var(--shadow-soft);
+}
+
+.rikishi-profile-photo,
+.rikishi-profile-photo-placeholder {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  object-position: 50% 20%;
+  background: var(--surface-container-high);
+}
+
+.rikishi-profile-photo-placeholder {
+  display: grid;
+  place-items: center;
+  color: var(--color-primary);
+  font-family: var(--font-serif);
+  font-size: 4rem;
+  font-weight: 900;
+}
+
+.rikishi-profile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.rikishi-action-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 0.95rem;
+  background: var(--color-primary-container);
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.rikishi-action-link:hover {
+  background: var(--surface-bright);
+  color: var(--color-secondary);
+  text-decoration: none;
+}
+
+.rikishi-profile-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem;
+}
+
+.rikishi-profile-field {
+  padding: 1rem 1.1rem;
+  background: var(--surface-container-lowest);
+  box-shadow: var(--shadow-soft);
+}
+
+.rikishi-profile-field dt {
+  color: var(--color-secondary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.25rem;
+}
+
+.rikishi-profile-field dd {
+  color: var(--color-primary);
+  font-family: var(--font-serif);
+  font-size: 1.12rem;
+  font-weight: 700;
+}
+
+.rikishi-profile-source {
+  padding: 1.25rem 1.5rem;
+  background: var(--surface-container-low);
+}
+
+.rikishi-footer {
+  margin-top: auto;
+  padding: 2rem;
+  text-align: center;
+  background: var(--surface-container-high);
+}
+
+.rikishi-footer a {
+  color: var(--color-secondary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.rikishi-footer a:hover {
+  color: var(--color-tertiary);
+  text-decoration: underline;
+}
+
+@media (max-width: 720px) {
+  .rikishi-header {
+    padding: 2rem 1rem;
+  }
+
+  .rikishi-profile-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .rikishi-profile-photo,
+  .rikishi-profile-photo-placeholder {
+    width: 132px;
+    height: 132px;
+  }
+}

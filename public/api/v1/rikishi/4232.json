@@ -1,5 +1,8 @@
 {
   "id": 4232,
+  "name": "旭海雄",
+  "yomi": "きょくかいゆう",
+  "currentRank": "十両4",
   "birthDate": "平成12年4月4日（26歳）",
   "height": 183,
   "weight": 164,
@@ -10,5 +13,7 @@
     "losses": 0,
     "draws": 0
   },
-  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif"
+  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif",
+  "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/",
+  "updatedAt": "2026-04-27"
 }

@@ -1,5 +1,8 @@
 {
   "id": 3990,
+  "name": "獅司",
+  "yomi": "しし",
+  "currentRank": "前頭12",
   "birthDate": "平成9年1月16日（29歳）",
   "height": 192,
   "weight": 171,
@@ -10,5 +13,7 @@
     "losses": 0,
     "draws": 0
   },
-  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif"
+  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif",
+  "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/",
+  "updatedAt": "2026-04-27"
 }

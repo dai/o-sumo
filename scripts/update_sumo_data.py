@@ -848,10 +848,11 @@ def build_rikishi_list(makuuchi: list[dict], juryo: list[dict]) -> list[dict]:
 def write_rikishi_json(rikishi_list: list[dict], profiles: dict[int, dict]) -> None:
     """Write rikishi.json with basic list and detailed profiles"""
     API_DIR.mkdir(parents=True, exist_ok=True)
+    updated_at = datetime.now(JST).date().isoformat()
 
     # Write main rikishi.json with basic info
     rikishi_json = {
-        "updatedAt": datetime.now(JST).date().isoformat(),
+        "updatedAt": updated_at,
         "rikishi": rikishi_list,
     }
     (API_DIR / "rikishi.json").write_text(
@@ -862,10 +863,23 @@ def write_rikishi_json(rikishi_list: list[dict], profiles: dict[int, dict]) -> N
     # Write individual profile JSONs
     profile_dir = API_DIR / "rikishi"
     profile_dir.mkdir(exist_ok=True)
-    for rikishi_id, profile_data in profiles.items():
+    for rikishi in rikishi_list:
+        rikishi_id = rikishi["id"]
+        profile_data = profiles.get(rikishi_id, {})
         profile_json = {
             "id": rikishi_id,
-            **profile_data,
+            "name": rikishi["name"],
+            "yomi": rikishi["yomi"],
+            "currentRank": rikishi["currentRank"],
+            "birthDate": profile_data.get("birthDate", ""),
+            "height": profile_data.get("height", 0),
+            "weight": profile_data.get("weight", 0),
+            "shusshin": profile_data.get("shusshin", ""),
+            "debut": profile_data.get("debut", ""),
+            "careerStats": profile_data.get("careerStats", {"wins": 0, "losses": 0, "draws": 0}),
+            "photoUrl": profile_data.get("photoUrl", ""),
+            "sourceUrl": rikishi["profileUrl"],
+            "updatedAt": updated_at,
         }
         (profile_dir / f"{rikishi_id}.json").write_text(
             json.dumps(profile_json, ensure_ascii=False, indent=2),

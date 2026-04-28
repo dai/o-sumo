@@ -10,6 +10,8 @@ import HomePage from './page'
 import TorikumiHubPage from './torikumi/page'
 import TopLevelSlugPage from './TopLevelSlugPage'
 import ArchivesPage from './archives/page'
+import RikishiPage from './rikishi/page'
+import RikishiProfilePage from './rikishi/RikishiProfilePage'
 import ThemeToggle from './components/ThemeToggle'
 import LanguageToggle from './components/LanguageToggle'
 import {
@@ -48,6 +50,8 @@ function AppShell() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/archives" element={<ArchivesPage />} />
+        <Route path="/rikishi" element={<RikishiPage />} />
+        <Route path="/rikishi/:id" element={<RikishiProfilePage />} />
         {/* May 2026 routes */}
         <Route path={MAY2026_BANDUKE_PATH} element={<BanzukePage />} />
         <Route path={MAY2026_RESULT_PATH} element={<TorikumiHubPage mode="result" />} />

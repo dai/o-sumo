@@ -1,5 +1,8 @@
 {
   "id": 4164,
+  "name": "白熊",
+  "yomi": "しろくま",
+  "currentRank": "十両8",
   "birthDate": "平成11年5月25日（26歳）",
   "height": 185,
   "weight": 155,
@@ -10,5 +13,7 @@
     "losses": 0,
     "draws": 0
   },
-  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif"
+  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif",
+  "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/",
+  "updatedAt": "2026-04-27"
 }

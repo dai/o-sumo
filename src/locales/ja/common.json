@@ -27,7 +27,8 @@
     "pastBashoDays": "日別:",
     "footerCopyright": "© 2026 o-sumo. All rights reserved.",
     "footerDaisuke": "Daisuke on X",
-    "footerGithub": "GitHub"
+    "footerGithub": "GitHub",
+    "heroRikishi": "力士プロフィール"
   },
   "archives": {
     "pageTitle": "過去場所一覧",
@@ -104,5 +105,32 @@
       "footerGithub": "GitHub",
       "divisionMatchCount": "{{division}} ({{count}}番)"
     }
+  },
+  "rikishi": {
+    "listTitle": "力士プロフィール",
+    "listDescription": "幕内・十両力士の基本情報と自前プロフィールページです。",
+    "detailTitle": "力士プロフィール",
+    "detailDescription": "力士IDに対応するプロフィールを表示します。",
+    "updatedAt": "更新日: {{date}}",
+    "loading": "読み込み中です。",
+    "loadError": "プロフィール情報を読み込めませんでした。",
+    "notFoundTitle": "力士が見つかりません",
+    "notFoundDescription": "指定された力士IDは現在のプロフィール一覧にありません。",
+    "backToList": "力士一覧へ戻る",
+    "indexJsonLink": "力士一覧JSON",
+    "apiJsonLink": "o-sumo API JSON",
+    "kyokaiProfileLink": "相撲協会プロフィールを見る",
+    "footerNavigation": "力士プロフィールページの関連リンク",
+    "unknown": "不明",
+    "name": "四股名",
+    "yomi": "しこな",
+    "rank": "番付",
+    "birthDate": "生年月日",
+    "height": "身長",
+    "weight": "体重",
+    "shusshin": "出身地",
+    "debut": "初土俵",
+    "sourceHeading": "出典",
+    "sourceDescription": "プロフィール情報の出典は日本相撲協会です。"
   }
 }

@@ -1,5 +1,8 @@
 {
   "id": 4171,
+  "name": "尊富士",
+  "yomi": "たけるふじ",
+  "currentRank": "十両2",
   "birthDate": "平成11年4月9日（27歳）",
   "height": 187,
   "weight": 148,
@@ -10,5 +13,7 @@
     "losses": 0,
     "draws": 0
   },
-  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif"
+  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif",
+  "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/",
+  "updatedAt": "2026-04-27"
 }

@@ -1,5 +1,8 @@
 {
   "id": 3620,
+  "name": "御嶽海",
+  "yomi": "みたけうみ",
+  "currentRank": "前頭14",
   "birthDate": "平成4年12月25日（33歳）",
   "height": 182,
   "weight": 178,
@@ -10,5 +13,7 @@
     "losses": 0,
     "draws": 0
   },
-  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif"
+  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif",
+  "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/",
+  "updatedAt": "2026-04-27"
 }

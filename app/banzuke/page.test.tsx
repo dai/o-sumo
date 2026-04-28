@@ -50,8 +50,15 @@ describe('BanzukePage', () => {
       west: [],
     };
 
-    render(<BanzukeTable rankGroup={rankGroup} />);
+    render(
+      <MemoryRouter>
+        <BanzukeTable rankGroup={rankGroup} />
+      </MemoryRouter>,
+    );
 
+    expect(screen.getByRole('link', { name: '東力士' })).toHaveAttribute('href', '/rikishi/1');
+    expect(screen.getByRole('link', { name: '東力士のo-sumoプロフィールを開く' })).toHaveAttribute('href', '/rikishi/1');
+    expect(screen.getByRole('link', { name: 'プロフィール' })).toHaveAttribute('href', 'https://example.com/east');
     expect(screen.getByText('1勝1敗1休')).toBeInTheDocument();
     expect(screen.getByText('○')).toBeInTheDocument();
     expect(screen.getByText('●')).toBeInTheDocument();
