@@ -1,4 +1,5 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import RikishiPage from './page';
 import RikishiProfilePage from './RikishiProfilePage';
@@ -90,7 +91,13 @@ describe('Rikishi pages', () => {
     expect(screen.getByText('更新日: 2026-04-27')).toBeInTheDocument();
   });
 
-  it('renders a known profile with source and API links', async () => {
+  it('renders a known profile with source link and copyable API JSON path', async () => {
+    const user = userEvent.setup();
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText },
+    });
     mockFetch();
 
     render(
@@ -109,7 +116,13 @@ describe('Rikishi pages', () => {
       'href',
       'https://www.sumo.or.jp/ResultRikishiData/profile/3842/',
     );
-    expect(screen.getByRole('link', { name: 'o-sumo API JSON' })).toHaveAttribute('href', '/api/v1/rikishi/3842.json');
+    expect(screen.queryByRole('link', { name: 'o-sumo API JSON' })).not.toBeInTheDocument();
+    expect(screen.getByText('/api/v1/rikishi/3842.json')).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'コピー' }));
+
+    expect(writeText).toHaveBeenCalledWith('/api/v1/rikishi/3842.json');
+    expect(await screen.findByRole('button', { name: 'コピーしました' })).toBeInTheDocument();
   });
 
   it('shows unknown labels for missing profile fields', async () => {
