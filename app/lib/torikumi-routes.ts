@@ -143,8 +143,8 @@ export function getArchiveUpdatedAt(mode: TorikumiPageMode): string {
 
 export function getArchiveUpdateMessage(mode: TorikumiPageMode): string {
   return mode === 'result'
-    ? '15:00-19:30(JST)は30分ごと / 20:00更新'
-    : '10:00 / 18:00(JST)更新';
+    ? '場所期間中は毎日JST 14, 15, 16, 17, 17:30, 18:00時に更新'
+    : '前日のJST 19:00 頃更新';
 }
 
 export const legacyBanzukePath = `/${torikumiMonthKey}-o-sumo`;
