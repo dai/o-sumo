@@ -54,9 +54,9 @@ export interface TorikumiDataSet {
 export const torikumiData: TorikumiDataSet = {
   "bashoName": "五月場所",
   "year": "令和八年",
-  "updatedAt": "2026-04-27",
-  "resultUpdatedAt": "2026-04-27",
-  "scheduleUpdatedAt": "2026-04-27",
+  "updatedAt": "2026-04-29",
+  "resultUpdatedAt": "2026-04-29",
+  "scheduleUpdatedAt": "2026-04-29",
   "today": {
     "makuuchi": {
       "day": 1,
@@ -18294,9 +18294,6 @@ export const torikumiArchive = {
   resultDays: torikumiData.resultDays ?? [],
   scheduleDays: torikumiData.scheduleDays ?? [],
 };
-
-// Compatibility export for older imports that still read March archive data from this module.
-export { MARCH2026_TORIKUMI_DATA } from './march2026-torikumi-data';
 
 export const torikumiMonthKey = torikumiArchive.resultDays[0]?.pathDate.slice(0, 6)
   ?? torikumiArchive.scheduleDays[0]?.pathDate.slice(0, 6)

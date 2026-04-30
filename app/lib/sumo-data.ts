@@ -4,7 +4,6 @@ export interface Rikishi {
   yomi: string;
   rank: string;
   side: 'east' | 'west';
-  photoUrl?: string;
   wins?: number;
   losses?: number;
   draws?: number;
@@ -68,6 +67,19 @@ export const makuuchiData: RankGroup[] = [
         "results": [],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/",
         "memo": ""
+      },
+      {
+        "id": 3622,
+        "name": "霧島",
+        "yomi": "きりしま",
+        "rank": "大関",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/",
+        "memo": ""
       }
     ],
     "west": [
@@ -85,25 +97,6 @@ export const makuuchiData: RankGroup[] = [
         "memo": ""
       }
     ]
-  },
-  {
-    "title": "大関（三）",
-    "east": [
-      {
-        "id": 3622,
-        "name": "霧島",
-        "yomi": "きりしま",
-        "rank": "大関（三）",
-        "side": "east",
-        "wins": 0,
-        "losses": 0,
-        "draws": 0,
-        "results": [],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/",
-        "memo": "再大関"
-      }
-    ],
-    "west": []
   },
   {
     "title": "関脇",

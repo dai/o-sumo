@@ -1,7 +1,7 @@
 {
   "bashoName": "五月場所",
   "year": "令和八年",
-  "updatedAt": "2026-04-27",
+  "updatedAt": "2026-04-29",
   "makuuchi": [
     {
       "title": "横綱",
@@ -51,6 +51,19 @@
           "results": [],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/",
           "memo": ""
+        },
+        {
+          "id": 3622,
+          "name": "霧島",
+          "yomi": "きりしま",
+          "rank": "大関",
+          "side": "east",
+          "wins": 0,
+          "losses": 0,
+          "draws": 0,
+          "results": [],
+          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/",
+          "memo": ""
         }
       ],
       "west": [
@@ -68,25 +81,6 @@
           "memo": ""
         }
       ]
-    },
-    {
-      "title": "大関（三）",
-      "east": [
-        {
-          "id": 3622,
-          "name": "霧島",
-          "yomi": "きりしま",
-          "rank": "大関（三）",
-          "side": "east",
-          "wins": 0,
-          "losses": 0,
-          "draws": 0,
-          "results": [],
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/",
-          "memo": ""
-        }
-      ],
-      "west": []
     },
     {
       "title": "関脇",
