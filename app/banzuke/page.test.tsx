@@ -82,4 +82,16 @@ describe('BanzukePage', () => {
     expect(screen.getByRole('heading', { level: 2, name: /三月場所 番付一覧/ })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '取組結果一覧' })).toHaveAttribute('href', '/202603-torikumi');
   });
+
+  it('renders translated emphasis markup instead of showing raw HTML text', () => {
+    render(
+      <MemoryRouter>
+        <BanzukePage />
+      </MemoryRouter>,
+    );
+
+    expect(screen.queryByText(/<strong>東<\/strong>/)).not.toBeInTheDocument();
+    expect(screen.getByText('東と西の欄に力士の四股名と読み仮名、番付が表示されます。')).toBeInTheDocument();
+    expect(screen.getByText('技術スタック: Cloudflare Pages、React、TypeScript')).toBeInTheDocument();
+  });
 });
