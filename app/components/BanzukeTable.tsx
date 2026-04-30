@@ -8,6 +8,7 @@ import { toRomaji } from '../lib/romaji';
 import {
   basicRikishiPlaceholderDataUrl,
   generatedRikishiAvatarDataUrl,
+  localRikishiImagePath,
   shouldGenerateRikishiAvatar,
 } from '../lib/rikishi-avatar';
 import '../styles/banzuke.css';
@@ -63,7 +64,7 @@ const RikishiCell = ({ rikishi, resultLinkMap }: { rikishi: Rikishi; resultLinkM
       side: rikishi.side,
     })
     : basicRikishiPlaceholderDataUrl(name);
-  const photoUrl = fallbackPhotoUrl;
+  const photoUrl = localRikishiImagePath(rikishi.id);
 
   return (
     <div className="rikishi-cell">

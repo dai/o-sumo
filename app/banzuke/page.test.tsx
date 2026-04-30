@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import BanzukePage from './page';
@@ -50,7 +50,7 @@ describe('BanzukePage', () => {
       west: [],
     };
 
-    render(
+    const { container } = render(
       <MemoryRouter>
         <BanzukeTable rankGroup={rankGroup} />
       </MemoryRouter>,
@@ -63,6 +63,13 @@ describe('BanzukePage', () => {
     expect(screen.getByText('○')).toBeInTheDocument();
     expect(screen.getByText('●')).toBeInTheDocument();
     expect(screen.getByText('−')).toBeInTheDocument();
+
+    const photo = container.querySelector('.rikishi-photo');
+    expect(photo).not.toBeNull();
+    expect(photo?.getAttribute('src')).toBe('/images/rikishi/1.png');
+
+    fireEvent.error(photo as HTMLImageElement);
+    expect(photo?.getAttribute('src')?.startsWith('data:image/svg+xml;charset=UTF-8,')).toBe(true);
   });
 
   it('renders march archive data and links for 202603 route', () => {

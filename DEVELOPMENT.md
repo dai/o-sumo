@@ -52,6 +52,7 @@ python scripts/update_sumo_data.py
 ```bash
 python scripts/update_sumo_data.py --rikishi-only
 python scripts/update_sumo_data.py --rikishi-only --profile-limit 10
+python scripts/style_transfer_rikishi.py
 python scripts/update_sumo_data.py --torikumi-only
 python scripts/update_sumo_data.py --torikumi-scope result
 python scripts/update_sumo_data.py --torikumi-scope schedule
@@ -143,6 +144,7 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - `public/_redirects` で SPA fallback を設定しています（アプリルートのみ。`/api/v1/*` は静的 JSON をそのまま配信）
 - 月キー付きルートは `app/lib/torikumi-routes.ts` を基準に扱います
 - 固定の `YYYYMM-*` ルートを増やすのではなく、生成データ由来の月キー解決を使います
+- `public/images/rikishi/*.png` は日本相撲協会プロフィール写真をもとに MiniMax I2I Generation で加工した画像です。再生成時は `MINIMAX_API_KEY` を設定して `python scripts/style_transfer_rikishi.py` を使います
 
 ## 運用制約ポリシー（2026年5月場所向け）
 

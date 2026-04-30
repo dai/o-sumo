@@ -1,58 +1,48 @@
 # 力士プロフィール画像 / Rikishi Profile Images
 
-このディレクトリには、幕内・十両全力士の恒久的なプロフィール画像が格納されています。
+このディレクトリには、幕内・十両全力士の恒久的なプロフィール画像が格納されています。現在は日本相撲協会プロフィール写真をもとに MiniMax I2I Generation で加工した PNG を使用します。
 
-This directory contains permanent profile images for all Makuuchi and Juryo rikishi.
+This directory contains permanent profile images for all Makuuchi and Juryo rikishi. The current workflow uses PNG illustrations processed with MiniMax I2I Generation from Japan Sumo Association profile photos.
 
 ## 画像形式 / Image Format
 
-- **SVG**: ベクター形式の生成イラスト（主に使用）
-- **JPG/PNG**: 実写真をダウンロードした場合（将来的な拡張用）
+- **PNG**: MiniMax I2I Generation で加工したプロフィールイラスト（主に使用）
+- **JPG**: 加工前の元写真。必要な場合のみ一時的に保持
 
-- **SVG**: Generated vector illustrations (primary use)
-- **JPG/PNG**: Downloaded photographs (for future expansion)
+- **PNG**: Processed profile illustrations generated with MiniMax I2I Generation (primary use)
+- **JPG**: Source photos before processing, kept only when needed
 
 ## 生成方法 / Generation Method
 
-画像は以下のスクリプトで生成されます：
+画像は以下のスクリプトで更新します：
 
-Images are generated using the following scripts:
+Images are updated using the following scripts:
 
 ```bash
-# すべての欠落している力士画像を生成
-# Generate all missing rikishi images
-python3 scripts/generate_all_svgs.py
-
-# ダウンロードスクリプト（実写真取得用、将来的な使用）
-# Download script (for photographs, future use)
+# 元写真を取得
+# Download source photos
 python3 scripts/download_rikishi_images.py
+
+# MiniMax I2I Generation で加工して PNG を出力
+# Process the source photos with MiniMax I2I Generation and write PNGs
+python3 scripts/style_transfer_rikishi.py
 ```
 
 ## 画像の特徴 / Image Features
 
-各SVGイラストは力士の特性に基づいてカスタマイズされています：
+各画像はプロフィール写真をベースに、統一したプロフィールイラストとして加工されています。
 
-Each SVG illustration is customized based on the rikishi's characteristics:
-
-- **横綱**: 金色のリング、赤い廻し
-- **大関**: 銀色のリング、紺色の廻し
-- **関脇・小結**: 銅色のリング、青い廻し
-- **十両**: 青いリング、茶色の廻し
-- **前頭**: 茶色のリング、紺色の廻し
-
-- **Yokozuna**: Gold ring, red mawashi
-- **Ozeki**: Silver ring, navy mawashi
-- **Sekiwake/Komusubi**: Bronze ring, blue mawashi
-- **Juryo**: Blue ring, brown mawashi
-- **Maegashira**: Brown ring, navy mawashi
+Each image is based on a source profile photo and processed into a consistent illustrated portrait style.
 
 ## 使用方法 / Usage
 
-画像は `/images/rikishi/{id}.svg` の形式で参照されます。
+画像は `/images/rikishi/{id}.png` の形式で参照されます。
 力士のJSON データ (`/api/v1/rikishi/{id}.json`) の `photoUrl` フィールドがこのパスを指します。
+`/rikishi/{id}` と `/{YYYYMM}-banduke` はこのローカル画像を優先表示します。
 
-Images are referenced as `/images/rikishi/{id}.svg`.
+Images are referenced as `/images/rikishi/{id}.png`.
 The `photoUrl` field in each rikishi's JSON data (`/api/v1/rikishi/{id}.json`) points to this path.
+Both `/rikishi/{id}` and `/{YYYYMM}-banduke` prefer this local image path.
 
 ## ライセンス / License
 
@@ -62,8 +52,8 @@ These generated illustrations are provided as part of the o-sumo project under t
 
 ## 更新 / Updates
 
-- 新しい力士が追加された場合、`generate_all_svgs.py` を実行して画像を生成します。
+- 新しい力士が追加された場合、元写真を取得したうえで `style_transfer_rikishi.py` を実行して PNG を生成します。
 - `update_sumo_data.py` は自動的にローカル画像を優先して使用します。
 
-- When new rikishi are added, run `generate_all_svgs.py` to generate images.
+- When new rikishi are added, download source photos and run `style_transfer_rikishi.py` to generate PNGs.
 - `update_sumo_data.py` automatically prioritizes local images.

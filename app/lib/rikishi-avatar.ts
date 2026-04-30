@@ -9,6 +9,14 @@ interface AvatarPolicyInput {
   name: string;
 }
 
+export function localRikishiImagePath(id: number | string): string {
+  return `/images/rikishi/${id}.png`;
+}
+
+export function isLocalRikishiImagePath(photoUrl: string): boolean {
+  return /^\/images\/rikishi\/\d+\.(png|jpg|svg)$/.test(photoUrl);
+}
+
 function hashSeed({ id, name, side }: AvatarSeed): number {
   const text = `${id}:${name}:${side}`;
   let hash = 2166136261;

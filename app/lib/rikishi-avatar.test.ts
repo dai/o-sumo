@@ -1,6 +1,8 @@
 import {
   basicRikishiPlaceholderDataUrl,
   generatedRikishiAvatarDataUrl,
+  isLocalRikishiImagePath,
+  localRikishiImagePath,
   shouldGenerateRikishiAvatar,
 } from './rikishi-avatar';
 
@@ -41,5 +43,15 @@ describe('generatedRikishiAvatarDataUrl', () => {
     const url = basicRikishiPlaceholderDataUrl('朝紅龍');
     expect(url.startsWith('data:image/svg+xml;charset=UTF-8,')).toBe(true);
     expect(decodeURIComponent(url.split(',')[1] ?? '')).toContain('力士プレースホルダ');
+  });
+
+  it('builds the local processed rikishi image path', () => {
+    expect(localRikishiImagePath(3842)).toBe('/images/rikishi/3842.png');
+  });
+
+  it('detects locally managed rikishi image paths', () => {
+    expect(isLocalRikishiImagePath('/images/rikishi/3842.png')).toBe(true);
+    expect(isLocalRikishiImagePath('https://example.com/profile.jpg')).toBe(false);
+    expect(isLocalRikishiImagePath('')).toBe(false);
   });
 });

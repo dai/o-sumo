@@ -55,7 +55,7 @@ Skill 公開:
 ## 主な機能
 
 - ホームから `番付 / 取組予定 / 結果 / 力士プロフィール` に直接遷移
-- 番付ページで幕内・十両の番付と成績を表示し、力士プロフィールへ遷移
+- 番付ページで幕内・十両の番付と成績を表示し、MiniMax I2I Generation で加工した力士プロフィール画像とあわせて力士プロフィールへ遷移
 - 月別ハブで 15 日分の日別ページを一覧表示
 - 日別ページで幕内・十両の取組を表示し、取組力士名からプロフィールへ遷移
 - 番付・月別ハブ・日別ページで `昇順 / 降順` を切り替え可能
@@ -69,6 +69,7 @@ Skill 公開:
 - データ生成: Python (`scripts/update_sumo_data.py`)
 - 配信: Cloudflare Pages
 - データ取得元: 日本相撲協会の Ajax エンドポイント
+- 力士画像: 日本相撲協会プロフィール写真をベースに MiniMax I2I Generation で加工したローカル PNG
 
 ## ローカル開発
 
@@ -183,7 +184,7 @@ npm run build
 - `public/api/v1/torikumi.json`
 - `public/api/v1/rikishi.json`
 - `public/api/v1/rikishi/{id}.json`（全力士分、`name` / `yomi` / `currentRank` / `sourceUrl` / `updatedAt` を含む）
-- `public/images/rikishi/{id}.svg`（全力士分の生成イラスト、恒久的に使用）
+- `public/images/rikishi/{id}.png`（全力士分の加工済みプロフィールイラスト、個別ページと番付ページで恒久的に使用）
 
 主な検証内容:
 

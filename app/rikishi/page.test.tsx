@@ -39,7 +39,7 @@ const profileDetail = {
     losses: 0,
     draws: 0,
   },
-  photoUrl: 'https://example.com/profile.jpg',
+  photoUrl: '/images/rikishi/3842.png',
   sourceUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/3842/',
   updatedAt: '2026-04-27',
 };
@@ -118,6 +118,9 @@ describe('Rikishi pages', () => {
     );
     expect(screen.queryByRole('link', { name: 'o-sumo API JSON' })).not.toBeInTheDocument();
     expect(screen.getByText('/api/v1/rikishi/3842.json')).toBeInTheDocument();
+    expect(
+      screen.getByText('掲載画像は日本相撲協会プロフィール写真をもとに MiniMax I2I Generation で加工したプロフィールイラストです。'),
+    ).toBeInTheDocument();
 
     await user.click(screen.getByRole('button', { name: 'コピー' }));
 

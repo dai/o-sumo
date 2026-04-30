@@ -1,5 +1,13 @@
 # API Changelog
 
+## 2026-04-30
+
+### 力士画像クレジットと番付反映
+
+- `/rikishi/{id}` の出典欄に、掲載画像が MiniMax I2I Generation で加工したプロフィールイラストである旨を追記
+- 番付ページでも `public/images/rikishi/{id}.png` のローカル加工画像を優先表示するように更新
+- `docs/api/v1.md` / `README*.md` / `DEVELOPMENT*.md` / `docs/rikishi-profile-refresh-runbook.md` / `public/images/rikishi/README.md` を現行の画像運用に同期
+
 ## 2026-04-28
 
 ### 力士プロフィールページ

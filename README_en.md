@@ -59,7 +59,7 @@ Skill publishing:
 ## Key Features
 
 - Direct navigation from the homepage to `Banzuke / Schedule / Results / Rikishi Profiles`
-- Banzuke pages for makuuchi and juryo rankings and records, with links to rikishi profiles
+- Banzuke pages for makuuchi and juryo rankings and records, with MiniMax I2I Generation processed rikishi profile images and links to rikishi profiles
 - Monthly hub pages listing all 15 daily pages
 - Daily pages for makuuchi and juryo torikumi, with profile links on wrestler names
 - `ascending / descending` sorting on banzuke, hub, and daily pages
@@ -73,6 +73,7 @@ Skill publishing:
 - Data generation: Python (`scripts/update_sumo_data.py`)
 - Hosting: Cloudflare Pages
 - Data source: Nihon Sumo Kyokai Ajax endpoints
+- Rikishi imagery: local PNG illustrations processed with MiniMax I2I Generation from Japan Sumo Association profile photos
 
 ## Local Development
 
@@ -187,7 +188,7 @@ Generated outputs:
 - `public/api/v1/torikumi.json`
 - `public/api/v1/rikishi.json`
 - `public/api/v1/rikishi/{id}.json` (one file per rikishi, including `name`, `yomi`, `currentRank`, `sourceUrl`, and `updatedAt`)
-- `public/images/rikishi/{id}.svg` (generated illustrations for all rikishi, used permanently)
+- `public/images/rikishi/{id}.png` (processed profile illustrations for all rikishi, used permanently on both profile and banzuke pages)
 
 Key validations:
 

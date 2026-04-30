@@ -7,6 +7,7 @@ import {
   rikishiApiPath,
   type RikishiProfile,
 } from '../lib/rikishi-profile';
+import { isLocalRikishiImagePath } from '../lib/rikishi-avatar';
 import { toRomaji } from '../lib/romaji';
 import './page.css';
 
@@ -155,6 +156,9 @@ export default function RikishiProfilePage() {
             <section className="rikishi-profile-source">
               <h2>{t('rikishi.sourceHeading')}</h2>
               <p>{t('rikishi.sourceDescription')}</p>
+              {isLocalRikishiImagePath(profile.photoUrl) ? (
+                <p>{t('rikishi.imageSourceDescription')}</p>
+              ) : null}
               <p>{t('rikishi.updatedAt', { date: profile.updatedAt })}</p>
             </section>
           </article>

@@ -134,6 +134,7 @@
     "shusshin": "Hometown",
     "debut": "Debut",
     "sourceHeading": "Source",
-    "sourceDescription": "Profile data is sourced from the Japan Sumo Association."
+    "sourceDescription": "Profile data is sourced from the Japan Sumo Association.",
+    "imageSourceDescription": "Displayed profile images are processed illustrations based on Japan Sumo Association profile photos and generated with MiniMax I2I Generation."
   }
 }

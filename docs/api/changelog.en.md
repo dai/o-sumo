@@ -2,6 +2,14 @@
 
 [日本語版](./changelog.md)
 
+## 2026-04-30
+
+### Rikishi Image Credit And Banzuke Usage
+
+- Added a MiniMax I2I Generation image-credit note to the `/rikishi/{id}` source section for locally managed profile illustrations
+- Updated the banzuke page to prefer `public/images/rikishi/{id}.png` processed images
+- Synced `docs/api/v1.en.md`, `README*.md`, `DEVELOPMENT*.md`, `docs/rikishi-profile-refresh-runbook.md`, and `public/images/rikishi/README.md` with the current image workflow
+
 ## 2026-04-28
 
 ### Rikishi Profile Pages

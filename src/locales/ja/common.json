@@ -134,6 +134,7 @@
     "shusshin": "出身地",
     "debut": "初土俵",
     "sourceHeading": "出典",
-    "sourceDescription": "プロフィール情報の出典は日本相撲協会です。"
+    "sourceDescription": "プロフィール情報の出典は日本相撲協会です。",
+    "imageSourceDescription": "掲載画像は日本相撲協会プロフィール写真をもとに MiniMax I2I Generation で加工したプロフィールイラストです。"
   }
 }

@@ -52,6 +52,7 @@ Common data-update variants:
 ```bash
 python scripts/update_sumo_data.py --rikishi-only
 python scripts/update_sumo_data.py --rikishi-only --profile-limit 10
+python scripts/style_transfer_rikishi.py
 python scripts/update_sumo_data.py --torikumi-only
 python scripts/update_sumo_data.py --torikumi-scope result
 python scripts/update_sumo_data.py --torikumi-scope schedule
@@ -150,3 +151,4 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - `public/_redirects` configures SPA fallback (app routes only; `/api/v1/*` serves static JSON as-is)
 - Month-key routes should be handled based on `app/lib/torikumi-routes.ts`
 - Do not add fixed `YYYYMM-*` routes; use month-key resolution derived from generated data
+- `public/images/rikishi/*.png` contains images processed with MiniMax I2I Generation from Japan Sumo Association profile photos. To regenerate them, set `MINIMAX_API_KEY` and run `python scripts/style_transfer_rikishi.py`

@@ -35,6 +35,8 @@ git diff -- public/api/v1/rikishi.json public/api/v1/rikishi
 - `sourceUrl`
 - `updatedAt`
 
+あわせて `photoUrl` が `/images/rikishi/{id}.png` を指していることを確認します。
+
 5. アプリ検証を実行します。
 
 ```bash
@@ -56,8 +58,14 @@ npm run preview -- --host 127.0.0.1
 - `http://127.0.0.1:4173/202605-banduke`
 - `http://127.0.0.1:4173/20260510-torikumi`
 
+確認ポイント:
+
+- `/rikishi/3842` の出典欄に、日本相撲協会と MiniMax I2I Generation の両方が表示される
+- `/202605-banduke` で `public/images/rikishi/{id}.png` の画像が表示される
+
 ## 注意
 
 - `--profile-limit` は取得テスト用です。公開用更新では使いません。
 - 個別 JSON のフィールド追加は API v1 の後方互換変更として扱います。既存フィールドは削除・リネームしません。
 - 協会プロフィールへの外部リンクは `sourceUrl` として保持し、画面上にも明示して残します。
+- 元写真を追加・差し替えた場合は `MINIMAX_API_KEY` を設定して `python scripts/style_transfer_rikishi.py` を実行し、`public/images/rikishi/*.png` を更新します。
