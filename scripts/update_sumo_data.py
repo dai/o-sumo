@@ -845,6 +845,19 @@ def build_rikishi_list(makuuchi: list[dict], juryo: list[dict]) -> list[dict]:
     return rikishi_list
 
 
+def get_local_image_url(rikishi_id: int) -> str:
+    """Check for local image and return the appropriate URL"""
+    local_images_dir = Path("public/images/rikishi")
+
+    # Check for different image formats in order of preference
+    for ext in [".jpg", ".png", ".svg"]:
+        image_path = local_images_dir / f"{rikishi_id}{ext}"
+        if image_path.exists():
+            return f"/images/rikishi/{rikishi_id}{ext}"
+
+    return ""
+
+
 def write_rikishi_json(rikishi_list: list[dict], profiles: dict[int, dict]) -> None:
     """Write rikishi.json with basic list and detailed profiles"""
     API_DIR.mkdir(parents=True, exist_ok=True)
@@ -863,9 +876,17 @@ def write_rikishi_json(rikishi_list: list[dict], profiles: dict[int, dict]) -> N
     # Write individual profile JSONs
     profile_dir = API_DIR / "rikishi"
     profile_dir.mkdir(exist_ok=True)
+    local_image_count = 0
     for rikishi in rikishi_list:
         rikishi_id = rikishi["id"]
         profile_data = profiles.get(rikishi_id, {})
+
+        # Check for local image first, fall back to scraped photoUrl
+        local_image_url = get_local_image_url(rikishi_id)
+        photo_url = local_image_url if local_image_url else profile_data.get("photoUrl", "")
+        if local_image_url:
+            local_image_count += 1
+
         profile_json = {
             "id": rikishi_id,
             "name": rikishi["name"],
@@ -877,7 +898,7 @@ def write_rikishi_json(rikishi_list: list[dict], profiles: dict[int, dict]) -> N
             "shusshin": profile_data.get("shusshin", ""),
             "debut": profile_data.get("debut", ""),
             "careerStats": profile_data.get("careerStats", {"wins": 0, "losses": 0, "draws": 0}),
-            "photoUrl": profile_data.get("photoUrl", ""),
+            "photoUrl": photo_url,
             "sourceUrl": rikishi["profileUrl"],
             "updatedAt": updated_at,
         }
@@ -887,6 +908,7 @@ def write_rikishi_json(rikishi_list: list[dict], profiles: dict[int, dict]) -> N
         )
 
     print(f"[info] Wrote {len(rikishi_list)} rikishi to rikishi.json and {len(profiles)} profiles")
+    print(f"[info] Using {local_image_count} local images from public/images/rikishi/")
 
 
 def parse_args() -> argparse.Namespace:
