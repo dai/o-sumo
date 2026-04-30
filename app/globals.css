@@ -56,6 +56,21 @@
   --shadow-ambient: 0 24px 48px rgba(125, 74, 158, 0.16);
   --shadow-glow-secondary: 0 0 0 1px rgba(115, 92, 0, 0.4), 0 0 14px rgba(254, 214, 91, 0.26);
   --shadow-glow-tertiary: 0 0 0 1px rgba(125, 74, 158, 0.35), 0 0 14px rgba(125, 74, 158, 0.22);
+
+  /* Washi texture - subtle grain overlay */
+  --texture-washi: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  --texture-opacity: 0.025;
+
+  /* Rank-specific gradients */
+  --yokozuna-bg: linear-gradient(135deg, #fed65b 0%, #d5a82d 100%);
+  --yokozuna-text: #3d2f00;
+  --ozeki-bg: linear-gradient(135deg, #e8e8e8 0%, #a0a0a0 100%);
+  --ozeki-text: #1a1a1a;
+  --sekiwake-bg: linear-gradient(135deg, #d4956a 0%, #a66030 100%);
+  --sekiwake-text: #ffffff;
+
+  /* Hero fade */
+  --hero-gradient-bottom: linear-gradient(to bottom, transparent 0%, var(--surface) 100%);
 }
 
 [data-theme='dark'] {
@@ -188,6 +203,10 @@ h1 {
   font-size: 2.5rem;
   font-weight: 800;
   letter-spacing: 3px;
+  background: linear-gradient(135deg, var(--color-primary) 40%, var(--color-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 h2 {
@@ -296,7 +315,7 @@ button, .btn-primary {
   padding: var(--spacing-md) var(--spacing-lg);
   border: none;
   background: var(--gradient-secondary);
-  color: var(--color-on-secondary);
+  color: var(--yokozuna-text);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -306,8 +325,8 @@ button, .btn-primary {
 }
 
 button:hover, .btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-soft);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow-secondary), var(--shadow-soft);
 }
 
 /* Secondary Button */
@@ -434,14 +453,16 @@ th {
 }
 
 .east {
-  background-color: var(--surface-container-low);
+  background-color: color-mix(in srgb, var(--color-east) 12%, var(--surface-container-low));
+  border-left: 6px solid var(--color-east);
 }
 
 .west {
-  background-color: var(--surface-variant);
+  background-color: color-mix(in srgb, var(--color-west) 12%, var(--surface-container-low));
+  border-left: 6px solid var(--color-west);
 }
 
-/* Rank badges - 0px radius, surface elevation */
+/* Rank badges - gradient backgrounds with micro-radius */
 .rank-badge {
   display: inline-block;
   padding: 0.35rem 0.75rem;
@@ -449,22 +470,23 @@ th {
   color: var(--color-primary);
   font-size: 0.85rem;
   font-weight: 600;
-  /* 0px radius - enforced globally */
+  border-radius: 3px;
 }
 
 .rank-badge.yokozuna {
-  background: var(--gradient-secondary);
-  color: var(--color-on-secondary);
+  background: var(--yokozuna-bg);
+  color: var(--yokozuna-text);
+  box-shadow: 0 0 12px rgba(254, 214, 91, 0.4);
 }
 
 .rank-badge.ozeki {
-  background-color: var(--color-accent-silver);
-  color: var(--color-on-primary);
+  background: var(--ozeki-bg);
+  color: var(--ozeki-text);
 }
 
 .rank-badge.sekiwake {
-  background-color: var(--color-accent-bronze);
-  color: var(--color-primary);
+  background: var(--sekiwake-bg);
+  color: var(--sekiwake-text);
 }
 
 .rank-badge.komusubi {

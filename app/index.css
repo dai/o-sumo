@@ -47,17 +47,51 @@
 
 /* Hero section - surface hierarchy, no border */
 .hero-section {
-  background: var(--surface-container-low);
-  padding: 3rem 2.5rem;
+  background: linear-gradient(180deg, var(--surface-container-low) 0%, var(--surface) 100%);
+  padding: 4rem 3rem;
   text-align: center;
   margin-bottom: 3rem;
   box-shadow: var(--shadow-ambient);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative dohyo-inspired circle */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  border: 2px solid var(--color-secondary-light);
+  border-radius: 50%;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  border: 1px solid var(--color-secondary);
+  border-radius: 50%;
+  opacity: 0.1;
+  pointer-events: none;
 }
 
 .hero-section h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  color: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   font-family: var(--font-serif);
   letter-spacing: 0.02em;
 }
@@ -90,32 +124,35 @@
 
 .cta-button {
   background: var(--gradient-secondary);
-  color: var(--color-on-secondary);
-  padding: 1rem 2.5rem;
-  font-size: 1.1rem;
+  color: var(--yokozuna-text);
+  padding: 1.1rem 2.75rem;
+  font-size: 1.05rem;
   font-weight: 700;
   text-decoration: none;
   display: inline-block;
-  transition: all 0.2s ease;
-  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  letter-spacing: 0.04em;
+  box-shadow: 0 4px 16px rgba(115, 92, 0, 0.25);
 }
 
 .cta-button:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-soft);
-  color: var(--color-on-secondary);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(115, 92, 0, 0.4), var(--shadow-glow-secondary);
+  color: var(--yokozuna-text);
   text-decoration: none;
 }
 
 .cta-button.secondary {
-  background: var(--color-primary-container);
-  color: var(--color-primary);
+  background: transparent;
+  color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
+  box-shadow: none;
 }
 
 .cta-button.secondary:hover {
-  background: var(--surface-bright);
-  color: var(--color-secondary);
-  box-shadow: var(--shadow-ambient);
+  background: var(--color-secondary);
+  color: var(--yokozuna-text);
+  box-shadow: 0 4px 16px rgba(115, 92, 0, 0.3);
 }
 
 .features-section {
@@ -270,17 +307,35 @@
 .feature-card {
   background: var(--surface-container-lowest);
   padding: 2rem;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
   text-decoration: none;
   display: block;
   box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gradient-secondary);
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
 
 .feature-card:hover {
   background: var(--surface-container-low);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   box-shadow: var(--shadow-ambient);
   text-decoration: none;
+}
+
+.feature-card:hover::before {
+  opacity: 1;
 }
 
 .feature-card h3 {

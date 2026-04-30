@@ -42,19 +42,23 @@
   left: 0;
   top: 0;
   bottom: 0;
-  width: 4px;
+  width: 6px;
 }
 
 .rikishi-card.east::before {
-  background: var(--color-east);
+  background: linear-gradient(180deg, var(--color-east) 0%, color-mix(in srgb, var(--color-east) 60%, black) 100%);
+  box-shadow: 0 0 8px rgba(57, 119, 182, 0.4);
 }
 
 .rikishi-card.west::before {
-  background: var(--color-west);
+  background: linear-gradient(180deg, var(--color-west) 0%, color-mix(in srgb, var(--color-west) 60%, black) 100%);
+  box-shadow: 0 0 8px rgba(154, 75, 139, 0.4);
 }
 
 .rikishi-card:hover {
   background: var(--surface-container-low);
+  transform: translateX(4px);
+  box-shadow: var(--shadow-soft);
 }
 
 .rikishi-header {
@@ -90,7 +94,7 @@
   text-align: center;
 }
 
-/* Rank badges - 0px radius, surface elevation */
+/* Rank badges - gradient backgrounds with micro-radius */
 .rank-badge {
   display: inline-block;
   padding: 0.35rem 0.75rem;
@@ -101,21 +105,23 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   white-space: nowrap;
+  border-radius: 3px;
 }
 
 .rank-badge.yokozuna {
-  background: var(--gradient-secondary);
-  color: var(--color-on-secondary);
+  background: var(--yokozuna-bg);
+  color: var(--yokozuna-text);
+  box-shadow: 0 0 12px rgba(254, 214, 91, 0.4);
 }
 
 .rank-badge.ozeki {
-  background-color: var(--color-accent-silver);
-  color: var(--color-on-primary);
+  background: var(--ozeki-bg);
+  color: var(--ozeki-text);
 }
 
 .rank-badge.sekiwake {
-  background-color: var(--color-accent-bronze);
-  color: var(--color-primary);
+  background: var(--sekiwake-bg);
+  color: var(--sekiwake-text);
 }
 
 .rank-badge.komusubi {
