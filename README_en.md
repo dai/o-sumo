@@ -187,6 +187,7 @@ Generated outputs:
 - `public/api/v1/torikumi.json`
 - `public/api/v1/rikishi.json`
 - `public/api/v1/rikishi/{id}.json` (one file per rikishi, including `name`, `yomi`, `currentRank`, `sourceUrl`, and `updatedAt`)
+- `public/images/rikishi/{id}.svg` (generated illustrations for all rikishi, used permanently)
 
 Key validations:
 

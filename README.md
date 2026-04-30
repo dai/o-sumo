@@ -183,6 +183,7 @@ npm run build
 - `public/api/v1/torikumi.json`
 - `public/api/v1/rikishi.json`
 - `public/api/v1/rikishi/{id}.json`（全力士分、`name` / `yomi` / `currentRank` / `sourceUrl` / `updatedAt` を含む）
+- `public/images/rikishi/{id}.svg`（全力士分の生成イラスト、恒久的に使用）
 
 主な検証内容:
 
