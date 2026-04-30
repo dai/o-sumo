@@ -1,7 +1,8 @@
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
-import { MARCH2026_TORIKUMI_DATA, torikumiArchive } from '../lib/torikumi-data';
+import { MARCH2026_TORIKUMI_DATA } from '../lib/march2026-torikumi-data';
+import { torikumiArchive } from '../lib/torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from '../lib/may2026-data';
 import { getDayPath } from '../lib/torikumi-routes';
 import TorikumiHubPage from './page';

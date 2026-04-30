@@ -2,7 +2,8 @@ import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import TorikumiDayPage from './TorikumiDayPage';
-import { MARCH2026_TORIKUMI_DATA, torikumiArchive, type TorikumiArchiveDay } from '../lib/torikumi-data';
+import { MARCH2026_TORIKUMI_DATA } from '../lib/march2026-torikumi-data';
+import { torikumiArchive, type TorikumiArchiveDay } from '../lib/torikumi-data';
 import { banzukePath, getHubPath, getHubPathForDateKey } from '../lib/torikumi-routes';
 
 function renderPage(day: TorikumiArchiveDay, mode: 'result' | 'schedule' = 'result') {

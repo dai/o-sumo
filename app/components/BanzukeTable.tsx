@@ -63,7 +63,7 @@ const RikishiCell = ({ rikishi, resultLinkMap }: { rikishi: Rikishi; resultLinkM
       side: rikishi.side,
     })
     : basicRikishiPlaceholderDataUrl(name);
-  const photoUrl = rikishi.photoUrl || fallbackPhotoUrl;
+  const photoUrl = fallbackPhotoUrl;
 
   return (
     <div className="rikishi-cell">
