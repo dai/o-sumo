@@ -2,9 +2,8 @@ name: Daily Sumo Data Update
 
 on:
   schedule:
-    # JST: 19:00 (torikumi schedule refresh for the next day)
-    - cron: '0 19 * * *'
-      timezone: 'Asia/Tokyo'
+    # JST 19:00 = UTC 10:00 (torikumi schedule refresh for the next day)
+    - cron: '0 10 * * *'
   workflow_dispatch:
 
 concurrency:

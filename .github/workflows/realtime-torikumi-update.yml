@@ -2,12 +2,10 @@ name: Realtime Torikumi Update
 
 on:
   schedule:
-    # JST: 14:00, 15:00, 16:00, 17:00, 18:00
-    - cron: '0 14,15,16,17,18 * * *'
-      timezone: 'Asia/Tokyo'
-    # JST: 17:30
-    - cron: '30 17 * * *'
-      timezone: 'Asia/Tokyo'
+    # JST 14:00, 15:00, 16:00, 17:00, 18:00 = UTC 05:00, 06:00, 07:00, 08:00, 09:00
+    - cron: '0 5,6,7,8,9 * * *'
+    # JST 17:30 = UTC 08:30
+    - cron: '30 8 * * *'
   workflow_dispatch:
 
 concurrency:
