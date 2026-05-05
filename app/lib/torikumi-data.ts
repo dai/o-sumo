@@ -54,8 +54,8 @@ export interface TorikumiDataSet {
 export const torikumiData: TorikumiDataSet = {
   "bashoName": "五月場所",
   "year": "令和八年",
-  "updatedAt": "2026-05-04",
-  "resultUpdatedAt": "2026-05-04",
+  "updatedAt": "2026-05-05",
+  "resultUpdatedAt": "2026-05-05",
   "scheduleUpdatedAt": "2026-05-04",
   "today": {
     "makuuchi": {
