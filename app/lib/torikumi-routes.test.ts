@@ -83,6 +83,28 @@ describe('torikumi route helpers', () => {
     expect(getAdjacentDay(marchFirstDay!, 'result', 'next')?.pathDate).toBe(marchSecondDay!.pathDate);
   });
 
+  it('keeps all March 2026 result and schedule days in the March archive', () => {
+    const marchResultDays = MARCH2026_TORIKUMI_DATA.resultDays ?? [];
+    const marchScheduleDays = MARCH2026_TORIKUMI_DATA.scheduleDays ?? [];
+
+    expect(marchResultDays).toHaveLength(15);
+    expect(marchScheduleDays).toHaveLength(15);
+
+    for (const day of [...marchResultDays, ...marchScheduleDays]) {
+      expect(day.pathDate).toMatch(/^202603/);
+      expect(day.isoDate).toMatch(/^2026-03-/);
+    }
+
+    for (const day of marchScheduleDays) {
+      const matchCount = day.data.makuuchi.matches.length + day.data.juryo.matches.length;
+      expect(day.status).toBe('published');
+      expect(day.statusMessage).toBeNull();
+      expect(matchCount).toBeGreaterThan(0);
+      expect(day.data.makuuchi.matches.every((match) => match.winner === null)).toBe(true);
+      expect(day.data.juryo.matches.every((match) => match.winner === null)).toBe(true);
+    }
+  });
+
   it('resolves month config from pathname and date key', () => {
     const marchConfig = getArchiveRouteConfigForPathname('/202603-banduke');
     const mayConfig = getArchiveRouteConfigForPathname('/202605-torikumi');

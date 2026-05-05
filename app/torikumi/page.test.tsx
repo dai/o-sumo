@@ -132,6 +132,8 @@ describe('TorikumiHubPage', () => {
     expect(screen.getByRole('heading', { level: 1, name: /三月場所/ })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202603-banduke');
     expect(firstMarchScheduleDay).toBeDefined();
-    expect(screen.getAllByRole('link').some((l) => l.getAttribute('href') === `/${firstMarchScheduleDay!.pathDate}-yotei`)).toBe(true);
+    expect(firstMarchScheduleDay!.pathDate).toBe('20260308');
+    expect(screen.queryByText('取組予定未更新')).not.toBeInTheDocument();
+    expect(screen.getAllByRole('link').some((l) => l.getAttribute('href') === '/20260308-yotei')).toBe(true);
   });
 });
