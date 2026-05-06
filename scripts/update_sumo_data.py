@@ -719,17 +719,17 @@ class ProfileParser(HTMLParser):
         if not data:
             return
         # Parse table data labels
-        if "生年月日" in data or "誕生日" in data:
+        if data in {"生年月日", "誕生日"}:
             self.current_data_label = "birth"
-        elif "身長" in data:
+        elif data == "身長":
             self.current_data_label = "height"
-        elif "体重" in data:
+        elif data == "体重":
             self.current_data_label = "weight"
-        elif "出身地" in data or "出身" in data:
+        elif data in {"出身地", "出身"}:
             self.current_data_label = "shusshin"
-        elif "初土俵" in data:
+        elif data == "初土俵":
             self.current_data_label = "debut"
-        elif "通算成績" in data:
+        elif data == "通算成績":
             self.current_data_label = "career"
         elif self.current_data_label:
             if self.current_data_label == "birth":
