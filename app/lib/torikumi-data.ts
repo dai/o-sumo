@@ -56,7 +56,7 @@ export const torikumiData: TorikumiDataSet = {
   "year": "令和八年",
   "updatedAt": "2026-05-06",
   "resultUpdatedAt": "2026-05-06",
-  "scheduleUpdatedAt": "2026-05-05",
+  "scheduleUpdatedAt": "2026-05-06",
   "today": {
     "makuuchi": {
       "day": 1,
