@@ -48,3 +48,34 @@
 - `npm test -- --run`: 14ファイル54件 pass
 - `npm run build`: exit 0。既存のchunk size警告のみ
 - `rankLikeShusshin`チェックで、番付文字列に化けた`shusshin`は0件
+
+---
+
+# 力士辞書追加とMITライセンス切替 Todo
+
+## Plan
+- [x] `origin/main`から`codex/rikishi-202605-mit-license`を作成する
+- [x] `rikishi-202605.txt`をルートに追加し、LF固定を設定する
+- [x] README/README_enに辞書ダウンロードリンクと登録方法リンクを追加する
+- [x] package metadata、LICENSE、画像READMEのライセンス表記をMITへ統一する
+- [x] 辞書形式、ライセンス表記、型チェック、テスト、ビルド、差分チェックで検証する
+- [x] コミットしてfeature branchをpushする
+
+## Progress
+- `origin/main`起点で`codex/rikishi-202605-mit-license`を作成。
+- `C:/2026/04/rikishi_2026_05_draft_Version3.txt`の内容を正本として`rikishi-202605.txt`を追加。
+- `.gitattributes`に`rikishi-202605.txt text eol=lf`を追加。
+- `README.md`と`README_en.md`に辞書リンクと登録方法リンクを追加。
+- `package.json`、`package-lock.json`、`LICENSE`、`public/images/rikishi/README.md`をMIT表記へ更新。
+- 辞書形式は146行、全行3カラム、CRなし。
+- `npm run typecheck`はexit 0。
+- `npm test -- --run`は14ファイル54件通過。
+- `npm run build`はexit 0。既存のchunk size警告のみ。
+- `git diff --check`はexit 0。
+- コミットを作成し、feature branchをpushする。
+
+## Review
+- `README.md`と`README_en.md`は辞書ファイルへの相対リンク`./rikishi-202605.txt`と登録方法X記事リンクを含む。
+- ルートpackage metadataは`package.json`、`package-lock.json`ともに`MIT`。
+- `public/images/rikishi/README.md`の日本語・英語ライセンス表記はMITへ更新済み。
+- `.gitattributes`で`rikishi-202605.txt`はLF固定。

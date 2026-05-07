@@ -46,9 +46,9 @@ Both `/rikishi/{id}` and `/{YYYYMM}-banduke` prefer this local image path.
 
 ## ライセンス / License
 
-これらの生成イラストは o-sumo プロジェクトの一部として ISC ライセンスの下で提供されています。
+これらの生成イラストは o-sumo プロジェクトの一部として MIT ライセンスの下で提供されています。
 
-These generated illustrations are provided as part of the o-sumo project under the ISC license.
+These generated illustrations are provided as part of the o-sumo project under the MIT license.
 
 ## 更新 / Updates
 

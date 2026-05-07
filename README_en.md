@@ -268,4 +268,9 @@ GitHub Actions runs the following on pull requests and pushes to `main` and `cod
 
 ## License
 
-ISC
+MIT
+
+## Download
+
+- [May 2026 basho rikishi dictionary `rikishi-202605.txt`](./rikishi-202605.txt)
+- [Dictionary registration guide](https://x.com/daisuke/status/2027263585244889097)
