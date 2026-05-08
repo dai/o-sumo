@@ -1,4 +1,5 @@
-import type { TorikumiDailyData, TorikumiDataSet } from './torikumi-data';
+import { makuuchiData, juryo, type Rikishi } from './sumo-data';
+import type { TorikumiDailyData, TorikumiDataSet, TorikumiMatch } from './torikumi-data';
 
 const MAY_DATES = [
   { day: 1, isoDate: '2026-05-10', pathDate: '20260510', label: '初日', dayHead: '初日： 令和8年5月10日(日)' },
@@ -17,6 +18,111 @@ const MAY_DATES = [
   { day: 14, isoDate: '2026-05-23', pathDate: '20260523', label: '十四日目', dayHead: '十四日目： 令和8年5月23日(土)' },
   { day: 15, isoDate: '2026-05-24', pathDate: '20260524', label: '千秋楽', dayHead: '千秋楽： 令和8年5月24日(日)' },
 ] as const;
+
+
+const RIKISHI_BY_NAME = [...makuuchiData, ...juryo]
+  .flatMap((rankGroup) => [...rankGroup.east, ...rankGroup.west])
+  .reduce<Record<string, Rikishi>>((rikishiByName, rikishi) => ({
+    ...rikishiByName,
+    [rikishi.name]: rikishi,
+  }), {});
+
+function getRikishi(name: string): Rikishi {
+  const rikishi = RIKISHI_BY_NAME[name];
+  if (!rikishi) {
+    throw new Error(`Unknown rikishi in May 2026 torikumi: ${name}`);
+  }
+  return rikishi;
+}
+
+function buildMatch(division: '幕内' | '十両', boutNo: number, eastName: string, westName: string): TorikumiMatch {
+  const east = getRikishi(eastName);
+  const west = getRikishi(westName);
+
+  return {
+    division,
+    boutNo,
+    eastName: east.name,
+    eastYomi: east.yomi,
+    eastEnglish: '',
+    eastRank: east.rank,
+    eastProfileUrl: east.profileUrl,
+    westName: west.name,
+    westYomi: west.yomi,
+    westEnglish: '',
+    westRank: west.rank,
+    westProfileUrl: west.profileUrl,
+    kimarite: '未定',
+    winner: null,
+  };
+}
+
+const DAY1_MAKUUCHI_MATCHES = [
+  ['栃大海', '藤凌駕'],
+  ['炎鵬', '若ノ勝'],
+  ['白鷹山', '竜電'],
+  ['大花竜', '翔猿'],
+  ['玉正鳳', '欧勝海'],
+  ['御嶽海', '狼雅'],
+  ['琴栄峰', '時疾風'],
+  ['獅司', '朝乃山'],
+  ['宇良', '金峰山'],
+  ['阿炎', '錦富士'],
+  ['欧勝馬', '朝白龍'],
+  ['千代翔馬', '朝紅龍'],
+  ['美ノ海', '藤青雲'],
+  ['正代', '豪ノ山'],
+  ['大栄翔', '王鵬'],
+  ['平戸海', '一山本'],
+  ['義ノ富士', '琴勝峰'],
+  ['若隆景', '高安'],
+  ['若元春', '霧島'],
+  ['熱海富士', '安青錦'],
+  ['藤ノ川', '琴櫻'],
+  ['大の里', '隆の勝'],
+  ['豊昇龍', '玉鷲'],
+] as const;
+
+const DAY1_JURYO_MATCHES = [
+  ['東白龍', '翠富士'],
+  ['西ノ龍', '嘉陽'],
+  ['輝', '尊富士'],
+  ['友風', '北の若'],
+  ['一意', '明生'],
+  ['旭海雄', '朝翠龍'],
+  ['出羽ノ龍', '羽出山'],
+  ['佐田の海', '白熊'],
+  ['阿武剋', '大青山'],
+  ['風賢央', '錦木'],
+  ['日翔志', '湘南乃海'],
+] as const;
+
+function buildDay1Data(): TorikumiDailyData {
+  const day = MAY_DATES[0];
+
+  return {
+    makuuchi: {
+      day: day.day,
+      dayName: `取組日 ${day.label}`,
+      dayHead: day.dayHead,
+      division: '幕内',
+      matches: DAY1_MAKUUCHI_MATCHES.map(([eastName, westName], index) => (
+        buildMatch('幕内', index + 1, eastName, westName)
+      )),
+    },
+    juryo: {
+      day: day.day,
+      dayName: `取組日 ${day.label}`,
+      dayHead: day.dayHead,
+      division: '十両',
+      matches: DAY1_JURYO_MATCHES.map(([eastName, westName], index) => (
+        buildMatch('十両', index + 1, eastName, westName)
+      )),
+    },
+  };
+}
+
+const DAY1_DATA = buildDay1Data();
 
 function buildEmptyDayData(day: number, label: string, dayHead: string): TorikumiDailyData {
   return {
@@ -40,9 +146,9 @@ function buildEmptyDayData(day: number, label: string, dayHead: string): Torikum
 export const MAY2026_TORIKUMI_DATA: TorikumiDataSet = {
   bashoName: '五月場所',
   year: '令和八年',
-  updatedAt: '2026-04-14',
+  updatedAt: '2026-05-08',
   resultUpdatedAt: '2026-04-14',
-  scheduleUpdatedAt: '2026-04-14',
+  scheduleUpdatedAt: '2026-05-08',
   resultDays: MAY_DATES.map((d) => ({
     day: d.day,
     isoDate: d.isoDate,
@@ -53,14 +159,18 @@ export const MAY2026_TORIKUMI_DATA: TorikumiDataSet = {
     statusMessage: '結果未更新' as const,
     data: buildEmptyDayData(d.day, d.label, d.dayHead),
   })),
-  scheduleDays: MAY_DATES.map((d) => ({
-    day: d.day,
-    isoDate: d.isoDate,
-    pathDate: d.pathDate,
-    label: d.label,
-    dayHead: d.dayHead,
-    status: 'pending' as const,
-    statusMessage: '取組予定未更新' as const,
-    data: buildEmptyDayData(d.day, d.label, d.dayHead),
-  })),
+  scheduleDays: MAY_DATES.map((d) => {
+    const isDay1 = d.day === 1;
+
+    return {
+      day: d.day,
+      isoDate: d.isoDate,
+      pathDate: d.pathDate,
+      label: d.label,
+      dayHead: d.dayHead,
+      status: isDay1 ? 'published' as const : 'pending' as const,
+      statusMessage: isDay1 ? null : '取組予定未更新' as const,
+      data: isDay1 ? DAY1_DATA : buildEmptyDayData(d.day, d.label, d.dayHead),
+    };
+  }),
 };

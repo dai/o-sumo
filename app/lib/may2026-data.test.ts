@@ -29,11 +29,26 @@ describe('MAY2026_TORIKUMI_DATA', () => {
     }
   });
 
-  it('keeps all schedule days pending with normalized status message and empty matches', () => {
+  it('publishes day 1 schedule with the announced Makuuchi and Juryo counts', () => {
     const scheduleDays = MAY2026_TORIKUMI_DATA.scheduleDays ?? [];
-    expect(scheduleDays).toHaveLength(15);
+    const day1 = scheduleDays[0];
 
-    for (const day of scheduleDays) {
+    expect(scheduleDays).toHaveLength(15);
+    expect(day1.status).toBe('published');
+    expect(day1.statusMessage).toBeNull();
+    expect(day1.data.makuuchi.matches).toHaveLength(23);
+    expect(day1.data.juryo.matches).toHaveLength(11);
+    expect(day1.data.makuuchi.matches[0]).toMatchObject({
+      division: '幕内',
+      boutNo: 1,
+      kimarite: '未定',
+      winner: null,
+    });
+  });
+
+  it('keeps unpublished schedule days pending with normalized status message and empty matches', () => {
+    const scheduleDays = MAY2026_TORIKUMI_DATA.scheduleDays ?? [];
+    for (const day of scheduleDays.slice(1)) {
       expect(day.status).toBe('pending');
       expect(day.statusMessage).toBe('取組予定未更新');
       expect(day.data.makuuchi.matches).toHaveLength(0);
