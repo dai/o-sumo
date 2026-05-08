@@ -73,7 +73,8 @@ describe('TorikumiHubPage', () => {
       </MemoryRouter>,
     );
 
-    const hasPendingResult = torikumiArchive.resultDays.some((day) => day.status === 'pending');
+    // Check the MAY2026 data which is what gets rendered for 202605 routes
+    const hasPendingResult = MAY2026_TORIKUMI_DATA.resultDays?.some((day) => day.status === 'pending');
     if (hasPendingResult) {
       expect(screen.getAllByText('結果未更新').length).toBeGreaterThan(0);
     } else {
@@ -85,7 +86,7 @@ describe('TorikumiHubPage', () => {
         <TorikumiHubPage mode="schedule" />
       </MemoryRouter>,
     );
-    const hasPendingSchedule = torikumiArchive.scheduleDays.some((day) => day.status === 'pending');
+    const hasPendingSchedule = MAY2026_TORIKUMI_DATA.scheduleDays?.some((day) => day.status === 'pending');
     if (hasPendingSchedule) {
       expect(screen.getAllByText('取組予定未更新').length).toBeGreaterThan(0);
     } else {

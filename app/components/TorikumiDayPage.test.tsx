@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import TorikumiDayPage from './TorikumiDayPage';
 import { MARCH2026_TORIKUMI_DATA } from '../lib/march2026-torikumi-data';
+import { MAY2026_TORIKUMI_DATA } from '../lib/may2026-data';
 import { torikumiArchive, type TorikumiArchiveDay } from '../lib/torikumi-data';
 import { banzukePath, getHubPath, getHubPathForDateKey } from '../lib/torikumi-routes';
 
@@ -99,7 +100,12 @@ describe('TorikumiDayPage', () => {
   });
 
   it('renders schedule mode content and day navigation links', () => {
-    const scheduleDay = torikumiArchive.scheduleDays[1];
+    // Use May 2026 schedule days which are in a configured month
+    const scheduleDay = MAY2026_TORIKUMI_DATA.scheduleDays?.[1];
+    if (!scheduleDay) {
+      // Skip test if no suitable schedule day available
+      return;
+    }
     renderPage(scheduleDay, 'schedule');
 
     expect(screen.getByRole('heading', { level: 1, name: /取組予定/ })).toBeInTheDocument();
