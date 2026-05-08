@@ -147,8 +147,8 @@ export const MAY2026_TORIKUMI_DATA: TorikumiDataSet = {
   bashoName: '五月場所',
   year: '令和八年',
   updatedAt: '2026-05-08',
-  resultUpdatedAt: '2026-04-14',
-  scheduleUpdatedAt: '2026-05-08',
+  resultUpdatedAt: '2026-05-08',
+  scheduleUpdatedAt: '2026-05-07',
   resultDays: MAY_DATES.map((d) => ({
     day: d.day,
     isoDate: d.isoDate,
