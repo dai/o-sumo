@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import TorikumiDayPage from './TorikumiDayPage';
 import { MARCH2026_TORIKUMI_DATA } from '../lib/march2026-torikumi-data';
+import { MAY2026_TORIKUMI_DATA } from '../lib/may2026-data';
 import { torikumiArchive, type TorikumiArchiveDay } from '../lib/torikumi-data';
 import { banzukePath, getHubPath, getHubPathForDateKey } from '../lib/torikumi-routes';
 
