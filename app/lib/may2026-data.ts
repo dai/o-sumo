@@ -160,7 +160,7 @@ export const MAY2026_TORIKUMI_DATA: TorikumiDataSet = {
   year: '令和八年',
   updatedAt: '2026-05-08',
   resultUpdatedAt: '2026-05-08',
-  scheduleUpdatedAt: '2026-05-07',
+  scheduleUpdatedAt: '2026-05-08',
   resultDays: MAY_DATES.map((d) => ({
     day: d.day,
     isoDate: d.isoDate,
