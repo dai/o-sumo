@@ -326,7 +326,7 @@ def parse_torikumi_match(raw: dict, division: str, bout_no: int) -> dict:
 
 
 def extract_bout_no(raw: dict, fallback: int) -> int:
-    for key in ("bout_no", "torikumi_no", "sumo_no", "match_no", "number", "no", "much_no"):
+    for key in ("bout_no", "torikumi_no", "sumo_no", "match_no", "number", "no"):
         value = safe_int(raw.get(key), 0)
         if value > 0:
             return value
@@ -340,7 +340,7 @@ def merge_torikumi_raw_matches(data: dict) -> list[tuple[int, dict]]:
         bout_no = extract_bout_no(raw, idx)
         merged[bout_no] = raw
 
-    start_idx = len(merged) + 1
+    start_idx = max(merged.keys(), default=0) + 1
     for idx, raw in enumerate(list(data.get("FinalMuch", [])), start=start_idx):
         bout_no = extract_bout_no(raw, idx)
         merged[bout_no] = raw
@@ -363,16 +363,14 @@ def load_torikumi_day(basho_id: int, day: int, kakuzuke_id: int) -> dict:
         raise ValueError(f"取組データ未公開: {DIVISION_LABEL[kakuzuke_id]} day={day}")
 
     parsed = []
-    for bout_no, match in merged_matches:
+    for extracted_bout_no, match in merged_matches:
         try:
-            parsed.append(parse_torikumi_match(match, DIVISION_LABEL[kakuzuke_id], bout_no))
+            parsed.append(parse_torikumi_match(match, DIVISION_LABEL[kakuzuke_id], extracted_bout_no))
         except Exception:
             continue
 
     bout_limit = TORIKUMI_BOUT_LIMIT[kakuzuke_id]
     parsed = sorted(parsed, key=lambda item: item["boutNo"])[:bout_limit]
-    for idx, match in enumerate(parsed, start=1):
-        match["boutNo"] = idx
 
     if not parsed:
         raise ValueError(f"取組データ解析失敗: {DIVISION_LABEL[kakuzuke_id]} day={day}")
@@ -497,11 +495,14 @@ def derive_absentees(division_day: dict, roster: dict[int, dict]) -> list[dict]:
             active_ids.add(west_id)
 
     absent_ids = sorted(set(roster.keys()) - active_ids)
-    return [roster[rikishi_id] for rikishi_id in absent_ids if roster.get(rikishi_id)]
+    return [roster[rikishi_id] for rikishi_id in absent_ids]
 
 
 def sanitize_division_day(division_day: dict, kakuzuke_id: int) -> dict:
-    matches = sorted(list(division_day.get("matches", [])), key=lambda item: safe_int(item.get("boutNo"), 0))
+    matches = sorted(
+        list(division_day.get("matches", [])),
+        key=lambda item: safe_int(item.get("boutNo"), 0),
+    )
     bout_limit = TORIKUMI_BOUT_LIMIT[kakuzuke_id]
     normalized_matches = []
     for idx, match in enumerate(matches[:bout_limit], start=1):
