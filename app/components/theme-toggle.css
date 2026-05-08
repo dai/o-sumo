@@ -1,6 +1,6 @@
 .top-right-controls {
   position: fixed;
-  top: 1rem;
+  top: 3.5rem;
   right: 1rem;
   z-index: 260;
   display: flex;
@@ -72,7 +72,7 @@
 
 @media (max-width: 768px) {
   .top-right-controls {
-    top: 0.6rem;
+    top: 3rem;
     right: 0.6rem;
     gap: 0.4rem;
   }
