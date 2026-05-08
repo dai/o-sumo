@@ -67,6 +67,9 @@
     "absenceShort": "休"
   },
   "torikumi": {
+    "shared": {
+      "absentees": "休場者: {{names}}"
+    },
     "hub": {
       "resultListTitle": "結果一覧",
       "scheduleListTitle": "予定一覧",

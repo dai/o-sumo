@@ -23,16 +23,35 @@ function useArchive(): { archive: TorikumiDataSet; resultPath: string; scheduleP
   };
 }
 
+function findLatestAbsentees(days: TorikumiDataSet['resultDays']): string[] {
+  const latestPublished = [...(days ?? [])]
+    .filter((day) => day.status === 'published')
+    .sort((a, b) => b.day - a.day)[0];
+  if (!latestPublished) return [];
+
+  const entries = [...(latestPublished.data.makuuchi.absentees ?? []), ...(latestPublished.data.juryo.absentees ?? [])];
+  const seen = new Set<number>();
+  return entries
+    .filter((entry) => {
+      if (seen.has(entry.id)) return false;
+      seen.add(entry.id);
+      return true;
+    })
+    .map((entry) => entry.name);
+}
+
 export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
   const [sortOrder, setSortOrder] = React.useState<SortOrder>('asc');
   const { archive, resultPath, schedulePath, bandukePath } = useArchive();
   const sourceDays = mode === 'result' ? archive.resultDays : archive.scheduleDays;
   const days = sortArchiveDays(sourceDays ?? [], sortOrder);
+  const absentees = findLatestAbsentees(sourceDays ?? []);
   const { t } = useTranslation('common');
 
   const modeLabel = mode === 'result'
     ? t('torikumi.hub.resultListTitle')
     : t('torikumi.hub.scheduleListTitle');
+  const updatedAt = mode === 'result' ? archive.resultUpdatedAt : archive.scheduleUpdatedAt;
   const navModeLabel = mode === 'result'
     ? t('torikumi.hub.navResult')
     : t('torikumi.hub.navSchedule');
@@ -44,7 +63,8 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
           <HomeLink placement="header" />
         </nav>
         <h1>{archive.year}{archive.bashoName}{modeLabel}</h1>
-        <p>{t('torikumi.hub.updateDate', { date: archive.updatedAt })}</p>
+        <p>{t('torikumi.hub.updateDate', { date: updatedAt })}</p>
+        {absentees.length > 0 ? <p>{t('torikumi.shared.absentees', { names: absentees.join('、') })}</p> : null}
       </header>
 
       <main className="torikumi-main">

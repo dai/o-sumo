@@ -53,6 +53,16 @@ function winnerLabel(match: TorikumiMatch): string {
   return `${match.kimarite}（${winnerName}）`;
 }
 
+function uniqueAbsentees(dayData: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay }) {
+  const entries = [...(dayData.makuuchi.absentees ?? []), ...(dayData.juryo.absentees ?? [])];
+  const seen = new Set<number>();
+  return entries.filter((entry) => {
+    if (seen.has(entry.id)) return false;
+    seen.add(entry.id);
+    return true;
+  });
+}
+
 function TorikumiTable({
   title,
   dayData,
@@ -151,6 +161,8 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
   const modeDescription = mode === 'result'
     ? t('torikumi.day.modeDescriptionResult')
     : t('torikumi.day.modeDescriptionSchedule');
+  const absentees = uniqueAbsentees(day.data);
+  const updatedAt = mode === 'result' ? archive.resultUpdatedAt : archive.scheduleUpdatedAt;
 
   return (
     <div className="torikumi-page">
@@ -160,7 +172,10 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
         </nav>
         <h1>{archive.year}{archive.bashoName}{modeLabel}</h1>
         <p>{day.dayHead}</p>
-        <p>{t('torikumi.day.updateDate', { date: archive.updatedAt })}</p>
+        <p>{t('torikumi.day.updateDate', { date: updatedAt })}</p>
+        {absentees.length > 0 ? (
+          <p>{t('torikumi.shared.absentees', { names: absentees.map((entry) => entry.name).join('、') })}</p>
+        ) : null}
       </header>
 
       <main className="torikumi-main">

@@ -77,6 +77,27 @@ describe('TorikumiDayPage', () => {
     expect(screen.getByText('十両の取組結果はまだ更新されていません。')).toBeInTheDocument();
   });
 
+  it('shows absentees below update date when provided', () => {
+    const dayWithAbsentees: TorikumiArchiveDay = {
+      ...torikumiArchive.resultDays[0],
+      data: {
+        ...torikumiArchive.resultDays[0].data,
+        makuuchi: {
+          ...torikumiArchive.resultDays[0].data.makuuchi,
+          absentees: [{ id: 1, name: '大の里', profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/1/' }],
+        },
+        juryo: {
+          ...torikumiArchive.resultDays[0].data.juryo,
+          absentees: [{ id: 2, name: '青安錦', profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/2/' }],
+        },
+      },
+    };
+
+    renderPage(dayWithAbsentees, 'schedule');
+
+    expect(screen.getByText('休場者: 大の里、青安錦')).toBeInTheDocument();
+  });
+
   it('renders schedule mode content and day navigation links', () => {
     const scheduleDay = torikumiArchive.scheduleDays[1];
     renderPage(scheduleDay, 'schedule');
