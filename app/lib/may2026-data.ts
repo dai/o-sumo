@@ -77,7 +77,7 @@ const DAY1_MAKUUCHI_MATCHES = [
   ['義ノ富士', '琴勝峰'],
   ['若隆景', '高安'],
   ['若元春', '霧島'],
-  ['熱海富士', '安青錦'],
+  ['熱海富士', '藤ノ川'],
 ] as const;
 
 const DAY1_JURYO_MATCHES = [
@@ -92,9 +92,9 @@ const DAY1_JURYO_MATCHES = [
   ['阿武剋', '大青山'],
   ['風賢央', '錦木'],
   ['日翔志', '湘南乃海'],
-  ['藤ノ川', '琴櫻'],
-  ['大の里', '隆の勝'],
-  ['豊昇龍', '玉鷲'],
+  ['寿之富士', '琴櫻'],
+  ['隆の勝', '玉鷲'],
+  ['豊昇龍', '藤青雲'],
 ] as const;
 
 function buildDay1Data(): TorikumiDailyData {
@@ -106,6 +106,18 @@ function buildDay1Data(): TorikumiDailyData {
       dayName: `取組日 ${day.label}`,
       dayHead: day.dayHead,
       division: '幕内',
+      absentees: [
+        {
+          id: 4227,
+          name: '大の里',
+          profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/4227/',
+        },
+        {
+          id: 4230,
+          name: '安青錦',
+          profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/4230/',
+        },
+      ],
       matches: DAY1_MAKUUCHI_MATCHES.map(([eastName, westName], index) => (
         buildMatch('幕内', index + 1, eastName, westName)
       )),
