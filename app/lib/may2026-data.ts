@@ -78,9 +78,6 @@ const DAY1_MAKUUCHI_MATCHES = [
   ['若隆景', '高安'],
   ['若元春', '霧島'],
   ['熱海富士', '安青錦'],
-  ['藤ノ川', '琴櫻'],
-  ['大の里', '隆の勝'],
-  ['豊昇龍', '玉鷲'],
 ] as const;
 
 const DAY1_JURYO_MATCHES = [
@@ -95,6 +92,9 @@ const DAY1_JURYO_MATCHES = [
   ['阿武剋', '大青山'],
   ['風賢央', '錦木'],
   ['日翔志', '湘南乃海'],
+  ['藤ノ川', '琴櫻'],
+  ['大の里', '隆の勝'],
+  ['豊昇龍', '玉鷲'],
 ] as const;
 
 function buildDay1Data(): TorikumiDailyData {

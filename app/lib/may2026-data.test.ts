@@ -36,8 +36,8 @@ describe('MAY2026_TORIKUMI_DATA', () => {
     expect(scheduleDays).toHaveLength(15);
     expect(day1.status).toBe('published');
     expect(day1.statusMessage).toBeNull();
-    expect(day1.data.makuuchi.matches).toHaveLength(23);
-    expect(day1.data.juryo.matches).toHaveLength(11);
+    expect(day1.data.makuuchi.matches).toHaveLength(20);
+    expect(day1.data.juryo.matches).toHaveLength(14);
     expect(day1.data.makuuchi.matches[0]).toMatchObject({
       division: '幕内',
       boutNo: 1,
