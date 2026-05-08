@@ -67,6 +67,9 @@
     "absenceShort": "A"
   },
   "torikumi": {
+    "shared": {
+      "absentees": "Absentees: {{names}}"
+    },
     "hub": {
       "resultListTitle": "Results",
       "scheduleListTitle": "Schedule",

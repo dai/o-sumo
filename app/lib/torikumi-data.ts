@@ -20,6 +20,11 @@ export interface TorikumiDivisionDay {
   dayName: string;
   dayHead: string;
   division: '幕内' | '十両';
+  absentees?: Array<{
+    id: number;
+    name: string;
+    profileUrl: string;
+  }>;
   matches: TorikumiMatch[];
 }
 

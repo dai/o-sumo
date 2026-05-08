@@ -21,6 +21,7 @@ TORIKUMI_OUTPUT = Path("app/lib/torikumi-data.ts")
 API_DIR = Path("public/api/v1")
 EXPECTED_RIKISHI_COUNT = {1: 42, 2: 28}
 DIVISION_LABEL = {1: "幕内", 2: "十両"}
+TORIKUMI_BOUT_LIMIT = {1: 20, 2: 14}
 RESULT_DAYS = tuple(str(day) for day in range(1, 16))
 DAY_LABEL = {
     1: "初日",
@@ -324,6 +325,29 @@ def parse_torikumi_match(raw: dict, division: str, bout_no: int) -> dict:
     }
 
 
+def extract_bout_no(raw: dict, fallback: int) -> int:
+    for key in ("bout_no", "torikumi_no", "sumo_no", "match_no", "number", "no"):
+        value = safe_int(raw.get(key), 0)
+        if value > 0:
+            return value
+    return fallback
+
+
+def merge_torikumi_raw_matches(data: dict) -> list[tuple[int, dict]]:
+    merged: dict[int, dict] = {}
+
+    for idx, raw in enumerate(list(data.get("TorikumiData", [])), start=1):
+        bout_no = extract_bout_no(raw, idx)
+        merged[bout_no] = raw
+
+    start_idx = max(merged.keys(), default=0) + 1
+    for idx, raw in enumerate(list(data.get("FinalMuch", [])), start=start_idx):
+        bout_no = extract_bout_no(raw, idx)
+        merged[bout_no] = raw
+
+    return sorted(merged.items(), key=lambda item: item[0])
+
+
 def load_torikumi_day(basho_id: int, day: int, kakuzuke_id: int) -> dict:
     payload = {
         "basho_id": str(basho_id),
@@ -334,16 +358,19 @@ def load_torikumi_day(basho_id: int, day: int, kakuzuke_id: int) -> dict:
     if data.get("Result") != "1":
         raise RuntimeError(f"torikumiAjax failed: kakuzuke_id={kakuzuke_id}, day={day}")
 
-    all_matches = list(data.get("TorikumiData", [])) + list(data.get("FinalMuch", []))
-    if not all_matches:
+    merged_matches = merge_torikumi_raw_matches(data)
+    if not merged_matches:
         raise ValueError(f"取組データ未公開: {DIVISION_LABEL[kakuzuke_id]} day={day}")
 
     parsed = []
-    for idx, match in enumerate(all_matches):
+    for extracted_bout_no, match in merged_matches:
         try:
-            parsed.append(parse_torikumi_match(match, DIVISION_LABEL[kakuzuke_id], idx + 1))
+            parsed.append(parse_torikumi_match(match, DIVISION_LABEL[kakuzuke_id], extracted_bout_no))
         except Exception:
             continue
+
+    bout_limit = TORIKUMI_BOUT_LIMIT[kakuzuke_id]
+    parsed = sorted(parsed, key=lambda item: item["boutNo"])[:bout_limit]
 
     if not parsed:
         raise ValueError(f"取組データ解析失敗: {DIVISION_LABEL[kakuzuke_id]} day={day}")
@@ -425,6 +452,67 @@ def has_settled_matches(day_data: dict) -> bool:
     )
 
 
+def load_division_rikishi(kakuzuke_id: int) -> dict[int, dict]:
+    try:
+        banzuke = load_banzuke_meta(kakuzuke_id)
+    except Exception as exc:
+        print(
+            f"[warn] banzuke fetch failed for absentees: division={DIVISION_LABEL[kakuzuke_id]} ({exc})",
+            file=sys.stderr,
+        )
+        return {}
+    rikishi_map: dict[int, dict] = {}
+    for item in banzuke.get("BanzukeTable", []):
+        rikishi_id = safe_int(item.get("rikishi_id"), 0)
+        if rikishi_id <= 0:
+            continue
+        rikishi_map[rikishi_id] = {
+            "id": rikishi_id,
+            "name": split_shikona(str(item.get("shikona", ""))),
+            "profileUrl": f"{BASE_URL}/ResultRikishiData/profile/{rikishi_id}/",
+        }
+    return rikishi_map
+
+
+def extract_rikishi_id_from_url(url: str) -> int:
+    match = re.search(r"/profile/(\d+)/", url or "")
+    if not match:
+        return 0
+    return safe_int(match.group(1), 0)
+
+
+def derive_absentees(division_day: dict, roster: dict[int, dict]) -> list[dict]:
+    if not roster:
+        return []
+
+    active_ids = set()
+    for match in division_day.get("matches", []):
+        east_id = extract_rikishi_id_from_url(str(match.get("eastProfileUrl", "")))
+        west_id = extract_rikishi_id_from_url(str(match.get("westProfileUrl", "")))
+        if east_id:
+            active_ids.add(east_id)
+        if west_id:
+            active_ids.add(west_id)
+
+    absent_ids = sorted(set(roster.keys()) - active_ids)
+    return [roster[rikishi_id] for rikishi_id in absent_ids]
+
+
+def sanitize_division_day(division_day: dict, kakuzuke_id: int) -> dict:
+    matches = sorted(
+        list(division_day.get("matches", [])),
+        key=lambda item: safe_int(item.get("boutNo"), 0),
+    )
+    bout_limit = TORIKUMI_BOUT_LIMIT[kakuzuke_id]
+    normalized_matches = []
+    for idx, match in enumerate(matches[:bout_limit], start=1):
+        normalized_matches.append({**match, "boutNo": idx})
+    return {
+        **division_day,
+        "matches": normalized_matches,
+    }
+
+
 def pick_existing_division_day(existing: dict | None, day: int, division: str) -> dict | None:
     if not existing:
         return None
@@ -446,6 +534,10 @@ def pick_existing_division_day(existing: dict | None, day: int, division: str) -
 
 
 def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str, existing: dict | None = None) -> dict:
+    rosters = {
+        "makuuchi": load_division_rikishi(1),
+        "juryo": load_division_rikishi(2),
+    }
     loaded_days = {}
     for day in range(1, 16):
         loaded_days[day] = {
@@ -471,11 +563,21 @@ def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str, exi
         existing_juryo = pick_existing_division_day(existing, day, "juryo")
         makuuchi = loaded_days[day]["makuuchi"] or existing_makuuchi or placeholder["makuuchi"]
         juryo = loaded_days[day]["juryo"] or existing_juryo or placeholder["juryo"]
+        makuuchi = sanitize_division_day(makuuchi, 1)
+        juryo = sanitize_division_day(juryo, 2)
 
         # Synchronize dayHead across both divisions using the calculated actual_date
         canonical_day_head = build_day_head(day, actual_date)
-        makuuchi = {**makuuchi, "dayHead": canonical_day_head}
-        juryo = {**juryo, "dayHead": canonical_day_head}
+        makuuchi = {
+            **makuuchi,
+            "dayHead": canonical_day_head,
+            "absentees": derive_absentees(makuuchi, rosters["makuuchi"]),
+        }
+        juryo = {
+            **juryo,
+            "dayHead": canonical_day_head,
+            "absentees": derive_absentees(juryo, rosters["juryo"]),
+        }
 
         day_data = {
             "makuuchi": makuuchi,
@@ -586,6 +688,11 @@ export interface TorikumiDivisionDay {{
   dayName: string;
   dayHead: string;
   division: '幕内' | '十両';
+  absentees?: Array<{{
+    id: number;
+    name: string;
+    profileUrl: string;
+  }}>;
   matches: TorikumiMatch[];
 }}
 
