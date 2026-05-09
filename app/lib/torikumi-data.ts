@@ -59,8 +59,8 @@ export interface TorikumiDataSet {
 export const torikumiData: TorikumiDataSet = {
   "bashoName": "五月場所",
   "year": "令和八年",
-  "updatedAt": "2026-05-08",
-  "resultUpdatedAt": "2026-05-08",
+  "updatedAt": "2026-05-09",
+  "resultUpdatedAt": "2026-05-09",
   "scheduleUpdatedAt": "2026-05-08",
   "today": {
     "makuuchi": {
@@ -1579,6 +1579,18 @@ export const torikumiData: TorikumiDataSet = {
               "kimarite": "未定",
               "winner": null
             }
+          ],
+          "absentees": [
+            {
+              "id": 4227,
+              "name": "大の里",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
+            },
+            {
+              "id": 4230,
+              "name": "安青錦",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            }
           ]
         },
         "juryo": {
@@ -1811,7 +1823,8 @@ export const torikumiData: TorikumiDataSet = {
               "kimarite": "未定",
               "winner": null
             }
-          ]
+          ],
+          "absentees": []
         }
       }
     },
@@ -2150,6 +2163,18 @@ export const torikumiData: TorikumiDataSet = {
               "kimarite": "未定",
               "winner": null
             }
+          ],
+          "absentees": [
+            {
+              "id": 4227,
+              "name": "大の里",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
+            },
+            {
+              "id": 4230,
+              "name": "安青錦",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            }
           ]
         },
         "juryo": {
@@ -2381,6 +2406,38 @@ export const torikumiData: TorikumiDataSet = {
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/",
               "kimarite": "寄り切り",
               "winner": "west"
+            }
+          ],
+          "absentees": [
+            {
+              "id": 2565,
+              "name": "佐田の海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+            },
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
             }
           ]
         }
@@ -2721,6 +2778,23 @@ export const torikumiData: TorikumiDataSet = {
               "kimarite": "首投げ",
               "winner": "east"
             }
+          ],
+          "absentees": [
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            }
           ]
         },
         "juryo": {
@@ -2952,6 +3026,38 @@ export const torikumiData: TorikumiDataSet = {
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/",
               "kimarite": "寄り切り",
               "winner": "east"
+            }
+          ],
+          "absentees": [
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            },
+            {
+              "id": 4285,
+              "name": "朝翠龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
             }
           ]
         }
@@ -3276,6 +3382,28 @@ export const torikumiData: TorikumiDataSet = {
               "kimarite": "不戦",
               "winner": "east"
             }
+          ],
+          "absentees": [
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            }
           ]
         },
         "juryo": {
@@ -3507,6 +3635,38 @@ export const torikumiData: TorikumiDataSet = {
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/",
               "kimarite": "押し出し",
               "winner": "west"
+            }
+          ],
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
             }
           ]
         }
@@ -3831,6 +3991,33 @@ export const torikumiData: TorikumiDataSet = {
               "kimarite": "掬い投げ",
               "winner": "east"
             }
+          ],
+          "absentees": [
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4227,
+              "name": "大の里",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
+            }
           ]
         },
         "juryo": {
@@ -4062,6 +4249,38 @@ export const torikumiData: TorikumiDataSet = {
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/",
               "kimarite": "押し倒し",
               "winner": "east"
+            }
+          ],
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
             }
           ]
         }
@@ -4386,6 +4605,33 @@ export const torikumiData: TorikumiDataSet = {
               "kimarite": "押し出し",
               "winner": "east"
             }
+          ],
+          "absentees": [
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4227,
+              "name": "大の里",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
+            }
           ]
         },
         "juryo": {
@@ -4617,6 +4863,38 @@ export const torikumiData: TorikumiDataSet = {
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/",
               "kimarite": "突き出し",
               "winner": "east"
+            }
+          ],
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
             }
           ]
         }
@@ -4957,6 +5235,28 @@ export const torikumiData: TorikumiDataSet = {
               "kimarite": "寄り倒し",
               "winner": "east"
             }
+          ],
+          "absentees": [
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4227,
+              "name": "大の里",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
+            }
           ]
         },
         "juryo": {
@@ -5188,6 +5488,38 @@ export const torikumiData: TorikumiDataSet = {
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/",
               "kimarite": "突き倒し",
               "winner": "west"
+            }
+          ],
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3818,
+              "name": "友風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
             }
           ]
         }
@@ -5528,6 +5860,28 @@ export const torikumiData: TorikumiDataSet = {
               "kimarite": "叩き込み",
               "winner": "west"
             }
+          ],
+          "absentees": [
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4227,
+              "name": "大の里",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
+            }
           ]
         },
         "juryo": {
@@ -5759,6 +6113,43 @@ export const torikumiData: TorikumiDataSet = {
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/",
               "kimarite": "寄り切り",
               "winner": "west"
+            }
+          ],
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
             }
           ]
         }
@@ -6099,6 +6490,23 @@ export const torikumiData: TorikumiDataSet = {
               "kimarite": "寄り切り",
               "winner": "east"
             }
+          ],
+          "absentees": [
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4227,
+              "name": "大の里",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
+            }
           ]
         },
         "juryo": {
@@ -6330,6 +6738,38 @@ export const torikumiData: TorikumiDataSet = {
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/",
               "kimarite": "押し倒し",
               "winner": "west"
+            }
+          ],
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
             }
           ]
         }
@@ -6670,6 +7110,18 @@ export const torikumiData: TorikumiDataSet = {
               "kimarite": "寄り倒し",
               "winner": "east"
             }
+          ],
+          "absentees": [
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 4227,
+              "name": "大の里",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
+            }
           ]
         },
         "juryo": {
@@ -6901,6 +7353,38 @@ export const torikumiData: TorikumiDataSet = {
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/",
               "kimarite": "上手投げ",
               "winner": "west"
+            }
+          ],
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
             }
           ]
         }
@@ -7241,6 +7725,23 @@ export const torikumiData: TorikumiDataSet = {
               "kimarite": "引き落とし",
               "winner": "east"
             }
+          ],
+          "absentees": [
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4227,
+              "name": "大の里",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
+            }
           ]
         },
         "juryo": {
@@ -7472,6 +7973,38 @@ export const torikumiData: TorikumiDataSet = {
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/",
               "kimarite": "寄り切り",
               "winner": "east"
+            }
+          ],
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 3914,
+              "name": "西ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
             }
           ]
         }
@@ -7812,6 +8345,23 @@ export const torikumiData: TorikumiDataSet = {
               "kimarite": "上手投げ",
               "winner": "west"
             }
+          ],
+          "absentees": [
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4227,
+              "name": "大の里",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
+            }
           ]
         },
         "juryo": {
@@ -8027,6 +8577,43 @@ export const torikumiData: TorikumiDataSet = {
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/",
               "kimarite": "寄り切り",
               "winner": "east"
+            }
+          ],
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 4171,
+              "name": "尊富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
             }
           ]
         }
@@ -8367,6 +8954,18 @@ export const torikumiData: TorikumiDataSet = {
               "kimarite": "叩き込み",
               "winner": "east"
             }
+          ],
+          "absentees": [
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4227,
+              "name": "大の里",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
+            }
           ]
         },
         "juryo": {
@@ -8598,6 +9197,33 @@ export const torikumiData: TorikumiDataSet = {
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/",
               "kimarite": "寄り倒し",
               "winner": "east"
+            }
+          ],
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
             }
           ]
         }
@@ -8938,6 +9564,23 @@ export const torikumiData: TorikumiDataSet = {
               "kimarite": "外掛け",
               "winner": "west"
             }
+          ],
+          "absentees": [
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4227,
+              "name": "大の里",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
+            }
           ]
         },
         "juryo": {
@@ -9169,6 +9812,38 @@ export const torikumiData: TorikumiDataSet = {
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/",
               "kimarite": "押し出し",
               "winner": "west"
+            }
+          ],
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
             }
           ]
         }
@@ -9493,6 +10168,28 @@ export const torikumiData: TorikumiDataSet = {
               "kimarite": "掛け投げ",
               "winner": "east"
             }
+          ],
+          "absentees": [
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4227,
+              "name": "大の里",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
+            }
           ]
         },
         "juryo": {
@@ -9724,22 +10421,38 @@ export const torikumiData: TorikumiDataSet = {
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/",
               "kimarite": "寄り切り",
               "winner": "east"
+            }
+          ],
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
             },
             {
-              "division": "十両",
-              "boutNo": 15,
-              "eastName": "わかのしょう",
-              "eastYomi": "わかのしょう",
-              "eastEnglish": "Wakanosho",
-              "eastRank": "十両三枚目",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/",
-              "westName": "でわのりゅう",
-              "westYomi": "でわのりゅう",
-              "westEnglish": "Dewanoryu",
-              "westRank": "十両十枚目",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/",
-              "kimarite": "寄り切り",
-              "winner": "west"
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
             }
           ]
         }
