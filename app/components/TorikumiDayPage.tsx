@@ -163,7 +163,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
   const modeDescription = mode === 'result'
     ? t('torikumi.day.modeDescriptionResult')
     : t('torikumi.day.modeDescriptionSchedule');
-  const absentees = uniqueAbsentees(day.data);
+  const absentees = mode === 'schedule' ? uniqueAbsentees(day.data) : [];
   const updatedAt = mode === 'result' ? archive.resultUpdatedAt : archive.scheduleUpdatedAt;
 
   return (

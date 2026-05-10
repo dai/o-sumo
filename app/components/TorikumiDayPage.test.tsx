@@ -102,6 +102,27 @@ describe('TorikumiDayPage', () => {
     expect(screen.getByRole('link', { name: '青安錦' })).toHaveAttribute('href', '/rikishi/2');
   });
 
+  it('hides absentees on result pages', () => {
+    const resultDayWithAbsentees: TorikumiArchiveDay = {
+      ...torikumiArchive.resultDays[0],
+      data: {
+        ...torikumiArchive.resultDays[0].data,
+        makuuchi: {
+          ...torikumiArchive.resultDays[0].data.makuuchi,
+          absentees: [{ id: 1, name: '大の里', profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/1/' }],
+        },
+        juryo: {
+          ...torikumiArchive.resultDays[0].data.juryo,
+          absentees: [{ id: 2, name: '青安錦', profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/2/' }],
+        },
+      },
+    };
+
+    renderPage(resultDayWithAbsentees, 'result');
+
+    expect(screen.queryByText('休場者:')).not.toBeInTheDocument();
+  });
+
   it('renders schedule mode content and day navigation links', () => {
     // Use May 2026 schedule days which are in a configured month
     const scheduleDay = MAY2026_TORIKUMI_DATA.scheduleDays?.[1];

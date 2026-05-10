@@ -46,7 +46,7 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
   const { archive, resultPath, schedulePath, bandukePath } = useArchive();
   const sourceDays = mode === 'result' ? archive.resultDays : archive.scheduleDays;
   const days = sortArchiveDays(sourceDays ?? [], sortOrder);
-  const absentees = findLatestAbsentees(sourceDays ?? []);
+  const absentees = mode === 'schedule' ? findLatestAbsentees(sourceDays ?? []) : [];
   const { t } = useTranslation('common');
 
   const modeLabel = mode === 'result'
