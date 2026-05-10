@@ -10,7 +10,7 @@ import {
   type TorikumiPageMode,
 } from '../lib/torikumi-routes';
 import HomeLink from '../components/HomeLink';
-import AbsenteesNotice from '../components/AbsenteesNotice';
+import AbsenteesNotice, { type AbsenteeEntry } from '../components/AbsenteesNotice';
 import './page.css';
 import { formatUpdatedAt } from '../lib/updated-at';
 
@@ -25,7 +25,7 @@ function useArchive(): { archive: TorikumiDataSet; resultPath: string; scheduleP
   };
 }
 
-function findLatestAbsentees(days: TorikumiDataSet['resultDays']) {
+function findLatestAbsentees(days: TorikumiDataSet['resultDays']): AbsenteeEntry[] {
   const latestPublished = [...(days ?? [])]
     .filter((day) => day.status === 'published')
     .sort((a, b) => b.day - a.day)[0];

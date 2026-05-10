@@ -23,6 +23,9 @@ export function formatUpdatedAt(updatedAt: string): string {
 }
 
 export function updatedAtDateKey(updatedAt: string): string | null {
+  if (updatedAt.length < 10) {
+    return null;
+  }
   const datePart = updatedAt.slice(0, 10);
   return DATE_ONLY_PATTERN.test(datePart) ? datePart.replace(/-/g, '') : null;
 }

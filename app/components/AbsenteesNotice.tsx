@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { canonicalShikona } from '../lib/rikishi-display';
 import { extractRikishiIdFromProfileUrl, rikishiProfilePath } from '../lib/rikishi-profile';
 
-interface AbsenteeEntry {
+export interface AbsenteeEntry {
   id: number;
   name: string;
   profileUrl: string;
