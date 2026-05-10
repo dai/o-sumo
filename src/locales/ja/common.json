@@ -51,14 +51,16 @@
     "west": "西",
     "aboutThisPage": "このページについて",
     "aboutDescription1": "このページは、{{bashoTitle}}（{{gregorianBasho}}）の大相撲幕内・十両力士の番付一覧を表示しています。",
-    "aboutDescription2": "東と西の欄に力士の四股名と読み仮名、番付が表示されます。",
+    "aboutDescription2": "東と西の欄に力士の四股名と読み仮名、成績、星取表が表示されます。",
     "techStack": "技術スタック: Cloudflare Pages、React、TypeScript",
     "footerCopyright": "© 2026 o-sumo. All rights reserved.",
     "footerHome": "ホームに戻る",
     "footerResult": "取組結果一覧",
     "footerDaisuke": "Daisuke on X",
     "footerGithub": "GitHub Repository",
+    "updatedAt": "更新日: {{date}}",
     "profileLink": "プロフィール",
+    "hoshitoriLabel": "星取表",
     "win": "勝ち",
     "loss": "負け",
     "absence": "休場",
@@ -68,6 +70,7 @@
   },
   "torikumi": {
     "shared": {
+      "absenteesLabel": "休場者:",
       "absentees": "休場者: {{names}}"
     },
     "hub": {

@@ -7,14 +7,17 @@ import {
   MARCH2026_BASHO_NAME,
   MARCH2026_JURYO_DATA,
   MARCH2026_MAKUUCHI_DATA,
+  MARCH2026_UPDATED_AT,
   MARCH2026_YEAR,
 } from '../lib/march2026-banzuke-data';
 import { type SortOrder, sortRankGroups } from '../lib/sorting';
 import { makuuchiData, juryo } from '../lib/sumo-data';
 import { getArchiveRouteConfigForPathname, getHubPathForMonthKey } from '../lib/torikumi-routes';
+import { torikumiArchive } from '../lib/torikumi-data';
 import HomeLink from '../components/HomeLink';
 import './page.css';
 import { formatGregorianBashoLabel } from '../lib/basho-meta';
+import { formatUpdatedAt } from '../lib/updated-at';
 function useBanzukeContext() {
   const location = useLocation();
   const routeConfig = getArchiveRouteConfigForPathname(location.pathname);
@@ -27,6 +30,7 @@ function useBanzukeContext() {
       gregorianBashoLabel: formatGregorianBashoLabel(monthKey),
       bandukePath: routeConfig.bandukePath,
       resultPath: routeConfig.resultPath,
+      updatedAt: MARCH2026_UPDATED_AT,
       makuuchi: MARCH2026_MAKUUCHI_DATA,
       juryo: MARCH2026_JURYO_DATA,
     };
@@ -38,6 +42,7 @@ function useBanzukeContext() {
     gregorianBashoLabel: formatGregorianBashoLabel(monthKey),
     bandukePath: routeConfig.bandukePath,
     resultPath: routeConfig.resultPath,
+    updatedAt: torikumiArchive.updatedAt,
     makuuchi: makuuchiData,
     juryo,
   };
@@ -46,7 +51,7 @@ function useBanzukeContext() {
 export default function BanzukePage() {
   const [sortOrder, setSortOrder] = React.useState<SortOrder>('asc');
   const { t } = useTranslation('common');
-  const { bashoTitle, gregorianBashoLabel, bandukePath, monthKey, makuuchi, juryo: juryoRanks } = useBanzukeContext();
+  const { bashoTitle, gregorianBashoLabel, bandukePath, monthKey, updatedAt, makuuchi, juryo: juryoRanks } = useBanzukeContext();
   const sortedMakuuchi = sortRankGroups(makuuchi, sortOrder);
   const sortedJuryo = sortRankGroups(juryoRanks, sortOrder);
 
@@ -60,6 +65,7 @@ export default function BanzukePage() {
           <h1 className="page-title">{t('banzuke.pageTitle')}</h1>
           <h2 className="page-subtitle">{bashoTitle} {t('banzuke.bandukeListTitle')}</h2>
           <p className="page-description">{t('banzuke.pageDescription', { gregorianBasho: gregorianBashoLabel, bandukePath })}</p>
+          <p className="page-description">{t('banzuke.updatedAt', { date: formatUpdatedAt(updatedAt) })}</p>
         </div>
       </header>
 

@@ -24,6 +24,16 @@
   opacity: 0.85;
 }
 
+.absentees-notice {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.absentees-label {
+  font-weight: 700;
+}
+
 .torikumi-main {
   max-width: 1100px;
   width: 100%;

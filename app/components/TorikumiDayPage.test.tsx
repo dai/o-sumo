@@ -96,7 +96,10 @@ describe('TorikumiDayPage', () => {
 
     renderPage(dayWithAbsentees, 'schedule');
 
-    expect(screen.getByText('休場者: 大の里、青安錦')).toBeInTheDocument();
+    expect(screen.getByText('更新日: 2026-05-10 20:01 JST')).toBeInTheDocument();
+    expect(screen.getByText('休場者:')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '大の里' })).toHaveAttribute('href', '/rikishi/1');
+    expect(screen.getByRole('link', { name: '青安錦' })).toHaveAttribute('href', '/rikishi/2');
   });
 
   it('renders schedule mode content and day navigation links', () => {

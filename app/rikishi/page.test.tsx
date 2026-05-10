@@ -5,7 +5,7 @@ import RikishiPage from './page';
 import RikishiProfilePage from './RikishiProfilePage';
 
 const rikishiIndex = {
-  updatedAt: '2026-04-27',
+  updatedAt: '2026-04-27T08:15:00+09:00',
   rikishi: [
     {
       id: 3842,
@@ -41,7 +41,7 @@ const profileDetail = {
   },
   photoUrl: '/images/rikishi/3842.png',
   sourceUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/3842/',
-  updatedAt: '2026-04-27',
+  updatedAt: '2026-04-27T08:15:00+09:00',
 };
 
 function mockFetch() {
@@ -88,7 +88,7 @@ describe('Rikishi pages', () => {
     expect(screen.getByText('読み込み中です。')).toBeInTheDocument();
     expect(await screen.findByRole('link', { name: /豊昇龍/ })).toHaveAttribute('href', '/rikishi/3842');
     expect(screen.getByRole('link', { name: /欠損山/ })).toHaveAttribute('href', '/rikishi/9999');
-    expect(screen.getByText('更新日: 2026-04-27')).toBeInTheDocument();
+    expect(screen.getByText('更新日: 2026-04-27 08:15 JST')).toBeInTheDocument();
   });
 
   it('renders a known profile with source link and copyable API JSON path', async () => {

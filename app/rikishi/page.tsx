@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import HomeLink from '../components/HomeLink';
 import { fetchRikishiIndex, rikishiProfilePath, type RikishiIndexItem } from '../lib/rikishi-profile';
 import { toRomaji } from '../lib/romaji';
+import { formatUpdatedAt } from '../lib/updated-at';
 import './page.css';
 
 export default function RikishiPage() {
@@ -40,7 +41,7 @@ export default function RikishiPage() {
         </nav>
         <h1>{t('rikishi.listTitle')}</h1>
         <p>{t('rikishi.listDescription')}</p>
-        {updatedAt ? <p>{t('rikishi.updatedAt', { date: updatedAt })}</p> : null}
+        {updatedAt ? <p>{t('rikishi.updatedAt', { date: formatUpdatedAt(updatedAt) })}</p> : null}
       </header>
 
       <main className="rikishi-main">

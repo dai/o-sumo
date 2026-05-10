@@ -9,6 +9,7 @@ import {
 } from '../lib/rikishi-profile';
 import { isLocalRikishiImagePath } from '../lib/rikishi-avatar';
 import { toRomaji } from '../lib/romaji';
+import { formatUpdatedAt } from '../lib/updated-at';
 import './page.css';
 
 function textOrUnknown(value: string | undefined, unknownLabel: string): string {
@@ -98,7 +99,7 @@ export default function RikishiProfilePage() {
         </nav>
         <h1>{profile ? profile.name : t('rikishi.detailTitle')}</h1>
         <p>{profile ? `${profile.currentRank} / ${toRomaji(profile.yomi)}` : t('rikishi.detailDescription')}</p>
-        {profile?.updatedAt ? <p>{t('rikishi.updatedAt', { date: profile.updatedAt })}</p> : null}
+        {profile?.updatedAt ? <p>{t('rikishi.updatedAt', { date: formatUpdatedAt(profile.updatedAt) })}</p> : null}
       </header>
 
       <main className="rikishi-main">
@@ -159,7 +160,7 @@ export default function RikishiProfilePage() {
               {isLocalRikishiImagePath(profile.photoUrl) ? (
                 <p>{t('rikishi.imageSourceDescription')}</p>
               ) : null}
-              <p>{t('rikishi.updatedAt', { date: profile.updatedAt })}</p>
+              <p>{t('rikishi.updatedAt', { date: formatUpdatedAt(profile.updatedAt) })}</p>
             </section>
           </article>
         ) : null}

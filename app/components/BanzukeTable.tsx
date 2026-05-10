@@ -25,27 +25,30 @@ const Hoshitori = ({ rikishi, resultLinkMap }: { rikishi: Rikishi; resultLinkMap
   if (!rikishi.results || rikishi.results.length === 0) return null;
 
   return (
-    <div className="hoshitori-container">
-      {rikishi.results.map((result, index) => {
-        const day = index + 1;
-        const href = resultLinkMap.get(`${rikishi.profileUrl}:${day}`);
-        const markerLabel = result === 'win'
-          ? t('banzuke.win')
-          : result === 'loss'
-            ? t('banzuke.loss')
-            : t('banzuke.absence');
-        const marker = <span className={`hoshi ${result}`}>{result === 'win' ? '○' : result === 'loss' ? '●' : '−'}</span>;
+    <div className="hoshitori-section">
+      <div className="record-label">{t('banzuke.hoshitoriLabel')}</div>
+      <div className="hoshitori-container">
+        {rikishi.results.map((result, index) => {
+          const day = index + 1;
+          const href = resultLinkMap.get(`${rikishi.profileUrl}:${day}`);
+          const markerLabel = result === 'win'
+            ? t('banzuke.win')
+            : result === 'loss'
+              ? t('banzuke.loss')
+              : t('banzuke.absence');
+          const marker = <span className={`hoshi ${result}`}>{result === 'win' ? '○' : result === 'loss' ? '●' : '−'}</span>;
 
-        return href ? (
-          <Link key={day} to={href} className="hoshi-link" aria-label={`${displayShikona(rikishi, profileNameMap)} ${day}日目の取組結果へ (${markerLabel})`}>
-            {marker}
-          </Link>
-        ) : (
-          <span key={day} className="hoshi-link is-disabled" aria-hidden="true">
-            {marker}
-          </span>
-        );
-      })}
+          return href ? (
+            <Link key={day} to={href} className="hoshi-link" aria-label={`${displayShikona(rikishi, profileNameMap)} ${day}日目の取組結果へ (${markerLabel})`}>
+              {marker}
+            </Link>
+          ) : (
+            <span key={day} className="hoshi-link is-disabled" aria-hidden="true">
+              {marker}
+            </span>
+          );
+        })}
+      </div>
     </div>
   );
 };

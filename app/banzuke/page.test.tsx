@@ -60,6 +60,7 @@ describe('BanzukePage', () => {
     expect(screen.getByRole('link', { name: '東力士のo-sumoプロフィールを開く' })).toHaveAttribute('href', '/rikishi/1');
     expect(screen.getByRole('link', { name: 'プロフィール' })).toHaveAttribute('href', '/rikishi/1');
     expect(screen.getByText('1勝1敗1休')).toBeInTheDocument();
+    expect(screen.getByText('星取表')).toBeInTheDocument();
     expect(screen.getByText('○')).toBeInTheDocument();
     expect(screen.getByText('●')).toBeInTheDocument();
     expect(screen.getByText('−')).toBeInTheDocument();
@@ -91,7 +92,17 @@ describe('BanzukePage', () => {
     );
 
     expect(screen.queryByText(/<strong>東<\/strong>/)).not.toBeInTheDocument();
-    expect(screen.getByText('東と西の欄に力士の四股名と読み仮名、番付が表示されます。')).toBeInTheDocument();
+    expect(screen.getByText('東と西の欄に力士の四股名と読み仮名、成績、星取表が表示されます。')).toBeInTheDocument();
     expect(screen.getByText('技術スタック: Cloudflare Pages、React、TypeScript')).toBeInTheDocument();
+  });
+
+  it('shows the current banzuke update timestamp', () => {
+    render(
+      <MemoryRouter>
+        <BanzukePage />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByText('更新日: 2026-05-10 20:01 JST')).toBeInTheDocument();
   });
 });

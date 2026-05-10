@@ -10,7 +10,9 @@ import {
   type TorikumiPageMode,
 } from '../lib/torikumi-routes';
 import HomeLink from '../components/HomeLink';
+import AbsenteesNotice from '../components/AbsenteesNotice';
 import './page.css';
+import { formatUpdatedAt } from '../lib/updated-at';
 
 function useArchive(): { archive: TorikumiDataSet; resultPath: string; schedulePath: string; bandukePath: string } {
   const location = useLocation();
@@ -23,7 +25,7 @@ function useArchive(): { archive: TorikumiDataSet; resultPath: string; scheduleP
   };
 }
 
-function findLatestAbsentees(days: TorikumiDataSet['resultDays']): string[] {
+function findLatestAbsentees(days: TorikumiDataSet['resultDays']) {
   const latestPublished = [...(days ?? [])]
     .filter((day) => day.status === 'published')
     .sort((a, b) => b.day - a.day)[0];
@@ -36,8 +38,7 @@ function findLatestAbsentees(days: TorikumiDataSet['resultDays']): string[] {
       if (seen.has(entry.id)) return false;
       seen.add(entry.id);
       return true;
-    })
-    .map((entry) => entry.name);
+    });
 }
 
 export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
@@ -63,8 +64,8 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
           <HomeLink placement="header" />
         </nav>
         <h1>{archive.year}{archive.bashoName}{modeLabel}</h1>
-        <p>{t('torikumi.hub.updateDate', { date: updatedAt })}</p>
-        {absentees.length > 0 ? <p>{t('torikumi.shared.absentees', { names: absentees.join('、') })}</p> : null}
+        <p>{t('torikumi.hub.updateDate', { date: formatUpdatedAt(updatedAt) })}</p>
+        <AbsenteesNotice entries={absentees} />
       </header>
 
       <main className="torikumi-main">
