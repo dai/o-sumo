@@ -65,6 +65,29 @@ describe('TorikumiHubPage', () => {
     expect(screen.getByText(/更新日:/)).toBeInTheDocument();
   });
 
+  it('hides absentees on the result hub page', () => {
+    render(
+      <MemoryRouter>
+        <TorikumiHubPage mode="result" />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByText('更新日: 2026-05-10 20:01 JST')).toBeInTheDocument();
+    expect(screen.queryByText('休場者:')).not.toBeInTheDocument();
+  });
+
+  it('shows linked absentees on the schedule hub page', () => {
+    render(
+      <MemoryRouter>
+        <TorikumiHubPage mode="schedule" />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByText('休場者:')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '大の里' })).toHaveAttribute('href', '/rikishi/4227');
+    expect(screen.getByRole('link', { name: '若隆景' })).toHaveAttribute('href', '/rikishi/3761');
+  });
+
   it('shows normalized pending status messages', () => {
     const { rerender } = render(
       <MemoryRouter>

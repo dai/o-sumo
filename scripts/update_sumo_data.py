@@ -113,6 +113,16 @@ def extract_iso_date(day_head: str, gregorian_year: str) -> str:
     return extract_actual_date(day_head, int(gregorian_year)).isoformat()
 
 
+def extract_iso_date_part(value: str) -> str:
+    if not value:
+        raise ValueError("missing updatedAt value; expected ISO date or datetime")
+    return value[:10]
+
+
+def current_timestamp_iso() -> str:
+    return datetime.now(JST).replace(microsecond=0).isoformat()
+
+
 def safe_int(raw: object, default: int) -> int:
     try:
         return int(str(raw))
@@ -420,7 +430,7 @@ def resolve_basho_start_date(
 ) -> date:
     fallback_year = None
     if fallback_updated_at:
-        fallback_year = date.fromisoformat(fallback_updated_at).year
+        fallback_year = date.fromisoformat(extract_iso_date_part(fallback_updated_at)).year
 
     inferred_start_dates = set()
     for day, divisions in loaded_days.items():
@@ -436,7 +446,7 @@ def resolve_basho_start_date(
         raise ValueError(f"開催初日を一意に特定できません: {sorted(inferred_start_dates)}")
     if fallback_updated_at:
         safe_day = max(1, min(fallback_day, 15))
-        return date.fromisoformat(fallback_updated_at) - timedelta(days=safe_day - 1)
+        return date.fromisoformat(extract_iso_date_part(fallback_updated_at)) - timedelta(days=safe_day - 1)
     return datetime.now(JST).date()
 
 
@@ -546,7 +556,7 @@ def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str, exi
         }
 
     start_date = resolve_basho_start_date(loaded_days, updated_at, current_day)
-    current_date = datetime.now(JST).date()
+    current_timestamp = current_timestamp_iso()
     today_day = max(1, min(current_day, 15))
     tomorrow_day = min(today_day + 1, 15)
     gregorian_year = str(start_date.year)
@@ -596,9 +606,9 @@ def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str, exi
             tomorrow_data = day_data
 
     return {
-        "updatedAt": current_date.isoformat(),
-        "resultUpdatedAt": current_date.isoformat(),
-        "scheduleUpdatedAt": current_date.isoformat(),
+        "updatedAt": current_timestamp,
+        "resultUpdatedAt": current_timestamp,
+        "scheduleUpdatedAt": current_timestamp,
         "today": today_data,
         "tomorrow": tomorrow_data,
         "resultDays": result_days,
@@ -968,7 +978,7 @@ def get_local_image_url(rikishi_id: int) -> str:
 def write_rikishi_json(rikishi_list: list[dict], profiles: dict[int, dict]) -> None:
     """Write rikishi.json with basic list and detailed profiles"""
     API_DIR.mkdir(parents=True, exist_ok=True)
-    updated_at = datetime.now(JST).date().isoformat()
+    updated_at = current_timestamp_iso()
 
     # Write main rikishi.json with basic info
     rikishi_json = {

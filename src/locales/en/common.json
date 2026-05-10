@@ -51,14 +51,16 @@
     "west": "West",
     "aboutThisPage": "About This Page",
     "aboutDescription1": "This page displays the makuuchi and juryo banzuke and records for {{bashoTitle}} ({{gregorianBasho}}).",
-    "aboutDescription2": "The East and West columns show each rikishi's shikona, yomi (reading), and rank.",
+    "aboutDescription2": "The East and West columns show each rikishi's shikona, yomi, record, and hoshitori.",
     "techStack": "Tech stack: Cloudflare Pages, React, TypeScript",
     "footerCopyright": "© 2026 o-sumo. All rights reserved.",
     "footerHome": "Back to Home",
     "footerResult": "Torikumi Results",
     "footerDaisuke": "Daisuke on X",
     "footerGithub": "GitHub Repository",
+    "updatedAt": "Updated: {{date}}",
     "profileLink": "Profile",
+    "hoshitoriLabel": "Hoshitori",
     "win": "Win",
     "loss": "Loss",
     "absence": "Absence",
@@ -68,6 +70,7 @@
   },
   "torikumi": {
     "shared": {
+      "absenteesLabel": "Absentees:",
       "absentees": "Absentees: {{names}}"
     },
     "hub": {

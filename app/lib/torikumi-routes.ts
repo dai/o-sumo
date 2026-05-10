@@ -6,6 +6,7 @@ import {
   type TorikumiDataSet,
 } from './torikumi-data';
 import { MARCH2026_TORIKUMI_DATA } from './march2026-torikumi-data';
+import { updatedAtDateKey } from './updated-at';
 
 export type TorikumiPageMode = 'result' | 'schedule';
 
@@ -175,8 +176,8 @@ export function getAdjacentDay(
 export function isElapsedArchiveDay(day: TorikumiArchiveDay, referenceDate?: string): boolean {
   const archive = getArchiveRouteConfigForDateKey(day.pathDate)?.archive ?? getDefaultArchiveRouteConfig().archive;
   const targetReferenceDate = referenceDate ?? archive.updatedAt;
-  const referenceKey = targetReferenceDate.replace(/-/g, '');
-  if (!/^\d{8}$/.test(referenceKey)) {
+  const referenceKey = updatedAtDateKey(targetReferenceDate);
+  if (!referenceKey) {
     return false;
   }
   return day.pathDate < referenceKey;
