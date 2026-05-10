@@ -85,7 +85,7 @@ describe('TorikumiHubPage', () => {
 
     expect(screen.getByText('休場者:')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '大の里' })).toHaveAttribute('href', '/rikishi/4227');
-    expect(screen.getByRole('link', { name: '安青錦' })).toHaveAttribute('href', '/rikishi/4230');
+    expect(screen.getByRole('link', { name: '若隆景' })).toHaveAttribute('href', '/rikishi/3761');
   });
 
   it('shows normalized pending status messages', () => {
