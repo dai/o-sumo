@@ -29,9 +29,10 @@ describe('MAY2026_TORIKUMI_DATA', () => {
     }
   });
 
-  it('publishes day 1 schedule with the announced Makuuchi and Juryo counts', () => {
+  it('publishes day 1 and day 2 schedules with the announced Makuuchi and Juryo counts', () => {
     const scheduleDays = MAY2026_TORIKUMI_DATA.scheduleDays ?? [];
     const day1 = scheduleDays[0];
+    const day2 = scheduleDays[1];
 
     expect(scheduleDays).toHaveLength(15);
     expect(day1.status).toBe('published');
@@ -44,11 +45,25 @@ describe('MAY2026_TORIKUMI_DATA', () => {
       kimarite: '未定',
       winner: null,
     });
+
+    expect(day2.status).toBe('published');
+    expect(day2.statusMessage).toBeNull();
+    expect(day2.data.makuuchi.matches).toHaveLength(20);
+    expect(day2.data.juryo.matches).toHaveLength(14);
+    expect(day2.data.makuuchi.matches[19]).toMatchObject({
+      division: '幕内',
+      boutNo: 20,
+      eastName: '豊昇龍',
+      westName: '藤ノ川',
+      kimarite: '未定',
+      winner: null,
+    });
+    expect(day2.data.juryo.absentees).toHaveLength(6);
   });
 
   it('keeps unpublished schedule days pending with normalized status message and empty matches', () => {
     const scheduleDays = MAY2026_TORIKUMI_DATA.scheduleDays ?? [];
-    for (const day of scheduleDays.slice(1)) {
+    for (const day of scheduleDays.slice(2)) {
       expect(day.status).toBe('pending');
       expect(day.statusMessage).toBe('取組予定未更新');
       expect(day.data.makuuchi.matches).toHaveLength(0);
