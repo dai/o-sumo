@@ -3,7 +3,6 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { MARCH2026_TORIKUMI_DATA } from '../lib/march2026-torikumi-data';
 import { torikumiArchive } from '../lib/torikumi-data';
-import { MAY2026_TORIKUMI_DATA } from '../lib/may2026-data';
 import { getDayPath } from '../lib/torikumi-routes';
 import TorikumiHubPage from './page';
 
@@ -73,8 +72,8 @@ describe('TorikumiHubPage', () => {
       </MemoryRouter>,
     );
 
-    // Check the MAY2026 data which is what gets rendered for 202605 routes
-    const hasPendingResult = MAY2026_TORIKUMI_DATA.resultDays?.some((day) => day.status === 'pending');
+    // Check the torikumiArchive data which is what gets rendered for 202605 routes
+    const hasPendingResult = torikumiArchive.resultDays?.some((day) => day.status === 'pending');
     if (hasPendingResult) {
       expect(screen.getAllByText('結果未更新').length).toBeGreaterThan(0);
     } else {
@@ -86,7 +85,7 @@ describe('TorikumiHubPage', () => {
         <TorikumiHubPage mode="schedule" />
       </MemoryRouter>,
     );
-    const hasPendingSchedule = MAY2026_TORIKUMI_DATA.scheduleDays?.some((day) => day.status === 'pending');
+    const hasPendingSchedule = torikumiArchive.scheduleDays?.some((day) => day.status === 'pending');
     if (hasPendingSchedule) {
       expect(screen.getAllByText('取組予定未更新').length).toBeGreaterThan(0);
     } else {
@@ -115,7 +114,7 @@ describe('TorikumiHubPage', () => {
       </MemoryRouter>,
     );
 
-    const firstMayDay = MAY2026_TORIKUMI_DATA.resultDays?.[0];
+    const firstMayDay = torikumiArchive.resultDays?.[0];
     expect(screen.getByRole('heading', { level: 1, name: /五月場所/ })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202605-banduke');
     expect(firstMayDay).toBeDefined();
