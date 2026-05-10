@@ -115,7 +115,7 @@ def extract_iso_date(day_head: str, gregorian_year: str) -> str:
 
 def extract_iso_date_part(value: str) -> str:
     if not value:
-        raise ValueError("empty updatedAt value")
+        raise ValueError("missing updatedAt value; expected ISO date or datetime")
     return value[:10]
 
 
