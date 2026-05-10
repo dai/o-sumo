@@ -6,7 +6,6 @@ import {
   type TorikumiDataSet,
 } from './torikumi-data';
 import { MARCH2026_TORIKUMI_DATA } from './march2026-torikumi-data';
-import { MAY2026_TORIKUMI_DATA } from './may2026-data';
 
 export type TorikumiPageMode = 'result' | 'schedule';
 
@@ -61,7 +60,7 @@ const ARCHIVE_ROUTE_CONFIGS: Record<string, ArchiveRouteConfig> = {
   },
   '202605': {
     monthKey: '202605',
-    archive: normalizeArchive(MAY2026_TORIKUMI_DATA),
+    archive: normalizeArchive(torikumiArchive),
     resultPath: MAY2026_RESULT_PATH,
     schedulePath: MAY2026_SCHEDULE_PATH,
     bandukePath: MAY2026_BANDUKE_PATH,
