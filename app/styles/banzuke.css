@@ -320,88 +320,92 @@
 
 @media (max-width: 768px) {
   .rank-group {
-    padding: 1.5rem;
-  }
-
-  .rikishi-row {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .rikishi-card {
     padding: 1rem;
   }
 
+  .rikishi-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .rikishi-card {
+    padding: 0.65rem;
+  }
+
   .rikishi-name {
-    font-size: 1.1rem;
+    font-size: 0.85rem;
   }
 
   .rikishi-yomi {
-    font-size: 0.8rem;
+    font-size: 0.65rem;
   }
 
   .rank-badge {
-    font-size: 0.7rem;
-    padding: 0.25rem 0.6rem;
+    font-size: 0.6rem;
+    padding: 0.15rem 0.4rem;
   }
 
   .record-value {
-    font-size: 1.1rem;
+    font-size: 0.85rem;
   }
 
   .hoshi {
-    width: 18px;
-    height: 18px;
-    font-size: 11px;
+    width: 14px;
+    height: 14px;
+    font-size: 9px;
   }
 
   .rikishi-photo-link,
   .rikishi-photo {
-    width: 96px;
-    height: 96px;
+    width: 56px;
+    height: 56px;
   }
 }
 
 @media (max-width: 480px) {
   .rank-group {
-    padding: 1rem;
+    padding: 0.75rem;
     margin-bottom: 1.5rem;
   }
 
   .rank-group-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
+  }
+
+  .rikishi-row {
+    gap: 0.35rem;
   }
 
   .rikishi-card {
-    padding: 0.75rem;
+    padding: 0.5rem;
   }
 
   .rikishi-name {
-    font-size: 1rem;
-  }
-
-  .rikishi-yomi {
     font-size: 0.75rem;
   }
 
+  .rikishi-yomi {
+    font-size: 0.6rem;
+  }
+
   .rank-badge {
-    font-size: 0.65rem;
-    padding: 0.2rem 0.5rem;
+    font-size: 0.55rem;
+    padding: 0.1rem 0.3rem;
   }
 
   .record-value {
-    font-size: 1rem;
+    font-size: 0.75rem;
   }
 
   .hoshi {
-    width: 16px;
-    height: 16px;
-    font-size: 10px;
+    width: 12px;
+    height: 12px;
+    font-size: 8px;
   }
 
   .rikishi-photo-link,
   .rikishi-photo {
-    width: 88px;
-    height: 88px;
+    width: 48px;
+    height: 48px;
   }
 }
