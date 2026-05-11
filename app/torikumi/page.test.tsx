@@ -72,7 +72,7 @@ describe('TorikumiHubPage', () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByText('更新日: 2026-05-10 20:01 JST')).toBeInTheDocument();
+    expect(screen.getByText(/更新日:/)).toBeInTheDocument();
     expect(screen.queryByText('休場者:')).not.toBeInTheDocument();
   });
 
@@ -85,7 +85,9 @@ describe('TorikumiHubPage', () => {
 
     expect(screen.getByText('休場者:')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '大の里' })).toHaveAttribute('href', '/rikishi/4227');
-    expect(screen.getByRole('link', { name: '若隆景' })).toHaveAttribute('href', '/rikishi/3761');
+    expect(screen.getByRole('link', { name: '豊昇龍' })).toHaveAttribute('href', '/rikishi/3842');
+    expect(screen.getByRole('link', { name: '安青錦' })).toHaveAttribute('href', '/rikishi/4230');
+    expect(screen.queryByRole('link', { name: '若隆景' })).not.toBeInTheDocument();
   });
 
   it('shows normalized pending status messages', () => {

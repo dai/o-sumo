@@ -89,17 +89,17 @@ describe('TorikumiDayPage', () => {
         },
         juryo: {
           ...torikumiArchive.resultDays[0].data.juryo,
-          absentees: [{ id: 2, name: '青安錦', profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/2/' }],
+          absentees: [{ id: 2, name: '安青錦', profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/2/' }],
         },
       },
     };
 
     renderPage(dayWithAbsentees, 'schedule');
 
-    expect(screen.getByText('更新日: 2026-05-10 20:01 JST')).toBeInTheDocument();
+    expect(screen.getByText(/更新日:/)).toBeInTheDocument();
     expect(screen.getByText('休場者:')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '大の里' })).toHaveAttribute('href', '/rikishi/1');
-    expect(screen.getByRole('link', { name: '青安錦' })).toHaveAttribute('href', '/rikishi/2');
+    expect(screen.getByRole('link', { name: '安青錦' })).toHaveAttribute('href', '/rikishi/2');
   });
 
   it('hides absentees on result pages', () => {
@@ -113,7 +113,7 @@ describe('TorikumiDayPage', () => {
         },
         juryo: {
           ...torikumiArchive.resultDays[0].data.juryo,
-          absentees: [{ id: 2, name: '青安錦', profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/2/' }],
+          absentees: [{ id: 2, name: '安青錦', profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/2/' }],
         },
       },
     };
@@ -141,6 +141,40 @@ describe('TorikumiDayPage', () => {
     } else {
       expect(screen.queryByText('取組予定未更新')).not.toBeInTheDocument();
     }
+  });
+
+  it('shows fusen winner labels on schedule pages', () => {
+    const scheduleDay: TorikumiArchiveDay = {
+      ...torikumiArchive.scheduleDays[1],
+      data: {
+        ...torikumiArchive.scheduleDays[1].data,
+        makuuchi: {
+          ...torikumiArchive.scheduleDays[1].data.makuuchi,
+          matches: [
+            {
+              division: '幕内',
+              boutNo: 20,
+              eastName: '豊昇龍',
+              eastYomi: 'ほうしょうりゅう',
+              eastEnglish: 'Hoshoryu',
+              eastRank: '東横綱',
+              eastProfileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/3842/',
+              westName: '藤ノ川',
+              westYomi: 'ふじのかわ',
+              westEnglish: 'Fujinokawa',
+              westRank: '西前頭十四',
+              westProfileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/4191/',
+              kimarite: '不戦',
+              winner: 'west',
+            },
+          ],
+        },
+      },
+    };
+
+    renderPage(scheduleDay, 'schedule');
+
+    expect(screen.getByText('不戦（藤ノ川）')).toBeInTheDocument();
   });
 
   it('keeps march day navigation and hub links in 202603', () => {

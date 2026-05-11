@@ -107,8 +107,10 @@ function TorikumiTable({
                       <RikishiMatchName name={match.eastName} profileUrl={match.eastProfileUrl} />
                       <div className="english">{match.eastEnglish}</div>
                     </div>
-                    <div className={`cell kimarite kimarite-value ${mode === 'result' && match.winner ? `winner-${match.winner}` : ''}`}>
-                      {mode === 'result' ? winnerLabel(match) : t('torikumi.day.matchScheduled')}
+                    <div className={`cell kimarite kimarite-value ${match.winner && (mode === 'result' || match.kimarite === '不戦') ? `winner-${match.winner}` : ''}`}>
+                      {mode === 'result' || (mode === 'schedule' && match.winner)
+                        ? winnerLabel(match)
+                        : t('torikumi.day.matchScheduled')}
                     </div>
                     <div className={`cell west rikishi-card ${match.winner === 'west' ? 'winner' : ''}`}>
                       <RikishiMatchName name={match.westName} profileUrl={match.westProfileUrl} />

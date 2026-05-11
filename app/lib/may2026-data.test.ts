@@ -19,9 +19,17 @@ describe('MAY2026_TORIKUMI_DATA', () => {
     }
   });
 
-  it('keeps all result days pending with normalized status message and empty matches', () => {
+  it('publishes fetched result days and leaves unfetched future days pending', () => {
     const resultDays = MAY2026_TORIKUMI_DATA.resultDays ?? [];
-    for (const day of resultDays) {
+
+    expect(resultDays[0].status).toBe('published');
+    expect(resultDays[0].data.makuuchi.matches).toHaveLength(20);
+    expect(resultDays[0].data.juryo.matches).toHaveLength(14);
+    expect(resultDays[1].status).toBe('published');
+    expect(resultDays[1].data.makuuchi.matches).toHaveLength(20);
+    expect(resultDays[1].data.juryo.matches).toHaveLength(14);
+
+    for (const day of resultDays.slice(2)) {
       expect(day.status).toBe('pending');
       expect(day.statusMessage).toBe('結果未更新');
       expect(day.data.makuuchi.matches).toHaveLength(0);
@@ -53,12 +61,11 @@ describe('MAY2026_TORIKUMI_DATA', () => {
     expect(day2.data.makuuchi.matches[19]).toMatchObject({
       division: '幕内',
       boutNo: 20,
-      eastName: '豊昇龍',
-      westName: '藤ノ川',
-      kimarite: '未定',
-      winner: null,
+      kimarite: '不戦',
+      winner: 'west',
     });
-    expect(day2.data.juryo.absentees).toHaveLength(6);
+    expect(day2.data.makuuchi.absentees?.map((entry) => entry.name)).toEqual(['豊昇龍', '大の里', '安青錦']);
+    expect(day2.data.juryo.absentees ?? []).toHaveLength(0);
   });
 
   it('keeps unpublished schedule days pending with normalized status message and empty matches', () => {

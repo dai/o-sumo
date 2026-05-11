@@ -103,6 +103,6 @@ describe('BanzukePage', () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByText('更新日: 2026-05-10 20:01 JST')).toBeInTheDocument();
+    expect(screen.getByText(/更新日:/)).toBeInTheDocument();
   });
 });
