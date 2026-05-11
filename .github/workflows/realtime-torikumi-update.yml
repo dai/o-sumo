@@ -2,11 +2,11 @@ name: Realtime Torikumi Update
 
 on:
   schedule:
-    # JST: 14:00, 15:00, 16:00, 17:00, 18:00
-    - cron: '0 14,15,16,17,18 * * *'
+    # JST: every 5 minutes between 14:00 and 17:59
+    - cron: '*/5 14-17 * * *'
       timezone: 'Asia/Tokyo'
-    # JST: 17:30
-    - cron: '30 17 * * *'
+    # JST: 18:00
+    - cron: '0 18 * * *'
       timezone: 'Asia/Tokyo'
   workflow_dispatch:
 

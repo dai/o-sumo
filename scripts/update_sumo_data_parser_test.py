@@ -176,6 +176,160 @@ class ParseOfficialAbsenceTest(unittest.TestCase):
         self.assertEqual(updated["matches"][0]["winner"], "west")
 
 
+class TorikumiSubstantiveDiffTest(unittest.TestCase):
+    def make_dataset(
+        self,
+        *,
+        updated_at: str,
+        result_kimarite: str = "押し出し",
+        result_winner: str | None = "east",
+        schedule_kimarite: str = "未定",
+        schedule_winner: str | None = None,
+        absentees: list[int] | None = None,
+    ) -> dict:
+        absentees = absentees or [4227]
+        absentee_entries = [
+            {
+                "id": rikishi_id,
+                "name": f"力士{rikishi_id}",
+                "profileUrl": f"https://www.sumo.or.jp/ResultRikishiData/profile/{rikishi_id}/",
+            }
+            for rikishi_id in absentees
+        ]
+        base_match = {
+            "division": "幕内",
+            "boutNo": 20,
+            "eastName": "豊昇龍",
+            "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/",
+            "westName": "藤ノ川",
+            "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/",
+        }
+        result_match = {**base_match, "kimarite": result_kimarite, "winner": result_winner}
+        schedule_match = {**base_match, "kimarite": schedule_kimarite, "winner": schedule_winner}
+        return {
+            "bashoName": "五月場所",
+            "year": "令和八年",
+            "updatedAt": updated_at,
+            "resultUpdatedAt": updated_at,
+            "scheduleUpdatedAt": updated_at,
+            "today": {
+                "makuuchi": {
+                    "day": 2,
+                    "division": "幕内",
+                    "matches": [result_match],
+                    "absentees": absentee_entries,
+                },
+                "juryo": {
+                    "day": 2,
+                    "division": "十両",
+                    "matches": [],
+                    "absentees": [],
+                },
+            },
+            "tomorrow": {
+                "makuuchi": {
+                    "day": 3,
+                    "division": "幕内",
+                    "matches": [],
+                    "absentees": absentee_entries,
+                },
+                "juryo": {
+                    "day": 3,
+                    "division": "十両",
+                    "matches": [],
+                    "absentees": [],
+                },
+            },
+            "resultDays": [
+                {
+                    "day": 2,
+                    "pathDate": "20260511",
+                    "status": "published",
+                    "statusMessage": None,
+                    "data": {
+                        "makuuchi": {
+                            "day": 2,
+                            "division": "幕内",
+                            "matches": [result_match],
+                            "absentees": absentee_entries,
+                        },
+                        "juryo": {
+                            "day": 2,
+                            "division": "十両",
+                            "matches": [],
+                            "absentees": [],
+                        },
+                    },
+                }
+            ],
+            "scheduleDays": [
+                {
+                    "day": 2,
+                    "pathDate": "20260511",
+                    "status": "published",
+                    "statusMessage": None,
+                    "data": {
+                        "makuuchi": {
+                            "day": 2,
+                            "division": "幕内",
+                            "matches": [schedule_match],
+                            "absentees": absentee_entries,
+                        },
+                        "juryo": {
+                            "day": 2,
+                            "division": "十両",
+                            "matches": [],
+                            "absentees": [],
+                        },
+                    },
+                }
+            ],
+        }
+
+    def test_ignores_timestamp_only_changes(self) -> None:
+        existing = self.make_dataset(updated_at="2026-05-11T10:00:00+09:00")
+        candidate = self.make_dataset(updated_at="2026-05-11T10:05:00+09:00")
+
+        self.assertFalse(MODULE.has_substantive_torikumi_diff(candidate, existing))
+
+    def test_detects_result_winner_change(self) -> None:
+        existing = self.make_dataset(updated_at="2026-05-11T10:00:00+09:00")
+        candidate = self.make_dataset(
+            updated_at="2026-05-11T10:05:00+09:00",
+            result_kimarite="不戦",
+            result_winner="west",
+        )
+
+        self.assertTrue(MODULE.has_substantive_torikumi_diff(candidate, existing))
+
+    def test_detects_absentee_change(self) -> None:
+        existing = self.make_dataset(updated_at="2026-05-11T10:00:00+09:00", absentees=[4227])
+        candidate = self.make_dataset(updated_at="2026-05-11T10:05:00+09:00", absentees=[4230])
+
+        self.assertTrue(MODULE.has_substantive_torikumi_diff(candidate, existing))
+
+    def test_detects_schedule_fusen_change(self) -> None:
+        existing = self.make_dataset(updated_at="2026-05-11T10:00:00+09:00")
+        candidate = self.make_dataset(
+            updated_at="2026-05-11T10:05:00+09:00",
+            schedule_kimarite="不戦",
+            schedule_winner="west",
+        )
+
+        self.assertTrue(MODULE.has_substantive_torikumi_diff(candidate, existing))
+
+    def test_preserves_existing_timestamps_when_no_substantive_diff(self) -> None:
+        existing = self.make_dataset(updated_at="2026-05-11T10:00:00+09:00")
+        candidate = self.make_dataset(updated_at="2026-05-11T10:05:00+09:00")
+
+        merged, changed = MODULE.preserve_torikumi_timestamps_if_unchanged(candidate, existing)
+
+        self.assertFalse(changed)
+        self.assertEqual(merged["updatedAt"], existing["updatedAt"])
+        self.assertEqual(merged["resultUpdatedAt"], existing["resultUpdatedAt"])
+        self.assertEqual(merged["scheduleUpdatedAt"], existing["scheduleUpdatedAt"])
+
+
 class ResolveCurrentBashoDayTest(unittest.TestCase):
     def test_uses_calendar_day_when_banzuke_metadata_is_stale(self) -> None:
         self.assertEqual(

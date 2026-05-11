@@ -136,3 +136,31 @@
 - `npm test -- --run`: 14ファイル61件 pass
 - `npm run build`: exit 0。既存のchunk size警告のみ
 - `git diff --check`: exit 0
+
+---
+
+# 2026-05-11 14:00-18:00 5分更新 + 実質差分コミット化 Todo
+
+## Plan
+- [x] `realtime-torikumi-update.yml`のscheduleをJST 14:00-18:00の5分運用へ変更する
+- [x] `scripts/update_sumo_data.py`に`updatedAt`系を除外した実質差分判定ロジックを追加する
+- [x] 実質差分なし時は既存timestampを維持する処理を組み込む
+- [x] `absentees`順序を安定化し、比較ブレを減らす
+- [x] Python回帰テストを追加し、timestamp-only変更が差分なしになることを検証する
+- [x] 既存検証（parser test / typecheck / vitest / build）を実行する
+
+## Progress
+- workflow cronを`*/5 14-17 * * *`と`0 18 * * *`に変更。`concurrency`設定は維持。
+- `scripts/update_sumo_data.py`へ比較用正規化関数群を追加し、`updatedAt`/`resultUpdatedAt`/`scheduleUpdatedAt`を比較対象から除外。
+- `preserve_torikumi_timestamps_if_unchanged()`をmainフローへ組み込み、実質差分なし時は既存timestampを保持するようにした。
+- `derive_absentees()`の戻り値を`id`昇順へ固定し、出力安定性を強化。
+- `scripts/update_sumo_data_parser_test.py`へ実質差分判定のテストクラスを追加（timestamp-only無視、winner/kimarite/absentees/schedule不戦変更検知、timestamp維持）。
+- `app/lib/torikumi-routes.ts`の更新文言を5分運用に合わせて更新し、対応テストを更新。
+- `app/lib/may2026-data.test.ts`の公開日固定前提を外し、live更新中でも壊れにくい状態判定に修正。
+
+## Review
+- `python scripts/update_sumo_data_parser_test.py`: 11件 pass
+- `npm run typecheck`: exit 0
+- `npm test -- --run`: 14ファイル61件 pass
+- `npm run build`: exit 0（既存のchunk size warningのみ）
+- 生成データファイル（`app/lib/torikumi-data.ts`、`public/api/v1/torikumi.json`）は今回要件の対象外のため差分から除外。

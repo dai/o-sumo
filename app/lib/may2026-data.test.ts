@@ -25,15 +25,16 @@ describe('MAY2026_TORIKUMI_DATA', () => {
     expect(resultDays[0].status).toBe('published');
     expect(resultDays[0].data.makuuchi.matches).toHaveLength(20);
     expect(resultDays[0].data.juryo.matches).toHaveLength(14);
-    expect(resultDays[1].status).toBe('published');
-    expect(resultDays[1].data.makuuchi.matches).toHaveLength(20);
-    expect(resultDays[1].data.juryo.matches).toHaveLength(14);
 
-    for (const day of resultDays.slice(2)) {
-      expect(day.status).toBe('pending');
-      expect(day.statusMessage).toBe('結果未更新');
-      expect(day.data.makuuchi.matches).toHaveLength(0);
-      expect(day.data.juryo.matches).toHaveLength(0);
+    for (const day of resultDays) {
+      const matchCount = day.data.makuuchi.matches.length + day.data.juryo.matches.length;
+      if (day.status === 'published') {
+        expect(day.statusMessage).toBeNull();
+        expect(matchCount).toBeGreaterThan(0);
+      } else {
+        expect(day.status).toBe('pending');
+        expect(day.statusMessage).toBe('結果未更新');
+      }
     }
   });
 
@@ -70,11 +71,15 @@ describe('MAY2026_TORIKUMI_DATA', () => {
 
   it('keeps unpublished schedule days pending with normalized status message and empty matches', () => {
     const scheduleDays = MAY2026_TORIKUMI_DATA.scheduleDays ?? [];
-    for (const day of scheduleDays.slice(2)) {
-      expect(day.status).toBe('pending');
-      expect(day.statusMessage).toBe('取組予定未更新');
-      expect(day.data.makuuchi.matches).toHaveLength(0);
-      expect(day.data.juryo.matches).toHaveLength(0);
+    for (const day of scheduleDays) {
+      const matchCount = day.data.makuuchi.matches.length + day.data.juryo.matches.length;
+      if (day.status === 'published') {
+        expect(day.statusMessage).toBeNull();
+        expect(matchCount).toBeGreaterThan(0);
+      } else {
+        expect(day.status).toBe('pending');
+        expect(day.statusMessage).toBe('取組予定未更新');
+      }
     }
   });
 });

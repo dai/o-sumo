@@ -143,7 +143,7 @@ export function getArchiveUpdatedAt(mode: TorikumiPageMode): string {
 
 export function getArchiveUpdateMessage(mode: TorikumiPageMode): string {
   return mode === 'result'
-    ? '場所期間中は毎日JST 14, 15, 16, 17, 17:30, 18:00時に更新'
+    ? '場所期間中は毎日JST 14:00-18:00の間、5分ごとに更新'
     : '前日のJST 19:00 頃更新';
 }
 
