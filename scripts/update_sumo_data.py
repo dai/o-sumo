@@ -45,6 +45,7 @@ WEEKDAY_JA = ("月", "火", "水", "木", "金", "土", "日")
 JST = ZoneInfo("Asia/Tokyo")
 TORIKUMI_SCOPES = ("all", "result", "schedule")
 EMPTY_ABSENCE_LOOKUP = {"makuuchi": [], "juryo": []}
+TORIKUMI_TIMESTAMP_KEYS = ("updatedAt", "resultUpdatedAt", "scheduleUpdatedAt")
 
 
 def post_json(path: str, payload: dict) -> dict:
@@ -659,7 +660,7 @@ def derive_absentees(division: str, day: int, absence_lookup: dict[str, list[dic
     if not entries:
         return []
 
-    return [
+    derived = [
         {
             "id": entry["id"],
             "name": entry["name"],
@@ -668,6 +669,7 @@ def derive_absentees(division: str, day: int, absence_lookup: dict[str, list[dic
         for entry in entries
         if int(entry.get("startDay", 1)) <= day
     ]
+    return sorted(derived, key=lambda item: int(item.get("id", 0)))
 
 
 def apply_absence_results(division_day: dict, absentees: list[dict]) -> dict:
@@ -839,6 +841,101 @@ def apply_torikumi_scope(dataset: dict, scope: str, existing: dict | None = None
     merged["scheduleUpdatedAt"] = schedule_updated_at
     merged["updatedAt"] = max(result_updated_at, schedule_updated_at)
     return merged
+
+
+def normalize_torikumi_match_for_diff(match: dict) -> dict:
+    return {
+        "division": str(match.get("division", "")),
+        "boutNo": safe_int(match.get("boutNo"), 0),
+        "eastId": extract_rikishi_id_from_url(str(match.get("eastProfileUrl", ""))),
+        "westId": extract_rikishi_id_from_url(str(match.get("westProfileUrl", ""))),
+        "kimarite": str(match.get("kimarite", "")),
+        "winner": match.get("winner"),
+    }
+
+
+def normalize_torikumi_division_day_for_diff(division_day: dict) -> dict:
+    matches = sorted(
+        (normalize_torikumi_match_for_diff(match) for match in division_day.get("matches", [])),
+        key=lambda item: item["boutNo"],
+    )
+    absentees = sorted(
+        {
+            safe_int(entry.get("id"), 0)
+            for entry in division_day.get("absentees", [])
+            if safe_int(entry.get("id"), 0) > 0
+        }
+    )
+    return {
+        "day": safe_int(division_day.get("day"), 0),
+        "division": str(division_day.get("division", "")),
+        "absentees": absentees,
+        "matches": matches,
+    }
+
+
+def normalize_torikumi_daily_data_for_diff(day_data: dict | None) -> dict | None:
+    if not isinstance(day_data, dict):
+        return None
+    return {
+        "makuuchi": normalize_torikumi_division_day_for_diff(day_data.get("makuuchi", {})),
+        "juryo": normalize_torikumi_division_day_for_diff(day_data.get("juryo", {})),
+    }
+
+
+def normalize_torikumi_archive_day_for_diff(archive_day: dict) -> dict:
+    return {
+        "day": safe_int(archive_day.get("day"), 0),
+        "pathDate": str(archive_day.get("pathDate", "")),
+        "status": str(archive_day.get("status", "")),
+        "statusMessage": archive_day.get("statusMessage"),
+        "data": normalize_torikumi_daily_data_for_diff(archive_day.get("data", {})),
+    }
+
+
+def normalize_torikumi_dataset_for_diff(dataset: dict | None) -> dict:
+    if not isinstance(dataset, dict):
+        return {}
+    result_days = sorted(
+        (
+            normalize_torikumi_archive_day_for_diff(day)
+            for day in dataset.get("resultDays", [])
+        ),
+        key=lambda item: item["day"],
+    )
+    schedule_days = sorted(
+        (
+            normalize_torikumi_archive_day_for_diff(day)
+            for day in dataset.get("scheduleDays", [])
+        ),
+        key=lambda item: item["day"],
+    )
+    return {
+        "bashoName": str(dataset.get("bashoName", "")),
+        "year": str(dataset.get("year", "")),
+        "today": normalize_torikumi_daily_data_for_diff(dataset.get("today")),
+        "tomorrow": normalize_torikumi_daily_data_for_diff(dataset.get("tomorrow")),
+        "resultDays": result_days,
+        "scheduleDays": schedule_days,
+    }
+
+
+def has_substantive_torikumi_diff(candidate: dict, existing: dict | None) -> bool:
+    if not isinstance(existing, dict):
+        return True
+    return normalize_torikumi_dataset_for_diff(candidate) != normalize_torikumi_dataset_for_diff(existing)
+
+
+def preserve_torikumi_timestamps_if_unchanged(candidate: dict, existing: dict | None) -> tuple[dict, bool]:
+    if has_substantive_torikumi_diff(candidate, existing):
+        return candidate, True
+
+    preserved = dict(candidate)
+    existing = existing or {}
+    for key in TORIKUMI_TIMESTAMP_KEYS:
+        if key in existing:
+            preserved[key] = existing[key]
+    return preserved, False
 
 
 def write_sumo_data(makuuchi: list[dict], juryo: list[dict]) -> None:
@@ -1317,6 +1414,12 @@ def main() -> None:
             args.torikumi_scope,
             existing_torikumi,
         )
+        torikumi_dataset, has_substantive_change = preserve_torikumi_timestamps_if_unchanged(
+            torikumi_dataset,
+            existing_torikumi,
+        )
+        if not has_substantive_change:
+            print("[info] no substantive torikumi changes detected; preserving existing timestamps")
 
         if makuuchi is not None and juryo is not None:
             write_sumo_data(makuuchi, juryo)
