@@ -79,3 +79,60 @@
 - ルートpackage metadataは`package.json`、`package-lock.json`ともに`MIT`。
 - `public/images/rikishi/README.md`の日本語・英語ライセンス表記はMITへ更新済み。
 - `.gitattributes`で`rikishi-202605.txt`はLF固定。
+
+---
+
+# 2026-05-11 同期 Todo
+
+## Plan
+- [x] 現在のbranchとupstream設定を確認する
+- [x] remoteをfetchして現在branchをfast-forward同期する
+- [x] 同期後のHEADとworking tree状態を確認して記録する
+
+## Progress
+- `git fetch origin --prune`は成功。削除済みremote branch群が整理された。
+- 作業開始時のcurrent branchは`codex/rikishi-202605-mit-license`で、upstream `origin/codex/rikishi-202605-mit-license` は `[gone]`。
+- `HEAD`は`origin/main`の祖先で追加コミットはなく、feature branchはmainへ取り込み済みだった。
+- `tasks/todo.md`を一時stashして`main`へ切り替え、`git pull --ff-only origin main`で`b785ff2`から`f487a77`へfast-forward。
+- stashを戻した後のworking tree変更は`tasks/todo.md`のみ。
+
+## Review
+- 現在branchは`main`。
+- `git rev-parse --short HEAD` = `f487a77`
+- `git rev-parse --short origin/main` = `f487a77`
+- `git status --short --branch`は`## main...origin/main`と`M tasks/todo.md`を表示。repo本体はremoteと同期済みで、未コミット変更は今回の記録ファイルのみ。
+
+---
+
+# 五月場所公式休場者と不戦勝反映 Todo
+
+## Plan
+- [x] 作業ブランチを切り、既存の未コミット変更を保持したまま実装する
+- [x] 公式休場ページHTML解析・開始日解釈・ID解決・不戦勝反映のPython回帰テストを先に追加する
+- [x] `scripts/update_sumo_data.py`で公式休場ページを正本にした休場者取得へ置き換える
+- [x] schedule正規化と予定ページ表示で不戦取組の`kimarite`/`winner`を保持・表示する
+- [x] React/Vitest側で公式休場者表示、非休場者混入防止、予定ページの不戦勝表示を検証する
+- [x] 生成データを更新し、Pythonテスト・対象Vitest・型チェック・全体テスト・ビルドで検証する
+
+## Progress
+- `codex/official-absence-fusen`ブランチを作成。
+- 公式休場ページ`/ResultData/absence/`の「幕内・十両」セクションを、同一見出し配下の複数更新日テーブルまで解析するようにした。
+- `alt`かな、番付表示、星取表由来の`shikona_kana`を使い、公式休場者を`rikishi_id`付きで解決するようにした。
+- `derive_absentees()`は番付差分推定をやめ、公式休場ページ由来のリストと開始日だけを参照する方式へ変更。
+- 休場者が取組に残っている場合、相手側を`winner`にし、`kimarite: "不戦"`を保持するようにした。
+- 未公開未来日の取組は既存JSONの古い予定を再利用せず、公式API未公開ならpendingプレースホルダーに戻すようにした。
+- 予定ページでは不戦取組だけ`不戦（勝者名）`を表示するようにした。結果ページの休場者非表示は維持。
+- `app/lib/may2026-data.ts`は手書き重複データをやめ、生成済み`torikumiArchive`を参照する薄いエクスポートにした。
+- 公式番付メタデータの`day`が遅れている場合でも、JST日付と開催初日から`today`/`tomorrow`を補正するようにした。
+- `python scripts/update_sumo_data.py --torikumi-only`で生成データを更新。公式休場ページは`2026-05-11 10:46:07`更新、公式休場者3名を解決。
+- 2日目の豊昇龍対藤ノ川は`kimarite: "不戦"`、`winner: "west"`として反映。
+
+## Review
+- 正本は日本相撲協会公式`https://www.sumo.or.jp/ResultData/absence/`に固定。外部ニュースは生成データに使わない。
+- 公式リストから消えた力士は次回生成で`absentees`から自然に消える。
+- `python scripts/update_sumo_data_parser_test.py`: 6件 pass
+- `npm test -- --run app/components/TorikumiDayPage.test.tsx app/torikumi/page.test.tsx app/lib/may2026-data.test.ts`: 3ファイル22件 pass
+- `npm run typecheck`: exit 0
+- `npm test -- --run`: 14ファイル61件 pass
+- `npm run build`: exit 0。既存のchunk size警告のみ
+- `git diff --check`: exit 0

@@ -4,6 +4,7 @@ import re
 import sys
 import time
 from datetime import date, datetime, timedelta
+from html import unescape
 from pathlib import Path
 from urllib.parse import urlencode, urljoin
 from urllib.request import Request, urlopen
@@ -43,6 +44,7 @@ DAY_LABEL = {
 WEEKDAY_JA = ("月", "火", "水", "木", "金", "土", "日")
 JST = ZoneInfo("Asia/Tokyo")
 TORIKUMI_SCOPES = ("all", "result", "schedule")
+EMPTY_ABSENCE_LOOKUP = {"makuuchi": [], "juryo": []}
 
 
 def post_json(path: str, payload: dict) -> dict:
@@ -72,6 +74,29 @@ def post_json(path: str, payload: dict) -> dict:
     raise RuntimeError(f"API request failed after retries: path={path}, payload={payload}") from last_error
 
 
+def fetch_text(path: str) -> str:
+    req = Request(
+        f"{BASE_URL}{path}",
+        headers={
+            "User-Agent": "Mozilla/5.0",
+            "Accept": "text/html,application/xhtml+xml,*/*",
+        },
+    )
+
+    last_error: Exception | None = None
+    for attempt in range(3):
+        try:
+            with urlopen(req, timeout=30) as res:
+                return res.read().decode("utf-8")
+        except Exception as exc:
+            last_error = exc
+            if attempt == 2:
+                break
+            time.sleep(1.5 * (attempt + 1))
+
+    raise RuntimeError(f"HTML request failed after retries: path={path}") from last_error
+
+
 def extract_alt_text(html: str) -> str:
     if not html:
         return ""
@@ -79,6 +104,61 @@ def extract_alt_text(html: str) -> str:
     if match:
         return match.group(1).strip()
     return ""
+
+
+def strip_html(value: str) -> str:
+    text = re.sub(r"<[^>]+>", " ", value)
+    text = unescape(text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def resolve_absence_start_day(reason: str) -> int:
+    for day, label in DAY_LABEL.items():
+        if label in reason:
+            return day
+    return 1
+
+
+def parse_absence_html(html: str) -> dict:
+    datetime_match = re.search(r'class="datetime"\s+value="([^"]+)"', html)
+    updated_at = datetime_match.group(1).strip() if datetime_match else ""
+
+    section_match = re.search(
+        r'<span[^>]*class="[^"]*dayNum[^"]*"[^>]*>\s*幕内・十両\s*</span>',
+        html,
+    )
+    if not section_match:
+        return {"updatedAt": updated_at, "entries": []}
+
+    section_body = html[section_match.end():]
+    next_section_match = re.search(r'<span[^>]*class="[^"]*dayNum[^"]*"[^>]*>', section_body)
+    if next_section_match:
+        section_body = section_body[:next_section_match.start()]
+
+    rows = re.findall(r"<tr[^>]*>(.*?)</tr>", section_body, re.DOTALL)
+    if not rows:
+        return {"updatedAt": updated_at, "entries": []}
+
+    entries = []
+    for row in rows:
+        rank_matches = re.findall(r"<dt[^>]*>(.*?)</dt>", row, re.DOTALL)
+        yomi_matches = re.findall(r'alt="([^"]+)"', row)
+        cells = re.findall(r"<td[^>]*>(.*?)</td>", row, re.DOTALL)
+        if not rank_matches or not yomi_matches or not cells:
+            continue
+
+        reason = strip_html(cells[-1])
+        if not reason:
+            continue
+
+        entries.append({
+            "rankText": strip_html(rank_matches[0]),
+            "yomi": yomi_matches[0].strip(),
+            "reason": reason,
+            "startDay": resolve_absence_start_day(reason),
+        })
+
+    return {"updatedAt": updated_at, "entries": entries}
 
 
 def split_shikona(full_name: str) -> str:
@@ -159,8 +239,8 @@ def make_schedule_daily_data(day_data: dict) -> dict:
             "matches": [
                 {
                     **match,
-                    "kimarite": "未定",
-                    "winner": None,
+                    "kimarite": "不戦" if match.get("kimarite") == "不戦" and match.get("winner") else "未定",
+                    "winner": match.get("winner") if match.get("kimarite") == "不戦" and match.get("winner") else None,
                 }
                 for match in division_data["matches"]
             ],
@@ -450,6 +530,14 @@ def resolve_basho_start_date(
     return datetime.now(JST).date()
 
 
+def resolve_current_basho_day(start_date: date, fallback_day: int, today: date | None = None) -> int:
+    today = today or datetime.now(JST).date()
+    calendar_day = (today - start_date).days + 1
+    if 1 <= calendar_day <= 15:
+        return calendar_day
+    return max(1, min(fallback_day, 15))
+
+
 def has_any_matches(day_data: dict) -> bool:
     return bool(day_data["makuuchi"]["matches"] or day_data["juryo"]["matches"])
 
@@ -471,14 +559,36 @@ def load_division_rikishi(kakuzuke_id: int) -> dict[int, dict]:
             file=sys.stderr,
         )
         return {}
+
+    try:
+        hoshitori = load_hoshitori(kakuzuke_id)
+        kana_records = {
+            int(item["rikishi_id"]): item
+            for side in ("E", "W")
+            for item in hoshitori.get("BanzukeTable", {}).get(side, [])
+            if item.get("rikishi_id")
+        }
+    except Exception as exc:
+        print(
+            f"[warn] hoshitori fetch failed for absentees: division={DIVISION_LABEL[kakuzuke_id]} ({exc})",
+            file=sys.stderr,
+        )
+        kana_records = {}
+
     rikishi_map: dict[int, dict] = {}
     for item in banzuke.get("BanzukeTable", []):
         rikishi_id = safe_int(item.get("rikishi_id"), 0)
         if rikishi_id <= 0:
             continue
+        side_label = "東" if safe_int(item.get("ew"), 0) == 1 else "西"
+        banzuke_name = str(item.get("banzuke_name", "")).strip()
+        rank_text = f"{side_label}{banzuke_name or rank_title(int(item['rank']), int(item['number']))}"
+        hoshitori_record = kana_records.get(rikishi_id, {})
         rikishi_map[rikishi_id] = {
             "id": rikishi_id,
             "name": split_shikona(str(item.get("shikona", ""))),
+            "yomi": str(hoshitori_record.get("shikona_kana", "")),
+            "rankText": rank_text,
             "profileUrl": f"{BASE_URL}/ResultRikishiData/profile/{rikishi_id}/",
         }
     return rikishi_map
@@ -491,21 +601,100 @@ def extract_rikishi_id_from_url(url: str) -> int:
     return safe_int(match.group(1), 0)
 
 
-def derive_absentees(division_day: dict, roster: dict[int, dict]) -> list[dict]:
-    if not roster:
+def resolve_official_absences(entries: list[dict], rosters: dict[str, dict[int, dict]]) -> dict[str, list[dict]]:
+    resolved: dict[str, list[dict]] = {"makuuchi": [], "juryo": []}
+    all_candidates = [
+        (division, rikishi)
+        for division, roster in rosters.items()
+        for rikishi in roster.values()
+    ]
+
+    for entry in entries:
+        yomi = str(entry.get("yomi", ""))
+        rank_text = str(entry.get("rankText", ""))
+        candidates = [
+            (division, rikishi)
+            for division, rikishi in all_candidates
+            if rikishi.get("yomi") == yomi and rikishi.get("rankText") == rank_text
+        ]
+        if not candidates:
+            candidates = [
+                (division, rikishi)
+                for division, rikishi in all_candidates
+                if rikishi.get("yomi") == yomi
+            ]
+        if len(candidates) != 1:
+            print(
+                f"[warn] official absentee resolution skipped: rank={rank_text}, yomi={yomi}, candidates={len(candidates)}",
+                file=sys.stderr,
+            )
+            continue
+
+        division, rikishi = candidates[0]
+        resolved[division].append({
+            "id": rikishi["id"],
+            "name": rikishi["name"],
+            "profileUrl": rikishi["profileUrl"],
+            "startDay": int(entry.get("startDay", 1)),
+            "reason": str(entry.get("reason", "")),
+        })
+
+    return resolved
+
+
+def load_official_absences(rosters: dict[str, dict[int, dict]]) -> dict[str, list[dict]]:
+    try:
+        report = parse_absence_html(fetch_text("/ResultData/absence/"))
+        resolved = resolve_official_absences(report["entries"], rosters)
+        total = sum(len(entries) for entries in resolved.values())
+        print(f"[info] official absentees resolved: {total} (updatedAt={report.get('updatedAt', '')})")
+        return resolved
+    except Exception as exc:
+        print(f"[warn] official absence fetch failed; absentees disabled ({exc})", file=sys.stderr)
+        return {"makuuchi": [], "juryo": []}
+
+
+def derive_absentees(division: str, day: int, absence_lookup: dict[str, list[dict]]) -> list[dict]:
+    entries = absence_lookup.get(division, [])
+    if not entries:
         return []
 
-    active_ids = set()
+    return [
+        {
+            "id": entry["id"],
+            "name": entry["name"],
+            "profileUrl": entry["profileUrl"],
+        }
+        for entry in entries
+        if int(entry.get("startDay", 1)) <= day
+    ]
+
+
+def apply_absence_results(division_day: dict, absentees: list[dict]) -> dict:
+    absent_ids = {int(entry["id"]) for entry in absentees if entry.get("id")}
+    if not absent_ids:
+        return division_day
+
+    updated_matches = []
     for match in division_day.get("matches", []):
         east_id = extract_rikishi_id_from_url(str(match.get("eastProfileUrl", "")))
         west_id = extract_rikishi_id_from_url(str(match.get("westProfileUrl", "")))
-        if east_id:
-            active_ids.add(east_id)
-        if west_id:
-            active_ids.add(west_id)
+        east_absent = east_id in absent_ids
+        west_absent = west_id in absent_ids
+        if east_absent == west_absent:
+            updated_matches.append(match)
+            continue
 
-    absent_ids = sorted(set(roster.keys()) - active_ids)
-    return [roster[rikishi_id] for rikishi_id in absent_ids]
+        updated_matches.append({
+            **match,
+            "kimarite": "不戦",
+            "winner": "west" if east_absent else "east",
+        })
+
+    return {
+        **division_day,
+        "matches": updated_matches,
+    }
 
 
 def sanitize_division_day(division_day: dict, kakuzuke_id: int) -> dict:
@@ -548,6 +737,7 @@ def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str, exi
         "makuuchi": load_division_rikishi(1),
         "juryo": load_division_rikishi(2),
     }
+    absence_lookup = load_official_absences(rosters)
     loaded_days = {}
     for day in range(1, 16):
         loaded_days[day] = {
@@ -557,7 +747,7 @@ def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str, exi
 
     start_date = resolve_basho_start_date(loaded_days, updated_at, current_day)
     current_timestamp = current_timestamp_iso()
-    today_day = max(1, min(current_day, 15))
+    today_day = resolve_current_basho_day(start_date, current_day)
     tomorrow_day = min(today_day + 1, 15)
     gregorian_year = str(start_date.year)
 
@@ -569,24 +759,28 @@ def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str, exi
     for day in range(1, 16):
         actual_date = start_date + timedelta(days=day - 1)
         placeholder = build_placeholder_day(day, actual_date)
-        existing_makuuchi = pick_existing_division_day(existing, day, "makuuchi")
-        existing_juryo = pick_existing_division_day(existing, day, "juryo")
+        existing_makuuchi = pick_existing_division_day(existing, day, "makuuchi") if day <= today_day else None
+        existing_juryo = pick_existing_division_day(existing, day, "juryo") if day <= today_day else None
         makuuchi = loaded_days[day]["makuuchi"] or existing_makuuchi or placeholder["makuuchi"]
         juryo = loaded_days[day]["juryo"] or existing_juryo or placeholder["juryo"]
         makuuchi = sanitize_division_day(makuuchi, 1)
         juryo = sanitize_division_day(juryo, 2)
+        makuuchi_absentees = derive_absentees("makuuchi", day, absence_lookup)
+        juryo_absentees = derive_absentees("juryo", day, absence_lookup)
+        makuuchi = apply_absence_results(makuuchi, makuuchi_absentees)
+        juryo = apply_absence_results(juryo, juryo_absentees)
 
         # Synchronize dayHead across both divisions using the calculated actual_date
         canonical_day_head = build_day_head(day, actual_date)
         makuuchi = {
             **makuuchi,
             "dayHead": canonical_day_head,
-            "absentees": derive_absentees(makuuchi, rosters["makuuchi"]),
+            "absentees": makuuchi_absentees,
         }
         juryo = {
             **juryo,
             "dayHead": canonical_day_head,
-            "absentees": derive_absentees(juryo, rosters["juryo"]),
+            "absentees": juryo_absentees,
         }
 
         day_data = {
@@ -672,7 +866,7 @@ export const makuuchiData: RankGroup[] = {json.dumps(makuuchi, ensure_ascii=Fals
 
 export const juryo: RankGroup[] = {json.dumps(juryo, ensure_ascii=False, indent=2)};
 """
-    SUMO_OUTPUT.write_text(content, encoding="utf-8")
+    SUMO_OUTPUT.write_text(content, encoding="utf-8", newline="\n")
 
 
 def write_torikumi_data(dataset: dict, year_jp: str, basho_name: str) -> None:
@@ -762,7 +956,7 @@ export const torikumiMonthKey = torikumiArchive.resultDays[0]?.pathDate.slice(0,
 
 export const banzukePath = `/${{torikumiMonthKey}}-banduke`;
 """
-    TORIKUMI_OUTPUT.write_text(content, encoding="utf-8")
+    TORIKUMI_OUTPUT.write_text(content, encoding="utf-8", newline="\n")
 
 
 def write_api_json(
@@ -781,7 +975,11 @@ def write_api_json(
             "makuuchi": makuuchi,
             "juryo": juryo,
         }
-        (API_DIR / "banzuke.json").write_text(json.dumps(banzuke_json, ensure_ascii=False, indent=2), encoding="utf-8")
+        (API_DIR / "banzuke.json").write_text(
+            json.dumps(banzuke_json, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+            newline="\n",
+        )
 
     torikumi_json = {
         "bashoName": basho_name,
@@ -794,7 +992,11 @@ def write_api_json(
         "resultDays": torikumi_dataset["resultDays"],
         "scheduleDays": torikumi_dataset["scheduleDays"],
     }
-    (API_DIR / "torikumi.json").write_text(json.dumps(torikumi_json, ensure_ascii=False, indent=2), encoding="utf-8")
+    (API_DIR / "torikumi.json").write_text(
+        json.dumps(torikumi_json, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+        newline="\n",
+    )
 
 
 # Profile page parser for extracting rikishi details from HTML
@@ -987,7 +1189,8 @@ def write_rikishi_json(rikishi_list: list[dict], profiles: dict[int, dict]) -> N
     }
     (API_DIR / "rikishi.json").write_text(
         json.dumps(rikishi_json, ensure_ascii=False, indent=2),
-        encoding="utf-8"
+        encoding="utf-8",
+        newline="\n",
     )
 
     # Write individual profile JSONs
@@ -1021,7 +1224,8 @@ def write_rikishi_json(rikishi_list: list[dict], profiles: dict[int, dict]) -> N
         }
         (profile_dir / f"{rikishi_id}.json").write_text(
             json.dumps(profile_json, ensure_ascii=False, indent=2),
-            encoding="utf-8"
+            encoding="utf-8",
+            newline="\n",
         )
 
     print(f"[info] Wrote {len(rikishi_list)} rikishi to rikishi.json and {len(profiles)} profiles")
