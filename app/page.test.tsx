@@ -24,27 +24,27 @@ describe('Home page', () => {
     const allLinks = screen.getAllByRole('link');
 
     // Current basho links are May 2026.
-    const banzukeLink = allLinks.find((l) => l.getAttribute('href') === MAY2026_BANDUKE_PATH);
-    const yoteiLink = allLinks.find((l) => l.getAttribute('href') === MAY2026_SCHEDULE_PATH);
-    const kekkaLink = allLinks.find((l) => l.getAttribute('href') === MAY2026_RESULT_PATH);
+    const banzukeLink = allLinks.find((l) => l.getAttribute('href') === `${MAY2026_BANDUKE_PATH}/`);
+    const yoteiLink = allLinks.find((l) => l.getAttribute('href') === `${MAY2026_SCHEDULE_PATH}/`);
+    const kekkaLink = allLinks.find((l) => l.getAttribute('href') === `${MAY2026_RESULT_PATH}/`);
     const firstMayDay = MAY2026_TORIKUMI_DATA.resultDays?.[0];
     // 2nd section links are March 2026.
-    const marchBanzukeLink = allLinks.find((l) => l.getAttribute('href') === MARCH2026_BANDUKE_PATH);
-    const marchYoteiLink = allLinks.find((l) => l.getAttribute('href') === MARCH2026_SCHEDULE_PATH);
-    const marchTorikumiLink = allLinks.find((l) => l.getAttribute('href') === MARCH2026_RESULT_PATH);
+    const marchBanzukeLink = allLinks.find((l) => l.getAttribute('href') === `${MARCH2026_BANDUKE_PATH}/`);
+    const marchYoteiLink = allLinks.find((l) => l.getAttribute('href') === `${MARCH2026_SCHEDULE_PATH}/`);
+    const marchTorikumiLink = allLinks.find((l) => l.getAttribute('href') === `${MARCH2026_RESULT_PATH}/`);
     const firstMarchDay = MARCH2026_TORIKUMI_DATA.resultDays?.[0];
     const mayHeroTitle = `${MAY2026_TORIKUMI_DATA.year}${MAY2026_TORIKUMI_DATA.bashoName}`;
 
     expect(screen.getByRole('heading', { level: 2, name: mayHeroTitle })).toBeInTheDocument();
-    expect(banzukeLink).toHaveAttribute('href', MAY2026_BANDUKE_PATH);
-    expect(yoteiLink).toHaveAttribute('href', MAY2026_SCHEDULE_PATH);
-    expect(kekkaLink).toHaveAttribute('href', MAY2026_RESULT_PATH);
+    expect(banzukeLink).toHaveAttribute('href', `${MAY2026_BANDUKE_PATH}/`);
+    expect(yoteiLink).toHaveAttribute('href', `${MAY2026_SCHEDULE_PATH}/`);
+    expect(kekkaLink).toHaveAttribute('href', `${MAY2026_RESULT_PATH}/`);
     expect(firstMayDay).toBeDefined();
-    expect(marchBanzukeLink).toHaveAttribute('href', MARCH2026_BANDUKE_PATH);
-    expect(marchYoteiLink).toHaveAttribute('href', MARCH2026_SCHEDULE_PATH);
-    expect(marchTorikumiLink).toHaveAttribute('href', MARCH2026_RESULT_PATH);
+    expect(marchBanzukeLink).toHaveAttribute('href', `${MARCH2026_BANDUKE_PATH}/`);
+    expect(marchYoteiLink).toHaveAttribute('href', `${MARCH2026_SCHEDULE_PATH}/`);
+    expect(marchTorikumiLink).toHaveAttribute('href', `${MARCH2026_RESULT_PATH}/`);
     expect(firstMarchDay).toBeDefined();
-    expect(allLinks.find((l) => l.getAttribute('href') === `/${firstMarchDay!.pathDate}-torikumi`)).toBeDefined();
+    expect(allLinks.find((l) => l.getAttribute('href') === `/${firstMarchDay!.pathDate}-torikumi/`)).toBeDefined();
     expect(screen.queryByText('連絡先:')).not.toBeInTheDocument();
     expect(within(screen.getByRole('banner')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
     expect(within(screen.getByRole('contentinfo')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');

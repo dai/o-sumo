@@ -23,8 +23,23 @@ export interface ArchiveRouteConfig {
   bandukePath: string;
 }
 
+function stripTrailingSlash(path: string): string {
+  if (path === '/') {
+    return path;
+  }
+  return path.replace(/\/+$/, '');
+}
+
+function withTrailingSlash(path: string): string {
+  if (path === '/') {
+    return path;
+  }
+  return path.endsWith('/') ? path : `${path}/`;
+}
+
 export function parseTopLevelSlug(slug: string): ParsedTorikumiSlug | null {
-  const match = slug.match(/^(\d{6,8})-(torikumi|yotei)$/);
+  const normalized = slug.replace(/\/+$/, '');
+  const match = normalized.match(/^(\d{6,8})-(torikumi|yotei)$/);
   if (!match) {
     return null;
   }
@@ -55,16 +70,16 @@ const ARCHIVE_ROUTE_CONFIGS: Record<string, ArchiveRouteConfig> = {
   '202603': {
     monthKey: '202603',
     archive: normalizeArchive(MARCH2026_TORIKUMI_DATA),
-    resultPath: MARCH2026_RESULT_PATH,
-    schedulePath: MARCH2026_SCHEDULE_PATH,
-    bandukePath: MARCH2026_BANDUKE_PATH,
+    resultPath: withTrailingSlash(MARCH2026_RESULT_PATH),
+    schedulePath: withTrailingSlash(MARCH2026_SCHEDULE_PATH),
+    bandukePath: withTrailingSlash(MARCH2026_BANDUKE_PATH),
   },
   '202605': {
     monthKey: '202605',
     archive: normalizeArchive(torikumiArchive),
-    resultPath: MAY2026_RESULT_PATH,
-    schedulePath: MAY2026_SCHEDULE_PATH,
-    bandukePath: MAY2026_BANDUKE_PATH,
+    resultPath: withTrailingSlash(MAY2026_RESULT_PATH),
+    schedulePath: withTrailingSlash(MAY2026_SCHEDULE_PATH),
+    bandukePath: withTrailingSlash(MAY2026_BANDUKE_PATH),
   },
 };
 
@@ -72,9 +87,9 @@ if (!ARCHIVE_ROUTE_CONFIGS[torikumiMonthKey]) {
   ARCHIVE_ROUTE_CONFIGS[torikumiMonthKey] = {
     monthKey: torikumiMonthKey,
     archive: normalizeArchive(torikumiArchive),
-    resultPath: `/${torikumiMonthKey}-torikumi`,
-    schedulePath: `/${torikumiMonthKey}-yotei`,
-    bandukePath: `/${torikumiMonthKey}-banduke`,
+    resultPath: withTrailingSlash(`/${torikumiMonthKey}-torikumi`),
+    schedulePath: withTrailingSlash(`/${torikumiMonthKey}-yotei`),
+    bandukePath: withTrailingSlash(`/${torikumiMonthKey}-banduke`),
   };
 }
 
@@ -94,7 +109,8 @@ export function getArchiveRouteConfigForDateKey(dateKey: string): ArchiveRouteCo
 }
 
 export function getArchiveRouteConfigForPathname(pathname: string): ArchiveRouteConfig {
-  const match = pathname.match(/^\/(\d{6})(?:\d{2})?-(?:banduke|torikumi|yotei|o-sumo)(?:\/)?$/);
+  const normalized = stripTrailingSlash(pathname);
+  const match = normalized.match(/^\/(\d{6})(?:\d{2})?-(?:banduke|torikumi|yotei|o-sumo)$/);
   if (match) {
     const config = getArchiveRouteConfigByMonthKey(match[1]);
     if (config) {
@@ -119,21 +135,21 @@ export function findArchiveDay(dateKey: string, mode: TorikumiPageMode): Torikum
 
 export function getHubPath(mode: TorikumiPageMode): string {
   const config = getDefaultArchiveRouteConfig();
-  return mode === 'result' ? config.resultPath : config.schedulePath;
+  return withTrailingSlash(mode === 'result' ? config.resultPath : config.schedulePath);
 }
 
 export function getHubPathForMonthKey(monthKey: string, mode: TorikumiPageMode): string {
   const config = getArchiveRouteConfigByMonthKey(monthKey) ?? getDefaultArchiveRouteConfig();
-  return mode === 'result' ? config.resultPath : config.schedulePath;
+  return withTrailingSlash(mode === 'result' ? config.resultPath : config.schedulePath);
 }
 
 export function getHubPathForDateKey(dateKey: string, mode: TorikumiPageMode): string {
   const config = getArchiveRouteConfigForDateKey(dateKey) ?? getDefaultArchiveRouteConfig();
-  return mode === 'result' ? config.resultPath : config.schedulePath;
+  return withTrailingSlash(mode === 'result' ? config.resultPath : config.schedulePath);
 }
 
 export function getDayPath(day: TorikumiArchiveDay, mode: TorikumiPageMode): string {
-  return `/${day.pathDate}-${mode === 'result' ? 'torikumi' : 'yotei'}`;
+  return withTrailingSlash(`/${day.pathDate}-${mode === 'result' ? 'torikumi' : 'yotei'}`);
 }
 
 export function getArchiveUpdatedAt(mode: TorikumiPageMode): string {
@@ -143,19 +159,20 @@ export function getArchiveUpdatedAt(mode: TorikumiPageMode): string {
 
 export function getArchiveUpdateMessage(mode: TorikumiPageMode): string {
   return mode === 'result'
-    ? '場所期間中は毎日JST 14:00-18:00の間、5分ごとに更新'
-    : '前日のJST 19:00 頃更新';
+    ? '場所期間中はJST 14:00, 14:30, 15:00, 15:30, 16:00, 16:30に更新し、17:00-18:00は5分ごとに更新'
+    : '取組予定はJST 09:00と18:00に更新';
 }
 
 export const legacyBanzukePath = `/${torikumiMonthKey}-o-sumo`;
 
 export function getBanzukePathForMonthKey(monthKey: string): string {
-  return (getArchiveRouteConfigByMonthKey(monthKey) ?? getDefaultArchiveRouteConfig()).bandukePath;
+  const config = getArchiveRouteConfigByMonthKey(monthKey) ?? getDefaultArchiveRouteConfig();
+  return withTrailingSlash(config.bandukePath);
 }
 
 export function getBanzukePathForDateKey(dateKey: string): string {
   const config = getArchiveRouteConfigForDateKey(dateKey) ?? getDefaultArchiveRouteConfig();
-  return config.bandukePath;
+  return withTrailingSlash(config.bandukePath);
 }
 
 export function getAdjacentDay(

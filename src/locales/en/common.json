@@ -1,6 +1,6 @@
 {
   "global": {
-    "may2026UpdateNotice": "May 2026 Day 1 results are scheduled to start updating from 14:00. Day 2 schedule is also live (14 Juryo bouts and 20 Makuuchi bouts).",
+    "may2026UpdateNotice": "May 2026 results are scheduled to update each day from 14:00 JST. Day {{day}} schedule is also live.",
     "homeLink": "Home",
     "siteNavigation": "Site navigation"
   },

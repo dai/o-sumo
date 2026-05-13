@@ -9,7 +9,8 @@
     "pages:build": "npm run build",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "verify:delivery-flow": "pwsh ./scripts/verify_delivery_flow.ps1"
   },
   "repository": {
     "type": "git",

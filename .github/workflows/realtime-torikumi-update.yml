@@ -2,8 +2,11 @@ name: Realtime Torikumi Update
 
 on:
   schedule:
-    # JST: every 5 minutes between 14:00 and 17:59
-    - cron: '*/5 14-17 * * *'
+    # JST: 14:00, 14:30, 15:00, 15:30, 16:00, 16:30
+    - cron: '0,30 14-16 * * *'
+      timezone: 'Asia/Tokyo'
+    # JST: every 5 minutes between 17:00-17:59
+    - cron: '*/5 17 * * *'
       timezone: 'Asia/Tokyo'
     # JST: 18:00
     - cron: '0 18 * * *'
@@ -28,14 +31,14 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Generate torikumi data
-        run: python scripts/update_sumo_data.py --torikumi-only --torikumi-scope result
+      - name: Generate result and banzuke data
+        run: python scripts/update_sumo_data.py --torikumi-scope result --skip-rikishi-fetch
 
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add app/lib/torikumi-data.ts public/api/v1/torikumi.json
+          git add app/lib/sumo-data.ts app/lib/torikumi-data.ts public/api/v1/banzuke.json public/api/v1/torikumi.json
           if ! git diff --staged --quiet; then
             git commit -m "chore: realtime torikumi update"
             git push origin HEAD:main

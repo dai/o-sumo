@@ -42,7 +42,7 @@ export interface RikishiProfile extends RikishiProfileDetail {
 const RIKISHI_INDEX_URL = '/api/v1/rikishi.json';
 
 export function rikishiProfilePath(id: number | string): string {
-  return `/rikishi/${id}`;
+  return `/rikishi/${id}/`;
 }
 
 export function rikishiApiPath(id: number | string): string {

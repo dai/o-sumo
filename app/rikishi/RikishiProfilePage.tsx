@@ -109,7 +109,7 @@ export default function RikishiProfilePage() {
           <section className="rikishi-status warning">
             <h2>{t('rikishi.notFoundTitle')}</h2>
             <p>{t('rikishi.notFoundDescription')}</p>
-            <Link to="/rikishi" className="rikishi-action-link">{t('rikishi.backToList')}</Link>
+            <Link to="/rikishi/" className="rikishi-action-link">{t('rikishi.backToList')}</Link>
           </section>
         ) : null}
 
@@ -170,7 +170,7 @@ export default function RikishiProfilePage() {
         <nav aria-label={t('rikishi.footerNavigation')}>
           <HomeLink placement="footer" />
           <span> | </span>
-          <Link to="/rikishi">{t('rikishi.backToList')}</Link>
+          <Link to="/rikishi/">{t('rikishi.backToList')}</Link>
           <span> | </span>
           <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">
             {t('banzuke.footerGithub')}

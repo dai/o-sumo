@@ -4,6 +4,8 @@ import { MemoryRouter } from 'react-router-dom';
 import BanzukePage from './page';
 import BanzukeTable from '../components/BanzukeTable';
 import type { RankGroup } from '../lib/sumo-data';
+import { torikumiArchive } from '../lib/torikumi-data';
+import { formatUpdatedAt } from '../lib/updated-at';
 
 describe('BanzukePage', () => {
   it('keeps contact links in the footer and reverses rank-group sort order', async () => {
@@ -56,9 +58,9 @@ describe('BanzukePage', () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByRole('link', { name: '東力士' })).toHaveAttribute('href', '/rikishi/1');
-    expect(screen.getByRole('link', { name: '東力士のo-sumoプロフィールを開く' })).toHaveAttribute('href', '/rikishi/1');
-    expect(screen.getByRole('link', { name: 'プロフィール' })).toHaveAttribute('href', '/rikishi/1');
+    expect(screen.getByRole('link', { name: '東力士' })).toHaveAttribute('href', '/rikishi/1/');
+    expect(screen.getByRole('link', { name: '東力士のo-sumoプロフィールを開く' })).toHaveAttribute('href', '/rikishi/1/');
+    expect(screen.getByRole('link', { name: 'プロフィール' })).toHaveAttribute('href', '/rikishi/1/');
     expect(screen.getByText('1勝1敗1休')).toBeInTheDocument();
     expect(screen.getByText('星取表')).toBeInTheDocument();
     expect(screen.getByText('○')).toBeInTheDocument();
@@ -81,7 +83,7 @@ describe('BanzukePage', () => {
     );
 
     expect(screen.getByRole('heading', { level: 2, name: /三月場所 番付一覧/ })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: '取組結果一覧' })).toHaveAttribute('href', '/202603-torikumi');
+    expect(screen.getByRole('link', { name: '取組結果一覧' })).toHaveAttribute('href', '/202603-torikumi/');
   });
 
   it('renders translated emphasis markup instead of showing raw HTML text', () => {
@@ -103,6 +105,6 @@ describe('BanzukePage', () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByText(/更新日:/)).toBeInTheDocument();
+    expect(screen.getByText(`更新日: ${formatUpdatedAt(torikumiArchive.updatedAt)}`)).toBeInTheDocument();
   });
 });

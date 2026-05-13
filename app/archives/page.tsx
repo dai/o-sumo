@@ -25,13 +25,13 @@ export default function ArchivesPage() {
                 <h2>{archive.year} {archive.name}</h2>
               </header>
               <div className="archive-item-links">
-                <Link to={archive.bandukePath} className="archive-link">
+                <Link to={`${archive.bandukePath}/`} className="archive-link">
                   {t('archives.banduke')}
                 </Link>
-                <Link to={archive.resultPath} className="archive-link">
+                <Link to={`${archive.resultPath}/`} className="archive-link">
                   {t('archives.result')}
                 </Link>
-                <Link to={archive.schedulePath} className="archive-link">
+                <Link to={`${archive.schedulePath}/`} className="archive-link">
                   {t('archives.schedule')}
                 </Link>
               </div>

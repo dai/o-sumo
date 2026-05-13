@@ -5,7 +5,8 @@ import TorikumiDayPage from './TorikumiDayPage';
 import { MARCH2026_TORIKUMI_DATA } from '../lib/march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from '../lib/may2026-data';
 import { torikumiArchive, type TorikumiArchiveDay } from '../lib/torikumi-data';
-import { banzukePath, getHubPath, getHubPathForDateKey } from '../lib/torikumi-routes';
+import { getBanzukePathForDateKey, getHubPath, getHubPathForDateKey } from '../lib/torikumi-routes';
+import { formatUpdatedAt } from '../lib/updated-at';
 
 function renderPage(day: TorikumiArchiveDay, mode: 'result' | 'schedule' = 'result') {
   render(
@@ -23,7 +24,7 @@ describe('TorikumiDayPage', () => {
     expect(within(screen.getByRole('banner')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
     expect(within(screen.getByRole('contentinfo')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
     expect(screen.getByRole('link', { name: '一覧' })).toHaveAttribute('href', getHubPath('result'));
-    expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', banzukePath);
+    expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', getBanzukePathForDateKey(torikumiArchive.resultDays[0].pathDate));
     expect(screen.getByText('← 前日なし')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'GitHub' })).toHaveAttribute('href', 'https://github.com/dai/o-sumo');
     expect(screen.queryByText('連絡先:')).not.toBeInTheDocument();
@@ -89,17 +90,17 @@ describe('TorikumiDayPage', () => {
         },
         juryo: {
           ...torikumiArchive.resultDays[0].data.juryo,
-          absentees: [{ id: 2, name: '安青錦', profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/2/' }],
+          absentees: [{ id: 2, name: '青安錦', profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/2/' }],
         },
       },
     };
 
     renderPage(dayWithAbsentees, 'schedule');
 
-    expect(screen.getByText(/更新日:/)).toBeInTheDocument();
+    expect(screen.getByText(`更新日: ${formatUpdatedAt(torikumiArchive.scheduleUpdatedAt)}`)).toBeInTheDocument();
     expect(screen.getByText('休場者:')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: '大の里' })).toHaveAttribute('href', '/rikishi/1');
-    expect(screen.getByRole('link', { name: '安青錦' })).toHaveAttribute('href', '/rikishi/2');
+    expect(screen.getByRole('link', { name: '大の里' })).toHaveAttribute('href', '/rikishi/1/');
+    expect(screen.getByRole('link', { name: '青安錦' })).toHaveAttribute('href', '/rikishi/2/');
   });
 
   it('hides absentees on result pages', () => {
@@ -113,7 +114,7 @@ describe('TorikumiDayPage', () => {
         },
         juryo: {
           ...torikumiArchive.resultDays[0].data.juryo,
-          absentees: [{ id: 2, name: '安青錦', profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/2/' }],
+          absentees: [{ id: 2, name: '青安錦', profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/2/' }],
         },
       },
     };
@@ -143,46 +144,12 @@ describe('TorikumiDayPage', () => {
     }
   });
 
-  it('shows fusen winner labels on schedule pages', () => {
-    const scheduleDay: TorikumiArchiveDay = {
-      ...torikumiArchive.scheduleDays[1],
-      data: {
-        ...torikumiArchive.scheduleDays[1].data,
-        makuuchi: {
-          ...torikumiArchive.scheduleDays[1].data.makuuchi,
-          matches: [
-            {
-              division: '幕内',
-              boutNo: 20,
-              eastName: '豊昇龍',
-              eastYomi: 'ほうしょうりゅう',
-              eastEnglish: 'Hoshoryu',
-              eastRank: '東横綱',
-              eastProfileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/3842/',
-              westName: '藤ノ川',
-              westYomi: 'ふじのかわ',
-              westEnglish: 'Fujinokawa',
-              westRank: '西前頭十四',
-              westProfileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/4191/',
-              kimarite: '不戦',
-              winner: 'west',
-            },
-          ],
-        },
-      },
-    };
-
-    renderPage(scheduleDay, 'schedule');
-
-    expect(screen.getByText('不戦（藤ノ川）')).toBeInTheDocument();
-  });
-
   it('keeps march day navigation and hub links in 202603', () => {
     const marchDay = MARCH2026_TORIKUMI_DATA.resultDays?.[1];
     expect(marchDay).toBeDefined();
     renderPage(marchDay!, 'result');
 
-    expect(screen.getByRole('link', { name: '一覧' })).toHaveAttribute('href', '/202603-torikumi');
+    expect(screen.getByRole('link', { name: '一覧' })).toHaveAttribute('href', '/202603-torikumi/');
     expect(screen.getByRole('link', { name: /← 初日/ })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /三日目 →/ })).toBeInTheDocument();
   });

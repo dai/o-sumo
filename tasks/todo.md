@@ -82,85 +82,125 @@
 
 ---
 
-# 2026-05-11 同期 Todo
+# 配信フロー切り分け基盤整備 Todo
 
 ## Plan
-- [x] 現在のbranchとupstream設定を確認する
-- [x] remoteをfetchして現在branchをfast-forward同期する
-- [x] 同期後のHEADとworking tree状態を確認して記録する
+- [x] `scripts/verify_delivery_flow.ps1`を追加し、`origin/main`生成物・本番API・配信URLヘッダを同時検証できるようにする
+- [x] `package.json`へ`verify:delivery-flow`を追加し、再実行手順を固定化する
+- [x] `tasks/reports/delivery-flow-<timestamp>.md`へ`DATA_SYNC`/`ROUTING_BEHAVIOR`判定を出力する
+- [x] `tasks/lessons.md`を新規作成し、UI起因と配信起因を先に分離する運用ルールを記録する
+- [x] `pwsh ./scripts/verify_delivery_flow.ps1`と`npm run verify:delivery-flow`を実行する
+- [x] `npm run typecheck`と対象テストを実行し、既存状態の影響をレビューに記録する
 
 ## Progress
-- `git fetch origin --prune`は成功。削除済みremote branch群が整理された。
-- 作業開始時のcurrent branchは`codex/rikishi-202605-mit-license`で、upstream `origin/codex/rikishi-202605-mit-license` は `[gone]`。
-- `HEAD`は`origin/main`の祖先で追加コミットはなく、feature branchはmainへ取り込み済みだった。
-- `tasks/todo.md`を一時stashして`main`へ切り替え、`git pull --ff-only origin main`で`b785ff2`から`f487a77`へfast-forward。
-- stashを戻した後のworking tree変更は`tasks/todo.md`のみ。
+- `scripts/verify_delivery_flow.ps1`を追加。`origin/main:public/api/v1/torikumi.json`と`https://osada.us/api/v1/torikumi.json`の`updatedAt`系および`20260512`結果件数を比較する実装を追加。
+- 同スクリプトで`/archives`、`/202605-torikumi`、`/20260512-torikumi`（各末尾スラッシュ有無）をヘッダ検証し、`308 -> /`を検出したら`ROUTING_BEHAVIOR=ISSUE`と判定する実装を追加。
+- `npm run verify:delivery-flow`を`package.json`へ追加。
+- レポートを`tasks/reports/delivery-flow-20260513-105844.md`へ出力。
+- `tasks/lessons.md`を新規作成し、再発防止ルールを記録。
 
 ## Review
-- 現在branchは`main`。
-- `git rev-parse --short HEAD` = `f487a77`
-- `git rev-parse --short origin/main` = `f487a77`
-- `git status --short --branch`は`## main...origin/main`と`M tasks/todo.md`を表示。repo本体はremoteと同期済みで、未コミット変更は今回の記録ファイルのみ。
+- `pwsh ./scripts/verify_delivery_flow.ps1`: pass  
+  - `DATA_SYNC=OK`
+  - `ROUTING_BEHAVIOR=ISSUE`
+  - `REPORT_PATH=tasks/reports/delivery-flow-20260513-105835.md`
+- `npm run verify:delivery-flow`: pass  
+  - `DATA_SYNC=OK`
+  - `ROUTING_BEHAVIOR=ISSUE`
+  - `REPORT_PATH=tasks/reports/delivery-flow-20260513-105844.md`
+- `npm run typecheck`: fail（既存の未解決競合マーカー起因）  
+  - `app/lib/torikumi-routes.ts`に`TS1185: Merge conflict marker encountered`
+- `npm test -- --run app/lib/torikumi-routes.test.ts app/torikumi/page.test.tsx`: fail（同上）  
+  - `app/lib/torikumi-routes.ts`の`Unexpected "<<"`でtransform失敗
+- 判定:
+  - 三日目結果（`20260512`）は`origin/main`と本番APIで一致（結果欠損ではない）
+  - 末尾スラッシュなしURLは本番で`308 -> /`となり、配信ルーティング課題として独立管理すべき
 
 ---
 
-# 五月場所公式休場者と不戦勝反映 Todo
+# 五月場所更新導線・更新ロジック修正 Todo（3月場所不変更）
 
 ## Plan
-- [x] 作業ブランチを切り、既存の未コミット変更を保持したまま実装する
-- [x] 公式休場ページHTML解析・開始日解釈・ID解決・不戦勝反映のPython回帰テストを先に追加する
-- [x] `scripts/update_sumo_data.py`で公式休場ページを正本にした休場者取得へ置き換える
-- [x] schedule正規化と予定ページ表示で不戦取組の`kimarite`/`winner`を保持・表示する
-- [x] React/Vitest側で公式休場者表示、非休場者混入防止、予定ページの不戦勝表示を検証する
-- [x] 生成データを更新し、Pythonテスト・対象Vitest・型チェック・全体テスト・ビルドで検証する
+- [x] `app/lib/torikumi-routes.ts` の未解決マージコンフリクトを解消し、更新時刻メッセージを新仕様へ更新する
+- [x] `getHubPath` / `getHubPathForDateKey` / `getDayPath` を末尾スラッシュ付き正規URL返却へ統一する
+- [x] 主要導線（ホーム・番付・取組一覧・日別・力士プロフィール）を末尾スラッシュ付きリンクへ統一する
+- [x] `public/_redirects` に末尾スラッシュ有無両方のSPA fallbackを追加する
+- [x] `global.may2026UpdateNotice` を補間テンプレート化し、公開済み`scheduleDays`最終日から `n日目` を自動算出する
+- [x] workflow を更新し、結果＋番付更新時刻と予定更新時刻を要件どおりに再編する
+- [x] `scripts/update_sumo_data.py` に `--skip-rikishi-fetch` を追加し、結果更新時に番付同時更新しつつプロフィール再取得を回避する
+- [x] ルーティング/導線/バナー関連テストを更新し、回帰テストを追加する
+- [x] `npm run typecheck` / `npm test -- --run` / `npm run build` / `npm run verify:delivery-flow` で検証する
 
 ## Progress
-- `codex/official-absence-fusen`ブランチを作成。
-- 公式休場ページ`/ResultData/absence/`の「幕内・十両」セクションを、同一見出し配下の複数更新日テーブルまで解析するようにした。
-- `alt`かな、番付表示、星取表由来の`shikona_kana`を使い、公式休場者を`rikishi_id`付きで解決するようにした。
-- `derive_absentees()`は番付差分推定をやめ、公式休場ページ由来のリストと開始日だけを参照する方式へ変更。
-- 休場者が取組に残っている場合、相手側を`winner`にし、`kimarite: "不戦"`を保持するようにした。
-- 未公開未来日の取組は既存JSONの古い予定を再利用せず、公式API未公開ならpendingプレースホルダーに戻すようにした。
-- 予定ページでは不戦取組だけ`不戦（勝者名）`を表示するようにした。結果ページの休場者非表示は維持。
-- `app/lib/may2026-data.ts`は手書き重複データをやめ、生成済み`torikumiArchive`を参照する薄いエクスポートにした。
-- 公式番付メタデータの`day`が遅れている場合でも、JST日付と開催初日から`today`/`tomorrow`を補正するようにした。
-- `python scripts/update_sumo_data.py --torikumi-only`で生成データを更新。公式休場ページは`2026-05-11 10:46:07`更新、公式休場者3名を解決。
-- 2日目の豊昇龍対藤ノ川は`kimarite: "不戦"`、`winner: "west"`として反映。
+- `app/lib/torikumi-routes.ts` の競合マーカーを除去し、`getArchiveUpdateMessage()` を新更新間隔（結果: 14:00/14:30/15:00/15:30/16:00/16:30 + 17:00-18:00 5分間隔、予定: 09:00/18:00）へ更新。
+- ルートヘルパーに末尾スラッシュ正規化を導入し、`parseTopLevelSlug()` と `getArchiveRouteConfigForPathname()` はスラッシュ有無両対応化。
+- `app/main.tsx` で静的ルートの正規URL（末尾スラッシュ）を追加し、未正規URLからの遷移も受ける形へ更新。
+- `app/main.tsx` のバナー文言を `getMay2026NoticeParams()` 経由でデータ駆動化し、`scheduleDays` の公開済み最終日を `day/dayLabel` で注入。
+- `src/locales/ja/common.json` と `src/locales/en/common.json` の `global.may2026UpdateNotice` を補間付きテンプレートへ更新。
+- `public/_redirects` を拡張し、`/archives`/`/rikishi`/`*-banduke`/`*-torikumi`/`*-yotei`/`*-o-sumo` の末尾スラッシュ有無を双方fallback対象に設定。
+- workflow再編:
+  - `realtime-torikumi-update.yml`: `0,30 14-16`, `*/5 17`, `0 18`（JST）に変更。
+  - 同workflowの生成コマンドを `python scripts/update_sumo_data.py --torikumi-scope result --skip-rikishi-fetch` へ変更（結果＋番付同時更新）。
+  - `daily-data-update.yml`: `0 9,18`（JST）へ変更し、予定更新は `--torikumi-only --torikumi-scope schedule` に限定。
+- `scripts/update_sumo_data.py` に `--skip-rikishi-fetch` を追加。
+- テスト更新と追加:
+  - 既存ルーティング/導線テストの期待URLを末尾スラッシュ付きに更新。
+  - `app/lib/may2026-notice.ts` と `app/lib/may2026-notice.test.ts` を追加し、バナー表示用の最新公開予定日算出を検証。
 
 ## Review
-- 正本は日本相撲協会公式`https://www.sumo.or.jp/ResultData/absence/`に固定。外部ニュースは生成データに使わない。
-- 公式リストから消えた力士は次回生成で`absentees`から自然に消える。
-- `python scripts/update_sumo_data_parser_test.py`: 6件 pass
-- `npm test -- --run app/components/TorikumiDayPage.test.tsx app/torikumi/page.test.tsx app/lib/may2026-data.test.ts`: 3ファイル22件 pass
-- `npm run typecheck`: exit 0
-- `npm test -- --run`: 14ファイル61件 pass
-- `npm run build`: exit 0。既存のchunk size警告のみ
-- `git diff --check`: exit 0
+- `npm run typecheck`: pass
+- `npm test -- --run app/lib/torikumi-routes.test.ts app/torikumi/page.test.tsx app/components/TorikumiDayPage.test.tsx app/lib/may2026-notice.test.ts app/page.test.tsx app/banzuke/page.test.tsx app/rikishi/page.test.tsx`: pass（7 files / 38 tests）
+- `npm test -- --run`: pass（15 files / 62 tests）
+- `npm run build`: pass（既存のchunk size警告のみ）
+- `npm run verify:delivery-flow`: pass実行（`DATA_SYNC=OK`, `ROUTING_BEHAVIOR=ISSUE`）
+  - 補足: `ROUTING_BEHAVIOR=ISSUE` は本番配信側の現状値に依存する判定。ローカル実装変更後も、本番反映前の検証では継続して `ISSUE` が出る。
 
 ---
 
-# 2026-05-11 14:00-18:00 5分更新 + 実質差分コミット化 Todo
+# 五月場所バナー日次と結果/予定不整合の是正 Todo（2026-05-13）
 
 ## Plan
-- [x] `realtime-torikumi-update.yml`のscheduleをJST 14:00-18:00の5分運用へ変更する
-- [x] `scripts/update_sumo_data.py`に`updatedAt`系を除外した実質差分判定ロジックを追加する
-- [x] 実質差分なし時は既存timestampを維持する処理を組み込む
-- [x] `absentees`順序を安定化し、比較ブレを減らす
-- [x] Python回帰テストを追加し、timestamp-only変更が差分なしになることを検証する
-- [x] 既存検証（parser test / typecheck / vitest / build）を実行する
+- [x] バナー算出を `dayLabel` 依存から `day` 数値依存へ固定し、`effectiveScheduleDay = min(schedulePublishedLatest, resultPublishedLatest + 1)` を適用する
+- [x] `scripts/update_sumo_data.py` の fallback 参照を結果系/予定系で分離し、相互混線を防止する
+- [x] 結果公開上限（当日まで）と予定公開上限（当日+1まで）を日次判定へ実装する
+- [x] 五月場所データを再生成し、`resultDays=3日目 published`、`scheduleDays=4日目 published` を確認する
+- [x] バナー算出テストと生成ロジックテストを追加する
+- [x] `npm run typecheck` / `npm test -- --run` / `npm run build` / `npm run verify:delivery-flow` を実行する
 
 ## Progress
-- workflow cronを`*/5 14-17 * * *`と`0 18 * * *`に変更。`concurrency`設定は維持。
-- `scripts/update_sumo_data.py`へ比較用正規化関数群を追加し、`updatedAt`/`resultUpdatedAt`/`scheduleUpdatedAt`を比較対象から除外。
-- `preserve_torikumi_timestamps_if_unchanged()`をmainフローへ組み込み、実質差分なし時は既存timestampを保持するようにした。
-- `derive_absentees()`の戻り値を`id`昇順へ固定し、出力安定性を強化。
-- `scripts/update_sumo_data_parser_test.py`へ実質差分判定のテストクラスを追加（timestamp-only無視、winner/kimarite/absentees/schedule不戦変更検知、timestamp維持）。
-- `app/lib/torikumi-routes.ts`の更新文言を5分運用に合わせて更新し、対応テストを更新。
-- `app/lib/may2026-data.test.ts`の公開日固定前提を外し、live更新中でも壊れにくい状態判定に修正。
+- `app/lib/may2026-notice.ts` を更新し、`dayLabel` を廃止して `day` 数値のみ返すように変更。
+- `app/main.tsx` と `src/locales/ja/common.json` を更新し、バナーを常に `{{day}}日目` 形式で表示するよう統一。
+- `scripts/update_sumo_data.py` の `pick_existing_division_day` を `source_key` 必須化し、`resultDays` と `scheduleDays` の cross fallback を停止。
+- `determine_archive_statuses` と公開上限制御を導入し、結果/予定の判定を独立させた。
+- `python scripts/update_sumo_data.py --torikumi-only --torikumi-scope all` を実行し、`public/api/v1/torikumi.json` を再生成。
+- `app/components/TorikumiDayPage.test.tsx` と `app/banzuke/page.test.tsx` の更新日表示テストを固定日時依存から `formatUpdatedAt(...)` 依存へ変更。
 
 ## Review
-- `python scripts/update_sumo_data_parser_test.py`: 11件 pass
-- `npm run typecheck`: exit 0
-- `npm test -- --run`: 14ファイル61件 pass
-- `npm run build`: exit 0（既存のchunk size warningのみ）
-- 生成データファイル（`app/lib/torikumi-data.ts`、`public/api/v1/torikumi.json`）は今回要件の対象外のため差分から除外。
+- 生成結果確認（`public/api/v1/torikumi.json`）:
+  - `resultDays` の published 最終日: `20260512`（三日目）
+  - `scheduleDays` の published 最終日: `20260513`（四日目）
+- `python scripts/update_sumo_data_torikumi_logic_test.py`: pass
+- `npm run typecheck`: pass
+- `npm test -- --run`: pass（15 files / 63 tests）
+- `npm run build`: pass（既存のchunk size警告のみ）
+- `npm run verify:delivery-flow`: pass実行（`DATA_SYNC=OK`, `ROUTING_BEHAVIOR=ISSUE`）
+
+---
+
+# 五月場所 番付星取表未更新の是正 Todo（2026-05-13）
+
+## Plan
+- [x] 番付APIと表示用データの更新時刻・星取件数を確認し、未更新の根因を特定する
+- [x] 番付を含む再生成モードで五月場所データを再生成する（3月場所は不変更）
+- [x] 星取表が一日目固定でないことを確認し、テストを再実行する
+
+## Progress
+- `public/api/v1/banzuke.json` の `updatedAt` が `2026-05-10T20:01:55+09:00` で止まり、`torikumi` 側のみ新しい状態を確認。
+- 原因は `--torikumi-only` 実行で番付生成（`app/lib/sumo-data.ts`, `public/api/v1/banzuke.json`）がスキップされる運用差分。
+- `python scripts/update_sumo_data.py --torikumi-scope result --skip-rikishi-fetch` を実行し、番付と結果を同時更新。
+
+## Review
+- `public/api/v1/banzuke.json.updatedAt`: `2026-05-13T12:50:44+09:00`
+- 星取表サンプル（豊昇龍）: `wins=0`, `losses=2`, `draws=2`, `results_len=4`（一日目固定ではない）
+- `public/api/v1/torikumi.json`: 結果公開3日目、予定公開4日目を維持
+- `npm test -- --run`: pass（15 files / 63 tests）

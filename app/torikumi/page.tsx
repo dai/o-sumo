@@ -72,7 +72,7 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
         <section className="day-summary-card">
           <div>
             <div className="archive-eyebrow">
-              {mode === 'result' ? resultPath.slice(1) : schedulePath.slice(1)}
+              {(mode === 'result' ? resultPath : schedulePath).replace(/^\/|\/$/g, '')}
             </div>
             <h2>{t('torikumi.hub.dayArchiveHeading', { mode: modeLabel })}</h2>
             <p>

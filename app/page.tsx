@@ -35,16 +35,16 @@ export default function Home() {
           <h2>{currentBashoTitle}</h2>
           <p>{t('home.heroDescription')}</p>
           <nav className="hero-actions" aria-label="主要ページへの導線">
-            <Link to={MAY2026_BANDUKE_PATH} className="cta-button">
+            <Link to={`${MAY2026_BANDUKE_PATH}/`} className="cta-button">
               {t('home.heroBanzuke')}
             </Link>
-            <Link to={MAY2026_SCHEDULE_PATH} className="cta-button secondary">
+            <Link to={`${MAY2026_SCHEDULE_PATH}/`} className="cta-button secondary">
               {t('home.heroSchedule')}
             </Link>
-            <Link to={MAY2026_RESULT_PATH} className="cta-button secondary">
+            <Link to={`${MAY2026_RESULT_PATH}/`} className="cta-button secondary">
               {t('home.heroResult')}
             </Link>
-            <Link to="/rikishi" className="cta-button secondary">
+            <Link to="/rikishi/" className="cta-button secondary">
               {t('home.heroRikishi')}
             </Link>
           </nav>
@@ -59,13 +59,13 @@ export default function Home() {
             })}
           </h2>
           <nav className="past-basho-actions" aria-label="三月場所への導線">
-            <Link to={MARCH2026_BANDUKE_PATH} className="cta-button secondary">
+            <Link to={`${MARCH2026_BANDUKE_PATH}/`} className="cta-button secondary">
               {t('home.heroBanzuke')}
             </Link>
-            <Link to={MARCH2026_SCHEDULE_PATH} className="cta-button secondary">
+            <Link to={`${MARCH2026_SCHEDULE_PATH}/`} className="cta-button secondary">
               {t('home.heroSchedule')}
             </Link>
-            <Link to={MARCH2026_RESULT_PATH} className="cta-button secondary">
+            <Link to={`${MARCH2026_RESULT_PATH}/`} className="cta-button secondary">
               {t('home.heroResult')}
             </Link>
           </nav>
@@ -74,7 +74,7 @@ export default function Home() {
             {MARCH2026_TORIKUMI_DATA.resultDays?.map((day) => (
               <Link
                 key={day.pathDate}
-                to={`/${day.pathDate}-torikumi`}
+                to={`/${day.pathDate}-torikumi/`}
                 className="past-basho-day-link"
               >
                 {day.day}日

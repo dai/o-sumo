@@ -86,8 +86,8 @@ describe('Rikishi pages', () => {
     );
 
     expect(screen.getByText('読み込み中です。')).toBeInTheDocument();
-    expect(await screen.findByRole('link', { name: /豊昇龍/ })).toHaveAttribute('href', '/rikishi/3842');
-    expect(screen.getByRole('link', { name: /欠損山/ })).toHaveAttribute('href', '/rikishi/9999');
+    expect(await screen.findByRole('link', { name: /豊昇龍/ })).toHaveAttribute('href', '/rikishi/3842/');
+    expect(screen.getByRole('link', { name: /欠損山/ })).toHaveAttribute('href', '/rikishi/9999/');
     expect(screen.getByText('更新日: 2026-04-27 08:15 JST')).toBeInTheDocument();
   });
 
@@ -155,6 +155,6 @@ describe('Rikishi pages', () => {
     );
 
     expect(await screen.findByRole('heading', { level: 2, name: '力士が見つかりません' })).toBeInTheDocument();
-    expect(screen.getAllByRole('link', { name: '力士一覧へ戻る' })[0]).toHaveAttribute('href', '/rikishi');
+    expect(screen.getAllByRole('link', { name: '力士一覧へ戻る' })[0]).toHaveAttribute('href', '/rikishi/');
   });
 });

@@ -1,8 +1,14 @@
 # SPA routing (only for app routes)
 /archives /index.html 200
+/archives/ /index.html 200
 /rikishi /index.html 200
+/rikishi/ /index.html 200
 /rikishi/* /index.html 200
 /*-banduke /index.html 200
+/*-banduke/ /index.html 200
 /*-torikumi /index.html 200
+/*-torikumi/ /index.html 200
 /*-yotei /index.html 200
+/*-yotei/ /index.html 200
 /*-o-sumo /index.html 200
+/*-o-sumo/ /index.html 200

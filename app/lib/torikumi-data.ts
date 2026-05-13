@@ -59,9 +59,9 @@ export interface TorikumiDataSet {
 export const torikumiData: TorikumiDataSet = {
   "bashoName": "五月場所",
   "year": "令和八年",
-  "updatedAt": "2026-05-12T20:48:41+09:00",
-  "resultUpdatedAt": "2026-05-12T20:24:57+09:00",
-  "scheduleUpdatedAt": "2026-05-12T20:48:41+09:00",
+  "updatedAt": "2026-05-13T12:50:44+09:00",
+  "resultUpdatedAt": "2026-05-13T12:50:44+09:00",
+  "scheduleUpdatedAt": "2026-05-13T12:42:55+09:00",
   "today": {
     "makuuchi": {
       "day": 3,
@@ -639,7 +639,13 @@ export const torikumiData: TorikumiDataSet = {
           "winner": "west"
         }
       ],
-      "absentees": []
+      "absentees": [
+        {
+          "id": 4231,
+          "name": "阿武剋",
+          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+        }
+      ]
     }
   },
   "tomorrow": {
@@ -1219,7 +1225,13 @@ export const torikumiData: TorikumiDataSet = {
           "winner": null
         }
       ],
-      "absentees": []
+      "absentees": [
+        {
+          "id": 4116,
+          "name": "大青山",
+          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+        }
+      ]
     }
   },
   "resultDays": [
@@ -2145,11 +2157,6 @@ export const torikumiData: TorikumiDataSet = {
           ],
           "absentees": [
             {
-              "id": 3842,
-              "name": "豊昇龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
-            },
-            {
               "id": 4227,
               "name": "大の里",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
@@ -2981,7 +2988,13 @@ export const torikumiData: TorikumiDataSet = {
               "winner": "west"
             }
           ],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            }
+          ]
         }
       }
     },
@@ -3570,7 +3583,13 @@ export const torikumiData: TorikumiDataSet = {
               "winner": null
             }
           ],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            }
+          ]
         }
       }
     },
@@ -3591,9 +3610,194 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
+              "id": 2629,
+              "name": "玉鷲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/"
+            },
+            {
+              "id": 2775,
+              "name": "高安",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+            },
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3207,
+              "name": "千代翔馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/"
+            },
+            {
+              "id": 3265,
+              "name": "隆の勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/"
+            },
+            {
+              "id": 3371,
+              "name": "若元春",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/"
+            },
+            {
+              "id": 3376,
+              "name": "大栄翔",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 3521,
+              "name": "正代",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/"
+            },
+            {
+              "id": 3594,
+              "name": "翔猿",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/"
+            },
+            {
+              "id": 3616,
+              "name": "宇良",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/"
+            },
+            {
+              "id": 3620,
+              "name": "御嶽海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/"
+            },
+            {
+              "id": 3622,
+              "name": "霧島",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"
+            },
+            {
+              "id": 3661,
+              "name": "琴櫻",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+            },
+            {
+              "id": 3682,
+              "name": "朝乃山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+            },
+            {
+              "id": 3705,
+              "name": "平戸海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/"
+            },
+            {
+              "id": 3711,
+              "name": "美ノ海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/"
+            },
+            {
+              "id": 3742,
+              "name": "錦富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/"
+            },
+            {
+              "id": 3753,
+              "name": "一山本",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/"
+            },
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3840,
+              "name": "琴勝峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/"
+            },
+            {
               "id": 3842,
               "name": "豊昇龍",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 3844,
+              "name": "王鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/"
+            },
+            {
+              "id": 3907,
+              "name": "狼雅",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/"
+            },
+            {
+              "id": 3933,
+              "name": "時疾風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
+            },
+            {
+              "id": 3990,
+              "name": "獅司",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+            },
+            {
+              "id": 4055,
+              "name": "熱海富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/"
+            },
+            {
+              "id": 4079,
+              "name": "豪ノ山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/"
+            },
+            {
+              "id": 4093,
+              "name": "藤青雲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/"
+            },
+            {
+              "id": 4101,
+              "name": "朝紅龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+            },
+            {
+              "id": 4108,
+              "name": "欧勝馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/"
+            },
+            {
+              "id": 4112,
+              "name": "金峰山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/"
+            },
+            {
+              "id": 4120,
+              "name": "琴栄峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4175,
+              "name": "朝白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4191,
+              "name": "藤ノ川",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"
             },
             {
               "id": 4227,
@@ -3604,6 +3808,16 @@ export const torikumiData: TorikumiDataSet = {
               "id": 4230,
               "name": "安青錦",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            },
+            {
+              "id": 4279,
+              "name": "義ノ富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
+            },
+            {
+              "id": 4336,
+              "name": "藤凌駕",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/"
             }
           ]
         },
@@ -3613,7 +3827,148 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "五日目： 令和8年5月14日(木)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 2565,
+              "name": "佐田の海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+            },
+            {
+              "id": 2892,
+              "name": "錦木",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/"
+            },
+            {
+              "id": 3255,
+              "name": "輝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/"
+            },
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3337,
+              "name": "明生",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+            },
+            {
+              "id": 3367,
+              "name": "玉正鳳",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/"
+            },
+            {
+              "id": 3553,
+              "name": "湘南乃海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3818,
+              "name": "友風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 3914,
+              "name": "西ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+            },
+            {
+              "id": 3939,
+              "name": "北の若",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/"
+            },
+            {
+              "id": 3969,
+              "name": "東白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/"
+            },
+            {
+              "id": 3983,
+              "name": "出羽ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/"
+            },
+            {
+              "id": 4095,
+              "name": "日翔志",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4124,
+              "name": "羽出山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+            },
+            {
+              "id": 4158,
+              "name": "風賢央",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/"
+            },
+            {
+              "id": 4164,
+              "name": "白熊",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/"
+            },
+            {
+              "id": 4165,
+              "name": "嘉陽",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/"
+            },
+            {
+              "id": 4171,
+              "name": "尊富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4232,
+              "name": "旭海雄",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+            },
+            {
+              "id": 4243,
+              "name": "寿之富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            },
+            {
+              "id": 4285,
+              "name": "朝翠龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
+            },
+            {
+              "id": 4287,
+              "name": "一意",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
+            }
+          ]
         }
       }
     },
@@ -3634,9 +3989,194 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
+              "id": 2629,
+              "name": "玉鷲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/"
+            },
+            {
+              "id": 2775,
+              "name": "高安",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+            },
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3207,
+              "name": "千代翔馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/"
+            },
+            {
+              "id": 3265,
+              "name": "隆の勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/"
+            },
+            {
+              "id": 3371,
+              "name": "若元春",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/"
+            },
+            {
+              "id": 3376,
+              "name": "大栄翔",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 3521,
+              "name": "正代",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/"
+            },
+            {
+              "id": 3594,
+              "name": "翔猿",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/"
+            },
+            {
+              "id": 3616,
+              "name": "宇良",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/"
+            },
+            {
+              "id": 3620,
+              "name": "御嶽海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/"
+            },
+            {
+              "id": 3622,
+              "name": "霧島",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"
+            },
+            {
+              "id": 3661,
+              "name": "琴櫻",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+            },
+            {
+              "id": 3682,
+              "name": "朝乃山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+            },
+            {
+              "id": 3705,
+              "name": "平戸海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/"
+            },
+            {
+              "id": 3711,
+              "name": "美ノ海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/"
+            },
+            {
+              "id": 3742,
+              "name": "錦富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/"
+            },
+            {
+              "id": 3753,
+              "name": "一山本",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/"
+            },
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3840,
+              "name": "琴勝峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/"
+            },
+            {
               "id": 3842,
               "name": "豊昇龍",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 3844,
+              "name": "王鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/"
+            },
+            {
+              "id": 3907,
+              "name": "狼雅",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/"
+            },
+            {
+              "id": 3933,
+              "name": "時疾風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
+            },
+            {
+              "id": 3990,
+              "name": "獅司",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+            },
+            {
+              "id": 4055,
+              "name": "熱海富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/"
+            },
+            {
+              "id": 4079,
+              "name": "豪ノ山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/"
+            },
+            {
+              "id": 4093,
+              "name": "藤青雲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/"
+            },
+            {
+              "id": 4101,
+              "name": "朝紅龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+            },
+            {
+              "id": 4108,
+              "name": "欧勝馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/"
+            },
+            {
+              "id": 4112,
+              "name": "金峰山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/"
+            },
+            {
+              "id": 4120,
+              "name": "琴栄峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4175,
+              "name": "朝白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4191,
+              "name": "藤ノ川",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"
             },
             {
               "id": 4227,
@@ -3647,6 +4187,16 @@ export const torikumiData: TorikumiDataSet = {
               "id": 4230,
               "name": "安青錦",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            },
+            {
+              "id": 4279,
+              "name": "義ノ富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
+            },
+            {
+              "id": 4336,
+              "name": "藤凌駕",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/"
             }
           ]
         },
@@ -3656,7 +4206,148 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "六日目： 令和8年5月15日(金)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 2565,
+              "name": "佐田の海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+            },
+            {
+              "id": 2892,
+              "name": "錦木",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/"
+            },
+            {
+              "id": 3255,
+              "name": "輝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/"
+            },
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3337,
+              "name": "明生",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+            },
+            {
+              "id": 3367,
+              "name": "玉正鳳",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/"
+            },
+            {
+              "id": 3553,
+              "name": "湘南乃海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3818,
+              "name": "友風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 3914,
+              "name": "西ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+            },
+            {
+              "id": 3939,
+              "name": "北の若",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/"
+            },
+            {
+              "id": 3969,
+              "name": "東白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/"
+            },
+            {
+              "id": 3983,
+              "name": "出羽ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/"
+            },
+            {
+              "id": 4095,
+              "name": "日翔志",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4124,
+              "name": "羽出山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+            },
+            {
+              "id": 4158,
+              "name": "風賢央",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/"
+            },
+            {
+              "id": 4164,
+              "name": "白熊",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/"
+            },
+            {
+              "id": 4165,
+              "name": "嘉陽",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/"
+            },
+            {
+              "id": 4171,
+              "name": "尊富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4232,
+              "name": "旭海雄",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+            },
+            {
+              "id": 4243,
+              "name": "寿之富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            },
+            {
+              "id": 4285,
+              "name": "朝翠龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
+            },
+            {
+              "id": 4287,
+              "name": "一意",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
+            }
+          ]
         }
       }
     },
@@ -3677,9 +4368,194 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
+              "id": 2629,
+              "name": "玉鷲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/"
+            },
+            {
+              "id": 2775,
+              "name": "高安",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+            },
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3207,
+              "name": "千代翔馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/"
+            },
+            {
+              "id": 3265,
+              "name": "隆の勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/"
+            },
+            {
+              "id": 3371,
+              "name": "若元春",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/"
+            },
+            {
+              "id": 3376,
+              "name": "大栄翔",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 3521,
+              "name": "正代",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/"
+            },
+            {
+              "id": 3594,
+              "name": "翔猿",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/"
+            },
+            {
+              "id": 3616,
+              "name": "宇良",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/"
+            },
+            {
+              "id": 3620,
+              "name": "御嶽海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/"
+            },
+            {
+              "id": 3622,
+              "name": "霧島",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"
+            },
+            {
+              "id": 3661,
+              "name": "琴櫻",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+            },
+            {
+              "id": 3682,
+              "name": "朝乃山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+            },
+            {
+              "id": 3705,
+              "name": "平戸海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/"
+            },
+            {
+              "id": 3711,
+              "name": "美ノ海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/"
+            },
+            {
+              "id": 3742,
+              "name": "錦富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/"
+            },
+            {
+              "id": 3753,
+              "name": "一山本",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/"
+            },
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3840,
+              "name": "琴勝峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/"
+            },
+            {
               "id": 3842,
               "name": "豊昇龍",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 3844,
+              "name": "王鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/"
+            },
+            {
+              "id": 3907,
+              "name": "狼雅",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/"
+            },
+            {
+              "id": 3933,
+              "name": "時疾風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
+            },
+            {
+              "id": 3990,
+              "name": "獅司",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+            },
+            {
+              "id": 4055,
+              "name": "熱海富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/"
+            },
+            {
+              "id": 4079,
+              "name": "豪ノ山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/"
+            },
+            {
+              "id": 4093,
+              "name": "藤青雲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/"
+            },
+            {
+              "id": 4101,
+              "name": "朝紅龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+            },
+            {
+              "id": 4108,
+              "name": "欧勝馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/"
+            },
+            {
+              "id": 4112,
+              "name": "金峰山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/"
+            },
+            {
+              "id": 4120,
+              "name": "琴栄峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4175,
+              "name": "朝白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4191,
+              "name": "藤ノ川",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"
             },
             {
               "id": 4227,
@@ -3690,6 +4566,16 @@ export const torikumiData: TorikumiDataSet = {
               "id": 4230,
               "name": "安青錦",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            },
+            {
+              "id": 4279,
+              "name": "義ノ富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
+            },
+            {
+              "id": 4336,
+              "name": "藤凌駕",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/"
             }
           ]
         },
@@ -3699,7 +4585,148 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "七日目： 令和8年5月16日(土)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 2565,
+              "name": "佐田の海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+            },
+            {
+              "id": 2892,
+              "name": "錦木",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/"
+            },
+            {
+              "id": 3255,
+              "name": "輝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/"
+            },
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3337,
+              "name": "明生",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+            },
+            {
+              "id": 3367,
+              "name": "玉正鳳",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/"
+            },
+            {
+              "id": 3553,
+              "name": "湘南乃海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3818,
+              "name": "友風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 3914,
+              "name": "西ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+            },
+            {
+              "id": 3939,
+              "name": "北の若",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/"
+            },
+            {
+              "id": 3969,
+              "name": "東白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/"
+            },
+            {
+              "id": 3983,
+              "name": "出羽ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/"
+            },
+            {
+              "id": 4095,
+              "name": "日翔志",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4124,
+              "name": "羽出山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+            },
+            {
+              "id": 4158,
+              "name": "風賢央",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/"
+            },
+            {
+              "id": 4164,
+              "name": "白熊",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/"
+            },
+            {
+              "id": 4165,
+              "name": "嘉陽",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/"
+            },
+            {
+              "id": 4171,
+              "name": "尊富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4232,
+              "name": "旭海雄",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+            },
+            {
+              "id": 4243,
+              "name": "寿之富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            },
+            {
+              "id": 4285,
+              "name": "朝翠龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
+            },
+            {
+              "id": 4287,
+              "name": "一意",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
+            }
+          ]
         }
       }
     },
@@ -3720,9 +4747,194 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
+              "id": 2629,
+              "name": "玉鷲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/"
+            },
+            {
+              "id": 2775,
+              "name": "高安",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+            },
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3207,
+              "name": "千代翔馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/"
+            },
+            {
+              "id": 3265,
+              "name": "隆の勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/"
+            },
+            {
+              "id": 3371,
+              "name": "若元春",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/"
+            },
+            {
+              "id": 3376,
+              "name": "大栄翔",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 3521,
+              "name": "正代",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/"
+            },
+            {
+              "id": 3594,
+              "name": "翔猿",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/"
+            },
+            {
+              "id": 3616,
+              "name": "宇良",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/"
+            },
+            {
+              "id": 3620,
+              "name": "御嶽海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/"
+            },
+            {
+              "id": 3622,
+              "name": "霧島",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"
+            },
+            {
+              "id": 3661,
+              "name": "琴櫻",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+            },
+            {
+              "id": 3682,
+              "name": "朝乃山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+            },
+            {
+              "id": 3705,
+              "name": "平戸海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/"
+            },
+            {
+              "id": 3711,
+              "name": "美ノ海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/"
+            },
+            {
+              "id": 3742,
+              "name": "錦富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/"
+            },
+            {
+              "id": 3753,
+              "name": "一山本",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/"
+            },
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3840,
+              "name": "琴勝峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/"
+            },
+            {
               "id": 3842,
               "name": "豊昇龍",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 3844,
+              "name": "王鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/"
+            },
+            {
+              "id": 3907,
+              "name": "狼雅",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/"
+            },
+            {
+              "id": 3933,
+              "name": "時疾風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
+            },
+            {
+              "id": 3990,
+              "name": "獅司",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+            },
+            {
+              "id": 4055,
+              "name": "熱海富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/"
+            },
+            {
+              "id": 4079,
+              "name": "豪ノ山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/"
+            },
+            {
+              "id": 4093,
+              "name": "藤青雲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/"
+            },
+            {
+              "id": 4101,
+              "name": "朝紅龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+            },
+            {
+              "id": 4108,
+              "name": "欧勝馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/"
+            },
+            {
+              "id": 4112,
+              "name": "金峰山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/"
+            },
+            {
+              "id": 4120,
+              "name": "琴栄峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4175,
+              "name": "朝白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4191,
+              "name": "藤ノ川",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"
             },
             {
               "id": 4227,
@@ -3733,6 +4945,16 @@ export const torikumiData: TorikumiDataSet = {
               "id": 4230,
               "name": "安青錦",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            },
+            {
+              "id": 4279,
+              "name": "義ノ富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
+            },
+            {
+              "id": 4336,
+              "name": "藤凌駕",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/"
             }
           ]
         },
@@ -3742,7 +4964,148 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "中日： 令和8年5月17日(日)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 2565,
+              "name": "佐田の海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+            },
+            {
+              "id": 2892,
+              "name": "錦木",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/"
+            },
+            {
+              "id": 3255,
+              "name": "輝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/"
+            },
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3337,
+              "name": "明生",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+            },
+            {
+              "id": 3367,
+              "name": "玉正鳳",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/"
+            },
+            {
+              "id": 3553,
+              "name": "湘南乃海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3818,
+              "name": "友風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 3914,
+              "name": "西ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+            },
+            {
+              "id": 3939,
+              "name": "北の若",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/"
+            },
+            {
+              "id": 3969,
+              "name": "東白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/"
+            },
+            {
+              "id": 3983,
+              "name": "出羽ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/"
+            },
+            {
+              "id": 4095,
+              "name": "日翔志",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4124,
+              "name": "羽出山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+            },
+            {
+              "id": 4158,
+              "name": "風賢央",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/"
+            },
+            {
+              "id": 4164,
+              "name": "白熊",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/"
+            },
+            {
+              "id": 4165,
+              "name": "嘉陽",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/"
+            },
+            {
+              "id": 4171,
+              "name": "尊富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4232,
+              "name": "旭海雄",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+            },
+            {
+              "id": 4243,
+              "name": "寿之富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            },
+            {
+              "id": 4285,
+              "name": "朝翠龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
+            },
+            {
+              "id": 4287,
+              "name": "一意",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
+            }
+          ]
         }
       }
     },
@@ -3763,9 +5126,194 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
+              "id": 2629,
+              "name": "玉鷲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/"
+            },
+            {
+              "id": 2775,
+              "name": "高安",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+            },
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3207,
+              "name": "千代翔馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/"
+            },
+            {
+              "id": 3265,
+              "name": "隆の勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/"
+            },
+            {
+              "id": 3371,
+              "name": "若元春",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/"
+            },
+            {
+              "id": 3376,
+              "name": "大栄翔",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 3521,
+              "name": "正代",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/"
+            },
+            {
+              "id": 3594,
+              "name": "翔猿",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/"
+            },
+            {
+              "id": 3616,
+              "name": "宇良",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/"
+            },
+            {
+              "id": 3620,
+              "name": "御嶽海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/"
+            },
+            {
+              "id": 3622,
+              "name": "霧島",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"
+            },
+            {
+              "id": 3661,
+              "name": "琴櫻",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+            },
+            {
+              "id": 3682,
+              "name": "朝乃山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+            },
+            {
+              "id": 3705,
+              "name": "平戸海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/"
+            },
+            {
+              "id": 3711,
+              "name": "美ノ海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/"
+            },
+            {
+              "id": 3742,
+              "name": "錦富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/"
+            },
+            {
+              "id": 3753,
+              "name": "一山本",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/"
+            },
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3840,
+              "name": "琴勝峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/"
+            },
+            {
               "id": 3842,
               "name": "豊昇龍",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 3844,
+              "name": "王鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/"
+            },
+            {
+              "id": 3907,
+              "name": "狼雅",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/"
+            },
+            {
+              "id": 3933,
+              "name": "時疾風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
+            },
+            {
+              "id": 3990,
+              "name": "獅司",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+            },
+            {
+              "id": 4055,
+              "name": "熱海富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/"
+            },
+            {
+              "id": 4079,
+              "name": "豪ノ山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/"
+            },
+            {
+              "id": 4093,
+              "name": "藤青雲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/"
+            },
+            {
+              "id": 4101,
+              "name": "朝紅龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+            },
+            {
+              "id": 4108,
+              "name": "欧勝馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/"
+            },
+            {
+              "id": 4112,
+              "name": "金峰山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/"
+            },
+            {
+              "id": 4120,
+              "name": "琴栄峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4175,
+              "name": "朝白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4191,
+              "name": "藤ノ川",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"
             },
             {
               "id": 4227,
@@ -3776,6 +5324,16 @@ export const torikumiData: TorikumiDataSet = {
               "id": 4230,
               "name": "安青錦",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            },
+            {
+              "id": 4279,
+              "name": "義ノ富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
+            },
+            {
+              "id": 4336,
+              "name": "藤凌駕",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/"
             }
           ]
         },
@@ -3785,7 +5343,148 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "九日目： 令和8年5月18日(月)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 2565,
+              "name": "佐田の海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+            },
+            {
+              "id": 2892,
+              "name": "錦木",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/"
+            },
+            {
+              "id": 3255,
+              "name": "輝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/"
+            },
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3337,
+              "name": "明生",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+            },
+            {
+              "id": 3367,
+              "name": "玉正鳳",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/"
+            },
+            {
+              "id": 3553,
+              "name": "湘南乃海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3818,
+              "name": "友風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 3914,
+              "name": "西ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+            },
+            {
+              "id": 3939,
+              "name": "北の若",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/"
+            },
+            {
+              "id": 3969,
+              "name": "東白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/"
+            },
+            {
+              "id": 3983,
+              "name": "出羽ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/"
+            },
+            {
+              "id": 4095,
+              "name": "日翔志",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4124,
+              "name": "羽出山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+            },
+            {
+              "id": 4158,
+              "name": "風賢央",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/"
+            },
+            {
+              "id": 4164,
+              "name": "白熊",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/"
+            },
+            {
+              "id": 4165,
+              "name": "嘉陽",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/"
+            },
+            {
+              "id": 4171,
+              "name": "尊富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4232,
+              "name": "旭海雄",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+            },
+            {
+              "id": 4243,
+              "name": "寿之富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            },
+            {
+              "id": 4285,
+              "name": "朝翠龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
+            },
+            {
+              "id": 4287,
+              "name": "一意",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
+            }
+          ]
         }
       }
     },
@@ -3806,9 +5505,194 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
+              "id": 2629,
+              "name": "玉鷲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/"
+            },
+            {
+              "id": 2775,
+              "name": "高安",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+            },
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3207,
+              "name": "千代翔馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/"
+            },
+            {
+              "id": 3265,
+              "name": "隆の勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/"
+            },
+            {
+              "id": 3371,
+              "name": "若元春",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/"
+            },
+            {
+              "id": 3376,
+              "name": "大栄翔",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 3521,
+              "name": "正代",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/"
+            },
+            {
+              "id": 3594,
+              "name": "翔猿",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/"
+            },
+            {
+              "id": 3616,
+              "name": "宇良",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/"
+            },
+            {
+              "id": 3620,
+              "name": "御嶽海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/"
+            },
+            {
+              "id": 3622,
+              "name": "霧島",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"
+            },
+            {
+              "id": 3661,
+              "name": "琴櫻",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+            },
+            {
+              "id": 3682,
+              "name": "朝乃山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+            },
+            {
+              "id": 3705,
+              "name": "平戸海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/"
+            },
+            {
+              "id": 3711,
+              "name": "美ノ海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/"
+            },
+            {
+              "id": 3742,
+              "name": "錦富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/"
+            },
+            {
+              "id": 3753,
+              "name": "一山本",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/"
+            },
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3840,
+              "name": "琴勝峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/"
+            },
+            {
               "id": 3842,
               "name": "豊昇龍",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 3844,
+              "name": "王鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/"
+            },
+            {
+              "id": 3907,
+              "name": "狼雅",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/"
+            },
+            {
+              "id": 3933,
+              "name": "時疾風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
+            },
+            {
+              "id": 3990,
+              "name": "獅司",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+            },
+            {
+              "id": 4055,
+              "name": "熱海富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/"
+            },
+            {
+              "id": 4079,
+              "name": "豪ノ山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/"
+            },
+            {
+              "id": 4093,
+              "name": "藤青雲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/"
+            },
+            {
+              "id": 4101,
+              "name": "朝紅龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+            },
+            {
+              "id": 4108,
+              "name": "欧勝馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/"
+            },
+            {
+              "id": 4112,
+              "name": "金峰山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/"
+            },
+            {
+              "id": 4120,
+              "name": "琴栄峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4175,
+              "name": "朝白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4191,
+              "name": "藤ノ川",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"
             },
             {
               "id": 4227,
@@ -3819,6 +5703,16 @@ export const torikumiData: TorikumiDataSet = {
               "id": 4230,
               "name": "安青錦",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            },
+            {
+              "id": 4279,
+              "name": "義ノ富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
+            },
+            {
+              "id": 4336,
+              "name": "藤凌駕",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/"
             }
           ]
         },
@@ -3828,7 +5722,148 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十日目： 令和8年5月19日(火)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 2565,
+              "name": "佐田の海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+            },
+            {
+              "id": 2892,
+              "name": "錦木",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/"
+            },
+            {
+              "id": 3255,
+              "name": "輝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/"
+            },
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3337,
+              "name": "明生",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+            },
+            {
+              "id": 3367,
+              "name": "玉正鳳",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/"
+            },
+            {
+              "id": 3553,
+              "name": "湘南乃海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3818,
+              "name": "友風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 3914,
+              "name": "西ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+            },
+            {
+              "id": 3939,
+              "name": "北の若",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/"
+            },
+            {
+              "id": 3969,
+              "name": "東白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/"
+            },
+            {
+              "id": 3983,
+              "name": "出羽ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/"
+            },
+            {
+              "id": 4095,
+              "name": "日翔志",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4124,
+              "name": "羽出山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+            },
+            {
+              "id": 4158,
+              "name": "風賢央",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/"
+            },
+            {
+              "id": 4164,
+              "name": "白熊",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/"
+            },
+            {
+              "id": 4165,
+              "name": "嘉陽",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/"
+            },
+            {
+              "id": 4171,
+              "name": "尊富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4232,
+              "name": "旭海雄",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+            },
+            {
+              "id": 4243,
+              "name": "寿之富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            },
+            {
+              "id": 4285,
+              "name": "朝翠龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
+            },
+            {
+              "id": 4287,
+              "name": "一意",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
+            }
+          ]
         }
       }
     },
@@ -3849,9 +5884,194 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
+              "id": 2629,
+              "name": "玉鷲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/"
+            },
+            {
+              "id": 2775,
+              "name": "高安",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+            },
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3207,
+              "name": "千代翔馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/"
+            },
+            {
+              "id": 3265,
+              "name": "隆の勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/"
+            },
+            {
+              "id": 3371,
+              "name": "若元春",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/"
+            },
+            {
+              "id": 3376,
+              "name": "大栄翔",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 3521,
+              "name": "正代",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/"
+            },
+            {
+              "id": 3594,
+              "name": "翔猿",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/"
+            },
+            {
+              "id": 3616,
+              "name": "宇良",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/"
+            },
+            {
+              "id": 3620,
+              "name": "御嶽海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/"
+            },
+            {
+              "id": 3622,
+              "name": "霧島",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"
+            },
+            {
+              "id": 3661,
+              "name": "琴櫻",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+            },
+            {
+              "id": 3682,
+              "name": "朝乃山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+            },
+            {
+              "id": 3705,
+              "name": "平戸海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/"
+            },
+            {
+              "id": 3711,
+              "name": "美ノ海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/"
+            },
+            {
+              "id": 3742,
+              "name": "錦富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/"
+            },
+            {
+              "id": 3753,
+              "name": "一山本",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/"
+            },
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3840,
+              "name": "琴勝峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/"
+            },
+            {
               "id": 3842,
               "name": "豊昇龍",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 3844,
+              "name": "王鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/"
+            },
+            {
+              "id": 3907,
+              "name": "狼雅",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/"
+            },
+            {
+              "id": 3933,
+              "name": "時疾風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
+            },
+            {
+              "id": 3990,
+              "name": "獅司",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+            },
+            {
+              "id": 4055,
+              "name": "熱海富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/"
+            },
+            {
+              "id": 4079,
+              "name": "豪ノ山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/"
+            },
+            {
+              "id": 4093,
+              "name": "藤青雲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/"
+            },
+            {
+              "id": 4101,
+              "name": "朝紅龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+            },
+            {
+              "id": 4108,
+              "name": "欧勝馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/"
+            },
+            {
+              "id": 4112,
+              "name": "金峰山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/"
+            },
+            {
+              "id": 4120,
+              "name": "琴栄峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4175,
+              "name": "朝白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4191,
+              "name": "藤ノ川",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"
             },
             {
               "id": 4227,
@@ -3862,6 +6082,16 @@ export const torikumiData: TorikumiDataSet = {
               "id": 4230,
               "name": "安青錦",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            },
+            {
+              "id": 4279,
+              "name": "義ノ富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
+            },
+            {
+              "id": 4336,
+              "name": "藤凌駕",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/"
             }
           ]
         },
@@ -3871,7 +6101,148 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十一日目： 令和8年5月20日(水)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 2565,
+              "name": "佐田の海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+            },
+            {
+              "id": 2892,
+              "name": "錦木",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/"
+            },
+            {
+              "id": 3255,
+              "name": "輝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/"
+            },
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3337,
+              "name": "明生",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+            },
+            {
+              "id": 3367,
+              "name": "玉正鳳",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/"
+            },
+            {
+              "id": 3553,
+              "name": "湘南乃海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3818,
+              "name": "友風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 3914,
+              "name": "西ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+            },
+            {
+              "id": 3939,
+              "name": "北の若",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/"
+            },
+            {
+              "id": 3969,
+              "name": "東白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/"
+            },
+            {
+              "id": 3983,
+              "name": "出羽ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/"
+            },
+            {
+              "id": 4095,
+              "name": "日翔志",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4124,
+              "name": "羽出山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+            },
+            {
+              "id": 4158,
+              "name": "風賢央",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/"
+            },
+            {
+              "id": 4164,
+              "name": "白熊",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/"
+            },
+            {
+              "id": 4165,
+              "name": "嘉陽",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/"
+            },
+            {
+              "id": 4171,
+              "name": "尊富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4232,
+              "name": "旭海雄",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+            },
+            {
+              "id": 4243,
+              "name": "寿之富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            },
+            {
+              "id": 4285,
+              "name": "朝翠龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
+            },
+            {
+              "id": 4287,
+              "name": "一意",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
+            }
+          ]
         }
       }
     },
@@ -3892,9 +6263,194 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
+              "id": 2629,
+              "name": "玉鷲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/"
+            },
+            {
+              "id": 2775,
+              "name": "高安",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+            },
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3207,
+              "name": "千代翔馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/"
+            },
+            {
+              "id": 3265,
+              "name": "隆の勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/"
+            },
+            {
+              "id": 3371,
+              "name": "若元春",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/"
+            },
+            {
+              "id": 3376,
+              "name": "大栄翔",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 3521,
+              "name": "正代",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/"
+            },
+            {
+              "id": 3594,
+              "name": "翔猿",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/"
+            },
+            {
+              "id": 3616,
+              "name": "宇良",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/"
+            },
+            {
+              "id": 3620,
+              "name": "御嶽海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/"
+            },
+            {
+              "id": 3622,
+              "name": "霧島",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"
+            },
+            {
+              "id": 3661,
+              "name": "琴櫻",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+            },
+            {
+              "id": 3682,
+              "name": "朝乃山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+            },
+            {
+              "id": 3705,
+              "name": "平戸海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/"
+            },
+            {
+              "id": 3711,
+              "name": "美ノ海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/"
+            },
+            {
+              "id": 3742,
+              "name": "錦富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/"
+            },
+            {
+              "id": 3753,
+              "name": "一山本",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/"
+            },
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3840,
+              "name": "琴勝峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/"
+            },
+            {
               "id": 3842,
               "name": "豊昇龍",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 3844,
+              "name": "王鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/"
+            },
+            {
+              "id": 3907,
+              "name": "狼雅",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/"
+            },
+            {
+              "id": 3933,
+              "name": "時疾風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
+            },
+            {
+              "id": 3990,
+              "name": "獅司",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+            },
+            {
+              "id": 4055,
+              "name": "熱海富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/"
+            },
+            {
+              "id": 4079,
+              "name": "豪ノ山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/"
+            },
+            {
+              "id": 4093,
+              "name": "藤青雲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/"
+            },
+            {
+              "id": 4101,
+              "name": "朝紅龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+            },
+            {
+              "id": 4108,
+              "name": "欧勝馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/"
+            },
+            {
+              "id": 4112,
+              "name": "金峰山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/"
+            },
+            {
+              "id": 4120,
+              "name": "琴栄峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4175,
+              "name": "朝白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4191,
+              "name": "藤ノ川",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"
             },
             {
               "id": 4227,
@@ -3905,6 +6461,16 @@ export const torikumiData: TorikumiDataSet = {
               "id": 4230,
               "name": "安青錦",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            },
+            {
+              "id": 4279,
+              "name": "義ノ富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
+            },
+            {
+              "id": 4336,
+              "name": "藤凌駕",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/"
             }
           ]
         },
@@ -3914,7 +6480,148 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十二日目： 令和8年5月21日(木)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 2565,
+              "name": "佐田の海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+            },
+            {
+              "id": 2892,
+              "name": "錦木",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/"
+            },
+            {
+              "id": 3255,
+              "name": "輝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/"
+            },
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3337,
+              "name": "明生",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+            },
+            {
+              "id": 3367,
+              "name": "玉正鳳",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/"
+            },
+            {
+              "id": 3553,
+              "name": "湘南乃海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3818,
+              "name": "友風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 3914,
+              "name": "西ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+            },
+            {
+              "id": 3939,
+              "name": "北の若",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/"
+            },
+            {
+              "id": 3969,
+              "name": "東白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/"
+            },
+            {
+              "id": 3983,
+              "name": "出羽ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/"
+            },
+            {
+              "id": 4095,
+              "name": "日翔志",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4124,
+              "name": "羽出山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+            },
+            {
+              "id": 4158,
+              "name": "風賢央",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/"
+            },
+            {
+              "id": 4164,
+              "name": "白熊",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/"
+            },
+            {
+              "id": 4165,
+              "name": "嘉陽",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/"
+            },
+            {
+              "id": 4171,
+              "name": "尊富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4232,
+              "name": "旭海雄",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+            },
+            {
+              "id": 4243,
+              "name": "寿之富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            },
+            {
+              "id": 4285,
+              "name": "朝翠龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
+            },
+            {
+              "id": 4287,
+              "name": "一意",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
+            }
+          ]
         }
       }
     },
@@ -3935,9 +6642,194 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
+              "id": 2629,
+              "name": "玉鷲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/"
+            },
+            {
+              "id": 2775,
+              "name": "高安",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+            },
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3207,
+              "name": "千代翔馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/"
+            },
+            {
+              "id": 3265,
+              "name": "隆の勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/"
+            },
+            {
+              "id": 3371,
+              "name": "若元春",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/"
+            },
+            {
+              "id": 3376,
+              "name": "大栄翔",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 3521,
+              "name": "正代",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/"
+            },
+            {
+              "id": 3594,
+              "name": "翔猿",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/"
+            },
+            {
+              "id": 3616,
+              "name": "宇良",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/"
+            },
+            {
+              "id": 3620,
+              "name": "御嶽海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/"
+            },
+            {
+              "id": 3622,
+              "name": "霧島",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"
+            },
+            {
+              "id": 3661,
+              "name": "琴櫻",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+            },
+            {
+              "id": 3682,
+              "name": "朝乃山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+            },
+            {
+              "id": 3705,
+              "name": "平戸海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/"
+            },
+            {
+              "id": 3711,
+              "name": "美ノ海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/"
+            },
+            {
+              "id": 3742,
+              "name": "錦富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/"
+            },
+            {
+              "id": 3753,
+              "name": "一山本",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/"
+            },
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3840,
+              "name": "琴勝峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/"
+            },
+            {
               "id": 3842,
               "name": "豊昇龍",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 3844,
+              "name": "王鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/"
+            },
+            {
+              "id": 3907,
+              "name": "狼雅",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/"
+            },
+            {
+              "id": 3933,
+              "name": "時疾風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
+            },
+            {
+              "id": 3990,
+              "name": "獅司",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+            },
+            {
+              "id": 4055,
+              "name": "熱海富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/"
+            },
+            {
+              "id": 4079,
+              "name": "豪ノ山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/"
+            },
+            {
+              "id": 4093,
+              "name": "藤青雲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/"
+            },
+            {
+              "id": 4101,
+              "name": "朝紅龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+            },
+            {
+              "id": 4108,
+              "name": "欧勝馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/"
+            },
+            {
+              "id": 4112,
+              "name": "金峰山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/"
+            },
+            {
+              "id": 4120,
+              "name": "琴栄峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4175,
+              "name": "朝白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4191,
+              "name": "藤ノ川",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"
             },
             {
               "id": 4227,
@@ -3948,6 +6840,16 @@ export const torikumiData: TorikumiDataSet = {
               "id": 4230,
               "name": "安青錦",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            },
+            {
+              "id": 4279,
+              "name": "義ノ富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
+            },
+            {
+              "id": 4336,
+              "name": "藤凌駕",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/"
             }
           ]
         },
@@ -3957,7 +6859,148 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十三日目： 令和8年5月22日(金)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 2565,
+              "name": "佐田の海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+            },
+            {
+              "id": 2892,
+              "name": "錦木",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/"
+            },
+            {
+              "id": 3255,
+              "name": "輝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/"
+            },
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3337,
+              "name": "明生",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+            },
+            {
+              "id": 3367,
+              "name": "玉正鳳",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/"
+            },
+            {
+              "id": 3553,
+              "name": "湘南乃海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3818,
+              "name": "友風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 3914,
+              "name": "西ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+            },
+            {
+              "id": 3939,
+              "name": "北の若",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/"
+            },
+            {
+              "id": 3969,
+              "name": "東白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/"
+            },
+            {
+              "id": 3983,
+              "name": "出羽ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/"
+            },
+            {
+              "id": 4095,
+              "name": "日翔志",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4124,
+              "name": "羽出山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+            },
+            {
+              "id": 4158,
+              "name": "風賢央",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/"
+            },
+            {
+              "id": 4164,
+              "name": "白熊",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/"
+            },
+            {
+              "id": 4165,
+              "name": "嘉陽",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/"
+            },
+            {
+              "id": 4171,
+              "name": "尊富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4232,
+              "name": "旭海雄",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+            },
+            {
+              "id": 4243,
+              "name": "寿之富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            },
+            {
+              "id": 4285,
+              "name": "朝翠龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
+            },
+            {
+              "id": 4287,
+              "name": "一意",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
+            }
+          ]
         }
       }
     },
@@ -3978,9 +7021,194 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
+              "id": 2629,
+              "name": "玉鷲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/"
+            },
+            {
+              "id": 2775,
+              "name": "高安",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+            },
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3207,
+              "name": "千代翔馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/"
+            },
+            {
+              "id": 3265,
+              "name": "隆の勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/"
+            },
+            {
+              "id": 3371,
+              "name": "若元春",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/"
+            },
+            {
+              "id": 3376,
+              "name": "大栄翔",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 3521,
+              "name": "正代",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/"
+            },
+            {
+              "id": 3594,
+              "name": "翔猿",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/"
+            },
+            {
+              "id": 3616,
+              "name": "宇良",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/"
+            },
+            {
+              "id": 3620,
+              "name": "御嶽海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/"
+            },
+            {
+              "id": 3622,
+              "name": "霧島",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"
+            },
+            {
+              "id": 3661,
+              "name": "琴櫻",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+            },
+            {
+              "id": 3682,
+              "name": "朝乃山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+            },
+            {
+              "id": 3705,
+              "name": "平戸海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/"
+            },
+            {
+              "id": 3711,
+              "name": "美ノ海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/"
+            },
+            {
+              "id": 3742,
+              "name": "錦富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/"
+            },
+            {
+              "id": 3753,
+              "name": "一山本",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/"
+            },
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3840,
+              "name": "琴勝峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/"
+            },
+            {
               "id": 3842,
               "name": "豊昇龍",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 3844,
+              "name": "王鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/"
+            },
+            {
+              "id": 3907,
+              "name": "狼雅",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/"
+            },
+            {
+              "id": 3933,
+              "name": "時疾風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
+            },
+            {
+              "id": 3990,
+              "name": "獅司",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+            },
+            {
+              "id": 4055,
+              "name": "熱海富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/"
+            },
+            {
+              "id": 4079,
+              "name": "豪ノ山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/"
+            },
+            {
+              "id": 4093,
+              "name": "藤青雲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/"
+            },
+            {
+              "id": 4101,
+              "name": "朝紅龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+            },
+            {
+              "id": 4108,
+              "name": "欧勝馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/"
+            },
+            {
+              "id": 4112,
+              "name": "金峰山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/"
+            },
+            {
+              "id": 4120,
+              "name": "琴栄峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4175,
+              "name": "朝白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4191,
+              "name": "藤ノ川",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"
             },
             {
               "id": 4227,
@@ -3991,6 +7219,16 @@ export const torikumiData: TorikumiDataSet = {
               "id": 4230,
               "name": "安青錦",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            },
+            {
+              "id": 4279,
+              "name": "義ノ富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
+            },
+            {
+              "id": 4336,
+              "name": "藤凌駕",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/"
             }
           ]
         },
@@ -4000,7 +7238,148 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十四日目： 令和8年5月23日(土)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 2565,
+              "name": "佐田の海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+            },
+            {
+              "id": 2892,
+              "name": "錦木",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/"
+            },
+            {
+              "id": 3255,
+              "name": "輝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/"
+            },
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3337,
+              "name": "明生",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+            },
+            {
+              "id": 3367,
+              "name": "玉正鳳",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/"
+            },
+            {
+              "id": 3553,
+              "name": "湘南乃海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3818,
+              "name": "友風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 3914,
+              "name": "西ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+            },
+            {
+              "id": 3939,
+              "name": "北の若",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/"
+            },
+            {
+              "id": 3969,
+              "name": "東白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/"
+            },
+            {
+              "id": 3983,
+              "name": "出羽ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/"
+            },
+            {
+              "id": 4095,
+              "name": "日翔志",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4124,
+              "name": "羽出山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+            },
+            {
+              "id": 4158,
+              "name": "風賢央",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/"
+            },
+            {
+              "id": 4164,
+              "name": "白熊",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/"
+            },
+            {
+              "id": 4165,
+              "name": "嘉陽",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/"
+            },
+            {
+              "id": 4171,
+              "name": "尊富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4232,
+              "name": "旭海雄",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+            },
+            {
+              "id": 4243,
+              "name": "寿之富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            },
+            {
+              "id": 4285,
+              "name": "朝翠龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
+            },
+            {
+              "id": 4287,
+              "name": "一意",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
+            }
+          ]
         }
       }
     },
@@ -4021,9 +7400,194 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
+              "id": 2629,
+              "name": "玉鷲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/"
+            },
+            {
+              "id": 2775,
+              "name": "高安",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+            },
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3207,
+              "name": "千代翔馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/"
+            },
+            {
+              "id": 3265,
+              "name": "隆の勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/"
+            },
+            {
+              "id": 3371,
+              "name": "若元春",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/"
+            },
+            {
+              "id": 3376,
+              "name": "大栄翔",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 3521,
+              "name": "正代",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/"
+            },
+            {
+              "id": 3594,
+              "name": "翔猿",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/"
+            },
+            {
+              "id": 3616,
+              "name": "宇良",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/"
+            },
+            {
+              "id": 3620,
+              "name": "御嶽海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/"
+            },
+            {
+              "id": 3622,
+              "name": "霧島",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"
+            },
+            {
+              "id": 3661,
+              "name": "琴櫻",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+            },
+            {
+              "id": 3682,
+              "name": "朝乃山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+            },
+            {
+              "id": 3705,
+              "name": "平戸海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/"
+            },
+            {
+              "id": 3711,
+              "name": "美ノ海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/"
+            },
+            {
+              "id": 3742,
+              "name": "錦富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/"
+            },
+            {
+              "id": 3753,
+              "name": "一山本",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/"
+            },
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3840,
+              "name": "琴勝峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/"
+            },
+            {
               "id": 3842,
               "name": "豊昇龍",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 3844,
+              "name": "王鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/"
+            },
+            {
+              "id": 3907,
+              "name": "狼雅",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/"
+            },
+            {
+              "id": 3933,
+              "name": "時疾風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
+            },
+            {
+              "id": 3990,
+              "name": "獅司",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+            },
+            {
+              "id": 4055,
+              "name": "熱海富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/"
+            },
+            {
+              "id": 4079,
+              "name": "豪ノ山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/"
+            },
+            {
+              "id": 4093,
+              "name": "藤青雲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/"
+            },
+            {
+              "id": 4101,
+              "name": "朝紅龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+            },
+            {
+              "id": 4108,
+              "name": "欧勝馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/"
+            },
+            {
+              "id": 4112,
+              "name": "金峰山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/"
+            },
+            {
+              "id": 4120,
+              "name": "琴栄峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4175,
+              "name": "朝白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4191,
+              "name": "藤ノ川",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"
             },
             {
               "id": 4227,
@@ -4034,6 +7598,16 @@ export const torikumiData: TorikumiDataSet = {
               "id": 4230,
               "name": "安青錦",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            },
+            {
+              "id": 4279,
+              "name": "義ノ富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
+            },
+            {
+              "id": 4336,
+              "name": "藤凌駕",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/"
             }
           ]
         },
@@ -4043,7 +7617,148 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "千秋楽： 令和8年5月24日(日)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 2565,
+              "name": "佐田の海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+            },
+            {
+              "id": 2892,
+              "name": "錦木",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/"
+            },
+            {
+              "id": 3255,
+              "name": "輝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/"
+            },
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3337,
+              "name": "明生",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+            },
+            {
+              "id": 3367,
+              "name": "玉正鳳",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/"
+            },
+            {
+              "id": 3553,
+              "name": "湘南乃海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3818,
+              "name": "友風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 3914,
+              "name": "西ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+            },
+            {
+              "id": 3939,
+              "name": "北の若",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/"
+            },
+            {
+              "id": 3969,
+              "name": "東白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/"
+            },
+            {
+              "id": 3983,
+              "name": "出羽ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/"
+            },
+            {
+              "id": 4095,
+              "name": "日翔志",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4124,
+              "name": "羽出山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+            },
+            {
+              "id": 4158,
+              "name": "風賢央",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/"
+            },
+            {
+              "id": 4164,
+              "name": "白熊",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/"
+            },
+            {
+              "id": 4165,
+              "name": "嘉陽",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/"
+            },
+            {
+              "id": 4171,
+              "name": "尊富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4232,
+              "name": "旭海雄",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+            },
+            {
+              "id": 4243,
+              "name": "寿之富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            },
+            {
+              "id": 4285,
+              "name": "朝翠龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
+            },
+            {
+              "id": 4287,
+              "name": "一意",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
+            }
+          ]
         }
       }
     }
@@ -4965,16 +8680,11 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "Fujinokawa",
               "westRank": "前頭筆頭",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/",
-              "kimarite": "不戦",
-              "winner": "west"
+              "kimarite": "未定",
+              "winner": null
             }
           ],
           "absentees": [
-            {
-              "id": 3842,
-              "name": "豊昇龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
-            },
             {
               "id": 4227,
               "name": "大の里",
@@ -5807,7 +9517,13 @@ export const torikumiData: TorikumiDataSet = {
               "winner": null
             }
           ],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            }
+          ]
         }
       }
     },
@@ -6396,7 +10112,13 @@ export const torikumiData: TorikumiDataSet = {
               "winner": null
             }
           ],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            }
+          ]
         }
       }
     },
@@ -6417,9 +10139,194 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
+              "id": 2629,
+              "name": "玉鷲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/"
+            },
+            {
+              "id": 2775,
+              "name": "高安",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+            },
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3207,
+              "name": "千代翔馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/"
+            },
+            {
+              "id": 3265,
+              "name": "隆の勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/"
+            },
+            {
+              "id": 3371,
+              "name": "若元春",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/"
+            },
+            {
+              "id": 3376,
+              "name": "大栄翔",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 3521,
+              "name": "正代",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/"
+            },
+            {
+              "id": 3594,
+              "name": "翔猿",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/"
+            },
+            {
+              "id": 3616,
+              "name": "宇良",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/"
+            },
+            {
+              "id": 3620,
+              "name": "御嶽海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/"
+            },
+            {
+              "id": 3622,
+              "name": "霧島",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"
+            },
+            {
+              "id": 3661,
+              "name": "琴櫻",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+            },
+            {
+              "id": 3682,
+              "name": "朝乃山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+            },
+            {
+              "id": 3705,
+              "name": "平戸海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/"
+            },
+            {
+              "id": 3711,
+              "name": "美ノ海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/"
+            },
+            {
+              "id": 3742,
+              "name": "錦富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/"
+            },
+            {
+              "id": 3753,
+              "name": "一山本",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/"
+            },
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3840,
+              "name": "琴勝峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/"
+            },
+            {
               "id": 3842,
               "name": "豊昇龍",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 3844,
+              "name": "王鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/"
+            },
+            {
+              "id": 3907,
+              "name": "狼雅",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/"
+            },
+            {
+              "id": 3933,
+              "name": "時疾風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
+            },
+            {
+              "id": 3990,
+              "name": "獅司",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+            },
+            {
+              "id": 4055,
+              "name": "熱海富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/"
+            },
+            {
+              "id": 4079,
+              "name": "豪ノ山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/"
+            },
+            {
+              "id": 4093,
+              "name": "藤青雲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/"
+            },
+            {
+              "id": 4101,
+              "name": "朝紅龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+            },
+            {
+              "id": 4108,
+              "name": "欧勝馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/"
+            },
+            {
+              "id": 4112,
+              "name": "金峰山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/"
+            },
+            {
+              "id": 4120,
+              "name": "琴栄峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4175,
+              "name": "朝白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4191,
+              "name": "藤ノ川",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"
             },
             {
               "id": 4227,
@@ -6430,6 +10337,16 @@ export const torikumiData: TorikumiDataSet = {
               "id": 4230,
               "name": "安青錦",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            },
+            {
+              "id": 4279,
+              "name": "義ノ富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
+            },
+            {
+              "id": 4336,
+              "name": "藤凌駕",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/"
             }
           ]
         },
@@ -6439,7 +10356,148 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "五日目： 令和8年5月14日(木)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 2565,
+              "name": "佐田の海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+            },
+            {
+              "id": 2892,
+              "name": "錦木",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/"
+            },
+            {
+              "id": 3255,
+              "name": "輝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/"
+            },
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3337,
+              "name": "明生",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+            },
+            {
+              "id": 3367,
+              "name": "玉正鳳",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/"
+            },
+            {
+              "id": 3553,
+              "name": "湘南乃海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3818,
+              "name": "友風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 3914,
+              "name": "西ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+            },
+            {
+              "id": 3939,
+              "name": "北の若",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/"
+            },
+            {
+              "id": 3969,
+              "name": "東白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/"
+            },
+            {
+              "id": 3983,
+              "name": "出羽ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/"
+            },
+            {
+              "id": 4095,
+              "name": "日翔志",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4124,
+              "name": "羽出山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+            },
+            {
+              "id": 4158,
+              "name": "風賢央",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/"
+            },
+            {
+              "id": 4164,
+              "name": "白熊",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/"
+            },
+            {
+              "id": 4165,
+              "name": "嘉陽",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/"
+            },
+            {
+              "id": 4171,
+              "name": "尊富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4232,
+              "name": "旭海雄",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+            },
+            {
+              "id": 4243,
+              "name": "寿之富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            },
+            {
+              "id": 4285,
+              "name": "朝翠龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
+            },
+            {
+              "id": 4287,
+              "name": "一意",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
+            }
+          ]
         }
       }
     },
@@ -6460,9 +10518,194 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
+              "id": 2629,
+              "name": "玉鷲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/"
+            },
+            {
+              "id": 2775,
+              "name": "高安",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+            },
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3207,
+              "name": "千代翔馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/"
+            },
+            {
+              "id": 3265,
+              "name": "隆の勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/"
+            },
+            {
+              "id": 3371,
+              "name": "若元春",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/"
+            },
+            {
+              "id": 3376,
+              "name": "大栄翔",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 3521,
+              "name": "正代",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/"
+            },
+            {
+              "id": 3594,
+              "name": "翔猿",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/"
+            },
+            {
+              "id": 3616,
+              "name": "宇良",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/"
+            },
+            {
+              "id": 3620,
+              "name": "御嶽海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/"
+            },
+            {
+              "id": 3622,
+              "name": "霧島",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"
+            },
+            {
+              "id": 3661,
+              "name": "琴櫻",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+            },
+            {
+              "id": 3682,
+              "name": "朝乃山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+            },
+            {
+              "id": 3705,
+              "name": "平戸海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/"
+            },
+            {
+              "id": 3711,
+              "name": "美ノ海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/"
+            },
+            {
+              "id": 3742,
+              "name": "錦富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/"
+            },
+            {
+              "id": 3753,
+              "name": "一山本",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/"
+            },
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3840,
+              "name": "琴勝峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/"
+            },
+            {
               "id": 3842,
               "name": "豊昇龍",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 3844,
+              "name": "王鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/"
+            },
+            {
+              "id": 3907,
+              "name": "狼雅",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/"
+            },
+            {
+              "id": 3933,
+              "name": "時疾風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
+            },
+            {
+              "id": 3990,
+              "name": "獅司",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+            },
+            {
+              "id": 4055,
+              "name": "熱海富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/"
+            },
+            {
+              "id": 4079,
+              "name": "豪ノ山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/"
+            },
+            {
+              "id": 4093,
+              "name": "藤青雲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/"
+            },
+            {
+              "id": 4101,
+              "name": "朝紅龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+            },
+            {
+              "id": 4108,
+              "name": "欧勝馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/"
+            },
+            {
+              "id": 4112,
+              "name": "金峰山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/"
+            },
+            {
+              "id": 4120,
+              "name": "琴栄峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4175,
+              "name": "朝白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4191,
+              "name": "藤ノ川",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"
             },
             {
               "id": 4227,
@@ -6473,6 +10716,16 @@ export const torikumiData: TorikumiDataSet = {
               "id": 4230,
               "name": "安青錦",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            },
+            {
+              "id": 4279,
+              "name": "義ノ富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
+            },
+            {
+              "id": 4336,
+              "name": "藤凌駕",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/"
             }
           ]
         },
@@ -6482,7 +10735,148 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "六日目： 令和8年5月15日(金)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 2565,
+              "name": "佐田の海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+            },
+            {
+              "id": 2892,
+              "name": "錦木",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/"
+            },
+            {
+              "id": 3255,
+              "name": "輝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/"
+            },
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3337,
+              "name": "明生",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+            },
+            {
+              "id": 3367,
+              "name": "玉正鳳",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/"
+            },
+            {
+              "id": 3553,
+              "name": "湘南乃海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3818,
+              "name": "友風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 3914,
+              "name": "西ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+            },
+            {
+              "id": 3939,
+              "name": "北の若",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/"
+            },
+            {
+              "id": 3969,
+              "name": "東白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/"
+            },
+            {
+              "id": 3983,
+              "name": "出羽ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/"
+            },
+            {
+              "id": 4095,
+              "name": "日翔志",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4124,
+              "name": "羽出山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+            },
+            {
+              "id": 4158,
+              "name": "風賢央",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/"
+            },
+            {
+              "id": 4164,
+              "name": "白熊",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/"
+            },
+            {
+              "id": 4165,
+              "name": "嘉陽",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/"
+            },
+            {
+              "id": 4171,
+              "name": "尊富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4232,
+              "name": "旭海雄",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+            },
+            {
+              "id": 4243,
+              "name": "寿之富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            },
+            {
+              "id": 4285,
+              "name": "朝翠龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
+            },
+            {
+              "id": 4287,
+              "name": "一意",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
+            }
+          ]
         }
       }
     },
@@ -6503,9 +10897,194 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
+              "id": 2629,
+              "name": "玉鷲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/"
+            },
+            {
+              "id": 2775,
+              "name": "高安",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+            },
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3207,
+              "name": "千代翔馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/"
+            },
+            {
+              "id": 3265,
+              "name": "隆の勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/"
+            },
+            {
+              "id": 3371,
+              "name": "若元春",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/"
+            },
+            {
+              "id": 3376,
+              "name": "大栄翔",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 3521,
+              "name": "正代",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/"
+            },
+            {
+              "id": 3594,
+              "name": "翔猿",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/"
+            },
+            {
+              "id": 3616,
+              "name": "宇良",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/"
+            },
+            {
+              "id": 3620,
+              "name": "御嶽海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/"
+            },
+            {
+              "id": 3622,
+              "name": "霧島",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"
+            },
+            {
+              "id": 3661,
+              "name": "琴櫻",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+            },
+            {
+              "id": 3682,
+              "name": "朝乃山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+            },
+            {
+              "id": 3705,
+              "name": "平戸海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/"
+            },
+            {
+              "id": 3711,
+              "name": "美ノ海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/"
+            },
+            {
+              "id": 3742,
+              "name": "錦富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/"
+            },
+            {
+              "id": 3753,
+              "name": "一山本",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/"
+            },
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3840,
+              "name": "琴勝峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/"
+            },
+            {
               "id": 3842,
               "name": "豊昇龍",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 3844,
+              "name": "王鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/"
+            },
+            {
+              "id": 3907,
+              "name": "狼雅",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/"
+            },
+            {
+              "id": 3933,
+              "name": "時疾風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
+            },
+            {
+              "id": 3990,
+              "name": "獅司",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+            },
+            {
+              "id": 4055,
+              "name": "熱海富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/"
+            },
+            {
+              "id": 4079,
+              "name": "豪ノ山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/"
+            },
+            {
+              "id": 4093,
+              "name": "藤青雲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/"
+            },
+            {
+              "id": 4101,
+              "name": "朝紅龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+            },
+            {
+              "id": 4108,
+              "name": "欧勝馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/"
+            },
+            {
+              "id": 4112,
+              "name": "金峰山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/"
+            },
+            {
+              "id": 4120,
+              "name": "琴栄峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4175,
+              "name": "朝白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4191,
+              "name": "藤ノ川",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"
             },
             {
               "id": 4227,
@@ -6516,6 +11095,16 @@ export const torikumiData: TorikumiDataSet = {
               "id": 4230,
               "name": "安青錦",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            },
+            {
+              "id": 4279,
+              "name": "義ノ富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
+            },
+            {
+              "id": 4336,
+              "name": "藤凌駕",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/"
             }
           ]
         },
@@ -6525,7 +11114,148 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "七日目： 令和8年5月16日(土)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 2565,
+              "name": "佐田の海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+            },
+            {
+              "id": 2892,
+              "name": "錦木",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/"
+            },
+            {
+              "id": 3255,
+              "name": "輝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/"
+            },
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3337,
+              "name": "明生",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+            },
+            {
+              "id": 3367,
+              "name": "玉正鳳",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/"
+            },
+            {
+              "id": 3553,
+              "name": "湘南乃海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3818,
+              "name": "友風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 3914,
+              "name": "西ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+            },
+            {
+              "id": 3939,
+              "name": "北の若",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/"
+            },
+            {
+              "id": 3969,
+              "name": "東白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/"
+            },
+            {
+              "id": 3983,
+              "name": "出羽ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/"
+            },
+            {
+              "id": 4095,
+              "name": "日翔志",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4124,
+              "name": "羽出山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+            },
+            {
+              "id": 4158,
+              "name": "風賢央",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/"
+            },
+            {
+              "id": 4164,
+              "name": "白熊",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/"
+            },
+            {
+              "id": 4165,
+              "name": "嘉陽",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/"
+            },
+            {
+              "id": 4171,
+              "name": "尊富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4232,
+              "name": "旭海雄",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+            },
+            {
+              "id": 4243,
+              "name": "寿之富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            },
+            {
+              "id": 4285,
+              "name": "朝翠龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
+            },
+            {
+              "id": 4287,
+              "name": "一意",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
+            }
+          ]
         }
       }
     },
@@ -6546,9 +11276,194 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
+              "id": 2629,
+              "name": "玉鷲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/"
+            },
+            {
+              "id": 2775,
+              "name": "高安",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+            },
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3207,
+              "name": "千代翔馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/"
+            },
+            {
+              "id": 3265,
+              "name": "隆の勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/"
+            },
+            {
+              "id": 3371,
+              "name": "若元春",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/"
+            },
+            {
+              "id": 3376,
+              "name": "大栄翔",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 3521,
+              "name": "正代",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/"
+            },
+            {
+              "id": 3594,
+              "name": "翔猿",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/"
+            },
+            {
+              "id": 3616,
+              "name": "宇良",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/"
+            },
+            {
+              "id": 3620,
+              "name": "御嶽海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/"
+            },
+            {
+              "id": 3622,
+              "name": "霧島",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"
+            },
+            {
+              "id": 3661,
+              "name": "琴櫻",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+            },
+            {
+              "id": 3682,
+              "name": "朝乃山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+            },
+            {
+              "id": 3705,
+              "name": "平戸海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/"
+            },
+            {
+              "id": 3711,
+              "name": "美ノ海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/"
+            },
+            {
+              "id": 3742,
+              "name": "錦富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/"
+            },
+            {
+              "id": 3753,
+              "name": "一山本",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/"
+            },
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3840,
+              "name": "琴勝峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/"
+            },
+            {
               "id": 3842,
               "name": "豊昇龍",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 3844,
+              "name": "王鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/"
+            },
+            {
+              "id": 3907,
+              "name": "狼雅",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/"
+            },
+            {
+              "id": 3933,
+              "name": "時疾風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
+            },
+            {
+              "id": 3990,
+              "name": "獅司",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+            },
+            {
+              "id": 4055,
+              "name": "熱海富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/"
+            },
+            {
+              "id": 4079,
+              "name": "豪ノ山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/"
+            },
+            {
+              "id": 4093,
+              "name": "藤青雲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/"
+            },
+            {
+              "id": 4101,
+              "name": "朝紅龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+            },
+            {
+              "id": 4108,
+              "name": "欧勝馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/"
+            },
+            {
+              "id": 4112,
+              "name": "金峰山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/"
+            },
+            {
+              "id": 4120,
+              "name": "琴栄峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4175,
+              "name": "朝白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4191,
+              "name": "藤ノ川",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"
             },
             {
               "id": 4227,
@@ -6559,6 +11474,16 @@ export const torikumiData: TorikumiDataSet = {
               "id": 4230,
               "name": "安青錦",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            },
+            {
+              "id": 4279,
+              "name": "義ノ富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
+            },
+            {
+              "id": 4336,
+              "name": "藤凌駕",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/"
             }
           ]
         },
@@ -6568,7 +11493,148 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "中日： 令和8年5月17日(日)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 2565,
+              "name": "佐田の海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+            },
+            {
+              "id": 2892,
+              "name": "錦木",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/"
+            },
+            {
+              "id": 3255,
+              "name": "輝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/"
+            },
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3337,
+              "name": "明生",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+            },
+            {
+              "id": 3367,
+              "name": "玉正鳳",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/"
+            },
+            {
+              "id": 3553,
+              "name": "湘南乃海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3818,
+              "name": "友風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 3914,
+              "name": "西ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+            },
+            {
+              "id": 3939,
+              "name": "北の若",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/"
+            },
+            {
+              "id": 3969,
+              "name": "東白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/"
+            },
+            {
+              "id": 3983,
+              "name": "出羽ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/"
+            },
+            {
+              "id": 4095,
+              "name": "日翔志",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4124,
+              "name": "羽出山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+            },
+            {
+              "id": 4158,
+              "name": "風賢央",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/"
+            },
+            {
+              "id": 4164,
+              "name": "白熊",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/"
+            },
+            {
+              "id": 4165,
+              "name": "嘉陽",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/"
+            },
+            {
+              "id": 4171,
+              "name": "尊富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4232,
+              "name": "旭海雄",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+            },
+            {
+              "id": 4243,
+              "name": "寿之富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            },
+            {
+              "id": 4285,
+              "name": "朝翠龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
+            },
+            {
+              "id": 4287,
+              "name": "一意",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
+            }
+          ]
         }
       }
     },
@@ -6589,9 +11655,194 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
+              "id": 2629,
+              "name": "玉鷲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/"
+            },
+            {
+              "id": 2775,
+              "name": "高安",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+            },
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3207,
+              "name": "千代翔馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/"
+            },
+            {
+              "id": 3265,
+              "name": "隆の勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/"
+            },
+            {
+              "id": 3371,
+              "name": "若元春",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/"
+            },
+            {
+              "id": 3376,
+              "name": "大栄翔",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 3521,
+              "name": "正代",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/"
+            },
+            {
+              "id": 3594,
+              "name": "翔猿",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/"
+            },
+            {
+              "id": 3616,
+              "name": "宇良",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/"
+            },
+            {
+              "id": 3620,
+              "name": "御嶽海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/"
+            },
+            {
+              "id": 3622,
+              "name": "霧島",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"
+            },
+            {
+              "id": 3661,
+              "name": "琴櫻",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+            },
+            {
+              "id": 3682,
+              "name": "朝乃山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+            },
+            {
+              "id": 3705,
+              "name": "平戸海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/"
+            },
+            {
+              "id": 3711,
+              "name": "美ノ海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/"
+            },
+            {
+              "id": 3742,
+              "name": "錦富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/"
+            },
+            {
+              "id": 3753,
+              "name": "一山本",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/"
+            },
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3840,
+              "name": "琴勝峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/"
+            },
+            {
               "id": 3842,
               "name": "豊昇龍",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 3844,
+              "name": "王鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/"
+            },
+            {
+              "id": 3907,
+              "name": "狼雅",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/"
+            },
+            {
+              "id": 3933,
+              "name": "時疾風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
+            },
+            {
+              "id": 3990,
+              "name": "獅司",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+            },
+            {
+              "id": 4055,
+              "name": "熱海富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/"
+            },
+            {
+              "id": 4079,
+              "name": "豪ノ山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/"
+            },
+            {
+              "id": 4093,
+              "name": "藤青雲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/"
+            },
+            {
+              "id": 4101,
+              "name": "朝紅龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+            },
+            {
+              "id": 4108,
+              "name": "欧勝馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/"
+            },
+            {
+              "id": 4112,
+              "name": "金峰山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/"
+            },
+            {
+              "id": 4120,
+              "name": "琴栄峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4175,
+              "name": "朝白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4191,
+              "name": "藤ノ川",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"
             },
             {
               "id": 4227,
@@ -6602,6 +11853,16 @@ export const torikumiData: TorikumiDataSet = {
               "id": 4230,
               "name": "安青錦",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            },
+            {
+              "id": 4279,
+              "name": "義ノ富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
+            },
+            {
+              "id": 4336,
+              "name": "藤凌駕",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/"
             }
           ]
         },
@@ -6611,7 +11872,148 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "九日目： 令和8年5月18日(月)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 2565,
+              "name": "佐田の海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+            },
+            {
+              "id": 2892,
+              "name": "錦木",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/"
+            },
+            {
+              "id": 3255,
+              "name": "輝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/"
+            },
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3337,
+              "name": "明生",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+            },
+            {
+              "id": 3367,
+              "name": "玉正鳳",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/"
+            },
+            {
+              "id": 3553,
+              "name": "湘南乃海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3818,
+              "name": "友風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 3914,
+              "name": "西ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+            },
+            {
+              "id": 3939,
+              "name": "北の若",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/"
+            },
+            {
+              "id": 3969,
+              "name": "東白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/"
+            },
+            {
+              "id": 3983,
+              "name": "出羽ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/"
+            },
+            {
+              "id": 4095,
+              "name": "日翔志",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4124,
+              "name": "羽出山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+            },
+            {
+              "id": 4158,
+              "name": "風賢央",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/"
+            },
+            {
+              "id": 4164,
+              "name": "白熊",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/"
+            },
+            {
+              "id": 4165,
+              "name": "嘉陽",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/"
+            },
+            {
+              "id": 4171,
+              "name": "尊富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4232,
+              "name": "旭海雄",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+            },
+            {
+              "id": 4243,
+              "name": "寿之富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            },
+            {
+              "id": 4285,
+              "name": "朝翠龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
+            },
+            {
+              "id": 4287,
+              "name": "一意",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
+            }
+          ]
         }
       }
     },
@@ -6632,9 +12034,194 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
+              "id": 2629,
+              "name": "玉鷲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/"
+            },
+            {
+              "id": 2775,
+              "name": "高安",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+            },
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3207,
+              "name": "千代翔馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/"
+            },
+            {
+              "id": 3265,
+              "name": "隆の勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/"
+            },
+            {
+              "id": 3371,
+              "name": "若元春",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/"
+            },
+            {
+              "id": 3376,
+              "name": "大栄翔",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 3521,
+              "name": "正代",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/"
+            },
+            {
+              "id": 3594,
+              "name": "翔猿",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/"
+            },
+            {
+              "id": 3616,
+              "name": "宇良",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/"
+            },
+            {
+              "id": 3620,
+              "name": "御嶽海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/"
+            },
+            {
+              "id": 3622,
+              "name": "霧島",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"
+            },
+            {
+              "id": 3661,
+              "name": "琴櫻",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+            },
+            {
+              "id": 3682,
+              "name": "朝乃山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+            },
+            {
+              "id": 3705,
+              "name": "平戸海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/"
+            },
+            {
+              "id": 3711,
+              "name": "美ノ海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/"
+            },
+            {
+              "id": 3742,
+              "name": "錦富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/"
+            },
+            {
+              "id": 3753,
+              "name": "一山本",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/"
+            },
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3840,
+              "name": "琴勝峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/"
+            },
+            {
               "id": 3842,
               "name": "豊昇龍",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 3844,
+              "name": "王鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/"
+            },
+            {
+              "id": 3907,
+              "name": "狼雅",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/"
+            },
+            {
+              "id": 3933,
+              "name": "時疾風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
+            },
+            {
+              "id": 3990,
+              "name": "獅司",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+            },
+            {
+              "id": 4055,
+              "name": "熱海富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/"
+            },
+            {
+              "id": 4079,
+              "name": "豪ノ山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/"
+            },
+            {
+              "id": 4093,
+              "name": "藤青雲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/"
+            },
+            {
+              "id": 4101,
+              "name": "朝紅龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+            },
+            {
+              "id": 4108,
+              "name": "欧勝馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/"
+            },
+            {
+              "id": 4112,
+              "name": "金峰山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/"
+            },
+            {
+              "id": 4120,
+              "name": "琴栄峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4175,
+              "name": "朝白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4191,
+              "name": "藤ノ川",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"
             },
             {
               "id": 4227,
@@ -6645,6 +12232,16 @@ export const torikumiData: TorikumiDataSet = {
               "id": 4230,
               "name": "安青錦",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            },
+            {
+              "id": 4279,
+              "name": "義ノ富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
+            },
+            {
+              "id": 4336,
+              "name": "藤凌駕",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/"
             }
           ]
         },
@@ -6654,7 +12251,148 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十日目： 令和8年5月19日(火)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 2565,
+              "name": "佐田の海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+            },
+            {
+              "id": 2892,
+              "name": "錦木",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/"
+            },
+            {
+              "id": 3255,
+              "name": "輝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/"
+            },
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3337,
+              "name": "明生",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+            },
+            {
+              "id": 3367,
+              "name": "玉正鳳",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/"
+            },
+            {
+              "id": 3553,
+              "name": "湘南乃海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3818,
+              "name": "友風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 3914,
+              "name": "西ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+            },
+            {
+              "id": 3939,
+              "name": "北の若",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/"
+            },
+            {
+              "id": 3969,
+              "name": "東白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/"
+            },
+            {
+              "id": 3983,
+              "name": "出羽ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/"
+            },
+            {
+              "id": 4095,
+              "name": "日翔志",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4124,
+              "name": "羽出山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+            },
+            {
+              "id": 4158,
+              "name": "風賢央",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/"
+            },
+            {
+              "id": 4164,
+              "name": "白熊",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/"
+            },
+            {
+              "id": 4165,
+              "name": "嘉陽",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/"
+            },
+            {
+              "id": 4171,
+              "name": "尊富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4232,
+              "name": "旭海雄",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+            },
+            {
+              "id": 4243,
+              "name": "寿之富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            },
+            {
+              "id": 4285,
+              "name": "朝翠龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
+            },
+            {
+              "id": 4287,
+              "name": "一意",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
+            }
+          ]
         }
       }
     },
@@ -6675,9 +12413,194 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
+              "id": 2629,
+              "name": "玉鷲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/"
+            },
+            {
+              "id": 2775,
+              "name": "高安",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+            },
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3207,
+              "name": "千代翔馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/"
+            },
+            {
+              "id": 3265,
+              "name": "隆の勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/"
+            },
+            {
+              "id": 3371,
+              "name": "若元春",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/"
+            },
+            {
+              "id": 3376,
+              "name": "大栄翔",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 3521,
+              "name": "正代",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/"
+            },
+            {
+              "id": 3594,
+              "name": "翔猿",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/"
+            },
+            {
+              "id": 3616,
+              "name": "宇良",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/"
+            },
+            {
+              "id": 3620,
+              "name": "御嶽海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/"
+            },
+            {
+              "id": 3622,
+              "name": "霧島",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"
+            },
+            {
+              "id": 3661,
+              "name": "琴櫻",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+            },
+            {
+              "id": 3682,
+              "name": "朝乃山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+            },
+            {
+              "id": 3705,
+              "name": "平戸海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/"
+            },
+            {
+              "id": 3711,
+              "name": "美ノ海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/"
+            },
+            {
+              "id": 3742,
+              "name": "錦富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/"
+            },
+            {
+              "id": 3753,
+              "name": "一山本",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/"
+            },
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3840,
+              "name": "琴勝峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/"
+            },
+            {
               "id": 3842,
               "name": "豊昇龍",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 3844,
+              "name": "王鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/"
+            },
+            {
+              "id": 3907,
+              "name": "狼雅",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/"
+            },
+            {
+              "id": 3933,
+              "name": "時疾風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
+            },
+            {
+              "id": 3990,
+              "name": "獅司",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+            },
+            {
+              "id": 4055,
+              "name": "熱海富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/"
+            },
+            {
+              "id": 4079,
+              "name": "豪ノ山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/"
+            },
+            {
+              "id": 4093,
+              "name": "藤青雲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/"
+            },
+            {
+              "id": 4101,
+              "name": "朝紅龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+            },
+            {
+              "id": 4108,
+              "name": "欧勝馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/"
+            },
+            {
+              "id": 4112,
+              "name": "金峰山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/"
+            },
+            {
+              "id": 4120,
+              "name": "琴栄峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4175,
+              "name": "朝白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4191,
+              "name": "藤ノ川",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"
             },
             {
               "id": 4227,
@@ -6688,6 +12611,16 @@ export const torikumiData: TorikumiDataSet = {
               "id": 4230,
               "name": "安青錦",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            },
+            {
+              "id": 4279,
+              "name": "義ノ富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
+            },
+            {
+              "id": 4336,
+              "name": "藤凌駕",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/"
             }
           ]
         },
@@ -6697,7 +12630,148 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十一日目： 令和8年5月20日(水)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 2565,
+              "name": "佐田の海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+            },
+            {
+              "id": 2892,
+              "name": "錦木",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/"
+            },
+            {
+              "id": 3255,
+              "name": "輝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/"
+            },
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3337,
+              "name": "明生",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+            },
+            {
+              "id": 3367,
+              "name": "玉正鳳",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/"
+            },
+            {
+              "id": 3553,
+              "name": "湘南乃海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3818,
+              "name": "友風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 3914,
+              "name": "西ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+            },
+            {
+              "id": 3939,
+              "name": "北の若",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/"
+            },
+            {
+              "id": 3969,
+              "name": "東白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/"
+            },
+            {
+              "id": 3983,
+              "name": "出羽ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/"
+            },
+            {
+              "id": 4095,
+              "name": "日翔志",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4124,
+              "name": "羽出山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+            },
+            {
+              "id": 4158,
+              "name": "風賢央",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/"
+            },
+            {
+              "id": 4164,
+              "name": "白熊",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/"
+            },
+            {
+              "id": 4165,
+              "name": "嘉陽",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/"
+            },
+            {
+              "id": 4171,
+              "name": "尊富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4232,
+              "name": "旭海雄",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+            },
+            {
+              "id": 4243,
+              "name": "寿之富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            },
+            {
+              "id": 4285,
+              "name": "朝翠龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
+            },
+            {
+              "id": 4287,
+              "name": "一意",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
+            }
+          ]
         }
       }
     },
@@ -6718,9 +12792,194 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
+              "id": 2629,
+              "name": "玉鷲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/"
+            },
+            {
+              "id": 2775,
+              "name": "高安",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+            },
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3207,
+              "name": "千代翔馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/"
+            },
+            {
+              "id": 3265,
+              "name": "隆の勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/"
+            },
+            {
+              "id": 3371,
+              "name": "若元春",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/"
+            },
+            {
+              "id": 3376,
+              "name": "大栄翔",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 3521,
+              "name": "正代",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/"
+            },
+            {
+              "id": 3594,
+              "name": "翔猿",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/"
+            },
+            {
+              "id": 3616,
+              "name": "宇良",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/"
+            },
+            {
+              "id": 3620,
+              "name": "御嶽海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/"
+            },
+            {
+              "id": 3622,
+              "name": "霧島",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"
+            },
+            {
+              "id": 3661,
+              "name": "琴櫻",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+            },
+            {
+              "id": 3682,
+              "name": "朝乃山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+            },
+            {
+              "id": 3705,
+              "name": "平戸海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/"
+            },
+            {
+              "id": 3711,
+              "name": "美ノ海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/"
+            },
+            {
+              "id": 3742,
+              "name": "錦富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/"
+            },
+            {
+              "id": 3753,
+              "name": "一山本",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/"
+            },
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3840,
+              "name": "琴勝峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/"
+            },
+            {
               "id": 3842,
               "name": "豊昇龍",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 3844,
+              "name": "王鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/"
+            },
+            {
+              "id": 3907,
+              "name": "狼雅",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/"
+            },
+            {
+              "id": 3933,
+              "name": "時疾風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
+            },
+            {
+              "id": 3990,
+              "name": "獅司",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+            },
+            {
+              "id": 4055,
+              "name": "熱海富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/"
+            },
+            {
+              "id": 4079,
+              "name": "豪ノ山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/"
+            },
+            {
+              "id": 4093,
+              "name": "藤青雲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/"
+            },
+            {
+              "id": 4101,
+              "name": "朝紅龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+            },
+            {
+              "id": 4108,
+              "name": "欧勝馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/"
+            },
+            {
+              "id": 4112,
+              "name": "金峰山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/"
+            },
+            {
+              "id": 4120,
+              "name": "琴栄峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4175,
+              "name": "朝白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4191,
+              "name": "藤ノ川",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"
             },
             {
               "id": 4227,
@@ -6731,6 +12990,16 @@ export const torikumiData: TorikumiDataSet = {
               "id": 4230,
               "name": "安青錦",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            },
+            {
+              "id": 4279,
+              "name": "義ノ富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
+            },
+            {
+              "id": 4336,
+              "name": "藤凌駕",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/"
             }
           ]
         },
@@ -6740,7 +13009,148 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十二日目： 令和8年5月21日(木)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 2565,
+              "name": "佐田の海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+            },
+            {
+              "id": 2892,
+              "name": "錦木",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/"
+            },
+            {
+              "id": 3255,
+              "name": "輝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/"
+            },
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3337,
+              "name": "明生",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+            },
+            {
+              "id": 3367,
+              "name": "玉正鳳",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/"
+            },
+            {
+              "id": 3553,
+              "name": "湘南乃海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3818,
+              "name": "友風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 3914,
+              "name": "西ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+            },
+            {
+              "id": 3939,
+              "name": "北の若",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/"
+            },
+            {
+              "id": 3969,
+              "name": "東白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/"
+            },
+            {
+              "id": 3983,
+              "name": "出羽ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/"
+            },
+            {
+              "id": 4095,
+              "name": "日翔志",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4124,
+              "name": "羽出山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+            },
+            {
+              "id": 4158,
+              "name": "風賢央",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/"
+            },
+            {
+              "id": 4164,
+              "name": "白熊",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/"
+            },
+            {
+              "id": 4165,
+              "name": "嘉陽",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/"
+            },
+            {
+              "id": 4171,
+              "name": "尊富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4232,
+              "name": "旭海雄",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+            },
+            {
+              "id": 4243,
+              "name": "寿之富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            },
+            {
+              "id": 4285,
+              "name": "朝翠龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
+            },
+            {
+              "id": 4287,
+              "name": "一意",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
+            }
+          ]
         }
       }
     },
@@ -6761,9 +13171,194 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
+              "id": 2629,
+              "name": "玉鷲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/"
+            },
+            {
+              "id": 2775,
+              "name": "高安",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+            },
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3207,
+              "name": "千代翔馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/"
+            },
+            {
+              "id": 3265,
+              "name": "隆の勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/"
+            },
+            {
+              "id": 3371,
+              "name": "若元春",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/"
+            },
+            {
+              "id": 3376,
+              "name": "大栄翔",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 3521,
+              "name": "正代",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/"
+            },
+            {
+              "id": 3594,
+              "name": "翔猿",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/"
+            },
+            {
+              "id": 3616,
+              "name": "宇良",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/"
+            },
+            {
+              "id": 3620,
+              "name": "御嶽海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/"
+            },
+            {
+              "id": 3622,
+              "name": "霧島",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"
+            },
+            {
+              "id": 3661,
+              "name": "琴櫻",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+            },
+            {
+              "id": 3682,
+              "name": "朝乃山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+            },
+            {
+              "id": 3705,
+              "name": "平戸海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/"
+            },
+            {
+              "id": 3711,
+              "name": "美ノ海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/"
+            },
+            {
+              "id": 3742,
+              "name": "錦富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/"
+            },
+            {
+              "id": 3753,
+              "name": "一山本",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/"
+            },
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3840,
+              "name": "琴勝峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/"
+            },
+            {
               "id": 3842,
               "name": "豊昇龍",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 3844,
+              "name": "王鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/"
+            },
+            {
+              "id": 3907,
+              "name": "狼雅",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/"
+            },
+            {
+              "id": 3933,
+              "name": "時疾風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
+            },
+            {
+              "id": 3990,
+              "name": "獅司",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+            },
+            {
+              "id": 4055,
+              "name": "熱海富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/"
+            },
+            {
+              "id": 4079,
+              "name": "豪ノ山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/"
+            },
+            {
+              "id": 4093,
+              "name": "藤青雲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/"
+            },
+            {
+              "id": 4101,
+              "name": "朝紅龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+            },
+            {
+              "id": 4108,
+              "name": "欧勝馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/"
+            },
+            {
+              "id": 4112,
+              "name": "金峰山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/"
+            },
+            {
+              "id": 4120,
+              "name": "琴栄峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4175,
+              "name": "朝白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4191,
+              "name": "藤ノ川",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"
             },
             {
               "id": 4227,
@@ -6774,6 +13369,16 @@ export const torikumiData: TorikumiDataSet = {
               "id": 4230,
               "name": "安青錦",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            },
+            {
+              "id": 4279,
+              "name": "義ノ富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
+            },
+            {
+              "id": 4336,
+              "name": "藤凌駕",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/"
             }
           ]
         },
@@ -6783,7 +13388,148 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十三日目： 令和8年5月22日(金)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 2565,
+              "name": "佐田の海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+            },
+            {
+              "id": 2892,
+              "name": "錦木",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/"
+            },
+            {
+              "id": 3255,
+              "name": "輝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/"
+            },
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3337,
+              "name": "明生",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+            },
+            {
+              "id": 3367,
+              "name": "玉正鳳",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/"
+            },
+            {
+              "id": 3553,
+              "name": "湘南乃海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3818,
+              "name": "友風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 3914,
+              "name": "西ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+            },
+            {
+              "id": 3939,
+              "name": "北の若",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/"
+            },
+            {
+              "id": 3969,
+              "name": "東白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/"
+            },
+            {
+              "id": 3983,
+              "name": "出羽ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/"
+            },
+            {
+              "id": 4095,
+              "name": "日翔志",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4124,
+              "name": "羽出山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+            },
+            {
+              "id": 4158,
+              "name": "風賢央",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/"
+            },
+            {
+              "id": 4164,
+              "name": "白熊",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/"
+            },
+            {
+              "id": 4165,
+              "name": "嘉陽",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/"
+            },
+            {
+              "id": 4171,
+              "name": "尊富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4232,
+              "name": "旭海雄",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+            },
+            {
+              "id": 4243,
+              "name": "寿之富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            },
+            {
+              "id": 4285,
+              "name": "朝翠龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
+            },
+            {
+              "id": 4287,
+              "name": "一意",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
+            }
+          ]
         }
       }
     },
@@ -6804,9 +13550,194 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
+              "id": 2629,
+              "name": "玉鷲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/"
+            },
+            {
+              "id": 2775,
+              "name": "高安",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+            },
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3207,
+              "name": "千代翔馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/"
+            },
+            {
+              "id": 3265,
+              "name": "隆の勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/"
+            },
+            {
+              "id": 3371,
+              "name": "若元春",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/"
+            },
+            {
+              "id": 3376,
+              "name": "大栄翔",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 3521,
+              "name": "正代",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/"
+            },
+            {
+              "id": 3594,
+              "name": "翔猿",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/"
+            },
+            {
+              "id": 3616,
+              "name": "宇良",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/"
+            },
+            {
+              "id": 3620,
+              "name": "御嶽海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/"
+            },
+            {
+              "id": 3622,
+              "name": "霧島",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"
+            },
+            {
+              "id": 3661,
+              "name": "琴櫻",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+            },
+            {
+              "id": 3682,
+              "name": "朝乃山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+            },
+            {
+              "id": 3705,
+              "name": "平戸海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/"
+            },
+            {
+              "id": 3711,
+              "name": "美ノ海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/"
+            },
+            {
+              "id": 3742,
+              "name": "錦富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/"
+            },
+            {
+              "id": 3753,
+              "name": "一山本",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/"
+            },
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3840,
+              "name": "琴勝峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/"
+            },
+            {
               "id": 3842,
               "name": "豊昇龍",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 3844,
+              "name": "王鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/"
+            },
+            {
+              "id": 3907,
+              "name": "狼雅",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/"
+            },
+            {
+              "id": 3933,
+              "name": "時疾風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
+            },
+            {
+              "id": 3990,
+              "name": "獅司",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+            },
+            {
+              "id": 4055,
+              "name": "熱海富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/"
+            },
+            {
+              "id": 4079,
+              "name": "豪ノ山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/"
+            },
+            {
+              "id": 4093,
+              "name": "藤青雲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/"
+            },
+            {
+              "id": 4101,
+              "name": "朝紅龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+            },
+            {
+              "id": 4108,
+              "name": "欧勝馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/"
+            },
+            {
+              "id": 4112,
+              "name": "金峰山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/"
+            },
+            {
+              "id": 4120,
+              "name": "琴栄峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4175,
+              "name": "朝白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4191,
+              "name": "藤ノ川",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"
             },
             {
               "id": 4227,
@@ -6817,6 +13748,16 @@ export const torikumiData: TorikumiDataSet = {
               "id": 4230,
               "name": "安青錦",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            },
+            {
+              "id": 4279,
+              "name": "義ノ富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
+            },
+            {
+              "id": 4336,
+              "name": "藤凌駕",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/"
             }
           ]
         },
@@ -6826,7 +13767,148 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十四日目： 令和8年5月23日(土)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 2565,
+              "name": "佐田の海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+            },
+            {
+              "id": 2892,
+              "name": "錦木",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/"
+            },
+            {
+              "id": 3255,
+              "name": "輝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/"
+            },
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3337,
+              "name": "明生",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+            },
+            {
+              "id": 3367,
+              "name": "玉正鳳",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/"
+            },
+            {
+              "id": 3553,
+              "name": "湘南乃海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3818,
+              "name": "友風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 3914,
+              "name": "西ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+            },
+            {
+              "id": 3939,
+              "name": "北の若",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/"
+            },
+            {
+              "id": 3969,
+              "name": "東白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/"
+            },
+            {
+              "id": 3983,
+              "name": "出羽ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/"
+            },
+            {
+              "id": 4095,
+              "name": "日翔志",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4124,
+              "name": "羽出山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+            },
+            {
+              "id": 4158,
+              "name": "風賢央",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/"
+            },
+            {
+              "id": 4164,
+              "name": "白熊",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/"
+            },
+            {
+              "id": 4165,
+              "name": "嘉陽",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/"
+            },
+            {
+              "id": 4171,
+              "name": "尊富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4232,
+              "name": "旭海雄",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+            },
+            {
+              "id": 4243,
+              "name": "寿之富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            },
+            {
+              "id": 4285,
+              "name": "朝翠龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
+            },
+            {
+              "id": 4287,
+              "name": "一意",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
+            }
+          ]
         }
       }
     },
@@ -6847,9 +13929,194 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
+              "id": 2629,
+              "name": "玉鷲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/"
+            },
+            {
+              "id": 2775,
+              "name": "高安",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+            },
+            {
+              "id": 2890,
+              "name": "竜電",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/"
+            },
+            {
+              "id": 3207,
+              "name": "千代翔馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/"
+            },
+            {
+              "id": 3265,
+              "name": "隆の勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/"
+            },
+            {
+              "id": 3371,
+              "name": "若元春",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/"
+            },
+            {
+              "id": 3376,
+              "name": "大栄翔",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/"
+            },
+            {
+              "id": 3485,
+              "name": "阿炎",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/"
+            },
+            {
+              "id": 3521,
+              "name": "正代",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/"
+            },
+            {
+              "id": 3594,
+              "name": "翔猿",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/"
+            },
+            {
+              "id": 3616,
+              "name": "宇良",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/"
+            },
+            {
+              "id": 3620,
+              "name": "御嶽海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/"
+            },
+            {
+              "id": 3622,
+              "name": "霧島",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"
+            },
+            {
+              "id": 3661,
+              "name": "琴櫻",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+            },
+            {
+              "id": 3682,
+              "name": "朝乃山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+            },
+            {
+              "id": 3705,
+              "name": "平戸海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/"
+            },
+            {
+              "id": 3711,
+              "name": "美ノ海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/"
+            },
+            {
+              "id": 3742,
+              "name": "錦富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/"
+            },
+            {
+              "id": 3753,
+              "name": "一山本",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/"
+            },
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3840,
+              "name": "琴勝峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/"
+            },
+            {
               "id": 3842,
               "name": "豊昇龍",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 3844,
+              "name": "王鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/"
+            },
+            {
+              "id": 3907,
+              "name": "狼雅",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/"
+            },
+            {
+              "id": 3933,
+              "name": "時疾風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
+            },
+            {
+              "id": 3990,
+              "name": "獅司",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+            },
+            {
+              "id": 4055,
+              "name": "熱海富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/"
+            },
+            {
+              "id": 4079,
+              "name": "豪ノ山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/"
+            },
+            {
+              "id": 4093,
+              "name": "藤青雲",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/"
+            },
+            {
+              "id": 4101,
+              "name": "朝紅龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+            },
+            {
+              "id": 4108,
+              "name": "欧勝馬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/"
+            },
+            {
+              "id": 4112,
+              "name": "金峰山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/"
+            },
+            {
+              "id": 4120,
+              "name": "琴栄峰",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4175,
+              "name": "朝白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/"
+            },
+            {
+              "id": 4187,
+              "name": "伯乃富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/"
+            },
+            {
+              "id": 4191,
+              "name": "藤ノ川",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"
             },
             {
               "id": 4227,
@@ -6860,6 +14127,16 @@ export const torikumiData: TorikumiDataSet = {
               "id": 4230,
               "name": "安青錦",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            },
+            {
+              "id": 4279,
+              "name": "義ノ富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
+            },
+            {
+              "id": 4336,
+              "name": "藤凌駕",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/"
             }
           ]
         },
@@ -6869,7 +14146,148 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "千秋楽： 令和8年5月24日(日)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 2565,
+              "name": "佐田の海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
+            },
+            {
+              "id": 2892,
+              "name": "錦木",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/"
+            },
+            {
+              "id": 3255,
+              "name": "輝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/"
+            },
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 3337,
+              "name": "明生",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+            },
+            {
+              "id": 3367,
+              "name": "玉正鳳",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/"
+            },
+            {
+              "id": 3553,
+              "name": "湘南乃海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/"
+            },
+            {
+              "id": 3743,
+              "name": "翠富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/"
+            },
+            {
+              "id": 3803,
+              "name": "炎鵬",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/"
+            },
+            {
+              "id": 3818,
+              "name": "友風",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/"
+            },
+            {
+              "id": 3839,
+              "name": "栃大海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/"
+            },
+            {
+              "id": 3914,
+              "name": "西ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/"
+            },
+            {
+              "id": 3939,
+              "name": "北の若",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/"
+            },
+            {
+              "id": 3969,
+              "name": "東白龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/"
+            },
+            {
+              "id": 3983,
+              "name": "出羽ノ龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/"
+            },
+            {
+              "id": 4095,
+              "name": "日翔志",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+            },
+            {
+              "id": 4116,
+              "name": "大青山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
+            },
+            {
+              "id": 4124,
+              "name": "羽出山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+            },
+            {
+              "id": 4158,
+              "name": "風賢央",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/"
+            },
+            {
+              "id": 4164,
+              "name": "白熊",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/"
+            },
+            {
+              "id": 4165,
+              "name": "嘉陽",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/"
+            },
+            {
+              "id": 4171,
+              "name": "尊富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/"
+            },
+            {
+              "id": 4231,
+              "name": "阿武剋",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
+            },
+            {
+              "id": 4232,
+              "name": "旭海雄",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+            },
+            {
+              "id": 4243,
+              "name": "寿之富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            },
+            {
+              "id": 4285,
+              "name": "朝翠龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
+            },
+            {
+              "id": 4287,
+              "name": "一意",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
+            }
+          ]
         }
       }
     }

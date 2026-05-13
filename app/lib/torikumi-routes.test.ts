@@ -33,6 +33,10 @@ describe('torikumi route helpers', () => {
       dateKey: day.pathDate,
       mode: 'schedule',
     });
+    expect(parseTopLevelSlug(`${day.pathDate}-yotei/`)).toEqual({
+      dateKey: day.pathDate,
+      mode: 'schedule',
+    });
   });
 
   it('rejects unsupported slugs', () => {
@@ -42,13 +46,13 @@ describe('torikumi route helpers', () => {
 
   it('builds hub and day paths from archive data', () => {
     const day = torikumiArchive.resultDays[0];
-    expect(getHubPath('result')).toBe(`/${torikumiMonthKey}-torikumi`);
-    expect(getHubPath('schedule')).toBe(`/${torikumiMonthKey}-yotei`);
-    expect(getDayPath(day, 'result')).toBe(`/${day.pathDate}-torikumi`);
+    expect(getHubPath('result')).toBe(`/${torikumiMonthKey}-torikumi/`);
+    expect(getHubPath('schedule')).toBe(`/${torikumiMonthKey}-yotei/`);
+    expect(getDayPath(day, 'result')).toBe(`/${day.pathDate}-torikumi/`);
     expect(getArchiveUpdatedAt('result')).toBe(torikumiArchive.resultUpdatedAt);
     expect(getArchiveUpdatedAt('schedule')).toBe(torikumiArchive.scheduleUpdatedAt);
-    expect(getArchiveUpdateMessage('result')).toContain('5分');
-    expect(getArchiveUpdateMessage('schedule')).toContain('19:00');
+    expect(getArchiveUpdateMessage('result')).toContain('17:00-18:00');
+    expect(getArchiveUpdateMessage('schedule')).toContain('09:00');
     expect(legacyBanzukePath).toBe(`/${torikumiMonthKey}-o-sumo`);
     expect(banzukePath).toBe(`/${torikumiMonthKey}-banduke`);
   });
@@ -117,8 +121,8 @@ describe('torikumi route helpers', () => {
     expect(MARCH2026_TORIKUMI_DATA.resultDays?.[0]?.pathDate.startsWith('202603')).toBe(true);
     expect(marchConfig.monthKey).toBe('202603');
     expect(mayConfig.monthKey).toBe('202605');
-    expect(getHubPathForDateKey('20260322', 'result')).toBe('/202603-torikumi');
-    expect(getHubPathForDateKey('20260524', 'schedule')).toBe('/202605-yotei');
+    expect(getHubPathForDateKey('20260322', 'result')).toBe('/202603-torikumi/');
+    expect(getHubPathForDateKey('20260524', 'schedule')).toBe('/202605-yotei/');
   });
 
   it('detects elapsed archive days from the supplied reference date', () => {

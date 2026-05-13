@@ -2,8 +2,8 @@ name: Daily Sumo Data Update
 
 on:
   schedule:
-    # JST: 19:00 (torikumi schedule refresh for the next day)
-    - cron: '0 19 * * *'
+    # JST: 09:00, 18:00 (torikumi schedule refresh)
+    - cron: '0 9,18 * * *'
       timezone: 'Asia/Tokyo'
   workflow_dispatch:
 
@@ -26,13 +26,13 @@ jobs:
           python-version: '3.11'
 
       - name: Generate data
-        run: python scripts/update_sumo_data.py --torikumi-scope schedule
+        run: python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule
 
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add app/lib/sumo-data.ts app/lib/torikumi-data.ts public/api/v1/banzuke.json public/api/v1/torikumi.json
+          git add app/lib/torikumi-data.ts public/api/v1/torikumi.json
           if ! git diff --staged --quiet; then
             git commit -m "chore: daily sumo data update"
             git push origin HEAD:main
