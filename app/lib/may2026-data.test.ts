@@ -38,7 +38,7 @@ describe('MAY2026_TORIKUMI_DATA', () => {
     }
   });
 
-  it('publishes day 1 and day 2 schedules with the announced Makuuchi and Juryo counts', () => {
+  it('publishes early schedule days with announced Makuuchi and Juryo counts', () => {
     const scheduleDays = MAY2026_TORIKUMI_DATA.scheduleDays ?? [];
     const day1 = scheduleDays[0];
     const day2 = scheduleDays[1];
@@ -62,10 +62,10 @@ describe('MAY2026_TORIKUMI_DATA', () => {
     expect(day2.data.makuuchi.matches[19]).toMatchObject({
       division: '幕内',
       boutNo: 20,
-      kimarite: '不戦',
-      winner: 'west',
+      kimarite: '未定',
+      winner: null,
     });
-    expect(day2.data.makuuchi.absentees?.map((entry) => entry.name)).toEqual(['豊昇龍', '大の里', '安青錦']);
+    expect(day2.data.makuuchi.absentees?.map((entry) => entry.name)).toEqual(['大の里', '安青錦']);
     expect(day2.data.juryo.absentees ?? []).toHaveLength(0);
   });
 
