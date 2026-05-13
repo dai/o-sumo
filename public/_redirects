@@ -1,4 +1,5 @@
 # SPA routing (only for app routes)
+/:slug-torikumi /:slug-torikumi/ 301
 /archives /index.html 200
 /archives/ /index.html 200
 /rikishi /index.html 200

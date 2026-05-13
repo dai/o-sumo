@@ -23,3 +23,7 @@
 - `--torikumi-only` は番付生成を更新しない。番付（星取表）反映が必要な更新では使わない。
 - 結果更新日に番付も同期する場合は `python scripts/update_sumo_data.py --torikumi-scope result --skip-rikishi-fetch` を標準コマンドにする。
 - 更新確認は `torikumi.json` だけでなく `banzuke.json.updatedAt` も必ず見る。片方だけ新しい状態を「更新完了」と判断しない。
+
+## 2026-05-13 三日目結果ページ未更新に見えるケース
+- `*-torikumi` の末尾スラッシュなしURLは、Cloudflare側で `/` へ 308 される場合がある。`_redirects` で `/:slug-torikumi -> /:slug-torikumi/` を明示する。
+- データが更新済みでも、URL正規化が崩れると「結果ページが未更新」に見える。まず `torikumi.json` の day status と URLリダイレクトを分離確認する。
