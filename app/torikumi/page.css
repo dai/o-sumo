@@ -353,6 +353,18 @@
 }
 
 @media (max-width: 860px) {
+  .torikumi-header {
+    padding: 1rem 0.9rem;
+  }
+
+  .torikumi-header h1 {
+    margin-bottom: 0.2rem;
+  }
+
+  .torikumi-header p {
+    margin: 0.2rem 0;
+  }
+
   .day-summary-card,
   .pager-nav,
   .sort-toggle {
