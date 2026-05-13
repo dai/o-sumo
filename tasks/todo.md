@@ -204,3 +204,28 @@
 - 星取表サンプル（豊昇龍）: `wins=0`, `losses=2`, `draws=2`, `results_len=4`（一日目固定ではない）
 - `public/api/v1/torikumi.json`: 結果公開3日目、予定公開4日目を維持
 - `npm test -- --run`: pass（15 files / 63 tests）
+
+---
+
+# 十両筆頭の特例幕内出場で休場誤判定される不具合修正 Todo（2026-05-13）
+
+## Plan
+- [x] `public/api/v1/torikumi.json` で「取組に出場しているのに十両休場者へ載る」再現ケース（大青山）を確認する
+- [x] `scripts/update_sumo_data.py` の休場者算出ロジックを、当日全取組（幕内+十両）での出場有無を考慮する形に修正する
+- [x] `scripts/update_sumo_data_torikumi_logic_test.py` に特例出場ケースの回帰テストを追加する
+- [x] 生成ロジックテストを実行して回帰が消えることを確認する
+- [x] `tasks/todo.md` の Progress/Review を更新する
+
+## Progress
+- `public/api/v1/torikumi.json` を解析し、`resultDays day=4` と `scheduleDays day=4` で `id=4116（大青山）` が「幕内取組に出場中」かつ「十両休場者」に同時出現していることを再現確認。
+- 原因は `derive_absentees()` が「その部門（十両）内の取組出場ID」だけで休場判定していた点。幕内特例出場した十両力士を非出場扱いしていた。
+- `scripts/update_sumo_data.py` に `collect_active_ids_from_day()` を追加し、休場判定時に同日全取組（幕内+十両）の出場IDを参照するよう修正。
+- `scripts/update_sumo_data_torikumi_logic_test.py` に、十両力士が幕内に特例出場した場合は休場リストに入らない回帰テストを追加。
+- `python scripts/update_sumo_data.py --torikumi-only --torikumi-scope all` を実行し、`public/api/v1/torikumi.json` と `app/lib/torikumi-data.ts` を再生成。
+
+## Review
+- `python scripts/update_sumo_data_torikumi_logic_test.py`: pass
+- `python -m pytest -q scripts/update_sumo_data_torikumi_logic_test.py`: fail（`No module named pytest`。環境未導入）
+- 再生成後の整合性確認:
+  - 同日出場IDと休場IDの衝突件数: `0`
+  - `day=4` の十両休場者に `id=4116（大青山）` は含まれない

@@ -491,10 +491,7 @@ def extract_rikishi_id_from_url(url: str) -> int:
     return safe_int(match.group(1), 0)
 
 
-def derive_absentees(division_day: dict, roster: dict[int, dict]) -> list[dict]:
-    if not roster:
-        return []
-
+def collect_active_ids_from_division_day(division_day: dict) -> set[int]:
     active_ids = set()
     for match in division_day.get("matches", []):
         east_id = extract_rikishi_id_from_url(str(match.get("eastProfileUrl", "")))
@@ -503,6 +500,28 @@ def derive_absentees(division_day: dict, roster: dict[int, dict]) -> list[dict]:
             active_ids.add(east_id)
         if west_id:
             active_ids.add(west_id)
+    return active_ids
+
+
+def collect_active_ids_from_day(day_data: dict) -> set[int]:
+    active_ids = set()
+    for division_key in ("makuuchi", "juryo"):
+        division_day = day_data.get(division_key)
+        if isinstance(division_day, dict):
+            active_ids |= collect_active_ids_from_division_day(division_day)
+    return active_ids
+
+
+def derive_absentees(
+    division_day: dict,
+    roster: dict[int, dict],
+    day_active_ids: set[int] | None = None,
+) -> list[dict]:
+    if not roster:
+        return []
+    active_ids = collect_active_ids_from_division_day(division_day)
+    if day_active_ids:
+        active_ids |= day_active_ids
 
     absent_ids = sorted(set(roster.keys()) - active_ids)
     return [roster[rikishi_id] for rikishi_id in absent_ids]
@@ -610,27 +629,38 @@ def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str, exi
         schedule_makuuchi = sanitize_division_day(schedule_makuuchi, 1)
         schedule_juryo = sanitize_division_day(schedule_juryo, 2)
 
+        result_day_data = {
+            "makuuchi": result_makuuchi,
+            "juryo": result_juryo,
+        }
+        schedule_day_data = {
+            "makuuchi": schedule_makuuchi,
+            "juryo": schedule_juryo,
+        }
+        result_day_active_ids = collect_active_ids_from_day(result_day_data)
+        schedule_day_active_ids = collect_active_ids_from_day(schedule_day_data)
+
         # Synchronize dayHead across both divisions using the calculated actual_date.
         canonical_day_head = build_day_head(day, actual_date)
         result_makuuchi = {
             **result_makuuchi,
             "dayHead": canonical_day_head,
-            "absentees": derive_absentees(result_makuuchi, rosters["makuuchi"]),
+            "absentees": derive_absentees(result_makuuchi, rosters["makuuchi"], result_day_active_ids),
         }
         result_juryo = {
             **result_juryo,
             "dayHead": canonical_day_head,
-            "absentees": derive_absentees(result_juryo, rosters["juryo"]),
+            "absentees": derive_absentees(result_juryo, rosters["juryo"], result_day_active_ids),
         }
         schedule_makuuchi = {
             **schedule_makuuchi,
             "dayHead": canonical_day_head,
-            "absentees": derive_absentees(schedule_makuuchi, rosters["makuuchi"]),
+            "absentees": derive_absentees(schedule_makuuchi, rosters["makuuchi"], schedule_day_active_ids),
         }
         schedule_juryo = {
             **schedule_juryo,
             "dayHead": canonical_day_head,
-            "absentees": derive_absentees(schedule_juryo, rosters["juryo"]),
+            "absentees": derive_absentees(schedule_juryo, rosters["juryo"], schedule_day_active_ids),
         }
 
         result_day_data = {

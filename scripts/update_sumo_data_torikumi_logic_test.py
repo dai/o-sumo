@@ -15,6 +15,7 @@ def _load_update_module():
 _module = _load_update_module()
 determine_archive_statuses = _module.determine_archive_statuses
 pick_existing_division_day = _module.pick_existing_division_day
+derive_absentees = _module.derive_absentees
 
 
 def _division(matches: int) -> dict:
@@ -118,10 +119,24 @@ def test_determine_archive_statuses_publishes_settled_results_beyond_today_day()
     assert schedule3 == "published"
 
 
+def test_derive_absentees_excludes_cross_division_special_bout_rikishi() -> None:
+    roster = {
+        4116: {"id": 4116, "name": "大青山", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"},
+        9999: {"id": 9999, "name": "休場力士", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/9999/"},
+    }
+    juryo_day = _division(0)
+    day_active_ids = {4116}
+
+    absentees = derive_absentees(juryo_day, roster, day_active_ids)
+
+    assert [entry["id"] for entry in absentees] == [9999]
+
+
 def main() -> None:
     test_pick_existing_division_day_respects_source_key()
     test_determine_archive_statuses_limits_publication_window()
     test_determine_archive_statuses_publishes_settled_results_beyond_today_day()
+    test_derive_absentees_excludes_cross_division_special_bout_rikishi()
     print("ok: update_sumo_data torikumi logic tests passed")
 
 
