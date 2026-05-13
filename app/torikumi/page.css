@@ -362,8 +362,16 @@
 
   .torikumi-head,
   .torikumi-row {
-    grid-template-columns: minmax(140px, 1fr) 120px minmax(140px, 1fr);
-    min-width: 420px;
+    grid-template-columns: minmax(0, 1fr) 72px minmax(0, 1fr);
+    gap: 0.5rem;
+  }
+
+  .cell {
+    padding: 0.65rem 0.55rem;
+  }
+
+  .kimarite-value {
+    font-size: 0.82rem;
   }
 }
 
