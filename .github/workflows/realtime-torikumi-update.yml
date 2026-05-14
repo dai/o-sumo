@@ -31,8 +31,8 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Generate result and banzuke data
-        run: python scripts/update_sumo_data.py --torikumi-scope result --skip-rikishi-fetch
+      - name: Generate torikumi and banzuke data
+        run: python scripts/update_sumo_data.py --torikumi-scope all --skip-rikishi-fetch
 
       - name: Commit and push changes
         run: |

@@ -1,3 +1,45 @@
+# 六日目取組予定反映（2026-05-14） Todo
+
+## Plan
+- [x] 六日目取組の公開有無を相撲協会APIで確認する
+- [x] 六日目データを`torikumi.json`へ反映する
+- [x] 六日目未公開部門で全員休場が出ないよう休場算出を修正する
+- [x] `typecheck`と`build`で検証する
+
+## Review
+- 六日目(`20260515`)は`status=published`、`makuuchiMatches=19`、`juryoMatches=0`へ更新。
+- 六日目十両は未公開のため`juryoAbsentees=0`（全員休場表示なし）を確認。
+- 五日目結果(`20260514`)は`published`を維持。
+- `npm run typecheck` / `npm run build` はともに成功。
+
+---
+# 五月場所 五日目結果未更新・六日目以降休場化 修正 Todo
+
+## Plan
+- [x] `public/api/v1/torikumi.json`で五日目結果と六日目以降の休場化を再確認する
+- [x] `scripts/update_sumo_data.py`の当日判定と休場算出ロジックを修正する
+- [x] 既存データを正規化して`app/lib/torikumi-data.ts`と`public/api/v1/torikumi.json`へ反映する
+- [x] 自動更新ワークフローを`result`限定から`all`更新へ変更する
+- [x] 番付の星取ステータス整合性を機械検証する
+- [x] `npm run typecheck`と`npm run build`で検証する
+
+## Progress
+- 五日目(`20260514`)の`resultDays`は取組33件が存在するのに`pending/結果未更新`だった。
+- 六日目以降(`20260515`〜`20260524`)は`matches: []`なのに`absentees`が幕内42/十両28で全員休場化していた。
+- `derive_absentees()`にガードを追加し、当日アクティブIDが空の日は休場配列を空にするよう修正。
+- `effective_today_day`算出を、決まり手確定日だけでなく「取組件数がある最新日」も考慮するよう修正。
+- 既存`torikumi.json`を正規化して、取組がある`resultDays`を`published`へ補正し再出力。
+- `.github/workflows/realtime-torikumi-update.yml`の実行コマンドを`--torikumi-scope all`へ変更。
+- 番付星取は70力士すべて整合（不正レコード0件）を確認。
+
+## Review
+- `20260514`の`resultDays`は`published`となり、`statusMessage: null`へ修正済み。
+- `20260515`以降は`matches: []`かつ`absentees: []`で、全員休場表示は解消。
+- 番付星取の検証結果: `invalidRecords=0`、`wins+losses+draws`分布は`3:24名 / 4:46名`。
+- `npm run typecheck`: pass
+- `npm run build`: pass（既存chunk size警告のみ）
+
+---
 # 三月場所取組データ修正 Todo
 
 ## Plan
@@ -229,3 +271,5 @@
 - 再生成後の整合性確認:
   - 同日出場IDと休場IDの衝突件数: `0`
   - `day=4` の十両休場者に `id=4116（大青山）` は含まれない
+
+

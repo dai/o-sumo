@@ -46,14 +46,27 @@ TORIKUMI_SCOPES = ("all", "result", "schedule")
 
 
 def post_json(path: str, payload: dict) -> dict:
+    referer = f"{BASE_URL}/"
+    torikumi_match = re.match(r"^/ResultData/torikumiAjax/(\d+)/(\d+)/$", path)
+    if torikumi_match:
+        kakuzuke_id, day = torikumi_match.groups()
+        referer = f"{BASE_URL}/ResultData/torikumi/{kakuzuke_id}/{day}/"
+    elif path.startswith("/ResultBanzuke/tableAjax/"):
+        referer = f"{BASE_URL}/ResultBanzuke/"
+    elif path.startswith("/ResultData/hoshitoriAjax/"):
+        referer = f"{BASE_URL}/ResultData/hoshitori/"
+
     req = Request(
         f"{BASE_URL}{path}",
         data=urlencode(payload).encode("utf-8"),
         headers={
-            "User-Agent": "Mozilla/5.0",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
             "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
             "Accept": "application/json, text/javascript, */*; q=0.01",
             "X-Requested-With": "XMLHttpRequest",
+            "Origin": BASE_URL,
+            "Referer": referer,
+            "Accept-Language": "ja,en-US;q=0.9,en;q=0.8",
         },
         method="POST",
     )
@@ -519,9 +532,15 @@ def derive_absentees(
 ) -> list[dict]:
     if not roster:
         return []
+    if not list(division_day.get("matches", [])):
+        return []
+    if day_active_ids is not None and len(day_active_ids) == 0:
+        return []
     active_ids = collect_active_ids_from_division_day(division_day)
     if day_active_ids:
         active_ids |= day_active_ids
+    if not active_ids:
+        return []
 
     absent_ids = sorted(set(roster.keys()) - active_ids)
     return [roster[rikishi_id] for rikishi_id in absent_ids]
@@ -592,12 +611,16 @@ def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str, exi
     current_timestamp = current_timestamp_iso()
     today_day = max(1, min(current_day, 15))
     observed_settled_day = 0
+    observed_any_match_day = 0
     for day in range(1, 16):
         loaded_makuuchi = loaded_days[day]["makuuchi"] or {"matches": []}
         loaded_juryo = loaded_days[day]["juryo"] or {"matches": []}
-        if has_settled_matches({"makuuchi": loaded_makuuchi, "juryo": loaded_juryo}):
+        loaded_day_data = {"makuuchi": loaded_makuuchi, "juryo": loaded_juryo}
+        if has_settled_matches(loaded_day_data):
             observed_settled_day = day
-    effective_today_day = max(today_day, observed_settled_day)
+        if has_any_matches(loaded_day_data):
+            observed_any_match_day = day
+    effective_today_day = max(today_day, observed_settled_day, observed_any_match_day)
     tomorrow_day = min(effective_today_day + 1, 15)
     gregorian_year = str(start_date.year)
 
@@ -697,6 +720,37 @@ def load_existing_torikumi_json() -> dict | None:
     if not path.exists():
         return None
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def build_torikumi_meta_fallback(existing: dict) -> dict:
+    result_days = list(existing.get("resultDays", []) or [])
+    schedule_days = list(existing.get("scheduleDays", []) or [])
+
+    month_key = ""
+    if result_days:
+        month_key = str(result_days[0].get("pathDate", ""))[:6]
+    elif schedule_days:
+        month_key = str(schedule_days[0].get("pathDate", ""))[:6]
+    basho_id = safe_int(month_key, 0)
+
+    published_result_days = [
+        safe_int(day.get("day", 0), 0)
+        for day in result_days
+        if str(day.get("status", "")) == "published"
+    ]
+    current_day = max(published_result_days) if published_result_days else 1
+    current_day = max(1, min(current_day, 15))
+
+    updated_at = str(existing.get("updatedAt", "")) or current_timestamp_iso()
+    return {
+        "basho_name": str(existing.get("bashoName", "")),
+        "year_jp": str(existing.get("year", "")),
+        "BashoInfo": {
+            "basho_id": basho_id,
+            "day": current_day,
+            "today": updated_at,
+        },
+    }
 
 
 def apply_torikumi_scope(dataset: dict, scope: str, existing: dict | None = None) -> dict:
@@ -1151,7 +1205,17 @@ def main() -> None:
     elif args.torikumi_only:
         makuuchi = None
         juryo = None
-        makuuchi_meta = load_banzuke_meta(1)
+        try:
+            makuuchi_meta = load_banzuke_meta(1)
+        except Exception as exc:
+            existing_torikumi = load_existing_torikumi_json()
+            if not existing_torikumi:
+                raise
+            print(
+                f"[warn] banzuke metadata fetch failed in torikumi-only mode, using local fallback ({exc})",
+                file=sys.stderr,
+            )
+            makuuchi_meta = build_torikumi_meta_fallback(existing_torikumi)
         basho_name = str(makuuchi_meta.get("basho_name", ""))
         year_jp = str(makuuchi_meta.get("year_jp", ""))
     else:
