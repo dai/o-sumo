@@ -16,6 +16,7 @@ _module = _load_update_module()
 determine_archive_statuses = _module.determine_archive_statuses
 pick_existing_division_day = _module.pick_existing_division_day
 derive_absentees = _module.derive_absentees
+parse_torikumi_match = _module.parse_torikumi_match
 
 
 def _division(matches: int) -> dict:
@@ -124,7 +125,7 @@ def test_derive_absentees_excludes_cross_division_special_bout_rikishi() -> None
         4116: {"id": 4116, "name": "大青山", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"},
         9999: {"id": 9999, "name": "休場力士", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/9999/"},
     }
-    juryo_day = _division(0)
+    juryo_day = _division(1)
     day_active_ids = {4116}
 
     absentees = derive_absentees(juryo_day, roster, day_active_ids)
@@ -132,11 +133,40 @@ def test_derive_absentees_excludes_cross_division_special_bout_rikishi() -> None
     assert [entry["id"] for entry in absentees] == [9999]
 
 
+def test_parse_torikumi_match_accepts_plain_text_shikona() -> None:
+    raw = {
+        "judge": 1,
+        "technic_name": "",
+        "east": {
+            "shikona": "若隆景",
+            "shikona_kana": "",
+            "shikona_eng": "",
+            "banzuke_name": "十両一枚目",
+            "rikishi_id": 1234,
+        },
+        "west": {
+            "shikona": "朝紅龍",
+            "shikona_kana": "",
+            "shikona_eng": "",
+            "banzuke_name": "十両二枚目",
+            "rikishi_id": 5678,
+        },
+    }
+
+    parsed = parse_torikumi_match(raw, "十両", 6)
+
+    assert parsed["eastName"] == "若隆景"
+    assert parsed["westName"] == "朝紅龍"
+    assert parsed["kimarite"] == "未定"
+    assert parsed["winner"] == "east"
+
+
 def main() -> None:
     test_pick_existing_division_day_respects_source_key()
     test_determine_archive_statuses_limits_publication_window()
     test_determine_archive_statuses_publishes_settled_results_beyond_today_day()
     test_derive_absentees_excludes_cross_division_special_bout_rikishi()
+    test_parse_torikumi_match_accepts_plain_text_shikona()
     print("ok: update_sumo_data torikumi logic tests passed")
 
 

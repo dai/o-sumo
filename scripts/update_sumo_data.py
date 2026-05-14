@@ -1,4 +1,5 @@
 import argparse
+import html as html_lib
 import json
 import re
 import sys
@@ -92,6 +93,17 @@ def extract_alt_text(html: str) -> str:
     if match:
         return match.group(1).strip()
     return ""
+
+
+def extract_shikona_text(raw: str) -> str:
+    if not raw:
+        return ""
+    alt = extract_alt_text(raw)
+    if alt:
+        return alt
+    stripped = re.sub(r"<[^>]+>", "", raw)
+    stripped = html_lib.unescape(stripped).replace("\u00a0", " ").replace("&nbsp;", " ")
+    return re.sub(r"\s+", " ", stripped).strip()
 
 
 def split_shikona(full_name: str) -> str:
@@ -321,8 +333,8 @@ def parse_torikumi_match(raw: dict, division: str, bout_no: int) -> dict:
     if kimarite in {"", "&nbsp;"}:
         kimarite = "未定"
 
-    east_name = extract_alt_text(str(east.get("shikona", ""))) or str(east.get("shikona_kana", ""))
-    west_name = extract_alt_text(str(west.get("shikona", ""))) or str(west.get("shikona_kana", ""))
+    east_name = extract_shikona_text(str(east.get("shikona", ""))) or str(east.get("shikona_kana", ""))
+    west_name = extract_shikona_text(str(west.get("shikona", ""))) or str(west.get("shikona_kana", ""))
     if not east_name and not west_name:
         raise ValueError("取組の東西名が欠落")
 
