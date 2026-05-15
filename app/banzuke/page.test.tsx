@@ -75,6 +75,50 @@ describe('BanzukePage', () => {
     expect(photo?.getAttribute('src')?.startsWith('data:image/svg+xml;charset=UTF-8,')).toBe(true);
   });
 
+  it('renders all rikishi rows when a rank has more east rikishi than west rikishi', () => {
+    const rankGroup: RankGroup = {
+      title: '大関',
+      east: [
+        {
+          id: 11,
+          name: '東一',
+          yomi: 'ひがしいち',
+          rank: '大関',
+          side: 'east',
+          profileUrl: 'https://example.com/east1',
+        },
+        {
+          id: 12,
+          name: '東二',
+          yomi: 'ひがしに',
+          rank: '大関',
+          side: 'east',
+          profileUrl: 'https://example.com/east2',
+        },
+      ],
+      west: [
+        {
+          id: 21,
+          name: '西一',
+          yomi: 'にしいち',
+          rank: '大関',
+          side: 'west',
+          profileUrl: 'https://example.com/west1',
+        },
+      ],
+    };
+
+    render(
+      <MemoryRouter>
+        <BanzukeTable rankGroup={rankGroup} />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByRole('link', { name: '東一' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '東二' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '西一' })).toBeInTheDocument();
+  });
+
   it('renders march archive data and links for 202603 route', () => {
     render(
       <MemoryRouter initialEntries={['/202603-banduke']}>
