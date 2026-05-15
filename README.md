@@ -208,6 +208,14 @@ GitHub Actions で日次更新と結果更新を分けています。
   - 変更がある場合は `main` に直接 commit / push
   - 監視: JST 20:30 に監視ジョブを実行し、`resultUpdatedAt` が当日でなければ warning を出力
   - ログ: `github.event.schedule` / JST 現在時刻 / `resultUpdatedAt` / `scheduleUpdatedAt` を必ず出力
+- 週末手動更新: `.github/workflows/weekend-manual-update.yml`
+  - トリガー: `workflow_dispatch`（GitHub アプリから手動実行）
+  - 実行内容: 取組結果 + 取組予定 + 番付を更新（`--torikumi-scope all --skip-rikishi-fetch`）
+  - 実行手順（iPhone）:
+    1. GitHub アプリで `dai/o-sumo` を開く
+    2. `Actions` → `Weekend Manual Torikumi Update` を選択
+    3. `Run workflow` を押して `main` で実行
+    4. 実行ログで `resultUpdatedAt` / `scheduleUpdatedAt` を確認
 
 ## テスト
 

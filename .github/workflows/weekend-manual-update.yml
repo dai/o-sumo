@@ -1,0 +1,51 @@
+name: Weekend Manual Torikumi Update
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: osumo-main-data-refresh
+
+permissions:
+  contents: write
+
+jobs:
+  manual-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Generate torikumi and banzuke data
+        run: python scripts/update_sumo_data.py --torikumi-scope all --skip-rikishi-fetch
+
+      - name: Print run context and torikumi timestamps
+        shell: bash
+        run: |
+          echo "event_name=${{ github.event_name }}"
+          echo "event_schedule=${{ github.event.schedule }}"
+          echo "jst_now=$(TZ=Asia/Tokyo date +'%Y-%m-%dT%H:%M:%S%z')"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          torikumi = json.loads(Path("public/api/v1/torikumi.json").read_text(encoding="utf-8"))
+          print(f"updatedAt={torikumi.get('updatedAt', '')}")
+          print(f"resultUpdatedAt={torikumi.get('resultUpdatedAt', '')}")
+          print(f"scheduleUpdatedAt={torikumi.get('scheduleUpdatedAt', '')}")
+          PY
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/lib/sumo-data.ts app/lib/torikumi-data.ts public/api/v1/banzuke.json public/api/v1/torikumi.json
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: weekend manual torikumi update"
+            git push origin HEAD:main
+          fi

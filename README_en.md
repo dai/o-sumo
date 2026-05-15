@@ -212,6 +212,14 @@ GitHub Actions uses separate daily and results-refresh workflows.
   - commits and pushes directly to `main` when files change
   - monitor: runs a lightweight monitor at JST 20:30 and emits a warning if `resultUpdatedAt` is not the current JST date
   - logs: always prints `github.event.schedule`, current JST time, `resultUpdatedAt`, and `scheduleUpdatedAt`
+- Weekend manual update: `.github/workflows/weekend-manual-update.yml`
+  - trigger: `workflow_dispatch` (manual run from the GitHub mobile app)
+  - updates torikumi results + schedules + banzuke (`--torikumi-scope all --skip-rikishi-fetch`)
+  - iPhone steps:
+    1. Open `dai/o-sumo` in the GitHub app
+    2. Go to `Actions` and select `Weekend Manual Torikumi Update`
+    3. Tap `Run workflow` on branch `main`
+    4. Check run logs for `resultUpdatedAt` and `scheduleUpdatedAt`
 
 ## Testing
 
