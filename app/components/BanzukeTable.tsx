@@ -116,6 +116,7 @@ const RikishiCell = ({ rikishi, resultLinkMap }: { rikishi: Rikishi; resultLinkM
 export default function BanzukeTable({ rankGroup, monthKey }: BanzukeTableProps) {
   const { t } = useTranslation('common');
   const resultLinkMap = useMemo(() => buildResultLinkMap(monthKey), [monthKey]);
+  const rowCount = Math.max(rankGroup.east.length, rankGroup.west.length, 1);
 
   return (
     <div className="rank-section">
@@ -133,14 +134,20 @@ export default function BanzukeTable({ rankGroup, monthKey }: BanzukeTableProps)
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td className="east">
-              {rankGroup.east.length > 0 ? <RikishiCell rikishi={rankGroup.east[0]} resultLinkMap={resultLinkMap} /> : <span className="empty">—</span>}
-            </td>
-            <td className="west">
-              {rankGroup.west.length > 0 ? <RikishiCell rikishi={rankGroup.west[0]} resultLinkMap={resultLinkMap} /> : <span className="empty">—</span>}
-            </td>
-          </tr>
+          {Array.from({ length: rowCount }, (_, index) => {
+            const eastRikishi = rankGroup.east[index];
+            const westRikishi = rankGroup.west[index];
+            return (
+              <tr key={`${rankGroup.title}-${index}`}>
+                <td className="east">
+                  {eastRikishi ? <RikishiCell rikishi={eastRikishi} resultLinkMap={resultLinkMap} /> : <span className="empty">—</span>}
+                </td>
+                <td className="west">
+                  {westRikishi ? <RikishiCell rikishi={westRikishi} resultLinkMap={resultLinkMap} /> : <span className="empty">—</span>}
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
