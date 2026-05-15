@@ -1,3 +1,33 @@
+# Realtime更新欠落の是正（監視追加 + ドキュメント同期）Todo（2026-05-15）
+
+## Plan
+- [x] `realtime-torikumi-update.yml` に JST 19:00 / 20:00 枠を正式化し、JST 20:30 の監視ジョブを追加する
+- [x] Realtime/Daily workflow ログに `event.schedule`・JST 時刻・`resultUpdatedAt`/`scheduleUpdatedAt` を出力する
+- [x] 日次/結果更新の責務分離と切り分け手順を README/DEVELOPMENT/APIポリシーへ同期する
+- [x] YAML 構文・`typecheck`・`build` で検証し、レビューを記録する
+
+## Progress
+- `realtime-torikumi-update.yml`:
+  - schedule に `30 20 * * *`（JST 20:30 監視）を追加。
+  - `update-torikumi` ジョブを `20:30` では実行しない条件へ変更。
+  - `monitor-result-freshness` ジョブを追加し、`https://osada.us/api/v1/torikumi.json` の `resultUpdatedAt` 当日性を判定して warning 出力。
+  - `event.schedule` / JST 現在時刻 / `updatedAt` 系をログ出力する step を追加。
+- `daily-data-update.yml`:
+  - `event.schedule` / JST 現在時刻 / `updatedAt` 系のログ出力 step を追加。
+- ドキュメント同期:
+  - `README.md`, `README_en.md`, `DEVELOPMENT.md`, `DEVELOPMENT_en.md`, `docs/api/policy.md`, `docs/api/policy.en.md` を更新。
+  - 更新時刻、責務分離（Daily=予定のみ / Realtime=結果+予定+番付）、20:30監視、切り分け順（run履歴→runログ→供給元 judge）を明記。
+
+## Review
+- `python`（PyYAML）で workflow 構文を確認:
+  - `ok: .github/workflows/realtime-torikumi-update.yml`
+  - `ok: .github/workflows/daily-data-update.yml`
+- `npm run typecheck`: pass
+- `npm run build`: pass（既存の chunk size 警告のみ）
+- `git diff --check`: pass
+
+---
+
 # 六日目取組予定反映（2026-05-14） Todo
 
 ## Plan

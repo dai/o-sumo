@@ -5,11 +5,20 @@ on:
     # JST: 14:00, 14:30, 15:00, 15:30, 16:00, 16:30
     - cron: '0,30 14-16 * * *'
       timezone: 'Asia/Tokyo'
-    # JST: every 5 minutes between 17:00-17:59
-    - cron: '*/5 17 * * *'
+    # JST: 17:00, 17:30
+    - cron: '0,30 17 * * *'
       timezone: 'Asia/Tokyo'
     # JST: 18:00
     - cron: '0 18 * * *'
+      timezone: 'Asia/Tokyo'
+    # JST: 19:00 (catches day 6+ results published after 18:00)
+    - cron: '0 19 * * *'
+      timezone: 'Asia/Tokyo'
+    # JST: 20:00 (catches late-published day 6 results)
+    - cron: '0 20 * * *'
+      timezone: 'Asia/Tokyo'
+    # JST: 20:30 monitor (warn if resultUpdatedAt is not today)
+    - cron: '30 20 * * *'
       timezone: 'Asia/Tokyo'
   workflow_dispatch:
 
@@ -21,6 +30,7 @@ permissions:
 
 jobs:
   update-torikumi:
+    if: ${{ github.event_name != 'schedule' || github.event.schedule != '30 20 * * *' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -34,6 +44,22 @@ jobs:
       - name: Generate torikumi and banzuke data
         run: python scripts/update_sumo_data.py --torikumi-scope all --skip-rikishi-fetch
 
+      - name: Print run context and torikumi timestamps
+        shell: bash
+        run: |
+          echo "event_name=${{ github.event_name }}"
+          echo "event_schedule=${{ github.event.schedule }}"
+          echo "jst_now=$(TZ=Asia/Tokyo date +'%Y-%m-%dT%H:%M:%S%z')"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          torikumi = json.loads(Path("public/api/v1/torikumi.json").read_text(encoding="utf-8"))
+          print(f"updatedAt={torikumi.get('updatedAt', '')}")
+          print(f"resultUpdatedAt={torikumi.get('resultUpdatedAt', '')}")
+          print(f"scheduleUpdatedAt={torikumi.get('scheduleUpdatedAt', '')}")
+          PY
+
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
@@ -43,3 +69,37 @@ jobs:
             git commit -m "chore: realtime torikumi update"
             git push origin HEAD:main
           fi
+
+  monitor-result-freshness:
+    if: ${{ github.event_name == 'schedule' && github.event.schedule == '30 20 * * *' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print monitor context and check result freshness
+        shell: bash
+        run: |
+          echo "event_name=${{ github.event_name }}"
+          echo "event_schedule=${{ github.event.schedule }}"
+          echo "jst_now=$(TZ=Asia/Tokyo date +'%Y-%m-%dT%H:%M:%S%z')"
+          python - <<'PY'
+          import json
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+          from urllib.request import urlopen
+
+          now_jst = datetime.now(ZoneInfo("Asia/Tokyo"))
+          with urlopen("https://osada.us/api/v1/torikumi.json", timeout=30) as response:
+              payload = json.loads(response.read().decode("utf-8"))
+
+          result_updated_at = str(payload.get("resultUpdatedAt", ""))
+          schedule_updated_at = str(payload.get("scheduleUpdatedAt", ""))
+          print(f"api_resultUpdatedAt={result_updated_at}")
+          print(f"api_scheduleUpdatedAt={schedule_updated_at}")
+
+          result_date = result_updated_at[:10] if result_updated_at else ""
+          today_jst = now_jst.date().isoformat()
+          if result_date != today_jst:
+              print(
+                  "::warning::resultUpdatedAt is not today in JST "
+                  f"(today={today_jst}, resultUpdatedAt={result_updated_at})"
+              )
+          PY

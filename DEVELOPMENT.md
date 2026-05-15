@@ -105,14 +105,16 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 ### データ更新
 
 - Workflow: `.github/workflows/daily-data-update.yml`
-- 実行時刻: JST 19:00
-- 更新対象: 番付 + 取組予定
+- 実行時刻: JST 09:00, 18:00
+- 更新対象: 取組予定のみ（`--torikumi-only --torikumi-scope schedule`）
 - 変更がある場合は `main` ブランチに直接 commit / push
 
 - Workflow: `.github/workflows/realtime-torikumi-update.yml`
-- 実行時刻: 場所期間中は毎日 JST 14, 15, 16, 17, 17:30, 18:00
-- 更新対象: 取組結果のみ
+- 実行時刻: 場所期間中は毎日 JST 14:00, 14:30, 15:00, 15:30, 16:00, 16:30, 17:00, 17:30, 18:00, 19:00, 20:00
+- 更新対象: 取組結果 + 取組予定 + 番付（`--torikumi-scope all --skip-rikishi-fetch`）
 - 変更がある場合は `main` ブランチに直接 commit / push
+- JST 20:30 に監視ジョブを実行し、`resultUpdatedAt` が当日でなければ warning を出力
+- 実行ログへ `github.event.schedule` / JST現在時刻 / `resultUpdatedAt` / `scheduleUpdatedAt` を出力
 
 ### テスト
 
@@ -148,7 +150,9 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 
 ## 運用制約ポリシー（2026年5月場所向け）
 
-- `daily-data-update.yml`（JST 19:00）と `realtime-torikumi-update.yml`（JST 14, 15, 16, 17, 17:30, 18:00）は自動実行する。
+- `daily-data-update.yml`（JST 09:00, 18:00）と `realtime-torikumi-update.yml`（JST 14:00, 14:30, 15:00, 15:30, 16:00, 16:30, 17:00, 17:30, 18:00, 19:00, 20:00）は自動実行する。
+- `realtime-torikumi-update.yml` は JST 20:30 の監視ジョブを持ち、`resultUpdatedAt` が当日でなければ warning を出す。
+- 結果未更新時の確認順は `run履歴` → `runログ（event.schedule, JST, updatedAt系）` → `供給元 judge` とする。
 - 2026年4月27日の番付発表後は、手動で `python scripts/update_sumo_data.py --torikumi-scope schedule` を実行し、五月場所の番付・取組予定・静的 API を同期する。
 - Cloudflare の従量抑制を優先し、`public/_headers` のキャッシュ方針（`/assets/*` 長期 immutable、`manifest` 1時間、`sw.js` 再検証、`/` 5分）を維持する。
 - PWA 更新は `vite-plugin-pwa` の `registerType: "prompt"` を維持し、利用者同意なしの即時更新を避ける。

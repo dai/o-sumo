@@ -28,6 +28,22 @@ jobs:
       - name: Generate data
         run: python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule
 
+      - name: Print run context and torikumi timestamps
+        shell: bash
+        run: |
+          echo "event_name=${{ github.event_name }}"
+          echo "event_schedule=${{ github.event.schedule }}"
+          echo "jst_now=$(TZ=Asia/Tokyo date +'%Y-%m-%dT%H:%M:%S%z')"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          torikumi = json.loads(Path("public/api/v1/torikumi.json").read_text(encoding="utf-8"))
+          print(f"updatedAt={torikumi.get('updatedAt', '')}")
+          print(f"resultUpdatedAt={torikumi.get('resultUpdatedAt', '')}")
+          print(f"scheduleUpdatedAt={torikumi.get('scheduleUpdatedAt', '')}")
+          PY
+
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
