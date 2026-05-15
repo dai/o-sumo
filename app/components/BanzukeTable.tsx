@@ -22,23 +22,36 @@ const profileNameMap = canonicalNameMap;
 
 const Hoshitori = ({ rikishi, resultLinkMap }: { rikishi: Rikishi; resultLinkMap: Map<string, string> }) => {
   const { t } = useTranslation('common');
-  if (!rikishi.results || rikishi.results.length === 0) return null;
+  const results = rikishi.results ?? [];
+  const days = Array.from({ length: 15 }, (_, index) => {
+    const result = results[index];
+    if (result === 'win' || result === 'loss' || result === 'draw') return result;
+    return 'empty';
+  });
 
   return (
     <div className="hoshitori-section">
       <div className="record-label">{t('banzuke.hoshitoriLabel')}</div>
       <div className="hoshitori-container">
-        {rikishi.results.map((result, index) => {
+        {days.map((result, index) => {
           const day = index + 1;
           const href = resultLinkMap.get(`${rikishi.profileUrl}:${day}`);
           const markerLabel = result === 'win'
             ? t('banzuke.win')
             : result === 'loss'
               ? t('banzuke.loss')
-              : t('banzuke.absence');
-          const marker = <span className={`hoshi ${result}`}>{result === 'win' ? '○' : result === 'loss' ? '●' : '−'}</span>;
+              : result === 'draw'
+                ? t('banzuke.absence')
+                : '';
+          const marker = result === 'win'
+            ? <span className="hoshi win">○</span>
+            : result === 'loss'
+              ? <span className="hoshi loss">●</span>
+              : result === 'draw'
+                ? <span className="hoshi draw">−</span>
+                : <span className="hoshi empty">・</span>;
 
-          return href ? (
+          return href && result !== 'empty' ? (
             <Link key={day} to={href} className="hoshi-link" aria-label={`${displayShikona(rikishi, profileNameMap)} ${day}日目の取組結果へ (${markerLabel})`}>
               {marker}
             </Link>

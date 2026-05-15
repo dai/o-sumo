@@ -3580,8 +3580,8 @@ export const torikumiData: TorikumiDataSet = {
       "pathDate": "20260515",
       "label": "六日目",
       "dayHead": "六日目： 令和8年5月15日(金)",
-      "status": "published",
-      "statusMessage": null,
+      "status": "pending",
+      "statusMessage": "結果未更新",
       "data": {
         "makuuchi": {
           "day": 6,

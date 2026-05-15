@@ -2,6 +2,7 @@ import { torikumiArchive, torikumiMonthKey } from './torikumi-data';
 import { MARCH2026_TORIKUMI_DATA } from './march2026-torikumi-data';
 import { getDayPath } from './torikumi-routes';
 import { juryo, makuuchiData, type RankGroup, type Rikishi } from './sumo-data';
+import type { TorikumiArchiveDay } from './torikumi-data';
 
 function allRikishi(groups: RankGroup[]): Rikishi[] {
   return groups.flatMap((group) => [...group.east, ...group.west]);
@@ -21,9 +22,15 @@ function getResultDaysByMonthKey(monthKey: string) {
   return torikumiArchive.resultDays;
 }
 
+function isSettledResultDay(day: TorikumiArchiveDay): boolean {
+  return [day.data.makuuchi, day.data.juryo].some((divisionDay) =>
+    divisionDay.matches.some((match) => Boolean(match.winner)),
+  );
+}
+
 export function buildResultLinkMap(monthKey: string = torikumiMonthKey): Map<string, string> {
   const map = new Map<string, string>();
-  const resultDays = getResultDaysByMonthKey(monthKey);
+  const resultDays = getResultDaysByMonthKey(monthKey).filter(isSettledResultDay);
 
   for (const day of resultDays) {
     for (const divisionDay of [day.data.makuuchi, day.data.juryo]) {
