@@ -200,6 +200,19 @@ def make_schedule_daily_data(day_data: dict) -> dict:
 def build_archive_day(day_data: dict, gregorian_year: str, mode: str, status: str) -> dict:
     iso_date = extract_iso_date(day_data["makuuchi"]["dayHead"], gregorian_year)
     normalized = day_data if mode == "result" else make_schedule_daily_data(day_data)
+    if status != "published":
+        normalized = {
+            "makuuchi": {
+                **normalized["makuuchi"],
+                "matches": [],
+                "absentees": [],
+            },
+            "juryo": {
+                **normalized["juryo"],
+                "matches": [],
+                "absentees": [],
+            },
+        }
     return {
         "day": int(day_data["makuuchi"]["day"]),
         "isoDate": iso_date,
@@ -599,10 +612,7 @@ def determine_archive_statuses(
     schedule_day_data: dict,
 ) -> tuple[str, str]:
     schedule_publish_limit = min(today_day + 1, 15)
-    result_status = "published" if (
-        has_settled_matches(result_day_data)
-        or (day <= today_day and has_any_matches(result_day_data))
-    ) else "pending"
+    result_status = "published" if has_settled_matches(result_day_data) else "pending"
     schedule_status = "published" if (day <= schedule_publish_limit and has_any_matches(schedule_day_data)) else "pending"
     return result_status, schedule_status
 
