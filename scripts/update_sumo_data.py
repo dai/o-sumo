@@ -449,9 +449,29 @@ def build_placeholder_day(day: int, actual_date: date) -> dict:
     }
 
 
-def try_load_torikumi_day(basho_id: int, day: int, kakuzuke_id: int) -> dict | None:
+def try_load_torikumi_day(
+    basho_id: int,
+    day: int,
+    kakuzuke_id: int,
+    *,
+    expected_unpublished: bool = False,
+) -> dict | None:
     try:
         return load_torikumi_day(basho_id, day, kakuzuke_id)
+    except ValueError as exc:
+        message = str(exc)
+        if expected_unpublished and message.startswith("取組データ未公開"):
+            print(
+                f"[info] torikumi not yet published: basho_id={basho_id}, day={day}, "
+                f"division={DIVISION_LABEL[kakuzuke_id]}",
+            )
+            return None
+        print(
+            f"[warn] torikumi fetch failed: basho_id={basho_id}, day={day}, "
+            f"division={DIVISION_LABEL[kakuzuke_id]} ({exc})",
+            file=sys.stderr,
+        )
+        return None
     except Exception as exc:
         print(
             f"[warn] torikumi fetch failed: basho_id={basho_id}, day={day}, "
@@ -624,9 +644,20 @@ def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str, exi
     }
     loaded_days = {}
     for day in range(1, 16):
+        expected_unpublished = day > current_day
         loaded_days[day] = {
-            "makuuchi": try_load_torikumi_day(basho_id, day, 1),
-            "juryo": try_load_torikumi_day(basho_id, day, 2),
+            "makuuchi": try_load_torikumi_day(
+                basho_id,
+                day,
+                1,
+                expected_unpublished=expected_unpublished,
+            ),
+            "juryo": try_load_torikumi_day(
+                basho_id,
+                day,
+                2,
+                expected_unpublished=expected_unpublished,
+            ),
         }
 
     start_date = resolve_basho_start_date(loaded_days, updated_at, current_day)
@@ -797,6 +828,42 @@ def apply_torikumi_scope(dataset: dict, scope: str, existing: dict | None = None
     merged["scheduleUpdatedAt"] = schedule_updated_at
     merged["updatedAt"] = max(result_updated_at, schedule_updated_at)
     return merged
+
+
+TORIKUMI_TIMESTAMP_KEYS = {"updatedAt", "resultUpdatedAt", "scheduleUpdatedAt"}
+
+
+def strip_torikumi_timestamps(value: object) -> object:
+    if isinstance(value, dict):
+        return {
+            key: strip_torikumi_timestamps(inner)
+            for key, inner in value.items()
+            if key not in TORIKUMI_TIMESTAMP_KEYS
+        }
+    if isinstance(value, list):
+        return [strip_torikumi_timestamps(item) for item in value]
+    return value
+
+
+def has_substantive_torikumi_diff(candidate: dict, existing: dict | None) -> bool:
+    if existing is None:
+        return True
+    return strip_torikumi_timestamps(candidate) != strip_torikumi_timestamps(existing)
+
+
+def preserve_torikumi_timestamps_if_unchanged(candidate: dict, existing: dict | None) -> tuple[dict, bool]:
+    if has_substantive_torikumi_diff(candidate, existing):
+        return candidate, True
+
+    assert existing is not None
+    merged = dict(candidate)
+    result_updated_at = str(existing.get("resultUpdatedAt") or existing.get("updatedAt") or merged.get("resultUpdatedAt") or "")
+    schedule_updated_at = str(existing.get("scheduleUpdatedAt") or existing.get("updatedAt") or merged.get("scheduleUpdatedAt") or "")
+    updated_at = str(existing.get("updatedAt") or max(result_updated_at, schedule_updated_at))
+    merged["resultUpdatedAt"] = result_updated_at
+    merged["scheduleUpdatedAt"] = schedule_updated_at
+    merged["updatedAt"] = updated_at
+    return merged, False
 
 
 def write_sumo_data(makuuchi: list[dict], juryo: list[dict]) -> None:
@@ -1282,6 +1349,12 @@ def main() -> None:
             args.torikumi_scope,
             existing_torikumi,
         )
+        torikumi_dataset, torikumi_changed = preserve_torikumi_timestamps_if_unchanged(
+            torikumi_dataset,
+            existing_torikumi,
+        )
+        if not torikumi_changed:
+            print("[info] Torikumi payload unchanged; preserving existing timestamps")
 
         if makuuchi is not None and juryo is not None:
             write_sumo_data(makuuchi, juryo)

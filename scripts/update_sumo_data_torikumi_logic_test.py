@@ -17,6 +17,8 @@ determine_archive_statuses = _module.determine_archive_statuses
 pick_existing_division_day = _module.pick_existing_division_day
 derive_absentees = _module.derive_absentees
 parse_torikumi_match = _module.parse_torikumi_match
+has_substantive_torikumi_diff = _module.has_substantive_torikumi_diff
+preserve_torikumi_timestamps_if_unchanged = _module.preserve_torikumi_timestamps_if_unchanged
 
 
 def _division(matches: int) -> dict:
@@ -43,6 +45,43 @@ def _division(matches: int) -> dict:
                 "winner": None,
             }
             for i in range(matches)
+        ],
+    }
+
+
+def _dataset(updated_at: str, winner: str | None = "east") -> dict:
+    return {
+        "bashoName": "五月場所",
+        "year": "令和八年",
+        "updatedAt": updated_at,
+        "resultUpdatedAt": updated_at,
+        "scheduleUpdatedAt": updated_at,
+        "today": None,
+        "tomorrow": None,
+        "resultDays": [
+            {
+                "day": 1,
+                "pathDate": "20260510",
+                "status": "published",
+                "data": {
+                    "makuuchi": {
+                        **_division(1),
+                        "matches": [{**_division(1)["matches"][0], "winner": winner}],
+                    },
+                    "juryo": _division(0),
+                },
+            }
+        ],
+        "scheduleDays": [
+            {
+                "day": 1,
+                "pathDate": "20260510",
+                "status": "published",
+                "data": {
+                    "makuuchi": _division(1),
+                    "juryo": _division(0),
+                },
+            }
         ],
     }
 
@@ -161,12 +200,33 @@ def test_parse_torikumi_match_accepts_plain_text_shikona() -> None:
     assert parsed["winner"] == "east"
 
 
+def test_has_substantive_torikumi_diff_ignores_timestamp_only_change() -> None:
+    existing = _dataset("2026-05-11T10:00:00+09:00")
+    candidate = _dataset("2026-05-11T10:05:00+09:00")
+
+    assert has_substantive_torikumi_diff(candidate, existing) is False
+
+
+def test_preserve_torikumi_timestamps_if_unchanged_restores_existing_values() -> None:
+    existing = _dataset("2026-05-11T10:00:00+09:00")
+    candidate = _dataset("2026-05-11T10:05:00+09:00")
+
+    merged, changed = preserve_torikumi_timestamps_if_unchanged(candidate, existing)
+
+    assert changed is False
+    assert merged["updatedAt"] == "2026-05-11T10:00:00+09:00"
+    assert merged["resultUpdatedAt"] == "2026-05-11T10:00:00+09:00"
+    assert merged["scheduleUpdatedAt"] == "2026-05-11T10:00:00+09:00"
+
+
 def main() -> None:
     test_pick_existing_division_day_respects_source_key()
     test_determine_archive_statuses_limits_publication_window()
     test_determine_archive_statuses_publishes_settled_results_beyond_today_day()
     test_derive_absentees_excludes_cross_division_special_bout_rikishi()
     test_parse_torikumi_match_accepts_plain_text_shikona()
+    test_has_substantive_torikumi_diff_ignores_timestamp_only_change()
+    test_preserve_torikumi_timestamps_if_unchanged_restores_existing_values()
     print("ok: update_sumo_data torikumi logic tests passed")
 
 

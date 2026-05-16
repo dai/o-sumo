@@ -24,7 +24,8 @@ permissions:
 
 jobs:
   update-torikumi:
-    if: ${{ github.event_name != 'schedule' || github.event.schedule != '30 20 * * *' }}
+    # Exclude monitor slot only (UTC 11:30 = JST 20:30)
+    if: ${{ github.event_name != 'schedule' || github.event.schedule != '30 11 * * *' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -65,7 +66,8 @@ jobs:
           fi
 
   monitor-result-freshness:
-    if: ${{ github.event_name == 'schedule' && github.event.schedule == '30 20 * * *' }}
+    # Monitor slot only (UTC 11:30 = JST 20:30)
+    if: ${{ github.event_name == 'schedule' && github.event.schedule == '30 11 * * *' }}
     runs-on: ubuntu-latest
     steps:
       - name: Print monitor context and check result freshness
@@ -78,11 +80,23 @@ jobs:
           import json
           from datetime import datetime
           from zoneinfo import ZoneInfo
-          from urllib.request import urlopen
+          from urllib.error import HTTPError, URLError
+          from urllib.request import Request, urlopen
 
           now_jst = datetime.now(ZoneInfo("Asia/Tokyo"))
-          with urlopen("https://osada.us/api/v1/torikumi.json", timeout=30) as response:
-              payload = json.loads(response.read().decode("utf-8"))
+          request = Request(
+              "https://osada.us/api/v1/torikumi.json",
+              headers={
+                  "User-Agent": "o-sumo-realtime-monitor/1.0",
+                  "Accept": "application/json",
+              },
+          )
+          try:
+              with urlopen(request, timeout=30) as response:
+                  payload = json.loads(response.read().decode("utf-8"))
+          except (HTTPError, URLError, TimeoutError) as exc:
+              print(f"::warning::torikumi monitor fetch failed ({exc}); skipping freshness check")
+              raise SystemExit(0)
 
           result_updated_at = str(payload.get("resultUpdatedAt", ""))
           schedule_updated_at = str(payload.get("scheduleUpdatedAt", ""))
