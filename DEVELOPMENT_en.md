@@ -123,7 +123,7 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - If results still look stale, triage in this order: run history -> run logs (`event.schedule`, JST time, updatedAt fields) -> upstream `judge` values.
 - After the April 27, 2026 banzuke release, manually run `python scripts/update_sumo_data.py --torikumi-scope schedule` to sync the May banzuke, torikumi schedule placeholders, and static API files.
 - Keep the `public/_headers` cache policy unchanged to control Cloudflare usage.
-- Keep the PWA Service Worker on `registerType: "prompt"` and avoid immediate updates without user confirmation.
+- Keep the PWA Service Worker on `registerType: "autoUpdate"` so updates are applied automatically.
 
 ### Tests
 

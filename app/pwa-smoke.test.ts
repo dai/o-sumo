@@ -2,10 +2,10 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 describe('PWA smoke config', () => {
-  it('keeps prompt-based update strategy and API-only runtime caching', () => {
+  it('keeps auto-update strategy and API-only runtime caching', () => {
     const viteConfig = readFileSync(join(process.cwd(), 'vite.config.ts'), 'utf-8');
 
-    expect(viteConfig).toContain("registerType: 'prompt'");
+    expect(viteConfig).toContain("registerType: 'autoUpdate'");
     expect(viteConfig).toContain("urlPattern: ({ url }) => url.pathname.startsWith('/api/')");
     expect(viteConfig).toContain("handler: 'NetworkFirst'");
     expect(viteConfig).toContain('networkTimeoutSeconds: 3');
