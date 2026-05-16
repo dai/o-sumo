@@ -24,6 +24,7 @@ permissions:
 
 jobs:
   update-torikumi:
+    # Exclude monitor slot only (UTC 11:30 = JST 20:30)
     if: ${{ github.event_name != 'schedule' || github.event.schedule != '30 11 * * *' }}
     runs-on: ubuntu-latest
     steps:
@@ -65,6 +66,7 @@ jobs:
           fi
 
   monitor-result-freshness:
+    # Monitor slot only (UTC 11:30 = JST 20:30)
     if: ${{ github.event_name == 'schedule' && github.event.schedule == '30 11 * * *' }}
     runs-on: ubuntu-latest
     steps:
