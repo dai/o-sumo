@@ -449,9 +449,29 @@ def build_placeholder_day(day: int, actual_date: date) -> dict:
     }
 
 
-def try_load_torikumi_day(basho_id: int, day: int, kakuzuke_id: int) -> dict | None:
+def try_load_torikumi_day(
+    basho_id: int,
+    day: int,
+    kakuzuke_id: int,
+    *,
+    expected_unpublished: bool = False,
+) -> dict | None:
     try:
         return load_torikumi_day(basho_id, day, kakuzuke_id)
+    except ValueError as exc:
+        message = str(exc)
+        if expected_unpublished and message.startswith("取組データ未公開"):
+            print(
+                f"[info] torikumi not yet published: basho_id={basho_id}, day={day}, "
+                f"division={DIVISION_LABEL[kakuzuke_id]}",
+            )
+            return None
+        print(
+            f"[warn] torikumi fetch failed: basho_id={basho_id}, day={day}, "
+            f"division={DIVISION_LABEL[kakuzuke_id]} ({exc})",
+            file=sys.stderr,
+        )
+        return None
     except Exception as exc:
         print(
             f"[warn] torikumi fetch failed: basho_id={basho_id}, day={day}, "
@@ -624,9 +644,20 @@ def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str, exi
     }
     loaded_days = {}
     for day in range(1, 16):
+        expected_unpublished = day > current_day
         loaded_days[day] = {
-            "makuuchi": try_load_torikumi_day(basho_id, day, 1),
-            "juryo": try_load_torikumi_day(basho_id, day, 2),
+            "makuuchi": try_load_torikumi_day(
+                basho_id,
+                day,
+                1,
+                expected_unpublished=expected_unpublished,
+            ),
+            "juryo": try_load_torikumi_day(
+                basho_id,
+                day,
+                2,
+                expected_unpublished=expected_unpublished,
+            ),
         }
 
     start_date = resolve_basho_start_date(loaded_days, updated_at, current_day)
