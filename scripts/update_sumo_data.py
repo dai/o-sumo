@@ -799,6 +799,42 @@ def apply_torikumi_scope(dataset: dict, scope: str, existing: dict | None = None
     return merged
 
 
+TORIKUMI_TIMESTAMP_KEYS = {"updatedAt", "resultUpdatedAt", "scheduleUpdatedAt"}
+
+
+def strip_torikumi_timestamps(value: object) -> object:
+    if isinstance(value, dict):
+        return {
+            key: strip_torikumi_timestamps(inner)
+            for key, inner in value.items()
+            if key not in TORIKUMI_TIMESTAMP_KEYS
+        }
+    if isinstance(value, list):
+        return [strip_torikumi_timestamps(item) for item in value]
+    return value
+
+
+def has_substantive_torikumi_diff(candidate: dict, existing: dict | None) -> bool:
+    if existing is None:
+        return True
+    return strip_torikumi_timestamps(candidate) != strip_torikumi_timestamps(existing)
+
+
+def preserve_torikumi_timestamps_if_unchanged(candidate: dict, existing: dict | None) -> tuple[dict, bool]:
+    if has_substantive_torikumi_diff(candidate, existing):
+        return candidate, True
+
+    assert existing is not None
+    merged = dict(candidate)
+    result_updated_at = str(existing.get("resultUpdatedAt") or existing.get("updatedAt") or merged.get("resultUpdatedAt") or "")
+    schedule_updated_at = str(existing.get("scheduleUpdatedAt") or existing.get("updatedAt") or merged.get("scheduleUpdatedAt") or "")
+    updated_at = str(existing.get("updatedAt") or max(result_updated_at, schedule_updated_at))
+    merged["resultUpdatedAt"] = result_updated_at
+    merged["scheduleUpdatedAt"] = schedule_updated_at
+    merged["updatedAt"] = updated_at
+    return merged, False
+
+
 def write_sumo_data(makuuchi: list[dict], juryo: list[dict]) -> None:
     content = f"""export interface Rikishi {{
   id: number;
@@ -1282,6 +1318,12 @@ def main() -> None:
             args.torikumi_scope,
             existing_torikumi,
         )
+        torikumi_dataset, torikumi_changed = preserve_torikumi_timestamps_if_unchanged(
+            torikumi_dataset,
+            existing_torikumi,
+        )
+        if not torikumi_changed:
+            print("[info] Torikumi payload unchanged; preserving existing timestamps")
 
         if makuuchi is not None and juryo is not None:
             write_sumo_data(makuuchi, juryo)
