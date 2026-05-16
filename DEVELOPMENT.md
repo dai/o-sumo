@@ -155,4 +155,4 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - 結果未更新時の確認順は `run履歴` → `runログ（event.schedule, JST, updatedAt系）` → `供給元 judge` とする。
 - 2026年4月27日の番付発表後は、手動で `python scripts/update_sumo_data.py --torikumi-scope schedule` を実行し、五月場所の番付・取組予定・静的 API を同期する。
 - Cloudflare の従量抑制を優先し、`public/_headers` のキャッシュ方針（`/assets/*` 長期 immutable、`manifest` 1時間、`sw.js` 再検証、`/` 5分）を維持する。
-- PWA 更新は `vite-plugin-pwa` の `registerType: "prompt"` を維持し、利用者同意なしの即時更新を避ける。
+- PWA 更新は `vite-plugin-pwa` の `registerType: "autoUpdate"` を維持し、更新を自動反映する。

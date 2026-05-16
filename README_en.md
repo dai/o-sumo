@@ -248,7 +248,7 @@ GitHub Actions runs the following on pull requests and pushes to `main` and `cod
 - The realtime workflow runs a JST 20:30 monitor and emits a warning when `resultUpdatedAt` is still not updated for the current day.
 - If results still look stale, triage in this order: run history -> run logs (`event.schedule`, JST time, updatedAt fields) -> upstream `judge` values.
 - Keep the cache policy in `public/_headers` unchanged to control Cloudflare usage.
-- Keep the PWA Service Worker on `registerType: "prompt"` so updates are not applied without user confirmation.
+- Keep the PWA Service Worker on `registerType: "autoUpdate"` so updates are applied automatically.
 
 ## Important Files
 
