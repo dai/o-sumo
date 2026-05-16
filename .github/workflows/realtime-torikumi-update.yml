@@ -2,24 +2,18 @@ name: Realtime Torikumi Update
 
 on:
   schedule:
-    # JST: 14:00, 14:30, 15:00, 15:30, 16:00, 16:30
-    - cron: '0,30 14-16 * * *'
-      timezone: 'Asia/Tokyo'
-    # JST: 17:00, 17:30
-    - cron: '0,30 17 * * *'
-      timezone: 'Asia/Tokyo'
-    # JST: 18:00
-    - cron: '0 18 * * *'
-      timezone: 'Asia/Tokyo'
-    # JST: 19:00 (catches day 6+ results published after 18:00)
-    - cron: '0 19 * * *'
-      timezone: 'Asia/Tokyo'
-    # JST: 20:00 (catches late-published day 6 results)
-    - cron: '0 20 * * *'
-      timezone: 'Asia/Tokyo'
-    # JST: 20:30 monitor (warn if resultUpdatedAt is not today)
-    - cron: '30 20 * * *'
-      timezone: 'Asia/Tokyo'
+    # UTC: 05:00, 05:30, 06:00, 06:30, 07:00, 07:30 (= JST: 14:00-16:30)
+    - cron: '0,30 5-7 * * *'
+    # UTC: 08:00, 08:30 (= JST: 17:00, 17:30)
+    - cron: '0,30 8 * * *'
+    # UTC: 09:00 (= JST: 18:00)
+    - cron: '0 9 * * *'
+    # UTC: 10:00 (= JST: 19:00, catches day 6+ results published after 18:00)
+    - cron: '0 10 * * *'
+    # UTC: 11:00 (= JST: 20:00, catches late-published day 6 results)
+    - cron: '0 11 * * *'
+    # UTC: 11:30 (= JST: 20:30 monitor, warn if resultUpdatedAt is not today)
+    - cron: '30 11 * * *'
   workflow_dispatch:
 
 concurrency:
