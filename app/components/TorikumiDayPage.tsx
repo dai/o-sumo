@@ -11,6 +11,7 @@ import {
   getArchiveRouteConfigForDateKey,
   getAdjacentDay,
   getDayPath,
+  isElapsedArchiveDay,
   type TorikumiPageMode,
 } from '../lib/torikumi-routes';
 import HomeLink from './HomeLink';
@@ -63,6 +64,30 @@ function uniqueAbsentees(dayData: { makuuchi: TorikumiDivisionDay; juryo: Toriku
     seen.add(entry.id);
     return true;
   });
+}
+
+function hasAnyMatches(dayData: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay }) {
+  return dayData.makuuchi.matches.length > 0 || dayData.juryo.matches.length > 0;
+}
+
+function getVisibleDayData(
+  day: TorikumiArchiveDay,
+  archive: { scheduleDays?: TorikumiArchiveDay[] },
+  mode: TorikumiPageMode,
+) {
+  if (mode !== 'result' || day.status !== 'pending' || hasAnyMatches(day.data)) {
+    return day.data;
+  }
+  if (isElapsedArchiveDay(day)) {
+    return day.data;
+  }
+
+  const scheduleDay = (archive.scheduleDays ?? []).find((candidate) => candidate.pathDate === day.pathDate);
+  if (!scheduleDay || !hasAnyMatches(scheduleDay.data)) {
+    return day.data;
+  }
+
+  return scheduleDay.data;
 }
 
 function TorikumiTable({
@@ -158,6 +183,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
   const { archive, resultPath, schedulePath, bandukePath } = getArchiveForPath(day.pathDate);
   const prevDay = getAdjacentDay(day, mode, 'prev');
   const nextDay = getAdjacentDay(day, mode, 'next');
+  const visibleDayData = getVisibleDayData(day, archive, mode);
 
   const modeLabel = mode === 'result'
     ? t('torikumi.day.modeResult')
@@ -165,7 +191,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
   const modeDescription = mode === 'result'
     ? t('torikumi.day.modeDescriptionResult')
     : t('torikumi.day.modeDescriptionSchedule');
-  const absentees = mode === 'schedule' ? uniqueAbsentees(day.data) : [];
+  const absentees = mode === 'schedule' ? uniqueAbsentees(visibleDayData) : [];
   const updatedAt = mode === 'result' ? archive.resultUpdatedAt : archive.scheduleUpdatedAt;
 
   return (
@@ -203,7 +229,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
           <SortToggle value={sortOrder} onChange={setSortOrder} label={t('torikumi.day.sortLabel', { mode: modeLabel })} />
         </section>
 
-        <TorikumiTable title={`${day.label}の${modeLabel}`} dayData={day.data} mode={mode} sortOrder={sortOrder} t={t} />
+        <TorikumiTable title={`${day.label}の${modeLabel}`} dayData={visibleDayData} mode={mode} sortOrder={sortOrder} t={t} />
       </main>
 
       <footer className="torikumi-footer">
