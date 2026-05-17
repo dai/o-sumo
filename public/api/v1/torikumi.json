@@ -1,9 +1,9 @@
 {
   "bashoName": "五月場所",
   "year": "令和八年",
-  "updatedAt": "2026-05-17T17:25:09+09:00",
-  "resultUpdatedAt": "2026-05-17T16:57:39+09:00",
-  "scheduleUpdatedAt": "2026-05-17T17:25:09+09:00",
+  "updatedAt": "2026-05-17T18:15:51+09:00",
+  "resultUpdatedAt": "2026-05-17T18:15:51+09:00",
+  "scheduleUpdatedAt": "2026-05-17T18:15:51+09:00",
   "today": {
     "makuuchi": {
       "day": 7,
@@ -10429,7 +10429,38 @@
               "winner": null
             }
           ],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 2775,
+              "name": "高安",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+            },
+            {
+              "id": 3842,
+              "name": "豊昇龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 4101,
+              "name": "朝紅龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 4227,
+              "name": "大の里",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
+            },
+            {
+              "id": 4230,
+              "name": "安青錦",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+            }
+          ]
         },
         "juryo": {
           "day": 9,
@@ -10662,7 +10693,33 @@
               "winner": null
             }
           ],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3337,
+              "name": "明生",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/"
+            },
+            {
+              "id": 4095,
+              "name": "日翔志",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/"
+            },
+            {
+              "id": 4124,
+              "name": "羽出山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/"
+            },
+            {
+              "id": 4243,
+              "name": "寿之富士",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/"
+            },
+            {
+              "id": 4275,
+              "name": "大花竜",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4275/"
+            }
+          ]
         }
       }
     },
