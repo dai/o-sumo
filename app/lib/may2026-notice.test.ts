@@ -30,7 +30,8 @@ describe('May 2026 notice helpers', () => {
     });
 
     expect(params).toEqual({
-      day: 1,
+      resultDay: 1,
+      scheduleDay: 1,
     });
   });
 
@@ -48,7 +49,8 @@ describe('May 2026 notice helpers', () => {
     });
 
     expect(params).toEqual({
-      day: 4,
+      resultDay: 3,
+      scheduleDay: 4,
     });
   });
 });

@@ -39,12 +39,12 @@ const updateSW = registerSW({
 
 function AppShell() {
   const { t } = useTranslation('common')
-  const { day: scheduleDay } = getMay2026NoticeParams(torikumiArchive);
+  const { resultDay, scheduleDay } = getMay2026NoticeParams(torikumiArchive);
 
   return (
     <BrowserRouter>
       <div className="global-notice-banner" role="status" aria-live="polite">
-        {t('global.may2026UpdateNotice', { day: scheduleDay })}
+        {t('global.may2026UpdateNotice', { resultDay, scheduleDay })}
       </div>
       <div className="top-right-controls">
         <ThemeToggle />

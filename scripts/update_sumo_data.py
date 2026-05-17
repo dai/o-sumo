@@ -16,7 +16,12 @@ try:
 except ImportError:
     HTMLParser = None
 
-BASE_URL = "https://www.sumo.or.jp"
+# Official pages are served on https://sumo.or.jp (no www). Some environments
+# block or fail to resolve the www host, so keep requests on the apex domain.
+# We still keep public links pointing at the historical www host to avoid
+# churn in generated data unless we intentionally regenerate everything.
+REQUEST_BASE_URL = "https://sumo.or.jp"
+SITE_BASE_URL = "https://www.sumo.or.jp"
 SUMO_OUTPUT = Path("app/lib/sumo-data.ts")
 TORIKUMI_OUTPUT = Path("app/lib/torikumi-data.ts")
 API_DIR = Path("public/api/v1")
@@ -47,25 +52,25 @@ TORIKUMI_SCOPES = ("all", "result", "schedule")
 
 
 def post_json(path: str, payload: dict) -> dict:
-    referer = f"{BASE_URL}/"
+    referer = f"{REQUEST_BASE_URL}/"
     torikumi_match = re.match(r"^/ResultData/torikumiAjax/(\d+)/(\d+)/$", path)
     if torikumi_match:
         kakuzuke_id, day = torikumi_match.groups()
-        referer = f"{BASE_URL}/ResultData/torikumi/{kakuzuke_id}/{day}/"
+        referer = f"{REQUEST_BASE_URL}/ResultData/torikumi/{kakuzuke_id}/{day}/"
     elif path.startswith("/ResultBanzuke/tableAjax/"):
-        referer = f"{BASE_URL}/ResultBanzuke/"
+        referer = f"{REQUEST_BASE_URL}/ResultBanzuke/"
     elif path.startswith("/ResultData/hoshitoriAjax/"):
-        referer = f"{BASE_URL}/ResultData/hoshitori/"
+        referer = f"{REQUEST_BASE_URL}/ResultData/hoshitori/"
 
     req = Request(
-        f"{BASE_URL}{path}",
+        f"{REQUEST_BASE_URL}{path}",
         data=urlencode(payload).encode("utf-8"),
         headers={
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
             "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
             "Accept": "application/json, text/javascript, */*; q=0.01",
             "X-Requested-With": "XMLHttpRequest",
-            "Origin": BASE_URL,
+            "Origin": REQUEST_BASE_URL,
             "Referer": referer,
             "Accept-Language": "ja,en-US;q=0.9,en;q=0.8",
         },
@@ -296,7 +301,7 @@ def build_rank_groups(kakuzuke_id: int) -> tuple[list[dict], dict]:
         result_record = side_torikumi.get(str(rikishi_id), {})
         marks = make_result_marks(result_record)
         title = rank_title(int(entry["rank"]), int(entry["number"]))
-        profile_url = f"{BASE_URL}/ResultRikishiData/profile/{rikishi_id}/"
+        profile_url = f"{SITE_BASE_URL}/ResultRikishiData/profile/{rikishi_id}/"
 
         rikishi = {
             "id": rikishi_id,
@@ -362,12 +367,12 @@ def parse_torikumi_match(raw: dict, division: str, bout_no: int) -> dict:
         "eastYomi": str(east.get("shikona_kana", "")),
         "eastEnglish": str(east.get("shikona_eng", "")),
         "eastRank": str(east.get("banzuke_name", "")),
-        "eastProfileUrl": f"{BASE_URL}/ResultRikishiData/profile/{east_id}/" if east_id else "",
+        "eastProfileUrl": f"{SITE_BASE_URL}/ResultRikishiData/profile/{east_id}/" if east_id else "",
         "westName": west_name,
         "westYomi": str(west.get("shikona_kana", "")),
         "westEnglish": str(west.get("shikona_eng", "")),
         "westRank": str(west.get("banzuke_name", "")),
-        "westProfileUrl": f"{BASE_URL}/ResultRikishiData/profile/{west_id}/" if west_id else "",
+        "westProfileUrl": f"{SITE_BASE_URL}/ResultRikishiData/profile/{west_id}/" if west_id else "",
         "kimarite": kimarite,
         "winner": winner,
     }
@@ -537,7 +542,7 @@ def load_division_rikishi(kakuzuke_id: int) -> dict[int, dict]:
         rikishi_map[rikishi_id] = {
             "id": rikishi_id,
             "name": split_shikona(str(item.get("shikona", ""))),
-            "profileUrl": f"{BASE_URL}/ResultRikishiData/profile/{rikishi_id}/",
+            "profileUrl": f"{SITE_BASE_URL}/ResultRikishiData/profile/{rikishi_id}/",
         }
     return rikishi_map
 
@@ -575,9 +580,12 @@ def derive_absentees(
     roster: dict[int, dict],
     day_active_ids: set[int] | None = None,
 ) -> list[dict]:
-    if not roster:
-        return []
     if not list(division_day.get("matches", [])):
+        return []
+    if not roster:
+        existing = division_day.get("absentees")
+        if isinstance(existing, list):
+            return existing
         return []
     if day_active_ids is not None and len(day_active_ids) == 0:
         return []
@@ -674,13 +682,10 @@ def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str, exi
         if has_any_matches(loaded_day_data):
             observed_any_match_day = day
     effective_today_day = max(today_day, observed_settled_day, observed_any_match_day)
-    tomorrow_day = min(effective_today_day + 1, 15)
     gregorian_year = str(start_date.year)
 
     result_days = []
     schedule_days = []
-    today_data = None
-    tomorrow_data = None
 
     for day in range(1, 16):
         actual_date = start_date + timedelta(days=day - 1)
@@ -752,10 +757,21 @@ def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str, exi
         result_days.append(build_archive_day(result_day_data, gregorian_year, "result", result_status))
         schedule_days.append(build_archive_day(schedule_day_data, gregorian_year, "schedule", schedule_status))
 
-        if day == effective_today_day:
-            today_data = result_day_data
-        if day == tomorrow_day:
-            tomorrow_data = schedule_day_data
+    latest_result_day = max(
+        (safe_int(day.get("day", 0), 0) for day in result_days if str(day.get("status", "")) == "published"),
+        default=1,
+    )
+    latest_result_day = max(1, min(latest_result_day, 15))
+    latest_schedule_day = max(
+        (safe_int(day.get("day", 0), 0) for day in schedule_days if str(day.get("status", "")) == "published"),
+        default=1,
+    )
+    latest_schedule_day = max(1, min(latest_schedule_day, 15))
+    effective_schedule_day = min(latest_schedule_day, latest_result_day + 1)
+    effective_schedule_day = max(1, min(effective_schedule_day, 15))
+
+    today_data = next((day["data"] for day in result_days if int(day.get("day", 0)) == latest_result_day), None)
+    tomorrow_data = next((day["data"] for day in schedule_days if int(day.get("day", 0)) == effective_schedule_day), None)
 
     return {
         "updatedAt": current_timestamp,
@@ -786,15 +802,28 @@ def build_torikumi_meta_fallback(existing: dict) -> dict:
         month_key = str(schedule_days[0].get("pathDate", ""))[:6]
     basho_id = safe_int(month_key, 0)
 
-    published_result_days = [
-        safe_int(day.get("day", 0), 0)
-        for day in result_days
-        if str(day.get("status", "")) == "published"
-    ]
-    current_day = max(published_result_days) if published_result_days else 1
-    current_day = max(1, min(current_day, 15))
-
     updated_at = str(existing.get("updatedAt", "")) or current_timestamp_iso()
+    current_day = 1
+    try:
+        updated_date = extract_iso_date_part(updated_at)
+    except Exception:
+        updated_date = ""
+
+    if updated_date:
+        for archive_day in result_days or schedule_days:
+            if str(archive_day.get("isoDate", "")) == updated_date:
+                current_day = safe_int(archive_day.get("day", 0), current_day)
+                break
+
+    if current_day <= 0:
+        published_result_days = [
+            safe_int(day.get("day", 0), 0)
+            for day in result_days
+            if str(day.get("status", "")) == "published"
+        ]
+        current_day = max(published_result_days) if published_result_days else 1
+
+    current_day = max(1, min(current_day, 15))
     return {
         "basho_name": str(existing.get("bashoName", "")),
         "year_jp": str(existing.get("year", "")),
@@ -1103,7 +1132,7 @@ class ProfileParser(HTMLParser):
 
 def fetch_profile_html(rikishi_id: int) -> str | None:
     """Fetch profile page HTML from sumo.or.jp"""
-    url = f"{BASE_URL}/ResultRikishiData/profile/{rikishi_id}/"
+    url = f"{REQUEST_BASE_URL}/ResultRikishiData/profile/{rikishi_id}/"
     req = Request(
         url,
         headers={
