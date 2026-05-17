@@ -16,7 +16,12 @@ try:
 except ImportError:
     HTMLParser = None
 
-BASE_URL = "https://www.sumo.or.jp"
+# Official pages are served on https://sumo.or.jp (no www). Some environments
+# block or fail to resolve the www host, so keep requests on the apex domain.
+# We still keep public links pointing at the historical www host to avoid
+# churn in generated data unless we intentionally regenerate everything.
+REQUEST_BASE_URL = "https://sumo.or.jp"
+SITE_BASE_URL = "https://www.sumo.or.jp"
 SUMO_OUTPUT = Path("app/lib/sumo-data.ts")
 TORIKUMI_OUTPUT = Path("app/lib/torikumi-data.ts")
 API_DIR = Path("public/api/v1")
@@ -47,25 +52,25 @@ TORIKUMI_SCOPES = ("all", "result", "schedule")
 
 
 def post_json(path: str, payload: dict) -> dict:
-    referer = f"{BASE_URL}/"
+    referer = f"{REQUEST_BASE_URL}/"
     torikumi_match = re.match(r"^/ResultData/torikumiAjax/(\d+)/(\d+)/$", path)
     if torikumi_match:
         kakuzuke_id, day = torikumi_match.groups()
-        referer = f"{BASE_URL}/ResultData/torikumi/{kakuzuke_id}/{day}/"
+        referer = f"{REQUEST_BASE_URL}/ResultData/torikumi/{kakuzuke_id}/{day}/"
     elif path.startswith("/ResultBanzuke/tableAjax/"):
-        referer = f"{BASE_URL}/ResultBanzuke/"
+        referer = f"{REQUEST_BASE_URL}/ResultBanzuke/"
     elif path.startswith("/ResultData/hoshitoriAjax/"):
-        referer = f"{BASE_URL}/ResultData/hoshitori/"
+        referer = f"{REQUEST_BASE_URL}/ResultData/hoshitori/"
 
     req = Request(
-        f"{BASE_URL}{path}",
+        f"{REQUEST_BASE_URL}{path}",
         data=urlencode(payload).encode("utf-8"),
         headers={
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
             "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
             "Accept": "application/json, text/javascript, */*; q=0.01",
             "X-Requested-With": "XMLHttpRequest",
-            "Origin": BASE_URL,
+            "Origin": REQUEST_BASE_URL,
             "Referer": referer,
             "Accept-Language": "ja,en-US;q=0.9,en;q=0.8",
         },
@@ -296,7 +301,7 @@ def build_rank_groups(kakuzuke_id: int) -> tuple[list[dict], dict]:
         result_record = side_torikumi.get(str(rikishi_id), {})
         marks = make_result_marks(result_record)
         title = rank_title(int(entry["rank"]), int(entry["number"]))
-        profile_url = f"{BASE_URL}/ResultRikishiData/profile/{rikishi_id}/"
+        profile_url = f"{SITE_BASE_URL}/ResultRikishiData/profile/{rikishi_id}/"
 
         rikishi = {
             "id": rikishi_id,
@@ -362,12 +367,12 @@ def parse_torikumi_match(raw: dict, division: str, bout_no: int) -> dict:
         "eastYomi": str(east.get("shikona_kana", "")),
         "eastEnglish": str(east.get("shikona_eng", "")),
         "eastRank": str(east.get("banzuke_name", "")),
-        "eastProfileUrl": f"{BASE_URL}/ResultRikishiData/profile/{east_id}/" if east_id else "",
+        "eastProfileUrl": f"{SITE_BASE_URL}/ResultRikishiData/profile/{east_id}/" if east_id else "",
         "westName": west_name,
         "westYomi": str(west.get("shikona_kana", "")),
         "westEnglish": str(west.get("shikona_eng", "")),
         "westRank": str(west.get("banzuke_name", "")),
-        "westProfileUrl": f"{BASE_URL}/ResultRikishiData/profile/{west_id}/" if west_id else "",
+        "westProfileUrl": f"{SITE_BASE_URL}/ResultRikishiData/profile/{west_id}/" if west_id else "",
         "kimarite": kimarite,
         "winner": winner,
     }
@@ -537,7 +542,7 @@ def load_division_rikishi(kakuzuke_id: int) -> dict[int, dict]:
         rikishi_map[rikishi_id] = {
             "id": rikishi_id,
             "name": split_shikona(str(item.get("shikona", ""))),
-            "profileUrl": f"{BASE_URL}/ResultRikishiData/profile/{rikishi_id}/",
+            "profileUrl": f"{SITE_BASE_URL}/ResultRikishiData/profile/{rikishi_id}/",
         }
     return rikishi_map
 
@@ -1127,7 +1132,7 @@ class ProfileParser(HTMLParser):
 
 def fetch_profile_html(rikishi_id: int) -> str | None:
     """Fetch profile page HTML from sumo.or.jp"""
-    url = f"{BASE_URL}/ResultRikishiData/profile/{rikishi_id}/"
+    url = f"{REQUEST_BASE_URL}/ResultRikishiData/profile/{rikishi_id}/"
     req = Request(
         url,
         headers={
