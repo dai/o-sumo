@@ -1,9 +1,9 @@
 {
   "bashoName": "五月場所",
   "year": "令和八年",
-  "updatedAt": "2026-05-17T15:26:38+09:00",
-  "resultUpdatedAt": "2026-05-17T15:26:38+09:00",
-  "scheduleUpdatedAt": "2026-05-17T15:26:38+09:00",
+  "updatedAt": "2026-05-17T16:08:13+09:00",
+  "resultUpdatedAt": "2026-05-17T16:08:13+09:00",
+  "scheduleUpdatedAt": "2026-05-17T16:08:13+09:00",
   "today": {
     "makuuchi": {
       "day": 7,
@@ -5234,8 +5234,8 @@
       "pathDate": "20260517",
       "label": "中日",
       "dayHead": "中日： 令和8年5月17日(日)",
-      "status": "pending",
-      "statusMessage": "結果未更新",
+      "status": "published",
+      "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 8,
