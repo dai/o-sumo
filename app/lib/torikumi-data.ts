@@ -59,9 +59,9 @@ export interface TorikumiDataSet {
 export const torikumiData: TorikumiDataSet = {
   "bashoName": "五月場所",
   "year": "令和八年",
-  "updatedAt": "2026-05-17T16:10:00+09:00",
-  "resultUpdatedAt": "2026-05-17T16:10:00+09:00",
-  "scheduleUpdatedAt": "2026-05-17T16:10:00+09:00",
+  "updatedAt": "2026-05-17T16:57:39+09:00",
+  "resultUpdatedAt": "2026-05-17T16:57:39+09:00",
+  "scheduleUpdatedAt": "2026-05-17T16:57:39+09:00",
   "today": {
     "makuuchi": {
       "day": 7,
@@ -5292,8 +5292,8 @@ export const torikumiData: TorikumiDataSet = {
       "pathDate": "20260517",
       "label": "中日",
       "dayHead": "中日： 令和8年5月17日(日)",
-      "status": "published",
-      "statusMessage": null,
+      "status": "pending",
+      "statusMessage": "結果未更新",
       "data": {
         "makuuchi": {
           "day": 8,

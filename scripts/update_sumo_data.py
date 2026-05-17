@@ -575,9 +575,12 @@ def derive_absentees(
     roster: dict[int, dict],
     day_active_ids: set[int] | None = None,
 ) -> list[dict]:
-    if not roster:
-        return []
     if not list(division_day.get("matches", [])):
+        return []
+    if not roster:
+        existing = division_day.get("absentees")
+        if isinstance(existing, list):
+            return existing
         return []
     if day_active_ids is not None and len(day_active_ids) == 0:
         return []
@@ -674,13 +677,10 @@ def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str, exi
         if has_any_matches(loaded_day_data):
             observed_any_match_day = day
     effective_today_day = max(today_day, observed_settled_day, observed_any_match_day)
-    tomorrow_day = min(effective_today_day + 1, 15)
     gregorian_year = str(start_date.year)
 
     result_days = []
     schedule_days = []
-    today_data = None
-    tomorrow_data = None
 
     for day in range(1, 16):
         actual_date = start_date + timedelta(days=day - 1)
@@ -752,10 +752,21 @@ def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str, exi
         result_days.append(build_archive_day(result_day_data, gregorian_year, "result", result_status))
         schedule_days.append(build_archive_day(schedule_day_data, gregorian_year, "schedule", schedule_status))
 
-        if day == effective_today_day:
-            today_data = result_day_data
-        if day == tomorrow_day:
-            tomorrow_data = schedule_day_data
+    latest_result_day = max(
+        (safe_int(day.get("day", 0), 0) for day in result_days if str(day.get("status", "")) == "published"),
+        default=1,
+    )
+    latest_result_day = max(1, min(latest_result_day, 15))
+    latest_schedule_day = max(
+        (safe_int(day.get("day", 0), 0) for day in schedule_days if str(day.get("status", "")) == "published"),
+        default=1,
+    )
+    latest_schedule_day = max(1, min(latest_schedule_day, 15))
+    effective_schedule_day = min(latest_schedule_day, latest_result_day + 1)
+    effective_schedule_day = max(1, min(effective_schedule_day, 15))
+
+    today_data = next((day["data"] for day in result_days if int(day.get("day", 0)) == latest_result_day), None)
+    tomorrow_data = next((day["data"] for day in schedule_days if int(day.get("day", 0)) == effective_schedule_day), None)
 
     return {
         "updatedAt": current_timestamp,
@@ -786,15 +797,28 @@ def build_torikumi_meta_fallback(existing: dict) -> dict:
         month_key = str(schedule_days[0].get("pathDate", ""))[:6]
     basho_id = safe_int(month_key, 0)
 
-    published_result_days = [
-        safe_int(day.get("day", 0), 0)
-        for day in result_days
-        if str(day.get("status", "")) == "published"
-    ]
-    current_day = max(published_result_days) if published_result_days else 1
-    current_day = max(1, min(current_day, 15))
-
     updated_at = str(existing.get("updatedAt", "")) or current_timestamp_iso()
+    current_day = 1
+    try:
+        updated_date = extract_iso_date_part(updated_at)
+    except Exception:
+        updated_date = ""
+
+    if updated_date:
+        for archive_day in result_days or schedule_days:
+            if str(archive_day.get("isoDate", "")) == updated_date:
+                current_day = safe_int(archive_day.get("day", 0), current_day)
+                break
+
+    if current_day <= 0:
+        published_result_days = [
+            safe_int(day.get("day", 0), 0)
+            for day in result_days
+            if str(day.get("status", "")) == "published"
+        ]
+        current_day = max(published_result_days) if published_result_days else 1
+
+    current_day = max(1, min(current_day, 15))
     return {
         "basho_name": str(existing.get("bashoName", "")),
         "year_jp": str(existing.get("year", "")),

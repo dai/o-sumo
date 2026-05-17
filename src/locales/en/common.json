@@ -1,6 +1,6 @@
 {
   "global": {
-    "may2026UpdateNotice": "May 2026 results are scheduled to update each day from 14:00 JST. Day {{day}} schedule is also live.",
+    "may2026UpdateNotice": "May 2026: Results are updated through Day {{resultDay}}. Day {{scheduleDay}} schedule is also live.",
     "homeLink": "Home",
     "siteNavigation": "Site navigation"
   },

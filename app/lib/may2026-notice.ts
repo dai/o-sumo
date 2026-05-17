@@ -10,14 +10,17 @@ function getLatestPublishedResultDay(archive: TorikumiDataSet): TorikumiArchiveD
   return publishedDays.sort((a, b) => b.day - a.day)[0];
 }
 
-export function getMay2026NoticeParams(archive: TorikumiDataSet): { day: number } {
+export function getMay2026NoticeParams(
+  archive: TorikumiDataSet,
+): { resultDay: number; scheduleDay: number } {
   const latestScheduleDay = getLatestPublishedScheduleDay(archive);
   const latestResultDay = getLatestPublishedResultDay(archive);
   const scheduleDay = latestScheduleDay?.day ?? 1;
-  const resultDay = latestResultDay?.day ?? 0;
+  const resultDay = latestResultDay?.day ?? 1;
   const effectiveScheduleDay = Math.min(scheduleDay, resultDay + 1);
 
   return {
-    day: Math.max(1, effectiveScheduleDay),
+    resultDay: Math.max(1, resultDay),
+    scheduleDay: Math.max(1, effectiveScheduleDay),
   };
 }
