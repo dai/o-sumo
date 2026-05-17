@@ -2,18 +2,18 @@ name: Realtime Torikumi Update
 
 on:
   schedule:
-    # UTC: 05:00, 05:30, 06:00, 06:30, 07:00, 07:30 (= JST: 14:00-16:30)
-    - cron: '0,30 5-7 * * *'
-    # UTC: 08:00, 08:30 (= JST: 17:00, 17:30)
-    - cron: '0,30 8 * * *'
-    # UTC: 09:00 (= JST: 18:00)
-    - cron: '0 9 * * *'
-    # UTC: 10:00 (= JST: 19:00, catches day 6+ results published after 18:00)
-    - cron: '0 10 * * *'
-    # UTC: 11:00 (= JST: 20:00, catches late-published day 6 results)
-    - cron: '0 11 * * *'
-    # UTC: 11:30 (= JST: 20:30 monitor, warn if resultUpdatedAt is not today)
-    - cron: '30 11 * * *'
+    # UTC: 06:10, 06:40, 07:10, 07:40 (= JST: 15:10, 15:40, 16:10, 16:40)
+    - cron: '10,40 6-7 * * *'
+    # UTC: 08:10, 08:40 (= JST: 17:10, 17:40)
+    - cron: '10,40 8 * * *'
+    # UTC: 09:10 (= JST: 18:10)
+    - cron: '10 9 * * *'
+    # UTC: 10:10 (= JST: 19:10, catches day 6+ results published after 18:00)
+    - cron: '10 10 * * *'
+    # UTC: 11:10 (= JST: 20:10, catches late-published day 6 results)
+    - cron: '10 11 * * *'
+    # UTC: 11:40 (= JST: 20:40 monitor, warn if resultUpdatedAt is not today)
+    - cron: '40 11 * * *'
   workflow_dispatch:
 
 concurrency:
@@ -24,8 +24,8 @@ permissions:
 
 jobs:
   update-torikumi:
-    # Exclude monitor slot only (UTC 11:30 = JST 20:30)
-    if: ${{ github.event_name != 'schedule' || github.event.schedule != '30 11 * * *' }}
+    # Exclude monitor slot only (UTC 11:40 = JST 20:40)
+    if: ${{ github.event_name != 'schedule' || github.event.schedule != '40 11 * * *' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -66,8 +66,8 @@ jobs:
           fi
 
   monitor-result-freshness:
-    # Monitor slot only (UTC 11:30 = JST 20:30)
-    if: ${{ github.event_name == 'schedule' && github.event.schedule == '30 11 * * *' }}
+    # Monitor slot only (UTC 11:40 = JST 20:40)
+    if: ${{ github.event_name == 'schedule' && github.event.schedule == '40 11 * * *' }}
     runs-on: ubuntu-latest
     steps:
       - name: Print monitor context and check result freshness
