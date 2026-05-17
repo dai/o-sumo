@@ -10887,7 +10887,6 @@ export const torikumiData: TorikumiDataSet = {
       }
     }
   ]
-}
 };
 
 export const torikumiArchive = {
