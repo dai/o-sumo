@@ -79,6 +79,21 @@ describe('TorikumiDayPage', () => {
     expect(screen.getByText('十両の取組結果はまだ更新されていません。')).toBeInTheDocument();
   });
 
+  it('falls back to same-day schedule rows on pending result pages when result rows are still empty', () => {
+    const day8Result = torikumiArchive.resultDays[7];
+    const day8Schedule = torikumiArchive.scheduleDays[7];
+
+    expect(day8Result.status).toBe('pending');
+    expect(day8Result.data.makuuchi.matches).toHaveLength(0);
+    expect(day8Schedule.data.makuuchi.matches.length).toBeGreaterThan(0);
+
+    renderPage(day8Result, 'result');
+
+    expect(screen.getByText('結果未更新')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '若ノ勝' })).toBeInTheDocument();
+    expect(screen.queryByText('幕内の取組結果はまだ更新されていません。')).not.toBeInTheDocument();
+  });
+
   it('shows absentees below update date when provided', () => {
     const dayWithAbsentees: TorikumiArchiveDay = {
       ...torikumiArchive.resultDays[0],
