@@ -27,6 +27,8 @@
   - `npm test -- --run`: pass
   - `npm run build`: pass（既存の chunk size 警告のみ）
   - `git diff --check`: pass
+- push後フォロー:
+  - `app/components/TorikumiDayPage.test.tsx` の `ArchiveRouteConfig` mock に `monthKey` を追加し、`npm run typecheck` と `npm test -- --run app/components/TorikumiDayPage.test.tsx` の再通過を確認。
 
 # Realtime更新欠落の是正（監視追加 + ドキュメント同期）Todo（2026-05-15）
 

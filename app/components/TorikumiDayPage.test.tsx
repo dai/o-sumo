@@ -113,6 +113,7 @@ describe('TorikumiDayPage', () => {
     };
 
     vi.spyOn(torikumiRoutes, 'getArchiveRouteConfigForDateKey').mockReturnValue({
+      monthKey: '209912',
       archive: {
         ...torikumiArchive,
         scheduleDays: [futureScheduleDay],

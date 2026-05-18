@@ -3,6 +3,7 @@
 ## 2026-05-18 八日目結果未更新の根因
 - `ResultData/torikumiAjax` は `Origin` / `Referer` だけでは足りず、`Cookie: mischeief=OK` がないと 403 になることがある。取得不能時は upstream HTML と実POSTを比較して、必要なブラウザ由来ヘッダを再確認する。
 - 当日結果ページのテストで live 生成データの「特定日が pending」のような固定前提を置かない。日次更新で壊れやすい箇所は、テスト内で最小の `pending/published` 状態を合成して検証する。
+- typed mock を `mockReturnValue()` で返すときは、対象 interface の必須項目を省略しない。特に route config 系は `monthKey` のような一見使っていないフィールドも `typecheck` 前提で揃える。
 
 ## 2026-05-13 配信フロー切り分け
 - 不具合報告が「画面表示」でも、最初に `UI起因` と `配信起因` を分離して検証する。
