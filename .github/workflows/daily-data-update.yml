@@ -9,7 +9,8 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: osumo-main-data-refresh
+  group: osumo-main-data-refresh-daily
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -20,6 +21,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Sync with origin/main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git reset --hard origin/main
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -46,11 +54,28 @@ jobs:
           PY
 
       - name: Commit and push changes
+        shell: bash
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add app/lib/torikumi-data.ts public/api/v1/torikumi.json
-          if ! git diff --staged --quiet; then
+          for attempt in 1 2 3; do
+            git add app/lib/torikumi-data.ts public/api/v1/torikumi.json
+            if git diff --staged --quiet; then
+              echo "No changes to commit."
+              exit 0
+            fi
+
             git commit -m "chore: daily sumo data update"
-            git push origin HEAD:main
-          fi
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+
+            echo "Push failed (attempt ${attempt}/3). Refreshing from origin/main and retrying..."
+            git fetch origin main
+            git reset --hard origin/main
+            python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule
+          done
+
+          echo "Push failed after 3 attempts."
+          exit 1
