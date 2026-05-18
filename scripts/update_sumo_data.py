@@ -53,10 +53,12 @@ TORIKUMI_SCOPES = ("all", "result", "schedule")
 
 def post_json(path: str, payload: dict) -> dict:
     referer = f"{REQUEST_BASE_URL}/"
+    cookie = ""
     torikumi_match = re.match(r"^/ResultData/torikumiAjax/(\d+)/(\d+)/$", path)
     if torikumi_match:
         kakuzuke_id, day = torikumi_match.groups()
         referer = f"{REQUEST_BASE_URL}/ResultData/torikumi/{kakuzuke_id}/{day}/"
+        cookie = "mischeief=OK"
     elif path.startswith("/ResultBanzuke/tableAjax/"):
         referer = f"{REQUEST_BASE_URL}/ResultBanzuke/"
     elif path.startswith("/ResultData/hoshitoriAjax/"):
@@ -73,6 +75,7 @@ def post_json(path: str, payload: dict) -> dict:
             "Origin": REQUEST_BASE_URL,
             "Referer": referer,
             "Accept-Language": "ja,en-US;q=0.9,en;q=0.8",
+            **({"Cookie": cookie} if cookie else {}),
         },
         method="POST",
     )

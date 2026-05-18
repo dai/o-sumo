@@ -1,3 +1,33 @@
+# 八日目（中日）結果未更新の修正 Todo（2026-05-18）
+
+## Plan
+- [x] `origin/main` 生成物 / GitHub Actions 実行状況 / 本番API の3点で、八日目未更新が配信か生成かを切り分ける
+- [x] 相撲協会APIの取得失敗原因を特定し、`scripts/update_sumo_data.py` の `torikumiAjax` リクエストを修正する
+- [x] 回帰テストを追加し、五月場所データを再生成して八日目結果と番付星取を更新する
+- [x] 既存のUIテストを実データ固定依存から外し、検証結果を Review に記録する
+
+## Progress
+- `public/api/v1/torikumi.json` と `https://osada.us/api/v1/torikumi.json?ts=...` の双方で、修正前は八日目(`20260517`)が `pending / 結果未更新` のまま止まっていることを確認。
+- `gh run list --workflow "Realtime Torikumi Update"` と `gh run view --log` で、workflow 自体は成功している一方、`torikumiAjax` が全日 403 で落ちていたことを確認。
+- 相撲協会 `torikumi` ページのHTMLに `document.cookie = "mischeief=OK"` が含まれ、`torikumiAjax` POST へ `Cookie: mischeief=OK` を付けると 200 + 正常JSONを返すことを確認。
+- `scripts/update_sumo_data.py` の `post_json()` で `torikumiAjax` に対し `Referer` と `Cookie: mischeief=OK` を付与するよう修正。
+- `scripts/update_sumo_data_parser_test.py` に `torikumiAjax` の Cookie 付与回帰テストを追加。
+- `python scripts/update_sumo_data.py --torikumi-scope result --skip-rikishi-fetch` を実行し、八日目結果と番付星取を再生成。
+- `app/components/TorikumiDayPage.test.tsx` の「八日目が pending」という固定前提をやめ、合成データで schedule fallback を検証する形へ修正。
+
+## Review
+- 再生成後の `public/api/v1/torikumi.json`:
+  - `resultUpdatedAt`: `2026-05-18T10:00:08+09:00`
+  - 八日目(`20260517`) `status=published`
+  - 八日目の取組件数: `幕内19 / 十両14`
+- 回帰テスト:
+  - `python -m unittest scripts.update_sumo_data_parser_test.PostJsonRequestHeadersTest.test_torikumi_ajax_request_sets_mischeief_cookie`: pass
+- アプリ検証:
+  - `npm run typecheck`: pass
+  - `npm test -- --run`: pass
+  - `npm run build`: pass（既存の chunk size 警告のみ）
+  - `git diff --check`: pass
+
 # Realtime更新欠落の是正（監視追加 + ドキュメント同期）Todo（2026-05-15）
 
 ## Plan
@@ -301,5 +331,43 @@
 - 再生成後の整合性確認:
   - 同日出場IDと休場IDの衝突件数: `0`
   - `day=4` の十両休場者に `id=4116（大青山）` は含まれない
+
+---
+
+# 五月場所 更新時刻・バナー再整備 Todo（2026-05-18）
+
+## Plan
+- [x] `main` を `origin/main` に fast-forward 同期し、現状実装を確認する
+- [x] `daily-data-update.yml` と `realtime-torikumi-update.yml` を五月場所の新 cadence に合わせて更新する
+- [x] 固定バナー文言へ切り替え、不要な `may2026-notice` ヘルパーとテストを整理する
+- [x] `app/lib/torikumi-routes.ts` の更新案内文言を新 cadence に同期する
+- [x] README / DEVELOPMENT / API policy の時刻説明と workflow の責務を同期する
+- [x] workflow 構文確認、`typecheck`、対象テスト、`build` を実行して Review を記録する
+
+## Progress
+- `git pull --ff-only origin main` を実行し、`197a8b8 -> b964fdf` の fast-forward 同期を完了。
+- 日次更新 workflow は `15:30` / `20:00` の予定更新専用へ変更。
+- realtime workflow は `14:00-16:30` 30分ごと + `17:00-18:00` 10分ごとの結果更新専用へ変更し、`--torikumi-scope result --skip-rikishi-fetch` を使用する形へ変更。
+- トップバナーは固定文言化し、`app/main.tsx` から `getMay2026NoticeParams(...)` 依存を除去。
+- `app/lib/may2026-notice.ts` と `app/lib/may2026-notice.test.ts` を削除。
+- `app/lib/torikumi-routes.ts` の案内文言を `17:00-18:00 は10分ごと`、予定 `15:30 / 20:00` に更新。
+- README / DEVELOPMENT / API policy の JP/EN 文書を workflow の新責務に合わせて更新。
+- `app/test/setup.ts` の `localStorage` fallback が `undefined` ケースでも動くよう、optional chaining でガードを補強。
+
+## Review
+- workflow YAML 構文確認: pass
+  - `ok: .github/workflows/daily-data-update.yml`
+  - `ok: .github/workflows/realtime-torikumi-update.yml`
+- `npm run typecheck`: pass
+- `npm test -- --run app/lib/torikumi-routes.test.ts app/page.test.tsx app/components/TorikumiDayPage.test.tsx app/banzuke/page.test.tsx`: pass（4 files / 25 tests）
+- `npm test -- --run`: pass（14 files / 62 tests）
+- `npm run build`: pass（既存の chunk size 警告のみ）
+- `git diff --check`: pass
+- 受け入れ条件確認:
+  - `daily-data-update.yml` に `09:00` / `18:00` は残存なし
+  - `realtime-torikumi-update.yml` に `17:30` / `19:00` / `20:00` / `20:30` は残存なし
+  - `realtime-torikumi-update.yml` は `--torikumi-scope result --skip-rikishi-fetch` を使用
+  - `src/locales/ja/common.json` に固定バナー文言を反映
+  - `app/lib/torikumi-routes.ts` は `17:00-18:00は10分ごとに更新` と `取組予定はJST 15:30と20:00に更新` を反映
 
 

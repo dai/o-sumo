@@ -51,8 +51,9 @@ describe('torikumi route helpers', () => {
     expect(getDayPath(day, 'result')).toBe(`/${day.pathDate}-torikumi/`);
     expect(getArchiveUpdatedAt('result')).toBe(torikumiArchive.resultUpdatedAt);
     expect(getArchiveUpdatedAt('schedule')).toBe(torikumiArchive.scheduleUpdatedAt);
-    expect(getArchiveUpdateMessage('result')).toContain('17:00-18:00');
-    expect(getArchiveUpdateMessage('schedule')).toContain('09:00');
+    expect(getArchiveUpdateMessage('result')).toContain('10分ごと');
+    expect(getArchiveUpdateMessage('schedule')).toContain('15:30');
+    expect(getArchiveUpdateMessage('schedule')).toContain('20:00');
     expect(legacyBanzukePath).toBe(`/${torikumiMonthKey}-o-sumo`);
     expect(banzukePath).toBe(`/${torikumiMonthKey}-banduke`);
   });

@@ -159,8 +159,8 @@ export function getArchiveUpdatedAt(mode: TorikumiPageMode): string {
 
 export function getArchiveUpdateMessage(mode: TorikumiPageMode): string {
   return mode === 'result'
-    ? '場所期間中はJST 14:00, 14:30, 15:00, 15:30, 16:00, 16:30に更新し、17:00-18:00は5分ごとに更新'
-    : '取組予定はJST 09:00と18:00に更新';
+    ? '場所期間中はJST 14:00, 14:30, 15:00, 15:30, 16:00, 16:30に更新し、17:00-18:00は10分ごとに更新'
+    : '取組予定はJST 15:30と20:00に更新';
 }
 
 export const legacyBanzukePath = `/${torikumiMonthKey}-o-sumo`;

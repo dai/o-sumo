@@ -1,11 +1,13 @@
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
+import { afterEach, vi } from 'vitest';
 import TorikumiDayPage from './TorikumiDayPage';
 import { MARCH2026_TORIKUMI_DATA } from '../lib/march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from '../lib/may2026-data';
 import { torikumiArchive, type TorikumiArchiveDay } from '../lib/torikumi-data';
 import { getBanzukePathForDateKey, getHubPath, getHubPathForDateKey } from '../lib/torikumi-routes';
+import * as torikumiRoutes from '../lib/torikumi-routes';
 import { formatUpdatedAt } from '../lib/updated-at';
 
 function renderPage(day: TorikumiArchiveDay, mode: 'result' | 'schedule' = 'result') {
@@ -15,6 +17,10 @@ function renderPage(day: TorikumiArchiveDay, mode: 'result' | 'schedule' = 'resu
     </MemoryRouter>,
   );
 }
+
+afterEach(() => {
+  vi.restoreAllMocks();
+});
 
 describe('TorikumiDayPage', () => {
   it('renders archive navigation and footer contact links for result pages', () => {
@@ -80,17 +86,46 @@ describe('TorikumiDayPage', () => {
   });
 
   it('falls back to same-day schedule rows on pending result pages when result rows are still empty', () => {
-    const day8Result = torikumiArchive.resultDays[7];
-    const day8Schedule = torikumiArchive.scheduleDays[7];
+    const scheduleDay = torikumiArchive.scheduleDays.find((day) => day.data.makuuchi.matches.length > 0);
+    expect(scheduleDay).toBeDefined();
 
-    expect(day8Result.status).toBe('pending');
-    expect(day8Result.data.makuuchi.matches).toHaveLength(0);
-    expect(day8Schedule.data.makuuchi.matches.length).toBeGreaterThan(0);
+    const futurePathDate = '20991231';
+    const futureScheduleDay: TorikumiArchiveDay = {
+      ...scheduleDay!,
+      isoDate: '2099-12-31',
+      pathDate: futurePathDate,
+      dayHead: '千秋楽： 令和81年12月31日(木)',
+    };
+    const pendingResultDay: TorikumiArchiveDay = {
+      ...futureScheduleDay,
+      status: 'pending',
+      statusMessage: '結果未更新',
+      data: {
+        makuuchi: {
+          ...futureScheduleDay.data.makuuchi,
+          matches: [],
+        },
+        juryo: {
+          ...futureScheduleDay.data.juryo,
+          matches: [],
+        },
+      },
+    };
 
-    renderPage(day8Result, 'result');
+    vi.spyOn(torikumiRoutes, 'getArchiveRouteConfigForDateKey').mockReturnValue({
+      archive: {
+        ...torikumiArchive,
+        scheduleDays: [futureScheduleDay],
+      },
+      resultPath: '/209912-torikumi/',
+      schedulePath: '/209912-yotei/',
+      bandukePath: '/209912-banduke/',
+    });
+
+    renderPage(pendingResultDay, 'result');
 
     expect(screen.getByText('結果未更新')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: '若ノ勝' })).toBeInTheDocument();
+    expect(screen.getAllByRole('row').length).toBeGreaterThan(1);
     expect(screen.queryByText('幕内の取組結果はまだ更新されていません。')).not.toBeInTheDocument();
   });
 

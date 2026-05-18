@@ -10,9 +10,8 @@ The o-sumo API is operated on a best-effort basis by an individual maintainer. N
 
 Current automated update flows:
 
-- Daily update (torikumi schedule only): JST 09:00 and 18:00
-- Realtime update (torikumi results + schedules + banzuke): during basho days, JST 14:00, 14:30, 15:00, 15:30, 16:00, 16:30, 17:00, 17:30, 18:00, 19:00, 20:00
-- Monitor update (result freshness check): JST 20:30 (emits a warning when `resultUpdatedAt` is not the current JST date)
+- Daily update (torikumi schedule only): JST 15:30 and 20:00
+- Realtime update (torikumi results + banzuke): during basho days, JST 14:00, 14:30, 15:00, 15:30, 16:00, 16:30, 17:00, 17:10, 17:20, 17:30, 17:40, 17:50, 18:00
 
 After the May 2026 banzuke release on April 27, 2026, the maintainer manually syncs `banzuke.json` and `torikumi.json` to the May basho.
 

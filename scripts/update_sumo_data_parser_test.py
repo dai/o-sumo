@@ -2,6 +2,7 @@ import importlib.util
 import pathlib
 import unittest
 from datetime import date
+from unittest import mock
 
 
 SPEC = importlib.util.spec_from_file_location(
@@ -38,6 +39,34 @@ class ParseProfileHtmlTest(unittest.TestCase):
         self.assertEqual(profile["height"], 183)
         self.assertEqual(profile["weight"], 146)
         self.assertEqual(profile["debut"], "平成十五年三月場所")
+
+
+class PostJsonRequestHeadersTest(unittest.TestCase):
+    def test_torikumi_ajax_request_sets_mischeief_cookie(self) -> None:
+        captured = {}
+
+        class DummyResponse:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, exc_type, exc, tb):
+                return False
+
+            def read(self) -> bytes:
+                return b'{"Result":"1"}'
+
+        def fake_urlopen(request, timeout=30):
+            captured["headers"] = dict(request.header_items())
+            return DummyResponse()
+
+        with mock.patch.object(MODULE, "urlopen", side_effect=fake_urlopen):
+            MODULE.post_json("/ResultData/torikumiAjax/1/8/", {"basho_id": "635", "kakuzuke_id": "1", "day": "8"})
+
+        self.assertEqual(captured["headers"].get("Cookie"), "mischeief=OK")
+        self.assertEqual(
+            captured["headers"].get("Referer"),
+            f"{MODULE.REQUEST_BASE_URL}/ResultData/torikumi/1/8/",
+        )
 
 
 class ParseOfficialAbsenceTest(unittest.TestCase):

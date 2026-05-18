@@ -22,8 +22,6 @@ import {
   MARCH2026_SCHEDULE_PATH,
   MARCH2026_BANDUKE_PATH,
 } from './lib/torikumi-routes'
-import { torikumiArchive } from './lib/torikumi-data'
-import { getMay2026NoticeParams } from './lib/may2026-notice'
 import { bootstrapTheme } from './lib/theme'
 import './globals.css'
 
@@ -39,12 +37,11 @@ const updateSW = registerSW({
 
 function AppShell() {
   const { t } = useTranslation('common')
-  const { resultDay, scheduleDay } = getMay2026NoticeParams(torikumiArchive);
 
   return (
     <BrowserRouter>
       <div className="global-notice-banner" role="status" aria-live="polite">
-        {t('global.may2026UpdateNotice', { resultDay, scheduleDay })}
+        {t('global.may2026UpdateNotice')}
       </div>
       <div className="top-right-controls">
         <ThemeToggle />

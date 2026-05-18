@@ -3,7 +3,7 @@ import { i18n } from '../lib/i18n';
 // Force Japanese in tests so assertions on hardcoded Japanese text pass
 i18n.changeLanguage('ja');
 
-if (typeof window.localStorage.clear !== 'function') {
+if (typeof window.localStorage?.clear !== 'function') {
   const store = new Map<string, string>();
   Object.defineProperty(window, 'localStorage', {
     configurable: true,
