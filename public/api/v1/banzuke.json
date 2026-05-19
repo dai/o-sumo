@@ -1,7 +1,7 @@
 {
   "bashoName": "五月場所",
   "year": "令和八年",
-  "updatedAt": "2026-05-18T21:26:42+09:00",
+  "updatedAt": "2026-05-19T11:21:06+09:00",
   "makuuchi": [
     {
       "title": "横綱",
@@ -14,10 +14,11 @@
           "side": "east",
           "wins": 0,
           "losses": 2,
-          "draws": 7,
+          "draws": 8,
           "results": [
             "loss",
             "loss",
+            "draw",
             "draw",
             "draw",
             "draw",
@@ -39,8 +40,9 @@
           "side": "west",
           "wins": 0,
           "losses": 0,
-          "draws": 9,
+          "draws": 10,
           "results": [
+            "draw",
             "draw",
             "draw",
             "draw",
@@ -115,8 +117,9 @@
           "side": "west",
           "wins": 0,
           "losses": 0,
-          "draws": 9,
+          "draws": 10,
           "results": [
+            "draw",
             "draw",
             "draw",
             "draw",
@@ -221,12 +224,13 @@
           "side": "west",
           "wins": 2,
           "losses": 2,
-          "draws": 5,
+          "draws": 6,
           "results": [
             "win",
             "win",
             "loss",
             "loss",
+            "draw",
             "draw",
             "draw",
             "draw",
@@ -592,7 +596,7 @@
           "side": "west",
           "wins": 3,
           "losses": 4,
-          "draws": 2,
+          "draws": 3,
           "results": [
             "win",
             "win",
@@ -601,6 +605,7 @@
             "win",
             "loss",
             "loss",
+            "draw",
             "draw",
             "draw"
           ],
