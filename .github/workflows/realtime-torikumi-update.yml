@@ -2,12 +2,13 @@ name: Realtime Torikumi Update
 
 on:
   schedule:
-    # UTC: 05:00, 05:30, 06:00, 06:30, 07:00, 07:30 (= JST: 14:00-16:30 every 30 minutes)
-    - cron: '0,30 5-7 * * *'
-    # UTC: 08:00, 08:10, 08:20, 08:30, 08:40, 08:50 (= JST: 17:00-17:50 every 10 minutes)
-    - cron: '0,10,20,30,40,50 8 * * *'
-    # UTC: 09:00 (= JST: 18:00)
-    - cron: '0 9 * * *'
+    # Target (JST): 14:00-16:30 every 30 minutes, then 17:00-17:50 every 10 minutes, then 18:00.
+    #
+    # Note: Scheduled runs have been observed to start ~3 hours later than their cron's intended UTC time.
+    # These cron expressions are intentionally shifted -3h to keep the *actual* execution aligned to the JST target.
+    - cron: '0,30 2-4 * * *'
+    - cron: '0,10,20,30,40,50 5 * * *'
+    - cron: '0 6 * * *'
   workflow_dispatch:
 
 concurrency:
