@@ -205,12 +205,13 @@ describe('TorikumiDayPage', () => {
     expect(screen.getByRole('link', { name: /三日目 →/ })).toBeInTheDocument();
   });
 
-  it('links match rikishi names to o-sumo profile pages', () => {
+  it('links match rikishi names to banzuke rikishi anchors and shows records', () => {
     const marchDay = MARCH2026_TORIKUMI_DATA.resultDays?.find((day) => day.data.makuuchi.matches.length > 0);
     expect(marchDay).toBeDefined();
     renderPage(marchDay!, 'result');
 
-    const profileLinks = screen.getAllByRole('link').filter((link) => link.getAttribute('href')?.startsWith('/rikishi/'));
-    expect(profileLinks.length).toBeGreaterThan(0);
+    const banzukeLinks = screen.getAllByRole('link').filter((link) => link.getAttribute('href')?.startsWith('/202603-banduke/#rikishi-'));
+    expect(banzukeLinks.length).toBeGreaterThan(0);
+    expect(banzukeLinks.some((link) => /（\d+勝\d+敗/.test(link.textContent ?? ''))).toBe(true);
   });
 });

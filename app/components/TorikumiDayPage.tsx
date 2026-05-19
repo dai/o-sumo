@@ -5,7 +5,7 @@ import { canonicalShikona, divisionAnchorId } from '../lib/rikishi-display';
 import SortToggle from './SortToggle';
 import { type SortOrder, sortMatches } from '../lib/sorting';
 import { type TorikumiArchiveDay, type TorikumiDivisionDay, type TorikumiMatch } from '../lib/torikumi-data';
-import { extractRikishiIdFromProfileUrl, rikishiProfilePath } from '../lib/rikishi-profile';
+import { banzukeRikishiPath, extractRikishiIdFromProfileUrl } from '../lib/rikishi-profile';
 import {
   getArchiveRouteConfigByMonthKey,
   getArchiveRouteConfigForDateKey,
@@ -18,6 +18,8 @@ import HomeLink from './HomeLink';
 import AbsenteesNotice from './AbsenteesNotice';
 import '../torikumi/page.css';
 import { formatUpdatedAt } from '../lib/updated-at';
+import { makuuchiData, juryo } from '../lib/sumo-data';
+import { MARCH2026_MAKUUCHI_DATA, MARCH2026_JURYO_DATA } from '../lib/march2026-banzuke-data';
 
 const DIVISIONS: Array<'幕内' | '十両'> = ['幕内', '十両'];
 
@@ -33,17 +35,40 @@ function displayName(name: string, profileUrl: string): string {
   return canonicalShikona(profileUrl, name);
 }
 
-function RikishiMatchName({ name, profileUrl }: { name: string; profileUrl: string }) {
+function formatRecord(record?: { wins: number; losses: number; draws: number }): string {
+  if (!record) return '';
+  return `（${record.wins}勝${record.losses}敗${record.draws > 0 ? `${record.draws}休` : ''}）`;
+}
+
+function createRecordMap(monthKey: string): Map<string, { wins: number; losses: number; draws: number }> {
+  const groups = monthKey === '202603'
+    ? [...MARCH2026_MAKUUCHI_DATA, ...MARCH2026_JURYO_DATA]
+    : [...makuuchiData, ...juryo];
+  const map = new Map<string, { wins: number; losses: number; draws: number }>();
+  groups.forEach((group) => {
+    [...group.east, ...group.west].forEach((rikishi) => {
+      map.set(rikishi.profileUrl, {
+        wins: rikishi.wins ?? 0,
+        losses: rikishi.losses ?? 0,
+        draws: rikishi.draws ?? 0,
+      });
+    });
+  });
+  return map;
+}
+
+function RikishiMatchName({ name, profileUrl, banzukePath, record }: { name: string; profileUrl: string; banzukePath: string; record?: { wins: number; losses: number; draws: number } }) {
   const id = extractRikishiIdFromProfileUrl(profileUrl);
   const shikona = displayName(name, profileUrl);
+  const recordText = formatRecord(record);
 
   if (!id) {
-    return <div className="name">{shikona}</div>;
+    return <div className="name">{shikona}{recordText}</div>;
   }
 
   return (
-    <Link to={rikishiProfilePath(id)} className="torikumi-rikishi-link">
-      <span className="name">{shikona}</span>
+    <Link to={banzukeRikishiPath(banzukePath, id)} className="torikumi-rikishi-link">
+      <span className="name">{shikona}{recordText}</span>
     </Link>
   );
 }
@@ -96,12 +121,16 @@ function TorikumiTable({
   mode,
   sortOrder,
   t,
+  banzukePath,
+  recordMap,
 }: {
   title: string;
   dayData: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay };
   mode: TorikumiPageMode;
   sortOrder: SortOrder;
   t: ReturnType<typeof useTranslation>['t'];
+  banzukePath: string;
+  recordMap: Map<string, { wins: number; losses: number; draws: number }>;
 }) {
   return (
     <section className="division-section">
@@ -129,7 +158,7 @@ function TorikumiTable({
                 {matches.map((match: TorikumiMatch) => (
                   <div className="torikumi-row" role="row" key={`${title}-${division}-${match.boutNo}`} id={divisionAnchorId(division, match.boutNo)}>
                     <div className={`cell east rikishi-card ${match.winner === 'east' ? 'winner' : ''}`}>
-                      <RikishiMatchName name={match.eastName} profileUrl={match.eastProfileUrl} />
+                      <RikishiMatchName name={match.eastName} profileUrl={match.eastProfileUrl} banzukePath={banzukePath} record={recordMap.get(match.eastProfileUrl)} />
                       <div className="english">{match.eastEnglish}</div>
                     </div>
                     <div className={`cell kimarite kimarite-value ${match.winner && (mode === 'result' || match.kimarite === '不戦') ? `winner-${match.winner}` : ''}`}>
@@ -138,7 +167,7 @@ function TorikumiTable({
                         : t('torikumi.day.matchScheduled')}
                     </div>
                     <div className={`cell west rikishi-card ${match.winner === 'west' ? 'winner' : ''}`}>
-                      <RikishiMatchName name={match.westName} profileUrl={match.westProfileUrl} />
+                      <RikishiMatchName name={match.westName} profileUrl={match.westProfileUrl} banzukePath={banzukePath} record={recordMap.get(match.westProfileUrl)} />
                       <div className="english">{match.westEnglish}</div>
                     </div>
                   </div>
@@ -157,6 +186,7 @@ function getArchiveForPath(pathDate: string) {
   const config = getArchiveRouteConfigForDateKey(pathDate);
   if (config) {
     return {
+      monthKey: config.monthKey,
       archive: config.archive,
       resultPath: config.resultPath,
       schedulePath: config.schedulePath,
@@ -170,6 +200,7 @@ function getArchiveForPath(pathDate: string) {
   }
 
   return {
+    monthKey: fallback.monthKey,
     archive: fallback.archive,
     resultPath: fallback.resultPath,
     schedulePath: fallback.schedulePath,
@@ -180,7 +211,7 @@ function getArchiveForPath(pathDate: string) {
 export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay; mode: TorikumiPageMode }) {
   const [sortOrder, setSortOrder] = React.useState<SortOrder>('asc');
   const { t } = useTranslation('common');
-  const { archive, resultPath, schedulePath, bandukePath } = getArchiveForPath(day.pathDate);
+  const { monthKey, archive, resultPath, schedulePath, bandukePath } = getArchiveForPath(day.pathDate);
   const prevDay = getAdjacentDay(day, mode, 'prev');
   const nextDay = getAdjacentDay(day, mode, 'next');
   const visibleDayData = getVisibleDayData(day, archive, mode);
@@ -193,6 +224,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
     : t('torikumi.day.modeDescriptionSchedule');
   const absentees = mode === 'schedule' ? uniqueAbsentees(visibleDayData) : [];
   const updatedAt = mode === 'result' ? archive.resultUpdatedAt : archive.scheduleUpdatedAt;
+  const recordMap = React.useMemo(() => createRecordMap(monthKey), [monthKey]);
 
   return (
     <div className="torikumi-page">
@@ -229,7 +261,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
           <SortToggle value={sortOrder} onChange={setSortOrder} label={t('torikumi.day.sortLabel', { mode: modeLabel })} />
         </section>
 
-        <TorikumiTable title={`${day.label}の${modeLabel}`} dayData={visibleDayData} mode={mode} sortOrder={sortOrder} t={t} />
+        <TorikumiTable title={`${day.label}の${modeLabel}`} dayData={visibleDayData} mode={mode} sortOrder={sortOrder} t={t} banzukePath={bandukePath} recordMap={recordMap} />
       </main>
 
       <footer className="torikumi-footer">
