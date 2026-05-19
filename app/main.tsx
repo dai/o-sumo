@@ -14,6 +14,7 @@ import RikishiPage from './rikishi/page'
 import RikishiProfilePage from './rikishi/RikishiProfilePage'
 import ThemeToggle from './components/ThemeToggle'
 import LanguageToggle from './components/LanguageToggle'
+import ScrollToHash from './components/ScrollToHash'
 import {
   MAY2026_BANDUKE_PATH,
   MAY2026_RESULT_PATH,
@@ -40,6 +41,7 @@ function AppShell() {
 
   return (
     <BrowserRouter>
+      <ScrollToHash />
       <div className="global-notice-banner" role="status" aria-live="polite">
         {t('global.may2026UpdateNotice')}
       </div>
