@@ -45,6 +45,11 @@ export function rikishiProfilePath(id: number | string): string {
   return `/rikishi/${id}/`;
 }
 
+export function banzukeRikishiPath(baseBanzukePath: string, id: number | string): string {
+  const normalized = baseBanzukePath.endsWith('/') ? baseBanzukePath : `${baseBanzukePath}/`;
+  return `${normalized}#rikishi-${id}`;
+}
+
 export function rikishiApiPath(id: number | string): string {
   return `/api/v1/rikishi/${id}.json`;
 }

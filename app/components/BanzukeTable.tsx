@@ -83,7 +83,7 @@ const RikishiCell = ({ rikishi, resultLinkMap }: { rikishi: Rikishi; resultLinkM
   const photoUrl = localRikishiImagePath(rikishi.id);
 
   return (
-    <div className="rikishi-cell">
+    <div className="rikishi-cell" id={`rikishi-${rikishi.id}`}>
       <Link to={rikishiProfilePath(rikishi.id)} className="rikishi-photo-link" aria-label={`${name}のo-sumoプロフィールを開く`}>
         <img
           className="rikishi-photo"
