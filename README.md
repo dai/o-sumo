@@ -210,6 +210,17 @@ GitHub Actions で日次更新と結果更新を分けています。
   - 手動実行: GitHub Actions の `Run workflow` または `gh workflow run realtime-torikumi-update.yml -R dai/o-sumo --ref main`
   - ログ: `github.event.schedule` / JST 現在時刻 / `resultUpdatedAt` / `scheduleUpdatedAt` を必ず出力
 
+## GitHub Mobile + Copilot 運用
+
+- 事前準備:
+  - リポジトリ指示: `.github/copilot-instructions.md`
+  - セットアップ workflow: `.github/workflows/copilot-setup-steps.yml`
+- 週末の最短フロー:
+  - GitHub Mobile で Issue を作成し、Copilot cloud agent に割り当てる
+  - Agent session で差分と説明を確認する
+  - 作成された PR で `test.yml`（`typecheck` / `test` / `build`）通過を確認する
+  - GitHub Mobile 上でレビューして merge する
+
 ## テスト
 
 - test runner: Vitest

@@ -1,3 +1,22 @@
+# GitHub Mobile + Copilot Cloud Agent 運用整備 Todo（2026-05-19）
+
+## Plan
+- [x] `.github/copilot-instructions.md` を追加し、Cloud agent の実行ルールと必須コマンドを固定化する
+- [x] `.github/workflows/copilot-setup-steps.yml` を追加し、Node/Python依存の事前セットアップ手順を定義する
+- [x] `README.md` に GitHub Mobile 運用フロー（Issue→Agent→PR→merge）を追記する
+- [x] `npm run typecheck` / `npm test -- --run` / `npm run build` で変更影響を検証して Review に記録する
+
+## Progress
+- `.github/copilot-instructions.md` を新規追加し、必須チェック（`npm ci` / `typecheck` / `test` / `build`）とデータ更新コマンド、生成物レビュー対象、`main` 直push回避を明記。
+- `.github/workflows/copilot-setup-steps.yml` を新規追加し、`workflow_dispatch` を含む `copilot-setup-steps` job で `setup-node` / `setup-python` / `npm ci` を実行する構成を追加。
+- `README.md` に `## GitHub Mobile + Copilot 運用` セクションを追加し、iPhone での週末運用手順を短く固定化。
+
+## Review
+- `python`（PyYAML）で `.github/workflows/copilot-setup-steps.yml` の構文を確認: pass
+- `npm run typecheck`: pass
+- `npm test -- --run`: pass（14 files / 62 tests）
+- `npm run build`: pass（既存の chunk size 警告のみ）
+
 # 八日目（中日）結果未更新の修正 Todo（2026-05-18）
 
 ## Plan
