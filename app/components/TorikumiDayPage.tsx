@@ -121,6 +121,8 @@ function TorikumiTable({
   mode,
   sortOrder,
   t,
+  banzukePath,
+  recordMap,
 }: {
   title: string;
   dayData: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay };
