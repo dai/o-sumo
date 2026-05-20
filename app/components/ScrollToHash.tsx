@@ -5,7 +5,10 @@ export default function ScrollToHash() {
   const { hash, pathname } = useLocation();
 
   React.useEffect(() => {
-    if (!hash) return;
+    if (!hash) {
+      window.scrollTo(0, 0);
+      return;
+    }
 
     const targetId = decodeURIComponent(hash.slice(1));
     if (!targetId) return;

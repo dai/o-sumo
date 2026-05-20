@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Navigate, Routes, Route, useLocation } from 'react-router-dom'
 import { registerSW } from 'virtual:pwa-register'
 import { useTranslation } from 'react-i18next'
 import './lib/i18n'
@@ -28,6 +28,11 @@ import './globals.css'
 
 bootstrapTheme()
 
+function HashPreservingRedirect({ to }: { to: string }) {
+  const { hash } = useLocation()
+  return <Navigate to={`${to}${hash}`} replace />
+}
+
 const updateSW = registerSW({
   onNeedRefresh() {
     if (window.confirm(i18n.t('pwa.updateDialogTitle'))) {
@@ -52,27 +57,27 @@ function AppShell() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/archives/" element={<ArchivesPage />} />
-        <Route path="/archives" element={<Navigate to="/archives/" replace />} />
+        <Route path="/archives" element={<HashPreservingRedirect to="/archives/" />} />
         <Route path="/rikishi/" element={<RikishiPage />} />
-        <Route path="/rikishi" element={<Navigate to="/rikishi/" replace />} />
+        <Route path="/rikishi" element={<HashPreservingRedirect to="/rikishi/" />} />
         <Route path="/rikishi/:id/" element={<RikishiProfilePage />} />
         <Route path="/rikishi/:id" element={<RikishiProfilePage />} />
         {/* May 2026 routes */}
         <Route path={`${MAY2026_BANDUKE_PATH}/`} element={<BanzukePage />} />
-        <Route path={MAY2026_BANDUKE_PATH} element={<Navigate to={`${MAY2026_BANDUKE_PATH}/`} replace />} />
+        <Route path={MAY2026_BANDUKE_PATH} element={<HashPreservingRedirect to={`${MAY2026_BANDUKE_PATH}/`} />} />
         <Route path={`${MAY2026_RESULT_PATH}/`} element={<TorikumiHubPage mode="result" />} />
-        <Route path={MAY2026_RESULT_PATH} element={<Navigate to={`${MAY2026_RESULT_PATH}/`} replace />} />
+        <Route path={MAY2026_RESULT_PATH} element={<HashPreservingRedirect to={`${MAY2026_RESULT_PATH}/`} />} />
         <Route path={`${MAY2026_SCHEDULE_PATH}/`} element={<TorikumiHubPage mode="schedule" />} />
-        <Route path={MAY2026_SCHEDULE_PATH} element={<Navigate to={`${MAY2026_SCHEDULE_PATH}/`} replace />} />
+        <Route path={MAY2026_SCHEDULE_PATH} element={<HashPreservingRedirect to={`${MAY2026_SCHEDULE_PATH}/`} />} />
         {/* March 2026 routes */}
         <Route path={`${MARCH2026_BANDUKE_PATH}/`} element={<BanzukePage />} />
-        <Route path={MARCH2026_BANDUKE_PATH} element={<Navigate to={`${MARCH2026_BANDUKE_PATH}/`} replace />} />
+        <Route path={MARCH2026_BANDUKE_PATH} element={<HashPreservingRedirect to={`${MARCH2026_BANDUKE_PATH}/`} />} />
         <Route path={`${MARCH2026_RESULT_PATH}/`} element={<TorikumiHubPage mode="result" />} />
-        <Route path={MARCH2026_RESULT_PATH} element={<Navigate to={`${MARCH2026_RESULT_PATH}/`} replace />} />
+        <Route path={MARCH2026_RESULT_PATH} element={<HashPreservingRedirect to={`${MARCH2026_RESULT_PATH}/`} />} />
         <Route path={`${MARCH2026_SCHEDULE_PATH}/`} element={<TorikumiHubPage mode="schedule" />} />
-        <Route path={MARCH2026_SCHEDULE_PATH} element={<Navigate to={`${MARCH2026_SCHEDULE_PATH}/`} replace />} />
+        <Route path={MARCH2026_SCHEDULE_PATH} element={<HashPreservingRedirect to={`${MARCH2026_SCHEDULE_PATH}/`} />} />
         {/* Legacy redirect */}
-        <Route path="/202603-o-sumo" element={<Navigate to={`${MARCH2026_BANDUKE_PATH}/`} replace />} />
+        <Route path="/202603-o-sumo" element={<HashPreservingRedirect to={`${MARCH2026_BANDUKE_PATH}/`} />} />
         {/* Day pages (8-digit slugs) */}
         <Route path="/:slug" element={<TopLevelSlugPage />} />
         <Route path="/:slug/" element={<TopLevelSlugPage />} />

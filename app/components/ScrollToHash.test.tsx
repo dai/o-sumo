@@ -33,10 +33,9 @@ describe('ScrollToHash', () => {
     });
   });
 
-  it('does nothing when there is no hash', async () => {
-    const scrollIntoView = vi.fn();
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    (HTMLElement.prototype as unknown as { scrollIntoView: unknown }).scrollIntoView = scrollIntoView;
+  it('scrolls to top when there is no hash', async () => {
+    const scrollTo = vi.fn();
+    vi.stubGlobal('scrollTo', scrollTo);
 
     render(
       <MemoryRouter initialEntries={['/202603-banduke/']}>
@@ -46,7 +45,7 @@ describe('ScrollToHash', () => {
     );
 
     await waitFor(() => {
-      expect(scrollIntoView).not.toHaveBeenCalled();
+      expect(scrollTo).toHaveBeenCalledWith(0, 0);
     });
   });
 });
