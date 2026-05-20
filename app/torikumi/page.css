@@ -295,6 +295,7 @@
 .torikumi-row {
   margin-bottom: 0.75rem;
   transition: transform 0.2s ease;
+  scroll-margin-top: 14rem;
 }
 
 .torikumi-row:hover {
