@@ -16,6 +16,12 @@ import './index.css';
 export default function Home() {
   const { t } = useTranslation('common');
   const currentBashoTitle = `${MAY2026_TORIKUMI_DATA.year}${MAY2026_TORIKUMI_DATA.bashoName}`;
+  const currentDay = MAY2026_TORIKUMI_DATA.today?.makuuchi.day ?? MAY2026_TORIKUMI_DATA.resultDays?.[MAY2026_TORIKUMI_DATA.resultDays.length - 1]?.day ?? 0;
+  const showChampionshipRace = currentDay >= 14;
+  const championshipLeaders = [
+    { losses: 2, rikishi: ['霧島'] },
+    { losses: 3, rikishi: ['若隆景', '義ノ富士', '琴栄峰'] },
+  ];
 
   return (
     <div className="home-container">
@@ -49,6 +55,21 @@ export default function Home() {
             </Link>
           </nav>
         </section>
+
+        {showChampionshipRace ? (
+          <section className="championship-section" aria-label="幕内優勝争い">
+            <h2>優勝争い({currentDay}日目)</h2>
+            <h3>幕内優勝争い({currentDay}日目)</h3>
+            <div className="championship-table" role="table" aria-label="幕内優勝争い一覧">
+              {championshipLeaders.map((group) => (
+                <div key={group.losses} className="championship-row" role="row">
+                  <p className="championship-losses" role="cell">{group.losses}敗</p>
+                  <p className="championship-rikishi" role="cell">{group.rikishi.join(' ・ ')}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         {/* Past Basho - March 2026 */}
         <section className="past-basho-section">

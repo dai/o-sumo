@@ -48,9 +48,9 @@
 /* Hero section - surface hierarchy, no border */
 .hero-section {
   background: linear-gradient(180deg, var(--surface-container-low) 0%, var(--surface) 100%);
-  padding: 4rem 3rem;
+  padding: 2.65rem 2rem;
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   box-shadow: var(--shadow-ambient);
   position: relative;
   overflow: hidden;
@@ -63,8 +63,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 400px;
-  height: 400px;
+  width: 267px;
+  height: 267px;
   border: 2px solid var(--color-secondary-light);
   border-radius: 50%;
   opacity: 0.15;
@@ -77,8 +77,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
   border: 1px solid var(--color-secondary);
   border-radius: 50%;
   opacity: 0.1;
@@ -86,7 +86,7 @@
 }
 
 .hero-section h2 {
-  font-size: 2.5rem;
+  font-size: 1.67rem;
   margin-bottom: 1rem;
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   -webkit-background-clip: text;
@@ -97,7 +97,7 @@
 }
 
 .hero-section p {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   color: var(--color-dark-text);
   margin-bottom: 2rem;
   line-height: 1.8;
@@ -214,7 +214,7 @@
 }
 
 .archive-card-title {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   color: var(--color-primary);
   font-family: var(--font-serif);
   margin-bottom: 0.5rem;
@@ -240,6 +240,44 @@
 
 .archives-footer a:hover {
   color: var(--color-tertiary);
+}
+
+
+.championship-section {
+  background: var(--surface-container-low);
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+.championship-section h2 {
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem;
+  color: var(--color-primary);
+  font-family: var(--font-serif);
+}
+
+.championship-section h3 {
+  font-size: 1.1rem;
+  margin: 0 0 1rem;
+  color: var(--color-dark-text);
+}
+
+.championship-table {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.championship-row {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  background: var(--surface-container-lowest);
+  padding: 0.75rem 1rem;
+}
+
+.championship-losses,
+.championship-rikishi {
+  margin: 0;
+  font-weight: 700;
 }
 
 /* Past basho section (March 2026) */
@@ -413,7 +451,7 @@
   }
 
   .home-title {
-    font-size: 2.5rem;
+    font-size: 1.67rem;
   }
 
   .home-subtitle {
@@ -466,7 +504,7 @@
   }
 
   .feature-card h3 {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
   }
 
   .tech-badge {
