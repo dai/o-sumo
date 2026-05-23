@@ -16,7 +16,10 @@ import './index.css';
 export default function Home() {
   const { t } = useTranslation('common');
   const currentBashoTitle = `${MAY2026_TORIKUMI_DATA.year}${MAY2026_TORIKUMI_DATA.bashoName}`;
-  const currentDay = MAY2026_TORIKUMI_DATA.today?.makuuchi.day ?? MAY2026_TORIKUMI_DATA.resultDays?.[MAY2026_TORIKUMI_DATA.resultDays.length - 1]?.day ?? 0;
+  const latestPublishedResultDay = MAY2026_TORIKUMI_DATA.resultDays
+    ?.filter((day) => day.status === 'published')
+    .reduce((maxDay, day) => Math.max(maxDay, day.day), 0) ?? 0;
+  const currentDay = latestPublishedResultDay || MAY2026_TORIKUMI_DATA.today?.makuuchi.day || 0;
   const showChampionshipRace = currentDay >= 14;
   const championshipLeaders = [
     { losses: 2, rikishi: ['霧島'] },
