@@ -50,4 +50,16 @@ describe('Home page', () => {
     expect(within(screen.getByRole('contentinfo')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
     expect(screen.getAllByRole('link', { name: 'GitHub' })[0]).toHaveAttribute('href', 'https://github.com/dai/o-sumo');
   });
+
+  it('shows championship header as day 14 when day 14 has started', () => {
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByRole('heading', { level: 2, name: '優勝争い(14日目)' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 3, name: '幕内優勝争い(14日目)' })).toBeInTheDocument();
+  });
+
 });
