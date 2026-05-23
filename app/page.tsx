@@ -19,7 +19,8 @@ export default function Home() {
   const latestPublishedResultDay = MAY2026_TORIKUMI_DATA.resultDays
     ?.filter((day) => day.status === 'published')
     .reduce((maxDay, day) => Math.max(maxDay, day.day), 0) ?? 0;
-  const currentDay = latestPublishedResultDay || MAY2026_TORIKUMI_DATA.today?.makuuchi.day || 0;
+  const latestKnownDay = MAY2026_TORIKUMI_DATA.today?.makuuchi.day || 0;
+  const currentDay = Math.max(latestPublishedResultDay, latestKnownDay);
   const showChampionshipRace = currentDay >= 14;
   const championshipLeaders = [
     { losses: 2, rikishi: ['霧島'] },
