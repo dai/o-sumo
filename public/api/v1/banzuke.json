@@ -1,7 +1,7 @@
 {
   "bashoName": "五月場所",
   "year": "令和八年",
-  "updatedAt": "2026-05-23T16:25:14+09:00",
+  "updatedAt": "2026-05-23T16:26:15+09:00",
   "makuuchi": [
     {
       "title": "横綱",
@@ -807,7 +807,7 @@
           "yomi": "にしきふじ",
           "rank": "前頭9",
           "side": "west",
-          "wins": 3,
+          "wins": 4,
           "losses": 10,
           "draws": 0,
           "results": [
@@ -823,7 +823,8 @@
             "loss",
             "loss",
             "loss",
-            "loss"
+            "loss",
+            "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/",
           "memo": ""
@@ -1056,7 +1057,7 @@
           "rank": "前頭13",
           "side": "west",
           "wins": 2,
-          "losses": 11,
+          "losses": 12,
           "draws": 0,
           "results": [
             "loss",
@@ -1070,6 +1071,7 @@
             "loss",
             "win",
             "win",
+            "loss",
             "loss",
             "loss"
           ],
