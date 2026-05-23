@@ -138,7 +138,9 @@ export default function Home() {
     .reduce((maxDay, day) => Math.max(maxDay, day.day), 0) ?? 0;
   const currentDay = Math.max(latestPublishedResultDay, latestKnownDay);
   const showChampionshipRace = currentDay >= 14;
-  const championshipLabel = currentDay === 14 ? '十四日目終了時点' : `${currentDay}日目`;
+  const championshipLabel = currentDay === 14
+    ? t('home.championshipLabelDay14')
+    : t('home.championshipLabelDay', { day: currentDay });
   const championshipLeaders = buildChampionshipLeaders(currentDay);
 
   return (
@@ -176,8 +178,8 @@ export default function Home() {
 
         {showChampionshipRace ? (
           <section className="championship-section" aria-label="幕内優勝争い">
-            <h2>優勝争い({championshipLabel})</h2>
-            <h3>幕内優勝争い({championshipLabel})</h3>
+            <h2>{t('home.championshipHeading', { label: championshipLabel })}</h2>
+            <h3>{t('home.championshipSubheading', { label: championshipLabel })}</h3>
             <div className="championship-table" role="table" aria-label="幕内優勝争い一覧">
               {championshipLeaders.map((group) => (
                 <div key={group.losses} className="championship-row" role="row">
