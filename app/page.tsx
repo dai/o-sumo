@@ -5,13 +5,116 @@ import {
   MARCH2026_RESULT_PATH,
   MARCH2026_SCHEDULE_PATH,
   MAY2026_BANDUKE_PATH,
+  getDayPath,
   MAY2026_RESULT_PATH,
   MAY2026_SCHEDULE_PATH,
 } from './lib/torikumi-routes';
 import { MAY2026_TORIKUMI_DATA } from './lib/may2026-data';
 import { MARCH2026_TORIKUMI_DATA } from './lib/march2026-torikumi-data';
+import { canonicalShikona, divisionAnchorId } from './lib/rikishi-display';
+import { type TorikumiArchiveDay } from './lib/torikumi-data';
 import HomeLink from './components/HomeLink';
 import './index.css';
+
+interface ChampionshipCandidate {
+  profileUrl: string;
+  name: string;
+  wins: number;
+  losses: number;
+  bouts: number;
+}
+
+interface ChampionshipLeader {
+  profileUrl: string;
+  name: string;
+  href: string | null;
+}
+
+interface ChampionshipGroup {
+  losses: number;
+  rikishi: ChampionshipLeader[];
+}
+
+function getLatestResultHref(profileUrl: string, currentDay: number, resultDays: TorikumiArchiveDay[]): string | null {
+  for (let day = currentDay; day >= 1; day -= 1) {
+    const archiveDay = resultDays.find((candidate) => candidate.day === day);
+    if (!archiveDay) continue;
+    for (const divisionDay of [archiveDay.data.makuuchi, archiveDay.data.juryo]) {
+      for (const match of divisionDay.matches) {
+        if (match.eastProfileUrl === profileUrl || match.westProfileUrl === profileUrl) {
+          return `${getDayPath(archiveDay, 'result')}#${divisionAnchorId(divisionDay.division, match.boutNo)}`;
+        }
+      }
+    }
+  }
+  return null;
+}
+
+function buildChampionshipLeaders(currentDay: number): ChampionshipGroup[] {
+  const resultDays = MAY2026_TORIKUMI_DATA.resultDays ?? [];
+  const stats = new Map<string, ChampionshipCandidate>();
+
+  resultDays
+    .filter((day) => day.status === 'published' && day.day <= currentDay)
+    .forEach((day) => {
+      day.data.makuuchi.matches.forEach((match) => {
+        const east = stats.get(match.eastProfileUrl) ?? {
+          profileUrl: match.eastProfileUrl,
+          name: canonicalShikona(match.eastProfileUrl, match.eastName),
+          wins: 0,
+          losses: 0,
+          bouts: 0,
+        };
+        const west = stats.get(match.westProfileUrl) ?? {
+          profileUrl: match.westProfileUrl,
+          name: canonicalShikona(match.westProfileUrl, match.westName),
+          wins: 0,
+          losses: 0,
+          bouts: 0,
+        };
+
+        if (match.winner === 'east') {
+          east.wins += 1;
+          west.losses += 1;
+        } else if (match.winner === 'west') {
+          west.wins += 1;
+          east.losses += 1;
+        }
+
+        east.bouts += 1;
+        west.bouts += 1;
+        stats.set(match.eastProfileUrl, east);
+        stats.set(match.westProfileUrl, west);
+      });
+    });
+
+  const minimumBouts = Math.max(1, currentDay - 2);
+  const activeCandidates = [...stats.values()].filter((candidate) => candidate.bouts >= minimumBouts);
+  const fallbackCandidates = activeCandidates.length > 0
+    ? activeCandidates
+    : [...stats.values()].filter((candidate) => candidate.bouts > 0);
+  if (fallbackCandidates.length === 0) return [];
+
+  const minLosses = Math.min(...fallbackCandidates.map((candidate) => candidate.losses));
+  const contenders = fallbackCandidates.filter((candidate) => candidate.losses <= minLosses + 1);
+  const grouped = new Map<number, ChampionshipLeader[]>();
+
+  contenders
+    .sort((a, b) => a.losses - b.losses || b.wins - a.wins || a.name.localeCompare(b.name, 'ja'))
+    .forEach((candidate) => {
+      const group = grouped.get(candidate.losses) ?? [];
+      group.push({
+        profileUrl: candidate.profileUrl,
+        name: candidate.name,
+        href: getLatestResultHref(candidate.profileUrl, currentDay, resultDays),
+      });
+      grouped.set(candidate.losses, group);
+    });
+
+  return [...grouped.entries()]
+    .sort(([left], [right]) => left - right)
+    .map(([losses, rikishi]) => ({ losses, rikishi }));
+}
 
 export default function Home() {
   const { t } = useTranslation('common');
@@ -26,10 +129,7 @@ export default function Home() {
   const currentDay = Math.max(latestPublishedResultDay, latestKnownDay);
   const showChampionshipRace = currentDay >= 14;
   const championshipLabel = currentDay === 14 ? '十四日目終了時点' : `${currentDay}日目`;
-  const championshipLeaders = [
-    { losses: 2, rikishi: ['霧島'] },
-    { losses: 3, rikishi: ['若隆景', '義ノ富士', '琴栄峰'] },
-  ];
+  const championshipLeaders = buildChampionshipLeaders(currentDay);
 
   return (
     <div className="home-container">
@@ -72,7 +172,14 @@ export default function Home() {
               {championshipLeaders.map((group) => (
                 <div key={group.losses} className="championship-row" role="row">
                   <p className="championship-losses" role="cell">{group.losses}敗</p>
-                  <p className="championship-rikishi" role="cell">{group.rikishi.join(' ・ ')}</p>
+                  <p className="championship-rikishi" role="cell">
+                    {group.rikishi.map((rikishi, index) => (
+                      <span key={rikishi.profileUrl}>
+                        {rikishi.href ? <Link to={rikishi.href}>{rikishi.name}</Link> : rikishi.name}
+                        {index < group.rikishi.length - 1 ? ' ・ ' : ''}
+                      </span>
+                    ))}
+                  </p>
                 </div>
               ))}
             </div>

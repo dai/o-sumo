@@ -280,6 +280,11 @@
   font-weight: 700;
 }
 
+.championship-rikishi a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 /* Past basho section (March 2026) */
 .past-basho-section {
   background: var(--surface-container-low);
