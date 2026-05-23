@@ -1,7 +1,7 @@
 {
   "bashoName": "五月場所",
   "year": "令和八年",
-  "updatedAt": "2026-05-22T20:44:13+09:00",
+  "updatedAt": "2026-05-23T14:36:06+09:00",
   "makuuchi": [
     {
       "title": "横綱",
@@ -14,10 +14,11 @@
           "side": "east",
           "wins": 0,
           "losses": 2,
-          "draws": 11,
+          "draws": 12,
           "results": [
             "loss",
             "loss",
+            "draw",
             "draw",
             "draw",
             "draw",
@@ -43,8 +44,9 @@
           "side": "west",
           "wins": 0,
           "losses": 0,
-          "draws": 13,
+          "draws": 14,
           "results": [
+            "draw",
             "draw",
             "draw",
             "draw",
@@ -75,7 +77,7 @@
           "side": "east",
           "wins": 3,
           "losses": 9,
-          "draws": 1,
+          "draws": 2,
           "results": [
             "loss",
             "loss",
@@ -89,6 +91,7 @@
             "win",
             "loss",
             "loss",
+            "draw",
             "draw"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/",
@@ -131,8 +134,9 @@
           "side": "west",
           "wins": 0,
           "losses": 0,
-          "draws": 13,
+          "draws": 14,
           "results": [
+            "draw",
             "draw",
             "draw",
             "draw",
@@ -253,12 +257,13 @@
           "side": "west",
           "wins": 2,
           "losses": 2,
-          "draws": 9,
+          "draws": 10,
           "results": [
             "win",
             "win",
             "loss",
             "loss",
+            "draw",
             "draw",
             "draw",
             "draw",
@@ -680,7 +685,7 @@
           "side": "west",
           "wins": 3,
           "losses": 4,
-          "draws": 6,
+          "draws": 7,
           "results": [
             "win",
             "win",
@@ -689,6 +694,7 @@
             "win",
             "loss",
             "loss",
+            "draw",
             "draw",
             "draw",
             "draw",
@@ -834,7 +840,7 @@
           "side": "east",
           "wins": 7,
           "losses": 5,
-          "draws": 1,
+          "draws": 2,
           "results": [
             "win",
             "loss",
@@ -848,6 +854,7 @@
             "win",
             "loss",
             "loss",
+            "draw",
             "draw"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/",
