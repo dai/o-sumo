@@ -35,23 +35,33 @@ interface ChampionshipGroup {
   rikishi: ChampionshipLeader[];
 }
 
-function getLatestResultHref(profileUrl: string, currentDay: number, resultDays: TorikumiArchiveDay[]): string | null {
-  for (let day = currentDay; day >= 1; day -= 1) {
-    const archiveDay = resultDays.find((candidate) => candidate.day === day);
-    if (!archiveDay) continue;
-    for (const divisionDay of [archiveDay.data.makuuchi, archiveDay.data.juryo]) {
-      for (const match of divisionDay.matches) {
-        if (match.eastProfileUrl === profileUrl || match.westProfileUrl === profileUrl) {
-          return `${getDayPath(archiveDay, 'result')}#${divisionAnchorId(divisionDay.division, match.boutNo)}`;
-        }
-      }
-    }
-  }
-  return null;
+function compareChampionshipCandidates(left: ChampionshipCandidate, right: ChampionshipCandidate): number {
+  return left.losses - right.losses || right.wins - left.wins || left.name.localeCompare(right.name, 'ja');
+}
+
+function buildLatestResultHrefMap(currentDay: number, resultDays: TorikumiArchiveDay[]): Map<string, string> {
+  const hrefMap = new Map<string, string>();
+
+  resultDays
+    .filter((day) => day.status === 'published' && day.day <= currentDay)
+    .sort((a, b) => a.day - b.day)
+    .forEach((archiveDay) => {
+      const divisionDays = [archiveDay.data.makuuchi, archiveDay.data.juryo];
+      divisionDays.forEach((divisionDay) => {
+        divisionDay.matches.forEach((match) => {
+          const href = `${getDayPath(archiveDay, 'result')}#${divisionAnchorId(divisionDay.division, match.boutNo)}`;
+          hrefMap.set(match.eastProfileUrl, href);
+          hrefMap.set(match.westProfileUrl, href);
+        });
+      });
+    });
+
+  return hrefMap;
 }
 
 function buildChampionshipLeaders(currentDay: number): ChampionshipGroup[] {
   const resultDays = MAY2026_TORIKUMI_DATA.resultDays ?? [];
+  const latestResultHrefMap = buildLatestResultHrefMap(currentDay, resultDays);
   const stats = new Map<string, ChampionshipCandidate>();
 
   resultDays
@@ -88,25 +98,25 @@ function buildChampionshipLeaders(currentDay: number): ChampionshipGroup[] {
       });
     });
 
-  const minimumBouts = Math.max(1, currentDay - 2);
-  const activeCandidates = [...stats.values()].filter((candidate) => candidate.bouts >= minimumBouts);
-  const fallbackCandidates = activeCandidates.length > 0
+  const activeBoutThreshold = Math.max(1, currentDay - 2);
+  const activeCandidates = [...stats.values()].filter((candidate) => candidate.bouts >= activeBoutThreshold);
+  const candidatesForRace = activeCandidates.length > 0
     ? activeCandidates
     : [...stats.values()].filter((candidate) => candidate.bouts > 0);
-  if (fallbackCandidates.length === 0) return [];
+  if (candidatesForRace.length === 0) return [];
 
-  const minLosses = Math.min(...fallbackCandidates.map((candidate) => candidate.losses));
-  const contenders = fallbackCandidates.filter((candidate) => candidate.losses <= minLosses + 1);
+  const minLosses = Math.min(...candidatesForRace.map((candidate) => candidate.losses));
+  const contenders = candidatesForRace.filter((candidate) => candidate.losses <= minLosses + 1);
   const grouped = new Map<number, ChampionshipLeader[]>();
 
   contenders
-    .sort((a, b) => a.losses - b.losses || b.wins - a.wins || a.name.localeCompare(b.name, 'ja'))
+    .sort(compareChampionshipCandidates)
     .forEach((candidate) => {
       const group = grouped.get(candidate.losses) ?? [];
       group.push({
         profileUrl: candidate.profileUrl,
         name: candidate.name,
-        href: getLatestResultHref(candidate.profileUrl, currentDay, resultDays),
+        href: latestResultHrefMap.get(candidate.profileUrl) ?? null,
       });
       grouped.set(candidate.losses, group);
     });
