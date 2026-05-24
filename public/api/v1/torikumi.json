@@ -1,8 +1,8 @@
 {
   "bashoName": "五月場所",
   "year": "令和八年",
-  "updatedAt": "2026-05-24T18:47:02+09:00",
-  "resultUpdatedAt": "2026-05-24T17:22:48+09:00",
+  "updatedAt": "2026-05-24T18:55:02+09:00",
+  "resultUpdatedAt": "2026-05-24T18:55:02+09:00",
   "scheduleUpdatedAt": "2026-05-24T18:47:02+09:00",
   "today": {
     "makuuchi": {
@@ -9514,8 +9514,24 @@
               "westEnglish": "",
               "westRank": "前頭十一枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/",
-              "kimarite": "未定",
-              "winner": null
+              "kimarite": "押し倒し",
+              "winner": "east"
+            },
+            {
+              "division": "幕内",
+              "boutNo": 19,
+              "eastName": "きりしま",
+              "eastYomi": "",
+              "eastEnglish": "",
+              "eastRank": "大関",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/",
+              "westName": "わかたかかげ",
+              "westYomi": "",
+              "westEnglish": "",
+              "westRank": "小結",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/",
+              "kimarite": "押し出し",
+              "winner": "west"
             }
           ],
           "absentees": []
