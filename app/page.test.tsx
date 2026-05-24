@@ -10,7 +10,7 @@ import {
 } from './lib/torikumi-routes';
 import { MAY2026_TORIKUMI_DATA } from './lib/may2026-data';
 import { MARCH2026_TORIKUMI_DATA } from './lib/march2026-torikumi-data';
-import Home from './page';
+import Home, { getCurrentDay } from './page';
 
 describe('Home page', () => {
   it('shows the main navigation links and footer-only contact links', () => {
@@ -50,4 +50,18 @@ describe('Home page', () => {
     expect(within(screen.getByRole('contentinfo')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
     expect(screen.getAllByRole('link', { name: 'GitHub' })[0]).toHaveAttribute('href', 'https://github.com/dai/o-sumo');
   });
+
+  it('shows championship header as day 14 when day 14 has started', () => {
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+
+    const expectedDay = getCurrentDay();
+
+    expect(screen.getByRole('heading', { level: 2, name: `優勝争い(${expectedDay}日目)` })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 3, name: `幕内優勝争い(${expectedDay}日目)` })).toBeInTheDocument();
+  });
+
 });

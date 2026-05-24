@@ -13,13 +13,25 @@ import { MARCH2026_TORIKUMI_DATA } from './lib/march2026-torikumi-data';
 import HomeLink from './components/HomeLink';
 import './index.css';
 
-export default function Home() {
-  const { t } = useTranslation('common');
-  const currentBashoTitle = `${MAY2026_TORIKUMI_DATA.year}${MAY2026_TORIKUMI_DATA.bashoName}`;
+export function getCurrentDay() {
   const latestPublishedResultDay = MAY2026_TORIKUMI_DATA.resultDays
     ?.filter((day) => day.status === 'published')
     .reduce((maxDay, day) => Math.max(maxDay, day.day), 0) ?? 0;
-  const currentDay = latestPublishedResultDay || MAY2026_TORIKUMI_DATA.today?.makuuchi.day || 0;
+  const referenceDate = MAY2026_TORIKUMI_DATA.resultUpdatedAt?.slice(0, 10);
+  const latestKnownDayFromResultDays = referenceDate
+    ? (MAY2026_TORIKUMI_DATA.resultDays
+      ?.filter((day) => day.isoDate <= referenceDate)
+      .reduce((maxDay, day) => Math.max(maxDay, day.day), 0) ?? 0)
+    : 0;
+  const latestKnownDayFromToday = MAY2026_TORIKUMI_DATA.today?.makuuchi.day || 0;
+
+  return Math.max(latestPublishedResultDay, latestKnownDayFromResultDays, latestKnownDayFromToday);
+}
+
+export default function Home() {
+  const { t } = useTranslation('common');
+  const currentBashoTitle = `${MAY2026_TORIKUMI_DATA.year}${MAY2026_TORIKUMI_DATA.bashoName}`;
+  const currentDay = getCurrentDay();
   const showChampionshipRace = currentDay >= 14;
   const championshipLeaders = [
     { losses: 2, rikishi: ['霧島'] },
