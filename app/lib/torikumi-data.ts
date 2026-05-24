@@ -59,9 +59,9 @@ export interface TorikumiDataSet {
 export const torikumiData: TorikumiDataSet = {
   "bashoName": "五月場所",
   "year": "令和八年",
-  "updatedAt": "2026-05-24T10:05:31+09:00",
+  "updatedAt": "2026-05-24T12:38:42+09:00",
   "resultUpdatedAt": "2026-05-24T10:05:31+09:00",
-  "scheduleUpdatedAt": "2026-05-24T10:04:08+09:00",
+  "scheduleUpdatedAt": "2026-05-24T12:38:42+09:00",
   "today": {
     "makuuchi": {
       "day": 14,
@@ -358,43 +358,7 @@ export const torikumiData: TorikumiDataSet = {
           "winner": "west"
         }
       ],
-      "absentees": [
-        {
-          "id": 2775,
-          "name": "高安",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
-        },
-        {
-          "id": 3661,
-          "name": "琴櫻",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
-        },
-        {
-          "id": 3682,
-          "name": "朝乃山",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
-        },
-        {
-          "id": 3842,
-          "name": "豊昇龍",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
-        },
-        {
-          "id": 4101,
-          "name": "朝紅龍",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
-        },
-        {
-          "id": 4227,
-          "name": "大の里",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-        },
-        {
-          "id": 4230,
-          "name": "安青錦",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
-        }
-      ]
+      "absentees": []
     },
     "juryo": {
       "day": 14,
@@ -926,43 +890,7 @@ export const torikumiData: TorikumiDataSet = {
           "winner": null
         }
       ],
-      "absentees": [
-        {
-          "id": 2775,
-          "name": "高安",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
-        },
-        {
-          "id": 3661,
-          "name": "琴櫻",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
-        },
-        {
-          "id": 3682,
-          "name": "朝乃山",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
-        },
-        {
-          "id": 3842,
-          "name": "豊昇龍",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
-        },
-        {
-          "id": 4101,
-          "name": "朝紅龍",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
-        },
-        {
-          "id": 4227,
-          "name": "大の里",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-        },
-        {
-          "id": 4230,
-          "name": "安青錦",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
-        }
-      ]
+      "absentees": []
     },
     "juryo": {
       "day": 15,
@@ -9713,18 +9641,7 @@ export const torikumiData: TorikumiDataSet = {
               "winner": null
             }
           ],
-          "absentees": [
-            {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 1,
@@ -10297,18 +10214,7 @@ export const torikumiData: TorikumiDataSet = {
               "winner": null
             }
           ],
-          "absentees": [
-            {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 2,
@@ -10881,23 +10787,7 @@ export const torikumiData: TorikumiDataSet = {
               "winner": null
             }
           ],
-          "absentees": [
-            {
-              "id": 3842,
-              "name": "豊昇龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
-            },
-            {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 3,
@@ -11470,23 +11360,7 @@ export const torikumiData: TorikumiDataSet = {
               "winner": null
             }
           ],
-          "absentees": [
-            {
-              "id": 3842,
-              "name": "豊昇龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
-            },
-            {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 4,
@@ -12043,28 +11917,7 @@ export const torikumiData: TorikumiDataSet = {
               "winner": null
             }
           ],
-          "absentees": [
-            {
-              "id": 2775,
-              "name": "高安",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
-            },
-            {
-              "id": 3842,
-              "name": "豊昇龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
-            },
-            {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 5,
@@ -12621,28 +12474,7 @@ export const torikumiData: TorikumiDataSet = {
               "winner": null
             }
           ],
-          "absentees": [
-            {
-              "id": 2775,
-              "name": "高安",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
-            },
-            {
-              "id": 3842,
-              "name": "豊昇龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
-            },
-            {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 6,
@@ -13199,28 +13031,7 @@ export const torikumiData: TorikumiDataSet = {
               "winner": null
             }
           ],
-          "absentees": [
-            {
-              "id": 2775,
-              "name": "高安",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
-            },
-            {
-              "id": 3842,
-              "name": "豊昇龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
-            },
-            {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 7,
@@ -13777,33 +13588,7 @@ export const torikumiData: TorikumiDataSet = {
               "winner": null
             }
           ],
-          "absentees": [
-            {
-              "id": 2775,
-              "name": "高安",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
-            },
-            {
-              "id": 3842,
-              "name": "豊昇龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
-            },
-            {
-              "id": 4101,
-              "name": "朝紅龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
-            },
-            {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 8,
@@ -14360,33 +14145,7 @@ export const torikumiData: TorikumiDataSet = {
               "winner": null
             }
           ],
-          "absentees": [
-            {
-              "id": 2775,
-              "name": "高安",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
-            },
-            {
-              "id": 3842,
-              "name": "豊昇龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
-            },
-            {
-              "id": 4101,
-              "name": "朝紅龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
-            },
-            {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 9,
@@ -14943,33 +14702,7 @@ export const torikumiData: TorikumiDataSet = {
               "winner": null
             }
           ],
-          "absentees": [
-            {
-              "id": 2775,
-              "name": "高安",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
-            },
-            {
-              "id": 3842,
-              "name": "豊昇龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
-            },
-            {
-              "id": 4101,
-              "name": "朝紅龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
-            },
-            {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 10,
@@ -15526,33 +15259,7 @@ export const torikumiData: TorikumiDataSet = {
               "winner": null
             }
           ],
-          "absentees": [
-            {
-              "id": 2775,
-              "name": "高安",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
-            },
-            {
-              "id": 3842,
-              "name": "豊昇龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
-            },
-            {
-              "id": 4101,
-              "name": "朝紅龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
-            },
-            {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 11,
@@ -16109,33 +15816,7 @@ export const torikumiData: TorikumiDataSet = {
               "winner": null
             }
           ],
-          "absentees": [
-            {
-              "id": 2775,
-              "name": "高安",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
-            },
-            {
-              "id": 3842,
-              "name": "豊昇龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
-            },
-            {
-              "id": 4101,
-              "name": "朝紅龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
-            },
-            {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 12,
@@ -16676,43 +16357,7 @@ export const torikumiData: TorikumiDataSet = {
               "winner": null
             }
           ],
-          "absentees": [
-            {
-              "id": 2775,
-              "name": "高安",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
-            },
-            {
-              "id": 3661,
-              "name": "琴櫻",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
-            },
-            {
-              "id": 3682,
-              "name": "朝乃山",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
-            },
-            {
-              "id": 3842,
-              "name": "豊昇龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
-            },
-            {
-              "id": 4101,
-              "name": "朝紅龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
-            },
-            {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 13,
@@ -17253,43 +16898,7 @@ export const torikumiData: TorikumiDataSet = {
               "winner": null
             }
           ],
-          "absentees": [
-            {
-              "id": 2775,
-              "name": "高安",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
-            },
-            {
-              "id": 3661,
-              "name": "琴櫻",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
-            },
-            {
-              "id": 3682,
-              "name": "朝乃山",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
-            },
-            {
-              "id": 3842,
-              "name": "豊昇龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
-            },
-            {
-              "id": 4101,
-              "name": "朝紅龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
-            },
-            {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 14,
@@ -17830,43 +17439,7 @@ export const torikumiData: TorikumiDataSet = {
               "winner": null
             }
           ],
-          "absentees": [
-            {
-              "id": 2775,
-              "name": "高安",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
-            },
-            {
-              "id": 3661,
-              "name": "琴櫻",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
-            },
-            {
-              "id": 3682,
-              "name": "朝乃山",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
-            },
-            {
-              "id": 3842,
-              "name": "豊昇龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
-            },
-            {
-              "id": 4101,
-              "name": "朝紅龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
-            },
-            {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 15,
