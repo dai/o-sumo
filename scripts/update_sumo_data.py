@@ -1,6 +1,7 @@
 import argparse
 import html as html_lib
 import json
+import random
 import re
 import sys
 import time
@@ -68,28 +69,45 @@ def post_json(path: str, payload: dict) -> dict:
         f"{REQUEST_BASE_URL}{path}",
         data=urlencode(payload).encode("utf-8"),
         headers={
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+            # Updated to Chrome 131 (current stable as of 2026)
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
             "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
             "Accept": "application/json, text/javascript, */*; q=0.01",
-            "X-Requested-With": "XMLHttpRequest",
-            "Origin": REQUEST_BASE_URL,
-            "Referer": referer,
+            "Accept-Encoding": "gzip, deflate, br, zstd",
             "Accept-Language": "ja,en-US;q=0.9,en;q=0.8",
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "DNT": "1",
+            "Origin": REQUEST_BASE_URL,
+            "Pragma": "no-cache",
+            "Referer": referer,
+            "Sec-CH-UA": '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+            "Sec-CH-UA-Mobile": "?0",
+            "Sec-CH-UA-Platform": '"Windows"',
+            "Sec-Fetch-Dest": "empty",
+            "Sec-Fetch-Mode": "cors",
+            "Sec-Fetch-Site": "same-origin",
+            "X-Requested-With": "XMLHttpRequest",
             **({"Cookie": cookie} if cookie else {}),
         },
         method="POST",
     )
 
     last_error: Exception | None = None
-    for attempt in range(3):
+    # Retry with exponential backoff and jitter
+    for attempt in range(4):  # Increased from 3 to 4 attempts
         try:
             with urlopen(req, timeout=30) as res:
                 return json.loads(res.read().decode("utf-8"))
         except Exception as exc:
             last_error = exc
-            if attempt == 2:
+            if attempt == 3:  # Last attempt
                 break
-            time.sleep(1.5 * (attempt + 1))
+            # Exponential backoff: 2s, 4s, 8s with small random jitter
+            base_delay = 2 ** (attempt + 1)  # 2, 4, 8 seconds
+            jitter = random.uniform(0, 1)  # 0-1 second random jitter
+            delay = base_delay + jitter
+            time.sleep(delay)
 
     raise RuntimeError(f"API request failed after retries: path={path}, payload={payload}") from last_error
 
