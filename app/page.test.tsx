@@ -51,7 +51,7 @@ describe('Home page', () => {
     expect(screen.getAllByRole('link', { name: 'GitHub' })[0]).toHaveAttribute('href', 'https://github.com/dai/o-sumo');
   });
 
-  it('shows championship header as day 14 when day 14 has started', () => {
+  it('shows championship header as completed day 14 wording when day 14 has started', () => {
     render(
       <MemoryRouter>
         <Home />
@@ -59,9 +59,25 @@ describe('Home page', () => {
     );
 
     const expectedDay = getCurrentDay();
+    const expectedLabel = expectedDay === 14 ? '十四日目終了時点' : `${expectedDay}日目`;
 
-    expect(screen.getByRole('heading', { level: 2, name: `優勝争い(${expectedDay}日目)` })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { level: 3, name: `幕内優勝争い(${expectedDay}日目)` })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: `優勝争い(${expectedLabel})` })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 3, name: `幕内優勝争い(${expectedLabel})` })).toBeInTheDocument();
+  });
+
+  it('links championship rikishi names to the corresponding result bouts', () => {
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+
+    const raceSection = screen.getByLabelText('幕内優勝争い');
+    const rikishiLinks = within(raceSection).getAllByRole('link');
+    expect(rikishiLinks.length).toBeGreaterThan(0);
+    rikishiLinks.forEach((link) => {
+      expect(link.getAttribute('href')).toMatch(/^\/\d{8}-torikumi\/#bout-makuuchi-\d+$/);
+    });
   });
 
 });
