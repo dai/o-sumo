@@ -666,13 +666,23 @@ def determine_archive_statuses(
     return result_status, schedule_status
 
 
-def build_torikumi_dataset(basho_id: int, current_day: int, updated_at: str, existing: dict | None = None) -> dict:
+def build_torikumi_dataset(
+    basho_id: int,
+    current_day: int,
+    updated_at: str,
+    existing: dict | None = None,
+    *,
+    fetch_days: set[int] | None = None,
+) -> dict:
     rosters = {
         "makuuchi": load_division_rikishi(1),
         "juryo": load_division_rikishi(2),
     }
     loaded_days = {}
     for day in range(1, 16):
+        if fetch_days is not None and day not in fetch_days:
+            loaded_days[day] = {"makuuchi": None, "juryo": None}
+            continue
         expected_unpublished = day > current_day
         loaded_days[day] = {
             "makuuchi": try_load_torikumi_day(
@@ -1393,7 +1403,17 @@ def main() -> None:
         updated_at = str(basho_info.get("today", ""))
 
         existing_torikumi = load_existing_torikumi_json()
-        torikumi_dataset = build_torikumi_dataset(basho_id, current_day, updated_at, existing_torikumi)
+        fetch_days: set[int] | None = None
+        if args.torikumi_only and args.torikumi_scope == "result" and existing_torikumi:
+            fetch_days = {max(1, current_day - 1), current_day}
+
+        torikumi_dataset = build_torikumi_dataset(
+            basho_id,
+            current_day,
+            updated_at,
+            existing_torikumi,
+            fetch_days=fetch_days,
+        )
         torikumi_dataset = apply_torikumi_scope(
             torikumi_dataset,
             args.torikumi_scope,
