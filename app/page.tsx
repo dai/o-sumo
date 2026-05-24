@@ -5,13 +5,126 @@ import {
   MARCH2026_RESULT_PATH,
   MARCH2026_SCHEDULE_PATH,
   MAY2026_BANDUKE_PATH,
+  getDayPath,
   MAY2026_RESULT_PATH,
   MAY2026_SCHEDULE_PATH,
 } from './lib/torikumi-routes';
 import { MAY2026_TORIKUMI_DATA } from './lib/may2026-data';
 import { MARCH2026_TORIKUMI_DATA } from './lib/march2026-torikumi-data';
+import { canonicalShikona, divisionAnchorId } from './lib/rikishi-display';
+import { type TorikumiArchiveDay } from './lib/torikumi-data';
 import HomeLink from './components/HomeLink';
 import './index.css';
+
+interface ChampionshipCandidate {
+  profileUrl: string;
+  name: string;
+  wins: number;
+  losses: number;
+  bouts: number;
+}
+
+interface ChampionshipLeader {
+  profileUrl: string;
+  name: string;
+  href: string | null;
+}
+
+interface ChampionshipGroup {
+  losses: number;
+  rikishi: ChampionshipLeader[];
+}
+
+function compareChampionshipCandidates(left: ChampionshipCandidate, right: ChampionshipCandidate): number {
+  return left.losses - right.losses || right.wins - left.wins || left.name.localeCompare(right.name, 'ja');
+}
+
+function buildLatestResultHrefMap(currentDay: number, resultDays: TorikumiArchiveDay[]): Map<string, string> {
+  const hrefMap = new Map<string, string>();
+
+  resultDays
+    .filter((day) => day.status === 'published' && day.day <= currentDay)
+    .sort((a, b) => a.day - b.day)
+    .forEach((archiveDay) => {
+      const divisionDays = [archiveDay.data.makuuchi, archiveDay.data.juryo];
+      divisionDays.forEach((divisionDay) => {
+        divisionDay.matches.forEach((match) => {
+          const href = `${getDayPath(archiveDay, 'result')}#${divisionAnchorId(divisionDay.division, match.boutNo)}`;
+          hrefMap.set(match.eastProfileUrl, href);
+          hrefMap.set(match.westProfileUrl, href);
+        });
+      });
+    });
+
+  return hrefMap;
+}
+
+function buildChampionshipLeaders(currentDay: number): ChampionshipGroup[] {
+  const resultDays = MAY2026_TORIKUMI_DATA.resultDays ?? [];
+  const latestResultHrefMap = buildLatestResultHrefMap(currentDay, resultDays);
+  const stats = new Map<string, ChampionshipCandidate>();
+
+  resultDays
+    .filter((day) => day.status === 'published' && day.day <= currentDay)
+    .forEach((day) => {
+      day.data.makuuchi.matches.forEach((match) => {
+        const east = stats.get(match.eastProfileUrl) ?? {
+          profileUrl: match.eastProfileUrl,
+          name: canonicalShikona(match.eastProfileUrl, match.eastName),
+          wins: 0,
+          losses: 0,
+          bouts: 0,
+        };
+        const west = stats.get(match.westProfileUrl) ?? {
+          profileUrl: match.westProfileUrl,
+          name: canonicalShikona(match.westProfileUrl, match.westName),
+          wins: 0,
+          losses: 0,
+          bouts: 0,
+        };
+
+        if (match.winner === 'east') {
+          east.wins += 1;
+          west.losses += 1;
+        } else if (match.winner === 'west') {
+          west.wins += 1;
+          east.losses += 1;
+        }
+
+        east.bouts += 1;
+        west.bouts += 1;
+        stats.set(match.eastProfileUrl, east);
+        stats.set(match.westProfileUrl, west);
+      });
+    });
+
+  const activeBoutThreshold = Math.max(1, currentDay - 2);
+  const activeCandidates = [...stats.values()].filter((candidate) => candidate.bouts >= activeBoutThreshold);
+  const candidatesForRace = activeCandidates.length > 0
+    ? activeCandidates
+    : [...stats.values()].filter((candidate) => candidate.bouts > 0);
+  if (candidatesForRace.length === 0) return [];
+
+  const minLosses = Math.min(...candidatesForRace.map((candidate) => candidate.losses));
+  const contenders = candidatesForRace.filter((candidate) => candidate.losses <= minLosses + 1);
+  const grouped = new Map<number, ChampionshipLeader[]>();
+
+  contenders
+    .sort(compareChampionshipCandidates)
+    .forEach((candidate) => {
+      const group = grouped.get(candidate.losses) ?? [];
+      group.push({
+        profileUrl: candidate.profileUrl,
+        name: candidate.name,
+        href: latestResultHrefMap.get(candidate.profileUrl) ?? null,
+      });
+      grouped.set(candidate.losses, group);
+    });
+
+  return [...grouped.entries()]
+    .sort(([left], [right]) => left - right)
+    .map(([losses, rikishi]) => ({ losses, rikishi }));
+}
 
 export function getCurrentDay() {
   const latestPublishedResultDay = MAY2026_TORIKUMI_DATA.resultDays
@@ -33,10 +146,10 @@ export default function Home() {
   const currentBashoTitle = `${MAY2026_TORIKUMI_DATA.year}${MAY2026_TORIKUMI_DATA.bashoName}`;
   const currentDay = getCurrentDay();
   const showChampionshipRace = currentDay >= 14;
-  const championshipLeaders = [
-    { losses: 2, rikishi: ['霧島'] },
-    { losses: 3, rikishi: ['若隆景', '義ノ富士', '琴栄峰'] },
-  ];
+  const championshipLabel = currentDay === 14
+    ? t('home.championshipLabelDay14')
+    : t('home.championshipLabelDay', { day: currentDay });
+  const championshipLeaders = buildChampionshipLeaders(currentDay);
 
   return (
     <div className="home-container">
@@ -73,13 +186,20 @@ export default function Home() {
 
         {showChampionshipRace ? (
           <section className="championship-section" aria-label="幕内優勝争い">
-            <h2>優勝争い({currentDay}日目)</h2>
-            <h3>幕内優勝争い({currentDay}日目)</h3>
+            <h2>{t('home.championshipHeading', { label: championshipLabel })}</h2>
+            <h3>{t('home.championshipSubheading', { label: championshipLabel })}</h3>
             <div className="championship-table" role="table" aria-label="幕内優勝争い一覧">
               {championshipLeaders.map((group) => (
                 <div key={group.losses} className="championship-row" role="row">
                   <p className="championship-losses" role="cell">{group.losses}敗</p>
-                  <p className="championship-rikishi" role="cell">{group.rikishi.join(' ・ ')}</p>
+                  <p className="championship-rikishi" role="cell">
+                    {group.rikishi.map((rikishi, index) => (
+                      <span key={rikishi.profileUrl}>
+                        {rikishi.href ? <Link to={rikishi.href}>{rikishi.name}</Link> : rikishi.name}
+                        {index < group.rikishi.length - 1 ? ' ・ ' : ''}
+                      </span>
+                    ))}
+                  </p>
                 </div>
               ))}
             </div>
