@@ -1,8 +1,8 @@
 {
   "bashoName": "五月場所",
   "year": "令和八年",
-  "updatedAt": "2026-05-24T12:38:42+09:00",
-  "resultUpdatedAt": "2026-05-24T10:05:31+09:00",
+  "updatedAt": "2026-05-24T15:27:32+09:00",
+  "resultUpdatedAt": "2026-05-24T15:27:32+09:00",
   "scheduleUpdatedAt": "2026-05-24T12:38:42+09:00",
   "today": {
     "makuuchi": {
@@ -300,7 +300,43 @@
           "winner": "west"
         }
       ],
-      "absentees": []
+      "absentees": [
+        {
+          "id": 2775,
+          "name": "高安",
+          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/"
+        },
+        {
+          "id": 3661,
+          "name": "琴櫻",
+          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/"
+        },
+        {
+          "id": 3682,
+          "name": "朝乃山",
+          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/"
+        },
+        {
+          "id": 3842,
+          "name": "豊昇龍",
+          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+        },
+        {
+          "id": 4101,
+          "name": "朝紅龍",
+          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
+        },
+        {
+          "id": 4227,
+          "name": "大の里",
+          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
+        },
+        {
+          "id": 4230,
+          "name": "安青錦",
+          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+        }
+      ]
     },
     "juryo": {
       "day": 14,
