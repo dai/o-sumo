@@ -364,6 +364,73 @@ def build_rank_groups(kakuzuke_id: int) -> tuple[list[dict], dict]:
     return ordered, banzuke
 
 
+def build_profile_day_marks(result_days: list[dict]) -> tuple[list[int], dict[int, dict[str, str]]]:
+    published_days = sorted(
+        safe_int(day.get("day", 0), 0)
+        for day in result_days
+        if str(day.get("status", "")) == "published" and safe_int(day.get("day", 0), 0) > 0
+    )
+    unique_days = sorted(set(day for day in published_days if 1 <= day <= 15))
+    day_marks: dict[int, dict[str, str]] = {}
+
+    for archive_day in result_days:
+        day = safe_int(archive_day.get("day", 0), 0)
+        if day not in unique_days:
+            continue
+        if str(archive_day.get("status", "")) != "published":
+            continue
+
+        marks_for_day: dict[str, str] = {}
+        day_data = archive_day.get("data", {})
+        for division_key in ("makuuchi", "juryo"):
+            division = day_data.get(division_key, {})
+            for match in list(division.get("matches", [])):
+                east_url = str(match.get("eastProfileUrl", ""))
+                west_url = str(match.get("westProfileUrl", ""))
+                winner = match.get("winner")
+                if winner == "east":
+                    if east_url:
+                        marks_for_day[east_url] = "win"
+                    if west_url:
+                        marks_for_day[west_url] = "loss"
+                elif winner == "west":
+                    if east_url:
+                        marks_for_day[east_url] = "loss"
+                    if west_url:
+                        marks_for_day[west_url] = "win"
+
+            for absentee in list(division.get("absentees", [])):
+                profile_url = str(absentee.get("profileUrl", ""))
+                if profile_url and profile_url not in marks_for_day:
+                    marks_for_day[profile_url] = "draw"
+
+        day_marks[day] = marks_for_day
+
+    return unique_days, day_marks
+
+
+def apply_result_days_to_rank_groups(rank_groups: list[dict], result_days: list[dict]) -> None:
+    published_days, day_marks = build_profile_day_marks(result_days)
+    if not published_days:
+        return
+
+    for group in rank_groups:
+        for side in ("east", "west"):
+            for rikishi in list(group.get(side, [])):
+                profile_url = str(rikishi.get("profileUrl", ""))
+                marks: list[str] = []
+                for day in published_days:
+                    mark = day_marks.get(day, {}).get(profile_url)
+                    # When a published day has no explicit bout/absentee entry for a rikishi,
+                    # treat it as a rest day so 15-day hoshitori stays complete.
+                    marks.append(mark if mark in {"win", "loss", "draw"} else "draw")
+
+                rikishi["results"] = marks
+                rikishi["wins"] = sum(1 for mark in marks if mark == "win")
+                rikishi["losses"] = sum(1 for mark in marks if mark == "loss")
+                rikishi["draws"] = sum(1 for mark in marks if mark == "draw")
+
+
 def parse_torikumi_match(raw: dict, division: str, bout_no: int) -> dict:
     east = raw.get("east") or {}
     west = raw.get("west") or {}
@@ -1419,6 +1486,9 @@ def main() -> None:
             args.torikumi_scope,
             existing_torikumi,
         )
+        if makuuchi is not None and juryo is not None:
+            apply_result_days_to_rank_groups(makuuchi, torikumi_dataset.get("resultDays", []))
+            apply_result_days_to_rank_groups(juryo, torikumi_dataset.get("resultDays", []))
         torikumi_dataset, torikumi_changed = preserve_torikumi_timestamps_if_unchanged(
             torikumi_dataset,
             existing_torikumi,

@@ -5,143 +5,25 @@ import {
   MARCH2026_RESULT_PATH,
   MARCH2026_SCHEDULE_PATH,
   MAY2026_BANDUKE_PATH,
-  getDayPath,
   MAY2026_RESULT_PATH,
   MAY2026_SCHEDULE_PATH,
 } from './lib/torikumi-routes';
 import { MAY2026_TORIKUMI_DATA } from './lib/may2026-data';
 import { MARCH2026_TORIKUMI_DATA } from './lib/march2026-torikumi-data';
-import { canonicalShikona, divisionAnchorId } from './lib/rikishi-display';
-import { type TorikumiArchiveDay } from './lib/torikumi-data';
 import HomeLink from './components/HomeLink';
 import './index.css';
 
-interface ChampionshipCandidate {
-  profileUrl: string;
-  name: string;
-  wins: number;
-  losses: number;
-  bouts: number;
-}
-
-interface ChampionshipLeader {
-  profileUrl: string;
-  name: string;
-  href: string | null;
-}
-
-interface ChampionshipGroup {
-  losses: number;
-  rikishi: ChampionshipLeader[];
-}
-
-function compareChampionshipCandidates(left: ChampionshipCandidate, right: ChampionshipCandidate): number {
-  return left.losses - right.losses || right.wins - left.wins || left.name.localeCompare(right.name, 'ja');
-}
-
-function buildLatestResultHrefMap(currentDay: number, resultDays: TorikumiArchiveDay[]): Map<string, string> {
-  const hrefMap = new Map<string, string>();
-
-  resultDays
-    .filter((day) => day.status === 'published' && day.day <= currentDay)
-    .sort((a, b) => a.day - b.day)
-    .forEach((archiveDay) => {
-      const divisionDays = [archiveDay.data.makuuchi, archiveDay.data.juryo];
-      divisionDays.forEach((divisionDay) => {
-        divisionDay.matches.forEach((match) => {
-          const href = `${getDayPath(archiveDay, 'result')}#${divisionAnchorId(divisionDay.division, match.boutNo)}`;
-          hrefMap.set(match.eastProfileUrl, href);
-          hrefMap.set(match.westProfileUrl, href);
-        });
-      });
-    });
-
-  return hrefMap;
-}
-
-function buildChampionshipLeaders(currentDay: number): ChampionshipGroup[] {
-  const resultDays = MAY2026_TORIKUMI_DATA.resultDays ?? [];
-  const latestResultHrefMap = buildLatestResultHrefMap(currentDay, resultDays);
-  const stats = new Map<string, ChampionshipCandidate>();
-
-  resultDays
-    .filter((day) => day.status === 'published' && day.day <= currentDay)
-    .forEach((day) => {
-      day.data.makuuchi.matches.forEach((match) => {
-        const east = stats.get(match.eastProfileUrl) ?? {
-          profileUrl: match.eastProfileUrl,
-          name: canonicalShikona(match.eastProfileUrl, match.eastName),
-          wins: 0,
-          losses: 0,
-          bouts: 0,
-        };
-        const west = stats.get(match.westProfileUrl) ?? {
-          profileUrl: match.westProfileUrl,
-          name: canonicalShikona(match.westProfileUrl, match.westName),
-          wins: 0,
-          losses: 0,
-          bouts: 0,
-        };
-
-        if (match.winner === 'east') {
-          east.wins += 1;
-          west.losses += 1;
-        } else if (match.winner === 'west') {
-          west.wins += 1;
-          east.losses += 1;
-        }
-
-        east.bouts += 1;
-        west.bouts += 1;
-        stats.set(match.eastProfileUrl, east);
-        stats.set(match.westProfileUrl, west);
-      });
-    });
-
-  const activeBoutThreshold = Math.max(1, currentDay - 2);
-  const activeCandidates = [...stats.values()].filter((candidate) => candidate.bouts >= activeBoutThreshold);
-  const candidatesForRace = activeCandidates.length > 0
-    ? activeCandidates
-    : [...stats.values()].filter((candidate) => candidate.bouts > 0);
-  if (candidatesForRace.length === 0) return [];
-
-  const minLosses = Math.min(...candidatesForRace.map((candidate) => candidate.losses));
-  const contenders = candidatesForRace.filter((candidate) => candidate.losses <= minLosses + 1);
-  const grouped = new Map<number, ChampionshipLeader[]>();
-
-  contenders
-    .sort(compareChampionshipCandidates)
-    .forEach((candidate) => {
-      const group = grouped.get(candidate.losses) ?? [];
-      group.push({
-        profileUrl: candidate.profileUrl,
-        name: candidate.name,
-        href: latestResultHrefMap.get(candidate.profileUrl) ?? null,
-      });
-      grouped.set(candidate.losses, group);
-    });
-
-  return [...grouped.entries()]
-    .sort(([left], [right]) => left - right)
-    .map(([losses, rikishi]) => ({ losses, rikishi }));
-}
+const MAY2026_FINAL_RESULT = {
+  makuuchiYusho: '若隆景（2）',
+  sanshoShukun: 'なし',
+  sanshoKanto: '義ノ富士（2）、伯乃富士（2）',
+  sanshoGino: '若隆景（7）',
+  juryoYusho: '一意（1）',
+} as const;
 
 export default function Home() {
   const { t } = useTranslation('common');
   const currentBashoTitle = `${MAY2026_TORIKUMI_DATA.year}${MAY2026_TORIKUMI_DATA.bashoName}`;
-  const latestPublishedResultDay = MAY2026_TORIKUMI_DATA.resultDays
-    ?.filter((day) => day.status === 'published')
-    .reduce((maxDay, day) => Math.max(maxDay, day.day), 0) ?? 0;
-  const referenceDate = MAY2026_TORIKUMI_DATA.resultUpdatedAt?.slice(0, 10);
-  const latestKnownDay = MAY2026_TORIKUMI_DATA.resultDays
-    ?.filter((day) => day.isoDate <= (referenceDate ?? day.isoDate))
-    .reduce((maxDay, day) => Math.max(maxDay, day.day), 0) ?? 0;
-  const currentDay = Math.max(latestPublishedResultDay, latestKnownDay);
-  const showChampionshipRace = currentDay >= 14;
-  const championshipLabel = currentDay === 14
-    ? t('home.championshipLabelDay14')
-    : t('home.championshipLabelDay', { day: currentDay });
-  const championshipLeaders = buildChampionshipLeaders(currentDay);
 
   return (
     <div className="home-container">
@@ -176,27 +58,29 @@ export default function Home() {
           </nav>
         </section>
 
-        {showChampionshipRace ? (
-          <section className="championship-section" aria-label="幕内優勝争い">
-            <h2>{t('home.championshipHeading', { label: championshipLabel })}</h2>
-            <h3>{t('home.championshipSubheading', { label: championshipLabel })}</h3>
-            <div className="championship-table" role="table" aria-label="幕内優勝争い一覧">
-              {championshipLeaders.map((group) => (
-                <div key={group.losses} className="championship-row" role="row">
-                  <p className="championship-losses" role="cell">{group.losses}敗</p>
-                  <p className="championship-rikishi" role="cell">
-                    {group.rikishi.map((rikishi, index) => (
-                      <span key={rikishi.profileUrl}>
-                        {rikishi.href ? <Link to={rikishi.href}>{rikishi.name}</Link> : rikishi.name}
-                        {index < group.rikishi.length - 1 ? ' ・ ' : ''}
-                      </span>
-                    ))}
-                  </p>
-                </div>
-              ))}
+        <section className="championship-section" aria-label="令和八年五月場所最終結果">
+          <h2>{t('home.championshipFinalHeading')}</h2>
+          <div className="championship-table" role="table" aria-label="令和八年五月場所最終結果一覧">
+            <div className="championship-row" role="row">
+              <p className="championship-losses" role="cell">{t('home.championshipMakuuchiYusho')}</p>
+              <p className="championship-rikishi" role="cell">{MAY2026_FINAL_RESULT.makuuchiYusho}</p>
             </div>
-          </section>
-        ) : null}
+            <div className="championship-row" role="row">
+              <p className="championship-losses" role="cell">{t('home.championshipSansho')}</p>
+              <p className="championship-rikishi" role="cell">
+                {t('home.championshipShukun')}: {MAY2026_FINAL_RESULT.sanshoShukun}
+                {' | '}
+                {t('home.championshipKanto')}: {MAY2026_FINAL_RESULT.sanshoKanto}
+                {' | '}
+                {t('home.championshipGino')}: {MAY2026_FINAL_RESULT.sanshoGino}
+              </p>
+            </div>
+            <div className="championship-row" role="row">
+              <p className="championship-losses" role="cell">{t('home.championshipJuryoYusho')}</p>
+              <p className="championship-rikishi" role="cell">{MAY2026_FINAL_RESULT.juryoYusho}</p>
+            </div>
+          </div>
+        </section>
 
         {/* Past Basho - March 2026 */}
         <section className="past-basho-section">

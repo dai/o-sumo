@@ -83,11 +83,24 @@ describe('TorikumiHubPage', () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByText('休場者:')).toBeInTheDocument();
-    const absenteeLinks = screen
-      .getAllByRole('link')
-      .filter((link) => (link.getAttribute('href') ?? '').startsWith('/rikishi/'));
-    expect(absenteeLinks.length).toBeGreaterThan(0);
+    const latestPublished = [...(torikumiArchive.resultDays ?? [])]
+      .filter((day) => day.status === 'published')
+      .sort((a, b) => b.day - a.day)[0];
+    const hasAbsentees = Boolean(
+      latestPublished
+      && ((latestPublished.data.makuuchi.absentees?.length ?? 0) > 0
+        || (latestPublished.data.juryo.absentees?.length ?? 0) > 0),
+    );
+
+    if (hasAbsentees) {
+      expect(screen.getByText('休場者:')).toBeInTheDocument();
+      const absenteeLinks = screen
+        .getAllByRole('link')
+        .filter((link) => (link.getAttribute('href') ?? '').startsWith('/rikishi/'));
+      expect(absenteeLinks.length).toBeGreaterThan(0);
+    } else {
+      expect(screen.queryByText('休場者:')).not.toBeInTheDocument();
+    }
   });
 
   it('shows normalized pending status messages', () => {

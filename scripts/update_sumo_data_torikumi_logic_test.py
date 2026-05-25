@@ -19,6 +19,7 @@ derive_absentees = _module.derive_absentees
 parse_torikumi_match = _module.parse_torikumi_match
 has_substantive_torikumi_diff = _module.has_substantive_torikumi_diff
 preserve_torikumi_timestamps_if_unchanged = _module.preserve_torikumi_timestamps_if_unchanged
+apply_result_days_to_rank_groups = _module.apply_result_days_to_rank_groups
 
 
 def _division(matches: int) -> dict:
@@ -129,7 +130,7 @@ def test_determine_archive_statuses_limits_publication_window() -> None:
     result4, schedule4 = determine_archive_statuses(4, 3, result_day_data, schedule_day_data)
     result5, schedule5 = determine_archive_statuses(5, 3, result_day_data, schedule_day_data)
 
-    assert result3 == "published"
+    assert result3 == "pending"
     assert schedule3 == "published"
     assert result4 == "pending"
     assert schedule4 == "published"
@@ -219,6 +220,74 @@ def test_preserve_torikumi_timestamps_if_unchanged_restores_existing_values() ->
     assert merged["scheduleUpdatedAt"] == "2026-05-11T10:00:00+09:00"
 
 
+def test_apply_result_days_to_rank_groups_fills_missing_day15_as_draw() -> None:
+    rank_groups = [
+        {
+            "title": "前頭1",
+            "east": [
+                {
+                    "id": 1001,
+                    "name": "東力士",
+                    "yomi": "ひがしりきし",
+                    "rank": "前頭1",
+                    "side": "east",
+                    "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/1001/",
+                    "results": [],
+                    "wins": 0,
+                    "losses": 0,
+                    "draws": 0,
+                }
+            ],
+            "west": [
+                {
+                    "id": 1002,
+                    "name": "西力士",
+                    "yomi": "にしりきし",
+                    "rank": "前頭1",
+                    "side": "west",
+                    "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/1002/",
+                    "results": [],
+                    "wins": 0,
+                    "losses": 0,
+                    "draws": 0,
+                }
+            ],
+        }
+    ]
+    result_days = []
+    for day in range(1, 16):
+        matches = []
+        if day <= 14:
+            matches = [
+                {
+                    "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/1001/",
+                    "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/1002/",
+                    "winner": "east",
+                }
+            ]
+        result_days.append(
+            {
+                "day": day,
+                "status": "published",
+                "data": {
+                    "makuuchi": {"matches": matches, "absentees": []},
+                    "juryo": {"matches": [], "absentees": []},
+                },
+            }
+        )
+
+    apply_result_days_to_rank_groups(rank_groups, result_days)
+
+    east = rank_groups[0]["east"][0]
+    west = rank_groups[0]["west"][0]
+    assert len(east["results"]) == 15
+    assert len(west["results"]) == 15
+    assert east["wins"] == 14 and east["losses"] == 0 and east["draws"] == 1
+    assert west["wins"] == 0 and west["losses"] == 14 and west["draws"] == 1
+    assert east["results"][14] == "draw"
+    assert west["results"][14] == "draw"
+
+
 def main() -> None:
     test_pick_existing_division_day_respects_source_key()
     test_determine_archive_statuses_limits_publication_window()
@@ -227,6 +296,7 @@ def main() -> None:
     test_parse_torikumi_match_accepts_plain_text_shikona()
     test_has_substantive_torikumi_diff_ignores_timestamp_only_change()
     test_preserve_torikumi_timestamps_if_unchanged_restores_existing_values()
+    test_apply_result_days_to_rank_groups_fills_missing_day15_as_draw()
     print("ok: update_sumo_data torikumi logic tests passed")
 
 

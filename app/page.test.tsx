@@ -51,31 +51,22 @@ describe('Home page', () => {
     expect(screen.getAllByRole('link', { name: 'GitHub' })[0]).toHaveAttribute('href', 'https://github.com/dai/o-sumo');
   });
 
-  it('shows championship header with current day label when day 14 or later has started', () => {
+  it('shows fixed final results section for May 2026 basho', () => {
     render(
       <MemoryRouter>
         <Home />
       </MemoryRouter>,
     );
 
-    // On day 15 (May 24, 2026)
-    expect(screen.getByRole('heading', { level: 2, name: '優勝争い(15日目)' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { level: 3, name: '幕内優勝争い(15日目)' })).toBeInTheDocument();
-  });
-
-  it('links championship rikishi names to the corresponding result bouts', () => {
-    render(
-      <MemoryRouter>
-        <Home />
-      </MemoryRouter>,
-    );
-
-    const raceSection = screen.getByLabelText('幕内優勝争い');
-    const rikishiLinks = within(raceSection).getAllByRole('link');
-    expect(rikishiLinks.length).toBeGreaterThan(0);
-    rikishiLinks.forEach((link) => {
-      expect(link.getAttribute('href')).toMatch(/^\/\d{8}-torikumi\/#bout-makuuchi-\d+$/);
-    });
+    const finalSection = screen.getByLabelText('令和八年五月場所最終結果');
+    expect(within(finalSection).getByRole('heading', { level: 2, name: '令和八年五月場所最終結果' })).toBeInTheDocument();
+    expect(within(finalSection).getByText('幕内最高優勝')).toBeInTheDocument();
+    expect(within(finalSection).getByText('若隆景（2）')).toBeInTheDocument();
+    expect(within(finalSection).getByText(/殊勲賞: なし/)).toBeInTheDocument();
+    expect(within(finalSection).getByText(/敢闘賞: 義ノ富士（2）、伯乃富士（2）/)).toBeInTheDocument();
+    expect(within(finalSection).getByText(/技能賞: 若隆景（7）/)).toBeInTheDocument();
+    expect(within(finalSection).getByText('十両優勝')).toBeInTheDocument();
+    expect(within(finalSection).getByText('一意（1）')).toBeInTheDocument();
   });
 
 });

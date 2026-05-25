@@ -1,3 +1,36 @@
+## 五月場所 最終反映（番付15日目 + 最終結果セクション）Todo（2026-05-25）
+
+### Plan
+- [x] `scripts/update_sumo_data.py` に、公開済み `resultDays` から星取りを再構築する処理を追加する
+- [x] 星取り補完ロジックの回帰テストを `scripts/update_sumo_data_torikumi_logic_test.py` に追加する
+- [x] `app/page.tsx` の動的優勝争い表示を固定の「令和八年五月場所最終結果」表へ差し替える
+- [x] `src/locales/ja/common.json`（+ `en`）に最終結果表示の文言キーを追加する
+- [x] `public/api/v1/banzuke.json` と `app/lib/sumo-data.ts` を再生成し、15日目星取りを反映する
+- [x] typecheck / 対象テスト / データ検証を実行して結果を記録する
+
+### Progress
+- `scripts/update_sumo_data.py` に `build_profile_day_marks()` / `apply_result_days_to_rank_groups()` を追加。
+- 補完ロジックは `resultDays(status=published)` をソースに、各日ごとに `match.winner` と `absentees` から `win/loss/draw` を構築。未明示力士は公開日上の休み（`draw`）として扱う実装にした。
+- `main()` の書き出し前に補完処理を挿入し、`makuuchi` と `juryo` の `results` / `wins` / `losses` / `draws` を再計算するようにした。
+- `scripts/update_sumo_data_torikumi_logic_test.py` に、15日目データ欠落時でも15日分へ補完されるテストを追加。
+- `app/page.tsx` の championship 算出関数群を削除し、固定の最終結果テーブルへ置換。
+- `src/locales/ja/common.json` / `src/locales/en/common.json` に最終結果テーブル用キーを追加。
+- ローカル `torikumi.json` を正として `public/api/v1/banzuke.json` と `app/lib/sumo-data.ts` を再生成し、星取り15日目を反映。
+
+### Review
+- データ検証:
+  - `node` で `banzuke.json` を検証
+  - 結果: `total=70`, `all15=true`, `若隆景=12勝3敗0休`, `resultsLen=15`
+- Pythonテスト:
+  - `python scripts/update_sumo_data_torikumi_logic_test.py`: pass
+- Typecheck:
+  - `npm run typecheck`: pass
+- 対象UIテスト:
+  - `npm test -- --run app/page.test.tsx app/banzuke/page.test.tsx`: pass（2 files / 8 tests）
+- 全体テスト:
+  - `npm test -- --run`: fail（既存の `app/torikumi/page.test.tsx` が「休場者:」固定期待で失敗）
+  - 失敗内容は今回変更範囲外（schedule hub の休場表示期待値と現データの乖離）
+
 ## PR/ブランチ/更新停止の整理 Todo（2026-05-25）
 
 ### Plan
