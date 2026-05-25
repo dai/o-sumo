@@ -105,12 +105,12 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 ### データ更新
 
 - Workflow: `.github/workflows/daily-data-update.yml`
-- 実行時刻: JST 15:30, 20:00
+- 状態: 2026-07-01 JST まで自動実行停止（`workflow_dispatch` のみ）
 - 更新対象: 取組予定のみ（`--torikumi-only --torikumi-scope schedule`）
 - 変更がある場合は `main` ブランチに直接 commit / push
 
 - Workflow: `.github/workflows/realtime-torikumi-update.yml`
-- 実行時刻: 場所期間中は毎日 JST 14:00, 14:30, 15:00, 15:30, 16:00, 16:30, 17:00, 17:10, 17:20, 17:30, 17:40, 17:50, 18:00
+- 状態: 2026-07-01 JST まで自動実行停止（`workflow_dispatch` のみ）
 - 更新対象: 取組結果 + 番付（`--torikumi-scope result --skip-rikishi-fetch`）
 - 変更がある場合は `main` ブランチに直接 commit / push
 - 実行ログへ `github.event.schedule` / JST現在時刻 / `resultUpdatedAt` / `scheduleUpdatedAt` を出力
@@ -149,7 +149,7 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 
 ## 運用制約ポリシー（2026年5月場所向け）
 
-- `daily-data-update.yml`（JST 15:30, 20:00）と `realtime-torikumi-update.yml`（JST 14:00, 14:30, 15:00, 15:30, 16:00, 16:30, 17:00, 17:10, 17:20, 17:30, 17:40, 17:50, 18:00）は自動実行する。
+- `daily-data-update.yml` と `realtime-torikumi-update.yml` は 2026-07-01 JST まで自動実行停止（`workflow_dispatch` のみ）とする。
 - `realtime-torikumi-update.yml` は `--torikumi-scope result --skip-rikishi-fetch` を使い、番付の星取表を結果更新枠でのみ同期する。
 - 結果未更新時の確認順は `run履歴` → `runログ（event.schedule, JST, updatedAt系）` → `供給元 judge` とする。
 - 2026年4月27日の番付発表後は、手動で `python scripts/update_sumo_data.py --torikumi-scope schedule` を実行し、五月場所の番付・取組予定・静的 API を同期する。

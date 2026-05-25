@@ -203,11 +203,11 @@ Key validations:
 GitHub Actions uses separate daily and results-refresh workflows.
 
 - Daily update: `.github/workflows/daily-data-update.yml`
-  - schedule: JST 15:30 and 20:00
+  - status: automatic runs are paused until July 1, 2026 (JST); `workflow_dispatch` only
   - updates torikumi schedules only (`--torikumi-only --torikumi-scope schedule`)
   - commits and pushes directly to `main` when files change
 - Realtime results update: `.github/workflows/realtime-torikumi-update.yml`
-  - schedule: during basho days, JST 14:00, 14:30, 15:00, 15:30, 16:00, 16:30, 17:00, 17:10, 17:20, 17:30, 17:40, 17:50, 18:00
+  - status: automatic runs are paused until July 1, 2026 (JST); `workflow_dispatch` only
   - updates torikumi results + banzuke (`--torikumi-scope result --skip-rikishi-fetch`)
   - commits and pushes directly to `main` when files change
   - logs: always prints `github.event.schedule`, current JST time, `resultUpdatedAt`, and `scheduleUpdatedAt`
@@ -242,7 +242,7 @@ GitHub Actions runs the following on pull requests and pushes to `main` and `cod
 
 ## Operations Policy For The May 2026 Basho
 
-- GitHub Actions runs both the daily refresh (JST 15:30 and 20:00) and the realtime refresh (JST 14:00, 14:30, 15:00, 15:30, 16:00, 16:30, 17:00, 17:10, 17:20, 17:30, 17:40, 17:50, 18:00).
+- GitHub Actions automatic daily/realtime refreshes are paused until July 1, 2026 (JST); run both workflows manually when needed.
 - After the April 27, 2026 banzuke release, manually run `python scripts/update_sumo_data.py --torikumi-scope schedule` to sync the May banzuke, schedule placeholders, and static API files.
 - The realtime workflow uses `--torikumi-scope result --skip-rikishi-fetch`, so hoshitori updates stay coupled to results refresh windows only.
 - If results still look stale, triage in this order: run history -> run logs (`event.schedule`, JST time, updatedAt fields) -> upstream `judge` values.

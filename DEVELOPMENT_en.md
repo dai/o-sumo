@@ -105,19 +105,19 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 ### Data Updates
 
 - Workflow: `.github/workflows/daily-data-update.yml`
-- Schedule: JST 15:30 and 20:00
+- Status: automatic runs are paused until July 1, 2026 (JST); `workflow_dispatch` only
 - Scope: torikumi schedule only (`--torikumi-only --torikumi-scope schedule`)
 - If files change, the workflow commits and pushes directly to `main`
 
 - Workflow: `.github/workflows/realtime-torikumi-update.yml`
-- Schedule: during basho days, JST 14:00, 14:30, 15:00, 15:30, 16:00, 16:30, 17:00, 17:10, 17:20, 17:30, 17:40, 17:50, 18:00
+- Status: automatic runs are paused until July 1, 2026 (JST); `workflow_dispatch` only
 - Scope: torikumi results + banzuke (`--torikumi-scope result --skip-rikishi-fetch`)
 - If files change, the workflow commits and pushes directly to `main`
 - Always logs `github.event.schedule`, current JST time, `resultUpdatedAt`, and `scheduleUpdatedAt`
 
 ## Operations Policy For The May 2026 Basho
 
-- Run `daily-data-update.yml` (JST 15:30 and 20:00) and `realtime-torikumi-update.yml` (JST 14:00, 14:30, 15:00, 15:30, 16:00, 16:30, 17:00, 17:10, 17:20, 17:30, 17:40, 17:50, 18:00) on schedule.
+- Keep `daily-data-update.yml` and `realtime-torikumi-update.yml` in manual mode (`workflow_dispatch` only) until July 1, 2026 (JST).
 - Keep hoshitori updates tied to the realtime workflow only by using `--torikumi-scope result --skip-rikishi-fetch`.
 - If results still look stale, triage in this order: run history -> run logs (`event.schedule`, JST time, updatedAt fields) -> upstream `judge` values.
 - After the April 27, 2026 banzuke release, manually run `python scripts/update_sumo_data.py --torikumi-scope schedule` to sync the May banzuke, torikumi schedule placeholders, and static API files.

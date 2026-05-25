@@ -1,3 +1,36 @@
+## PR/ブランチ/更新停止の整理 Todo（2026-05-25）
+
+### Plan
+- [x] 不要workflow（`copilot-setup-steps.yml`）を削除する
+- [x] `daily-data-update.yml` / `realtime-torikumi-update.yml` を `workflow_dispatch` のみに変更する
+- [x] README / DEVELOPMENT / API policy の更新運用を「2026-07-01 JST まで手動実行のみ」へ同期する
+- [x] Open PRを除外した安全条件で remote/local ブランチを整理する
+- [x] workflow / 文言 / ブランチ状態を検証して結果を記録する
+
+### Progress
+- `.github/workflows/copilot-setup-steps.yml` を削除。
+- `.github/workflows/daily-data-update.yml` と `.github/workflows/realtime-torikumi-update.yml` の `schedule` を削除し、`workflow_dispatch` のみへ変更。
+- `README.md` / `README_en.md` / `DEVELOPMENT.md` / `DEVELOPMENT_en.md` / `docs/api/policy.md` / `docs/api/policy.en.md` を「自動実行停止（2026-07-01 JST まで）・手動実行のみ」へ同期。
+- `gh pr list --state open` を事前確認し、Open PRブランチ4本を保持したまま、対象remote 16本を削除。
+- local mergedブランチ4本（`codex/official-absence-fusen`, `codex/rikishi-202605-mit-license`, `copilot-renovate`, `docs/bilingual-doc-refresh`）を削除。
+
+### Review
+- workflow確認:
+  - `Get-ChildItem .github/workflows -File | Select-Object -ExpandProperty Name`
+  - 結果: `daily-data-update.yml`, `realtime-torikumi-update.yml`, `test.yml`（`copilot-setup-steps.yml` 不在）
+  - `rg -n "^\\s*schedule:" .github/workflows/daily-data-update.yml .github/workflows/realtime-torikumi-update.yml`
+  - 結果: 該当なし（exit 1）
+- ドキュメント確認:
+  - `rg -n "copilot-setup-steps\\.yml|JST 15:30|JST 14:00, 14:30, 15:00|自動実行します|runs both the daily refresh|Schedule: JST 15:30 and 20:00|schedule: during basho days" README.md README_en.md DEVELOPMENT.md DEVELOPMENT_en.md docs/api/policy.md docs/api/policy.en.md -S`
+  - 結果: 該当なし（exit 1）
+- ブランチ確認:
+  - `gh pr list --state open --limit 200 --json number,headRefName,title`
+  - 結果: Open PR 4本（`codex/fix-changes-not-reflecting-after-merging-pr83*`）は保持。
+  - `git branch --format "%(refname:short)"`
+  - 結果: `codex/rikishi-profile-pages`, `main`
+  - `git branch -r --format "%(refname:short)"`
+  - 結果: `origin/main` と保持対象remoteのみ残存。
+
 # GitHub Mobile + Copilot Cloud Agent 運用整備 Todo（2026-05-19）
 
 ## Plan
