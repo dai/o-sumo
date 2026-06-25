@@ -38,3 +38,8 @@ Thumbs.db
 
 # AI tooling — local cache (impeccable hook cache & live variants live outside the repo)
 .impeccable/
+
+# AI tooling — per-machine skill bundles (mirror of C:\Users\dai\.claude\skills\)
+# These belong to the developer's local environment, not the project.
+.agents/
+.claude/skills/
