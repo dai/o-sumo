@@ -198,15 +198,13 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.05em;
 }
 
-/* Extreme typographic scale - editorial look */
+/* Editorial display heading - solid Ink, no gradient */
 h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 800;
-  letter-spacing: 3px;
-  background: linear-gradient(135deg, var(--color-primary) 40%, var(--color-secondary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  letter-spacing: 0.02em;
+  color: var(--color-primary);
+  text-wrap: balance;
 }
 
 h2 {
@@ -452,17 +450,17 @@ th {
   font-style: italic;
 }
 
+/* East / West identification through tonal differentiation only.
+   No side-stripe border — the "No-Line Rule" keeps edges as mass, not outlines. */
 .east {
-  background-color: color-mix(in srgb, var(--color-east) 12%, var(--surface-container-low));
-  border-left: 6px solid var(--color-east);
+  background-color: color-mix(in srgb, var(--color-east) 22%, var(--surface-container-lowest));
 }
 
 .west {
-  background-color: color-mix(in srgb, var(--color-west) 12%, var(--surface-container-low));
-  border-left: 6px solid var(--color-west);
+  background-color: color-mix(in srgb, var(--color-west) 22%, var(--surface-container-lowest));
 }
 
-/* Rank badges - gradient backgrounds with micro-radius */
+/* Rank badges - solid surfaces, 0px radius (global rule) */
 .rank-badge {
   display: inline-block;
   padding: 0.35rem 0.75rem;
@@ -470,7 +468,6 @@ th {
   color: var(--color-primary);
   font-size: 0.85rem;
   font-weight: 600;
-  border-radius: 3px;
 }
 
 .rank-badge.yokozuna {
@@ -589,7 +586,7 @@ th {
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   h2 {

@@ -35,3 +35,6 @@ wrangler.env.json
 # OS
 Thumbs.db
 .DS_Store
+
+# AI tooling — local cache (impeccable hook cache & live variants live outside the repo)
+.impeccable/

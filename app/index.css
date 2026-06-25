@@ -88,12 +88,10 @@
 .hero-section h2 {
   font-size: 1.67rem;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-primary);
   font-family: var(--font-serif);
   letter-spacing: 0.02em;
+  text-wrap: balance;
 }
 
 .hero-section p {
@@ -350,24 +348,10 @@
 .feature-card {
   background: var(--surface-container-lowest);
   padding: 2rem;
-  transition: all 0.25s ease;
+  transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
   text-decoration: none;
   display: block;
   box-shadow: var(--shadow-soft);
-  position: relative;
-  overflow: hidden;
-}
-
-.feature-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: var(--gradient-secondary);
-  opacity: 0;
-  transition: opacity 0.25s ease;
 }
 
 .feature-card:hover {
@@ -375,10 +359,6 @@
   transform: translateY(-3px);
   box-shadow: var(--shadow-ambient);
   text-decoration: none;
-}
-
-.feature-card:hover::before {
-  opacity: 1;
 }
 
 .feature-card h3 {

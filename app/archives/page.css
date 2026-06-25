@@ -41,12 +41,10 @@
   background: var(--surface-container-lowest);
   padding: 2rem;
   box-shadow: var(--shadow-soft);
-  border-left: 4px solid var(--color-secondary);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: box-shadow 0.2s ease;
 }
 
 .archive-item:hover {
-  border-left-color: var(--color-secondary-light);
   box-shadow: var(--shadow-ambient);
 }
 

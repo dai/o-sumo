@@ -175,13 +175,13 @@
   box-shadow: var(--shadow-soft);
 }
 
-/* Division section - surface hierarchy */
+/* Division section - surface hierarchy, no side-stripe.
+   The 8px marker dot in h2::before carries the visual identifier. */
 .division-section {
   background: var(--surface-container-lowest);
   margin-bottom: 1.5rem;
   padding: 1.5rem;
   box-shadow: var(--shadow-soft);
-  border-left: 4px solid var(--color-secondary);
 }
 
 .division-section h2 {
