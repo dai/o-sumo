@@ -2,9 +2,9 @@
 
 ### Plan
 - [x] ローカル残差分を精査し、commit 対象と除外対象を切り分ける
-- [ ] delivery-flow レポートを tasks 配下の証跡として commit する
-- [ ] PR タイトル / 本文 / Draft 状態を整える
-- [ ] push 後に状態を再確認し、Review を追記する
+- [x] delivery-flow レポートを tasks 配下の証跡として commit する
+- [x] PR タイトル / 本文 / Draft 状態を整える
+- [x] push 後に状態を再確認し、Review を追記する
 
 ### Progress
 - `git status` で未コミット差分は `app/lib/sumo-data.ts` / `app/lib/torikumi-data.ts` / `public/api/v1/banzuke.json` / `public/api/v1/torikumi.json` と `tasks/reports/delivery-flow-20260629-150901.md` であることを確認。
@@ -19,6 +19,14 @@
   - `git diff --check`: pass
 - PR state:
   - `gh pr ready 94 --undo`: pass（PR #94 を metadata 更新のため draft 化）
+- commit / push:
+  - `git commit -m "docs(tasks): add delivery flow verification report"`: pass（`2269905`）
+  - `git push`: pass（`codex/202607-july-basho-prep` -> `origin/codex/202607-july-basho-prep`）
+- PR finalize:
+  - `gh pr edit 94 --title "2026年七月場所準備と配信ルーティング正規化" --body ...`: pass
+  - `gh pr ready 94`: pass（PR #94 を ready for review に復帰）
+- final status:
+  - `git status --short`: clean
 
 ## 令和八年七月場所準備 Todo（2026-06-29）
 
