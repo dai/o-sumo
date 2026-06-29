@@ -72,7 +72,7 @@ npm test
 npm run build
 ```
 
-`public/api/v1/banzuke.json` の `bashoName` が `七月場所`、`year` が `令和八年`、幕内42人、十両28人であることを確認してから反映します。あわせて `public/api/v1/torikumi.json` は `resultDays[0].pathDate = 20260510` を維持しつつ、`scheduleDays[0].pathDate = 20260712` に切り替わっていることを確認します。
+`public/api/v1/banzuke.json` の `bashoName` が `七月場所`、`year` が `令和八年`、幕内42人、十両28人であることを確認してから反映します。あわせて `public/api/v1/torikumi.json` は `resultDays[0].pathDate = 20260712` と `scheduleDays[0].pathDate = 20260712` に揃い、取組結果未更新日は pending のまま保持されることを確認します。
 
 ローカル確認先:
 
@@ -152,6 +152,6 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - `daily-data-update.yml` と `realtime-torikumi-update.yml` は 2026-07-01 JST まで自動実行停止（`workflow_dispatch` のみ）とする。
 - `realtime-torikumi-update.yml` は `--torikumi-scope result --skip-rikishi-fetch` を使い、番付の星取表を結果更新枠でのみ同期する。
 - 結果未更新時の確認順は `run履歴` → `runログ（event.schedule, JST, updatedAt系）` → `供給元 judge` とする。
-- 2026年6月29日の番付発表後は、手動で `python scripts/update_sumo_data.py --torikumi-scope schedule` を実行し、七月場所の番付・取組予定・静的 API を同期する。結果アーカイブは五月場所 (`202605`) を維持する。
+- 2026年6月29日の番付発表後は、手動で `python scripts/update_sumo_data.py --torikumi-scope schedule` を実行し、七月場所の番付・取組予定・静的 API を同期する。結果アーカイブも七月場所 (`202607`) に切り替え、未更新日は pending のまま保持する。
 - Cloudflare の従量抑制を優先し、`public/_headers` のキャッシュ方針（`/assets/*` 長期 immutable、`manifest` 1時間、`sw.js` 再検証、`/` 5分）を維持する。
 - PWA 更新は `vite-plugin-pwa` の `registerType: "autoUpdate"` を維持し、更新を自動反映する。
