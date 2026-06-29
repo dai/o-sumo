@@ -1,3 +1,25 @@
+## PR 仕上げ Todo（2026-06-29）
+
+### Plan
+- [x] ローカル残差分を精査し、commit 対象と除外対象を切り分ける
+- [ ] delivery-flow レポートを tasks 配下の証跡として commit する
+- [ ] PR タイトル / 本文 / Draft 状態を整える
+- [ ] push 後に状態を再確認し、Review を追記する
+
+### Progress
+- `git status` で未コミット差分は `app/lib/sumo-data.ts` / `app/lib/torikumi-data.ts` / `public/api/v1/banzuke.json` / `public/api/v1/torikumi.json` と `tasks/reports/delivery-flow-20260629-150901.md` であることを確認。
+- 4つの生成物差分は、ローカル検証時の `python scripts/update_sumo_data.py --torikumi-scope schedule` 再実行により **current mixed-state を崩したローカル差分** であり、PR に含めるべき変更ではないと判断。
+- `git checkout -- <4 files>` で生成物差分を破棄し、commit 対象を `tasks/reports/delivery-flow-20260629-150901.md` のみへ整理。
+
+### Review
+- cleanup:
+  - `git checkout -- app/lib/sumo-data.ts app/lib/torikumi-data.ts public/api/v1/banzuke.json public/api/v1/torikumi.json`: pass
+  - 結果: ローカル検証で崩れた generated diff を除去し、残差分は `tasks/todo.md` と `tasks/reports/delivery-flow-20260629-150901.md` のみ
+- diff health:
+  - `git diff --check`: pass
+- PR state:
+  - `gh pr ready 94 --undo`: pass（PR #94 を metadata 更新のため draft 化）
+
 ## 令和八年七月場所準備 Todo（2026-06-29）
 
 ### Plan
