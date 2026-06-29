@@ -13,7 +13,6 @@ export default function Home() {
   const { t } = useTranslation('common');
   const currentBashoTitle = `${torikumiArchive.year}${torikumiArchive.bashoName}`;
   const currentBanzukePath = getBanzukePathForMonthKey(torikumiMonthKey);
-  const latestPastBasho = PAST_BASHO[0];
 
   return (
     <div className="home-container">
@@ -48,28 +47,28 @@ export default function Home() {
           </nav>
         </section>
 
-        {latestPastBasho ? (
-          <section className="past-basho-section">
+        {PAST_BASHO.map((pastBasho) => (
+          <section key={pastBasho.id} className="past-basho-section">
             <h2 className="past-basho-heading">
               {t('home.pastBashoHeading', {
-                year: latestPastBasho.year,
-                name: latestPastBasho.name,
+                year: pastBasho.year,
+                name: pastBasho.name,
               })}
             </h2>
-            <nav className="past-basho-actions" aria-label={`${latestPastBasho.name}への導線`}>
-              <Link to={`${latestPastBasho.bandukePath}/`} className="cta-button secondary">
+            <nav className="past-basho-actions" aria-label={`${pastBasho.name}への導線`}>
+              <Link to={`${pastBasho.bandukePath}/`} className="cta-button secondary">
                 {t('home.heroBanzuke')}
               </Link>
-              <Link to={`${latestPastBasho.schedulePath}/`} className="cta-button secondary">
+              <Link to={`${pastBasho.schedulePath}/`} className="cta-button secondary">
                 {t('home.heroSchedule')}
               </Link>
-              <Link to={`${latestPastBasho.resultPath}/`} className="cta-button secondary">
+              <Link to={`${pastBasho.resultPath}/`} className="cta-button secondary">
                 {t('home.heroResult')}
               </Link>
             </nav>
             <div className="past-basho-days">
               <p className="past-basho-days-label">{t('home.pastBashoDays')}</p>
-              {latestPastBasho.data.resultDays?.map((day) => (
+              {pastBasho.data.resultDays?.map((day) => (
                 <Link
                   key={day.pathDate}
                   to={`/${day.pathDate}-torikumi/`}
@@ -80,7 +79,7 @@ export default function Home() {
               ))}
             </div>
           </section>
-        ) : null}
+        ))}
       </main>
 
       <footer className="home-footer">
