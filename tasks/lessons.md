@@ -8,6 +8,12 @@
 - ドキュメント同期は「README」「DEVELOPMENT（ja/en）」「API policy（ja/en）」「rikishi-profile-refresh-runbook」の 4 系統を必ず同時に更新する。手順の日付（例: `2026年4月27日`）と route 例（`/202605-...`）は1セットで残るので、片方だけ更新すると「手順の Route 例が古い」状態になる。
 - workflow 自動実行停止期間（2026-07-01 JST まで）の間は `daily-data-update.yml` / `realtime-torikumi-update.yml` の `schedule:` ブロックを **あえて残さない**。早期復活させると CI runner によっては意図しない実行が始まる。`workflow_dispatch` のみを維持する運用が安全。
 
+## 2026-06-29 末尾スラッシュ正規化（配信ルーティング課題）
+- Cloudflare Pages の `_redirects` で **末尾スラッシュなし静的パスを `index.html 200` で直接受けていた**場合、本番側で 308 → `/` に吸収されてアプリに到達できない事例がある（`/archives`、`/*-yotei`、`/*-o-sumo` で再現）。
+- 修正は **`/archives /archives/ 301` のように末尾スラッシュ付き URL への 301 を明示する**こと。`/archives/` 側は `index.html 200` の SPA fallback に任せる。
+- splat を含むパターンは **`/:slug-torikumi /:slug-torikumi/ 301` のように splat 名を両辺で一致** させないと Cloudflare 評価器が認識しない。`*` ワイルドカードと `:slug` の混在は冗長・予期しない評価順の原因になるため、どちらかに統一する。
+- 修正後は必ず `pwsh ./scripts/verify_delivery_flow.ps1` を再走させ、`ROUTING_BEHAVIOR=OK` を確認する。`DATA_SYNC=OK` だけでは「データ欠損」が無いことは示せるが、ルーティング修復は別判定。
+
 ## 2026-06-29 worktree での再検証
 - 七月場所準備コミットが既存 worktree に既に入っている状態で「把握」を依頼されたときは、まず `git status` / `git log` で HEAD を確認してから新規着手範囲を判断する。プラン文書をゼロから書くと既存コミットと重複して二重コミットになる危険がある。
 - worktree 内には `.claude/skills/impeccable/` が checkout されないことがある。デザイン lint は **メインリポジトリの cwd** から `node .claude/skills/impeccable/scripts/detect.mjs --json <worktree 内ファイルの絶対パス>` で走らせる。

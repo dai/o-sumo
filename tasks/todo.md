@@ -69,8 +69,43 @@
   - `git status`: clean、HEAD は `fe4c3af`
   - `git diff --check`: pass
 - 未実施項目（次セッション判断）:
-  - `pwsh ./scripts/verify_delivery_flow.ps1`（`osada.us` への HTTP 検証。worktree から直接実行可能だが 308 リダイレクト検出の差分は main 反映後に確定するため、本セッションでは省略）
   - workflow `schedule:` ブロックの復活（2026-07-01 JST まで `workflow_dispatch` のみという条件を尊重し、当面は据え置き）
+
+## 末尾スラッシュ正規化（308 → 301）修正 Todo（2026-06-29）
+
+### Plan
+- [x] `pwsh ./scripts/verify_delivery_flow.ps1` を worktree 上で実行し、`DATA_SYNC` / `ROUTING_BEHAVIOR` のスナップショットを採取する
+- [x] `tasks/reports/delivery-flow-20260629-150901.md` を Read し、`/archives` / `/-yotei` の 308 → `/` のトラップをリストアップする
+- [x] `public/_redirects` を splat 名揃えの 301 redirect ベースへ全面改訂する
+- [x] 修正後に `npm run build` / `npm run typecheck` で退行がないことを確認する
+- [x] 修正 commit を作成する
+- [ ] 修正を `origin/202607` へ push し、本番反映後に `pwsh ./scripts/verify_delivery_flow.ps1` を再度走らせて `ROUTING_BEHAVIOR=OK` を観測する（次セッション判断）
+
+### Progress
+- `pwsh ./scripts/verify_delivery_flow.ps1`: pass（`DATA_SYNC=OK`, `ROUTING_BEHAVIOR=ISSUE`）→ `tasks/reports/delivery-flow-20260629-150901.md` に出力。
+- 失敗ケースの内訳:
+  - `/archives` (308 → `/`)
+  - `/20260512-yotei` (308 → `/`)
+- 既に正常なケース: `/202605-torikumi` (301 → `/202605-torikumi/`)、`/20260512-torikumi` (301 → `/20260512-torikumi/`)
+- `public/_redirects` の全面改訂方針:
+  - `/archives /archives/ 301`、`/rikishi /rikishi/ 301` を追加
+  - `/:slug-torikumi /:slug-torikumi/ 301` を splat 名揃えの正規 redirect へ固定
+  - `/:slug-yotei /:slug-yotei/ 301` を新設（旧来の `/*-yotei /index.html 200` の 308 トラップを除去）
+  - `/*-o-sumo /:slug-banduke/ 301` を splat 名揃えの redirect へ変更
+  - 末尾スラッシュあり変種は `index.html 200` の SPA fallback に統一
+- `npm run build`: pass（117 modules transformed、既存の chunk size warning のみ）
+- `npm run typecheck`: pass
+
+### Review
+- 修正前レポート: `tasks/reports/delivery-flow-20260629-150901.md`
+  - `DATA_SYNC=OK`、`ROUTING_BEHAVIOR=ISSUE`
+  - `/archives` 308、`/20260512-yotei` 308 が対象
+- 修正後 build / typecheck: pass
+- 修正後 delivery-flow: worktree からは `_redirects` の効果は観測できない（Cloudflare Pages の評価器に依存）。本番反映後の再走で `ROUTING_BEHAVIOR=OK` を確認する
+- 影響範囲:
+  - `/archives` / `/rikishi` / `/*-torikumi` / `/*-yotei` / `/*-o-sumo` の **末尾スラッシュなし静的パス** が 301 redirect 化される
+  - 五月・三月の **既存アーカイブ導線** は壊れない（既に 301 redirect 経由だったページを、より短い redirect hop で正しく正規 URL に着地させる）
+  - 7 月場所予定 `/{YYYYMMDD}-yotei` の feed からの流入も 308 → `/` ではなく 301 → 正規 URL に変わる
 
 ## 五月場所 最終反映（番付15日目 + 最終結果セクション）Todo（2026-05-25）
 
