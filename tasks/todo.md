@@ -1,3 +1,36 @@
+## 令和八年七月場所準備 Todo（2026-06-29）
+
+### Plan
+- [x] `202607` ブランチを最新 `main` から切り、独立 worktree で作業する
+- [x] current basho を `202607` に切り替える failing tests を追加する
+- [x] 五月場所を static archive 化し、routes / home / archives / banzuke / hub の導線を更新する
+- [x] 七月場所データを再生成し、README / DEVELOPMENT / API docs の手順を同期する
+- [x] typecheck / test / build / データ sanity check を実行して Review に記録する
+
+### Progress
+- `C:\Users\dai\.codex\worktrees\202607\o-sumo` を `main@7543e867` から `git worktree add -b 202607 ... main` で作成。
+- 現行 repo を確認し、current basho はまだ五月場所、archives は三月場所のみ、docs は 2026-04-27 の五月場所切替手順が残っていることを確認。
+- 五月場所を archive として維持するには、現在の `torikumi-data.ts` / `sumo-data.ts` 相当を static snapshot 化する必要があることを確認。
+- `app/lib/may2026-data.ts` と `app/lib/may2026-banzuke-data.ts` を追加し、五月場所の結果・番付を static archive として固定化。
+- `app/lib/archive-basho-data.ts` と `app/lib/torikumi-routes.ts` を中心に、current basho を `202607`、archive を `202605` / `202603` で共存させる導線へ更新。
+- `scripts/update_sumo_data.py` に `ResultBanzuke/tableAjax` / `ResultData/hoshitoriAjax` の Cookie 対応、年間日程からの初日抽出、LF 固定書き出しを追加。
+- `public/api/v1/torikumi.json` は `bashoName = 七月場所`、`scheduleDays[0].pathDate = 20260712`、`resultDays[0].pathDate = 20260510` の mixed current/archive 仕様へ再生成。
+- README / DEVELOPMENT / API docs / runbook を、2026-06-29 の七月場所番付発表時点の手順と route 例へ同期。
+
+### Review
+- Python unit:
+  - `python -m unittest scripts.update_sumo_data_parser_test.OfficialBashoScheduleTest scripts.update_sumo_data_parser_test.PostJsonRequestHeadersTest scripts.update_sumo_data_parser_test.LoadBanzukeMetaRequestTest`: pass
+- Data sanity:
+  - `python scripts/update_sumo_data.py --torikumi-scope schedule`: pass
+  - `public/api/v1/torikumi.json`: `bashoName=七月場所`, `resultDays[0].pathDate=20260510`, `scheduleDays[0].pathDate=20260712`, `scheduleDays[0].status=published`
+- Typecheck:
+  - `npm run typecheck`: pass
+- Test:
+  - `npm test -- --run`: pass（15 files / 68 tests）
+- Build / diff:
+  - `npm run build`: pass（既存の chunk size warning のみ）
+  - `git diff --check`: pass
+
 ## 五月場所 最終反映（番付15日目 + 最終結果セクション）Todo（2026-05-25）
 
 ### Plan

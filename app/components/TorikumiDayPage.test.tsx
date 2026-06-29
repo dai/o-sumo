@@ -6,7 +6,7 @@ import TorikumiDayPage from './TorikumiDayPage';
 import { MARCH2026_TORIKUMI_DATA } from '../lib/march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from '../lib/may2026-data';
 import { torikumiArchive, type TorikumiArchiveDay } from '../lib/torikumi-data';
-import { getBanzukePathForDateKey, getHubPath, getHubPathForDateKey } from '../lib/torikumi-routes';
+import { getBanzukePathForDateKey, getHubPathForDateKey } from '../lib/torikumi-routes';
 import * as torikumiRoutes from '../lib/torikumi-routes';
 import { formatUpdatedAt } from '../lib/updated-at';
 
@@ -24,13 +24,14 @@ afterEach(() => {
 
 describe('TorikumiDayPage', () => {
   it('renders archive navigation and footer contact links for result pages', () => {
-    renderPage(torikumiArchive.resultDays[0], 'result');
+    const firstResultDay = torikumiArchive.resultDays[0];
+    renderPage(firstResultDay, 'result');
 
     expect(screen.getByRole('heading', { level: 1, name: /取組結果/ })).toBeInTheDocument();
     expect(within(screen.getByRole('banner')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
     expect(within(screen.getByRole('contentinfo')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
-    expect(screen.getByRole('link', { name: '一覧' })).toHaveAttribute('href', getHubPath('result'));
-    expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', getBanzukePathForDateKey(torikumiArchive.resultDays[0].pathDate));
+    expect(screen.getByRole('link', { name: '一覧' })).toHaveAttribute('href', getHubPathForDateKey(firstResultDay.pathDate, 'result'));
+    expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', getBanzukePathForDateKey(firstResultDay.pathDate));
     expect(screen.getByText('← 前日なし')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'GitHub' })).toHaveAttribute('href', 'https://github.com/dai/o-sumo');
     expect(screen.queryByText('連絡先:')).not.toBeInTheDocument();
@@ -131,16 +132,17 @@ describe('TorikumiDayPage', () => {
   });
 
   it('shows absentees below update date when provided', () => {
+    const scheduleDay = torikumiArchive.scheduleDays[0];
     const dayWithAbsentees: TorikumiArchiveDay = {
-      ...torikumiArchive.resultDays[0],
+      ...scheduleDay,
       data: {
-        ...torikumiArchive.resultDays[0].data,
+        ...scheduleDay.data,
         makuuchi: {
-          ...torikumiArchive.resultDays[0].data.makuuchi,
+          ...scheduleDay.data.makuuchi,
           absentees: [{ id: 1, name: '大の里', profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/1/' }],
         },
         juryo: {
-          ...torikumiArchive.resultDays[0].data.juryo,
+          ...scheduleDay.data.juryo,
           absentees: [{ id: 2, name: '青安錦', profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/2/' }],
         },
       },

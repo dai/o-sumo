@@ -6,6 +6,7 @@ import BanzukeTable from '../components/BanzukeTable';
 import type { RankGroup } from '../lib/sumo-data';
 import { torikumiArchive } from '../lib/torikumi-data';
 import { formatUpdatedAt } from '../lib/updated-at';
+import { MAY2026_TORIKUMI_DATA } from '../lib/may2026-data';
 
 describe('BanzukePage', () => {
   it('keeps contact links in the footer and reverses rank-group sort order', async () => {
@@ -150,5 +151,28 @@ describe('BanzukePage', () => {
     );
 
     expect(screen.getByText(`更新日: ${formatUpdatedAt(torikumiArchive.updatedAt)}`)).toBeInTheDocument();
+  });
+
+  it('renders July 2026 as the default current banzuke route and keeps May 2026 as an archive route', () => {
+    render(
+      <MemoryRouter>
+        <BanzukePage />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByRole('heading', { level: 2, name: /七月場所 番付一覧/ })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '取組結果一覧' })).toHaveAttribute('href', '/202607-torikumi/');
+  });
+
+  it('renders May 2026 archive data for the 202605 route', () => {
+    render(
+      <MemoryRouter initialEntries={['/202605-banduke']}>
+        <BanzukePage />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByRole('heading', { level: 2, name: /五月場所 番付一覧/ })).toBeInTheDocument();
+    expect(screen.getByText(`更新日: ${formatUpdatedAt(MAY2026_TORIKUMI_DATA.updatedAt)}`)).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '取組結果一覧' })).toHaveAttribute('href', '/202605-torikumi/');
   });
 });

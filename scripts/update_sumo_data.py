@@ -50,20 +50,38 @@ DAY_LABEL = {
 WEEKDAY_JA = ("月", "火", "水", "木", "金", "土", "日")
 JST = ZoneInfo("Asia/Tokyo")
 TORIKUMI_SCOPES = ("all", "result", "schedule")
+_BASHO_BANZUKE_CONTEXT: dict | None = None
+ANNUAL_SCHEDULE_PATH = "/Admission/schedule/"
+KANJI_DIGIT = {
+    "〇": 0,
+    "一": 1,
+    "二": 2,
+    "三": 3,
+    "四": 4,
+    "五": 5,
+    "六": 6,
+    "七": 7,
+    "八": 8,
+    "九": 9,
+}
 
 
 def post_json(path: str, payload: dict) -> dict:
     referer = f"{REQUEST_BASE_URL}/"
     cookie = ""
     torikumi_match = re.match(r"^/ResultData/torikumiAjax/(\d+)/(\d+)/$", path)
+    hoshitori_match = re.match(r"^/ResultData/hoshitoriAjax/(\d+)/(\d+)/$", path)
     if torikumi_match:
         kakuzuke_id, day = torikumi_match.groups()
         referer = f"{REQUEST_BASE_URL}/ResultData/torikumi/{kakuzuke_id}/{day}/"
         cookie = "mischeief=OK"
     elif path.startswith("/ResultBanzuke/tableAjax/"):
-        referer = f"{REQUEST_BASE_URL}/ResultBanzuke/"
-    elif path.startswith("/ResultData/hoshitoriAjax/"):
-        referer = f"{REQUEST_BASE_URL}/ResultData/hoshitori/"
+        referer = f"{REQUEST_BASE_URL}/ResultBanzuke/table/"
+        cookie = "and=mouse"
+    elif hoshitori_match:
+        kakuzuke_id, ew_flg = hoshitori_match.groups()
+        referer = f"{REQUEST_BASE_URL}/ResultData/hoshitori/{kakuzuke_id}/{ew_flg}/"
+        cookie = "game=cat"
 
     req = Request(
         f"{REQUEST_BASE_URL}{path}",
@@ -174,6 +192,39 @@ def current_timestamp_iso() -> str:
     return datetime.now(JST).replace(microsecond=0).isoformat()
 
 
+def write_text_lf(path: Path, content: str) -> None:
+    with path.open("w", encoding="utf-8", newline="\n") as handle:
+        handle.write(content)
+
+
+def parse_japanese_number(raw: str) -> int:
+    raw = raw.strip()
+    if not raw:
+        raise ValueError("empty japanese number")
+    if raw.isdigit():
+        return int(raw)
+    if raw == "十":
+        return 10
+    if "十" in raw:
+        left, _, right = raw.partition("十")
+        left_value = KANJI_DIGIT[left] if left else 1
+        right_value = KANJI_DIGIT[right] if right else 0
+        return left_value * 10 + right_value
+    total = 0
+    for char in raw:
+        if char not in KANJI_DIGIT:
+            raise ValueError(f"unknown japanese numeral: {raw}")
+        total = total * 10 + KANJI_DIGIT[char]
+    return total
+
+
+def extract_era_year_number(year_jp: str) -> int:
+    match = re.search(r"令和([0-9〇一二三四五六七八九十]+)年", year_jp)
+    if not match:
+        raise ValueError(f"令和年の抽出に失敗しました: {year_jp}")
+    return parse_japanese_number(match.group(1))
+
+
 def safe_int(raw: object, default: int) -> int:
     try:
         return int(str(raw))
@@ -193,10 +244,79 @@ def build_day_head(day: int, actual_date: date) -> str:
     )
 
 
+def load_banzuke_context() -> dict:
+    global _BASHO_BANZUKE_CONTEXT
+    if _BASHO_BANZUKE_CONTEXT is not None:
+        return _BASHO_BANZUKE_CONTEXT
+
+    req = Request(
+        f"{REQUEST_BASE_URL}/ResultBanzuke/table/",
+        headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+            "Accept-Language": "ja,en-US;q=0.9,en;q=0.8",
+        },
+    )
+    with urlopen(req, timeout=30) as res:
+        html = res.read().decode("utf-8")
+
+    basho_id_match = re.search(r'id="bashoId"\s+value="(\d+)"', html)
+    if not basho_id_match:
+        basho_id_match = re.search(r'value="(\d+)"\s+id="bashoId"', html)
+    if not basho_id_match:
+        raise RuntimeError("番付ページの bashoId を抽出できませんでした")
+
+    _BASHO_BANZUKE_CONTEXT = {"basho_id": int(basho_id_match.group(1))}
+    return _BASHO_BANZUKE_CONTEXT
+
+
+def extract_official_basho_start_date(html: str, year_jp: str, basho_name: str) -> date | None:
+    era_year = extract_era_year_number(year_jp)
+    text = re.sub(r"<[^>]+>", " ", html)
+    text = html_lib.unescape(text).replace("\u3000", " ")
+    text = re.sub(r"\s+", " ", text).strip()
+    schedule_marker = "場所 会場 前売り開始日 番付発表 初日 千秋楽"
+    marker_index = text.find(schedule_marker)
+    if marker_index >= 0:
+        text = text[marker_index:]
+    row_pattern = re.compile(
+        rf"{re.escape(basho_name)}.*?"
+        rf"令和(?:{era_year}|[〇一二三四五六七八九十]+)年\s*\d{{1,2}}/\d{{1,2}}\([^)]+\)\s*"
+        rf"令和(?:{era_year}|[〇一二三四五六七八九十]+)年\s*\d{{1,2}}/\d{{1,2}}\([^)]+\)\s*"
+        rf"令和(?:{era_year}|[〇一二三四五六七八九十]+)年\s*(\d{{1,2}})/(\d{{1,2}})\([^)]+\)",
+    )
+    match = row_pattern.search(text)
+    if not match:
+        return None
+    month = int(match.group(1))
+    day = int(match.group(2))
+    return date(era_year + 2018, month, day)
+
+
+def load_official_basho_start_date(year_jp: str, basho_name: str) -> date | None:
+    req = Request(
+        f"{REQUEST_BASE_URL}{ANNUAL_SCHEDULE_PATH}",
+        headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+            "Accept-Language": "ja,en-US;q=0.9,en;q=0.8",
+        },
+    )
+    with urlopen(req, timeout=30) as res:
+        html = res.read().decode("utf-8")
+    return extract_official_basho_start_date(html, year_jp, basho_name)
+
+
+def determine_current_basho_day(start_date: date, today: date | None = None) -> int:
+    target_day = today or datetime.now(JST).date()
+    if target_day < start_date:
+        return 0
+    return max(1, min((target_day - start_date).days + 1, 15))
+
+
 def load_banzuke_meta(kakuzuke_id: int = 1) -> dict:
+    context = load_banzuke_context()
     data = post_json(
         f"/ResultBanzuke/tableAjax/{kakuzuke_id}/1/",
-        {"kakuzuke_id": str(kakuzuke_id), "b": "0", "page": "1"},
+        {"kakuzuke_id": str(kakuzuke_id), "basho_id": str(context["basho_id"]), "page": "1"},
     )
     if data.get("Result") != "1":
         raise RuntimeError(f"tableAjax failed for kakuzuke_id={kakuzuke_id}")
@@ -740,6 +860,7 @@ def build_torikumi_dataset(
     existing: dict | None = None,
     *,
     fetch_days: set[int] | None = None,
+    official_start_date: date | None = None,
 ) -> dict:
     rosters = {
         "makuuchi": load_division_rikishi(1),
@@ -747,6 +868,9 @@ def build_torikumi_dataset(
     }
     loaded_days = {}
     for day in range(1, 16):
+        if official_start_date is not None and current_day <= 0:
+            loaded_days[day] = {"makuuchi": None, "juryo": None}
+            continue
         if fetch_days is not None and day not in fetch_days:
             loaded_days[day] = {"makuuchi": None, "juryo": None}
             continue
@@ -766,9 +890,9 @@ def build_torikumi_dataset(
             ),
         }
 
-    start_date = resolve_basho_start_date(loaded_days, updated_at, current_day)
+    start_date = official_start_date or resolve_basho_start_date(loaded_days, updated_at, current_day)
     current_timestamp = current_timestamp_iso()
-    today_day = max(1, min(current_day, 15))
+    today_day = max(0, min(current_day, 15))
     observed_settled_day = 0
     observed_any_match_day = 0
     for day in range(1, 16):
@@ -857,19 +981,19 @@ def build_torikumi_dataset(
 
     latest_result_day = max(
         (safe_int(day.get("day", 0), 0) for day in result_days if str(day.get("status", "")) == "published"),
-        default=1,
+        default=0,
     )
-    latest_result_day = max(1, min(latest_result_day, 15))
+    latest_result_day = max(0, min(latest_result_day, 15))
     latest_schedule_day = max(
         (safe_int(day.get("day", 0), 0) for day in schedule_days if str(day.get("status", "")) == "published"),
-        default=1,
+        default=0,
     )
-    latest_schedule_day = max(1, min(latest_schedule_day, 15))
-    effective_schedule_day = min(latest_schedule_day, latest_result_day + 1)
-    effective_schedule_day = max(1, min(effective_schedule_day, 15))
+    latest_schedule_day = max(0, min(latest_schedule_day, 15))
+    effective_schedule_day = min(latest_schedule_day, latest_result_day + 1) if latest_schedule_day else 0
+    effective_schedule_day = max(0, min(effective_schedule_day, 15))
 
-    today_data = next((day["data"] for day in result_days if int(day.get("day", 0)) == latest_result_day), None)
-    tomorrow_data = next((day["data"] for day in schedule_days if int(day.get("day", 0)) == effective_schedule_day), None)
+    today_data = next((day["data"] for day in result_days if int(day.get("day", 0)) == latest_result_day), None) if latest_result_day else None
+    tomorrow_data = next((day["data"] for day in schedule_days if int(day.get("day", 0)) == effective_schedule_day), None) if effective_schedule_day else None
 
     return {
         "updatedAt": current_timestamp,
@@ -1018,7 +1142,7 @@ export const makuuchiData: RankGroup[] = {json.dumps(makuuchi, ensure_ascii=Fals
 
 export const juryo: RankGroup[] = {json.dumps(juryo, ensure_ascii=False, indent=2)};
 """
-    SUMO_OUTPUT.write_text(content, encoding="utf-8")
+    write_text_lf(SUMO_OUTPUT, content)
 
 
 def write_torikumi_data(dataset: dict, year_jp: str, basho_name: str) -> None:
@@ -1074,8 +1198,8 @@ export interface TorikumiDataSet {{
   updatedAt: string;
   resultUpdatedAt: string;
   scheduleUpdatedAt: string;
-  today?: TorikumiDailyData;
-  tomorrow?: TorikumiDailyData;
+  today?: TorikumiDailyData | null;
+  tomorrow?: TorikumiDailyData | null;
   resultDays?: TorikumiArchiveDay[];
   scheduleDays?: TorikumiArchiveDay[];
 }}
@@ -1102,13 +1226,13 @@ export const torikumiArchive = {{
   scheduleDays: torikumiData.scheduleDays ?? [],
 }};
 
-export const torikumiMonthKey = torikumiArchive.resultDays[0]?.pathDate.slice(0, 6)
-  ?? torikumiArchive.scheduleDays[0]?.pathDate.slice(0, 6)
+export const torikumiMonthKey = torikumiArchive.scheduleDays[0]?.pathDate.slice(0, 6)
+  ?? torikumiArchive.resultDays[0]?.pathDate.slice(0, 6)
   ?? '202603';
 
 export const banzukePath = `/${{torikumiMonthKey}}-banduke`;
 """
-    TORIKUMI_OUTPUT.write_text(content, encoding="utf-8")
+    write_text_lf(TORIKUMI_OUTPUT, content)
 
 
 def write_api_json(
@@ -1127,7 +1251,7 @@ def write_api_json(
             "makuuchi": makuuchi,
             "juryo": juryo,
         }
-        (API_DIR / "banzuke.json").write_text(json.dumps(banzuke_json, ensure_ascii=False, indent=2), encoding="utf-8")
+        write_text_lf(API_DIR / "banzuke.json", json.dumps(banzuke_json, ensure_ascii=False, indent=2))
 
     torikumi_json = {
         "bashoName": basho_name,
@@ -1140,7 +1264,7 @@ def write_api_json(
         "resultDays": torikumi_dataset["resultDays"],
         "scheduleDays": torikumi_dataset["scheduleDays"],
     }
-    (API_DIR / "torikumi.json").write_text(json.dumps(torikumi_json, ensure_ascii=False, indent=2), encoding="utf-8")
+    write_text_lf(API_DIR / "torikumi.json", json.dumps(torikumi_json, ensure_ascii=False, indent=2))
 
 
 # Profile page parser for extracting rikishi details from HTML
@@ -1331,9 +1455,9 @@ def write_rikishi_json(rikishi_list: list[dict], profiles: dict[int, dict]) -> N
         "updatedAt": updated_at,
         "rikishi": rikishi_list,
     }
-    (API_DIR / "rikishi.json").write_text(
+    write_text_lf(
+        API_DIR / "rikishi.json",
         json.dumps(rikishi_json, ensure_ascii=False, indent=2),
-        encoding="utf-8"
     )
 
     # Write individual profile JSONs
@@ -1365,9 +1489,9 @@ def write_rikishi_json(rikishi_list: list[dict], profiles: dict[int, dict]) -> N
             "sourceUrl": rikishi["profileUrl"],
             "updatedAt": updated_at,
         }
-        (profile_dir / f"{rikishi_id}.json").write_text(
+        write_text_lf(
+            profile_dir / f"{rikishi_id}.json",
             json.dumps(profile_json, ensure_ascii=False, indent=2),
-            encoding="utf-8"
         )
 
     print(f"[info] Wrote {len(rikishi_list)} rikishi to rikishi.json and {len(profiles)} profiles")
@@ -1466,10 +1590,20 @@ def main() -> None:
     if not args.rikishi_only:
         basho_info = makuuchi_meta["BashoInfo"]
         basho_id = int(basho_info.get("basho_id", 1))
-        current_day = safe_int(basho_info.get("day", 1), 1)
         updated_at = str(basho_info.get("today", ""))
+        official_start_date = load_official_basho_start_date(year_jp, basho_name)
+        if official_start_date is not None:
+            current_day = determine_current_basho_day(official_start_date)
+        else:
+            current_day = safe_int(basho_info.get("day", 1), 1)
 
         existing_torikumi = load_existing_torikumi_json()
+        generation_existing = existing_torikumi
+        if generation_existing and (
+            str(generation_existing.get("bashoName", "")) != basho_name
+            or str(generation_existing.get("year", "")) != year_jp
+        ):
+            generation_existing = None
         fetch_days: set[int] | None = None
         if args.torikumi_only and args.torikumi_scope == "result" and existing_torikumi:
             fetch_days = {max(1, current_day - 1), current_day}
@@ -1478,8 +1612,9 @@ def main() -> None:
             basho_id,
             current_day,
             updated_at,
-            existing_torikumi,
+            generation_existing,
             fetch_days=fetch_days,
+            official_start_date=official_start_date,
         )
         torikumi_dataset = apply_torikumi_scope(
             torikumi_dataset,

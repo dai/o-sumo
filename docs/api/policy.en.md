@@ -13,7 +13,7 @@ Current update flows (automatic runs are paused until July 1, 2026 JST):
 - Daily update (torikumi schedule only): run `daily-data-update.yml` manually (`workflow_dispatch`)
 - Realtime update (torikumi results + banzuke): run `realtime-torikumi-update.yml` manually (`workflow_dispatch`)
 
-After the May 2026 banzuke release on April 27, 2026, the maintainer manually syncs `banzuke.json` and `torikumi.json` to the May basho.
+After the July 2026 banzuke release on June 29, 2026, the maintainer manually syncs `banzuke.json` to the July basho. In `torikumi.json`, `scheduleDays` move to the July basho while `resultDays` stay on the completed May archive (`202605`).
 
 See the GitHub Actions workflows for the exact implementation.
 

@@ -23,6 +23,11 @@ import {
   MARCH2026_SCHEDULE_PATH,
   MARCH2026_BANDUKE_PATH,
 } from './lib/torikumi-routes'
+import {
+  CURRENT_BANZUKE_PATH,
+  CURRENT_RESULT_PATH,
+  CURRENT_SCHEDULE_PATH,
+} from './lib/archive-basho-data'
 import { bootstrapTheme } from './lib/theme'
 import './globals.css'
 
@@ -48,7 +53,7 @@ function AppShell() {
     <BrowserRouter>
       <ScrollToHash />
       <div className="global-notice-banner" role="status" aria-live="polite">
-        {t('global.may2026UpdateNotice')}
+        {t('global.july2026UpdateNotice')}
       </div>
       <div className="top-right-controls">
         <ThemeToggle />
@@ -62,7 +67,14 @@ function AppShell() {
         <Route path="/rikishi" element={<HashPreservingRedirect to="/rikishi/" />} />
         <Route path="/rikishi/:id/" element={<RikishiProfilePage />} />
         <Route path="/rikishi/:id" element={<RikishiProfilePage />} />
-        {/* May 2026 routes */}
+        {/* Current basho routes */}
+        <Route path={`${CURRENT_BANZUKE_PATH}/`} element={<BanzukePage />} />
+        <Route path={CURRENT_BANZUKE_PATH} element={<HashPreservingRedirect to={`${CURRENT_BANZUKE_PATH}/`} />} />
+        <Route path={`${CURRENT_RESULT_PATH}/`} element={<TorikumiHubPage mode="result" />} />
+        <Route path={CURRENT_RESULT_PATH} element={<HashPreservingRedirect to={`${CURRENT_RESULT_PATH}/`} />} />
+        <Route path={`${CURRENT_SCHEDULE_PATH}/`} element={<TorikumiHubPage mode="schedule" />} />
+        <Route path={CURRENT_SCHEDULE_PATH} element={<HashPreservingRedirect to={`${CURRENT_SCHEDULE_PATH}/`} />} />
+        {/* May 2026 archive routes */}
         <Route path={`${MAY2026_BANDUKE_PATH}/`} element={<BanzukePage />} />
         <Route path={MAY2026_BANDUKE_PATH} element={<HashPreservingRedirect to={`${MAY2026_BANDUKE_PATH}/`} />} />
         <Route path={`${MAY2026_RESULT_PATH}/`} element={<TorikumiHubPage mode="result" />} />

@@ -1,14 +1,15 @@
-import { torikumiArchive, torikumiMonthKey } from './torikumi-data';
-import { MARCH2026_TORIKUMI_DATA } from './march2026-torikumi-data';
+import { torikumiMonthKey } from './torikumi-data';
 import { getDayPath } from './torikumi-routes';
-import { juryo, makuuchiData, type RankGroup, type Rikishi } from './sumo-data';
+import { type RankGroup, type Rikishi } from './sumo-data';
 import type { TorikumiArchiveDay } from './torikumi-data';
+import { getBanzukeDataByMonthKey, getTorikumiArchiveByMonthKey } from './archive-basho-data';
 
 function allRikishi(groups: RankGroup[]): Rikishi[] {
   return groups.flatMap((group) => [...group.east, ...group.west]);
 }
 
-const canonicalRikishi = [...allRikishi(makuuchiData), ...allRikishi(juryo)];
+const currentBanzuke = getBanzukeDataByMonthKey(torikumiMonthKey);
+const canonicalRikishi = [...allRikishi(currentBanzuke.makuuchi), ...allRikishi(currentBanzuke.juryo)];
 export const canonicalNameMap = new Map(canonicalRikishi.map((rikishi) => [rikishi.profileUrl, rikishi.name] as const));
 
 export function divisionAnchorId(division: '幕内' | '十両', boutNo: number): string {
@@ -16,10 +17,7 @@ export function divisionAnchorId(division: '幕内' | '十両', boutNo: number):
 }
 
 function getResultDaysByMonthKey(monthKey: string) {
-  if (monthKey === '202603') {
-    return MARCH2026_TORIKUMI_DATA.resultDays ?? [];
-  }
-  return torikumiArchive.resultDays;
+  return getTorikumiArchiveByMonthKey(monthKey).resultDays ?? [];
 }
 
 function isSettledResultDay(day: TorikumiArchiveDay): boolean {

@@ -3,48 +3,29 @@ import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import BanzukeTable from '../components/BanzukeTable';
 import SortToggle from '../components/SortToggle';
-import {
-  MARCH2026_BASHO_NAME,
-  MARCH2026_JURYO_DATA,
-  MARCH2026_MAKUUCHI_DATA,
-  MARCH2026_UPDATED_AT,
-  MARCH2026_YEAR,
-} from '../lib/march2026-banzuke-data';
 import { type SortOrder, sortRankGroups } from '../lib/sorting';
-import { makuuchiData, juryo } from '../lib/sumo-data';
 import { getArchiveRouteConfigForPathname, getHubPathForMonthKey } from '../lib/torikumi-routes';
-import { torikumiArchive } from '../lib/torikumi-data';
 import HomeLink from '../components/HomeLink';
 import './page.css';
 import { formatGregorianBashoLabel } from '../lib/basho-meta';
 import { formatUpdatedAt } from '../lib/updated-at';
+import { getBanzukeDataByMonthKey } from '../lib/archive-basho-data';
+
 function useBanzukeContext() {
   const location = useLocation();
   const routeConfig = getArchiveRouteConfigForPathname(location.pathname);
   const monthKey = routeConfig.monthKey;
-
-  if (monthKey === '202603') {
-    return {
-      monthKey,
-      bashoTitle: `${MARCH2026_YEAR}${MARCH2026_BASHO_NAME}`,
-      gregorianBashoLabel: formatGregorianBashoLabel(monthKey),
-      bandukePath: routeConfig.bandukePath,
-      resultPath: routeConfig.resultPath,
-      updatedAt: MARCH2026_UPDATED_AT,
-      makuuchi: MARCH2026_MAKUUCHI_DATA,
-      juryo: MARCH2026_JURYO_DATA,
-    };
-  }
+  const banzuke = getBanzukeDataByMonthKey(monthKey);
 
   return {
     monthKey,
-    bashoTitle: `${routeConfig.archive.year}${routeConfig.archive.bashoName}`,
+    bashoTitle: `${banzuke.year}${banzuke.bashoName}`,
     gregorianBashoLabel: formatGregorianBashoLabel(monthKey),
     bandukePath: routeConfig.bandukePath,
     resultPath: routeConfig.resultPath,
-    updatedAt: torikumiArchive.updatedAt,
-    makuuchi: makuuchiData,
-    juryo,
+    updatedAt: banzuke.updatedAt,
+    makuuchi: banzuke.makuuchi,
+    juryo: banzuke.juryo,
   };
 }
 

@@ -62,7 +62,7 @@ python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule
 
 For the place-by-place rikishi profile refresh procedure, see `docs/rikishi-profile-refresh-runbook.md`.
 
-Procedure for the May 2026 banzuke release on April 27, 2026:
+Procedure for the July 2026 banzuke release on June 29, 2026:
 
 ```bash
 git pull --ff-only origin main
@@ -72,7 +72,7 @@ npm test
 npm run build
 ```
 
-Before publishing, verify that `public/api/v1/banzuke.json` has `bashoName: "五月場所"`, `year: "令和八年"`, 42 makuuchi rikishi, and 28 juryo rikishi.
+Before publishing, verify that `public/api/v1/banzuke.json` has `bashoName: "七月場所"`, `year: "令和八年"`, 42 makuuchi rikishi, and 28 juryo rikishi. Also verify that `public/api/v1/torikumi.json` keeps `resultDays[0].pathDate = 20260510` while switching `scheduleDays[0].pathDate` to `20260712`.
 
 Useful local URLs:
 
@@ -115,12 +115,12 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - If files change, the workflow commits and pushes directly to `main`
 - Always logs `github.event.schedule`, current JST time, `resultUpdatedAt`, and `scheduleUpdatedAt`
 
-## Operations Policy For The May 2026 Basho
+## Operations Policy For The July 2026 Basho
 
 - Keep `daily-data-update.yml` and `realtime-torikumi-update.yml` in manual mode (`workflow_dispatch` only) until July 1, 2026 (JST).
 - Keep hoshitori updates tied to the realtime workflow only by using `--torikumi-scope result --skip-rikishi-fetch`.
 - If results still look stale, triage in this order: run history -> run logs (`event.schedule`, JST time, updatedAt fields) -> upstream `judge` values.
-- After the April 27, 2026 banzuke release, manually run `python scripts/update_sumo_data.py --torikumi-scope schedule` to sync the May banzuke, torikumi schedule placeholders, and static API files.
+- After the June 29, 2026 banzuke release, manually run `python scripts/update_sumo_data.py --torikumi-scope schedule` to sync the July banzuke, torikumi schedule placeholders, and static API files. Keep the completed May results archive (`202605`) intact until July results start.
 - Keep the `public/_headers` cache policy unchanged to control Cloudflare usage.
 - Keep the PWA Service Worker on `registerType: "autoUpdate"` so updates are applied automatically.
 

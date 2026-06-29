@@ -29,9 +29,9 @@ o-sumo is a static web app for publishing sumo banzuke and torikumi information.
   - Daily result: `/{YYYYMMDD}-torikumi`
   - Daily schedule: `/{YYYYMMDD}-yotei`
 - Current route examples:
-  - `/202605-banduke`
-  - `/202605-torikumi`
-  - `/20260524-yotei`
+  - `/202607-banduke`
+  - `/202607-torikumi`
+  - `/20260712-yotei`
 - The legacy banzuke URL `/{YYYYMM}-o-sumo` redirects to the current banzuke URL.
 - Public APIs:
   - `/api/v1/banzuke.json`
@@ -168,7 +168,7 @@ python scripts/update_sumo_data.py --torikumi-only --torikumi-scope result
 python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule
 ```
 
-For the May 2026 banzuke release on April 27, 2026, first confirm that the upstream source has switched to the May basho, then run:
+For the July 2026 banzuke release on June 29, 2026, first confirm that the upstream source has switched to the July basho, then run:
 
 ```bash
 git pull --ff-only origin main
@@ -178,7 +178,7 @@ npm test
 npm run build
 ```
 
-Before publishing to `main`, verify that `banzuke.json` has `bashoName: "五月場所"`, `year: "令和八年"`, 42 makuuchi rikishi, and 28 juryo rikishi.
+Before publishing to `main`, verify that `banzuke.json` has `bashoName: "七月場所"`, `year: "令和八年"`, 42 makuuchi rikishi, and 28 juryo rikishi. Also verify that `torikumi.json` keeps `resultDays[0].pathDate = "20260510"` while switching `scheduleDays[0].pathDate` to `"20260712"`.
 
 Generated outputs:
 

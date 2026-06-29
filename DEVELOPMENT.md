@@ -62,7 +62,7 @@ python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule
 
 場所ごとの力士プロフィール更新手順は `docs/rikishi-profile-refresh-runbook.md` を参照してください。
 
-2026年4月27日の五月場所番付発表時の手順:
+2026年6月29日の七月場所番付発表時の手順:
 
 ```bash
 git pull --ff-only origin main
@@ -72,7 +72,7 @@ npm test
 npm run build
 ```
 
-`public/api/v1/banzuke.json` の `bashoName` が `五月場所`、`year` が `令和八年`、幕内42人、十両28人であることを確認してから反映します。
+`public/api/v1/banzuke.json` の `bashoName` が `七月場所`、`year` が `令和八年`、幕内42人、十両28人であることを確認してから反映します。あわせて `public/api/v1/torikumi.json` は `resultDays[0].pathDate = 20260510` を維持しつつ、`scheduleDays[0].pathDate = 20260712` に切り替わっていることを確認します。
 
 ローカル確認先:
 
@@ -147,11 +147,11 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - 固定の `YYYYMM-*` ルートを増やすのではなく、生成データ由来の月キー解決を使います
 - `public/images/rikishi/*.png` は日本相撲協会プロフィール写真をもとに MiniMax I2I Generation で加工した画像です。再生成時は `MINIMAX_API_KEY` を設定して `python scripts/style_transfer_rikishi.py` を使います
 
-## 運用制約ポリシー（2026年5月場所向け）
+## 運用制約ポリシー（2026年七月場所向け）
 
 - `daily-data-update.yml` と `realtime-torikumi-update.yml` は 2026-07-01 JST まで自動実行停止（`workflow_dispatch` のみ）とする。
 - `realtime-torikumi-update.yml` は `--torikumi-scope result --skip-rikishi-fetch` を使い、番付の星取表を結果更新枠でのみ同期する。
 - 結果未更新時の確認順は `run履歴` → `runログ（event.schedule, JST, updatedAt系）` → `供給元 judge` とする。
-- 2026年4月27日の番付発表後は、手動で `python scripts/update_sumo_data.py --torikumi-scope schedule` を実行し、五月場所の番付・取組予定・静的 API を同期する。
+- 2026年6月29日の番付発表後は、手動で `python scripts/update_sumo_data.py --torikumi-scope schedule` を実行し、七月場所の番付・取組予定・静的 API を同期する。結果アーカイブは五月場所 (`202605`) を維持する。
 - Cloudflare の従量抑制を優先し、`public/_headers` のキャッシュ方針（`/assets/*` 長期 immutable、`manifest` 1時間、`sw.js` 再検証、`/` 5分）を維持する。
 - PWA 更新は `vite-plugin-pwa` の `registerType: "autoUpdate"` を維持し、更新を自動反映する。

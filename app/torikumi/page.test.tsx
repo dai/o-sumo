@@ -2,6 +2,7 @@ import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { MARCH2026_TORIKUMI_DATA } from '../lib/march2026-torikumi-data';
+import { MAY2026_TORIKUMI_DATA } from '../lib/may2026-data';
 import { torikumiArchive } from '../lib/torikumi-data';
 import { getDayPath } from '../lib/torikumi-routes';
 import TorikumiHubPage from './page';
@@ -152,11 +153,25 @@ describe('TorikumiHubPage', () => {
       </MemoryRouter>,
     );
 
-    const firstMayDay = torikumiArchive.resultDays?.[0];
+    const firstMayDay = MAY2026_TORIKUMI_DATA.resultDays?.[0];
     expect(screen.getByRole('heading', { level: 1, name: /五月場所/ })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202605-banduke/');
     expect(firstMayDay).toBeDefined();
     expect(screen.getAllByRole('link').some((l) => l.getAttribute('href') === `/${firstMayDay!.pathDate}-torikumi/`)).toBe(true);
+  });
+
+  it('renders 202607 hub route with July archive links as the current basho', () => {
+    render(
+      <MemoryRouter initialEntries={['/202607-torikumi']}>
+        <TorikumiHubPage mode="result" />
+      </MemoryRouter>,
+    );
+
+    const firstCurrentDay = torikumiArchive.resultDays?.[0];
+    expect(screen.getByRole('heading', { level: 1, name: /七月場所/ })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202607-banduke/');
+    expect(firstCurrentDay).toBeDefined();
+    expect(screen.getAllByRole('link').some((l) => l.getAttribute('href') === `/${firstCurrentDay!.pathDate}-torikumi/`)).toBe(true);
   });
 
   it('renders 202603 schedule hub with 202603 day links', () => {
