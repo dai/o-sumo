@@ -1,3 +1,36 @@
+## Cloudflare Pages 反映後 verify 再実行 Todo（2026-06-29）
+
+### Plan
+- [x] Cloudflare Pages の反映先 URL と PR 状態を確認する
+- [x] `verify_delivery_flow.ps1` を反映先に対して再実行する
+- [x] preview / production の差異を切り分けて結果を記録する
+- [x] 次の番付更新タスクへ移る前提条件を整理する
+
+### Progress
+- PR #94 の Cloudflare Pages check-run (`external_id=57894290-03ba-4018-8e87-35b4cc6e9242`) から、preview URL `https://57894290.o-sumo.pages.dev` と branch preview URL `https://codex-202607-july-basho-prep.o-sumo.pages.dev` を確認。
+- `gh pr view 94 --json mergeStateStatus,statusCheckRollup` で、PR は `OPEN / READY / mergeStateStatus=CLEAN`、Cloudflare Pages check は `SUCCESS` で完了済みと確認。
+- `pwsh ./scripts/verify_delivery_flow.ps1` を `https://osada.us` に対して再実行し、production は依然 `DATA_SYNC=OK / ROUTING_BEHAVIOR=ISSUE` と確認。
+- `pwsh ./scripts/verify_delivery_flow.ps1 -BaseUrl https://codex-202607-july-basho-prep.o-sumo.pages.dev` を branch preview に対して再実行し、preview は `ROUTING_BEHAVIOR=OK` と確認。
+- script は秒単位の report 名 (`delivery-flow-yyyyMMdd-HHmmss.md`) を使うため、parallel 実行では衝突する。今回は順次再実行し、証跡を `tasks/reports/delivery-flow-production-20260629.md` と `tasks/reports/delivery-flow-preview-codex-202607-july-basho-prep-20260629.md` に退避。
+
+### Review
+- Cloudflare reflection:
+  - `gh api repos/dai/o-sumo/commits/<HEAD>/check-runs`: pass
+  - 結果: `Cloudflare Pages` check run success、preview URL `https://57894290.o-sumo.pages.dev`、branch preview URL `https://codex-202607-july-basho-prep.o-sumo.pages.dev`
+- production verify:
+  - `pwsh ./scripts/verify_delivery_flow.ps1`: pass
+  - 結果: `DATA_SYNC=OK`, `ROUTING_BEHAVIOR=ISSUE`
+  - 追加 header check: `https://osada.us/archives -> 308 /`、`https://osada.us/20260512-yotei -> 308 /`
+  - 解釈: PR #94 は **まだ `main` 未反映** のため、production `https://osada.us` は旧 routing のまま
+- preview verify:
+  - `pwsh ./scripts/verify_delivery_flow.ps1 -BaseUrl https://codex-202607-july-basho-prep.o-sumo.pages.dev`: pass
+  - 結果: `DATA_SYNC=ISSUE`, `ROUTING_BEHAVIOR=OK`
+  - 追加 header check: `https://codex-202607-july-basho-prep.o-sumo.pages.dev/archives -> 301 /archives/`、`https://codex-202607-july-basho-prep.o-sumo.pages.dev/20260512-yotei -> 301 /20260512-yotei/`
+  - 解釈: routing 修正自体は Cloudflare Pages preview で反映済み。`DATA_SYNC=ISSUE` は script が `origin/main` を比較元に固定しているためで、preview が branch 先頭 `f32efe6` を配信していることと整合する
+- next for banzuke:
+  - 次の番付更新系作業では、`scripts/update_sumo_data.py` の `ResultBanzuke/tableAjax` / `ResultData/hoshitoriAjax` 経由更新と、`public/api/v1/banzuke.json.updatedAt` / `app/lib/sumo-data.ts` / `app/banzuke/page.tsx` の 3点確認を起点にする
+  - production で `verify_delivery_flow.ps1` の `ROUTING_BEHAVIOR=OK` を確認するには、PR #94 の `main` 反映後に `https://osada.us` へ再実行が必要
+
 ## PR 仕上げ Todo（2026-06-29）
 
 ### Plan
