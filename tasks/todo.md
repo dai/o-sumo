@@ -1,3 +1,67 @@
+## 令和八年七月場所 番付更新 Todo（2026-06-29）
+
+### Scope
+- 対象は **七月場所の番付更新** を主軸にしつつ、関連する **トップページの三月場所導線復帰** を含む。
+- 更新対象は `public/api/v1/banzuke.json`、`app/lib/sumo-data.ts`、必要に応じて `app/banzuke/page.tsx` / `app/lib/archive-basho-data.ts` / `docs/api/v1*.md` / `README*.md` とする。
+- source of truth は相撲協会の番付・星取表系 endpoint（`ResultBanzuke/tableAjax` / `ResultData/hoshitoriAjax`）とし、更新後は UI / API / docs の整合を取る。
+
+### Plan
+- [x] 現行 `main` の番付データと UI 導線を確認し、七月場所番付更新の差分要件を明文化する
+- [x] `scripts/update_sumo_data.py` と parser tests を確認し、今回の番付更新で必要な取得・変換条件を洗い出す
+- [x] failing / regression test を追加または更新し、七月場所番付と三月場所ホーム導線の期待状態を固定する
+- [x] 番付データを再生成し、`public/api/v1/banzuke.json` と `app/lib/sumo-data.ts` を更新する
+- [x] `app/banzuke/page.tsx` と関連導線を確認し、current / archive の表示や文言にズレがあれば最小修正する
+- [x] `README.md` / `README_en.md` / `docs/api/v1.md` / `docs/api/v1.en.md` など必要な運用 docs を同期する
+- [x] `npm run typecheck` / `npm test -- --run` / 必要な Python unit / data sanity check を実行し、Review に結果を記録する
+
+### Acceptance
+- `banzuke.json` が七月場所の番付を返し、`updatedAt` が今回生成時刻へ更新されている
+- `app/banzuke/page.tsx` で current route が七月場所番付を表示し、五月・三月 archive 導線が壊れていない
+- `scripts/update_sumo_data.py` の番付取得ロジックがテストで担保されている
+- docs の route 例・手順・確認ポイントが七月場所前提に揃っている
+
+### Progress
+- 最新 `origin/main@316610f` から `codex/202607-banzuke-update` を作成し、worktree `C:\Users\dai\.codex\worktrees\202607-banzuke\o-sumo` を切った
+- `tasks/lessons.md` を再確認し、番付更新では `--torikumi-only` を使わず、`banzuke.json.updatedAt` まで確認する方針を継続する
+- item 1 確認結果:
+  - `public/api/v1/banzuke.json` は既に `bashoName=七月場所`、`year=令和八年`、`updatedAt=2026-06-29T14:30:39+09:00` 相当で、幕内42人・十両28人を満たしている
+  - `app/banzuke/page.tsx` と `app/banzuke/page.test.tsx` は current=`/202607-banduke`、archive=`/202605-banduke` / `/202603-banduke` を前提に整っている
+  - 差分要件としては **「七月場所へ切り替える」本体は main に既に入っており、今回ブランチで新たに必要なのは追加の regression 固定や次回更新に備えた確認・最小差分の洗い出し** が中心
+- トップページ導線の確認結果:
+  - `app/page.tsx` は `PAST_BASHO[0]` のみを `latestPastBasho` として描画しており、五月場所だけが表示対象になっている
+  - `app/lib/archives-data.ts` には `202603` の三月場所データが残っているため、**三月場所が消えた原因はデータ欠落ではなくホーム導線の単一表示化**
+- item 2 確認結果:
+  - `scripts/update_sumo_data.py` は `load_banzuke_context()` で `bashoId` を番付ページから抽出し、`/ResultBanzuke/tableAjax/...` と `/ResultData/hoshitoriAjax/...` を Cookie 付きで取得する構成
+  - `scripts/update_sumo_data_parser_test.py` には `and=mouse` / `game=cat` Cookie、`basho_id` の引き回し、年間日程からの初日抽出まで既に回帰テストがある
+  - したがって現時点では、番付取得ロジックの欠陥修正より **UI regression と再生成条件の固定** を優先すべきと判断
+- 三月場所導線の実装:
+  - `app/page.test.tsx` に「トップページで三月場所 archive guidance を保持する」回帰テストを追加し、RED を確認
+  - `app/page.tsx` は `PAST_BASHO[0]` 単体描画から `PAST_BASHO.map(...)` へ変更し、五月・三月の archive セクションを両方表示するよう修正
+  - これによりトップページから `202603-banduke` / `202603-yotei` / `202603-torikumi` へ直接遷移できる状態に戻した
+- 再生成結果:
+  - `python scripts/update_sumo_data.py --torikumi-scope schedule --skip-rikishi-fetch` を実行
+  - 差分は `public/api/v1/banzuke.json` / `public/api/v1/torikumi.json` / `app/lib/torikumi-data.ts` の `updatedAt` / `scheduleUpdatedAt` 更新のみ
+  - `app/lib/sumo-data.ts` の rank データ自体に変更はなく、番付内容は既に `main` と整合していたことを確認
+- 導線 / docs 確認結果:
+  - `app/banzuke/page.tsx` は current=`202607`、archive=`202605` / `202603` の導線・表示をそのまま維持できているため追加修正なし
+  - `README.md` / `README_en.md` / `docs/api/v1.md` / `docs/api/v1.en.md` は七月場所前提の手順と route 例に既に同期済みで、今回追加修正は不要
+
+### Review
+- TDD:
+  - `npm test -- --run app/page.test.tsx`: fail → pass
+  - fail 時の内容: `Home page > keeps March 2026 archive guidance on the top page` で `令和八年 三月場所` heading が見つからない
+- Validation:
+  - `npm run typecheck`: pass
+  - `npm test -- --run`: pass（15 files / 69 tests）
+  - `npm run build`: pass（既存の chunk size warning のみ）
+  - `python -m unittest scripts.update_sumo_data_parser_test.OfficialBashoScheduleTest scripts.update_sumo_data_parser_test.PostJsonRequestHeadersTest scripts.update_sumo_data_parser_test.LoadBanzukeMetaRequestTest`: pass
+  - data sanity:
+    - `banzuke.json`: `bashoName=七月場所`, `year=令和八年`, `makuuchiRikishi=42`, `juryoRikishi=28`, `updatedAt=2026-06-29T16:26:01+09:00`
+    - `torikumi.json`: `resultDays[0].pathDate=20260510`, `scheduleDays[0].pathDate=20260712`, `scheduleDays[0].status=published`
+  - `git diff --check`: pass
+- Environment:
+  - 新 worktree には `node_modules` が無かったため、検証前に `npm ci` を実行
+
 ## Cloudflare Pages 反映後 verify 再実行 Todo（2026-06-29）
 
 ### Plan
