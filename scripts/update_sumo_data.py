@@ -1057,6 +1057,19 @@ def build_torikumi_meta_fallback(existing: dict) -> dict:
     }
 
 
+def archive_days_month_key(days: list[dict] | None) -> str:
+    if not days:
+        return ""
+    first_day = days[0] or {}
+    path_date = str(first_day.get("pathDate", ""))
+    if len(path_date) >= 6:
+        return path_date[:6]
+    iso_date = str(first_day.get("isoDate", ""))
+    if len(iso_date) >= 7:
+        return iso_date[:7].replace("-", "")
+    return ""
+
+
 def apply_torikumi_scope(dataset: dict, scope: str, existing: dict | None = None) -> dict:
     if scope == "all":
         return dataset
@@ -1065,13 +1078,18 @@ def apply_torikumi_scope(dataset: dict, scope: str, existing: dict | None = None
     merged = dict(dataset)
     result_updated_at = dataset["resultUpdatedAt"]
     schedule_updated_at = dataset["scheduleUpdatedAt"]
+    dataset_month_key = archive_days_month_key(dataset.get("scheduleDays")) or archive_days_month_key(dataset.get("resultDays"))
+    existing_result_month_key = archive_days_month_key(existing.get("resultDays"))
+    existing_schedule_month_key = archive_days_month_key(existing.get("scheduleDays"))
 
     if scope == "result":
-        merged["scheduleDays"] = existing.get("scheduleDays", dataset["scheduleDays"])
-        schedule_updated_at = existing.get("scheduleUpdatedAt") or existing.get("updatedAt") or schedule_updated_at
+        if existing_schedule_month_key and existing_schedule_month_key == dataset_month_key:
+            merged["scheduleDays"] = existing.get("scheduleDays", dataset["scheduleDays"])
+            schedule_updated_at = existing.get("scheduleUpdatedAt") or existing.get("updatedAt") or schedule_updated_at
     elif scope == "schedule":
-        merged["resultDays"] = existing.get("resultDays", dataset["resultDays"])
-        result_updated_at = existing.get("resultUpdatedAt") or existing.get("updatedAt") or result_updated_at
+        if existing_result_month_key and existing_result_month_key == dataset_month_key:
+            merged["resultDays"] = existing.get("resultDays", dataset["resultDays"])
+            result_updated_at = existing.get("resultUpdatedAt") or existing.get("updatedAt") or result_updated_at
     else:
         raise ValueError(f"unsupported torikumi scope: {scope}")
 

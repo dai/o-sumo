@@ -120,7 +120,7 @@ describe('torikumi route helpers', () => {
     const julyConfig = getArchiveRouteConfigForPathname('/202607-torikumi');
     const activeMonthKey = torikumiArchive.scheduleDays[0]?.pathDate.slice(0, 6);
     expect(torikumiMonthKey).toBe(activeMonthKey);
-    expect(torikumiArchive.resultDays[0]?.pathDate.startsWith('202605')).toBe(true);
+    expect(torikumiArchive.resultDays[0]?.pathDate.startsWith(torikumiMonthKey)).toBe(true);
     expect(torikumiArchive.scheduleDays[0]?.pathDate.startsWith(torikumiMonthKey)).toBe(true);
     expect(MARCH2026_TORIKUMI_DATA.resultDays?.[0]?.pathDate.startsWith('202603')).toBe(true);
     expect(MAY2026_TORIKUMI_DATA.resultDays?.[0]?.pathDate.startsWith('202605')).toBe(true);
