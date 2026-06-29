@@ -31,6 +31,47 @@
   - `npm run build`: pass（既存の chunk size warning のみ）
   - `git diff --check`: pass
 
+## 七月場所着手準備 Re-verification（worktree `202607` 上での 2026-06-29 ハンドオフ確認）
+
+### Plan
+- [x] worktree `C:\Users\dai\.codex\worktrees\202607\o-sumo` の HEAD `fe4c3af` を `main@7543e86` と比較し、Phase 1〜5 の大半が既コミット済みであることを確認する
+- [x] worktree 上で `npm run typecheck` / `npm test -- --run` / `npm run build` を再走させ、コミット時点と同等の緑であることを確認する
+- [x] impeccable `detect.mjs --json` を編集対象 TSX/CSS に走らせ、No-Line / gradient text / side-stripe / 1px border の違反がないことを確認する
+- [x] `tasks/todo.md` の Review に再検証ログを追記する
+- [x] `tasks/lessons.md` に「2026-07 着手準備」節を追加し、`tasks/lessons.md` で 7 月着手時のチェックポイントを明文化する
+- [ ] workflow スケジュール再開（2026-07-01 JST 以降）と PR 化は次セッションで判断
+
+### Progress
+- `git switch 202607` 後、`git status` は clean、`git log --oneline -5` は `fe4c3af 令和八年七月場所の準備を反映` で頭。
+- `main` 上に `stash@{0,1}` の未適用 WIP（`用料→取組予定` 関連）が残っているが、指示に従い **触らず** 七月準備へ進む方針を確認。
+- `fe4c3af` で既に五月場所は `app/lib/may2026-data.ts` + `app/lib/may2026-banzuke-data.ts` にスナップショット化、`app/lib/archive-basho-data.ts` が current/archive の単一エントリポイントとして導入されている。
+- `app/page.tsx` は `torikumiArchive` / `PAST_BASHO[0]` 駆動の動的構成へ、championship-table は削除。五月の最終結果は `PAST_BASHO` 経由で archives ページ側に集約済み。
+- `app/main.tsx` の静的ルートは `CURRENT_BANZUKE_PATH` / `CURRENT_RESULT_PATH` / `CURRENT_SCHEDULE_PATH` 経由の汎用化、五月アーカイブは明示ルートで温存。
+- `scripts/update_sumo_data.py` は年間日程からの初日抽出、`ResultBanzuke/tableAjax` / `ResultData/hoshitoriAjax` の Cookie 対応、LF 固定書き出しを追加。
+- `public/api/v1/torikumi.json` は `bashoName = 七月場所`、`resultDays[0].pathDate = 20260510`（五月アーカイブ維持）、`scheduleDays[0].pathDate = 20260712`（七月予定）の mixed current/archive 仕様。
+- README / DEVELOPMENT / API policy / runbook は全て 2026-06-29 の七月場所番付発表時点の手順へ同期済み。
+- 検証ログは本エントリの Review に集約（再走結果の詳細は commit 時点の Review ブロックから参照可能）。
+
+### Review
+- 検証端末: `C:\Users\dai\.codex\worktrees\202607\o-sumo`、`$env:Path = "C:\nvm4w\nodejs;" + $env:Path` を前置
+- Typecheck:
+  - `npm run typecheck`: pass（exit 0、stderr なし）
+- Test:
+  - `npm test -- --run`: pass（15 files / 68 tests、所要 18.57s）
+  - 新規ケース: `BanzukePage > renders July 2026 as the default current banzuke route and keeps May 2026 as an archive route`、`BanzukePage > renders May 2026 archive data for the 202605 route` を確認
+- Build:
+  - `npm run build`: pass（exit 0、117 modules transformed、既存の chunk size warning のみ）
+  - PWA: precache 84 entries (11990.65 KiB)
+- Design lint:
+  - `node .claude/skills/impeccable/scripts/detect.mjs --json <編集10ファイル>`: pass（出力 `[]`、violation ゼロ）
+  - 編集対象: `app/page.tsx` / `app/main.tsx` / `app/archives/page.tsx` / `app/banzuke/page.tsx` / `app/components/TorikumiDayPage.tsx` / `app/lib/archives-data.ts` / `app/lib/torikumi-routes.ts` / `app/lib/archive-basho-data.ts` / `app/index.css` / `app/styles/banzuke.css`
+- Diff / 状態:
+  - `git status`: clean、HEAD は `fe4c3af`
+  - `git diff --check`: pass
+- 未実施項目（次セッション判断）:
+  - `pwsh ./scripts/verify_delivery_flow.ps1`（`osada.us` への HTTP 検証。worktree から直接実行可能だが 308 リダイレクト検出の差分は main 反映後に確定するため、本セッションでは省略）
+  - workflow `schedule:` ブロックの復活（2026-07-01 JST まで `workflow_dispatch` のみという条件を尊重し、当面は据え置き）
+
 ## 五月場所 最終反映（番付15日目 + 最終結果セクション）Todo（2026-05-25）
 
 ### Plan
