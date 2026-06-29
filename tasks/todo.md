@@ -1,3 +1,175 @@
+## Cloudflare Pages 反映後 verify 再実行 Todo（2026-06-29）
+
+### Plan
+- [x] Cloudflare Pages の反映先 URL と PR 状態を確認する
+- [x] `verify_delivery_flow.ps1` を反映先に対して再実行する
+- [x] preview / production の差異を切り分けて結果を記録する
+- [x] 次の番付更新タスクへ移る前提条件を整理する
+
+### Progress
+- PR #94 の Cloudflare Pages check-run (`external_id=57894290-03ba-4018-8e87-35b4cc6e9242`) から、preview URL `https://57894290.o-sumo.pages.dev` と branch preview URL `https://codex-202607-july-basho-prep.o-sumo.pages.dev` を確認。
+- `gh pr view 94 --json mergeStateStatus,statusCheckRollup` で、PR は `OPEN / READY / mergeStateStatus=CLEAN`、Cloudflare Pages check は `SUCCESS` で完了済みと確認。
+- `pwsh ./scripts/verify_delivery_flow.ps1` を `https://osada.us` に対して再実行し、production は依然 `DATA_SYNC=OK / ROUTING_BEHAVIOR=ISSUE` と確認。
+- `pwsh ./scripts/verify_delivery_flow.ps1 -BaseUrl https://codex-202607-july-basho-prep.o-sumo.pages.dev` を branch preview に対して再実行し、preview は `ROUTING_BEHAVIOR=OK` と確認。
+- script は秒単位の report 名 (`delivery-flow-yyyyMMdd-HHmmss.md`) を使うため、parallel 実行では衝突する。今回は順次再実行し、証跡を `tasks/reports/delivery-flow-production-20260629.md` と `tasks/reports/delivery-flow-preview-codex-202607-july-basho-prep-20260629.md` に退避。
+
+### Review
+- Cloudflare reflection:
+  - `gh api repos/dai/o-sumo/commits/<HEAD>/check-runs`: pass
+  - 結果: `Cloudflare Pages` check run success、preview URL `https://57894290.o-sumo.pages.dev`、branch preview URL `https://codex-202607-july-basho-prep.o-sumo.pages.dev`
+- production verify:
+  - `pwsh ./scripts/verify_delivery_flow.ps1`: pass
+  - 結果: `DATA_SYNC=OK`, `ROUTING_BEHAVIOR=ISSUE`
+  - 追加 header check: `https://osada.us/archives -> 308 /`、`https://osada.us/20260512-yotei -> 308 /`
+  - 解釈: PR #94 は **まだ `main` 未反映** のため、production `https://osada.us` は旧 routing のまま
+- preview verify:
+  - `pwsh ./scripts/verify_delivery_flow.ps1 -BaseUrl https://codex-202607-july-basho-prep.o-sumo.pages.dev`: pass
+  - 結果: `DATA_SYNC=ISSUE`, `ROUTING_BEHAVIOR=OK`
+  - 追加 header check: `https://codex-202607-july-basho-prep.o-sumo.pages.dev/archives -> 301 /archives/`、`https://codex-202607-july-basho-prep.o-sumo.pages.dev/20260512-yotei -> 301 /20260512-yotei/`
+  - 解釈: routing 修正自体は Cloudflare Pages preview で反映済み。`DATA_SYNC=ISSUE` は script が `origin/main` を比較元に固定しているためで、preview が branch 先頭 `f32efe6` を配信していることと整合する
+- next for banzuke:
+  - 次の番付更新系作業では、`scripts/update_sumo_data.py` の `ResultBanzuke/tableAjax` / `ResultData/hoshitoriAjax` 経由更新と、`public/api/v1/banzuke.json.updatedAt` / `app/lib/sumo-data.ts` / `app/banzuke/page.tsx` の 3点確認を起点にする
+  - production で `verify_delivery_flow.ps1` の `ROUTING_BEHAVIOR=OK` を確認するには、PR #94 の `main` 反映後に `https://osada.us` へ再実行が必要
+
+## PR 仕上げ Todo（2026-06-29）
+
+### Plan
+- [x] ローカル残差分を精査し、commit 対象と除外対象を切り分ける
+- [x] delivery-flow レポートを tasks 配下の証跡として commit する
+- [x] PR タイトル / 本文 / Draft 状態を整える
+- [x] push 後に状態を再確認し、Review を追記する
+
+### Progress
+- `git status` で未コミット差分は `app/lib/sumo-data.ts` / `app/lib/torikumi-data.ts` / `public/api/v1/banzuke.json` / `public/api/v1/torikumi.json` と `tasks/reports/delivery-flow-20260629-150901.md` であることを確認。
+- 4つの生成物差分は、ローカル検証時の `python scripts/update_sumo_data.py --torikumi-scope schedule` 再実行により **current mixed-state を崩したローカル差分** であり、PR に含めるべき変更ではないと判断。
+- `git checkout -- <4 files>` で生成物差分を破棄し、commit 対象を `tasks/reports/delivery-flow-20260629-150901.md` のみへ整理。
+
+### Review
+- cleanup:
+  - `git checkout -- app/lib/sumo-data.ts app/lib/torikumi-data.ts public/api/v1/banzuke.json public/api/v1/torikumi.json`: pass
+  - 結果: ローカル検証で崩れた generated diff を除去し、残差分は `tasks/todo.md` と `tasks/reports/delivery-flow-20260629-150901.md` のみ
+- diff health:
+  - `git diff --check`: pass
+- PR state:
+  - `gh pr ready 94 --undo`: pass（PR #94 を metadata 更新のため draft 化）
+- commit / push:
+  - `git commit -m "docs(tasks): add delivery flow verification report"`: pass（`2269905`）
+  - `git push`: pass（`codex/202607-july-basho-prep` -> `origin/codex/202607-july-basho-prep`）
+- PR finalize:
+  - `gh pr edit 94 --title "2026年七月場所準備と配信ルーティング正規化" --body ...`: pass
+  - `gh pr ready 94`: pass（PR #94 を ready for review に復帰）
+- final status:
+  - `git status --short`: clean
+
+## 令和八年七月場所準備 Todo（2026-06-29）
+
+### Plan
+- [x] `202607` ブランチを最新 `main` から切り、独立 worktree で作業する
+- [x] current basho を `202607` に切り替える failing tests を追加する
+- [x] 五月場所を static archive 化し、routes / home / archives / banzuke / hub の導線を更新する
+- [x] 七月場所データを再生成し、README / DEVELOPMENT / API docs の手順を同期する
+- [x] typecheck / test / build / データ sanity check を実行して Review に記録する
+
+### Progress
+- `C:\Users\dai\.codex\worktrees\202607\o-sumo` を `main@7543e867` から `git worktree add -b 202607 ... main` で作成。
+- 現行 repo を確認し、current basho はまだ五月場所、archives は三月場所のみ、docs は 2026-04-27 の五月場所切替手順が残っていることを確認。
+- 五月場所を archive として維持するには、現在の `torikumi-data.ts` / `sumo-data.ts` 相当を static snapshot 化する必要があることを確認。
+- `app/lib/may2026-data.ts` と `app/lib/may2026-banzuke-data.ts` を追加し、五月場所の結果・番付を static archive として固定化。
+- `app/lib/archive-basho-data.ts` と `app/lib/torikumi-routes.ts` を中心に、current basho を `202607`、archive を `202605` / `202603` で共存させる導線へ更新。
+- `scripts/update_sumo_data.py` に `ResultBanzuke/tableAjax` / `ResultData/hoshitoriAjax` の Cookie 対応、年間日程からの初日抽出、LF 固定書き出しを追加。
+- `public/api/v1/torikumi.json` は `bashoName = 七月場所`、`scheduleDays[0].pathDate = 20260712`、`resultDays[0].pathDate = 20260510` の mixed current/archive 仕様へ再生成。
+- README / DEVELOPMENT / API docs / runbook を、2026-06-29 の七月場所番付発表時点の手順と route 例へ同期。
+
+### Review
+- Python unit:
+  - `python -m unittest scripts.update_sumo_data_parser_test.OfficialBashoScheduleTest scripts.update_sumo_data_parser_test.PostJsonRequestHeadersTest scripts.update_sumo_data_parser_test.LoadBanzukeMetaRequestTest`: pass
+- Data sanity:
+  - `python scripts/update_sumo_data.py --torikumi-scope schedule`: pass
+  - `public/api/v1/torikumi.json`: `bashoName=七月場所`, `resultDays[0].pathDate=20260510`, `scheduleDays[0].pathDate=20260712`, `scheduleDays[0].status=published`
+- Typecheck:
+  - `npm run typecheck`: pass
+- Test:
+  - `npm test -- --run`: pass（15 files / 68 tests）
+- Build / diff:
+  - `npm run build`: pass（既存の chunk size warning のみ）
+  - `git diff --check`: pass
+
+## 七月場所着手準備 Re-verification（worktree `202607` 上での 2026-06-29 ハンドオフ確認）
+
+### Plan
+- [x] worktree `C:\Users\dai\.codex\worktrees\202607\o-sumo` の HEAD `fe4c3af` を `main@7543e86` と比較し、Phase 1〜5 の大半が既コミット済みであることを確認する
+- [x] worktree 上で `npm run typecheck` / `npm test -- --run` / `npm run build` を再走させ、コミット時点と同等の緑であることを確認する
+- [x] impeccable `detect.mjs --json` を編集対象 TSX/CSS に走らせ、No-Line / gradient text / side-stripe / 1px border の違反がないことを確認する
+- [x] `tasks/todo.md` の Review に再検証ログを追記する
+- [x] `tasks/lessons.md` に「2026-07 着手準備」節を追加し、`tasks/lessons.md` で 7 月着手時のチェックポイントを明文化する
+- [ ] workflow スケジュール再開（2026-07-01 JST 以降）と PR 化は次セッションで判断
+
+### Progress
+- `git switch 202607` 後、`git status` は clean、`git log --oneline -5` は `fe4c3af 令和八年七月場所の準備を反映` で頭。
+- `main` 上に `stash@{0,1}` の未適用 WIP（`用料→取組予定` 関連）が残っているが、指示に従い **触らず** 七月準備へ進む方針を確認。
+- `fe4c3af` で既に五月場所は `app/lib/may2026-data.ts` + `app/lib/may2026-banzuke-data.ts` にスナップショット化、`app/lib/archive-basho-data.ts` が current/archive の単一エントリポイントとして導入されている。
+- `app/page.tsx` は `torikumiArchive` / `PAST_BASHO[0]` 駆動の動的構成へ、championship-table は削除。五月の最終結果は `PAST_BASHO` 経由で archives ページ側に集約済み。
+- `app/main.tsx` の静的ルートは `CURRENT_BANZUKE_PATH` / `CURRENT_RESULT_PATH` / `CURRENT_SCHEDULE_PATH` 経由の汎用化、五月アーカイブは明示ルートで温存。
+- `scripts/update_sumo_data.py` は年間日程からの初日抽出、`ResultBanzuke/tableAjax` / `ResultData/hoshitoriAjax` の Cookie 対応、LF 固定書き出しを追加。
+- `public/api/v1/torikumi.json` は `bashoName = 七月場所`、`resultDays[0].pathDate = 20260510`（五月アーカイブ維持）、`scheduleDays[0].pathDate = 20260712`（七月予定）の mixed current/archive 仕様。
+- README / DEVELOPMENT / API policy / runbook は全て 2026-06-29 の七月場所番付発表時点の手順へ同期済み。
+- 検証ログは本エントリの Review に集約（再走結果の詳細は commit 時点の Review ブロックから参照可能）。
+
+### Review
+- 検証端末: `C:\Users\dai\.codex\worktrees\202607\o-sumo`、`$env:Path = "C:\nvm4w\nodejs;" + $env:Path` を前置
+- Typecheck:
+  - `npm run typecheck`: pass（exit 0、stderr なし）
+- Test:
+  - `npm test -- --run`: pass（15 files / 68 tests、所要 18.57s）
+  - 新規ケース: `BanzukePage > renders July 2026 as the default current banzuke route and keeps May 2026 as an archive route`、`BanzukePage > renders May 2026 archive data for the 202605 route` を確認
+- Build:
+  - `npm run build`: pass（exit 0、117 modules transformed、既存の chunk size warning のみ）
+  - PWA: precache 84 entries (11990.65 KiB)
+- Design lint:
+  - `node .claude/skills/impeccable/scripts/detect.mjs --json <編集10ファイル>`: pass（出力 `[]`、violation ゼロ）
+  - 編集対象: `app/page.tsx` / `app/main.tsx` / `app/archives/page.tsx` / `app/banzuke/page.tsx` / `app/components/TorikumiDayPage.tsx` / `app/lib/archives-data.ts` / `app/lib/torikumi-routes.ts` / `app/lib/archive-basho-data.ts` / `app/index.css` / `app/styles/banzuke.css`
+- Diff / 状態:
+  - `git status`: clean、HEAD は `fe4c3af`
+  - `git diff --check`: pass
+- 未実施項目（次セッション判断）:
+  - workflow `schedule:` ブロックの復活（2026-07-01 JST まで `workflow_dispatch` のみという条件を尊重し、当面は据え置き）
+
+## 末尾スラッシュ正規化（308 → 301）修正 Todo（2026-06-29）
+
+### Plan
+- [x] `pwsh ./scripts/verify_delivery_flow.ps1` を worktree 上で実行し、`DATA_SYNC` / `ROUTING_BEHAVIOR` のスナップショットを採取する
+- [x] `tasks/reports/delivery-flow-20260629-150901.md` を Read し、`/archives` / `/-yotei` の 308 → `/` のトラップをリストアップする
+- [x] `public/_redirects` を splat 名揃えの 301 redirect ベースへ全面改訂する
+- [x] 修正後に `npm run build` / `npm run typecheck` で退行がないことを確認する
+- [x] 修正 commit を作成する
+- [ ] 修正を `origin/202607` へ push し、本番反映後に `pwsh ./scripts/verify_delivery_flow.ps1` を再度走らせて `ROUTING_BEHAVIOR=OK` を観測する（次セッション判断）
+
+### Progress
+- `pwsh ./scripts/verify_delivery_flow.ps1`: pass（`DATA_SYNC=OK`, `ROUTING_BEHAVIOR=ISSUE`）→ `tasks/reports/delivery-flow-20260629-150901.md` に出力。
+- 失敗ケースの内訳:
+  - `/archives` (308 → `/`)
+  - `/20260512-yotei` (308 → `/`)
+- 既に正常なケース: `/202605-torikumi` (301 → `/202605-torikumi/`)、`/20260512-torikumi` (301 → `/20260512-torikumi/`)
+- `public/_redirects` の全面改訂方針:
+  - `/archives /archives/ 301`、`/rikishi /rikishi/ 301` を追加
+  - `/:slug-torikumi /:slug-torikumi/ 301` を splat 名揃えの正規 redirect へ固定
+  - `/:slug-yotei /:slug-yotei/ 301` を新設（旧来の `/*-yotei /index.html 200` の 308 トラップを除去）
+  - `/*-o-sumo /:slug-banduke/ 301` を splat 名揃えの redirect へ変更
+  - 末尾スラッシュあり変種は `index.html 200` の SPA fallback に統一
+- `npm run build`: pass（117 modules transformed、既存の chunk size warning のみ）
+- `npm run typecheck`: pass
+
+### Review
+- 修正前レポート: `tasks/reports/delivery-flow-20260629-150901.md`
+  - `DATA_SYNC=OK`、`ROUTING_BEHAVIOR=ISSUE`
+  - `/archives` 308、`/20260512-yotei` 308 が対象
+- 修正後 build / typecheck: pass
+- 修正後 delivery-flow: worktree からは `_redirects` の効果は観測できない（Cloudflare Pages の評価器に依存）。本番反映後の再走で `ROUTING_BEHAVIOR=OK` を確認する
+- 影響範囲:
+  - `/archives` / `/rikishi` / `/*-torikumi` / `/*-yotei` / `/*-o-sumo` の **末尾スラッシュなし静的パス** が 301 redirect 化される
+  - 五月・三月の **既存アーカイブ導線** は壊れない（既に 301 redirect 経由だったページを、より短い redirect hop で正しく正規 URL に着地させる）
+  - 7 月場所予定 `/{YYYYMMDD}-yotei` の feed からの流入も 308 → `/` ではなく 301 → 正規 URL に変わる
+
 ## 五月場所 最終反映（番付15日目 + 最終結果セクション）Todo（2026-05-25）
 
 ### Plan

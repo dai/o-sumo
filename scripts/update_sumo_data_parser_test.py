@@ -68,6 +68,118 @@ class PostJsonRequestHeadersTest(unittest.TestCase):
             f"{MODULE.REQUEST_BASE_URL}/ResultData/torikumi/1/8/",
         )
 
+    def test_banzuke_ajax_request_sets_and_mouse_cookie(self) -> None:
+        captured = {}
+
+        class DummyResponse:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, exc_type, exc, tb):
+                return False
+
+            def read(self) -> bytes:
+                return b'{"Result":"1"}'
+
+        def fake_urlopen(request, timeout=30):
+            captured["headers"] = dict(request.header_items())
+            return DummyResponse()
+
+        with mock.patch.object(MODULE, "urlopen", side_effect=fake_urlopen):
+            MODULE.post_json(
+                "/ResultBanzuke/tableAjax/1/1/",
+                {"kakuzuke_id": "1", "basho_id": "636", "page": "1"},
+            )
+
+        self.assertEqual(captured["headers"].get("Cookie"), "and=mouse")
+        self.assertEqual(
+            captured["headers"].get("Referer"),
+            f"{MODULE.REQUEST_BASE_URL}/ResultBanzuke/table/",
+        )
+
+    def test_hoshitori_ajax_request_sets_game_cat_cookie(self) -> None:
+        captured = {}
+
+        class DummyResponse:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, exc_type, exc, tb):
+                return False
+
+            def read(self) -> bytes:
+                return b'{"Result":"1"}'
+
+        def fake_urlopen(request, timeout=30):
+            captured["headers"] = dict(request.header_items())
+            return DummyResponse()
+
+        with mock.patch.object(MODULE, "urlopen", side_effect=fake_urlopen):
+            MODULE.post_json(
+                "/ResultData/hoshitoriAjax/1/1/",
+                {"kakuzuke_id": "1", "ew_flg": "1"},
+            )
+
+        self.assertEqual(captured["headers"].get("Cookie"), "game=cat")
+        self.assertEqual(
+            captured["headers"].get("Referer"),
+            f"{MODULE.REQUEST_BASE_URL}/ResultData/hoshitori/1/1/",
+        )
+
+
+class LoadBanzukeMetaRequestTest(unittest.TestCase):
+    def test_uses_basho_id_from_page_context(self) -> None:
+        captured = {}
+
+        def fake_post_json(path, payload):
+            captured["path"] = path
+            captured["payload"] = payload
+            return {"Result": "1"}
+
+        with mock.patch.object(MODULE, "post_json", side_effect=fake_post_json):
+            with mock.patch.object(MODULE, "load_banzuke_context", return_value={"basho_id": 636}, create=True):
+                MODULE.load_banzuke_meta(2)
+
+        self.assertEqual(captured["path"], "/ResultBanzuke/tableAjax/2/1/")
+        self.assertEqual(
+            captured["payload"],
+            {"kakuzuke_id": "2", "basho_id": "636", "page": "1"},
+        )
+
+
+class OfficialBashoScheduleTest(unittest.TestCase):
+    def test_extracts_july_2026_start_date_from_annual_schedule(self) -> None:
+        html = """
+        <h3>令和8年 本場所日程</h3>
+        <p>場所 会場 前売り開始日 番付発表 初日 千秋楽</p>
+        <p>五月場所 国技館 令和8年 4/4(土) 令和8年 4/27(月) 令和8年 5/10(日) 5/24(日)</p>
+        <p>七月場所 ＩＧアリーナ 令和8年 5/16(土) 令和8年 6/29(月) 令和8年 7/12(日) 7/26(日)</p>
+        """
+
+        start_date = MODULE.extract_official_basho_start_date(html, "令和八年", "七月場所")
+
+        self.assertEqual(start_date, date(2026, 7, 12))
+
+    def test_returns_zero_day_before_official_start(self) -> None:
+        start_date = date(2026, 7, 12)
+
+        self.assertEqual(
+            MODULE.determine_current_basho_day(start_date, today=date(2026, 6, 29)),
+            0,
+        )
+        self.assertEqual(
+            MODULE.determine_current_basho_day(start_date, today=date(2026, 7, 12)),
+            1,
+        )
+        self.assertEqual(
+            MODULE.determine_current_basho_day(start_date, today=date(2026, 7, 26)),
+            15,
+        )
+        self.assertEqual(
+            MODULE.determine_current_basho_day(start_date, today=date(2026, 7, 30)),
+            15,
+        )
+
 
 class ParseOfficialAbsenceTest(unittest.TestCase):
     def setUp(self) -> None:

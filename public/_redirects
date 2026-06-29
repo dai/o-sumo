@@ -1,15 +1,14 @@
 # SPA routing (only for app routes)
 /:slug-torikumi /:slug-torikumi/ 301
-/archives /index.html 200
+/:slug-yotei /:slug-yotei/ 301
+/archives /archives/ 301
 /archives/ /index.html 200
-/rikishi /index.html 200
+/rikishi /rikishi/ 301
 /rikishi/ /index.html 200
 /rikishi/* /index.html 200
 /*-banduke /index.html 200
 /*-banduke/ /index.html 200
-/*-torikumi /index.html 200
 /*-torikumi/ /index.html 200
-/*-yotei /index.html 200
 /*-yotei/ /index.html 200
-/*-o-sumo /index.html 200
+/*-o-sumo /:slug-banduke/ 301
 /*-o-sumo/ /index.html 200

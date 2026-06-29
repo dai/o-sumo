@@ -1,12 +1,18 @@
 import {
   banzukePath,
-  torikumiArchive,
   torikumiMonthKey,
   type TorikumiArchiveDay,
   type TorikumiDataSet,
 } from './torikumi-data';
 import { MARCH2026_TORIKUMI_DATA } from './march2026-torikumi-data';
+import { MAY2026_TORIKUMI_DATA } from './may2026-data';
 import { updatedAtDateKey } from './updated-at';
+import {
+  CURRENT_BANZUKE_PATH,
+  CURRENT_RESULT_PATH,
+  CURRENT_SCHEDULE_PATH,
+  getTorikumiArchiveByMonthKey,
+} from './archive-basho-data';
 
 export type TorikumiPageMode = 'result' | 'schedule';
 
@@ -76,7 +82,7 @@ const ARCHIVE_ROUTE_CONFIGS: Record<string, ArchiveRouteConfig> = {
   },
   '202605': {
     monthKey: '202605',
-    archive: normalizeArchive(torikumiArchive),
+    archive: normalizeArchive(MAY2026_TORIKUMI_DATA),
     resultPath: withTrailingSlash(MAY2026_RESULT_PATH),
     schedulePath: withTrailingSlash(MAY2026_SCHEDULE_PATH),
     bandukePath: withTrailingSlash(MAY2026_BANDUKE_PATH),
@@ -86,15 +92,15 @@ const ARCHIVE_ROUTE_CONFIGS: Record<string, ArchiveRouteConfig> = {
 if (!ARCHIVE_ROUTE_CONFIGS[torikumiMonthKey]) {
   ARCHIVE_ROUTE_CONFIGS[torikumiMonthKey] = {
     monthKey: torikumiMonthKey,
-    archive: normalizeArchive(torikumiArchive),
-    resultPath: withTrailingSlash(`/${torikumiMonthKey}-torikumi`),
-    schedulePath: withTrailingSlash(`/${torikumiMonthKey}-yotei`),
-    bandukePath: withTrailingSlash(`/${torikumiMonthKey}-banduke`),
+    archive: normalizeArchive(getTorikumiArchiveByMonthKey(torikumiMonthKey)),
+    resultPath: withTrailingSlash(CURRENT_RESULT_PATH),
+    schedulePath: withTrailingSlash(CURRENT_SCHEDULE_PATH),
+    bandukePath: withTrailingSlash(CURRENT_BANZUKE_PATH),
   };
 }
 
 function getDefaultArchiveRouteConfig(): ArchiveRouteConfig {
-  return ARCHIVE_ROUTE_CONFIGS[torikumiMonthKey] ?? ARCHIVE_ROUTE_CONFIGS['202605'];
+  return ARCHIVE_ROUTE_CONFIGS[torikumiMonthKey] ?? ARCHIVE_ROUTE_CONFIGS['202603'];
 }
 
 export function getArchiveRouteConfigByMonthKey(monthKey: string): ArchiveRouteConfig | undefined {

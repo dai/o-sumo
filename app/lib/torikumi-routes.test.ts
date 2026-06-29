@@ -15,6 +15,7 @@ import {
 } from './torikumi-routes';
 import { torikumiArchive, torikumiMonthKey } from './torikumi-data';
 import { MARCH2026_TORIKUMI_DATA } from './march2026-torikumi-data';
+import { MAY2026_TORIKUMI_DATA } from './may2026-data';
 
 describe('torikumi route helpers', () => {
   it('parses dated top-level result slug', () => {
@@ -116,14 +117,21 @@ describe('torikumi route helpers', () => {
   it('resolves month config from pathname and date key', () => {
     const marchConfig = getArchiveRouteConfigForPathname('/202603-banduke');
     const mayConfig = getArchiveRouteConfigForPathname('/202605-torikumi');
-    const activeMonthKey = torikumiArchive.resultDays[0]?.pathDate.slice(0, 6);
+    const julyConfig = getArchiveRouteConfigForPathname('/202607-torikumi');
+    const activeMonthKey = torikumiArchive.scheduleDays[0]?.pathDate.slice(0, 6);
     expect(torikumiMonthKey).toBe(activeMonthKey);
-    expect(torikumiArchive.resultDays[0]?.pathDate.startsWith(torikumiMonthKey)).toBe(true);
+    expect(torikumiArchive.resultDays[0]?.pathDate.startsWith('202605')).toBe(true);
+    expect(torikumiArchive.scheduleDays[0]?.pathDate.startsWith(torikumiMonthKey)).toBe(true);
     expect(MARCH2026_TORIKUMI_DATA.resultDays?.[0]?.pathDate.startsWith('202603')).toBe(true);
+    expect(MAY2026_TORIKUMI_DATA.resultDays?.[0]?.pathDate.startsWith('202605')).toBe(true);
     expect(marchConfig.monthKey).toBe('202603');
     expect(mayConfig.monthKey).toBe('202605');
+    expect(mayConfig.archive.bashoName).toBe('五月場所');
+    expect(mayConfig.archive.resultDays?.[0]?.pathDate).toBe('20260510');
+    expect(julyConfig.monthKey).toBe('202607');
     expect(getHubPathForDateKey('20260322', 'result')).toBe('/202603-torikumi/');
     expect(getHubPathForDateKey('20260524', 'schedule')).toBe('/202605-yotei/');
+    expect(getHubPath('result')).toBe('/202607-torikumi/');
   });
 
   it('detects elapsed archive days from the supplied reference date', () => {

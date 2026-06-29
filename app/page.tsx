@@ -1,29 +1,19 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
-  MARCH2026_BANDUKE_PATH,
-  MARCH2026_RESULT_PATH,
-  MARCH2026_SCHEDULE_PATH,
-  MAY2026_BANDUKE_PATH,
-  MAY2026_RESULT_PATH,
-  MAY2026_SCHEDULE_PATH,
+  getBanzukePathForMonthKey,
 } from './lib/torikumi-routes';
-import { MAY2026_TORIKUMI_DATA } from './lib/may2026-data';
-import { MARCH2026_TORIKUMI_DATA } from './lib/march2026-torikumi-data';
+import { torikumiArchive, torikumiMonthKey } from './lib/torikumi-data';
+import { CURRENT_RESULT_PATH, CURRENT_SCHEDULE_PATH } from './lib/archive-basho-data';
+import { PAST_BASHO } from './lib/archives-data';
 import HomeLink from './components/HomeLink';
 import './index.css';
 
-const MAY2026_FINAL_RESULT = {
-  makuuchiYusho: '若隆景（2）',
-  sanshoShukun: 'なし',
-  sanshoKanto: '義ノ富士（2）、伯乃富士（2）',
-  sanshoGino: '若隆景（7）',
-  juryoYusho: '一意（1）',
-} as const;
-
 export default function Home() {
   const { t } = useTranslation('common');
-  const currentBashoTitle = `${MAY2026_TORIKUMI_DATA.year}${MAY2026_TORIKUMI_DATA.bashoName}`;
+  const currentBashoTitle = `${torikumiArchive.year}${torikumiArchive.bashoName}`;
+  const currentBanzukePath = getBanzukePathForMonthKey(torikumiMonthKey);
+  const latestPastBasho = PAST_BASHO[0];
 
   return (
     <div className="home-container">
@@ -43,13 +33,13 @@ export default function Home() {
           <h2>{currentBashoTitle}</h2>
           <p>{t('home.heroDescription')}</p>
           <nav className="hero-actions" aria-label="主要ページへの導線">
-            <Link to={`${MAY2026_BANDUKE_PATH}/`} className="cta-button">
+            <Link to={currentBanzukePath} className="cta-button">
               {t('home.heroBanzuke')}
             </Link>
-            <Link to={`${MAY2026_SCHEDULE_PATH}/`} className="cta-button secondary">
+            <Link to={`${CURRENT_SCHEDULE_PATH}/`} className="cta-button secondary">
               {t('home.heroSchedule')}
             </Link>
-            <Link to={`${MAY2026_RESULT_PATH}/`} className="cta-button secondary">
+            <Link to={`${CURRENT_RESULT_PATH}/`} className="cta-button secondary">
               {t('home.heroResult')}
             </Link>
             <Link to="/rikishi/" className="cta-button secondary">
@@ -58,62 +48,39 @@ export default function Home() {
           </nav>
         </section>
 
-        <section className="championship-section" aria-label="令和八年五月場所最終結果">
-          <h2>{t('home.championshipFinalHeading')}</h2>
-          <div className="championship-table" role="table" aria-label="令和八年五月場所最終結果一覧">
-            <div className="championship-row" role="row">
-              <p className="championship-losses" role="cell">{t('home.championshipMakuuchiYusho')}</p>
-              <p className="championship-rikishi" role="cell">{MAY2026_FINAL_RESULT.makuuchiYusho}</p>
-            </div>
-            <div className="championship-row" role="row">
-              <p className="championship-losses" role="cell">{t('home.championshipSansho')}</p>
-              <p className="championship-rikishi" role="cell">
-                {t('home.championshipShukun')}: {MAY2026_FINAL_RESULT.sanshoShukun}
-                {' | '}
-                {t('home.championshipKanto')}: {MAY2026_FINAL_RESULT.sanshoKanto}
-                {' | '}
-                {t('home.championshipGino')}: {MAY2026_FINAL_RESULT.sanshoGino}
-              </p>
-            </div>
-            <div className="championship-row" role="row">
-              <p className="championship-losses" role="cell">{t('home.championshipJuryoYusho')}</p>
-              <p className="championship-rikishi" role="cell">{MAY2026_FINAL_RESULT.juryoYusho}</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Past Basho - March 2026 */}
-        <section className="past-basho-section">
-          <h2 className="past-basho-heading">
-            {t('home.pastBashoHeading', {
-              year: MARCH2026_TORIKUMI_DATA.year,
-              name: MARCH2026_TORIKUMI_DATA.bashoName,
-            })}
-          </h2>
-          <nav className="past-basho-actions" aria-label="三月場所への導線">
-            <Link to={`${MARCH2026_BANDUKE_PATH}/`} className="cta-button secondary">
-              {t('home.heroBanzuke')}
-            </Link>
-            <Link to={`${MARCH2026_SCHEDULE_PATH}/`} className="cta-button secondary">
-              {t('home.heroSchedule')}
-            </Link>
-            <Link to={`${MARCH2026_RESULT_PATH}/`} className="cta-button secondary">
-              {t('home.heroResult')}
-            </Link>
-          </nav>
-          <div className="past-basho-days">
-            <p className="past-basho-days-label">{t('home.pastBashoDays')}</p>
-            {MARCH2026_TORIKUMI_DATA.resultDays?.map((day) => (
-              <Link
-                key={day.pathDate}
-                to={`/${day.pathDate}-torikumi/`}
-                className="past-basho-day-link"
-              >
-                {day.day}日
+        {latestPastBasho ? (
+          <section className="past-basho-section">
+            <h2 className="past-basho-heading">
+              {t('home.pastBashoHeading', {
+                year: latestPastBasho.year,
+                name: latestPastBasho.name,
+              })}
+            </h2>
+            <nav className="past-basho-actions" aria-label={`${latestPastBasho.name}への導線`}>
+              <Link to={`${latestPastBasho.bandukePath}/`} className="cta-button secondary">
+                {t('home.heroBanzuke')}
               </Link>
-            ))}
-          </div>
-        </section>
+              <Link to={`${latestPastBasho.schedulePath}/`} className="cta-button secondary">
+                {t('home.heroSchedule')}
+              </Link>
+              <Link to={`${latestPastBasho.resultPath}/`} className="cta-button secondary">
+                {t('home.heroResult')}
+              </Link>
+            </nav>
+            <div className="past-basho-days">
+              <p className="past-basho-days-label">{t('home.pastBashoDays')}</p>
+              {latestPastBasho.data.resultDays?.map((day) => (
+                <Link
+                  key={day.pathDate}
+                  to={`/${day.pathDate}-torikumi/`}
+                  className="past-basho-day-link"
+                >
+                  {day.day}日
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null}
       </main>
 
       <footer className="home-footer">

@@ -18,8 +18,7 @@ import HomeLink from './HomeLink';
 import AbsenteesNotice from './AbsenteesNotice';
 import '../torikumi/page.css';
 import { formatUpdatedAt } from '../lib/updated-at';
-import { makuuchiData, juryo } from '../lib/sumo-data';
-import { MARCH2026_MAKUUCHI_DATA, MARCH2026_JURYO_DATA } from '../lib/march2026-banzuke-data';
+import { getBanzukeDataByMonthKey, CURRENT_BASHO_ID } from '../lib/archive-basho-data';
 
 const DIVISIONS: Array<'幕内' | '十両'> = ['幕内', '十両'];
 
@@ -41,9 +40,8 @@ function formatRecord(record?: { wins: number; losses: number; draws: number }):
 }
 
 function createRecordMap(monthKey: string): Map<string, { wins: number; losses: number; draws: number }> {
-  const groups = monthKey === '202603'
-    ? [...MARCH2026_MAKUUCHI_DATA, ...MARCH2026_JURYO_DATA]
-    : [...makuuchiData, ...juryo];
+  const banzuke = getBanzukeDataByMonthKey(monthKey);
+  const groups = [...banzuke.makuuchi, ...banzuke.juryo];
   const map = new Map<string, { wins: number; losses: number; draws: number }>();
   groups.forEach((group) => {
     [...group.east, ...group.west].forEach((rikishi) => {
@@ -194,9 +192,9 @@ function getArchiveForPath(pathDate: string) {
     };
   }
 
-  const fallback = getArchiveRouteConfigByMonthKey('202605');
+  const fallback = getArchiveRouteConfigByMonthKey(CURRENT_BASHO_ID);
   if (!fallback) {
-    throw new Error('Missing default archive route config for 202605');
+    throw new Error(`Missing default archive route config for ${CURRENT_BASHO_ID}`);
   }
 
   return {
