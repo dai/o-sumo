@@ -1,28 +1,30 @@
 name: Daily Sumo Data Update
 
 on:
+  schedule:
+    - cron: '30 3 * * *'
+    - cron: '30 6 * * *'
+    - cron: '0 8 * * *'
+    - cron: '0 11 * * *'
   workflow_dispatch:
 
 concurrency:
-  group: osumo-main-data-refresh-daily
-  cancel-in-progress: true
+  group: osumo-data-update-branch
+  cancel-in-progress: false
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   update-data:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Sync with origin/main
-        shell: bash
-        run: |
-          set -euo pipefail
-          git fetch origin main
-          git reset --hard origin/main
+        with:
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -30,7 +32,26 @@ jobs:
           python-version: '3.11'
 
       - name: Generate data
-        run: python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule
+        shell: bash
+        run: |
+          set -euo pipefail
+          success=0
+          for attempt in 1 2; do
+            if python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule; then
+              success=1
+              break
+            fi
+
+            if [ "$attempt" -lt 2 ]; then
+              echo "Generate data failed (attempt ${attempt}/2). Retrying..."
+              sleep 10
+            fi
+          done
+
+          if [ "$success" -ne 1 ]; then
+            echo "Generate data failed after 2 attempts."
+            exit 1
+          fi
 
       - name: Print run context and torikumi timestamps
         shell: bash
@@ -48,29 +69,32 @@ jobs:
           print(f"scheduleUpdatedAt={torikumi.get('scheduleUpdatedAt', '')}")
           PY
 
-      - name: Commit and push changes
+      - name: Create or update data update PR
+        id: create-pr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/data-updates
+          base: main
+          delete-branch: false
+          commit-message: 'chore: daily sumo data update'
+          title: 'chore: automated sumo data updates'
+          body: |
+            ## Summary
+            - Automated data update from `${{ github.workflow }}`
+            - Event: `${{ github.event_name }}`
+            - Schedule: `${{ github.event.schedule || 'manual' }}`
+            - Scope: `schedule` (daily)
+          labels: |
+            automated
+            data-update
+          add-paths: |
+            app/lib/torikumi-data.ts
+            public/api/v1/torikumi.json
+
+      - name: Print PR context
         shell: bash
         run: |
-          set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          for attempt in 1 2 3; do
-            git add app/lib/torikumi-data.ts public/api/v1/torikumi.json
-            if git diff --staged --quiet; then
-              echo "No changes to commit."
-              exit 0
-            fi
-
-            git commit -m "chore: daily sumo data update"
-            if git push origin HEAD:main; then
-              exit 0
-            fi
-
-            echo "Push failed (attempt ${attempt}/3). Refreshing from origin/main and retrying..."
-            git fetch origin main
-            git reset --hard origin/main
-            python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule
-          done
-
-          echo "Push failed after 3 attempts."
-          exit 1
+          echo "pull_request_number=${{ steps.create-pr.outputs.pull-request-number }}"
+          echo "pull_request_operation=${{ steps.create-pr.outputs.pull-request-operation }}"
+          echo "pull_request_url=${{ steps.create-pr.outputs.pull-request-url }}"
