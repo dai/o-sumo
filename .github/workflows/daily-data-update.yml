@@ -53,6 +53,28 @@ jobs:
             exit 1
           fi
 
+      - name: Update news feed
+        shell: bash
+        run: |
+          set -euo pipefail
+          success=0
+          for attempt in 1 2; do
+            if python scripts/update_news_feed.py; then
+              success=1
+              break
+            fi
+
+            if [ "$attempt" -lt 2 ]; then
+              echo "Update news feed failed (attempt ${attempt}/2). Retrying..."
+              sleep 10
+            fi
+          done
+
+          if [ "$success" -ne 1 ]; then
+            echo "Update news feed failed after 2 attempts."
+            exit 1
+          fi
+
       - name: Print run context and torikumi timestamps
         shell: bash
         run: |
@@ -67,6 +89,12 @@ jobs:
           print(f"updatedAt={torikumi.get('updatedAt', '')}")
           print(f"resultUpdatedAt={torikumi.get('resultUpdatedAt', '')}")
           print(f"scheduleUpdatedAt={torikumi.get('scheduleUpdatedAt', '')}")
+
+          news = json.loads(Path("public/api/v1/news.json").read_text(encoding="utf-8"))
+          print(f"news_updatedAt={news.get('updatedAt', '')}")
+          print(f"news_item_count={len(news.get('items', []))}")
+          for source in news.get('sources', []):
+              print(f"news_source={source.get('id')} ok={source.get('ok')} count={source.get('count', 0)}")
           PY
 
       - name: Create or update data update PR
@@ -84,13 +112,14 @@ jobs:
             - Automated data update from `${{ github.workflow }}`
             - Event: `${{ github.event_name }}`
             - Schedule: `${{ github.event.schedule || 'manual' }}`
-            - Scope: `schedule` (daily)
+            - Scope: `schedule` (daily) + news feed
           labels: |
             automated
             data-update
           add-paths: |
             app/lib/torikumi-data.ts
             public/api/v1/torikumi.json
+            public/api/v1/news.json
 
       - name: Print PR context
         shell: bash

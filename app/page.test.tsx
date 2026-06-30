@@ -71,4 +71,28 @@ describe('Home page', () => {
     expect(allLinks.find((link) => link.getAttribute('href') === `${MARCH2026_BANDUKE_PATH}/`)).toBeDefined();
   });
 
+  it('renders the news section heading on the top page', () => {
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByRole('heading', { level: 2, name: '最新ニュース' })).toBeInTheDocument();
+  });
+
+  it('falls back to the empty-state message when no news items are available', () => {
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+
+    // The committed stub keeps the news list empty so the home page should
+    // surface the empty-state copy rather than crashing.
+    expect(screen.getByText('新しいニュースはありません')).toBeInTheDocument();
+    expect(document.querySelector('.news-list')).not.toBeInTheDocument();
+    expect(document.querySelector('.news-section-see-all')).not.toBeInTheDocument();
+  });
+
 });

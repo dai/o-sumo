@@ -42,7 +42,10 @@
     "heroRikishi": "力士プロフィール",
     "heroDayIndicator": "現在 {day} 日目",
     "heroPreBashoStatus": "開幕前",
-    "heroLastUpdated": "前回更新 {timeUtc}"
+    "heroLastUpdated": "前回更新 {timeUtc}",
+    "newsSectionTitle": "最新ニュース",
+    "newsSeeAll": "もっと見る",
+    "newsEmpty": "新しいニュースはありません"
   },
   "archives": {
     "pageTitle": "過去場所一覧",
