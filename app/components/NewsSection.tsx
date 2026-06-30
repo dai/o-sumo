@@ -33,6 +33,16 @@ export default function NewsSection() {
         <h2 id="news-section-title" className="news-section-title">
           {t('home.newsSectionTitle')}
         </h2>
+        {items.length > 0 && (
+          <a
+            className="news-section-see-all"
+            href="https://www.sumo.or.jp/IrohaKyokaiInformation/wrap/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {t('home.newsSeeAll')}
+          </a>
+        )}
       </div>
 
       {items.length === 0 ? (

@@ -92,6 +92,7 @@ describe('Home page', () => {
     // surface the empty-state copy rather than crashing.
     expect(screen.getByText('新しいニュースはありません')).toBeInTheDocument();
     expect(document.querySelector('.news-list')).not.toBeInTheDocument();
+    expect(document.querySelector('.news-section-see-all')).not.toBeInTheDocument();
   });
 
 });
