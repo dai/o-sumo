@@ -12,6 +12,7 @@ import {
 import { CURRENT_RESULT_PATH, CURRENT_SCHEDULE_PATH } from './lib/archive-basho-data';
 import { PAST_BASHO } from './lib/archives-data';
 import HomeLink from './components/HomeLink';
+import NewsSection from './components/NewsSection';
 import './index.css';
 
 type LiveState =
@@ -159,6 +160,8 @@ export default function Home() {
             </div>
           </section>
         ))}
+
+        <NewsSection />
       </main>
 
       <footer className="home-footer">
