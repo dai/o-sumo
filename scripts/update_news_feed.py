@@ -1,16 +1,24 @@
 #!/usr/bin/env python3
 """
-Fetch Japan Sumo Association announcements and write a static news feed.
+Fetch sumo news and write a static feed consumed by the home page.
 
-The official site does not expose an RSS feed, so we scrape the public
-"協会からのお知らせ" page (`/IrohaKyokaiInformation/wrap/`) and normalize the
-top entries into `public/api/v1/news.json` for the home page.
+The pipeline combines two sources:
+
+1. The Japan Sumo Association's "協会からのお知らせ" page, scraped from
+   ``/IrohaKyokaiInformation/wrap/``. The official site has no RSS feed,
+   so we read the HTML directly.
+2. dmenu スポーツ's 相撲ニュース一覧
+   (``https://sumo.sports.smt.docomo.ne.jp/news/``). 50+ articles from
+   multiple outlets (報知 / 日刊スポーツ / 中日スポーツ / デイリー /
+   時事通信 / スポニチ / SANSPO / テレ朝 / 読売) are aggregated.
 
 The pipeline is intentionally:
+
 - stdlib only (urllib + html + json + re + datetime + pathlib)
-- tolerant: a transient failure leaves the existing JSON untouched
-- extensible: a `SOURCE_DEFINITIONS` list lets future contributors add feeds
-  (RSS or HTML scrapers) without touching the orchestration code.
+- tolerant: a transient failure leaves the failing source as
+  ``sources[*].ok = false`` and the surviving source still contributes
+- extensible: a ``SOURCE_DEFINITIONS`` list lets future contributors add
+  feeds (RSS or HTML scrapers) without touching the orchestration code.
 
 Usage:
     python scripts/update_news_feed.py [--out PATH] [--limit N]
@@ -32,9 +40,10 @@ from urllib.request import Request, urlopen
 # requests because the www host sometimes fails to resolve from CI runners.
 REQUEST_BASE_URL = "https://sumo.or.jp"
 SITE_BASE_URL = "https://www.sumo.or.jp"
+DOCOMO_NEWS_URL = "https://sumo.sports.smt.docomo.ne.jp/news/"
 
 DEFAULT_OUTPUT = Path("public/api/v1/news.json")
-DEFAULT_LIMIT = 3
+DEFAULT_LIMIT = 8
 REQUEST_TIMEOUT = 30
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -44,6 +53,18 @@ USER_AGENT = (
 # 令和X年Y月Z日 → ISO date. Reiwa 1 = 2019.
 REIWA_DATE_RE = re.compile(r"令和\s*(\d+)\s*年\s*(\d+)\s*月\s*(\d+)\s*日")
 KANJI_DIGIT = {"〇": 0, "零": 0, "一": 1, "二": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8, "九": 9}
+
+# dmenu スポーツ: <li class="photo"><a href="..."><figure>...</figure>
+# <p>title</p><p class="time">媒体名　M月D日 H時M分</p></a></li>
+DOCOMO_NEWS_ITEM_RE = re.compile(
+    r'<li class="photo"><a href="(?P<url>[^"]+)"[^>]*>\s*'
+    r'(?:<figure[^>]*>.*?</figure>\s*)?'
+    r'<p>(?P<title>[^<]+)</p>\s*'
+    r'<p class="time">(?P<time>[^<]+)</p>',
+    re.DOTALL,
+)
+DOCOMO_DATE_RE = re.compile(r"(\d+)\s*月\s*(\d+)\s*日\s*(\d+)\s*時\s*(\d+)\s*分")
+DOCOMO_ARTICLE_ID_RE = re.compile(r"/article/[^/]+/sports/([^?&#/]+)")
 
 
 def kanji_to_int(value: str) -> int | None:
@@ -87,6 +108,35 @@ def parse_reiwa_date(text: str) -> str | None:
         return datetime(2018 + reiwa_year, month, day).date().isoformat()
     except ValueError:
         return None
+
+
+def parse_docomo_date(text: str, *, now: datetime | None = None) -> str | None:
+    """Return an ISO date (YYYY-MM-DD) for a docomo M月D日 H時M分 string.
+
+    The page omits the year. We assume the current year, and roll back one
+    year when the parsed timestamp is in the future (e.g. cross-year posts
+    observed shortly after midnight on January 1).
+    """
+    if not text:
+        return None
+    match = DOCOMO_DATE_RE.search(text)
+    if not match:
+        return None
+    month = int(match.group(1))
+    day = int(match.group(2))
+    hour = int(match.group(3))
+    minute = int(match.group(4))
+    reference = now or datetime.now()
+    try:
+        candidate = datetime(reference.year, month, day, hour, minute)
+    except ValueError:
+        return None
+    if candidate.date() > reference.date():
+        try:
+            candidate = datetime(reference.year - 1, month, day, hour, minute)
+        except ValueError:
+            return None
+    return candidate.date().isoformat()
 
 
 def fetch_text(url: str) -> str:
@@ -137,23 +187,70 @@ def scrape_sumo_association(limit: int) -> list[dict]:
     return items
 
 
+def scrape_docomo_news(limit: int) -> list[dict]:
+    """Return normalized news items from the dmenu スポーツ 相撲ニュース page."""
+    html = fetch_text(DOCOMO_NEWS_URL)
+    items: list[dict] = []
+    seen_ids: set[str] = set()
+    for match in DOCOMO_NEWS_ITEM_RE.finditer(html):
+        raw_url = html_lib.unescape(match.group("url").strip())
+        title = html_lib.unescape(match.group("title").strip())
+        raw_time = html_lib.unescape(match.group("time").strip())
+        if not title or not raw_url:
+            continue
+        id_match = DOCOMO_ARTICLE_ID_RE.search(raw_url)
+        if not id_match:
+            continue
+        article_id = id_match.group(1)
+        if article_id in seen_ids:
+            continue
+        seen_ids.add(article_id)
+        clean_url = raw_url.split("?", 1)[0]
+        published_at = parse_docomo_date(raw_time)
+        items.append({
+            "id": f"dmenu-docomo-{article_id}",
+            "title": title,
+            "url": clean_url,
+            "publishedAt": published_at,
+            "publishedAtRaw": raw_time,
+            "sourceId": "dmenu-docomo",
+        })
+        if len(items) >= limit:
+            break
+    return items
+
+
 # Each entry describes a single source. Adding a new feed is a one-liner here.
 SOURCE_DEFINITIONS = [
     {
         "id": "sumo-association",
         "label": "日本相撲協会",
-        "limit": DEFAULT_LIMIT,
+        "limit": 3,
         "scraper": scrape_sumo_association,
+    },
+    {
+        "id": "dmenu-docomo",
+        "label": "dmenuスポーツ",
+            "limit": 5,
+        "scraper": scrape_docomo_news,
     },
 ]
 
 
 def build_payload(limit: int) -> dict:
+    """Collect items from every source, merge, sort by date, and trim.
+
+    Each source contributes up to ``min(limit, source["limit"])`` items.
+    After all sources are processed we sort the union by ``publishedAt``
+    (descending, with ``None`` treated as oldest), dedupe by ``id``, and
+    slice to the requested total ``limit``.
+    """
     items: list[dict] = []
     sources: list[dict] = []
     for source in SOURCE_DEFINITIONS:
+        per_source = min(limit, source["limit"])
         try:
-            scraped = source["scraper"](min(limit, source["limit"]))
+            scraped = source["scraper"](per_source)
         except Exception as exc:
             print(f"[warn] {source['id']} failed: {exc}", file=sys.stderr)
             sources.append({"id": source["id"], "label": source["label"], "ok": False})
@@ -161,10 +258,18 @@ def build_payload(limit: int) -> dict:
         sources.append({"id": source["id"], "label": source["label"], "ok": True, "count": len(scraped)})
         for item in scraped:
             items.append({**item, "sourceLabel": source["label"]})
-        # The home page only needs a small window; stop once we have enough.
-        if len(items) >= limit:
-            items = items[:limit]
-            break
+
+    items.sort(key=lambda item: item.get("publishedAt") or "", reverse=True)
+
+    deduped: list[dict] = []
+    seen: set[str] = set()
+    for item in items:
+        if item["id"] in seen:
+            continue
+        seen.add(item["id"])
+        deduped.append(item)
+    items = deduped[:limit]
+
     return {
         "updatedAt": datetime.now(timezone.utc).isoformat(),
         "sources": sources,
@@ -189,6 +294,8 @@ def main() -> int:
     payload = build_payload(args.limit)
     write_payload(payload, args.out)
     print(f"[ok] wrote {len(payload['items'])} items to {args.out}")
+    for source in payload["sources"]:
+        print(f"  - {source['id']}: ok={source['ok']} count={source.get('count', 0)}")
     return 0
 
 
