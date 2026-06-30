@@ -41,7 +41,7 @@
     "footerGithub": "GitHub",
     "heroRikishi": "力士プロフィール",
     "heroDayIndicator": "現在 {day} 日目",
-    "heroPreBashoNotice": "{bashoName} — {startDateLabel} 開幕",
+    "heroPreBashoStatus": "開幕前",
     "heroLastUpdated": "前回更新 {timeUtc}"
   },
   "archives": {

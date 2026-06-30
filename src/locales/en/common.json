@@ -41,7 +41,7 @@
     "footerGithub": "GitHub",
     "heroRikishi": "Rikishi Profiles",
     "heroDayIndicator": "Day {day} in progress",
-    "heroPreBashoNotice": "{bashoName} — opens {startDateLabel}",
+    "heroPreBashoStatus": "Pre-basho",
     "heroLastUpdated": "Last updated {timeUtc}"
   },
   "archives": {

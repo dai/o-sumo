@@ -16,7 +16,7 @@ import './index.css';
 
 type LiveState =
   | { kind: 'in-progress'; day: number }
-  | { kind: 'pre-basho'; bashoName: string; startDateLabel: string }
+  | { kind: 'pre-basho' }
   | { kind: 'frozen'; lastUpdatedLabel: string };
 
 function dayOfDailyData(d: TorikumiDailyData | null | undefined): number | null {
@@ -28,45 +28,20 @@ function dayOfDailyData(d: TorikumiDailyData | null | undefined): number | null 
 function deriveLiveState(
   today: TorikumiDailyData | null | undefined,
   tomorrow: TorikumiDailyData | null | undefined,
-  scheduleFirstDate: string | undefined,
-  bashoName: string,
-  locale: string,
   fallbackUpdatedAt: string,
+  locale: string,
 ): LiveState {
   const todayDay = dayOfDailyData(today);
   if (todayDay !== null) {
     return { kind: 'in-progress', day: todayDay };
   }
-  const tomorrowDay = dayOfDailyData(tomorrow);
-  if (tomorrowDay === 1 && scheduleFirstDate) {
-    return {
-      kind: 'pre-basho',
-      bashoName,
-      startDateLabel: formatStartDateLabel(scheduleFirstDate, locale),
-    };
+  if (dayOfDailyData(tomorrow) === 1) {
+    return { kind: 'pre-basho' };
   }
   return {
     kind: 'frozen',
     lastUpdatedLabel: formatUpdatedAtLabel(fallbackUpdatedAt, locale),
   };
-}
-
-function formatStartDateLabel(pathDate: string, locale: string): string {
-  if (pathDate.length !== 8) return pathDate;
-  const mm = parseInt(pathDate.slice(4, 6), 10);
-  const dd = parseInt(pathDate.slice(6, 8), 10);
-  const sample = new Date(`${pathDate.slice(0, 4)}-${pathDate.slice(4, 6)}-${pathDate.slice(6, 8)}T12:00:00Z`);
-  if (locale.startsWith('ja')) {
-    return `${mm}月${dd}日`;
-  }
-  if (!Number.isNaN(sample.getTime())) {
-    return new Intl.DateTimeFormat('en-US', {
-      month: 'short',
-      day: 'numeric',
-      timeZone: 'UTC',
-    }).format(sample);
-  }
-  return `${mm}/${dd}`;
 }
 
 function formatUpdatedAtLabel(iso: string, locale: string): string {
@@ -98,16 +73,12 @@ export default function Home() {
   const locale = i18n.language || 'ja';
   const currentBashoTitle = `${torikumiArchive.year}${torikumiArchive.bashoName}`;
   const currentBanzukePath = getBanzukePathForMonthKey(torikumiMonthKey);
-  const firstScheduleDate = torikumiArchive.scheduleDays[0]?.pathDate;
   const liveState = deriveLiveState(
     torikumiData.today,
     torikumiData.tomorrow,
-    firstScheduleDate,
-    torikumiArchive.bashoName,
-    locale,
     torikumiArchive.updatedAt,
+    locale,
   );
-  const lastUpdatedLabel = formatUpdatedAtLabel(torikumiArchive.updatedAt, locale);
 
   return (
     <div className="home-container">
@@ -131,11 +102,8 @@ export default function Home() {
             {liveState.kind === 'in-progress'
               ? t('home.heroDayIndicator', { day: liveState.day })
               : liveState.kind === 'pre-basho'
-                ? t('home.heroPreBashoNotice', {
-                    bashoName: liveState.bashoName,
-                    startDateLabel: liveState.startDateLabel,
-                  })
-                : t('home.heroLastUpdated', { timeUtc: lastUpdatedLabel })}
+                ? t('home.heroPreBashoStatus')
+                : t('home.heroLastUpdated', { timeUtc: liveState.lastUpdatedLabel })}
           </p>
           <p className="hero-description">{t('home.heroDescription')}</p>
           <nav className="hero-actions" aria-label="主要ページへの導線">
