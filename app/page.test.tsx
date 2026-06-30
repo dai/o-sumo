@@ -81,6 +81,32 @@ describe('Home page', () => {
     expect(screen.getByRole('heading', { level: 2, name: '最新ニュース' })).toBeInTheDocument();
   });
 
+  it('places the news section between the current basho hero and the past-basho map', () => {
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+
+    const main = document.querySelector('main');
+    const hero = document.querySelector('.hero-section');
+    const news = document.querySelector('.news-section');
+    const firstPastBasho = document.querySelector('.past-basho-section');
+
+    expect(main).not.toBeNull();
+    expect(hero).not.toBeNull();
+    expect(news).not.toBeNull();
+    expect(firstPastBasho).not.toBeNull();
+
+    // The bitwise flag 4 means DOCUMENT_POSITION_FOLLOWING, i.e. `other` is
+    // positioned later in the document than `node`.
+    const heroBeforeNews = hero!.compareDocumentPosition(news!) & Node.DOCUMENT_POSITION_FOLLOWING;
+    const newsBeforePast = news!.compareDocumentPosition(firstPastBasho!) & Node.DOCUMENT_POSITION_FOLLOWING;
+
+    expect(heroBeforeNews).toBeTruthy();
+    expect(newsBeforePast).toBeTruthy();
+  });
+
   it('falls back to the empty-state message when no news items are available', () => {
     render(
       <MemoryRouter>
