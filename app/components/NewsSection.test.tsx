@@ -105,4 +105,37 @@ describe('NewsSection', () => {
     expect(screen.getByText('秋場所に関するお知らせ')).toBeInTheDocument();
     expect(screen.getAllByText('日本相撲協会')).toHaveLength(2);
   });
-});
+
+    it('renders the source label for each item, including dmenuスポーツ entries', async () => {
+      mockNewsFeed.items = [
+        {
+          id: 'docomo-1',
+          title: '義ノ富士が新小結',
+          url: 'https://topics.smt.docomo.ne.jp/article/nikkansports/sports/sample',
+          publishedAt: '2026-06-30T09:00:00+09:00',
+          publishedAtRaw: '日刊スポーツ　6月30日 9時00分',
+          sourceId: 'dmenu-docomo',
+          sourceLabel: 'dmenuスポーツ',
+        },
+        {
+          id: 'docomo-2',
+          title: '若隆景が関脇復帰',
+          url: 'https://topics.smt.docomo.ne.jp/article/hochi/sports/sample-2',
+          publishedAt: '2026-06-30T08:00:00+09:00',
+          publishedAtRaw: 'スポーツ報知　6月30日 8時00分',
+          sourceId: 'dmenu-docomo',
+          sourceLabel: 'dmenuスポーツ',
+        },
+      ];
+      const { default: NewsSection } = await import('./NewsSection');
+      render(<NewsSection />);
+
+      const items = screen.getAllByRole('listitem');
+      expect(items).toHaveLength(2);
+      expect(screen.getAllByText('dmenuスポーツ')).toHaveLength(2);
+      const docomoLink = items[0].querySelector('a');
+      expect(docomoLink).toHaveAttribute('href', 'https://topics.smt.docomo.ne.jp/article/nikkansports/sports/sample');
+      expect(docomoLink).toHaveAttribute('target', '_blank');
+      expect(docomoLink).toHaveAttribute('rel', 'noopener noreferrer');
+    });
+  });
