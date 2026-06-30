@@ -39,7 +39,10 @@
     "footerCopyright": "© 2026 o-sumo. All rights reserved.",
     "footerDaisuke": "Daisuke on X",
     "footerGithub": "GitHub",
-    "heroRikishi": "力士プロフィール"
+    "heroRikishi": "力士プロフィール",
+    "heroDayIndicator": "現在 {day} 日目",
+    "heroPreBashoNotice": "{bashoName} — {startDateLabel} 開幕",
+    "heroLastUpdated": "前回更新 {timeUtc}"
   },
   "archives": {
     "pageTitle": "過去場所一覧",

@@ -39,7 +39,10 @@
     "footerCopyright": "© 2026 o-sumo. All rights reserved.",
     "footerDaisuke": "Daisuke on X",
     "footerGithub": "GitHub",
-    "heroRikishi": "Rikishi Profiles"
+    "heroRikishi": "Rikishi Profiles",
+    "heroDayIndicator": "Day {day} in progress",
+    "heroPreBashoNotice": "{bashoName} — opens {startDateLabel}",
+    "heroLastUpdated": "Last updated {timeUtc}"
   },
   "archives": {
     "pageTitle": "Past Basho",

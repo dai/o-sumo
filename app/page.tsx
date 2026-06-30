@@ -3,16 +3,111 @@ import { useTranslation } from 'react-i18next';
 import {
   getBanzukePathForMonthKey,
 } from './lib/torikumi-routes';
-import { torikumiArchive, torikumiMonthKey } from './lib/torikumi-data';
+import {
+  torikumiArchive,
+  torikumiData,
+  torikumiMonthKey,
+  type TorikumiDailyData,
+} from './lib/torikumi-data';
 import { CURRENT_RESULT_PATH, CURRENT_SCHEDULE_PATH } from './lib/archive-basho-data';
 import { PAST_BASHO } from './lib/archives-data';
 import HomeLink from './components/HomeLink';
 import './index.css';
 
+type LiveState =
+  | { kind: 'in-progress'; day: number }
+  | { kind: 'pre-basho'; bashoName: string; startDateLabel: string }
+  | { kind: 'frozen'; lastUpdatedLabel: string };
+
+function dayOfDailyData(d: TorikumiDailyData | null | undefined): number | null {
+  if (!d) return null;
+  const makuuchiDay = d.makuuchi?.day;
+  return typeof makuuchiDay === 'number' ? makuuchiDay : null;
+}
+
+function deriveLiveState(
+  today: TorikumiDailyData | null | undefined,
+  tomorrow: TorikumiDailyData | null | undefined,
+  scheduleFirstDate: string | undefined,
+  bashoName: string,
+  locale: string,
+  fallbackUpdatedAt: string,
+): LiveState {
+  const todayDay = dayOfDailyData(today);
+  if (todayDay !== null) {
+    return { kind: 'in-progress', day: todayDay };
+  }
+  const tomorrowDay = dayOfDailyData(tomorrow);
+  if (tomorrowDay === 1 && scheduleFirstDate) {
+    return {
+      kind: 'pre-basho',
+      bashoName,
+      startDateLabel: formatStartDateLabel(scheduleFirstDate, locale),
+    };
+  }
+  return {
+    kind: 'frozen',
+    lastUpdatedLabel: formatUpdatedAtLabel(fallbackUpdatedAt, locale),
+  };
+}
+
+function formatStartDateLabel(pathDate: string, locale: string): string {
+  if (pathDate.length !== 8) return pathDate;
+  const mm = parseInt(pathDate.slice(4, 6), 10);
+  const dd = parseInt(pathDate.slice(6, 8), 10);
+  const sample = new Date(`${pathDate.slice(0, 4)}-${pathDate.slice(4, 6)}-${pathDate.slice(6, 8)}T12:00:00Z`);
+  if (locale.startsWith('ja')) {
+    return `${mm}月${dd}日`;
+  }
+  if (!Number.isNaN(sample.getTime())) {
+    return new Intl.DateTimeFormat('en-US', {
+      month: 'short',
+      day: 'numeric',
+      timeZone: 'UTC',
+    }).format(sample);
+  }
+  return `${mm}/${dd}`;
+}
+
+function formatUpdatedAtLabel(iso: string, locale: string): string {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  if (locale.startsWith('ja')) {
+    const yyyy = d.getFullYear();
+    const mo = String(d.getMonth() + 1).padStart(2, '0');
+    const da = String(d.getDate()).padStart(2, '0');
+    const hh = String(d.getHours()).padStart(2, '0');
+    const mi = String(d.getMinutes()).padStart(2, '0');
+    return `${yyyy}-${mo}-${da} ${hh}:${mi} JST`;
+  }
+  const formatted = new Intl.DateTimeFormat('en-GB', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+    timeZone: 'Asia/Tokyo',
+  }).format(d);
+  return `${formatted} JST`;
+}
+
 export default function Home() {
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
+  const locale = i18n.language || 'ja';
   const currentBashoTitle = `${torikumiArchive.year}${torikumiArchive.bashoName}`;
   const currentBanzukePath = getBanzukePathForMonthKey(torikumiMonthKey);
+  const firstScheduleDate = torikumiArchive.scheduleDays[0]?.pathDate;
+  const liveState = deriveLiveState(
+    torikumiData.today,
+    torikumiData.tomorrow,
+    firstScheduleDate,
+    torikumiArchive.bashoName,
+    locale,
+    torikumiArchive.updatedAt,
+  );
+  const lastUpdatedLabel = formatUpdatedAtLabel(torikumiArchive.updatedAt, locale);
 
   return (
     <div className="home-container">
@@ -28,9 +123,21 @@ export default function Home() {
 
       <main className="home-main">
         {/* Current Basho - Hero Section */}
-        <section className="hero-section">
-          <h2>{currentBashoTitle}</h2>
-          <p>{t('home.heroDescription')}</p>
+        <section className="hero-section" aria-labelledby="hero-basho-title">
+          <h2 id="hero-basho-title" className="hero-basho-title">
+            {currentBashoTitle}
+          </h2>
+          <p className="hero-day-indicator" aria-live="polite">
+            {liveState.kind === 'in-progress'
+              ? t('home.heroDayIndicator', { day: liveState.day })
+              : liveState.kind === 'pre-basho'
+                ? t('home.heroPreBashoNotice', {
+                    bashoName: liveState.bashoName,
+                    startDateLabel: liveState.startDateLabel,
+                  })
+                : t('home.heroLastUpdated', { timeUtc: lastUpdatedLabel })}
+          </p>
+          <p className="hero-description">{t('home.heroDescription')}</p>
           <nav className="hero-actions" aria-label="主要ページへの導線">
             <Link to={currentBanzukePath} className="cta-button">
               {t('home.heroBanzuke')}
@@ -73,8 +180,12 @@ export default function Home() {
                   key={day.pathDate}
                   to={`/${day.pathDate}-torikumi/`}
                   className="past-basho-day-link"
+                  aria-label={t('torikumi.day.dayHead', { day: day.day })}
                 >
-                  {day.day}日
+                  <span className="past-basho-day-num">{day.day}</span>
+                  <span className="past-basho-day-suffix" aria-hidden="true">
+                    {locale.startsWith('ja') ? '日' : ''}
+                  </span>
                 </Link>
               ))}
             </div>
@@ -95,3 +206,5 @@ export default function Home() {
     </div>
   );
 }
+
+
