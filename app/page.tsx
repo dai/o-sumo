@@ -123,6 +123,8 @@ export default function Home() {
           </nav>
         </section>
 
+        <NewsSection />
+
         {PAST_BASHO.map((pastBasho) => (
           <section key={pastBasho.id} className="past-basho-section">
             <h2 className="past-basho-heading">
@@ -160,8 +162,6 @@ export default function Home() {
             </div>
           </section>
         ))}
-
-        <NewsSection />
       </main>
 
       <footer className="home-footer">
