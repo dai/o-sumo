@@ -47,6 +47,24 @@
     "newsSeeAll": "もっと見る",
     "newsEmpty": "新しいニュースはありません"
   },
+  "kimarite": {
+    "cardTitle": "決まり手",
+    "cardSubtitle": "相撲の全82手の技",
+    "cardSeeAll": "全82手を見る",
+    "cardListLabel": "代表的な決まり手",
+    "pageTitle": "全82手の決まり手",
+    "pageDescription": "日本相撲協会が公式に認定する82手の技と、和英の解説を併記しています。",
+    "tocLabel": "カテゴリ",
+    "tocHeading": "カテゴリ",
+    "totalCount": "全 {{count}} 手",
+    "categoryCount": "{{count}} 手",
+    "sourcesHeading": "参考文献",
+    "sourceJsa": "日本相撲協会の解説を見る",
+    "sourceAbema": "ABEMA の解説を見る",
+    "sourceWikipedia": "Wikipedia の解説を見る",
+    "dualLanguageNote": "このページは日本語と英語を併記しています。",
+    "footerNavigation": "サイト内リンク"
+  },
   "archives": {
     "pageTitle": "過去場所一覧",
     "pageDescription": "過去の場所の番付と取組結果です。",

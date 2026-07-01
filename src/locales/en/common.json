@@ -47,6 +47,24 @@
     "newsSeeAll": "See all",
     "newsEmpty": "No recent news"
   },
+  "kimarite": {
+    "cardTitle": "Kimarite",
+    "cardSubtitle": "All 82 winning techniques of sumo",
+    "cardSeeAll": "Browse all 82",
+    "cardListLabel": "Featured techniques",
+    "pageTitle": "All 82 Kimarite",
+    "pageDescription": "The 82 winning techniques officially recognized by the Japan Sumo Association, with side-by-side Japanese and English explanations.",
+    "tocLabel": "Categories",
+    "tocHeading": "Categories",
+    "totalCount": "{{count}} techniques",
+    "categoryCount": "{{count}} techniques",
+    "sourcesHeading": "Sources",
+    "sourceJsa": "Japan Sumo Association guide",
+    "sourceAbema": "ABEMA reference",
+    "sourceWikipedia": "Wikipedia article",
+    "dualLanguageNote": "This page presents both Japanese and English descriptions side by side.",
+    "footerNavigation": "Site links"
+  },
   "archives": {
     "pageTitle": "Past Basho",
     "pageDescription": "Banzuke and torikumi results from previous tournaments.",

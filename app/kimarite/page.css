@@ -1,0 +1,408 @@
+.kimarite-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+}
+
+/* Header */
+.kimarite-header {
+  padding: clamp(3rem, 6vw, 4.5rem) clamp(1.5rem, 4vw, 2.5rem) clamp(2rem, 4vw, 2.75rem);
+  background: var(--surface-container-low);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Quiet architectural ring, echoes the home hero treatment */
+.kimarite-header::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  height: 280px;
+  border: 1px solid var(--color-secondary);
+  border-radius: 50%;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.kimarite-header > * {
+  position: relative;
+  z-index: 1;
+}
+
+.kimarite-header-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: -0.02em;
+  margin: 0 0 0.6rem;
+  text-wrap: balance;
+}
+
+.kimarite-header-description {
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+  line-height: 1.7;
+  color: var(--color-dark-text);
+  max-width: 60ch;
+  margin: 0 auto 0.75rem;
+  text-wrap: pretty;
+}
+
+.kimarite-header-count {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin: 0;
+}
+
+/* Main */
+.kimarite-main {
+  flex: 1;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 3.5rem) clamp(1rem, 3vw, 1.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+/* TOC */
+.kimarite-toc {
+  background: var(--surface-container-lowest);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  box-shadow: var(--shadow-soft);
+}
+
+.kimarite-toc-heading {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin: 0 0 1rem;
+}
+
+.kimarite-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.5rem;
+}
+
+.kimarite-toc-list li {
+  margin: 0;
+}
+
+.kimarite-toc-link {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.25rem 0.75rem;
+  align-items: baseline;
+  padding: 0.6rem 0.75rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  background: var(--surface-container-low);
+  transition: background-color 150ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 150ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.kimarite-toc-link:hover,
+.kimarite-toc-link:focus-visible {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  text-decoration: none;
+  outline: none;
+}
+
+.kimarite-toc-link:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: -2px;
+}
+
+.kimarite-toc-ja {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.kimarite-toc-en {
+  grid-column: 1;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+}
+
+.kimarite-toc-link:hover .kimarite-toc-en,
+.kimarite-toc-link:focus-visible .kimarite-toc-en {
+  opacity: 0.85;
+}
+
+.kimarite-toc-count {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-secondary);
+  letter-spacing: 0.04em;
+}
+
+.kimarite-toc-link:hover .kimarite-toc-count,
+.kimarite-toc-link:focus-visible .kimarite-toc-count {
+  color: var(--color-on-primary);
+}
+
+/* Category section */
+.kimarite-category {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  scroll-margin-top: 1rem;
+}
+
+.kimarite-category-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-secondary-light);
+}
+
+.kimarite-category-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.kimarite-category-heading-ja {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 1.85rem);
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: -0.02em;
+}
+
+.kimarite-category-heading-en {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: var(--color-dark-text);
+  opacity: 0.75;
+}
+
+.kimarite-category-count {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-dark-text);
+  opacity: 0.6;
+  margin: 0;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Entry list */
+.kimarite-entry-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.kimarite-entry {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1rem, 3vw, 2rem);
+  padding: clamp(1.1rem, 2.5vw, 1.5rem) 0;
+  border-top: 1px solid var(--color-secondary-light);
+}
+
+.kimarite-entry:last-child {
+  border-bottom: 1px solid var(--color-secondary-light);
+}
+
+.kimarite-entry-ja {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.kimarite-entry-en {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border-left: 1px solid var(--color-secondary-light);
+  padding-left: clamp(1rem, 3vw, 2rem);
+}
+
+.kimarite-entry-name {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 2.4vw, 1.6rem);
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.kimarite-entry-reading {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: var(--color-dark-text);
+  opacity: 0.65;
+  margin: 0;
+}
+
+.kimarite-entry-romaji {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin: 0;
+}
+
+.kimarite-entry-english {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  letter-spacing: -0.01em;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.kimarite-entry-description {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--color-dark-text);
+  margin: 0.35rem 0 0;
+  text-wrap: pretty;
+}
+
+@media (max-width: 768px) {
+  .kimarite-entry {
+    grid-template-columns: 1fr;
+  }
+
+  .kimarite-entry-en {
+    border-left: 0;
+    padding-left: 0;
+    border-top: 1px solid var(--color-secondary-light);
+    padding-top: 0.85rem;
+    margin-top: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kimarite-toc-link {
+    transition: none;
+  }
+}
+
+/* Sources */
+.kimarite-sources {
+  background: var(--surface-container-low);
+  padding: clamp(1.5rem, 3vw, 2rem);
+}
+
+.kimarite-sources-heading {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0 0 1rem;
+}
+
+.kimarite-sources-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+}
+
+.kimarite-sources-list a {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--color-secondary);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  border-bottom: 1px solid transparent;
+  transition: border-color 150ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 150ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.kimarite-sources-list a:hover,
+.kimarite-sources-list a:focus-visible {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-secondary);
+  text-decoration: none;
+  outline: none;
+}
+
+.kimarite-sources-note {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--color-dark-text);
+  opacity: 0.75;
+  margin: 1rem 0 0;
+}
+
+/* Footer */
+.kimarite-footer {
+  padding: 2rem;
+  text-align: center;
+  background: var(--surface-container-lowest);
+  border-top: 1px solid var(--color-secondary-light);
+}
+
+.kimarite-footer nav {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  color: var(--color-dark-text);
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  justify-content: center;
+}
+
+.kimarite-footer a {
+  color: var(--color-secondary);
+  text-decoration: none;
+}
+
+.kimarite-footer a:hover,
+.kimarite-footer a:focus-visible {
+  color: var(--color-primary);
+  text-decoration: underline;
+  outline: none;
+}
