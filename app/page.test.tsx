@@ -1,4 +1,5 @@
 import { render, screen, within } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import {
   MARCH2026_BANDUKE_PATH,
@@ -10,6 +11,17 @@ import { MARCH2026_TORIKUMI_DATA } from './lib/march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from './lib/may2026-data';
 import { torikumiArchive } from './lib/torikumi-data';
 import Home from './page';
+
+// The home page reads the news feed from the committed `public/api/v1/news.json`,
+// which is rewritten by the daily-data-update workflow. Stub it here so the test
+// stays stable regardless of what the CI has most recently written.
+vi.mock('./lib/news-data', () => ({
+  newsFeed: {
+    updatedAt: '2026-06-30T00:00:00+09:00',
+    sources: [],
+    items: [],
+  },
+}));
 
 describe('Home page', () => {
   it('shows the main navigation links and footer-only contact links', () => {
