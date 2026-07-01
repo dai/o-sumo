@@ -28,16 +28,19 @@ o-sumo is a static web app for publishing sumo banzuke and torikumi information.
   - Schedule hub: `/{YYYYMM}-yotei`
   - Daily result: `/{YYYYMMDD}-torikumi`
   - Daily schedule: `/{YYYYMMDD}-yotei`
+  - Kimarite: `/kimarite`
 - Current route examples:
   - `/202607-banduke`
   - `/202607-torikumi`
   - `/20260712-yotei`
+  - `/kimarite`
 - The legacy banzuke URL `/{YYYYMM}-o-sumo` redirects to the current banzuke URL.
 - Public APIs:
   - `/api/v1/banzuke.json`
   - `/api/v1/torikumi.json`
   - `/api/v1/rikishi.json`
   - `/api/v1/rikishi/{id}.json`
+  - `/api/v1/news.json`
 
 Related docs:
 
@@ -65,6 +68,9 @@ Skill publishing:
 - `ascending / descending` sorting on banzuke, hub, and daily pages
 - Unpublished days remain available as `pending` pages with empty-state messaging
 - The month key is derived dynamically from generated data in `app/lib/torikumi-data.ts`
+- Homepage **Latest News** section split into two sub-sections: Japan Sumo Association announcements and Sumo World News (latest 5 from dmenu Sports)
+- Homepage **Kimarite** card links to the `/kimarite` index page that lists all 82 winning techniques, grouped by category with bilingual Japanese/English commentary
+- News JSON is regenerated automatically by the `daily-data-update` GitHub Actions workflow via the Python scraper (`/api/v1/news.json`)
 
 ## Tech Stack
 
@@ -74,6 +80,7 @@ Skill publishing:
 - Hosting: Cloudflare Pages
 - Data source: Nihon Sumo Kyokai Ajax endpoints
 - Rikishi imagery: local PNG illustrations processed with MiniMax I2I Generation from Japan Sumo Association profile photos
+- News sources: Japan Sumo Association announcements page and dmenu Sports (`https://sumo.sports.smt.docomo.ne.jp/news/`)
 
 ## Local Development
 
@@ -127,6 +134,8 @@ Useful local URLs:
 - `http://localhost:3001/{YYYYMM}-yotei`
 - `http://localhost:3001/{YYYYMMDD}-torikumi`
 - `http://localhost:3001/{YYYYMMDD}-yotei`
+- `http://localhost:3001/kimarite`
+- `http://localhost:3001/api/v1/news.json`
 
 ## Data Updates
 
@@ -168,6 +177,12 @@ python scripts/update_sumo_data.py --torikumi-only --torikumi-scope result
 python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule
 ```
 
+News feed only (Japan Sumo Association announcements + dmenu Sports):
+
+```bash
+python scripts/update_news_feed.py
+```
+
 For the July 2026 banzuke release on June 29, 2026, first confirm that the upstream source has switched to the July basho, then run:
 
 ```bash
@@ -184,10 +199,12 @@ Generated outputs:
 
 - `app/lib/sumo-data.ts`
 - `app/lib/torikumi-data.ts`
+- `app/lib/news-data.ts`
 - `public/api/v1/banzuke.json`
 - `public/api/v1/torikumi.json`
 - `public/api/v1/rikishi.json`
 - `public/api/v1/rikishi/{id}.json` (one file per rikishi, including `name`, `yomi`, `currentRank`, `sourceUrl`, and `updatedAt`)
+- `public/api/v1/news.json`
 - `public/images/rikishi/{id}.png` (processed profile illustrations for all rikishi, used permanently on both profile and banzuke pages)
 
 Key validations:
@@ -204,7 +221,7 @@ GitHub Actions uses separate daily and results-refresh workflows.
 
 - Daily update: `.github/workflows/daily-data-update.yml`
   - status: automatic runs are paused until July 1, 2026 (JST); `workflow_dispatch` only
-  - updates torikumi schedules only (`--torikumi-only --torikumi-scope schedule`)
+  - updates torikumi schedules (`--torikumi-only --torikumi-scope schedule`) and refreshes the news feed
   - commits and pushes directly to `main` when files change
 - Realtime results update: `.github/workflows/realtime-torikumi-update.yml`
   - status: automatic runs are paused until July 1, 2026 (JST); `workflow_dispatch` only
@@ -222,7 +239,9 @@ Current main coverage:
 
 - routing helpers in `app/lib/torikumi-routes.ts`
 - sorting helpers in `app/lib/sorting.ts`
+- kimarite 82-entry master in `app/lib/kimarite-data.ts`
 - homepage navigation
+- homepage news section (Japan Sumo Association + Sumo World News split sections, empty states, see-all links)
 - banzuke sorting
 - 15-day hub rendering and sorting
 - daily torikumi sorting and pending-state rendering
@@ -255,14 +274,20 @@ GitHub Actions runs the following on pull requests and pushes to `main` and `cod
 - `app/page.tsx`: homepage
 - `app/archives/page.tsx`: archives page
 - `app/banzuke/page.tsx`: banzuke page
+- `app/kimarite/page.tsx`: all 82 kimarite listing page
 - `app/torikumi/page.tsx`: monthly hubs for results and schedules
 - `app/components/TorikumiDayPage.tsx`: daily result and schedule pages
 - `app/components/BanzukeTable.tsx`: banzuke table component
+- `app/components/NewsSection.tsx`: homepage news section (Japan Sumo Association + Sumo World News split sections)
+- `app/components/KimariteCard.tsx`: homepage kimarite entry card
 - `app/lib/archives-data.ts`: past basho dataset
 - `app/lib/torikumi-routes.ts`: month-key URL resolution and navigation
 - `app/lib/sumo-data.ts`: banzuke data (includes rikishi type definitions)
 - `app/lib/torikumi-data.ts`: torikumi archive data
-- `scripts/update_sumo_data.py`: data generation script
+- `app/lib/news-data.ts`: static news feed data
+- `app/lib/kimarite-data.ts`: master list of all 82 winning techniques
+- `scripts/update_sumo_data.py`: data generation script for banzuke, torikumi, and rikishi profiles
+- `scripts/update_news_feed.py`: news feed generation script
 
 ## Contact
 
