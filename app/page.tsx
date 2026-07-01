@@ -13,6 +13,7 @@ import { CURRENT_RESULT_PATH, CURRENT_SCHEDULE_PATH } from './lib/archive-basho-
 import { PAST_BASHO } from './lib/archives-data';
 import HomeLink from './components/HomeLink';
 import NewsSection from './components/NewsSection';
+import KimariteCard from './components/KimariteCard';
 import './index.css';
 
 type LiveState =
@@ -124,6 +125,8 @@ export default function Home() {
         </section>
 
         <NewsSection />
+
+        <KimariteCard />
 
         {PAST_BASHO.map((pastBasho) => (
           <section key={pastBasho.id} className="past-basho-section">
