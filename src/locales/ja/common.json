@@ -45,7 +45,12 @@
     "heroLastUpdated": "前回更新 {timeUtc}",
     "newsSectionTitle": "最新ニュース",
     "newsSeeAll": "もっと見る",
-    "newsEmpty": "新しいニュースはありません"
+    "newsEmpty": "新しいニュースはありません",
+    "newsSubsectionAssociationTitle": "相撲協会",
+    "newsSubsectionAssociationLead": "日本相撲協会からのお知らせ",
+    "newsSubsectionSumoNewsTitle": "相撲界ニュース",
+    "newsSubsectionSumoNewsLead": "dmenu スポーツから最新 5 件",
+    "newsSubsectionSumoNewsSeeAll": "dmenu で見る"
   },
   "kimarite": {
     "cardTitle": "決まり手",

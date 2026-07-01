@@ -45,7 +45,12 @@
     "heroLastUpdated": "Last updated {timeUtc}",
     "newsSectionTitle": "Latest news",
     "newsSeeAll": "See all",
-    "newsEmpty": "No recent news"
+    "newsEmpty": "No recent news",
+    "newsSubsectionAssociationTitle": "Japan Sumo Association",
+    "newsSubsectionAssociationLead": "Official announcements from the JSA",
+    "newsSubsectionSumoNewsTitle": "Sumo World News",
+    "newsSubsectionSumoNewsLead": "Latest 5 from dmenu Sports",
+    "newsSubsectionSumoNewsSeeAll": "View on dmenu"
   },
   "kimarite": {
     "cardTitle": "Kimarite",
