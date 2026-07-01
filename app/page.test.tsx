@@ -127,10 +127,11 @@ describe('Home page', () => {
     );
 
     // The committed stub keeps the news list empty so the home page should
-    // surface the empty-state copy rather than crashing.
-    expect(screen.getByText('新しいニュースはありません')).toBeInTheDocument();
+    // surface the empty-state copy (one per subsection) rather than crashing.
+    expect(screen.getAllByText('新しいニュースはありません')).toHaveLength(2);
     expect(document.querySelector('.news-list')).not.toBeInTheDocument();
     expect(document.querySelector('.news-section-see-all')).not.toBeInTheDocument();
+    expect(document.querySelectorAll('.news-subsection-see-all')).toHaveLength(0);
   });
 
 });
