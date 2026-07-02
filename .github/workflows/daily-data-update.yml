@@ -143,6 +143,52 @@ jobs:
           fi
           gh pr merge --auto --squash "$PR_URL"
 
+      - name: Trigger pull_request_target synchronize event
+        if: steps.create-pr.outputs.pull-request-operation == 'created'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ steps.create-pr.outputs.pull-request-url }}
+        run: |
+          set -euo pipefail
+          if [ -z "$PR_URL" ]; then
+            echo "No PR URL returned, skipping synchronize trigger"
+            exit 0
+          fi
+
+          PR_NUMBER=$(gh pr view "$PR_URL" --json number --jq .number)
+          HEAD_REF=$(gh pr view "$PR_NUMBER" --json headRefName --jq .headRefName)
+          HEAD_SHA=$(gh pr view "$PR_NUMBER" --json headRefOid --jq .headRefOid)
+
+          # Fetch the current commit so we can reuse its tree SHA for an empty commit.
+          head_commit=$(curl -fsSL \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/git/commits/${HEAD_SHA}")
+          tree_sha=$(printf '%s' "$head_commit" | jq -r .tree.sha)
+          echo "Appending empty commit to ${HEAD_REF} (head=${HEAD_SHA}, tree=${tree_sha})"
+
+          new_commit=$(curl -fsSL \
+            -X POST \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/git/commits" \
+            -d "$(jq -n \
+              --arg message "ci: trigger pull_request_target for auto-merge" \
+              --arg head "$HEAD_SHA" \
+              --arg tree "$tree_sha" \
+              '{message: $message, parents: [$head], tree: $tree}')")
+          new_sha=$(printf '%s' "$new_commit" | jq -r .sha)
+          echo "Created empty commit ${new_sha}"
+
+          curl -fsSL \
+            -X PATCH \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/git/refs/heads/${HEAD_REF}" \
+            -d "$(jq -n --arg sha "$new_sha" '{sha: $sha}')" >/dev/null
+          echo "Updated ${HEAD_REF} to ${new_sha}"
+
       - name: Print PR context
         shell: bash
         run: |
