@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-02T09:00:58.741092+00:00",
+  "updatedAt": "2026-07-02T11:47:18.675502+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260702-OHT1T51248",
-      "title": "名古屋場所の新弟子検査　昨年の高校横綱・沢田一輝、鳥取城北高出身の井上泰我ら５人が申し込み",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260702-OHT1T51248",
+      "id": "dmenu-docomo-sponichi-spngoo-20260702-0303",
+      "title": "近大相撲部、新島伊武起「3年ぶりの団体優勝を目指す」　伝統の「塩ちゃんこ」も振る舞った",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260702-0303",
       "publishedAt": "2026-07-02",
-      "publishedAtRaw": "スポーツ報知　7月2日 17時43分",
+      "publishedAtRaw": "スポニチアネックス　7月2日 19時55分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260702-OHT1T51244",
-      "title": "幕内・欧勝馬「しっかり前へ攻めていきたい」　昨年は新三役で苦戦の名古屋場所へ闘志…１２日初日",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260702-OHT1T51244",
+      "id": "dmenu-docomo-f-bt-tp1-260702-202607020001314",
+      "title": "昨年の高校横綱、沢田一輝ら５人が名古屋場所新弟子検査を受検へ、６日に実施",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260702-202607020001314",
       "publishedAt": "2026-07-02",
-      "publishedAtRaw": "スポーツ報知　7月2日 17時17分",
+      "publishedAtRaw": "日刊スポーツ　7月2日 19時35分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_TWR4VOARAVMCTIZGF6WY4CF7L4",
-      "title": "大相撲コラム　「相撲教習所」で復活した相撲甚句の授業　カラオケでは伝わらない哀歓の妙",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_TWR4VOARAVMCTIZGF6WY4CF7L4",
+      "id": "dmenu-docomo-chuspo-1275674",
+      "title": "相撲部屋と大学が初の連携協定、安青錦「昨年は優勝に手が届かなかったけど、今年はしっかり恩返しできたら」安治川部屋と愛知学院大が締結",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1275674",
       "publishedAt": "2026-07-02",
-      "publishedAtRaw": "SANSPO　7月2日 17時00分",
+      "publishedAtRaw": "中日スポーツ　7月2日 19時24分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260702-OHT1T51195",
-      "title": "幕内・藤ノ川が１９番　出稽古先の佐渡ケ嶽部屋に徒歩１０分「毎年稽古を積んでいるので、僕の稽古場がここみたいな感じ」…１２日初日・名古屋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260702-OHT1T51195",
+      "id": "dmenu-docomo-hochi-20260702-OHT1T51302",
+      "title": "関脇・琴勝峰、名古屋場所連覇へ「立ち合いの感覚と、圧力を意識していきたい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260702-OHT1T51302",
       "publishedAt": "2026-07-02",
-      "publishedAtRaw": "スポーツ報知　7月2日 15時49分",
+      "publishedAtRaw": "スポーツ報知　7月2日 19時11分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-kyodo_nor-2026070201001116",
-      "title": "綱とり霧島、初の出稽古　10戦全勝と上々の動き",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026070201001116",
+      "id": "dmenu-docomo-hochi-20260702-OHT1T51293",
+      "title": "大関・琴桜、出稽古の藤ノ川らと１１番　カド番の名古屋場所へ「ここから上げていれば」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260702-OHT1T51293",
       "publishedAt": "2026-07-02",
-      "publishedAtRaw": "共同通信　7月2日 15時30分",
+      "publishedAtRaw": "スポーツ報知　7月2日 18時51分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
