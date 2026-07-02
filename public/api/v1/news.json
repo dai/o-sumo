@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-01T13:35:49.078918+00:00",
+  "updatedAt": "2026-07-02T06:52:31.810211+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,51 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-kyodo_nor-2026070201001116",
+      "title": "綱とり霧島、初の出稽古　10戦全勝と上々の動き",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026070201001116",
+      "publishedAt": "2026-07-02",
+      "publishedAtRaw": "共同通信　7月2日 15時30分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260702-0205",
+      "title": "藤凌駕　13年ぶり復活、名古屋場所のご当所幕内　「自分が頑張ることで続いて」と決意",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260702-0205",
+      "publishedAt": "2026-07-02",
+      "publishedAtRaw": "スポニチアネックス　7月2日 15時23分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-kyodo_nor-2026070201001059",
+      "title": "豊昇龍、ペース上がらず軽い稽古　夏場所は右脚負傷で途中休場",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026070201001059",
+      "publishedAt": "2026-07-02",
+      "publishedAtRaw": "共同通信　7月2日 14時53分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260702-OHT1T51164",
+      "title": "横綱昇進を目指す霧島、番付発表後初の出稽古　藤ノ川ら相手に１０番で全勝「気持ちよかった。筋肉もしっかりついて、いい感じ」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260702-OHT1T51164",
+      "publishedAt": "2026-07-02",
+      "publishedAtRaw": "スポーツ報知　7月2日 14時50分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sankei-_sports_sumo_VICGOINPKNOSRAZI7XGY7AV4Q4",
+      "title": "横綱豊昇龍は相撲取らず…腹筋やスクワットなどトレーニング　大相撲名古屋場所12日初日",
+      "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_VICGOINPKNOSRAZI7XGY7AV4Q4",
+      "publishedAt": "2026-07-02",
+      "publishedAtRaw": "産経ニュース　7月2日 14時16分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "sumo-association-754",
       "title": "令和8年 第十六回 夏休み!!相撲健康体操 in 国技館",
       "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=754",
@@ -23,51 +68,6 @@
       "publishedAtRaw": "令和8年7月1日",
       "sourceId": "sumo-association",
       "sourceLabel": "日本相撲協会"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260701-0371",
-      "title": "関脇・安青錦「直接会って話ができたらいいなと」　愛知県での朝稽古後に都内でウクライナ避難民と交流",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260701-0371",
-      "publishedAt": "2026-07-01",
-      "publishedAtRaw": "スポニチアネックス　7月1日 21時23分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-kyodo_nor-2026070101001850",
-      "title": "安青錦「強い姿見せたい」　ウクライナ避難民と交流",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026070101001850",
-      "publishedAt": "2026-07-01",
-      "publishedAtRaw": "共同通信　7月1日 20時48分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260701-202607010001354",
-      "title": "力士浴衣マニアの三遊亭圓雀が「落語大相撲仙台場所」PR　三笑亭可風と二人会で相撲の演目披露",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260701-202607010001354",
-      "publishedAt": "2026-07-01",
-      "publishedAtRaw": "日刊スポーツ　7月1日 20時39分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260701-OHT1T51416",
-      "title": "十両・明生、猛稽古を糧に名古屋場所へ「勝ち越し目指して、常に攻める気持ちを持って」…１２日初日",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260701-OHT1T51416",
-      "publishedAt": "2026-07-01",
-      "publishedAtRaw": "スポーツ報知　7月1日 20時35分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260701-OHT1T51414",
-      "title": "安治川部屋の３力士が職業体験　家造りの工程を体験「貴重な経験になった」…力士のセカンドキャリア支援の一環として開催",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260701-OHT1T51414",
-      "publishedAt": "2026-07-01",
-      "publishedAtRaw": "スポーツ報知　7月1日 20時32分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
     },
     {
       "id": "sumo-association-753",
