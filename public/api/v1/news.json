@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-02T07:48:26.026402+00:00",
+  "updatedAt": "2026-07-02T09:00:58.741092+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-hochi-20260702-OHT1T51248",
+      "title": "名古屋場所の新弟子検査　昨年の高校横綱・沢田一輝、鳥取城北高出身の井上泰我ら５人が申し込み",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260702-OHT1T51248",
+      "publishedAt": "2026-07-02",
+      "publishedAtRaw": "スポーツ報知　7月2日 17時43分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260702-OHT1T51244",
+      "title": "幕内・欧勝馬「しっかり前へ攻めていきたい」　昨年は新三役で苦戦の名古屋場所へ闘志…１２日初日",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260702-OHT1T51244",
+      "publishedAt": "2026-07-02",
+      "publishedAtRaw": "スポーツ報知　7月2日 17時17分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_TWR4VOARAVMCTIZGF6WY4CF7L4",
+      "title": "大相撲コラム　「相撲教習所」で復活した相撲甚句の授業　カラオケでは伝わらない哀歓の妙",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_TWR4VOARAVMCTIZGF6WY4CF7L4",
+      "publishedAt": "2026-07-02",
+      "publishedAtRaw": "SANSPO　7月2日 17時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-hochi-20260702-OHT1T51195",
       "title": "幕内・藤ノ川が１９番　出稽古先の佐渡ケ嶽部屋に徒歩１０分「毎年稽古を積んでいるので、僕の稽古場がここみたいな感じ」…１２日初日・名古屋場所",
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260702-OHT1T51195",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026070201001116",
       "publishedAt": "2026-07-02",
       "publishedAtRaw": "共同通信　7月2日 15時30分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260702-0205",
-      "title": "藤凌駕　13年ぶり復活、名古屋場所のご当所幕内　「自分が頑張ることで続いて」と決意",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260702-0205",
-      "publishedAt": "2026-07-02",
-      "publishedAtRaw": "スポニチアネックス　7月2日 15時23分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-kyodo_nor-2026070201001059",
-      "title": "豊昇龍、ペース上がらず軽い稽古　夏場所は右脚負傷で途中休場",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026070201001059",
-      "publishedAt": "2026-07-02",
-      "publishedAtRaw": "共同通信　7月2日 14時53分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260702-OHT1T51164",
-      "title": "横綱昇進を目指す霧島、番付発表後初の出稽古　藤ノ川ら相手に１０番で全勝「気持ちよかった。筋肉もしっかりついて、いい感じ」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260702-OHT1T51164",
-      "publishedAt": "2026-07-02",
-      "publishedAtRaw": "スポーツ報知　7月2日 14時50分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
