@@ -97,21 +97,30 @@ jobs:
               print(f"news_source={source.get('id')} ok={source.get('ok')} count={source.get('count', 0)}")
           PY
 
+      - name: Generate unique branch name
+        id: branch-name
+        shell: bash
+        run: |
+          ts=$(date -u +%Y%m%d-%H%M%S)
+          name="automation/data-updates-${ts}"
+          echo "name=${name}" >> "$GITHUB_OUTPUT"
+
       - name: Create or update data update PR
         id: create-pr
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: automation/data-updates
+          branch: ${{ steps.branch-name.outputs.name }}
           base: main
-          delete-branch: false
+          delete-branch: true
           commit-message: 'chore: daily sumo data update'
-          title: 'chore: automated sumo data updates'
+          title: 'chore: automated sumo data updates (${{ steps.branch-name.outputs.name }})'
           body: |
             ## Summary
             - Automated data update from `${{ github.workflow }}`
             - Event: `${{ github.event_name }}`
             - Schedule: `${{ github.event.schedule || 'manual' }}`
+            - Branch: `${{ steps.branch-name.outputs.name }}`
             - Scope: `schedule` (daily) + news feed
           labels: |
             automated
@@ -121,9 +130,23 @@ jobs:
             public/api/v1/torikumi.json
             public/api/v1/news.json
 
+      - name: Enable auto-merge on the new PR
+        if: steps.create-pr.outputs.pull-request-operation == 'created'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ steps.create-pr.outputs.pull-request-url }}
+        run: |
+          if [ -z "$PR_URL" ]; then
+            echo "No PR URL returned, skipping auto-merge"
+            exit 0
+          fi
+          gh pr merge --auto --squash "$PR_URL"
+
       - name: Print PR context
         shell: bash
         run: |
+          echo "branch_name=${{ steps.branch-name.outputs.name }}"
           echo "pull_request_number=${{ steps.create-pr.outputs.pull-request-number }}"
           echo "pull_request_operation=${{ steps.create-pr.outputs.pull-request-operation }}"
           echo "pull_request_url=${{ steps.create-pr.outputs.pull-request-url }}"
