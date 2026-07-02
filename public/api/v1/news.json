@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-02T06:57:08.367210+00:00",
+  "updatedAt": "2026-07-02T07:48:26.026402+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-hochi-20260702-OHT1T51195",
+      "title": "幕内・藤ノ川が１９番　出稽古先の佐渡ケ嶽部屋に徒歩１０分「毎年稽古を積んでいるので、僕の稽古場がここみたいな感じ」…１２日初日・名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260702-OHT1T51195",
+      "publishedAt": "2026-07-02",
+      "publishedAtRaw": "スポーツ報知　7月2日 15時49分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-kyodo_nor-2026070201001116",
       "title": "綱とり霧島、初の出稽古　10戦全勝と上々の動き",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260702-OHT1T51164",
       "publishedAt": "2026-07-02",
       "publishedAtRaw": "スポーツ報知　7月2日 14時50分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sankei-_sports_sumo_VICGOINPKNOSRAZI7XGY7AV4Q4",
-      "title": "横綱豊昇龍は相撲取らず…腹筋やスクワットなどトレーニング　大相撲名古屋場所12日初日",
-      "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_VICGOINPKNOSRAZI7XGY7AV4Q4",
-      "publishedAt": "2026-07-02",
-      "publishedAtRaw": "産経ニュース　7月2日 14時16分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
