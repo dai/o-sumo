@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-03T07:40:01.384577+00:00",
+  "updatedAt": "2026-07-03T09:00:46.139735+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,11 +16,29 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260703-0253",
-      "title": "茨城＆野球出身で身長、体重もほぼ同サイズ“令和の稀勢の里”目指す田所龍馬が新弟子検査受検へ",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260703-0253",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_W2GL3OXXGZLKFCTKMDCP3NLDRQ",
+      "title": "関脇若隆景、名古屋場所へ暗雲　左太ももに異常か",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_W2GL3OXXGZLKFCTKMDCP3NLDRQ",
       "publishedAt": "2026-07-03",
-      "publishedAtRaw": "スポニチアネックス　7月3日 16時04分",
+      "publishedAtRaw": "SANSPO　7月3日 17時29分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260703-OHT1T51237",
+      "title": "小結・王鵬、番付発表後初の出稽古　両大関に胸を借り「最後までしっかりできた」…１２日初日・名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260703-OHT1T51237",
+      "publishedAt": "2026-07-03",
+      "publishedAtRaw": "スポーツ報知　7月3日 16時53分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260703-OHT1T51229",
+      "title": "ＩＧアリーナ初のご当所幕内力士　藤凌駕「一番意識する場所。皆様の期待に応えたい」…１２日初日・名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260703-OHT1T51229",
+      "publishedAt": "2026-07-03",
+      "publishedAtRaw": "スポーツ報知　7月3日 16時48分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
@@ -29,34 +47,16 @@
       "title": "若隆景、2日連続で稽古休む　先場所覇者、左太もも痛で",
       "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026070301001831",
       "publishedAt": "2026-07-03",
-      "publishedAtRaw": "共同通信　7月3日 16時04分",
+      "publishedAtRaw": "共同通信　7月3日 16時30分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260703-OHT1T51194",
-      "title": "綱取りの霧島、２日連続の出稽古　琴勝峰らと１５番「まだ稽古が足りない。やりながら体を作りたい」…１２日初日・名古屋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260703-OHT1T51194",
+      "id": "dmenu-docomo-sponichi-spngoo-20260703-0253",
+      "title": "茨城＆野球出身で身長、体重もほぼ同サイズ“令和の稀勢の里”目指す田所龍馬が新弟子検査受検へ",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260703-0253",
       "publishedAt": "2026-07-03",
-      "publishedAtRaw": "スポーツ報知　7月3日 15時38分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260703077",
-      "title": "かど番琴桜、綱とり霧島の両大関が精力的に汗「しっかり当たれて良かった」【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260703077",
-      "publishedAt": "2026-07-03",
-      "publishedAtRaw": "デイリースポーツ　7月3日 15時34分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-jiji-202607030091898731",
-      "title": "稽古する横綱豊昇龍",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-202607030091898731",
-      "publishedAt": "2026-07-03",
-      "publishedAtRaw": "時事通信　7月3日 15時30分",
+      "publishedAtRaw": "スポニチアネックス　7月3日 16時04分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
