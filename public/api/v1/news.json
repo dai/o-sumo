@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-03T09:00:46.139735+00:00",
+  "updatedAt": "2026-07-03T11:46:03.069779+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-chuspo-1276159",
+      "title": "田子ノ浦親方が千種聾学校を訪問　両親が聴覚障害で自然と手話習得、児童にも手話で細やかに指導「いろんな意味で自分も感じることがありました」【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1276159",
+      "publishedAt": "2026-07-03",
+      "publishedAtRaw": "中日スポーツ　7月3日 18時23分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-chuspo-1276158",
+      "title": "八角理事長、締め込みを巻いて弟子を指導　「今年が最後」の思いよぎるも師匠としての名古屋場所は来年が最後「頑張ろうと思ってます」【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1276158",
+      "publishedAt": "2026-07-03",
+      "publishedAtRaw": "中日スポーツ　7月3日 18時19分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-kyodo_nor-2026070301002146",
+      "title": "田子ノ浦親方、手話で交流　名古屋市の聾学校訪問",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026070301002146",
+      "publishedAt": "2026-07-03",
+      "publishedAtRaw": "共同通信　7月3日 18時01分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-sanspo-_sports_sumo_W2GL3OXXGZLKFCTKMDCP3NLDRQ",
       "title": "関脇若隆景、名古屋場所へ暗雲　左太ももに異常か",
       "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_W2GL3OXXGZLKFCTKMDCP3NLDRQ",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260703-OHT1T51237",
       "publishedAt": "2026-07-03",
       "publishedAtRaw": "スポーツ報知　7月3日 16時53分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260703-OHT1T51229",
-      "title": "ＩＧアリーナ初のご当所幕内力士　藤凌駕「一番意識する場所。皆様の期待に応えたい」…１２日初日・名古屋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260703-OHT1T51229",
-      "publishedAt": "2026-07-03",
-      "publishedAtRaw": "スポーツ報知　7月3日 16時48分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-kyodo_nor-2026070301001831",
-      "title": "若隆景、2日連続で稽古休む　先場所覇者、左太もも痛で",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026070301001831",
-      "publishedAt": "2026-07-03",
-      "publishedAtRaw": "共同通信　7月3日 16時30分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260703-0253",
-      "title": "茨城＆野球出身で身長、体重もほぼ同サイズ“令和の稀勢の里”目指す田所龍馬が新弟子検査受検へ",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260703-0253",
-      "publishedAt": "2026-07-03",
-      "publishedAtRaw": "スポニチアネックス　7月3日 16時04分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
