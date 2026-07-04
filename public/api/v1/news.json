@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-04T07:28:09.543695+00:00",
+  "updatedAt": "2026-07-04T08:52:24.746401+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_MPABAZHNFRNMJPLVTSF4LX3EPA",
+      "title": "大の里「肩の負傷が一日も早く回復するように祈った」　熱田神宮で豊昇龍と奉納土俵入り／名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_MPABAZHNFRNMJPLVTSF4LX3EPA",
+      "publishedAt": "2026-07-04",
+      "publishedAtRaw": "SANSPO　7月4日 17時30分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260704-0239",
+      "title": "横綱・大の里「力に変えられるように」　ファンの“メッセージ”確認　名古屋場所へ「いい状態で準備」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260704-0239",
+      "publishedAt": "2026-07-04",
+      "publishedAtRaw": "スポニチアネックス　7月4日 17時12分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-kyodo_nor-2026070401001415",
       "title": "両横綱、熱田神宮で奉納土俵入り　休場明け再起期待、5千人声援",
       "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026070401001415",
       "publishedAt": "2026-07-04",
-      "publishedAtRaw": "共同通信　7月4日 16時10分",
+      "publishedAtRaw": "共同通信　7月4日 17時05分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260704-0212",
-      "title": "17歳幕下の太秦が大関・霧島に善戦　1勝挙げ稽古場を沸かせる",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260704-0212",
+      "id": "dmenu-docomo-sponichi-spngoo-20260704-0233",
+      "title": "横綱・豊昇龍、熱田神宮で奉納土俵入り「大丈夫。とにかく15日間、相撲を取り切る」名古屋場所へ決意",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260704-0233",
       "publishedAt": "2026-07-04",
-      "publishedAtRaw": "スポニチアネックス　7月4日 15時59分",
+      "publishedAtRaw": "スポニチアネックス　7月4日 16時50分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260704064",
-      "title": "若元春がもち吉交流イベント、感激の涙を流すファンにも笑顔、１人２〜３分割り当てられる",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260704064",
+      "id": "dmenu-docomo-sponichi-spngoo-20260704-0222",
+      "title": "霧島が3日連続で出稽古　新鋭に1敗するも「体も150キロに戻った」と笑顔",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260704-0222",
       "publishedAt": "2026-07-04",
-      "publishedAtRaw": "デイリースポーツ　7月4日 13時25分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-nikkangendai-1228905",
-      "title": "横綱豊昇龍は「先場所負傷休場」「調整遅れ」ゆえ期待できる？ 7月場所はケガの功名となるか",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1228905",
-      "publishedAt": "2026-07-04",
-      "publishedAtRaw": "日刊ゲンダイDIGITAL　7月4日 6時55分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260704-0047",
-      "title": "若隆景、稽古2日続けて休む…名古屋場所へ暗雲　荒汐親方「病院で診てもらっているところ」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260704-0047",
-      "publishedAt": "2026-07-04",
-      "publishedAtRaw": "スポニチアネックス　7月4日 5時10分",
+      "publishedAtRaw": "スポニチアネックス　7月4日 16時23分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
