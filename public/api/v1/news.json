@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-04T04:43:33.651332+00:00",
+  "updatedAt": "2026-07-04T07:28:09.543695+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-kyodo_nor-2026070401001415",
+      "title": "両横綱、熱田神宮で奉納土俵入り　休場明け再起期待、5千人声援",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026070401001415",
+      "publishedAt": "2026-07-04",
+      "publishedAtRaw": "共同通信　7月4日 16時10分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260704-0212",
+      "title": "17歳幕下の太秦が大関・霧島に善戦　1勝挙げ稽古場を沸かせる",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260704-0212",
+      "publishedAt": "2026-07-04",
+      "publishedAtRaw": "スポニチアネックス　7月4日 15時59分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-20260704064",
       "title": "若元春がもち吉交流イベント、感激の涙を流すファンにも笑顔、１人２〜３分割り当てられる",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260704-0047",
       "publishedAt": "2026-07-04",
       "publishedAtRaw": "スポニチアネックス　7月4日 5時10分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-chuspo-1276159",
-      "title": "田子ノ浦親方が千種聾学校を訪問　両親が聴覚障害で自然と手話習得、児童にも手話で細やかに指導「いろんな意味で自分も感じることがありました」【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1276159",
-      "publishedAt": "2026-07-03",
-      "publishedAtRaw": "中日スポーツ　7月3日 18時23分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-chuspo-1276158",
-      "title": "八角理事長、締め込みを巻いて弟子を指導　「今年が最後」の思いよぎるも師匠としての名古屋場所は来年が最後「頑張ろうと思ってます」【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1276158",
-      "publishedAt": "2026-07-03",
-      "publishedAtRaw": "中日スポーツ　7月3日 18時19分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
