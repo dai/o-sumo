@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-03T11:46:03.069779+00:00",
+  "updatedAt": "2026-07-04T04:43:33.651332+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-20260704064",
+      "title": "若元春がもち吉交流イベント、感激の涙を流すファンにも笑顔、１人２〜３分割り当てられる",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260704064",
+      "publishedAt": "2026-07-04",
+      "publishedAtRaw": "デイリースポーツ　7月4日 13時25分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-nikkangendai-1228905",
+      "title": "横綱豊昇龍は「先場所負傷休場」「調整遅れ」ゆえ期待できる？ 7月場所はケガの功名となるか",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1228905",
+      "publishedAt": "2026-07-04",
+      "publishedAtRaw": "日刊ゲンダイDIGITAL　7月4日 6時55分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260704-0047",
+      "title": "若隆景、稽古2日続けて休む…名古屋場所へ暗雲　荒汐親方「病院で診てもらっているところ」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260704-0047",
+      "publishedAt": "2026-07-04",
+      "publishedAtRaw": "スポニチアネックス　7月4日 5時10分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-chuspo-1276159",
       "title": "田子ノ浦親方が千種聾学校を訪問　両親が聴覚障害で自然と手話習得、児童にも手話で細やかに指導「いろんな意味で自分も感じることがありました」【大相撲】",
       "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1276159",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1276158",
       "publishedAt": "2026-07-03",
       "publishedAtRaw": "中日スポーツ　7月3日 18時19分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-kyodo_nor-2026070301002146",
-      "title": "田子ノ浦親方、手話で交流　名古屋市の聾学校訪問",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026070301002146",
-      "publishedAt": "2026-07-03",
-      "publishedAtRaw": "共同通信　7月3日 18時01分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_W2GL3OXXGZLKFCTKMDCP3NLDRQ",
-      "title": "関脇若隆景、名古屋場所へ暗雲　左太ももに異常か",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_W2GL3OXXGZLKFCTKMDCP3NLDRQ",
-      "publishedAt": "2026-07-03",
-      "publishedAtRaw": "SANSPO　7月3日 17時29分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260703-OHT1T51237",
-      "title": "小結・王鵬、番付発表後初の出稽古　両大関に胸を借り「最後までしっかりできた」…１２日初日・名古屋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260703-OHT1T51237",
-      "publishedAt": "2026-07-03",
-      "publishedAtRaw": "スポーツ報知　7月3日 16時53分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
