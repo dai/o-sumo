@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-05T04:48:12.331569+00:00",
+  "updatedAt": "2026-07-05T07:39:26.479892+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-hochi-20260705-OHT1T51131",
+      "title": "横綱・大の里、６日の二所ノ関一門連合稽古へ調整　大関・琴桜との稽古熱望「重い相手にどんな相撲が取れるか」名古屋場所での完全復活へ",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260705-OHT1T51131",
+      "publishedAt": "2026-07-05",
+      "publishedAtRaw": "スポーツ報知　7月5日 14時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-sponichi-spngoo-20260705-0102",
       "title": "大関・霧島　調子上げ前向き「しっかりと稽古してきて体も150キロに戻った」",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260704-0299",
       "publishedAt": "2026-07-04",
       "publishedAtRaw": "スポニチアネックス　7月4日 20時37分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-chuspo-1276658",
-      "title": "【大相撲】熱田神宮で横綱奉納土俵入り　けがの回復具合を聞かれた豊昇龍は「大丈夫」好物の『うなぎパワー』で順調な回復アピール",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1276658",
-      "publishedAt": "2026-07-04",
-      "publishedAtRaw": "中日スポーツ　7月4日 20時30分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
