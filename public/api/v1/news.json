@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-05T07:39:26.479892+00:00",
+  "updatedAt": "2026-07-05T08:59:48.947023+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-kyodo_nor-2026070501001495",
+      "title": "大相撲「呼び出し」が芸大で講師　利樹之丞、音をテーマに",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026070501001495",
+      "publishedAt": "2026-07-05",
+      "publishedAtRaw": "共同通信　7月5日 17時47分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-kyodo_nor-2026070501001378",
+      "title": "大の里「状態は悪くない」　6日の連合稽古へ四股、すり足",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026070501001378",
+      "publishedAt": "2026-07-05",
+      "publishedAtRaw": "共同通信　7月5日 16時37分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-hochi-20260705-OHT1T51131",
       "title": "横綱・大の里、６日の二所ノ関一門連合稽古へ調整　大関・琴桜との稽古熱望「重い相手にどんな相撲が取れるか」名古屋場所での完全復活へ",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260705-0101",
       "publishedAt": "2026-07-05",
       "publishedAtRaw": "スポニチアネックス　7月5日 5時25分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260705018",
-      "title": "豊昇龍　調整遅れ報道に「ひどいな」　不安説一蹴！横綱昇進後初優勝へ出場明言",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260705018",
-      "publishedAt": "2026-07-05",
-      "publishedAtRaw": "デイリースポーツ　7月5日 5時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260704-0299",
-      "title": "【大相撲】新入幕・一意　弟で日本ミドル級1位・川渕一統と競演　地元大阪でパーティー",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260704-0299",
-      "publishedAt": "2026-07-04",
-      "publishedAtRaw": "スポニチアネックス　7月4日 20時37分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
