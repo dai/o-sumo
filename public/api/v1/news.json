@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-05T08:59:48.947023+00:00",
+  "updatedAt": "2026-07-05T11:30:47.265262+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,11 +16,20 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-sponichi-spngoo-20260705-0322",
+      "title": "横綱・豊昇龍「感覚を思い出そうと思って」稽古の最後に一丁押し繰り返す　幕下以下と14番「良いのでは」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260705-0322",
+      "publishedAt": "2026-07-05",
+      "publishedAtRaw": "スポニチアネックス　7月5日 18時58分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-kyodo_nor-2026070501001495",
       "title": "大相撲「呼び出し」が芸大で講師　利樹之丞、音をテーマに",
       "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026070501001495",
       "publishedAt": "2026-07-05",
-      "publishedAtRaw": "共同通信　7月5日 17時47分",
+      "publishedAtRaw": "共同通信　7月5日 17時58分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
@@ -39,15 +48,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260705-OHT1T51131",
       "publishedAt": "2026-07-05",
       "publishedAtRaw": "スポーツ報知　7月5日 14時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260705-0102",
-      "title": "大関・霧島　調子上げ前向き「しっかりと稽古してきて体も150キロに戻った」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260705-0102",
-      "publishedAt": "2026-07-05",
-      "publishedAtRaw": "スポニチアネックス　7月5日 5時25分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
