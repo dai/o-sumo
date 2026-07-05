@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-04T11:29:57.246703+00:00",
+  "updatedAt": "2026-07-05T04:48:12.331569+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260704-OHT1T51322",
-      "title": "幕内復帰の阿武剋が「優勝を目指す」…子供たちと交流イベント",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260704-OHT1T51322",
-      "publishedAt": "2026-07-04",
-      "publishedAtRaw": "スポーツ報知　7月4日 19時21分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260705-0102",
+      "title": "大関・霧島　調子上げ前向き「しっかりと稽古してきて体も150キロに戻った」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260705-0102",
+      "publishedAt": "2026-07-05",
+      "publishedAtRaw": "スポニチアネックス　7月5日 5時25分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-jiji-202607040091918046",
-      "title": "奉納土俵入りを行う横綱大の里",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-202607040091918046",
-      "publishedAt": "2026-07-04",
-      "publishedAtRaw": "時事通信　7月4日 18時34分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260705-0101",
+      "title": "豊昇龍、大の里が熱田神宮で奉納土俵入り　名古屋場所での復活に決意",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260705-0101",
+      "publishedAt": "2026-07-05",
+      "publishedAtRaw": "スポニチアネックス　7月5日 5時25分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-jiji-202607040091918033",
-      "title": "奉納土俵入りを行う横綱豊昇龍",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-202607040091918033",
-      "publishedAt": "2026-07-04",
-      "publishedAtRaw": "時事通信　7月4日 18時34分",
+      "id": "dmenu-docomo-20260705018",
+      "title": "豊昇龍　調整遅れ報道に「ひどいな」　不安説一蹴！横綱昇進後初優勝へ出場明言",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260705018",
+      "publishedAt": "2026-07-05",
+      "publishedAtRaw": "デイリースポーツ　7月5日 5時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260704104",
-      "title": "横綱豊昇龍が不安説を一蹴「ひどいなと思った」「大丈夫」大の里と奉納土俵入り【大相撲名古屋場所】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260704104",
+      "id": "dmenu-docomo-sponichi-spngoo-20260704-0299",
+      "title": "【大相撲】新入幕・一意　弟で日本ミドル級1位・川渕一統と競演　地元大阪でパーティー",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260704-0299",
       "publishedAt": "2026-07-04",
-      "publishedAtRaw": "デイリースポーツ　7月4日 17時48分",
+      "publishedAtRaw": "スポニチアネックス　7月4日 20時37分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_MPABAZHNFRNMJPLVTSF4LX3EPA",
-      "title": "大の里「肩の負傷が一日も早く回復するように祈った」　熱田神宮で豊昇龍と奉納土俵入り／名古屋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_MPABAZHNFRNMJPLVTSF4LX3EPA",
+      "id": "dmenu-docomo-chuspo-1276658",
+      "title": "【大相撲】熱田神宮で横綱奉納土俵入り　けがの回復具合を聞かれた豊昇龍は「大丈夫」好物の『うなぎパワー』で順調な回復アピール",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1276658",
       "publishedAt": "2026-07-04",
-      "publishedAtRaw": "SANSPO　7月4日 17時30分",
+      "publishedAtRaw": "中日スポーツ　7月4日 20時30分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
