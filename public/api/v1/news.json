@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-05T11:30:47.265262+00:00",
+  "updatedAt": "2026-07-06T02:33:31.384195+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260705-0322",
-      "title": "横綱・豊昇龍「感覚を思い出そうと思って」稽古の最後に一丁押し繰り返す　幕下以下と14番「良いのでは」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260705-0322",
-      "publishedAt": "2026-07-05",
-      "publishedAtRaw": "スポニチアネックス　7月5日 18時58分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260706-0177",
+      "title": "夏場所V関脇・若隆景、名古屋場所休場へ　コンパートメント症候群で手術　師匠の荒汐親方「治療に専念」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260706-0177",
+      "publishedAt": "2026-07-06",
+      "publishedAtRaw": "スポニチアネックス　7月6日 11時11分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-kyodo_nor-2026070501001495",
-      "title": "大相撲「呼び出し」が芸大で講師　利樹之丞、音をテーマに",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026070501001495",
-      "publishedAt": "2026-07-05",
-      "publishedAtRaw": "共同通信　7月5日 17時58分",
+      "id": "dmenu-docomo-kyodo_nor-2026070601000464",
+      "title": "若隆景が名古屋場所休場へ　先場所覇者、左脚痛か",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026070601000464",
+      "publishedAt": "2026-07-06",
+      "publishedAtRaw": "共同通信　7月6日 10時51分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-kyodo_nor-2026070501001378",
-      "title": "大の里「状態は悪くない」　6日の連合稽古へ四股、すり足",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026070501001378",
-      "publishedAt": "2026-07-05",
-      "publishedAtRaw": "共同通信　7月5日 16時37分",
+      "id": "dmenu-docomo-kyodo_nor-2026070601000385",
+      "title": "関脇若隆景が名古屋場所休場へ",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026070601000385",
+      "publishedAt": "2026-07-06",
+      "publishedAtRaw": "共同通信　7月6日 10時19分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260705-OHT1T51131",
-      "title": "横綱・大の里、６日の二所ノ関一門連合稽古へ調整　大関・琴桜との稽古熱望「重い相手にどんな相撲が取れるか」名古屋場所での完全復活へ",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260705-OHT1T51131",
-      "publishedAt": "2026-07-05",
-      "publishedAtRaw": "スポーツ報知　7月5日 14時00分",
+      "id": "dmenu-docomo-hochi-20260706-OHT1T51002",
+      "title": "【大相撲】若隆景、名古屋場所を休場へ　先場所覇者　左太もも負傷で緊急手術…師匠がコンパートメント症候群と明かす",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260706-OHT1T51002",
+      "publishedAt": "2026-07-06",
+      "publishedAtRaw": "スポーツ報知　7月6日 10時11分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260705-0101",
-      "title": "豊昇龍、大の里が熱田神宮で奉納土俵入り　名古屋場所での復活に決意",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260705-0101",
-      "publishedAt": "2026-07-05",
-      "publishedAtRaw": "スポニチアネックス　7月5日 5時25分",
+      "id": "dmenu-docomo-20260706003",
+      "title": "朝乃山　名古屋場所出場明言　左足甲は回復順調　幕内上位へ２桁勝利目指す",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260706003",
+      "publishedAt": "2026-07-06",
+      "publishedAtRaw": "デイリースポーツ　7月6日 5時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
