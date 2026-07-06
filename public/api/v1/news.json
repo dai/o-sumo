@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-06T08:03:01.177073+00:00",
+  "updatedAt": "2026-07-06T09:18:00.970318+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -29,7 +29,34 @@
       "title": "休場中の大の里、復調アピール　連合稽古で琴桜に11戦全勝",
       "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026070601001210",
       "publishedAt": "2026-07-06",
-      "publishedAtRaw": "共同通信　7月6日 16時55分",
+      "publishedAtRaw": "共同通信　7月6日 18時03分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-20260706103",
+      "title": "かど番の琴桜が不安１１連敗　大の里に歯が立たず　師匠「まあ大丈夫ですよ」【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260706103",
+      "publishedAt": "2026-07-06",
+      "publishedAtRaw": "デイリースポーツ　7月6日 17時56分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-chuspo-1277407",
+      "title": "琴桜ヒヤリ…横綱大の里との三番稽古で右足首ひねったか　佐渡ケ嶽親方は「本人は『大丈夫』と」【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1277407",
+      "publishedAt": "2026-07-06",
+      "publishedAtRaw": "中日スポーツ　7月6日 17時53分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-chuspo-1277408",
+      "title": "大の里、由緒、伝統ある二所ノ関一門の”聖地”で三番稽古11番全勝「馬力が欠けた部分も」と浮かれず【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1277408",
+      "publishedAt": "2026-07-06",
+      "publishedAtRaw": "中日スポーツ　7月6日 17時43分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
@@ -39,33 +66,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260706-0281",
       "publishedAt": "2026-07-06",
       "publishedAtRaw": "スポニチアネックス　7月6日 16時37分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260706-OHT1T51206",
-      "title": "【大相撲】横綱・大の里が名古屋場所前初の出稽古で大関・琴桜に１１番全勝「ぶっつけだけど感触的に良かった」　由緒ある土俵で手応え",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260706-OHT1T51206",
-      "publishedAt": "2026-07-06",
-      "publishedAtRaw": "スポーツ報知　7月6日 16時27分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-jiji-2026070600627",
-      "title": "大の里、表情明るく＝大相撲",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026070600627",
-      "publishedAt": "2026-07-06",
-      "publishedAtRaw": "時事通信　7月6日 15時01分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260706079",
-      "title": "横綱大の里、大関琴桜に１１戦全勝「感触的にいい」２場所連続休場から復活デモ【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260706079",
-      "publishedAt": "2026-07-06",
-      "publishedAtRaw": "デイリースポーツ　7月6日 13時54分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
