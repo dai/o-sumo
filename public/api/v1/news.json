@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-06T02:33:31.384195+00:00",
+  "updatedAt": "2026-07-06T04:56:32.105835+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-jiji-2026070600431",
+      "title": "若隆景、名古屋場所を休場へ＝左脚負傷し手術―大相撲",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026070600431",
+      "publishedAt": "2026-07-06",
+      "publishedAtRaw": "時事通信　7月6日 11時55分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-sponichi-spngoo-20260706-0177",
       "title": "夏場所V関脇・若隆景、名古屋場所休場へ　コンパートメント症候群で手術　師匠の荒汐親方「治療に専念」",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260706-OHT1T51002",
       "publishedAt": "2026-07-06",
       "publishedAtRaw": "スポーツ報知　7月6日 10時11分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260706003",
-      "title": "朝乃山　名古屋場所出場明言　左足甲は回復順調　幕内上位へ２桁勝利目指す",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260706003",
-      "publishedAt": "2026-07-06",
-      "publishedAtRaw": "デイリースポーツ　7月6日 5時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
