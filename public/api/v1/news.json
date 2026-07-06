@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-06T04:56:32.105835+00:00",
+  "updatedAt": "2026-07-06T08:03:01.177073+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,56 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-jiji-2026070600431",
-      "title": "若隆景、名古屋場所を休場へ＝左脚負傷し手術―大相撲",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026070600431",
+      "id": "sumo-association-755",
+      "title": "大相撲七月場所「土俵祭」についてのお知らせ",
+      "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=755",
       "publishedAt": "2026-07-06",
-      "publishedAtRaw": "時事通信　7月6日 11時55分",
+      "publishedAtRaw": "令和8年7月6日",
+      "sourceId": "sumo-association",
+      "sourceLabel": "日本相撲協会"
+    },
+    {
+      "id": "dmenu-docomo-kyodo_nor-2026070601001210",
+      "title": "休場中の大の里、復調アピール　連合稽古で琴桜に11戦全勝",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026070601001210",
+      "publishedAt": "2026-07-06",
+      "publishedAtRaw": "共同通信　7月6日 16時55分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260706-0177",
-      "title": "夏場所V関脇・若隆景、名古屋場所休場へ　コンパートメント症候群で手術　師匠の荒汐親方「治療に専念」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260706-0177",
+      "id": "dmenu-docomo-sponichi-spngoo-20260706-0281",
+      "title": "【大相撲】大の里が二所一門の連合稽古で琴桜に11連勝　4カ月ぶりの出稽古で復調アピール",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260706-0281",
       "publishedAt": "2026-07-06",
-      "publishedAtRaw": "スポニチアネックス　7月6日 11時11分",
+      "publishedAtRaw": "スポニチアネックス　7月6日 16時37分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-kyodo_nor-2026070601000464",
-      "title": "若隆景が名古屋場所休場へ　先場所覇者、左脚痛か",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026070601000464",
+      "id": "dmenu-docomo-hochi-20260706-OHT1T51206",
+      "title": "【大相撲】横綱・大の里が名古屋場所前初の出稽古で大関・琴桜に１１番全勝「ぶっつけだけど感触的に良かった」　由緒ある土俵で手応え",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260706-OHT1T51206",
       "publishedAt": "2026-07-06",
-      "publishedAtRaw": "共同通信　7月6日 10時51分",
+      "publishedAtRaw": "スポーツ報知　7月6日 16時27分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-kyodo_nor-2026070601000385",
-      "title": "関脇若隆景が名古屋場所休場へ",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026070601000385",
+      "id": "dmenu-docomo-jiji-2026070600627",
+      "title": "大の里、表情明るく＝大相撲",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026070600627",
       "publishedAt": "2026-07-06",
-      "publishedAtRaw": "共同通信　7月6日 10時19分",
+      "publishedAtRaw": "時事通信　7月6日 15時01分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260706-OHT1T51002",
-      "title": "【大相撲】若隆景、名古屋場所を休場へ　先場所覇者　左太もも負傷で緊急手術…師匠がコンパートメント症候群と明かす",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260706-OHT1T51002",
+      "id": "dmenu-docomo-20260706079",
+      "title": "横綱大の里、大関琴桜に１１戦全勝「感触的にいい」２場所連続休場から復活デモ【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260706079",
       "publishedAt": "2026-07-06",
-      "publishedAtRaw": "スポーツ報知　7月6日 10時11分",
+      "publishedAtRaw": "デイリースポーツ　7月6日 13時54分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
@@ -73,15 +82,6 @@
       "id": "sumo-association-753",
       "title": "引退のお知らせ",
       "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=753",
-      "publishedAt": "2026-05-25",
-      "publishedAtRaw": "令和8年5月25日",
-      "sourceId": "sumo-association",
-      "sourceLabel": "日本相撲協会"
-    },
-    {
-      "id": "sumo-association-752",
-      "title": "腹タッチ会2026福岡～みんなで九州場所に向けて盛り上がろう！～",
-      "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=752",
       "publishedAt": "2026-05-25",
       "publishedAtRaw": "令和8年5月25日",
       "sourceId": "sumo-association",
