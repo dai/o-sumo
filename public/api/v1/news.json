@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-07T07:47:21.636848+00:00",
+  "updatedAt": "2026-07-07T07:51:51.999181+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-jiji-202607070091970131",
+      "title": "琴勝峰「仕上げていく」",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-202607070091970131",
+      "publishedAt": "2026-07-07",
+      "publishedAtRaw": "時事通信　7月7日 16時42分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-jiji-2026070700842",
       "title": "琴勝峰「仕上げていく」＝大相撲",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/ntv_news24/sports/ntv_news24-2026070704996274",
       "publishedAt": "2026-07-07",
       "publishedAtRaw": "日テレNEWS NNN　7月7日 7時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260707005",
-      "title": "大の里が復調アピ　琴桜相手に１１連勝「感触はいい。立ち合いも悪くない」　由緒ある仏地院での稽古に感慨",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260707005",
-      "publishedAt": "2026-07-07",
-      "publishedAtRaw": "デイリースポーツ　7月7日 5時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
