@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-07T04:46:58.448216+00:00",
+  "updatedAt": "2026-07-07T07:47:21.636848+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,33 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-jiji-2026070700842",
+      "title": "琴勝峰「仕上げていく」＝大相撲",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026070700842",
+      "publishedAt": "2026-07-07",
+      "publishedAtRaw": "時事通信　7月7日 16時25分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260707-OHT1T51187",
+      "title": "【高校野球】神奈川・旭丘が相撲ルーチンで初戦突破…四股などで「一つになれる」大相撲で無傷２１連勝中の旭富士の母校",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260707-OHT1T51187",
+      "publishedAt": "2026-07-07",
+      "publishedAtRaw": "スポーツ報知　7月7日 15時57分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260707-OHT1T51183",
+      "title": "夏場所途中休場の元大関・朝乃山が復活へ横綱・豊昇龍と７番　２勝も「本当に来てくれてうれしい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260707-OHT1T51183",
+      "publishedAt": "2026-07-07",
+      "publishedAtRaw": "スポーツ報知　7月7日 15時51分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-ntv_news24-2026070704996274",
       "title": "【大相撲】若隆景が「大腿コンパートメント症候群」で緊急手術・入院　五月場所で優勝も…今後は治療に専念",
@@ -41,33 +68,6 @@
       "publishedAtRaw": "令和8年7月6日",
       "sourceId": "sumo-association",
       "sourceLabel": "日本相撲協会"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260706-OHT1T51293",
-      "title": "【大相撲】若隆景が名古屋場所休場　救急搬送で２度、計５時間の緊急手術「あと１〜２時間遅れれば危険だった」　長期離脱の可能性も",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260706-OHT1T51293",
-      "publishedAt": "2026-07-06",
-      "publishedAtRaw": "スポーツ報知　7月6日 20時50分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_SREOAFLTDJOBBGK3LE4N5REQSE",
-      "title": "大の里が琴桜に11戦全勝　二所ノ関一門の聖地で圧倒「由緒、伝統ある土俵で稽古ができてよかった」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_SREOAFLTDJOBBGK3LE4N5REQSE",
-      "publishedAt": "2026-07-06",
-      "publishedAtRaw": "SANSPO　7月6日 19時32分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260706-202607060001463",
-      "title": "先場所Ｖ若隆景が入院「大腿コンパートメント症候群」救急搬送、壊死おそれ緊急手術「容体安定」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260706-202607060001463",
-      "publishedAt": "2026-07-06",
-      "publishedAtRaw": "日刊スポーツ　7月6日 19時01分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
     },
     {
       "id": "sumo-association-754",
