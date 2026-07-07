@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-06T12:17:29.551416+00:00",
+  "updatedAt": "2026-07-07T04:46:58.448216+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-ntv_news24-2026070704996274",
+      "title": "【大相撲】若隆景が「大腿コンパートメント症候群」で緊急手術・入院　五月場所で優勝も…今後は治療に専念",
+      "url": "https://topics.smt.docomo.ne.jp/article/ntv_news24/sports/ntv_news24-2026070704996274",
+      "publishedAt": "2026-07-07",
+      "publishedAtRaw": "日テレNEWS NNN　7月7日 7時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-20260707005",
+      "title": "大の里が復調アピ　琴桜相手に１１連勝「感触はいい。立ち合いも悪くない」　由緒ある仏地院での稽古に感慨",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260707005",
+      "publishedAt": "2026-07-07",
+      "publishedAtRaw": "デイリースポーツ　7月7日 5時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "sumo-association-755",
       "title": "大相撲七月場所「土俵祭」についてのお知らせ",
@@ -48,24 +66,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260706-202607060001463",
       "publishedAt": "2026-07-06",
       "publishedAtRaw": "日刊スポーツ　7月6日 19時01分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260706-0325",
-      "title": "「伝説の稽古場」で連合稽古が7年ぶり復活　二所ノ関一門の“聖地”仏地院に大の里ら集結",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260706-0325",
-      "publishedAt": "2026-07-06",
-      "publishedAtRaw": "スポニチアネックス　7月6日 18時39分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260706106",
-      "title": "不屈の４１歳玉鷲が精力的に汗、阿炎はまさかの大遅刻で平謝り【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260706106",
-      "publishedAt": "2026-07-06",
-      "publishedAtRaw": "デイリースポーツ　7月6日 18時13分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
