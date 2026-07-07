@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-07T07:51:51.999181+00:00",
+  "updatedAt": "2026-07-07T09:03:21.986193+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_ZW676YG7AFPRHBG4HDMTWLYAWE",
+      "title": "平幕藤凌駕、連日の出稽古「自分のためにとてもいい稽古」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_ZW676YG7AFPRHBG4HDMTWLYAWE",
+      "publishedAt": "2026-07-07",
+      "publishedAtRaw": "SANSPO　7月7日 17時49分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-jiji-202607070091970131",
       "title": "琴勝峰「仕上げていく」",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260707-OHT1T51183",
       "publishedAt": "2026-07-07",
       "publishedAtRaw": "スポーツ報知　7月7日 15時51分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-ntv_news24-2026070704996274",
-      "title": "【大相撲】若隆景が「大腿コンパートメント症候群」で緊急手術・入院　五月場所で優勝も…今後は治療に専念",
-      "url": "https://topics.smt.docomo.ne.jp/article/ntv_news24/sports/ntv_news24-2026070704996274",
-      "publishedAt": "2026-07-07",
-      "publishedAtRaw": "日テレNEWS NNN　7月7日 7時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
