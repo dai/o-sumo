@@ -21,7 +21,7 @@ The pipeline is intentionally:
   feeds (RSS or HTML scrapers) without touching the orchestration code.
 
 Usage:
-    python scripts/update_news_feed.py [--out PATH] [--limit N]
+    python scripts/update_news_feed.py [--out PATH] [--limit N] [--force-write]
 """
 
 from __future__ import annotations
@@ -231,7 +231,7 @@ SOURCE_DEFINITIONS = [
     {
         "id": "dmenu-docomo",
         "label": "dmenuスポーツ",
-            "limit": 5,
+        "limit": 5,
         "scraper": scrape_docomo_news,
     },
 ]
@@ -277,23 +277,50 @@ def build_payload(limit: int) -> dict:
     }
 
 
-def write_payload(payload: dict, output: Path) -> None:
+def has_news_content_changed(payload: dict, existing: dict) -> bool:
+    return {
+        "sources": payload.get("sources", []),
+        "items": payload.get("items", []),
+    } != {
+        "sources": existing.get("sources", []),
+        "items": existing.get("items", []),
+    }
+
+
+def write_payload(payload: dict, output: Path, *, force_write: bool = False) -> bool:
+    if output.exists() and not force_write:
+        try:
+            existing = json.loads(output.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            existing = None
+        if isinstance(existing, dict) and not has_news_content_changed(payload, existing):
+            return False
+
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return True
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Update the static news feed.")
     parser.add_argument("--out", type=Path, default=DEFAULT_OUTPUT, help="Output JSON path.")
     parser.add_argument("--limit", type=int, default=DEFAULT_LIMIT, help="Maximum items to fetch.")
+    parser.add_argument(
+        "--force-write",
+        action="store_true",
+        help="Rewrite output even when only updatedAt changed.",
+    )
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
     payload = build_payload(args.limit)
-    write_payload(payload, args.out)
-    print(f"[ok] wrote {len(payload['items'])} items to {args.out}")
+    changed = write_payload(payload, args.out, force_write=args.force_write)
+    if changed:
+        print(f"[ok] wrote {len(payload['items'])} items to {args.out}")
+    else:
+        print(f"[ok] no news changes; kept {args.out}")
     for source in payload["sources"]:
         print(f"  - {source['id']}: ok={source['ok']} count={source.get('count', 0)}")
     return 0

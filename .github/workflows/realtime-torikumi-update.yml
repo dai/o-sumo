@@ -2,11 +2,8 @@ name: Realtime Torikumi Update
 
 on:
   schedule:
-    - cron: '0,30 2-4 * * *'
-    - cron: '0,30 5-7 * * *'
-    - cron: '0,10,20,30,40,50 5 * * *'
-    - cron: '0,10,20,30,40,50 8 * * *'
-    - cron: '0 6 * * *'
+    # JST 13:00-18:00, every 10 minutes
+    - cron: '*/10 4-8 * * *'
     - cron: '0 9 * * *'
   workflow_dispatch:
 
@@ -26,6 +23,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       - name: Setup Python
@@ -75,7 +73,7 @@ jobs:
         id: create-pr
         uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
           branch: automation/data-updates
           base: main
           delete-branch: false

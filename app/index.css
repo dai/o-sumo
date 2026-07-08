@@ -172,6 +172,64 @@
   box-shadow: 0 4px 16px rgba(115, 92, 0, 0.3);
 }
 
+.live-torikumi-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  padding: 1.5rem 2rem;
+  background: var(--surface-container-high);
+}
+
+.live-torikumi-copy {
+  min-width: 0;
+}
+
+.live-torikumi-title {
+  margin: 0 0 0.35rem;
+  color: var(--color-primary);
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+}
+
+.live-torikumi-copy p {
+  margin: 0;
+  color: var(--color-dark-text);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.live-torikumi-link {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 9rem;
+  padding: 0.9rem 1.4rem;
+  background: var(--color-secondary-light);
+  color: var(--yokozuna-text);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: background-color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.live-torikumi-link:hover,
+.live-torikumi-link:focus-visible {
+  background: var(--color-secondary);
+  color: var(--color-on-primary);
+  text-decoration: none;
+}
+
+.live-torikumi-link:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 4px;
+}
+
 .features-section {
   margin-bottom: 3rem;
 }
@@ -702,6 +760,16 @@
     width: 100%;
   }
 
+  .live-torikumi-section {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1.5rem;
+  }
+
+  .live-torikumi-link {
+    width: 100%;
+  }
+
   .tech-list {
     gap: 0.75rem;
   }
@@ -952,6 +1020,8 @@
   .cta-button:hover,
   .cta-button.secondary,
   .cta-button.secondary:hover,
+  .live-torikumi-link,
+  .live-torikumi-link:hover,
   .past-basho-day-link,
   .past-basho-day-link:hover,
   .home-footer a,
@@ -976,4 +1046,3 @@
     transform: none;
   }
 }
-

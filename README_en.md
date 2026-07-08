@@ -217,17 +217,19 @@ Key validations:
 
 ## Automated Updates
 
-GitHub Actions uses separate daily and results-refresh workflows.
+GitHub Actions uses separate workflows for torikumi schedules, torikumi results, and news. When files change, each workflow creates or updates the shared `automation/data-updates` PR.
 
 - Daily update: `.github/workflows/daily-data-update.yml`
-  - status: automatic runs are paused until July 1, 2026 (JST); `workflow_dispatch` only
-  - updates torikumi schedules (`--torikumi-only --torikumi-scope schedule`) and refreshes the news feed
-  - commits and pushes directly to `main` when files change
+  - schedule: JST 13:00 / 19:00
+  - updates torikumi schedules only (`--torikumi-only --torikumi-scope schedule`)
 - Realtime results update: `.github/workflows/realtime-torikumi-update.yml`
-  - status: automatic runs are paused until July 1, 2026 (JST); `workflow_dispatch` only
-  - updates torikumi results + banzuke (`--torikumi-scope result --skip-rikishi-fetch`)
-  - commits and pushes directly to `main` when files change
+  - schedule: every 10 minutes from JST 13:00 through 18:00
+  - updates torikumi results only (`--torikumi-only --torikumi-scope result --skip-rikishi-fetch`)
   - logs: always prints `github.event.schedule`, current JST time, `resultUpdatedAt`, and `scheduleUpdatedAt`
+- News update: `.github/workflows/news-feed-update.yml`
+  - schedule: every 2 hours from JST 09:00 through 19:00
+  - updates Japan Sumo Association and dmenu Sports news (`python scripts/update_news_feed.py`)
+  - skips rewriting `news.json` when fetched items and source states are unchanged
 
 ## Testing
 
@@ -246,7 +248,7 @@ Current main coverage:
 - 15-day hub rendering and sorting
 - daily torikumi sorting and pending-state rendering
 
-GitHub Actions runs the following on pull requests and pushes to `main` and `codex/**`:
+GitHub Actions runs the following on pull requests and pushes to `main`, `codex/**`, and `automation/data-updates`:
 
 - `npm ci`
 - `npm run typecheck`
@@ -259,11 +261,12 @@ GitHub Actions runs the following on pull requests and pushes to `main` and `cod
 - SPA fallback file: `public/_redirects` (app routes only; `/api/v1/*` serves static JSON as-is)
 - Direct access to date-based URLs falls back to `index.html`
 
-## Operations Policy For The May 2026 Basho
+## Operations Policy For The July 2026 Basho
 
-- GitHub Actions automatic daily/realtime refreshes are paused until July 1, 2026 (JST); run both workflows manually when needed.
-- After the April 27, 2026 banzuke release, manually run `python scripts/update_sumo_data.py --torikumi-scope schedule` to sync the May banzuke, schedule placeholders, and static API files.
-- The realtime workflow uses `--torikumi-scope result --skip-rikishi-fetch`, so hoshitori updates stay coupled to results refresh windows only.
+- GitHub Actions daily/realtime/news refreshes create or update the shared `automation/data-updates` PR when files change.
+- Schedules refresh at JST 13:00 / 19:00, results refresh every 10 minutes from JST 13:00 through 18:00, and news polls every 2 hours from JST 09:00 through 19:00.
+- Manual runs can be started with `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main`, `gh workflow run realtime-torikumi-update.yml -R dai/o-sumo --ref main`, or `gh workflow run news-feed-update.yml -R dai/o-sumo --ref main`.
+- The realtime workflow uses `--torikumi-only --torikumi-scope result --skip-rikishi-fetch`, so it is limited to torikumi results.
 - If results still look stale, triage in this order: run history -> run logs (`event.schedule`, JST time, updatedAt fields) -> upstream `judge` values.
 - Keep the cache policy in `public/_headers` unchanged to control Cloudflare usage.
 - Keep the PWA Service Worker on `registerType: "autoUpdate"` so updates are applied automatically.

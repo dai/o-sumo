@@ -105,20 +105,25 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 ### データ更新
 
 - Workflow: `.github/workflows/daily-data-update.yml`
-- 状態: 2026-07-01 JST まで自動実行停止（`workflow_dispatch` のみ）
+- 実行時刻: JST 13:00 / 19:00
 - 更新対象: 取組予定のみ（`--torikumi-only --torikumi-scope schedule`）
-- 変更がある場合は `main` ブランチに直接 commit / push
+- 変更がある場合は `automation/data-updates` ブランチの PR を作成または更新
 
 - Workflow: `.github/workflows/realtime-torikumi-update.yml`
-- 状態: 2026-07-01 JST まで自動実行停止（`workflow_dispatch` のみ）
-- 更新対象: 取組結果 + 番付（`--torikumi-scope result --skip-rikishi-fetch`）
-- 変更がある場合は `main` ブランチに直接 commit / push
+- 実行時刻: JST 13:00-18:00、10分おき
+- 更新対象: 取組結果のみ（`--torikumi-only --torikumi-scope result --skip-rikishi-fetch`）
+- 変更がある場合は `automation/data-updates` ブランチの PR を作成または更新
 - 実行ログへ `github.event.schedule` / JST現在時刻 / `resultUpdatedAt` / `scheduleUpdatedAt` を出力
+
+- Workflow: `.github/workflows/news-feed-update.yml`
+- 実行時刻: JST 09:00-19:00、2時間おき
+- 更新対象: ニュースフィード（`python scripts/update_news_feed.py`）
+- 取得結果が変わらない場合は `news.json` を書き換えず、PR 差分を作らない
 
 ### テスト
 
 - Workflow: `.github/workflows/test.yml`
-- PR と `main` / `codex/**` push で実行
+- PR と `main` / `codex/**` / `automation/data-updates` push で実行
 - 実行内容:
   - `npm ci`
   - `npm run typecheck`
@@ -149,8 +154,9 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 
 ## 運用制約ポリシー（2026年七月場所向け）
 
-- `daily-data-update.yml` と `realtime-torikumi-update.yml` は 2026-07-01 JST まで自動実行停止（`workflow_dispatch` のみ）とする。
-- `realtime-torikumi-update.yml` は `--torikumi-scope result --skip-rikishi-fetch` を使い、番付の星取表を結果更新枠でのみ同期する。
+- `daily-data-update.yml` / `realtime-torikumi-update.yml` / `news-feed-update.yml` は `automation/data-updates` の共有 PR に積む。
+- `realtime-torikumi-update.yml` は `--torikumi-only --torikumi-scope result --skip-rikishi-fetch` を使い、取組結果更新に限定する。
+- `news-feed-update.yml` は取得結果に差分がない場合、`updatedAt` だけでは `public/api/v1/news.json` を書き換えない。
 - 結果未更新時の確認順は `run履歴` → `runログ（event.schedule, JST, updatedAt系）` → `供給元 judge` とする。
 - 2026年6月29日の番付発表後は、手動で `python scripts/update_sumo_data.py --torikumi-scope schedule` を実行し、七月場所の番付・取組予定・静的 API を同期する。結果アーカイブも七月場所 (`202607`) に切り替え、未更新日は pending のまま保持する。
 - Cloudflare の従量抑制を優先し、`public/_headers` のキャッシュ方針（`/assets/*` 長期 immutable、`manifest` 1時間、`sw.js` 再検証、`/` 5分）を維持する。

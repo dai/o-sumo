@@ -1,9 +1,9 @@
-name: Daily Sumo Data Update
+name: News Feed Update
 
 on:
   schedule:
-    # JST 13:00 / 19:00
-    - cron: '0 4,10 * * *'
+    # JST 09:00, 11:00, 13:00, 15:00, 17:00, 19:00
+    - cron: '0 0,2,4,6,8,10 * * *'
   workflow_dispatch:
 
 concurrency:
@@ -15,7 +15,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  update-data:
+  update-news:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -30,29 +30,29 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Generate schedule data
+      - name: Update news feed
         shell: bash
         run: |
           set -euo pipefail
           success=0
           for attempt in 1 2; do
-            if python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule; then
+            if python scripts/update_news_feed.py; then
               success=1
               break
             fi
 
             if [ "$attempt" -lt 2 ]; then
-              echo "Generate schedule data failed (attempt ${attempt}/2). Retrying..."
+              echo "Update news feed failed (attempt ${attempt}/2). Retrying..."
               sleep 10
             fi
           done
 
           if [ "$success" -ne 1 ]; then
-            echo "Generate schedule data failed after 2 attempts."
+            echo "Update news feed failed after 2 attempts."
             exit 1
           fi
 
-      - name: Print run context and torikumi timestamps
+      - name: Print run context and news timestamps
         shell: bash
         run: |
           echo "event_name=${{ github.event_name }}"
@@ -62,10 +62,11 @@ jobs:
           import json
           from pathlib import Path
 
-          torikumi = json.loads(Path("public/api/v1/torikumi.json").read_text(encoding="utf-8"))
-          print(f"updatedAt={torikumi.get('updatedAt', '')}")
-          print(f"resultUpdatedAt={torikumi.get('resultUpdatedAt', '')}")
-          print(f"scheduleUpdatedAt={torikumi.get('scheduleUpdatedAt', '')}")
+          news = json.loads(Path("public/api/v1/news.json").read_text(encoding="utf-8"))
+          print(f"news_updatedAt={news.get('updatedAt', '')}")
+          print(f"news_item_count={len(news.get('items', []))}")
+          for source in news.get('sources', []):
+              print(f"news_source={source.get('id')} ok={source.get('ok')} count={source.get('count', 0)}")
           PY
 
       - name: Create or update data update PR
@@ -76,20 +77,19 @@ jobs:
           branch: automation/data-updates
           base: main
           delete-branch: false
-          commit-message: 'chore: daily sumo schedule update'
+          commit-message: 'chore: news feed update'
           title: 'chore: automated sumo data updates'
           body: |
             ## Summary
             - Automated data update from `${{ github.workflow }}`
             - Event: `${{ github.event_name }}`
             - Schedule: `${{ github.event.schedule || 'manual' }}`
-            - Scope: `schedule`
+            - Scope: `news`
           labels: |
             automated
             data-update
           add-paths: |
-            app/lib/torikumi-data.ts
-            public/api/v1/torikumi.json
+            public/api/v1/news.json
 
       - name: Print PR context
         shell: bash

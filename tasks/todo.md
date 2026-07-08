@@ -693,4 +693,56 @@
   - `src/locales/ja/common.json` に固定バナー文言を反映
   - `app/lib/torikumi-routes.ts` は `17:00-18:00は10分ごとに更新` と `取組予定はJST 15:30と20:00に更新` を反映
 
+---
+
+# GitHub Actions 開催直前最終調整 Todo（2026-07-08）
+
+## Plan
+- [x] 最新 `origin/main` から fresh worktree / branch を作成する
+- [x] News 更新で取得結果が同じ場合に `updatedAt` だけで書き換えない回帰テストを追加する
+- [x] `scripts/update_news_feed.py` に no-op write と `--force-write` を実装する
+- [x] 取組予定 / 結果 / News の workflow を分離し、すべて `automation/data-updates` PR に積む
+- [x] README / DEVELOPMENT / API policy を新しい workflow 運用に同期する
+- [x] workflow YAML / Python unit / Node checks / build / diff を検証する
+- [x] 開催前の取組予定 / 結果 fetch 挙動を非破壊で確認する
+- [x] トップページに「現在の取組、速報中！」ミニセクションを追加し、時刻に近い取組 anchor へ誘導する
+
+## Progress
+- `C:\Users\dai\.codex\worktrees\actions-final-tuning\o-sumo` を `origin/main` から `codex/actions-final-tuning` として作成。
+- `scripts/update_news_feed_test.py` を追加し、同じ `items` / `sources` なら `news.json` を書き換えないこと、`--force-write` 相当では書き換えること、片方の source が失敗しても surviving source を残すことをテスト化。
+- `scripts/update_news_feed.py` は `items` / `sources` を比較し、差分がない場合は output を変更しない。`--force-write` で timestamp だけでも再出力できる。
+- `daily-data-update.yml` は JST 13:00 / 19:00 の取組予定専用へ変更。
+- `realtime-torikumi-update.yml` は JST 13:00-18:00 の10分おき結果更新専用へ変更。
+- `news-feed-update.yml` を追加し、JST 09:00-19:00 の2時間おき news polling に分離。
+- `test.yml` は `automation/data-updates` push も検証対象に変更。
+- README / README_en / DEVELOPMENT / DEVELOPMENT_en / docs/api/policy.md / docs/api/policy.en.md を新しい workflow 責務と時刻に同期。
+- 公式 fetch テストで、開催前は `current_day=0` のため schedule scope でも day 1 を取得しに行かない穴を確認。
+- `schedule` scope の開催前だけ `fetch_days={1}` にし、day 1 の幕内 / 十両を未公開想定で fetch できるように修正。`result` scope は開催前 fetch なしを維持。
+- 古い main checkout 側に入れた bolder CSS は取り消し、News 実装がある `actions-final-tuning` worktree 側へ作業対象を戻した。
+- トップページの hero 直後 / News 前に `現在の取組、速報中！` ミニセクションを追加。
+- 速報 CTA は `today` があれば当日結果、`tomorrow` があれば予定へリンクし、JST 13:00-18:00 は十両 / 幕内の時間帯に近い `bout-*` anchor を付与する。
+
+## Review
+- `python -m unittest scripts.update_news_feed_test`: pass
+- `python -m unittest scripts.update_sumo_data_parser_test.PostJsonRequestHeadersTest scripts.update_sumo_data_parser_test.OfficialBashoScheduleTest scripts.update_news_feed_test`: pass
+- `python scripts/update_sumo_data_torikumi_logic_test.py`: pass
+- `npm test -- --run app/page.test.tsx app/components/TorikumiDayPage.test.tsx`: pass（2 files / 17 tests）
+- 非破壊 fetch テスト:
+  - `load_banzuke_context()`: `basho_id=636`
+  - `load_official_basho_start_date("令和八年", "七月場所")`: `2026-07-12`
+  - `determine_current_basho_day(..., 2026-07-08)`: `0`
+  - `torikumiAjax` day 1 幕内 / 十両: `Result=1`, `TorikumiData=0`, `FinalMuch=0`
+  - `load_torikumi_day(...)`: 幕内 / 十両とも `取組データ未公開` として扱う
+  - 開催前 schedule dataset は day 1 幕内 / 十両だけ `expected_unpublished=True` で fetch 対象
+- workflow YAML parse:
+  - `.github/workflows/daily-data-update.yml`: pass
+  - `.github/workflows/realtime-torikumi-update.yml`: pass
+  - `.github/workflows/news-feed-update.yml`: pass
+  - `.github/workflows/test.yml`: pass
+- `npm ci`: pass（既存の audit / deprecated warnings あり）
+- `npm run typecheck`: pass
+- `npm test -- --run`: pass（18 files / 93 tests、既存の localStorage ExperimentalWarning あり）
+- `npm run build`: pass（既存の chunk size warning のみ）
+- `git diff --check`: pass
+
 

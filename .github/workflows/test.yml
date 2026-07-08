@@ -6,7 +6,7 @@ on:
     branches:
       - main
       - codex/**
-      - 'automation/data-updates-*'
+      - automation/data-updates
 
 jobs:
   test:
