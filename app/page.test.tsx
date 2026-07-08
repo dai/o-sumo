@@ -1,5 +1,5 @@
 import { render, screen, within } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import {
   MARCH2026_BANDUKE_PATH,
@@ -22,6 +22,10 @@ vi.mock('./lib/news-data', () => ({
     items: [],
   },
 }));
+
+afterEach(() => {
+  vi.useRealTimers();
+});
 
 describe('Home page', () => {
   it('shows the main navigation links and footer-only contact links', () => {
@@ -94,6 +98,9 @@ describe('Home page', () => {
   });
 
   it('shows a live torikumi shortcut before the news section', () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2026-07-12T06:30:00.000Z'));
+
     render(
       <MemoryRouter>
         <Home />

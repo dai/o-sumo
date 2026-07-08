@@ -1,5 +1,8 @@
 # Lessons
 
+## 2026-07-08 時刻依存 UI テストの固定化
+- `new Date()` や JST 現在時刻からリンク先・表示位置を決める UI のテストでは、期待値を固定する前に `vi.useFakeTimers()` と `vi.setSystemTime(...)` で時計を固定する。実行時刻に依存した期待値は、ローカル実行時間や CI 時刻で不安定になる。
+
 ## 2026-06-29 七月場所着手準備（mixed current/archive 化）
 - 場所切替は **current（七月）と archive（五月・三月）が同じデータ層で共存できる形** で導入する。`app/lib/archive-basho-data.ts` を **current/archive の単一エントリポイント** に据えると、`torikumi-routes.ts` / `archives-data.ts` / `main.tsx` の重複定義（`MAY2026_*` 直接 import など）が消えて回帰しづらくなる。
 - `resultDays` と `scheduleDays` を **別 monthKey で持つ mixed current/archive 仕様** は、初日の前日〜初日（七月と五月の境界）をまたぐ導線で「五月アーカイブの結果」と「七月場所の予定」を同時に見せられる。`json` レベルで `bashoName = 七月場所 / pathDate = 20260510（五月アーカイブ結果）/ pathDate = 20260712（七月予定）` が混在し得ることを CI レビューで許容する。
