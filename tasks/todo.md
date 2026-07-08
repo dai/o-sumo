@@ -744,5 +744,13 @@
 - `npm test -- --run`: pass（18 files / 93 tests、既存の localStorage ExperimentalWarning あり）
 - `npm run build`: pass（既存の chunk size warning のみ）
 - `git diff --check`: pass
+- 追加修正（2026-07-08）:
+  - 再現: `npm test -- --run` が `Home page > shows a live torikumi shortcut before the news section` で fail
+  - 原因: `Home` が実行時点の JST 現在時刻から anchor を決める一方、テスト期待値が固定時刻前提だった
+  - 修正: 該当テストで `vi.useFakeTimers()` / `vi.setSystemTime(...)` により 2026-07-12 15:30 JST へ固定
+  - `npm test -- --run app/page.test.tsx`: pass（1 file / 8 tests）
+  - `npm run typecheck`: pass
+  - `npm test -- --run`: pass（18 files / 93 tests、既存の localStorage ExperimentalWarning あり）
+  - `git diff --check`: pass
 
 
