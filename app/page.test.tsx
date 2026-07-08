@@ -9,8 +9,8 @@ import {
 } from './lib/torikumi-routes';
 import { MARCH2026_TORIKUMI_DATA } from './lib/march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from './lib/may2026-data';
-import { torikumiArchive } from './lib/torikumi-data';
-import Home from './page';
+import { torikumiArchive, torikumiData } from './lib/torikumi-data';
+import Home, { buildLiveTorikumiTarget, nearestTorikumiAnchor } from './page';
 
 // The home page reads the news feed from the committed `public/api/v1/news.json`,
 // which is rewritten by the daily-data-update workflow. Stub it here so the test
@@ -93,6 +93,34 @@ describe('Home page', () => {
     expect(screen.getByRole('heading', { level: 2, name: '最新ニュース' })).toBeInTheDocument();
   });
 
+  it('shows a live torikumi shortcut before the news section', () => {
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+
+    const liveSection = document.querySelector('.live-torikumi-section');
+    const news = document.querySelector('.news-section');
+
+    expect(screen.getByRole('heading', { level: 2, name: '現在の取組、速報中！' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '速報を見る' })).toHaveAttribute(
+      'href',
+      '/20260712-yotei/#bout-makuuchi-1',
+    );
+    expect(liveSection).not.toBeNull();
+    expect(news).not.toBeNull();
+    expect(liveSection!.compareDocumentPosition(news!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
+  it('builds live torikumi anchors from the JST time window', () => {
+    const firstSchedule = torikumiArchive.scheduleDays[0].data;
+
+    expect(nearestTorikumiAnchor(firstSchedule, 14 * 60)).toMatch(/^bout-juryo-/);
+    expect(nearestTorikumiAnchor(firstSchedule, 16 * 60)).toMatch(/^bout-makuuchi-/);
+    expect(buildLiveTorikumiTarget(torikumiArchive, torikumiData, 16 * 60).href).toBe('/20260712-yotei/#bout-makuuchi-5');
+  });
+
   it('places the news section between the current basho hero and the past-basho map', () => {
     render(
       <MemoryRouter>
@@ -102,19 +130,25 @@ describe('Home page', () => {
 
     const main = document.querySelector('main');
     const hero = document.querySelector('.hero-section');
+    const live = document.querySelector('.live-torikumi-section');
     const news = document.querySelector('.news-section');
     const firstPastBasho = document.querySelector('.past-basho-section');
 
     expect(main).not.toBeNull();
     expect(hero).not.toBeNull();
+    expect(live).not.toBeNull();
     expect(news).not.toBeNull();
     expect(firstPastBasho).not.toBeNull();
 
     // The bitwise flag 4 means DOCUMENT_POSITION_FOLLOWING, i.e. `other` is
     // positioned later in the document than `node`.
+    const heroBeforeLive = hero!.compareDocumentPosition(live!) & Node.DOCUMENT_POSITION_FOLLOWING;
+    const liveBeforeNews = live!.compareDocumentPosition(news!) & Node.DOCUMENT_POSITION_FOLLOWING;
     const heroBeforeNews = hero!.compareDocumentPosition(news!) & Node.DOCUMENT_POSITION_FOLLOWING;
     const newsBeforePast = news!.compareDocumentPosition(firstPastBasho!) & Node.DOCUMENT_POSITION_FOLLOWING;
 
+    expect(heroBeforeLive).toBeTruthy();
+    expect(liveBeforeNews).toBeTruthy();
     expect(heroBeforeNews).toBeTruthy();
     expect(newsBeforePast).toBeTruthy();
   });

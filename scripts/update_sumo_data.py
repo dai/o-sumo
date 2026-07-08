@@ -868,10 +868,10 @@ def build_torikumi_dataset(
     }
     loaded_days = {}
     for day in range(1, 16):
-        if official_start_date is not None and current_day <= 0:
+        if fetch_days is not None and day not in fetch_days:
             loaded_days[day] = {"makuuchi": None, "juryo": None}
             continue
-        if fetch_days is not None and day not in fetch_days:
+        if official_start_date is not None and current_day <= 0 and fetch_days is None:
             loaded_days[day] = {"makuuchi": None, "juryo": None}
             continue
         expected_unpublished = day > current_day
@@ -1011,6 +1011,22 @@ def load_existing_torikumi_json() -> dict | None:
     if not path.exists():
         return None
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def resolve_torikumi_fetch_days(
+    *,
+    torikumi_only: bool,
+    scope: str,
+    current_day: int,
+    existing_torikumi: dict | None,
+) -> set[int] | None:
+    if not torikumi_only:
+        return None
+    if scope == "result" and existing_torikumi and current_day > 0:
+        return {max(1, current_day - 1), current_day}
+    if scope == "schedule" and current_day <= 0:
+        return {1}
+    return None
 
 
 def build_torikumi_meta_fallback(existing: dict) -> dict:
@@ -1622,9 +1638,12 @@ def main() -> None:
             or str(generation_existing.get("year", "")) != year_jp
         ):
             generation_existing = None
-        fetch_days: set[int] | None = None
-        if args.torikumi_only and args.torikumi_scope == "result" and existing_torikumi:
-            fetch_days = {max(1, current_day - 1), current_day}
+        fetch_days = resolve_torikumi_fetch_days(
+            torikumi_only=args.torikumi_only,
+            scope=args.torikumi_scope,
+            current_day=current_day,
+            existing_torikumi=existing_torikumi,
+        )
 
         torikumi_dataset = build_torikumi_dataset(
             basho_id,

@@ -2,11 +2,13 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   getBanzukePathForMonthKey,
+  getDayPath,
 } from './lib/torikumi-routes';
 import {
   torikumiArchive,
   torikumiData,
   torikumiMonthKey,
+  type TorikumiDataSet,
   type TorikumiDailyData,
 } from './lib/torikumi-data';
 import { CURRENT_RESULT_PATH, CURRENT_SCHEDULE_PATH } from './lib/archive-basho-data';
@@ -14,17 +16,112 @@ import { PAST_BASHO } from './lib/archives-data';
 import HomeLink from './components/HomeLink';
 import NewsSection from './components/NewsSection';
 import KimariteCard from './components/KimariteCard';
+import { divisionAnchorId } from './lib/rikishi-display';
 import './index.css';
+
+const LIVE_START_MINUTES = 13 * 60;
+const MAKUUCHI_START_MINUTES = 15 * 60 + 30;
+const LIVE_END_MINUTES = 18 * 60;
 
 type LiveState =
   | { kind: 'in-progress'; day: number }
   | { kind: 'pre-basho' }
   | { kind: 'frozen'; lastUpdatedLabel: string };
 
+type LiveTorikumiTarget = {
+  href: string;
+  description: string;
+};
+
 function dayOfDailyData(d: TorikumiDailyData | null | undefined): number | null {
   if (!d) return null;
   const makuuchiDay = d.makuuchi?.day;
   return typeof makuuchiDay === 'number' ? makuuchiDay : null;
+}
+
+function hasAnyMatches(d: TorikumiDailyData | null | undefined): boolean {
+  return Boolean(d && (d.makuuchi.matches.length > 0 || d.juryo.matches.length > 0));
+}
+
+export function jstMinutesOfDay(now: Date = new Date()): number {
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+    timeZone: 'Asia/Tokyo',
+  }).formatToParts(now);
+  const hour = Number(parts.find((part) => part.type === 'hour')?.value ?? '0');
+  const minute = Number(parts.find((part) => part.type === 'minute')?.value ?? '0');
+  return hour * 60 + minute;
+}
+
+function boutNumberForWindow(matchCount: number, elapsedMinutes: number, windowMinutes: number): number {
+  if (matchCount <= 0) return 0;
+  const ratio = Math.max(0, Math.min(elapsedMinutes / windowMinutes, 0.999));
+  return Math.max(1, Math.min(matchCount, Math.floor(ratio * matchCount) + 1));
+}
+
+export function nearestTorikumiAnchor(dayData: TorikumiDailyData, jstMinutes: number): string | null {
+  if (jstMinutes >= LIVE_START_MINUTES && jstMinutes < MAKUUCHI_START_MINUTES && dayData.juryo.matches.length > 0) {
+    const boutNo = boutNumberForWindow(
+      dayData.juryo.matches.length,
+      jstMinutes - LIVE_START_MINUTES,
+      MAKUUCHI_START_MINUTES - LIVE_START_MINUTES,
+    );
+    return divisionAnchorId('十両', boutNo);
+  }
+
+  if (jstMinutes >= MAKUUCHI_START_MINUTES && jstMinutes < LIVE_END_MINUTES && dayData.makuuchi.matches.length > 0) {
+    const boutNo = boutNumberForWindow(
+      dayData.makuuchi.matches.length,
+      jstMinutes - MAKUUCHI_START_MINUTES,
+      LIVE_END_MINUTES - MAKUUCHI_START_MINUTES,
+    );
+    return divisionAnchorId('幕内', boutNo);
+  }
+
+  if (dayData.makuuchi.matches.length > 0) {
+    return divisionAnchorId('幕内', 1);
+  }
+  if (dayData.juryo.matches.length > 0) {
+    return divisionAnchorId('十両', 1);
+  }
+  return null;
+}
+
+export function buildLiveTorikumiTarget(
+  archive: TorikumiDataSet,
+  data: TorikumiDataSet,
+  jstMinutes: number = jstMinutesOfDay(),
+): LiveTorikumiTarget {
+  const todayDay = dayOfDailyData(data.today);
+  if (todayDay !== null) {
+    const resultDay = archive.resultDays?.find((day) => day.day === todayDay);
+    const scheduleDay = archive.scheduleDays?.find((day) => day.day === todayDay);
+    const day = resultDay ?? scheduleDay;
+    const dayData = hasAnyMatches(data.today) ? data.today : scheduleDay?.data;
+    const anchor = dayData ? nearestTorikumiAnchor(dayData, jstMinutes) : null;
+    return {
+      href: day ? `${getDayPath(day, 'result')}${anchor ? `#${anchor}` : ''}` : `${CURRENT_RESULT_PATH}/`,
+      description: 'JST 13:00-18:00 は現在時刻に近い取組位置へ移動します。',
+    };
+  }
+
+  const tomorrowDay = dayOfDailyData(data.tomorrow);
+  if (tomorrowDay !== null) {
+    const scheduleDay = archive.scheduleDays?.find((day) => day.day === tomorrowDay);
+    const dayData = hasAnyMatches(data.tomorrow) ? data.tomorrow : scheduleDay?.data;
+    const anchor = dayData ? nearestTorikumiAnchor(dayData, jstMinutes) : null;
+    return {
+      href: scheduleDay ? `${getDayPath(scheduleDay, 'schedule')}${anchor ? `#${anchor}` : ''}` : `${CURRENT_SCHEDULE_PATH}/`,
+      description: '開催前は公開済みの取組予定へ移動します。場所中は速報位置へ切り替わります。',
+    };
+  }
+
+  return {
+    href: `${CURRENT_RESULT_PATH}/`,
+    description: '取組データの更新を待機中です。',
+  };
 }
 
 function deriveLiveState(
@@ -81,6 +178,7 @@ export default function Home() {
     torikumiArchive.updatedAt,
     locale,
   );
+  const liveTorikumiTarget = buildLiveTorikumiTarget(torikumiArchive, torikumiData);
 
   return (
     <div className="home-container">
@@ -122,6 +220,18 @@ export default function Home() {
               {t('home.heroRikishi')}
             </Link>
           </nav>
+        </section>
+
+        <section className="live-torikumi-section" aria-labelledby="live-torikumi-title">
+          <div className="live-torikumi-copy">
+            <h2 id="live-torikumi-title" className="live-torikumi-title">
+              現在の取組、速報中！
+            </h2>
+            <p>{liveTorikumiTarget.description}</p>
+          </div>
+          <Link to={liveTorikumiTarget.href} className="live-torikumi-link">
+            速報を見る
+          </Link>
         </section>
 
         <NewsSection />
@@ -180,5 +290,4 @@ export default function Home() {
     </div>
   );
 }
-
 

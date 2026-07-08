@@ -180,6 +180,60 @@ class OfficialBashoScheduleTest(unittest.TestCase):
             15,
         )
 
+    def test_schedule_scope_fetches_day_one_before_official_start(self) -> None:
+        self.assertEqual(
+            MODULE.resolve_torikumi_fetch_days(
+                torikumi_only=True,
+                scope="schedule",
+                current_day=0,
+                existing_torikumi=None,
+            ),
+            {1},
+        )
+        self.assertIsNone(
+            MODULE.resolve_torikumi_fetch_days(
+                torikumi_only=True,
+                scope="result",
+                current_day=0,
+                existing_torikumi={"resultDays": []},
+            )
+        )
+        self.assertEqual(
+            MODULE.resolve_torikumi_fetch_days(
+                torikumi_only=True,
+                scope="result",
+                current_day=3,
+                existing_torikumi={"resultDays": []},
+            ),
+            {2, 3},
+        )
+
+    def test_explicit_fetch_days_run_before_official_start(self) -> None:
+        calls = []
+
+        def fake_try_load_torikumi_day(basho_id, day, kakuzuke_id, *, expected_unpublished=False):
+            calls.append((basho_id, day, kakuzuke_id, expected_unpublished))
+            return None
+
+        with mock.patch.object(MODULE, "load_division_rikishi", return_value={}):
+            with mock.patch.object(MODULE, "try_load_torikumi_day", side_effect=fake_try_load_torikumi_day):
+                MODULE.build_torikumi_dataset(
+                    636,
+                    0,
+                    "2026-07-11T13:00:00+09:00",
+                    None,
+                    fetch_days={1},
+                    official_start_date=date(2026, 7, 12),
+                )
+
+        self.assertEqual(
+            calls,
+            [
+                (636, 1, 1, True),
+                (636, 1, 2, True),
+            ],
+        )
+
 
 class ParseOfficialAbsenceTest(unittest.TestCase):
     def setUp(self) -> None:
