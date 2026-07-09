@@ -262,140 +262,40 @@ class OfficialBashoScheduleTest(unittest.TestCase):
         self.assertIn("resultDays", payload)
 
 
-class ParseOfficialAbsenceTest(unittest.TestCase):
-    def setUp(self) -> None:
-        self.html = """
-        <html>
-          <body>
-            <input type="hidden" class="datetime" value="2026-05-11 10:00:07">
-            <p class="mdDate">2026-05-11 10:00:07</p>
-            <span class="dayNum fnt16">幕内・十両</span>
-            <table class="mdTable3 type4">
-              <tr>
-                <td><dl><dt>東横綱</dt><dd><img alt="ほうしょうりゅう" /></dd></dl></td>
-                <td><span class="fnt16">二日目から休場いたします。</span></td>
-              </tr>
-            </table>
-            <p class="txtR mb5">令和8年5月8日更新</p>
-            <table class="mdTable3 type4">
-              <tr>
-                <td><dl><dt>西横綱</dt><dd><img alt="おおのさと" /></dd></dl></td>
-                <td><span class="fnt16">初日から休場いたします。</span></td>
-              </tr>
-              <tr>
-                <td><dl><dt>西大関</dt><dd><img alt="あおにしき" /></dd></dl></td>
-                <td><span class="fnt16">初日から休場いたします。</span></td>
-              </tr>
-            </table>
-            <span class="dayNum fnt16">幕下以下</span>
-            <table class="mdTable3 type4">
-              <tr>
-                <td><dl><dt>東幕下</dt><dd><img alt="対象外" /></dd></dl></td>
-                <td><span class="fnt16">初日から休場いたします。</span></td>
-              </tr>
-            </table>
-          </body>
-        </html>
-        """
-        self.rosters = {
-            "makuuchi": {
-                3842: {
-                    "id": 3842,
-                    "name": "豊昇龍",
-                    "yomi": "ほうしょうりゅう",
-                    "rankText": "東横綱",
-                    "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/",
-                },
-                4227: {
-                    "id": 4227,
-                    "name": "大の里",
-                    "yomi": "おおのさと",
-                    "rankText": "西横綱",
-                    "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/",
-                },
-                4191: {
-                    "id": 4191,
-                    "name": "藤ノ川",
-                    "yomi": "ふじのかわ",
-                    "rankText": "東前頭十四",
-                    "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/",
-                },
-            },
-            "juryo": {
-                4230: {
-                    "id": 4230,
-                    "name": "安青錦",
-                    "yomi": "あおにしき",
-                    "rankText": "西大関",
-                    "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/",
-                },
-            },
-        }
-
-    def test_parses_and_resolves_official_makuuchi_juryo_absences(self) -> None:
-        report = MODULE.parse_absence_html(self.html)
-        absence_lookup = MODULE.resolve_official_absences(report["entries"], self.rosters)
-
-        makuuchi_names = [entry["name"] for entry in absence_lookup["makuuchi"]]
-        juryo_names = [entry["name"] for entry in absence_lookup["juryo"]]
-
-        self.assertEqual(report["updatedAt"], "2026-05-11 10:00:07")
-        self.assertEqual(makuuchi_names, ["豊昇龍", "大の里"])
-        self.assertEqual(juryo_names, ["安青錦"])
-        self.assertEqual(absence_lookup["makuuchi"][0]["startDay"], 2)
-        self.assertEqual(absence_lookup["makuuchi"][1]["startDay"], 1)
-
-    def test_uses_start_day_when_deriving_daily_absentees(self) -> None:
-        report = MODULE.parse_absence_html(self.html)
-        absence_lookup = MODULE.resolve_official_absences(report["entries"], self.rosters)
-
-        day1 = MODULE.derive_absentees("makuuchi", 1, absence_lookup)
-        day2 = MODULE.derive_absentees("makuuchi", 2, absence_lookup)
-
-        self.assertEqual([entry["name"] for entry in day1], ["大の里"])
-        self.assertEqual([entry["name"] for entry in day2], ["豊昇龍", "大の里"])
-
-    def test_removed_official_entries_are_not_derived_as_absent(self) -> None:
-        html = self.html.replace(
-            """
-              <tr>
-                <td><dl><dt>東横綱</dt><dd><img alt="ほうしょうりゅう" /></dd></dl></td>
-                <td><span class="fnt16">二日目から休場いたします。</span></td>
-              </tr>
-            """,
-            "",
-        )
-        report = MODULE.parse_absence_html(html)
-        absence_lookup = MODULE.resolve_official_absences(report["entries"], self.rosters)
-
-        self.assertNotIn("豊昇龍", [entry["name"] for entry in MODULE.derive_absentees("makuuchi", 2, absence_lookup)])
-
-    def test_marks_opponent_as_fusen_winner_for_absent_scheduled_match(self) -> None:
+class DeriveAbsenteesTest(unittest.TestCase):
+    def test_derives_absentees_from_roster_minus_active_ids(self) -> None:
         division_day = {
             "matches": [
                 {
-                    "boutNo": 20,
-                    "eastName": "豊昇龍",
                     "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/",
-                    "westName": "藤ノ川",
                     "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/",
-                    "kimarite": "未定",
-                    "winner": None,
                 }
             ]
         }
-        absentees = [
-            {
-                "id": 3842,
-                "name": "豊昇龍",
-                "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/",
-            }
-        ]
+        roster = {
+            3842: {"id": 3842, "name": "豊昇龍", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"},
+            4191: {"id": 4191, "name": "藤ノ川", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"},
+            4227: {"id": 4227, "name": "大の里", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"},
+        }
 
-        updated = MODULE.apply_absence_results(division_day, absentees)
+        absentees = MODULE.derive_absentees(division_day, roster)
+        self.assertEqual([entry["id"] for entry in absentees], [4227])
 
-        self.assertEqual(updated["matches"][0]["kimarite"], "不戦")
-        self.assertEqual(updated["matches"][0]["winner"], "west")
+    def test_cross_division_active_ids_are_respected(self) -> None:
+        division_day = {"matches": [{"eastProfileUrl": "", "westProfileUrl": ""}]}
+        roster = {
+            4230: {"id": 4230, "name": "安青錦", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"},
+        }
+
+        absentees = MODULE.derive_absentees(division_day, roster, {4230})
+        self.assertEqual(absentees, [])
+
+    def test_returns_existing_absentees_when_roster_unavailable(self) -> None:
+        division_day = {
+            "matches": [{"eastProfileUrl": "", "westProfileUrl": ""}],
+            "absentees": [{"id": 1, "name": "既存", "profileUrl": "https://example.test/profile/1/"}],
+        }
+        self.assertEqual(MODULE.derive_absentees(division_day, {}), division_day["absentees"])
 
 
 class TorikumiSubstantiveDiffTest(unittest.TestCase):
@@ -555,7 +455,7 @@ class TorikumiSubstantiveDiffTest(unittest.TestCase):
 class ResolveCurrentBashoDayTest(unittest.TestCase):
     def test_uses_calendar_day_when_banzuke_metadata_is_stale(self) -> None:
         self.assertEqual(
-            MODULE.resolve_current_basho_day(date(2026, 5, 10), 1, date(2026, 5, 11)),
+            MODULE.determine_current_basho_day(date(2026, 5, 10), date(2026, 5, 11)),
             2,
         )
 
