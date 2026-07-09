@@ -227,7 +227,7 @@ GitHub Actions uses separate workflows for torikumi schedules, torikumi results,
   - updates torikumi results only (`--torikumi-only --torikumi-scope result --skip-rikishi-fetch`)
   - logs: always prints `github.event.schedule`, current JST time, `resultUpdatedAt`, and `scheduleUpdatedAt`
 - News update: `.github/workflows/news-feed-update.yml`
-  - schedule: every 2 hours from JST 09:00 through 19:00
+  - schedule: every 2 hours from JST 09:05 through 19:05
   - updates Japan Sumo Association and dmenu Sports news (`python scripts/update_news_feed.py`)
   - skips rewriting `news.json` when fetched items and source states are unchanged
 
@@ -264,7 +264,7 @@ GitHub Actions runs the following on pull requests and pushes to `main`, `codex/
 ## Operations Policy For The July 2026 Basho
 
 - GitHub Actions daily/realtime/news refreshes create or update the shared `automation/data-updates` PR when files change.
-- Schedules refresh at JST 13:00 / 19:00, results refresh every 10 minutes from JST 13:00 through 18:00, and news polls every 2 hours from JST 09:00 through 19:00.
+- Schedules refresh at JST 13:00 / 19:00, results refresh every 10 minutes from JST 13:00 through 18:00, and news polls every 2 hours from JST 09:05 through 19:05.
 - Manual runs can be started with `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main`, `gh workflow run realtime-torikumi-update.yml -R dai/o-sumo --ref main`, or `gh workflow run news-feed-update.yml -R dai/o-sumo --ref main`.
 - The realtime workflow uses `--torikumi-only --torikumi-scope result --skip-rikishi-fetch`, so it is limited to torikumi results.
 - If results still look stale, triage in this order: run history -> run logs (`event.schedule`, JST time, updatedAt fields) -> upstream `judge` values.
