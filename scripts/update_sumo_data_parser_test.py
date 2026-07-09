@@ -14,15 +14,31 @@ assert SPEC.loader is not None
 SPEC.loader.exec_module(MODULE)
 
 
+def _make_json_response(payload: bytes = b'{"Result":"1"}'):
+    class DummyResponse:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, exc_type, exc, tb):
+            return False
+
+        def read(self) -> bytes:
+            return payload
+
+    return DummyResponse()
+
+
 class ParseProfileHtmlTest(unittest.TestCase):
     def test_keeps_shusshin_from_exact_label_without_related_list_override(self) -> None:
         html = """
+        <meta property="og:image" content="https://www.sumo.or.jp/images/rikishi/3842.jpg" />
         <table>
           <tr><th>生年月日</th><td>昭和62年5月11日（38歳）</td></tr>
           <tr><th>出身地</th><td>熊本県熊本市東区</td></tr>
           <tr><th>身長</th><td>183.0cm</td></tr>
           <tr><th>体重</th><td>146.0kg</td></tr>
           <tr><th>初土俵</th><td>平成十五年三月場所</td></tr>
+          <tr><th>通算成績</th><td>523勝410敗12休</td></tr>
         </table>
         <section>
           <h2>熊本県出身の他の力士</h2>
@@ -39,25 +55,17 @@ class ParseProfileHtmlTest(unittest.TestCase):
         self.assertEqual(profile["height"], 183)
         self.assertEqual(profile["weight"], 146)
         self.assertEqual(profile["debut"], "平成十五年三月場所")
+        self.assertEqual(profile["careerStats"], {"wins": 523, "losses": 410, "draws": 12})
+        self.assertEqual(profile["photoUrl"], "https://www.sumo.or.jp/images/rikishi/3842.jpg")
 
 
 class PostJsonRequestHeadersTest(unittest.TestCase):
     def test_torikumi_ajax_request_sets_mischeief_cookie(self) -> None:
         captured = {}
 
-        class DummyResponse:
-            def __enter__(self):
-                return self
-
-            def __exit__(self, exc_type, exc, tb):
-                return False
-
-            def read(self) -> bytes:
-                return b'{"Result":"1"}'
-
         def fake_urlopen(request, timeout=30):
             captured["headers"] = dict(request.header_items())
-            return DummyResponse()
+            return _make_json_response()
 
         with mock.patch.object(MODULE, "urlopen", side_effect=fake_urlopen):
             MODULE.post_json("/ResultData/torikumiAjax/1/8/", {"basho_id": "635", "kakuzuke_id": "1", "day": "8"})
@@ -71,19 +79,9 @@ class PostJsonRequestHeadersTest(unittest.TestCase):
     def test_banzuke_ajax_request_sets_and_mouse_cookie(self) -> None:
         captured = {}
 
-        class DummyResponse:
-            def __enter__(self):
-                return self
-
-            def __exit__(self, exc_type, exc, tb):
-                return False
-
-            def read(self) -> bytes:
-                return b'{"Result":"1"}'
-
         def fake_urlopen(request, timeout=30):
             captured["headers"] = dict(request.header_items())
-            return DummyResponse()
+            return _make_json_response()
 
         with mock.patch.object(MODULE, "urlopen", side_effect=fake_urlopen):
             MODULE.post_json(
@@ -100,19 +98,9 @@ class PostJsonRequestHeadersTest(unittest.TestCase):
     def test_hoshitori_ajax_request_sets_game_cat_cookie(self) -> None:
         captured = {}
 
-        class DummyResponse:
-            def __enter__(self):
-                return self
-
-            def __exit__(self, exc_type, exc, tb):
-                return False
-
-            def read(self) -> bytes:
-                return b'{"Result":"1"}'
-
         def fake_urlopen(request, timeout=30):
             captured["headers"] = dict(request.header_items())
-            return DummyResponse()
+            return _make_json_response()
 
         with mock.patch.object(MODULE, "urlopen", side_effect=fake_urlopen):
             MODULE.post_json(
@@ -137,7 +125,7 @@ class LoadBanzukeMetaRequestTest(unittest.TestCase):
             return {"Result": "1"}
 
         with mock.patch.object(MODULE, "post_json", side_effect=fake_post_json):
-            with mock.patch.object(MODULE, "load_banzuke_context", return_value={"basho_id": 636}, create=True):
+            with mock.patch.object(MODULE, "load_banzuke_context", return_value={"basho_id": 636}):
                 MODULE.load_banzuke_meta(2)
 
         self.assertEqual(captured["path"], "/ResultBanzuke/tableAjax/2/1/")
