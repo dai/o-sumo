@@ -277,6 +277,11 @@ def build_payload(limit: int) -> dict:
     }
 
 
+def all_news_sources_failed(payload: dict) -> bool:
+    sources = payload.get("sources", [])
+    return bool(sources) and all(not source.get("ok", False) for source in sources)
+
+
 def has_news_content_changed(payload: dict, existing: dict) -> bool:
     return {
         "sources": payload.get("sources", []),
@@ -316,6 +321,11 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     payload = build_payload(args.limit)
+    if all_news_sources_failed(payload):
+        print("[error] all news sources failed; aborting update", file=sys.stderr)
+        for source in payload.get("sources", []):
+            print(f"  - {source.get('id')}: ok={source.get('ok', False)}", file=sys.stderr)
+        return 1
     changed = write_payload(payload, args.out, force_write=args.force_write)
     if changed:
         print(f"[ok] wrote {len(payload['items'])} items to {args.out}")

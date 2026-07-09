@@ -861,12 +861,14 @@ def build_torikumi_dataset(
     *,
     fetch_days: set[int] | None = None,
     official_start_date: date | None = None,
+    strict_fetch: bool = False,
 ) -> dict:
     rosters = {
         "makuuchi": load_division_rikishi(1),
         "juryo": load_division_rikishi(2),
     }
     loaded_days = {}
+    unexpected_fetch_failures: list[tuple[int, int]] = []
     for day in range(1, 16):
         if fetch_days is not None and day not in fetch_days:
             loaded_days[day] = {"makuuchi": None, "juryo": None}
@@ -875,20 +877,34 @@ def build_torikumi_dataset(
             loaded_days[day] = {"makuuchi": None, "juryo": None}
             continue
         expected_unpublished = day > current_day
-        loaded_days[day] = {
-            "makuuchi": try_load_torikumi_day(
+        makuuchi_day = try_load_torikumi_day(
                 basho_id,
                 day,
                 1,
                 expected_unpublished=expected_unpublished,
-            ),
-            "juryo": try_load_torikumi_day(
+            )
+        juryo_day = try_load_torikumi_day(
                 basho_id,
                 day,
                 2,
                 expected_unpublished=expected_unpublished,
-            ),
+            )
+        if strict_fetch and not expected_unpublished:
+            if makuuchi_day is None:
+                unexpected_fetch_failures.append((day, 1))
+            if juryo_day is None:
+                unexpected_fetch_failures.append((day, 2))
+        loaded_days[day] = {
+            "makuuchi": makuuchi_day,
+            "juryo": juryo_day,
         }
+
+    if strict_fetch and unexpected_fetch_failures:
+        failure_text = ", ".join(
+            f"day={day} division={DIVISION_LABEL[kakuzuke_id]}"
+            for day, kakuzuke_id in unexpected_fetch_failures
+        )
+        raise RuntimeError(f"strict torikumi fetch check failed: {failure_text}")
 
     start_date = official_start_date or resolve_basho_start_date(loaded_days, updated_at, current_day)
     current_timestamp = current_timestamp_iso()
@@ -1553,6 +1569,11 @@ def parse_args() -> argparse.Namespace:
         default=0,
         help="Limit number of rikishi profiles to fetch (0 = no limit).",
     )
+    parser.add_argument(
+        "--strict-torikumi-fetch",
+        action="store_true",
+        help="Fail when expected torikumi day fetches return no data.",
+    )
     return parser.parse_args()
 
 
@@ -1652,6 +1673,7 @@ def main() -> None:
             generation_existing,
             fetch_days=fetch_days,
             official_start_date=official_start_date,
+            strict_fetch=args.strict_torikumi_fetch,
         )
         torikumi_dataset = apply_torikumi_scope(
             torikumi_dataset,

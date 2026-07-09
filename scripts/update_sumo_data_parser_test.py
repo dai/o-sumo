@@ -234,6 +234,33 @@ class OfficialBashoScheduleTest(unittest.TestCase):
             ],
         )
 
+    def test_strict_fetch_raises_on_unexpected_fetch_failures(self) -> None:
+        with mock.patch.object(MODULE, "load_division_rikishi", return_value={}):
+            with mock.patch.object(MODULE, "try_load_torikumi_day", return_value=None):
+                with self.assertRaisesRegex(RuntimeError, "strict torikumi fetch check failed"):
+                    MODULE.build_torikumi_dataset(
+                        636,
+                        3,
+                        "2026-07-12T13:00:00+09:00",
+                        None,
+                        fetch_days={2, 3},
+                        strict_fetch=True,
+                    )
+
+    def test_strict_fetch_allows_unpublished_days(self) -> None:
+        with mock.patch.object(MODULE, "load_division_rikishi", return_value={}):
+            with mock.patch.object(MODULE, "try_load_torikumi_day", return_value=None):
+                payload = MODULE.build_torikumi_dataset(
+                    636,
+                    0,
+                    "2026-07-11T13:00:00+09:00",
+                    None,
+                    fetch_days={1},
+                    official_start_date=date(2026, 7, 12),
+                    strict_fetch=True,
+                )
+        self.assertIn("resultDays", payload)
+
 
 class ParseOfficialAbsenceTest(unittest.TestCase):
     def setUp(self) -> None:

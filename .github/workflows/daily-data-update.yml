@@ -36,7 +36,7 @@ jobs:
           set -euo pipefail
           success=0
           for attempt in 1 2; do
-            if python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule; then
+            if python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule --strict-torikumi-fetch; then
               success=1
               break
             fi
@@ -66,6 +66,26 @@ jobs:
           print(f"updatedAt={torikumi.get('updatedAt', '')}")
           print(f"resultUpdatedAt={torikumi.get('resultUpdatedAt', '')}")
           print(f"scheduleUpdatedAt={torikumi.get('scheduleUpdatedAt', '')}")
+          PY
+
+      - name: Validate torikumi payload
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          torikumi = json.loads(Path("public/api/v1/torikumi.json").read_text(encoding="utf-8"))
+          required = ("updatedAt", "resultUpdatedAt", "scheduleUpdatedAt", "resultDays", "scheduleDays")
+          missing = [key for key in required if key not in torikumi]
+          if missing:
+              raise SystemExit(f"missing keys in torikumi.json: {missing}")
+
+          if not (torikumi["updatedAt"] and torikumi["resultUpdatedAt"] and torikumi["scheduleUpdatedAt"]):
+              raise SystemExit("torikumi timestamps must be non-empty")
+
+          if len(torikumi["resultDays"]) != 15 or len(torikumi["scheduleDays"]) != 15:
+              raise SystemExit("torikumi archive day count must be 15 for resultDays and scheduleDays")
           PY
 
       - name: Create or update data update PR

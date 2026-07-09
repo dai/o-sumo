@@ -104,5 +104,27 @@ class BuildPayloadTest(unittest.TestCase):
         self.assertEqual(payload["items"][0]["sourceLabel"], "生存ソース")
 
 
+class SourceFailureGuardTest(unittest.TestCase):
+    def test_all_sources_failed_returns_true(self) -> None:
+        payload = {
+            "sources": [
+                {"id": "a", "ok": False},
+                {"id": "b", "ok": False},
+            ],
+            "items": [],
+        }
+        self.assertTrue(MODULE.all_news_sources_failed(payload))
+
+    def test_partial_source_success_returns_false(self) -> None:
+        payload = {
+            "sources": [
+                {"id": "a", "ok": False},
+                {"id": "b", "ok": True},
+            ],
+            "items": [{"id": "b-1"}],
+        }
+        self.assertFalse(MODULE.all_news_sources_failed(payload))
+
+
 if __name__ == "__main__":
     unittest.main()
