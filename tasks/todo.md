@@ -1,3 +1,12 @@
+## Google Adsense head snippet insertion
+
+### Plan
+- [x] Insert the Adsense loader script into `index.html` `<head>`
+- [x] Verify the script tag is present in the file
+
+### Review
+- `index.html` の `<head>` に指定の Adsense スクリプトを追加した
+
 ## 令和八年七月場所 番付更新 Todo（2026-06-29）
 
 ### Scope
