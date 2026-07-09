@@ -2,8 +2,8 @@ name: News Feed Update
 
 on:
   schedule:
-    # JST 09:00, 11:00, 13:00, 15:00, 17:00, 19:00
-    - cron: '0 0,2,4,6,8,10 * * *'
+    # JST 09:05, 11:05, 13:05, 15:05, 17:05, 19:05
+    - cron: '5 0,2,4,6,8,10 * * *'
   workflow_dispatch:
 
 concurrency:
