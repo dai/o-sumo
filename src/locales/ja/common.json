@@ -1,6 +1,6 @@
 {
   "global": {
-    "july2026UpdateNotice": "令和八年七月場所の番付を反映しました。取組予定は公開され次第更新します。",
+    "july2026UpdateNotice": "令和八年七月場所の初日取組発表に合わせ、休場者情報を更新しました。",
     "homeLink": "ホーム",
     "siteNavigation": "サイトナビゲーション"
   },
@@ -50,7 +50,8 @@
     "newsSubsectionAssociationLead": "日本相撲協会からのお知らせ",
     "newsSubsectionSumoNewsTitle": "相撲界ニュース",
     "newsSubsectionSumoNewsLead": "dmenu スポーツから最新 5 件",
-    "newsSubsectionSumoNewsSeeAll": "dmenu で見る"
+    "newsSubsectionSumoNewsSeeAll": "dmenu で見る",
+    "footerDataCredit": "データ出典: 公益財団法人日本相撲協会 / API: dai/o-sumo"
   },
   "kimarite": {
     "cardTitle": "決まり手",

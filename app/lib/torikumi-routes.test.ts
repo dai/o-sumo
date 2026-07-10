@@ -83,6 +83,25 @@ describe('torikumi route helpers', () => {
     }
   });
 
+
+  it('reflects July opening-day absentees after the schedule announcement', () => {
+    const firstScheduleDay = torikumiArchive.scheduleDays[0];
+    const firstResultDay = torikumiArchive.resultDays[0];
+    const scheduleAbsentees = [
+      ...(firstScheduleDay.data.makuuchi.absentees ?? []),
+      ...(firstScheduleDay.data.juryo.absentees ?? []),
+    ].map((entry) => entry.name);
+    const resultAbsentees = [
+      ...(firstResultDay.data.makuuchi.absentees ?? []),
+      ...(firstResultDay.data.juryo.absentees ?? []),
+    ].map((entry) => entry.name);
+
+    expect(scheduleAbsentees).toEqual(['若隆景', '白鷹山']);
+    expect(resultAbsentees).toEqual(['若隆景', '白鷹山']);
+    expect(scheduleAbsentees).not.toContain('大の里');
+    expect(scheduleAbsentees).not.toContain('安青錦');
+  });
+
   it('keeps adjacent navigation inside the same month archive', () => {
     const marchFirstDay = MARCH2026_TORIKUMI_DATA.resultDays?.[0];
     const marchSecondDay = MARCH2026_TORIKUMI_DATA.resultDays?.[1];

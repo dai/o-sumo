@@ -279,6 +279,7 @@ export default function Home() {
 
       <footer className="home-footer">
         <p>{t('home.footerCopyright')}</p>
+        <p className="home-footer-credit">{t('home.footerDataCredit')}</p>
         <nav aria-label="ホームの外部リンク">
           <HomeLink placement="footer" />
           {' | '}

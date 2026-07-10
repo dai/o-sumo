@@ -1,6 +1,6 @@
 {
   "global": {
-    "july2026UpdateNotice": "The July 2026 banzuke is now reflected. Daily torikumi pages update as schedules are published.",
+    "july2026UpdateNotice": "Absentee information has been updated following the opening-day torikumi announcement for the July 2026 basho.",
     "homeLink": "Home",
     "siteNavigation": "Site navigation"
   },
@@ -50,7 +50,8 @@
     "newsSubsectionAssociationLead": "Official announcements from the JSA",
     "newsSubsectionSumoNewsTitle": "Sumo World News",
     "newsSubsectionSumoNewsLead": "Latest 5 from dmenu Sports",
-    "newsSubsectionSumoNewsSeeAll": "View on dmenu"
+    "newsSubsectionSumoNewsSeeAll": "View on dmenu",
+    "footerDataCredit": "Data sources: Japan Sumo Association / API: dai/o-sumo"
   },
   "kimarite": {
     "cardTitle": "Kimarite",
