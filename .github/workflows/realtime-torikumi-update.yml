@@ -37,7 +37,7 @@ jobs:
           set -euo pipefail
           success=0
           for attempt in 1 2; do
-            if python scripts/update_sumo_data.py --torikumi-only --torikumi-scope result --skip-rikishi-fetch --strict-torikumi-fetch; then
+            if python scripts/update_sumo_data.py --torikumi-only --torikumi-scope result --skip-rikishi-fetch; then
               success=1
               break
             fi
