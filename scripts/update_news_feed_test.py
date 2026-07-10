@@ -1,4 +1,3 @@
-import argparse
 import importlib.util
 import json
 import pathlib
@@ -142,7 +141,7 @@ class MainStaleFallbackTest(unittest.TestCase):
             output = pathlib.Path(temp_dir) / "news.json"
             original_text = json.dumps(existing, ensure_ascii=False, indent=2) + "\n"
             output.write_text(original_text, encoding="utf-8")
-            args = argparse.Namespace(out=output, limit=8, force_write=False, allow_stale_on_failure=True)
+            args = mock.Mock(out=output, limit=8, force_write=False, allow_stale_on_failure=True)
 
             with (
                 mock.patch.object(MODULE, "parse_args", return_value=args),
@@ -164,7 +163,7 @@ class MainStaleFallbackTest(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as temp_dir:
             output = pathlib.Path(temp_dir) / "news.json"
-            args = argparse.Namespace(out=output, limit=8, force_write=False, allow_stale_on_failure=True)
+            args = mock.Mock(out=output, limit=8, force_write=False, allow_stale_on_failure=True)
 
             with (
                 mock.patch.object(MODULE, "parse_args", return_value=args),
