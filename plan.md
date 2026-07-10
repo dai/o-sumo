@@ -46,3 +46,51 @@
 - [ ] Phase 2: `data-integration` - API連携と番付・星取の基本表示
 - [ ] Phase 3: `polish` - アニメーション、インタラクション、アクセシビリティ対応
 - [ ] Phase 4: `public-release` - PWA化とデプロイ
+
+## 6. 2026-07-10 七月場所「取組予定未発表・休場者反映」引き継ぎメモ
+
+### 背景
+- 2026年七月場所の取組予定が未発表の状態でも、休場者情報だけは先に UI/API に反映しておく必要がある。
+- 対象の休場者は若隆景と白鷹山。
+- 今日作成したローカルコミット `22fc748 Preserve July absentees before schedule release` は、無効化された PR #149 の2コミットを外し、`1d92df7` 直上に作り直したもの。
+
+### 実施したローカル変更
+- `public/api/v1/torikumi.json` の七月場所データで、取組予定未発表の状態を維持しつつ休場者を反映。
+- `app/lib/torikumi-data.ts` の埋め込みデータも同じ内容に同期。
+- 取組予定未発表時に休場者表示が消えないよう、関連テストを更新。
+- 自動更新スクリプトで、取組未発表時にも休場者情報を保持する挙動を確認できるようにした。
+
+### テスト結果
+- `git diff --check` は成功。
+- `git status --short && nl -ba plan.md | sed -n '45,120p'` で作業ツリーと追記範囲を確認済み。
+
+### PR作成がこの環境で詰まった理由
+- `make_pr` の結果が環境上で可視化されなかった。
+- GitHub CLI (`gh`) がインストールされていなかった。
+- GitHub への push は `CONNECT tunnel failed, response 403` で遮断された。
+
+### 新規チャットでの再開手順
+1. `git status --short` で作業ツリーがクリーンか確認する。
+2. `git log --oneline -5` で `22fc748 Preserve July absentees before schedule release` と `9c46192 Document July absentee PR handoff` の位置を確認する。
+3. 必要であれば、`1d92df7` 直上から新しい作業ブランチを作り、無効化された PR #149 由来の2コミットを含めない形に整える。
+4. 以下のブランチ名案・PRタイトル案・PR本文案を使って PR を作成する。
+
+### ブランチ名案
+- `fix/july-absentees-before-schedule`
+
+### PRタイトル案
+- `Preserve July absentees before schedule release`
+
+### PR本文案
+```markdown
+## Summary
+- Preserve July basho absentee data for Wakatakakage and Hakuyozan before the torikumi schedule is published.
+- Keep the public torikumi JSON and embedded app data in sync.
+- Update coverage so absentees remain visible while bouts are still unpublished.
+
+## Testing
+- git diff --check
+```
+
+### 追加コミット
+- 前回環境での追加コミットとして、`9c46192 Document July absentee PR handoff` が作成済み。
