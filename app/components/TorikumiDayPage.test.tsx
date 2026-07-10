@@ -87,7 +87,7 @@ describe('TorikumiDayPage', () => {
   });
 
   it('falls back to same-day schedule rows on pending result pages when result rows are still empty', () => {
-    const scheduleDay = torikumiArchive.scheduleDays.find((day) => day.data.makuuchi.matches.length > 0);
+    const scheduleDay = MARCH2026_TORIKUMI_DATA.scheduleDays?.find((day) => day.data.makuuchi.matches.length > 0);
     expect(scheduleDay).toBeDefined();
 
     const futurePathDate = '20991231';

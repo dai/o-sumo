@@ -351,12 +351,14 @@ def build_archive_day(day_data: dict, gregorian_year: str, mode: str, status: st
             "makuuchi": {
                 **normalized["makuuchi"],
                 "matches": [],
-                "absentees": [],
+                # Keep already-known absentees visible even before the torikumi list is published.
+                "absentees": list(normalized["makuuchi"].get("absentees", [])),
             },
             "juryo": {
                 **normalized["juryo"],
                 "matches": [],
-                "absentees": [],
+                # Keep already-known absentees visible even before the torikumi list is published.
+                "absentees": list(normalized["juryo"].get("absentees", [])),
             },
         }
     return {
@@ -788,10 +790,12 @@ def derive_absentees(
     roster: dict[int, dict],
     day_active_ids: set[int] | None = None,
 ) -> list[dict]:
+    existing = division_day.get("absentees")
     if not list(division_day.get("matches", [])):
+        if isinstance(existing, list):
+            return existing
         return []
     if not roster:
-        existing = division_day.get("absentees")
         if isinstance(existing, list):
             return existing
         return []

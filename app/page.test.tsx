@@ -113,7 +113,7 @@ describe('Home page', () => {
     expect(screen.getByRole('heading', { level: 2, name: '現在の取組、速報中！' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '速報を見る' })).toHaveAttribute(
       'href',
-      '/20260712-yotei/#bout-makuuchi-1',
+      '/20260712-yotei/',
     );
     expect(liveSection).not.toBeNull();
     expect(news).not.toBeNull();
@@ -121,11 +121,12 @@ describe('Home page', () => {
   });
 
   it('builds live torikumi anchors from the JST time window', () => {
-    const firstSchedule = torikumiArchive.scheduleDays[0].data;
+    const firstSchedule = MARCH2026_TORIKUMI_DATA.scheduleDays![0].data;
 
     expect(nearestTorikumiAnchor(firstSchedule, 14 * 60)).toMatch(/^bout-juryo-/);
     expect(nearestTorikumiAnchor(firstSchedule, 16 * 60)).toMatch(/^bout-makuuchi-/);
-    expect(buildLiveTorikumiTarget(torikumiArchive, torikumiData, 16 * 60).href).toBe('/20260712-yotei/#bout-makuuchi-5');
+    expect(nearestTorikumiAnchor(torikumiArchive.scheduleDays[0].data, 16 * 60)).toBeNull();
+    expect(buildLiveTorikumiTarget(torikumiArchive, torikumiData, 16 * 60).href).toBe('/20260712-yotei/');
   });
 
   it('places the news section between the current basho hero and the past-basho map', () => {
