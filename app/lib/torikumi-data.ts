@@ -59,9 +59,9 @@ export interface TorikumiDataSet {
 export const torikumiData: TorikumiDataSet = {
   "bashoName": "七月場所",
   "year": "令和八年",
-  "updatedAt": "2026-07-07T20:59:06+09:00",
+  "updatedAt": "2026-07-10T12:30:00+09:00",
   "resultUpdatedAt": "2026-06-29T16:26:01+09:00",
-  "scheduleUpdatedAt": "2026-07-07T20:59:06+09:00",
+  "scheduleUpdatedAt": "2026-07-10T12:30:00+09:00",
   "today": null,
   "tomorrow": {
     "makuuchi": {
@@ -72,14 +72,9 @@ export const torikumiData: TorikumiDataSet = {
       "matches": [],
       "absentees": [
         {
-          "id": 4227,
-          "name": "大の里",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-        },
-        {
-          "id": 4230,
-          "name": "安青錦",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+          "id": 3761,
+          "name": "若隆景",
+          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
         }
       ]
     },
@@ -91,9 +86,9 @@ export const torikumiData: TorikumiDataSet = {
       "matches": [],
       "absentees": [
         {
-          "id": 4267,
-          "name": "嵐富士",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4267/"
+          "id": 3334,
+          "name": "白鷹山",
+          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
         }
       ]
     }
@@ -114,7 +109,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "初日： 令和8年7月12日(日)",
           "division": "幕内",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            }
+          ]
         },
         "juryo": {
           "day": 1,
@@ -122,7 +123,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "初日： 令和8年7月12日(日)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            }
+          ]
         }
       }
     },
@@ -141,7 +148,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "二日目： 令和8年7月13日(月)",
           "division": "幕内",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            }
+          ]
         },
         "juryo": {
           "day": 2,
@@ -149,7 +162,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "二日目： 令和8年7月13日(月)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            }
+          ]
         }
       }
     },
@@ -168,7 +187,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "三日目： 令和8年7月14日(火)",
           "division": "幕内",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            }
+          ]
         },
         "juryo": {
           "day": 3,
@@ -176,7 +201,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "三日目： 令和8年7月14日(火)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            }
+          ]
         }
       }
     },
@@ -195,7 +226,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "四日目： 令和8年7月15日(水)",
           "division": "幕内",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            }
+          ]
         },
         "juryo": {
           "day": 4,
@@ -203,7 +240,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "四日目： 令和8年7月15日(水)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            }
+          ]
         }
       }
     },
@@ -222,7 +265,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "五日目： 令和8年7月16日(木)",
           "division": "幕内",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            }
+          ]
         },
         "juryo": {
           "day": 5,
@@ -230,7 +279,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "五日目： 令和8年7月16日(木)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            }
+          ]
         }
       }
     },
@@ -249,7 +304,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "六日目： 令和8年7月17日(金)",
           "division": "幕内",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            }
+          ]
         },
         "juryo": {
           "day": 6,
@@ -257,7 +318,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "六日目： 令和8年7月17日(金)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            }
+          ]
         }
       }
     },
@@ -276,7 +343,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "七日目： 令和8年7月18日(土)",
           "division": "幕内",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            }
+          ]
         },
         "juryo": {
           "day": 7,
@@ -284,7 +357,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "七日目： 令和8年7月18日(土)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            }
+          ]
         }
       }
     },
@@ -303,7 +382,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "中日： 令和8年7月19日(日)",
           "division": "幕内",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            }
+          ]
         },
         "juryo": {
           "day": 8,
@@ -311,7 +396,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "中日： 令和8年7月19日(日)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            }
+          ]
         }
       }
     },
@@ -330,7 +421,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "九日目： 令和8年7月20日(月)",
           "division": "幕内",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            }
+          ]
         },
         "juryo": {
           "day": 9,
@@ -338,7 +435,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "九日目： 令和8年7月20日(月)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            }
+          ]
         }
       }
     },
@@ -357,7 +460,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十日目： 令和8年7月21日(火)",
           "division": "幕内",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            }
+          ]
         },
         "juryo": {
           "day": 10,
@@ -365,7 +474,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十日目： 令和8年7月21日(火)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            }
+          ]
         }
       }
     },
@@ -384,7 +499,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十一日目： 令和8年7月22日(水)",
           "division": "幕内",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            }
+          ]
         },
         "juryo": {
           "day": 11,
@@ -392,7 +513,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十一日目： 令和8年7月22日(水)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            }
+          ]
         }
       }
     },
@@ -411,7 +538,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十二日目： 令和8年7月23日(木)",
           "division": "幕内",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            }
+          ]
         },
         "juryo": {
           "day": 12,
@@ -419,7 +552,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十二日目： 令和8年7月23日(木)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            }
+          ]
         }
       }
     },
@@ -438,7 +577,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十三日目： 令和8年7月24日(金)",
           "division": "幕内",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            }
+          ]
         },
         "juryo": {
           "day": 13,
@@ -446,7 +591,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十三日目： 令和8年7月24日(金)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            }
+          ]
         }
       }
     },
@@ -465,7 +616,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十四日目： 令和8年7月25日(土)",
           "division": "幕内",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            }
+          ]
         },
         "juryo": {
           "day": 14,
@@ -473,7 +630,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十四日目： 令和8年7月25日(土)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            }
+          ]
         }
       }
     },
@@ -492,7 +655,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "千秋楽： 令和8年7月26日(日)",
           "division": "幕内",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            }
+          ]
         },
         "juryo": {
           "day": 15,
@@ -500,7 +669,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "千秋楽： 令和8年7月26日(日)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            }
+          ]
         }
       }
     }
@@ -523,14 +698,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
             }
           ]
         },
@@ -542,9 +712,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4267,
-              "name": "嵐富士",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4267/"
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
             }
           ]
         }
@@ -567,14 +737,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
             }
           ]
         },
@@ -586,9 +751,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4267,
-              "name": "嵐富士",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4267/"
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
             }
           ]
         }
@@ -611,14 +776,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
             }
           ]
         },
@@ -630,9 +790,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4267,
-              "name": "嵐富士",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4267/"
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
             }
           ]
         }
@@ -655,14 +815,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
             }
           ]
         },
@@ -674,9 +829,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4267,
-              "name": "嵐富士",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4267/"
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
             }
           ]
         }
@@ -699,14 +854,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
             }
           ]
         },
@@ -718,9 +868,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4267,
-              "name": "嵐富士",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4267/"
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
             }
           ]
         }
@@ -743,14 +893,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
             }
           ]
         },
@@ -762,9 +907,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4267,
-              "name": "嵐富士",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4267/"
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
             }
           ]
         }
@@ -787,14 +932,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
             }
           ]
         },
@@ -806,9 +946,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4267,
-              "name": "嵐富士",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4267/"
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
             }
           ]
         }
@@ -831,14 +971,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
             }
           ]
         },
@@ -850,9 +985,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4267,
-              "name": "嵐富士",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4267/"
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
             }
           ]
         }
@@ -875,14 +1010,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
             }
           ]
         },
@@ -894,9 +1024,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4267,
-              "name": "嵐富士",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4267/"
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
             }
           ]
         }
@@ -919,14 +1049,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
             }
           ]
         },
@@ -938,9 +1063,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4267,
-              "name": "嵐富士",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4267/"
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
             }
           ]
         }
@@ -963,14 +1088,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
             }
           ]
         },
@@ -982,9 +1102,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4267,
-              "name": "嵐富士",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4267/"
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
             }
           ]
         }
@@ -1007,14 +1127,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
             }
           ]
         },
@@ -1026,9 +1141,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4267,
-              "name": "嵐富士",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4267/"
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
             }
           ]
         }
@@ -1051,14 +1166,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
             }
           ]
         },
@@ -1070,9 +1180,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4267,
-              "name": "嵐富士",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4267/"
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
             }
           ]
         }
@@ -1095,14 +1205,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
             }
           ]
         },
@@ -1114,9 +1219,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4267,
-              "name": "嵐富士",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4267/"
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
             }
           ]
         }
@@ -1139,14 +1244,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4227,
-              "name": "大の里",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"
-            },
-            {
-              "id": 4230,
-              "name": "安青錦",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
             }
           ]
         },
@@ -1158,9 +1258,9 @@ export const torikumiData: TorikumiDataSet = {
           "matches": [],
           "absentees": [
             {
-              "id": 4267,
-              "name": "嵐富士",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4267/"
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
             }
           ]
         }
