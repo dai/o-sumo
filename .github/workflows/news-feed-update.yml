@@ -36,7 +36,7 @@ jobs:
           set -euo pipefail
           success=0
           for attempt in 1 2; do
-            if python scripts/update_news_feed.py; then
+            if python scripts/update_news_feed.py --allow-stale-on-failure; then
               success=1
               break
             fi

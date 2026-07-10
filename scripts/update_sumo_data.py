@@ -1604,6 +1604,7 @@ def main() -> None:
     elif args.torikumi_only:
         makuuchi = None
         juryo = None
+        torikumi_metadata_fallback = False
         try:
             makuuchi_meta = load_banzuke_meta(1)
         except Exception as exc:
@@ -1614,6 +1615,7 @@ def main() -> None:
                 f"[warn] banzuke metadata fetch failed in torikumi-only mode, using local fallback ({exc})",
                 file=sys.stderr,
             )
+            torikumi_metadata_fallback = True
             makuuchi_meta = build_torikumi_meta_fallback(existing_torikumi)
         basho_name = str(makuuchi_meta.get("basho_name", ""))
         year_jp = str(makuuchi_meta.get("year_jp", ""))
@@ -1647,10 +1649,24 @@ def main() -> None:
 
     # Handle torikumi/banzuke if needed
     if not args.rikishi_only:
+        torikumi_metadata_fallback = bool(locals().get("torikumi_metadata_fallback", False))
         basho_info = makuuchi_meta["BashoInfo"]
         basho_id = int(basho_info.get("basho_id", 1))
         updated_at = str(basho_info.get("today", ""))
-        official_start_date = load_official_basho_start_date(year_jp, basho_name)
+        if torikumi_metadata_fallback:
+            print(
+                "[warn] keeping existing torikumi data because banzuke metadata used local fallback",
+                file=sys.stderr,
+            )
+            return
+        try:
+            official_start_date = load_official_basho_start_date(year_jp, basho_name)
+        except Exception as exc:
+            print(
+                f"[warn] official basho schedule fetch failed, using banzuke metadata day fallback ({exc})",
+                file=sys.stderr,
+            )
+            official_start_date = None
         if official_start_date is not None:
             current_day = determine_current_basho_day(official_start_date)
         else:
@@ -1669,7 +1685,6 @@ def main() -> None:
             current_day=current_day,
             existing_torikumi=existing_torikumi,
         )
-
         torikumi_dataset = build_torikumi_dataset(
             basho_id,
             current_day,

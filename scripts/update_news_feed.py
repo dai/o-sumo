@@ -21,7 +21,7 @@ The pipeline is intentionally:
   feeds (RSS or HTML scrapers) without touching the orchestration code.
 
 Usage:
-    python scripts/update_news_feed.py [--out PATH] [--limit N] [--force-write]
+    python scripts/update_news_feed.py [--out PATH] [--limit N] [--force-write] [--allow-stale-on-failure]
 """
 
 from __future__ import annotations
@@ -315,6 +315,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Rewrite output even when only updatedAt changed.",
     )
+    parser.add_argument(
+        "--allow-stale-on-failure",
+        action="store_true",
+        help="Exit successfully and keep the existing output when every upstream news source fails.",
+    )
     return parser.parse_args()
 
 
@@ -322,9 +327,15 @@ def main() -> int:
     args = parse_args()
     payload = build_payload(args.limit)
     if all_news_sources_failed(payload):
-        print("[error] all news sources failed; aborting update", file=sys.stderr)
         for source in payload.get("sources", []):
             print(f"  - {source.get('id')}: ok={source.get('ok', False)}", file=sys.stderr)
+        if args.allow_stale_on_failure and args.out.exists():
+            print(
+                f"[warn] all news sources failed; keeping stale {args.out}",
+                file=sys.stderr,
+            )
+            return 0
+        print("[error] all news sources failed; aborting update", file=sys.stderr)
         return 1
     changed = write_payload(payload, args.out, force_write=args.force_write)
     if changed:
