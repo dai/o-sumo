@@ -69,6 +69,26 @@ jobs:
               print(f"news_source={source.get('id')} ok={source.get('ok')} count={source.get('count', 0)}")
           PY
 
+      - name: Validate news payload
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          news = json.loads(Path("public/api/v1/news.json").read_text(encoding="utf-8"))
+          required = ("updatedAt", "sources", "items")
+          missing = [key for key in required if key not in news]
+          if missing:
+              raise SystemExit(f"missing keys in news.json: {missing}")
+
+          sources = news.get("sources", [])
+          if not sources:
+              raise SystemExit("news sources must not be empty")
+          if not any(source.get("ok", False) for source in sources):
+              raise SystemExit("all news sources are marked as failed")
+          PY
+
       - name: Create or update data update PR
         id: create-pr
         uses: peter-evans/create-pull-request@v7

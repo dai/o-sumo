@@ -14,15 +14,31 @@ assert SPEC.loader is not None
 SPEC.loader.exec_module(MODULE)
 
 
+def _make_json_response(payload: bytes = b'{"Result":"1"}'):
+    class DummyResponse:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, exc_type, exc, tb):
+            return False
+
+        def read(self) -> bytes:
+            return payload
+
+    return DummyResponse()
+
+
 class ParseProfileHtmlTest(unittest.TestCase):
     def test_keeps_shusshin_from_exact_label_without_related_list_override(self) -> None:
         html = """
+        <meta property="og:image" content="https://www.sumo.or.jp/images/rikishi/3842.jpg" />
         <table>
           <tr><th>生年月日</th><td>昭和62年5月11日（38歳）</td></tr>
           <tr><th>出身地</th><td>熊本県熊本市東区</td></tr>
           <tr><th>身長</th><td>183.0cm</td></tr>
           <tr><th>体重</th><td>146.0kg</td></tr>
           <tr><th>初土俵</th><td>平成十五年三月場所</td></tr>
+          <tr><th>通算成績</th><td>523勝410敗12休</td></tr>
         </table>
         <section>
           <h2>熊本県出身の他の力士</h2>
@@ -39,25 +55,17 @@ class ParseProfileHtmlTest(unittest.TestCase):
         self.assertEqual(profile["height"], 183)
         self.assertEqual(profile["weight"], 146)
         self.assertEqual(profile["debut"], "平成十五年三月場所")
+        self.assertEqual(profile["careerStats"], {"wins": 523, "losses": 410, "draws": 12})
+        self.assertEqual(profile["photoUrl"], "https://www.sumo.or.jp/images/rikishi/3842.jpg")
 
 
 class PostJsonRequestHeadersTest(unittest.TestCase):
     def test_torikumi_ajax_request_sets_mischeief_cookie(self) -> None:
         captured = {}
 
-        class DummyResponse:
-            def __enter__(self):
-                return self
-
-            def __exit__(self, exc_type, exc, tb):
-                return False
-
-            def read(self) -> bytes:
-                return b'{"Result":"1"}'
-
         def fake_urlopen(request, timeout=30):
             captured["headers"] = dict(request.header_items())
-            return DummyResponse()
+            return _make_json_response()
 
         with mock.patch.object(MODULE, "urlopen", side_effect=fake_urlopen):
             MODULE.post_json("/ResultData/torikumiAjax/1/8/", {"basho_id": "635", "kakuzuke_id": "1", "day": "8"})
@@ -71,19 +79,9 @@ class PostJsonRequestHeadersTest(unittest.TestCase):
     def test_banzuke_ajax_request_sets_and_mouse_cookie(self) -> None:
         captured = {}
 
-        class DummyResponse:
-            def __enter__(self):
-                return self
-
-            def __exit__(self, exc_type, exc, tb):
-                return False
-
-            def read(self) -> bytes:
-                return b'{"Result":"1"}'
-
         def fake_urlopen(request, timeout=30):
             captured["headers"] = dict(request.header_items())
-            return DummyResponse()
+            return _make_json_response()
 
         with mock.patch.object(MODULE, "urlopen", side_effect=fake_urlopen):
             MODULE.post_json(
@@ -100,19 +98,9 @@ class PostJsonRequestHeadersTest(unittest.TestCase):
     def test_hoshitori_ajax_request_sets_game_cat_cookie(self) -> None:
         captured = {}
 
-        class DummyResponse:
-            def __enter__(self):
-                return self
-
-            def __exit__(self, exc_type, exc, tb):
-                return False
-
-            def read(self) -> bytes:
-                return b'{"Result":"1"}'
-
         def fake_urlopen(request, timeout=30):
             captured["headers"] = dict(request.header_items())
-            return DummyResponse()
+            return _make_json_response()
 
         with mock.patch.object(MODULE, "urlopen", side_effect=fake_urlopen):
             MODULE.post_json(
@@ -137,7 +125,7 @@ class LoadBanzukeMetaRequestTest(unittest.TestCase):
             return {"Result": "1"}
 
         with mock.patch.object(MODULE, "post_json", side_effect=fake_post_json):
-            with mock.patch.object(MODULE, "load_banzuke_context", return_value={"basho_id": 636}, create=True):
+            with mock.patch.object(MODULE, "load_banzuke_context", return_value={"basho_id": 636}):
                 MODULE.load_banzuke_meta(2)
 
         self.assertEqual(captured["path"], "/ResultBanzuke/tableAjax/2/1/")
@@ -234,141 +222,68 @@ class OfficialBashoScheduleTest(unittest.TestCase):
             ],
         )
 
+    def test_strict_fetch_raises_on_unexpected_fetch_failures(self) -> None:
+        with mock.patch.object(MODULE, "load_division_rikishi", return_value={}):
+            with mock.patch.object(MODULE, "try_load_torikumi_day", return_value=None):
+                with self.assertRaisesRegex(RuntimeError, "strict torikumi fetch check failed"):
+                    MODULE.build_torikumi_dataset(
+                        636,
+                        3,
+                        "2026-07-12T13:00:00+09:00",
+                        None,
+                        fetch_days={2, 3},
+                        strict_fetch=True,
+                    )
 
-class ParseOfficialAbsenceTest(unittest.TestCase):
-    def setUp(self) -> None:
-        self.html = """
-        <html>
-          <body>
-            <input type="hidden" class="datetime" value="2026-05-11 10:00:07">
-            <p class="mdDate">2026-05-11 10:00:07</p>
-            <span class="dayNum fnt16">幕内・十両</span>
-            <table class="mdTable3 type4">
-              <tr>
-                <td><dl><dt>東横綱</dt><dd><img alt="ほうしょうりゅう" /></dd></dl></td>
-                <td><span class="fnt16">二日目から休場いたします。</span></td>
-              </tr>
-            </table>
-            <p class="txtR mb5">令和8年5月8日更新</p>
-            <table class="mdTable3 type4">
-              <tr>
-                <td><dl><dt>西横綱</dt><dd><img alt="おおのさと" /></dd></dl></td>
-                <td><span class="fnt16">初日から休場いたします。</span></td>
-              </tr>
-              <tr>
-                <td><dl><dt>西大関</dt><dd><img alt="あおにしき" /></dd></dl></td>
-                <td><span class="fnt16">初日から休場いたします。</span></td>
-              </tr>
-            </table>
-            <span class="dayNum fnt16">幕下以下</span>
-            <table class="mdTable3 type4">
-              <tr>
-                <td><dl><dt>東幕下</dt><dd><img alt="対象外" /></dd></dl></td>
-                <td><span class="fnt16">初日から休場いたします。</span></td>
-              </tr>
-            </table>
-          </body>
-        </html>
-        """
-        self.rosters = {
-            "makuuchi": {
-                3842: {
-                    "id": 3842,
-                    "name": "豊昇龍",
-                    "yomi": "ほうしょうりゅう",
-                    "rankText": "東横綱",
-                    "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/",
-                },
-                4227: {
-                    "id": 4227,
-                    "name": "大の里",
-                    "yomi": "おおのさと",
-                    "rankText": "西横綱",
-                    "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/",
-                },
-                4191: {
-                    "id": 4191,
-                    "name": "藤ノ川",
-                    "yomi": "ふじのかわ",
-                    "rankText": "東前頭十四",
-                    "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/",
-                },
-            },
-            "juryo": {
-                4230: {
-                    "id": 4230,
-                    "name": "安青錦",
-                    "yomi": "あおにしき",
-                    "rankText": "西大関",
-                    "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/",
-                },
-            },
-        }
+    def test_strict_fetch_allows_unpublished_days(self) -> None:
+        with mock.patch.object(MODULE, "load_division_rikishi", return_value={}):
+            with mock.patch.object(MODULE, "try_load_torikumi_day", return_value=None):
+                payload = MODULE.build_torikumi_dataset(
+                    636,
+                    0,
+                    "2026-07-11T13:00:00+09:00",
+                    None,
+                    fetch_days={1},
+                    official_start_date=date(2026, 7, 12),
+                    strict_fetch=True,
+                )
+        self.assertIn("resultDays", payload)
 
-    def test_parses_and_resolves_official_makuuchi_juryo_absences(self) -> None:
-        report = MODULE.parse_absence_html(self.html)
-        absence_lookup = MODULE.resolve_official_absences(report["entries"], self.rosters)
 
-        makuuchi_names = [entry["name"] for entry in absence_lookup["makuuchi"]]
-        juryo_names = [entry["name"] for entry in absence_lookup["juryo"]]
-
-        self.assertEqual(report["updatedAt"], "2026-05-11 10:00:07")
-        self.assertEqual(makuuchi_names, ["豊昇龍", "大の里"])
-        self.assertEqual(juryo_names, ["安青錦"])
-        self.assertEqual(absence_lookup["makuuchi"][0]["startDay"], 2)
-        self.assertEqual(absence_lookup["makuuchi"][1]["startDay"], 1)
-
-    def test_uses_start_day_when_deriving_daily_absentees(self) -> None:
-        report = MODULE.parse_absence_html(self.html)
-        absence_lookup = MODULE.resolve_official_absences(report["entries"], self.rosters)
-
-        day1 = MODULE.derive_absentees("makuuchi", 1, absence_lookup)
-        day2 = MODULE.derive_absentees("makuuchi", 2, absence_lookup)
-
-        self.assertEqual([entry["name"] for entry in day1], ["大の里"])
-        self.assertEqual([entry["name"] for entry in day2], ["豊昇龍", "大の里"])
-
-    def test_removed_official_entries_are_not_derived_as_absent(self) -> None:
-        html = self.html.replace(
-            """
-              <tr>
-                <td><dl><dt>東横綱</dt><dd><img alt="ほうしょうりゅう" /></dd></dl></td>
-                <td><span class="fnt16">二日目から休場いたします。</span></td>
-              </tr>
-            """,
-            "",
-        )
-        report = MODULE.parse_absence_html(html)
-        absence_lookup = MODULE.resolve_official_absences(report["entries"], self.rosters)
-
-        self.assertNotIn("豊昇龍", [entry["name"] for entry in MODULE.derive_absentees("makuuchi", 2, absence_lookup)])
-
-    def test_marks_opponent_as_fusen_winner_for_absent_scheduled_match(self) -> None:
+class DeriveAbsenteesTest(unittest.TestCase):
+    def test_derives_absentees_from_roster_minus_active_ids(self) -> None:
         division_day = {
             "matches": [
                 {
-                    "boutNo": 20,
-                    "eastName": "豊昇龍",
                     "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/",
-                    "westName": "藤ノ川",
                     "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/",
-                    "kimarite": "未定",
-                    "winner": None,
                 }
             ]
         }
-        absentees = [
-            {
-                "id": 3842,
-                "name": "豊昇龍",
-                "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/",
-            }
-        ]
+        roster = {
+            3842: {"id": 3842, "name": "豊昇龍", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"},
+            4191: {"id": 4191, "name": "藤ノ川", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/"},
+            4227: {"id": 4227, "name": "大の里", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"},
+        }
 
-        updated = MODULE.apply_absence_results(division_day, absentees)
+        absentees = MODULE.derive_absentees(division_day, roster)
+        self.assertEqual([entry["id"] for entry in absentees], [4227])
 
-        self.assertEqual(updated["matches"][0]["kimarite"], "不戦")
-        self.assertEqual(updated["matches"][0]["winner"], "west")
+    def test_cross_division_active_ids_are_respected(self) -> None:
+        division_day = {"matches": [{"eastProfileUrl": "", "westProfileUrl": ""}]}
+        roster = {
+            4230: {"id": 4230, "name": "安青錦", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/"},
+        }
+
+        absentees = MODULE.derive_absentees(division_day, roster, {4230})
+        self.assertEqual(absentees, [])
+
+    def test_returns_existing_absentees_when_roster_unavailable(self) -> None:
+        division_day = {
+            "matches": [{"eastProfileUrl": "", "westProfileUrl": ""}],
+            "absentees": [{"id": 1, "name": "既存", "profileUrl": "https://example.test/profile/1/"}],
+        }
+        self.assertEqual(MODULE.derive_absentees(division_day, {}), division_day["absentees"])
 
 
 class TorikumiSubstantiveDiffTest(unittest.TestCase):
@@ -528,7 +443,7 @@ class TorikumiSubstantiveDiffTest(unittest.TestCase):
 class ResolveCurrentBashoDayTest(unittest.TestCase):
     def test_uses_calendar_day_when_banzuke_metadata_is_stale(self) -> None:
         self.assertEqual(
-            MODULE.resolve_current_basho_day(date(2026, 5, 10), 1, date(2026, 5, 11)),
+            MODULE.determine_current_basho_day(date(2026, 5, 10), date(2026, 5, 11)),
             2,
         )
 
