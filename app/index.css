@@ -697,6 +697,11 @@
   opacity: 0.8;
 }
 
+.home-footer-credit {
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
+
 .home-footer a {
   color: var(--color-secondary);
   text-decoration: none;
