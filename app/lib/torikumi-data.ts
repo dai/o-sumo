@@ -1747,8 +1747,8 @@ export const torikumiData: TorikumiDataSet = {
       "pathDate": "20260712",
       "label": "初日",
       "dayHead": "初日： 令和8年7月12日(日)",
-      "status": "pending",
-      "statusMessage": "取組予定未更新",
+      "status": "published",
+      "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 1,
