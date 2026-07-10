@@ -3,10 +3,18 @@
 :root,
 [data-theme='light'] {
   /* Light palette (DESIGN.md) */
+  --ink-sumi: #1a1a1a;
+  --kinari: #fdfaf5;
+  --dohyo-clay: #b58b5f;
+  --shijin-blue: #0000ff;
+  --shijin-white: #ffffff;
+  --shijin-red: #ff0000;
+  --shijin-purple: #800080;
   --color-primary: #5f5e5e;
   --color-primary-container: #1f3348;
   --color-primary-muted: #7d7d7c;
   --color-secondary: #735c00;
+  --color-dohyo-clay: var(--dohyo-clay);
   --color-secondary-light: #fed65b;
   --color-secondary-dim: #b79d46;
   --color-tertiary: #7d4a9e;
@@ -16,7 +24,7 @@
   --color-accent-bronze: #cd7f32;
 
   /* Surface hierarchy */
-  --surface: #faf9f6;
+  --surface: var(--kinari);
   --surface-container-lowest: #ffffff;
   --surface-container-low: #f5f4f2;
   --surface-container-high: #eceae5;
@@ -25,7 +33,7 @@
 
   /* Text and interaction */
   --color-light-bg: #faf9f6;
-  --color-dark-text: #1a1c1a;
+  --color-dark-text: var(--ink-sumi);
   --color-muted: #5f6368;
   --color-border: rgba(95, 94, 94, 0.3);
   --color-surface: #ffffff;
@@ -60,6 +68,7 @@
   /* Washi texture - subtle grain overlay */
   --texture-washi: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   --texture-opacity: 0.025;
+  --texture-hakeme: url("data:image/svg+xml,%3Csvg width='96' height='96' viewBox='0 0 96 96' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 18h96M0 42h96M0 66h96M0 90h96' stroke='%23b58b5f' stroke-opacity='.18' stroke-width='1'/%3E%3Cpath d='M8 0v96M40 0v96M72 0v96' stroke='%231a1a1a' stroke-opacity='.045' stroke-width='1'/%3E%3C/svg%3E");
 
   /* Rank-specific gradients */
   --yokozuna-bg: linear-gradient(135deg, #fed65b 0%, #d5a82d 100%);
@@ -173,6 +182,8 @@ html {
 body {
   font-family: var(--font-sans);
   background-color: var(--surface);
+  background-image: var(--texture-hakeme), var(--texture-washi);
+  background-attachment: fixed;
   color: var(--color-dark-text);
   line-height: 1.8;
   letter-spacing: 0.5px;

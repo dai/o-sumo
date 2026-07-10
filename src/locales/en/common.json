@@ -50,7 +50,8 @@
     "newsSubsectionAssociationLead": "Official announcements from the JSA",
     "newsSubsectionSumoNewsTitle": "Sumo World News",
     "newsSubsectionSumoNewsLead": "Latest 5 from dmenu Sports",
-    "newsSubsectionSumoNewsSeeAll": "View on dmenu"
+    "newsSubsectionSumoNewsSeeAll": "View on dmenu",
+    "footerDataCredit": "Data sources: Japan Sumo Association / API: dai/o-sumo"
   },
   "kimarite": {
     "cardTitle": "Kimarite",
