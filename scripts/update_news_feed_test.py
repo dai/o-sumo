@@ -1,3 +1,4 @@
+import argparse
 import importlib.util
 import json
 import pathlib
@@ -124,6 +125,55 @@ class SourceFailureGuardTest(unittest.TestCase):
             "items": [{"id": "b-1"}],
         }
         self.assertFalse(MODULE.all_news_sources_failed(payload))
+
+
+class MainStaleFallbackTest(unittest.TestCase):
+    def test_allow_stale_on_failure_keeps_existing_output_and_returns_zero(self) -> None:
+        payload = {
+            "sources": [
+                {"id": "sumo-association", "label": "日本相撲協会", "ok": False},
+                {"id": "dmenu-docomo", "label": "dmenuスポーツ", "ok": False},
+            ],
+            "items": [],
+        }
+        existing = make_payload("2026-07-08T00:00:00+00:00")
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output = pathlib.Path(temp_dir) / "news.json"
+            original_text = json.dumps(existing, ensure_ascii=False, indent=2) + "\n"
+            output.write_text(original_text, encoding="utf-8")
+            args = argparse.Namespace(out=output, limit=8, force_write=False, allow_stale_on_failure=True)
+
+            with (
+                mock.patch.object(MODULE, "parse_args", return_value=args),
+                mock.patch.object(MODULE, "build_payload", return_value=payload),
+            ):
+                result = MODULE.main()
+
+            self.assertEqual(result, 0)
+            self.assertEqual(output.read_text(encoding="utf-8"), original_text)
+
+    def test_allow_stale_on_failure_without_existing_output_returns_one(self) -> None:
+        payload = {
+            "sources": [
+                {"id": "sumo-association", "label": "日本相撲協会", "ok": False},
+                {"id": "dmenu-docomo", "label": "dmenuスポーツ", "ok": False},
+            ],
+            "items": [],
+        }
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output = pathlib.Path(temp_dir) / "news.json"
+            args = argparse.Namespace(out=output, limit=8, force_write=False, allow_stale_on_failure=True)
+
+            with (
+                mock.patch.object(MODULE, "parse_args", return_value=args),
+                mock.patch.object(MODULE, "build_payload", return_value=payload),
+            ):
+                result = MODULE.main()
+
+            self.assertEqual(result, 1)
+            self.assertFalse(output.exists())
 
 
 if __name__ == "__main__":
