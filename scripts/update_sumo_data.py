@@ -735,6 +735,38 @@ def has_settled_matches(day_data: dict) -> bool:
     )
 
 
+def load_local_banzuke_rikishi(kakuzuke_id: int) -> dict[int, dict]:
+    division_key = {1: "makuuchi", 2: "juryo"}.get(kakuzuke_id)
+    if not division_key:
+        return {}
+    banzuke_path = API_DIR / "banzuke.json"
+    if not banzuke_path.exists():
+        return {}
+    try:
+        payload = json.loads(banzuke_path.read_text(encoding="utf-8"))
+    except Exception as exc:
+        print(
+            f"[warn] local banzuke fallback failed for absentees: division={DIVISION_LABEL[kakuzuke_id]} ({exc})",
+            file=sys.stderr,
+        )
+        return {}
+
+    rikishi_map: dict[int, dict] = {}
+    for row in payload.get(division_key, []):
+        for side in ("east", "west"):
+            for item in row.get(side, []):
+                rikishi_id = safe_int(item.get("id"), 0)
+                if rikishi_id <= 0:
+                    continue
+                profile_url = str(item.get("profileUrl") or f"{SITE_BASE_URL}/ResultRikishiData/profile/{rikishi_id}/")
+                rikishi_map[rikishi_id] = {
+                    "id": rikishi_id,
+                    "name": str(item.get("name", "")),
+                    "profileUrl": profile_url,
+                }
+    return rikishi_map
+
+
 def load_division_rikishi(kakuzuke_id: int) -> dict[int, dict]:
     try:
         banzuke = load_banzuke_meta(kakuzuke_id)
@@ -743,7 +775,7 @@ def load_division_rikishi(kakuzuke_id: int) -> dict[int, dict]:
             f"[warn] banzuke fetch failed for absentees: division={DIVISION_LABEL[kakuzuke_id]} ({exc})",
             file=sys.stderr,
         )
-        return {}
+        return load_local_banzuke_rikishi(kakuzuke_id)
     rikishi_map: dict[int, dict] = {}
     for item in banzuke.get("BanzukeTable", []):
         rikishi_id = safe_int(item.get("rikishi_id"), 0)
@@ -754,6 +786,8 @@ def load_division_rikishi(kakuzuke_id: int) -> dict[int, dict]:
             "name": split_shikona(str(item.get("shikona", ""))),
             "profileUrl": f"{SITE_BASE_URL}/ResultRikishiData/profile/{rikishi_id}/",
         }
+    if not rikishi_map:
+        return load_local_banzuke_rikishi(kakuzuke_id)
     return rikishi_map
 
 
