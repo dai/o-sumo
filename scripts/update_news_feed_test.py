@@ -104,6 +104,40 @@ class BuildPayloadTest(unittest.TestCase):
         self.assertEqual(payload["items"][0]["sourceLabel"], "生存ソース")
 
 
+class DocomoScraperTest(unittest.TestCase):
+    def test_scrapes_current_topic_link_markup_when_legacy_items_are_absent(self) -> None:
+        html = """
+        <h2>ニュース</h2>
+        <ul>
+          <li><a href="https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-sp-tp3-260711-202607110000001">
+            名古屋場所の懸賞申し込み3504本、地方場所最多を大幅更新 地元企業や中日ドラゴンズも提供 日刊スポーツ 7月11日 13時08分
+          </a></li>
+          <li><a href="https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260711-OHT1T51111?fm=sports">
+            大相撲名古屋場所の懸賞申し込み、地方場所最多の３５０４本 スポーツ報知 7月11日 13時07分
+          </a></li>
+        </ul>
+        """
+
+        with mock.patch.object(MODULE, "fetch_text", return_value=html):
+            items = MODULE.scrape_docomo_news(limit=2)
+
+        self.assertEqual(len(items), 2)
+        self.assertEqual(
+            items[0]["id"],
+            "dmenu-docomo-f-sp-tp3-260711-202607110000001",
+        )
+        self.assertEqual(
+            items[0]["title"],
+            "名古屋場所の懸賞申し込み3504本、地方場所最多を大幅更新 地元企業や中日ドラゴンズも提供",
+        )
+        self.assertEqual(items[0]["publishedAt"], "2026-07-11")
+        self.assertEqual(items[0]["publishedAtRaw"], "日刊スポーツ　7月11日 13時08分")
+        self.assertEqual(
+            items[1]["url"],
+            "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260711-OHT1T51111",
+        )
+
+
 class SourceFailureGuardTest(unittest.TestCase):
     def test_all_sources_failed_returns_true(self) -> None:
         payload = {
