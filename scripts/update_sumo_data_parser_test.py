@@ -135,6 +135,38 @@ class LoadBanzukeMetaRequestTest(unittest.TestCase):
         )
 
 
+class ParseTorikumiMatchTest(unittest.TestCase):
+    def test_keeps_pending_blank_kimarite_empty(self) -> None:
+        match = MODULE.parse_torikumi_match(
+            {
+                "judge": 9,
+                "technic_name": "",
+                "east": {"shikona": "豊昇龍", "rikishi_id": 3842},
+                "west": {"shikona": "藤ノ川", "rikishi_id": 4191},
+            },
+            "幕内",
+            1,
+        )
+
+        self.assertIsNone(match["winner"])
+        self.assertEqual(match["kimarite"], "")
+
+    def test_uses_pending_label_when_winner_exists_without_kimarite(self) -> None:
+        match = MODULE.parse_torikumi_match(
+            {
+                "judge": 1,
+                "technic_name": "",
+                "east": {"shikona": "豊昇龍", "rikishi_id": 3842},
+                "west": {"shikona": "藤ノ川", "rikishi_id": 4191},
+            },
+            "幕内",
+            1,
+        )
+
+        self.assertEqual(match["winner"], "east")
+        self.assertEqual(match["kimarite"], "未定")
+
+
 class LoadDivisionRikishiFallbackTest(unittest.TestCase):
     def test_uses_local_banzuke_when_remote_banzuke_fetch_fails(self) -> None:
         with mock.patch.object(MODULE, "load_banzuke_meta", side_effect=RuntimeError("boom")):
@@ -320,6 +352,75 @@ class DeriveAbsenteesTest(unittest.TestCase):
         self.assertEqual(MODULE.derive_absentees(division_day, {}), division_day["absentees"])
 
 
+class ApplyTorikumiScopeTest(unittest.TestCase):
+    def test_result_scope_preserves_existing_schedule_summary(self) -> None:
+        existing = {
+            "updatedAt": "2026-07-10T13:30:00+09:00",
+            "resultUpdatedAt": "2026-06-29T16:26:01+09:00",
+            "scheduleUpdatedAt": "2026-07-10T13:30:00+09:00",
+            "today": None,
+            "tomorrow": {"makuuchi": {"matches": [{"kimarite": ""}]}},
+            "resultDays": [{"pathDate": "20260712"}],
+            "scheduleDays": [{"pathDate": "20260712", "data": {"makuuchi": {"matches": [{"kimarite": ""}]}}}],
+        }
+        candidate = {
+            **existing,
+            "updatedAt": "2026-07-11T13:00:00+09:00",
+            "resultUpdatedAt": "2026-07-11T13:00:00+09:00",
+            "scheduleUpdatedAt": "2026-07-11T13:00:00+09:00",
+            "tomorrow": {"makuuchi": {"matches": [{"kimarite": "未定"}]}},
+            "scheduleDays": [{"pathDate": "20260712", "data": {"makuuchi": {"matches": [{"kimarite": "未定"}]}}}],
+        }
+
+        merged = MODULE.apply_torikumi_scope(candidate, "result", existing)
+
+        self.assertEqual(merged["tomorrow"], existing["tomorrow"])
+        self.assertEqual(merged["scheduleDays"], existing["scheduleDays"])
+        self.assertEqual(merged["scheduleUpdatedAt"], existing["scheduleUpdatedAt"])
+
+    def test_result_scope_preserves_existing_results_when_candidate_has_no_published_results(self) -> None:
+        existing = {
+            "updatedAt": "2026-07-10T13:30:00+09:00",
+            "resultUpdatedAt": "2026-06-29T16:26:01+09:00",
+            "scheduleUpdatedAt": "2026-07-10T13:30:00+09:00",
+            "today": {"makuuchi": {"matches": [{"kimarite": ""}]}},
+            "tomorrow": None,
+            "resultDays": [{"pathDate": "20260712", "status": "published"}],
+            "scheduleDays": [{"pathDate": "20260712"}],
+        }
+        candidate = {
+            **existing,
+            "updatedAt": "2026-07-11T13:00:00+09:00",
+            "resultUpdatedAt": "2026-07-11T13:00:00+09:00",
+            "today": None,
+            "resultDays": [{"pathDate": "20260712", "status": "pending"}],
+        }
+
+        merged = MODULE.apply_torikumi_scope(candidate, "result", existing)
+
+        self.assertEqual(merged["today"], existing["today"])
+        self.assertEqual(merged["resultDays"], existing["resultDays"])
+        self.assertEqual(merged["resultUpdatedAt"], existing["resultUpdatedAt"])
+
+    def test_schedule_scope_preserves_existing_result_summary(self) -> None:
+        existing = {
+            "updatedAt": "2026-07-13T18:00:00+09:00",
+            "resultUpdatedAt": "2026-07-13T18:00:00+09:00",
+            "scheduleUpdatedAt": "2026-07-13T13:00:00+09:00",
+            "today": {"makuuchi": {"matches": [{"winner": "east"}]}},
+            "tomorrow": None,
+            "resultDays": [{"pathDate": "20260712", "data": {"makuuchi": {"matches": [{"winner": "east"}]}}}],
+            "scheduleDays": [{"pathDate": "20260712"}],
+        }
+        candidate = {**existing, "today": None, "resultDays": [{"pathDate": "20260712", "data": {"makuuchi": {"matches": []}}}]}
+
+        merged = MODULE.apply_torikumi_scope(candidate, "schedule", existing)
+
+        self.assertEqual(merged["today"], existing["today"])
+        self.assertEqual(merged["resultDays"], existing["resultDays"])
+        self.assertEqual(merged["resultUpdatedAt"], existing["resultUpdatedAt"])
+
+
 class TorikumiSubstantiveDiffTest(unittest.TestCase):
     def make_dataset(
         self,
@@ -327,7 +428,7 @@ class TorikumiSubstantiveDiffTest(unittest.TestCase):
         updated_at: str,
         result_kimarite: str = "押し出し",
         result_winner: str | None = "east",
-        schedule_kimarite: str = "未定",
+        schedule_kimarite: str = "",
         schedule_winner: str | None = None,
         absentees: list[int] | None = None,
     ) -> dict:
