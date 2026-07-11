@@ -164,6 +164,24 @@ class OfficialBashoScheduleTest(unittest.TestCase):
 
         self.assertEqual(start_date, date(2026, 7, 12))
 
+    def test_load_start_date_falls_back_when_schedule_fetch_fails(self) -> None:
+        with mock.patch.object(MODULE, "urlopen", side_effect=OSError("offline")):
+            start_date = MODULE.load_official_basho_start_date("令和八年", "七月場所")
+
+        self.assertIsNone(start_date)
+
+    def test_infers_start_date_from_existing_schedule_day_one(self) -> None:
+        start_date = MODULE.infer_start_date_from_existing_torikumi(
+            {
+                "scheduleDays": [
+                    {"day": 1, "pathDate": "20260712"},
+                ],
+                "resultDays": [],
+            }
+        )
+
+        self.assertEqual(start_date, date(2026, 7, 12))
+
     def test_returns_zero_day_before_official_start(self) -> None:
         start_date = date(2026, 7, 12)
 
