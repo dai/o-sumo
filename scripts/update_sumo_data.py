@@ -8,6 +8,7 @@ import time
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from urllib.parse import urlencode, urljoin
+from urllib.error import URLError
 from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
 
@@ -300,8 +301,12 @@ def load_official_basho_start_date(year_jp: str, basho_name: str) -> date | None
             "Accept-Language": "ja,en-US;q=0.9,en;q=0.8",
         },
     )
-    with urlopen(req, timeout=30) as res:
-        html = res.read().decode("utf-8")
+    try:
+        with urlopen(req, timeout=30) as res:
+            html = res.read().decode("utf-8")
+    except URLError as exc:
+        print(f"[warn] failed to fetch official basho start date: {exc}")
+        return None
     return extract_official_basho_start_date(html, year_jp, basho_name)
 
 
@@ -1140,7 +1145,7 @@ def archive_days_month_key(days: list[dict] | None) -> str:
     return ""
 
 
-def apply_torikumi_scope(dataset: dict, scope: str, existing: dict | None = None) -> dict:
+def apply_torikumi_scope(dataset: dict, scope: str, existing: dict | None = None, current_day: int = 0) -> dict:
     if scope == "all":
         return dataset
 
@@ -1156,6 +1161,9 @@ def apply_torikumi_scope(dataset: dict, scope: str, existing: dict | None = None
         if existing_schedule_month_key and existing_schedule_month_key == dataset_month_key:
             merged["scheduleDays"] = existing.get("scheduleDays", dataset["scheduleDays"])
             schedule_updated_at = existing.get("scheduleUpdatedAt") or existing.get("updatedAt") or schedule_updated_at
+        if current_day <= 0 and existing_result_month_key and existing_result_month_key == dataset_month_key:
+            merged["resultDays"] = existing.get("resultDays", dataset["resultDays"])
+            result_updated_at = existing.get("resultUpdatedAt") or existing.get("updatedAt") or result_updated_at
     elif scope == "schedule":
         if existing_result_month_key and existing_result_month_key == dataset_month_key:
             merged["resultDays"] = existing.get("resultDays", dataset["resultDays"])
@@ -1717,6 +1725,7 @@ def main() -> None:
             torikumi_dataset,
             args.torikumi_scope,
             existing_torikumi,
+            current_day=current_day,
         )
         if makuuchi is not None and juryo is not None:
             apply_result_days_to_rank_groups(makuuchi, torikumi_dataset.get("resultDays", []))

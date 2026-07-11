@@ -20,6 +20,7 @@ parse_torikumi_match = _module.parse_torikumi_match
 has_substantive_torikumi_diff = _module.has_substantive_torikumi_diff
 preserve_torikumi_timestamps_if_unchanged = _module.preserve_torikumi_timestamps_if_unchanged
 apply_result_days_to_rank_groups = _module.apply_result_days_to_rank_groups
+apply_torikumi_scope = _module.apply_torikumi_scope
 
 
 def _division(matches: int) -> dict:
@@ -220,6 +221,18 @@ def test_preserve_torikumi_timestamps_if_unchanged_restores_existing_values() ->
     assert merged["scheduleUpdatedAt"] == "2026-05-11T10:00:00+09:00"
 
 
+def test_apply_torikumi_scope_result_preserves_existing_result_days_when_current_day_zero() -> None:
+    existing = _dataset("2026-05-11T10:00:00+09:00")
+    existing["resultDays"][0]["matches"] = [{"boutNo": 99}]
+    candidate = _dataset("2026-05-11T10:05:00+09:00")
+    candidate["resultDays"] = []
+
+    merged = apply_torikumi_scope(candidate, "result", existing, current_day=0)
+
+    assert merged["resultDays"] == existing["resultDays"]
+    assert merged["resultUpdatedAt"] == existing["resultUpdatedAt"]
+
+
 def test_apply_result_days_to_rank_groups_fills_missing_day15_as_draw() -> None:
     rank_groups = [
         {
@@ -296,6 +309,7 @@ def main() -> None:
     test_parse_torikumi_match_accepts_plain_text_shikona()
     test_has_substantive_torikumi_diff_ignores_timestamp_only_change()
     test_preserve_torikumi_timestamps_if_unchanged_restores_existing_values()
+    test_apply_torikumi_scope_result_preserves_existing_result_days_when_current_day_zero()
     test_apply_result_days_to_rank_groups_fills_missing_day15_as_draw()
     print("ok: update_sumo_data torikumi logic tests passed")
 
