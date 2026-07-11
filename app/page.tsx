@@ -109,12 +109,13 @@ export function buildLiveTorikumiTarget(
 
   const tomorrowDay = dayOfDailyData(data.tomorrow);
   if (tomorrowDay !== null) {
+    const resultDay = archive.resultDays?.find((day) => day.day === tomorrowDay);
     const scheduleDay = archive.scheduleDays?.find((day) => day.day === tomorrowDay);
-    const dayData = hasAnyMatches(data.tomorrow) ? data.tomorrow : scheduleDay?.data;
+    const dayData = hasAnyMatches(data.tomorrow) ? data.tomorrow : scheduleDay?.data ?? resultDay?.data;
     const anchor = dayData ? nearestTorikumiAnchor(dayData, jstMinutes) : null;
     return {
-      href: scheduleDay ? `${getDayPath(scheduleDay, 'schedule')}${anchor ? `#${anchor}` : ''}` : `${CURRENT_SCHEDULE_PATH}/`,
-      description: '開催前は公開済みの取組予定へ移動します。場所中は速報位置へ切り替わります。',
+      href: resultDay ? `${getDayPath(resultDay, 'result')}${anchor ? `#${anchor}` : ''}` : `${CURRENT_RESULT_PATH}/`,
+      description: '開催前も取組予定を反映した結果プレースホルダーへ移動します。場所中は速報位置へ切り替わります。',
     };
   }
 
