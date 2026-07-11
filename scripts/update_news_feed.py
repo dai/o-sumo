@@ -32,6 +32,7 @@ import json
 import re
 import sys
 from datetime import datetime, timezone
+from html.parser import HTMLParser
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
@@ -65,6 +66,51 @@ DOCOMO_NEWS_ITEM_RE = re.compile(
 )
 DOCOMO_DATE_RE = re.compile(r"(\d+)\s*月\s*(\d+)\s*日\s*(\d+)\s*時\s*(\d+)\s*分")
 DOCOMO_ARTICLE_ID_RE = re.compile(r"/article/[^/]+/sports/([^?&#/]+)")
+DOCOMO_TOPIC_URL_RE = re.compile(r"https?://topics\.smt\.docomo\.ne\.jp/article/[^\"'<>\s]+")
+DOCOMO_KNOWN_PUBLISHERS = (
+    "日刊ゲンダイDIGITAL",
+    "FNNプライムオンライン",
+    "スポニチアネックス",
+    "デイリースポーツ",
+    "日刊スポーツ",
+    "スポーツ報知",
+    "THE ANSWER",
+    "共同通信",
+    "時事通信",
+    "SANSPO",
+    "読売新聞",
+    "テレ朝",
+)
+
+
+class DocomoTopicLinkParser(HTMLParser):
+    """Extract topic links from dmenu's JS-light news index markup."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.links: list[dict[str, str]] = []
+        self._active_href: str | None = None
+        self._active_text: list[str] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag != "a":
+            return
+        href = dict(attrs).get("href")
+        if href and DOCOMO_TOPIC_URL_RE.fullmatch(href):
+            self._active_href = href
+            self._active_text = []
+
+    def handle_data(self, data: str) -> None:
+        if self._active_href is not None:
+            self._active_text.append(data)
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag != "a" or self._active_href is None:
+            return
+        text = " ".join(" ".join(self._active_text).split())
+        self.links.append({"url": self._active_href, "text": text})
+        self._active_href = None
+        self._active_text = []
 
 
 def kanji_to_int(value: str) -> int | None:
@@ -139,6 +185,31 @@ def parse_docomo_date(text: str, *, now: datetime | None = None) -> str | None:
     return candidate.date().isoformat()
 
 
+def split_docomo_link_text(text: str) -> tuple[str, str] | None:
+    """Split dmenu's accessible link text into title and raw publication text.
+
+    dmenu used to render structured ``<p>`` nodes that ``DOCOMO_NEWS_ITEM_RE``
+    could read. The current no-JavaScript HTML exposes topic links as one text
+    node: ``{title} {publisher} M月D日 H時M分``. Use the date as the anchor and
+    known publisher names to keep titles intact even when they contain spaces.
+    """
+    date_match = DOCOMO_DATE_RE.search(text)
+    if not date_match:
+        return None
+    before_date = text[: date_match.start()].strip()
+    date_text = date_match.group(0)
+    for publisher in sorted(DOCOMO_KNOWN_PUBLISHERS, key=len, reverse=True):
+        marker = f" {publisher}"
+        if marker in before_date:
+            title = before_date.rsplit(marker, 1)[0].strip()
+            if title:
+                return title, f"{publisher}　{date_text}"
+    parts = before_date.rsplit(" ", 1)
+    if len(parts) != 2 or not parts[0].strip():
+        return None
+    return parts[0].strip(), f"{parts[1].strip()}　{date_text}"
+
+
 def fetch_text(url: str) -> str:
     req = Request(url, headers={"User-Agent": USER_AGENT, "Accept-Language": "ja,en;q=0.8"})
     last_error: Exception | None = None
@@ -192,10 +263,24 @@ def scrape_docomo_news(limit: int) -> list[dict]:
     html = fetch_text(DOCOMO_NEWS_URL)
     items: list[dict] = []
     seen_ids: set[str] = set()
+    candidates: list[tuple[str, str, str]] = []
     for match in DOCOMO_NEWS_ITEM_RE.finditer(html):
-        raw_url = html_lib.unescape(match.group("url").strip())
-        title = html_lib.unescape(match.group("title").strip())
-        raw_time = html_lib.unescape(match.group("time").strip())
+        candidates.append((
+            html_lib.unescape(match.group("url").strip()),
+            html_lib.unescape(match.group("title").strip()),
+            html_lib.unescape(match.group("time").strip()),
+        ))
+    if not candidates:
+        parser = DocomoTopicLinkParser()
+        parser.feed(html)
+        for link in parser.links:
+            split_text = split_docomo_link_text(link["text"])
+            if split_text is None:
+                continue
+            title, raw_time = split_text
+            candidates.append((link["url"], title, raw_time))
+
+    for raw_url, title, raw_time in candidates:
         if not title or not raw_url:
             continue
         id_match = DOCOMO_ARTICLE_ID_RE.search(raw_url)
