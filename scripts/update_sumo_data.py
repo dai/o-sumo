@@ -580,8 +580,6 @@ def parse_torikumi_match(raw: dict, division: str, bout_no: int) -> dict:
     west = raw.get("west") or {}
     judge = safe_int(raw.get("judge", 9), 9)
     kimarite = str(raw.get("technic_name", "")).strip()
-    if kimarite in {"", "&nbsp;"}:
-        kimarite = "未定"
 
     east_name = extract_shikona_text(str(east.get("shikona", ""))) or str(east.get("shikona_kana", ""))
     west_name = extract_shikona_text(str(west.get("shikona", ""))) or str(west.get("shikona_kana", ""))
@@ -589,6 +587,8 @@ def parse_torikumi_match(raw: dict, division: str, bout_no: int) -> dict:
         raise ValueError("取組の東西名が欠落")
 
     winner = "east" if judge == 1 else "west" if judge == 2 else None
+    if kimarite in {"", "&nbsp;"}:
+        kimarite = "" if winner is None else "未定"
     east_id = safe_int(east.get("rikishi_id", 0), 0)
     west_id = safe_int(west.get("rikishi_id", 0), 0)
 
@@ -1177,10 +1177,24 @@ def apply_torikumi_scope(dataset: dict, scope: str, existing: dict | None = None
     if scope == "result":
         if existing_schedule_month_key and existing_schedule_month_key == dataset_month_key:
             merged["scheduleDays"] = existing.get("scheduleDays", dataset["scheduleDays"])
+            merged["tomorrow"] = existing.get("tomorrow", dataset.get("tomorrow"))
             schedule_updated_at = existing.get("scheduleUpdatedAt") or existing.get("updatedAt") or schedule_updated_at
+        candidate_has_published_results = any(
+            str(day.get("status", "")) == "published"
+            for day in dataset.get("resultDays", [])
+        )
+        if (
+            not candidate_has_published_results
+            and existing_result_month_key
+            and existing_result_month_key == dataset_month_key
+        ):
+            merged["resultDays"] = existing.get("resultDays", dataset["resultDays"])
+            merged["today"] = existing.get("today", dataset.get("today"))
+            result_updated_at = existing.get("resultUpdatedAt") or existing.get("updatedAt") or result_updated_at
     elif scope == "schedule":
         if existing_result_month_key and existing_result_month_key == dataset_month_key:
             merged["resultDays"] = existing.get("resultDays", dataset["resultDays"])
+            merged["today"] = existing.get("today", dataset.get("today"))
             result_updated_at = existing.get("resultUpdatedAt") or existing.get("updatedAt") or result_updated_at
     else:
         raise ValueError(f"unsupported torikumi scope: {scope}")
