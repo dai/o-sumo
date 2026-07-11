@@ -59,8 +59,8 @@ export interface TorikumiDataSet {
 export const torikumiData: TorikumiDataSet = {
   "bashoName": "七月場所",
   "year": "令和八年",
-  "updatedAt": "2026-07-10T13:30:00+09:00",
-  "resultUpdatedAt": "2026-06-29T16:26:01+09:00",
+  "updatedAt": "2026-07-11T14:58:43+09:00",
+  "resultUpdatedAt": "2026-07-11T14:58:43+09:00",
   "scheduleUpdatedAt": "2026-07-10T13:30:00+09:00",
   "today": null,
   "tomorrow": {
@@ -83,7 +83,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "前頭15",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -99,7 +99,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "前頭14",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -115,7 +115,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "前頭13",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -131,7 +131,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "前頭12",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -147,7 +147,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "前頭11",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -163,7 +163,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "前頭10",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -179,7 +179,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "前頭9",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -195,7 +195,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "前頭8",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -211,7 +211,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "前頭7",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -227,7 +227,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "前頭6",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -243,7 +243,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "前頭5",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -259,7 +259,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "前頭4",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -275,7 +275,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "前頭3",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -291,7 +291,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "関脇",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -307,7 +307,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "関脇",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -323,7 +323,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "前頭2",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -339,7 +339,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "大関",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -355,7 +355,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "前頭1",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -371,7 +371,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "横綱",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -387,7 +387,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "小結",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         }
       ],
@@ -396,6 +396,11 @@ export const torikumiData: TorikumiDataSet = {
           "id": 3761,
           "name": "若隆景",
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+        },
+        {
+          "id": 4279,
+          "name": "義ノ富士",
+          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/"
         }
       ]
     },
@@ -418,7 +423,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "十両2",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -434,7 +439,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "十両3",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -450,7 +455,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "十両4",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -466,7 +471,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "十両5",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -482,7 +487,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "十両6",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -498,7 +503,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "十両7",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -514,7 +519,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "十両8",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -530,7 +535,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "十両9",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -546,7 +551,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "十両10",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -562,7 +567,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "十両11",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -578,7 +583,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "十両12",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -594,7 +599,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "十両13",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4267/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         },
         {
@@ -610,7 +615,7 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "十両14",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/",
-          "kimarite": "",
+          "kimarite": "未定",
           "winner": null
         }
       ],
@@ -619,6 +624,16 @@ export const torikumiData: TorikumiDataSet = {
           "id": 3334,
           "name": "白鷹山",
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+        },
+        {
+          "id": 4232,
+          "name": "旭海雄",
+          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
+        },
+        {
+          "id": 4285,
+          "name": "朝翠龍",
+          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
         }
       ]
     }
@@ -638,558 +653,16 @@ export const torikumiData: TorikumiDataSet = {
           "dayName": "取組日 初日",
           "dayHead": "初日： 令和8年7月12日(日)",
           "division": "幕内",
-          "matches": [
-            {
-              "division": "幕内",
-              "boutNo": 1,
-              "eastName": "朝紅龍",
-              "eastYomi": "あさこうりゅう",
-              "eastEnglish": "",
-              "eastRank": "前頭16",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/",
-              "westName": "一意",
-              "westYomi": "かずま",
-              "westEnglish": "",
-              "westRank": "前頭15",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "幕内",
-              "boutNo": 2,
-              "eastName": "大青山",
-              "eastYomi": "だいせいざん",
-              "eastEnglish": "",
-              "eastRank": "前頭16",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/",
-              "westName": "獅司",
-              "westYomi": "しし",
-              "westEnglish": "",
-              "westRank": "前頭14",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "幕内",
-              "boutNo": 3,
-              "eastName": "阿武剋",
-              "eastYomi": "おうのかつ",
-              "eastEnglish": "",
-              "eastRank": "前頭15",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/",
-              "westName": "尊富士",
-              "westYomi": "たけるふじ",
-              "westEnglish": "",
-              "westRank": "前頭13",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "幕内",
-              "boutNo": 4,
-              "eastName": "金峰山",
-              "eastYomi": "きんぼうざん",
-              "eastEnglish": "",
-              "eastRank": "前頭14",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/",
-              "westName": "阿炎",
-              "westYomi": "あび",
-              "westEnglish": "",
-              "westRank": "前頭12",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "幕内",
-              "boutNo": 5,
-              "eastName": "錦富士",
-              "eastYomi": "にしきふじ",
-              "eastEnglish": "",
-              "eastRank": "前頭13",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/",
-              "westName": "御嶽海",
-              "westYomi": "みたけうみ",
-              "westEnglish": "",
-              "westRank": "前頭11",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "幕内",
-              "boutNo": 6,
-              "eastName": "朝白龍",
-              "eastYomi": "あさはくりゅう",
-              "eastEnglish": "",
-              "eastRank": "前頭12",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/",
-              "westName": "千代翔馬",
-              "westYomi": "ちよしょうま",
-              "westEnglish": "",
-              "westRank": "前頭10",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "幕内",
-              "boutNo": 7,
-              "eastName": "若ノ勝",
-              "eastYomi": "わかのしょう",
-              "eastEnglish": "",
-              "eastRank": "前頭11",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/",
-              "westName": "翔猿",
-              "westYomi": "とびざる",
-              "westEnglish": "",
-              "westRank": "前頭9",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "幕内",
-              "boutNo": 8,
-              "eastName": "朝乃山",
-              "eastYomi": "あさのやま",
-              "eastEnglish": "",
-              "eastRank": "前頭10",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/",
-              "westName": "狼雅",
-              "westYomi": "ろうが",
-              "westEnglish": "",
-              "westRank": "前頭8",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "幕内",
-              "boutNo": 9,
-              "eastName": "藤凌駕",
-              "eastYomi": "ふじりょうが",
-              "eastEnglish": "",
-              "eastRank": "前頭9",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/",
-              "westName": "高安",
-              "westYomi": "たかやす",
-              "westEnglish": "",
-              "westRank": "前頭7",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "幕内",
-              "boutNo": 10,
-              "eastName": "若元春",
-              "eastYomi": "わかもとはる",
-              "eastEnglish": "",
-              "eastRank": "前頭8",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/",
-              "westName": "藤青雲",
-              "westYomi": "ふじせいうん",
-              "westEnglish": "",
-              "westRank": "前頭6",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "幕内",
-              "boutNo": 11,
-              "eastName": "琴栄峰",
-              "eastYomi": "ことえいほう",
-              "eastEnglish": "",
-              "eastRank": "前頭7",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/",
-              "westName": "欧勝馬",
-              "westYomi": "おうしょうま",
-              "westEnglish": "",
-              "westRank": "前頭5",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "幕内",
-              "boutNo": 12,
-              "eastName": "正代",
-              "eastYomi": "しょうだい",
-              "eastEnglish": "",
-              "eastRank": "前頭6",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/",
-              "westName": "一山本",
-              "westYomi": "いちやまもと",
-              "westEnglish": "",
-              "westRank": "前頭4",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "幕内",
-              "boutNo": 13,
-              "eastName": "宇良",
-              "eastYomi": "うら",
-              "eastEnglish": "",
-              "eastRank": "前頭5",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/",
-              "westName": "伯乃富士",
-              "westYomi": "はくのふじ",
-              "westEnglish": "",
-              "westRank": "前頭3",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "幕内",
-              "boutNo": 14,
-              "eastName": "大栄翔",
-              "eastYomi": "だいえいしょう",
-              "eastEnglish": "",
-              "eastRank": "前頭4",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/",
-              "westName": "安青錦",
-              "westYomi": "あおにしき",
-              "westEnglish": "",
-              "westRank": "関脇",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "幕内",
-              "boutNo": 15,
-              "eastName": "平戸海",
-              "eastYomi": "ひらどうみ",
-              "eastEnglish": "",
-              "eastRank": "前頭3",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/",
-              "westName": "琴勝峰",
-              "westYomi": "ことしょうほう",
-              "westEnglish": "",
-              "westRank": "関脇",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "幕内",
-              "boutNo": 16,
-              "eastName": "美ノ海",
-              "eastYomi": "ちゅらのうみ",
-              "eastEnglish": "",
-              "eastRank": "前頭2",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/",
-              "westName": "豪ノ山",
-              "westYomi": "ごうのやま",
-              "westEnglish": "",
-              "westRank": "前頭2",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "幕内",
-              "boutNo": 17,
-              "eastName": "熱海富士",
-              "eastYomi": "あたみふじ",
-              "eastEnglish": "",
-              "eastRank": "関脇",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/",
-              "westName": "琴櫻",
-              "westYomi": "ことざくら",
-              "westEnglish": "",
-              "westRank": "大関",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "幕内",
-              "boutNo": 18,
-              "eastName": "隆の勝",
-              "eastYomi": "たかのしょう",
-              "eastEnglish": "",
-              "eastRank": "前頭1",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/",
-              "westName": "藤ノ川",
-              "westYomi": "ふじのかわ",
-              "westEnglish": "",
-              "westRank": "前頭1",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "幕内",
-              "boutNo": 19,
-              "eastName": "霧島",
-              "eastYomi": "きりしま",
-              "eastEnglish": "",
-              "eastRank": "大関",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/",
-              "westName": "大の里",
-              "westYomi": "おおのさと",
-              "westEnglish": "",
-              "westRank": "横綱",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "幕内",
-              "boutNo": 20,
-              "eastName": "豊昇龍",
-              "eastYomi": "ほうしょうりゅう",
-              "eastEnglish": "",
-              "eastRank": "横綱",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/",
-              "westName": "王鵬",
-              "westYomi": "おうほう",
-              "westEnglish": "",
-              "westRank": "小結",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/",
-              "kimarite": "",
-              "winner": null
-            }
-          ],
-          "absentees": [
-            {
-              "id": 3761,
-              "name": "若隆景",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            }
-          ]
+          "matches": [],
+          "absentees": []
         },
         "juryo": {
           "day": 1,
           "dayName": "取組日 初日",
           "dayHead": "初日： 令和8年7月12日(日)",
           "division": "十両",
-          "matches": [
-            {
-              "division": "十両",
-              "boutNo": 1,
-              "eastName": "朝乃山",
-              "eastYomi": "あさのやま",
-              "eastEnglish": "",
-              "eastRank": "前頭10",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/",
-              "westName": "佐田の海",
-              "westYomi": "さだのうみ",
-              "westEnglish": "",
-              "westRank": "十両2",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "十両",
-              "boutNo": 2,
-              "eastName": "時疾風",
-              "eastYomi": "ときはやて",
-              "eastEnglish": "",
-              "eastRank": "十両2",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/",
-              "westName": "出羽ノ龍",
-              "westYomi": "でわのりゅう",
-              "westEnglish": "",
-              "westRank": "十両3",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "十両",
-              "boutNo": 3,
-              "eastName": "竜電",
-              "eastYomi": "りゅうでん",
-              "eastEnglish": "",
-              "eastRank": "十両3",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/",
-              "westName": "寿之富士",
-              "westYomi": "としのふじ",
-              "westEnglish": "",
-              "westRank": "十両4",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "十両",
-              "boutNo": 4,
-              "eastName": "友風",
-              "eastYomi": "ともかぜ",
-              "eastEnglish": "",
-              "eastRank": "十両4",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/",
-              "westName": "欧勝海",
-              "westYomi": "おうしょううみ",
-              "westEnglish": "",
-              "westRank": "十両5",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "十両",
-              "boutNo": 5,
-              "eastName": "北の若",
-              "eastYomi": "きたのわか",
-              "eastEnglish": "",
-              "eastRank": "十両5",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/",
-              "westName": "風賢央",
-              "westYomi": "かぜけんおう",
-              "westEnglish": "",
-              "westRank": "十両6",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "十両",
-              "boutNo": 6,
-              "eastName": "湘南乃海",
-              "eastYomi": "しょうなんのうみ",
-              "eastEnglish": "",
-              "eastRank": "十両6",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/",
-              "westName": "明生",
-              "westYomi": "めいせい",
-              "westEnglish": "",
-              "westRank": "十両7",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "十両",
-              "boutNo": 7,
-              "eastName": "玉鷲",
-              "eastYomi": "たまわし",
-              "eastEnglish": "",
-              "eastRank": "十両7",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/",
-              "westName": "羽出山",
-              "westYomi": "はつやま",
-              "westEnglish": "",
-              "westRank": "十両8",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "十両",
-              "boutNo": 8,
-              "eastName": "翠富士",
-              "eastYomi": "みどりふじ",
-              "eastEnglish": "",
-              "eastRank": "十両8",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/",
-              "westName": "西ノ龍",
-              "westYomi": "にしのりゅう",
-              "westEnglish": "",
-              "westRank": "十両9",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3914/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "十両",
-              "boutNo": 9,
-              "eastName": "白熊",
-              "eastYomi": "しろくま",
-              "eastEnglish": "",
-              "eastRank": "十両9",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/",
-              "westName": "玉正鳳",
-              "westYomi": "たましょうほう",
-              "westEnglish": "",
-              "westRank": "十両10",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "十両",
-              "boutNo": 10,
-              "eastName": "日翔志",
-              "eastYomi": "ひとし",
-              "eastEnglish": "",
-              "eastRank": "十両10",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/",
-              "westName": "炎鵬",
-              "westYomi": "えんほう",
-              "westEnglish": "",
-              "westRank": "十両11",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "十両",
-              "boutNo": 11,
-              "eastName": "輝",
-              "eastYomi": "かがやき",
-              "eastEnglish": "",
-              "eastRank": "十両11",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/",
-              "westName": "嘉陽",
-              "westYomi": "かよう",
-              "westEnglish": "",
-              "westRank": "十両12",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "十両",
-              "boutNo": 12,
-              "eastName": "東白龍",
-              "eastYomi": "とうはくりゅう",
-              "eastEnglish": "",
-              "eastRank": "十両12",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/",
-              "westName": "嵐富士",
-              "westYomi": "あらしふじ",
-              "westEnglish": "",
-              "westRank": "十両13",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4267/",
-              "kimarite": "",
-              "winner": null
-            },
-            {
-              "division": "十両",
-              "boutNo": 13,
-              "eastName": "栃大海",
-              "eastYomi": "とちたいかい",
-              "eastEnglish": "",
-              "eastRank": "十両14",
-              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/",
-              "westName": "錦木",
-              "westYomi": "にしきぎ",
-              "westEnglish": "",
-              "westRank": "十両14",
-              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/",
-              "kimarite": "",
-              "winner": null
-            }
-          ],
-          "absentees": [
-            {
-              "id": 3334,
-              "name": "白鷹山",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            }
-          ]
+          "matches": [],
+          "absentees": []
         }
       }
     },
@@ -1208,13 +681,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "二日目： 令和8年7月13日(月)",
           "division": "幕内",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3761,
-              "name": "若隆景",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 2,
@@ -1222,13 +689,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "二日目： 令和8年7月13日(月)",
           "division": "十両",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3334,
-              "name": "白鷹山",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            }
-          ]
+          "absentees": []
         }
       }
     },
@@ -1247,13 +708,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "三日目： 令和8年7月14日(火)",
           "division": "幕内",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3761,
-              "name": "若隆景",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 3,
@@ -1261,13 +716,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "三日目： 令和8年7月14日(火)",
           "division": "十両",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3334,
-              "name": "白鷹山",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            }
-          ]
+          "absentees": []
         }
       }
     },
@@ -1286,13 +735,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "四日目： 令和8年7月15日(水)",
           "division": "幕内",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3761,
-              "name": "若隆景",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 4,
@@ -1300,13 +743,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "四日目： 令和8年7月15日(水)",
           "division": "十両",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3334,
-              "name": "白鷹山",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            }
-          ]
+          "absentees": []
         }
       }
     },
@@ -1325,13 +762,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "五日目： 令和8年7月16日(木)",
           "division": "幕内",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3761,
-              "name": "若隆景",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 5,
@@ -1339,13 +770,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "五日目： 令和8年7月16日(木)",
           "division": "十両",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3334,
-              "name": "白鷹山",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            }
-          ]
+          "absentees": []
         }
       }
     },
@@ -1364,13 +789,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "六日目： 令和8年7月17日(金)",
           "division": "幕内",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3761,
-              "name": "若隆景",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 6,
@@ -1378,13 +797,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "六日目： 令和8年7月17日(金)",
           "division": "十両",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3334,
-              "name": "白鷹山",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            }
-          ]
+          "absentees": []
         }
       }
     },
@@ -1403,13 +816,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "七日目： 令和8年7月18日(土)",
           "division": "幕内",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3761,
-              "name": "若隆景",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 7,
@@ -1417,13 +824,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "七日目： 令和8年7月18日(土)",
           "division": "十両",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3334,
-              "name": "白鷹山",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            }
-          ]
+          "absentees": []
         }
       }
     },
@@ -1442,13 +843,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "中日： 令和8年7月19日(日)",
           "division": "幕内",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3761,
-              "name": "若隆景",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 8,
@@ -1456,13 +851,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "中日： 令和8年7月19日(日)",
           "division": "十両",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3334,
-              "name": "白鷹山",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            }
-          ]
+          "absentees": []
         }
       }
     },
@@ -1481,13 +870,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "九日目： 令和8年7月20日(月)",
           "division": "幕内",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3761,
-              "name": "若隆景",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 9,
@@ -1495,13 +878,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "九日目： 令和8年7月20日(月)",
           "division": "十両",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3334,
-              "name": "白鷹山",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            }
-          ]
+          "absentees": []
         }
       }
     },
@@ -1520,13 +897,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十日目： 令和8年7月21日(火)",
           "division": "幕内",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3761,
-              "name": "若隆景",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 10,
@@ -1534,13 +905,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十日目： 令和8年7月21日(火)",
           "division": "十両",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3334,
-              "name": "白鷹山",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            }
-          ]
+          "absentees": []
         }
       }
     },
@@ -1559,13 +924,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十一日目： 令和8年7月22日(水)",
           "division": "幕内",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3761,
-              "name": "若隆景",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 11,
@@ -1573,13 +932,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十一日目： 令和8年7月22日(水)",
           "division": "十両",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3334,
-              "name": "白鷹山",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            }
-          ]
+          "absentees": []
         }
       }
     },
@@ -1598,13 +951,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十二日目： 令和8年7月23日(木)",
           "division": "幕内",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3761,
-              "name": "若隆景",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 12,
@@ -1612,13 +959,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十二日目： 令和8年7月23日(木)",
           "division": "十両",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3334,
-              "name": "白鷹山",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            }
-          ]
+          "absentees": []
         }
       }
     },
@@ -1637,13 +978,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十三日目： 令和8年7月24日(金)",
           "division": "幕内",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3761,
-              "name": "若隆景",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 13,
@@ -1651,13 +986,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十三日目： 令和8年7月24日(金)",
           "division": "十両",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3334,
-              "name": "白鷹山",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            }
-          ]
+          "absentees": []
         }
       }
     },
@@ -1676,13 +1005,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十四日目： 令和8年7月25日(土)",
           "division": "幕内",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3761,
-              "name": "若隆景",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 14,
@@ -1690,13 +1013,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十四日目： 令和8年7月25日(土)",
           "division": "十両",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3334,
-              "name": "白鷹山",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            }
-          ]
+          "absentees": []
         }
       }
     },
@@ -1715,13 +1032,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "千秋楽： 令和8年7月26日(日)",
           "division": "幕内",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3761,
-              "name": "若隆景",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            }
-          ]
+          "absentees": []
         },
         "juryo": {
           "day": 15,
@@ -1729,13 +1040,7 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "千秋楽： 令和8年7月26日(日)",
           "division": "十両",
           "matches": [],
-          "absentees": [
-            {
-              "id": 3334,
-              "name": "白鷹山",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            }
-          ]
+          "absentees": []
         }
       }
     }
