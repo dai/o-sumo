@@ -135,6 +135,22 @@ class LoadBanzukeMetaRequestTest(unittest.TestCase):
         )
 
 
+class LoadDivisionRikishiFallbackTest(unittest.TestCase):
+    def test_uses_local_banzuke_when_remote_banzuke_fetch_fails(self) -> None:
+        with mock.patch.object(MODULE, "load_banzuke_meta", side_effect=RuntimeError("boom")):
+            rikishi = MODULE.load_division_rikishi(1)
+
+        self.assertIn(3761, rikishi)
+        self.assertEqual(rikishi[3761]["name"], "若隆景")
+
+    def test_uses_local_banzuke_when_remote_banzuke_is_empty(self) -> None:
+        with mock.patch.object(MODULE, "load_banzuke_meta", return_value={"BanzukeTable": []}):
+            rikishi = MODULE.load_division_rikishi(2)
+
+        self.assertIn(3334, rikishi)
+        self.assertEqual(rikishi[3334]["name"], "白鷹山")
+
+
 class OfficialBashoScheduleTest(unittest.TestCase):
     def test_extracts_july_2026_start_date_from_annual_schedule(self) -> None:
         html = """
