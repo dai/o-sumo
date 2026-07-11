@@ -300,8 +300,15 @@ def load_official_basho_start_date(year_jp: str, basho_name: str) -> date | None
             "Accept-Language": "ja,en-US;q=0.9,en;q=0.8",
         },
     )
-    with urlopen(req, timeout=30) as res:
-        html = res.read().decode("utf-8")
+    try:
+        with urlopen(req, timeout=30) as res:
+            html = res.read().decode("utf-8")
+    except Exception as exc:
+        print(
+            f"[warn] official basho schedule fetch failed, using BashoInfo day fallback ({exc})",
+            file=sys.stderr,
+        )
+        return None
     return extract_official_basho_start_date(html, year_jp, basho_name)
 
 
@@ -310,6 +317,21 @@ def determine_current_basho_day(start_date: date, today: date | None = None) -> 
     if target_day < start_date:
         return 0
     return max(1, min((target_day - start_date).days + 1, 15))
+
+
+def infer_start_date_from_existing_torikumi(existing_torikumi: dict | None) -> date | None:
+    if not existing_torikumi:
+        return None
+    for source_key in ("scheduleDays", "resultDays"):
+        for day_entry in existing_torikumi.get(source_key, []):
+            if safe_int(day_entry.get("day", 0), 0) != 1:
+                continue
+            path_date = str(day_entry.get("pathDate", ""))
+            try:
+                return datetime.strptime(path_date, "%Y%m%d").date()
+            except ValueError:
+                continue
+    return None
 
 
 def load_banzuke_meta(kakuzuke_id: int = 1) -> dict:
@@ -1684,13 +1706,18 @@ def main() -> None:
         basho_info = makuuchi_meta["BashoInfo"]
         basho_id = int(basho_info.get("basho_id", 1))
         updated_at = str(basho_info.get("today", ""))
+        existing_torikumi = load_existing_torikumi_json()
         official_start_date = load_official_basho_start_date(year_jp, basho_name)
+        if official_start_date is None and existing_torikumi and (
+            str(existing_torikumi.get("bashoName", "")) == basho_name
+            and str(existing_torikumi.get("year", "")) == year_jp
+        ):
+            official_start_date = infer_start_date_from_existing_torikumi(existing_torikumi)
         if official_start_date is not None:
             current_day = determine_current_basho_day(official_start_date)
         else:
             current_day = safe_int(basho_info.get("day", 1), 1)
 
-        existing_torikumi = load_existing_torikumi_json()
         generation_existing = existing_torikumi
         if generation_existing and (
             str(generation_existing.get("bashoName", "")) != basho_name
