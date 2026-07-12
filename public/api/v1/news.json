@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-07T11:59:08.859905+00:00",
+  "updatedAt": "2026-07-12T05:11:08.249661+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_ZW676YG7AFPRHBG4HDMTWLYAWE",
-      "title": "平幕藤凌駕、連日の出稽古「自分のためにとてもいい稽古」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_ZW676YG7AFPRHBG4HDMTWLYAWE",
-      "publishedAt": "2026-07-07",
-      "publishedAtRaw": "SANSPO　7月7日 17時49分",
+      "id": "dmenu-docomo-f-bt-tp1-260712-202607120000447",
+      "title": "昨年の高校横綱・沢田が白星デビュー「緊張しました」三段目最下位格付け出しで初土俵飾る",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260712-202607120000447",
+      "publishedAt": "2026-07-12",
+      "publishedAtRaw": "日刊スポーツ　7月12日 12時38分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-jiji-202607070091970131",
-      "title": "琴勝峰「仕上げていく」",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-202607070091970131",
-      "publishedAt": "2026-07-07",
-      "publishedAtRaw": "時事通信　7月7日 16時42分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_G4ZNXZAHM5FARI5PKJ4KAJWMII",
+      "title": "元稀勢の里「僕もやめてからしゃべってますけど現役のとき一言もしゃべってない」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_G4ZNXZAHM5FARI5PKJ4KAJWMII",
+      "publishedAt": "2026-07-12",
+      "publishedAtRaw": "SANSPO　7月12日 12時07分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-jiji-2026070700842",
-      "title": "琴勝峰「仕上げていく」＝大相撲",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026070700842",
-      "publishedAt": "2026-07-07",
-      "publishedAtRaw": "時事通信　7月7日 16時25分",
+      "id": "dmenu-docomo-hochi-20260712-OHT1T51110",
+      "title": "左腕手術から復活　元十両の宮乃風、３場所連続休場からの復帰戦で白星「とても緊張した」「状態はいいと思う」…名古屋場所初日",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260712-OHT1T51110",
+      "publishedAt": "2026-07-12",
+      "publishedAtRaw": "スポーツ報知　7月12日 12時03分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260707-OHT1T51187",
-      "title": "【高校野球】神奈川・旭丘が相撲ルーチンで初戦突破…四股などで「一つになれる」大相撲で無傷２１連勝中の旭富士の母校",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260707-OHT1T51187",
-      "publishedAt": "2026-07-07",
-      "publishedAtRaw": "スポーツ報知　7月7日 15時57分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_SSOSRK7E4BCYVIOAZTW6V5ECMU",
+      "title": "元稀勢の里「若乃花さんの前でよかったっすよ。僕のが薄すぎて…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_SSOSRK7E4BCYVIOAZTW6V5ECMU",
+      "publishedAt": "2026-07-12",
+      "publishedAtRaw": "SANSPO　7月12日 12時02分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260707-OHT1T51183",
-      "title": "夏場所途中休場の元大関・朝乃山が復活へ横綱・豊昇龍と７番　２勝も「本当に来てくれてうれしい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260707-OHT1T51183",
-      "publishedAt": "2026-07-07",
-      "publishedAtRaw": "スポーツ報知　7月7日 15時51分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260712-0171",
+      "title": "5287日ぶり「垣添」の勝ち名乗り　雷親方長男が本場所デビュー戦勝利",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260712-0171",
+      "publishedAt": "2026-07-12",
+      "publishedAtRaw": "スポニチアネックス　7月12日 10時55分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
