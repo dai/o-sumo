@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: osumo-data-update-branch
+  group: osumo-schedule-update-branch
   cancel-in-progress: false
 
 permissions:
@@ -93,11 +93,11 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GH_PAT || github.token }}
-          branch: automation/data-updates
+          branch: automation/schedule-updates
           base: main
           delete-branch: false
           commit-message: 'chore: daily sumo schedule update'
-          title: 'chore: automated sumo data updates'
+          title: 'chore: automated torikumi schedule updates'
           body: |
             ## Summary
             - Automated data update from `${{ github.workflow }}`

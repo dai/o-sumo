@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: osumo-data-update-branch
+  group: osumo-news-update-branch
   cancel-in-progress: false
 
 permissions:
@@ -94,11 +94,11 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GH_PAT || github.token }}
-          branch: automation/data-updates
+          branch: automation/news-updates
           base: main
           delete-branch: false
           commit-message: 'chore: news feed update'
-          title: 'chore: automated sumo data updates'
+          title: 'chore: automated news feed updates'
           body: |
             ## Summary
             - Automated data update from `${{ github.workflow }}`
