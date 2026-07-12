@@ -21,6 +21,7 @@ import { formatUpdatedAt } from '../lib/updated-at';
 import { getBanzukeDataByMonthKey, CURRENT_BASHO_ID } from '../lib/archive-basho-data';
 
 const DIVISIONS: Array<'幕内' | '十両'> = ['幕内', '十両'];
+const RESULT_DIVISIONS: Array<'幕内' | '十両'> = ['十両', '幕内'];
 
 function byDivision(day: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay }, division: '幕内' | '十両') {
   return division === '幕内' ? day.makuuchi.matches : day.juryo.matches;
@@ -93,6 +94,17 @@ function hasAnyMatches(dayData: { makuuchi: TorikumiDivisionDay; juryo: Torikumi
   return dayData.makuuchi.matches.length > 0 || dayData.juryo.matches.length > 0;
 }
 
+function getDivisionOrder(mode: TorikumiPageMode) {
+  return mode === 'result' ? RESULT_DIVISIONS : DIVISIONS;
+}
+
+function getDisplaySortOrder(mode: TorikumiPageMode, division: '幕内' | '十両', sortOrder: SortOrder): SortOrder {
+  if (mode === 'result' && division === '十両') {
+    return sortOrder === 'asc' ? 'desc' : 'asc';
+  }
+  return sortOrder;
+}
+
 function getVisibleDayData(
   day: TorikumiArchiveDay,
   archive: { scheduleDays?: TorikumiArchiveDay[] },
@@ -133,9 +145,9 @@ function TorikumiTable({
   return (
     <section className="division-section">
       <h2>{title}</h2>
-      {DIVISIONS.map((division) => {
+      {getDivisionOrder(mode).map((division) => {
         const meta = sectionMeta(dayData, division);
-        const matches = sortMatches(byDivision(dayData, division), sortOrder);
+        const matches = sortMatches(byDivision(dayData, division), getDisplaySortOrder(mode, division, sortOrder));
         return (
           <div key={`${title}-${division}`}>
             <h3>{t('torikumi.day.divisionMatchCount', { division, count: matches.length })}</h3>
