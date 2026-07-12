@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-07T11:59:08.859905+00:00",
+  "updatedAt": "2026-07-12T10:36:03.892938+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_ZW676YG7AFPRHBG4HDMTWLYAWE",
-      "title": "平幕藤凌駕、連日の出稽古「自分のためにとてもいい稽古」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_ZW676YG7AFPRHBG4HDMTWLYAWE",
-      "publishedAt": "2026-07-07",
-      "publishedAtRaw": "SANSPO　7月7日 17時49分",
+      "id": "dmenu-docomo-hochi-20260712-OHT1T51368",
+      "title": "２場所連続休場明けの横綱・大の里が黒星発進　心配の声続々…八角理事長「当たりが軽い。馬力がなくなっているのが心配」　土俵下の九重審判長「ものすごく不安。どんな調整をしてきたのか」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260712-OHT1T51368",
+      "publishedAt": "2026-07-12",
+      "publishedAtRaw": "スポーツ報知　7月12日 19時22分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-jiji-202607070091970131",
-      "title": "琴勝峰「仕上げていく」",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-202607070091970131",
-      "publishedAt": "2026-07-07",
-      "publishedAtRaw": "時事通信　7月7日 16時42分",
+      "id": "dmenu-docomo-f-bt-tp1-260712-202607120001117",
+      "title": "大関復帰狙う安青錦、休場明けの初日白星も左足不安　舞の海氏が推測した「変わり気味」の理由",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260712-202607120001117",
+      "publishedAt": "2026-07-12",
+      "publishedAtRaw": "日刊スポーツ　7月12日 17時42分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-jiji-2026070700842",
-      "title": "琴勝峰「仕上げていく」＝大相撲",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026070700842",
-      "publishedAt": "2026-07-07",
-      "publishedAtRaw": "時事通信　7月7日 16時25分",
+      "id": "dmenu-docomo-20260712105",
+      "title": "緊急手術で休場の若隆景は現在も入院中、師匠が優勝旗返還式に出席【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260712105",
+      "publishedAt": "2026-07-12",
+      "publishedAtRaw": "デイリースポーツ　7月12日 17時08分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260707-OHT1T51187",
-      "title": "【高校野球】神奈川・旭丘が相撲ルーチンで初戦突破…四股などで「一つになれる」大相撲で無傷２１連勝中の旭富士の母校",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260707-OHT1T51187",
-      "publishedAt": "2026-07-07",
-      "publishedAtRaw": "スポーツ報知　7月7日 15時57分",
+      "id": "dmenu-docomo-numberweb-871176",
+      "title": "「ふたりで飲みだすと止まらなくなる」“阿吽の呼吸”で大関復帰を目指す安青錦と安治川親方の挑戦「あくまでも優勝を狙っていきます」",
+      "url": "https://topics.smt.docomo.ne.jp/article/numberweb/sports/numberweb-871176",
+      "publishedAt": "2026-07-12",
+      "publishedAtRaw": "Number Web　7月12日 17時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260707-OHT1T51183",
-      "title": "夏場所途中休場の元大関・朝乃山が復活へ横綱・豊昇龍と７番　２勝も「本当に来てくれてうれしい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260707-OHT1T51183",
-      "publishedAt": "2026-07-07",
-      "publishedAtRaw": "スポーツ報知　7月7日 15時51分",
+      "id": "dmenu-docomo-f-bt-tp1-260712-202607120000907",
+      "title": "若隆景は「退院はまだ」荒汐親方が現状明かす　休場の弟子に代わり名古屋場所初日に賜杯返還",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260712-202607120000907",
+      "publishedAt": "2026-07-12",
+      "publishedAtRaw": "日刊スポーツ　7月12日 16時48分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
