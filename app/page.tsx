@@ -63,12 +63,13 @@ function boutNumberForWindow(matchCount: number, elapsedMinutes: number, windowM
 
 export function nearestTorikumiAnchor(dayData: TorikumiDailyData, jstMinutes: number): string | null {
   if (jstMinutes >= LIVE_START_MINUTES && jstMinutes < MAKUUCHI_START_MINUTES && dayData.juryo.matches.length > 0) {
-    const boutNo = boutNumberForWindow(
-      dayData.juryo.matches.length,
+    const visibleJuryoMatches = [...dayData.juryo.matches].sort((left, right) => right.boutNo - left.boutNo);
+    const visibleIndex = boutNumberForWindow(
+      visibleJuryoMatches.length,
       jstMinutes - LIVE_START_MINUTES,
       MAKUUCHI_START_MINUTES - LIVE_START_MINUTES,
-    );
-    return divisionAnchorId('十両', boutNo);
+    ) - 1;
+    return divisionAnchorId('十両', visibleJuryoMatches[visibleIndex].boutNo);
   }
 
   if (jstMinutes >= MAKUUCHI_START_MINUTES && jstMinutes < LIVE_END_MINUTES && dayData.makuuchi.matches.length > 0) {
@@ -80,11 +81,12 @@ export function nearestTorikumiAnchor(dayData: TorikumiDailyData, jstMinutes: nu
     return divisionAnchorId('幕内', boutNo);
   }
 
+  if (dayData.juryo.matches.length > 0) {
+    const firstVisibleJuryo = [...dayData.juryo.matches].sort((left, right) => right.boutNo - left.boutNo)[0];
+    return divisionAnchorId('十両', firstVisibleJuryo.boutNo);
+  }
   if (dayData.makuuchi.matches.length > 0) {
     return divisionAnchorId('幕内', 1);
-  }
-  if (dayData.juryo.matches.length > 0) {
-    return divisionAnchorId('十両', 1);
   }
   return null;
 }

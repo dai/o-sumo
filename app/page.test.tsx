@@ -126,6 +126,7 @@ describe('Home page', () => {
     expect(nearestTorikumiAnchor(firstSchedule, 14 * 60)).toMatch(/^bout-juryo-/);
     expect(nearestTorikumiAnchor(firstSchedule, 16 * 60)).toMatch(/^bout-makuuchi-/);
     expect(nearestTorikumiAnchor(torikumiArchive.scheduleDays[0].data, 16 * 60)).toBe('bout-makuuchi-5');
+    expect(nearestTorikumiAnchor(torikumiArchive.scheduleDays[0].data, 12 * 60)).toBe('bout-juryo-13');
     expect(buildLiveTorikumiTarget(torikumiArchive, torikumiData, 16 * 60).href).toBe('/20260712-torikumi/#bout-makuuchi-5');
   });
 

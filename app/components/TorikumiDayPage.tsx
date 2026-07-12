@@ -109,20 +109,20 @@ function getVisibleDayData(
   day: TorikumiArchiveDay,
   archive: { scheduleDays?: TorikumiArchiveDay[] },
   mode: TorikumiPageMode,
-) {
+): { data: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay }; source: 'result' | 'schedule' } {
   if (mode !== 'result' || day.status !== 'pending' || hasAnyMatches(day.data)) {
-    return day.data;
+    return { data: day.data, source: mode };
   }
   if (isElapsedArchiveDay(day)) {
-    return day.data;
+    return { data: day.data, source: 'result' };
   }
 
   const scheduleDay = (archive.scheduleDays ?? []).find((candidate) => candidate.pathDate === day.pathDate);
   if (!scheduleDay || !hasAnyMatches(scheduleDay.data)) {
-    return day.data;
+    return { data: day.data, source: 'result' };
   }
 
-  return scheduleDay.data;
+  return { data: scheduleDay.data, source: 'schedule' };
 }
 
 function TorikumiTable({
@@ -224,7 +224,8 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
   const { monthKey, archive, resultPath, schedulePath, bandukePath } = getArchiveForPath(day.pathDate);
   const prevDay = getAdjacentDay(day, mode, 'prev');
   const nextDay = getAdjacentDay(day, mode, 'next');
-  const visibleDayData = getVisibleDayData(day, archive, mode);
+  const visibleDay = getVisibleDayData(day, archive, mode);
+  const visibleDayData = visibleDay.data;
 
   const modeLabel = mode === 'result'
     ? t('torikumi.day.modeResult')
@@ -233,7 +234,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
     ? t('torikumi.day.modeDescriptionResult')
     : t('torikumi.day.modeDescriptionSchedule');
   const absentees = mode === 'schedule' ? uniqueAbsentees(visibleDayData) : [];
-  const updatedAt = mode === 'result' ? archive.resultUpdatedAt : archive.scheduleUpdatedAt;
+  const updatedAt = visibleDay.source === 'schedule' ? archive.scheduleUpdatedAt : mode === 'result' ? archive.resultUpdatedAt : archive.scheduleUpdatedAt;
   const recordMap = React.useMemo(() => createRecordMap(monthKey), [monthKey]);
 
   return (

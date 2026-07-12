@@ -141,6 +141,7 @@ describe('TorikumiDayPage', () => {
     renderPage(pendingResultDay, 'result');
 
     expect(screen.getByText('結果未更新')).toBeInTheDocument();
+    expect(screen.getByText(`更新日: ${formatUpdatedAt(torikumiArchive.scheduleUpdatedAt)}`)).toBeInTheDocument();
     expect(screen.getAllByRole('row').length).toBeGreaterThan(1);
     expect(screen.queryByText('幕内の取組結果はまだ更新されていません。')).not.toBeInTheDocument();
   });
