@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: osumo-data-update-branch
+  group: osumo-news-update-branch
   cancel-in-progress: false
 
 permissions:
@@ -22,7 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_PAT || github.token }}
           fetch-depth: 0
 
       - name: Setup Python
@@ -93,12 +93,13 @@ jobs:
         id: create-pr
         uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
-          branch: automation/data-updates
+          token: ${{ secrets.GH_PAT || github.token }}
+          branch: automation/news-updates
+          branch-suffix: timestamp
           base: main
           delete-branch: false
           commit-message: 'chore: news feed update'
-          title: 'chore: automated sumo data updates'
+          title: 'chore: automated news feed updates'
           body: |
             ## Summary
             - Automated data update from `${{ github.workflow }}`

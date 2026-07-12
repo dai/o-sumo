@@ -8,12 +8,11 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: osumo-data-update-branch
+  group: osumo-result-update-branch
   cancel-in-progress: false
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   update-torikumi:
@@ -23,7 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_PAT || github.token }}
           fetch-depth: 0
 
       - name: Setup Python
@@ -37,7 +36,7 @@ jobs:
           set -euo pipefail
           success=0
           for attempt in 1 2; do
-            if python scripts/update_sumo_data.py --torikumi-only --torikumi-scope result --skip-rikishi-fetch; then
+            if python scripts/update_sumo_data.py --torikumi-only --torikumi-scope result --skip-rikishi-fetch --strict-torikumi-fetch; then
               success=1
               break
             fi
@@ -89,34 +88,22 @@ jobs:
               raise SystemExit("torikumi archive day count must be 15 for resultDays and scheduleDays")
           PY
 
-      - name: Create or update data update PR
-        id: create-pr
-        uses: peter-evans/create-pull-request@v7
-        with:
-          token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
-          branch: automation/data-updates
-          base: main
-          delete-branch: false
-          commit-message: 'chore: realtime torikumi update'
-          title: 'chore: automated sumo data updates'
-          body: |
-            ## Summary
-            - Automated data update from `${{ github.workflow }}`
-            - Event: `${{ github.event_name }}`
-            - Schedule: `${{ github.event.schedule || 'manual' }}`
-            - Scope: `result` (realtime)
-          labels: |
-            automated
-            data-update
-          add-paths: |
-            app/lib/sumo-data.ts
-            app/lib/torikumi-data.ts
-            public/api/v1/banzuke.json
-            public/api/v1/torikumi.json
-
-      - name: Print PR context
+      - name: Commit realtime torikumi data
         shell: bash
         run: |
-          echo "pull_request_number=${{ steps.create-pr.outputs.pull-request-number }}"
-          echo "pull_request_operation=${{ steps.create-pr.outputs.pull-request-operation }}"
-          echo "pull_request_url=${{ steps.create-pr.outputs.pull-request-url }}"
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            app/lib/sumo-data.ts \
+            app/lib/torikumi-data.ts \
+            public/api/v1/banzuke.json \
+            public/api/v1/torikumi.json
+
+          if git diff --cached --quiet; then
+            echo "No realtime torikumi changes to commit."
+            exit 0
+          fi
+
+          git commit -m "chore: realtime torikumi update"
+          git push

@@ -130,6 +130,7 @@ describe('Home page', () => {
     expect(buildLiveTorikumiTarget(torikumiArchive, torikumiData, 16 * 60).href).toBe('/20260712-torikumi/#bout-makuuchi-5');
   });
 
+
   it('places the news section between the current basho hero and the past-basho map', () => {
     render(
       <MemoryRouter>
