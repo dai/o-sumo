@@ -28,7 +28,7 @@ export interface ArchiveBanzukeData {
 const CURRENT_BANZUKE_DATA: ArchiveBanzukeData = {
   bashoName: torikumiArchive.bashoName,
   year: torikumiArchive.year,
-  updatedAt: torikumiArchive.updatedAt,
+  updatedAt: torikumiArchive.resultUpdatedAt,
   makuuchi: makuuchiData,
   juryo,
 };
