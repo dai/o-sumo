@@ -101,11 +101,11 @@ export function buildLiveTorikumiTarget(
     const resultDay = archive.resultDays?.find((day) => day.day === todayDay);
     const scheduleDay = archive.scheduleDays?.find((day) => day.day === todayDay);
     const day = resultDay ?? scheduleDay;
-    const dayData = hasAnyMatches(data.today) ? data.today : scheduleDay?.data;
+    const dayData = hasAnyMatches(data.today) ? data.today : scheduleDay?.data ?? resultDay?.data;
     const anchor = dayData ? nearestTorikumiAnchor(dayData, jstMinutes) : null;
     return {
       href: day ? `${getDayPath(day, 'result')}${anchor ? `#${anchor}` : ''}` : `${CURRENT_RESULT_PATH}/`,
-      description: 'JST 13:00-18:00 は現在時刻に近い取組位置へ移動します。',
+      description: 'JST 13:00-18:00 は現在時刻に近い取組結果へ移動します。',
     };
   }
 
@@ -117,7 +117,7 @@ export function buildLiveTorikumiTarget(
     const anchor = dayData ? nearestTorikumiAnchor(dayData, jstMinutes) : null;
     return {
       href: resultDay ? `${getDayPath(resultDay, 'result')}${anchor ? `#${anchor}` : ''}` : `${CURRENT_RESULT_PATH}/`,
-      description: '開催前も取組予定を反映した結果プレースホルダーへ移動します。場所中は速報位置へ切り替わります。',
+      description: '開催前も取組予定を反映した結果ページへ移動します。場所中は速報位置へ切り替わります。',
     };
   }
 
