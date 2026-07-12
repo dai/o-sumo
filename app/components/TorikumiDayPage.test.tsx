@@ -52,6 +52,20 @@ describe('TorikumiDayPage', () => {
     expect(before[0]).not.toBe(after[0]);
   });
 
+  it('shows result matches as one bottom-to-top flow from juryo through makuuchi', () => {
+    const firstResultDay = torikumiArchive.resultDays[0];
+    renderPage(firstResultDay, 'result');
+
+    const divisionHeadings = screen.getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent);
+    expect(divisionHeadings[0]).toMatch(/十両/);
+    expect(divisionHeadings[1]).toMatch(/幕内/);
+
+    const rows = screen.getAllByRole('row');
+    expect(rows[0]).toHaveTextContent('栃大海');
+    expect(rows[0]).toHaveTextContent('錦木');
+    expect(rows[rows.length - 1]).toHaveTextContent(/豊昇龍|大の里/);
+  });
+
   it('shows pending empty-state messaging for unpublished days', () => {
     const pendingDay: TorikumiArchiveDay = {
       day: 15,
@@ -127,6 +141,7 @@ describe('TorikumiDayPage', () => {
     renderPage(pendingResultDay, 'result');
 
     expect(screen.getByText('結果未更新')).toBeInTheDocument();
+    expect(screen.getByText(`更新日: ${formatUpdatedAt(torikumiArchive.scheduleUpdatedAt)}`)).toBeInTheDocument();
     expect(screen.getAllByRole('row').length).toBeGreaterThan(1);
     expect(screen.queryByText('幕内の取組結果はまだ更新されていません。')).not.toBeInTheDocument();
   });

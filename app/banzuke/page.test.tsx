@@ -150,7 +150,7 @@ describe('BanzukePage', () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByText(`更新日: ${formatUpdatedAt(torikumiArchive.updatedAt)}`)).toBeInTheDocument();
+    expect(screen.getByText(`更新日: ${formatUpdatedAt(torikumiArchive.resultUpdatedAt)}`)).toBeInTheDocument();
   });
 
   it('renders July 2026 as the default current banzuke route and keeps May 2026 as an archive route', () => {
