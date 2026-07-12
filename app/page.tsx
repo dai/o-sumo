@@ -43,12 +43,6 @@ function hasAnyMatches(d: TorikumiDailyData | null | undefined): boolean {
   return Boolean(d && (d.makuuchi.matches.length > 0 || d.juryo.matches.length > 0));
 }
 
-function hasSettledMatches(d: TorikumiDailyData | null | undefined): boolean {
-  return Boolean(d && [d.makuuchi, d.juryo].some((division) => (
-    division.matches.some((match) => match.winner === 'east' || match.winner === 'west')
-  )));
-}
-
 export function jstMinutesOfDay(now: Date = new Date()): number {
   const parts = new Intl.DateTimeFormat('en-GB', {
     hour: '2-digit',
@@ -106,17 +100,12 @@ export function buildLiveTorikumiTarget(
   if (todayDay !== null) {
     const resultDay = archive.resultDays?.find((day) => day.day === todayDay);
     const scheduleDay = archive.scheduleDays?.find((day) => day.day === todayDay);
-    const useResultPage = hasSettledMatches(data.today);
-    const day = useResultPage ? resultDay : scheduleDay ?? resultDay;
-    const mode = useResultPage ? 'result' : 'schedule';
+    const day = resultDay ?? scheduleDay;
     const dayData = hasAnyMatches(data.today) ? data.today : scheduleDay?.data ?? resultDay?.data;
     const anchor = dayData ? nearestTorikumiAnchor(dayData, jstMinutes) : null;
-    const fallbackPath = useResultPage ? CURRENT_RESULT_PATH : CURRENT_SCHEDULE_PATH;
     return {
-      href: day ? `${getDayPath(day, mode)}${anchor ? `#${anchor}` : ''}` : `${fallbackPath}/`,
-      description: useResultPage
-        ? 'JST 13:00-18:00 は現在時刻に近い取組結果へ移動します。'
-        : '結果未着時は当日の取組予定へ移動し、結果公開後に速報ページへ切り替わります。',
+      href: day ? `${getDayPath(day, 'result')}${anchor ? `#${anchor}` : ''}` : `${CURRENT_RESULT_PATH}/`,
+      description: 'JST 13:00-18:00 は現在時刻に近い取組結果へ移動します。',
     };
   }
 
@@ -124,13 +113,11 @@ export function buildLiveTorikumiTarget(
   if (tomorrowDay !== null) {
     const resultDay = archive.resultDays?.find((day) => day.day === tomorrowDay);
     const scheduleDay = archive.scheduleDays?.find((day) => day.day === tomorrowDay);
-    const day = scheduleDay ?? resultDay;
-    const mode = scheduleDay ? 'schedule' : 'result';
     const dayData = hasAnyMatches(data.tomorrow) ? data.tomorrow : scheduleDay?.data ?? resultDay?.data;
     const anchor = dayData ? nearestTorikumiAnchor(dayData, jstMinutes) : null;
     return {
-      href: day ? `${getDayPath(day, mode)}${anchor ? `#${anchor}` : ''}` : `${CURRENT_SCHEDULE_PATH}/`,
-      description: '開催前・結果未着時は取組予定へ移動し、結果公開後に速報ページへ切り替わります。',
+      href: resultDay ? `${getDayPath(resultDay, 'result')}${anchor ? `#${anchor}` : ''}` : `${CURRENT_RESULT_PATH}/`,
+      description: '開催前も取組予定を反映した結果ページへ移動します。場所中は速報位置へ切り替わります。',
     };
   }
 

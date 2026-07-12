@@ -113,7 +113,7 @@ describe('Home page', () => {
     expect(screen.getByRole('heading', { level: 2, name: '現在の取組、速報中！' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '速報を見る' })).toHaveAttribute(
       'href',
-      '/20260712-yotei/#bout-makuuchi-1',
+      '/20260712-torikumi/#bout-makuuchi-1',
     );
     expect(liveSection).not.toBeNull();
     expect(news).not.toBeNull();
@@ -127,41 +127,9 @@ describe('Home page', () => {
     expect(nearestTorikumiAnchor(firstSchedule, 16 * 60)).toMatch(/^bout-makuuchi-/);
     expect(nearestTorikumiAnchor(torikumiArchive.scheduleDays[0].data, 16 * 60)).toBe('bout-makuuchi-5');
     expect(nearestTorikumiAnchor(torikumiArchive.scheduleDays[0].data, 12 * 60)).toBe('bout-juryo-13');
-    expect(buildLiveTorikumiTarget(torikumiArchive, torikumiData, 16 * 60).href).toBe('/20260712-yotei/#bout-makuuchi-5');
+    expect(buildLiveTorikumiTarget(torikumiArchive, torikumiData, 16 * 60).href).toBe('/20260712-torikumi/#bout-makuuchi-5');
   });
 
-  it('switches the live shortcut to the result page once a winner is available', () => {
-    const firstResultDay = torikumiArchive.resultDays[0];
-    const settledToday = {
-      ...torikumiArchive.scheduleDays[0].data,
-      makuuchi: {
-        ...torikumiArchive.scheduleDays[0].data.makuuchi,
-        matches: torikumiArchive.scheduleDays[0].data.makuuchi.matches.map((match, index) => (
-          index === 0 ? { ...match, winner: 'east' as const, kimarite: '押し出し' } : match
-        )),
-      },
-    };
-
-    const href = buildLiveTorikumiTarget(
-      torikumiArchive,
-      {
-        ...torikumiData,
-        today: settledToday,
-        tomorrow: null,
-        resultDays: [
-          {
-            ...firstResultDay,
-            status: 'published',
-            data: settledToday,
-          },
-          ...torikumiArchive.resultDays.slice(1),
-        ],
-      },
-      16 * 60,
-    ).href;
-
-    expect(href).toBe('/20260712-torikumi/#bout-makuuchi-5');
-  });
 
   it('places the news section between the current basho hero and the past-basho map', () => {
     render(
