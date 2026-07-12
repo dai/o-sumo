@@ -1,4 +1,4 @@
-name: Realtime Torikumi Update
+name: Realtime Torikumi Direct Update
 
 on:
   schedule:
@@ -8,16 +8,14 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: osumo-result-update-branch
+  group: osumo-result-direct-update
   cancel-in-progress: false
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   update-torikumi:
-    if: ${{ false }} # Replaced by realtime-torikumi-direct-update.yml to avoid PR branch conflicts.
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -54,22 +52,6 @@ jobs:
             exit 1
           fi
 
-      - name: Print run context and torikumi timestamps
-        shell: bash
-        run: |
-          echo "event_name=${{ github.event_name }}"
-          echo "event_schedule=${{ github.event.schedule }}"
-          echo "jst_now=$(TZ=Asia/Tokyo date +'%Y-%m-%dT%H:%M:%S%z')"
-          python - <<'PY'
-          import json
-          from pathlib import Path
-
-          torikumi = json.loads(Path("public/api/v1/torikumi.json").read_text(encoding="utf-8"))
-          print(f"updatedAt={torikumi.get('updatedAt', '')}")
-          print(f"resultUpdatedAt={torikumi.get('resultUpdatedAt', '')}")
-          print(f"scheduleUpdatedAt={torikumi.get('scheduleUpdatedAt', '')}")
-          PY
-
       - name: Validate torikumi payload
         shell: bash
         run: |
@@ -90,35 +72,22 @@ jobs:
               raise SystemExit("torikumi archive day count must be 15 for resultDays and scheduleDays")
           PY
 
-      - name: Create or update data update PR
-        id: create-pr
-        uses: peter-evans/create-pull-request@v7
-        with:
-          token: ${{ secrets.GH_PAT || github.token }}
-          branch: automation/result-updates
-          branch-suffix: timestamp
-          base: main
-          delete-branch: false
-          commit-message: 'chore: realtime torikumi update'
-          title: 'chore: automated torikumi result updates'
-          body: |
-            ## Summary
-            - Automated data update from `${{ github.workflow }}`
-            - Event: `${{ github.event_name }}`
-            - Schedule: `${{ github.event.schedule || 'manual' }}`
-            - Scope: `result` (realtime)
-          labels: |
-            automated
-            data-update
-          add-paths: |
-            app/lib/sumo-data.ts
-            app/lib/torikumi-data.ts
-            public/api/v1/banzuke.json
-            public/api/v1/torikumi.json
-
-      - name: Print PR context
+      - name: Commit realtime torikumi data
         shell: bash
         run: |
-          echo "pull_request_number=${{ steps.create-pr.outputs.pull-request-number }}"
-          echo "pull_request_operation=${{ steps.create-pr.outputs.pull-request-operation }}"
-          echo "pull_request_url=${{ steps.create-pr.outputs.pull-request-url }}"
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            app/lib/sumo-data.ts \
+            app/lib/torikumi-data.ts \
+            public/api/v1/banzuke.json \
+            public/api/v1/torikumi.json
+
+          if git diff --cached --quiet; then
+            echo "No realtime torikumi changes to commit."
+            exit 0
+          fi
+
+          git commit -m "chore: realtime torikumi update"
+          git push
