@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: osumo-data-update-branch
+  group: osumo-result-update-branch
   cancel-in-progress: false
 
 permissions:
@@ -23,7 +23,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_PAT || github.token }}
           fetch-depth: 0
 
       - name: Setup Python
@@ -37,7 +37,7 @@ jobs:
           set -euo pipefail
           success=0
           for attempt in 1 2; do
-            if python scripts/update_sumo_data.py --torikumi-only --torikumi-scope result --skip-rikishi-fetch; then
+            if python scripts/update_sumo_data.py --torikumi-only --torikumi-scope result --skip-rikishi-fetch --strict-torikumi-fetch; then
               success=1
               break
             fi
@@ -93,12 +93,13 @@ jobs:
         id: create-pr
         uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
-          branch: automation/data-updates
+          token: ${{ secrets.GH_PAT || github.token }}
+          branch: automation/result-updates
+          branch-suffix: timestamp
           base: main
           delete-branch: false
           commit-message: 'chore: realtime torikumi update'
-          title: 'chore: automated sumo data updates'
+          title: 'chore: automated torikumi result updates'
           body: |
             ## Summary
             - Automated data update from `${{ github.workflow }}`

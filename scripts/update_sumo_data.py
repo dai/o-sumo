@@ -1089,6 +1089,18 @@ def load_existing_torikumi_json() -> dict | None:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def load_existing_banzuke_rank_groups() -> tuple[list[dict] | None, list[dict] | None]:
+    path = API_DIR / "banzuke.json"
+    if not path.exists():
+        return None, None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    makuuchi = payload.get("makuuchi")
+    juryo = payload.get("juryo")
+    if isinstance(makuuchi, list) and isinstance(juryo, list):
+        return makuuchi, juryo
+    return None, None
+
+
 def resolve_torikumi_fetch_days(
     *,
     torikumi_only: bool,
@@ -1687,6 +1699,10 @@ def main() -> None:
             makuuchi_meta = build_torikumi_meta_fallback(existing_torikumi)
         basho_name = str(makuuchi_meta.get("basho_name", ""))
         year_jp = str(makuuchi_meta.get("year_jp", ""))
+        if args.torikumi_scope in {"all", "result"}:
+            makuuchi, juryo = load_existing_banzuke_rank_groups()
+            if makuuchi is None or juryo is None:
+                print("[warn] existing banzuke rank groups unavailable; skipping hoshitori refresh", file=sys.stderr)
     else:
         makuuchi, makuuchi_meta = build_rank_groups(1)
         juryo, _ = build_rank_groups(2)
