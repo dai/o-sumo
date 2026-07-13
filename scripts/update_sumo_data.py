@@ -1041,30 +1041,28 @@ def build_torikumi_dataset(
             "makuuchi": schedule_makuuchi,
             "juryo": schedule_juryo,
         }
-        result_day_active_ids = collect_active_ids_from_day(result_day_data)
-        schedule_day_active_ids = collect_active_ids_from_day(schedule_day_data)
 
         # Synchronize dayHead across both divisions using the calculated actual_date.
         canonical_day_head = build_day_head(day, actual_date)
         result_makuuchi = {
             **result_makuuchi,
             "dayHead": canonical_day_head,
-            "absentees": derive_absentees(result_makuuchi, rosters["makuuchi"], result_day_active_ids),
+            "absentees": derive_absentees(result_makuuchi, rosters["makuuchi"], collect_active_ids_from_division_day(result_makuuchi)),
         }
         result_juryo = {
             **result_juryo,
             "dayHead": canonical_day_head,
-            "absentees": derive_absentees(result_juryo, rosters["juryo"], result_day_active_ids),
+            "absentees": derive_absentees(result_juryo, rosters["juryo"], collect_active_ids_from_division_day(result_juryo)),
         }
         schedule_makuuchi = {
             **schedule_makuuchi,
             "dayHead": canonical_day_head,
-            "absentees": derive_absentees(schedule_makuuchi, rosters["makuuchi"], schedule_day_active_ids),
+            "absentees": derive_absentees(schedule_makuuchi, rosters["makuuchi"], collect_active_ids_from_division_day(schedule_makuuchi)),
         }
         schedule_juryo = {
             **schedule_juryo,
             "dayHead": canonical_day_head,
-            "absentees": derive_absentees(schedule_juryo, rosters["juryo"], schedule_day_active_ids),
+            "absentees": derive_absentees(schedule_juryo, rosters["juryo"], collect_active_ids_from_division_day(schedule_juryo)),
         }
 
         result_day_data = {
