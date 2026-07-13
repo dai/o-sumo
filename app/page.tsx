@@ -8,6 +8,7 @@ import {
   torikumiArchive,
   torikumiData,
   torikumiMonthKey,
+  type TorikumiArchiveDay,
   type TorikumiDataSet,
   type TorikumiDailyData,
 } from './lib/torikumi-data';
@@ -132,8 +133,22 @@ function deriveLiveState(
   tomorrow: TorikumiDailyData | null | undefined,
   fallbackUpdatedAt: string,
   locale: string,
+  scheduleDays: TorikumiArchiveDay[] = [],
 ): LiveState {
+  const currentIsoDate = jstIsoDateOfDay(new Date());
+  const scheduleMatch = scheduleDays.find((d) => d.isoDate === currentIsoDate);
+  if (scheduleMatch) {
+    return { kind: 'in-progress', day: scheduleMatch.day };
+  }
+
   const todayDay = dayOfDailyData(today);
+  if (todayDay !== null && scheduleDays.length > 0) {
+    const firstIso = scheduleDays[0]?.isoDate;
+    if (currentIsoDate < (firstIso ?? currentIsoDate)) {
+      return { kind: 'pre-basho' };
+    }
+    return { kind: 'in-progress', day: todayDay };
+  }
   if (todayDay !== null) {
     return { kind: 'in-progress', day: todayDay };
   }
@@ -144,6 +159,19 @@ function deriveLiveState(
     kind: 'frozen',
     lastUpdatedLabel: formatUpdatedAtLabel(fallbackUpdatedAt, locale),
   };
+}
+
+function jstIsoDateOfDay(now: Date = new Date()): string {
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    timeZone: 'Asia/Tokyo',
+  }).formatToParts(now);
+  const year = parts.find((p) => p.type === 'year')?.value ?? '';
+  const month = parts.find((p) => p.type === 'month')?.value ?? '';
+  const day = parts.find((p) => p.type === 'day')?.value ?? '';
+  return `${year}-${month}-${day}`;
 }
 
 function formatUpdatedAtLabel(iso: string, locale: string): string {
@@ -180,6 +208,7 @@ export default function Home() {
     torikumiData.tomorrow,
     torikumiArchive.updatedAt,
     locale,
+    torikumiArchive.scheduleDays,
   );
   const liveTorikumiTarget = buildLiveTorikumiTarget(torikumiArchive, torikumiData);
 

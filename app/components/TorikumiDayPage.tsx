@@ -83,9 +83,19 @@ function winnerLabel(match: TorikumiMatch): string {
 function uniqueAbsentees(dayData: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay }) {
   const entries = [...(dayData.makuuchi.absentees ?? []), ...(dayData.juryo.absentees ?? [])];
   const seen = new Set<number>();
+  const matchParticipantIds = new Set<number>();
+  for (const division of [dayData.makuuchi, dayData.juryo]) {
+    for (const match of division.matches) {
+      const eastId = extractRikishiIdFromProfileUrl(match.eastProfileUrl);
+      const westId = extractRikishiIdFromProfileUrl(match.westProfileUrl);
+      if (eastId !== null) matchParticipantIds.add(eastId);
+      if (westId !== null) matchParticipantIds.add(westId);
+    }
+  }
   return entries.filter((entry) => {
     if (seen.has(entry.id)) return false;
     seen.add(entry.id);
+    if (matchParticipantIds.has(entry.id)) return false;
     return true;
   });
 }
