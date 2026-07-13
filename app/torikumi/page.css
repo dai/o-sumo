@@ -316,6 +316,26 @@
   transform: translateX(4px);
 }
 
+.torikumi-row-absent {
+  background: transparent;
+  color: var(--color-secondary);
+  font-style: italic;
+  margin-bottom: 0.75rem;
+  scroll-margin-top: 14rem;
+}
+
+.torikumi-row-absent:hover {
+  transform: none;
+}
+
+.torikumi-row-absent .cell.absent-placeholder {
+  padding: 0.5rem 1rem;
+  color: var(--color-secondary);
+  background: transparent;
+  border-top: 1px dashed var(--color-outline-variant);
+  border-bottom: 1px dashed var(--color-outline-variant);
+}
+
 .rikishi-card {
   background: var(--surface-container-lowest);
 }

@@ -144,6 +144,8 @@
       "kimariteResult": "決まり手",
       "kimariteSchedule": "予定",
       "matchScheduled": "取組予定",
+      "absent": "(休場)",
+      "absentBout": "{{division}} {{boutNo}}番 は休場により取組なし",
       "prevDayNone": "← 前日なし",
       "nextDayNone": "翌日なし →",
       "sortLabel": "{{mode}}の並び順",
