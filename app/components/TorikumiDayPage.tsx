@@ -105,6 +105,65 @@ function getDisplaySortOrder(mode: TorikumiPageMode, division: '幕内' | '十�
   return sortOrder;
 }
 
+type UnifiedResultSection = {
+  division: '幕内' | '十両';
+  matches: TorikumiMatch[];
+};
+
+function getUnifiedResultSections(dayData: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay }): UnifiedResultSection[] {
+  // 結果ページでは十両 → 幕内の順で結合し、十両の先頭取組(1)が最上段、横綱(幕内20)が最下段になるよう、
+  // 各 division を boutNo 昇順（=1が最下位、20が横綱）で並べる。
+  return RESULT_DIVISIONS
+    .map((division) => ({ division, matches: sortMatches(byDivision(dayData, division), 'asc') }))
+    .filter((section) => section.matches.length > 0);
+}
+
+function renderUnifiedResultRows({
+  sections,
+  title,
+  t,
+  banzukePath,
+  recordMap,
+}: {
+  sections: UnifiedResultSection[];
+  title: string;
+  t: ReturnType<typeof useTranslation>['t'];
+  banzukePath: string;
+  recordMap: Map<string, { wins: number; losses: number; draws: number }>;
+}) {
+  return (
+    <div className="torikumi-table" role="table" aria-label={title}>
+      <div className="torikumi-head" role="rowgroup">
+        <div className="cell east">{t('banzuke.east')}</div>
+        <div className="cell kimarite">{t('torikumi.day.kimariteResult')}</div>
+        <div className="cell west">{t('banzuke.west')}</div>
+      </div>
+      {sections.map(({ division, matches }) => (
+        <React.Fragment key={`${title}-${division}`}>
+          <div className="division-divider" role="row">
+            <span>{t('torikumi.day.divisionMatchCount', { division, count: matches.length })}</span>
+          </div>
+          {matches.map((match) => (
+            <div className="torikumi-row" role="row" key={`${title}-${division}-${match.boutNo}`} id={divisionAnchorId(division, match.boutNo)}>
+              <div className={`cell east rikishi-card ${match.winner === 'east' ? 'winner' : ''}`}>
+                <RikishiMatchName name={match.eastName} profileUrl={match.eastProfileUrl} banzukePath={banzukePath} record={recordMap.get(match.eastProfileUrl)} />
+                <div className="english">{match.eastEnglish}</div>
+              </div>
+              <div className={`cell kimarite kimarite-value ${match.winner ? `winner-${match.winner}` : ''}`}>
+                {winnerLabel(match)}
+              </div>
+              <div className={`cell west rikishi-card ${match.winner === 'west' ? 'winner' : ''}`}>
+                <RikishiMatchName name={match.westName} profileUrl={match.westProfileUrl} banzukePath={banzukePath} record={recordMap.get(match.westProfileUrl)} />
+                <div className="english">{match.westEnglish}</div>
+              </div>
+            </div>
+          ))}
+        </React.Fragment>
+      ))}
+    </div>
+  );
+}
+
 function getVisibleDayData(
   day: TorikumiArchiveDay,
   archive: { scheduleDays?: TorikumiArchiveDay[] },
@@ -142,27 +201,43 @@ function TorikumiTable({
   banzukePath: string;
   recordMap: Map<string, { wins: number; losses: number; draws: number }>;
 }) {
+  if (mode === 'result') {
+    const sections = getUnifiedResultSections(dayData);
+    return (
+      <section className="division-section">
+        <h2>{title}</h2>
+        {sections.length === 0 ? (
+          <div className="empty-division-message">
+            {t('torikumi.day.resultNotUpdated', { division: '十両' })}
+          </div>
+        ) : (
+          renderUnifiedResultRows({ sections, title, t, banzukePath, recordMap })
+        )}
+      </section>
+    );
+  }
+
+  const scheduleMode: 'schedule' = mode;
+
   return (
     <section className="division-section">
       <h2>{title}</h2>
-      {getDivisionOrder(mode).map((division) => {
+      {getDivisionOrder(scheduleMode).map((division) => {
         const meta = sectionMeta(dayData, division);
-        const matches = sortMatches(byDivision(dayData, division), getDisplaySortOrder(mode, division, sortOrder));
+        const matches = sortMatches(byDivision(dayData, division), getDisplaySortOrder(scheduleMode, division, sortOrder));
         return (
           <div key={`${title}-${division}`}>
             <h3>{t('torikumi.day.divisionMatchCount', { division, count: matches.length })}</h3>
             <p className="status-message">{meta.dayHead}</p>
             {matches.length === 0 ? (
               <div className="empty-division-message">
-                {mode === 'result'
-                  ? t('torikumi.day.resultNotUpdated', { division })
-                  : t('torikumi.day.scheduleNotUpdated', { division })}
+                {t('torikumi.day.scheduleNotUpdated', { division })}
               </div>
             ) : (
               <div className="torikumi-table" role="table" aria-label={`${title} ${division}`}>
                 <div className="torikumi-head" role="rowgroup">
                   <div className="cell east">{t('banzuke.east')}</div>
-                  <div className="cell kimarite">{mode === 'result' ? t('torikumi.day.kimariteResult') : t('torikumi.day.kimariteSchedule')}</div>
+                  <div className="cell kimarite">{t('torikumi.day.kimariteSchedule')}</div>
                   <div className="cell west">{t('banzuke.west')}</div>
                 </div>
                 {matches.map((match: TorikumiMatch) => (
@@ -171,8 +246,8 @@ function TorikumiTable({
                       <RikishiMatchName name={match.eastName} profileUrl={match.eastProfileUrl} banzukePath={banzukePath} record={recordMap.get(match.eastProfileUrl)} />
                       <div className="english">{match.eastEnglish}</div>
                     </div>
-                    <div className={`cell kimarite kimarite-value ${match.winner && (mode === 'result' || match.kimarite === '不戦') ? `winner-${match.winner}` : ''}`}>
-                      {mode === 'result' || (mode === 'schedule' && match.winner)
+                    <div className={`cell kimarite kimarite-value ${match.winner && match.kimarite === '不戦' ? `winner-${match.winner}` : ''}`}>
+                      {match.winner
                         ? winnerLabel(match)
                         : t('torikumi.day.matchScheduled')}
                     </div>
@@ -268,9 +343,11 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
           <span>{nextDay ? <Link to={getDayPath(nextDay, mode)}>{nextDay.label} →</Link> : t('torikumi.day.nextDayNone')}</span>
         </nav>
 
-        <section className="sort-toolbar-section">
-          <SortToggle value={sortOrder} onChange={setSortOrder} label={t('torikumi.day.sortLabel', { mode: modeLabel })} />
-        </section>
+        {mode === 'schedule' && (
+          <section className="sort-toolbar-section">
+            <SortToggle value={sortOrder} onChange={setSortOrder} label={t('torikumi.day.sortLabel', { mode: modeLabel })} />
+          </section>
+        )}
 
         <TorikumiTable title={`${day.label}の${modeLabel}`} dayData={visibleDayData} mode={mode} sortOrder={sortOrder} t={t} banzukePath={bandukePath} recordMap={recordMap} />
       </main>
