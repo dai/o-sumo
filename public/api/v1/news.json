@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-13T05:17:39.918598+00:00",
+  "updatedAt": "2026-07-13T07:21:59.011550+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260713-OHT1T51137",
-      "title": "【２日目の見所】横綱・大の里はこの試練をどう乗り切る　藤ノ川は今年の春場所で負けている相手　前に出るしかないだろう",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260713-OHT1T51137",
+      "id": "dmenu-docomo-hochi-20260713-OHT1T51233",
+      "title": "十両・炎鵬は連敗発進　場所前には大関・霧島とも稽古「いい経験になった。それをこれから出していけたら」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260713-OHT1T51233",
       "publishedAt": "2026-07-13",
-      "publishedAtRaw": "スポーツ報知　7月13日 14時05分",
+      "publishedAtRaw": "スポーツ報知　7月13日 16時10分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260713-202607130000591",
-      "title": "新三段目の雷修が白星発進　夏場所後の日焼け跡がまだくっきり",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260713-202607130000591",
+      "id": "dmenu-docomo-hochi-20260713-OHT1T51224",
+      "title": "【大相撲】錦木、通算連続出場で元関脇・寺尾超えの単独９位　記録更新へ「できるだけ頑張る」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260713-OHT1T51224",
       "publishedAt": "2026-07-13",
-      "publishedAtRaw": "日刊スポーツ　7月13日 13時46分",
+      "publishedAtRaw": "スポーツ報知　7月13日 15時52分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-nikkangendai-1231477",
-      "title": "横綱大の里また悪癖露呈で黒星発進…義ノ富士に4戦全敗、「立ち会いで押せなければ負け」の深刻",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1231477",
+      "id": "dmenu-docomo-hochi-20260713-OHT1T51198",
+      "title": "【大相撲】横綱のしこ名を継ぐ旭富士、序ノ口デビューから２２連勝　新幕下でも快勝発進",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260713-OHT1T51198",
       "publishedAt": "2026-07-13",
-      "publishedAtRaw": "日刊ゲンダイDIGITAL　7月13日 13時00分",
+      "publishedAtRaw": "スポーツ報知　7月13日 15時20分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_TK3DRV3EPNEU7K2JL2APQDF5BM",
-      "title": "花田虎上氏「本人は1場所で大関に上がりたいと思ってるんだけど僕は…」／名古屋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_TK3DRV3EPNEU7K2JL2APQDF5BM",
+      "id": "dmenu-docomo-20260713089",
+      "title": "“史上最強の新弟子”旭富士が白星発進　無傷２２連勝で史上最速関取に前進　相手は脱帽「強いですよ。メチャンコ」【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260713089",
       "publishedAt": "2026-07-13",
-      "publishedAtRaw": "SANSPO　7月13日 11時58分",
+      "publishedAtRaw": "デイリースポーツ　7月13日 15時04分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_P65W5JLCMFANNHIC7U67L73OYM",
-      "title": "花田虎上氏「かっこよく武士のように生きてきましたけど不安で怖い」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_P65W5JLCMFANNHIC7U67L73OYM",
+      "id": "dmenu-docomo-hochi-20260713-OHT1T51190",
+      "title": "先場所の取組で後頭部を強打し途中休場した夢之富士が復帰戦で白星　「２週間休んで寝ていたので、体が大きくなった」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260713-OHT1T51190",
       "publishedAt": "2026-07-13",
-      "publishedAtRaw": "SANSPO　7月13日 11時54分",
+      "publishedAtRaw": "スポーツ報知　7月13日 15時02分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
