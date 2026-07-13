@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-13T07:21:59.011550+00:00",
+  "updatedAt": "2026-07-13T09:16:04.106155+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260713-OHT1T51233",
-      "title": "十両・炎鵬は連敗発進　場所前には大関・霧島とも稽古「いい経験になった。それをこれから出していけたら」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260713-OHT1T51233",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_QWIQE3QAWNFXLCXUEMOEUJS6EY",
+      "title": "大の里連敗、藤ノ川が金星の波乱　豊昇龍と両大関は連勝／名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_QWIQE3QAWNFXLCXUEMOEUJS6EY",
       "publishedAt": "2026-07-13",
-      "publishedAtRaw": "スポーツ報知　7月13日 16時10分",
+      "publishedAtRaw": "SANSPO　7月13日 18時03分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260713-OHT1T51224",
-      "title": "【大相撲】錦木、通算連続出場で元関脇・寺尾超えの単独９位　記録更新へ「できるだけ頑張る」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260713-OHT1T51224",
+      "id": "dmenu-docomo-hochi-20260713-OHT1T51301",
+      "title": "【大相撲】大の里は厳しい連敗スタート　豊昇龍、綱取りの霧島、カド番の琴桜、大関復帰を目指す安青錦はいずれも２連勝",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260713-OHT1T51301",
       "publishedAt": "2026-07-13",
-      "publishedAtRaw": "スポーツ報知　7月13日 15時52分",
+      "publishedAtRaw": "スポーツ報知　7月13日 18時01分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260713-OHT1T51198",
-      "title": "【大相撲】横綱のしこ名を継ぐ旭富士、序ノ口デビューから２２連勝　新幕下でも快勝発進",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260713-OHT1T51198",
+      "id": "dmenu-docomo-hochi-20260713-OHT1T51297",
+      "title": "【大相撲】カド番の琴桜が快調に２連勝　新小結・義ノ富士から落ち着いて白星",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260713-OHT1T51297",
       "publishedAt": "2026-07-13",
-      "publishedAtRaw": "スポーツ報知　7月13日 15時20分",
+      "publishedAtRaw": "スポーツ報知　7月13日 17時56分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260713089",
-      "title": "“史上最強の新弟子”旭富士が白星発進　無傷２２連勝で史上最速関取に前進　相手は脱帽「強いですよ。メチャンコ」【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260713089",
+      "id": "dmenu-docomo-hochi-20260713-OHT1T51202",
+      "title": "【大相撲】横綱・大の里が連敗　２場所連続休場からの出場も厳しい状況に　藤ノ川に金星を配給",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260713-OHT1T51202",
       "publishedAt": "2026-07-13",
-      "publishedAtRaw": "デイリースポーツ　7月13日 15時04分",
+      "publishedAtRaw": "スポーツ報知　7月13日 17時54分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260713-OHT1T51190",
-      "title": "先場所の取組で後頭部を強打し途中休場した夢之富士が復帰戦で白星　「２週間休んで寝ていたので、体が大きくなった」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260713-OHT1T51190",
+      "id": "dmenu-docomo-hochi-20260713-OHT1T51204",
+      "title": "【大相撲】横綱・豊昇龍が連勝スタート　隆の勝に白星で、横綱初優勝目指す",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260713-OHT1T51204",
       "publishedAt": "2026-07-13",
-      "publishedAtRaw": "スポーツ報知　7月13日 15時02分",
+      "publishedAtRaw": "スポーツ報知　7月13日 17時47分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
