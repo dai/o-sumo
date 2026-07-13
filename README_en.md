@@ -217,20 +217,41 @@ Key validations:
 
 ## Automated Updates
 
-GitHub Actions uses separate workflows for torikumi schedules, torikumi results, and news. When files change, each workflow creates or updates the shared `automation/data-updates` PR.
+GitHub Actions uses separate workflows for torikumi schedules, torikumi results, and news. When files change, each workflow creates or updates the shared `automation/*-updates` PR.
+
+Shared helpers under `scripts/ci/`:
+
+- `run_torikumi_generator.sh` — runs `update_sumo_data.py` with up to two retries
+- `validate_torikumi.py` — schema check for `public/api/v1/torikumi.json`
+- `validate_news.py` — schema check for `public/api/v1/news.json`
+- `notify_discord.sh` — posts a Discord notification when `DISCORD_WEBHOOK_URL` is configured
+
+Workflows:
 
 - Daily update: `.github/workflows/daily-data-update.yml`
   - schedule: JST 13:00 / 19:00
   - updates torikumi schedules only (`--torikumi-only --torikumi-scope schedule`)
-- Realtime results update: `.github/workflows/realtime-torikumi-update.yml`
-  - schedule: every 10 minutes from JST 13:00 through 18:00
-  - updates torikumi results only (`--torikumi-only --torikumi-scope result --skip-rikishi-fetch`)
-  - logs: always prints `github.event.schedule`, current JST time, `resultUpdatedAt`, and `scheduleUpdatedAt`
+- Realtime results update: `.github/workflows/realtime-torikumi-direct-update.yml`
+  - schedule: every 10 minutes from JST 13:00 through 18:50
+  - updates torikumi results only (`--torikumi-only --torikumi-scope result --skip-rikishi-fetch --strict-torikumi-fetch`)
+  - logs: GitHub Actions job summary aggregates step results, commit state, and the run URL
 - News update: `.github/workflows/news-feed-update.yml`
   - schedule: every 2 hours from JST 09:05 through 19:05
   - updates Japan Sumo Association and dmenu Sports news (`python scripts/update_news_feed.py`)
   - skips rewriting `news.json` when fetched items and source states are unchanged
   - newly created PRs are auto-merged with `gh pr merge --auto --squash` once the `test` workflow passes
+
+### Discord notifications (optional)
+
+Set `DISCORD_WEBHOOK_URL` as a repository secret to send failure notifications to a Discord channel from the three automated workflows. The workflows continue to work normally when the secret is absent.
+
+Setup:
+
+1. In Discord open the target channel → `Edit channel` → `Integrations` → `Webhooks` → `New webhook`, then copy the URL.
+2. Open the GitHub repository → `Settings` → `Secrets and variables` → `Actions` → `New repository secret`.
+3. Name: `DISCORD_WEBHOOK_URL`, Value: the webhook URL from step 1 → `Add secret`.
+
+See `scripts/ci/notify_discord.sh` for the embedded payload structure.
 
 ## Testing
 

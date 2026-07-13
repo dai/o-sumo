@@ -14,6 +14,8 @@ concurrency:
 permissions:
   contents: write
 
+# Discord 通知 (任意): secrets.DISCORD_WEBHOOK_URL が無いと wf はそのまま動く。
+
 jobs:
   update-torikumi:
     runs-on: ubuntu-latest
@@ -31,6 +33,7 @@ jobs:
           python-version: '3.11'
 
       - name: Generate torikumi data
+        id: generate
         shell: bash
         run: |
           bash scripts/ci/run_torikumi_generator.sh \
@@ -40,10 +43,12 @@ jobs:
             --strict-torikumi-fetch
 
       - name: Validate torikumi payload
+        id: validate
         shell: bash
         run: python scripts/ci/validate_torikumi.py
 
       - name: Commit realtime torikumi data
+        id: commit
         shell: bash
         run: |
           set -euo pipefail
@@ -52,9 +57,45 @@ jobs:
           xargs -a scripts/ci/torikumi_paths.txt -I {} git add {}
 
           if git diff --cached --quiet; then
-            echo "No realtime torikumi changes to commit."
+            echo "::notice::No realtime torikumi changes to commit."
+            echo "committed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
+          echo "committed=true" >> "$GITHUB_OUTPUT"
           git commit -m "chore: realtime torikumi update"
           git push
+
+      - name: Write run summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## Realtime Torikumi Direct Update"
+            echo ""
+            echo "| Step | Result |"
+            echo "| --- | --- |"
+            echo "| Generate | ${{ steps.generate.outcome }} |"
+            echo "| Validate | ${{ steps.validate.outcome }} |"
+            echo "| Commit | ${{ steps.commit.outcome }} |"
+            echo "| Committed | ${{ steps.commit.outputs.committed }} |"
+            echo ""
+            echo "- event: \`${{ github.event_name }}\`"
+            echo "- schedule: \`${{ github.event.schedule || 'manual' }}\`"
+            echo "- jst_now: \`$(TZ=Asia/Tokyo date +'%Y-%m-%dT%H:%M:%S%z')\`"
+            echo "- run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Notify Discord on failure
+        if: failure()
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          STATUS: failure
+          TITLE: 'Realtime Torikumi Direct Update failed'
+          DETAIL: |
+            - event: `${{ github.event_name }}`
+            - schedule: `${{ github.event.schedule || 'manual' }}`
+            - run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        shell: bash
+        run: |
+          bash scripts/ci/notify_discord.sh "${STATUS}" "${TITLE}" "${DETAIL}" || echo "::warning::notify_discord failed"

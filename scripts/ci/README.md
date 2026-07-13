@@ -18,5 +18,21 @@ bash scripts/ci/run_torikumi_generator.sh --torikumi-only --torikumi-scope resul
 python scripts/ci/validate_torikumi.py
 ```
 
+### `validate_news.py`
+`public/api/v1/news.json` の構造と各ソースの状態を検証する。
+
+```bash
+python scripts/ci/validate_news.py
+```
+
+### `notify_discord.sh`
+Discord Webhook に通知を POST する。`DISCORD_WEBHOOK_URL` が未設定なら no-op。
+
+```bash
+bash scripts/ci/notify_discord.sh failure "Workflow failed" "Run URL: ..."
+```
+
+ワークフローからは `if: failure()` で呼び出す。未設定でも wf は落ちない。
+
 ### `torikumi_paths.txt`
 realtime 系の更新で生成・コミット対象とするファイル一覧。`git add` / GitHub Actions の `add-paths` などから `xargs` 経由で読み込む想定。
