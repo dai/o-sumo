@@ -6,6 +6,7 @@ import {
   MAY2026_BANDUKE_PATH,
   MAY2026_RESULT_PATH,
   MAY2026_SCHEDULE_PATH,
+  getDayPath,
 } from './lib/torikumi-routes';
 import { MARCH2026_TORIKUMI_DATA } from './lib/march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from './lib/may2026-data';
@@ -98,8 +99,15 @@ describe('Home page', () => {
   });
 
   it('shows a live torikumi shortcut before the news section', () => {
+    const currentDay = torikumiData.today?.makuuchi.day;
+    const currentResultDay = torikumiArchive.resultDays.find((day) => day.day === currentDay);
+    const currentScheduleDay = torikumiArchive.scheduleDays.find((day) => day.day === currentDay);
+
+    expect(currentResultDay).toBeDefined();
+    expect(currentScheduleDay).toBeDefined();
+
     vi.useFakeTimers();
-    vi.setSystemTime(new Date('2026-07-12T06:30:00.000Z'));
+    vi.setSystemTime(new Date(`${currentScheduleDay!.isoDate}T06:30:00.000Z`));
 
     render(
       <MemoryRouter>
@@ -113,7 +121,7 @@ describe('Home page', () => {
     expect(screen.getByRole('heading', { level: 2, name: '現在の取組、速報中！' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '速報を見る' })).toHaveAttribute(
       'href',
-      '/20260712-torikumi/#bout-makuuchi-1',
+      `${getDayPath(currentResultDay!, 'result')}#bout-makuuchi-1`,
     );
     expect(liveSection).not.toBeNull();
     expect(news).not.toBeNull();
@@ -122,12 +130,20 @@ describe('Home page', () => {
 
   it('builds live torikumi anchors from the JST time window', () => {
     const firstSchedule = MARCH2026_TORIKUMI_DATA.scheduleDays![0].data;
+    const currentDay = torikumiData.today?.makuuchi.day;
+    const currentResultDay = torikumiArchive.resultDays.find((day) => day.day === currentDay);
+    const currentScheduleDay = torikumiArchive.scheduleDays.find((day) => day.day === currentDay);
+
+    expect(currentResultDay).toBeDefined();
+    expect(currentScheduleDay).toBeDefined();
 
     expect(nearestTorikumiAnchor(firstSchedule, 14 * 60)).toMatch(/^bout-juryo-/);
     expect(nearestTorikumiAnchor(firstSchedule, 16 * 60)).toMatch(/^bout-makuuchi-/);
-    expect(nearestTorikumiAnchor(torikumiArchive.scheduleDays[0].data, 16 * 60)).toBe('bout-makuuchi-5');
-    expect(nearestTorikumiAnchor(torikumiArchive.scheduleDays[0].data, 12 * 60)).toBe('bout-juryo-1');
-    expect(buildLiveTorikumiTarget(torikumiArchive, torikumiData, 16 * 60).href).toBe('/20260712-torikumi/#bout-makuuchi-5');
+    expect(nearestTorikumiAnchor(currentScheduleDay!.data, 16 * 60)).toBe('bout-makuuchi-5');
+    expect(nearestTorikumiAnchor(currentScheduleDay!.data, 12 * 60)).toBe('bout-juryo-1');
+    expect(buildLiveTorikumiTarget(torikumiArchive, torikumiData, 16 * 60).href).toBe(
+      `${getDayPath(currentResultDay!, 'result')}#bout-makuuchi-5`,
+    );
   });
 
 

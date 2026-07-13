@@ -107,6 +107,10 @@ export function getArchiveRouteConfigByMonthKey(monthKey: string): ArchiveRouteC
   return ARCHIVE_ROUTE_CONFIGS[monthKey];
 }
 
+export function getAllArchiveRouteConfigs(): ArchiveRouteConfig[] {
+  return Object.values(ARCHIVE_ROUTE_CONFIGS).sort((left, right) => left.monthKey.localeCompare(right.monthKey));
+}
+
 export function getArchiveRouteConfigForDateKey(dateKey: string): ArchiveRouteConfig | undefined {
   if (!/^\d{6,8}$/.test(dateKey)) {
     return undefined;
