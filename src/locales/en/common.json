@@ -144,6 +144,8 @@
       "kimariteResult": "Kimarite",
       "kimariteSchedule": "Scheduled",
       "matchScheduled": "Scheduled match",
+      "absent": "(Absent)",
+      "absentBout": "{{division}} bout {{boutNo}} cancelled due to absence",
       "prevDayNone": "← No previous day",
       "nextDayNone": "No next day →",
       "sortLabel": "{{mode}} sort order",

@@ -209,6 +209,80 @@ describe('TorikumiDayPage', () => {
     expect(screen.getByText('休場者:')).toBeInTheDocument();
   });
 
+  it('replaces matches involving an absentee with an absent placeholder row', () => {
+    const marchDay = MARCH2026_TORIKUMI_DATA.resultDays?.find((day) => day.data.makuuchi.matches.length > 0);
+    expect(marchDay).toBeDefined();
+    const targetMatch = marchDay!.data.makuuchi.matches[0];
+    const idMatch = targetMatch.eastProfileUrl.match(/profile\/(\d+)/);
+    expect(idMatch).not.toBeNull();
+    const absentRikishiId = Number(idMatch![1]);
+    const absentEntry = {
+      id: absentRikishiId,
+      name: '休場力士',
+      profileUrl: `https://www.sumo.or.jp/ResultRikishiData/profile/${absentRikishiId}/`,
+    };
+
+    const dayWithAbsentMatch: TorikumiArchiveDay = {
+      ...marchDay!,
+      data: {
+        ...marchDay!.data,
+        makuuchi: {
+          ...marchDay!.data.makuuchi,
+          absentees: [absentEntry],
+        },
+        juryo: {
+          ...marchDay!.data.juryo,
+          absentees: [],
+        },
+      },
+    };
+
+    renderPage(dayWithAbsentMatch, 'result');
+
+    const absentRows = document.querySelectorAll('.torikumi-row-absent');
+    expect(absentRows.length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText('(休場)').length).toBeGreaterThanOrEqual(1);
+    // boutNo アンカーは維持される (URL フラグメント #bout-makuuchi-X が生きてる)
+    expect(document.getElementById(`bout-makuuchi-${targetMatch.boutNo}`)).not.toBeNull();
+  });
+
+  it('renders absent placeholder rows for schedule pages too', () => {
+    const scheduleDay = MAY2026_TORIKUMI_DATA.scheduleDays?.find((day) => day.data.makuuchi.matches.length > 0);
+    if (!scheduleDay) {
+      return;
+    }
+    const targetMatch = scheduleDay.data.makuuchi.matches[0];
+    const idMatch = targetMatch.eastProfileUrl.match(/profile\/(\d+)/);
+    expect(idMatch).not.toBeNull();
+    const absentRikishiId = Number(idMatch![1]);
+    const absentEntry = {
+      id: absentRikishiId,
+      name: '休場予定',
+      profileUrl: `https://www.sumo.or.jp/ResultRikishiData/profile/${absentRikishiId}/`,
+    };
+
+    const dayWithAbsentMatch: TorikumiArchiveDay = {
+      ...scheduleDay,
+      data: {
+        ...scheduleDay.data,
+        makuuchi: {
+          ...scheduleDay.data.makuuchi,
+          absentees: [absentEntry],
+        },
+        juryo: {
+          ...scheduleDay.data.juryo,
+          absentees: [],
+        },
+      },
+    };
+
+    renderPage(dayWithAbsentMatch, 'schedule');
+
+    const absentRows = document.querySelectorAll('.torikumi-row-absent');
+    expect(absentRows.length).toBeGreaterThanOrEqual(1);
+    expect(document.getElementById(`bout-makuuchi-${targetMatch.boutNo}`)).not.toBeNull();
+  });
+
   it('renders schedule mode content and day navigation links', () => {
     // Use May 2026 schedule days which are in a configured month
     const scheduleDay = MAY2026_TORIKUMI_DATA.scheduleDays?.[1];

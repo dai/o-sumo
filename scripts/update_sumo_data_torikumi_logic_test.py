@@ -173,6 +173,41 @@ def test_derive_absentees_excludes_cross_division_special_bout_rikishi() -> None
     assert [entry["id"] for entry in absentees] == [9999]
 
 
+def test_derive_absentees_excludes_only_same_division_active_rikishi() -> None:
+    """The day_active_ids argument should be the same-division active set;
+    cross-division participants (e.g. juryo rikishi showing up via the special
+    bout path) must NOT silently flip the makuuchi absentee list. We simulate
+    that by passing an active id set that contains a rikishi not present in
+    the roster at all — the result must still equal roster - same-division
+    active ids, not roster - day_active_ids.
+    """
+    roster = {
+        4227: {"id": 4227, "name": "若隆景", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/"},
+    }
+    # Build a division day whose matches include someone outside the roster,
+    # so passing `day_active_ids` that excludes cross-division entries still
+    # returns 4227 (the only roster member) as an absentee.
+    makuuchi_day = _division(1)
+    makuuchi_day["matches"] = [
+        {
+            "division": "幕内",
+            "boutNo": 1,
+            "eastName": "他",
+            "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/8000/",
+            "westName": "他",
+            "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/8001/",
+        }
+    ]
+    # Only the active ids from the makuuchi division itself; the cross-division
+    # participant (8000) appears in makuuchi matches but is not in our roster,
+    # so the absentee list should still report 4227 (roster - same-division active).
+    makuuchi_active_ids = {8000}
+
+    absentees = derive_absentees(makuuchi_day, roster, makuuchi_active_ids)
+
+    assert [entry["id"] for entry in absentees] == [4227]
+
+
 def test_parse_torikumi_match_accepts_plain_text_shikona() -> None:
     raw = {
         "judge": 1,
@@ -293,6 +328,7 @@ def main() -> None:
     test_determine_archive_statuses_limits_publication_window()
     test_determine_archive_statuses_publishes_settled_results_beyond_today_day()
     test_derive_absentees_excludes_cross_division_special_bout_rikishi()
+    test_derive_absentees_excludes_only_same_division_active_rikishi()
     test_parse_torikumi_match_accepts_plain_text_shikona()
     test_has_substantive_torikumi_diff_ignores_timestamp_only_change()
     test_preserve_torikumi_timestamps_if_unchanged_restores_existing_values()

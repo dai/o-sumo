@@ -100,6 +100,14 @@ function uniqueAbsentees(dayData: { makuuchi: TorikumiDivisionDay; juryo: Toriku
   });
 }
 
+function matchInvolvesAbsent(match: TorikumiMatch, absenteeIds: Set<number>): boolean {
+  if (absenteeIds.size === 0) return false;
+  const eastId = extractRikishiIdFromProfileUrl(match.eastProfileUrl);
+  const westId = extractRikishiIdFromProfileUrl(match.westProfileUrl);
+  return (eastId !== null && absenteeIds.has(eastId))
+    || (westId !== null && absenteeIds.has(westId));
+}
+
 function hasAnyMatches(dayData: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay }) {
   return dayData.makuuchi.matches.length > 0 || dayData.juryo.matches.length > 0;
 }
@@ -134,12 +142,14 @@ function renderUnifiedResultRows({
   t,
   banzukePath,
   recordMap,
+  absenteeIds,
 }: {
   sections: UnifiedResultSection[];
   title: string;
   t: ReturnType<typeof useTranslation>['t'];
   banzukePath: string;
   recordMap: Map<string, { wins: number; losses: number; draws: number }>;
+  absenteeIds: Set<number>;
 }) {
   return (
     <div className="torikumi-table" role="table" aria-label={title}>
@@ -154,19 +164,33 @@ function renderUnifiedResultRows({
             <span>{t('torikumi.day.divisionMatchCount', { division, count: matches.length })}</span>
           </div>
           {matches.map((match) => (
-            <div className="torikumi-row" role="row" key={`${title}-${division}-${match.boutNo}`} id={divisionAnchorId(division, match.boutNo)}>
-              <div className={`cell east rikishi-card ${match.winner === 'east' ? 'winner' : ''}`}>
-                <RikishiMatchName name={match.eastName} profileUrl={match.eastProfileUrl} banzukePath={banzukePath} record={recordMap.get(match.eastProfileUrl)} />
-                <div className="english">{match.eastEnglish}</div>
+            matchInvolvesAbsent(match, absenteeIds) ? (
+              <div
+                className="torikumi-row torikumi-row-absent"
+                role="row"
+                key={`${title}-${division}-${match.boutNo}`}
+                id={divisionAnchorId(division, match.boutNo)}
+                aria-label={t('torikumi.day.absentBout', { boutNo: match.boutNo })}
+              >
+                <div className="cell absent-placeholder" />
+                <div className="cell kimarite absent-placeholder">{t('torikumi.day.absent')}</div>
+                <div className="cell absent-placeholder" />
               </div>
-              <div className={`cell kimarite kimarite-value ${match.winner ? `winner-${match.winner}` : ''}`}>
-                {winnerLabel(match)}
+            ) : (
+              <div className="torikumi-row" role="row" key={`${title}-${division}-${match.boutNo}`} id={divisionAnchorId(division, match.boutNo)}>
+                <div className={`cell east rikishi-card ${match.winner === 'east' ? 'winner' : ''}`}>
+                  <RikishiMatchName name={match.eastName} profileUrl={match.eastProfileUrl} banzukePath={banzukePath} record={recordMap.get(match.eastProfileUrl)} />
+                  <div className="english">{match.eastEnglish}</div>
+                </div>
+                <div className={`cell kimarite kimarite-value ${match.winner ? `winner-${match.winner}` : ''}`}>
+                  {winnerLabel(match)}
+                </div>
+                <div className={`cell west rikishi-card ${match.winner === 'west' ? 'winner' : ''}`}>
+                  <RikishiMatchName name={match.westName} profileUrl={match.westProfileUrl} banzukePath={banzukePath} record={recordMap.get(match.westProfileUrl)} />
+                  <div className="english">{match.westEnglish}</div>
+                </div>
               </div>
-              <div className={`cell west rikishi-card ${match.winner === 'west' ? 'winner' : ''}`}>
-                <RikishiMatchName name={match.westName} profileUrl={match.westProfileUrl} banzukePath={banzukePath} record={recordMap.get(match.westProfileUrl)} />
-                <div className="english">{match.westEnglish}</div>
-              </div>
-            </div>
+            )
           ))}
         </React.Fragment>
       ))}
@@ -202,6 +226,7 @@ function TorikumiTable({
   t,
   banzukePath,
   recordMap,
+  absenteeIds,
 }: {
   title: string;
   dayData: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay };
@@ -210,6 +235,7 @@ function TorikumiTable({
   t: ReturnType<typeof useTranslation>['t'];
   banzukePath: string;
   recordMap: Map<string, { wins: number; losses: number; draws: number }>;
+  absenteeIds: Set<number>;
 }) {
   if (mode === 'result') {
     const sections = getUnifiedResultSections(dayData);
@@ -221,7 +247,7 @@ function TorikumiTable({
             {t('torikumi.day.resultNotUpdated', { division: '十両' })}
           </div>
         ) : (
-          renderUnifiedResultRows({ sections, title, t, banzukePath, recordMap })
+          renderUnifiedResultRows({ sections, title, t, banzukePath, recordMap, absenteeIds })
         )}
       </section>
     );
@@ -251,21 +277,35 @@ function TorikumiTable({
                   <div className="cell west">{t('banzuke.west')}</div>
                 </div>
                 {matches.map((match: TorikumiMatch) => (
-                  <div className="torikumi-row" role="row" key={`${title}-${division}-${match.boutNo}`} id={divisionAnchorId(division, match.boutNo)}>
-                    <div className={`cell east rikishi-card ${match.winner === 'east' ? 'winner' : ''}`}>
-                      <RikishiMatchName name={match.eastName} profileUrl={match.eastProfileUrl} banzukePath={banzukePath} record={recordMap.get(match.eastProfileUrl)} />
-                      <div className="english">{match.eastEnglish}</div>
+                  matchInvolvesAbsent(match, absenteeIds) ? (
+                    <div
+                      className="torikumi-row torikumi-row-absent"
+                      role="row"
+                      key={`${title}-${division}-${match.boutNo}`}
+                      id={divisionAnchorId(division, match.boutNo)}
+                      aria-label={t('torikumi.day.absentBout', { boutNo: match.boutNo })}
+                    >
+                      <div className="cell absent-placeholder" />
+                      <div className="cell kimarite absent-placeholder">{t('torikumi.day.absent')}</div>
+                      <div className="cell absent-placeholder" />
                     </div>
-                    <div className={`cell kimarite kimarite-value ${match.winner && match.kimarite === '不戦' ? `winner-${match.winner}` : ''}`}>
-                      {match.winner
-                        ? winnerLabel(match)
-                        : t('torikumi.day.matchScheduled')}
+                  ) : (
+                    <div className="torikumi-row" role="row" key={`${title}-${division}-${match.boutNo}`} id={divisionAnchorId(division, match.boutNo)}>
+                      <div className={`cell east rikishi-card ${match.winner === 'east' ? 'winner' : ''}`}>
+                        <RikishiMatchName name={match.eastName} profileUrl={match.eastProfileUrl} banzukePath={banzukePath} record={recordMap.get(match.eastProfileUrl)} />
+                        <div className="english">{match.eastEnglish}</div>
+                      </div>
+                      <div className={`cell kimarite kimarite-value ${match.winner && match.kimarite === '不戦' ? `winner-${match.winner}` : ''}`}>
+                        {match.winner
+                          ? winnerLabel(match)
+                          : t('torikumi.day.matchScheduled')}
+                      </div>
+                      <div className={`cell west rikishi-card ${match.winner === 'west' ? 'winner' : ''}`}>
+                        <RikishiMatchName name={match.westName} profileUrl={match.westProfileUrl} banzukePath={banzukePath} record={recordMap.get(match.westProfileUrl)} />
+                        <div className="english">{match.westEnglish}</div>
+                      </div>
                     </div>
-                    <div className={`cell west rikishi-card ${match.winner === 'west' ? 'winner' : ''}`}>
-                      <RikishiMatchName name={match.westName} profileUrl={match.westProfileUrl} banzukePath={banzukePath} record={recordMap.get(match.westProfileUrl)} />
-                      <div className="english">{match.westEnglish}</div>
-                    </div>
-                  </div>
+                  )
                 ))}
               </div>
             )}
@@ -319,6 +359,15 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
     ? t('torikumi.day.modeDescriptionResult')
     : t('torikumi.day.modeDescriptionSchedule');
   const absentees = uniqueAbsentees(visibleDayData);
+  const absenteeIds = React.useMemo(() => {
+    const ids = new Set<number>();
+    for (const division of [visibleDayData.makuuchi, visibleDayData.juryo]) {
+      for (const entry of division.absentees ?? []) {
+        ids.add(entry.id);
+      }
+    }
+    return ids;
+  }, [visibleDayData]);
   const updatedAt = visibleDay.source === 'schedule' ? archive.scheduleUpdatedAt : mode === 'result' ? archive.resultUpdatedAt : archive.scheduleUpdatedAt;
   const recordMap = React.useMemo(() => createRecordMap(monthKey), [monthKey]);
 
@@ -359,7 +408,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
           </section>
         )}
 
-        <TorikumiTable title={`${day.label}の${modeLabel}`} dayData={visibleDayData} mode={mode} sortOrder={sortOrder} t={t} banzukePath={bandukePath} recordMap={recordMap} />
+        <TorikumiTable title={`${day.label}の${modeLabel}`} dayData={visibleDayData} mode={mode} sortOrder={sortOrder} t={t} banzukePath={bandukePath} recordMap={recordMap} absenteeIds={absenteeIds} />
       </main>
 
       <footer className="torikumi-footer">
