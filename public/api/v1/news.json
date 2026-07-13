@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-07T11:59:08.859905+00:00",
+  "updatedAt": "2026-07-13T05:17:39.918598+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_ZW676YG7AFPRHBG4HDMTWLYAWE",
-      "title": "平幕藤凌駕、連日の出稽古「自分のためにとてもいい稽古」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_ZW676YG7AFPRHBG4HDMTWLYAWE",
-      "publishedAt": "2026-07-07",
-      "publishedAtRaw": "SANSPO　7月7日 17時49分",
+      "id": "dmenu-docomo-hochi-20260713-OHT1T51137",
+      "title": "【２日目の見所】横綱・大の里はこの試練をどう乗り切る　藤ノ川は今年の春場所で負けている相手　前に出るしかないだろう",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260713-OHT1T51137",
+      "publishedAt": "2026-07-13",
+      "publishedAtRaw": "スポーツ報知　7月13日 14時05分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-jiji-202607070091970131",
-      "title": "琴勝峰「仕上げていく」",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-202607070091970131",
-      "publishedAt": "2026-07-07",
-      "publishedAtRaw": "時事通信　7月7日 16時42分",
+      "id": "dmenu-docomo-f-bt-tp1-260713-202607130000591",
+      "title": "新三段目の雷修が白星発進　夏場所後の日焼け跡がまだくっきり",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260713-202607130000591",
+      "publishedAt": "2026-07-13",
+      "publishedAtRaw": "日刊スポーツ　7月13日 13時46分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-jiji-2026070700842",
-      "title": "琴勝峰「仕上げていく」＝大相撲",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026070700842",
-      "publishedAt": "2026-07-07",
-      "publishedAtRaw": "時事通信　7月7日 16時25分",
+      "id": "dmenu-docomo-nikkangendai-1231477",
+      "title": "横綱大の里また悪癖露呈で黒星発進…義ノ富士に4戦全敗、「立ち会いで押せなければ負け」の深刻",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1231477",
+      "publishedAt": "2026-07-13",
+      "publishedAtRaw": "日刊ゲンダイDIGITAL　7月13日 13時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260707-OHT1T51187",
-      "title": "【高校野球】神奈川・旭丘が相撲ルーチンで初戦突破…四股などで「一つになれる」大相撲で無傷２１連勝中の旭富士の母校",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260707-OHT1T51187",
-      "publishedAt": "2026-07-07",
-      "publishedAtRaw": "スポーツ報知　7月7日 15時57分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_TK3DRV3EPNEU7K2JL2APQDF5BM",
+      "title": "花田虎上氏「本人は1場所で大関に上がりたいと思ってるんだけど僕は…」／名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_TK3DRV3EPNEU7K2JL2APQDF5BM",
+      "publishedAt": "2026-07-13",
+      "publishedAtRaw": "SANSPO　7月13日 11時58分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260707-OHT1T51183",
-      "title": "夏場所途中休場の元大関・朝乃山が復活へ横綱・豊昇龍と７番　２勝も「本当に来てくれてうれしい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260707-OHT1T51183",
-      "publishedAt": "2026-07-07",
-      "publishedAtRaw": "スポーツ報知　7月7日 15時51分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_P65W5JLCMFANNHIC7U67L73OYM",
+      "title": "花田虎上氏「かっこよく武士のように生きてきましたけど不安で怖い」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_P65W5JLCMFANNHIC7U67L73OYM",
+      "publishedAt": "2026-07-13",
+      "publishedAtRaw": "SANSPO　7月13日 11時54分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
