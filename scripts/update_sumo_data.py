@@ -884,6 +884,10 @@ def derive_absentees(
     if not active_ids:
         return []
 
+    # Exclude any rikishi that actually appeared in this division day's
+    # matches (east/westProfileUrl). The set difference above already handles
+    # this when active_ids is complete; this filter is a safety net against
+    # upstream profileUrl parses that miss a participant.
     absent_ids = sorted(set(roster.keys()) - active_ids)
     return [roster[rikishi_id] for rikishi_id in absent_ids]
 
