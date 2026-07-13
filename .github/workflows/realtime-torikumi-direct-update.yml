@@ -2,7 +2,7 @@ name: Realtime Torikumi Direct Update
 
 on:
   schedule:
-    # JST 13:00-18:00, every 10 minutes
+    # JST 13:00-18:50, every 10 minutes (cron uses UTC).
     - cron: '*/10 4-8 * * *'
     - cron: '0 9 * * *'
   workflow_dispatch:
@@ -33,44 +33,15 @@ jobs:
       - name: Generate torikumi data
         shell: bash
         run: |
-          set -euo pipefail
-          success=0
-          for attempt in 1 2; do
-            if python scripts/update_sumo_data.py --torikumi-only --torikumi-scope result --skip-rikishi-fetch --strict-torikumi-fetch; then
-              success=1
-              break
-            fi
-
-            if [ "$attempt" -lt 2 ]; then
-              echo "Generate torikumi data failed (attempt ${attempt}/2). Retrying..."
-              sleep 10
-            fi
-          done
-
-          if [ "$success" -ne 1 ]; then
-            echo "Generate torikumi data failed after 2 attempts."
-            exit 1
-          fi
+          bash scripts/ci/run_torikumi_generator.sh \
+            --torikumi-only \
+            --torikumi-scope result \
+            --skip-rikishi-fetch \
+            --strict-torikumi-fetch
 
       - name: Validate torikumi payload
         shell: bash
-        run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-
-          torikumi = json.loads(Path("public/api/v1/torikumi.json").read_text(encoding="utf-8"))
-          required = ("updatedAt", "resultUpdatedAt", "scheduleUpdatedAt", "resultDays", "scheduleDays")
-          missing = [key for key in required if key not in torikumi]
-          if missing:
-              raise SystemExit(f"missing keys in torikumi.json: {missing}")
-
-          if not (torikumi["updatedAt"] and torikumi["resultUpdatedAt"] and torikumi["scheduleUpdatedAt"]):
-              raise SystemExit("torikumi timestamps must be non-empty")
-
-          if len(torikumi["resultDays"]) != 15 or len(torikumi["scheduleDays"]) != 15:
-              raise SystemExit("torikumi archive day count must be 15 for resultDays and scheduleDays")
-          PY
+        run: python scripts/ci/validate_torikumi.py
 
       - name: Commit realtime torikumi data
         shell: bash
@@ -78,11 +49,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add \
-            app/lib/sumo-data.ts \
-            app/lib/torikumi-data.ts \
-            public/api/v1/banzuke.json \
-            public/api/v1/torikumi.json
+          xargs -a scripts/ci/torikumi_paths.txt -I {} git add {}
 
           if git diff --cached --quiet; then
             echo "No realtime torikumi changes to commit."
