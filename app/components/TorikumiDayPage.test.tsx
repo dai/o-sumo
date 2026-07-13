@@ -188,7 +188,7 @@ describe('TorikumiDayPage', () => {
     expect(screen.getByRole('link', { name: '青安錦' })).toHaveAttribute('href', '/rikishi/2/');
   });
 
-  it('hides absentees on result pages', () => {
+  it('shows absentees on result pages when provided', () => {
     const resultDayWithAbsentees: TorikumiArchiveDay = {
       ...torikumiArchive.resultDays[0],
       data: {
@@ -206,7 +206,7 @@ describe('TorikumiDayPage', () => {
 
     renderPage(resultDayWithAbsentees, 'result');
 
-    expect(screen.queryByText('休場者:')).not.toBeInTheDocument();
+    expect(screen.getByText('休場者:')).toBeInTheDocument();
   });
 
   it('renders schedule mode content and day navigation links', () => {

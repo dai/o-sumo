@@ -82,8 +82,8 @@ export function nearestTorikumiAnchor(dayData: TorikumiDailyData, jstMinutes: nu
   }
 
   if (dayData.juryo.matches.length > 0) {
-    const firstVisibleJuryo = [...dayData.juryo.matches].sort((left, right) => right.boutNo - left.boutNo)[0];
-    return divisionAnchorId('十両', firstVisibleJuryo.boutNo);
+    const firstJuryoBoutNo = [...dayData.juryo.matches].sort((left, right) => left.boutNo - right.boutNo)[0].boutNo;
+    return divisionAnchorId('十両', firstJuryoBoutNo);
   }
   if (dayData.makuuchi.matches.length > 0) {
     return divisionAnchorId('幕内', 1);
@@ -156,7 +156,7 @@ function formatUpdatedAtLabel(iso: string, locale: string): string {
     const da = String(d.getDate()).padStart(2, '0');
     const hh = String(d.getHours()).padStart(2, '0');
     const mi = String(d.getMinutes()).padStart(2, '0');
-    return `${yyyy}-${mo}-${da} ${hh}:${mi} JST`;
+    return `${yyyy}-${mo}-${da} ${hh}:${mi}`;
   }
   const formatted = new Intl.DateTimeFormat('en-GB', {
     year: 'numeric',
@@ -167,7 +167,7 @@ function formatUpdatedAtLabel(iso: string, locale: string): string {
     hour12: false,
     timeZone: 'Asia/Tokyo',
   }).format(d);
-  return `${formatted} JST`;
+  return `${formatted}`;
 }
 
 export default function Home() {
@@ -206,7 +206,7 @@ export default function Home() {
               ? t('home.heroDayIndicator', { day: liveState.day })
               : liveState.kind === 'pre-basho'
                 ? t('home.heroPreBashoStatus')
-                : t('home.heroLastUpdated', { timeUtc: liveState.lastUpdatedLabel })}
+                : t('home.heroLastUpdated', { timeJst: liveState.lastUpdatedLabel })}
           </p>
           <p className="hero-description">{t('home.heroDescription')}</p>
           <nav className="hero-actions" aria-label="主要ページへの導線">
