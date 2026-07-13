@@ -212,22 +212,43 @@ npm run build
 
 ## 自動更新
 
-GitHub Actions で取組予定、取組結果、ニュース更新を分けています。変更がある場合はいずれも `automation/data-updates` の PR を作成または更新します。
+GitHub Actions で取組予定、取組結果、ニュース更新を分けています。変更がある場合はいずれも `automation/*-updates` ブランチの PR を作成または更新します。
+
+共通スクリプト:
+
+- `scripts/ci/run_torikumi_generator.sh` — 最大 2 回リトライで `update_sumo_data.py` を実行
+- `scripts/ci/validate_torikumi.py` — `public/api/v1/torikumi.json` の構造検証
+- `scripts/ci/validate_news.py` — `public/api/v1/news.json` の構造検証
+- `scripts/ci/notify_discord.sh` — `DISCORD_WEBHOOK_URL` が設定されていれば Discord に失敗通知
+
+ワークフロー一覧:
 
 - 日次更新: `.github/workflows/daily-data-update.yml`
   - 実行時刻: JST 13:00 / 19:00
   - 実行内容: 取組予定のみ更新（`--torikumi-only --torikumi-scope schedule`）
   - 手動実行: GitHub Actions の `Run workflow` または `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main`
-- 結果更新: `.github/workflows/realtime-torikumi-update.yml`
-  - 実行時刻: JST 13:00-18:00、10分おき
-  - 実行内容: 取組結果のみ更新（`--torikumi-only --torikumi-scope result --skip-rikishi-fetch`）
-  - 手動実行: GitHub Actions の `Run workflow` または `gh workflow run realtime-torikumi-update.yml -R dai/o-sumo --ref main`
-  - ログ: `github.event.schedule` / JST 現在時刻 / `resultUpdatedAt` / `scheduleUpdatedAt` を必ず出力
+- 結果更新: `.github/workflows/realtime-torikumi-direct-update.yml`
+  - 実行時刻: JST 13:00-18:50、10分おき
+  - 実行内容: 取組結果のみ更新（`--torikumi-only --torikumi-scope result --skip-rikishi-fetch --strict-torikumi-fetch`）
+  - 手動実行: GitHub Actions の `Run workflow` または `gh workflow run realtime-torikumi-direct-update.yml -R dai/o-sumo --ref main`
+  - ログ: GitHub Actions の Job Summary に step result / committed / event / run URL を集約
 - ニュース更新: `.github/workflows/news-feed-update.yml`
   - 実行時刻: JST 09:05-19:05、2時間おき
   - 実行内容: 日本相撲協会お知らせ + dmenu スポーツを更新（`python scripts/update_news_feed.py`）
   - 取得結果が変わらない場合は `news.json` を書き換えず、PR 差分を作らない
   - PR 作成時は `gh pr merge --auto --squash` でテスト通過後に自動マージ
+
+### Discord 通知（任意）
+
+`DISCORD_WEBHOOK_URL` を repo secret に設定すると、3 つのワークフローの失敗時に Discord チャンネルへ通知が飛びます。未設定でも wf はそのまま動きます。
+
+設定手順:
+
+1. Discord の対象チャンネル → `編集` → `連携サービス` → `ウェブフック` を作成、URL をコピー
+2. GitHub のリポジトリページ → `Settings` → `Secrets and variables` → `Actions` → `New repository secret`
+3. Name: `DISCORD_WEBHOOK_URL`、Value: 上でコピーした URL → `Add secret`
+
+通知のペイロードは `scripts/ci/notify_discord.sh` を参照（status / title / detail を受け取り Embed として POST）。
 
 ## GitHub Mobile + Copilot 運用
 

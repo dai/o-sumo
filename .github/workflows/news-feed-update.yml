@@ -14,6 +14,8 @@ permissions:
   contents: write
   pull-requests: write
 
+# Discord 通知 (任意): secrets.DISCORD_WEBHOOK_URL が無いと wf はそのまま動く。
+
 jobs:
   update-news:
     runs-on: ubuntu-latest
@@ -31,6 +33,7 @@ jobs:
           python-version: '3.11'
 
       - name: Update news feed
+        id: generate
         shell: bash
         run: |
           set -euo pipefail
@@ -52,7 +55,8 @@ jobs:
             exit 1
           fi
 
-      - name: Print run context and news timestamps
+      - name: Print news feed context
+        id: inspect
         shell: bash
         run: |
           echo "event_name=${{ github.event_name }}"
@@ -70,24 +74,10 @@ jobs:
           PY
 
       - name: Validate news payload
+        id: validate
         shell: bash
         run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-
-          news = json.loads(Path("public/api/v1/news.json").read_text(encoding="utf-8"))
-          required = ("updatedAt", "sources", "items")
-          missing = [key for key in required if key not in news]
-          if missing:
-              raise SystemExit(f"missing keys in news.json: {missing}")
-
-          sources = news.get("sources", [])
-          if not sources:
-              raise SystemExit("news sources must not be empty")
-          if not any(source.get("ok", False) for source in sources):
-              raise SystemExit("all news sources are marked as failed")
-          PY
+          python scripts/ci/validate_news.py
 
       - name: Create or update data update PR
         id: create-pr
@@ -112,13 +102,6 @@ jobs:
           add-paths: |
             public/api/v1/news.json
 
-      - name: Print PR context
-        shell: bash
-        run: |
-          echo "pull_request_number=${{ steps.create-pr.outputs.pull-request-number }}"
-          echo "pull_request_operation=${{ steps.create-pr.outputs.pull-request-operation }}"
-          echo "pull_request_url=${{ steps.create-pr.outputs.pull-request-url }}"
-
       - name: Enable auto-merge
         if: steps.create-pr.outputs.pull-request-operation == 'created'
         env:
@@ -133,3 +116,39 @@ jobs:
           fi
           echo "Enabling auto-merge for PR #${PR_NUMBER} (squash)"
           gh pr merge "${PR_NUMBER}" --auto --squash --delete-branch=false
+
+      - name: Write run summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## News Feed Update"
+            echo ""
+            echo "| Step | Result |"
+            echo "| --- | --- |"
+            echo "| Generate | ${{ steps.generate.outcome }} |"
+            echo "| Validate | ${{ steps.validate.outcome }} |"
+            echo "| Create PR | ${{ steps.create-pr.outcome }} |"
+            echo "| PR Number | ${{ steps.create-pr.outputs.pull-request-number }} |"
+            echo "| PR Operation | ${{ steps.create-pr.outputs.pull-request-operation }} |"
+            echo ""
+            echo "- event: \`${{ github.event_name }}\`"
+            echo "- schedule: \`${{ github.event.schedule || 'manual' }}\`"
+            echo "- jst_now: \`$(TZ=Asia/Tokyo date +'%Y-%m-%dT%H:%M:%S%z')\`"
+            echo "- run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Notify Discord on failure
+        if: failure()
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          STATUS: failure
+          TITLE: 'News Feed Update failed'
+          DETAIL: |
+            - event: `${{ github.event_name }}`
+            - schedule: `${{ github.event.schedule || 'manual' }}`
+            - run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        shell: bash
+        run: |
+          bash scripts/ci/notify_discord.sh "${STATUS}" "${TITLE}" "${DETAIL}" || echo "::warning::notify_discord failed"
+

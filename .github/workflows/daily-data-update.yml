@@ -14,6 +14,8 @@ permissions:
   contents: write
   pull-requests: write
 
+# Discord 通知 (任意): secrets.DISCORD_WEBHOOK_URL が無いと wf はそのまま動く。
+
 jobs:
   update-data:
     runs-on: ubuntu-latest
@@ -31,18 +33,22 @@ jobs:
           python-version: '3.11'
 
       - name: Generate schedule data
+        id: generate
         shell: bash
         run: |
           bash scripts/ci/run_torikumi_generator.sh \
             --torikumi-only \
             --torikumi-scope schedule
 
-      - name: Print run context and torikumi timestamps
+      - name: Validate torikumi payload
+        id: validate
+        shell: bash
+        run: python scripts/ci/validate_torikumi.py
+
+      - name: Print torikumi timestamps
+        id: inspect
         shell: bash
         run: |
-          echo "event_name=${{ github.event_name }}"
-          echo "event_schedule=${{ github.event.schedule }}"
-          echo "jst_now=$(TZ=Asia/Tokyo date +'%Y-%m-%dT%H:%M:%S%z')"
           python - <<'PY'
           import json
           from pathlib import Path
@@ -52,10 +58,6 @@ jobs:
           print(f"resultUpdatedAt={torikumi.get('resultUpdatedAt', '')}")
           print(f"scheduleUpdatedAt={torikumi.get('scheduleUpdatedAt', '')}")
           PY
-
-      - name: Validate torikumi payload
-        shell: bash
-        run: python scripts/ci/validate_torikumi.py
 
       - name: Create or update data update PR
         id: create-pr
@@ -81,9 +83,38 @@ jobs:
             app/lib/torikumi-data.ts
             public/api/v1/torikumi.json
 
-      - name: Print PR context
+      - name: Write run summary
+        if: always()
         shell: bash
         run: |
-          echo "pull_request_number=${{ steps.create-pr.outputs.pull-request-number }}"
-          echo "pull_request_operation=${{ steps.create-pr.outputs.pull-request-operation }}"
-          echo "pull_request_url=${{ steps.create-pr.outputs.pull-request-url }}"
+          {
+            echo "## Daily Sumo Data Update"
+            echo ""
+            echo "| Step | Result |"
+            echo "| --- | --- |"
+            echo "| Generate | ${{ steps.generate.outcome }} |"
+            echo "| Validate | ${{ steps.validate.outcome }} |"
+            echo "| Create PR | ${{ steps.create-pr.outcome }} |"
+            echo "| PR Number | ${{ steps.create-pr.outputs.pull-request-number }} |"
+            echo "| PR Operation | ${{ steps.create-pr.outputs.pull-request-operation }} |"
+            echo ""
+            echo "- event: \`${{ github.event_name }}\`"
+            echo "- schedule: \`${{ github.event.schedule || 'manual' }}\`"
+            echo "- jst_now: \`$(TZ=Asia/Tokyo date +'%Y-%m-%dT%H:%M:%S%z')\`"
+            echo "- run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Notify Discord on failure
+        if: failure()
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          STATUS: failure
+          TITLE: 'Daily Sumo Data Update failed'
+          DETAIL: |
+            - event: `${{ github.event_name }}`
+            - schedule: `${{ github.event.schedule || 'manual' }}`
+            - run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        shell: bash
+        run: |
+          bash scripts/ci/notify_discord.sh "${STATUS}" "${TITLE}" "${DETAIL}" || echo "::warning::notify_discord failed"
+
