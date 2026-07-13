@@ -308,7 +308,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
   const modeDescription = mode === 'result'
     ? t('torikumi.day.modeDescriptionResult')
     : t('torikumi.day.modeDescriptionSchedule');
-  const absentees = mode === 'schedule' ? uniqueAbsentees(visibleDayData) : [];
+  const absentees = uniqueAbsentees(visibleDayData);
   const updatedAt = visibleDay.source === 'schedule' ? archive.scheduleUpdatedAt : mode === 'result' ? archive.resultUpdatedAt : archive.scheduleUpdatedAt;
   const recordMap = React.useMemo(() => createRecordMap(monthKey), [monthKey]);
 
