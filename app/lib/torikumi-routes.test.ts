@@ -96,8 +96,8 @@ describe('torikumi route helpers', () => {
       ...(firstResultDay.data.juryo.absentees ?? []),
     ].map((entry) => entry.name);
 
-    expect(scheduleAbsentees).toEqual(['若隆景', '白鷹山']);
-    expect(resultAbsentees).toEqual(['若隆景', '白鷹山']);
+    expect(scheduleAbsentees).toEqual(['若隆景', '豊昇龍', '王鵬', '白鷹山']);
+    expect(resultAbsentees).toEqual(['若隆景', '豊昇龍', '王鵬', '白鷹山']);
     expect(scheduleAbsentees).not.toContain('大の里');
     expect(scheduleAbsentees).not.toContain('安青錦');
   });

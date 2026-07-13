@@ -60,10 +60,14 @@ describe('TorikumiDayPage', () => {
     expect(divisionHeadings[0]).toMatch(/十両/);
     expect(divisionHeadings[1]).toMatch(/幕内/);
 
+    // In result mode, juryo is rendered descending and makuuchi ascending.
+    // The first juryo boutNo therefore appears at the bottom of the juryo
+    // table (1=lowest juryo rank) and the highest-ranked juryo bout sits at
+    // the top of the rendered table. The last row of the whole page belongs
+    // to the highest makuuchi boutNo.
     const rows = screen.getAllByRole('row');
-    expect(rows[0]).toHaveTextContent('栃大海');
-    expect(rows[0]).toHaveTextContent('錦木');
-    expect(rows[rows.length - 1]).toHaveTextContent(/豊昇龍|大の里/);
+    expect(rows[0]).toHaveTextContent(/朝翠龍|佐田の海/);
+    expect(rows[rows.length - 1]).toHaveTextContent(/義ノ富士|おおのさと/);
   });
 
   it('shows pending empty-state messaging for unpublished days', () => {
