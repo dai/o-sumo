@@ -2,11 +2,11 @@ import { render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import {
+  getDayPath,
   MARCH2026_BANDUKE_PATH,
   MAY2026_BANDUKE_PATH,
   MAY2026_RESULT_PATH,
   MAY2026_SCHEDULE_PATH,
-  getDayPath,
 } from './lib/torikumi-routes';
 import { MARCH2026_TORIKUMI_DATA } from './lib/march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from './lib/may2026-data';
