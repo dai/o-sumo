@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-13T09:16:04.106155+00:00",
+  "updatedAt": "2026-07-13T11:08:45.413901+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_QWIQE3QAWNFXLCXUEMOEUJS6EY",
-      "title": "大の里連敗、藤ノ川が金星の波乱　豊昇龍と両大関は連勝／名古屋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_QWIQE3QAWNFXLCXUEMOEUJS6EY",
+      "id": "dmenu-docomo-sponichi-spngoo-20260713-0345",
+      "title": "【玉ノ井親方　視点】大の里は相撲が軽い　以前のような相撲を取れるようになるまで、今は辛抱の時",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260713-0345",
       "publishedAt": "2026-07-13",
-      "publishedAtRaw": "SANSPO　7月13日 18時03分",
+      "publishedAtRaw": "スポニチアネックス　7月13日 19時56分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260713-OHT1T51301",
-      "title": "【大相撲】大の里は厳しい連敗スタート　豊昇龍、綱取りの霧島、カド番の琴桜、大関復帰を目指す安青錦はいずれも２連勝",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260713-OHT1T51301",
+      "id": "dmenu-docomo-hochi-20260713-OHT1T51341",
+      "title": "【大相撲】藤ノ川が３個目の金星「うれしい。座布団も飛んでいた」　獲得した５３本の懸賞で付け人に「焼き肉へ行こう」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260713-OHT1T51341",
       "publishedAt": "2026-07-13",
-      "publishedAtRaw": "スポーツ報知　7月13日 18時01分",
+      "publishedAtRaw": "スポーツ報知　7月13日 19時55分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260713-OHT1T51297",
-      "title": "【大相撲】カド番の琴桜が快調に２連勝　新小結・義ノ富士から落ち着いて白星",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260713-OHT1T51297",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_RPX64V42HBDYBOD5U7KIOFG7VY",
+      "title": "元貴景勝「僕も初優勝した場所、これで前に落ちて負けてるんですけど…」／名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_RPX64V42HBDYBOD5U7KIOFG7VY",
       "publishedAt": "2026-07-13",
-      "publishedAtRaw": "スポーツ報知　7月13日 17時56分",
+      "publishedAtRaw": "SANSPO　7月13日 19時48分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260713-OHT1T51202",
-      "title": "【大相撲】横綱・大の里が連敗　２場所連続休場からの出場も厳しい状況に　藤ノ川に金星を配給",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260713-OHT1T51202",
+      "id": "dmenu-docomo-tokyosports-395691",
+      "title": "【大相撲】大関復帰を目指す安青錦が２連勝「まだ番付が上の人と、体が大きい人とはやってない」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-395691",
       "publishedAt": "2026-07-13",
-      "publishedAtRaw": "スポーツ報知　7月13日 17時54分",
+      "publishedAtRaw": "東スポWEB　7月13日 19時42分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260713-OHT1T51204",
-      "title": "【大相撲】横綱・豊昇龍が連勝スタート　隆の勝に白星で、横綱初優勝目指す",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260713-OHT1T51204",
+      "id": "dmenu-docomo-hochi-20260713-OHT1T51338",
+      "title": "【大相撲】横綱昇進を目指す霧島が連勝発進「１日１日良くなるように」　八角理事長「自信を持っている。焦って攻めていない」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260713-OHT1T51338",
       "publishedAt": "2026-07-13",
-      "publishedAtRaw": "スポーツ報知　7月13日 17時47分",
+      "publishedAtRaw": "スポーツ報知　7月13日 19時42分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
