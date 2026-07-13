@@ -1,10 +1,31 @@
+import { mkdirSync, writeFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
+import type { Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
+
+function sitemapPlugin(): Plugin {
+  let outDir = 'dist'
+
+  return {
+    name: 'generate-sitemap',
+    apply: 'build',
+    configResolved(config) {
+      outDir = resolve(config.root, config.build.outDir)
+    },
+    async closeBundle() {
+      const { renderSitemapXml } = await import('./app/lib/sitemap')
+      mkdirSync(outDir, { recursive: true })
+      writeFileSync(resolve(outDir, 'sitemap.xml'), renderSitemapXml(), 'utf8')
+    },
+  }
+}
 
 export default defineConfig({
   plugins: [
     react(),
+    sitemapPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: null,

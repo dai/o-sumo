@@ -390,6 +390,26 @@
 
 ---
 
+# Sukuna pet v2 looking-directions upgrade Todo（2026-07-13）
+
+## Plan
+- [x] Getting Sukuna ready: inspect `C:\Users\dai\.codex\pets\sukuna`, validate the current atlas, create an isolated run folder, and keep the existing 8x9 animation rows as the identity source.
+- [x] Imagining Sukuna's main look: document the preserved visual identity and write the look-direction mechanics QA notes.
+- [ ] Picturing Sukuna's poses: generate direction assets in the required order, verify cardinal directions, and assemble rows 9-10 only after QA.
+- [ ] Hatching Sukuna: assemble a 1536x2288 v2 atlas, update `pet.json`, run atlas validation plus blind/final visual QA, then install the upgraded files.
+
+## Progress
+- Existing `spritesheet.webp` is a standard 1536x1872, 8x9, 192x208-cell atlas.
+- Existing `pet.json` is v1-style and lacks `spriteVersionNumber`.
+- Initial validation found transparent RGB residue in the current atlas, so the upgrade must normalize transparent pixels before final v2 validation.
+- Created run folder `C:\Users\dai\.codex\pet-runs\sukuna-v2-directions-20260713`.
+- Created `qa/contact-sheet.png`, `references/canonical-base.png`, and `qa/look-mechanics.md` for grounded direction generation.
+
+## Review
+- Pending.
+
+---
+
 # 六日目取組予定反映（2026-05-14） Todo
 
 ## Plan
@@ -761,5 +781,75 @@
   - `npm run typecheck`: pass
   - `npm test -- --run`: pass（18 files / 93 tests、既存の localStorage ExperimentalWarning あり）
   - `git diff --check`: pass
+
+---
+
+# Sukuna pet v2 looking directions upgrade Todo（2026-07-13）
+
+## Plan
+- [x] 既存 Sukuna pet の manifest / spritesheet 寸法 / v1 atlas 妥当性を確認する
+- [ ] `hatch-pet` v2 run folder と QA artifact 置き場を作成する
+- [ ] 既存 8x9 atlas の見た目を保持し、look direction 用 row 9 / row 10 だけ生成する
+- [ ] deterministic assembler で 1536x2288 v2 atlas と manifest を作成する
+- [ ] contact sheet / direction QA / blind QA / final QA / validate_atlas `--require-v2` で検証する
+- [ ] `C:\Users\dai\.codex\pets\sukuna` に `pet.json` と `spritesheet.webp` を反映し、Review を記録する
+
+## Progress
+- 既存 `pet.json` は v1 相当の最小 manifest（`spritesheetPath` のみ）であることを確認。
+- 既存 `spritesheet.webp` は `1536x1872` / RGBA で、8列 x 9行 x 192x208 cell の標準 v1 寸法であることを確認。
+- 既存 atlas は透明 RGB residue により現行 validator では fail するが、v2 assembly 時に透明 RGB をクリアするルートで解消可能。
+
+## Review
+- 進行中。
+
+---
+
+# sitemap.xml 追加 Todo（2026-07-13）
+
+## Plan
+- [x] `tasks/lessons.md` と既存 route/data 実装を確認し、sitemap の掲載範囲を現行構成に合わせて固定する
+- [x] failing test を追加し、主要ページ・各場所 hub・公開済み日別ページだけが列挙されることを先に固定する
+- [x] sitemap helper を追加し、canonical origin と末尾スラッシュ付き URL を生成できるようにする
+- [x] `vite.config.ts` に build 後 sitemap 生成 plugin を追加する
+- [x] `public/robots.txt` を追加し、sitemap URL を明示する
+- [x] `npm test -- --run app/lib/sitemap.test.ts`、`npm run build`、`npm run typecheck` で検証し、Review を記録する
+
+## Progress
+- 着手前確認:
+  - canonical origin は `https://osada.us` を採用する
+  - 対象は固定ページ (`/`, `/archives/`, `/rikishi/`, `/kimarite/`)、各場所 hub、`status === "published"` の日別 `*-torikumi/` / `*-yotei/`
+  - 個別力士ページ `/rikishi/:id/` は初版では除外する
+- TDD:
+  - `app/lib/sitemap.test.ts` を追加し、固定ページ・`202603` / `202605` / current basho hub・published day 含有・pending day 除外・末尾スラッシュ正規化を先に固定
+  - 初回 RED は `./sitemap` 未解決で確認
+- 実装:
+  - `app/lib/sitemap.ts` を追加し、固定ページ + 全 archive config の hub + `status === "published"` の日別 URL を列挙する helper と XML renderer を実装
+  - `app/lib/torikumi-routes.ts` に `getAllArchiveRouteConfigs()` を追加し、sitemap 側が月別 route config を重複定義せず再利用できるようにした
+  - `vite.config.ts` に build 専用 `generate-sitemap` plugin を追加し、`closeBundle` で `dist/sitemap.xml` を書き出すようにした
+  - `public/robots.txt` を追加し、`Sitemap: https://osada.us/sitemap.xml` を明示した
+  - `origin/main` 上で stale になっていた `app/page.test.tsx` の live shortcut 期待値を、固定日付ではなく committed な `torikumiData.today` / `torikumiArchive` から導出する形に修正した
+- 検証中メモ:
+  - `npm test -- --run app/lib/sitemap.test.ts` 実行前にローカル依存が欠けていたため `npm ci` を実施
+  - `app/lib/sitemap.ts` の XML escape は target 互換のため `replaceAll` ではなく正規表現 `replace` 連鎖へ調整
+
+## Review
+- TDD:
+  - `npm test -- --run app/lib/sitemap.test.ts`: fail → pass
+  - fail 時の内容: `Failed to resolve import "./sitemap" from "app/lib/sitemap.test.ts"`
+- Validation:
+  - `npm ci`: pass（ローカル依存を補完。audit warning のみ）
+  - `npm test -- --run app/lib/sitemap.test.ts`: pass（3 tests）
+  - `npm test -- --run app/page.test.tsx`: fail → pass
+  - `npm test -- --run`: pass（19 files / 97 passed / 1 skipped）
+  - `npm run typecheck`: pass
+  - `npm run build`: pass（既存の chunk size warning のみ）
+  - `git diff --check`: pass
+- Existing-main test stabilization:
+  - fail 時の内容: `Home page > shows a live torikumi shortcut before the news section` と `builds live torikumi anchors from the JST time window` が `20260712` 固定期待値のまま、最新 snapshot の `20260713` に追従できていなかった
+  - 修正: `app/page.test.tsx` で `torikumiData.today` に対応する `resultDay` / `scheduleDay` を引き、期待 href をデータ駆動化
+- Generated output:
+  - `dist/sitemap.xml`: 生成あり（5106 bytes）
+  - `dist/robots.txt`: 生成あり
+  - spot check: `/`、`/archives/`、`/202607-torikumi/`、`/20260712-yotei/` を含み、pending な `/20260714-yotei/` は含まれない
 
 

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://osada.us/sitemap.xml
