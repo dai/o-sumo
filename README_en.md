@@ -230,6 +230,7 @@ GitHub Actions uses separate workflows for torikumi schedules, torikumi results,
   - schedule: every 2 hours from JST 09:05 through 19:05
   - updates Japan Sumo Association and dmenu Sports news (`python scripts/update_news_feed.py`)
   - skips rewriting `news.json` when fetched items and source states are unchanged
+  - newly created PRs are auto-merged with `gh pr merge --auto --squash` once the `test` workflow passes
 
 ## Testing
 
