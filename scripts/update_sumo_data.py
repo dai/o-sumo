@@ -618,36 +618,15 @@ def extract_bout_no(raw: dict, fallback: int) -> int:
     return fallback
 
 
-def _division_kaku_id(raw: dict) -> str | None:
-    east = raw.get("east") or {}
-    west = raw.get("west") or {}
-    east_kaku = str(east.get("kaku_id", "")) if east else ""
-    west_kaku = str(west.get("kaku_id", "")) if west else ""
-    if east_kaku and east_kaku == west_kaku:
-        return east_kaku
-    return None
-
-
-def _is_target_division(raw: dict, kakuzuke_id: int) -> bool:
-    raw_kaku = _division_kaku_id(raw)
-    if raw_kaku is None:
-        return False
-    return raw_kaku == str(kakuzuke_id)
-
-
-def merge_torikumi_raw_matches(data: dict, kakuzuke_id: int | None = None) -> list[tuple[int, dict]]:
+def merge_torikumi_raw_matches(data: dict) -> list[tuple[int, dict]]:
     merged: dict[int, dict] = {}
 
     for idx, raw in enumerate(list(data.get("TorikumiData", [])), start=1):
-        if kakuzuke_id is not None and not _is_target_division(raw, kakuzuke_id):
-            continue
         bout_no = extract_bout_no(raw, idx)
         merged[bout_no] = raw
 
     start_idx = max(merged.keys(), default=0) + 1
     for idx, raw in enumerate(list(data.get("FinalMuch", [])), start=start_idx):
-        if kakuzuke_id is not None and not _is_target_division(raw, kakuzuke_id):
-            continue
         bout_no = extract_bout_no(raw, idx)
         merged[bout_no] = raw
 
@@ -664,19 +643,19 @@ def load_torikumi_day(basho_id: int, day: int, kakuzuke_id: int) -> dict:
     if data.get("Result") != "1":
         raise RuntimeError(f"torikumiAjax failed: kakuzuke_id={kakuzuke_id}, day={day}")
 
-    merged_matches = merge_torikumi_raw_matches(data, kakuzuke_id=kakuzuke_id)
+    merged_matches = merge_torikumi_raw_matches(data)
     if not merged_matches:
         raise ValueError(f"取組データ未公開: {DIVISION_LABEL[kakuzuke_id]} day={day}")
 
     parsed = []
-    for sequential_idx, (extracted_bout_no, match) in enumerate(merged_matches, start=1):
+    for extracted_bout_no, match in merged_matches:
         try:
-            parsed.append(parse_torikumi_match(match, DIVISION_LABEL[kakuzuke_id], sequential_idx))
+            parsed.append(parse_torikumi_match(match, DIVISION_LABEL[kakuzuke_id], extracted_bout_no))
         except Exception:
             continue
 
     bout_limit = TORIKUMI_BOUT_LIMIT[kakuzuke_id]
-    parsed = parsed[:bout_limit]
+    parsed = sorted(parsed, key=lambda item: item["boutNo"])[:bout_limit]
 
     if not parsed:
         raise ValueError(f"取組データ解析失敗: {DIVISION_LABEL[kakuzuke_id]} day={day}")
