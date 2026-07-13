@@ -88,5 +88,10 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './app/test/setup.ts',
     globals: true,
+    // CI で並列実行が重なると重いデータロードを行うテストが 5s を超えることがある。
+    // 個別テストの it(..., fn, timeout?) で上書きするのが基本だが、既知の重いテスト
+    // にも適用されるようプロジェクト既定も広めにとる。
+    testTimeout: 20000,
+    hookTimeout: 20000,
   },
 })
