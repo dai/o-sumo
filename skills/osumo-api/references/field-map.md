@@ -22,7 +22,8 @@
 - `rank: string`
 - `side: "east" | "west"`
 - `wins/losses/draws: number`
-- `results: ("win" | "loss" | "draw")[]`
+- `results: ("win" | "loss" | "draw" | null)[]`
+  - `null` means unsettled or unknown and is excluded from `wins` / `losses` / `draws` totals.
 - `profileUrl: string`
 - `memo: string`
 

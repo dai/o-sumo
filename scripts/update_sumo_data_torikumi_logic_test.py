@@ -160,6 +160,28 @@ def test_determine_archive_statuses_publishes_settled_results_beyond_today_day()
     assert schedule3 == "published"
 
 
+def test_determine_archive_statuses_publishes_partially_settled_results() -> None:
+    makuuchi = _division(2)
+    result_day_data = {
+        "makuuchi": {
+            **makuuchi,
+            "matches": [
+                {**makuuchi["matches"][0], "winner": "east"},
+                {**makuuchi["matches"][1], "winner": None},
+            ],
+        },
+        "juryo": _division(1),
+    }
+    schedule_day_data = {
+        "makuuchi": _division(2),
+        "juryo": _division(1),
+    }
+
+    result_status, _ = determine_archive_statuses(3, 3, result_day_data, schedule_day_data)
+
+    assert result_status == "published"
+
+
 def test_derive_absentees_excludes_cross_division_special_bout_rikishi() -> None:
     roster = {
         4116: {"id": 4116, "name": "大青山", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"},
@@ -328,6 +350,7 @@ def main() -> None:
     test_pick_existing_division_day_respects_source_key()
     test_determine_archive_statuses_limits_publication_window()
     test_determine_archive_statuses_publishes_settled_results_beyond_today_day()
+    test_determine_archive_statuses_publishes_partially_settled_results()
     test_derive_absentees_excludes_cross_division_special_bout_rikishi()
     test_derive_absentees_excludes_only_same_division_active_rikishi()
     test_parse_torikumi_match_accepts_plain_text_shikona()
