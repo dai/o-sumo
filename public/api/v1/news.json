@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-14T08:52:11.304764+00:00",
+  "updatedAt": "2026-07-14T10:38:30.089587+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-f-bt-tp1-260714-202607140000998",
-      "title": "大の里が連敗ストップ、１月の初場所以来171日ぶりの白星",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260714-202607140000998",
+      "id": "dmenu-docomo-tokyosports-395778",
+      "title": "【大相撲】横綱大の里　初場所からの連敗を６でストップ「長かった。これでいい方向に…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-395778",
       "publishedAt": "2026-07-14",
-      "publishedAtRaw": "日刊スポーツ　7月14日 17時45分",
+      "publishedAtRaw": "東スポWEB　7月14日 19時14分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260714-OHT1T51253",
-      "title": "カド番の琴桜が初黒星　美ノ海に逆転で敗れる",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260714-OHT1T51253",
+      "id": "dmenu-docomo-20260714121",
+      "title": "大の里が１７２日ぶり勝利！休場明け連敗止めた「いやあ、良かった」会場の後押しに感謝【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260714121",
       "publishedAt": "2026-07-14",
-      "publishedAtRaw": "スポーツ報知　7月14日 17時44分",
+      "publishedAtRaw": "デイリースポーツ　7月14日 19時08分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260714-OHT1T51186",
-      "title": "十両・友風が１２回目の挑戦で初めて天敵・竜電を撃破　「白星に対して一喜一憂するタイプではないが、今日はうれしい」と満面の笑み",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260714-OHT1T51186",
+      "id": "dmenu-docomo-f-bt-tp1-260714-202607140001517",
+      "title": "大の里が初場所以来171日ぶり白星　元若の里の西岩親方「息を吹き返す」「十分優勝狙える」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260714-202607140001517",
       "publishedAt": "2026-07-14",
-      "publishedAtRaw": "スポーツ報知　7月14日 16時25分",
+      "publishedAtRaw": "日刊スポーツ　7月14日 18時54分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260714-202607140000997",
-      "title": "炎鵬が玉正鳳破り名古屋場所初白星「平常心で」夏バテ対策は食べることと体冷やしすぎ注意",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260714-202607140000997",
+      "id": "dmenu-docomo-tokyosports-395773",
+      "title": "【大相撲】幕内最年少の藤ノ川が豊昇龍を破り２日連続の金星　横綱初挑戦から４連勝は戦後初の快挙",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-395773",
       "publishedAt": "2026-07-14",
-      "publishedAtRaw": "日刊スポーツ　7月14日 16時17分",
+      "publishedAtRaw": "東スポWEB　7月14日 18時47分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260714-OHT1T51181",
-      "title": "猛暑の名古屋で十両・白熊が３連勝　能生中の先輩・日翔志を押し出し「もう一丁かと思った」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260714-OHT1T51181",
+      "id": "dmenu-docomo-sponichi-spngoo-20260714-0316",
+      "title": "関脇・安青錦　初日から3連勝！大関復帰へ向けて元気いっぱい　解説の西岩親方「相手に何もさせなかった」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260714-0316",
       "publishedAt": "2026-07-14",
-      "publishedAtRaw": "スポーツ報知　7月14日 16時15分",
+      "publishedAtRaw": "スポニチアネックス　7月14日 18時35分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
