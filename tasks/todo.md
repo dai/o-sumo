@@ -852,4 +852,21 @@
   - `dist/robots.txt`: 生成あり
   - spot check: `/`、`/archives/`、`/202607-torikumi/`、`/20260712-yotei/` を含み、pending な `/20260714-yotei/` は含まれない
 
+## 勝敗・休場ステータス修正（2026-07-14）
+
+### Plan
+- [ ] 最新 `origin/main` の独立 worktree で基準テストを確認する
+- [x] 混合取組の保持・重複防止・幕内21番保持を failing test で固定する
+- [ ] 未確定を `null`、明示休場だけを `draw` とする failing test を固定する
+- [ ] 生成処理・型・UIテスト・API仕様を最小差分で修正する
+- [ ] current データを再生成し、混合取組と休場者の整合性を確認する
+- [ ] Python tests、payload validation、typecheck、Vitest、build、diff check を完走する
+
+### Progress
+- Task 1: 公式payload形式の混合取組1番と幕内同士20番を使う回帰テストを追加し、幕内で全21番を連番保持、十両では混合取組を選択しないことを固定した。
+- Task 1: 取組の所属を参加者の最小数値 `kaku_id` で決定し、上限を幕内21番・十両14番へ調整した。日全体の出場IDによる休場判定と勝敗マーク処理は変更していない。
+
+### Review
+- 実装完了後に検証コマンド、結果、生成データの確認内容を記録する。
+
 

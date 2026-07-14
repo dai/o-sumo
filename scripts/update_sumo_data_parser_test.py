@@ -28,6 +28,49 @@ def _make_json_response(payload: bytes = b'{"Result":"1"}'):
     return DummyResponse()
 
 
+def _official_torikumi_match(
+    label: str,
+    east_kaku_id: int,
+    west_kaku_id: int,
+    rikishi_id: int,
+) -> dict:
+    return {
+        "judge": 9,
+        "technic_name": "",
+        "east": {
+            "shikona": f"{label}東",
+            "shikona_kana": "",
+            "shikona_eng": f"{label} east",
+            "banzuke_name": "前頭",
+            "rikishi_id": rikishi_id,
+            "kaku_id": east_kaku_id,
+        },
+        "west": {
+            "shikona": f"{label}西",
+            "shikona_kana": "",
+            "shikona_eng": f"{label} west",
+            "banzuke_name": "前頭",
+            "rikishi_id": rikishi_id + 100,
+            "kaku_id": west_kaku_id,
+        },
+    }
+
+
+def _official_makuuchi_payload_with_mixed_bout() -> dict:
+    mixed_bout = _official_torikumi_match("混合", 1, 2, 1000)
+    pure_makuuchi_bouts = [
+        _official_torikumi_match(f"幕内{bout_no}", 1, 1, 1000 + bout_no)
+        for bout_no in range(1, 21)
+    ]
+    return {
+        "Result": "1",
+        "dayName": "取組日 初日",
+        "dayHead": "初日： 令和8年7月12日(日)",
+        "TorikumiData": [mixed_bout, *pure_makuuchi_bouts],
+        "FinalMuch": [],
+    }
+
+
 class ParseProfileHtmlTest(unittest.TestCase):
     def test_keeps_shusshin_from_exact_label_without_related_list_override(self) -> None:
         html = """
@@ -165,6 +208,29 @@ class ParseTorikumiMatchTest(unittest.TestCase):
 
         self.assertEqual(match["winner"], "east")
         self.assertEqual(match["kimarite"], "未定")
+
+
+class LoadTorikumiDayTest(unittest.TestCase):
+    def test_makuuchi_keeps_mixed_bout_and_all_twenty_pure_bouts(self) -> None:
+        payload = _official_makuuchi_payload_with_mixed_bout()
+
+        with mock.patch.object(MODULE, "post_json", return_value=payload):
+            division_day = MODULE.load_torikumi_day(636, 1, 1)
+
+        self.assertEqual(len(division_day["matches"]), 21)
+        self.assertEqual(
+            [match["boutNo"] for match in division_day["matches"]],
+            list(range(1, 22)),
+        )
+        self.assertEqual(division_day["matches"][0]["eastName"], "混合東")
+        self.assertEqual(division_day["matches"][-1]["eastName"], "幕内20東")
+
+    def test_juryo_does_not_select_mixed_bout_owned_by_makuuchi(self) -> None:
+        payload = _official_makuuchi_payload_with_mixed_bout()
+
+        merged = MODULE.merge_torikumi_raw_matches(payload, kakuzuke_id=2)
+
+        self.assertEqual(merged, [])
 
 
 class LoadDivisionRikishiFallbackTest(unittest.TestCase):

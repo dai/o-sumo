@@ -28,7 +28,7 @@ TORIKUMI_OUTPUT = Path("app/lib/torikumi-data.ts")
 API_DIR = Path("public/api/v1")
 EXPECTED_RIKISHI_COUNT = {1: 42, 2: 28}
 DIVISION_LABEL = {1: "幕内", 2: "十両"}
-TORIKUMI_BOUT_LIMIT = {1: 20, 2: 14}
+TORIKUMI_BOUT_LIMIT = {1: 21, 2: 14}
 RESULT_DAYS = tuple(str(day) for day in range(1, 16))
 DAY_LABEL = {
     1: "初日",
@@ -621,11 +621,17 @@ def extract_bout_no(raw: dict, fallback: int) -> int:
 def _division_kaku_id(raw: dict) -> str | None:
     east = raw.get("east") or {}
     west = raw.get("west") or {}
-    east_kaku = str(east.get("kaku_id", "")) if east else ""
-    west_kaku = str(west.get("kaku_id", "")) if west else ""
-    if east_kaku and east_kaku == west_kaku:
-        return east_kaku
-    return None
+    participant_kaku_ids = [
+        kaku_id
+        for kaku_id in (
+            safe_int(east.get("kaku_id"), 0),
+            safe_int(west.get("kaku_id"), 0),
+        )
+        if kaku_id > 0
+    ]
+    if not participant_kaku_ids:
+        return None
+    return str(min(participant_kaku_ids))
 
 
 def _is_target_division(raw: dict, kakuzuke_id: int) -> bool:
