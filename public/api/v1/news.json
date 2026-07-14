@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-14T03:11:08.718995+00:00",
+  "updatedAt": "2026-07-14T05:07:03.095978+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-hochi-20260714-OHT1T51098",
+      "title": "【３日目の見所】安青錦　復調気配で低い攻めで３連勝を狙う、霧島　充実の相撲内容、大の里は前進が初白星へのカギ",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260714-OHT1T51098",
+      "publishedAt": "2026-07-14",
+      "publishedAtRaw": "スポーツ報知　7月14日 13時33分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260714-OHT1T51094",
+      "title": "三段目・翔盛が連勝発進「優勝を狙いたい」　付け人についている十両・嘉陽の誕生日には「何か言った方がいいんですかね」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260714-OHT1T51094",
+      "publishedAt": "2026-07-14",
+      "publishedAtRaw": "スポーツ報知　7月14日 13時22分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-20260714067",
+      "title": "イングランド出身力士・栄誠が前相撲で白星デビュー「横綱になりたいです」",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260714067",
+      "publishedAt": "2026-07-14",
+      "publishedAtRaw": "デイリースポーツ　7月14日 12時36分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-hochi-20260714-OHT1T51057",
       "title": "【大相撲】モンゴル出身・ソソルフー改め城勝雄が初土俵で白星「やっとスタートを切れた」　元大関・貴景勝の湊川親方が部屋継承後初の新弟子",
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260714-OHT1T51057",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260714-0174",
       "publishedAt": "2026-07-14",
       "publishedAtRaw": "スポニチアネックス　7月14日 11時17分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260714-0168",
-      "title": "史上3人目の英国出身力士、栄誠が初陣勝利　来日から1年「やっと取れてうれしい」前相撲始まる",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260714-0168",
-      "publishedAt": "2026-07-14",
-      "publishedAtRaw": "スポニチアネックス　7月14日 11時06分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-chuspo-1280905",
-      "title": "2連敗スタートの大の里、3日目出場へ　二所ノ関親方が明かす【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1280905",
-      "publishedAt": "2026-07-14",
-      "publishedAtRaw": "中日スポーツ　7月14日 10時47分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10259555",
-      "title": "花道奥で呼出が“超レア”アイテムを手に…カメラが捉えた貴重な瞬間にファン興奮",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10259555",
-      "publishedAt": "2026-07-14",
-      "publishedAtRaw": "ABEMA TIMES　7月14日 9時50分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
