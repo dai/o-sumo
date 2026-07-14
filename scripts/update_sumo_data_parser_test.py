@@ -344,6 +344,74 @@ class DeriveAbsenteesTest(unittest.TestCase):
         absentees = MODULE.derive_absentees(division_day, roster, {4230})
         self.assertEqual(absentees, [])
 
+    def test_build_dataset_uses_daywide_active_ids_for_juryo_promotion(self) -> None:
+        makuuchi_roster = {
+            3761: {"id": 3761, "name": "若隆景", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"},
+            4001: {"id": 4001, "name": "幕内出場", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4001/"},
+        }
+        juryo_roster = {
+            3334: {"id": 3334, "name": "白鷹山", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"},
+            4101: {"id": 4101, "name": "十両繰り上げ", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"},
+            4102: {"id": 4102, "name": "十両出場", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4102/"},
+        }
+
+        def load_roster(kakuzuke_id: int) -> dict[int, dict]:
+            return makuuchi_roster if kakuzuke_id == 1 else juryo_roster
+
+        def load_day(_basho_id: int, day: int, kakuzuke_id: int, *, expected_unpublished: bool) -> dict | None:
+            if day != 1:
+                return None
+            if kakuzuke_id == 1:
+                return {
+                    "day": 1,
+                    "dayName": "取組日 初日",
+                    "dayHead": "初日： 令和8年7月12日(日)",
+                    "division": "幕内",
+                    "matches": [
+                        {
+                            "division": "幕内",
+                            "boutNo": 1,
+                            "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4001/",
+                            "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/",
+                            "kimarite": "",
+                            "winner": "east",
+                        }
+                    ],
+                    "absentees": [],
+                }
+            return {
+                "day": 1,
+                "dayName": "取組日 初日",
+                "dayHead": "初日： 令和8年7月12日(日)",
+                "division": "十両",
+                "matches": [
+                    {
+                        "division": "十両",
+                        "boutNo": 1,
+                        "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4102/",
+                        "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4002/",
+                        "kimarite": "",
+                        "winner": "east",
+                    }
+                ],
+                "absentees": [],
+            }
+
+        with mock.patch.object(MODULE, "load_division_rikishi", side_effect=load_roster):
+            with mock.patch.object(MODULE, "try_load_torikumi_day", side_effect=load_day):
+                payload = MODULE.build_torikumi_dataset(
+                    636,
+                    1,
+                    "2026-07-12T13:00:00+09:00",
+                    None,
+                    fetch_days={1},
+                    official_start_date=date(2026, 7, 12),
+                )
+
+        result_day = payload["resultDays"][0]["data"]
+        self.assertEqual([entry["name"] for entry in result_day["makuuchi"]["absentees"]], ["若隆景"])
+        self.assertEqual([entry["name"] for entry in result_day["juryo"]["absentees"]], ["白鷹山"])
+
     def test_returns_existing_absentees_when_roster_unavailable(self) -> None:
         division_day = {
             "matches": [{"eastProfileUrl": "", "westProfileUrl": ""}],
