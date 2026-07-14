@@ -7,7 +7,7 @@ export interface Rikishi {
   wins?: number;
   losses?: number;
   draws?: number;
-  results?: ('win' | 'loss' | 'draw')[];
+  results?: ('win' | 'loss' | 'draw' | null)[];
   profileUrl: string;
   memo?: string;
 }

@@ -508,14 +508,14 @@ def build_rank_groups(kakuzuke_id: int) -> tuple[list[dict], dict]:
     return ordered, banzuke
 
 
-def build_profile_day_marks(result_days: list[dict]) -> tuple[list[int], dict[int, dict[str, str]]]:
+def build_profile_day_marks(result_days: list[dict]) -> tuple[list[int], dict[int, dict[str, str | None]]]:
     published_days = sorted(
         safe_int(day.get("day", 0), 0)
         for day in result_days
         if str(day.get("status", "")) == "published" and safe_int(day.get("day", 0), 0) > 0
     )
     unique_days = sorted(set(day for day in published_days if 1 <= day <= 15))
-    day_marks: dict[int, dict[str, str]] = {}
+    day_marks: dict[int, dict[str, str | None]] = {}
 
     for archive_day in result_days:
         day = safe_int(archive_day.get("day", 0), 0)
@@ -524,7 +524,7 @@ def build_profile_day_marks(result_days: list[dict]) -> tuple[list[int], dict[in
         if str(archive_day.get("status", "")) != "published":
             continue
 
-        marks_for_day: dict[str, str] = {}
+        marks_for_day: dict[str, str | None] = {}
         day_data = archive_day.get("data", {})
         for division_key in ("makuuchi", "juryo"):
             division = day_data.get(division_key, {})
@@ -542,6 +542,11 @@ def build_profile_day_marks(result_days: list[dict]) -> tuple[list[int], dict[in
                         marks_for_day[east_url] = "loss"
                     if west_url:
                         marks_for_day[west_url] = "win"
+                else:
+                    if east_url:
+                        marks_for_day[east_url] = None
+                    if west_url:
+                        marks_for_day[west_url] = None
 
             for absentee in list(division.get("absentees", [])):
                 profile_url = str(absentee.get("profileUrl", ""))
@@ -562,12 +567,9 @@ def apply_result_days_to_rank_groups(rank_groups: list[dict], result_days: list[
         for side in ("east", "west"):
             for rikishi in list(group.get(side, [])):
                 profile_url = str(rikishi.get("profileUrl", ""))
-                marks: list[str] = []
+                marks: list[str | None] = []
                 for day in published_days:
-                    mark = day_marks.get(day, {}).get(profile_url)
-                    # When a published day has no explicit bout/absentee entry for a rikishi,
-                    # treat it as a rest day so 15-day hoshitori stays complete.
-                    marks.append(mark if mark in {"win", "loss", "draw"} else "draw")
+                    marks.append(day_marks.get(day, {}).get(profile_url))
 
                 rikishi["results"] = marks
                 rikishi["wins"] = sum(1 for mark in marks if mark == "win")
@@ -1294,7 +1296,7 @@ def write_sumo_data(makuuchi: list[dict], juryo: list[dict]) -> None:
   wins?: number;
   losses?: number;
   draws?: number;
-  results?: ('win' | 'loss' | 'draw')[];
+  results?: ('win' | 'loss' | 'draw' | null)[];
   profileUrl: string;
   memo?: string;
 }}

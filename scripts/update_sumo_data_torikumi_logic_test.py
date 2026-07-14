@@ -255,72 +255,73 @@ def test_preserve_torikumi_timestamps_if_unchanged_restores_existing_values() ->
     assert merged["scheduleUpdatedAt"] == "2026-05-11T10:00:00+09:00"
 
 
-def test_apply_result_days_to_rank_groups_fills_missing_day15_as_draw() -> None:
+def test_apply_result_days_to_rank_groups_keeps_unsettled_and_unknown_marks_null() -> None:
+    def rikishi(rikishi_id: int) -> dict:
+        return {
+            "id": rikishi_id,
+            "name": f"力士{rikishi_id}",
+            "yomi": f"りきし{rikishi_id}",
+            "rank": "前頭1",
+            "side": "east" if rikishi_id % 2 else "west",
+            "profileUrl": f"https://www.sumo.or.jp/ResultRikishiData/profile/{rikishi_id}/",
+            "results": [],
+            "wins": 0,
+            "losses": 0,
+            "draws": 0,
+        }
+
     rank_groups = [
         {
             "title": "前頭1",
-            "east": [
-                {
-                    "id": 1001,
-                    "name": "東力士",
-                    "yomi": "ひがしりきし",
-                    "rank": "前頭1",
-                    "side": "east",
-                    "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/1001/",
-                    "results": [],
-                    "wins": 0,
-                    "losses": 0,
-                    "draws": 0,
-                }
-            ],
-            "west": [
-                {
-                    "id": 1002,
-                    "name": "西力士",
-                    "yomi": "にしりきし",
-                    "rank": "前頭1",
-                    "side": "west",
-                    "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/1002/",
-                    "results": [],
-                    "wins": 0,
-                    "losses": 0,
-                    "draws": 0,
-                }
-            ],
+            "east": [rikishi(1001), rikishi(1003), rikishi(1005)],
+            "west": [rikishi(1002), rikishi(1004), rikishi(1006)],
         }
     ]
-    result_days = []
-    for day in range(1, 16):
-        matches = []
-        if day <= 14:
-            matches = [
-                {
-                    "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/1001/",
-                    "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/1002/",
-                    "winner": "east",
-                }
-            ]
-        result_days.append(
-            {
-                "day": day,
-                "status": "published",
-                "data": {
-                    "makuuchi": {"matches": matches, "absentees": []},
-                    "juryo": {"matches": [], "absentees": []},
+    result_days = [
+        {
+            "day": 1,
+            "status": "published",
+            "data": {
+                "makuuchi": {
+                    "matches": [
+                        {
+                            "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/1001/",
+                            "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/1002/",
+                            "winner": "east",
+                        },
+                        {
+                            "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/1003/",
+                            "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/1004/",
+                            "winner": None,
+                        },
+                    ],
+                    "absentees": [
+                        {
+                            "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/1005/",
+                        }
+                    ],
                 },
-            }
-        )
+                "juryo": {"matches": [], "absentees": []},
+            },
+        }
+    ]
 
     apply_result_days_to_rank_groups(rank_groups, result_days)
 
-    east = rank_groups[0]["east"][0]
-    west = rank_groups[0]["west"][0]
-    assert len(east["results"]) == 15
-    assert len(west["results"]) == 15
-    assert east["wins"] == 14 and east["losses"] == 0 and east["draws"] == 1
-    assert west["wins"] == 0 and west["losses"] == 14 and west["draws"] == 1
-    assert east["results"][14] == "draw"
-    assert west["results"][14] == "draw"
+    by_id = {
+        rikishi["id"]: rikishi
+        for side in ("east", "west")
+        for rikishi in rank_groups[0][side]
+    }
+    assert by_id[1001]["results"] == ["win"]
+    assert by_id[1002]["results"] == ["loss"]
+    assert by_id[1003]["results"] == [None]
+    assert by_id[1004]["results"] == [None]
+    assert by_id[1005]["results"] == ["draw"]
+    assert by_id[1006]["results"] == [None]
+    assert (by_id[1003]["wins"], by_id[1003]["losses"], by_id[1003]["draws"]) == (0, 0, 0)
+    assert (by_id[1006]["wins"], by_id[1006]["losses"], by_id[1006]["draws"]) == (0, 0, 0)
+    assert (by_id[1005]["wins"], by_id[1005]["losses"], by_id[1005]["draws"]) == (0, 0, 1)
 
 
 def main() -> None:
@@ -332,7 +333,7 @@ def main() -> None:
     test_parse_torikumi_match_accepts_plain_text_shikona()
     test_has_substantive_torikumi_diff_ignores_timestamp_only_change()
     test_preserve_torikumi_timestamps_if_unchanged_restores_existing_values()
-    test_apply_result_days_to_rank_groups_fills_missing_day15_as_draw()
+    test_apply_result_days_to_rank_groups_keeps_unsettled_and_unknown_marks_null()
     print("ok: update_sumo_data torikumi logic tests passed")
 
 

@@ -857,16 +857,24 @@
 ### Plan
 - [ ] 最新 `origin/main` の独立 worktree で基準テストを確認する
 - [x] 混合取組の保持・重複防止・幕内21番保持を failing test で固定する
-- [ ] 未確定を `null`、明示休場だけを `draw` とする failing test を固定する
-- [ ] 生成処理・型・UIテスト・API仕様を最小差分で修正する
+- [x] 未確定を `null`、明示休場だけを `draw` とする failing test を固定する
+- [x] 生成処理・型・UIテスト・API仕様を最小差分で修正する
 - [ ] current データを再生成し、混合取組と休場者の整合性を確認する
 - [ ] Python tests、payload validation、typecheck、Vitest、build、diff check を完走する
 
 ### Progress
 - Task 1: 公式payload形式の混合取組1番と幕内同士20番を使う回帰テストを追加し、幕内で全21番を連番保持、十両では混合取組を選択しないことを固定した。
 - Task 1: 取組の所属を参加者の最小数値 `kaku_id` で決定し、上限を幕内21番・十両14番へ調整した。日全体の出場IDによる休場判定と勝敗マーク処理は変更していない。
+- Task 2 plan: 公開済み1日に確定取組、未確定取組、明示休場、結果未記録の力士を同居させた Python 回帰テストで、`null` と `draw` の境界を先に固定する。
+- Task 2 plan: 生成処理の補完値と集計、生成 TypeScript 型、番付 UI テスト、日英 API 仕様を最小差分で同期し、focused Python / Vitest / typecheck を実行する。live data の再生成と full verification は後続タスクに残す。
+- Task 2: 未確定取組の両力士と結果未記録の力士を `null` のまま保持し、明示 `absentees` のみを `draw` にするよう補完処理を修正した。集計は literal な `win` / `loss` / `draw` のみを数える。
+- Task 2: generator と current `sumo-data.ts` の型、番付 UI の空ドット回帰、日英 API 仕様を `null` 対応へ同期した。live data と March/May archive は変更していない。
 
 ### Review
-- 実装完了後に検証コマンド、結果、生成データの確認内容を記録する。
+- Task 2 RED: `python scripts/update_sumo_data_torikumi_logic_test.py` は未確定取組の力士が `[None]` ではなく `draw` になり `AssertionError` で失敗した。
+- Task 2 GREEN: `python scripts/update_sumo_data_torikumi_logic_test.py` は pass。
+- Task 2 UI: `npm test -- --run app/banzuke/page.test.tsx` は 1 file / 8 tests pass。`null` は既存の空ドットを表示し、成績の休場数を増やさない。
+- Task 2 typecheck: `npm run typecheck` は pass。
+- current データ再生成と full verification は未実施で、対応チェックボックスを未完了のまま維持する。
 
 

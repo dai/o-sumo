@@ -32,7 +32,7 @@ describe('BanzukePage', () => {
     expect(reversedFirstRank.textContent).not.toBe('横綱');
   });
 
-  it('renders win, loss, and rest markers distinctly', () => {
+  it('renders win, loss, rest, and null markers without counting null as rest', () => {
     const rankGroup: RankGroup = {
       title: '前頭1',
       east: [
@@ -45,7 +45,7 @@ describe('BanzukePage', () => {
           wins: 1,
           losses: 1,
           draws: 1,
-          results: ['win', 'loss', 'draw'],
+          results: ['win', 'loss', 'draw', null],
           profileUrl: 'https://example.com/east',
           memo: '',
         },
@@ -67,6 +67,8 @@ describe('BanzukePage', () => {
     expect(screen.getByText('○')).toBeInTheDocument();
     expect(screen.getByText('●')).toBeInTheDocument();
     expect(screen.getByText('−')).toBeInTheDocument();
+    expect(container.querySelectorAll('.hoshi')[3]).toHaveClass('empty');
+    expect(container.querySelectorAll('.hoshi')[3]).toHaveTextContent('・');
 
     const photo = container.querySelector('.rikishi-photo');
     expect(photo).not.toBeNull();
