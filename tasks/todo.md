@@ -880,5 +880,6 @@
 - Diff review: `origin/main...HEAD` は current 実装・テスト・生成データ・API文書・本タスク記録の11ファイルで、March/May archive 変更なし。Task 4 編集前の作業ツリーは `.superpowers/` だけが untracked。
 - Non-failing warnings: parser の既存 warning fixture 2件、Vitest の Node `localStorage` ExperimentalWarning、Vite の 500 kB 超 chunk warning は継続しているが、失敗はない。
 - Final review fix: `results` の公開型と `null` の集計除外を field map に明記し、部分公開結果が `published` になる直接回帰テストを追加。`all` semantics では RED、`python scripts/update_sumo_data_torikumi_logic_test.py` は復元後 pass。
+- PR sync（2026-07-15）: 最新 `origin/main@50f3ce1` へ rebase 後、`python scripts/update_sumo_data.py --torikumi-scope all --skip-rikishi-fetch --strict-torikumi-fetch` で current 4生成物を再同期。公開済み1〜3日目は各34番を維持し、4日目結果は公式未公開のため `pending`。
 
 

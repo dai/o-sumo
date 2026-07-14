@@ -59,9 +59,9 @@ export interface TorikumiDataSet {
 export const torikumiData: TorikumiDataSet = {
   "bashoName": "七月場所",
   "year": "令和八年",
-  "updatedAt": "2026-07-14T19:38:04+09:00",
-  "resultUpdatedAt": "2026-07-14T18:40:14+09:00",
-  "scheduleUpdatedAt": "2026-07-14T19:38:04+09:00",
+  "updatedAt": "2026-07-15T08:54:32+09:00",
+  "resultUpdatedAt": "2026-07-15T08:54:32+09:00",
+  "scheduleUpdatedAt": "2026-07-15T08:54:32+09:00",
   "today": {
     "makuuchi": {
       "day": 3,
@@ -72,6 +72,22 @@ export const torikumiData: TorikumiDataSet = {
         {
           "division": "幕内",
           "boutNo": 1,
+          "eastName": "ときはやて",
+          "eastYomi": "",
+          "eastEnglish": "",
+          "eastRank": "十両二枚目",
+          "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/",
+          "westName": "かずま",
+          "westYomi": "",
+          "westEnglish": "",
+          "westRank": "前頭十五枚目",
+          "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/",
+          "kimarite": "寄り切り",
+          "winner": "west"
+        },
+        {
+          "division": "幕内",
+          "boutNo": 2,
           "eastName": "おうのかつ",
           "eastYomi": "",
           "eastEnglish": "",
@@ -87,7 +103,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 2,
+          "boutNo": 3,
           "eastName": "だいせいざん",
           "eastYomi": "",
           "eastEnglish": "",
@@ -103,7 +119,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 3,
+          "boutNo": 4,
           "eastName": "にしきふじ",
           "eastYomi": "",
           "eastEnglish": "",
@@ -119,7 +135,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 4,
+          "boutNo": 5,
           "eastName": "たけるふじ",
           "eastYomi": "",
           "eastEnglish": "",
@@ -135,7 +151,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 5,
+          "boutNo": 6,
           "eastName": "わかのしょう",
           "eastYomi": "",
           "eastEnglish": "",
@@ -151,7 +167,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 6,
+          "boutNo": 7,
           "eastName": "みたけうみ",
           "eastYomi": "",
           "eastEnglish": "",
@@ -167,7 +183,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 7,
+          "boutNo": 8,
           "eastName": "ふじりょうが",
           "eastYomi": "",
           "eastEnglish": "",
@@ -183,7 +199,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 8,
+          "boutNo": 9,
           "eastName": "とびざる",
           "eastYomi": "",
           "eastEnglish": "",
@@ -199,7 +215,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 9,
+          "boutNo": 10,
           "eastName": "ことえいほう",
           "eastYomi": "",
           "eastEnglish": "",
@@ -215,7 +231,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 10,
+          "boutNo": 11,
           "eastName": "たかやす",
           "eastYomi": "",
           "eastEnglish": "",
@@ -231,7 +247,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 11,
+          "boutNo": 12,
           "eastName": "うら",
           "eastYomi": "",
           "eastEnglish": "",
@@ -247,7 +263,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 12,
+          "boutNo": 13,
           "eastName": "おうしょうま",
           "eastYomi": "",
           "eastEnglish": "",
@@ -263,7 +279,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 13,
+          "boutNo": 14,
           "eastName": "ひらどうみ",
           "eastYomi": "",
           "eastEnglish": "",
@@ -279,7 +295,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 14,
+          "boutNo": 15,
           "eastName": "よしのふじ",
           "eastYomi": "",
           "eastEnglish": "",
@@ -295,7 +311,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 15,
+          "boutNo": 16,
           "eastName": "あたみふじ",
           "eastYomi": "",
           "eastEnglish": "",
@@ -311,7 +327,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 16,
+          "boutNo": 17,
           "eastName": "はくのふじ",
           "eastYomi": "",
           "eastEnglish": "",
@@ -327,7 +343,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 17,
+          "boutNo": 18,
           "eastName": "ちゅらのうみ",
           "eastYomi": "",
           "eastEnglish": "",
@@ -343,7 +359,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 18,
+          "boutNo": 19,
           "eastName": "きりしま",
           "eastYomi": "",
           "eastEnglish": "",
@@ -359,7 +375,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 19,
+          "boutNo": 20,
           "eastName": "たかのしょう",
           "eastYomi": "",
           "eastEnglish": "",
@@ -375,7 +391,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 20,
+          "boutNo": 21,
           "eastName": "ほうしょうりゅう",
           "eastYomi": "",
           "eastEnglish": "",
@@ -395,11 +411,6 @@ export const torikumiData: TorikumiDataSet = {
           "id": 3761,
           "name": "若隆景",
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-        },
-        {
-          "id": 4287,
-          "name": "一意",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
         }
       ]
     },
@@ -623,11 +634,6 @@ export const torikumiData: TorikumiDataSet = {
           "id": 3334,
           "name": "白鷹山",
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-        },
-        {
-          "id": 3933,
-          "name": "時疾風",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
         }
       ]
     }
@@ -642,6 +648,22 @@ export const torikumiData: TorikumiDataSet = {
         {
           "division": "幕内",
           "boutNo": 1,
+          "eastName": "おうのかつ",
+          "eastYomi": "",
+          "eastEnglish": "",
+          "eastRank": "前頭十五枚目",
+          "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/",
+          "westName": "さだのうみ",
+          "westYomi": "",
+          "westEnglish": "",
+          "westRank": "十両二枚目",
+          "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/",
+          "kimarite": "未定",
+          "winner": null
+        },
+        {
+          "division": "幕内",
+          "boutNo": 2,
           "eastName": "かずま",
           "eastYomi": "",
           "eastEnglish": "",
@@ -657,7 +679,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 2,
+          "boutNo": 3,
           "eastName": "にしきふじ",
           "eastYomi": "",
           "eastEnglish": "",
@@ -673,7 +695,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 3,
+          "boutNo": 4,
           "eastName": "だいせいざん",
           "eastYomi": "",
           "eastEnglish": "",
@@ -689,7 +711,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 4,
+          "boutNo": 5,
           "eastName": "きんぼうざん",
           "eastYomi": "",
           "eastEnglish": "",
@@ -705,7 +727,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 5,
+          "boutNo": 6,
           "eastName": "わかのしょう",
           "eastYomi": "",
           "eastEnglish": "",
@@ -721,7 +743,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 6,
+          "boutNo": 7,
           "eastName": "あさはくりゅう",
           "eastYomi": "",
           "eastEnglish": "",
@@ -737,7 +759,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 7,
+          "boutNo": 8,
           "eastName": "ふじりょうが",
           "eastYomi": "",
           "eastEnglish": "",
@@ -753,7 +775,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 8,
+          "boutNo": 9,
           "eastName": "あさのやま",
           "eastYomi": "",
           "eastEnglish": "",
@@ -769,7 +791,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 9,
+          "boutNo": 10,
           "eastName": "ことえいほう",
           "eastYomi": "",
           "eastEnglish": "",
@@ -785,7 +807,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 10,
+          "boutNo": 11,
           "eastName": "わかもとはる",
           "eastYomi": "",
           "eastEnglish": "",
@@ -801,7 +823,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 11,
+          "boutNo": 12,
           "eastName": "うら",
           "eastYomi": "",
           "eastEnglish": "",
@@ -817,7 +839,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 12,
+          "boutNo": 13,
           "eastName": "しょうだい",
           "eastYomi": "",
           "eastEnglish": "",
@@ -833,7 +855,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 13,
+          "boutNo": 14,
           "eastName": "ひらどうみ",
           "eastYomi": "",
           "eastEnglish": "",
@@ -849,7 +871,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 14,
+          "boutNo": 15,
           "eastName": "よしのふじ",
           "eastYomi": "",
           "eastEnglish": "",
@@ -865,7 +887,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 15,
+          "boutNo": 16,
           "eastName": "おうほう",
           "eastYomi": "",
           "eastEnglish": "",
@@ -881,7 +903,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 16,
+          "boutNo": 17,
           "eastName": "あたみふじ",
           "eastYomi": "",
           "eastEnglish": "",
@@ -897,7 +919,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 17,
+          "boutNo": 18,
           "eastName": "きりしま",
           "eastYomi": "",
           "eastEnglish": "",
@@ -913,7 +935,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 18,
+          "boutNo": 19,
           "eastName": "ふじのかわ",
           "eastYomi": "",
           "eastEnglish": "",
@@ -929,7 +951,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 19,
+          "boutNo": 20,
           "eastName": "ほうしょうりゅう",
           "eastYomi": "",
           "eastEnglish": "",
@@ -945,7 +967,7 @@ export const torikumiData: TorikumiDataSet = {
         },
         {
           "division": "幕内",
-          "boutNo": 20,
+          "boutNo": 21,
           "eastName": "ごうのやま",
           "eastYomi": "",
           "eastEnglish": "",
@@ -965,11 +987,6 @@ export const torikumiData: TorikumiDataSet = {
           "id": 3761,
           "name": "若隆景",
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-        },
-        {
-          "id": 4231,
-          "name": "阿武剋",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
         }
       ]
     },
@@ -1190,11 +1207,6 @@ export const torikumiData: TorikumiDataSet = {
       ],
       "absentees": [
         {
-          "id": 2565,
-          "name": "佐田の海",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
-        },
-        {
           "id": 3334,
           "name": "白鷹山",
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
@@ -1221,6 +1233,22 @@ export const torikumiData: TorikumiDataSet = {
             {
               "division": "幕内",
               "boutNo": 1,
+              "eastName": "きょくかいゆう",
+              "eastYomi": "",
+              "eastEnglish": "",
+              "eastRank": "十両筆頭",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/",
+              "westName": "あさこうりゅう",
+              "westYomi": "",
+              "westEnglish": "",
+              "westRank": "前頭十六枚目",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/",
+              "kimarite": "小手投げ",
+              "winner": "west"
+            },
+            {
+              "division": "幕内",
+              "boutNo": 2,
               "eastName": "だいせいざん",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1236,7 +1264,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 2,
+              "boutNo": 3,
               "eastName": "おうのかつ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1252,7 +1280,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 3,
+              "boutNo": 4,
               "eastName": "きんぼうざん",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1268,7 +1296,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 4,
+              "boutNo": 5,
               "eastName": "にしきふじ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1284,7 +1312,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 5,
+              "boutNo": 6,
               "eastName": "あさはくりゅう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1300,7 +1328,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 6,
+              "boutNo": 7,
               "eastName": "わかのしょう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1316,7 +1344,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 7,
+              "boutNo": 8,
               "eastName": "あさのやま",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1332,7 +1360,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 8,
+              "boutNo": 9,
               "eastName": "ふじりょうが",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1348,7 +1376,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 9,
+              "boutNo": 10,
               "eastName": "わかもとはる",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1364,7 +1392,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 10,
+              "boutNo": 11,
               "eastName": "ことえいほう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1380,7 +1408,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 11,
+              "boutNo": 12,
               "eastName": "しょうだい",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1396,7 +1424,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 12,
+              "boutNo": 13,
               "eastName": "うら",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1412,7 +1440,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 13,
+              "boutNo": 14,
               "eastName": "だいえいしょう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1428,7 +1456,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 14,
+              "boutNo": 15,
               "eastName": "ひらどうみ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1444,7 +1472,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 15,
+              "boutNo": 16,
               "eastName": "ちゅらのうみ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1460,7 +1488,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 16,
+              "boutNo": 17,
               "eastName": "あたみふじ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1476,7 +1504,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 17,
+              "boutNo": 18,
               "eastName": "たかのしょう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1492,7 +1520,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 18,
+              "boutNo": 19,
               "eastName": "きりしま",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1508,7 +1536,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 19,
+              "boutNo": 20,
               "eastName": "よしのふじ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1524,7 +1552,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 20,
+              "boutNo": 21,
               "eastName": "ほうしょうりゅう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1544,11 +1572,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3761,
               "name": "若隆景",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            },
-            {
-              "id": 4101,
-              "name": "朝紅龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
             }
           ]
         },
@@ -1772,11 +1795,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3334,
               "name": "白鷹山",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            },
-            {
-              "id": 4232,
-              "name": "旭海雄",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
             }
           ]
         }
@@ -1800,6 +1818,22 @@ export const torikumiData: TorikumiDataSet = {
             {
               "division": "幕内",
               "boutNo": 1,
+              "eastName": "だいせいざん",
+              "eastYomi": "",
+              "eastEnglish": "",
+              "eastRank": "前頭十六枚目",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/",
+              "westName": "あさすいりゅう",
+              "westYomi": "",
+              "westEnglish": "",
+              "westRank": "十両筆頭",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/",
+              "kimarite": "叩き込み",
+              "winner": "west"
+            },
+            {
+              "division": "幕内",
+              "boutNo": 2,
               "eastName": "あさこうりゅう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1815,7 +1849,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 2,
+              "boutNo": 3,
               "eastName": "きんぼうざん",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1831,7 +1865,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 3,
+              "boutNo": 4,
               "eastName": "しし",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1847,7 +1881,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 4,
+              "boutNo": 5,
               "eastName": "あさはくりゅう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1863,7 +1897,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 5,
+              "boutNo": 6,
               "eastName": "あび",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1879,7 +1913,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 6,
+              "boutNo": 7,
               "eastName": "あさのやま",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1895,7 +1929,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 7,
+              "boutNo": 8,
               "eastName": "ちよしょうま",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1911,7 +1945,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 8,
+              "boutNo": 9,
               "eastName": "わかもとはる",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1927,7 +1961,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 9,
+              "boutNo": 10,
               "eastName": "ろうが",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1943,7 +1977,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 10,
+              "boutNo": 11,
               "eastName": "しょうだい",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1959,7 +1993,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 11,
+              "boutNo": 12,
               "eastName": "ふじせいうん",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1975,7 +2009,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 12,
+              "boutNo": 13,
               "eastName": "だいえいしょう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -1991,7 +2025,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 13,
+              "boutNo": 14,
               "eastName": "いちやまもと",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2007,7 +2041,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 14,
+              "boutNo": 15,
               "eastName": "あたみふじ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2023,7 +2057,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 15,
+              "boutNo": 16,
               "eastName": "ちゅらのうみ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2039,7 +2073,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 16,
+              "boutNo": 17,
               "eastName": "ごうのやま",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2055,7 +2089,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 17,
+              "boutNo": 18,
               "eastName": "きりしま",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2071,7 +2105,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 18,
+              "boutNo": 19,
               "eastName": "よしのふじ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2087,7 +2121,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 19,
+              "boutNo": 20,
               "eastName": "ほうしょうりゅう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2103,7 +2137,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 20,
+              "boutNo": 21,
               "eastName": "ふじのかわ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2123,11 +2157,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3761,
               "name": "若隆景",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            },
-            {
-              "id": 4116,
-              "name": "大青山",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
             }
           ]
         },
@@ -2351,11 +2380,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3334,
               "name": "白鷹山",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            },
-            {
-              "id": 4285,
-              "name": "朝翠龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
             }
           ]
         }
@@ -2379,6 +2403,22 @@ export const torikumiData: TorikumiDataSet = {
             {
               "division": "幕内",
               "boutNo": 1,
+              "eastName": "ときはやて",
+              "eastYomi": "",
+              "eastEnglish": "",
+              "eastRank": "十両二枚目",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/",
+              "westName": "かずま",
+              "westYomi": "",
+              "westEnglish": "",
+              "westRank": "前頭十五枚目",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/",
+              "kimarite": "寄り切り",
+              "winner": "west"
+            },
+            {
+              "division": "幕内",
+              "boutNo": 2,
               "eastName": "おうのかつ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2394,7 +2434,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 2,
+              "boutNo": 3,
               "eastName": "だいせいざん",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2410,7 +2450,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 3,
+              "boutNo": 4,
               "eastName": "にしきふじ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2426,7 +2466,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 4,
+              "boutNo": 5,
               "eastName": "たけるふじ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2442,7 +2482,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 5,
+              "boutNo": 6,
               "eastName": "わかのしょう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2458,7 +2498,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 6,
+              "boutNo": 7,
               "eastName": "みたけうみ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2474,7 +2514,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 7,
+              "boutNo": 8,
               "eastName": "ふじりょうが",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2490,7 +2530,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 8,
+              "boutNo": 9,
               "eastName": "とびざる",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2506,7 +2546,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 9,
+              "boutNo": 10,
               "eastName": "ことえいほう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2522,7 +2562,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 10,
+              "boutNo": 11,
               "eastName": "たかやす",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2538,7 +2578,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 11,
+              "boutNo": 12,
               "eastName": "うら",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2554,7 +2594,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 12,
+              "boutNo": 13,
               "eastName": "おうしょうま",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2570,7 +2610,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 13,
+              "boutNo": 14,
               "eastName": "ひらどうみ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2586,7 +2626,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 14,
+              "boutNo": 15,
               "eastName": "よしのふじ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2602,7 +2642,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 15,
+              "boutNo": 16,
               "eastName": "あたみふじ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2618,7 +2658,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 16,
+              "boutNo": 17,
               "eastName": "はくのふじ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2634,7 +2674,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 17,
+              "boutNo": 18,
               "eastName": "ちゅらのうみ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2650,7 +2690,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 18,
+              "boutNo": 19,
               "eastName": "きりしま",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2666,7 +2706,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 19,
+              "boutNo": 20,
               "eastName": "たかのしょう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2682,7 +2722,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 20,
+              "boutNo": 21,
               "eastName": "ほうしょうりゅう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -2702,11 +2742,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3761,
               "name": "若隆景",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            },
-            {
-              "id": 4287,
-              "name": "一意",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
             }
           ]
         },
@@ -2930,11 +2965,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3334,
               "name": "白鷹山",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            },
-            {
-              "id": 3933,
-              "name": "時疾風",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
             }
           ]
         }
@@ -2955,7 +2985,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "四日目： 令和8年7月15日(水)",
           "division": "幕内",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            }
+          ]
         },
         "juryo": {
           "day": 4,
@@ -2963,7 +2999,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "四日目： 令和8年7月15日(水)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            }
+          ]
         }
       }
     },
@@ -3284,6 +3326,22 @@ export const torikumiData: TorikumiDataSet = {
             {
               "division": "幕内",
               "boutNo": 1,
+              "eastName": "きょくかいゆう",
+              "eastYomi": "",
+              "eastEnglish": "",
+              "eastRank": "十両筆頭",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/",
+              "westName": "あさこうりゅう",
+              "westYomi": "",
+              "westEnglish": "",
+              "westRank": "前頭十六枚目",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/",
+              "kimarite": "未定",
+              "winner": null
+            },
+            {
+              "division": "幕内",
+              "boutNo": 2,
               "eastName": "だいせいざん",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3299,7 +3357,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 2,
+              "boutNo": 3,
               "eastName": "おうのかつ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3315,7 +3373,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 3,
+              "boutNo": 4,
               "eastName": "きんぼうざん",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3331,7 +3389,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 4,
+              "boutNo": 5,
               "eastName": "にしきふじ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3347,7 +3405,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 5,
+              "boutNo": 6,
               "eastName": "あさはくりゅう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3363,7 +3421,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 6,
+              "boutNo": 7,
               "eastName": "わかのしょう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3379,7 +3437,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 7,
+              "boutNo": 8,
               "eastName": "あさのやま",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3395,7 +3453,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 8,
+              "boutNo": 9,
               "eastName": "ふじりょうが",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3411,7 +3469,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 9,
+              "boutNo": 10,
               "eastName": "わかもとはる",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3427,7 +3485,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 10,
+              "boutNo": 11,
               "eastName": "ことえいほう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3443,7 +3501,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 11,
+              "boutNo": 12,
               "eastName": "しょうだい",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3459,7 +3517,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 12,
+              "boutNo": 13,
               "eastName": "うら",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3475,7 +3533,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 13,
+              "boutNo": 14,
               "eastName": "だいえいしょう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3491,7 +3549,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 14,
+              "boutNo": 15,
               "eastName": "ひらどうみ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3507,7 +3565,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 15,
+              "boutNo": 16,
               "eastName": "ちゅらのうみ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3523,7 +3581,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 16,
+              "boutNo": 17,
               "eastName": "あたみふじ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3539,7 +3597,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 17,
+              "boutNo": 18,
               "eastName": "たかのしょう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3555,7 +3613,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 18,
+              "boutNo": 19,
               "eastName": "きりしま",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3571,7 +3629,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 19,
+              "boutNo": 20,
               "eastName": "よしのふじ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3587,7 +3645,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 20,
+              "boutNo": 21,
               "eastName": "ほうしょうりゅう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3607,11 +3665,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3761,
               "name": "若隆景",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            },
-            {
-              "id": 4101,
-              "name": "朝紅龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
             }
           ]
         },
@@ -3835,11 +3888,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3334,
               "name": "白鷹山",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            },
-            {
-              "id": 4232,
-              "name": "旭海雄",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
             }
           ]
         }
@@ -3863,6 +3911,22 @@ export const torikumiData: TorikumiDataSet = {
             {
               "division": "幕内",
               "boutNo": 1,
+              "eastName": "だいせいざん",
+              "eastYomi": "",
+              "eastEnglish": "",
+              "eastRank": "前頭十六枚目",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/",
+              "westName": "あさすいりゅう",
+              "westYomi": "",
+              "westEnglish": "",
+              "westRank": "十両筆頭",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/",
+              "kimarite": "未定",
+              "winner": null
+            },
+            {
+              "division": "幕内",
+              "boutNo": 2,
               "eastName": "あさこうりゅう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3878,7 +3942,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 2,
+              "boutNo": 3,
               "eastName": "きんぼうざん",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3894,7 +3958,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 3,
+              "boutNo": 4,
               "eastName": "しし",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3910,7 +3974,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 4,
+              "boutNo": 5,
               "eastName": "あさはくりゅう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3926,7 +3990,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 5,
+              "boutNo": 6,
               "eastName": "あび",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3942,7 +4006,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 6,
+              "boutNo": 7,
               "eastName": "あさのやま",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3958,7 +4022,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 7,
+              "boutNo": 8,
               "eastName": "ちよしょうま",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3974,7 +4038,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 8,
+              "boutNo": 9,
               "eastName": "わかもとはる",
               "eastYomi": "",
               "eastEnglish": "",
@@ -3990,7 +4054,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 9,
+              "boutNo": 10,
               "eastName": "ろうが",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4006,7 +4070,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 10,
+              "boutNo": 11,
               "eastName": "しょうだい",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4022,7 +4086,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 11,
+              "boutNo": 12,
               "eastName": "ふじせいうん",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4038,7 +4102,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 12,
+              "boutNo": 13,
               "eastName": "だいえいしょう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4054,7 +4118,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 13,
+              "boutNo": 14,
               "eastName": "いちやまもと",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4070,7 +4134,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 14,
+              "boutNo": 15,
               "eastName": "あたみふじ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4086,7 +4150,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 15,
+              "boutNo": 16,
               "eastName": "ちゅらのうみ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4102,7 +4166,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 16,
+              "boutNo": 17,
               "eastName": "ごうのやま",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4118,7 +4182,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 17,
+              "boutNo": 18,
               "eastName": "きりしま",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4134,7 +4198,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 18,
+              "boutNo": 19,
               "eastName": "よしのふじ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4150,7 +4214,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 19,
+              "boutNo": 20,
               "eastName": "ほうしょうりゅう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4166,7 +4230,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 20,
+              "boutNo": 21,
               "eastName": "ふじのかわ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4186,11 +4250,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3761,
               "name": "若隆景",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            },
-            {
-              "id": 4116,
-              "name": "大青山",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
             }
           ]
         },
@@ -4414,11 +4473,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3334,
               "name": "白鷹山",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            },
-            {
-              "id": 4285,
-              "name": "朝翠龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
             }
           ]
         }
@@ -4442,6 +4496,22 @@ export const torikumiData: TorikumiDataSet = {
             {
               "division": "幕内",
               "boutNo": 1,
+              "eastName": "ときはやて",
+              "eastYomi": "",
+              "eastEnglish": "",
+              "eastRank": "十両二枚目",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/",
+              "westName": "かずま",
+              "westYomi": "",
+              "westEnglish": "",
+              "westRank": "前頭十五枚目",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/",
+              "kimarite": "未定",
+              "winner": null
+            },
+            {
+              "division": "幕内",
+              "boutNo": 2,
               "eastName": "おうのかつ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4457,7 +4527,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 2,
+              "boutNo": 3,
               "eastName": "だいせいざん",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4473,7 +4543,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 3,
+              "boutNo": 4,
               "eastName": "にしきふじ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4489,7 +4559,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 4,
+              "boutNo": 5,
               "eastName": "たけるふじ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4505,7 +4575,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 5,
+              "boutNo": 6,
               "eastName": "わかのしょう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4521,7 +4591,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 6,
+              "boutNo": 7,
               "eastName": "みたけうみ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4537,7 +4607,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 7,
+              "boutNo": 8,
               "eastName": "ふじりょうが",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4553,7 +4623,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 8,
+              "boutNo": 9,
               "eastName": "とびざる",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4569,7 +4639,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 9,
+              "boutNo": 10,
               "eastName": "ことえいほう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4585,7 +4655,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 10,
+              "boutNo": 11,
               "eastName": "たかやす",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4601,7 +4671,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 11,
+              "boutNo": 12,
               "eastName": "うら",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4617,7 +4687,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 12,
+              "boutNo": 13,
               "eastName": "おうしょうま",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4633,7 +4703,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 13,
+              "boutNo": 14,
               "eastName": "ひらどうみ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4649,7 +4719,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 14,
+              "boutNo": 15,
               "eastName": "よしのふじ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4665,7 +4735,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 15,
+              "boutNo": 16,
               "eastName": "あたみふじ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4681,7 +4751,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 16,
+              "boutNo": 17,
               "eastName": "はくのふじ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4697,7 +4767,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 17,
+              "boutNo": 18,
               "eastName": "ちゅらのうみ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4713,7 +4783,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 18,
+              "boutNo": 19,
               "eastName": "きりしま",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4729,7 +4799,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 19,
+              "boutNo": 20,
               "eastName": "たかのしょう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4745,7 +4815,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 20,
+              "boutNo": 21,
               "eastName": "ほうしょうりゅう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -4765,11 +4835,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3761,
               "name": "若隆景",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            },
-            {
-              "id": 4287,
-              "name": "一意",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
             }
           ]
         },
@@ -4993,11 +5058,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3334,
               "name": "白鷹山",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            },
-            {
-              "id": 3933,
-              "name": "時疾風",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
             }
           ]
         }
@@ -5021,6 +5081,22 @@ export const torikumiData: TorikumiDataSet = {
             {
               "division": "幕内",
               "boutNo": 1,
+              "eastName": "おうのかつ",
+              "eastYomi": "",
+              "eastEnglish": "",
+              "eastRank": "前頭十五枚目",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/",
+              "westName": "さだのうみ",
+              "westYomi": "",
+              "westEnglish": "",
+              "westRank": "十両二枚目",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/",
+              "kimarite": "未定",
+              "winner": null
+            },
+            {
+              "division": "幕内",
+              "boutNo": 2,
               "eastName": "かずま",
               "eastYomi": "",
               "eastEnglish": "",
@@ -5036,7 +5112,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 2,
+              "boutNo": 3,
               "eastName": "にしきふじ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -5052,7 +5128,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 3,
+              "boutNo": 4,
               "eastName": "だいせいざん",
               "eastYomi": "",
               "eastEnglish": "",
@@ -5068,7 +5144,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 4,
+              "boutNo": 5,
               "eastName": "きんぼうざん",
               "eastYomi": "",
               "eastEnglish": "",
@@ -5084,7 +5160,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 5,
+              "boutNo": 6,
               "eastName": "わかのしょう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -5100,7 +5176,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 6,
+              "boutNo": 7,
               "eastName": "あさはくりゅう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -5116,7 +5192,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 7,
+              "boutNo": 8,
               "eastName": "ふじりょうが",
               "eastYomi": "",
               "eastEnglish": "",
@@ -5132,7 +5208,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 8,
+              "boutNo": 9,
               "eastName": "あさのやま",
               "eastYomi": "",
               "eastEnglish": "",
@@ -5148,7 +5224,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 9,
+              "boutNo": 10,
               "eastName": "ことえいほう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -5164,7 +5240,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 10,
+              "boutNo": 11,
               "eastName": "わかもとはる",
               "eastYomi": "",
               "eastEnglish": "",
@@ -5180,7 +5256,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 11,
+              "boutNo": 12,
               "eastName": "うら",
               "eastYomi": "",
               "eastEnglish": "",
@@ -5196,7 +5272,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 12,
+              "boutNo": 13,
               "eastName": "しょうだい",
               "eastYomi": "",
               "eastEnglish": "",
@@ -5212,7 +5288,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 13,
+              "boutNo": 14,
               "eastName": "ひらどうみ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -5228,7 +5304,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 14,
+              "boutNo": 15,
               "eastName": "よしのふじ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -5244,7 +5320,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 15,
+              "boutNo": 16,
               "eastName": "おうほう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -5260,7 +5336,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 16,
+              "boutNo": 17,
               "eastName": "あたみふじ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -5276,7 +5352,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 17,
+              "boutNo": 18,
               "eastName": "きりしま",
               "eastYomi": "",
               "eastEnglish": "",
@@ -5292,7 +5368,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 18,
+              "boutNo": 19,
               "eastName": "ふじのかわ",
               "eastYomi": "",
               "eastEnglish": "",
@@ -5308,7 +5384,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 19,
+              "boutNo": 20,
               "eastName": "ほうしょうりゅう",
               "eastYomi": "",
               "eastEnglish": "",
@@ -5324,7 +5400,7 @@ export const torikumiData: TorikumiDataSet = {
             },
             {
               "division": "幕内",
-              "boutNo": 20,
+              "boutNo": 21,
               "eastName": "ごうのやま",
               "eastYomi": "",
               "eastEnglish": "",
@@ -5344,11 +5420,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3761,
               "name": "若隆景",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            },
-            {
-              "id": 4231,
-              "name": "阿武剋",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
             }
           ]
         },
@@ -5568,11 +5639,6 @@ export const torikumiData: TorikumiDataSet = {
             }
           ],
           "absentees": [
-            {
-              "id": 2565,
-              "name": "佐田の海",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/"
-            },
             {
               "id": 3334,
               "name": "白鷹山",

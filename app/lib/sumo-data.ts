@@ -819,13 +819,13 @@ export const makuuchiData: RankGroup[] = [
         "yomi": "かずま",
         "rank": "前頭15",
         "side": "west",
-        "wins": 1,
+        "wins": 2,
         "losses": 1,
-        "draws": 1,
+        "draws": 0,
         "results": [
           "loss",
           "win",
-          "draw"
+          "win"
         ],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/",
         "memo": ""
@@ -842,11 +842,11 @@ export const makuuchiData: RankGroup[] = [
         "rank": "前頭16",
         "side": "east",
         "wins": 1,
-        "losses": 1,
-        "draws": 1,
+        "losses": 2,
+        "draws": 0,
         "results": [
           "win",
-          "draw",
+          "loss",
           "loss"
         ],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/",
@@ -860,11 +860,11 @@ export const makuuchiData: RankGroup[] = [
         "yomi": "あさこうりゅう",
         "rank": "前頭16",
         "side": "west",
-        "wins": 1,
+        "wins": 2,
         "losses": 1,
-        "draws": 1,
+        "draws": 0,
         "results": [
-          "draw",
+          "win",
           "loss",
           "win"
         ],
@@ -885,12 +885,12 @@ export const juryo: RankGroup[] = [
         "yomi": "あさすいりゅう",
         "rank": "十両1",
         "side": "east",
-        "wins": 2,
+        "wins": 3,
         "losses": 0,
-        "draws": 1,
+        "draws": 0,
         "results": [
           "win",
-          "draw",
+          "win",
           "win"
         ],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/",
@@ -905,10 +905,10 @@ export const juryo: RankGroup[] = [
         "rank": "十両1",
         "side": "west",
         "wins": 1,
-        "losses": 1,
-        "draws": 1,
+        "losses": 2,
+        "draws": 0,
         "results": [
-          "draw",
+          "loss",
           "win",
           "loss"
         ],
@@ -927,12 +927,12 @@ export const juryo: RankGroup[] = [
         "rank": "十両2",
         "side": "east",
         "wins": 1,
-        "losses": 1,
-        "draws": 1,
+        "losses": 2,
+        "draws": 0,
         "results": [
           "win",
           "loss",
-          "draw"
+          "loss"
         ],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/",
         "memo": ""
