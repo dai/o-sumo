@@ -395,11 +395,6 @@ export const torikumiData: TorikumiDataSet = {
           "id": 3761,
           "name": "若隆景",
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-        },
-        {
-          "id": 4287,
-          "name": "一意",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
         }
       ]
     },
@@ -623,11 +618,6 @@ export const torikumiData: TorikumiDataSet = {
           "id": 3334,
           "name": "白鷹山",
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-        },
-        {
-          "id": 3933,
-          "name": "時疾風",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
         }
       ]
     }
@@ -965,11 +955,6 @@ export const torikumiData: TorikumiDataSet = {
           "id": 3761,
           "name": "若隆景",
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-        },
-        {
-          "id": 4287,
-          "name": "一意",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
         }
       ]
     },
@@ -1193,11 +1178,6 @@ export const torikumiData: TorikumiDataSet = {
           "id": 3334,
           "name": "白鷹山",
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-        },
-        {
-          "id": 3933,
-          "name": "時疾風",
-          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
         }
       ]
     }
@@ -1544,11 +1524,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3761,
               "name": "若隆景",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            },
-            {
-              "id": 4101,
-              "name": "朝紅龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
             }
           ]
         },
@@ -1772,11 +1747,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3334,
               "name": "白鷹山",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            },
-            {
-              "id": 4232,
-              "name": "旭海雄",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
             }
           ]
         }
@@ -2123,11 +2093,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3761,
               "name": "若隆景",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            },
-            {
-              "id": 4116,
-              "name": "大青山",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
             }
           ]
         },
@@ -2351,11 +2316,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3334,
               "name": "白鷹山",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            },
-            {
-              "id": 4285,
-              "name": "朝翠龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
             }
           ]
         }
@@ -2702,11 +2662,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3761,
               "name": "若隆景",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            },
-            {
-              "id": 4287,
-              "name": "一意",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
             }
           ]
         },
@@ -2930,11 +2885,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3334,
               "name": "白鷹山",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            },
-            {
-              "id": 3933,
-              "name": "時疾風",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
             }
           ]
         }
@@ -3607,11 +3557,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3761,
               "name": "若隆景",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            },
-            {
-              "id": 4101,
-              "name": "朝紅龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/"
             }
           ]
         },
@@ -3835,11 +3780,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3334,
               "name": "白鷹山",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            },
-            {
-              "id": 4232,
-              "name": "旭海雄",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/"
             }
           ]
         }
@@ -4186,11 +4126,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3761,
               "name": "若隆景",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            },
-            {
-              "id": 4116,
-              "name": "大青山",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/"
             }
           ]
         },
@@ -4414,11 +4349,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3334,
               "name": "白鷹山",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            },
-            {
-              "id": 4285,
-              "name": "朝翠龍",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/"
             }
           ]
         }
@@ -4765,11 +4695,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3761,
               "name": "若隆景",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            },
-            {
-              "id": 4287,
-              "name": "一意",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/"
             }
           ]
         },
@@ -4993,11 +4918,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3334,
               "name": "白鷹山",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
-            },
-            {
-              "id": 3933,
-              "name": "時疾風",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/"
             }
           ]
         }
@@ -5344,11 +5264,6 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3761,
               "name": "若隆景",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
-            },
-            {
-              "id": 4231,
-              "name": "阿武剋",
-              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/"
             }
           ]
         },
