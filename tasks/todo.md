@@ -855,12 +855,12 @@
 ## 勝敗・休場ステータス修正（2026-07-14）
 
 ### Plan
-- [ ] 最新 `origin/main` の独立 worktree で基準テストを確認する
+- [x] 最新 `origin/main` の独立 worktree で基準テストを確認する
 - [x] 混合取組の保持・重複防止・幕内21番保持を failing test で固定する
 - [x] 未確定を `null`、明示休場だけを `draw` とする failing test を固定する
 - [x] 生成処理・型・UIテスト・API仕様を最小差分で修正する
-- [ ] current データを再生成し、混合取組と休場者の整合性を確認する
-- [ ] Python tests、payload validation、typecheck、Vitest、build、diff check を完走する
+- [x] current データを再生成し、混合取組と休場者の整合性を確認する
+- [x] Python tests、payload validation、typecheck、Vitest、build、diff check を完走する
 
 ### Progress
 - Task 1: 公式payload形式の混合取組1番と幕内同士20番を使う回帰テストを追加し、幕内で全21番を連番保持、十両では混合取組を選択しないことを固定した。
@@ -871,10 +871,13 @@
 - Task 2: generator と current `sumo-data.ts` の型、番付 UI の空ドット回帰、日英 API 仕様を `null` 対応へ同期した。live data と March/May archive は変更していない。
 
 ### Review
-- Task 2 RED: `python scripts/update_sumo_data_torikumi_logic_test.py` は未確定取組の力士が `[None]` ではなく `draw` になり `AssertionError` で失敗した。
-- Task 2 GREEN: `python scripts/update_sumo_data_torikumi_logic_test.py` は pass。
-- Task 2 UI: `npm test -- --run app/banzuke/page.test.tsx` は 1 file / 8 tests pass。`null` は既存の空ドットを表示し、成績の休場数を増やさない。
-- Task 2 typecheck: `npm run typecheck` は pass。
-- current データ再生成と full verification は未実施で、対応チェックボックスを未完了のまま維持する。
+- Baseline: `origin/main` の `d3a8ebf` を基点に独立 worktree `C:\Users\dai\.codex\worktrees\partial-result-status\o-sumo`、branch `codex/fix-partial-result-status` で作業し、着手時の Python / Vitest baseline は pass。Task 4 開始 HEAD は `9c4e8e0`。
+- TDD RED/GREEN: Task 1 は混合取組を含む幕内21番の期待に対し既存処理が20番を返して RED、修正後の focused 2 tests と parser 32 tests が GREEN。Task 2 は未確定力士が `null` ではなく `draw` になって RED、修正後の torikumi logic test が GREEN。
+- Generation: `python scripts/update_sumo_data.py --torikumi-scope all --skip-rikishi-fetch --strict-torikumi-fetch` で current データを再生成した。
+- Fresh data sanity: 公開済み1〜3日目は各34番、各日68出場者と休場者 `3334,3761` が非重複で current roster 70名を網羅。混合取組 `4101/4232`、`4116/4285`、`3933/4287` は各日幕内に1件だけ存在し、十両には重複なし。
+- Fresh verification: `python -m unittest scripts.update_sumo_data_parser_test` は 32 tests pass、`python scripts/update_sumo_data_torikumi_logic_test.py` は pass、`python scripts/ci/validate_torikumi.py` は pass、`npm run typecheck` は pass。
+- Fresh verification: `npm test -- --run` は 19 files / 99 tests pass / 1 skipped、`npm run build` は pass、`git diff --check origin/main...HEAD` は pass。
+- Diff review: `origin/main...HEAD` は current 実装・テスト・生成データ・API文書・本タスク記録の11ファイルで、March/May archive 変更なし。Task 4 編集前の作業ツリーは `.superpowers/` だけが untracked。
+- Non-failing warnings: parser の既存 warning fixture 2件、Vitest の Node `localStorage` ExperimentalWarning、Vite の 500 kB 超 chunk warning は継続しているが、失敗はない。
 
 
