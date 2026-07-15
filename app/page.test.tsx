@@ -10,7 +10,13 @@ import {
 } from './lib/torikumi-routes';
 import { MARCH2026_TORIKUMI_DATA } from './lib/march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from './lib/may2026-data';
-import { torikumiArchive, torikumiData } from './lib/torikumi-data';
+import {
+  torikumiArchive,
+  torikumiData,
+  type TorikumiArchiveDay,
+  type TorikumiDailyData,
+  type TorikumiDataSet,
+} from './lib/torikumi-data';
 import Home, { buildLiveTorikumiTarget, nearestTorikumiAnchor } from './page';
 
 // The home page reads the news feed from the committed `public/api/v1/news.json`,
@@ -23,6 +29,62 @@ vi.mock('./lib/news-data', () => ({
     items: [],
   },
 }));
+
+function withDayNumber(data: TorikumiDailyData, day: number): TorikumiDailyData {
+  return {
+    ...data,
+    makuuchi: { ...data.makuuchi, day },
+    juryo: { ...data.juryo, day },
+  };
+}
+
+function withoutMatches(data: TorikumiDailyData): TorikumiDailyData {
+  return {
+    ...data,
+    makuuchi: { ...data.makuuchi, matches: [] },
+    juryo: { ...data.juryo, matches: [] },
+  };
+}
+
+function createLiveTargetFixture(): { archive: TorikumiDataSet; data: TorikumiDataSet } {
+  const sourceDay = MARCH2026_TORIKUMI_DATA.scheduleDays![0];
+  const thirdDaySchedule: TorikumiArchiveDay = {
+    ...sourceDay,
+    day: 3,
+    isoDate: '2026-07-14',
+    pathDate: '20260714',
+    label: '三日目',
+    data: withDayNumber(sourceDay.data, 3),
+  };
+  const fourthDaySchedule: TorikumiArchiveDay = {
+    ...sourceDay,
+    day: 4,
+    isoDate: '2026-07-15',
+    pathDate: '20260715',
+    label: '四日目',
+    data: withDayNumber(sourceDay.data, 4),
+  };
+  const resultDays = [thirdDaySchedule, fourthDaySchedule].map((day) => ({
+    ...day,
+    status: 'pending' as const,
+    statusMessage: '結果未更新',
+    data: withoutMatches(day.data),
+  }));
+  const staleToday = withDayNumber(sourceDay.data, 3);
+
+  return {
+    archive: {
+      ...torikumiArchive,
+      resultDays,
+      scheduleDays: [thirdDaySchedule, fourthDaySchedule],
+    },
+    data: {
+      ...torikumiData,
+      today: staleToday,
+      tomorrow: staleToday,
+    },
+  };
+}
 
 afterEach(() => {
   vi.useRealTimers();
@@ -141,8 +203,34 @@ describe('Home page', () => {
     expect(nearestTorikumiAnchor(firstSchedule, 16 * 60)).toMatch(/^bout-makuuchi-/);
     expect(nearestTorikumiAnchor(currentScheduleDay!.data, 16 * 60)).toBe('bout-makuuchi-5');
     expect(nearestTorikumiAnchor(currentScheduleDay!.data, 12 * 60)).toBe('bout-juryo-1');
+
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(`${currentScheduleDay!.isoDate}T07:00:00.000Z`));
+
     expect(buildLiveTorikumiTarget(torikumiArchive, torikumiData, 16 * 60).href).toBe(
       `${getDayPath(currentResultDay!, 'result')}#bout-makuuchi-5`,
+    );
+  });
+
+  it('uses the JST current schedule day when today data is stale', () => {
+    const { archive, data } = createLiveTargetFixture();
+
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2026-07-15T01:00:00.000Z'));
+
+    expect(buildLiveTorikumiTarget(archive, data, 10 * 60).href).toBe(
+      '/20260715-torikumi/#bout-juryo-1',
+    );
+  });
+
+  it('uses the first schedule day and its first juryo bout before the basho starts', () => {
+    const { archive, data } = createLiveTargetFixture();
+
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2026-07-10T01:00:00.000Z'));
+
+    expect(buildLiveTorikumiTarget(archive, data, 10 * 60).href).toBe(
+      '/20260714-torikumi/#bout-juryo-1',
     );
   });
 
