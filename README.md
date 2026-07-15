@@ -336,5 +336,5 @@ MIT
 
 ## ダウンロード
 
-- [令和八年七月場所所属力士辞書 `rikishi-202607.txt`](./rikishi-202607.txt)
+- [令和八年七月場所所属力士辞書](https://github.com/dai/shikona)
 - [辞書の登録方法はこちら](https://x.com/daisuke/status/2027263585244889097)
