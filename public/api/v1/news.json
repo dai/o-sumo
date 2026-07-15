@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-15T08:54:48.914401+00:00",
+  "updatedAt": "2026-07-15T10:39:42.830336+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260715-OHT1T51174",
-      "title": "綱取りの霧島、初日から４連勝　過去７勝１４敗の隆の勝を退ける",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260715-OHT1T51174",
+      "id": "dmenu-docomo-f-bt-tp1-260715-202607150001254",
+      "title": "審判団はどのような協議で判定を覆したのか？行司軍配差し違えで大の里が負けた",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260715-202607150001254",
       "publishedAt": "2026-07-15",
-      "publishedAtRaw": "スポーツ報知　7月15日 17時33分",
+      "publishedAtRaw": "日刊スポーツ　7月15日 19時29分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260715-202607150000912",
-      "title": "炎鵬が左腕抱え込まれながら耐え２勝目「怖かったですね」勝利後に顔ゆがめ腕気にするそぶり",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260715-202607150000912",
+      "id": "dmenu-docomo-abematimes-10260108",
+      "title": "鉄人・玉鷲、まさかの出血アクシデントも土俵際で驚異の逆転劇「なんだあの41歳！？」館内やんやの喝采",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260108",
       "publishedAt": "2026-07-15",
-      "publishedAtRaw": "日刊スポーツ　7月15日 16時48分",
+      "publishedAtRaw": "ABEMA TIMES　7月15日 19時20分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-kyodo_nor-2026071501001254",
-      "title": "英国出身力士が一番出世へ　17歳栄誠、前相撲で2連勝",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026071501001254",
+      "id": "dmenu-docomo-tokyosports-395927",
+      "title": "【大相撲】横綱大の里　痛恨の３敗目に意気消沈「いや…もうダメですね」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-395927",
       "publishedAt": "2026-07-15",
-      "publishedAtRaw": "共同通信　7月15日 16時37分",
+      "publishedAtRaw": "東スポWEB　7月15日 19時14分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-395905",
-      "title": "【大相撲】土俵入りで前代未聞の〝火災トラブル〟も…まさかの続行「めっちゃシュールな空気やったわ」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-395905",
+      "id": "dmenu-docomo-f-bt-tp1-260715-202607150000614",
+      "title": "大の里が豪ノ山に敗れて３敗目、今場所２個目の金星配給　３日目に171日ぶり白星も復調せず",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260715-202607150000614",
       "publishedAt": "2026-07-15",
-      "publishedAtRaw": "東スポWEB　7月15日 16時29分",
+      "publishedAtRaw": "日刊スポーツ　7月15日 17時56分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-chuspo-1281654",
-      "title": "【大相撲】IGアリーナで火災報知機作動…アナウンスなし“サイレント”土俵上がり、正代は戸惑い、宇良しばらく待機　「火災発生なし」館内放送も",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1281654",
+      "id": "dmenu-docomo-hochi-20260715-OHT1T51166",
+      "title": "大の里、痛恨３敗目　物言いの末、行司軍配差し違えで豪ノ山に金星配給…館内騒然、大ジャンプではたき込み→体が飛んだと審判部が判断",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260715-OHT1T51166",
       "publishedAt": "2026-07-15",
-      "publishedAtRaw": "中日スポーツ　7月15日 16時27分",
+      "publishedAtRaw": "スポーツ報知　7月15日 17時55分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
