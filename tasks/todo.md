@@ -927,6 +927,7 @@
 - Topページに `home-editorial` スコープを設け、Heroを場所情報と装飾ビジュアルの2カラムへ変更した。取組速報の算出、リンク先、News、決まり手、過去場所データは変更していない。
 - `app/index.css` 内のTopページ限定スタイルとして、紙色背景、墨色文字、朱色CTA、明朝見出し、水平罫線、CSS製の太陽と土俵モチーフを追加した。共通テーマ変数と他ページは変更していない。
 - 860px以下ではHeroを1カラム化し、560px以下ではヘッダーとCTAをスマートフォン向けに再配置した。ダークテーマには既存Ronin配色を使う互換スタイルを追加した。
+- `EDITORIAL_HOME_ENABLED` を追加し、`false` へ変更するだけで `home-editorial` スコープを外して旧Topデザインへ戻せる構成にした。装飾ビジュアルはスコープ外で非表示になるため、旧デザインへ漏れない。
 
 ## Review
 - TDD RED: `npm test -- --run app/page.test.tsx` は `home-editorial` が存在しない期待どおりの理由で1件失敗。
@@ -937,5 +938,6 @@
 - `git diff --check`: pass
 - `impeccable detect`: 指摘0件
 - Playwright: 1440pxライト、390pxライト、1440pxダークを確認。横方向overflowは0、Hero・速報・News・決まり手・過去場所の表示崩れなし。
+- Rollback確認: `home-editorial` を外した実画面で装飾ビジュアルが `display: none` になり、変更前のTopデザインへ復帰することをPlaywrightで確認。横方向overflowは0。
 
 

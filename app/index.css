@@ -1053,6 +1053,10 @@
 }
 
 /* Sites-inspired editorial treatment, scoped to the Top page trial. */
+.hero-visual {
+  display: none;
+}
+
 .home-editorial {
   --home-paper: #f4eedf;
   --home-paper-deep: #e8decb;
@@ -1218,14 +1222,15 @@
   box-shadow: none;
 }
 
-.hero-visual {
+.home-editorial .hero-visual {
+  display: block;
   position: relative;
   min-height: clamp(18rem, 34vw, 28rem);
   overflow: hidden;
   background: var(--home-paper-deep);
 }
 
-.hero-sun {
+.home-editorial .hero-sun {
   position: absolute;
   top: 11%;
   right: 13%;
@@ -1235,7 +1240,7 @@
   border-radius: 50%;
 }
 
-.hero-dohyo {
+.home-editorial .hero-dohyo {
   position: absolute;
   right: 9%;
   bottom: 15%;
@@ -1246,7 +1251,7 @@
   transform: skewY(-3deg);
 }
 
-.hero-dohyo::before {
+.home-editorial .hero-dohyo::before {
   content: '';
   position: absolute;
   inset: 17%;
@@ -1254,7 +1259,7 @@
   border-radius: 50%;
 }
 
-.hero-shikiri {
+.home-editorial .hero-shikiri {
   position: absolute;
   bottom: 27%;
   z-index: 1;
@@ -1264,11 +1269,11 @@
   transform: rotate(-3deg);
 }
 
-.hero-shikiri-left {
+.home-editorial .hero-shikiri-left {
   left: 31%;
 }
 
-.hero-shikiri-right {
+.home-editorial .hero-shikiri-right {
   right: 21%;
 }
 
@@ -1419,7 +1424,7 @@
     max-width: 46rem;
   }
 
-  .hero-visual {
+  .home-editorial .hero-visual {
     min-height: 21rem;
   }
 }
@@ -1465,7 +1470,7 @@
     width: auto;
   }
 
-  .hero-visual {
+  .home-editorial .hero-visual {
     min-height: 17rem;
   }
 

@@ -24,6 +24,13 @@ const LIVE_START_MINUTES = 13 * 60;
 const MAKUUCHI_START_MINUTES = 15 * 60 + 30;
 const LIVE_END_MINUTES = 18 * 60;
 
+// Set to false for an immediate rollback to the legacy Top design.
+export const EDITORIAL_HOME_ENABLED = true;
+
+export function homeContainerClassName(editorialEnabled = EDITORIAL_HOME_ENABLED): string {
+  return editorialEnabled ? 'home-container home-editorial' : 'home-container';
+}
+
 type LiveState =
   | { kind: 'in-progress'; day: number }
   | { kind: 'pre-basho' }
@@ -221,7 +228,7 @@ export default function Home() {
   const liveTorikumiTarget = buildLiveTorikumiTarget(torikumiArchive, torikumiData);
 
   return (
-    <div className="home-container home-editorial">
+    <div className={homeContainerClassName()}>
       <header className="home-header">
         <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
           <HomeLink placement="header" />
