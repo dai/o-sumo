@@ -24,6 +24,13 @@ const LIVE_START_MINUTES = 13 * 60;
 const MAKUUCHI_START_MINUTES = 15 * 60 + 30;
 const LIVE_END_MINUTES = 18 * 60;
 
+// Set to false for an immediate rollback to the legacy Top design.
+export const EDITORIAL_HOME_ENABLED = true;
+
+export function homeContainerClassName(editorialEnabled = EDITORIAL_HOME_ENABLED): string {
+  return editorialEnabled ? 'home-container home-editorial' : 'home-container';
+}
+
 type LiveState =
   | { kind: 'in-progress'; day: number }
   | { kind: 'pre-basho' }
@@ -221,7 +228,7 @@ export default function Home() {
   const liveTorikumiTarget = buildLiveTorikumiTarget(torikumiArchive, torikumiData);
 
   return (
-    <div className="home-container">
+    <div className={homeContainerClassName()}>
       <header className="home-header">
         <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
           <HomeLink placement="header" />
@@ -235,31 +242,39 @@ export default function Home() {
       <main className="home-main">
         {/* Current Basho - Hero Section */}
         <section className="hero-section" aria-labelledby="hero-basho-title">
-          <h2 id="hero-basho-title" className="hero-basho-title">
-            {currentBashoTitle}
-          </h2>
-          <p className="hero-day-indicator" aria-live="polite">
-            {liveState.kind === 'in-progress'
-              ? t('home.heroDayIndicator', { day: liveState.day })
-              : liveState.kind === 'pre-basho'
-                ? t('home.heroPreBashoStatus')
-                : t('home.heroLastUpdated', { timeJst: liveState.lastUpdatedLabel })}
-          </p>
-          <p className="hero-description">{t('home.heroDescription')}</p>
-          <nav className="hero-actions" aria-label="主要ページへの導線">
-            <Link to={currentBanzukePath} className="cta-button">
-              {t('home.heroBanzuke')}
-            </Link>
-            <Link to={`${CURRENT_SCHEDULE_PATH}/`} className="cta-button secondary">
-              {t('home.heroSchedule')}
-            </Link>
-            <Link to={`${CURRENT_RESULT_PATH}/`} className="cta-button secondary">
-              {t('home.heroResult')}
-            </Link>
-            <Link to="/rikishi/" className="cta-button secondary">
-              {t('home.heroRikishi')}
-            </Link>
-          </nav>
+          <div className="hero-editorial-copy">
+            <h2 id="hero-basho-title" className="hero-basho-title">
+              {currentBashoTitle}
+            </h2>
+            <p className="hero-day-indicator" aria-live="polite">
+              {liveState.kind === 'in-progress'
+                ? t('home.heroDayIndicator', { day: liveState.day })
+                : liveState.kind === 'pre-basho'
+                  ? t('home.heroPreBashoStatus')
+                  : t('home.heroLastUpdated', { timeJst: liveState.lastUpdatedLabel })}
+            </p>
+            <p className="hero-description">{t('home.heroDescription')}</p>
+            <nav className="hero-actions" aria-label="主要ページへの導線">
+              <Link to={currentBanzukePath} className="cta-button">
+                {t('home.heroBanzuke')}
+              </Link>
+              <Link to={`${CURRENT_SCHEDULE_PATH}/`} className="cta-button secondary">
+                {t('home.heroSchedule')}
+              </Link>
+              <Link to={`${CURRENT_RESULT_PATH}/`} className="cta-button secondary">
+                {t('home.heroResult')}
+              </Link>
+              <Link to="/rikishi/" className="cta-button secondary">
+                {t('home.heroRikishi')}
+              </Link>
+            </nav>
+          </div>
+          <div className="hero-visual" aria-hidden="true">
+            <span className="hero-sun" />
+            <span className="hero-dohyo" />
+            <span className="hero-shikiri hero-shikiri-left" />
+            <span className="hero-shikiri hero-shikiri-right" />
+          </div>
         </section>
 
         <section className="live-torikumi-section" aria-labelledby="live-torikumi-title">

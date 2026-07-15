@@ -911,4 +911,33 @@
   - `git diff --check`: pass
   - 全テスト初回実行時に変更対象外の `app/banzuke/page.test.tsx` が一度タイムアウトしたが、単独再実行で8/8、全テスト再実行で成功したためコード変更は行っていない。
 
+---
+
+# Topページ Sites風デザイン試作 Todo（2026-07-15）
+
+## Plan
+- [x] 最新 `origin/main` からデザイン用の独立worktreeとブランチを作成する
+- [x] Topページの編集的Hero構造を回帰テストで固定する
+- [x] Topページだけに紙・墨・朱を使ったSites風スタイルを適用する
+- [x] PC・スマートフォン・ダークテーマを実画面で確認する
+- [x] 型チェック、全テスト、ビルド、デザイン監査、差分検証を実行する
+
+## Progress
+- `origin/main@9024225` から `codex/design-top-editorial` を作成し、既存checkoutの未コミットデータ更新とは分離した。
+- Topページに `home-editorial` スコープを設け、Heroを場所情報と装飾ビジュアルの2カラムへ変更した。取組速報の算出、リンク先、News、決まり手、過去場所データは変更していない。
+- `app/index.css` 内のTopページ限定スタイルとして、紙色背景、墨色文字、朱色CTA、明朝見出し、水平罫線、CSS製の太陽と土俵モチーフを追加した。共通テーマ変数と他ページは変更していない。
+- 860px以下ではHeroを1カラム化し、560px以下ではヘッダーとCTAをスマートフォン向けに再配置した。ダークテーマには既存Ronin配色を使う互換スタイルを追加した。
+- `EDITORIAL_HOME_ENABLED` を追加し、`false` へ変更するだけで `home-editorial` スコープを外して旧Topデザインへ戻せる構成にした。装飾ビジュアルはスコープ外で非表示になるため、旧デザインへ漏れない。
+
+## Review
+- TDD RED: `npm test -- --run app/page.test.tsx` は `home-editorial` が存在しない期待どおりの理由で1件失敗。
+- TDD GREEN: 同テストは11/11 pass。
+- `npm run typecheck`: pass
+- `npm test -- --run`: pass（19 files / 103 passed / 1 skipped）
+- `npm run build`: pass（既存の500 kB超chunk warningのみ）
+- `git diff --check`: pass
+- `impeccable detect`: 指摘0件
+- Playwright: 1440pxライト、390pxライト、1440pxダークを確認。横方向overflowは0、Hero・速報・News・決まり手・過去場所の表示崩れなし。
+- Rollback確認: `home-editorial` を外した実画面で装飾ビジュアルが `display: none` になり、変更前のTopデザインへ復帰することをPlaywrightで確認。横方向overflowは0。
+
 

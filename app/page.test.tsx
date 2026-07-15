@@ -17,7 +17,11 @@ import {
   type TorikumiDailyData,
   type TorikumiDataSet,
 } from './lib/torikumi-data';
-import Home, { buildLiveTorikumiTarget, nearestTorikumiAnchor } from './page';
+import Home, {
+  buildLiveTorikumiTarget,
+  homeContainerClassName,
+  nearestTorikumiAnchor,
+} from './page';
 
 // The home page reads the news feed from the committed `public/api/v1/news.json`,
 // which is rewritten by the daily-data-update workflow. Stub it here so the test
@@ -91,6 +95,28 @@ afterEach(() => {
 });
 
 describe('Home page', () => {
+  it('can restore the legacy Top design by disabling the editorial variant', () => {
+    expect(homeContainerClassName(true)).toBe('home-container home-editorial');
+    expect(homeContainerClassName(false)).toBe('home-container');
+  });
+
+  it('renders the current basho as a Sites-inspired editorial hero', () => {
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+
+    const home = document.querySelector('.home-container');
+    const hero = document.querySelector('.hero-section');
+    const visual = document.querySelector('.hero-visual');
+
+    expect(home).toHaveClass('home-editorial');
+    expect(hero).not.toBeNull();
+    expect(hero!.querySelector('.hero-editorial-copy')).not.toBeNull();
+    expect(visual).toHaveAttribute('aria-hidden', 'true');
+  });
+
   it('shows the main navigation links and footer-only contact links', () => {
     render(
       <MemoryRouter>
