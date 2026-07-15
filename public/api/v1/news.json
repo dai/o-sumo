@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-15T03:11:49.588188+00:00",
+  "updatedAt": "2026-07-15T05:07:12.629371+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-hochi-20260715-OHT1T51148",
+      "title": "【４日目の見どころ】霧島、難敵・隆の勝戦も今場所の充実ぶりなら心配無用　むしろ相撲に波がありすぎる琴桜の方が心配",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260715-OHT1T51148",
+      "publishedAt": "2026-07-15",
+      "publishedAtRaw": "スポーツ報知　7月15日 12時59分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-sanspo-_sports_sumo_TIKWISUWDBF4JDDTC5V3DXAX7Y",
       "title": "舞の海氏「余裕のなさ、必死さが顔に出てますよね。人生で最大の試練」／名古屋場所",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260715-202607150000356",
       "publishedAt": "2026-07-15",
       "publishedAtRaw": "日刊スポーツ　7月15日 11時10分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10259891",
-      "title": "「身体能力ヤバ」ぜい肉“ほぼ皆無”な細マッチョ力士、驚異の動きが話題 土俵際で逆転も“まさか”の結末に落胆の声",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10259891",
-      "publishedAt": "2026-07-15",
-      "publishedAtRaw": "ABEMA TIMES　7月15日 10時47分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
