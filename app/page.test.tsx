@@ -91,6 +91,23 @@ afterEach(() => {
 });
 
 describe('Home page', () => {
+  it('renders the current basho as a Sites-inspired editorial hero', () => {
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+
+    const home = document.querySelector('.home-container');
+    const hero = document.querySelector('.hero-section');
+    const visual = document.querySelector('.hero-visual');
+
+    expect(home).toHaveClass('home-editorial');
+    expect(hero).not.toBeNull();
+    expect(hero!.querySelector('.hero-editorial-copy')).not.toBeNull();
+    expect(visual).toHaveAttribute('aria-hidden', 'true');
+  });
+
   it('shows the main navigation links and footer-only contact links', () => {
     render(
       <MemoryRouter>
