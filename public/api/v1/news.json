@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-15T05:07:12.629371+00:00",
+  "updatedAt": "2026-07-15T06:56:25.134563+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-hochi-20260715-OHT1T51226",
+      "title": "幕下・藤壮大が連勝発進　３番相撲以降で番付の東西で並ぶ旭富士と対戦の可能性も「自分の相撲を取るだけ」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260715-OHT1T51226",
+      "publishedAt": "2026-07-15",
+      "publishedAtRaw": "スポーツ報知　7月15日 14時57分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260715-OHT1T51214",
+      "title": "幕下・大森、切り返しで連勝発進　「うまくいった」 デビューした夏場所は旭富士に敗れ６勝１敗「今場所は優勝したい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260715-OHT1T51214",
+      "publishedAt": "2026-07-15",
+      "publishedAtRaw": "スポーツ報知　7月15日 14時34分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-hochi-20260715-OHT1T51148",
       "title": "【４日目の見どころ】霧島、難敵・隆の勝戦も今場所の充実ぶりなら心配無用　むしろ相撲に波がありすぎる琴桜の方が心配",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_VUJWA6G4JFGHVFK7FSIGHDOUKA",
       "publishedAt": "2026-07-15",
       "publishedAtRaw": "SANSPO　7月15日 11時27分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-postseven-2120936",
-      "title": "【溜席の着物美人が「ワンピース×レース」で登場】名古屋場所で洋服観戦となった理由を明かす　昨年はショッキングピンクのワンピで登場したことも",
-      "url": "https://topics.smt.docomo.ne.jp/article/postseven/sports/postseven-2120936",
-      "publishedAt": "2026-07-15",
-      "publishedAtRaw": "NEWSポストセブン　7月15日 11時15分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260715-202607150000356",
-      "title": "英国出身の栄誠が前相撲２連勝で一番出世　来日した父は「玉鷲関のように長くやってほしい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260715-202607150000356",
-      "publishedAt": "2026-07-15",
-      "publishedAtRaw": "日刊スポーツ　7月15日 11時10分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
