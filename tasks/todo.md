@@ -881,5 +881,34 @@
 - Non-failing warnings: parser の既存 warning fixture 2件、Vitest の Node `localStorage` ExperimentalWarning、Vite の 500 kB 超 chunk warning は継続しているが、失敗はない。
 - Final review fix: `results` の公開型と `null` の集計除外を field map に明記し、部分公開結果が `published` になる直接回帰テストを追加。`all` semantics では RED、`python scripts/update_sumo_data_torikumi_logic_test.py` は復元後 pass。
 - PR sync（2026-07-15）: 最新 `origin/main@50f3ce1` へ rebase 後、`python scripts/update_sumo_data.py --torikumi-scope all --skip-rikishi-fetch --strict-torikumi-fetch` で current 4生成物を再同期。公開済み1〜3日目は各34番を維持し、4日目結果は公式未公開のため `pending`。
+---
+
+# 取組表示順・速報リンク修正 Todo（2026-07-15）
+
+## Plan
+- [x] クリーンなworktreeを作成し、既存テストのベースラインを確認する
+- [x] 予定ページを十両 → 幕内、各部門の `boutNo` 昇順へ変更する
+- [x] Topページの速報リンクをJSTの現在日または次の開催日基準へ変更する
+- [x] 予定ページ順序と7/15・開催前の速報リンクを回帰テストで固定する
+- [x] 型チェック、全テスト、ビルド、差分検証を実行する
+
+## Progress
+- 現在の作業ツリーに残るデータ更新ファイルの競合を保護するため、`HEAD` から `codex/torikumi-order-live-link` worktreeを作成した。
+- `TorikumiDayPage` は結果ページと同じ `十両 → 幕内` の共有順序を予定ページにも適用した。
+- `buildLiveTorikumiTarget` はJSTの現在日以降で最初の予定日を選び、結果データを優先しつつ未公開時は予定データから上部アンカーを作る。
+- 既存のJST依存テストを時計固定にし、古い `today` データを無視して7/15の四日目へ遷移するケースと開催前の十両1番ケースを追加した。
+
+## Review
+- TDD:
+  - 予定順序テスト: 変更前に `幕内` が最初になる失敗を確認し、実装後に pass
+  - 速報リンクテスト: 変更前に7/15指定が7/14へ解決される失敗を確認し、実装後に pass
+- Validation:
+  - `npm ci`: pass（既存の audit / deprecated warnings あり）
+  - `npm test -- --run app/components/TorikumiDayPage.test.tsx app/page.test.tsx`: pass（2 files / 21 tests）
+  - `npm run typecheck`: pass
+  - `npm test -- --run`: pass（19 files / 100 passed / 1 skipped）
+  - `npm run build`: pass（既存の chunk size warning のみ）
+  - `git diff --check`: pass
+  - 全テスト初回実行時に変更対象外の `app/banzuke/page.test.tsx` が一度タイムアウトしたが、単独再実行で8/8、全テスト再実行で成功したためコード変更は行っていない。
 
 

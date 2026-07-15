@@ -54,6 +54,23 @@ describe('TorikumiDayPage', () => {
     expect(before[0]).not.toBe(after[0]);
   });
 
+  it('renders scheduled bouts from the lowest juryo bout to the yokozuna bout', () => {
+    const marchScheduleDay = MARCH2026_TORIKUMI_DATA.scheduleDays?.find(
+      (day) => day.data.makuuchi.matches.length > 0 && day.data.juryo.matches.length > 0,
+    );
+    expect(marchScheduleDay).toBeDefined();
+    renderPage(marchScheduleDay!, 'schedule');
+
+    const divisionHeadings = screen.getAllByRole('heading', { level: 3 });
+    expect(divisionHeadings[0]).toHaveTextContent('十両');
+    expect(divisionHeadings[divisionHeadings.length - 1]).toHaveTextContent('幕内');
+
+    const matchRows = Array.from(document.querySelectorAll('.torikumi-row'));
+    const highestMakuuchiBoutNo = Math.max(...marchScheduleDay!.data.makuuchi.matches.map((match) => match.boutNo));
+    expect(matchRows[0]).toHaveAttribute('id', 'bout-juryo-1');
+    expect(matchRows[matchRows.length - 1]).toHaveAttribute('id', `bout-makuuchi-${highestMakuuchiBoutNo}`);
+  });
+
   it('shows result matches as one bottom-to-top flow from juryo through makuuchi', () => {
     const firstResultDay = torikumiArchive.resultDays[0];
     renderPage(firstResultDay, 'result');

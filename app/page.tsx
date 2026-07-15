@@ -97,28 +97,36 @@ export function buildLiveTorikumiTarget(
   data: TorikumiDataSet,
   jstMinutes: number = jstMinutesOfDay(),
 ): LiveTorikumiTarget {
-  const todayDay = dayOfDailyData(data.today);
-  if (todayDay !== null) {
-    const resultDay = archive.resultDays?.find((day) => day.day === todayDay);
-    const scheduleDay = archive.scheduleDays?.find((day) => day.day === todayDay);
-    const day = resultDay ?? scheduleDay;
-    const dayData = hasAnyMatches(data.today) ? data.today : scheduleDay?.data ?? resultDay?.data;
-    const anchor = dayData ? nearestTorikumiAnchor(dayData, jstMinutes) : null;
-    return {
-      href: day ? `${getDayPath(day, 'result')}${anchor ? `#${anchor}` : ''}` : `${CURRENT_RESULT_PATH}/`,
-      description: 'JST 13:00-18:00 は現在時刻に近い取組結果へ移動します。',
-    };
-  }
+  const currentIsoDate = jstIsoDateOfDay(new Date());
+  const upcomingScheduleDay = [...(archive.scheduleDays ?? [])]
+    .sort((left, right) => left.isoDate.localeCompare(right.isoDate))
+    .find((day) => day.isoDate >= currentIsoDate);
 
-  const tomorrowDay = dayOfDailyData(data.tomorrow);
-  if (tomorrowDay !== null) {
-    const resultDay = archive.resultDays?.find((day) => day.day === tomorrowDay);
-    const scheduleDay = archive.scheduleDays?.find((day) => day.day === tomorrowDay);
-    const dayData = hasAnyMatches(data.tomorrow) ? data.tomorrow : scheduleDay?.data ?? resultDay?.data;
+  if (upcomingScheduleDay) {
+    const resultDay = archive.resultDays?.find((day) => day.pathDate === upcomingScheduleDay.pathDate);
+    if (!resultDay) {
+      return {
+        href: `${CURRENT_RESULT_PATH}/`,
+        description: '取組データの更新を待機中です。',
+      };
+    }
+
+    const dayData = [
+      resultDay.data,
+      upcomingScheduleDay.data,
+      data.today,
+      data.tomorrow,
+    ].find((candidate) => (
+      dayOfDailyData(candidate) === upcomingScheduleDay.day && hasAnyMatches(candidate)
+    ));
     const anchor = dayData ? nearestTorikumiAnchor(dayData, jstMinutes) : null;
+    const description = upcomingScheduleDay.isoDate === currentIsoDate
+      ? 'JST 13:00-18:00 は現在時刻に近い取組結果へ移動します。'
+      : '開催前も取組予定を反映した結果ページへ移動します。場所中は速報位置へ切り替わります。';
+
     return {
-      href: resultDay ? `${getDayPath(resultDay, 'result')}${anchor ? `#${anchor}` : ''}` : `${CURRENT_RESULT_PATH}/`,
-      description: '開催前も取組予定を反映した結果ページへ移動します。場所中は速報位置へ切り替わります。',
+      href: `${getDayPath(resultDay, 'result')}${anchor ? `#${anchor}` : ''}`,
+      description,
     };
   }
 
@@ -323,4 +331,3 @@ export default function Home() {
     </div>
   );
 }
-

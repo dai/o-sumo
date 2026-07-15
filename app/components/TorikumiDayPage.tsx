@@ -20,8 +20,7 @@ import '../torikumi/page.css';
 import { formatUpdatedAt } from '../lib/updated-at';
 import { getBanzukeDataByMonthKey, CURRENT_BASHO_ID } from '../lib/archive-basho-data';
 
-const DIVISIONS: Array<'幕内' | '十両'> = ['幕内', '十両'];
-const RESULT_DIVISIONS: Array<'幕内' | '十両'> = ['十両', '幕内'];
+const BOTTOM_TO_TOP_DIVISIONS: Array<'幕内' | '十両'> = ['十両', '幕内'];
 
 function byDivision(day: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay }, division: '幕内' | '十両') {
   return division === '幕内' ? day.makuuchi.matches : day.juryo.matches;
@@ -112,10 +111,6 @@ function hasAnyMatches(dayData: { makuuchi: TorikumiDivisionDay; juryo: Torikumi
   return dayData.makuuchi.matches.length > 0 || dayData.juryo.matches.length > 0;
 }
 
-function getDivisionOrder(mode: TorikumiPageMode) {
-  return mode === 'result' ? RESULT_DIVISIONS : DIVISIONS;
-}
-
 function getDisplaySortOrder(mode: TorikumiPageMode, division: '幕内' | '十両', sortOrder: SortOrder): SortOrder {
   if (mode === 'result' && division === '十両') {
     return sortOrder === 'asc' ? 'desc' : 'asc';
@@ -129,9 +124,9 @@ type UnifiedResultSection = {
 };
 
 function getUnifiedResultSections(dayData: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay }): UnifiedResultSection[] {
-  // 結果ページでは十両 → 幕内の順で結合し、十両の先頭取組(1)が最上段、横綱(幕内20)が最下段になるよう、
-  // 各 division を boutNo 昇順（=1が最下位、20が横綱）で並べる。
-  return RESULT_DIVISIONS
+  // 結果ページでは十両 → 幕内の順で結合し、十両の先頭取組(1)が最上段、横綱戦が最下段になるよう、
+  // 各 division を boutNo 昇順で並べる。
+  return BOTTOM_TO_TOP_DIVISIONS
     .map((division) => ({ division, matches: sortMatches(byDivision(dayData, division), 'asc') }))
     .filter((section) => section.matches.length > 0);
 }
@@ -253,14 +248,12 @@ function TorikumiTable({
     );
   }
 
-  const scheduleMode: 'schedule' = mode;
-
   return (
     <section className="division-section">
       <h2>{title}</h2>
-      {getDivisionOrder(scheduleMode).map((division) => {
+      {BOTTOM_TO_TOP_DIVISIONS.map((division) => {
         const meta = sectionMeta(dayData, division);
-        const matches = sortMatches(byDivision(dayData, division), getDisplaySortOrder(scheduleMode, division, sortOrder));
+        const matches = sortMatches(byDivision(dayData, division), getDisplaySortOrder(mode, division, sortOrder));
         return (
           <div key={`${title}-${division}`}>
             <h3>{t('torikumi.day.divisionMatchCount', { division, count: matches.length })}</h3>
