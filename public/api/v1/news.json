@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-14T10:38:30.089587+00:00",
+  "updatedAt": "2026-07-15T00:44:40.276884+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-tokyosports-395778",
-      "title": "【大相撲】横綱大の里　初場所からの連敗を６でストップ「長かった。これでいい方向に…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-395778",
-      "publishedAt": "2026-07-14",
-      "publishedAtRaw": "東スポWEB　7月14日 19時14分",
+      "id": "dmenu-docomo-abematimes-10259884",
+      "title": "合計体重は“約400キロ” 土俵上に驚愕の光景 ド迫力対決に「重量級なのに動きは軽い」",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10259884",
+      "publishedAt": "2026-07-15",
+      "publishedAtRaw": "ABEMA TIMES　7月15日 9時18分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260714121",
-      "title": "大の里が１７２日ぶり勝利！休場明け連敗止めた「いやあ、良かった」会場の後押しに感謝【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260714121",
-      "publishedAt": "2026-07-14",
-      "publishedAtRaw": "デイリースポーツ　7月14日 19時08分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_EW2DWDFNLFFEFEM4GQRIGX7JAE",
+      "title": "舞の海氏「取り口、だいぶ厳しさがなくなってきてるなと」／名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_EW2DWDFNLFFEFEM4GQRIGX7JAE",
+      "publishedAt": "2026-07-15",
+      "publishedAtRaw": "SANSPO　7月15日 8時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260714-202607140001517",
-      "title": "大の里が初場所以来171日ぶり白星　元若の里の西岩親方「息を吹き返す」「十分優勝狙える」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260714-202607140001517",
-      "publishedAt": "2026-07-14",
-      "publishedAtRaw": "日刊スポーツ　7月14日 18時54分",
+      "id": "dmenu-docomo-abematimes-10259851",
+      "title": "「体重差3倍はやばい」「土俵下に吹っ飛んだ」無差別級対決で“縦一回転”の衝撃決着",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10259851",
+      "publishedAt": "2026-07-15",
+      "publishedAtRaw": "ABEMA TIMES　7月15日 7時49分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-395773",
-      "title": "【大相撲】幕内最年少の藤ノ川が豊昇龍を破り２日連続の金星　横綱初挑戦から４連勝は戦後初の快挙",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-395773",
-      "publishedAt": "2026-07-14",
-      "publishedAtRaw": "東スポWEB　7月14日 18時47分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_G3H2SPZTJFAZ3EJ5PTMAJ6RWPE",
+      "title": "舞の海氏「優勝争いをひっかき回すだけなのか、または一気に大関に…」／名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_G3H2SPZTJFAZ3EJ5PTMAJ6RWPE",
+      "publishedAt": "2026-07-15",
+      "publishedAtRaw": "SANSPO　7月15日 7時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260714-0316",
-      "title": "関脇・安青錦　初日から3連勝！大関復帰へ向けて元気いっぱい　解説の西岩親方「相手に何もさせなかった」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260714-0316",
-      "publishedAt": "2026-07-14",
-      "publishedAtRaw": "スポニチアネックス　7月14日 18時35分",
+      "id": "dmenu-docomo-abematimes-10259848",
+      "title": "力士が頭突き“一撃”で崩れ落ちる衝撃結末「一撃だ」「失神KO」予期せぬ結末にファン騒然",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10259848",
+      "publishedAt": "2026-07-15",
+      "publishedAtRaw": "ABEMA TIMES　7月15日 6時21分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
