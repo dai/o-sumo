@@ -3,6 +3,8 @@
 /:slug-yotei /:slug-yotei/ 301
 /archives /archives/ 301
 /archives/ /index.html 200
+/analytics /analytics/ 301
+/analytics/ /index.html 200
 /rikishi /rikishi/ 301
 /rikishi/ /index.html 200
 /rikishi/* /index.html 200

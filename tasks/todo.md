@@ -940,4 +940,33 @@
 - Playwright: 1440pxライト、390pxライト、1440pxダークを確認。横方向overflowは0、Hero・速報・News・決まり手・過去場所の表示崩れなし。
 - Rollback確認: `home-editorial` を外した実画面で装飾ビジュアルが `display: none` になり、変更前のTopデザインへ復帰することをPlaywrightで確認。横方向overflowは0。
 
+---
+
+# 大相撲アナリティクス試作 Todo（2026-07-16）
+
+## Plan
+- [x] 最新 `origin/main` から分析画面用の独立worktreeとブランチを作成する
+- [x] 分析画面、ホーム導線、サイトマップの期待動作をテストで先に固定する
+- [x] `/analytics/` 画面と正規化ルートを実装し、最新Topデザインへ導線を追加する
+- [x] 関連テスト、型チェック、全テスト、ビルド、競合マーカー、差分を検証する
+- [x] Reviewを記録し、初期コミットを作成する
+
+## Progress
+- `origin/main@d4cfecf` から `codex/analytics-dashboard` を `C:\Users\dai\.codex\worktrees\analytics-dashboard\o-sumo` に作成した。
+- 元の `codex/07-13` 作業ツリーにある未コミット変更と競合マーカーは変更していない。
+- 幕内の主要指標、勝ち星上位8名、公開済み結果の決まり手上位6件を既存データから集計する `/analytics/` を追加した。
+- 最新Topページの編集デザインを維持したまま分析画面への導線を追加し、ルート、Cloudflareの末尾スラッシュ正規化、サイトマップを登録した。
+
+## Review
+- TDD RED: 分析画面未存在、ホーム導線未存在、サイトマップ未登録による3種の失敗を確認した。
+- TDD GREEN: `npm test -- --run app/analytics/page.test.tsx app/lib/sitemap.test.ts app/page.test.tsx` は3 files / 19 tests pass。
+- 配信正規化 RED→GREEN: `/analytics /analytics/ 301` 未登録による失敗を確認後、`app/pwa-smoke.test.ts` は4 tests pass。
+- `npm run typecheck`: pass。
+- `npm test -- --run`: pass（20 files / 109 passed / 1 skipped）。
+- `npm run build`: pass（既存の500 kB超chunk warningのみ）。
+- `git diff --check`: pass。新worktree内の競合マーカーは0件。
+- `impeccable detect`: 指摘0件。
+- Playwright: 1440pxライト、390pxライト、390pxダークを確認。横方向overflowは0。主要指標4件、勝ち星上位8名、決まり手6件の表示崩れなし。
+- ブラウザコンソールの2件は既存の広告スクリプトとローカル開発用 `live.js` の接続拒否で、分析画面由来の例外はなかった。
+
 

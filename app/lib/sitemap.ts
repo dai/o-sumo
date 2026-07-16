@@ -6,7 +6,7 @@ export interface SitemapEntry {
   loc: string;
 }
 
-const FIXED_SITEMAP_PATHS = ['/', '/archives/', '/rikishi/', '/kimarite/'] as const;
+const FIXED_SITEMAP_PATHS = ['/', '/archives/', '/rikishi/', '/kimarite/', '/analytics/'] as const;
 
 function normalizePath(path: string): string {
   if (path === '/') {

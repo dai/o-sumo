@@ -130,6 +130,7 @@ describe('Home page', () => {
     const banzukeLink = allLinks.find((l) => l.getAttribute('href') === '/202607-banduke/');
     const yoteiLink = allLinks.find((l) => l.getAttribute('href') === '/202607-yotei/');
     const kekkaLink = allLinks.find((l) => l.getAttribute('href') === '/202607-torikumi/');
+    const analyticsLink = allLinks.find((l) => l.getAttribute('href') === '/analytics/');
     const currentHeroTitle = `${torikumiArchive.year}${torikumiArchive.bashoName}`;
     const mayBanzukeLink = allLinks.find((l) => l.getAttribute('href') === `${MAY2026_BANDUKE_PATH}/`);
     const mayYoteiLink = allLinks.find((l) => l.getAttribute('href') === `${MAY2026_SCHEDULE_PATH}/`);
@@ -140,6 +141,7 @@ describe('Home page', () => {
     expect(banzukeLink).toHaveAttribute('href', '/202607-banduke/');
     expect(yoteiLink).toHaveAttribute('href', '/202607-yotei/');
     expect(kekkaLink).toHaveAttribute('href', '/202607-torikumi/');
+    expect(analyticsLink).toHaveAttribute('href', '/analytics/');
     expect(firstMayDay).toBeDefined();
     expect(mayBanzukeLink).toHaveAttribute('href', `${MAY2026_BANDUKE_PATH}/`);
     expect(mayYoteiLink).toHaveAttribute('href', `${MAY2026_SCHEDULE_PATH}/`);

@@ -10,6 +10,7 @@ describe('sitemap helpers', () => {
     expect(locs).toContain('/archives/');
     expect(locs).toContain('/rikishi/');
     expect(locs).toContain('/kimarite/');
+    expect(locs).toContain('/analytics/');
     expect(locs).toContain('/202603-banduke/');
     expect(locs).toContain('/202603-torikumi/');
     expect(locs).toContain('/202603-yotei/');
@@ -47,6 +48,7 @@ describe('sitemap helpers', () => {
     expect(xml).toContain('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
     expect(xml).toContain(`<loc>${SITEMAP_ORIGIN}/</loc>`);
     expect(xml).toContain(`<loc>${SITEMAP_ORIGIN}/archives/</loc>`);
+    expect(xml).toContain(`<loc>${SITEMAP_ORIGIN}/analytics/</loc>`);
     expect(xml).toContain(`<loc>${SITEMAP_ORIGIN}/${torikumiMonthKey}-torikumi/</loc>`);
     expect(xml).not.toContain(`${SITEMAP_ORIGIN}/${pendingScheduleDay!.pathDate}-yotei/`);
   });
