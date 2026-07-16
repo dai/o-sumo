@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-16T05:09:22.317266+00:00",
+  "updatedAt": "2026-07-16T07:00:09.394869+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260716-OHT1T51148",
-      "title": "幕下・木竜皇が休場　師匠の立浪親方「足の筋肉を痛めた」　再出場は厳しい見通し",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260716-OHT1T51148",
+      "id": "dmenu-docomo-tokyosports-396039",
+      "title": "【大相撲】炎鵬　軍配差し違えで３敗目　前日に左腕を痛めるも「全然大丈夫です」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-396039",
       "publishedAt": "2026-07-16",
-      "publishedAtRaw": "スポーツ報知　7月16日 13時53分",
+      "publishedAtRaw": "東スポWEB　7月16日 15時49分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260716-OHT1T51141",
-      "title": "【５日目見所】大関復帰、カド番脱出に向けて大一番、５日目に早くも安青錦―琴桜の好取組　ファンからは「早すぎる」「もったいない」の声も挙がる",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260716-OHT1T51141",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_A53ZZBBFYFBXJB4AP4RGIEGTIE",
+      "title": "琴風氏「もったいないというか何というかね」／名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_A53ZZBBFYFBXJB4AP4RGIEGTIE",
       "publishedAt": "2026-07-16",
-      "publishedAtRaw": "スポーツ報知　7月16日 13時35分",
+      "publishedAtRaw": "SANSPO　7月16日 15時15分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-abematimes-10260214",
-      "title": "「まだまだまだ！」行司が取組を強制中断…一度ならず二度の立ち合い不成立に館内騒然 両力士も反省しきり",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260214",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_7BJSPTDTRJHVBOKN3EAYTCZBX4",
+      "title": "琴風氏「左が使えないとなるとちょっと深刻ですよ」／名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_7BJSPTDTRJHVBOKN3EAYTCZBX4",
       "publishedAt": "2026-07-16",
-      "publishedAtRaw": "ABEMA TIMES　7月16日 12時39分",
+      "publishedAtRaw": "SANSPO　7月16日 15時06分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260716-0186",
-      "title": "元幕内で十両・欧勝海、腓骨骨幹部骨折で休場　再出場しなければ秋場所の幕下転落が確実",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260716-0186",
+      "id": "dmenu-docomo-ans-705450",
+      "title": "大相撲中継で抜かれた元NHKアナ「もう95歳」「元気だなぁ」　花道脇で目撃された大レジェンドに騒然",
+      "url": "https://topics.smt.docomo.ne.jp/article/ans/sports/ans-705450",
       "publishedAt": "2026-07-16",
-      "publishedAtRaw": "スポニチアネックス　7月16日 12時22分",
+      "publishedAtRaw": "THE ANSWER　7月16日 15時03分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260716-202607160000400",
-      "title": "欧勝海は腓骨骨折で休場、16日に手術予定で再出場しない「骨がくっつけば大丈夫」鳴戸親方",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260716-202607160000400",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_N3D2UPW4V5BVNF4QOHCYXRX4CU",
+      "title": "琴風氏「幕内に戻ってきてからスイスイっと上位に勝ち進んでいけてない」／名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_N3D2UPW4V5BVNF4QOHCYXRX4CU",
       "publishedAt": "2026-07-16",
-      "publishedAtRaw": "日刊スポーツ　7月16日 11時32分",
+      "publishedAtRaw": "SANSPO　7月16日 14時57分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
