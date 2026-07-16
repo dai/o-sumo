@@ -980,7 +980,7 @@
 - [x] 既存Editorial Homeに合わせて2カード構成とレスポンシブ表示を実装する
 - [x] ライト・ダーク・PC・モバイルを実画面で確認する
 - [x] 型チェック、全テスト、ビルド、デザイン監査、差分検証を行う
-- [ ] Reviewを記録し、commit、push、PR作成まで完了する
+- [x] Reviewを記録し、commit、push、PR作成まで完了する
 
 ## Progress
 - 設計は `docs/superpowers/specs/2026-07-16-basho-dig-card-design.md` に記録した。
@@ -1004,5 +1004,7 @@
   - Topカードと分析画面を既存i18nへ接続し、英語表示の回帰テストを追加。
   - 固定のJuly表記をcurrent basho dataから生成する表記へ変更し、分析カードの境界線をNo-Line規約に合わせて削除。
 - 追加TDD RED: 幕内のみの決まり手期待は十両合算値との差で失敗し、英語表示2件は日本語固定文言のため失敗。修正後はfocused 2 files / 19 tests pass。
+- 最新 `origin/main` へrebase後、`npm run typecheck`、全20 files / 112 tests pass / 1 skipped、`npm run build` を再実行して成功。
+- branch `codex/analytics-dashboard` をpushし、draft PR #219を作成: https://github.com/dai/o-sumo/pull/219
 
 

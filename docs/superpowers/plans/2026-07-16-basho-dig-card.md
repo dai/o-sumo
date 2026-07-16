@@ -138,13 +138,13 @@ git commit -m "feat: add basho analytics feature card"
 - Consumes: `codex/analytics-dashboard` の検証済みコミット
 - Produces: GitHub上のdraft PR
 
-- [ ] **Step 1: ブランチをpushする**
+- [x] **Step 1: ブランチをpushする**
 
 Run: `git push -u origin codex/analytics-dashboard`
 
 Expected: remote tracking branchが設定される。
 
-- [ ] **Step 2: draft PRを作成する**
+- [x] **Step 2: draft PRを作成する**
 
 Run: `gh pr create --draft --base main --head codex/analytics-dashboard --title "feat: add sumo analytics dashboard" --body "大相撲アナリティクス、トップページの「場所を掘る」カード、正規URL、サイトマップ、回帰テストを追加します。"`
 
