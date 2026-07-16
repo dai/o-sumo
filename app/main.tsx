@@ -13,6 +13,7 @@ import ArchivesPage from './archives/page'
 import RikishiPage from './rikishi/page'
 import RikishiProfilePage from './rikishi/RikishiProfilePage'
 import KimaritePage from './kimarite/page'
+import AnalyticsDashboardPage from './analytics/page'
 import ThemeToggle from './components/ThemeToggle'
 import LanguageToggle from './components/LanguageToggle'
 import ScrollToHash from './components/ScrollToHash'
@@ -68,6 +69,8 @@ function AppShell() {
         <Route path="/rikishi" element={<HashPreservingRedirect to="/rikishi/" />} />
         <Route path="/kimarite/" element={<KimaritePage />} />
         <Route path="/kimarite" element={<HashPreservingRedirect to="/kimarite/" />} />
+        <Route path="/analytics/" element={<AnalyticsDashboardPage />} />
+        <Route path="/analytics" element={<HashPreservingRedirect to="/analytics/" />} />
         <Route path="/rikishi/:id/" element={<RikishiProfilePage />} />
         <Route path="/rikishi/:id" element={<RikishiProfilePage />} />
         {/* Current basho routes */}

@@ -277,17 +277,32 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="live-torikumi-section" aria-labelledby="live-torikumi-title">
-          <div className="live-torikumi-copy">
-            <h2 id="live-torikumi-title" className="live-torikumi-title">
-              現在の取組、速報中！
-            </h2>
-            <p>{liveTorikumiTarget.description}</p>
-          </div>
-          <Link to={liveTorikumiTarget.href} className="live-torikumi-link">
-            速報を見る
-          </Link>
-        </section>
+        <div className="home-feature-grid">
+          <section className="live-torikumi-section" aria-labelledby="live-torikumi-title">
+            <div className="live-torikumi-copy">
+              <h2 id="live-torikumi-title" className="live-torikumi-title">
+                現在の取組、速報中！
+              </h2>
+              <p>{liveTorikumiTarget.description}</p>
+            </div>
+            <Link to={liveTorikumiTarget.href} className="live-torikumi-link">
+              速報を見る
+            </Link>
+          </section>
+
+          <section className="analytics-feature-card" aria-labelledby="analytics-feature-title">
+            <div className="analytics-feature-copy">
+              <p className="analytics-feature-label">{t('home.analyticsFeatureLabel')}</p>
+              <h2 id="analytics-feature-title" className="analytics-feature-title">{t('home.analyticsFeatureTitle')}</h2>
+              <p className="analytics-feature-description">
+                {t('home.analyticsFeatureDescription')}
+              </p>
+            </div>
+            <Link to="/analytics/" className="analytics-feature-link">
+              {t('home.analyticsFeatureAction')}
+            </Link>
+          </section>
+        </div>
 
         <NewsSection />
 
