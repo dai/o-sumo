@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-16T03:11:23.075029+00:00",
+  "updatedAt": "2026-07-16T05:09:22.317266+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-hochi-20260716-OHT1T51148",
+      "title": "幕下・木竜皇が休場　師匠の立浪親方「足の筋肉を痛めた」　再出場は厳しい見通し",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260716-OHT1T51148",
+      "publishedAt": "2026-07-16",
+      "publishedAtRaw": "スポーツ報知　7月16日 13時53分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260716-OHT1T51141",
+      "title": "【５日目見所】大関復帰、カド番脱出に向けて大一番、５日目に早くも安青錦―琴桜の好取組　ファンからは「早すぎる」「もったいない」の声も挙がる",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260716-OHT1T51141",
+      "publishedAt": "2026-07-16",
+      "publishedAtRaw": "スポーツ報知　7月16日 13時35分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-abematimes-10260214",
+      "title": "「まだまだまだ！」行司が取組を強制中断…一度ならず二度の立ち合い不成立に館内騒然 両力士も反省しきり",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260214",
+      "publishedAt": "2026-07-16",
+      "publishedAtRaw": "ABEMA TIMES　7月16日 12時39分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260716-0186",
+      "title": "元幕内で十両・欧勝海、腓骨骨幹部骨折で休場　再出場しなければ秋場所の幕下転落が確実",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260716-0186",
+      "publishedAt": "2026-07-16",
+      "publishedAtRaw": "スポニチアネックス　7月16日 12時22分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-f-bt-tp1-260716-202607160000400",
       "title": "欧勝海は腓骨骨折で休場、16日に手術予定で再出場しない「骨がくっつけば大丈夫」鳴戸親方",
       "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260716-202607160000400",
       "publishedAt": "2026-07-16",
       "publishedAtRaw": "日刊スポーツ　7月16日 11時32分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-chuspo-1282008",
-      "title": "骨折で休場の十両・欧勝海はきょう手術…名古屋場所は全休「まだまだ若い。これから」鳴戸親方は幕下からの再起期待",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1282008",
-      "publishedAt": "2026-07-16",
-      "publishedAtRaw": "中日スポーツ　7月16日 11時06分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-nikkangendai-1232345",
-      "title": "横綱大の里は“休場”に逃げられない？ タイミングが悪すぎた土俵際の「大ジャンプ」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1232345",
-      "publishedAt": "2026-07-16",
-      "publishedAtRaw": "日刊ゲンダイDIGITAL　7月16日 11時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260716-OHT1T51062",
-      "title": "十両・欧勝海が名古屋場所５日目から休場　「腓骨骨幹部骨折」で手術の可能性も　再出場がなければ幕下転落が濃厚",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260716-OHT1T51062",
-      "publishedAt": "2026-07-16",
-      "publishedAtRaw": "スポーツ報知　7月16日 10時39分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-jiji-2026071600268",
-      "title": "十両欧勝海が休場＝大相撲名古屋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026071600268",
-      "publishedAt": "2026-07-16",
-      "publishedAtRaw": "時事通信　7月16日 10時09分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
