@@ -976,16 +976,27 @@
 ## Plan
 - [x] 現在のHero、速報、後続コンテンツの構成を実画面とコードで確認する
 - [x] 速報と分析をHero直下で横並びにする設計をユーザーと確定する
-- [ ] カード文言、分析導線、DOM順序をテストで先に固定する
-- [ ] 既存Editorial Homeに合わせて2カード構成とレスポンシブ表示を実装する
-- [ ] ライト・ダーク・PC・モバイルを実画面で確認する
-- [ ] 型チェック、全テスト、ビルド、デザイン監査、差分検証を行う
+- [x] カード文言、分析導線、DOM順序をテストで先に固定する
+- [x] 既存Editorial Homeに合わせて2カード構成とレスポンシブ表示を実装する
+- [x] ライト・ダーク・PC・モバイルを実画面で確認する
+- [x] 型チェック、全テスト、ビルド、デザイン監査、差分検証を行う
 - [ ] Reviewを記録し、commit、push、PR作成まで完了する
 
 ## Progress
 - 設計は `docs/superpowers/specs/2026-07-16-basho-dig-card-design.md` に記録した。
+- 実装計画は `docs/superpowers/plans/2026-07-16-basho-dig-card.md` に記録した。
+- Hero内の小さなアナリティクスリンクを削除し、Hero直下に速報と「場所を掘る」の2カードを配置した。
 
 ## Review
-- 進行中。
+- TDD RED: `.home-feature-grid` と `.analytics-feature-card` が未存在のため `app/page.test.tsx` の追加2件が失敗することを確認した。
+- TDD GREEN: `npm test -- --run app/page.test.tsx` は13 tests pass。
+- `npm run typecheck`: pass。
+- `npm test -- --run`: pass（20 files / 110 passed / 1 skipped）。
+- `npm run build`: pass（既存の500 kB超chunk warningのみ）。
+- `impeccable detect`: 指摘0件。
+- `git diff --check`: pass。競合マーカー0件。
+- Playwright: 1440x1000ライト、390x844ライト、390x844ダークで2カードの表示、速報→分析の順序、CTAを確認した。新しいカード群のoverflowは0。
+- トップページ全体には変更対象外の決まり手ローマ字表示由来の既存20px overflowがあるため、今回のPRでは変更していない。
+- ブラウザコンソールの2件は既存の広告スクリプトとローカル開発用 `live.js` の接続拒否で、新カード由来の例外はなかった。
 
 

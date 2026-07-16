@@ -263,7 +263,28 @@ describe('Home page', () => {
   });
 
 
-  it('places the news section between the current basho hero and the past-basho map', () => {
+  it('promotes analytics as a 場所を掘る feature beside the live shortcut', () => {
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+
+    const featureGrid = document.querySelector<HTMLElement>('.home-feature-grid');
+    const liveCard = document.querySelector<HTMLElement>('.live-torikumi-section');
+    const analyticsCard = document.querySelector<HTMLElement>('.analytics-feature-card');
+
+    expect(featureGrid).not.toBeNull();
+    expect(liveCard).not.toBeNull();
+    expect(analyticsCard).not.toBeNull();
+    expect(featureGrid).toContainElement(liveCard);
+    expect(featureGrid).toContainElement(analyticsCard);
+    expect(within(analyticsCard!).getByRole('heading', { name: '場所を掘る' })).toBeInTheDocument();
+    expect(within(analyticsCard!).getByText('大相撲アナリティクス')).toBeInTheDocument();
+    expect(within(analyticsCard!).getByRole('link', { name: 'アナリティクスを見る' })).toHaveAttribute('href', '/analytics/');
+  });
+
+  it('places the feature cards and news between the current basho hero and the past-basho map', () => {
     render(
       <MemoryRouter>
         <Home />
@@ -272,25 +293,27 @@ describe('Home page', () => {
 
     const main = document.querySelector('main');
     const hero = document.querySelector('.hero-section');
+    const featureGrid = document.querySelector('.home-feature-grid');
     const live = document.querySelector('.live-torikumi-section');
     const news = document.querySelector('.news-section');
     const firstPastBasho = document.querySelector('.past-basho-section');
 
     expect(main).not.toBeNull();
     expect(hero).not.toBeNull();
+    expect(featureGrid).not.toBeNull();
     expect(live).not.toBeNull();
     expect(news).not.toBeNull();
     expect(firstPastBasho).not.toBeNull();
 
     // The bitwise flag 4 means DOCUMENT_POSITION_FOLLOWING, i.e. `other` is
     // positioned later in the document than `node`.
-    const heroBeforeLive = hero!.compareDocumentPosition(live!) & Node.DOCUMENT_POSITION_FOLLOWING;
-    const liveBeforeNews = live!.compareDocumentPosition(news!) & Node.DOCUMENT_POSITION_FOLLOWING;
+    const heroBeforeFeatures = hero!.compareDocumentPosition(featureGrid!) & Node.DOCUMENT_POSITION_FOLLOWING;
+    const featuresBeforeNews = featureGrid!.compareDocumentPosition(news!) & Node.DOCUMENT_POSITION_FOLLOWING;
     const heroBeforeNews = hero!.compareDocumentPosition(news!) & Node.DOCUMENT_POSITION_FOLLOWING;
     const newsBeforePast = news!.compareDocumentPosition(firstPastBasho!) & Node.DOCUMENT_POSITION_FOLLOWING;
 
-    expect(heroBeforeLive).toBeTruthy();
-    expect(liveBeforeNews).toBeTruthy();
+    expect(heroBeforeFeatures).toBeTruthy();
+    expect(featuresBeforeNews).toBeTruthy();
     expect(heroBeforeNews).toBeTruthy();
     expect(newsBeforePast).toBeTruthy();
   });

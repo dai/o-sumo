@@ -267,9 +267,6 @@ export default function Home() {
               <Link to="/rikishi/" className="cta-button secondary">
                 {t('home.heroRikishi')}
               </Link>
-              <Link to="/analytics/" className="cta-button secondary">
-                アナリティクス
-              </Link>
             </nav>
           </div>
           <div className="hero-visual" aria-hidden="true">
@@ -280,17 +277,32 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="live-torikumi-section" aria-labelledby="live-torikumi-title">
-          <div className="live-torikumi-copy">
-            <h2 id="live-torikumi-title" className="live-torikumi-title">
-              現在の取組、速報中！
-            </h2>
-            <p>{liveTorikumiTarget.description}</p>
-          </div>
-          <Link to={liveTorikumiTarget.href} className="live-torikumi-link">
-            速報を見る
-          </Link>
-        </section>
+        <div className="home-feature-grid">
+          <section className="live-torikumi-section" aria-labelledby="live-torikumi-title">
+            <div className="live-torikumi-copy">
+              <h2 id="live-torikumi-title" className="live-torikumi-title">
+                現在の取組、速報中！
+              </h2>
+              <p>{liveTorikumiTarget.description}</p>
+            </div>
+            <Link to={liveTorikumiTarget.href} className="live-torikumi-link">
+              速報を見る
+            </Link>
+          </section>
+
+          <section className="analytics-feature-card" aria-labelledby="analytics-feature-title">
+            <div className="analytics-feature-copy">
+              <p className="analytics-feature-label">大相撲アナリティクス</p>
+              <h2 id="analytics-feature-title" className="analytics-feature-title">場所を掘る</h2>
+              <p className="analytics-feature-description">
+                勝ち星、無敗力士、決まり手から、今場所の流れを読み解きます。
+              </p>
+            </div>
+            <Link to="/analytics/" className="analytics-feature-link">
+              アナリティクスを見る
+            </Link>
+          </section>
+        </div>
 
         <NewsSection />
 
