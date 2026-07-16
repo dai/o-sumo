@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-16T07:00:09.394869+00:00",
+  "updatedAt": "2026-07-16T08:55:07.416057+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-tokyosports-396039",
-      "title": "【大相撲】炎鵬　軍配差し違えで３敗目　前日に左腕を痛めるも「全然大丈夫です」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-396039",
+      "id": "dmenu-docomo-hochi-20260716-OHT1T51173",
+      "title": "大の里が２勝目　美ノ海に勝つ　前日は物言いの末、敗戦",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260716-OHT1T51173",
       "publishedAt": "2026-07-16",
-      "publishedAtRaw": "東スポWEB　7月16日 15時49分",
+      "publishedAtRaw": "スポーツ報知　7月16日 17時45分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_A53ZZBBFYFBXJB4AP4RGIEGTIE",
-      "title": "琴風氏「もったいないというか何というかね」／名古屋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_A53ZZBBFYFBXJB4AP4RGIEGTIE",
+      "id": "dmenu-docomo-hochi-20260716-OHT1T51175",
+      "title": "【大相撲】綱取りの霧島が初黒星　平戸海に不覚　ハイレベルの優勝には手痛い１敗",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260716-OHT1T51175",
       "publishedAt": "2026-07-16",
-      "publishedAtRaw": "SANSPO　7月16日 15時15分",
+      "publishedAtRaw": "スポーツ報知　7月16日 17時39分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_7BJSPTDTRJHVBOKN3EAYTCZBX4",
-      "title": "琴風氏「左が使えないとなるとちょっと深刻ですよ」／名古屋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_7BJSPTDTRJHVBOKN3EAYTCZBX4",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_M32IAIDV3VIFPE56JNMRXMSTCM",
+      "title": "大相撲コラム　名古屋場所を休場した関脇若隆景、兄がきっと「拾う神」になる",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_M32IAIDV3VIFPE56JNMRXMSTCM",
       "publishedAt": "2026-07-16",
-      "publishedAtRaw": "SANSPO　7月16日 15時06分",
+      "publishedAtRaw": "SANSPO　7月16日 17時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-ans-705450",
-      "title": "大相撲中継で抜かれた元NHKアナ「もう95歳」「元気だなぁ」　花道脇で目撃された大レジェンドに騒然",
-      "url": "https://topics.smt.docomo.ne.jp/article/ans/sports/ans-705450",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_JWZPMULBSJDJJCLIGDO6NNKDKI",
+      "title": "荒汐親方、若隆景は「入院してるんですけど、だいぶ元気に」／名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_JWZPMULBSJDJJCLIGDO6NNKDKI",
       "publishedAt": "2026-07-16",
-      "publishedAtRaw": "THE ANSWER　7月16日 15時03分",
+      "publishedAtRaw": "SANSPO　7月16日 16時56分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_N3D2UPW4V5BVNF4QOHCYXRX4CU",
-      "title": "琴風氏「幕内に戻ってきてからスイスイっと上位に勝ち進んでいけてない」／名古屋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_N3D2UPW4V5BVNF4QOHCYXRX4CU",
+      "id": "dmenu-docomo-ans-705660",
+      "title": "大相撲で騒然「前代未聞だ」館内緊迫の30秒　超異例の出来事「暑さ？」「すごいハプニング」",
+      "url": "https://topics.smt.docomo.ne.jp/article/ans/sports/ans-705660",
       "publishedAt": "2026-07-16",
-      "publishedAtRaw": "SANSPO　7月16日 14時57分",
+      "publishedAtRaw": "THE ANSWER　7月16日 16時47分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
