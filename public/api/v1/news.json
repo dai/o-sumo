@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-16T08:55:07.416057+00:00",
+  "updatedAt": "2026-07-16T10:45:28.148000+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260716-OHT1T51173",
-      "title": "大の里が２勝目　美ノ海に勝つ　前日は物言いの末、敗戦",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260716-OHT1T51173",
+      "id": "dmenu-docomo-tokyosports-396061",
+      "title": "【大相撲】安青錦　大関復帰へあと６勝　気温３７度の〝灼熱地獄〟にも「暑い方が体が動きやすい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-396061",
       "publishedAt": "2026-07-16",
-      "publishedAtRaw": "スポーツ報知　7月16日 17時45分",
+      "publishedAtRaw": "東スポWEB　7月16日 19時26分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260716-OHT1T51175",
-      "title": "【大相撲】綱取りの霧島が初黒星　平戸海に不覚　ハイレベルの優勝には手痛い１敗",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260716-OHT1T51175",
+      "id": "dmenu-docomo-f-bt-tp1-260716-202607160001529",
+      "title": "豊昇龍、豪ノ山退け４勝目「他の人のことを考える余裕はない」全勝の霧島黒星も気にせず",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260716-202607160001529",
       "publishedAt": "2026-07-16",
-      "publishedAtRaw": "スポーツ報知　7月16日 17時39分",
+      "publishedAtRaw": "日刊スポーツ　7月16日 19時16分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_M32IAIDV3VIFPE56JNMRXMSTCM",
-      "title": "大相撲コラム　名古屋場所を休場した関脇若隆景、兄がきっと「拾う神」になる",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_M32IAIDV3VIFPE56JNMRXMSTCM",
+      "id": "dmenu-docomo-20260716115",
+      "title": "大関復帰狙う関脇安青錦　大関琴桜に快勝、４勝１敗で序盤終える「勝負はこれから」【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260716115",
       "publishedAt": "2026-07-16",
-      "publishedAtRaw": "SANSPO　7月16日 17時00分",
+      "publishedAtRaw": "デイリースポーツ　7月16日 19時13分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_JWZPMULBSJDJJCLIGDO6NNKDKI",
-      "title": "荒汐親方、若隆景は「入院してるんですけど、だいぶ元気に」／名古屋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_JWZPMULBSJDJJCLIGDO6NNKDKI",
+      "id": "dmenu-docomo-tokyosports-396058",
+      "title": "【大相撲】横綱大の里が２勝目　師匠・二所ノ関親方は〝愛のムチ〟「勝てる相撲をしてない」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-396058",
       "publishedAt": "2026-07-16",
-      "publishedAtRaw": "SANSPO　7月16日 16時56分",
+      "publishedAtRaw": "東スポWEB　7月16日 19時01分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-ans-705660",
-      "title": "大相撲で騒然「前代未聞だ」館内緊迫の30秒　超異例の出来事「暑さ？」「すごいハプニング」",
-      "url": "https://topics.smt.docomo.ne.jp/article/ans/sports/ans-705660",
+      "id": "dmenu-docomo-abematimes-10260478",
+      "title": "鉄人・玉鷲が「怒ってる」相手力士を手で突き返す 史上9人目通算900勝も立ち合い不成立でまさか…館内ピリつく",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260478",
       "publishedAt": "2026-07-16",
-      "publishedAtRaw": "THE ANSWER　7月16日 16時47分",
+      "publishedAtRaw": "ABEMA TIMES　7月16日 18時55分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
