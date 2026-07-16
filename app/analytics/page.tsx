@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import HomeLink from '../components/HomeLink';
 import { CURRENT_RESULT_PATH, CURRENT_SCHEDULE_PATH } from '../lib/archive-basho-data';
 import { makuuchiData, type Rikishi } from '../lib/sumo-data';
-import { torikumiArchive } from '../lib/torikumi-data';
+import { torikumiArchive, torikumiMonthKey } from '../lib/torikumi-data';
 import './page.css';
 
 type DashboardMetric = {
-  label: string;
+  key: 'makuuchi' | 'records' | 'undefeated' | 'maxWins';
   value: string;
   note: string;
 };
@@ -31,28 +32,28 @@ export function buildDashboardMetrics(rikishi: Rikishi[] = allMakuuchiRikishi())
   const totalWins = rikishi.reduce((sum, wrestler) => sum + (wrestler.wins ?? 0), 0);
   const totalLosses = rikishi.reduce((sum, wrestler) => sum + (wrestler.losses ?? 0), 0);
   const undefeated = rikishi.filter((wrestler) => (wrestler.wins ?? 0) > 0 && (wrestler.losses ?? 0) === 0);
-  const leaders = Math.max(...rikishi.map((wrestler) => wrestler.wins ?? 0));
+  const maxWins = Math.max(...rikishi.map((wrestler) => wrestler.wins ?? 0));
 
   return [
     {
-      label: '幕内力士',
+      key: 'makuuchi',
       value: `${rikishi.length}`,
-      note: '番付データに掲載中の幕内人数',
+      note: '',
     },
     {
-      label: '勝敗入力',
+      key: 'records',
       value: `${totalWins}-${totalLosses}`,
-      note: `勝率 ${formatWinRate(totalWins, totalWins + totalLosses)}`,
+      note: formatWinRate(totalWins, totalWins + totalLosses),
     },
     {
-      label: '無敗力士',
+      key: 'undefeated',
       value: `${undefeated.length}`,
-      note: undefeated.slice(0, 3).map((wrestler) => wrestler.name).join('・') || '該当なし',
+      note: undefeated.slice(0, 3).map((wrestler) => wrestler.name).join('・'),
     },
     {
-      label: '最多勝ライン',
-      value: `${leaders}勝`,
-      note: '幕内の現在トップライン',
+      key: 'maxWins',
+      value: `${maxWins}`,
+      note: '',
     },
   ];
 }
@@ -66,7 +67,7 @@ export function topRikishiByWins(rikishi: Rikishi[] = allMakuuchiRikishi()): Rik
 export function topKimarite(limit = 6): TechniqueCount[] {
   const counts = new Map<string, number>();
   for (const day of torikumiArchive.resultDays ?? []) {
-    for (const match of [...day.data.makuuchi.matches, ...day.data.juryo.matches]) {
+    for (const match of day.data.makuuchi.matches) {
       if (match.kimarite) counts.set(match.kimarite, (counts.get(match.kimarite) ?? 0) + 1);
     }
   }
@@ -78,50 +79,71 @@ export function topKimarite(limit = 6): TechniqueCount[] {
 }
 
 export default function AnalyticsDashboardPage() {
+  const { t, i18n } = useTranslation('common');
   const metrics = buildDashboardMetrics();
   const leaders = topRikishiByWins();
   const techniques = topKimarite();
   const maxTechniqueCount = Math.max(...techniques.map((technique) => technique.count), 1);
+  const bashoYear = Number(torikumiMonthKey.slice(0, 4));
+  const bashoMonth = Number(torikumiMonthKey.slice(4, 6));
+  const englishBashoLabel = `${new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+    timeZone: 'UTC',
+  }).format(new Date(Date.UTC(bashoYear, bashoMonth - 1, 1)))} Basho`;
+  const bashoLabel = i18n.resolvedLanguage === 'en'
+    ? englishBashoLabel
+    : `${torikumiArchive.year}${torikumiArchive.bashoName}`;
+
+  const metricNote = (metric: DashboardMetric): string => {
+    if (metric.key === 'records') return t('analytics.metrics.records.note', { rate: metric.note });
+    if (metric.key === 'undefeated') return metric.note || t('analytics.metrics.undefeated.none');
+    return t(`analytics.metrics.${metric.key}.note`);
+  };
 
   return (
     <div className="analytics-dashboard-page">
       <header className="analytics-dashboard-header">
-        <nav className="site-header-nav" aria-label="サイトナビゲーション">
+        <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
           <HomeLink placement="header" />
         </nav>
-        <p className="analytics-dashboard-eyebrow">July Basho Intelligence</p>
-        <h1 className="analytics-dashboard-title">大相撲アナリティクス</h1>
+        <p className="analytics-dashboard-eyebrow">{t('analytics.eyebrow', { basho: bashoLabel })}</p>
+        <h1 className="analytics-dashboard-title">{t('analytics.title')}</h1>
         <p className="analytics-dashboard-description">
-          幕内の勝敗、上位争い、決まり手傾向をひと目で確認できるダッシュボードです。
+          {t('analytics.description')}
         </p>
         <div className="analytics-dashboard-actions">
-          <Link to={`${CURRENT_RESULT_PATH}/`} className="analytics-dashboard-action primary">取組結果を見る</Link>
-          <Link to={`${CURRENT_SCHEDULE_PATH}/`} className="analytics-dashboard-action">取組予定を見る</Link>
+          <Link to={`${CURRENT_RESULT_PATH}/`} className="analytics-dashboard-action primary">{t('analytics.resultAction')}</Link>
+          <Link to={`${CURRENT_SCHEDULE_PATH}/`} className="analytics-dashboard-action">{t('analytics.scheduleAction')}</Link>
         </div>
       </header>
 
       <main className="analytics-dashboard-main">
-        <section className="analytics-metric-grid" aria-label="主要指標">
+        <section className="analytics-metric-grid" aria-label={t('analytics.metrics.label')}>
           {metrics.map((metric) => (
-            <article key={metric.label} className="analytics-metric-card">
-              <p className="analytics-metric-label">{metric.label}</p>
-              <p className="analytics-metric-value">{metric.value}</p>
-              <p className="analytics-metric-note">{metric.note}</p>
+            <article key={metric.key} className="analytics-metric-card">
+              <p className="analytics-metric-label">{t(`analytics.metrics.${metric.key}.label`)}</p>
+              <p className="analytics-metric-value">
+                {metric.key === 'maxWins' ? t('analytics.metrics.maxWins.value', { count: metric.value }) : metric.value}
+              </p>
+              <p className="analytics-metric-note">{metricNote(metric)}</p>
             </article>
           ))}
         </section>
 
         <section className="analytics-dashboard-panel" aria-labelledby="leaders-heading">
           <div className="analytics-panel-header">
-            <h2 id="leaders-heading">勝ち星リーダー</h2>
-            <p>同勝数の場合は黒星の少ない力士を上位に表示します。</p>
+            <h2 id="leaders-heading">{t('analytics.leaders.title')}</h2>
+            <p>{t('analytics.leaders.description')}</p>
           </div>
           <ol className="analytics-leader-list">
             {leaders.map((wrestler) => (
               <li key={wrestler.id} className="analytics-leader-row">
                 <span className="analytics-leader-name">{wrestler.name}</span>
                 <span className="analytics-leader-rank">{wrestler.rank}</span>
-                <strong className="analytics-leader-record">{wrestler.wins ?? 0}勝{wrestler.losses ?? 0}敗</strong>
+                <strong className="analytics-leader-record">
+                  {t('analytics.leaders.record', { wins: wrestler.wins ?? 0, losses: wrestler.losses ?? 0 })}
+                </strong>
               </li>
             ))}
           </ol>
@@ -129,8 +151,8 @@ export default function AnalyticsDashboardPage() {
 
         <section className="analytics-dashboard-panel" aria-labelledby="kimarite-heading">
           <div className="analytics-panel-header">
-            <h2 id="kimarite-heading">決まり手トレンド</h2>
-            <p>公開済み取組結果から頻出の決まり手を集計しています。</p>
+            <h2 id="kimarite-heading">{t('analytics.kimarite.title')}</h2>
+            <p>{t('analytics.kimarite.description')}</p>
           </div>
           <div className="analytics-technique-list">
             {techniques.map((technique) => (

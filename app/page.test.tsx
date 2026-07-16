@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { act, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import {
@@ -10,6 +10,7 @@ import {
 } from './lib/torikumi-routes';
 import { MARCH2026_TORIKUMI_DATA } from './lib/march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from './lib/may2026-data';
+import { i18n } from './lib/i18n';
 import {
   torikumiArchive,
   torikumiData,
@@ -282,6 +283,23 @@ describe('Home page', () => {
     expect(within(analyticsCard!).getByRole('heading', { name: '場所を掘る' })).toBeInTheDocument();
     expect(within(analyticsCard!).getByText('大相撲アナリティクス')).toBeInTheDocument();
     expect(within(analyticsCard!).getByRole('link', { name: 'アナリティクスを見る' })).toHaveAttribute('href', '/analytics/');
+  });
+
+  it('translates the analytics feature card when English is selected', async () => {
+    await act(() => i18n.changeLanguage('en'));
+
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+
+    const analyticsCard = document.querySelector<HTMLElement>('.analytics-feature-card');
+    expect(analyticsCard).not.toBeNull();
+    expect(within(analyticsCard!).getByRole('heading', { name: 'Dig into the Basho' })).toBeInTheDocument();
+    expect(within(analyticsCard!).getByRole('link', { name: 'View analytics' })).toHaveAttribute('href', '/analytics/');
+
+    await act(() => i18n.changeLanguage('ja'));
   });
 
   it('places the feature cards and news between the current basho hero and the past-basho map', () => {

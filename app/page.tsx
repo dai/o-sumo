@@ -292,14 +292,14 @@ export default function Home() {
 
           <section className="analytics-feature-card" aria-labelledby="analytics-feature-title">
             <div className="analytics-feature-copy">
-              <p className="analytics-feature-label">大相撲アナリティクス</p>
-              <h2 id="analytics-feature-title" className="analytics-feature-title">場所を掘る</h2>
+              <p className="analytics-feature-label">{t('home.analyticsFeatureLabel')}</p>
+              <h2 id="analytics-feature-title" className="analytics-feature-title">{t('home.analyticsFeatureTitle')}</h2>
               <p className="analytics-feature-description">
-                勝ち星、無敗力士、決まり手から、今場所の流れを読み解きます。
+                {t('home.analyticsFeatureDescription')}
               </p>
             </div>
             <Link to="/analytics/" className="analytics-feature-link">
-              アナリティクスを見る
+              {t('home.analyticsFeatureAction')}
             </Link>
           </section>
         </div>

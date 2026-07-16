@@ -51,7 +51,47 @@
     "newsSubsectionSumoNewsTitle": "相撲界ニュース",
     "newsSubsectionSumoNewsLead": "dmenu スポーツから最新 5 件",
     "newsSubsectionSumoNewsSeeAll": "dmenu で見る",
-    "footerDataCredit": "データ出典: 公益財団法人日本相撲協会 / API: dai/o-sumo"
+    "footerDataCredit": "データ出典: 公益財団法人日本相撲協会 / API: dai/o-sumo",
+    "analyticsFeatureLabel": "大相撲アナリティクス",
+    "analyticsFeatureTitle": "場所を掘る",
+    "analyticsFeatureDescription": "勝ち星、無敗力士、決まり手から、今場所の流れを読み解きます。",
+    "analyticsFeatureAction": "アナリティクスを見る"
+  },
+  "analytics": {
+    "eyebrow": "{{basho}}分析",
+    "title": "大相撲アナリティクス",
+    "description": "幕内の勝敗、上位争い、決まり手傾向をひと目で確認できるダッシュボードです。",
+    "resultAction": "取組結果を見る",
+    "scheduleAction": "取組予定を見る",
+    "metrics": {
+      "label": "主要指標",
+      "makuuchi": {
+        "label": "幕内力士",
+        "note": "番付データに掲載中の幕内人数"
+      },
+      "records": {
+        "label": "勝敗入力",
+        "note": "勝率 {{rate}}"
+      },
+      "undefeated": {
+        "label": "無敗力士",
+        "none": "該当なし"
+      },
+      "maxWins": {
+        "label": "最多勝ライン",
+        "value": "{{count}}勝",
+        "note": "幕内の現在トップライン"
+      }
+    },
+    "leaders": {
+      "title": "勝ち星リーダー",
+      "description": "同勝数の場合は黒星の少ない力士を上位に表示します。",
+      "record": "{{wins}}勝{{losses}}敗"
+    },
+    "kimarite": {
+      "title": "決まり手トレンド",
+      "description": "公開済みの幕内取組結果から頻出の決まり手を集計しています。"
+    }
   },
   "kimarite": {
     "cardTitle": "決まり手",

@@ -51,7 +51,47 @@
     "newsSubsectionSumoNewsTitle": "Sumo World News",
     "newsSubsectionSumoNewsLead": "Latest 5 from dmenu Sports",
     "newsSubsectionSumoNewsSeeAll": "View on dmenu",
-    "footerDataCredit": "Data sources: Japan Sumo Association / API: dai/o-sumo"
+    "footerDataCredit": "Data sources: Japan Sumo Association / API: dai/o-sumo",
+    "analyticsFeatureLabel": "Grand Sumo Analytics",
+    "analyticsFeatureTitle": "Dig into the Basho",
+    "analyticsFeatureDescription": "Read the flow of the current basho through wins, undefeated rikishi, and kimarite.",
+    "analyticsFeatureAction": "View analytics"
+  },
+  "analytics": {
+    "eyebrow": "{{basho}} Analytics",
+    "title": "Grand Sumo Analytics",
+    "description": "A dashboard for Makuuchi records, the leading rikishi, and kimarite trends.",
+    "resultAction": "View results",
+    "scheduleAction": "View schedule",
+    "metrics": {
+      "label": "Key metrics",
+      "makuuchi": {
+        "label": "Makuuchi rikishi",
+        "note": "Rikishi listed in the current Makuuchi banzuke"
+      },
+      "records": {
+        "label": "Recorded results",
+        "note": "Win rate {{rate}}"
+      },
+      "undefeated": {
+        "label": "Undefeated rikishi",
+        "none": "None"
+      },
+      "maxWins": {
+        "label": "Leading win total",
+        "value": "{{count}} wins",
+        "note": "Current leading line in Makuuchi"
+      }
+    },
+    "leaders": {
+      "title": "Win Leaders",
+      "description": "Rikishi with fewer losses rank higher when win totals are tied.",
+      "record": "{{wins}}-{{losses}}"
+    },
+    "kimarite": {
+      "title": "Kimarite Trends",
+      "description": "The most frequent kimarite in published Makuuchi results."
+    }
   },
   "kimarite": {
     "cardTitle": "Kimarite",

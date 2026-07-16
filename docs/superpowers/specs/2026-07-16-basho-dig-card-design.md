@@ -33,4 +33,3 @@
 - キーボードフォーカスは既存CTAと同じ明確な表示を使う。
 - テストでカード文言、`/analytics/` 導線、Hero→カード群→NewsのDOM順序を固定する。
 - Playwrightで1440px、390px、ライト、ダーク、横方向overflowを確認する。
-

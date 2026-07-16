@@ -1404,14 +1404,15 @@
 }
 
 .home-editorial .analytics-feature-link {
-  color: var(--yokozuna-text);
+  color: var(--color-on-primary);
   background: var(--color-secondary);
 }
 
 .home-editorial .analytics-feature-link:hover,
 .home-editorial .analytics-feature-link:focus-visible {
   color: var(--color-on-primary);
-  background: var(--color-secondary-light);
+  background: var(--color-secondary);
+  box-shadow: 0 0 0 2px var(--home-paper-deep), 0 0 0 4px var(--color-secondary);
 }
 
 .home-editorial .live-torikumi-title,

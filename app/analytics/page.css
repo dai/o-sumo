@@ -53,10 +53,20 @@
   text-decoration: none;
 }
 
-.analytics-dashboard-action.primary,
-.analytics-dashboard-action:hover {
+.analytics-dashboard-action.primary {
   background: var(--color-secondary);
-  color: var(--yokozuna-text);
+  color: var(--color-on-primary);
+}
+
+.analytics-dashboard-action:hover,
+.analytics-dashboard-action:focus-visible {
+  box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--color-secondary);
+}
+
+.analytics-dashboard-action.primary:hover,
+.analytics-dashboard-action.primary:focus-visible {
+  background: var(--color-secondary);
+  color: var(--color-on-primary);
 }
 
 .analytics-dashboard-main {
@@ -74,7 +84,6 @@
 
 .analytics-metric-card,
 .analytics-dashboard-panel {
-  border: 1px solid var(--color-border);
   background: var(--surface-container-lowest);
   box-shadow: var(--shadow-soft);
 }
