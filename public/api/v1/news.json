@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-17T05:09:55.819095+00:00",
+  "updatedAt": "2026-07-17T06:57:56.920625+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-20260717080",
+      "title": "“史上最強の新弟子”旭富士が無傷２４連勝、歴代３位タイ　２０歳ホープを一蹴【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260717080",
+      "publishedAt": "2026-07-17",
+      "publishedAtRaw": "デイリースポーツ　7月17日 14時50分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260717-OHT1T51064",
+      "title": "横綱のしこ名を継ぐ旭富士、歴代３位タイの序ノ口デビューから２４連勝　佐久間山の最多記録まであと「３」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260717-OHT1T51064",
+      "publishedAt": "2026-07-17",
+      "publishedAtRaw": "スポーツ報知　7月17日 14時16分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-abematimes-10260744",
+      "title": "「柔道家やないか」「ダンスやで」体重76キロ力士、160キロの巨漢を“片足ケンケン”で大逆転白星 “斬新”な攻めに何度もどよめき",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260744",
+      "publishedAt": "2026-07-17",
+      "publishedAtRaw": "ABEMA TIMES　7月17日 14時08分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-sanspo-_sports_sumo_UZWO6GPAMBDNZJ7PXAXO4HK4JQ",
       "title": "白鵬氏「人様に迷惑をかけないということで…」",
       "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_UZWO6GPAMBDNZJ7PXAXO4HK4JQ",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260717062",
       "publishedAt": "2026-07-17",
       "publishedAtRaw": "デイリースポーツ　7月17日 12時14分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10260689",
-      "title": "大相撲七月場所、熱戦最中“ひと際目立つ行司の姿”に熱視線「なかなか見ない」「いいデザインしてる」軍配にも注目",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260689",
-      "publishedAt": "2026-07-17",
-      "publishedAtRaw": "ABEMA TIMES　7月17日 10時44分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10260678",
-      "title": "「え、つよい」「レベチ」序の口全勝優勝の24歳逸材力士、たった3秒の瞬殺劇に驚きの声",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260678",
-      "publishedAt": "2026-07-17",
-      "publishedAtRaw": "ABEMA TIMES　7月17日 9時34分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10260676",
-      "title": "「上、あがんなきゃ！」幕下力士、取組後に“異変”も…救命士へ親方が迅速な指示「無理すんな」館内は激励と安堵の拍手",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260676",
-      "publishedAt": "2026-07-17",
-      "publishedAtRaw": "ABEMA TIMES　7月17日 9時03分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
