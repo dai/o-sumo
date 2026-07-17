@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-16T10:45:28.148000+00:00",
+  "updatedAt": "2026-07-17T00:50:28.857619+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-tokyosports-396061",
-      "title": "【大相撲】安青錦　大関復帰へあと６勝　気温３７度の〝灼熱地獄〟にも「暑い方が体が動きやすい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-396061",
-      "publishedAt": "2026-07-16",
-      "publishedAtRaw": "東スポWEB　7月16日 19時26分",
+      "id": "dmenu-docomo-abematimes-10260678",
+      "title": "「え、つよい」「レベチ」序の口全勝優勝の24歳逸材力士、たった3秒の瞬殺劇に驚きの声",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260678",
+      "publishedAt": "2026-07-17",
+      "publishedAtRaw": "ABEMA TIMES　7月17日 9時34分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260716-202607160001529",
-      "title": "豊昇龍、豪ノ山退け４勝目「他の人のことを考える余裕はない」全勝の霧島黒星も気にせず",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260716-202607160001529",
-      "publishedAt": "2026-07-16",
-      "publishedAtRaw": "日刊スポーツ　7月16日 19時16分",
+      "id": "dmenu-docomo-abematimes-10260676",
+      "title": "「上、あがんなきゃ！」幕下力士、取組後に“異変”も…救命士へ親方が迅速な指示「無理すんな」館内は激励と安堵の拍手",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260676",
+      "publishedAt": "2026-07-17",
+      "publishedAtRaw": "ABEMA TIMES　7月17日 9時03分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260716115",
-      "title": "大関復帰狙う関脇安青錦　大関琴桜に快勝、４勝１敗で序盤終える「勝負はこれから」【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260716115",
-      "publishedAt": "2026-07-16",
-      "publishedAtRaw": "デイリースポーツ　7月16日 19時13分",
+      "id": "dmenu-docomo-abematimes-10260674",
+      "title": "背筋力265kgの男前力士がまさかの顔面プレス＆1分超の激闘であわや！「まわし解けそう」「見えちゃう！」視聴者ヒヤリ",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260674",
+      "publishedAt": "2026-07-17",
+      "publishedAtRaw": "ABEMA TIMES　7月17日 8時38分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-396058",
-      "title": "【大相撲】横綱大の里が２勝目　師匠・二所ノ関親方は〝愛のムチ〟「勝てる相撲をしてない」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-396058",
-      "publishedAt": "2026-07-16",
-      "publishedAtRaw": "東スポWEB　7月16日 19時01分",
+      "id": "dmenu-docomo-abematimes-10260673",
+      "title": "「懸賞金が少年ジャンプ」結びの一番直後に驚きの光景 今場所を象徴する一コマに「ジャンプより厚い」ファン興奮",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260673",
+      "publishedAt": "2026-07-17",
+      "publishedAtRaw": "ABEMA TIMES　7月17日 8時33分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-abematimes-10260478",
-      "title": "鉄人・玉鷲が「怒ってる」相手力士を手で突き返す 史上9人目通算900勝も立ち合い不成立でまさか…館内ピリつく",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260478",
-      "publishedAt": "2026-07-16",
-      "publishedAtRaw": "ABEMA TIMES　7月16日 18時55分",
+      "id": "dmenu-docomo-mainichi-20260717k0000m050010000c",
+      "title": "大関復帰目指す安青錦が4勝目「本当の勝負はこれから」　大相撲",
+      "url": "https://topics.smt.docomo.ne.jp/article/mainichi/sports/mainichi-20260717k0000m050010000c",
+      "publishedAt": "2026-07-17",
+      "publishedAtRaw": "毎日新聞　7月17日 8時20分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
