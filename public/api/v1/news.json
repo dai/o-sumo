@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-17T00:50:28.857619+00:00",
+  "updatedAt": "2026-07-17T03:11:47.019621+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-abematimes-10260689",
+      "title": "大相撲七月場所、熱戦最中“ひと際目立つ行司の姿”に熱視線「なかなか見ない」「いいデザインしてる」軍配にも注目",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260689",
+      "publishedAt": "2026-07-17",
+      "publishedAtRaw": "ABEMA TIMES　7月17日 10時44分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-abematimes-10260678",
       "title": "「え、つよい」「レベチ」序の口全勝優勝の24歳逸材力士、たった3秒の瞬殺劇に驚きの声",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260673",
       "publishedAt": "2026-07-17",
       "publishedAtRaw": "ABEMA TIMES　7月17日 8時33分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-mainichi-20260717k0000m050010000c",
-      "title": "大関復帰目指す安青錦が4勝目「本当の勝負はこれから」　大相撲",
-      "url": "https://topics.smt.docomo.ne.jp/article/mainichi/sports/mainichi-20260717k0000m050010000c",
-      "publishedAt": "2026-07-17",
-      "publishedAtRaw": "毎日新聞　7月17日 8時20分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
