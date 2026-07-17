@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-17T03:11:47.019621+00:00",
+  "updatedAt": "2026-07-17T05:09:55.819095+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_UZWO6GPAMBDNZJ7PXAXO4HK4JQ",
+      "title": "白鵬氏「人様に迷惑をかけないということで…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_UZWO6GPAMBDNZJ7PXAXO4HK4JQ",
+      "publishedAt": "2026-07-17",
+      "publishedAtRaw": "SANSPO　7月17日 12時38分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-20260717062",
+      "title": "４６歳の元十両が勝ち星先行、大雷童「ぶつからないとダメになる」三段目、幕下復帰誓う【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260717062",
+      "publishedAt": "2026-07-17",
+      "publishedAtRaw": "デイリースポーツ　7月17日 12時14分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-abematimes-10260689",
       "title": "大相撲七月場所、熱戦最中“ひと際目立つ行司の姿”に熱視線「なかなか見ない」「いいデザインしてる」軍配にも注目",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260676",
       "publishedAt": "2026-07-17",
       "publishedAtRaw": "ABEMA TIMES　7月17日 9時03分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10260674",
-      "title": "背筋力265kgの男前力士がまさかの顔面プレス＆1分超の激闘であわや！「まわし解けそう」「見えちゃう！」視聴者ヒヤリ",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260674",
-      "publishedAt": "2026-07-17",
-      "publishedAtRaw": "ABEMA TIMES　7月17日 8時38分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10260673",
-      "title": "「懸賞金が少年ジャンプ」結びの一番直後に驚きの光景 今場所を象徴する一コマに「ジャンプより厚い」ファン興奮",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260673",
-      "publishedAt": "2026-07-17",
-      "publishedAtRaw": "ABEMA TIMES　7月17日 8時33分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
