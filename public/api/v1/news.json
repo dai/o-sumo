@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-18T05:03:46.243679+00:00",
+  "updatedAt": "2026-07-18T06:48:44.306573+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260718-OHT1T51119",
-      "title": "三段目・阿龍が無傷の４連勝で勝ち越し　今場所復帰の同部屋の宮乃風と「優勝決定戦をしたい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260718-OHT1T51119",
+      "id": "dmenu-docomo-hochi-20260718-OHT1T51189",
+      "title": "矢後がもろ差しを許して３敗目　後がなくなって「持っている力を振り絞って頑張るだけ」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260718-OHT1T51189",
       "publishedAt": "2026-07-18",
-      "publishedAtRaw": "スポーツ報知　7月18日 13時05分",
+      "publishedAtRaw": "スポーツ報知　7月18日 15時12分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260718-OHT1T51108",
-      "title": "昨年の高校横綱・沢田が３勝目　定年まで残り約１年の師匠の境川親方のためにも「上がれるところまで上がりたい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260718-OHT1T51108",
+      "id": "dmenu-docomo-20260718082",
+      "title": "好調から暗転の若ノ勝が右膝負傷で休場、師匠の湊川親方「捲土重来、必ず返り咲く」【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260718082",
       "publishedAt": "2026-07-18",
-      "publishedAtRaw": "スポーツ報知　7月18日 12時52分",
+      "publishedAtRaw": "デイリースポーツ　7月18日 15時01分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260718-0154",
-      "title": "5連勝発進だった若ノ勝　「右大腿骨骨挫傷」で7日目から休場　藤凌駕戦で負傷",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260718-0154",
+      "id": "dmenu-docomo-f-bt-tp1-260718-202607180000693",
+      "title": "「どうですかね？」イケメン力士大森、初のびんづけ油でオールバック　相撲は完勝で勝ち越し王手",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260718-202607180000693",
       "publishedAt": "2026-07-18",
-      "publishedAtRaw": "スポニチアネックス　7月18日 12時40分",
+      "publishedAtRaw": "日刊スポーツ　7月18日 14時54分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-jiji-2026071800225",
-      "title": "若ノ勝が休場＝大相撲名古屋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026071800225",
+      "id": "dmenu-docomo-20260718078",
+      "title": "“史上最強の新弟子”旭富士が無傷２５連勝で歴代単独３位に！１９歳ホープに立ち会い変化決める【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260718078",
       "publishedAt": "2026-07-18",
-      "publishedAtRaw": "時事通信　7月18日 12時25分",
+      "publishedAtRaw": "デイリースポーツ　7月18日 14時33分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260718-202607180000355",
-      "title": "休場の若ノ勝は「右大腿骨骨挫傷」　湊川親方「捲土重来の一言。精神的に成長できる」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260718-202607180000355",
+      "id": "dmenu-docomo-hochi-20260718-OHT1T51086",
+      "title": "横綱のしこ名を継ぐ旭富士、史上３位の序ノ口デビューから２５連勝　佐久間山の最多記録まであと「２」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260718-OHT1T51086",
       "publishedAt": "2026-07-18",
-      "publishedAtRaw": "日刊スポーツ　7月18日 11時58分",
+      "publishedAtRaw": "スポーツ報知　7月18日 14時11分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
