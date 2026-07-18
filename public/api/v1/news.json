@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-18T08:40:51.739198+00:00",
+  "updatedAt": "2026-07-18T10:34:05.568448+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260718-OHT1T51281",
-      "title": "幕下・生田目がストレート勝ち越し　５番相撲で２５連勝中の旭富士と対戦の可能性「燃えますね。話題をかっさらいたい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260718-OHT1T51281",
+      "id": "dmenu-docomo-f-bt-tp1-260718-202607180001520",
+      "title": "安青錦６勝目　藤ノ川が変化も冷静に対応「ここから」大関復帰の10勝まで残り８日間であと４勝",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260718-202607180001520",
       "publishedAt": "2026-07-18",
-      "publishedAtRaw": "スポーツ報知　7月18日 17時19分",
+      "publishedAtRaw": "日刊スポーツ　7月18日 19時26分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260718-202607180000939",
-      "title": "41歳玉鷲　通算出場1800回を白星で飾るも「記録に関心ない」　関心があるのは…",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260718-202607180000939",
+      "id": "dmenu-docomo-f-bt-tp1-260718-202607180001477",
+      "title": "強さ戻った！大の里、復調の３連勝　相撲勘戻り白星先行「気持ち的にだいぶ楽になってきた」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260718-202607180001477",
       "publishedAt": "2026-07-18",
-      "publishedAtRaw": "日刊スポーツ　7月18日 16時54分",
+      "publishedAtRaw": "日刊スポーツ　7月18日 19時19分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_UDROZ5MTENHFTG5JPF4MN35HDE",
-      "title": "琴風氏「元気でしたからね。本人が一番つらいでしょうね。ですけど…」／名古屋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_UDROZ5MTENHFTG5JPF4MN35HDE",
+      "id": "dmenu-docomo-f-bt-tp1-260718-202607180001389",
+      "title": "豊昇龍、右ひざにテーピングも「問題ないよ」平戸海に豪快なすくい投げ",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260718-202607180001389",
       "publishedAt": "2026-07-18",
-      "publishedAtRaw": "SANSPO　7月18日 16時53分",
+      "publishedAtRaw": "日刊スポーツ　7月18日 19時16分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260718-0232",
-      "title": "平幕・獅司が初黒星　7日目で幕内全勝消える　錦富士に完敗「下から手が…対応できなかった」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260718-0232",
+      "id": "dmenu-docomo-hochi-20260718-OHT1T51352",
+      "title": "十両・炎鵬が３勝目　黒星先行も「一日一日なので気持ちで負けないように」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260718-OHT1T51352",
       "publishedAt": "2026-07-18",
-      "publishedAtRaw": "スポニチアネックス　7月18日 16時32分",
+      "publishedAtRaw": "スポーツ報知　7月18日 19時11分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260718-OHT1T51234",
-      "title": "“イケメン幕下”大森　勝ち越し王手の３勝目　巨漢に上手出し投げで「自分の形にすることが出来た」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260718-OHT1T51234",
+      "id": "dmenu-docomo-20260718125",
+      "title": "大の里が３連勝で勝ち星先行「立ち合いも土俵際も良かった」　圧倒された伯乃富士は脱帽「横綱がいつもより大きく見えた」",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260718125",
       "publishedAt": "2026-07-18",
-      "publishedAtRaw": "スポーツ報知　7月18日 16時24分",
+      "publishedAtRaw": "デイリースポーツ　7月18日 19時09分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
