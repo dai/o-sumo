@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-18T03:10:06.564481+00:00",
+  "updatedAt": "2026-07-18T05:03:46.243679+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,20 +16,29 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-f-bt-tp1-260718-202607180000355",
-      "title": "休場の若ノ勝は「右大腿骨骨挫傷」　湊川親方「捲土重来の一言。精神的に成長できる」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260718-202607180000355",
+      "id": "dmenu-docomo-hochi-20260718-OHT1T51119",
+      "title": "三段目・阿龍が無傷の４連勝で勝ち越し　今場所復帰の同部屋の宮乃風と「優勝決定戦をしたい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260718-OHT1T51119",
       "publishedAt": "2026-07-18",
-      "publishedAtRaw": "日刊スポーツ　7月18日 11時58分",
+      "publishedAtRaw": "スポーツ報知　7月18日 13時05分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-kyodo_nor-2026071801000500",
-      "title": "幕内若ノ勝が休場、右膝負傷　名古屋場所、再出場せず",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026071801000500",
+      "id": "dmenu-docomo-hochi-20260718-OHT1T51108",
+      "title": "昨年の高校横綱・沢田が３勝目　定年まで残り約１年の師匠の境川親方のためにも「上がれるところまで上がりたい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260718-OHT1T51108",
       "publishedAt": "2026-07-18",
-      "publishedAtRaw": "共同通信　7月18日 11時49分",
+      "publishedAtRaw": "スポーツ報知　7月18日 12時52分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260718-0154",
+      "title": "5連勝発進だった若ノ勝　「右大腿骨骨挫傷」で7日目から休場　藤凌駕戦で負傷",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260718-0154",
+      "publishedAt": "2026-07-18",
+      "publishedAtRaw": "スポニチアネックス　7月18日 12時40分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
@@ -38,25 +47,16 @@
       "title": "若ノ勝が休場＝大相撲名古屋場所",
       "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026071800225",
       "publishedAt": "2026-07-18",
-      "publishedAtRaw": "時事通信　7月18日 11時47分",
+      "publishedAtRaw": "時事通信　7月18日 12時25分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-chuspo-1283044",
-      "title": "前日に車いす退場、若ノ勝は骨挫傷で休場 師匠の湊川親方は「捲土重来の精神。サポートしていく」【大相撲名古屋場所】",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1283044",
+      "id": "dmenu-docomo-f-bt-tp1-260718-202607180000355",
+      "title": "休場の若ノ勝は「右大腿骨骨挫傷」　湊川親方「捲土重来の一言。精神的に成長できる」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260718-202607180000355",
       "publishedAt": "2026-07-18",
-      "publishedAtRaw": "中日スポーツ　7月18日 11時45分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260718-OHT1T51076",
-      "title": "休場の若ノ勝は右大腿骨骨挫傷　再出場せず　師匠の湊川親方「捲土重来の精神を持って必ず返り咲く」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260718-OHT1T51076",
-      "publishedAt": "2026-07-18",
-      "publishedAtRaw": "スポーツ報知　7月18日 11時35分",
+      "publishedAtRaw": "日刊スポーツ　7月18日 11時58分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
