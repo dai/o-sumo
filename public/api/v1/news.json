@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-18T00:46:56.065719+00:00",
+  "updatedAt": "2026-07-18T03:10:06.564481+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-abematimes-10260914",
-      "title": "9月で50歳…角界の“休まぬ鉄人”、21歳差の若手をことごとく跳ね返す粘り 「元気もらえた」「ほんと感動」諦めない姿勢に感動の声",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260914",
+      "id": "dmenu-docomo-f-bt-tp1-260718-202607180000355",
+      "title": "休場の若ノ勝は「右大腿骨骨挫傷」　湊川親方「捲土重来の一言。精神的に成長できる」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260718-202607180000355",
       "publishedAt": "2026-07-18",
-      "publishedAtRaw": "ABEMA TIMES　7月18日 9時01分",
+      "publishedAtRaw": "日刊スポーツ　7月18日 11時58分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-abematimes-10260913",
-      "title": "「ドスっ！」力士の“まわし蹴り”が行司を直撃するハプニング “鋭すぎる技”が生んだ珍事 腹部を押さえる仕草に「大丈夫？」",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260913",
+      "id": "dmenu-docomo-kyodo_nor-2026071801000500",
+      "title": "幕内若ノ勝が休場、右膝負傷　名古屋場所、再出場せず",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026071801000500",
       "publishedAt": "2026-07-18",
-      "publishedAtRaw": "ABEMA TIMES　7月18日 8時40分",
+      "publishedAtRaw": "共同通信　7月18日 11時49分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-abematimes-10260907",
-      "title": "「画ヂカラつよすぎ」大相撲、感動の場面で“ただならぬ”存在感を放つ力士の姿 親方との“奇跡的な2ショット”に「見守る親父と妖精」「存在感ハンパない」",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260907",
+      "id": "dmenu-docomo-jiji-2026071800225",
+      "title": "若ノ勝が休場＝大相撲名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026071800225",
       "publishedAt": "2026-07-18",
-      "publishedAtRaw": "ABEMA TIMES　7月18日 8時04分",
+      "publishedAtRaw": "時事通信　7月18日 11時47分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-396210",
-      "title": "【大相撲】安青錦　大関返り咲きへ平常心　パワーの源は「好物ちゃんこ」と「アニメ鑑賞」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-396210",
+      "id": "dmenu-docomo-chuspo-1283044",
+      "title": "前日に車いす退場、若ノ勝は骨挫傷で休場 師匠の湊川親方は「捲土重来の精神。サポートしていく」【大相撲名古屋場所】",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1283044",
       "publishedAt": "2026-07-18",
-      "publishedAtRaw": "東スポWEB　7月18日 6時00分",
+      "publishedAtRaw": "中日スポーツ　7月18日 11時45分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260718-0028",
-      "title": "【二所ノ関親方　真眼】高い技術力を持つ伯乃富士が台風の目に　相乗効果もあって元気な伊勢ケ浜勢",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260718-0028",
+      "id": "dmenu-docomo-hochi-20260718-OHT1T51076",
+      "title": "休場の若ノ勝は右大腿骨骨挫傷　再出場せず　師匠の湊川親方「捲土重来の精神を持って必ず返り咲く」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260718-OHT1T51076",
       "publishedAt": "2026-07-18",
-      "publishedAtRaw": "スポニチアネックス　7月18日 4時59分",
+      "publishedAtRaw": "スポーツ報知　7月18日 11時35分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
