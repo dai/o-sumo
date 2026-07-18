@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-17T10:38:51.179044+00:00",
+  "updatedAt": "2026-07-18T00:46:56.065719+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-tokyosports-396162",
-      "title": "【大相撲】平幕・獅司が無傷６連勝で単独首位　左肩手術で全身麻酔も…両親からは「日本はすごいから大丈夫だ」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-396162",
-      "publishedAt": "2026-07-17",
-      "publishedAtRaw": "東スポWEB　7月17日 19時20分",
+      "id": "dmenu-docomo-abematimes-10260914",
+      "title": "9月で50歳…角界の“休まぬ鉄人”、21歳差の若手をことごとく跳ね返す粘り 「元気もらえた」「ほんと感動」諦めない姿勢に感動の声",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260914",
+      "publishedAt": "2026-07-18",
+      "publishedAtRaw": "ABEMA TIMES　7月18日 9時01分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260717115",
-      "title": "好調の若ノ勝が負傷、車いすで運ばれる　師匠の元貴景勝「好事魔多し、いい時にケガをする」【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260717115",
-      "publishedAt": "2026-07-17",
-      "publishedAtRaw": "デイリースポーツ　7月17日 18時57分",
+      "id": "dmenu-docomo-abematimes-10260913",
+      "title": "「ドスっ！」力士の“まわし蹴り”が行司を直撃するハプニング “鋭すぎる技”が生んだ珍事 腹部を押さえる仕草に「大丈夫？」",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260913",
+      "publishedAt": "2026-07-18",
+      "publishedAtRaw": "ABEMA TIMES　7月18日 8時40分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260717-0264",
-      "title": "ウクライナ出身の平幕・獅司が単独トップ「相撲を取れればいい」初の6連勝　先場所千秋楽翌日に左肩手術",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260717-0264",
-      "publishedAt": "2026-07-17",
-      "publishedAtRaw": "スポニチアネックス　7月17日 18時56分",
+      "id": "dmenu-docomo-abematimes-10260907",
+      "title": "「画ヂカラつよすぎ」大相撲、感動の場面で“ただならぬ”存在感を放つ力士の姿 親方との“奇跡的な2ショット”に「見守る親父と妖精」「存在感ハンパない」",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10260907",
+      "publishedAt": "2026-07-18",
+      "publishedAtRaw": "ABEMA TIMES　7月18日 8時04分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260717-OHT1T51114",
-      "title": "大の里が平戸海を下す　３勝３敗五分に",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260717-OHT1T51114",
-      "publishedAt": "2026-07-17",
-      "publishedAtRaw": "スポーツ報知　7月17日 17時57分",
+      "id": "dmenu-docomo-tokyosports-396210",
+      "title": "【大相撲】安青錦　大関返り咲きへ平常心　パワーの源は「好物ちゃんこ」と「アニメ鑑賞」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-396210",
+      "publishedAt": "2026-07-18",
+      "publishedAtRaw": "東スポWEB　7月18日 6時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260717080",
-      "title": "“史上最強の新弟子”旭富士が無傷２４連勝、歴代３位タイ　２０歳ホープを一蹴【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260717080",
-      "publishedAt": "2026-07-17",
-      "publishedAtRaw": "デイリースポーツ　7月17日 14時50分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260718-0028",
+      "title": "【二所ノ関親方　真眼】高い技術力を持つ伯乃富士が台風の目に　相乗効果もあって元気な伊勢ケ浜勢",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260718-0028",
+      "publishedAt": "2026-07-18",
+      "publishedAtRaw": "スポニチアネックス　7月18日 4時59分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
