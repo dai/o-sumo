@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-19T08:53:28.812923+00:00",
+  "updatedAt": "2026-07-19T10:36:09.766658+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260719-OHT1T51303",
-      "title": "安青錦が１敗で首位を堅持　激しい相撲で、土俵下に落ちた際には、左足を気にする様子も　大関復帰にあと３勝",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260719-OHT1T51303",
+      "id": "dmenu-docomo-sponichi-spngoo-20260719-0354",
+      "title": "綱獲り霧島「最初に攻められたけど…」関脇・熱海富士を下して1敗死守　後半戦へ「一日一番ですから」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260719-0354",
       "publishedAt": "2026-07-19",
-      "publishedAtRaw": "スポーツ報知　7月19日 17時36分",
+      "publishedAtRaw": "スポニチアネックス　7月19日 19時21分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-dailyshincho-1477326",
-      "title": "土俵際でジャンプした「大の里」は横綱として“姑息”か？　改めて問いたい「死に体」の判断基準…大の里は「負け」でも、豪ノ山を「勝ち」とすることへの違和感",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailyshincho/sports/dailyshincho-1477326",
+      "id": "dmenu-docomo-f-bt-tp1-260719-202607190001620",
+      "title": "霧島が熱海富士退け１敗堅持　優勝への意識は考えず「楽しんで、楽しく」後半戦へ",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260719-202607190001620",
       "publishedAt": "2026-07-19",
-      "publishedAtRaw": "デイリー新潮　7月19日 17時00分",
+      "publishedAtRaw": "日刊スポーツ　7月19日 19時18分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-kyodo_nor-2026071901000600",
-      "title": "相撲協会、中京大と連携協定締結　文化発展目的に",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026071901000600",
+      "id": "dmenu-docomo-sponichi-spngoo-20260719-0343",
+      "title": "「こんな小手先の相撲を…」ダメ出し連発の境川親方がトレンド入り　「激オコ」「愛ある喝」と反応さまざま",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260719-0343",
       "publishedAt": "2026-07-19",
-      "publishedAtRaw": "共同通信　7月19日 16時58分",
+      "publishedAtRaw": "スポニチアネックス　7月19日 19時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260719-OHT1T51245",
-      "title": "日本相撲協会、中京大＆実践女子大と連携協定　八角理事長「若い人の感性」を歓迎",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260719-OHT1T51245",
+      "id": "dmenu-docomo-f-bt-tp1-260719-202607190001474",
+      "title": "左足親指の爪が浮き、血が出る　７勝目の安青錦が土俵下に転落　支度部屋で負傷個所を説明",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260719-202607190001474",
       "publishedAt": "2026-07-19",
-      "publishedAtRaw": "スポーツ報知　7月19日 16時18分",
+      "publishedAtRaw": "日刊スポーツ　7月19日 18時58分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260719-OHT1T51228",
-      "title": "東海大柔道部出身・岡田、勝ち越し王手　時健龍に１年前の雪辱",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260719-OHT1T51228",
+      "id": "dmenu-docomo-f-bt-tp1-260719-202607190001355",
+      "title": "大の里４連勝　２日連続の電車道で王鵬圧倒　元若乃花「戦車ですよ」後半優勝争いに期待",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260719-202607190001355",
       "publishedAt": "2026-07-19",
-      "publishedAtRaw": "スポーツ報知　7月19日 15時45分",
+      "publishedAtRaw": "日刊スポーツ　7月19日 18時41分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
