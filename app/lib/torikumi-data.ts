@@ -59,8 +59,8 @@ export interface TorikumiDataSet {
 export const torikumiData: TorikumiDataSet = {
   "bashoName": "七月場所",
   "year": "令和八年",
-  "updatedAt": "2026-07-18T19:33:55+09:00",
-  "resultUpdatedAt": "2026-07-18T18:38:10+09:00",
+  "updatedAt": "2026-07-19T14:04:13+09:00",
+  "resultUpdatedAt": "2026-07-19T14:04:13+09:00",
   "scheduleUpdatedAt": "2026-07-18T19:33:55+09:00",
   "today": {
     "makuuchi": {
@@ -5334,7 +5334,18 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "中日： 令和8年7月19日(日)",
           "division": "幕内",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            }
+          ]
         },
         "juryo": {
           "day": 8,
@@ -5342,7 +5353,18 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "中日： 令和8年7月19日(日)",
           "division": "十両",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3334,
+              "name": "白鷹山",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
+            }
+          ]
         }
       }
     },
