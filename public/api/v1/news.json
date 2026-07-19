@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-19T05:10:20.291383+00:00",
+  "updatedAt": "2026-07-19T07:01:32.136835+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-hochi-20260719-OHT1T51228",
+      "title": "東海大柔道部出身・岡田、勝ち越し王手　時健龍に１年前の雪辱",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260719-OHT1T51228",
+      "publishedAt": "2026-07-19",
+      "publishedAtRaw": "スポーツ報知　7月19日 15時45分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-f-bt-tp1-260719-202607190000769",
+      "title": "カメラ目線の貴乃花氏「卵４つです」夏バテ防止メニュー公開「奥様に感謝ですね」「幸せそう」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260719-202607190000769",
+      "publishedAt": "2026-07-19",
+      "publishedAtRaw": "日刊スポーツ　7月19日 15時36分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-abematimes-10261189",
+      "title": "39歳“土俵の妖精”、24歳差190センチの巨漢を“電車道”！ 史上ワースト“41場所連続負け越し”記録に「待った」をかける激勝",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261189",
+      "publishedAt": "2026-07-19",
+      "publishedAtRaw": "ABEMA TIMES　7月19日 15時32分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-sponichi-spngoo-20260719-0223",
       "title": "3人目の英国出身力士、栄誠はイングランド出身として紹介される　新序出世披露",
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260719-0223",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260719-OHT1T51173",
       "publishedAt": "2026-07-19",
       "publishedAtRaw": "スポーツ報知　7月19日 13時44分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260719-OHT1T51123",
-      "title": "３９歳・森麗が初白星　２３年前に初めて番付に名前が載った名古屋場所で「勝ち越したい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260719-OHT1T51123",
-      "publishedAt": "2026-07-19",
-      "publishedAtRaw": "スポーツ報知　7月19日 11時28分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10261116",
-      "title": "「角界一のお辞儀」力士の“深すぎる”礼が話題 「丁寧な所作」称賛相次ぐ",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261116",
-      "publishedAt": "2026-07-19",
-      "publishedAtRaw": "ABEMA TIMES　7月19日 8時53分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10261114",
-      "title": "「初めて見た」土俵上に“ポツン”と忘れ物の珍光景 呼出が迅速対応",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261114",
-      "publishedAt": "2026-07-19",
-      "publishedAtRaw": "ABEMA TIMES　7月19日 8時18分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
