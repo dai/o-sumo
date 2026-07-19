@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-19T03:12:48.834995+00:00",
+  "updatedAt": "2026-07-19T05:10:20.291383+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260719-0223",
+      "title": "3人目の英国出身力士、栄誠はイングランド出身として紹介される　新序出世披露",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260719-0223",
+      "publishedAt": "2026-07-19",
+      "publishedAtRaw": "スポニチアネックス　7月19日 13時51分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260719-OHT1T51173",
+      "title": "【８日目の見所】霧島と熱海富士の一番は前半戦の最大のヤマ場　力を付けている熱海富士の馬力を霧島が止められるか",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260719-OHT1T51173",
+      "publishedAt": "2026-07-19",
+      "publishedAtRaw": "スポーツ報知　7月19日 13時44分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-hochi-20260719-OHT1T51123",
       "title": "３９歳・森麗が初白星　２３年前に初めて番付に名前が載った名古屋場所で「勝ち越したい」",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261114",
       "publishedAt": "2026-07-19",
       "publishedAtRaw": "ABEMA TIMES　7月19日 8時18分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10261110",
-      "title": "「なんでこんな歩き方w」“クセ強”力士の入場シーンにファン熱視線 カメラが捉えた花道での一コマ「歩き方の癖よw」",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261110",
-      "publishedAt": "2026-07-19",
-      "publishedAtRaw": "ABEMA TIMES　7月19日 7時31分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_TRGJ5DN34RBOFF6J7YO6G6OPOA",
-      "title": "花田虎上氏「存在だけでみんな怖がる人だから」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_TRGJ5DN34RBOFF6J7YO6G6OPOA",
-      "publishedAt": "2026-07-19",
-      "publishedAtRaw": "SANSPO　7月19日 7時30分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
