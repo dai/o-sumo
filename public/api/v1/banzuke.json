@@ -1,7 +1,7 @@
 {
   "bashoName": "七月場所",
   "year": "令和八年",
-  "updatedAt": "2026-07-19T17:47:27+09:00",
+  "updatedAt": "2026-07-19T18:30:19+09:00",
   "makuuchi": [
     {
       "title": "横綱",
@@ -36,7 +36,7 @@
           "yomi": "おおのさと",
           "rank": "横綱",
           "side": "west",
-          "wins": 4,
+          "wins": 5,
           "losses": 3,
           "draws": 0,
           "results": [
@@ -47,7 +47,7 @@
             "win",
             "win",
             "win",
-            null
+            "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/",
           "memo": ""
@@ -234,7 +234,7 @@
           "rank": "小結",
           "side": "west",
           "wins": 1,
-          "losses": 6,
+          "losses": 7,
           "draws": 0,
           "results": [
             "loss",
@@ -244,7 +244,7 @@
             "loss",
             "loss",
             "loss",
-            null
+            "loss"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/",
           "memo": ""
