@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-20T09:13:36.873404+00:00",
+  "updatedAt": "2026-07-20T11:06:26.542394+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-abematimes-10261398",
-      "title": "ぜい肉“ほぼ皆無”細マッチョ力士、78キロ重たい相手を土俵際でぶん投げた 耐える…動く…繰り広げられた“死闘”に館内大沸騰",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261398",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_HC2KFKYXYBCIHAI4NUPSMPOAMM",
+      "title": "舞の海氏「全く負けることはなかったんですけどね」／名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_HC2KFKYXYBCIHAI4NUPSMPOAMM",
       "publishedAt": "2026-07-20",
-      "publishedAtRaw": "ABEMA TIMES　7月20日 18時00分",
+      "publishedAtRaw": "SANSPO　7月20日 19時56分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-396509",
-      "title": "【大相撲】獅司が幕内の勝ち越し第１号「うれししです」お決まりのフレーズで喜びを表現",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-396509",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_NQWWVL3NAVGXZLAH62HXYMKIW4",
+      "title": "舞の海氏「一人で動いていって一人で負けてる相撲。もったいない」／名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_NQWWVL3NAVGXZLAH62HXYMKIW4",
       "publishedAt": "2026-07-20",
-      "publishedAtRaw": "東スポWEB　7月20日 17時03分",
+      "publishedAtRaw": "SANSPO　7月20日 19時50分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260720-0234",
-      "title": "高安が2敗対決を制して7勝目　機敏な動きで錦富士を土俵の外へ吹っ飛ばす",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260720-0234",
+      "id": "dmenu-docomo-hochi-20260720-OHT1T51370",
+      "title": "安青錦が横綱・大の里に初勝利「相撲としては良くなかったが、体の反応が良かった」…大関復帰まで残り２勝",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260720-OHT1T51370",
       "publishedAt": "2026-07-20",
-      "publishedAtRaw": "スポニチアネックス　7月20日 17時00分",
+      "publishedAtRaw": "スポーツ報知　7月20日 19時46分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_P3VGAU2L2BJA7FLZ2LFJWTSN64",
-      "title": "ベテラン記者コラム　若隆景が緊急手術で休場…若者頭転身の兄・若隆元は「メンター」に適任",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_P3VGAU2L2BJA7FLZ2LFJWTSN64",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_4X546CIH3ZANXDST6AQII5RY6A",
+      "title": "舞の海氏「これは完全に高安ですね」／名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_4X546CIH3ZANXDST6AQII5RY6A",
       "publishedAt": "2026-07-20",
-      "publishedAtRaw": "SANSPO　7月20日 17時00分",
+      "publishedAtRaw": "SANSPO　7月20日 19時45分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260720-0232",
-      "title": "琴栄峰が藤凌駕に快勝　2日目から8連勝で自己最速の勝ち越し！1敗でトップ守る",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260720-0232",
+      "id": "dmenu-docomo-20260720137",
+      "title": "ＩＧアリーナが騒然、小兵の藤ノ川が１８５キロ王鵬をつり上げる【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260720137",
       "publishedAt": "2026-07-20",
-      "publishedAtRaw": "スポニチアネックス　7月20日 16時55分",
+      "publishedAtRaw": "デイリースポーツ　7月20日 19時42分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
