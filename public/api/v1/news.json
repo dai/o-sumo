@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-20T05:20:56.648398+00:00",
+  "updatedAt": "2026-07-20T07:19:19.484683+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260720-OHT1T51181",
-      "title": "昨年の高校横綱・沢田が４勝目　勝ち越しのかかった一番に「とても緊張した」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260720-OHT1T51181",
+      "id": "dmenu-docomo-hochi-20260720-OHT1T51239",
+      "title": "元十両・生田目が最強の研修生・旭富士のデビューからの連勝を２５で止める　「頑張らないといけない」と休場中の師匠・二子山親方の檄に発奮",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260720-OHT1T51239",
       "publishedAt": "2026-07-20",
-      "publishedAtRaw": "スポーツ報知　7月20日 12時53分",
+      "publishedAtRaw": "スポーツ報知　7月20日 15時59分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260720-OHT1T51176",
-      "title": "左腕手術から復帰の元十両・宮乃風が無傷の５連勝「もちろん優勝を目指している」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260720-OHT1T51176",
+      "id": "dmenu-docomo-chuspo-1283972",
+      "title": "「史上最強の新弟子」デビュー25連勝の旭富士を止めた生田目、２人の支えを挙げて感謝【大相撲名古屋場所】",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1283972",
       "publishedAt": "2026-07-20",
-      "publishedAtRaw": "スポーツ報知　7月20日 12時33分",
+      "publishedAtRaw": "中日スポーツ　7月20日 15時41分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260720-OHT1T51170",
-      "title": "序二段・白月狼が無傷の５連勝　場所前に師匠の朝日山親方が課したノルマの５勝到達に「プレッシャーをかけないようにしてくれたのだと思う」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260720-OHT1T51170",
+      "id": "dmenu-docomo-f-bt-tp1-260720-202607200000759",
+      "title": "旭富士の連勝を25で止めたのは生田目「応援のおかげ」　体調不良の二子山親方に朗報届けた",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260720-202607200000759",
       "publishedAt": "2026-07-20",
-      "publishedAtRaw": "スポーツ報知　7月20日 12時22分",
+      "publishedAtRaw": "日刊スポーツ　7月20日 15時34分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_QPDRBE63ZBEETMI3VS2SADEEWI",
-      "title": "境川親方「いつも最後の最後に残念な結果にはなってるんですけど…」／名古屋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_QPDRBE63ZBEETMI3VS2SADEEWI",
+      "id": "dmenu-docomo-chuspo-1283968",
+      "title": "デビュー25連勝の旭富士を撃破！ 十両経験者の生田目にIGアリーナ喝采 「下積みで苦労」相手に思いやりも【大相撲名古屋場所】",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1283968",
       "publishedAt": "2026-07-20",
-      "publishedAtRaw": "SANSPO　7月20日 12時12分",
+      "publishedAtRaw": "中日スポーツ　7月20日 15時33分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_XI6HIIVDSVASTKQC5QHMQDUVZU",
-      "title": "境川親方「どこ行っても応援、声援が多い。そういう期待に応えないかん」／名古屋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_XI6HIIVDSVASTKQC5QHMQDUVZU",
+      "id": "dmenu-docomo-sponichi-spngoo-20260720-0209",
+      "title": "旭富士　序ノ口デビュー以来の連勝が25で止まる　元十両の生田目に突き出される",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260720-0209",
       "publishedAt": "2026-07-20",
-      "publishedAtRaw": "SANSPO　7月20日 11時52分",
+      "publishedAtRaw": "スポニチアネックス　7月20日 15時15分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
