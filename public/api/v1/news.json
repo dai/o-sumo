@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-20T01:37:26.820359+00:00",
+  "updatedAt": "2026-07-20T03:13:51.695572+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_XI6HIIVDSVASTKQC5QHMQDUVZU",
+      "title": "境川親方「どこ行っても応援、声援が多い。そういう期待に応えないかん」／名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_XI6HIIVDSVASTKQC5QHMQDUVZU",
+      "publishedAt": "2026-07-20",
+      "publishedAtRaw": "SANSPO　7月20日 11時52分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-abematimes-10261286",
+      "title": "ひぇー！ “体重2倍”差対決で「背骨折れそう」力士の上体が90度に…“ひやり”の場面に館内どよめき",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261286",
+      "publishedAt": "2026-07-20",
+      "publishedAtRaw": "ABEMA TIMES　7月20日 10時55分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-abematimes-10261281",
+      "title": "胸のお肉を“ムギュっ”と… “ほっそり美脚”の巨漢力士、土俵際での攻防にひやり 相手力士咄嗟の行動に「やさしいね」「胸のお肉をw」",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261281",
+      "publishedAt": "2026-07-20",
+      "publishedAtRaw": "ABEMA TIMES　7月20日 10時36分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-abematimes-10261279",
       "title": "「プロレス？」「スープレックス」大相撲、まさかの体勢から静寂を破る衝撃結末 決まり手係も“長考”の“超珍手”決着",
       "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261279",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261276",
       "publishedAt": "2026-07-20",
       "publishedAtRaw": "ABEMA TIMES　7月20日 9時47分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10261267",
-      "title": "「温厚な霧島が…」取組直後に“激高”、熱海富士に詰め寄る 一体、何が？ 「立ち合い？」「あれはイラっとする」ファン困惑",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261267",
-      "publishedAt": "2026-07-20",
-      "publishedAtRaw": "ABEMA TIMES　7月20日 8時30分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_4JXCYPFOHRAPLAO4I6FPOBDFPI",
-      "title": "花田虎上氏「あんまり言うと『若乃花うるせえぞ』ってなっちゃう」／名古屋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_4JXCYPFOHRAPLAO4I6FPOBDFPI",
-      "publishedAt": "2026-07-20",
-      "publishedAtRaw": "SANSPO　7月20日 7時30分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10261262",
-      "title": "「これはガッカリ」「客に失礼」伯乃富士の立ち合いに館内騒然…怒号、憤りの声も「首の後ろに一発入った。琴勝峰がちょっとフラフラと…」元若乃花も困惑",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261262",
-      "publishedAt": "2026-07-20",
-      "publishedAtRaw": "ABEMA TIMES　7月20日 7時22分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
