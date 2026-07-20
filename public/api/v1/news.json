@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-20T03:13:51.695572+00:00",
+  "updatedAt": "2026-07-20T05:20:56.648398+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-hochi-20260720-OHT1T51181",
+      "title": "昨年の高校横綱・沢田が４勝目　勝ち越しのかかった一番に「とても緊張した」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260720-OHT1T51181",
+      "publishedAt": "2026-07-20",
+      "publishedAtRaw": "スポーツ報知　7月20日 12時53分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260720-OHT1T51176",
+      "title": "左腕手術から復帰の元十両・宮乃風が無傷の５連勝「もちろん優勝を目指している」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260720-OHT1T51176",
+      "publishedAt": "2026-07-20",
+      "publishedAtRaw": "スポーツ報知　7月20日 12時33分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260720-OHT1T51170",
+      "title": "序二段・白月狼が無傷の５連勝　場所前に師匠の朝日山親方が課したノルマの５勝到達に「プレッシャーをかけないようにしてくれたのだと思う」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260720-OHT1T51170",
+      "publishedAt": "2026-07-20",
+      "publishedAtRaw": "スポーツ報知　7月20日 12時22分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_QPDRBE63ZBEETMI3VS2SADEEWI",
+      "title": "境川親方「いつも最後の最後に残念な結果にはなってるんですけど…」／名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_QPDRBE63ZBEETMI3VS2SADEEWI",
+      "publishedAt": "2026-07-20",
+      "publishedAtRaw": "SANSPO　7月20日 12時12分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-sanspo-_sports_sumo_XI6HIIVDSVASTKQC5QHMQDUVZU",
       "title": "境川親方「どこ行っても応援、声援が多い。そういう期待に応えないかん」／名古屋場所",
       "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_XI6HIIVDSVASTKQC5QHMQDUVZU",
       "publishedAt": "2026-07-20",
       "publishedAtRaw": "SANSPO　7月20日 11時52分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10261286",
-      "title": "ひぇー！ “体重2倍”差対決で「背骨折れそう」力士の上体が90度に…“ひやり”の場面に館内どよめき",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261286",
-      "publishedAt": "2026-07-20",
-      "publishedAtRaw": "ABEMA TIMES　7月20日 10時55分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10261281",
-      "title": "胸のお肉を“ムギュっ”と… “ほっそり美脚”の巨漢力士、土俵際での攻防にひやり 相手力士咄嗟の行動に「やさしいね」「胸のお肉をw」",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261281",
-      "publishedAt": "2026-07-20",
-      "publishedAtRaw": "ABEMA TIMES　7月20日 10時36分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10261279",
-      "title": "「プロレス？」「スープレックス」大相撲、まさかの体勢から静寂を破る衝撃結末 決まり手係も“長考”の“超珍手”決着",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261279",
-      "publishedAt": "2026-07-20",
-      "publishedAtRaw": "ABEMA TIMES　7月20日 10時07分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10261276",
-      "title": "「めっちゃ怒るやん」行司“激おこ”の立ち合い 絶妙なタイミングの立ち合い“待った”での一コマ",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261276",
-      "publishedAt": "2026-07-20",
-      "publishedAtRaw": "ABEMA TIMES　7月20日 9時47分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
