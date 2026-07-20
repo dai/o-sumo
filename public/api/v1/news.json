@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-19T10:36:09.766658+00:00",
+  "updatedAt": "2026-07-20T01:37:26.820359+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260719-0354",
-      "title": "綱獲り霧島「最初に攻められたけど…」関脇・熱海富士を下して1敗死守　後半戦へ「一日一番ですから」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260719-0354",
-      "publishedAt": "2026-07-19",
-      "publishedAtRaw": "スポニチアネックス　7月19日 19時21分",
+      "id": "dmenu-docomo-abematimes-10261279",
+      "title": "「プロレス？」「スープレックス」大相撲、まさかの体勢から静寂を破る衝撃結末 決まり手係も“長考”の“超珍手”決着",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261279",
+      "publishedAt": "2026-07-20",
+      "publishedAtRaw": "ABEMA TIMES　7月20日 10時07分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260719-202607190001620",
-      "title": "霧島が熱海富士退け１敗堅持　優勝への意識は考えず「楽しんで、楽しく」後半戦へ",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260719-202607190001620",
-      "publishedAt": "2026-07-19",
-      "publishedAtRaw": "日刊スポーツ　7月19日 19時18分",
+      "id": "dmenu-docomo-abematimes-10261276",
+      "title": "「めっちゃ怒るやん」行司“激おこ”の立ち合い 絶妙なタイミングの立ち合い“待った”での一コマ",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261276",
+      "publishedAt": "2026-07-20",
+      "publishedAtRaw": "ABEMA TIMES　7月20日 9時47分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260719-0343",
-      "title": "「こんな小手先の相撲を…」ダメ出し連発の境川親方がトレンド入り　「激オコ」「愛ある喝」と反応さまざま",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260719-0343",
-      "publishedAt": "2026-07-19",
-      "publishedAtRaw": "スポニチアネックス　7月19日 19時00分",
+      "id": "dmenu-docomo-abematimes-10261267",
+      "title": "「温厚な霧島が…」取組直後に“激高”、熱海富士に詰め寄る 一体、何が？ 「立ち合い？」「あれはイラっとする」ファン困惑",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261267",
+      "publishedAt": "2026-07-20",
+      "publishedAtRaw": "ABEMA TIMES　7月20日 8時30分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260719-202607190001474",
-      "title": "左足親指の爪が浮き、血が出る　７勝目の安青錦が土俵下に転落　支度部屋で負傷個所を説明",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260719-202607190001474",
-      "publishedAt": "2026-07-19",
-      "publishedAtRaw": "日刊スポーツ　7月19日 18時58分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_4JXCYPFOHRAPLAO4I6FPOBDFPI",
+      "title": "花田虎上氏「あんまり言うと『若乃花うるせえぞ』ってなっちゃう」／名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_4JXCYPFOHRAPLAO4I6FPOBDFPI",
+      "publishedAt": "2026-07-20",
+      "publishedAtRaw": "SANSPO　7月20日 7時30分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260719-202607190001355",
-      "title": "大の里４連勝　２日連続の電車道で王鵬圧倒　元若乃花「戦車ですよ」後半優勝争いに期待",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260719-202607190001355",
-      "publishedAt": "2026-07-19",
-      "publishedAtRaw": "日刊スポーツ　7月19日 18時41分",
+      "id": "dmenu-docomo-abematimes-10261262",
+      "title": "「これはガッカリ」「客に失礼」伯乃富士の立ち合いに館内騒然…怒号、憤りの声も「首の後ろに一発入った。琴勝峰がちょっとフラフラと…」元若乃花も困惑",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261262",
+      "publishedAt": "2026-07-20",
+      "publishedAtRaw": "ABEMA TIMES　7月20日 7時22分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
