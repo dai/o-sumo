@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-20T07:19:19.484683+00:00",
+  "updatedAt": "2026-07-20T09:13:36.873404+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260720-OHT1T51239",
-      "title": "元十両・生田目が最強の研修生・旭富士のデビューからの連勝を２５で止める　「頑張らないといけない」と休場中の師匠・二子山親方の檄に発奮",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260720-OHT1T51239",
+      "id": "dmenu-docomo-abematimes-10261398",
+      "title": "ぜい肉“ほぼ皆無”細マッチョ力士、78キロ重たい相手を土俵際でぶん投げた 耐える…動く…繰り広げられた“死闘”に館内大沸騰",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261398",
       "publishedAt": "2026-07-20",
-      "publishedAtRaw": "スポーツ報知　7月20日 15時59分",
+      "publishedAtRaw": "ABEMA TIMES　7月20日 18時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-chuspo-1283972",
-      "title": "「史上最強の新弟子」デビュー25連勝の旭富士を止めた生田目、２人の支えを挙げて感謝【大相撲名古屋場所】",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1283972",
+      "id": "dmenu-docomo-tokyosports-396509",
+      "title": "【大相撲】獅司が幕内の勝ち越し第１号「うれししです」お決まりのフレーズで喜びを表現",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-396509",
       "publishedAt": "2026-07-20",
-      "publishedAtRaw": "中日スポーツ　7月20日 15時41分",
+      "publishedAtRaw": "東スポWEB　7月20日 17時03分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260720-202607200000759",
-      "title": "旭富士の連勝を25で止めたのは生田目「応援のおかげ」　体調不良の二子山親方に朗報届けた",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260720-202607200000759",
+      "id": "dmenu-docomo-sponichi-spngoo-20260720-0234",
+      "title": "高安が2敗対決を制して7勝目　機敏な動きで錦富士を土俵の外へ吹っ飛ばす",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260720-0234",
       "publishedAt": "2026-07-20",
-      "publishedAtRaw": "日刊スポーツ　7月20日 15時34分",
+      "publishedAtRaw": "スポニチアネックス　7月20日 17時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-chuspo-1283968",
-      "title": "デビュー25連勝の旭富士を撃破！ 十両経験者の生田目にIGアリーナ喝采 「下積みで苦労」相手に思いやりも【大相撲名古屋場所】",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1283968",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_P3VGAU2L2BJA7FLZ2LFJWTSN64",
+      "title": "ベテラン記者コラム　若隆景が緊急手術で休場…若者頭転身の兄・若隆元は「メンター」に適任",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_P3VGAU2L2BJA7FLZ2LFJWTSN64",
       "publishedAt": "2026-07-20",
-      "publishedAtRaw": "中日スポーツ　7月20日 15時33分",
+      "publishedAtRaw": "SANSPO　7月20日 17時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260720-0209",
-      "title": "旭富士　序ノ口デビュー以来の連勝が25で止まる　元十両の生田目に突き出される",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260720-0209",
+      "id": "dmenu-docomo-sponichi-spngoo-20260720-0232",
+      "title": "琴栄峰が藤凌駕に快勝　2日目から8連勝で自己最速の勝ち越し！1敗でトップ守る",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260720-0232",
       "publishedAt": "2026-07-20",
-      "publishedAtRaw": "スポニチアネックス　7月20日 15時15分",
+      "publishedAtRaw": "スポニチアネックス　7月20日 16時55分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
