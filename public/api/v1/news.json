@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-21T07:02:58.941930+00:00",
+  "updatedAt": "2026-07-21T09:02:53.507117+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-tokyosports-396631",
+      "title": "【大相撲】尊富士が勝ち越し＆２敗キープ　新小結義ノ富士に対抗心「とても刺激になっている」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-396631",
+      "publishedAt": "2026-07-21",
+      "publishedAtRaw": "東スポWEB　7月21日 17時06分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-f-bt-tp1-260721-202607210000822",
+      "title": "玉鷲が土俵下へ転落も自分より巻き込んだ行司を心配　無事確認し「良かったです」安堵",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260721-202607210000822",
+      "publishedAt": "2026-07-21",
+      "publishedAtRaw": "日刊スポーツ　7月21日 16時38分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-f-bt-tp1-260721-202607210000737",
       "title": "イケメン力士の大森が２場所連続勝ち越し「ひとまずホッとしました」オールバックで２戦目",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260721-OHT1T51162",
       "publishedAt": "2026-07-21",
       "publishedAtRaw": "スポーツ報知　7月21日 15時25分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260721-OHT1T51156",
-      "title": "【元大関・琴風の目】霧島は痛すぎる２敗目、「肩の力を抜け」、前のめりにならず自分の相撲を",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260721-OHT1T51156",
-      "publishedAt": "2026-07-21",
-      "publishedAtRaw": "スポーツ報知　7月21日 15時20分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260721-OHT1T51122",
-      "title": "幕下・西御許が４勝目　自己最高位での勝ち越しに「うれしい。名古屋に来てから太った」体重は５キロ増",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260721-OHT1T51122",
-      "publishedAt": "2026-07-21",
-      "publishedAtRaw": "スポーツ報知　7月21日 13時52分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
