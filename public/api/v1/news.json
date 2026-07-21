@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-21T00:50:29.640842+00:00",
+  "updatedAt": "2026-07-21T03:11:59.520538+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-nikkangendai-1233384",
+      "title": "安青錦は大関復帰10勝での「休場」に現実味…天敵・大の里に初勝利も素直に喜べない理由",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1233384",
+      "publishedAt": "2026-07-21",
+      "publishedAtRaw": "日刊ゲンダイDIGITAL　7月21日 11時26分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-abematimes-10261447",
+      "title": "「バケモンだ」小兵力士が巨漢を“何度も吊り上げる”姿に「ありえん」「そして投げたよ」ファン衝撃 元小結・松鳳山「一番お金が取れる大相撲」大絶賛",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261447",
+      "publishedAt": "2026-07-21",
+      "publishedAtRaw": "ABEMA TIMES　7月21日 9時58分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-abematimes-10261434",
       "title": "24歳逸材力士「すげー体だ」「筋肉すげえ」「惚れた」鍛え抜かれた“規格外”の分厚い上半身、オールバックの抜群雰囲気に驚きの声",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261661",
       "publishedAt": "2026-07-21",
       "publishedAtRaw": "ABEMA TIMES　7月21日 7時33分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10261660",
-      "title": "「美人さんがいる」溜まり席に“個性的”な出で立ちで話題 「尊富士と紫コラボ」「姿勢もキレイ」ファン熱視線",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261660",
-      "publishedAt": "2026-07-21",
-      "publishedAtRaw": "ABEMA TIMES　7月21日 7時17分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-encount-1034701",
-      "title": "大相撲中継に降臨した金メダリストに「やだイケメン」　“美肌”にネット興奮…すっぴんも披露でスタジオも騒然",
-      "url": "https://topics.smt.docomo.ne.jp/article/encount/sports/encount-1034701",
-      "publishedAt": "2026-07-21",
-      "publishedAtRaw": "ENCOUNT　7月21日 7時10分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
