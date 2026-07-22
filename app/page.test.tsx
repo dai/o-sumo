@@ -3,8 +3,8 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import {
   getDayPath,
-  MARCH2026_BANDUKE_PATH,
-  MAY2026_BANDUKE_PATH,
+  MARCH2026_BANZUKE_PATH,
+  MAY2026_BANZUKE_PATH,
   MAY2026_RESULT_PATH,
   MAY2026_SCHEDULE_PATH,
 } from './lib/torikumi-routes';
@@ -128,23 +128,23 @@ describe('Home page', () => {
     // Get all links
     const allLinks = screen.getAllByRole('link');
 
-    const banzukeLink = allLinks.find((l) => l.getAttribute('href') === '/202607-banduke/');
+    const banzukeLink = allLinks.find((l) => l.getAttribute('href') === '/202607-banzuke/');
     const yoteiLink = allLinks.find((l) => l.getAttribute('href') === '/202607-yotei/');
     const kekkaLink = allLinks.find((l) => l.getAttribute('href') === '/202607-torikumi/');
     const analyticsLink = allLinks.find((l) => l.getAttribute('href') === '/analytics/');
     const currentHeroTitle = `${torikumiArchive.year}${torikumiArchive.bashoName}`;
-    const mayBanzukeLink = allLinks.find((l) => l.getAttribute('href') === `${MAY2026_BANDUKE_PATH}/`);
+    const mayBanzukeLink = allLinks.find((l) => l.getAttribute('href') === `${MAY2026_BANZUKE_PATH}/`);
     const mayYoteiLink = allLinks.find((l) => l.getAttribute('href') === `${MAY2026_SCHEDULE_PATH}/`);
     const mayTorikumiLink = allLinks.find((l) => l.getAttribute('href') === `${MAY2026_RESULT_PATH}/`);
     const firstMayDay = MAY2026_TORIKUMI_DATA.resultDays?.[0];
 
     expect(screen.getByRole('heading', { level: 2, name: currentHeroTitle })).toBeInTheDocument();
-    expect(banzukeLink).toHaveAttribute('href', '/202607-banduke/');
+    expect(banzukeLink).toHaveAttribute('href', '/202607-banzuke/');
     expect(yoteiLink).toHaveAttribute('href', '/202607-yotei/');
     expect(kekkaLink).toHaveAttribute('href', '/202607-torikumi/');
     expect(analyticsLink).toHaveAttribute('href', '/analytics/');
     expect(firstMayDay).toBeDefined();
-    expect(mayBanzukeLink).toHaveAttribute('href', `${MAY2026_BANDUKE_PATH}/`);
+    expect(mayBanzukeLink).toHaveAttribute('href', `${MAY2026_BANZUKE_PATH}/`);
     expect(mayYoteiLink).toHaveAttribute('href', `${MAY2026_SCHEDULE_PATH}/`);
     expect(mayTorikumiLink).toHaveAttribute('href', `${MAY2026_RESULT_PATH}/`);
     expect(allLinks.find((l) => l.getAttribute('href') === `/${firstMayDay!.pathDate}-torikumi/`)).toBeDefined();
@@ -163,7 +163,7 @@ describe('Home page', () => {
 
     expect(screen.queryByLabelText('令和八年五月場所最終結果')).not.toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: `${MAY2026_TORIKUMI_DATA.year} ${MAY2026_TORIKUMI_DATA.bashoName}` })).toBeInTheDocument();
-    expect(within(screen.getByLabelText('主要ページへの導線')).getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202607-banduke/');
+    expect(within(screen.getByLabelText('主要ページへの導線')).getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202607-banzuke/');
   });
 
   it('keeps March 2026 archive guidance on the top page', () => {
@@ -176,7 +176,7 @@ describe('Home page', () => {
     const allLinks = screen.getAllByRole('link');
 
     expect(screen.getByRole('heading', { level: 2, name: `${MARCH2026_TORIKUMI_DATA.year} ${MARCH2026_TORIKUMI_DATA.bashoName}` })).toBeInTheDocument();
-    expect(allLinks.find((link) => link.getAttribute('href') === `${MARCH2026_BANDUKE_PATH}/`)).toBeDefined();
+    expect(allLinks.find((link) => link.getAttribute('href') === `${MARCH2026_BANZUKE_PATH}/`)).toBeDefined();
   });
 
   it('renders the news section heading on the top page', () => {

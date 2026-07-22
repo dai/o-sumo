@@ -17,7 +17,7 @@ product
 
 ## Product Purpose
 
-大相撲の最新番付と日別取組（結果・予定）を、構造化データとして高速に配信する静的 Web アプリ。Cloudflare Pages からホストされ、静的 JSON API も同時に公開する。`python scripts/update_sumo_data.py` による日次・リアルタイム更新、`/202605-banduke` `/20260524-yotei` のような日付ベース URL、PWA によるオフライン対応によって、本場所 15 日間を滞りなく追えるようにすることが成功の尺度。
+大相撲の最新番付と日別取組（結果・予定）を、構造化データとして高速に配信する静的 Web アプリ。Cloudflare Pages からホストされ、静的 JSON API も同時に公開する。`python scripts/update_sumo_data.py` による日次・リアルタイム更新、`/202605-banzuke/` `/20260524-yotei` のような日付ベース URL、PWA によるオフライン対応によって、本場所 15 日間を滞りなく追えるようにすることが成功の尺度。
 
 ## Brand Personality
 

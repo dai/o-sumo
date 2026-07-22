@@ -80,7 +80,7 @@ npm run build
 - `http://localhost:3001/archives`
 - `http://localhost:3001/rikishi`
 - `http://localhost:3001/rikishi/{id}`
-- `http://localhost:3001/{YYYYMM}-banduke`
+- `http://localhost:3001/{YYYYMM}-banzuke/`
 - `http://localhost:3001/{YYYYMM}-torikumi`
 - `http://localhost:3001/{YYYYMM}-yotei`
 - `http://localhost:3001/{YYYYMMDD}-torikumi`

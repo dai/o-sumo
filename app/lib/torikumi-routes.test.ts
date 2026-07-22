@@ -56,7 +56,7 @@ describe('torikumi route helpers', () => {
     expect(getArchiveUpdateMessage('schedule')).toContain('15:30');
     expect(getArchiveUpdateMessage('schedule')).toContain('20:00');
     expect(legacyBanzukePath).toBe(`/${torikumiMonthKey}-o-sumo`);
-    expect(banzukePath).toBe(`/${torikumiMonthKey}-banduke`);
+    expect(banzukePath).toBe(`/${torikumiMonthKey}-banzuke`);
   });
 
   it('resolves archive day and adjacent navigation', () => {
@@ -138,7 +138,7 @@ describe('torikumi route helpers', () => {
   });
 
   it('resolves month config from pathname and date key', () => {
-    const marchConfig = getArchiveRouteConfigForPathname('/202603-banduke');
+    const marchConfig = getArchiveRouteConfigForPathname('/202603-banzuke');
     const mayConfig = getArchiveRouteConfigForPathname('/202605-torikumi');
     const julyConfig = getArchiveRouteConfigForPathname('/202607-torikumi');
     const activeMonthKey = torikumiArchive.scheduleDays[0]?.pathDate.slice(0, 6);

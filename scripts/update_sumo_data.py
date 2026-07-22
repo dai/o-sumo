@@ -1399,7 +1399,7 @@ export const torikumiMonthKey = torikumiArchive.scheduleDays[0]?.pathDate.slice(
   ?? torikumiArchive.resultDays[0]?.pathDate.slice(0, 6)
   ?? '202603';
 
-export const banzukePath = `/${{torikumiMonthKey}}-banduke`;
+export const banzukePath = `/${{torikumiMonthKey}}-banzuke`;
 """
     write_text_lf(TORIKUMI_OUTPUT, content)
 

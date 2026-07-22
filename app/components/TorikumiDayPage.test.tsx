@@ -169,7 +169,7 @@ describe('TorikumiDayPage', () => {
       },
       resultPath: '/209912-torikumi/',
       schedulePath: '/209912-yotei/',
-      bandukePath: '/209912-banduke/',
+      banzukePath: '/209912-banzuke/',
     });
 
     renderPage(pendingResultDay, 'result');
@@ -335,7 +335,7 @@ describe('TorikumiDayPage', () => {
     expect(marchDay).toBeDefined();
     renderPage(marchDay!, 'result');
 
-    const banzukeLinks = screen.getAllByRole('link').filter((link) => link.getAttribute('href')?.startsWith('/202603-banduke/#rikishi-'));
+    const banzukeLinks = screen.getAllByRole('link').filter((link) => link.getAttribute('href')?.startsWith('/202603-banzuke/#rikishi-'));
     expect(banzukeLinks.length).toBeGreaterThan(0);
     expect(banzukeLinks.some((link) => /（\d+勝\d+敗/.test(link.textContent ?? ''))).toBe(true);
   });

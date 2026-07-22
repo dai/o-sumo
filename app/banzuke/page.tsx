@@ -21,7 +21,7 @@ function useBanzukeContext() {
     monthKey,
     bashoTitle: `${banzuke.year}${banzuke.bashoName}`,
     gregorianBashoLabel: formatGregorianBashoLabel(monthKey),
-    bandukePath: routeConfig.bandukePath,
+    banzukePath: routeConfig.banzukePath,
     resultPath: routeConfig.resultPath,
     updatedAt: banzuke.updatedAt,
     makuuchi: banzuke.makuuchi,
@@ -32,7 +32,7 @@ function useBanzukeContext() {
 export default function BanzukePage() {
   const [sortOrder, setSortOrder] = React.useState<SortOrder>('asc');
   const { t } = useTranslation('common');
-  const { bashoTitle, gregorianBashoLabel, bandukePath, monthKey, updatedAt, makuuchi, juryo: juryoRanks } = useBanzukeContext();
+  const { bashoTitle, gregorianBashoLabel, banzukePath, monthKey, updatedAt, makuuchi, juryo: juryoRanks } = useBanzukeContext();
   const sortedMakuuchi = sortRankGroups(makuuchi, sortOrder);
   const sortedJuryo = sortRankGroups(juryoRanks, sortOrder);
 
@@ -44,8 +44,8 @@ export default function BanzukePage() {
         </nav>
         <div className="header-content">
           <h1 className="page-title">{t('banzuke.pageTitle')}</h1>
-          <h2 className="page-subtitle">{bashoTitle} {t('banzuke.bandukeListTitle')}</h2>
-          <p className="page-description">{t('banzuke.pageDescription', { gregorianBasho: gregorianBashoLabel, bandukePath })}</p>
+          <h2 className="page-subtitle">{bashoTitle} {t('banzuke.banzukeListTitle')}</h2>
+          <p className="page-description">{t('banzuke.pageDescription', { gregorianBasho: gregorianBashoLabel, banzukePath })}</p>
           <p className="page-description">{t('banzuke.updatedAt', { date: formatUpdatedAt(updatedAt) })}</p>
         </div>
       </header>

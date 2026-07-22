@@ -11,13 +11,13 @@ describe('sitemap helpers', () => {
     expect(locs).toContain('/rikishi/');
     expect(locs).toContain('/kimarite/');
     expect(locs).toContain('/analytics/');
-    expect(locs).toContain('/202603-banduke/');
+    expect(locs).toContain('/202603-banzuke/');
     expect(locs).toContain('/202603-torikumi/');
     expect(locs).toContain('/202603-yotei/');
-    expect(locs).toContain('/202605-banduke/');
+    expect(locs).toContain('/202605-banzuke/');
     expect(locs).toContain('/202605-torikumi/');
     expect(locs).toContain('/202605-yotei/');
-    expect(locs).toContain(`/${torikumiMonthKey}-banduke/`);
+    expect(locs).toContain(`/${torikumiMonthKey}-banzuke/`);
     expect(locs).toContain(`/${torikumiMonthKey}-torikumi/`);
     expect(locs).toContain(`/${torikumiMonthKey}-yotei/`);
     expect(locs.every((loc) => loc === '/' || loc.endsWith('/'))).toBe(true);

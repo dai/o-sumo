@@ -142,7 +142,7 @@ describe('TorikumiHubPage', () => {
     expect(screen.getByRole('heading', { level: 1, name: /三月場所/ })).toBeInTheDocument();
     expect(within(screen.getByRole('banner')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
     expect(within(screen.getByRole('contentinfo')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
-    expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202603-banduke/');
+    expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202603-banzuke/');
     expect(screen.getAllByRole('link').some((l) => l.getAttribute('href') === '/20260308-torikumi/')).toBe(true);
   });
 
@@ -155,7 +155,7 @@ describe('TorikumiHubPage', () => {
 
     const firstMayDay = MAY2026_TORIKUMI_DATA.resultDays?.[0];
     expect(screen.getByRole('heading', { level: 1, name: /五月場所/ })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202605-banduke/');
+    expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202605-banzuke/');
     expect(firstMayDay).toBeDefined();
     expect(screen.getAllByRole('link').some((l) => l.getAttribute('href') === `/${firstMayDay!.pathDate}-torikumi/`)).toBe(true);
   });
@@ -169,7 +169,7 @@ describe('TorikumiHubPage', () => {
 
     const firstCurrentDay = torikumiArchive.resultDays?.[0];
     expect(screen.getByRole('heading', { level: 1, name: /七月場所/ })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202607-banduke/');
+    expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202607-banzuke/');
     expect(firstCurrentDay).toBeDefined();
     expect(screen.getAllByRole('link').some((l) => l.getAttribute('href') === `/${firstCurrentDay!.pathDate}-torikumi/`)).toBe(true);
   });
@@ -183,7 +183,7 @@ describe('TorikumiHubPage', () => {
 
     const firstMarchScheduleDay = MARCH2026_TORIKUMI_DATA.scheduleDays?.[0];
     expect(screen.getByRole('heading', { level: 1, name: /三月場所/ })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202603-banduke/');
+    expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202603-banzuke/');
     expect(firstMarchScheduleDay).toBeDefined();
     expect(firstMarchScheduleDay!.pathDate).toBe('20260308');
     expect(screen.queryByText('取組予定未更新')).not.toBeInTheDocument();

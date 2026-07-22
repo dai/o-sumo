@@ -52,7 +52,7 @@ const MAY2026_BANZUKE_DATA: ArchiveBanzukeData = {
 export const CURRENT_BASHO_ID = torikumiMonthKey;
 export const CURRENT_RESULT_PATH = `/${CURRENT_BASHO_ID}-torikumi`;
 export const CURRENT_SCHEDULE_PATH = `/${CURRENT_BASHO_ID}-yotei`;
-export const CURRENT_BANZUKE_PATH = `/${CURRENT_BASHO_ID}-banduke`;
+export const CURRENT_BANZUKE_PATH = `/${CURRENT_BASHO_ID}-banzuke`;
 
 export function getTorikumiArchiveByMonthKey(monthKey: string): TorikumiDataSet {
   if (monthKey === '202603') {

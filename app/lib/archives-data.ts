@@ -11,7 +11,7 @@ export interface ArchiveBasho {
   data: TorikumiDataSet;
   resultPath: string;
   schedulePath: string;
-  bandukePath: string;
+  banzukePath: string;
 }
 
 export const PAST_BASHO: ArchiveBasho[] = [
@@ -22,7 +22,7 @@ export const PAST_BASHO: ArchiveBasho[] = [
     data: MAY2026_TORIKUMI_DATA,
     resultPath: '/202605-torikumi',
     schedulePath: '/202605-yotei',
-    bandukePath: '/202605-banduke',
+    banzukePath: '/202605-banzuke',
   },
   {
     id: '202603',
@@ -31,7 +31,7 @@ export const PAST_BASHO: ArchiveBasho[] = [
     data: MARCH2026_TORIKUMI_DATA,
     resultPath: '/202603-torikumi',
     schedulePath: '/202603-yotei',
-    bandukePath: '/202603-banduke',
+    banzukePath: '/202603-banzuke',
   },
 ];
 

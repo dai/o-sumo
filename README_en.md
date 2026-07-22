@@ -23,18 +23,18 @@ o-sumo is a static web app for publishing sumo banzuke and torikumi information.
   - Archives: `/archives`
   - Rikishi list: `/rikishi`
   - Rikishi profile: `/rikishi/{id}`
-  - Banzuke: `/{YYYYMM}-banduke`
+  - Banzuke: `/{YYYYMM}-banzuke/`
   - Results hub: `/{YYYYMM}-torikumi`
   - Schedule hub: `/{YYYYMM}-yotei`
   - Daily result: `/{YYYYMMDD}-torikumi`
   - Daily schedule: `/{YYYYMMDD}-yotei`
   - Kimarite: `/kimarite`
 - Current route examples:
-  - `/202607-banduke`
+  - `/202607-banzuke/`
   - `/202607-torikumi`
   - `/20260712-yotei`
   - `/kimarite`
-- The legacy banzuke URL `/{YYYYMM}-o-sumo` redirects to the current banzuke URL.
+- The legacy banzuke URL `/{YYYYMM}-o-sumo/` redirects to the current banzuke URL.
 - Public APIs:
   - `/api/v1/banzuke.json`
   - `/api/v1/torikumi.json`
@@ -129,7 +129,7 @@ Useful local URLs:
 - `http://localhost:3001/archives`
 - `http://localhost:3001/rikishi`
 - `http://localhost:3001/rikishi/{id}`
-- `http://localhost:3001/{YYYYMM}-banduke`
+- `http://localhost:3001/{YYYYMM}-banzuke/`
 - `http://localhost:3001/{YYYYMM}-torikumi`
 - `http://localhost:3001/{YYYYMM}-yotei`
 - `http://localhost:3001/{YYYYMMDD}-torikumi`
