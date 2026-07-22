@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-22T00:49:07.577298+00:00",
+  "updatedAt": "2026-07-22T03:12:01.095946+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-nikkangendai-1233774",
+      "title": "「まさかこれほどとは…」横綱・豊昇龍の骨の髄にまで染み込んだ“天敵”安青錦への苦手意識",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1233774",
+      "publishedAt": "2026-07-22",
+      "publishedAtRaw": "日刊ゲンダイDIGITAL　7月22日 11時03分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-f-bt-tp1-260722-202607220000163",
+      "title": "垣添が６連勝、序ノ口優勝に王手　獅司の幕内Ｖ争いにも刺激「一番上と下で盛り上げたい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260722-202607220000163",
+      "publishedAt": "2026-07-22",
+      "publishedAtRaw": "日刊スポーツ　7月22日 10時43分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-abematimes-10261916",
       "title": "「隙間から千代丸たんw」元人気力士、まさかの場所に“ひょっこり”登場 中継カメラが捉えた“じわる”瞬間が話題",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261913",
       "publishedAt": "2026-07-22",
       "publishedAtRaw": "ABEMA TIMES　7月22日 8時20分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10261905",
-      "title": "「ああいうのがあると、ちょっとペースが崩れる」伯乃富士、緊迫の立ち合いで珍しい行動 剣翔の指摘に「この駆け引き図太い」ファン驚き",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261905",
-      "publishedAt": "2026-07-22",
-      "publishedAtRaw": "ABEMA TIMES　7月22日 7時24分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-ans-707295",
-      "title": "「広瀬アリスに似てる」女子アスリートの筋肉美に驚愕　「ケンカしたら絶対負ける」大相撲中継で話題",
-      "url": "https://topics.smt.docomo.ne.jp/article/ans/sports/ans-707295",
-      "publishedAt": "2026-07-22",
-      "publishedAtRaw": "THE ANSWER　7月22日 6時43分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
