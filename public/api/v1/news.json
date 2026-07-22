@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-22T03:12:01.095946+00:00",
+  "updatedAt": "2026-07-22T05:10:45.673337+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-postseven-2122051",
+      "title": "【大きくボッコリと左足首が腫れ上がって…】1敗の安青錦に「10勝で大関復帰が決まれば休場説」が流れる理由　日増しにテーピングが厚くなり患部の腫れが目立つように",
+      "url": "https://topics.smt.docomo.ne.jp/article/postseven/sports/postseven-2122051",
+      "publishedAt": "2026-07-22",
+      "publishedAtRaw": "NEWSポストセブン　7月22日 12時20分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-nikkangendai-1233774",
       "title": "「まさかこれほどとは…」横綱・豊昇龍の骨の髄にまで染み込んだ“天敵”安青錦への苦手意識",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261915",
       "publishedAt": "2026-07-22",
       "publishedAtRaw": "ABEMA TIMES　7月22日 8時42分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10261913",
-      "title": "「伯乃富士、素直でええやん」「霧島、最後は優しい」霧島と伯乃富士が…取組直後にカメラが捉えた二人の“やりとり”にファン注目",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10261913",
-      "publishedAt": "2026-07-22",
-      "publishedAtRaw": "ABEMA TIMES　7月22日 8時20分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
