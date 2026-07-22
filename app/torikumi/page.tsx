@@ -14,14 +14,14 @@ import AbsenteesNotice, { type AbsenteeEntry } from '../components/AbsenteesNoti
 import './page.css';
 import { formatUpdatedAt } from '../lib/updated-at';
 
-function useArchive(): { archive: TorikumiDataSet; resultPath: string; schedulePath: string; bandukePath: string } {
+function useArchive(): { archive: TorikumiDataSet; resultPath: string; schedulePath: string; banzukePath: string } {
   const location = useLocation();
   const config = getArchiveRouteConfigForPathname(location.pathname);
   return {
     archive: config.archive,
     resultPath: config.resultPath,
     schedulePath: config.schedulePath,
-    bandukePath: config.bandukePath,
+    banzukePath: config.banzukePath,
   };
 }
 
@@ -43,7 +43,7 @@ function findLatestAbsentees(days: TorikumiDataSet['resultDays']): AbsenteeEntry
 
 export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
   const [sortOrder, setSortOrder] = React.useState<SortOrder>('asc');
-  const { archive, resultPath, schedulePath, bandukePath } = useArchive();
+  const { archive, resultPath, schedulePath, banzukePath } = useArchive();
   const sourceDays = mode === 'result' ? archive.resultDays : archive.scheduleDays;
   const days = sortArchiveDays(sourceDays ?? [], sortOrder);
   const absentees = mode === 'schedule' ? findLatestAbsentees(archive.resultDays ?? []) : [];
@@ -88,7 +88,7 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
             >
               {navModeLabel}
             </Link>
-            <Link to={bandukePath} className="archive-link">{t('torikumi.hub.navBanduke')}</Link>
+            <Link to={banzukePath} className="archive-link">{t('torikumi.hub.navBanzuke')}</Link>
           </nav>
         </section>
 
@@ -124,7 +124,7 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
         <nav aria-label={`${modeLabel}一覧フッターリンク`}>
           <HomeLink placement="footer" />
           <span> | </span>
-          <Link to={bandukePath}>{t('torikumi.hub.footerBanduke')}</Link>
+          <Link to={banzukePath}>{t('torikumi.hub.footerBanzuke')}</Link>
           <span> | </span>
           <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">{t('torikumi.hub.footerDaisuke')}</a>
           <span> | </span>

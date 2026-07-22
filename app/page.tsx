@@ -317,7 +317,7 @@ export default function Home() {
               })}
             </h2>
             <nav className="past-basho-actions" aria-label={`${pastBasho.name}への導線`}>
-              <Link to={`${pastBasho.bandukePath}/`} className="cta-button secondary">
+              <Link to={`${pastBasho.banzukePath}/`} className="cta-button secondary">
                 {t('home.heroBanzuke')}
               </Link>
               <Link to={`${pastBasho.schedulePath}/`} className="cta-button secondary">

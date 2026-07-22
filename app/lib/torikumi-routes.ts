@@ -26,7 +26,7 @@ export interface ArchiveRouteConfig {
   archive: TorikumiDataSet;
   resultPath: string;
   schedulePath: string;
-  bandukePath: string;
+  banzukePath: string;
 }
 
 function stripTrailingSlash(path: string): string {
@@ -58,11 +58,11 @@ export function parseTopLevelSlug(slug: string): ParsedTorikumiSlug | null {
 
 export const MAY2026_RESULT_PATH = '/202605-torikumi';
 export const MAY2026_SCHEDULE_PATH = '/202605-yotei';
-export const MAY2026_BANDUKE_PATH = '/202605-banduke';
+export const MAY2026_BANZUKE_PATH = '/202605-banzuke';
 
 export const MARCH2026_RESULT_PATH = '/202603-torikumi';
 export const MARCH2026_SCHEDULE_PATH = '/202603-yotei';
-export const MARCH2026_BANDUKE_PATH = '/202603-banduke';
+export const MARCH2026_BANZUKE_PATH = '/202603-banzuke';
 
 function normalizeArchive(archive: TorikumiDataSet): TorikumiDataSet {
   return {
@@ -78,14 +78,14 @@ const ARCHIVE_ROUTE_CONFIGS: Record<string, ArchiveRouteConfig> = {
     archive: normalizeArchive(MARCH2026_TORIKUMI_DATA),
     resultPath: withTrailingSlash(MARCH2026_RESULT_PATH),
     schedulePath: withTrailingSlash(MARCH2026_SCHEDULE_PATH),
-    bandukePath: withTrailingSlash(MARCH2026_BANDUKE_PATH),
+    banzukePath: withTrailingSlash(MARCH2026_BANZUKE_PATH),
   },
   '202605': {
     monthKey: '202605',
     archive: normalizeArchive(MAY2026_TORIKUMI_DATA),
     resultPath: withTrailingSlash(MAY2026_RESULT_PATH),
     schedulePath: withTrailingSlash(MAY2026_SCHEDULE_PATH),
-    bandukePath: withTrailingSlash(MAY2026_BANDUKE_PATH),
+    banzukePath: withTrailingSlash(MAY2026_BANZUKE_PATH),
   },
 };
 
@@ -95,7 +95,7 @@ if (!ARCHIVE_ROUTE_CONFIGS[torikumiMonthKey]) {
     archive: normalizeArchive(getTorikumiArchiveByMonthKey(torikumiMonthKey)),
     resultPath: withTrailingSlash(CURRENT_RESULT_PATH),
     schedulePath: withTrailingSlash(CURRENT_SCHEDULE_PATH),
-    bandukePath: withTrailingSlash(CURRENT_BANZUKE_PATH),
+    banzukePath: withTrailingSlash(CURRENT_BANZUKE_PATH),
   };
 }
 
@@ -120,7 +120,7 @@ export function getArchiveRouteConfigForDateKey(dateKey: string): ArchiveRouteCo
 
 export function getArchiveRouteConfigForPathname(pathname: string): ArchiveRouteConfig {
   const normalized = stripTrailingSlash(pathname);
-  const match = normalized.match(/^\/(\d{6})(?:\d{2})?-(?:banduke|torikumi|yotei|o-sumo)$/);
+  const match = normalized.match(/^\/(\d{6})(?:\d{2})?-(?:banzuke|torikumi|yotei)$/);
   if (match) {
     const config = getArchiveRouteConfigByMonthKey(match[1]);
     if (config) {
@@ -177,12 +177,12 @@ export const legacyBanzukePath = `/${torikumiMonthKey}-o-sumo`;
 
 export function getBanzukePathForMonthKey(monthKey: string): string {
   const config = getArchiveRouteConfigByMonthKey(monthKey) ?? getDefaultArchiveRouteConfig();
-  return withTrailingSlash(config.bandukePath);
+  return withTrailingSlash(config.banzukePath);
 }
 
 export function getBanzukePathForDateKey(dateKey: string): string {
   const config = getArchiveRouteConfigForDateKey(dateKey) ?? getDefaultArchiveRouteConfig();
-  return withTrailingSlash(config.bandukePath);
+  return withTrailingSlash(config.banzukePath);
 }
 
 export function getAdjacentDay(

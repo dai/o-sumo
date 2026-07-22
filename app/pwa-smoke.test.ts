@@ -2,11 +2,27 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 describe('PWA smoke config', () => {
+  it('keeps the custom 404 page under source control', () => {
+    const notFoundHtml = join(process.cwd(), 'public/404.html');
+
+    expect(existsSync(notFoundHtml)).toBe(true);
+    const html = readFileSync(notFoundHtml, 'utf-8');
+    expect(html).toContain('<title>404 - ページが見つかりません</title>');
+    expect(html).toContain('<meta name="robots" content="noindex">');
+  });
+
   it('canonicalizes the analytics route before serving the SPA fallback', () => {
     const redirects = readFileSync(join(process.cwd(), 'public/_redirects'), 'utf-8');
 
     expect(redirects).toContain('/analytics /analytics/ 301');
-    expect(redirects).toContain('/analytics/ /index.html 200');
+    expect(redirects).toContain('/analytics/ / 200');
+  });
+
+  it('canonicalizes the kimarite route before serving the SPA fallback', () => {
+    const redirects = readFileSync(join(process.cwd(), 'public/_redirects'), 'utf-8');
+
+    expect(redirects).toContain('/kimarite /kimarite/ 301');
+    expect(redirects).toContain('/kimarite/ / 200');
   });
 
   it('keeps auto-update strategy and API-only runtime caching', () => {

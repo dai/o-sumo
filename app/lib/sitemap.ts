@@ -46,7 +46,7 @@ export function getSitemapEntries(): SitemapEntry[] {
   }
 
   for (const config of getAllArchiveRouteConfigs()) {
-    appendEntry(config.bandukePath);
+    appendEntry(config.banzukePath);
     appendEntry(config.resultPath);
     appendEntry(config.schedulePath);
 

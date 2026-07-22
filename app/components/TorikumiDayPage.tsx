@@ -318,7 +318,7 @@ function getArchiveForPath(pathDate: string) {
       archive: config.archive,
       resultPath: config.resultPath,
       schedulePath: config.schedulePath,
-      bandukePath: config.bandukePath,
+      banzukePath: config.banzukePath,
     };
   }
 
@@ -332,14 +332,14 @@ function getArchiveForPath(pathDate: string) {
     archive: fallback.archive,
     resultPath: fallback.resultPath,
     schedulePath: fallback.schedulePath,
-    bandukePath: fallback.bandukePath,
+    banzukePath: fallback.banzukePath,
   };
 }
 
 export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay; mode: TorikumiPageMode }) {
   const [sortOrder, setSortOrder] = React.useState<SortOrder>('asc');
   const { t } = useTranslation('common');
-  const { monthKey, archive, resultPath, schedulePath, bandukePath } = getArchiveForPath(day.pathDate);
+  const { monthKey, archive, resultPath, schedulePath, banzukePath } = getArchiveForPath(day.pathDate);
   const prevDay = getAdjacentDay(day, mode, 'prev');
   const nextDay = getAdjacentDay(day, mode, 'next');
   const visibleDay = getVisibleDayData(day, archive, mode);
@@ -386,7 +386,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
           </div>
           <nav className="archive-nav" aria-label={`${modeLabel}ページの主要導線`}>
             <Link to={mode === 'result' ? resultPath : schedulePath} className="archive-link">{t('archives.list')}</Link>
-            <Link to={bandukePath} className="archive-link">{t('archives.banduke')}</Link>
+            <Link to={banzukePath} className="archive-link">{t('archives.banzuke')}</Link>
           </nav>
         </section>
 
@@ -401,7 +401,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
           </section>
         )}
 
-        <TorikumiTable title={`${day.label}の${modeLabel}`} dayData={visibleDayData} mode={mode} sortOrder={sortOrder} t={t} banzukePath={bandukePath} recordMap={recordMap} absenteeIds={absenteeIds} />
+        <TorikumiTable title={`${day.label}の${modeLabel}`} dayData={visibleDayData} mode={mode} sortOrder={sortOrder} t={t} banzukePath={banzukePath} recordMap={recordMap} absenteeIds={absenteeIds} />
       </main>
 
       <footer className="torikumi-footer">

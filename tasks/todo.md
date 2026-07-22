@@ -1008,3 +1008,33 @@
 - branch `codex/analytics-dashboard` をpushし、draft PR #219を作成: https://github.com/dai/o-sumo/pull/219
 
 
+# Banzuke 表記・URL統一（2026-07-22）
+
+## Plan
+- [x] 旧 `-banduke` URLの互換要件と新 `-banzuke` canonical URLをテストで先に固定する
+- [x] 内部識別子、翻訳キー、生成元・生成済みデータを `banzuke` に統一する
+- [x] Router、リンク、サイトマップ、Cloudflare配信規則、文書を新canonical URLへ移行する
+- [x] focused test、型チェック、全テスト、ビルド、生成差分、配信ルーティングを検証する
+- [x] 最終レビュー結果を記録する
+
+## Review
+- TDD RED: `npm test -- --run app/lib/torikumi-routes.test.ts app/lib/sitemap.test.ts app/page.test.tsx app/lib/redirect-rules.test.ts` は旧 `-banduke` 生成値・リンク・サイトマップ・redirect rule により 4 files / 5 tests failed（1 skipped）。client hash redirect test も実装前に import 解決不能で RED を確認した。
+- TDD GREEN: 同 focused test に client redirect hash test を加えて再実行し、5 files / 29 passed（1 skipped）。`/202605-banduke/#rikishi-1234` は `/202605-banzuke/#rikishi-1234` へ client-side で遷移することを確認した。
+- canonical migration: Router、archive config、link fields、translation keys、sitemap、`scripts/update_sumo_data.py` の template と `app/lib/torikumi-data.ts`、`public/_redirects`、README/development/product/runbook を `banzuke` に統一。`/api/v1/banzuke.json` と既存の Banzuke component/file names は変更していない。
+- redirect delivery: `/:slug-banduke` と末尾 slash 版、`/:slug-o-sumo` と末尾 slash 版を `/:slug-banzuke/ 301` へ統一し、SPA fallback は `/:slug-banzuke/ /index.html 200` のみとした。HTTP request に送信されない fragment は server rule に追加せず、client redirect test で保持を確認した。
+- Validation: `npm run typecheck` pass; `npm test -- --run` pass（22 files / 115 passed / 1 skipped）; Python generator/parser tests pass（32 tests）; temporary-output non-network regeneration consistency `GENERATION_CONSISTENCY=OK`; `npm run build` pass（既存の 500 kB chunk warning のみ）かつ `DIST_CANONICAL_URLS=OK`; `git diff --check` pass。
+- Review fix RED: 明示月・未知slug・fragment非捏造の設定テストを先に更新し、`npm test -- --run app/lib/redirect-rules.test.ts app/TopLevelSlugPage.test.tsx` で 1 file / 6 tests failed を確認。任意 `:slug` が `/garbage-banduke` と `/999999-banduke` を転送する不具合を再現した。
+- Review fix GREEN: `202603` / `202605` / `202607` ごとに canonical no-slash 301、canonical slash SPA fallback、旧2種のslash有無301を明示。React側のlegacy canonicalizationを削除し、focused 5 files / 34 passed / 1 skipped、typecheck、`git diff --check` がpass。`rg -n -i banduke --glob '!tasks/todo.md'` は `public/_redirects` と互換テストだけを返した。
+- Final fragment contract: fragmentはHTTP requestに含まれないためredirect destinationへ追加せず、設定テストで全18規則のdestinationに `#` がないことを確認。ブラウザ標準のHTTP redirect fragment保持に委ねる。
+- 404 artifact RED: `app/pwa-smoke.test.ts` に source-controlled `public/404.html` の存在・title・noindex を先に追加し、`npm test -- --run app/pwa-smoke.test.ts` で 1 failed / 4 passed（missing file）を確認。
+- 404 artifact GREEN/build: ユーザー作成 `C:\dai\GitHub\o-sumo\dist\404.html` を内容変更なしで `public/404.html` に追加。focused test は 5/5 pass、`npm run build` pass、`public/404.html` と build後 `dist/404.html` は双方 SHA256 `78A8092387A64E004B3DFC6858646B04F36349F40299B00BE93FCA40CCA67099`、`git diff --check` pass。
+- Kimarite delivery RED: custom 404追加後も正規routeを直接配信できるよう、`app/pwa-smoke.test.ts` に `/kimarite` 301と `/kimarite/` SPA fallbackの期待を先に追加。focused test は missing redirect により 1 failed / 5 passed。
+- Kimarite delivery GREEN/build: `public/_redirects` に `/kimarite /kimarite/ 301` と `/kimarite/ /index.html 200` を追加し、focused test 6/6 pass。`npm run build` pass後、`dist/_redirects` の両規則と `dist/404.html` の共存を `DIST_KIMARITE_AND_404=OK` で確認。404 SHA256は引き続き `78A8092387A64E004B3DFC6858646B04F36349F40299B00BE93FCA40CCA67099`、`git diff --check` pass。
+- Root fallback RED: Cloudflare Pagesの最初の規則のみ適用する実挙動に合わせ、全SPA 200規則のdestination期待を `/` に先行変更。`npm test -- --run app/lib/redirect-rules.test.ts app/pwa-smoke.test.ts` は旧 `/index.html` destinationにより 2 files / 6 failed / 8 passed。
+- Root fallback GREEN/build: archives、analytics、kimarite、rikishi 2種、対応済みbanzuke 3件、torikumi、yoteiの全10 SPA fallbackを `/ 200` へ変更。focused 2 files / 14 passed、`npm run build` pass、build後の10件がすべて `/ 200` かつ `dist/404.html` 存在を `DIST_ROOT_FALLBACKS_AND_404=OK` で確認。
+- Wrangler HTTP: `npx wrangler pages dev dist --port 8791`相当で実測し、`/202607-banzuke/ = 200`、`/202607-banduke = 301`（Location `/202607-banzuke/`）、`/kimarite/ = 200`、`/999999-banzuke = 404`、判定 `WRANGLER_HTTP_BEHAVIOR=OK`。`git diff --check` pass。
+- Final gate: `npm run typecheck` pass、全22 files / 123 tests pass / 1 skipped、Python 32 tests pass、`npm run build` pass、`git diff --check` pass。`public/404.html` と `dist/404.html` は指定SHA256一致、sitemapは `-banzuke/` のみ、production codeの `banduke` 残存0件。
+- Final Wrangler HTTP: canonical slash `200`、canonical no-slash `301`、旧 `-banduke` slash有無と旧 `-o-sumo` は `301`、`/kimarite/` は `200`、未対応・未知URLは `404`。検証プロセスは停止済み。
+- 最終コードレビュー: Critical / Important なし、Ready to merge判定。
+
+---

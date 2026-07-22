@@ -18,12 +18,12 @@ import ThemeToggle from './components/ThemeToggle'
 import LanguageToggle from './components/LanguageToggle'
 import ScrollToHash from './components/ScrollToHash'
 import {
-  MAY2026_BANDUKE_PATH,
+  MAY2026_BANZUKE_PATH,
   MAY2026_RESULT_PATH,
   MAY2026_SCHEDULE_PATH,
   MARCH2026_RESULT_PATH,
   MARCH2026_SCHEDULE_PATH,
-  MARCH2026_BANDUKE_PATH,
+  MARCH2026_BANZUKE_PATH,
 } from './lib/torikumi-routes'
 import {
   CURRENT_BANZUKE_PATH,
@@ -81,21 +81,19 @@ function AppShell() {
         <Route path={`${CURRENT_SCHEDULE_PATH}/`} element={<TorikumiHubPage mode="schedule" />} />
         <Route path={CURRENT_SCHEDULE_PATH} element={<HashPreservingRedirect to={`${CURRENT_SCHEDULE_PATH}/`} />} />
         {/* May 2026 archive routes */}
-        <Route path={`${MAY2026_BANDUKE_PATH}/`} element={<BanzukePage />} />
-        <Route path={MAY2026_BANDUKE_PATH} element={<HashPreservingRedirect to={`${MAY2026_BANDUKE_PATH}/`} />} />
+        <Route path={`${MAY2026_BANZUKE_PATH}/`} element={<BanzukePage />} />
+        <Route path={MAY2026_BANZUKE_PATH} element={<HashPreservingRedirect to={`${MAY2026_BANZUKE_PATH}/`} />} />
         <Route path={`${MAY2026_RESULT_PATH}/`} element={<TorikumiHubPage mode="result" />} />
         <Route path={MAY2026_RESULT_PATH} element={<HashPreservingRedirect to={`${MAY2026_RESULT_PATH}/`} />} />
         <Route path={`${MAY2026_SCHEDULE_PATH}/`} element={<TorikumiHubPage mode="schedule" />} />
         <Route path={MAY2026_SCHEDULE_PATH} element={<HashPreservingRedirect to={`${MAY2026_SCHEDULE_PATH}/`} />} />
         {/* March 2026 routes */}
-        <Route path={`${MARCH2026_BANDUKE_PATH}/`} element={<BanzukePage />} />
-        <Route path={MARCH2026_BANDUKE_PATH} element={<HashPreservingRedirect to={`${MARCH2026_BANDUKE_PATH}/`} />} />
+        <Route path={`${MARCH2026_BANZUKE_PATH}/`} element={<BanzukePage />} />
+        <Route path={MARCH2026_BANZUKE_PATH} element={<HashPreservingRedirect to={`${MARCH2026_BANZUKE_PATH}/`} />} />
         <Route path={`${MARCH2026_RESULT_PATH}/`} element={<TorikumiHubPage mode="result" />} />
         <Route path={MARCH2026_RESULT_PATH} element={<HashPreservingRedirect to={`${MARCH2026_RESULT_PATH}/`} />} />
         <Route path={`${MARCH2026_SCHEDULE_PATH}/`} element={<TorikumiHubPage mode="schedule" />} />
         <Route path={MARCH2026_SCHEDULE_PATH} element={<HashPreservingRedirect to={`${MARCH2026_SCHEDULE_PATH}/`} />} />
-        {/* Legacy redirect */}
-        <Route path="/202603-o-sumo" element={<HashPreservingRedirect to={`${MARCH2026_BANDUKE_PATH}/`} />} />
         {/* Day pages (8-digit slugs) */}
         <Route path="/:slug" element={<TopLevelSlugPage />} />
         <Route path="/:slug/" element={<TopLevelSlugPage />} />

@@ -55,13 +55,13 @@ npm run preview -- --host 127.0.0.1
 
 - `http://127.0.0.1:4173/rikishi`
 - `http://127.0.0.1:4173/rikishi/3842`
-- `http://127.0.0.1:4173/202607-banduke`
+- `http://127.0.0.1:4173/202607-banzuke/`
 - `http://127.0.0.1:4173/20260712-yotei`
 
 確認ポイント:
 
 - `/rikishi/3842` の出典欄に、日本相撲協会と MiniMax I2I Generation の両方が表示される
-- `/202607-banduke` で `public/images/rikishi/{id}.png` の画像が表示される
+- `/202607-banzuke/` で `public/images/rikishi/{id}.png` の画像が表示される
 
 ## 注意
 

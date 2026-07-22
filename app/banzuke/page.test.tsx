@@ -124,7 +124,7 @@ describe('BanzukePage', () => {
 
   it('renders march archive data and links for 202603 route', () => {
     render(
-      <MemoryRouter initialEntries={['/202603-banduke']}>
+      <MemoryRouter initialEntries={['/202603-banzuke']}>
         <BanzukePage />
       </MemoryRouter>,
     );
@@ -168,7 +168,7 @@ describe('BanzukePage', () => {
 
   it('renders May 2026 archive data for the 202605 route', () => {
     render(
-      <MemoryRouter initialEntries={['/202605-banduke']}>
+      <MemoryRouter initialEntries={['/202605-banzuke']}>
         <BanzukePage />
       </MemoryRouter>,
     );

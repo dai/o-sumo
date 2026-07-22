@@ -22,7 +22,7 @@ describe('ScrollToHash', () => {
     });
 
     render(
-      <MemoryRouter initialEntries={['/202603-banduke/#rikishi-1234']}>
+      <MemoryRouter initialEntries={['/202603-banzuke/#rikishi-1234']}>
         <div id="rikishi-1234">target</div>
         <ScrollToHash />
       </MemoryRouter>,
@@ -38,7 +38,7 @@ describe('ScrollToHash', () => {
     vi.stubGlobal('scrollTo', scrollTo);
 
     render(
-      <MemoryRouter initialEntries={['/202603-banduke/']}>
+      <MemoryRouter initialEntries={['/202603-banzuke/']}>
         <div id="rikishi-1234">target</div>
         <ScrollToHash />
       </MemoryRouter>,
@@ -49,4 +49,3 @@ describe('ScrollToHash', () => {
     });
   });
 });
-

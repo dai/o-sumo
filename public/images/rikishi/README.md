@@ -38,11 +38,11 @@ Each image is based on a source profile photo and processed into a consistent il
 
 画像は `/images/rikishi/{id}.png` の形式で参照されます。
 力士のJSON データ (`/api/v1/rikishi/{id}.json`) の `photoUrl` フィールドがこのパスを指します。
-`/rikishi/{id}` と `/{YYYYMM}-banduke` はこのローカル画像を優先表示します。
+`/rikishi/{id}` と `/{YYYYMM}-banzuke/` はこのローカル画像を優先表示します。
 
 Images are referenced as `/images/rikishi/{id}.png`.
 The `photoUrl` field in each rikishi's JSON data (`/api/v1/rikishi/{id}.json`) points to this path.
-Both `/rikishi/{id}` and `/{YYYYMM}-banduke` prefer this local image path.
+Both `/rikishi/{id}` and `/{YYYYMM}-banzuke/` prefer this local image path.
 
 ## ライセンス / License
 
