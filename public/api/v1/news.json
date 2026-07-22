@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-22T07:03:26.836438+00:00",
+  "updatedAt": "2026-07-22T09:01:20.041440+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260722-OHT1T51243",
-      "title": "三段目・天昇山が元十両の三田を破って６連勝　「十両優勝もしていたすごい力士。勝てて良かった」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260722-OHT1T51243",
+      "id": "dmenu-docomo-hochi-20260722-OHT1T51196",
+      "title": "大の里が５敗目　熱海富士に敗れる",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260722-OHT1T51196",
       "publishedAt": "2026-07-22",
-      "publishedAtRaw": "スポーツ報知　7月22日 15時53分",
+      "publishedAtRaw": "スポーツ報知　7月22日 17時46分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260722-OHT1T51245",
-      "title": "幕下・矢後が５敗目　「窮屈な体勢になってしまいました。そこから押し返せば良かったけど、ダメでした」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260722-OHT1T51245",
+      "id": "dmenu-docomo-tokyosports-396775",
+      "title": "【大相撲】尊富士が朝乃山との２敗対決を制す　　２年前の〝因縁〟にも言及「あのおかげで…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-396775",
       "publishedAt": "2026-07-22",
-      "publishedAtRaw": "スポーツ報知　7月22日 15時53分",
+      "publishedAtRaw": "東スポWEB　7月22日 17時16分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260722-202607220000710",
-      "title": "生田目が全勝対決制し６連勝　旭富士の連勝止めた反響も「切り替えて臨めるかが大事」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260722-202607220000710",
+      "id": "dmenu-docomo-f-bt-tp1-260722-202607220000915",
+      "title": "琴栄峰が力相撲の末に敗れて２敗　９連勝でストップも「いい相撲でした」と琴風氏",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260722-202607220000915",
       "publishedAt": "2026-07-22",
-      "publishedAtRaw": "日刊スポーツ　7月22日 15時41分",
+      "publishedAtRaw": "日刊スポーツ　7月22日 17時03分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260722-OHT1T51222",
-      "title": "元十両の生田目、不動豊との幕下全勝対決制す　前回旭富士の連勝を止め師匠の二子山親方から「いい相撲だった」とお褒め",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260722-OHT1T51222",
+      "id": "dmenu-docomo-f-bt-tp1-260722-202607220000889",
+      "title": "十両の玉鷲が６勝目「自分で引かないように前に」　夜は日記を書いて自分と向き合う",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260722-202607220000889",
       "publishedAt": "2026-07-22",
-      "publishedAtRaw": "スポーツ報知　7月22日 15時18分",
+      "publishedAtRaw": "日刊スポーツ　7月22日 16時56分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260722085",
-      "title": "横綱のしこ名継いだ旭富士、連勝記録ストップから再出発星【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260722085",
+      "id": "dmenu-docomo-hochi-20260722-OHT1T51279",
+      "title": "友風が負け越し　相手の寿之富士は「背も高いし、手も長い。嫌な相手。でも一生懸命やりました」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260722-OHT1T51279",
       "publishedAt": "2026-07-22",
-      "publishedAtRaw": "デイリースポーツ　7月22日 15時12分",
+      "publishedAtRaw": "スポーツ報知　7月22日 16時30分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
