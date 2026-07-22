@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-22T09:01:20.041440+00:00",
+  "updatedAt": "2026-07-22T10:48:21.414286+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260722-OHT1T51196",
-      "title": "大の里が５敗目　熱海富士に敗れる",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260722-OHT1T51196",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_DZABX7UWKNC7PIONPDLJZPM66A",
+      "title": "琴風氏「思い切った相撲を取るっていうのがこの人の信条」／名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_DZABX7UWKNC7PIONPDLJZPM66A",
       "publishedAt": "2026-07-22",
-      "publishedAtRaw": "スポーツ報知　7月22日 17時46分",
+      "publishedAtRaw": "SANSPO　7月22日 19時31分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-396775",
-      "title": "【大相撲】尊富士が朝乃山との２敗対決を制す　　２年前の〝因縁〟にも言及「あのおかげで…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-396775",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_KUWTZPNZPNCD3DD7NDAEJ4YP5M",
+      "title": "琴風氏「まさか変わってくるとは思わなかったでしょうね」／名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_KUWTZPNZPNCD3DD7NDAEJ4YP5M",
       "publishedAt": "2026-07-22",
-      "publishedAtRaw": "東スポWEB　7月22日 17時16分",
+      "publishedAtRaw": "SANSPO　7月22日 19時24分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260722-202607220000915",
-      "title": "琴栄峰が力相撲の末に敗れて２敗　９連勝でストップも「いい相撲でした」と琴風氏",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260722-202607220000915",
+      "id": "dmenu-docomo-tokyosports-396791",
+      "title": "【大相撲】安青錦が１０勝到達で大関に復帰「うれしい。不安も怖さもありながらやってきた」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-396791",
       "publishedAt": "2026-07-22",
-      "publishedAtRaw": "日刊スポーツ　7月22日 17時03分",
+      "publishedAtRaw": "東スポWEB　7月22日 19時17分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260722-202607220000889",
-      "title": "十両の玉鷲が６勝目「自分で引かないように前に」　夜は日記を書いて自分と向き合う",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260722-202607220000889",
+      "id": "dmenu-docomo-f-bt-tp1-260722-202607220001250",
+      "title": "安青錦が大関復帰　八角理事長「心が良くなっている」精神面評価　安治川親方には「アッパレ」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260722-202607220001250",
       "publishedAt": "2026-07-22",
-      "publishedAtRaw": "日刊スポーツ　7月22日 16時56分",
+      "publishedAtRaw": "日刊スポーツ　7月22日 19時16分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260722-OHT1T51279",
-      "title": "友風が負け越し　相手の寿之富士は「背も高いし、手も長い。嫌な相手。でも一生懸命やりました」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260722-OHT1T51279",
+      "id": "dmenu-docomo-20260722136",
+      "title": "安青錦が大関復帰決める、反則のまげつかみ疑いに審判長「そんな感じには見えなかった」【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260722136",
       "publishedAt": "2026-07-22",
-      "publishedAtRaw": "スポーツ報知　7月22日 16時30分",
+      "publishedAtRaw": "デイリースポーツ　7月22日 19時15分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
