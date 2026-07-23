@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-23T09:01:49.015561+00:00",
+  "updatedAt": "2026-07-23T10:49:33.196244+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260723-OHT1T51158",
-      "title": "大の里が６敗目　過去１０戦全勝の霧島に初黒星　勝ち越しも際どく…",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260723-OHT1T51158",
+      "id": "dmenu-docomo-f-bt-tp1-260723-202607230001039",
+      "title": "安青錦は「気力がもつかどうか」、豊昇龍は「つらいだろう」八角理事長が心理面を指摘",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260723-202607230001039",
       "publishedAt": "2026-07-23",
-      "publishedAtRaw": "スポーツ報知　7月23日 17時56分",
+      "publishedAtRaw": "日刊スポーツ　7月23日 19時31分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260723-202607230000702",
-      "title": "「にしたんクリニック」の西村社長が名古屋場所観戦　安青錦の大関復帰に感動、優勝予想は？",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260723-202607230000702",
+      "id": "dmenu-docomo-f-bt-tp1-260723-202607230001024",
+      "title": "「にしたんクリニック」西村社長　ケガ抱えながらも大関復帰決めた安青錦に「武士ですよ。感動」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260723-202607230001024",
       "publishedAt": "2026-07-23",
-      "publishedAtRaw": "日刊スポーツ　7月23日 16時56分",
+      "publishedAtRaw": "日刊スポーツ　7月23日 19時24分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-abematimes-10262213",
-      "title": "大相撲、“特等席”に大物が鎮座 とにかく映える衣装で“即バレ”状態「今日は別の席で」",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10262213",
+      "id": "dmenu-docomo-f-bt-tp1-260723-202607230000992",
+      "title": "朝翠龍が勝ち越しで新入幕へ大きく前進　兄朝紅龍と史上14組目の兄弟幕内へ",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260723-202607230000992",
       "publishedAt": "2026-07-23",
-      "publishedAtRaw": "ABEMA TIMES　7月23日 16時32分",
+      "publishedAtRaw": "日刊スポーツ　7月23日 18時57分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260723097",
-      "title": "史上１４組目の兄弟幕内を確実に！朝翠龍が玉鷲下し勝ち越し決める「両親にいい報告ができる」【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260723097",
+      "id": "dmenu-docomo-postseven-2122512",
+      "title": "《真っ黄色のシャツで元気ハツラツ！》気温40度の名古屋場所に94歳・大村崑さんが2日連続登場　安青錦の奮闘に「感動した」と語り、不甲斐ない2横綱に辛口エールも",
+      "url": "https://topics.smt.docomo.ne.jp/article/postseven/sports/postseven-2122512",
       "publishedAt": "2026-07-23",
-      "publishedAtRaw": "デイリースポーツ　7月23日 16時25分",
+      "publishedAtRaw": "NEWSポストセブン　7月23日 18時31分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260723-OHT1T51193",
-      "title": "東十両筆頭・朝翠龍が勝ち越し　来場所の新入幕に前進　兄・朝紅龍との兄弟幕内の可能性に「両親も望んでいたので、うれしい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260723-OHT1T51193",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_KZJJ2I6J65FI7EABC4QCJHLDBA",
+      "title": "安青錦に土　霧島は大の里破り綱とりに望み／名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_KZJJ2I6J65FI7EABC4QCJHLDBA",
       "publishedAt": "2026-07-23",
-      "publishedAtRaw": "スポーツ報知　7月23日 16時17分",
+      "publishedAtRaw": "SANSPO　7月23日 18時09分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
