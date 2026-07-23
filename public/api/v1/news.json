@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-22T10:48:21.414286+00:00",
+  "updatedAt": "2026-07-23T00:51:34.373413+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_DZABX7UWKNC7PIONPDLJZPM66A",
-      "title": "琴風氏「思い切った相撲を取るっていうのがこの人の信条」／名古屋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_DZABX7UWKNC7PIONPDLJZPM66A",
-      "publishedAt": "2026-07-22",
-      "publishedAtRaw": "SANSPO　7月22日 19時31分",
+      "id": "dmenu-docomo-abematimes-10262097",
+      "title": "幕下全勝対決でたった2秒の瞬殺劇…完全復活の“連勝キラー”、驚異の電車道に「レベチ」「格が違った」ファン騒然",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10262097",
+      "publishedAt": "2026-07-23",
+      "publishedAtRaw": "ABEMA TIMES　7月23日 9時05分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_KUWTZPNZPNCD3DD7NDAEJ4YP5M",
-      "title": "琴風氏「まさか変わってくるとは思わなかったでしょうね」／名古屋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_KUWTZPNZPNCD3DD7NDAEJ4YP5M",
-      "publishedAt": "2026-07-22",
-      "publishedAtRaw": "SANSPO　7月22日 19時24分",
+      "id": "dmenu-docomo-abematimes-10262085",
+      "title": "身長197cmの三段目力士が元十両撃破 「大人と子供みたい」「プロレスラーになろう」驚きの体格＆パワーにファン衝撃",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10262085",
+      "publishedAt": "2026-07-23",
+      "publishedAtRaw": "ABEMA TIMES　7月23日 7時52分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-396791",
-      "title": "【大相撲】安青錦が１０勝到達で大関に復帰「うれしい。不安も怖さもありながらやってきた」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-396791",
-      "publishedAt": "2026-07-22",
-      "publishedAtRaw": "東スポWEB　7月22日 19時17分",
+      "id": "dmenu-docomo-abematimes-10262084",
+      "title": "大の里がまたも惨敗 「悪い癖が出ました」実況＆解説が口を揃えて…“横綱らしからぬ動き”に館内も悲鳴",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10262084",
+      "publishedAt": "2026-07-23",
+      "publishedAtRaw": "ABEMA TIMES　7月23日 7時33分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260722-202607220001250",
-      "title": "安青錦が大関復帰　八角理事長「心が良くなっている」精神面評価　安治川親方には「アッパレ」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260722-202607220001250",
-      "publishedAt": "2026-07-22",
-      "publishedAtRaw": "日刊スポーツ　7月22日 19時16分",
+      "id": "dmenu-docomo-20260723042",
+      "title": "【解説】１敗守った安青錦は左前まわしの位置がよかった　５敗目の大の里はすぐに引いた内容が悪い　今こそ気持ちだと武蔵川親方",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260723042",
+      "publishedAt": "2026-07-23",
+      "publishedAtRaw": "デイリースポーツ　7月23日 7時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260722136",
-      "title": "安青錦が大関復帰決める、反則のまげつかみ疑いに審判長「そんな感じには見えなかった」【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260722136",
-      "publishedAt": "2026-07-22",
-      "publishedAtRaw": "デイリースポーツ　7月22日 19時15分",
+      "id": "dmenu-docomo-tokyosports-396841",
+      "title": "【大相撲】安青錦が１場所で大関復帰　秀ノ山親方は〝強メンタル〟に注目",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-396841",
+      "publishedAt": "2026-07-23",
+      "publishedAtRaw": "東スポWEB　7月23日 6時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
