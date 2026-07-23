@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-23T05:11:12.179602+00:00",
+  "updatedAt": "2026-07-23T07:01:29.259382+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-hochi-20260723-OHT1T51150",
+      "title": "幕下・行徳、心筋炎から復帰後４場所連続の勝ち越し「早く自己最高位にいきたい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260723-OHT1T51150",
+      "publishedAt": "2026-07-23",
+      "publishedAtRaw": "スポーツ報知　7月23日 15時16分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260723-OHT1T51142",
+      "title": "幕下・藤壮大が３場所ぶり勝ち越し「突き押しに圧力負けをしないようになってきている」　夜食の海鮮丼で先場所から体重が６キロ増",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260723-OHT1T51142",
+      "publishedAt": "2026-07-23",
+      "publishedAtRaw": "スポーツ報知　7月23日 14時58分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260723-OHT1T51137",
+      "title": "幕下のイケメン大森が３連勝で５勝１敗　びんつけ油で決めたオールバックは「アブラ増し増し」二郎系ラーメン風回答",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260723-OHT1T51137",
+      "publishedAt": "2026-07-23",
+      "publishedAtRaw": "スポーツ報知　7月23日 14時47分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-20260723083",
+      "title": "“イケメン”で注目の大森が５勝目、大量鬢付け油でオールバック姿で躍動【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260723083",
+      "publishedAt": "2026-07-23",
+      "publishedAtRaw": "デイリースポーツ　7月23日 14時36分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-hochi-20260723-OHT1T51111",
       "title": "【１２日目の見所】過去の対戦成績は０勝１０敗　まったく歯が立たない霧島だが、今場所は違う　立ち合いで踏み込めば勝てる",
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260723-OHT1T51111",
       "publishedAt": "2026-07-23",
       "publishedAtRaw": "スポーツ報知　7月23日 13時38分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260723-202607230000165",
-      "title": "元幕下の琴太豪が４場所ぶりに序二段で復帰　ケガで３場所全休も「悪いことばかりではない」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260723-202607230000165",
-      "publishedAt": "2026-07-23",
-      "publishedAtRaw": "日刊スポーツ　7月23日 11時25分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10262104",
-      "title": "大相撲なのに「レスリングみたい」 またも“珍手”発動「相撲じゃねーなw」62kg小兵力士の職人業に館内も熱視線",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10262104",
-      "publishedAt": "2026-07-23",
-      "publishedAtRaw": "ABEMA TIMES　7月23日 9時47分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10262097",
-      "title": "幕下全勝対決でたった2秒の瞬殺劇…完全復活の“連勝キラー”、驚異の電車道に「レベチ」「格が違った」ファン騒然",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10262097",
-      "publishedAt": "2026-07-23",
-      "publishedAtRaw": "ABEMA TIMES　7月23日 9時05分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10262085",
-      "title": "身長197cmの三段目力士が元十両撃破 「大人と子供みたい」「プロレスラーになろう」驚きの体格＆パワーにファン衝撃",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10262085",
-      "publishedAt": "2026-07-23",
-      "publishedAtRaw": "ABEMA TIMES　7月23日 7時52分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
