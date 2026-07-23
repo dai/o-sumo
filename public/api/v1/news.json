@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-23T00:51:34.373413+00:00",
+  "updatedAt": "2026-07-23T03:12:00.108665+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-f-bt-tp1-260723-202607230000165",
+      "title": "元幕下の琴太豪が４場所ぶりに序二段で復帰　ケガで３場所全休も「悪いことばかりではない」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260723-202607230000165",
+      "publishedAt": "2026-07-23",
+      "publishedAtRaw": "日刊スポーツ　7月23日 11時25分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-abematimes-10262104",
+      "title": "大相撲なのに「レスリングみたい」 またも“珍手”発動「相撲じゃねーなw」62kg小兵力士の職人業に館内も熱視線",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10262104",
+      "publishedAt": "2026-07-23",
+      "publishedAtRaw": "ABEMA TIMES　7月23日 9時47分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-abematimes-10262097",
       "title": "幕下全勝対決でたった2秒の瞬殺劇…完全復活の“連勝キラー”、驚異の電車道に「レベチ」「格が違った」ファン騒然",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10262084",
       "publishedAt": "2026-07-23",
       "publishedAtRaw": "ABEMA TIMES　7月23日 7時33分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260723042",
-      "title": "【解説】１敗守った安青錦は左前まわしの位置がよかった　５敗目の大の里はすぐに引いた内容が悪い　今こそ気持ちだと武蔵川親方",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260723042",
-      "publishedAt": "2026-07-23",
-      "publishedAtRaw": "デイリースポーツ　7月23日 7時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-tokyosports-396841",
-      "title": "【大相撲】安青錦が１場所で大関復帰　秀ノ山親方は〝強メンタル〟に注目",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-396841",
-      "publishedAt": "2026-07-23",
-      "publishedAtRaw": "東スポWEB　7月23日 6時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
