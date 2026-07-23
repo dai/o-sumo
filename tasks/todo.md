@@ -390,6 +390,22 @@
 
 ---
 
+# Google Analytics 測定ID更新（2026-07-23）
+
+## Plan
+- [x] 最新 `origin/main` から分離 worktree と `codex/ga-tag-update` ブランチを作成する
+- [x] 変更前の全テストを実行し、基準状態を確認する
+- [x] `index.html` の旧GA測定IDを `G-MK6YQ7YP77` へ置換し、AdSenseタグを保持する
+- [x] ソースとビルド生成物で旧ID消去、新ID一意性、AdSense保持を検証する
+- [x] 検証結果を Review に記録する
+
+## Review
+- Baseline: `npm test -- --run` は 22 files / 123 tests pass / 1 skipped。
+- Source: 旧ID `G-6TQ1VW4T99` は0件、新IDのloaderとconfigは各1件、既存AdSense loaderは1件。
+- Build: `npm run build` は成功（既存の 500 kB chunk warning のみ）。
+- Output: `dist/index.html` でも旧IDは0件、新IDのloaderとconfigは各1件、既存AdSense loaderは1件。
+- Diff: `git diff --check` は pass。
+
 # Google Analytics タグ追加（2026-07-23）
 
 ## Plan
