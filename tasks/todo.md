@@ -390,6 +390,23 @@
 
 ---
 
+# Google Analytics タグ追加（2026-07-23）
+
+## Plan
+- [x] 最新 `origin/main` から分離 worktree と `codex/ga-tag` ブランチを作成する
+- [x] 変更前の全テストを実行し、基準状態を確認する
+- [x] ルート `index.html` の既存 AdSense タグ直後へ指定された GA タグを追加する
+- [x] GA タグの重複、HTML差分、ビルド生成物を検証する
+- [x] 検証結果を Review に記録する
+
+## Review
+- Baseline: `npm test -- --run` は 22 files / 123 tests pass / 1 skipped。
+- Source: `index.html` の AdSense タグ直後に Google tag loader、`dataLayer` 初期化、測定 ID `G-6TQ1VW4T99` の設定を追加。
+- Uniqueness: ソース内の対象 loader と `gtag('config', 'G-6TQ1VW4T99')` は各1件。
+- Build: `npm run build` は成功（既存の 500 kB chunk warning のみ）。
+- Output: `dist/index.html` の対象 loader と config も各1件。
+- Diff: `git diff --check` は pass。
+
 # Sukuna pet v2 looking-directions upgrade Todo（2026-07-13）
 
 ## Plan
