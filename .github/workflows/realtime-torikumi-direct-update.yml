@@ -64,7 +64,19 @@ jobs:
 
           echo "committed=true" >> "$GITHUB_OUTPUT"
           git commit -m "chore: realtime torikumi update"
-          git push
+
+          # Retry push with rebase to handle non-fast-forward rejections.
+          for attempt in 1 2 3; do
+            if git push; then
+              break
+            elif [ "$attempt" -lt 3 ]; then
+              echo "::warning::Push rejected (attempt ${attempt}), rebasing on remote and retrying..."
+              git pull --rebase
+            else
+              echo "Push failed after 3 attempts."
+              exit 1
+            fi
+          done
 
       - name: Write run summary
         if: always()
