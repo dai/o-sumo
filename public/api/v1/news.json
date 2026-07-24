@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-24T08:59:34.366468+00:00",
+  "updatedAt": "2026-07-24T10:46:32.897359+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260724-OHT1T51164",
-      "title": "横綱・大の里がやっと７勝目　トップの平幕・尊富士を３敗に引きずり下ろす　綱の意地だ",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260724-OHT1T51164",
+      "id": "dmenu-docomo-tokyosports-397005",
+      "title": "【大相撲】安青錦が霧島撃破で単独首位　大関復帰決定の次は３度目の賜杯へ「集中していく」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397005",
       "publishedAt": "2026-07-24",
-      "publishedAtRaw": "スポーツ報知　7月24日 17時45分",
+      "publishedAtRaw": "東スポWEB　7月24日 19時32分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_2WII7G2VUFNOTGWUTC3RTEP5HQ",
-      "title": "ベテラン記者コラム　負傷の安青錦が1場所で大関復帰　横綱再挑戦に期待",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_2WII7G2VUFNOTGWUTC3RTEP5HQ",
+      "id": "dmenu-docomo-sponichi-spngoo-20260724-0306",
+      "title": "安青錦　霧島との2敗対決を肩すかしで制す　14日目は3敗の尊富士戦",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260724-0306",
       "publishedAt": "2026-07-24",
-      "publishedAtRaw": "SANSPO　7月24日 17時00分",
+      "publishedAtRaw": "スポニチアネックス　7月24日 19時27分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260724-OHT1T51194",
-      "title": "友風が５勝目　「（炎鵬への）大歓声の中、友風という声も聞こえてきました。パフォーマーとして頑張らないといけないと思いました」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260724-OHT1T51194",
+      "id": "dmenu-docomo-20260724132",
+      "title": "霧島が３敗、綱とり厳しく「誰が見ても納得する成績、内容が求められる」審判部長が言及【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260724132",
       "publishedAt": "2026-07-24",
-      "publishedAtRaw": "スポーツ報知　7月24日 16時11分",
+      "publishedAtRaw": "デイリースポーツ　7月24日 19時17分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260724-OHT1T51196",
-      "title": "西十両３枚目・出羽ノ龍が９勝目　来場所の新入幕に前進「あと２番あるので、大事にやっていきたい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260724-OHT1T51196",
+      "id": "dmenu-docomo-20260724131",
+      "title": "大の里、豊昇龍は１３日目終え勝ち越せず　千秋楽に史上３例目皆勤負け越しかけ横綱対決も【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260724131",
       "publishedAt": "2026-07-24",
-      "publishedAtRaw": "スポーツ報知　7月24日 16時10分",
+      "publishedAtRaw": "デイリースポーツ　7月24日 19時13分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260724096",
-      "title": "旭富士が立ち合い動いて６勝締め、元横綱旭富士の宮城野親方「気合を入れ直してやってほしい」【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260724096",
+      "id": "dmenu-docomo-tokyosports-397004",
+      "title": "【大相撲】霧島３敗で綱取り絶望的　浅香山審判部長「誰が見ても納得できる成績が求められる」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397004",
       "publishedAt": "2026-07-24",
-      "publishedAtRaw": "デイリースポーツ　7月24日 16時08分",
+      "publishedAtRaw": "東スポWEB　7月24日 19時05分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
