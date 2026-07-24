@@ -390,6 +390,23 @@
 
 ---
 
+# AdSense 本文広告枠追加（2026-07-24）
+
+## Plan
+- [x] 最新 `origin/main` から分離 worktree と `codex/adsense-body-unit` ブランチを作成する
+- [x] 変更前の全テストを実行し、基準状態を確認する
+- [x] AdSense loaderを`head`から`body`へ移し、`#root`直後に広告枠`2339683870`を追加する
+- [x] ソースとビルド生成物でloader、広告枠、初期化処理の一意性とGA保持を検証する
+- [x] 検証結果を Review に記録する
+
+## Review
+- Baseline: `npm test -- --run` は 22 files / 123 tests pass / 1 skipped。
+- Source: `head`内のAdSense loaderは0件、`body`内のloader、広告枠`2339683870`、初期化処理は各1件。
+- GA: loaderと`G-MK6YQ7YP77`のconfigは各1件のまま保持。
+- Build: `npm run build` は成功（既存の 500 kB chunk warning のみ）。
+- Output: `dist/index.html`でもAdSense loader、広告枠、初期化処理、GA loader/configは各1件。
+- Diff: `git diff --check` は pass。
+
 # Google Analytics 測定ID更新（2026-07-23）
 
 ## Plan
