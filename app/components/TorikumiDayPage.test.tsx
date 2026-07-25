@@ -263,6 +263,32 @@ describe('TorikumiDayPage', () => {
     expect(document.getElementById(`bout-makuuchi-${targetMatch.boutNo}`)).not.toBeNull();
   });
 
+  it('shows a fusen result and its loser in the absentee notice', () => {
+    const marchDay = MARCH2026_TORIKUMI_DATA.resultDays?.find((day) => day.data.makuuchi.matches.length > 0);
+    expect(marchDay).toBeDefined();
+    const targetMatch = marchDay!.data.makuuchi.matches[0];
+    const loserId = Number(targetMatch.eastProfileUrl.match(/profile\/(\d+)/)?.[1]);
+    const fusenMatch = { ...targetMatch, kimarite: '不戦', winner: 'west' as const };
+    const dayWithFusen: TorikumiArchiveDay = {
+      ...marchDay!,
+      data: {
+        ...marchDay!.data,
+        makuuchi: {
+          ...marchDay!.data.makuuchi,
+          matches: [fusenMatch],
+          absentees: [{ id: loserId, name: targetMatch.eastName, profileUrl: targetMatch.eastProfileUrl }],
+        },
+        juryo: { ...marchDay!.data.juryo, matches: [], absentees: [] },
+      },
+    };
+
+    renderPage(dayWithFusen, 'result');
+
+    expect(screen.getByText('休場者:')).toBeInTheDocument();
+    expect(screen.getByText(/不戦（/)).toBeInTheDocument();
+    expect(document.querySelectorAll('.torikumi-row-absent')).toHaveLength(0);
+  });
+
   it('renders absent placeholder rows for schedule pages too', () => {
     const scheduleDay = MAY2026_TORIKUMI_DATA.scheduleDays?.find((day) => day.data.makuuchi.matches.length > 0);
     if (!scheduleDay) {
