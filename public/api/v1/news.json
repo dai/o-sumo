@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-24T10:46:32.897359+00:00",
+  "updatedAt": "2026-07-25T00:51:35.142713+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-tokyosports-397005",
-      "title": "【大相撲】安青錦が霧島撃破で単独首位　大関復帰決定の次は３度目の賜杯へ「集中していく」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397005",
-      "publishedAt": "2026-07-24",
-      "publishedAtRaw": "東スポWEB　7月24日 19時32分",
+      "id": "dmenu-docomo-kyodo_nor-2026072501000409",
+      "title": "横綱豊昇龍が名古屋場所休場",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026072501000409",
+      "publishedAt": "2026-07-25",
+      "publishedAtRaw": "共同通信　7月25日 9時23分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260724-0306",
-      "title": "安青錦　霧島との2敗対決を肩すかしで制す　14日目は3敗の尊富士戦",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260724-0306",
-      "publishedAt": "2026-07-24",
-      "publishedAtRaw": "スポニチアネックス　7月24日 19時27分",
+      "id": "dmenu-docomo-abematimes-10262728",
+      "title": "「俳優だろこれ」背筋力265kgの男前力士、イメチェンした“ざんばら姿”に「かっこよ」「似合ってるね」館内からは黄色い声援も",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10262728",
+      "publishedAt": "2026-07-25",
+      "publishedAtRaw": "ABEMA TIMES　7月25日 9時03分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260724132",
-      "title": "霧島が３敗、綱とり厳しく「誰が見ても納得する成績、内容が求められる」審判部長が言及【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260724132",
-      "publishedAt": "2026-07-24",
-      "publishedAtRaw": "デイリースポーツ　7月24日 19時17分",
+      "id": "dmenu-docomo-abematimes-10262717",
+      "title": "「なんと60本！」熱海富士、横綱・豊昇龍、撃破で“最大懸賞の束”を両手に 「ワイの30カ月の収入が」夢ある光景に反響",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10262717",
+      "publishedAt": "2026-07-25",
+      "publishedAtRaw": "ABEMA TIMES　7月25日 7時30分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260724131",
-      "title": "大の里、豊昇龍は１３日目終え勝ち越せず　千秋楽に史上３例目皆勤負け越しかけ横綱対決も【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260724131",
-      "publishedAt": "2026-07-24",
-      "publishedAtRaw": "デイリースポーツ　7月24日 19時13分",
+      "id": "dmenu-docomo-postseven-2122508",
+      "title": "横綱・大の里が“第二の稀勢の里”になる懸念　人気がありながらも故障を抱える姿が重なって…完全復活へのポイントは「左のおっつけ」",
+      "url": "https://topics.smt.docomo.ne.jp/article/postseven/sports/postseven-2122508",
+      "publishedAt": "2026-07-25",
+      "publishedAtRaw": "NEWSポストセブン　7月25日 7時15分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-397004",
-      "title": "【大相撲】霧島３敗で綱取り絶望的　浅香山審判部長「誰が見ても納得できる成績が求められる」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397004",
-      "publishedAt": "2026-07-24",
-      "publishedAtRaw": "東スポWEB　7月24日 19時05分",
+      "id": "dmenu-docomo-20260725028",
+      "title": "【解説】安青錦は今場所の勝ちパターン、霧島は頭に入れておくべきだった　優勝争いはまだ分からない",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260725028",
+      "publishedAt": "2026-07-25",
+      "publishedAtRaw": "デイリースポーツ　7月25日 7時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
