@@ -115,7 +115,6 @@ describe('TorikumiHubPage', () => {
 
     if (hasAbsentees) {
       expect(screen.getByText('休場者:')).toBeInTheDocument();
-      expect(screen.getByRole('link', { name: '豊昇龍' })).toHaveAttribute('href', '/rikishi/3842/');
       const absenteeLinks = screen
         .getAllByRole('link')
         .filter((link) => (link.getAttribute('href') ?? '').startsWith('/rikishi/'));
