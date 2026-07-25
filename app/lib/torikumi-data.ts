@@ -8845,7 +8845,13 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "十四日目： 令和8年7月25日(土)",
           "division": "幕内",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3842,
+              "name": "豊昇龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            }
+          ]
         },
         "juryo": {
           "day": 14,
@@ -16827,6 +16833,11 @@ export const torikumiData: TorikumiDataSet = {
               "id": 4121,
               "name": "若ノ勝",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            },
+            {
+              "id": 3842,
+              "name": "豊昇龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
             }
           ]
         },

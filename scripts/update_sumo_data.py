@@ -870,6 +870,23 @@ def collect_active_ids_from_day(day_data: dict) -> set[int]:
     return active_ids
 
 
+def collect_fusen_loser_ids(division_day: dict) -> set[int]:
+    loser_ids = set()
+    for match in division_day.get("matches", []):
+        if str(match.get("kimarite", "")).strip() != "不戦":
+            continue
+        winner = match.get("winner")
+        loser_url = (
+            str(match.get("westProfileUrl", "")) if winner == "east"
+            else str(match.get("eastProfileUrl", "")) if winner == "west"
+            else ""
+        )
+        loser_id = extract_rikishi_id_from_url(loser_url)
+        if loser_id:
+            loser_ids.add(loser_id)
+    return loser_ids
+
+
 def derive_absentees(
     division_day: dict,
     roster: dict[int, dict],
@@ -896,7 +913,10 @@ def derive_absentees(
     # matches (east/westProfileUrl). The set difference above already handles
     # this when active_ids is complete; this filter is a safety net against
     # upstream profileUrl parses that miss a participant.
-    absent_ids = sorted(set(roster.keys()) - active_ids)
+    # The official result keeps both rikishi in a fusen bout. Treat its loser
+    # as absent even though their profile id therefore appears in active_ids.
+    fusen_loser_ids = collect_fusen_loser_ids(division_day)
+    absent_ids = sorted((set(roster.keys()) - active_ids) | (fusen_loser_ids & set(roster.keys())))
     return [roster[rikishi_id] for rikishi_id in absent_ids]
 
 

@@ -25,13 +25,16 @@ function useArchive(): { archive: TorikumiDataSet; resultPath: string; scheduleP
   };
 }
 
-function findLatestAbsentees(days: TorikumiDataSet['resultDays']): AbsenteeEntry[] {
-  const latestPublished = [...(days ?? [])]
+export function findLatestAbsentees(archive: TorikumiDataSet): AbsenteeEntry[] {
+  const publishedDays = [...(archive.resultDays ?? []), ...(archive.scheduleDays ?? [])]
     .filter((day) => day.status === 'published')
-    .sort((a, b) => b.day - a.day)[0];
-  if (!latestPublished) return [];
+    .sort((a, b) => b.day - a.day);
+  const latestDay = publishedDays[0]?.day;
+  if (latestDay === undefined) return [];
 
-  const entries = [...(latestPublished.data.makuuchi.absentees ?? []), ...(latestPublished.data.juryo.absentees ?? [])];
+  const entries = publishedDays
+    .filter((day) => day.day === latestDay)
+    .flatMap((day) => [...(day.data.makuuchi.absentees ?? []), ...(day.data.juryo.absentees ?? [])]);
   const seen = new Set<number>();
   return entries
     .filter((entry) => {
@@ -46,7 +49,7 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
   const { archive, resultPath, schedulePath, banzukePath } = useArchive();
   const sourceDays = mode === 'result' ? archive.resultDays : archive.scheduleDays;
   const days = sortArchiveDays(sourceDays ?? [], sortOrder);
-  const absentees = mode === 'schedule' ? findLatestAbsentees(archive.resultDays ?? []) : [];
+  const absentees = mode === 'schedule' ? findLatestAbsentees(archive) : [];
   const { t } = useTranslation('common');
 
   const modeLabel = mode === 'result'

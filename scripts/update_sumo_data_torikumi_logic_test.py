@@ -230,6 +230,25 @@ def test_derive_absentees_excludes_only_same_division_active_rikishi() -> None:
     assert [entry["id"] for entry in absentees] == [4227]
 
 
+def test_derive_absentees_includes_fusen_loser_who_remains_in_match() -> None:
+    roster = {
+        3842: {"id": 3842, "name": "豊昇龍", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"},
+        3622: {"id": 3622, "name": "霧島", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/"},
+    }
+    makuuchi_day = _division(1)
+    makuuchi_day["matches"] = [{
+        **makuuchi_day["matches"][0],
+        "eastProfileUrl": roster[3842]["profileUrl"],
+        "westProfileUrl": roster[3622]["profileUrl"],
+        "kimarite": "不戦",
+        "winner": "west",
+    }]
+
+    absentees = derive_absentees(makuuchi_day, roster, {3842, 3622})
+
+    assert [entry["id"] for entry in absentees] == [3842]
+
+
 def test_parse_torikumi_match_accepts_plain_text_shikona() -> None:
     raw = {
         "judge": 1,
@@ -319,6 +338,11 @@ def test_apply_result_days_to_rank_groups_keeps_unsettled_and_unknown_marks_null
                     ],
                     "absentees": [
                         {
+                            # A fusen loser is both a match participant and an
+                            # absentee; the recorded loss must take precedence.
+                            "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/1002/",
+                        },
+                        {
                             "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/1005/",
                         }
                     ],
@@ -353,6 +377,7 @@ def main() -> None:
     test_determine_archive_statuses_publishes_partially_settled_results()
     test_derive_absentees_excludes_cross_division_special_bout_rikishi()
     test_derive_absentees_excludes_only_same_division_active_rikishi()
+    test_derive_absentees_includes_fusen_loser_who_remains_in_match()
     test_parse_torikumi_match_accepts_plain_text_shikona()
     test_has_substantive_torikumi_diff_ignores_timestamp_only_change()
     test_preserve_torikumi_timestamps_if_unchanged_restores_existing_values()
