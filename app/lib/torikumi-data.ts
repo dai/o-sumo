@@ -59,9 +59,9 @@ export interface TorikumiDataSet {
 export const torikumiData: TorikumiDataSet = {
   "bashoName": "七月場所",
   "year": "令和八年",
-  "updatedAt": "2026-07-25T14:03:20+09:00",
+  "updatedAt": "2026-07-25T14:09:31+09:00",
   "resultUpdatedAt": "2026-07-25T14:03:20+09:00",
-  "scheduleUpdatedAt": "2026-07-24T19:46:08+09:00",
+  "scheduleUpdatedAt": "2026-07-25T14:09:31+09:00",
   "today": {
     "makuuchi": {
       "day": 13,
@@ -11838,6 +11838,11 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3334,
               "name": "白鷹山",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3334/"
+            },
+            {
+              "id": 4025,
+              "name": "欧勝海",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4025/"
             }
           ]
         }
@@ -12790,6 +12795,11 @@ export const torikumiData: TorikumiDataSet = {
               "id": 3761,
               "name": "若隆景",
               "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
             }
           ]
         },
