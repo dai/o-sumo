@@ -205,6 +205,18 @@ describe('TorikumiDayPage', () => {
     expect(screen.getByRole('link', { name: '青安錦' })).toHaveAttribute('href', '/rikishi/2/');
   });
 
+  it('shows the opening-day absentees from the current schedule data', () => {
+    const openingDay = torikumiArchive.scheduleDays.find((day) => day.day === 1);
+    expect(openingDay).toBeDefined();
+
+    renderPage(openingDay!, 'schedule');
+
+    const header = within(screen.getByRole('banner'));
+    expect(header.getByText('休場者:')).toBeInTheDocument();
+    expect(header.getByRole('link', { name: '若隆景' })).toHaveAttribute('href', '/rikishi/3761/');
+    expect(header.getByRole('link', { name: '白鷹山' })).toHaveAttribute('href', '/rikishi/3334/');
+  });
+
   it('shows Hoshoryu in the current schedule hero when their bout is not listed', () => {
     const currentScheduleDay = torikumiArchive.scheduleDays?.find((day) => day.pathDate === '20260725');
     expect(currentScheduleDay).toBeDefined();

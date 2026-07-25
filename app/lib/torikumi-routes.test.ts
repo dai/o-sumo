@@ -84,11 +84,7 @@ describe('torikumi route helpers', () => {
   });
 
 
-  // TODO: track separate fix in #175 — July 2026 opening-day absentees changed
-  // (豊昇龍, 王鵬 added mid-basho) so the literal-name assertions no longer
-  // match the live torikumi.json. Re-enable once expectations are updated
-  // to the live snapshot.
-  it.skip('reflects July opening-day absentees after the schedule announcement', () => {
+  it('reflects July opening-day absentees after the schedule announcement', () => {
     const firstScheduleDay = torikumiArchive.scheduleDays[0];
     const firstResultDay = torikumiArchive.resultDays[0];
     const scheduleAbsentees = [
@@ -100,8 +96,8 @@ describe('torikumi route helpers', () => {
       ...(firstResultDay.data.juryo.absentees ?? []),
     ].map((entry) => entry.name);
 
-    expect(scheduleAbsentees).toEqual(['若隆景', '豊昇龍', '王鵬', '白鷹山']);
-    expect(resultAbsentees).toEqual(['若隆景', '豊昇龍', '王鵬', '白鷹山']);
+    expect(scheduleAbsentees).toEqual(['若隆景', '白鷹山']);
+    expect(resultAbsentees).toEqual(['若隆景', '白鷹山']);
     expect(scheduleAbsentees).not.toContain('大の里');
     expect(scheduleAbsentees).not.toContain('安青錦');
   });
