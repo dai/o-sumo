@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-25T05:09:46.287541+00:00",
+  "updatedAt": "2026-07-25T06:56:30.605686+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260725-OHT1T51138",
-      "title": "【１４日目の見所】まさに“進撃の巨人　逆転Ｖへ熱海富士の勢いが止まらない　獅司をも圧倒して千秋楽へ出陣",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260725-OHT1T51138",
+      "id": "dmenu-docomo-hochi-20260725-OHT1T51189",
+      "title": "幕下優勝の行方は７人による決定戦へ　全勝だった生田目が初黒星　旭富士、三田らと千秋楽にトーナメントで争う",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260725-OHT1T51189",
       "publishedAt": "2026-07-25",
-      "publishedAtRaw": "スポーツ報知　7月25日 13時54分",
+      "publishedAtRaw": "スポーツ報知　7月25日 15時45分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-ans-708212",
-      "title": "大相撲、客席最前列に大物俳優を発見「ホントお好きで」　中継映り込む連日観戦が話題「お元気そう」",
-      "url": "https://topics.smt.docomo.ne.jp/article/ans/sports/ans-708212",
+      "id": "dmenu-docomo-sponichi-spngoo-20260725-0247",
+      "title": "元アマ横綱の元幕内・大翔丸が引退　14年春場所で付け出しデビュー",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260725-0247",
       "publishedAt": "2026-07-25",
-      "publishedAtRaw": "THE ANSWER　7月25日 13時03分",
+      "publishedAtRaw": "スポニチアネックス　7月25日 15時44分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-kyodo_nor-2026072501000661",
-      "title": "豊昇龍休場で懸賞変更　霧島戦の17本が取りやめ",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026072501000661",
+      "id": "dmenu-docomo-f-bt-tp1-260725-202607250000590",
+      "title": "元幕内大翔丸が引退　千秋楽に師匠同席で引退会見",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260725-202607250000590",
       "publishedAt": "2026-07-25",
-      "publishedAtRaw": "共同通信　7月25日 13時00分",
+      "publishedAtRaw": "日刊スポーツ　7月25日 15時37分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260725060",
-      "title": "豊昇龍が休場、師匠が苦渋の表情「根本から、一から直していく」ケガは「安青錦だって足が痛くたってやっている。言い訳はできない」【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260725060",
+      "id": "dmenu-docomo-hochi-20260725-OHT1T51182",
+      "title": "休場の豊昇龍　診断報告で「症状が悪化している状態」　右内側側副靱帯損傷、右ハムストリングス損傷で療養期間約６週間",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260725-OHT1T51182",
       "publishedAt": "2026-07-25",
-      "publishedAtRaw": "デイリースポーツ　7月25日 12時49分",
+      "publishedAtRaw": "スポーツ報知　7月25日 15時34分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_ZLYYAV2PKVK4FL6FSRNWTJOQTA",
-      "title": "豊昇龍が休場　13日目まで6敗を喫する不振　師匠の立浪親方「言い訳はできませんよ」／名古屋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_ZLYYAV2PKVK4FL6FSRNWTJOQTA",
+      "id": "dmenu-docomo-hochi-20260725-OHT1T51173",
+      "title": "元幕内・大翔丸が引退　最高位は東前頭５枚目…日本相撲協会が発表",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260725-OHT1T51173",
       "publishedAt": "2026-07-25",
-      "publishedAtRaw": "SANSPO　7月25日 12時47分",
+      "publishedAtRaw": "スポーツ報知　7月25日 15時27分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
