@@ -5,9 +5,36 @@ import { MARCH2026_TORIKUMI_DATA } from '../lib/march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from '../lib/may2026-data';
 import { torikumiArchive } from '../lib/torikumi-data';
 import { getDayPath } from '../lib/torikumi-routes';
-import TorikumiHubPage from './page';
+import TorikumiHubPage, { findLatestAbsentees } from './page';
 
 describe('TorikumiHubPage', () => {
+  it('uses the newest published schedule absentees in the hero', () => {
+    const hoshoryu = {
+      id: 3842,
+      name: '豊昇龍',
+      profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/3842/',
+    };
+    const resultDay = torikumiArchive.resultDays?.find((day) => day.status === 'published');
+    const scheduleDay = torikumiArchive.scheduleDays?.find((day) => day.status === 'published');
+    expect(resultDay).toBeDefined();
+    expect(scheduleDay).toBeDefined();
+
+    const entries = findLatestAbsentees({
+      ...torikumiArchive,
+      resultDays: [{ ...resultDay!, day: 13 }],
+      scheduleDays: [{
+        ...scheduleDay!,
+        day: 14,
+        data: {
+          ...scheduleDay!.data,
+          makuuchi: { ...scheduleDay!.data.makuuchi, absentees: [hoshoryu] },
+        },
+      }],
+    });
+
+    expect(entries).toContainEqual(hoshoryu);
+  });
+
   it('renders all 15 days and allows descending sort', async () => {
     const user = userEvent.setup();
 
@@ -84,14 +111,7 @@ describe('TorikumiHubPage', () => {
       </MemoryRouter>,
     );
 
-    const latestPublished = [...(torikumiArchive.resultDays ?? [])]
-      .filter((day) => day.status === 'published')
-      .sort((a, b) => b.day - a.day)[0];
-    const hasAbsentees = Boolean(
-      latestPublished
-      && ((latestPublished.data.makuuchi.absentees?.length ?? 0) > 0
-        || (latestPublished.data.juryo.absentees?.length ?? 0) > 0),
-    );
+    const hasAbsentees = findLatestAbsentees(torikumiArchive).length > 0;
 
     if (hasAbsentees) {
       expect(screen.getByText('休場者:')).toBeInTheDocument();
