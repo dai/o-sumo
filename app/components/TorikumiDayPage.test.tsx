@@ -205,32 +205,30 @@ describe('TorikumiDayPage', () => {
     expect(screen.getByRole('link', { name: '青安錦' })).toHaveAttribute('href', '/rikishi/2/');
   });
 
-  it('shows Hoshoryu in the current schedule hero when their bout is not listed', () => {
-    const currentScheduleDay = torikumiArchive.scheduleDays?.find((day) => day.pathDate === '20260725');
-    expect(currentScheduleDay).toBeDefined();
-    const hoshoryu = {
-      id: 3842,
-      name: '豊昇龍',
-      profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/3842/',
-    };
-    const dayWithHoshoryuAbsent: TorikumiArchiveDay = {
-      ...currentScheduleDay!,
-      data: {
-        ...currentScheduleDay!.data,
-        makuuchi: {
-          ...currentScheduleDay!.data.makuuchi,
-          matches: currentScheduleDay!.data.makuuchi.matches.filter(
-            (m) => !m.eastProfileUrl.includes('/3842/') && !m.westProfileUrl.includes('/3842/'),
-          ),
-          absentees: [hoshoryu],
-        },
-      },
-    };
+  it('shows the opening-day absentees from the current schedule data', () => {
+    const openingDay = torikumiArchive.scheduleDays.find((day) => day.day === 1);
+    expect(openingDay).toBeDefined();
 
-    renderPage(dayWithHoshoryuAbsent, 'schedule');
+    renderPage(openingDay!, 'schedule');
 
-    expect(within(screen.getByRole('banner')).getByRole('link', { name: '豊昇龍' }))
-      .toHaveAttribute('href', '/rikishi/3842/');
+    const header = within(screen.getByRole('banner'));
+    expect(header.getByText('休場者:')).toBeInTheDocument();
+    expect(header.getByRole('link', { name: '若隆景' })).toHaveAttribute('href', '/rikishi/3761/');
+    expect(header.getByRole('link', { name: '白鷹山' })).toHaveAttribute('href', '/rikishi/3334/');
+  });
+
+  it('shows all 14th-day absentees from the current schedule data', () => {
+    const day14 = torikumiArchive.scheduleDays.find((day) => day.day === 14);
+    expect(day14?.pathDate).toBe('20260725');
+
+    renderPage(day14!, 'schedule');
+
+    const header = within(screen.getByRole('banner'));
+    expect(header.getByText('休場者:')).toBeInTheDocument();
+    expect(header.getByRole('link', { name: '若隆景' })).toHaveAttribute('href', '/rikishi/3761/');
+    expect(header.getByRole('link', { name: '若ノ勝' })).toHaveAttribute('href', '/rikishi/4121/');
+    expect(header.getByRole('link', { name: '白鷹山' })).toHaveAttribute('href', '/rikishi/3334/');
+    expect(header.getByRole('link', { name: '欧勝海' })).toHaveAttribute('href', '/rikishi/4025/');
   });
 
   it('shows absentees on result pages when provided', () => {
