@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-25T08:48:24.471704+00:00",
+  "updatedAt": "2026-07-25T10:35:46.498496+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-20260725-567-GYT1T00196",
-      "title": "横綱豊昇龍が１４日目から休場、右脚のけがが悪化…６敗目を喫し「ふがいない相撲取れない」",
-      "url": "https://topics.smt.docomo.ne.jp/article/yomiuri/sports/20260725-567-GYT1T00196",
+      "id": "dmenu-docomo-abematimes-10262822",
+      "title": "「おいおいおい！」豊昇龍、休場アナウンスに館内騒然も…心無いヤジに「さすがにヒドイ」「無理しすぎた」「とりあえず怪我治して」困惑と励ましの声",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10262822",
       "publishedAt": "2026-07-25",
-      "publishedAtRaw": "読売新聞　7月25日 17時21分",
+      "publishedAtRaw": "ABEMA TIMES　7月25日 19時25分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260725-202607250000860",
-      "title": "大翔丸引退「かわいい大翔丸たんの引退寂しいなぁ」「力強いいい力士だったよ」惜しむ声",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260725-202607250000860",
+      "id": "dmenu-docomo-hochi-20260725-OHT1T51326",
+      "title": "名古屋場所千秋楽の取組が決定！　２敗で単独トップの安青錦は３敗の熱海富士戦　３敗の霧島は琴桜戦が組まれる　賜杯の行方は本割決着？優勝決定戦？ともえ戦？",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260725-OHT1T51326",
       "publishedAt": "2026-07-25",
-      "publishedAtRaw": "日刊スポーツ　7月25日 17時00分",
+      "publishedAtRaw": "スポーツ報知　7月25日 19時01分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260725-202607250000808",
-      "title": "横綱豊昇龍休場に「成績が悪くなると、理由をつけて休場」「もっと早めに休むか」厳しい声集まる",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260725-202607250000808",
+      "id": "dmenu-docomo-sponichi-spngoo-20260725-0313",
+      "title": "【大相撲】V王手の安青錦　千秋楽は3敗の熱海富士と対戦、3敗の霧島は琴櫻",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260725-0313",
       "publishedAt": "2026-07-25",
-      "publishedAtRaw": "日刊スポーツ　7月25日 16時36分",
+      "publishedAtRaw": "スポニチアネックス　7月25日 18時49分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260725-OHT1T51224",
-      "title": "友風がはたき込みを封印　玉鷲と押し合って９敗目　「良い相撲を取ろうという気持ちだけでした」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260725-OHT1T51224",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_IWDGBREOZVDDNEF65K2TTR2JNU",
+      "title": "舞の海氏「ぽっちゃりした体でもいいものを持ってましたね」／名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_IWDGBREOZVDDNEF65K2TTR2JNU",
       "publishedAt": "2026-07-25",
-      "publishedAtRaw": "スポーツ報知　7月25日 16時36分",
+      "publishedAtRaw": "SANSPO　7月25日 18時38分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-ans-708398",
-      "title": "「初めて見た」大相撲で視聴者騒然の化粧まわしが話題　「異色すぎる」デザイン、描かれたのは…",
-      "url": "https://topics.smt.docomo.ne.jp/article/ans/sports/ans-708398",
+      "id": "dmenu-docomo-hochi-20260725-OHT1T51160",
+      "title": "横綱・大の里、１４日目にやっと勝ち越し　前日カド番脱出の琴桜から白星",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260725-OHT1T51160",
       "publishedAt": "2026-07-25",
-      "publishedAtRaw": "THE ANSWER　7月25日 16時33分",
+      "publishedAtRaw": "スポーツ報知　7月25日 17時52分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
