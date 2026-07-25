@@ -205,20 +205,24 @@ describe('TorikumiDayPage', () => {
     expect(screen.getByRole('link', { name: '青安錦' })).toHaveAttribute('href', '/rikishi/2/');
   });
 
-  it('shows Hoshoryu in the current schedule hero even while the original bout remains listed', () => {
+  it('shows Hoshoryu in the current schedule hero when their bout is not listed', () => {
     const currentScheduleDay = torikumiArchive.scheduleDays?.find((day) => day.pathDate === '20260725');
     expect(currentScheduleDay).toBeDefined();
+    const hoshoryu = {
+      id: 3842,
+      name: '豊昇龍',
+      profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/3842/',
+    };
     const dayWithHoshoryuAbsent: TorikumiArchiveDay = {
       ...currentScheduleDay!,
       data: {
         ...currentScheduleDay!.data,
         makuuchi: {
           ...currentScheduleDay!.data.makuuchi,
-          absentees: [{
-            id: 3842,
-            name: '豊昇龍',
-            profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/3842/',
-          }],
+          matches: currentScheduleDay!.data.makuuchi.matches.filter(
+            (m) => !m.eastProfileUrl.includes('/3842/') && !m.westProfileUrl.includes('/3842/'),
+          ),
+          absentees: [hoshoryu],
         },
       },
     };
