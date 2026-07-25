@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-25T00:51:35.142713+00:00",
+  "updatedAt": "2026-07-25T03:11:09.295060+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-kyodo_nor-2026072501000409",
-      "title": "横綱豊昇龍が名古屋場所休場",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026072501000409",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_5QAHYFMMSRHTNDAMC3R5XJHX2U",
+      "title": "舞の海氏「12勝3敗で優勝するようなことがあれば…」／名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_5QAHYFMMSRHTNDAMC3R5XJHX2U",
       "publishedAt": "2026-07-25",
-      "publishedAtRaw": "共同通信　7月25日 9時23分",
+      "publishedAtRaw": "SANSPO　7月25日 11時31分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-abematimes-10262728",
-      "title": "「俳優だろこれ」背筋力265kgの男前力士、イメチェンした“ざんばら姿”に「かっこよ」「似合ってるね」館内からは黄色い声援も",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10262728",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_FQVUWGEBMFHYJJ3HL3FSFRJA2Y",
+      "title": "舞の海氏「突貫工事で昇進したころの力に早く戻してほしい」／名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_FQVUWGEBMFHYJJ3HL3FSFRJA2Y",
       "publishedAt": "2026-07-25",
-      "publishedAtRaw": "ABEMA TIMES　7月25日 9時03分",
+      "publishedAtRaw": "SANSPO　7月25日 11時25分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-abematimes-10262717",
-      "title": "「なんと60本！」熱海富士、横綱・豊昇龍、撃破で“最大懸賞の束”を両手に 「ワイの30カ月の収入が」夢ある光景に反響",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10262717",
+      "id": "dmenu-docomo-tokyosports-397074",
+      "title": "【大相撲】豊昇龍が休場…横綱在位９場所で４度目　対戦相手の霧島は千秋楽で逆転Ｖの可能性",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397074",
       "publishedAt": "2026-07-25",
-      "publishedAtRaw": "ABEMA TIMES　7月25日 7時30分",
+      "publishedAtRaw": "東スポWEB　7月25日 11時03分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-postseven-2122508",
-      "title": "横綱・大の里が“第二の稀勢の里”になる懸念　人気がありながらも故障を抱える姿が重なって…完全復活へのポイントは「左のおっつけ」",
-      "url": "https://topics.smt.docomo.ne.jp/article/postseven/sports/postseven-2122508",
+      "id": "dmenu-docomo-jiji-202607250092290123",
+      "title": "横綱豊昇龍が休場",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-202607250092290123",
       "publishedAt": "2026-07-25",
-      "publishedAtRaw": "NEWSポストセブン　7月25日 7時15分",
+      "publishedAtRaw": "時事通信　7月25日 10時47分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260725028",
-      "title": "【解説】安青錦は今場所の勝ちパターン、霧島は頭に入れておくべきだった　優勝争いはまだ分からない",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260725028",
+      "id": "dmenu-docomo-jiji-2026072500295",
+      "title": "横綱豊昇龍が休場＝在位９場所で４度目―大相撲名古屋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026072500295",
       "publishedAt": "2026-07-25",
-      "publishedAtRaw": "デイリースポーツ　7月25日 7時00分",
+      "publishedAtRaw": "時事通信　7月25日 10時41分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
