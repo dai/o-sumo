@@ -1,7 +1,7 @@
 {
   "bashoName": "七月場所",
   "year": "令和八年",
-  "updatedAt": "2026-07-26T14:07:41+09:00",
+  "updatedAt": "2026-07-26T15:13:26+09:00",
   "makuuchi": [
     {
       "title": "横綱",
@@ -14,7 +14,7 @@
           "side": "east",
           "wins": 7,
           "losses": 7,
-          "draws": 0,
+          "draws": 1,
           "results": [
             "win",
             "win",
@@ -29,7 +29,8 @@
             "win",
             "loss",
             "loss",
-            "loss"
+            "loss",
+            "draw"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/",
           "memo": ""
@@ -59,7 +60,8 @@
             "loss",
             "loss",
             "win",
-            "win"
+            "win",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/",
           "memo": ""
@@ -92,7 +94,8 @@
             "win",
             "win",
             "loss",
-            "win"
+            "win",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/",
           "memo": ""
@@ -122,7 +125,8 @@
             "win",
             "win",
             "win",
-            "loss"
+            "loss",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/",
           "memo": ""
@@ -155,7 +159,8 @@
             "win",
             "win",
             "win",
-            "win"
+            "win",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/",
           "memo": ""
@@ -168,8 +173,9 @@
           "side": "east",
           "wins": 0,
           "losses": 0,
-          "draws": 14,
+          "draws": 15,
           "results": [
+            "draw",
             "draw",
             "draw",
             "draw",
@@ -213,7 +219,8 @@
             "loss",
             "win",
             "win",
-            "loss"
+            "loss",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/",
           "memo": ""
@@ -241,7 +248,8 @@
             "win",
             "loss",
             "win",
-            "win"
+            "win",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/",
           "memo": ""
@@ -274,7 +282,8 @@
             "loss",
             "loss",
             "win",
-            "loss"
+            "loss",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/",
           "memo": ""
@@ -304,7 +313,8 @@
             "loss",
             "loss",
             "loss",
-            "win"
+            "win",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/",
           "memo": ""
@@ -337,7 +347,8 @@
             "win",
             "win",
             "loss",
-            "win"
+            "win",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/",
           "memo": ""
@@ -367,7 +378,8 @@
             "win",
             "win",
             "loss",
-            "loss"
+            "loss",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/",
           "memo": ""
@@ -400,7 +412,8 @@
             "loss",
             "loss",
             "win",
-            "loss"
+            "loss",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/",
           "memo": ""
@@ -430,7 +443,8 @@
             "win",
             "win",
             "win",
-            "loss"
+            "loss",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/",
           "memo": ""
@@ -463,7 +477,8 @@
             "loss",
             "win",
             "win",
-            "win"
+            "win",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/",
           "memo": ""
@@ -493,7 +508,8 @@
             "loss",
             "loss",
             "loss",
-            "win"
+            "win",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/",
           "memo": ""
@@ -526,7 +542,8 @@
             "loss",
             "win",
             "win",
-            "win"
+            "win",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/",
           "memo": ""
@@ -556,7 +573,8 @@
             "loss",
             "loss",
             "loss",
-            "loss"
+            "loss",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/",
           "memo": ""
@@ -589,7 +607,8 @@
             "loss",
             "loss",
             "loss",
-            "win"
+            "win",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/",
           "memo": ""
@@ -619,7 +638,8 @@
             "win",
             "loss",
             "loss",
-            "win"
+            "win",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/",
           "memo": ""
@@ -652,7 +672,8 @@
             "loss",
             "loss",
             "loss",
-            "loss"
+            "loss",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/",
           "memo": ""
@@ -682,7 +703,8 @@
             "win",
             "loss",
             "loss",
-            "win"
+            "win",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/",
           "memo": ""
@@ -715,7 +737,8 @@
             "loss",
             "loss",
             "loss",
-            "win"
+            "win",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/",
           "memo": ""
@@ -745,7 +768,8 @@
             "win",
             "loss",
             "loss",
-            "win"
+            "win",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/",
           "memo": ""
@@ -778,7 +802,8 @@
             "win",
             "win",
             "loss",
-            "loss"
+            "loss",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/",
           "memo": ""
@@ -808,7 +833,8 @@
             "win",
             "win",
             "win",
-            "win"
+            "win",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/",
           "memo": ""
@@ -841,7 +867,8 @@
             "win",
             "win",
             "win",
-            "win"
+            "win",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/",
           "memo": ""
@@ -871,7 +898,8 @@
             "loss",
             "win",
             "win",
-            "loss"
+            "loss",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/",
           "memo": ""
@@ -904,7 +932,8 @@
             "loss",
             "loss",
             "win",
-            "loss"
+            "loss",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/",
           "memo": ""
@@ -934,7 +963,8 @@
             "loss",
             "win",
             "loss",
-            "win"
+            "win",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/",
           "memo": ""
@@ -952,7 +982,7 @@
           "side": "east",
           "wins": 5,
           "losses": 2,
-          "draws": 7,
+          "draws": 8,
           "results": [
             "win",
             "win",
@@ -961,6 +991,7 @@
             "win",
             "loss",
             "loss",
+            "draw",
             "draw",
             "draw",
             "draw",
@@ -997,7 +1028,8 @@
             "loss",
             "loss",
             "win",
-            "loss"
+            "loss",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/",
           "memo": ""
@@ -1030,7 +1062,8 @@
             "win",
             "win",
             "loss",
-            "win"
+            "win",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/",
           "memo": ""
@@ -1060,7 +1093,8 @@
             "loss",
             "loss",
             "win",
-            "loss"
+            "loss",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/",
           "memo": ""
@@ -1093,7 +1127,8 @@
             "win",
             "loss",
             "win",
-            "loss"
+            "loss",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/",
           "memo": ""
@@ -1123,7 +1158,8 @@
             "win",
             "win",
             "loss",
-            "loss"
+            "loss",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/",
           "memo": ""
@@ -1156,7 +1192,8 @@
             "loss",
             "win",
             "win",
-            "loss"
+            "loss",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/",
           "memo": ""
@@ -1186,7 +1223,8 @@
             "win",
             "win",
             "loss",
-            "loss"
+            "loss",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/",
           "memo": ""
@@ -1219,7 +1257,8 @@
             "loss",
             "loss",
             "win",
-            "win"
+            "win",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/",
           "memo": ""
@@ -1249,7 +1288,8 @@
             "loss",
             "loss",
             "loss",
-            "win"
+            "win",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/",
           "memo": ""
@@ -1282,7 +1322,8 @@
             "win",
             "win",
             "loss",
-            "loss"
+            "loss",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/",
           "memo": ""
@@ -1312,7 +1353,8 @@
             "win",
             "win",
             "win",
-            "loss"
+            "loss",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/",
           "memo": ""
@@ -1347,7 +1389,8 @@
             "loss",
             "win",
             "win",
-            "win"
+            "win",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/",
           "memo": ""
@@ -1361,7 +1404,7 @@
           "rank": "十両1",
           "side": "west",
           "wins": 7,
-          "losses": 7,
+          "losses": 8,
           "draws": 0,
           "results": [
             "loss",
@@ -1377,7 +1420,8 @@
             "loss",
             "win",
             "win",
-            "win"
+            "win",
+            "loss"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/",
           "memo": ""
@@ -1393,7 +1437,7 @@
           "yomi": "ときはやて",
           "rank": "十両2",
           "side": "east",
-          "wins": 9,
+          "wins": 10,
           "losses": 5,
           "draws": 0,
           "results": [
@@ -1410,6 +1454,7 @@
             "loss",
             "win",
             "loss",
+            "win",
             "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/",
@@ -1440,7 +1485,8 @@
             "loss",
             "loss",
             "loss",
-            "win"
+            "win",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/",
           "memo": ""
@@ -1456,7 +1502,7 @@
           "yomi": "りゅうでん",
           "rank": "十両3",
           "side": "east",
-          "wins": 3,
+          "wins": 4,
           "losses": 11,
           "draws": 0,
           "results": [
@@ -1473,6 +1519,7 @@
             "loss",
             "loss",
             "loss",
+            "win",
             "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/",
@@ -1487,7 +1534,7 @@
           "rank": "十両3",
           "side": "west",
           "wins": 9,
-          "losses": 5,
+          "losses": 6,
           "draws": 0,
           "results": [
             "loss",
@@ -1503,6 +1550,7 @@
             "win",
             "win",
             "win",
+            "loss",
             "loss"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/",
@@ -1520,7 +1568,7 @@
           "rank": "十両4",
           "side": "east",
           "wins": 5,
-          "losses": 9,
+          "losses": 10,
           "draws": 0,
           "results": [
             "win",
@@ -1536,6 +1584,7 @@
             "loss",
             "win",
             "win",
+            "loss",
             "loss"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/",
@@ -1549,7 +1598,7 @@
           "yomi": "としのふじ",
           "rank": "十両4",
           "side": "west",
-          "wins": 10,
+          "wins": 11,
           "losses": 4,
           "draws": 0,
           "results": [
@@ -1566,6 +1615,7 @@
             "win",
             "loss",
             "loss",
+            "win",
             "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/",
@@ -1583,7 +1633,7 @@
           "rank": "十両5",
           "side": "east",
           "wins": 7,
-          "losses": 7,
+          "losses": 8,
           "draws": 0,
           "results": [
             "win",
@@ -1599,6 +1649,7 @@
             "win",
             "loss",
             "win",
+            "loss",
             "loss"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/",
@@ -1614,13 +1665,14 @@
           "side": "west",
           "wins": 0,
           "losses": 5,
-          "draws": 9,
+          "draws": 10,
           "results": [
             "loss",
             "loss",
             "loss",
             "loss",
             "loss",
+            "draw",
             "draw",
             "draw",
             "draw",
@@ -1646,7 +1698,7 @@
           "rank": "十両6",
           "side": "east",
           "wins": 11,
-          "losses": 3,
+          "losses": 4,
           "draws": 0,
           "results": [
             "win",
@@ -1662,7 +1714,8 @@
             "win",
             "win",
             "win",
-            "win"
+            "win",
+            "loss"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/",
           "memo": ""
@@ -1675,7 +1728,7 @@
           "yomi": "かぜけんおう",
           "rank": "十両6",
           "side": "west",
-          "wins": 7,
+          "wins": 8,
           "losses": 7,
           "draws": 0,
           "results": [
@@ -1692,7 +1745,8 @@
             "win",
             "win",
             "loss",
-            "loss"
+            "loss",
+            "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/",
           "memo": ""
@@ -1708,7 +1762,7 @@
           "yomi": "たまわし",
           "rank": "十両7",
           "side": "east",
-          "wins": 8,
+          "wins": 9,
           "losses": 6,
           "draws": 0,
           "results": [
@@ -1725,6 +1779,7 @@
             "win",
             "loss",
             "win",
+            "win",
             "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/",
@@ -1739,7 +1794,7 @@
           "rank": "十両7",
           "side": "west",
           "wins": 4,
-          "losses": 10,
+          "losses": 11,
           "draws": 0,
           "results": [
             "loss",
@@ -1755,6 +1810,7 @@
             "win",
             "loss",
             "win",
+            "loss",
             "loss"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/",
@@ -1771,7 +1827,7 @@
           "yomi": "みどりふじ",
           "rank": "十両8",
           "side": "east",
-          "wins": 7,
+          "wins": 8,
           "losses": 7,
           "draws": 0,
           "results": [
@@ -1788,7 +1844,8 @@
             "loss",
             "loss",
             "loss",
-            "loss"
+            "loss",
+            "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/",
           "memo": ""
@@ -1818,7 +1875,8 @@
             "loss",
             "loss",
             "win",
-            "win"
+            "win",
+            null
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/",
           "memo": ""
@@ -1835,7 +1893,7 @@
           "rank": "十両9",
           "side": "east",
           "wins": 9,
-          "losses": 5,
+          "losses": 6,
           "draws": 0,
           "results": [
             "win",
@@ -1850,6 +1908,7 @@
             "win",
             "win",
             "win",
+            "loss",
             "loss",
             "loss"
           ],
@@ -1865,7 +1924,7 @@
           "rank": "十両9",
           "side": "west",
           "wins": 4,
-          "losses": 10,
+          "losses": 11,
           "draws": 0,
           "results": [
             "loss",
@@ -1879,6 +1938,7 @@
             "loss",
             "loss",
             "win",
+            "loss",
             "loss",
             "loss",
             "loss"
@@ -1897,7 +1957,7 @@
           "yomi": "ひとし",
           "rank": "十両10",
           "side": "east",
-          "wins": 5,
+          "wins": 6,
           "losses": 9,
           "draws": 0,
           "results": [
@@ -1914,7 +1974,8 @@
             "loss",
             "win",
             "loss",
-            "loss"
+            "loss",
+            "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/",
           "memo": ""
@@ -1928,7 +1989,7 @@
           "rank": "十両10",
           "side": "west",
           "wins": 6,
-          "losses": 8,
+          "losses": 9,
           "draws": 0,
           "results": [
             "loss",
@@ -1944,7 +2005,8 @@
             "win",
             "win",
             "win",
-            "win"
+            "win",
+            "loss"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/",
           "memo": ""
@@ -1961,7 +2023,7 @@
           "rank": "十両11",
           "side": "east",
           "wins": 7,
-          "losses": 7,
+          "losses": 8,
           "draws": 0,
           "results": [
             "loss",
@@ -1977,7 +2039,8 @@
             "loss",
             "loss",
             "win",
-            "win"
+            "win",
+            "loss"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/",
           "memo": ""
@@ -1990,7 +2053,7 @@
           "yomi": "えんほう",
           "rank": "十両11",
           "side": "west",
-          "wins": 7,
+          "wins": 8,
           "losses": 7,
           "draws": 0,
           "results": [
@@ -2007,6 +2070,7 @@
             "loss",
             "win",
             "loss",
+            "win",
             "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/",
@@ -2023,7 +2087,7 @@
           "yomi": "とうはくりゅう",
           "rank": "十両12",
           "side": "east",
-          "wins": 7,
+          "wins": 8,
           "losses": 7,
           "draws": 0,
           "results": [
@@ -2040,7 +2104,8 @@
             "loss",
             "win",
             "win",
-            "loss"
+            "loss",
+            "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/",
           "memo": ""
@@ -2053,7 +2118,7 @@
           "yomi": "かよう",
           "rank": "十両12",
           "side": "west",
-          "wins": 6,
+          "wins": 7,
           "losses": 8,
           "draws": 0,
           "results": [
@@ -2070,6 +2135,7 @@
             "win",
             "loss",
             "loss",
+            "win",
             "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/",
@@ -2086,7 +2152,7 @@
           "yomi": "あらしふじ",
           "rank": "十両13",
           "side": "east",
-          "wins": 10,
+          "wins": 11,
           "losses": 4,
           "draws": 0,
           "results": [
@@ -2103,7 +2169,8 @@
             "win",
             "loss",
             "loss",
-            "loss"
+            "loss",
+            "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4267/",
           "memo": ""
@@ -2118,8 +2185,9 @@
           "side": "west",
           "wins": 0,
           "losses": 0,
-          "draws": 14,
+          "draws": 15,
           "results": [
+            "draw",
             "draw",
             "draw",
             "draw",
@@ -2149,7 +2217,7 @@
           "yomi": "とちたいかい",
           "rank": "十両14",
           "side": "east",
-          "wins": 6,
+          "wins": 7,
           "losses": 8,
           "draws": 0,
           "results": [
@@ -2166,7 +2234,8 @@
             "loss",
             "win",
             "win",
-            "loss"
+            "loss",
+            "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/",
           "memo": ""
@@ -2180,7 +2249,7 @@
           "rank": "十両14",
           "side": "west",
           "wins": 7,
-          "losses": 7,
+          "losses": 8,
           "draws": 0,
           "results": [
             "loss",
@@ -2196,7 +2265,8 @@
             "win",
             "loss",
             "loss",
-            "win"
+            "win",
+            "loss"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/",
           "memo": ""
