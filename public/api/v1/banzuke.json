@@ -1,7 +1,7 @@
 {
   "bashoName": "七月場所",
   "year": "令和八年",
-  "updatedAt": "2026-07-26T17:59:01+09:00",
+  "updatedAt": "2026-07-26T18:44:23+09:00",
   "makuuchi": [
     {
       "title": "横綱",
@@ -77,8 +77,8 @@
           "yomi": "きりしま",
           "rank": "大関",
           "side": "east",
-          "wins": 12,
-          "losses": 3,
+          "wins": 11,
+          "losses": 4,
           "draws": 0,
           "results": [
             "win",
@@ -95,7 +95,7 @@
             "win",
             "loss",
             "win",
-            "win"
+            "loss"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/",
           "memo": ""

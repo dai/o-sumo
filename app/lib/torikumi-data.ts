@@ -61,8 +61,8 @@ export const torikumiData: TorikumiDataSet = {
   "bashoId": 636,
   "bashoName": "七月場所",
   "year": "令和八年",
-  "updatedAt": "2026-07-26T17:59:01+09:00",
-  "resultUpdatedAt": "2026-07-26T17:59:01+09:00",
+  "updatedAt": "2026-07-26T18:44:23+09:00",
+  "resultUpdatedAt": "2026-07-26T18:44:23+09:00",
   "scheduleUpdatedAt": "2026-07-26T14:13:33+09:00",
   "today": {
     "makuuchi": {
@@ -390,6 +390,22 @@ export const torikumiData: TorikumiDataSet = {
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/",
           "kimarite": "押し倒し",
           "winner": "west"
+        },
+        {
+          "division": "幕内",
+          "boutNo": 21,
+          "eastName": "あたみふじ",
+          "eastYomi": "",
+          "eastEnglish": "",
+          "eastRank": "関脇",
+          "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/",
+          "westName": "きりしま",
+          "westYomi": "",
+          "westEnglish": "",
+          "westRank": "大関",
+          "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/",
+          "kimarite": "押し出し",
+          "winner": "east"
         }
       ],
       "absentees": [
@@ -9786,6 +9802,22 @@ export const torikumiData: TorikumiDataSet = {
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/",
               "kimarite": "押し倒し",
               "winner": "west"
+            },
+            {
+              "division": "幕内",
+              "boutNo": 21,
+              "eastName": "あたみふじ",
+              "eastYomi": "",
+              "eastEnglish": "",
+              "eastRank": "関脇",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/",
+              "westName": "きりしま",
+              "westYomi": "",
+              "westEnglish": "",
+              "westRank": "大関",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/",
+              "kimarite": "押し出し",
+              "winner": "east"
             }
           ],
           "absentees": [
