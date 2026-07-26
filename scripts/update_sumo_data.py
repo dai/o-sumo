@@ -1125,6 +1125,7 @@ def build_torikumi_dataset(
     tomorrow_data = next((day["data"] for day in schedule_days if int(day.get("day", 0)) == effective_schedule_day), None) if effective_schedule_day else None
 
     return {
+        "bashoId": basho_id,
         "updatedAt": current_timestamp,
         "resultUpdatedAt": current_timestamp,
         "scheduleUpdatedAt": current_timestamp,
@@ -1179,7 +1180,15 @@ def build_torikumi_meta_fallback(existing: dict) -> dict:
         month_key = str(result_days[0].get("pathDate", ""))[:6]
     elif schedule_days:
         month_key = str(schedule_days[0].get("pathDate", ""))[:6]
-    basho_id = safe_int(month_key, 0)
+    # The official API uses a sequential numeric id (for example 636), not the
+    # YYYYMM archive key.  Keep that id in the generated payload so a temporary
+    # banzuke endpoint failure does not turn requests into basho_id=202607.
+    basho_id = safe_int(existing.get("bashoId", 0), 0)
+    if basho_id <= 0:
+        raise RuntimeError(
+            "existing torikumi data has no valid bashoId; "
+            f"cannot build metadata fallback for archive {month_key or 'unknown'}"
+        )
 
     updated_at = str(existing.get("updatedAt", "")) or current_timestamp_iso()
     current_day = 1
@@ -1382,6 +1391,7 @@ export interface TorikumiArchiveDay {{
 }}
 
 export interface TorikumiDataSet {{
+  bashoId?: number;
   bashoName: string;
   year: string;
   updatedAt: string;
@@ -1394,6 +1404,7 @@ export interface TorikumiDataSet {{
 }}
 
 export const torikumiData: TorikumiDataSet = {json.dumps({
+        "bashoId": dataset.get("bashoId"),
         "bashoName": basho_name,
         "year": year_jp,
         "updatedAt": dataset["updatedAt"],
@@ -1443,6 +1454,7 @@ def write_api_json(
         write_text_lf(API_DIR / "banzuke.json", json.dumps(banzuke_json, ensure_ascii=False, indent=2))
 
     torikumi_json = {
+        "bashoId": torikumi_dataset.get("bashoId"),
         "bashoName": basho_name,
         "year": year_jp,
         "updatedAt": torikumi_dataset["updatedAt"],

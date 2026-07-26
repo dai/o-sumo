@@ -250,6 +250,32 @@ class LoadDivisionRikishiFallbackTest(unittest.TestCase):
 
 
 class OfficialBashoScheduleTest(unittest.TestCase):
+    def test_metadata_fallback_reuses_official_basho_id(self) -> None:
+        metadata = MODULE.build_torikumi_meta_fallback(
+            {
+                "bashoId": 636,
+                "bashoName": "七月場所",
+                "year": "令和八年",
+                "updatedAt": "2026-07-26T10:23:38+09:00",
+                "resultDays": [{"day": 15, "pathDate": "20260726", "isoDate": "2026-07-26"}],
+                "scheduleDays": [],
+            }
+        )
+
+        self.assertEqual(metadata["BashoInfo"]["basho_id"], 636)
+
+    def test_metadata_fallback_rejects_archive_month_as_basho_id(self) -> None:
+        with self.assertRaisesRegex(RuntimeError, "no valid bashoId"):
+            MODULE.build_torikumi_meta_fallback(
+                {
+                    "bashoName": "七月場所",
+                    "year": "令和八年",
+                    "updatedAt": "2026-07-26T10:23:38+09:00",
+                    "resultDays": [{"day": 15, "pathDate": "20260726", "isoDate": "2026-07-26"}],
+                    "scheduleDays": [],
+                }
+            )
+
     def test_extracts_july_2026_start_date_from_annual_schedule(self) -> None:
         html = """
         <h3>令和8年 本場所日程</h3>
@@ -337,7 +363,7 @@ class OfficialBashoScheduleTest(unittest.TestCase):
 
         with mock.patch.object(MODULE, "load_division_rikishi", return_value={}):
             with mock.patch.object(MODULE, "try_load_torikumi_day", side_effect=fake_try_load_torikumi_day):
-                MODULE.build_torikumi_dataset(
+                payload = MODULE.build_torikumi_dataset(
                     636,
                     0,
                     "2026-07-11T13:00:00+09:00",
@@ -345,6 +371,8 @@ class OfficialBashoScheduleTest(unittest.TestCase):
                     fetch_days={1},
                     official_start_date=date(2026, 7, 12),
                 )
+
+        self.assertEqual(payload["bashoId"], 636)
 
         self.assertEqual(
             calls,
