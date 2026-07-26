@@ -643,23 +643,62 @@ def _is_target_division(raw: dict, kakuzuke_id: int) -> bool:
     return raw_kaku == str(kakuzuke_id)
 
 
+def normalize_torikumi_collection(raw_collection: object) -> list[dict]:
+    """Flatten the collection shapes returned by the official endpoint.
+
+    Most days use an array for ``TorikumiData`` and ``FinalMuch``.  The
+    senshuraku response can instead wrap either collection in an object (and a
+    single playoff is sometimes returned as the object itself).  Iterating a
+    dict directly only yields its keys, which made the whole day look
+    unpublished.  Only objects with east/west participants are considered
+    matches so metadata in a wrapper is ignored safely.
+    """
+    if isinstance(raw_collection, list):
+        matches: list[dict] = []
+        for item in raw_collection:
+            matches.extend(normalize_torikumi_collection(item))
+        return matches
+    if not isinstance(raw_collection, dict):
+        return []
+    if isinstance(raw_collection.get("east"), dict) and isinstance(raw_collection.get("west"), dict):
+        return [raw_collection]
+
+    matches = []
+    for value in raw_collection.values():
+        if isinstance(value, (list, dict)):
+            matches.extend(normalize_torikumi_collection(value))
+    return matches
+
+
+def torikumi_match_identity(raw: dict) -> tuple[int, int] | None:
+    east = raw.get("east") or {}
+    west = raw.get("west") or {}
+    east_id = safe_int(east.get("rikishi_id"), 0)
+    west_id = safe_int(west.get("rikishi_id"), 0)
+    if east_id <= 0 or west_id <= 0:
+        return None
+    return east_id, west_id
+
+
 def merge_torikumi_raw_matches(data: dict, kakuzuke_id: int | None = None) -> list[tuple[int, dict]]:
-    merged: dict[int, dict] = {}
+    merged: list[tuple[int, dict]] = []
+    seen_matches: set[tuple[int, int]] = set()
 
-    for idx, raw in enumerate(list(data.get("TorikumiData", [])), start=1):
-        if kakuzuke_id is not None and not _is_target_division(raw, kakuzuke_id):
-            continue
-        bout_no = extract_bout_no(raw, idx)
-        merged[bout_no] = raw
+    for collection_name in ("TorikumiData", "FinalMuch"):
+        for raw in normalize_torikumi_collection(data.get(collection_name, [])):
+            if kakuzuke_id is not None and not _is_target_division(raw, kakuzuke_id):
+                continue
+            identity = torikumi_match_identity(raw)
+            if identity is not None and identity in seen_matches:
+                continue
+            if identity is not None:
+                seen_matches.add(identity)
+            # The displayed bout numbers are normalized after parsing.  Use
+            # the merged order here because FinalMuch may restart its local
+            # numbering at one on senshuraku.
+            merged.append((len(merged) + 1, raw))
 
-    start_idx = max(merged.keys(), default=0) + 1
-    for idx, raw in enumerate(list(data.get("FinalMuch", [])), start=start_idx):
-        if kakuzuke_id is not None and not _is_target_division(raw, kakuzuke_id):
-            continue
-        bout_no = extract_bout_no(raw, idx)
-        merged[bout_no] = raw
-
-    return sorted(merged.items(), key=lambda item: item[0])
+    return merged
 
 
 def load_torikumi_day(basho_id: int, day: int, kakuzuke_id: int) -> dict:

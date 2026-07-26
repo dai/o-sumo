@@ -232,6 +232,88 @@ class LoadTorikumiDayTest(unittest.TestCase):
 
         self.assertEqual(merged, [])
 
+    def test_senshuraku_accepts_wrapped_torikumi_and_single_final_match(self) -> None:
+        regular = _official_torikumi_match("千秋楽通常", 1, 1, 2000)
+        playoff = _official_torikumi_match("優勝決定", 1, 1, 3000)
+        payload = {
+            "Result": "1",
+            "dayName": "取組日 千秋楽",
+            "dayHead": "千秋楽： 令和8年7月26日(日)",
+            "TorikumiData": {"matches": [regular]},
+            "FinalMuch": playoff,
+        }
+
+        with mock.patch.object(MODULE, "post_json", return_value=payload):
+            division_day = MODULE.load_torikumi_day(636, 15, 1)
+
+        self.assertEqual(len(division_day["matches"]), 2)
+        self.assertEqual(
+            [match["eastName"] for match in division_day["matches"]],
+            ["千秋楽通常東", "優勝決定東"],
+        )
+        self.assertEqual([match["boutNo"] for match in division_day["matches"]], [1, 2])
+
+    def test_final_match_does_not_replace_regular_bout_when_number_restarts(self) -> None:
+        regular = {**_official_torikumi_match("通常", 1, 1, 4000), "torikumi_no": 1}
+        playoff = {**_official_torikumi_match("決定", 1, 1, 5000), "torikumi_no": 1}
+
+        merged = MODULE.merge_torikumi_raw_matches(
+            {"TorikumiData": [regular], "FinalMuch": [playoff]},
+            kakuzuke_id=1,
+        )
+
+        self.assertEqual([raw["east"]["shikona"] for _, raw in merged], ["通常東", "決定東"])
+
+    def test_duplicate_final_match_is_only_merged_once(self) -> None:
+        final_match = _official_torikumi_match("結び", 1, 1, 6000)
+
+        merged = MODULE.merge_torikumi_raw_matches(
+            {"TorikumiData": [final_match], "FinalMuch": {"match": final_match}},
+            kakuzuke_id=1,
+        )
+
+        self.assertEqual(len(merged), 1)
+
+
+class SenshurakuPublicationStatusTest(unittest.TestCase):
+    def make_day(self, *, winner: str | None, kimarite: str) -> dict:
+        match = {
+            "winner": winner,
+            "kimarite": kimarite,
+            "eastName": "東力士",
+            "westName": "西力士",
+        }
+        return {
+            "makuuchi": {"matches": [match]},
+            "juryo": {"matches": [match]},
+        }
+
+    def test_senshuraku_schedule_is_published_before_results_settle(self) -> None:
+        pending_day = self.make_day(winner=None, kimarite="")
+
+        result_status, schedule_status = MODULE.determine_archive_statuses(
+            15,
+            15,
+            pending_day,
+            pending_day,
+        )
+
+        self.assertEqual(result_status, "pending")
+        self.assertEqual(schedule_status, "published")
+
+    def test_senshuraku_changes_from_unpublished_to_published_and_settled(self) -> None:
+        unpublished_day = {"makuuchi": {"matches": []}, "juryo": {"matches": []}}
+        settled_day = self.make_day(winner="east", kimarite="押し出し")
+
+        self.assertEqual(
+            MODULE.determine_archive_statuses(15, 14, unpublished_day, unpublished_day),
+            ("pending", "pending"),
+        )
+        self.assertEqual(
+            MODULE.determine_archive_statuses(15, 15, settled_day, settled_day),
+            ("published", "published"),
+        )
+
 
 class LoadDivisionRikishiFallbackTest(unittest.TestCase):
     def test_uses_local_banzuke_when_remote_banzuke_fetch_fails(self) -> None:
