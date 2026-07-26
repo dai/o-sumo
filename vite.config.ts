@@ -88,6 +88,9 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './app/test/setup.ts',
     globals: true,
+    // 番付などの大きなデータを扱う jsdom テストを同時に走らせると、CI の負荷次第で
+    // タイムアウトする。ファイル単位の並列化だけを止め、テストを安定させる。
+    fileParallelism: false,
     // CI で並列実行が重なると重いデータロードを行うテストが 5s を超えることがある。
     // 個別テストの it(..., fn, timeout?) で上書きするのが基本だが、既知の重いテスト
     // にも適用されるようプロジェクト既定も広めにとる。
