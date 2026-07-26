@@ -26,15 +26,17 @@ describe('sitemap helpers', () => {
   it('includes published day pages and excludes pending day pages', () => {
     const locs = getSitemapEntries().map((entry) => entry.loc);
     const publishedResultDay = torikumiArchive.resultDays.find((day) => day.status === 'published');
+    // pendingResultDay may be absent once all results are published for the basho
     const pendingResultDay = torikumiArchive.resultDays.find((day) => day.status === 'pending');
     const publishedScheduleDay = torikumiArchive.scheduleDays.find((day) => day.status === 'published');
     // pendingScheduleDay may be absent once all schedule days are announced for the basho
     const pendingScheduleDay = torikumiArchive.scheduleDays.find((day) => day.status === 'pending');
 
     expect(publishedResultDay).toBeDefined();
-    expect(pendingResultDay).toBeDefined();
     expect(locs).toContain(`/${publishedResultDay!.pathDate}-torikumi/`);
-    expect(locs).not.toContain(`/${pendingResultDay!.pathDate}-torikumi/`);
+    if (pendingResultDay) {
+      expect(locs).not.toContain(`/${pendingResultDay.pathDate}-torikumi/`);
+    }
     if (publishedScheduleDay) {
       expect(locs).toContain(`/${publishedScheduleDay.pathDate}-yotei/`);
     }
