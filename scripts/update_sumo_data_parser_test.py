@@ -354,6 +354,26 @@ class OfficialBashoScheduleTest(unittest.TestCase):
             {2, 3},
         )
 
+    def test_schedule_scope_only_fetches_current_and_next_day(self) -> None:
+        self.assertEqual(
+            MODULE.resolve_torikumi_fetch_days(
+                torikumi_only=True,
+                scope="schedule",
+                current_day=14,
+                existing_torikumi={"scheduleDays": []},
+            ),
+            {14, 15},
+        )
+        self.assertEqual(
+            MODULE.resolve_torikumi_fetch_days(
+                torikumi_only=True,
+                scope="schedule",
+                current_day=15,
+                existing_torikumi={"scheduleDays": []},
+            ),
+            {15},
+        )
+
     def test_explicit_fetch_days_run_before_official_start(self) -> None:
         calls = []
 

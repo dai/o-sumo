@@ -1165,8 +1165,14 @@ def resolve_torikumi_fetch_days(
         return None
     if scope == "result" and existing_torikumi and current_day > 0:
         return {max(1, current_day - 1), current_day}
-    if scope == "schedule" and current_day <= 0:
-        return {1}
+    if scope == "schedule":
+        if current_day <= 0:
+            return {1}
+        # A schedule-only refresh only needs the current day's card and the
+        # next card once it has been announced.  Re-fetching all 15 days can
+        # exhaust the workflow's retry window before it reaches the newly
+        # published card, especially on senshuraku.
+        return {current_day, min(current_day + 1, 15)}
     return None
 
 
