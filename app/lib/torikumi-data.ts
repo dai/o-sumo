@@ -61,9 +61,9 @@ export const torikumiData: TorikumiDataSet = {
   "bashoId": 636,
   "bashoName": "七月場所",
   "year": "令和八年",
-  "updatedAt": "2026-07-26T18:44:23+09:00",
+  "updatedAt": "2026-07-26T19:36:24+09:00",
   "resultUpdatedAt": "2026-07-26T18:44:23+09:00",
-  "scheduleUpdatedAt": "2026-07-26T14:13:33+09:00",
+  "scheduleUpdatedAt": "2026-07-26T19:36:24+09:00",
   "today": {
     "makuuchi": {
       "day": 15,
@@ -995,6 +995,22 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "横綱",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/",
+          "kimarite": "未定",
+          "winner": null
+        },
+        {
+          "division": "幕内",
+          "boutNo": 21,
+          "eastName": "あたみふじ",
+          "eastYomi": "",
+          "eastEnglish": "",
+          "eastRank": "関脇",
+          "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/",
+          "westName": "きりしま",
+          "westYomi": "",
+          "westEnglish": "",
+          "westRank": "大関",
+          "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/",
           "kimarite": "未定",
           "winner": null
         }
@@ -18608,6 +18624,22 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "",
               "westRank": "横綱",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/",
+              "kimarite": "未定",
+              "winner": null
+            },
+            {
+              "division": "幕内",
+              "boutNo": 21,
+              "eastName": "あたみふじ",
+              "eastYomi": "",
+              "eastEnglish": "",
+              "eastRank": "関脇",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/",
+              "westName": "きりしま",
+              "westYomi": "",
+              "westEnglish": "",
+              "westRank": "大関",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/",
               "kimarite": "未定",
               "winner": null
             }
