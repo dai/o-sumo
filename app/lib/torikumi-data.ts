@@ -45,7 +45,6 @@ export interface TorikumiArchiveDay {
 }
 
 export interface TorikumiDataSet {
-  bashoId?: number;
   bashoName: string;
   year: string;
   updatedAt: string;
@@ -58,7 +57,6 @@ export interface TorikumiDataSet {
 }
 
 export const torikumiData: TorikumiDataSet = {
-  "bashoId": 636,
   "bashoName": "七月場所",
   "year": "令和八年",
   "updatedAt": "2026-07-26T10:23:38+09:00",
