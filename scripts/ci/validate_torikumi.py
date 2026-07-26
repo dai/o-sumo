@@ -14,6 +14,7 @@ import sys
 from pathlib import Path
 
 REQUIRED_KEYS = (
+    "bashoId",
     "updatedAt",
     "resultUpdatedAt",
     "scheduleUpdatedAt",
@@ -43,6 +44,10 @@ def main(path: str = DEFAULT_PATH) -> int:
 
     if not (data["updatedAt"] and data["resultUpdatedAt"] and data["scheduleUpdatedAt"]):
         print("torikumi timestamps must be non-empty", file=sys.stderr)
+        return 1
+
+    if not isinstance(data["bashoId"], int) or data["bashoId"] <= 0:
+        print("torikumi bashoId must be a positive integer", file=sys.stderr)
         return 1
 
     if len(data["resultDays"]) != EXPECTED_DAY_COUNT or len(data["scheduleDays"]) != EXPECTED_DAY_COUNT:
