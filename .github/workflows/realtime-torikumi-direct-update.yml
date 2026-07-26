@@ -65,13 +65,18 @@ jobs:
           echo "committed=true" >> "$GITHUB_OUTPUT"
           git commit -m "chore: realtime torikumi update"
 
-          # Retry push with rebase to handle non-fast-forward rejections.
+          # A scheduled checkout can race with another workflow run or a PR
+          # merge. Always name the remote ref explicitly, and when rebasing
+          # keep this run's freshly generated data if both commits touched the
+          # same generated file.
+          target_branch="${GITHUB_REF_NAME:-main}"
           for attempt in 1 2 3; do
-            if git push; then
+            if git push origin "HEAD:${target_branch}"; then
               break
             elif [ "$attempt" -lt 3 ]; then
               echo "::warning::Push rejected (attempt ${attempt}), rebasing on remote and retrying..."
-              git pull --rebase
+              git fetch origin "${target_branch}"
+              git rebase -X theirs "origin/${target_branch}"
             else
               echo "Push failed after 3 attempts."
               exit 1
