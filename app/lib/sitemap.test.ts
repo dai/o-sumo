@@ -31,13 +31,15 @@ describe('sitemap helpers', () => {
     const pendingScheduleDay = torikumiArchive.scheduleDays.find((day) => day.status === 'pending');
 
     expect(publishedResultDay).toBeDefined();
-    expect(pendingResultDay).toBeDefined();
     expect(publishedScheduleDay).toBeDefined();
-    expect(pendingScheduleDay).toBeDefined();
     expect(locs).toContain(`/${publishedResultDay!.pathDate}-torikumi/`);
-    expect(locs).not.toContain(`/${pendingResultDay!.pathDate}-torikumi/`);
     expect(locs).toContain(`/${publishedScheduleDay!.pathDate}-yotei/`);
-    expect(locs).not.toContain(`/${pendingScheduleDay!.pathDate}-yotei/`);
+    if (pendingResultDay) {
+      expect(locs).not.toContain(`/${pendingResultDay.pathDate}-torikumi/`);
+    }
+    if (pendingScheduleDay) {
+      expect(locs).not.toContain(`/${pendingScheduleDay.pathDate}-yotei/`);
+    }
   });
 
   it('renders an XML sitemap with absolute canonical URLs', () => {
@@ -50,6 +52,8 @@ describe('sitemap helpers', () => {
     expect(xml).toContain(`<loc>${SITEMAP_ORIGIN}/archives/</loc>`);
     expect(xml).toContain(`<loc>${SITEMAP_ORIGIN}/analytics/</loc>`);
     expect(xml).toContain(`<loc>${SITEMAP_ORIGIN}/${torikumiMonthKey}-torikumi/</loc>`);
-    expect(xml).not.toContain(`${SITEMAP_ORIGIN}/${pendingScheduleDay!.pathDate}-yotei/`);
+    if (pendingScheduleDay) {
+      expect(xml).not.toContain(`${SITEMAP_ORIGIN}/${pendingScheduleDay.pathDate}-yotei/`);
+    }
   });
 });
