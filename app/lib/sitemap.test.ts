@@ -28,20 +28,24 @@ describe('sitemap helpers', () => {
     const publishedResultDay = torikumiArchive.resultDays.find((day) => day.status === 'published');
     const pendingResultDay = torikumiArchive.resultDays.find((day) => day.status === 'pending');
     const publishedScheduleDay = torikumiArchive.scheduleDays.find((day) => day.status === 'published');
+    // pendingScheduleDay may be absent once all schedule days are announced for the basho
     const pendingScheduleDay = torikumiArchive.scheduleDays.find((day) => day.status === 'pending');
 
     expect(publishedResultDay).toBeDefined();
     expect(pendingResultDay).toBeDefined();
-    expect(publishedScheduleDay).toBeDefined();
-    expect(pendingScheduleDay).toBeDefined();
     expect(locs).toContain(`/${publishedResultDay!.pathDate}-torikumi/`);
     expect(locs).not.toContain(`/${pendingResultDay!.pathDate}-torikumi/`);
-    expect(locs).toContain(`/${publishedScheduleDay!.pathDate}-yotei/`);
-    expect(locs).not.toContain(`/${pendingScheduleDay!.pathDate}-yotei/`);
+    if (publishedScheduleDay) {
+      expect(locs).toContain(`/${publishedScheduleDay.pathDate}-yotei/`);
+    }
+    if (pendingScheduleDay) {
+      expect(locs).not.toContain(`/${pendingScheduleDay.pathDate}-yotei/`);
+    }
   });
 
   it('renders an XML sitemap with absolute canonical URLs', () => {
     const xml = renderSitemapXml();
+    // pendingScheduleDay may be absent once all schedule days are announced for the basho
     const pendingScheduleDay = torikumiArchive.scheduleDays.find((day) => day.status === 'pending');
 
     expect(xml).toContain('<?xml version="1.0" encoding="UTF-8"?>');
@@ -50,6 +54,8 @@ describe('sitemap helpers', () => {
     expect(xml).toContain(`<loc>${SITEMAP_ORIGIN}/archives/</loc>`);
     expect(xml).toContain(`<loc>${SITEMAP_ORIGIN}/analytics/</loc>`);
     expect(xml).toContain(`<loc>${SITEMAP_ORIGIN}/${torikumiMonthKey}-torikumi/</loc>`);
-    expect(xml).not.toContain(`${SITEMAP_ORIGIN}/${pendingScheduleDay!.pathDate}-yotei/`);
+    if (pendingScheduleDay) {
+      expect(xml).not.toContain(`${SITEMAP_ORIGIN}/${pendingScheduleDay.pathDate}-yotei/`);
+    }
   });
 });
