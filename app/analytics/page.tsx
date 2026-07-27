@@ -17,6 +17,25 @@ type TechniqueCount = {
   count: number;
 };
 
+type ResultsCategory = 'makuuchiYusho' | 'shukun' | 'kanto' | 'gino' | 'juryoYusho';
+
+type ResultsRow = {
+  id: string;
+  category: ResultsCategory;
+  rikishi: string;
+  record: string;
+};
+
+const JULY_2026_BASHO_RESULTS = [
+  { id: 'makuuchi-yusho-aonishiki', category: 'makuuchiYusho', rikishi: '安青錦', record: '12勝3敗' },
+  { id: 'shukun-fujinokawa', category: 'shukun', rikishi: '藤ノ川', record: '8勝7敗' },
+  { id: 'kanto-atamifuji', category: 'kanto', rikishi: '熱海富士', record: '12勝3敗' },
+  { id: 'kanto-kotoeiho', category: 'kanto', rikishi: '琴栄峰', record: '11勝4敗' },
+  { id: 'kanto-takayasu', category: 'kanto', rikishi: '高安', record: '11勝4敗' },
+  { id: 'gino-aonishiki', category: 'gino', rikishi: '安青錦', record: '12勝3敗' },
+  { id: 'juryo-yusho-shonannoumi', category: 'juryoYusho', rikishi: '湘南乃海', record: '11勝4敗' },
+] as const satisfies readonly ResultsRow[];
+
 const WIN_RATE_PRECISION = 1;
 
 function allMakuuchiRikishi(): Rikishi[] {
@@ -119,6 +138,31 @@ export default function AnalyticsDashboardPage() {
       </header>
 
       <main className="analytics-dashboard-main">
+        <section className="analytics-dashboard-panel analytics-results-panel" aria-labelledby="results-heading">
+          <div className="analytics-panel-header">
+            <h2 id="results-heading">{t('analytics.results.heading')}</h2>
+            <p>{t('analytics.results.description')}</p>
+          </div>
+          <table className="analytics-results-table">
+            <thead>
+              <tr>
+                <th scope="col">{t('analytics.results.tableHeading')}</th>
+                <th scope="col">{t('analytics.results.tableRikishi')}</th>
+                <th scope="col">{t('analytics.results.tableRecord')}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {JULY_2026_BASHO_RESULTS.map((row) => (
+                <tr key={row.id}>
+                  <th scope="row">{t(`analytics.results.category.${row.category}`)}</th>
+                  <td>{row.rikishi}</td>
+                  <td>{row.record}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+
         <section className="analytics-metric-grid" aria-label={t('analytics.metrics.label')}>
           {metrics.map((metric) => (
             <article key={metric.key} className="analytics-metric-card">

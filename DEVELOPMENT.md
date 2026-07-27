@@ -105,18 +105,18 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 ### データ更新
 
 - Workflow: `.github/workflows/daily-data-update.yml`
-- 実行時刻: JST 13:00 / 19:00
+- トリガー: 手動のみ（`workflow_dispatch`）— 七月場所終了（2026-07-26）後、自動スケジュールを停止
 - 更新対象: 取組予定のみ（`--torikumi-only --torikumi-scope schedule`）
 - 変更がある場合は `automation/data-updates` ブランチの PR を作成または更新
 
 - Workflow: `.github/workflows/realtime-torikumi-update.yml`
-- 実行時刻: JST 13:00-18:00、10分おき
+- トリガー: 手動のみ（`workflow_dispatch`）— 七月場所終了（2026-07-26）後、自動スケジュールを停止
 - 更新対象: 取組結果のみ（`--torikumi-only --torikumi-scope result --skip-rikishi-fetch`）
 - 変更がある場合は `automation/data-updates` ブランチの PR を作成または更新
 - 実行ログへ `github.event.schedule` / JST現在時刻 / `resultUpdatedAt` / `scheduleUpdatedAt` を出力
 
 - Workflow: `.github/workflows/news-feed-update.yml`
-- 実行時刻: JST 09:00-19:00、2時間おき
+- 実行時刻: JST 09:00-19:00、2時間おき（唯一の自動実行 Workflow）
 - 更新対象: ニュースフィード（`python scripts/update_news_feed.py`）
 - 取得結果が変わらない場合は `news.json` を書き換えず、PR 差分を作らない
 
@@ -161,3 +161,9 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - 2026年6月29日の番付発表後は、手動で `python scripts/update_sumo_data.py --torikumi-scope schedule` を実行し、七月場所の番付・取組予定・静的 API を同期する。結果アーカイブも七月場所 (`202607`) に切り替え、未更新日は pending のまま保持する。
 - Cloudflare の従量抑制を優先し、`public/_headers` のキャッシュ方針（`/assets/*` 長期 immutable、`manifest` 1時間、`sw.js` 再検証、`/` 5分）を維持する。
 - PWA 更新は `vite-plugin-pwa` の `registerType: "autoUpdate"` を維持し、更新を自動反映する。
+
+## 2026 年七月場所終了後（8月休止〜九月場所再開前）の運用
+
+- 七月場所千秋楽（2026-07-26）以降は、取組系 Workflow（`daily-data-update.yml` / `realtime-torikumi-update.yml`）のスケジュールトリガーを停止し、`workflow_dispatch` のみで運用する。九月場所の番付発表後に `on.schedule` を復活させる。
+- 唯一の自動 Workflow は `news-feed-update.yml`。2 時間おきのニュース更新は休止期間中も継続する。
+- グローバルバナーは「令和八年七月場所が終了しました。また9月にお会いしましょう！」を表示し、九月場所の初日発表後に通常文言へ戻す。

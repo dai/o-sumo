@@ -105,18 +105,18 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 ### Data Updates
 
 - Workflow: `.github/workflows/daily-data-update.yml`
-- Schedule: JST 13:00 / 19:00
+- Trigger: manual only (`workflow_dispatch`) — automatic schedule disabled after the July 2026 basho concluded (2026-07-26)
 - Scope: torikumi schedule only (`--torikumi-only --torikumi-scope schedule`)
 - If files change, the workflow creates or updates a pull request from `automation/data-updates`
 
 - Workflow: `.github/workflows/realtime-torikumi-update.yml`
-- Schedule: every 10 minutes from JST 13:00 through 18:00
+- Trigger: manual only (`workflow_dispatch`) — automatic schedule disabled after the July 2026 basho concluded (2026-07-26)
 - Scope: torikumi results only (`--torikumi-only --torikumi-scope result --skip-rikishi-fetch`)
 - If files change, the workflow creates or updates a pull request from `automation/data-updates`
 - Always logs `github.event.schedule`, current JST time, `resultUpdatedAt`, and `scheduleUpdatedAt`
 
 - Workflow: `.github/workflows/news-feed-update.yml`
-- Schedule: every 2 hours from JST 09:00 through 19:00
+- Schedule: every 2 hours from JST 09:00 through 19:00 (the only automatically scheduled workflow)
 - Scope: news feed (`python scripts/update_news_feed.py`)
 - If fetched items and source states are unchanged, `news.json` is not rewritten and no PR diff is produced
 
@@ -129,6 +129,12 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - After the June 29, 2026 banzuke release, manually run `python scripts/update_sumo_data.py --torikumi-scope schedule` to sync the July banzuke, torikumi schedule placeholders, and static API files. Keep the completed May results archive (`202605`) intact until July results start.
 - Keep the `public/_headers` cache policy unchanged to control Cloudflare usage.
 - Keep the PWA Service Worker on `registerType: "autoUpdate"` so updates are applied automatically.
+
+## Operations Between The July And September 2026 Basho
+
+- After senshuraku on 2026-07-26, the torikumi workflows (`daily-data-update.yml`, `realtime-torikumi-update.yml`) drop their `schedule` triggers and run on `workflow_dispatch` only. Reintroduce `on.schedule` after the September basho banzuke announcement.
+- `news-feed-update.yml` remains the only automatically scheduled workflow and continues refreshing news every two hours during the off-season.
+- The global notice banner shows "The July 2026 basho has ended. See you again in September!" until the September basho opening day; revert the wording afterwards.
 
 ### Tests
 

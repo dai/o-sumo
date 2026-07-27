@@ -18,6 +18,24 @@ describe('AnalyticsDashboardPage', () => {
     expect(screen.getByRole('link', { name: '取組予定を見る' })).toHaveAttribute('href', '/202607-yotei/');
   });
 
+  it('renders the finalized July 2026 champions and special prizes', () => {
+    render(
+      <MemoryRouter>
+        <AnalyticsDashboardPage />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByRole('heading', { level: 2, name: '令和八年七月場所 結果' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '幕内最高優勝 安青錦 12勝3敗' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '殊勲賞 藤ノ川 8勝7敗' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '敢闘賞 熱海富士 12勝3敗' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '敢闘賞 琴栄峰 11勝4敗' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '敢闘賞 高安 11勝4敗' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '技能賞 安青錦 12勝3敗' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '十両優勝 湘南乃海 11勝4敗' })).toBeInTheDocument();
+    expect(screen.queryByText('発表前')).not.toBeInTheDocument();
+  });
+
   it('builds metric cards from makuuchi records', () => {
     const metrics = buildDashboardMetrics([
       { id: 1, name: '東', yomi: '', rank: '横綱', side: 'east', wins: 4, losses: 0, profileUrl: '#' },
@@ -68,6 +86,7 @@ describe('AnalyticsDashboardPage', () => {
     expect(screen.getByRole('heading', { level: 1, name: 'Grand Sumo Analytics' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: 'Win Leaders' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: 'Kimarite Trends' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: 'July 2026 Basho Results' })).toBeInTheDocument();
 
     await act(() => i18n.changeLanguage('ja'));
   });
