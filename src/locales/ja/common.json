@@ -94,7 +94,7 @@
     },
     "results": {
       "heading": "令和八年七月場所 結果",
-      "description": "千秋楽時点の幕内・十両の最多勝と、確定済みの三賞を一覧で紹介します。",
+      "description": "日本相撲協会発表の幕内・十両優勝と三賞を一覧で紹介します。",
       "tableHeading": "区分",
       "tableRikishi": "力士",
       "tableRecord": "成績",
@@ -104,8 +104,7 @@
         "kanto": "敢闘賞",
         "gino": "技能賞",
         "juryoYusho": "十両優勝"
-      },
-      "tba": "発表前"
+      }
     }
   },
   "kimarite": {

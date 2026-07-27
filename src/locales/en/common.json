@@ -94,7 +94,7 @@
     },
     "results": {
       "heading": "July 2026 Basho Results",
-      "description": "Top winners in Makuuchi and Juryo and announced special prizes at senshuraku.",
+      "description": "Officially announced Makuuchi and Juryo champions and special-prize winners.",
       "tableHeading": "Category",
       "tableRikishi": "Rikishi",
       "tableRecord": "Record",
@@ -104,8 +104,7 @@
         "kanto": "Kanto-sho",
         "gino": "Gino-sho",
         "juryoYusho": "Juryo Champion"
-      },
-      "tba": "To be announced"
+      }
     }
   },
   "kimarite": {

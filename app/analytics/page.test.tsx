@@ -3,12 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import { i18n } from '../lib/i18n';
 import { torikumiArchive } from '../lib/torikumi-data';
-import AnalyticsDashboardPage, {
-  buildBashoResultsRows,
-  buildDashboardMetrics,
-  topKimarite,
-  topRikishiByWins,
-} from './page';
+import AnalyticsDashboardPage, { buildDashboardMetrics, topKimarite, topRikishiByWins } from './page';
 
 describe('AnalyticsDashboardPage', () => {
   it('renders the analytics dashboard headline and action links', () => {
@@ -23,7 +18,7 @@ describe('AnalyticsDashboardPage', () => {
     expect(screen.getByRole('link', { name: '取組予定を見る' })).toHaveAttribute('href', '/202607-yotei/');
   });
 
-  it('renders the July 2026 basho results panel above the metric grid', () => {
+  it('renders the finalized July 2026 champions and special prizes', () => {
     render(
       <MemoryRouter>
         <AnalyticsDashboardPage />
@@ -31,9 +26,14 @@ describe('AnalyticsDashboardPage', () => {
     );
 
     expect(screen.getByRole('heading', { level: 2, name: '令和八年七月場所 結果' })).toBeInTheDocument();
-    expect(screen.getByRole('rowheader', { name: '幕内最高優勝' })).toBeInTheDocument();
-    expect(screen.getByRole('rowheader', { name: '十両優勝' })).toBeInTheDocument();
-    expect(screen.getAllByText('発表前').length).toBeGreaterThanOrEqual(3);
+    expect(screen.getByRole('row', { name: '幕内最高優勝 安青錦 12勝3敗' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '殊勲賞 藤ノ川 8勝7敗' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '敢闘賞 熱海富士 12勝3敗' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '敢闘賞 琴栄峰 11勝4敗' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '敢闘賞 高安 11勝4敗' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '技能賞 安青錦 12勝3敗' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '十両優勝 湘南乃海 11勝4敗' })).toBeInTheDocument();
+    expect(screen.queryByText('発表前')).not.toBeInTheDocument();
   });
 
   it('builds metric cards from makuuchi records', () => {
@@ -72,24 +72,6 @@ describe('AnalyticsDashboardPage', () => {
       .slice(0, 3);
 
     expect(topKimarite(3)).toEqual(expected);
-  });
-
-  it('lists makuuchi champion, juryo champion, and tba sansho rows', () => {
-    const rows = buildBashoResultsRows();
-    const categories = rows.map((row) => row.category);
-
-    expect(categories[0]).toBe('makuuchiYusho');
-    expect(categories).toContain('shukun');
-    expect(categories).toContain('kanto');
-    expect(categories).toContain('gino');
-    expect(categories[categories.length - 1]).toBe('juryoYusho');
-
-    const champion = rows.find((row) => row.category === 'makuuchiYusho');
-    expect(champion?.announced).toBe(true);
-    expect(champion?.record).toMatch(/勝/);
-
-    const tbaRow = rows.find((row) => row.category === 'shukun');
-    expect(tbaRow?.announced).toBe(false);
   });
 
   it('renders the dashboard copy in English when English is selected', async () => {

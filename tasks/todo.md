@@ -390,6 +390,27 @@
 
 ---
 
+# 令和八年七月場所 結果コーナー訂正（2026-07-27）
+
+## Plan
+- [x] 日本相撲協会の千秋楽確定発表を、受賞区分・力士名・成績の組でテストに固定する
+- [x] 幕内・十両の最多勝から優勝者を推測する処理と三賞の「発表前」表示を削除する
+- [x] 協会発表どおりの7行を固定値で表示し、敢闘賞3名を各成績と対応する別行にする
+- [x] focused test、型チェック、全テスト、ビルド、差分チェックを実行する
+- [x] 検証結果と協会発表との照合結果を Review に記録する
+
+## Review
+- 詳細計画: `docs/superpowers/plans/2026-07-27-july-2026-official-basho-results.md`
+- TDD RED: `npm test -- --run app/analytics/page.test.tsx` は 1 failed / 5 passed。幕内を熱海富士・安青錦の同率、十両を4人同率、三賞を「発表前」とする誤表示を再現した。
+- TDD GREEN: 同 focused test は 1 file / 6 tests pass。協会発表の優勝・三賞7行と「発表前」非表示を確認した。
+- `npm run typecheck`: pass。
+- `npm test -- --run`: 22 files / 129 tests pass。
+- `npm run build`: pass（既存の500 kB超chunk warningのみ）。
+- `git diff --check`: pass。
+- 最終照合: 安青錦 12勝3敗（幕内最高優勝・技能賞）、藤ノ川 8勝7敗（殊勲賞）、熱海富士 12勝3敗・琴栄峰 11勝4敗・高安 11勝4敗（敢闘賞）、湘南乃海 11勝4敗（十両優勝）を固定値で保持する。
+
+---
+
 # AdSense 本文広告枠追加（2026-07-24）
 
 ## Plan

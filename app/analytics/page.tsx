@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import HomeLink from '../components/HomeLink';
 import { CURRENT_RESULT_PATH, CURRENT_SCHEDULE_PATH } from '../lib/archive-basho-data';
-import { juryo, makuuchiData, type Rikishi } from '../lib/sumo-data';
-import { torikumiArchive, torikumiData, torikumiMonthKey } from '../lib/torikumi-data';
+import { makuuchiData, type Rikishi } from '../lib/sumo-data';
+import { torikumiArchive, torikumiMonthKey } from '../lib/torikumi-data';
 import './page.css';
 
 type DashboardMetric = {
@@ -20,11 +20,21 @@ type TechniqueCount = {
 type ResultsCategory = 'makuuchiYusho' | 'shukun' | 'kanto' | 'gino' | 'juryoYusho';
 
 type ResultsRow = {
+  id: string;
   category: ResultsCategory;
   rikishi: string;
   record: string;
-  announced: boolean;
 };
+
+const JULY_2026_BASHO_RESULTS = [
+  { id: 'makuuchi-yusho-aonishiki', category: 'makuuchiYusho', rikishi: '安青錦', record: '12勝3敗' },
+  { id: 'shukun-fujinokawa', category: 'shukun', rikishi: '藤ノ川', record: '8勝7敗' },
+  { id: 'kanto-atamifuji', category: 'kanto', rikishi: '熱海富士', record: '12勝3敗' },
+  { id: 'kanto-kotoeiho', category: 'kanto', rikishi: '琴栄峰', record: '11勝4敗' },
+  { id: 'kanto-takayasu', category: 'kanto', rikishi: '高安', record: '11勝4敗' },
+  { id: 'gino-aonishiki', category: 'gino', rikishi: '安青錦', record: '12勝3敗' },
+  { id: 'juryo-yusho-shonannoumi', category: 'juryoYusho', rikishi: '湘南乃海', record: '11勝4敗' },
+] as const satisfies readonly ResultsRow[];
 
 const WIN_RATE_PRECISION = 1;
 
@@ -87,52 +97,11 @@ export function topKimarite(limit = 6): TechniqueCount[] {
     .slice(0, limit);
 }
 
-function topDivisionRikishi(division: 'makuuchi' | 'juryo'): Rikishi[] {
-  const dataset = division === 'makuuchi' ? makuuchiData : juryo;
-  void torikumiData;
-  return [...dataset]
-    .flatMap((group) => [...group.east, ...group.west])
-    .sort((left, right) => (right.wins ?? 0) - (left.wins ?? 0) || (left.losses ?? 0) - (right.losses ?? 0));
-}
-
-function formatRecord(wrestler: Rikishi): string {
-  return `${wrestler.wins ?? 0}勝${wrestler.losses ?? 0}敗`;
-}
-
-export function buildBashoResultsRows(): ResultsRow[] {
-  const makuuchiSorted = topDivisionRikishi('makuuchi');
-  const juryoSorted = topDivisionRikishi('juryo');
-
-  const championRow = (sorted: Rikishi[]): ResultsRow | null => {
-    if (sorted.length === 0) return null;
-    const topWins = sorted[0].wins ?? 0;
-    const winners = sorted.filter((wrestler) => (wrestler.wins ?? 0) === topWins);
-    return {
-      category: sorted === makuuchiSorted ? 'makuuchiYusho' : 'juryoYusho',
-      rikishi: winners.map((wrestler) => wrestler.name).join('・'),
-      record: formatRecord(winners[0]),
-      announced: true,
-    };
-  };
-
-  const makuuchiChampion = championRow(makuuchiSorted);
-  const juryoChampion = championRow(juryoSorted);
-
-  return [
-    ...(makuuchiChampion ? [makuuchiChampion] : []),
-    { category: 'shukun', rikishi: '', record: '', announced: false },
-    { category: 'kanto', rikishi: '', record: '', announced: false },
-    { category: 'gino', rikishi: '', record: '', announced: false },
-    ...(juryoChampion ? [juryoChampion] : []),
-  ];
-}
-
 export default function AnalyticsDashboardPage() {
   const { t, i18n } = useTranslation('common');
   const metrics = buildDashboardMetrics();
   const leaders = topRikishiByWins();
   const techniques = topKimarite();
-  const resultsRows = buildBashoResultsRows();
   const maxTechniqueCount = Math.max(...techniques.map((technique) => technique.count), 1);
   const bashoYear = Number(torikumiMonthKey.slice(0, 4));
   const bashoMonth = Number(torikumiMonthKey.slice(4, 6));
@@ -183,11 +152,11 @@ export default function AnalyticsDashboardPage() {
               </tr>
             </thead>
             <tbody>
-              {resultsRows.map((row) => (
-                <tr key={row.category}>
+              {JULY_2026_BASHO_RESULTS.map((row) => (
+                <tr key={row.id}>
                   <th scope="row">{t(`analytics.results.category.${row.category}`)}</th>
-                  <td>{row.announced ? row.rikishi : t('analytics.results.tba')}</td>
-                  <td>{row.announced ? row.record : '—'}</td>
+                  <td>{row.rikishi}</td>
+                  <td>{row.record}</td>
                 </tr>
               ))}
             </tbody>
