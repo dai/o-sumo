@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import HomeLink from '../components/HomeLink';
 import { CURRENT_RESULT_PATH, CURRENT_SCHEDULE_PATH } from '../lib/archive-basho-data';
-import { makuuchiData, type Rikishi } from '../lib/sumo-data';
-import { torikumiArchive, torikumiMonthKey } from '../lib/torikumi-data';
+import { juryo, makuuchiData, type Rikishi } from '../lib/sumo-data';
+import { torikumiArchive, torikumiData, torikumiMonthKey } from '../lib/torikumi-data';
 import './page.css';
 
 type DashboardMetric = {
@@ -15,6 +15,15 @@ type DashboardMetric = {
 type TechniqueCount = {
   name: string;
   count: number;
+};
+
+type ResultsCategory = 'makuuchiYusho' | 'shukun' | 'kanto' | 'gino' | 'juryoYusho';
+
+type ResultsRow = {
+  category: ResultsCategory;
+  rikishi: string;
+  record: string;
+  announced: boolean;
 };
 
 const WIN_RATE_PRECISION = 1;
@@ -78,11 +87,52 @@ export function topKimarite(limit = 6): TechniqueCount[] {
     .slice(0, limit);
 }
 
+function topDivisionRikishi(division: 'makuuchi' | 'juryo'): Rikishi[] {
+  const dataset = division === 'makuuchi' ? makuuchiData : juryo;
+  void torikumiData;
+  return [...dataset]
+    .flatMap((group) => [...group.east, ...group.west])
+    .sort((left, right) => (right.wins ?? 0) - (left.wins ?? 0) || (left.losses ?? 0) - (right.losses ?? 0));
+}
+
+function formatRecord(wrestler: Rikishi): string {
+  return `${wrestler.wins ?? 0}勝${wrestler.losses ?? 0}敗`;
+}
+
+export function buildBashoResultsRows(): ResultsRow[] {
+  const makuuchiSorted = topDivisionRikishi('makuuchi');
+  const juryoSorted = topDivisionRikishi('juryo');
+
+  const championRow = (sorted: Rikishi[]): ResultsRow | null => {
+    if (sorted.length === 0) return null;
+    const topWins = sorted[0].wins ?? 0;
+    const winners = sorted.filter((wrestler) => (wrestler.wins ?? 0) === topWins);
+    return {
+      category: sorted === makuuchiSorted ? 'makuuchiYusho' : 'juryoYusho',
+      rikishi: winners.map((wrestler) => wrestler.name).join('・'),
+      record: formatRecord(winners[0]),
+      announced: true,
+    };
+  };
+
+  const makuuchiChampion = championRow(makuuchiSorted);
+  const juryoChampion = championRow(juryoSorted);
+
+  return [
+    ...(makuuchiChampion ? [makuuchiChampion] : []),
+    { category: 'shukun', rikishi: '', record: '', announced: false },
+    { category: 'kanto', rikishi: '', record: '', announced: false },
+    { category: 'gino', rikishi: '', record: '', announced: false },
+    ...(juryoChampion ? [juryoChampion] : []),
+  ];
+}
+
 export default function AnalyticsDashboardPage() {
   const { t, i18n } = useTranslation('common');
   const metrics = buildDashboardMetrics();
   const leaders = topRikishiByWins();
   const techniques = topKimarite();
+  const resultsRows = buildBashoResultsRows();
   const maxTechniqueCount = Math.max(...techniques.map((technique) => technique.count), 1);
   const bashoYear = Number(torikumiMonthKey.slice(0, 4));
   const bashoMonth = Number(torikumiMonthKey.slice(4, 6));
@@ -119,6 +169,31 @@ export default function AnalyticsDashboardPage() {
       </header>
 
       <main className="analytics-dashboard-main">
+        <section className="analytics-dashboard-panel analytics-results-panel" aria-labelledby="results-heading">
+          <div className="analytics-panel-header">
+            <h2 id="results-heading">{t('analytics.results.heading')}</h2>
+            <p>{t('analytics.results.description')}</p>
+          </div>
+          <table className="analytics-results-table">
+            <thead>
+              <tr>
+                <th scope="col">{t('analytics.results.tableHeading')}</th>
+                <th scope="col">{t('analytics.results.tableRikishi')}</th>
+                <th scope="col">{t('analytics.results.tableRecord')}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {resultsRows.map((row) => (
+                <tr key={row.category}>
+                  <th scope="row">{t(`analytics.results.category.${row.category}`)}</th>
+                  <td>{row.announced ? row.rikishi : t('analytics.results.tba')}</td>
+                  <td>{row.announced ? row.record : '—'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+
         <section className="analytics-metric-grid" aria-label={t('analytics.metrics.label')}>
           {metrics.map((metric) => (
             <article key={metric.key} className="analytics-metric-card">

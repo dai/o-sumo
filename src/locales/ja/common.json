@@ -1,6 +1,6 @@
 {
   "global": {
-    "july2026UpdateNotice": "令和八年七月場所の初日取組発表に合わせ、休場者情報を更新しました。",
+    "july2026UpdateNotice": "令和八年七月場所が終了しました。また9月にお会いしましょう！",
     "homeLink": "ホーム",
     "siteNavigation": "サイトナビゲーション"
   },
@@ -91,6 +91,21 @@
     "kimarite": {
       "title": "決まり手トレンド",
       "description": "公開済みの幕内取組結果から頻出の決まり手を集計しています。"
+    },
+    "results": {
+      "heading": "令和八年七月場所 結果",
+      "description": "千秋楽時点の幕内・十両の最多勝と、確定済みの三賞を一覧で紹介します。",
+      "tableHeading": "区分",
+      "tableRikishi": "力士",
+      "tableRecord": "成績",
+      "category": {
+        "makuuchiYusho": "幕内最高優勝",
+        "shukun": "殊勲賞",
+        "kanto": "敢闘賞",
+        "gino": "技能賞",
+        "juryoYusho": "十両優勝"
+      },
+      "tba": "発表前"
     }
   },
   "kimarite": {

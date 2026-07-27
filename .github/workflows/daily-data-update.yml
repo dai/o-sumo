@@ -1,9 +1,6 @@
 name: Daily Sumo Data Update
 
 on:
-  schedule:
-    # JST 13:00 / 19:00 (cron uses UTC).
-    - cron: '0 4,10 * * *'
   workflow_dispatch:
 
 concurrency:
