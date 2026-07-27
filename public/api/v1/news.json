@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-27T05:24:24.473231+00:00",
+  "updatedAt": "2026-07-27T07:23:48.927346+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-tvasahinews-000522012",
-      "title": "大相撲7月場所で優勝　安青錦が一夜明け会見",
-      "url": "https://topics.smt.docomo.ne.jp/article/tvasahinews/sports/tvasahinews-000522012",
+      "id": "dmenu-docomo-tbs-2829305",
+      "title": "関脇・安青錦「すごく嬉しい」3回目の優勝から一夜明け会見「不安がすごくありました」来場所は大関返り咲き【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/tbs/sports/tbs-2829305",
       "publishedAt": "2026-07-27",
-      "publishedAtRaw": "テレ朝NEWS　7月27日 12時40分",
+      "publishedAtRaw": "TBS NEWS DIG　7月27日 15時56分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hicbc-2828350",
-      "title": "大相撲名古屋場所優勝 ｢2回目の優勝より今回の方がうれしい｣ 関脇･安青錦が一夜明け会見 秋場所には大関復帰へ",
-      "url": "https://topics.smt.docomo.ne.jp/article/hicbc/sports/hicbc-2828350",
+      "id": "dmenu-docomo-abematimes-10263166",
+      "title": "\"小顔で脚長\"、身長190センチ超の力士対決 幕下での\"規格外\"な一番にファン興奮",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10263166",
       "publishedAt": "2026-07-27",
-      "publishedAtRaw": "CBCテレビ　7月27日 12時17分",
+      "publishedAtRaw": "ABEMA TIMES　7月27日 15時42分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_6AM23B4H6VD4NHJQMLXT6MGY2Q",
-      "title": "松山千春「面白かったわな。3人残ってな。これで奴は大関に戻れる」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_6AM23B4H6VD4NHJQMLXT6MGY2Q",
+      "id": "dmenu-docomo-f-bt-tp1-260727-202607270000710",
+      "title": "安青錦「ショックだった」左足親指負傷　一夜明け会見で明かした不安と貫いた自分らしさの相撲",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260727-202607270000710",
       "publishedAt": "2026-07-27",
-      "publishedAtRaw": "SANSPO　7月27日 12時06分",
+      "publishedAtRaw": "日刊スポーツ　7月27日 15時27分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_7UQO4KAA6RGNVEWGTYVSIL6NZY",
-      "title": "松山千春「ガキのころから見せられてるから、ついつい見てしまう」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_7UQO4KAA6RGNVEWGTYVSIL6NZY",
+      "id": "dmenu-docomo-tokyosports-397308",
+      "title": "【大相撲】安青錦　優勝した名古屋場所の激闘を振り返る　新たなケガは「だいぶショックでした」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397308",
       "publishedAt": "2026-07-27",
-      "publishedAtRaw": "SANSPO　7月27日 12時02分",
+      "publishedAtRaw": "東スポWEB　7月27日 14時19分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260727-567-GYT1T00091",
-      "title": "名古屋場所でともえ戦制して優勝の安青錦、千秋楽から一夜明け「やり切った感じがすごい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/yomiuri/sports/20260727-567-GYT1T00091",
+      "id": "dmenu-docomo-ans-708961",
+      "title": "視聴者衝撃「相撲ってこんなもらえるんや」　優勝で贈られたケタ違いの豪華副賞とは「食いきれねぇ」",
+      "url": "https://topics.smt.docomo.ne.jp/article/ans/sports/ans-708961",
       "publishedAt": "2026-07-27",
-      "publishedAtRaw": "読売新聞　7月27日 12時01分",
+      "publishedAtRaw": "THE ANSWER　7月27日 14時03分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
