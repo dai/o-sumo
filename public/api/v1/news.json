@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-27T07:23:48.927346+00:00",
+  "updatedAt": "2026-07-27T09:17:42.561488+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-tbs-2829305",
-      "title": "関脇・安青錦「すごく嬉しい」3回目の優勝から一夜明け会見「不安がすごくありました」来場所は大関返り咲き【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/tbs/sports/tbs-2829305",
+      "id": "dmenu-docomo-f-bt-tp1-260727-202607270000867",
+      "title": "不振の両横綱に横審が言及「責任果たしてほしい」豊昇龍は７勝で途中休場…大の里は９勝６敗",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260727-202607270000867",
       "publishedAt": "2026-07-27",
-      "publishedAtRaw": "TBS NEWS DIG　7月27日 15時56分",
+      "publishedAtRaw": "日刊スポーツ　7月27日 18時05分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-abematimes-10263166",
-      "title": "\"小顔で脚長\"、身長190センチ超の力士対決 幕下での\"規格外\"な一番にファン興奮",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10263166",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_MYZGJ7XHWNLKRBUBRSV7XFS7S4",
+      "title": "安青錦、秋場所でも史上初を遂げ「一番上の番付を狙っていく」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_MYZGJ7XHWNLKRBUBRSV7XFS7S4",
       "publishedAt": "2026-07-27",
-      "publishedAtRaw": "ABEMA TIMES　7月27日 15時42分",
+      "publishedAtRaw": "SANSPO　7月27日 18時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260727-202607270000710",
-      "title": "安青錦「ショックだった」左足親指負傷　一夜明け会見で明かした不安と貫いた自分らしさの相撲",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260727-202607270000710",
+      "id": "dmenu-docomo-fnn-1082679",
+      "title": "優勝から一夜　安青錦が会見「やりきった」　巴戦制し3度目の優勝　安治川部屋近くのウクライナ料理店はいったん閉店して応援",
+      "url": "https://topics.smt.docomo.ne.jp/article/fnn/sports/fnn-1082679",
       "publishedAt": "2026-07-27",
-      "publishedAtRaw": "日刊スポーツ　7月27日 15時27分",
+      "publishedAtRaw": "FNNプライムオンライン　7月27日 17時49分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-397308",
-      "title": "【大相撲】安青錦　優勝した名古屋場所の激闘を振り返る　新たなケガは「だいぶショックでした」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397308",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_QQVAQFC5BJGBFO2YRU3MGF5F2M",
+      "title": "白鵬氏「62キロの少年がここまで成長すると本当に夢にも思わなかった」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_QQVAQFC5BJGBFO2YRU3MGF5F2M",
       "publishedAt": "2026-07-27",
-      "publishedAtRaw": "東スポWEB　7月27日 14時19分",
+      "publishedAtRaw": "SANSPO　7月27日 17時07分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-ans-708961",
-      "title": "視聴者衝撃「相撲ってこんなもらえるんや」　優勝で贈られたケタ違いの豪華副賞とは「食いきれねぇ」",
-      "url": "https://topics.smt.docomo.ne.jp/article/ans/sports/ans-708961",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_VA37ZFXCRVAPDPBBEOQDEKRXBI",
+      "title": "白鵬氏「あの原点がなければ今の私はないので」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_VA37ZFXCRVAPDPBBEOQDEKRXBI",
       "publishedAt": "2026-07-27",
-      "publishedAtRaw": "THE ANSWER　7月27日 14時03分",
+      "publishedAtRaw": "SANSPO　7月27日 17時04分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
