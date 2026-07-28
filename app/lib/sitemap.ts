@@ -1,19 +1,11 @@
-import { getAllArchiveRouteConfigs, getDayPath } from './torikumi-routes';
-
-export const SITEMAP_ORIGIN = 'https://osada.us';
+import { getAllArchiveRouteConfigs, getDayPath, type ArchiveRouteConfig } from './torikumi-routes';
+import { normalizeCanonicalPath, toCanonicalUrl } from './site-url';
 
 export interface SitemapEntry {
   loc: string;
 }
 
 const FIXED_SITEMAP_PATHS = ['/', '/archives/', '/rikishi/', '/kimarite/', '/analytics/'] as const;
-
-function normalizePath(path: string): string {
-  if (path === '/') {
-    return path;
-  }
-  return path.endsWith('/') ? path : `${path}/`;
-}
 
 function escapeXml(value: string): string {
   return value
@@ -24,16 +16,14 @@ function escapeXml(value: string): string {
     .replace(/'/g, '&apos;');
 }
 
-function toAbsoluteUrl(path: string): string {
-  return path === '/' ? `${SITEMAP_ORIGIN}/` : `${SITEMAP_ORIGIN}${path}`;
-}
-
-export function getSitemapEntries(): SitemapEntry[] {
+export function getSitemapEntries(
+  routeConfigs: ArchiveRouteConfig[] = getAllArchiveRouteConfigs(),
+): SitemapEntry[] {
   const entries: SitemapEntry[] = [];
   const seen = new Set<string>();
 
   const appendEntry = (path: string) => {
-    const normalized = normalizePath(path);
+    const normalized = normalizeCanonicalPath(path);
     if (seen.has(normalized)) {
       return;
     }
@@ -45,7 +35,7 @@ export function getSitemapEntries(): SitemapEntry[] {
     appendEntry(path);
   }
 
-  for (const config of getAllArchiveRouteConfigs()) {
+  for (const config of routeConfigs) {
     appendEntry(config.banzukePath);
     appendEntry(config.resultPath);
     appendEntry(config.schedulePath);
@@ -68,7 +58,7 @@ export function getSitemapEntries(): SitemapEntry[] {
 
 export function renderSitemapXml(): string {
   const urls = getSitemapEntries()
-    .map((entry) => `  <url>\n    <loc>${escapeXml(toAbsoluteUrl(entry.loc))}</loc>\n  </url>`)
+    .map((entry) => `  <url>\n    <loc>${escapeXml(toCanonicalUrl(entry.loc))}</loc>\n  </url>`)
     .join('\n');
 
   return [

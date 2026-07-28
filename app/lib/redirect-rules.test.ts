@@ -44,6 +44,19 @@ function evaluateRedirect(pathname: string): RedirectRule | undefined {
 }
 
 describe('Cloudflare banzuke redirect rules', () => {
+  it('canonicalizes a rikishi profile before serving the SPA fallback', () => {
+    expect(evaluateRedirect('/rikishi/1')).toEqual({
+      source: '/rikishi/:id',
+      destination: '/rikishi/1/',
+      status: 301,
+    });
+    expect(evaluateRedirect('/rikishi/1/')).toEqual({
+      source: '/rikishi/*',
+      destination: '/',
+      status: 200,
+    });
+  });
+
   it.each(SUPPORTED_MONTH_KEYS)('defines the complete canonical and compatibility behavior for %s', (monthKey) => {
     const canonicalPath = `/${monthKey}-banzuke/`;
 

@@ -9,6 +9,7 @@
 /kimarite/ / 200
 /rikishi /rikishi/ 301
 /rikishi/ / 200
+/rikishi/:id /rikishi/:id/ 301
 /rikishi/* / 200
 /202603-banzuke /202603-banzuke/ 301
 /202603-banzuke/ / 200

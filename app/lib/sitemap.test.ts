@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { torikumiArchive, torikumiMonthKey } from './torikumi-data';
-import { getSitemapEntries, renderSitemapXml, SITEMAP_ORIGIN } from './sitemap';
+import { getSitemapEntries, renderSitemapXml } from './sitemap';
+import { SITE_ORIGIN } from './site-url';
+import { getAllArchiveRouteConfigs } from './torikumi-routes';
 
 describe('sitemap helpers', () => {
   it('lists fixed pages and archive hubs with canonical trailing slashes', () => {
@@ -45,6 +47,38 @@ describe('sitemap helpers', () => {
     }
   });
 
+  it('excludes pending days even when the committed data has no pending fixture', () => {
+    const baseConfig = getAllArchiveRouteConfigs()[0];
+    const baseDay = baseConfig.archive.resultDays?.[0];
+    expect(baseDay).toBeDefined();
+    if (!baseDay) {
+      throw new Error('Expected the archive fixture to contain at least one result day');
+    }
+    const entries = getSitemapEntries([{
+      ...baseConfig,
+      monthKey: '209901',
+      banzukePath: '/209901-banzuke/',
+      resultPath: '/209901-torikumi/',
+      schedulePath: '/209901-yotei/',
+      archive: {
+        ...baseConfig.archive,
+        resultDays: [
+          { ...baseDay, pathDate: '20990101', status: 'published' },
+          { ...baseDay, pathDate: '20990102', status: 'pending' },
+        ],
+        scheduleDays: [
+          { ...baseDay, pathDate: '20990101', status: 'published' },
+          { ...baseDay, pathDate: '20990102', status: 'pending' },
+        ],
+      },
+    }]).map((entry) => entry.loc);
+
+    expect(entries).toContain('/20990101-torikumi/');
+    expect(entries).not.toContain('/20990102-torikumi/');
+    expect(entries).toContain('/20990101-yotei/');
+    expect(entries).not.toContain('/20990102-yotei/');
+  });
+
   it('renders an XML sitemap with absolute canonical URLs', () => {
     const xml = renderSitemapXml();
     // pendingScheduleDay may be absent once all schedule days are announced for the basho
@@ -52,12 +86,26 @@ describe('sitemap helpers', () => {
 
     expect(xml).toContain('<?xml version="1.0" encoding="UTF-8"?>');
     expect(xml).toContain('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
-    expect(xml).toContain(`<loc>${SITEMAP_ORIGIN}/</loc>`);
-    expect(xml).toContain(`<loc>${SITEMAP_ORIGIN}/archives/</loc>`);
-    expect(xml).toContain(`<loc>${SITEMAP_ORIGIN}/analytics/</loc>`);
-    expect(xml).toContain(`<loc>${SITEMAP_ORIGIN}/${torikumiMonthKey}-torikumi/</loc>`);
+    expect(xml).toContain(`<loc>${SITE_ORIGIN}/</loc>`);
+    expect(xml).toContain(`<loc>${SITE_ORIGIN}/archives/</loc>`);
+    expect(xml).toContain(`<loc>${SITE_ORIGIN}/analytics/</loc>`);
+    expect(xml).toContain(`<loc>${SITE_ORIGIN}/${torikumiMonthKey}-torikumi/</loc>`);
     if (pendingScheduleDay) {
-      expect(xml).not.toContain(`${SITEMAP_ORIGIN}/${pendingScheduleDay.pathDate}-yotei/`);
+      expect(xml).not.toContain(`${SITE_ORIGIN}/${pendingScheduleDay.pathDate}-yotei/`);
     }
+  });
+
+  it('emits only unique, absolute, indexable canonical URLs', () => {
+    const xml = renderSitemapXml();
+    const locs = Array.from(xml.matchAll(/<loc>([^<]+)<\/loc>/g), (match) => match[1]);
+
+    expect(locs.length).toBeGreaterThan(0);
+    expect(new Set(locs).size).toBe(locs.length);
+    expect(locs.every((loc) => loc.startsWith(`${SITE_ORIGIN}/`))).toBe(true);
+    expect(locs.every((loc) => loc === `${SITE_ORIGIN}/` || loc.endsWith('/'))).toBe(true);
+    expect(locs.some((loc) => loc.includes('/api/'))).toBe(false);
+    expect(locs.some((loc) => loc.includes('404'))).toBe(false);
+    expect(locs.some((loc) => loc.includes('-banduke'))).toBe(false);
+    expect(locs.some((loc) => loc.includes('-o-sumo'))).toBe(false);
   });
 });
