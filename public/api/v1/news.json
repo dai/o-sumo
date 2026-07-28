@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-28T05:10:05.554913+00:00",
+  "updatedAt": "2026-07-28T09:03:33.272935+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260728-0230",
+      "title": "【大相撲】鳥取城北高出身の小林梅太が二所ノ関部屋入りを発表「2年以内に関取に」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260728-0230",
+      "publishedAt": "2026-07-28",
+      "publishedAtRaw": "スポニチアネックス　7月28日 16時20分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-nikkangendai-1235410",
       "title": "「大の里は高安に頭を下げてぶつかり稽古を」 八角理事長が異例の“指令”を出したワケ",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397363",
       "publishedAt": "2026-07-28",
       "publishedAtRaw": "東スポWEB　7月28日 6時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260728001",
-      "title": "横審　両横綱に自覚求め→安青錦絶賛「相撲道にかける不退転の覚悟を感じた」「両横綱にその精神を期待」",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260728001",
-      "publishedAt": "2026-07-28",
-      "publishedAtRaw": "デイリースポーツ　7月28日 5時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
