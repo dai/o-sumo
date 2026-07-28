@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-28T03:11:35.997767+00:00",
+  "updatedAt": "2026-07-28T05:10:05.554913+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-nikkangendai-1235410",
+      "title": "「大の里は高安に頭を下げてぶつかり稽古を」 八角理事長が異例の“指令”を出したワケ",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1235410",
+      "publishedAt": "2026-07-28",
+      "publishedAtRaw": "日刊ゲンダイDIGITAL　7月28日 13時30分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-abematimes-10263276",
       "title": "「あの美人さん去年もいた」大相撲、“新・溜席の妖精”が再降臨で話題 「お召し物が個性的」「姿勢キレイ」",
@@ -46,15 +55,6 @@
       "id": "dmenu-docomo-20260728001",
       "title": "横審　両横綱に自覚求め→安青錦絶賛「相撲道にかける不退転の覚悟を感じた」「両横綱にその精神を期待」",
       "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260728001",
-      "publishedAt": "2026-07-28",
-      "publishedAtRaw": "デイリースポーツ　7月28日 5時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260728002",
-      "title": "武蔵川親方【名古屋場所総括】（安青錦）自分の相撲を取れば結果はついてくる",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260728002",
       "publishedAt": "2026-07-28",
       "publishedAtRaw": "デイリースポーツ　7月28日 5時00分",
       "sourceId": "dmenu-docomo",
