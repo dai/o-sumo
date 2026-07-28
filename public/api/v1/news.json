@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-28T00:47:35.514349+00:00",
+  "updatedAt": "2026-07-28T03:11:35.997767+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-abematimes-10263276",
+      "title": "「あの美人さん去年もいた」大相撲、“新・溜席の妖精”が再降臨で話題 「お召し物が個性的」「姿勢キレイ」",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10263276",
+      "publishedAt": "2026-07-28",
+      "publishedAtRaw": "ABEMA TIMES　7月28日 10時27分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-nikkangendai-1235184",
       "title": "大関復帰の安青錦 “強行出場”の収穫と代償…「少なくとも夏巡業は厳しい」の見立ても",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260728002",
       "publishedAt": "2026-07-28",
       "publishedAtRaw": "デイリースポーツ　7月28日 5時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260728-202607270001345",
-      "title": "横審、決定戦臨んだ２人を評価　霧島に「立派な成績を残して」熱海富士には「相撲の仕方も強く」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260728-202607270001345",
-      "publishedAt": "2026-07-28",
-      "publishedAtRaw": "日刊スポーツ　7月28日 4時55分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
