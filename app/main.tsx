@@ -17,6 +17,8 @@ import AnalyticsDashboardPage from './analytics/page'
 import ThemeToggle from './components/ThemeToggle'
 import LanguageToggle from './components/LanguageToggle'
 import ScrollToHash from './components/ScrollToHash'
+import CanonicalUrl from './components/CanonicalUrl'
+import TrailingSlashRoute from './components/TrailingSlashRoute'
 import {
   MAY2026_BANZUKE_PATH,
   MAY2026_RESULT_PATH,
@@ -53,6 +55,7 @@ function AppShell() {
 
   return (
     <BrowserRouter>
+      <CanonicalUrl />
       <ScrollToHash />
       <div className="global-notice-banner" role="status" aria-live="polite">
         {t('global.july2026UpdateNotice')}
@@ -71,8 +74,14 @@ function AppShell() {
         <Route path="/kimarite" element={<HashPreservingRedirect to="/kimarite/" />} />
         <Route path="/analytics/" element={<AnalyticsDashboardPage />} />
         <Route path="/analytics" element={<HashPreservingRedirect to="/analytics/" />} />
-        <Route path="/rikishi/:id/" element={<RikishiProfilePage />} />
-        <Route path="/rikishi/:id" element={<RikishiProfilePage />} />
+        <Route
+          path="/rikishi/:id"
+          element={(
+            <TrailingSlashRoute>
+              <RikishiProfilePage />
+            </TrailingSlashRoute>
+          )}
+        />
         {/* Current basho routes */}
         <Route path={`${CURRENT_BANZUKE_PATH}/`} element={<BanzukePage />} />
         <Route path={CURRENT_BANZUKE_PATH} element={<HashPreservingRedirect to={`${CURRENT_BANZUKE_PATH}/`} />} />

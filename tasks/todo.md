@@ -1109,3 +1109,27 @@
 - 最終コードレビュー: Critical / Important なし、Ready to merge判定。
 
 ---
+
+# Search Console 向け URL 正規化（2026-07-28）
+
+## Plan
+- [x] サイト origin・末尾スラッシュ・canonical URL の共通契約をテスト先行で追加する
+- [x] React Router の現在位置に追従する canonical タグをテスト先行で追加する
+- [x] 力士プロフィールの slash なし URL を 301 とクライアント遷移で正規化する
+- [x] sitemap の絶対 URL・末尾スラッシュ・重複排除・除外条件を回帰テストで強化する
+- [x] 型チェック、全テスト、Pythonテスト、ビルド、配信ルーティング、描画後DOMを検証する
+- [x] Review に原因・変更・検証結果・デプロイ後作業を記録する
+
+## Review
+- 原因: 本番 sitemap の104 URLはすでに末尾 `/` 付きかつ直接200だったが、SPAの描画後DOMに canonical がなく、`/rikishi/:id` は slash なしでも200を返していたため、正規URLのシグナルが配信層・DOM間で統一されていなかった。
+- TDD RED: URL共通関数と canonical component は未存在でimport失敗、プロフィール配信規則は `/rikishi/* / 200` が先に一致、合成したpending日が既存データから生成されることで要件未達を確認した。
+- TDD GREEN: `SITE_ORIGIN` と正規化関数、Router追従canonical、単一のプロフィールroute wrapper、Cloudflare 301、sitemap共通化と合成pendingテストを追加。focused 5 files / 25 tests pass。
+- Internal link audit: 既存の画面リンクとpath helperはルートまたは末尾 `/` 付きで、APIリンク以外に追加修正が必要な非正規内部リンクは0件。
+- Validation: `npm run typecheck` pass、Vitest 25 files / 143 tests pass、Python 46 tests pass、`npm run build` pass（既存の500 kB超chunk warningのみ）、`git diff --check` pass。
+- Build artifacts: `dist/sitemap.xml` は104 URL、非正規URL0、重複0、API・404・旧URL0。`dist/robots.txt` は `Allow: /` と `Sitemap: https://osada.us/sitemap.xml` を維持。
+- Wrangler HTTP: `/20260310-yotei` と `/rikishi/1` は各1回の301、slash付き正規URLと `/sitemap.xml` は200、未知URLは404、sitemap全104 URLは直接200。
+- Playwright DOM: `/`、`/20260310-yotei/`、`/rikishi/1/` は各canonicalが1個で、絶対URL `https://osada.us/.../` と一致。
+- Final review: Critical / Important なし。Minorだった予定ページのpending除外テストを合成データで補強し、focused test・型チェック・差分チェックを再実行して成功。
+- デプロイ後作業: Search Consoleへ sitemapを再送信し、slash付き代表URLをURL検査する。slashなしURLが「リダイレクトのあるページ」に残ること自体は正常として扱う。
+
+---
