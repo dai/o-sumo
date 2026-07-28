@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-28T09:03:33.272935+00:00",
+  "updatedAt": "2026-07-28T10:54:50.825520+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-f-bt-tp1-260728-202607280001309",
+      "title": "元関脇北瀬海の土谷孝さんが78歳で死去　引退後は君ケ浜親方として後進を指導",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260728-202607280001309",
+      "publishedAt": "2026-07-28",
+      "publishedAtRaw": "日刊スポーツ　7月28日 19時24分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-jiji-2026072800899",
+      "title": "元関脇北瀬海が死去、７８歳＝速攻武器に活躍の小兵",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026072800899",
+      "publishedAt": "2026-07-28",
+      "publishedAtRaw": "時事通信　7月28日 18時26分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-sponichi-spngoo-20260728-0230",
       "title": "【大相撲】鳥取城北高出身の小林梅太が二所ノ関部屋入りを発表「2年以内に関取に」",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10263276",
       "publishedAt": "2026-07-28",
       "publishedAtRaw": "ABEMA TIMES　7月28日 10時27分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-nikkangendai-1235184",
-      "title": "大関復帰の安青錦 “強行出場”の収穫と代償…「少なくとも夏巡業は厳しい」の見立ても",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1235184",
-      "publishedAt": "2026-07-28",
-      "publishedAtRaw": "日刊ゲンダイDIGITAL　7月28日 6時55分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-tokyosports-397363",
-      "title": "【大相撲】霧島の綱取り条件「レベルの高い優勝」で論争　背景にある〝豊昇龍の二の舞い〟危惧",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397363",
-      "publishedAt": "2026-07-28",
-      "publishedAtRaw": "東スポWEB　7月28日 6時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
