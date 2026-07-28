@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-27T11:09:00.848631+00:00",
+  "updatedAt": "2026-07-28T00:47:35.514349+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-chuspo-1287453",
-      "title": "名古屋場所Vの安青錦、秋場所で”史上初”もう一丁　ハグしてくれた親方と師弟一丸で頂点目指す【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1287453",
-      "publishedAt": "2026-07-27",
-      "publishedAtRaw": "中日スポーツ　7月27日 19時39分",
+      "id": "dmenu-docomo-nikkangendai-1235184",
+      "title": "大関復帰の安青錦 “強行出場”の収穫と代償…「少なくとも夏巡業は厳しい」の見立ても",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1235184",
+      "publishedAt": "2026-07-28",
+      "publishedAtRaw": "日刊ゲンダイDIGITAL　7月28日 6時55分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-ntv_news24-2026072709248154",
-      "title": "【大相撲】安青錦が史上初の“大関復帰＆優勝”達成　ケガを乗り越え3度目の賜杯「俺が勝ってる姿を見せたい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/ntv_news24/sports/ntv_news24-2026072709248154",
-      "publishedAt": "2026-07-27",
-      "publishedAtRaw": "日テレNEWS NNN　7月27日 19時35分",
+      "id": "dmenu-docomo-tokyosports-397363",
+      "title": "【大相撲】霧島の綱取り条件「レベルの高い優勝」で論争　背景にある〝豊昇龍の二の舞い〟危惧",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397363",
+      "publishedAt": "2026-07-28",
+      "publishedAtRaw": "東スポWEB　7月28日 6時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-397341",
-      "title": "【大相撲】安青錦Ｖの裏で大の里、豊昇龍が大不振「本当に横綱と呼べる存在なのか」＝ウクライナメディア",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397341",
-      "publishedAt": "2026-07-27",
-      "publishedAtRaw": "東スポWEB　7月27日 19時35分",
+      "id": "dmenu-docomo-20260728001",
+      "title": "横審　両横綱に自覚求め→安青錦絶賛「相撲道にかける不退転の覚悟を感じた」「両横綱にその精神を期待」",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260728001",
+      "publishedAt": "2026-07-28",
+      "publishedAtRaw": "デイリースポーツ　7月28日 5時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-jiji-2026072700909",
-      "title": "両横綱、一層の奮起を＝休場明けで共に振るわず―大相撲横審",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026072700909",
-      "publishedAt": "2026-07-27",
-      "publishedAtRaw": "時事通信　7月27日 19時32分",
+      "id": "dmenu-docomo-20260728002",
+      "title": "武蔵川親方【名古屋場所総括】（安青錦）自分の相撲を取れば結果はついてくる",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260728002",
+      "publishedAt": "2026-07-28",
+      "publishedAtRaw": "デイリースポーツ　7月28日 5時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260727-202607270001163",
-      "title": "優勝の安青錦「誠に立派。覚悟感じた」横審委員長が絶賛…不振の両横綱には厳しい言葉",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260727-202607270001163",
-      "publishedAt": "2026-07-27",
-      "publishedAtRaw": "日刊スポーツ　7月27日 19時29分",
+      "id": "dmenu-docomo-f-bt-tp1-260728-202607270001345",
+      "title": "横審、決定戦臨んだ２人を評価　霧島に「立派な成績を残して」熱海富士には「相撲の仕方も強く」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260728-202607270001345",
+      "publishedAt": "2026-07-28",
+      "publishedAtRaw": "日刊スポーツ　7月28日 4時55分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
