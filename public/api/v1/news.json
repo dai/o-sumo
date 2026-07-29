@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-29T09:05:11.037727+00:00",
+  "updatedAt": "2026-07-29T10:57:36.443041+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-chuspo-1288790",
+      "title": "時不動、吉井からの改名2場所で新十両つかむ　幕下で苦節6年、昇進と同時の予定を前倒しにしたことで「悔しい気持ちが自分に火をつけたのかな」【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1288790",
+      "publishedAt": "2026-07-29",
+      "publishedAtRaw": "中日スポーツ　7月29日 18時15分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-20260729101",
       "title": "中学横綱＆１６歳で幕下昇進、元怪物が２２歳で新十両！時不動「本当に辛い長い道のり」伯乃富士、琴栄峰ら同い年追いかける【大相撲】",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260729-202607290000705",
       "publishedAt": "2026-07-29",
       "publishedAtRaw": "日刊スポーツ　7月29日 16時37分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-jiji-2026072900830",
-      "title": "丹治、福島へ強い思い＝大相撲秋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026072900830",
-      "publishedAt": "2026-07-29",
-      "publishedAtRaw": "時事通信　7月29日 16時22分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
