@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-28T10:54:50.825520+00:00",
+  "updatedAt": "2026-07-29T00:48:23.106575+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-sponichi-spngoo-20260729-0126",
+      "title": "【秋場所番付編制会議】20歳の丹治と22歳の時不動が新十両　生田目が十両に復帰",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260729-0126",
+      "publishedAt": "2026-07-29",
+      "publishedAtRaw": "スポニチアネックス　7月29日 9時35分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-abematimes-10263426",
+      "title": "「なんかスゴイ人が相撲見てる」行司の背後に“ただならぬ”存在感で鎮座 名古屋場所でいきなり話題を呼んだ人物",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10263426",
+      "publishedAt": "2026-07-28",
+      "publishedAtRaw": "ABEMA TIMES　7月28日 22時12分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-kyodo_nor-2026072801001817",
+      "title": "元関脇北瀬海死去、78歳　三賞3度、元君ケ浜親方",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026072801001817",
+      "publishedAt": "2026-07-28",
+      "publishedAtRaw": "共同通信　7月28日 20時27分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260728-0324",
+      "title": "元関脇・北瀬海の土谷孝さんが78歳で死去　激しいぶちかましを武器に活躍し幕内在位39場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260728-0324",
+      "publishedAt": "2026-07-28",
+      "publishedAtRaw": "スポニチアネックス　7月28日 19時51分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-f-bt-tp1-260728-202607280001309",
       "title": "元関脇北瀬海の土谷孝さんが78歳で死去　引退後は君ケ浜親方として後進を指導",
       "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260728-202607280001309",
       "publishedAt": "2026-07-28",
       "publishedAtRaw": "日刊スポーツ　7月28日 19時24分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-jiji-2026072800899",
-      "title": "元関脇北瀬海が死去、７８歳＝速攻武器に活躍の小兵",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026072800899",
-      "publishedAt": "2026-07-28",
-      "publishedAtRaw": "時事通信　7月28日 18時26分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260728-0230",
-      "title": "【大相撲】鳥取城北高出身の小林梅太が二所ノ関部屋入りを発表「2年以内に関取に」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260728-0230",
-      "publishedAt": "2026-07-28",
-      "publishedAtRaw": "スポニチアネックス　7月28日 16時20分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-nikkangendai-1235410",
-      "title": "「大の里は高安に頭を下げてぶつかり稽古を」 八角理事長が異例の“指令”を出したワケ",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1235410",
-      "publishedAt": "2026-07-28",
-      "publishedAtRaw": "日刊ゲンダイDIGITAL　7月28日 13時30分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10263276",
-      "title": "「あの美人さん去年もいた」大相撲、“新・溜席の妖精”が再降臨で話題 「お召し物が個性的」「姿勢キレイ」",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10263276",
-      "publishedAt": "2026-07-28",
-      "publishedAtRaw": "ABEMA TIMES　7月28日 10時27分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
