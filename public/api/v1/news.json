@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-29T00:48:23.106575+00:00",
+  "updatedAt": "2026-07-29T03:10:19.330164+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260729-0126",
-      "title": "【秋場所番付編制会議】20歳の丹治と22歳の時不動が新十両　生田目が十両に復帰",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260729-0126",
+      "id": "dmenu-docomo-kyodo_nor-2026072901000441",
+      "title": "丹治、時不動が新十両　生田目、7場所ぶり再十両",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026072901000441",
       "publishedAt": "2026-07-29",
-      "publishedAtRaw": "スポニチアネックス　7月29日 9時35分",
+      "publishedAtRaw": "共同通信　7月29日 11時50分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-abematimes-10263426",
-      "title": "「なんかスゴイ人が相撲見てる」行司の背後に“ただならぬ”存在感で鎮座 名古屋場所でいきなり話題を呼んだ人物",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10263426",
-      "publishedAt": "2026-07-28",
-      "publishedAtRaw": "ABEMA TIMES　7月28日 22時12分",
+      "id": "dmenu-docomo-20260729060",
+      "title": "生田目が再十両　７場所ぶりに関取返り咲き　新十両は丹治と時不動",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260729060",
+      "publishedAt": "2026-07-29",
+      "publishedAtRaw": "デイリースポーツ　7月29日 10時44分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-kyodo_nor-2026072801001817",
-      "title": "元関脇北瀬海死去、78歳　三賞3度、元君ケ浜親方",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026072801001817",
-      "publishedAt": "2026-07-28",
-      "publishedAtRaw": "共同通信　7月28日 20時27分",
+      "id": "dmenu-docomo-f-bt-tp1-260729-202607290000163",
+      "title": "大翔丸、立王尚、朝勝令、朝平井、錦桜の５人が引退　日本相撲協会が発表",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260729-202607290000163",
+      "publishedAt": "2026-07-29",
+      "publishedAtRaw": "日刊スポーツ　7月29日 10時39分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260728-0324",
-      "title": "元関脇・北瀬海の土谷孝さんが78歳で死去　激しいぶちかましを武器に活躍し幕内在位39場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260728-0324",
-      "publishedAt": "2026-07-28",
-      "publishedAtRaw": "スポニチアネックス　7月28日 19時51分",
+      "id": "dmenu-docomo-hochi-20260729-OHT1T51046",
+      "title": "【大相撲】中学横綱の吉井改め時不動が新十両昇進　静岡出身では熱海富士以来",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260729-OHT1T51046",
+      "publishedAt": "2026-07-29",
+      "publishedAtRaw": "スポーツ報知　7月29日 10時12分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260728-202607280001309",
-      "title": "元関脇北瀬海の土谷孝さんが78歳で死去　引退後は君ケ浜親方として後進を指導",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260728-202607280001309",
-      "publishedAt": "2026-07-28",
-      "publishedAtRaw": "日刊スポーツ　7月28日 19時24分",
+      "id": "dmenu-docomo-hochi-20260729-OHT1T51044",
+      "title": "【大相撲】福島出身のイケメン丹治が新十両　母はロシア出身で新体操経験者",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260729-OHT1T51044",
+      "publishedAt": "2026-07-29",
+      "publishedAtRaw": "スポーツ報知　7月29日 10時09分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
