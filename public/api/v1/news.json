@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-29T03:10:19.330164+00:00",
+  "updatedAt": "2026-07-29T05:11:35.554623+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -20,7 +20,7 @@
       "title": "丹治、時不動が新十両　生田目、7場所ぶり再十両",
       "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026072901000441",
       "publishedAt": "2026-07-29",
-      "publishedAtRaw": "共同通信　7月29日 11時50分",
+      "publishedAtRaw": "共同通信　7月29日 12時23分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
@@ -61,6 +61,15 @@
       "sourceLabel": "dmenuスポーツ"
     },
     {
+      "id": "sumo-association-756",
+      "title": "引退のお知らせ",
+      "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=756",
+      "publishedAt": "2026-07-25",
+      "publishedAtRaw": "令和8年7月25日",
+      "sourceId": "sumo-association",
+      "sourceLabel": "日本相撲協会"
+    },
+    {
       "id": "sumo-association-755",
       "title": "大相撲七月場所「土俵祭」についてのお知らせ",
       "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=755",
@@ -75,15 +84,6 @@
       "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=754",
       "publishedAt": "2026-07-01",
       "publishedAtRaw": "令和8年7月1日",
-      "sourceId": "sumo-association",
-      "sourceLabel": "日本相撲協会"
-    },
-    {
-      "id": "sumo-association-753",
-      "title": "引退のお知らせ",
-      "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=753",
-      "publishedAt": "2026-05-25",
-      "publishedAtRaw": "令和8年5月25日",
       "sourceId": "sumo-association",
       "sourceLabel": "日本相撲協会"
     }
