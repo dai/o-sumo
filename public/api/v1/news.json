@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-30T00:46:35.585004+00:00",
+  "updatedAt": "2026-07-30T03:11:37.001345+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_NHB2PKZAMNPOXIDH3MCQX2VT4Y",
+      "title": "大相撲コラム　名古屋場所で乱調に陥った横綱豊昇龍と大の里の「負けっぷり」がさみしい",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_NHB2PKZAMNPOXIDH3MCQX2VT4Y",
+      "publishedAt": "2026-07-30",
+      "publishedAtRaw": "SANSPO　7月30日 11時50分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-abematimes-10263663",
       "title": "相手力士を“回転させまくる”衝撃の取組が話題 大相撲名古屋場所でファンを沸かせた名珍場面",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260729-OHT1T51207",
       "publishedAt": "2026-07-30",
       "publishedAtRaw": "スポーツ報知　7月30日 6時22分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_FE2EF74WNZESZKMPXCZ2RHG6SY",
-      "title": "舞の海氏「いろんなタイプと稽古をしないと相撲勘が戻ってこないですよ」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_FE2EF74WNZESZKMPXCZ2RHG6SY",
-      "publishedAt": "2026-07-30",
-      "publishedAtRaw": "SANSPO　7月30日 6時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
