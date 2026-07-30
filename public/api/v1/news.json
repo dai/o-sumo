@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-30T03:11:37.001345+00:00",
+  "updatedAt": "2026-07-30T07:04:32.124507+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-chuspo-1289318",
+      "title": "大相撲の優勝賞金、来年1月から倍増　1000万円から2000万円に　三賞賞金は200万円→300万円　改定は1994年以来",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1289318",
+      "publishedAt": "2026-07-30",
+      "publishedAtRaw": "中日スポーツ　7月30日 15時42分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-tokyosports-397687",
+      "title": "【大相撲】幕内優勝賞金１０００万円→２０００万円に倍増！関取月給も増額　来年初場所から",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397687",
+      "publishedAt": "2026-07-30",
+      "publishedAtRaw": "東スポWEB　7月30日 15時31分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-sanspo-_sports_sumo_NHB2PKZAMNPOXIDH3MCQX2VT4Y",
       "title": "大相撲コラム　名古屋場所で乱調に陥った横綱豊昇龍と大の里の「負けっぷり」がさみしい",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_AJALCMP7JBHJDHUNWLEKFL2ECA",
       "publishedAt": "2026-07-30",
       "publishedAtRaw": "SANSPO　7月30日 8時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_2RIGM76LBVBGNH6UWLNX66IDKA",
-      "title": "舞の海氏「大関から横綱に駆け上がるころは手がつけられないぐらい強かった」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_2RIGM76LBVBGNH6UWLNX66IDKA",
-      "publishedAt": "2026-07-30",
-      "publishedAtRaw": "SANSPO　7月30日 7時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260729-OHT1T51207",
-      "title": "「シュッとしてイケメン」大減量した元大関の姿に衝撃！「スマート」「別人」奥さんも「美人すぎる」元貴景勝",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260729-OHT1T51207",
-      "publishedAt": "2026-07-30",
-      "publishedAtRaw": "スポーツ報知　7月30日 6時22分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
