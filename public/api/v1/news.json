@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-30T07:04:32.124507+00:00",
+  "updatedAt": "2026-07-30T09:02:37.470138+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-chuspo-1289318",
-      "title": "大相撲の優勝賞金、来年1月から倍増　1000万円から2000万円に　三賞賞金は200万円→300万円　改定は1994年以来",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1289318",
+      "id": "dmenu-docomo-sponichi-spngoo-20260730-0269",
+      "title": "豊昇龍、高安、獅司らが夏巡業を休場　日本相撲協会が発表",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260730-0269",
       "publishedAt": "2026-07-30",
-      "publishedAtRaw": "中日スポーツ　7月30日 15時42分",
+      "publishedAtRaw": "スポニチアネックス　7月30日 17時38分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-397687",
-      "title": "【大相撲】幕内優勝賞金１０００万円→２０００万円に倍増！関取月給も増額　来年初場所から",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397687",
+      "id": "dmenu-docomo-tokyosports-397699",
+      "title": "【大相撲】来年から東京＆大阪場所で入場料金を値上げ　増加した利益は力士らの待遇改善に反映",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397699",
       "publishedAt": "2026-07-30",
-      "publishedAtRaw": "東スポWEB　7月30日 15時31分",
+      "publishedAtRaw": "東スポWEB　7月30日 17時37分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_NHB2PKZAMNPOXIDH3MCQX2VT4Y",
-      "title": "大相撲コラム　名古屋場所で乱調に陥った横綱豊昇龍と大の里の「負けっぷり」がさみしい",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_NHB2PKZAMNPOXIDH3MCQX2VT4Y",
+      "id": "dmenu-docomo-hochi-20260730-OHT1T51228",
+      "title": "豊昇龍、若隆景、翔猿ら休場…８月２日スタートの夏巡業",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260730-OHT1T51228",
       "publishedAt": "2026-07-30",
-      "publishedAtRaw": "SANSPO　7月30日 11時50分",
+      "publishedAtRaw": "スポーツ報知　7月30日 17時36分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-abematimes-10263663",
-      "title": "相手力士を“回転させまくる”衝撃の取組が話題 大相撲名古屋場所でファンを沸かせた名珍場面",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10263663",
+      "id": "dmenu-docomo-20260730101",
+      "title": "大相撲の優勝賞金が倍増２０００万円、力士給与・手当もアップ、両国国技館のチケット料金は大幅値上げに",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260730101",
       "publishedAt": "2026-07-30",
-      "publishedAtRaw": "ABEMA TIMES　7月30日 9時22分",
+      "publishedAtRaw": "デイリースポーツ　7月30日 17時17分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_AJALCMP7JBHJDHUNWLEKFL2ECA",
-      "title": "舞の海氏「完敗。歯が立ちませんでした。それだけ上位陣は力をつけてる」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_AJALCMP7JBHJDHUNWLEKFL2ECA",
+      "id": "dmenu-docomo-f-bt-tp1-260730-202607300000785",
+      "title": "本場所の入場料値上げへ…最高は３万円に　14日目＆千秋楽はさらに増額、名古屋九州は変更なし",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260730-202607300000785",
       "publishedAt": "2026-07-30",
-      "publishedAtRaw": "SANSPO　7月30日 8時00分",
+      "publishedAtRaw": "日刊スポーツ　7月30日 17時11分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
