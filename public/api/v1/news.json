@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-30T09:02:37.470138+00:00",
+  "updatedAt": "2026-07-30T10:48:30.350112+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,56 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260730-0269",
-      "title": "豊昇龍、高安、獅司らが夏巡業を休場　日本相撲協会が発表",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260730-0269",
+      "id": "sumo-association-757",
+      "title": "本場所入場料金の改定について",
+      "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=757",
       "publishedAt": "2026-07-30",
-      "publishedAtRaw": "スポニチアネックス　7月30日 17時38分",
+      "publishedAtRaw": "令和8年7月30日",
+      "sourceId": "sumo-association",
+      "sourceLabel": "日本相撲協会"
+    },
+    {
+      "id": "dmenu-docomo-kyodo_nor-2026073001001829",
+      "title": "9月に相撲協会員研修会　理事会開催、日程を発表",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026073001001829",
+      "publishedAt": "2026-07-30",
+      "publishedAtRaw": "共同通信　7月30日 19時09分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-397699",
-      "title": "【大相撲】来年から東京＆大阪場所で入場料金を値上げ　増加した利益は力士らの待遇改善に反映",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397699",
+      "id": "dmenu-docomo-chuspo-1289426",
+      "title": "大相撲、来年1月の初場所から幕内優勝賞金を倍増　本場所の入場料金も見直し「力士が充実して戦える環境をチケットの増収分であてられば」",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1289426",
       "publishedAt": "2026-07-30",
-      "publishedAtRaw": "東スポWEB　7月30日 17時37分",
+      "publishedAtRaw": "中日スポーツ　7月30日 19時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260730-OHT1T51228",
-      "title": "豊昇龍、若隆景、翔猿ら休場…８月２日スタートの夏巡業",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260730-OHT1T51228",
+      "id": "dmenu-docomo-chuspo-1289417",
+      "title": "横綱豊昇龍、8月2日から始まる夏巡業を休場　若隆景、欧勝馬らも休場",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1289417",
       "publishedAt": "2026-07-30",
-      "publishedAtRaw": "スポーツ報知　7月30日 17時36分",
+      "publishedAtRaw": "中日スポーツ　7月30日 18時52分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260730101",
-      "title": "大相撲の優勝賞金が倍増２０００万円、力士給与・手当もアップ、両国国技館のチケット料金は大幅値上げに",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260730101",
+      "id": "dmenu-docomo-20260730108",
+      "title": "大相撲夏巡業の休場者は９人　横綱豊昇龍は右膝内側側副靱帯損傷で",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260730108",
       "publishedAt": "2026-07-30",
-      "publishedAtRaw": "デイリースポーツ　7月30日 17時17分",
+      "publishedAtRaw": "デイリースポーツ　7月30日 18時13分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260730-202607300000785",
-      "title": "本場所の入場料値上げへ…最高は３万円に　14日目＆千秋楽はさらに増額、名古屋九州は変更なし",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260730-202607300000785",
+      "id": "dmenu-docomo-tokyosports-397704",
+      "title": "【大相撲】豊昇龍が右ヒザのけがで夏巡業休場　名古屋場所は途中離脱＆横綱９場所で優勝なし",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397704",
       "publishedAt": "2026-07-30",
-      "publishedAtRaw": "日刊スポーツ　7月30日 17時11分",
+      "publishedAtRaw": "東スポWEB　7月30日 18時09分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
@@ -75,15 +84,6 @@
       "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=755",
       "publishedAt": "2026-07-06",
       "publishedAtRaw": "令和8年7月6日",
-      "sourceId": "sumo-association",
-      "sourceLabel": "日本相撲協会"
-    },
-    {
-      "id": "sumo-association-754",
-      "title": "令和8年 第十六回 夏休み!!相撲健康体操 in 国技館",
-      "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=754",
-      "publishedAt": "2026-07-01",
-      "publishedAtRaw": "令和8年7月1日",
       "sourceId": "sumo-association",
       "sourceLabel": "日本相撲協会"
     }
