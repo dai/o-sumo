@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-30T10:48:30.350112+00:00",
+  "updatedAt": "2026-07-31T00:52:35.166453+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,51 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-sponichi-spngoo-20260731-0097",
+      "title": "今年も仙台で「落語大相撲仙台場所」開催　「佐野山」「阿武松」ら",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260731-0097",
+      "publishedAt": "2026-07-31",
+      "publishedAtRaw": "スポニチアネックス　7月31日 7時35分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-bunshun-90740",
+      "title": "初めて大相撲を見るならどのチケットを買うべき？ 国技館で「絶対に後悔しない席」を選ぶために知っておきたいコト",
+      "url": "https://topics.smt.docomo.ne.jp/article/bunshun/sports/bunshun-90740",
+      "publishedAt": "2026-07-31",
+      "publishedAtRaw": "文春オンライン　7月31日 6時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-f-bt-tp1-260731-202607300000982",
+      "title": "27年初場所から優勝賞金、力士の給与や手当を改定　幕内の優勝賞金は2000万円に倍増",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260731-202607300000982",
+      "publishedAt": "2026-07-31",
+      "publishedAtRaw": "日刊スポーツ　7月31日 5時30分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260731-0045",
+      "title": "大相撲賞金改定　幕内Vの賞金倍増！2000万円に　十両以下の優勝賞金もアップ",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260731-0045",
+      "publishedAt": "2026-07-31",
+      "publishedAtRaw": "スポニチアネックス　7月31日 5時30分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-20260731014",
+      "title": "大相撲　幕内優勝賞金を２倍の２０００万円に　三賞＆十両以下Ｖ賞金、関取月額給与も増額　東京場所、春場所入場料金は値上げへ",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260731014",
+      "publishedAt": "2026-07-31",
+      "publishedAtRaw": "デイリースポーツ　7月31日 5時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "sumo-association-757",
       "title": "本場所入場料金の改定について",
       "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=757",
@@ -23,51 +68,6 @@
       "publishedAtRaw": "令和8年7月30日",
       "sourceId": "sumo-association",
       "sourceLabel": "日本相撲協会"
-    },
-    {
-      "id": "dmenu-docomo-kyodo_nor-2026073001001829",
-      "title": "9月に相撲協会員研修会　理事会開催、日程を発表",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026073001001829",
-      "publishedAt": "2026-07-30",
-      "publishedAtRaw": "共同通信　7月30日 19時09分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-chuspo-1289426",
-      "title": "大相撲、来年1月の初場所から幕内優勝賞金を倍増　本場所の入場料金も見直し「力士が充実して戦える環境をチケットの増収分であてられば」",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1289426",
-      "publishedAt": "2026-07-30",
-      "publishedAtRaw": "中日スポーツ　7月30日 19時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-chuspo-1289417",
-      "title": "横綱豊昇龍、8月2日から始まる夏巡業を休場　若隆景、欧勝馬らも休場",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1289417",
-      "publishedAt": "2026-07-30",
-      "publishedAtRaw": "中日スポーツ　7月30日 18時52分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260730108",
-      "title": "大相撲夏巡業の休場者は９人　横綱豊昇龍は右膝内側側副靱帯損傷で",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260730108",
-      "publishedAt": "2026-07-30",
-      "publishedAtRaw": "デイリースポーツ　7月30日 18時13分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-tokyosports-397704",
-      "title": "【大相撲】豊昇龍が右ヒザのけがで夏巡業休場　名古屋場所は途中離脱＆横綱９場所で優勝なし",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397704",
-      "publishedAt": "2026-07-30",
-      "publishedAtRaw": "東スポWEB　7月30日 18時09分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
     },
     {
       "id": "sumo-association-756",
