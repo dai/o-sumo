@@ -4,6 +4,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { StrictMode } from 'react';
 import { Link, MemoryRouter } from 'react-router-dom';
 import CanonicalUrl from './CanonicalUrl';
+import MetaHead from './MetaHead';
 
 afterEach(() => {
   cleanup();
@@ -61,6 +62,24 @@ describe('CanonicalUrl', () => {
       const canonicalLinks = document.head.querySelectorAll<HTMLLinkElement>('link[rel="canonical"]');
       expect(canonicalLinks).toHaveLength(1);
       expect(canonicalLinks[0].href).toBe('https://osada.us/analytics/');
+    });
+  });
+
+  it('keeps canonical and og:url on the home fallback for unsupported routes', async () => {
+    render(
+      <MemoryRouter initialEntries={['/209912-banzuke/']}>
+        <CanonicalUrl />
+        <MetaHead />
+      </MemoryRouter>,
+    );
+
+    await waitFor(() => {
+      expect(document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.href).toBe(
+        'https://osada.us/',
+      );
+      expect(document.head.querySelector<HTMLMetaElement>('meta[property="og:url"]')?.content).toBe(
+        'https://osada.us/',
+      );
     });
   });
 });

@@ -1,4 +1,4 @@
-import { mkdirSync, writeFileSync } from 'node:fs'
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import type { Plugin } from 'vite'
@@ -7,17 +7,25 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 function sitemapPlugin(): Plugin {
   let outDir = 'dist'
+  let rikishiIndexPath = ''
+  let rikishiItems: unknown = []
 
   return {
     name: 'generate-sitemap',
     apply: 'build',
     configResolved(config) {
       outDir = resolve(config.root, config.build.outDir)
+      rikishiIndexPath = resolve(config.root, 'public/api/v1/rikishi.json')
+    },
+    async buildStart() {
+      const rikishiIndex = JSON.parse(readFileSync(rikishiIndexPath, 'utf8')) as { rikishi?: unknown }
+      const { validateRikishiSitemapItems } = await import('./app/lib/sitemap')
+      rikishiItems = validateRikishiSitemapItems(rikishiIndex.rikishi)
     },
     async closeBundle() {
       const { renderSitemapXml } = await import('./app/lib/sitemap')
       mkdirSync(outDir, { recursive: true })
-      writeFileSync(resolve(outDir, 'sitemap.xml'), renderSitemapXml(), 'utf8')
+      writeFileSync(resolve(outDir, 'sitemap.xml'), renderSitemapXml(undefined, rikishiItems), 'utf8')
     },
   }
 }

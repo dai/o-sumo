@@ -1133,3 +1133,35 @@
 - デプロイ後作業: Search Consoleへ sitemapを再送信し、slash付き代表URLをURL検査する。slashなしURLが「リダイレクトのあるページ」に残ること自体は正常として扱う。
 
 ---
+
+# renovate-aug SEO基盤改善（2026-07-31）
+
+## Plan
+- [x] 最新 `origin/main` から独立worktreeと `renovate-aug` ブランチを作成する
+- [x] baselineの依存導入、型検査、全テスト、ビルドを確認する
+- [x] TDDでroute別OGP / Twitter Cardと初期HTML fallbackを実装する
+- [x] TDDで力士プロフィールURLをbuild-time sitemapへ追加する
+- [x] TDDで配信検証器を環境別HTTP・head・sitemap全URL対応へ更新する
+- [x] Wrangler、Playwright、全検証、差分レビューを完了する
+
+## Progress
+- `origin/main@76dce0b` から `C:\Users\dai\.codex\worktrees\renovate-aug\o-sumo` にworktreeを作成した。元checkoutの未追跡 `.github/github-app.yml` には触れていない。
+- baselineは `npm run typecheck`、Vitest 25 files / 143 tests、`npm run build` がpass。依存導入時の20件のaudit advisory、既存localStorage warning、500 kB超chunk warningを確認した。
+- worktreeにはImpeccable本体がcheckoutされないため、検出器は元リポジトリから絶対パス指定で実行する。
+- `MetaHead` と純粋なroute resolverを追加し、初期HTML fallbackとSPA遷移後のtitle、description、OGP、Twitter Cardを重複なく管理する。日別metadataはカレンダー日ではなくarchiveの `label`（初日、三日目など）を使用する。
+- `public/api/v1/rikishi.json` をbuild時に検証し、70プロフィールを既存sitemapへ追加した。不正ID、重複ID、壊れたshapeはbuildを失敗させる。
+- 配信検証器をBASE / LOCAL / PREVIEW対応へ更新し、route、全sitemap URL、環境別pending除外、描画後headを検証する。既定DateKeyはorigin/mainの最新公開結果日から選ぶ。
+
+## Review
+- OGP TDD RED: resolver / component未存在で2ファイルがimport failure。日別label修正では `12日目` / `10日目` が期待する `初日` / `三日目` と不一致。GREENはpage-meta、MetaHead、配信検証のfocused 34 tests pass。
+- Sitemap TDD RED: 力士URL未追加と不正入力を許容して7件fail。GREENは `app/lib/sitemap.test.ts` 12/12 pass。
+- Delivery verifier TDD RED: companion未存在、CLI未実装、route別metadata不一致、pending除外漏れ、古い既定DateKeyによるstrict-mode crashを順に再現。最終レビュー後は、BASEをgate扱いする誤り、LOCAL未指定の許容、sitemap欠落を検知しない問題もREDで固定した。GREENはfocused 4 files / 52 testsと実PowerShell 8-case integrationがpass。
+- Final automated validation: focused delivery / metadata 4 files / 52 tests pass、canonical統合 3 files / 23 tests pass、全28 files / 191 tests pass、`npm run typecheck` pass、`npm run build` pass、PowerShell integration pass、`git diff --check` pass。
+- Build artifacts: `dist/sitemap.xml` は174 URL、力士プロフィール70 URLで公開index 70件と一致。API URL混入0。`public/og-default.jpg` とbuild後画像は元画像とSHA-256 `EA8C31CC8678987A1706FA9B6BC71BF096DE873BBAED5ADC044984D3BC17A16D` が一致。
+- Wrangler / Playwright: 最終結果を `tasks/reports/delivery-flow-20260731-150425.md` に保存。`DATA_SYNC=OK`、`BRANCH_GATE=OK`、LOCALのrouting / head / sitemapはすべてOK、`OVERALL=OK`、previewは未指定でSKIPPED。本番は未デプロイ状態の観測値として `BASE_BASELINE=ISSUE` だがbranch gateには含めない。
+- Review fixes: 未登録の月・日routeはHOME metadataとroot canonicalへfallback。sitemapは各環境のrikishi / torikumi APIからrequired pathを独立導出し、空・欠落・不正indexを失敗させる。BASEは観測のみ、通常実行はLOCAL必須、指定PREVIEWとDATA_SYNCをgateに含め、失敗時はレポート保存後に非0終了する。
+- Final review fix: 未知routeでcanonicalと`og:url`が一時不一致になるケースをREDで再現し、両方が同じresolverのroot canonicalを使うよう統一。統合回帰テストを追加した。
+- Impeccable: baselineの既存3 warnings（font 1、banzuke side-tab 2）から増加なし。今回変更由来の新規指摘0。
+- Non-failing warnings: 依存導入時のaudit advisory 20件、Node localStorage ExperimentalWarning、Vite 500 kB超chunk warning、Wrangler compatibility-date warningは既存または変更対象外として継続。
+
+---

@@ -18,6 +18,7 @@ import ThemeToggle from './components/ThemeToggle'
 import LanguageToggle from './components/LanguageToggle'
 import ScrollToHash from './components/ScrollToHash'
 import CanonicalUrl from './components/CanonicalUrl'
+import MetaHead from './components/MetaHead'
 import TrailingSlashRoute from './components/TrailingSlashRoute'
 import {
   MAY2026_BANZUKE_PATH,
@@ -56,6 +57,7 @@ function AppShell() {
   return (
     <BrowserRouter>
       <CanonicalUrl />
+      <MetaHead />
       <ScrollToHash />
       <div className="global-notice-banner" role="status" aria-live="polite">
         {t('global.july2026UpdateNotice')}
