@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { toCanonicalUrl } from '../lib/site-url';
+import { resolvePageMeta } from '../lib/page-meta';
 
 export default function CanonicalUrl() {
   const { pathname } = useLocation();
@@ -12,7 +12,7 @@ export default function CanonicalUrl() {
     const canonicalLink = canonicalLinks[0] ?? document.createElement('link');
 
     canonicalLink.rel = 'canonical';
-    canonicalLink.href = toCanonicalUrl(pathname);
+    canonicalLink.href = resolvePageMeta(pathname).canonicalUrl;
     if (!canonicalLink.isConnected) {
       document.head.append(canonicalLink);
     }

@@ -1,8 +1,13 @@
 import { getAllArchiveRouteConfigs, getDayPath, type ArchiveRouteConfig } from './torikumi-routes';
+import { rikishiProfilePath } from './rikishi-profile';
 import { normalizeCanonicalPath, toCanonicalUrl } from './site-url';
 
 export interface SitemapEntry {
   loc: string;
+}
+
+export interface RikishiSitemapItem {
+  id: number;
 }
 
 const FIXED_SITEMAP_PATHS = ['/', '/archives/', '/rikishi/', '/kimarite/', '/analytics/'] as const;
@@ -16,8 +21,33 @@ function escapeXml(value: string): string {
     .replace(/'/g, '&apos;');
 }
 
+export function validateRikishiSitemapItems(rikishiItems: unknown): RikishiSitemapItem[] {
+  if (!Array.isArray(rikishiItems)) {
+    throw new Error('Rikishi sitemap items must be an array');
+  }
+
+  const seenIds = new Set<number>();
+
+  return rikishiItems.map((item, index) => {
+    const id = typeof item === 'object' && item !== null
+      ? (item as { id?: unknown }).id
+      : undefined;
+
+    if (typeof id !== 'number' || !Number.isInteger(id) || id <= 0) {
+      throw new Error(`Rikishi sitemap item at index ${index} must have a positive integer id`);
+    }
+    if (seenIds.has(id)) {
+      throw new Error(`Rikishi sitemap contains duplicate id: ${id}`);
+    }
+
+    seenIds.add(id);
+    return { id };
+  });
+}
+
 export function getSitemapEntries(
   routeConfigs: ArchiveRouteConfig[] = getAllArchiveRouteConfigs(),
+  rikishiItems: unknown = [],
 ): SitemapEntry[] {
   const entries: SitemapEntry[] = [];
   const seen = new Set<string>();
@@ -53,11 +83,18 @@ export function getSitemapEntries(
     }
   }
 
+  for (const rikishi of validateRikishiSitemapItems(rikishiItems)) {
+    appendEntry(rikishiProfilePath(rikishi.id));
+  }
+
   return entries;
 }
 
-export function renderSitemapXml(): string {
-  const urls = getSitemapEntries()
+export function renderSitemapXml(
+  routeConfigs: ArchiveRouteConfig[] = getAllArchiveRouteConfigs(),
+  rikishiItems: unknown = [],
+): string {
+  const urls = getSitemapEntries(routeConfigs, rikishiItems)
     .map((entry) => `  <url>\n    <loc>${escapeXml(toCanonicalUrl(entry.loc))}</loc>\n  </url>`)
     .join('\n');
 

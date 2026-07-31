@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { torikumiArchive, torikumiMonthKey } from './torikumi-data';
 import { getSitemapEntries, renderSitemapXml } from './sitemap';
@@ -5,6 +7,39 @@ import { SITE_ORIGIN } from './site-url';
 import { getAllArchiveRouteConfigs } from './torikumi-routes';
 
 describe('sitemap helpers', () => {
+  it('adds synthetic rikishi profile paths from an injected index', () => {
+    const locs = getSitemapEntries([], [{ id: 101 }, { id: 202 }]).map((entry) => entry.loc);
+
+    expect(locs).toContain('/rikishi/101/');
+    expect(locs).toContain('/rikishi/202/');
+    expect(locs).not.toContain('/api/v1/rikishi/101.json');
+  });
+
+  it('rejects a rikishi index that is not an array', () => {
+    expect(() => getSitemapEntries([], { id: 101 })).toThrow('Rikishi sitemap items must be an array');
+  });
+
+  it.each([
+    [[{ id: 0 }]],
+    [[{ id: 101.5 }]],
+    [[{ id: 101 }, { id: 101 }]],
+  ])('rejects invalid rikishi IDs: %j', (rikishiItems) => {
+    expect(() => getSitemapEntries([], rikishiItems)).toThrow();
+  });
+
+  it('adds every profile in the public rikishi index exactly once', () => {
+    const index = JSON.parse(
+      readFileSync(resolve(process.cwd(), 'public/api/v1/rikishi.json'), 'utf8'),
+    ) as { rikishi: Array<{ id: number }> };
+    const fixedEntryCount = getSitemapEntries([]).length;
+    const locs = getSitemapEntries([], index.rikishi).map((entry) => entry.loc);
+
+    expect(index.rikishi.length).toBeGreaterThan(0);
+    expect(locs).toHaveLength(fixedEntryCount + index.rikishi.length);
+    expect(locs).toContain('/rikishi/3842/');
+    expect(locs.filter((loc) => loc === '/rikishi/3842/')).toHaveLength(1);
+  });
+
   it('lists fixed pages and archive hubs with canonical trailing slashes', () => {
     const locs = getSitemapEntries().map((entry) => entry.loc);
 
@@ -93,6 +128,13 @@ describe('sitemap helpers', () => {
     if (pendingScheduleDay) {
       expect(xml).not.toContain(`${SITE_ORIGIN}/${pendingScheduleDay.pathDate}-yotei/`);
     }
+  });
+
+  it('renders injected rikishi profile URLs as absolute trailing-slash XML locations', () => {
+    const xml = renderSitemapXml([], [{ id: 101 }]);
+
+    expect(xml).toContain(`<loc>${SITE_ORIGIN}/rikishi/101/</loc>`);
+    expect(xml).not.toContain(`${SITE_ORIGIN}/api/v1/rikishi/101.json`);
   });
 
   it('emits only unique, absolute, indexable canonical URLs', () => {
