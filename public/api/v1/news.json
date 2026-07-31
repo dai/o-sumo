@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-31T09:09:18.270551+00:00",
+  "updatedAt": "2026-07-31T10:59:00.583201+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-20260731126",
+      "title": "夏巡業休場の高安は「腰痛椎間板症、椎間関節炎、腰痛の急性憎悪」日本相撲協会が発表【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260731126",
+      "publishedAt": "2026-07-31",
+      "publishedAtRaw": "デイリースポーツ　7月31日 19時36分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-tokyosports-397811",
+      "title": "【大相撲】力士時代から体重90kg減！　元大関・栃ノ心氏が引退後のストイック生活を告白",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397811",
+      "publishedAt": "2026-07-31",
+      "publishedAtRaw": "東スポWEB　7月31日 18時25分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-tokyosports-397799",
       "title": "【大相撲】獅司の先祖はウクライナの革命家だった！「マフノ軍の戦士を祖先に持つ男」＝現地報道",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260731-0097",
       "publishedAt": "2026-07-31",
       "publishedAtRaw": "スポニチアネックス　7月31日 7時35分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-bunshun-90740",
-      "title": "初めて大相撲を見るならどのチケットを買うべき？ 国技館で「絶対に後悔しない席」を選ぶために知っておきたいコト",
-      "url": "https://topics.smt.docomo.ne.jp/article/bunshun/sports/bunshun-90740",
-      "publishedAt": "2026-07-31",
-      "publishedAtRaw": "文春オンライン　7月31日 6時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-bunshun-90741",
-      "title": "「チケットが取れない」相撲ファンが悲鳴…インバウンドで沸騰する国技館、それでもチケットを手にする人が実践している“意外な方法”",
-      "url": "https://topics.smt.docomo.ne.jp/article/bunshun/sports/bunshun-90741",
-      "publishedAt": "2026-07-31",
-      "publishedAtRaw": "文春オンライン　7月31日 6時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
