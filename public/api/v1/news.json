@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-31T00:52:35.166453+00:00",
+  "updatedAt": "2026-07-31T03:12:43.089349+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -21,6 +21,15 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260731-0097",
       "publishedAt": "2026-07-31",
       "publishedAtRaw": "スポニチアネックス　7月31日 7時35分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-bunshun-90741",
+      "title": "「チケットが取れない」相撲ファンが悲鳴…インバウンドで沸騰する国技館、それでもチケットを手にする人が実践している“意外な方法”",
+      "url": "https://topics.smt.docomo.ne.jp/article/bunshun/sports/bunshun-90741",
+      "publishedAt": "2026-07-31",
+      "publishedAtRaw": "文春オンライン　7月31日 6時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260731-0045",
       "publishedAt": "2026-07-31",
       "publishedAtRaw": "スポニチアネックス　7月31日 5時30分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260731014",
-      "title": "大相撲　幕内優勝賞金を２倍の２０００万円に　三賞＆十両以下Ｖ賞金、関取月額給与も増額　東京場所、春場所入場料金は値上げへ",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260731014",
-      "publishedAt": "2026-07-31",
-      "publishedAtRaw": "デイリースポーツ　7月31日 5時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
