@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-31T07:10:29.803053+00:00",
+  "updatedAt": "2026-07-31T09:09:18.270551+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-tokyosports-397799",
+      "title": "【大相撲】獅司の先祖はウクライナの革命家だった！「マフノ軍の戦士を祖先に持つ男」＝現地報道",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397799",
+      "publishedAt": "2026-07-31",
+      "publishedAtRaw": "東スポWEB　7月31日 16時49分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-hochi-20260730-OHT1T51259",
       "title": "新弟子通う相撲教習所で９年ぶり「相撲甚句」の授業！２３歳・大森は「エモいです」春日山親方「伝統文化伝えていかないと」",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/bunshun/sports/bunshun-90741",
       "publishedAt": "2026-07-31",
       "publishedAtRaw": "文春オンライン　7月31日 6時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260731-202607300000982",
-      "title": "27年初場所から優勝賞金、力士の給与や手当を改定　幕内の優勝賞金は2000万円に倍増",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260731-202607300000982",
-      "publishedAt": "2026-07-31",
-      "publishedAtRaw": "日刊スポーツ　7月31日 5時30分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
