@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-01T08:53:30.062138+00:00",
+  "updatedAt": "2026-08-01T10:37:14.943374+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-tokyosports-397938",
+      "title": "【大相撲】海外ファンが安青錦を称賛「ほぼ片足で優勝」　豊昇龍には「本物の横綱じゃない」との声も",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397938",
+      "publishedAt": "2026-08-01",
+      "publishedAtRaw": "東スポWEB　8月1日 18時34分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-sponichi-spngoo-20260801-0242",
       "title": "モンゴル出身サンチルガリデが高校横綱　決勝の取り直しも動揺なし　逸ノ城、照ノ富士級の声",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260731126",
       "publishedAt": "2026-07-31",
       "publishedAtRaw": "デイリースポーツ　7月31日 19時36分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-tokyosports-397811",
-      "title": "【大相撲】力士時代から体重90kg減！　元大関・栃ノ心氏が引退後のストイック生活を告白",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397811",
-      "publishedAt": "2026-07-31",
-      "publishedAtRaw": "東スポWEB　7月31日 18時25分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
