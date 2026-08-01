@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-31T10:59:00.583201+00:00",
+  "updatedAt": "2026-08-01T03:11:37.440426+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-numberweb-871409",
+      "title": "両横綱不調で波乱の名古屋場所…”最近の横綱昇進条件が甘い”と言われるが、元大関・魁皇は異論「逆なんですよ」",
+      "url": "https://topics.smt.docomo.ne.jp/article/numberweb/sports/numberweb-871409",
+      "publishedAt": "2026-08-01",
+      "publishedAtRaw": "Number Web　8月1日 11時05分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-20260731126",
       "title": "夏巡業休場の高安は「腰痛椎間板症、椎間関節炎、腰痛の急性憎悪」日本相撲協会が発表【大相撲】",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260730-OHT1T51259",
       "publishedAt": "2026-07-31",
       "publishedAtRaw": "スポーツ報知　7月31日 16時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260731-0097",
-      "title": "今年も仙台で「落語大相撲仙台場所」開催　「佐野山」「阿武松」ら",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260731-0097",
-      "publishedAt": "2026-07-31",
-      "publishedAtRaw": "スポニチアネックス　7月31日 7時35分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
