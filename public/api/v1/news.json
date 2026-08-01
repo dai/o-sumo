@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-01T03:11:37.440426+00:00",
+  "updatedAt": "2026-08-01T08:53:30.062138+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260801-0242",
+      "title": "モンゴル出身サンチルガリデが高校横綱　決勝の取り直しも動揺なし　逸ノ城、照ノ富士級の声",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260801-0242",
+      "publishedAt": "2026-08-01",
+      "publishedAtRaw": "スポニチアネックス　8月1日 17時18分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-tokyosports-397921",
+      "title": "【大相撲】青信号でも渡らない！？　元大関・栃ノ心氏が現役時代の細かすぎるゲン担ぎを告白",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397921",
+      "publishedAt": "2026-08-01",
+      "publishedAtRaw": "東スポWEB　8月1日 16時15分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-numberweb-871409",
       "title": "両横綱不調で波乱の名古屋場所…”最近の横綱昇進条件が甘い”と言われるが、元大関・魁皇は異論「逆なんですよ」",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397811",
       "publishedAt": "2026-07-31",
       "publishedAtRaw": "東スポWEB　7月31日 18時25分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-tokyosports-397799",
-      "title": "【大相撲】獅司の先祖はウクライナの革命家だった！「マフノ軍の戦士を祖先に持つ男」＝現地報道",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397799",
-      "publishedAt": "2026-07-31",
-      "publishedAtRaw": "東スポWEB　7月31日 16時49分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260730-OHT1T51259",
-      "title": "新弟子通う相撲教習所で９年ぶり「相撲甚句」の授業！２３歳・大森は「エモいです」春日山親方「伝統文化伝えていかないと」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260730-OHT1T51259",
-      "publishedAt": "2026-07-31",
-      "publishedAtRaw": "スポーツ報知　7月31日 16時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
