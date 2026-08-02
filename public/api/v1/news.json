@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-01T10:37:14.943374+00:00",
+  "updatedAt": "2026-08-02T03:12:31.425505+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-hochi-20260802-OHT1T51106",
+      "title": "夏巡業帯同の幕下・旭富士が関取衆の申し合い稽古に異例の参加　力強い相撲で存在感を放つ…夏巡業が岐阜市から始まる",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260802-OHT1T51106",
+      "publishedAt": "2026-08-02",
+      "publishedAtRaw": "スポーツ報知　8月2日 11時50分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-dailyshincho-1482327",
+      "title": "優勝「安青錦」が他力士よりも“上”の部分とは…14日目休場「豊昇龍」は“横綱”という存在を考え直したほうがいい【音羽山親方の名古屋場所総括】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailyshincho/sports/dailyshincho-1482327",
+      "publishedAt": "2026-08-02",
+      "publishedAtRaw": "デイリー新潮　8月2日 11時02分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-20260722-567-GYT1T00120",
+      "title": "３６年ぶり英国出身「栄誠」が夢の初土俵、きっかけは夏休みの稽古体験で見せた懸命さ…秋場所は序の口に",
+      "url": "https://topics.smt.docomo.ne.jp/article/yomiuri/sports/20260722-567-GYT1T00120",
+      "publishedAt": "2026-08-02",
+      "publishedAtRaw": "読売新聞　8月2日 11時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_TAFSU52ERFBNPJKPVAFEAOM4SY",
+      "title": "藤井康生氏「まさに平成13年の貴乃花-武蔵丸、あの時を思い出しました」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_TAFSU52ERFBNPJKPVAFEAOM4SY",
+      "publishedAt": "2026-08-02",
+      "publishedAtRaw": "SANSPO　8月2日 10時01分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-tokyosports-397938",
       "title": "【大相撲】海外ファンが安青錦を称賛「ほぼ片足で優勝」　豊昇龍には「本物の横綱じゃない」との声も",
       "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397938",
       "publishedAt": "2026-08-01",
       "publishedAtRaw": "東スポWEB　8月1日 18時34分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260801-0242",
-      "title": "モンゴル出身サンチルガリデが高校横綱　決勝の取り直しも動揺なし　逸ノ城、照ノ富士級の声",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260801-0242",
-      "publishedAt": "2026-08-01",
-      "publishedAtRaw": "スポニチアネックス　8月1日 17時18分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-tokyosports-397921",
-      "title": "【大相撲】青信号でも渡らない！？　元大関・栃ノ心氏が現役時代の細かすぎるゲン担ぎを告白",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397921",
-      "publishedAt": "2026-08-01",
-      "publishedAtRaw": "東スポWEB　8月1日 16時15分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-numberweb-871409",
-      "title": "両横綱不調で波乱の名古屋場所…”最近の横綱昇進条件が甘い”と言われるが、元大関・魁皇は異論「逆なんですよ」",
-      "url": "https://topics.smt.docomo.ne.jp/article/numberweb/sports/numberweb-871409",
-      "publishedAt": "2026-08-01",
-      "publishedAtRaw": "Number Web　8月1日 11時05分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260731126",
-      "title": "夏巡業休場の高安は「腰痛椎間板症、椎間関節炎、腰痛の急性憎悪」日本相撲協会が発表【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260731126",
-      "publishedAt": "2026-07-31",
-      "publishedAtRaw": "デイリースポーツ　7月31日 19時36分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
