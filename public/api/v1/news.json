@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-02T08:54:06.616099+00:00",
+  "updatedAt": "2026-08-02T10:37:17.263730+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-20260802-567-GYT1T00133",
+      "title": "熊本出身の義ノ富士、実家帰省中に被災「死ぬかと思った」…「相撲に集中して」と夏巡業に送り出される",
+      "url": "https://topics.smt.docomo.ne.jp/article/yomiuri/sports/20260802-567-GYT1T00133",
+      "publishedAt": "2026-08-02",
+      "publishedAtRaw": "読売新聞　8月2日 19時03分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-f-bt-tp1-260802-202608020001202",
+      "title": "義ノ富士は帰省中の熊本で被災「死ぬかと思いました」実家は半壊の被害、両親はまだ家に戻れず",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260802-202608020001202",
+      "publishedAt": "2026-08-02",
+      "publishedAtRaw": "日刊スポーツ　8月2日 18時49分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-hochi-20260802-OHT1T51274",
       "title": "安青錦が夏巡業に参加「触れ合って喜んでもらえたら」　『大関・安青錦』のアナウンスが復活　土俵入りも大関仕様で復帰を実感",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260802-202608020000664",
       "publishedAt": "2026-08-02",
       "publishedAtRaw": "日刊スポーツ　8月2日 15時29分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260802-0233",
-      "title": "熊本県宇土市出身の小結・義ノ富士　地震発生時は帰省中で「死ぬかと」　父経営の焼肉店の被害も明かす",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260802-0233",
-      "publishedAt": "2026-08-02",
-      "publishedAtRaw": "スポニチアネックス　8月2日 15時23分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260802-202608020000544",
-      "title": "義ノ富士が帰省中に熊本地震被災、宇土市の実家「半壊したみたい」夏巡業初日に被災状況語る",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260802-202608020000544",
-      "publishedAt": "2026-08-02",
-      "publishedAtRaw": "日刊スポーツ　8月2日 14時31分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
