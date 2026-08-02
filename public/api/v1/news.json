@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-02T05:17:31.007104+00:00",
+  "updatedAt": "2026-08-02T07:03:16.340206+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-f-bt-tp1-260802-202608020000664",
+      "title": "旭富士が関取衆の申し合い稽古に参加、黒まわしで白まわしの幕内力士らと14番で存在感",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260802-202608020000664",
+      "publishedAt": "2026-08-02",
+      "publishedAtRaw": "日刊スポーツ　8月2日 15時29分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260802-0233",
+      "title": "熊本県宇土市出身の小結・義ノ富士　地震発生時は帰省中で「死ぬかと」　父経営の焼肉店の被害も明かす",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260802-0233",
+      "publishedAt": "2026-08-02",
+      "publishedAtRaw": "スポニチアネックス　8月2日 15時23分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-f-bt-tp1-260802-202608020000544",
+      "title": "義ノ富士が帰省中に熊本地震被災、宇土市の実家「半壊したみたい」夏巡業初日に被災状況語る",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260802-202608020000544",
+      "publishedAt": "2026-08-02",
+      "publishedAtRaw": "日刊スポーツ　8月2日 14時31分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-hochi-20260802-OHT1T51170",
       "title": "熊本出身の義ノ富士、実家が半壊　「令和８年熊本地震」時に帰省していたことを明かす…相撲を通じて「明るいニュースを届けられたら」",
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260802-OHT1T51170",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260802-OHT1T51106",
       "publishedAt": "2026-08-02",
       "publishedAtRaw": "スポーツ報知　8月2日 11時50分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-dailyshincho-1482327",
-      "title": "優勝「安青錦」が他力士よりも“上”の部分とは…14日目休場「豊昇龍」は“横綱”という存在を考え直したほうがいい【音羽山親方の名古屋場所総括】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailyshincho/sports/dailyshincho-1482327",
-      "publishedAt": "2026-08-02",
-      "publishedAtRaw": "デイリー新潮　8月2日 11時02分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260722-567-GYT1T00120",
-      "title": "３６年ぶり英国出身「栄誠」が夢の初土俵、きっかけは夏休みの稽古体験で見せた懸命さ…秋場所は序ノ口に",
-      "url": "https://topics.smt.docomo.ne.jp/article/yomiuri/sports/20260722-567-GYT1T00120",
-      "publishedAt": "2026-08-02",
-      "publishedAtRaw": "読売新聞　8月2日 11時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_TAFSU52ERFBNPJKPVAFEAOM4SY",
-      "title": "藤井康生氏「まさに平成13年の貴乃花-武蔵丸、あの時を思い出しました」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_TAFSU52ERFBNPJKPVAFEAOM4SY",
-      "publishedAt": "2026-08-02",
-      "publishedAtRaw": "SANSPO　8月2日 10時01分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
