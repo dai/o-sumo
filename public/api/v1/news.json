@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-02T03:12:31.425505+00:00",
+  "updatedAt": "2026-08-02T05:17:31.007104+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-hochi-20260802-OHT1T51170",
+      "title": "熊本出身の義ノ富士、実家が半壊　「令和８年熊本地震」時に帰省していたことを明かす…相撲を通じて「明るいニュースを届けられたら」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260802-OHT1T51170",
+      "publishedAt": "2026-08-02",
+      "publishedAtRaw": "スポーツ報知　8月2日 14時01分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-hochi-20260802-OHT1T51106",
       "title": "夏巡業帯同の幕下・旭富士が関取衆の申し合い稽古に異例の参加　力強い相撲で存在感を放つ…夏巡業が岐阜市から始まる",
@@ -35,7 +44,7 @@
     },
     {
       "id": "dmenu-docomo-20260722-567-GYT1T00120",
-      "title": "３６年ぶり英国出身「栄誠」が夢の初土俵、きっかけは夏休みの稽古体験で見せた懸命さ…秋場所は序の口に",
+      "title": "３６年ぶり英国出身「栄誠」が夢の初土俵、きっかけは夏休みの稽古体験で見せた懸命さ…秋場所は序ノ口に",
       "url": "https://topics.smt.docomo.ne.jp/article/yomiuri/sports/20260722-567-GYT1T00120",
       "publishedAt": "2026-08-02",
       "publishedAtRaw": "読売新聞　8月2日 11時00分",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_TAFSU52ERFBNPJKPVAFEAOM4SY",
       "publishedAt": "2026-08-02",
       "publishedAtRaw": "SANSPO　8月2日 10時01分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-tokyosports-397938",
-      "title": "【大相撲】海外ファンが安青錦を称賛「ほぼ片足で優勝」　豊昇龍には「本物の横綱じゃない」との声も",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-397938",
-      "publishedAt": "2026-08-01",
-      "publishedAtRaw": "東スポWEB　8月1日 18時34分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
