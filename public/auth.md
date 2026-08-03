@@ -33,16 +33,23 @@ agents can short-circuit any onboarding flow they would normally attempt.
 | Public API catalog | `https://osada.us/.well-known/api-catalog` |
 | Skills discovery index | `https://osada.us/.well-known/agent-skills/index.json` |
 | MCP server card (not provided) | `https://osada.us/.well-known/mcp/server-card.json` |
-| OAuth Authorization Server Metadata (RFC 8414) | `https://osada.us/.well-known/oauth-authorization-server` |
-| OAuth Protected Resource Metadata (public only) | `https://osada.us/.well-known/oauth-protected-resource` |
+| Authentication metadata (RFC 8414-shaped) | `https://osada.us/.well-known/oauth-authorization-server` |
+| Public resource metadata | `https://osada.us/.well-known/oauth-protected-resource` |
 | Sitemap | `https://osada.us/sitemap.xml` |
 | robots.txt | `https://osada.us/robots.txt` |
 | Markdown content negotiation | send `Accept: text/markdown` |
 
-There are no `register_uri`, `identity_types_supported`, or
-`credential_types` to advertise because the site accepts no agent
-identity. The `agent_auth` block below follows the WorkOS auth.md
-draft, with every list intentionally empty.
+These metadata files do not advertise authorization, token, JWKS, Bearer-token,
+client-credentials, or authorization-scope capabilities because none are
+implemented. The RFC 8414-shaped document is retained only as a discovery
+location for `agent_auth`: it tells agents that registration is not supported
+and links back to this documentation. Likewise, the resource metadata describes
+a public resource and does not point to an authorization server.
+
+There are no applicable `register_uri`, `identity_types_supported`, or
+`credential_types` because the site accepts no agent identity. The `agent_auth`
+block below records those registration axes as `not applicable` rather than
+claiming an authentication feature exists.
 
 ## agent_auth
 

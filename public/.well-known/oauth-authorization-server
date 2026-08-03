@@ -1,13 +1,5 @@
 {
   "issuer": "https://osada.us/",
-  "authorization_endpoint": "https://osada.us/",
-  "token_endpoint": "https://osada.us/",
-  "jwks_uri": "https://osada.us/.well-known/jwks.json",
-  "response_types_supported": ["token"],
-  "grant_types_supported": ["client_credentials"],
-  "subject_types_supported": ["public"],
-  "token_endpoint_auth_methods_supported": ["none"],
-  "scopes_supported": ["public"],
   "service_documentation": "https://osada.us/auth.md",
   "agent_auth": {
     "skill": "https://osada.us/auth.md",

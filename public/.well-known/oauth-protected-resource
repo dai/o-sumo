@@ -1,7 +1,4 @@
 {
   "resource": "https://osada.us/",
-  "authorization_servers": ["https://osada.us/"],
-  "bearer_methods_supported": ["header"],
-  "scopes_supported": ["public"],
   "resource_documentation": "https://osada.us/auth.md"
 }
