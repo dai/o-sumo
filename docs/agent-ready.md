@@ -1,0 +1,112 @@
+# AI Agent Readiness (o-sumo / osada.us)
+
+This document describes the discovery surfaces that o-sumo publishes for AI
+agents, the rationale for each one, and the operator-side configuration that
+must be applied to DNS so that validators can confirm the site is
+agent-friendly.
+
+The application code itself (in `public/.well-known/`, `public/auth.md`, and
+`app/lib/webmcp.ts`) ships with the repository. The DNS-AID record and
+DNSSEC configuration are **not** committed here because they live in the
+Cloudflare DNS zone, not the Pages project.
+
+## Discovery surfaces
+
+| Path | Purpose |
+| --- | --- |
+| `/.well-known/api-catalog` | RFC 9727 linkset pointing at the public JSON APIs (banzuke, torikumi, rikishi). |
+| `/.well-known/openid-configuration` | OIDC discovery metadata. Indicates that the site has **no authentication flows**; only public resources are exposed. |
+| `/.well-known/oauth-authorization-server` | RFC 8414 metadata. Same as above — `scopes_supported: ["public"]` only. |
+| `/.well-known/oauth-protected-resource` | RFC 9728 metadata declaring the public JSON API as a resource with `authorization_servers: []`. |
+| `/.well-known/mcp/server-card.json` | MCP Server Card (SEP-1649). Indicates that no MCP server is hosted, and points agents at the public API catalog and skills index as the alternative discovery surfaces. |
+| `/.well-known/agent-skills/index.json` | Agent Skills index (RFC v0.2.0). Lists the skills published under `.well-known/agent-skills/`. |
+| `/.well-known/agent-skills/osumo-content/SKILL.md` | Skill description for fetching public API content. |
+| `/.well-known/agent-skills/osumo-discovery/SKILL.md` | Skill description for navigating the site. |
+| `/auth.md` | Top-level auth.md indicating that no agent registration is offered and providing contact information. |
+| `/*.md` (parallel HTML routes) | Static Markdown views served with `Content-Type: text/markdown; charset=utf-8` and `Vary: Accept`. Satisfies the "Markdown for Agents" check. |
+
+The agent-skills index is generated at build time by `vite.config.ts` (see
+`agentSkillsPlugin`). The sha256 digests in `index.json` are computed from
+the on-disk SKILL.md files, so changing the skill content automatically
+invalidates the cached digests on the next `npm run build`.
+
+## WebMCP
+
+`navigator.modelContext.provideContext()` is invoked on app mount from
+`app/components/WebMcpProvider.tsx`. The tools are defined in
+`app/lib/webmcp.ts`:
+
+- `search_rikishi` — partial-match search against the public rikishi index
+- `list_basho` — current and archive basho with their URLs
+- `get_banzuke_for_month` — resolve a YYYYMM to the banzuke JSON / page URLs
+- `get_torikumi_for_day` — resolve a YYYYMMDD to the torikumi / yotei page URL
+
+The provider is defensive: if `navigator.modelContext` is not available
+(currently Chrome 138+ behind a flag), the call is a no-op and the rest of
+the SPA continues to work.
+
+## DNS-AID (operator-side)
+
+To satisfy the "Publish DNS for AI Discovery (DNS-AID) records" goal, add a
+SVCB / HTTPS record to the `osada.us` Cloudflare DNS zone. The record is
+not checked into this repository because it is part of the DNS configuration.
+
+### Steps in Cloudflare DNS
+
+1. In the Cloudflare dashboard, open the `osada.us` zone.
+2. Add a record with the following values:
+
+   | Field | Value |
+   | --- | --- |
+   | Type | `HTTPS` (SVCB) |
+   | Name | `_index._agents` |
+   | TTL | Auto |
+   | Priority | `0` (alias mode) |
+   | Target | `_index._agents.osada.us.` (or `osada.us.`) |
+   | Service parameters | `alpn=h2,h3` |
+   | Service parameters | `port=443` |
+   | Service parameters | `endpoint=osada.us` |
+
+3. Repeat with `_a2a._agents` if you want to advertise the A2A endpoint as
+   well. The published skills index lives at
+   `https://osada.us/.well-known/agent-skills/index.json`, so an explicit
+   `_a2a` record is optional.
+4. Publish the zone.
+
+### DNSSEC
+
+1. In the Cloudflare dashboard, open the `osada.us` zone → **DNS** → **Settings**.
+2. Enable **DNSSEC**.
+3. Copy the DS record that Cloudflare generates.
+4. Add the DS record to the `.us` registry (TLD) so validating resolvers
+   can chain trust from the root.
+
+After DNSSEC is enabled, the SVCB record above will be served with the
+`AD` (Authenticated Data) flag by validating resolvers, which is the
+expected signal for DNS-AID consumers.
+
+## Verifying the deployment
+
+After the site is deployed and the DNS record is published, run the
+following checks:
+
+- `curl -i https://osada.us/.well-known/agent-skills/index.json` —
+  returns 200 with the skills index JSON.
+- `curl -i -H 'Accept: text/markdown' https://osada.us/` — returns
+  `Content-Type: text/markdown; charset=utf-8` and a `Vary: Accept` header.
+- `dig +multi _index._agents.osada.us HTTPS` — returns the SVCB record
+  with the expected `alpn` and `endpoint` parameters.
+- `dig +dnssec osada.us` — the `ad` flag is set when the resolver
+  validates DNSSEC.
+
+## Maintenance
+
+- New SKILL.md files should be added under
+  `public/.well-known/agent-skills/<skill-name>/SKILL.md`. The next
+  `npm run build` will regenerate `index.json` with the new entry and a
+  fresh sha256 digest.
+- Adding a new basho (e.g. for a new month) requires updating both
+  `PAST_BASHO` in `app/lib/archives-data.ts` and the basho list in the
+  `scripts/build_markdown_views.ts` markdown generator.
+- The DNS-AID record and DNSSEC configuration are zone-scoped and live in
+  Cloudflare DNS, not in this repository.

@@ -1,0 +1,16 @@
+{
+  "issuer": "https://osada.us/",
+  "authorization_endpoint": "https://osada.us/.well-known/agent-registration",
+  "token_endpoint": "https://osada.us/.well-known/agent-registration",
+  "jwks_uri": "https://osada.us/.well-known/jwks.json",
+  "registration_endpoint": "https://osada.us/auth.md",
+  "scopes_supported": ["public"],
+  "response_types_supported": ["token"],
+  "grant_types_supported": ["client_credentials"],
+  "subject_types_supported": ["public"],
+  "id_token_signing_alg_values_supported": ["none"],
+  "token_endpoint_auth_methods_supported": ["none"],
+  "claims_supported": ["sub", "iss", "scope"],
+  "service_documentation": "https://osada.us/auth.md",
+  "_notes": "o-sumo is a public, unauthenticated content archive. This document is published so that agent discovery tooling can recognize the absence of an OAuth/OIDC flow. All endpoints listed above intentionally reject authentication; clients should fetch public JSON without credentials."
+}

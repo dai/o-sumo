@@ -1,0 +1,13 @@
+{
+  "issuer": "https://osada.us/",
+  "authorization_endpoint": "https://osada.us/.well-known/agent-registration",
+  "token_endpoint": "https://osada.us/.well-known/agent-registration",
+  "jwks_uri": "https://osada.us/.well-known/jwks.json",
+  "registration_endpoint": "https://osada.us/auth.md",
+  "scopes_supported": ["public"],
+  "response_types_supported": ["token"],
+  "grant_types_supported": ["client_credentials"],
+  "token_endpoint_auth_methods_supported": ["none"],
+  "service_documentation": "https://osada.us/auth.md",
+  "_notes": "o-sumo does not issue OAuth 2.0 access tokens. This document advertises the metadata structure required by RFC 8414 so that discovery tooling can parse it, but all endpoints listed are placeholders that return the same public content with no credential exchange. See /auth.md for the rationale."
+}

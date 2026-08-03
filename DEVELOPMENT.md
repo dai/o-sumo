@@ -144,6 +144,28 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - `app/lib/sumo-data.ts`: 番付データ
 - `scripts/update_sumo_data.py`: データ生成スクリプト
 
+## AI Agent 対応 (Agent-Ready)
+
+`public/.well-known/` 配下に以下の discovery 用エンドポイントを公開しています:
+
+- `api-catalog` — RFC 9727 リンクセット（公開 JSON API へのポインタ）
+- `openid-configuration` / `oauth-authorization-server` — 認証フローがないことを示す OIDC/RFC 8414 メタデータ
+- `oauth-protected-resource` — RFC 9728 の Protected Resource Metadata
+- `mcp/server-card.json` — MCP Server Card (SEP-1649)。MCP サーバーは提供していないため代替 endpoint のみ掲載
+- `agent-skills/index.json` — Agent Skills Discovery RFC v0.2.0 形式のスキル index。sha256 ダイジェストはビルド時に計算
+
+この他にルートに `auth.md`（エージェント登録なし・連絡先のみ）も公開しています。
+
+ビルド時の挙動:
+
+- `vite.config.ts` の `agentSkillsPlugin` がビルド時に SKILL.md を読み込み sha256 を計算して `index.json` を生成します
+- `markdownViewsPlugin` が `scripts/build_markdown_views.ts` を呼び、`Accept: text/markdown` 用の静的 Markdown ビューを `dist/*/index.md` として書き出します
+- スキルを増やしたい場合は `public/.well-known/agent-skills/<skill>/SKILL.md` を追加するだけで、index.json は自動更新されます
+
+ブラウザ内の WebMCP は `app/components/WebMcpProvider.tsx` から `navigator.modelContext.provideContext()` で公開しています。Chrome 138+ 以外のブラウザでは no-op になります。
+
+DNS-AID (SVCB/HTTPS) と DNSSEC の有効化は Cloudflare DNS 側の操作です。手順は `docs/agent-ready.md` を参照してください。
+
 ## 注意点
 
 - `dist/` はビルド生成物です
