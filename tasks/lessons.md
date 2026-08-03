@@ -40,7 +40,7 @@ OAuth Protected Resource Metadata で `authorization_servers: []` のような�
 
 **Why**: RFC 9728 §3.2 は明確で、zero values は省略必須。
 
-**How to apply**: 「OAuth を提供しない」サイトを表現するなら、空配列を `[]` で残すのではなく、フィールド自体を省略する。`scopes_supported: ["public"]` のような「将来用」のフィールドも削除する。`auth.md` などの人間向けドキュメント側で「将来も発行しない」ことを明示する。
+**How to apply**: 「OAuth を提供しない」サイトを表現するなら、空配列を `[]` で残さない。認証メタデータ内の `agent_auth` 宣言へ discovery client を案内する必要がある場合だけ実在する issuer を指定し、`scopes_supported: ["public"]` や Bearer 対応のような未実装機能は宣言しない。`auth.md` 側でもトークンや認可フローを提供しないことを明示する。
 
 ### 6. Agent Skills Index の digest 形式は `sha256:` プレフィックス必須
 

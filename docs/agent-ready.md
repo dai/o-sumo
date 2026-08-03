@@ -16,7 +16,7 @@ Cloudflare DNS zone, not the Pages project.
 | --- | --- |
 | `/.well-known/api-catalog` | RFC 9727 linkset pointing at the public JSON APIs (banzuke, torikumi, rikishi). |
 | `/.well-known/oauth-authorization-server` | RFC 8414-shaped discovery metadata retained to publish the `agent_auth` extension and documentation URL. The site provides no OAuth authorization, token, JWKS, Bearer-token, client-credentials, or scope capability; `agent_auth` explicitly says agent registration is not supported. |
-| `/.well-known/oauth-protected-resource` | RFC 9728 resource metadata identifying the public JSON API and its documentation. Because the resource is public and authentication-free, it advertises no authorization server, Bearer-token method, or authorization scope. |
+| `/.well-known/oauth-protected-resource` | RFC 9728 resource metadata identifying the public JSON API and its documentation. Its authorization-server reference leads discovery clients to the `agent_auth` declaration; it advertises no Bearer-token method or authorization scope. |
 | `/.well-known/mcp/server-card.json` | MCP Server Card (SEP-1649). Indicates that no MCP server is hosted, and points agents at the public API catalog and skills index as the alternative discovery surfaces. |
 | `/.well-known/agent-skills/index.json` | Agent Skills index (RFC v0.2.0). Lists the skills published under `.well-known/agent-skills/`. |
 | `/.well-known/agent-skills/osumo-content/SKILL.md` | Skill description for fetching public API content. |

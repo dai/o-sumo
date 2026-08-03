@@ -43,8 +43,9 @@ These metadata files do not advertise authorization, token, JWKS, Bearer-token,
 client-credentials, or authorization-scope capabilities because none are
 implemented. The RFC 8414-shaped document is retained only as a discovery
 location for `agent_auth`: it tells agents that registration is not supported
-and links back to this documentation. Likewise, the resource metadata describes
-a public resource and does not point to an authorization server.
+and links back to this documentation. The resource metadata points discovery
+clients to that document, but this reference does not imply that a token or
+authorization flow is available.
 
 There are no applicable `register_uri`, `identity_types_supported`, or
 `credential_types` because the site accepts no agent identity. The `agent_auth`
