@@ -33,6 +33,7 @@ agents can short-circuit any onboarding flow they would normally attempt.
 | Public API catalog | `https://osada.us/.well-known/api-catalog` |
 | Skills discovery index | `https://osada.us/.well-known/agent-skills/index.json` |
 | MCP server card (not provided) | `https://osada.us/.well-known/mcp/server-card.json` |
+| OAuth Authorization Server Metadata (RFC 8414) | `https://osada.us/.well-known/oauth-authorization-server` |
 | OAuth Protected Resource Metadata (public only) | `https://osada.us/.well-known/oauth-protected-resource` |
 | Sitemap | `https://osada.us/sitemap.xml` |
 | robots.txt | `https://osada.us/robots.txt` |

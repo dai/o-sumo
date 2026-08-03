@@ -1,0 +1,27 @@
+{
+  "issuer": "https://osada.us/",
+  "authorization_endpoint": "https://osada.us/",
+  "token_endpoint": "https://osada.us/",
+  "jwks_uri": "https://osada.us/.well-known/jwks.json",
+  "response_types_supported": ["token"],
+  "grant_types_supported": ["client_credentials"],
+  "subject_types_supported": ["public"],
+  "token_endpoint_auth_methods_supported": ["none"],
+  "scopes_supported": ["public"],
+  "service_documentation": "https://osada.us/auth.md",
+  "agent_auth": {
+    "skill": "https://osada.us/auth.md",
+    "register_uri": "not applicable",
+    "identity_endpoint": "not applicable",
+    "claim_endpoint": "not applicable",
+    "events_endpoint": "not applicable",
+    "identity_types_supported": "not applicable",
+    "credential_types": "not applicable",
+    "identity_assertion": {
+      "assertion_types_supported": "not applicable"
+    },
+    "events_supported": "not applicable",
+    "scopes_supported": "not applicable",
+    "notes": "o-sumo does not authenticate agents. Every endpoint under https://osada.us/ is public. The fields above are intentionally marked 'not applicable' because no agent registration, identity assertion, or scope negotiation is supported. See https://osada.us/auth.md for the human-facing documentation."
+  }
+}
