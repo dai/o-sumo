@@ -30,10 +30,73 @@ function sitemapPlugin(): Plugin {
   }
 }
 
+function agentSkillsPlugin(): Plugin {
+  let outDir = 'dist'
+  let publicDir = 'public'
+
+  return {
+    name: 'generate-agent-skills-index',
+    apply: 'build',
+    configResolved(config) {
+      outDir = resolve(config.root, config.build.outDir)
+      publicDir = resolve(config.root, 'public')
+    },
+    async closeBundle() {
+      const { buildAgentSkillsIndex } = await import('./app/lib/agent-skills')
+      mkdirSync(outDir, { recursive: true })
+      const index = buildAgentSkillsIndex(publicDir)
+      writeFileSync(
+        resolve(outDir, '.well-known/agent-skills/index.json'),
+        `${JSON.stringify(index, null, 2)}\n`,
+        'utf8',
+      )
+    },
+  }
+}
+
+function mcpServerCardPlugin(): Plugin {
+  let outDir = 'dist'
+  let publicDir = 'public'
+
+  return {
+    name: 'generate-mcp-server-card',
+    apply: 'build',
+    configResolved(config) {
+      outDir = resolve(config.root, config.build.outDir)
+      publicDir = resolve(config.root, 'public')
+    },
+    async closeBundle() {
+      const { buildMcpServerCard } = await import('./app/lib/mcp-server-card')
+      buildMcpServerCard(publicDir, outDir)
+    },
+  }
+}
+
+function markdownViewsPlugin(): Plugin {
+  let outDir = 'dist'
+  let publicDir = 'public'
+
+  return {
+    name: 'generate-markdown-views',
+    apply: 'build',
+    configResolved(config) {
+      outDir = resolve(config.root, config.build.outDir)
+      publicDir = resolve(config.root, 'public')
+    },
+    async closeBundle() {
+      const { writeMarkdownViews } = await import('./scripts/build_markdown_views')
+      writeMarkdownViews(publicDir, outDir)
+    },
+  }
+}
+
 export default defineConfig({
   plugins: [
     react(),
     sitemapPlugin(),
+    agentSkillsPlugin(),
+    mcpServerCardPlugin(),
+    markdownViewsPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: null,

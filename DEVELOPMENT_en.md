@@ -160,6 +160,28 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - `app/lib/sumo-data.ts`: banzuke data
 - `scripts/update_sumo_data.py`: data generation script
 
+## AI Agent Readiness (Agent-Ready)
+
+The following discovery endpoints are published under `public/.well-known/`:
+
+- `api-catalog` — RFC 9727 linkset pointing at the public JSON APIs
+- `openid-configuration` / `oauth-authorization-server` — OIDC / RFC 8414 metadata that declares no authentication flow
+- `oauth-protected-resource` — RFC 9728 Protected Resource metadata
+- `mcp/server-card.json` — MCP Server Card (SEP-1649). The site does not host an MCP server; alternative discovery endpoints are advertised instead.
+- `agent-skills/index.json` — Agent Skills Discovery RFC v0.2.0 index. The sha256 digests are computed at build time.
+
+A top-level `auth.md` is also published at the site root with contact info only (no agent registration).
+
+Build-time behavior:
+
+- `agentSkillsPlugin` in `vite.config.ts` walks the `public/.well-known/agent-skills/` tree at build time, computes sha256 digests, and writes `index.json`
+- `markdownViewsPlugin` runs `scripts/build_markdown_views.ts` to emit static Markdown views (`dist/*/index.md`) for the main HTML routes, served with `Content-Type: text/markdown` and `Vary: Accept`
+- Adding a new skill: drop `public/.well-known/agent-skills/<skill>/SKILL.md` and the next build will refresh the index automatically
+
+WebMCP is exposed through `navigator.modelContext.provideContext()` from `app/components/WebMcpProvider.tsx`. Browsers without `modelContext` (i.e. anything other than recent Chrome builds) gracefully no-op.
+
+DNS-AID (SVCB/HTTPS) and DNSSEC are configured in Cloudflare DNS, not in this repository. See `docs/agent-ready.md` for the operator-side runbook.
+
 ## Notes
 
 - `dist/` is a build artifact

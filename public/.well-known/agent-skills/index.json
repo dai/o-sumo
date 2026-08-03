@@ -1,0 +1,20 @@
+{
+  "$schema": "https://raw.githubusercontent.com/cloudflare/agent-skills-discovery-rfc/main/schema/skills-index.v0.2.0.json",
+  "generatedAt": "2026-08-03T00:00:00+00:00",
+  "skills": [
+    {
+      "name": "osumo-content",
+      "type": "skill-md",
+      "description": "Fetch official 大相撲 banzuke, torikumi, and rikishi data from the public o-sumo JSON API (https://osada.us/api/v1/*.json).",
+      "url": "https://osada.us/.well-known/agent-skills/osumo-content/SKILL.md",
+      "digest": "sha256:8c95c29a29625107f1b11c0b3aaa115e92187952cc35badb56876ed637f71516"
+    },
+    {
+      "name": "osumo-discovery",
+      "type": "skill-md",
+      "description": "Locate the right page on https://osada.us/ for a given basho (YYYYMM), torikumi day (YYYYMMDD), rikishi (id or shikona), kimarite, or analytics view.",
+      "url": "https://osada.us/.well-known/agent-skills/osumo-discovery/SKILL.md",
+      "digest": "sha256:7cebbec735b0ca6329c638498068cb2ab6164438ab7994157ae2514289adeb2e"
+    }
+  ]
+}

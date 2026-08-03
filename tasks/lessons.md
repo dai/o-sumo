@@ -1,5 +1,71 @@
 # Lessons
 
+## 2026-08-03 AI Agent Readiness 7 項目
+
+### 1. jsdom テストで `document` を **全体置換** すると DOM API が壊れる
+
+`Object.defineProperty(globalThis, 'document', { value: { modelContext: ... } })` のように `document` 自体を差し替えると、`@testing-library/react` の `render()` が `document.body.appendChild(...)` で失敗する。
+
+**Why**: jsdom 環境では `globalThis.document` が jsdom の Document インスタンスで、`body` などの DOM API を持つ。`document` 全体を `{ modelContext }` だけに置き換えると DOM API が消える。
+
+**How to apply**: テストでは `Object.defineProperty(document, 'modelContext', { value: ..., configurable: true })` で `modelContext` プロパティだけを extend する。`document` 全体は絶対に置き換えない。
+
+### 2. Vitest の `toMatch` の正規表現はフェンス済みコードの取り扱いに注意
+
+`^```yaml\n[\s\S]*?\n```$/m` のような行頭・行末を含む正規表現は、`[\s\S]*?` の lazy quantifier が Markdown ファイル全体の fences ブロックを巻き込んで想定外のマッチをする場合がある。
+
+**Why**: lazy quantifier `[\s\S]*?` は最短マッチで `\n```` の直前の改行を探そうとするが、Markdown ファイル全体の中で別の fences ブロックに当たってバックトラックが多発する。
+
+**How to apply**: フェンス済みコードブロックの検証は `toContain('```yaml')` と `lastIndexOf('```') > indexOf('```yaml')` の文字列マッチで組み立てる。複雑な regex を使い回さない。
+
+### 3. Cloudflare Pages の Markdown-for-Agents は **Pro 以上必須**
+
+`curl -H 'Accept: text/markdown'` で HTML→MD 自動変換する機能は **Free プランでは使えない**。事前生成 `dist/<route>/index.md` 方式を採用するなら、Cloudflare プランに縛られず常に Markdown を返せる。
+
+**Why**: Cloudflare の公式ドキュメントに "Pro / Business / Enterprise" 限定と明記されている。
+
+**How to apply**: 事前に `wrangler` 依存があっても `wrangler.toml` がなくて `functions/` もないプロジェクトでは Cloudflare Pages 静的配信が基本。Markdown 配信は事前生成方式で構築する。
+
+### 4. WebMCP の API 名前空間は **`document.modelContext` (W3C Draft) と `navigator.modelContext` (legacy)**
+
+isitagentready.com の SKILL.md と初期 Chrome 実装は `navigator.modelContext.provideContext` を使っているが、W3C Community Group Draft (2026-07-28) は `document.modelContext.registerTool` に名称変更済み。
+
+**Why**: `navigator.modelContext.provideContext` は単一の関数を呼ぶ旧 API。W3C Draft は `document.modelContext.registerTool(tool, { signal })` でツールごとに登録し、`AbortSignal` で寿命管理する。
+
+**How to apply**: 両方を特徴検出して対応する。`document.modelContext.registerTool` を優先し、無ければ `navigator.modelContext.provideContext` にフォールバック。`AbortController` を 1 個作って共通の `signal` を全ツールに渡し、SPA 遷移時に `controller.abort()` で解除する。
+
+### 5. RFC 9728 §3.2 "Parameters with zero values MUST be omitted"
+
+OAuth Protected Resource Metadata で `authorization_servers: []` のような空配列を残すと、RFC 仕様違反になる。
+
+**Why**: RFC 9728 §3.2 は明確で、zero values は省略必須。
+
+**How to apply**: 「OAuth を提供しない」サイトを表現するなら、空配列を `[]` で残すのではなく、フィールド自体を省略する。`scopes_supported: ["public"]` のような「将来用」のフィールドも削除する。`auth.md` などの人間向けドキュメント側で「将来も発行しない」ことを明示する。
+
+### 6. Agent Skills Index の digest 形式は `sha256:` プレフィックス必須
+
+Cloudflare Agent Skills Discovery RFC v0.2.0 は `digest: "sha256:{64-hex}"` 形式を要求する。プレフィックスなしの `sha256` キーだけだと RFC 違反。
+
+**Why**: Cloudflare スキーマで `digest` フィールドの `pattern` が `^sha256:[0-9a-f]{64}$` を要求。
+
+**How to apply**: `app/lib/agent-skills.ts` の `computeSha256` は hex のみ返すので、`buildSkillEntry` 内で `sha256:` プレフィックスを付与する。テストも `/^sha256:[0-9a-f]{64}$/` 形式に追随させる。
+
+### 7. `public/.well-known/agent-skills/index.json` はビルド時に **再生成** される
+
+`vite.config.ts` の `agentSkillsPlugin` が `closeBundle` で `dist/.well-known/agent-skills/index.json` を上書きする。`public/` 配下のファイルは **dev モードでしか直接配信されない**。
+
+**Why**: `vite build` で `dist/` を一旦空にしてから書き直すので、`public/` の古い digest は本番には反映されない。
+
+**How to apply**: dev モードでも正しい digest を返すために、ビルド後に `public/.well-known/agent-skills/index.json` を `dist/.well-known/agent-skills/index.json` で上書きする。SKILL.md の frontmatter 変更で digest 値が変わるので、ビルド → 上書きコピーを 1 セットで行う。
+
+### 8. MCP Server Card の `serverInfo.version` は **package.json から同期** する
+
+手書きの `version: "0.0.0"` のようなフィールドは徐々に drift する。ビルド plugin で `package.json` の version を読み、必ず同期する形にする。
+
+**Why**: MCP Server Card (SEP-1649) は `serverInfo.version` を必須フィールドとして要求する。リリース毎に手動更新するのは忘れる。
+
+**How to apply**: `vite.config.ts` に `mcpServerCardPlugin()` を追加し、`closeBundle` で `app/lib/mcp-server-card.ts:readPackageVersion()` から version を取得してカードを上書きする。テンプレート `public/.well-known/mcp/server-card.json` には version 固定値を入れないか、`<package.json>` プレースホルダにしておく。
+
 ## 2026-07-08 時刻依存 UI テストの固定化
 - `new Date()` や JST 現在時刻からリンク先・表示位置を決める UI のテストでは、期待値を固定する前に `vi.useFakeTimers()` と `vi.setSystemTime(...)` で時計を固定する。実行時刻に依存した期待値は、ローカル実行時間や CI 時刻で不安定になる。
 

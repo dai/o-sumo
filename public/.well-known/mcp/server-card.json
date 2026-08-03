@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json.schemastore.org/mcp-server-card",
+  "serverInfo": {
+    "name": "o-sumo",
+    "version": "1.0.0",
+    "title": "o-sumo (大相撲アーカイブ) — MCP サーバーは未提供",
+    "description": "o-sumo does not operate an MCP server. See /.well-known/agent-skills/index.json for AI-agent entry points and https://osada.us/api/v1/*.json for the public JSON API."
+  },
+  "endpoint": null,
+  "transport": null,
+  "capabilities": {
+    "tools": { "listChanged": false },
+    "resources": { "subscribe": false, "listChanged": false },
+    "prompts": { "listChanged": false }
+  },
+  "authentication": { "required": false, "schemes": [] },
+  "alternativeEndpoints": {
+    "skills": "https://osada.us/.well-known/agent-skills/index.json",
+    "apiCatalog": "https://osada.us/.well-known/api-catalog",
+    "banzukeJson": "https://osada.us/api/v1/banzuke.json",
+    "torikumiJson": "https://osada.us/api/v1/torikumi.json",
+    "rikishiJson": "https://osada.us/api/v1/rikishi.json",
+    "newsJson": "https://osada.us/api/v1/news.json",
+    "authMd": "https://osada.us/auth.md"
+  },
+  "documentation": "https://osada.us/auth.md"
+}

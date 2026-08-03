@@ -20,6 +20,7 @@ import ScrollToHash from './components/ScrollToHash'
 import CanonicalUrl from './components/CanonicalUrl'
 import MetaHead from './components/MetaHead'
 import TrailingSlashRoute from './components/TrailingSlashRoute'
+import WebMcpProvider from './components/WebMcpProvider'
 import {
   MAY2026_BANZUKE_PATH,
   MAY2026_RESULT_PATH,
@@ -56,6 +57,7 @@ function AppShell() {
 
   return (
     <BrowserRouter>
+      <WebMcpProvider />
       <CanonicalUrl />
       <MetaHead />
       <ScrollToHash />
