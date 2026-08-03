@@ -1,4 +1,5 @@
 {
   "resource": "https://osada.us/",
+  "authorization_servers": ["https://osada.us/"],
   "resource_documentation": "https://osada.us/auth.md"
 }

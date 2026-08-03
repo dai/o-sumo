@@ -8,12 +8,12 @@ describe('agent discovery metadata', () => {
   const asPath = resolve(process.cwd(), 'public/.well-known/oauth-authorization-server');
   const asMeta = JSON.parse(readFileSync(asPath, 'utf8')) as Record<string, unknown>;
 
-  it('publishes metadata for a public, authentication-free resource', () => {
-    // RFC 9728 requires `resource`; the remaining fields are optional. Do not
-    // claim OAuth capabilities merely to satisfy a discovery scanner.
+  it('publishes discoverable metadata for a public, authentication-free resource', () => {
+    // The authorization-server reference lets discovery clients locate the
+    // agent_auth declaration. It does not advertise a token or Bearer flow.
     expect(prm.resource).toBe('https://osada.us/');
     expect(prm.resource_documentation).toBe('https://osada.us/auth.md');
-    expect(prm).not.toHaveProperty('authorization_servers');
+    expect(prm.authorization_servers).toEqual(['https://osada.us/']);
     expect(prm).not.toHaveProperty('bearer_methods_supported');
     expect(prm).not.toHaveProperty('scopes_supported');
   });
