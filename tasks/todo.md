@@ -1165,3 +1165,27 @@
 - Non-failing warnings: 依存導入時のaudit advisory 20件、Node localStorage ExperimentalWarning、Vite 500 kB超chunk warning、Wrangler compatibility-date warningは既存または変更対象外として継続。
 
 ---
+
+# AdSense共通手動広告ユニット削除（2026-08-03）
+
+## Plan
+- [x] 最新 `origin/main` から独立worktreeと `codex/adsense-policy-fix` ブランチを作成する
+- [x] baselineの依存導入、型検査、全テスト、ビルドを確認する
+- [x] TDDでサイト確認用loaderをheadに1個だけ残し、共通手動広告ユニットを削除する
+- [x] source / build成果物 / Wrangler配信を検証する
+- [x] 最終レビュー後にcommitし、ブランチをpushする
+
+## Progress
+- `origin/main@a8f2a37` から `C:\Users\dai\.codex\worktrees\adsense-policy-fix\o-sumo` にworktreeを作成した。元checkoutの未追跡 `.github/github-app.yml` には触れていない。
+- baselineは `npm run typecheck`、Vitest 28 files / 191 tests、`npm run build` がpass。依存導入時の20件のaudit advisory、Node localStorage warning、500 kB超chunk warning、Browserslist warningを確認した。
+
+## Review
+- TDD RED: `npm test -- --run app/pwa-smoke.test.ts` は 1 failed / 6 passed。loaderがhead内に0件の既存状態を再現した。
+- TDD GREEN: 同focused testは 1 file / 7 tests pass。指定publisherのloaderがhead内に1個、`async`と`crossorigin="anonymous"`を保持し、body内loader、`ins.adsbygoogle`、slot `2339683870`、inline `adsbygoogle`、`rectangle-o-sumo`が0件であることを固定した。
+- Final automated validation: `npm run typecheck` pass、全Vitest 28 files / 192 tests pass、`npm run build` pass、`git diff --check` pass。
+- Source / build artifacts: `index.html`と`dist/index.html`はloaderがhead内に1個、手動広告コードが0件。`#root`、React entrypoint、Google Analytics、OGPを保持した。`public/ads.txt`と`dist/ads.txt`は指定内容と完全一致した。
+- Wrangler: `/`、`/archives/`、`/rikishi/999999999/`は200かつ生HTMLの広告契約を満たし、`/ads.txt`も200で指定内容と一致。確認後にport 8798を停止した。
+- Independent review: inline `adsbygoogle`の別表記と`rectangle-o-sumo`の再混入も検出するよう契約テストを強化し、再度全検証をpassした。
+- Non-failing warnings: Node localStorage ExperimentalWarning、Vite 500 kB超chunk warning、Browserslist warning、依存導入時のaudit advisory 20件は既存または変更対象外として継続。
+
+---

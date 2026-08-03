@@ -48,6 +48,28 @@ describe('PWA smoke config', () => {
     expect(viteConfig).not.toContain('injectManifest');
   });
 
+  it('keeps only the AdSense site verification loader in the document head', () => {
+    const html = readFileSync(join(process.cwd(), 'index.html'), 'utf-8');
+    const document = new DOMParser().parseFromString(html, 'text/html');
+    const loaderSelector =
+      'script[src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8799329944122822"]';
+
+    const [loader] = document.head.querySelectorAll(loaderSelector);
+
+    expect(document.head.querySelectorAll(loaderSelector)).toHaveLength(1);
+    expect(loader.hasAttribute('async')).toBe(true);
+    expect(loader.getAttribute('crossorigin')).toBe('anonymous');
+    expect(document.body.querySelectorAll(loaderSelector)).toHaveLength(0);
+    expect(document.querySelectorAll('ins.adsbygoogle')).toHaveLength(0);
+    expect(document.querySelectorAll('[data-ad-slot="2339683870"]')).toHaveLength(0);
+    expect(
+      Array.from(document.scripts).filter(
+        (script) => !script.src && script.textContent?.includes('adsbygoogle'),
+      ),
+    ).toHaveLength(0);
+    expect(html).not.toContain('rectangle-o-sumo');
+  });
+
   it('verifies VitePWA injects manifest link into built index.html (post-build only)', () => {
     const distHtml = join(process.cwd(), 'dist/index.html');
     if (!existsSync(distHtml)) {
