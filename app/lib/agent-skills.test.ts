@@ -20,10 +20,11 @@ describe('agent-skills', () => {
     expect(names).toEqual(['osumo-content', 'osumo-discovery']);
 
     for (const entry of index.skills) {
-      expect(entry.type).toBe('agent-skill');
+      expect(entry.type).toBe('skill-md');
       expect(entry.description).toMatch(/\S/);
       expect(entry.url).toMatch(/^https:\/\/osada\.us\/.well-known\/agent-skills\//);
-      expect(entry.sha256).toMatch(/^[0-9a-f]{64}$/);
+      // RFC v0.2.0: digest must be `sha256:{64-hex-chars}`.
+      expect(entry.digest).toMatch(/^sha256:[0-9a-f]{64}$/);
     }
   });
 
@@ -40,6 +41,6 @@ describe('agent-skills', () => {
         resolve(process.cwd(), 'public/.well-known/agent-skills/osumo-content/SKILL.md'),
       ),
     );
-    expect(content?.sha256).toBe(onDisk);
+    expect(content?.digest).toBe(`sha256:${onDisk}`);
   });
 });

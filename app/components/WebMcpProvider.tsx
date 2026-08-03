@@ -7,10 +7,13 @@ interface WebMcpProviderProps {
 
 export default function WebMcpProvider({ children }: WebMcpProviderProps) {
   useEffect(() => {
-    if (typeof window === 'undefined') {
+    if (typeof document === 'undefined') {
       return;
     }
-    registerWebMcpTools();
+    const result = registerWebMcpTools();
+    return () => {
+      result.dispose?.();
+    };
   }, []);
 
   return <>{children}</>;

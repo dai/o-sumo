@@ -1,6 +1,6 @@
 ---
 name: osumo-content
-type: agent-skill
+type: skill-md
 description: Fetch official 大相撲 banzuke, torikumi, and rikishi data from the public o-sumo JSON API (https://osada.us/api/v1/*.json).
 ---
 

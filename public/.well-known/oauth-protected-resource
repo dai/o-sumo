@@ -1,8 +1,4 @@
 {
   "resource": "https://osada.us/",
-  "authorization_servers": [],
-  "bearer_methods_supported": [],
-  "scopes_supported": ["public"],
-  "resource_documentation": "https://osada.us/auth.md",
-  "_notes": "o-sumo is a fully public archive. Every resource under https://osada.us/ is available without an access token; clients do not need to request scopes. The authorization_servers list is intentionally empty because there is no authorization server for this resource. See /auth.md for the rationale and contact channels."
+  "resource_documentation": "https://osada.us/auth.md"
 }

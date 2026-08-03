@@ -11,12 +11,19 @@ describe('webmcp tools', () => {
     ]);
   });
 
-  it('declares JSON Schema objects for each tool', () => {
+  it('declares a JSON Schema object, description, and execute for each tool', () => {
     for (const tool of WEBMCP_TOOLS) {
       expect(tool.inputSchema).toBeTypeOf('object');
       expect(tool.inputSchema.type).toBe('object');
       expect(tool.description.length).toBeGreaterThan(0);
       expect(typeof tool.execute).toBe('function');
+    }
+  });
+
+  it('advertises read-only annotations on every tool', () => {
+    for (const tool of WEBMCP_TOOLS) {
+      expect(tool.annotations?.readOnlyHint).toBe(true);
+      expect(tool.annotations?.destructiveHint).toBe(false);
     }
   });
 });
@@ -128,27 +135,59 @@ describe('search_rikishi execution', () => {
 });
 
 describe('WebMCP browser integration helpers', () => {
-  it('hasWebMcpSupport returns true when provideContext exists', () => {
-    expect(hasWebMcpSupport({ modelContext: { provideContext: () => null } })).toBe(true);
+  it('hasWebMcpSupport returns true when document.modelContext.registerTool exists', () => {
+    expect(
+      hasWebMcpSupport({ modelContext: { registerTool: () => Promise.resolve() } }, {}),
+    ).toBe(true);
   });
 
-  it('hasWebMcpSupport returns false when missing', () => {
-    expect(hasWebMcpSupport({})).toBe(false);
-    expect(hasWebMcpSupport(undefined)).toBe(false);
+  it('hasWebMcpSupport returns true when legacy navigator.modelContext.provideContext exists', () => {
+    expect(
+      hasWebMcpSupport({}, { modelContext: { provideContext: () => null } }),
+    ).toBe(true);
   });
 
-  it('registerWebMcpTools invokes provideContext when available', () => {
+  it('hasWebMcpSupport returns false when neither API is available', () => {
+    expect(hasWebMcpSupport({}, {})).toBe(false);
+    expect(hasWebMcpSupport(undefined, undefined)).toBe(false);
+  });
+
+  it('registerWebMcpTools uses document.modelContext.registerTool per tool with an AbortSignal', () => {
+    const registerTool = vi.fn();
+    const result = registerWebMcpTools({ modelContext: { registerTool } }, {}, WEBMCP_TOOLS);
+    expect(result.mode).toBe('document');
+    expect(registerTool).toHaveBeenCalledTimes(WEBMCP_TOOLS.length);
+    for (const call of registerTool.mock.calls) {
+      const [tool, options] = call as [{ name: string }, { signal: AbortSignal } | undefined];
+      expect(typeof tool.name).toBe('string');
+      expect(options?.signal).toBeInstanceOf(AbortSignal);
+      expect(options?.signal.aborted).toBe(false);
+    }
+  });
+
+  it('dispose() aborts the registration signals', () => {
+    const registerTool = vi.fn();
+    const result = registerWebMcpTools({ modelContext: { registerTool } }, {}, WEBMCP_TOOLS);
+    expect(result.dispose).toBeTypeOf('function');
+    result.dispose?.();
+    const lastSignal = (registerTool.mock.calls[0] as unknown as [unknown, { signal: AbortSignal }])[1].signal;
+    expect(lastSignal.aborted).toBe(true);
+  });
+
+  it('registerWebMcpTools falls back to navigator.modelContext.provideContext', () => {
     const provideContext = vi.fn();
-    const ok = registerWebMcpTools({ modelContext: { provideContext } }, WEBMCP_TOOLS);
-    expect(ok).toBe(true);
+    const result = registerWebMcpTools({}, { modelContext: { provideContext } }, WEBMCP_TOOLS);
+    expect(result.mode).toBe('navigator');
     expect(provideContext).toHaveBeenCalledTimes(1);
     const arg = provideContext.mock.calls[0][0];
     expect(Array.isArray(arg.tools)).toBe(true);
     expect(arg.tools.length).toBe(WEBMCP_TOOLS.length);
+    expect(result.dispose).toBeUndefined();
   });
 
-  it('registerWebMcpTools returns false when not supported', () => {
-    expect(registerWebMcpTools({})).toBe(false);
-    expect(registerWebMcpTools(undefined)).toBe(false);
+  it('registerWebMcpTools returns mode=unsupported when neither API is available', () => {
+    const result = registerWebMcpTools({}, {}, WEBMCP_TOOLS);
+    expect(result.mode).toBe('unsupported');
+    expect(result.dispose).toBeUndefined();
   });
 });

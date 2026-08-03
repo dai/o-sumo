@@ -3,8 +3,9 @@
  *
  * Exposes a small set of read-only "tools" that AI agents running inside
  * the browser can invoke via the WebMCP API. The integration is
- * defensive — if the host page does not expose `navigator.modelContext`,
- * we no-op so that the rest of the SPA continues to work.
+ * defensive — if the host page does not expose `document.modelContext`
+ * (W3C Draft) or `navigator.modelContext` (legacy), we no-op so that the
+ * rest of the SPA continues to work.
  *
  * Reference: https://webmachinelearning.github.io/webmcp/
  */
@@ -12,14 +13,33 @@ import { fetchRikishiIndex, rikishiProfilePath, type RikishiIndexItem } from './
 import { PAST_BASHO } from './archives-data';
 import { CURRENT_BANZUKE_PATH, CURRENT_RESULT_PATH, CURRENT_SCHEDULE_PATH } from './archive-basho-data';
 
+export interface WebMcpToolAnnotations {
+  readOnlyHint?: boolean;
+  destructiveHint?: boolean;
+  idempotentHint?: boolean;
+  openWorldHint?: boolean;
+  untrustedContentHint?: boolean;
+}
+
 export interface WebMcpToolDefinition {
   name: string;
   description: string;
   inputSchema: Record<string, unknown>;
-  execute: (input: unknown) => Promise<unknown> | unknown;
+  /** Recommended for W3C Draft compatibility. Describes the tool's behavior. */
+  annotations?: WebMcpToolAnnotations;
+  execute: (input: unknown, signal?: AbortSignal) => Promise<unknown> | unknown;
+}
+
+interface DocumentModelContext {
+  registerTool?: (
+    tool: WebMcpToolDefinition,
+    options?: { signal?: AbortSignal },
+  ) => Promise<unknown>;
+  getTools?: (options?: { fromOrigins?: string[] }) => Promise<unknown>;
 }
 
 interface NavigatorModelContext {
+  /** Legacy pre-W3C Draft API. */
   provideContext?: (context: { tools: WebMcpToolDefinition[] }) => unknown;
 }
 
@@ -27,7 +47,25 @@ interface ModelContextNavigator {
   modelContext?: NavigatorModelContext;
 }
 
+interface ModelContextDocument extends Document {
+  modelContext?: DocumentModelContext;
+}
+
 const SITE = 'https://osada.us';
+
+/**
+ * All four tools are pure read-only data lookups: they never mutate
+ * state, never produce side effects, and never consume untrusted
+ * user-supplied content. The annotations advertised here are the
+ * minimum the W3C Draft recommends for read-only tools.
+ */
+const READ_ONLY_ANNOTATIONS: WebMcpToolAnnotations = {
+  readOnlyHint: true,
+  destructiveHint: false,
+  idempotentHint: true,
+  openWorldHint: false,
+  untrustedContentHint: false,
+};
 
 function listBasho() {
   return {
@@ -137,6 +175,7 @@ export const WEBMCP_TOOLS: ReadonlyArray<WebMcpToolDefinition> = [
       required: ['query'],
       additionalProperties: false,
     },
+    annotations: READ_ONLY_ANNOTATIONS,
     execute: searchRikishi,
   },
   {
@@ -147,6 +186,7 @@ export const WEBMCP_TOOLS: ReadonlyArray<WebMcpToolDefinition> = [
       properties: {},
       additionalProperties: false,
     },
+    annotations: READ_ONLY_ANNOTATIONS,
     execute: () => listBasho(),
   },
   {
@@ -165,6 +205,7 @@ export const WEBMCP_TOOLS: ReadonlyArray<WebMcpToolDefinition> = [
       required: ['monthKey'],
       additionalProperties: false,
     },
+    annotations: READ_ONLY_ANNOTATIONS,
     execute: (input) => bashoListForMonthKey(String((input as { monthKey?: unknown }).monthKey ?? '')),
   },
   {
@@ -187,22 +228,55 @@ export const WEBMCP_TOOLS: ReadonlyArray<WebMcpToolDefinition> = [
       required: ['pathDate'],
       additionalProperties: false,
     },
+    annotations: READ_ONLY_ANNOTATIONS,
     execute: dayPath,
   },
 ];
 
-export function hasWebMcpSupport(navigatorLike: { modelContext?: NavigatorModelContext } | undefined = typeof navigator !== 'undefined' ? (navigator as unknown as ModelContextNavigator) : undefined): boolean {
-  return Boolean(navigatorLike?.modelContext?.provideContext);
+export function hasWebMcpSupport(
+  documentLike: { modelContext?: DocumentModelContext } | undefined = typeof document !== 'undefined' ? (document as unknown as ModelContextDocument) : undefined,
+  navigatorLike: { modelContext?: NavigatorModelContext } | undefined = typeof navigator !== 'undefined' ? (navigator as unknown as ModelContextNavigator) : undefined,
+): boolean {
+  return Boolean(
+    documentLike?.modelContext?.registerTool || navigatorLike?.modelContext?.provideContext,
+  );
 }
 
+export interface WebMcpRegistrationResult {
+  mode: 'document' | 'navigator' | 'unsupported';
+  /** Cleanup hook. Present only when `mode === 'document'`. */
+  dispose?: () => void;
+}
+
+/**
+ * Register WebMCP tools with the host browser. Prefers the W3C Draft
+ * `document.modelContext.registerTool` API and falls back to the legacy
+ * `navigator.modelContext.provideContext` if the host does not implement
+ * the Draft yet.
+ */
 export function registerWebMcpTools(
+  documentLike: { modelContext?: DocumentModelContext } | undefined = typeof document !== 'undefined' ? (document as unknown as ModelContextDocument) : undefined,
   navigatorLike: { modelContext?: NavigatorModelContext } | undefined = typeof navigator !== 'undefined' ? (navigator as unknown as ModelContextNavigator) : undefined,
   tools: ReadonlyArray<WebMcpToolDefinition> = WEBMCP_TOOLS,
-): boolean {
-  const provider = navigatorLike?.modelContext?.provideContext;
-  if (typeof provider !== 'function') {
-    return false;
+): WebMcpRegistrationResult {
+  const ctx = documentLike?.modelContext;
+  if (ctx && typeof ctx.registerTool === 'function') {
+    const controller = new AbortController();
+    const { signal } = controller;
+    for (const tool of tools) {
+      void ctx.registerTool(tool, { signal });
+    }
+    return {
+      mode: 'document',
+      dispose: () => controller.abort(),
+    };
   }
-  provider({ tools: [...tools] });
-  return true;
+
+  const nav = navigatorLike?.modelContext?.provideContext;
+  if (typeof nav === 'function') {
+    nav({ tools: [...tools] });
+    return { mode: 'navigator' };
+  }
+
+  return { mode: 'unsupported' };
 }

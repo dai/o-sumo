@@ -33,31 +33,34 @@ agents can short-circuit any onboarding flow they would normally attempt.
 | Public API catalog | `https://osada.us/.well-known/api-catalog` |
 | Skills discovery index | `https://osada.us/.well-known/agent-skills/index.json` |
 | MCP server card (not provided) | `https://osada.us/.well-known/mcp/server-card.json` |
-| OAuth/OIDC discovery (n/a) | `https://osada.us/.well-known/openid-configuration` |
 | OAuth Protected Resource Metadata (public only) | `https://osada.us/.well-known/oauth-protected-resource` |
 | Sitemap | `https://osada.us/sitemap.xml` |
 | robots.txt | `https://osada.us/robots.txt` |
 | Markdown content negotiation | send `Accept: text/markdown` |
 
-There are no `register_uri`, `supported_identity_types`, or
+There are no `register_uri`, `identity_types_supported`, or
 `credential_types` to advertise because the site accepts no agent
-identity.
+identity. The `agent_auth` block below follows the WorkOS auth.md
+draft, with every list intentionally empty.
 
 ## agent_auth
 
 ```yaml
 agent_auth:
   register_uri: null
-  supported_identity_types: []
+  identity_endpoint: null
+  claim_endpoint: null
+  events_endpoint: null
+  identity_types_supported: []
   credential_types: []
-  claim_url: null
-  revocation_url: null
-  notes: >
+  identity_assertion:
+    assertion_types_supported: []
+  events_supported: []
+  scopes_supported: []
+  notes: >-
     o-sumo does not authenticate agents. Every endpoint under
-    https://osada.us/ is public and rate-limited only at the Cloudflare
-    edge. Agents should identify themselves via the standard User-Agent
-    header and the project repository URL when contacting the
-    maintainer (see below).
+    https://osada.us/ is public. The lists above are intentionally
+    empty per the WorkOS auth.md spec.
 ```
 
 ---

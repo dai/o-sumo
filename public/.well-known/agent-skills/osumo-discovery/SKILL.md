@@ -1,6 +1,6 @@
 ---
 name: osumo-discovery
-type: agent-skill
+type: skill-md
 description: Locate the right page on https://osada.us/ for a given basho (YYYYMM), torikumi day (YYYYMMDD), rikishi (id or shikona), kimarite, or analytics view.
 ---
 

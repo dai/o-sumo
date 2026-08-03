@@ -15,7 +15,36 @@
   Link: </.well-known/api-catalog>; rel="api-catalog"
   Link: </.well-known/agent-skills/index.json>; rel="agent-skills"
   Link: </auth.md>; rel="auth.md"
+  Link: </index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
   Vary: Accept
+
+# Markdown for Agents: advertise the pre-rendered index.md for each route
+/archives/
+  Link: </archives/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+/rikishi/
+  Link: </rikishi/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+/kimarite/
+  Link: </kimarite/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+/analytics/
+  Link: </analytics/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+/202603-banzuke/
+  Link: </202603-banzuke/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+/202603-torikumi/
+  Link: </202603-torikumi/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+/202603-yotei/
+  Link: </202603-yotei/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+/202605-banzuke/
+  Link: </202605-banzuke/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+/202605-torikumi/
+  Link: </202605-torikumi/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+/202605-yotei/
+  Link: </202605-yotei/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+/202607-banzuke/
+  Link: </202607-banzuke/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+/202607-torikumi/
+  Link: </202607-torikumi/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+/202607-yotei/
+  Link: </202607-yotei/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
 
 # Markdown for Agents: served as text/markdown when requested
 /*.md
@@ -45,13 +74,7 @@
   Cache-Control: public, max-age=300
   Content-Type: application/json
 
-# OAuth / OIDC discovery metadata
-/.well-known/openid-configuration
-  Cache-Control: public, max-age=300
-  Content-Type: application/json
-/.well-known/oauth-authorization-server
-  Cache-Control: public, max-age=300
-  Content-Type: application/json
+# OAuth Protected Resource Metadata (RFC 9728)
 /.well-known/oauth-protected-resource
   Cache-Control: public, max-age=300
   Content-Type: application/json

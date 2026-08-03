@@ -383,6 +383,41 @@ export function buildMarkdownPages(publicDir: string, outRoot: string): Markdown
   return routes;
 }
 
+/**
+ * The static set of routes that get a Markdown view. Exposed so that
+ * `public/_headers` (and the build plugin) can advertise a `Link:
+ * rel="alternate" type="text/markdown"` header pointing at each
+ * pre-rendered `index.md` without duplicating the route list.
+ */
+export const MARKDOWN_ROUTES: ReadonlyArray<string> = [
+  '',
+  'archives/',
+  'rikishi/',
+  'kimarite/',
+  'analytics/',
+  ...['202603', '202605', '202607'].flatMap((monthKey) => [
+    `${monthKey}-banzuke/`,
+    `${monthKey}-torikumi/`,
+    `${monthKey}-yotei/`,
+  ]),
+];
+
+/**
+ * Convert an `outDir` (e.g. `archives/`) into the public URL path that
+ * the Markdown view is served under (e.g. `/archives/`).
+ */
+export function markdownRoutePublicPath(outDir: string): string {
+  return `/${outDir}`;
+}
+
+/**
+ * Convert an `outDir` into the absolute URL of the pre-rendered
+ * `index.md` (e.g. `${SITE}/archives/index.md`).
+ */
+export function markdownRouteAlternateUrl(outDir: string, site: string): string {
+  return `${site}${markdownRoutePublicPath(outDir)}index.md`;
+}
+
 export function writeMarkdownViews(publicDir: string, outRoot: string): { written: string[] } {
   const pages = buildMarkdownPages(publicDir, outRoot);
   const written: string[] = [];

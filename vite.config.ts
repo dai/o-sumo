@@ -54,6 +54,24 @@ function agentSkillsPlugin(): Plugin {
   }
 }
 
+function mcpServerCardPlugin(): Plugin {
+  let outDir = 'dist'
+  let publicDir = 'public'
+
+  return {
+    name: 'generate-mcp-server-card',
+    apply: 'build',
+    configResolved(config) {
+      outDir = resolve(config.root, config.build.outDir)
+      publicDir = resolve(config.root, 'public')
+    },
+    async closeBundle() {
+      const { buildMcpServerCard } = await import('./app/lib/mcp-server-card')
+      buildMcpServerCard(publicDir, outDir)
+    },
+  }
+}
+
 function markdownViewsPlugin(): Plugin {
   let outDir = 'dist'
   let publicDir = 'public'
@@ -77,6 +95,7 @@ export default defineConfig({
     react(),
     sitemapPlugin(),
     agentSkillsPlugin(),
+    mcpServerCardPlugin(),
     markdownViewsPlugin(),
     VitePWA({
       registerType: 'autoUpdate',

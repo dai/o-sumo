@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { buildMarkdownPages } from './build_markdown_views';
+import {
+  buildMarkdownPages,
+  MARKDOWN_ROUTES,
+  markdownRouteAlternateUrl,
+  markdownRoutePublicPath,
+} from './build_markdown_views';
 
 describe('buildMarkdownPages', () => {
   const publicDir = resolve(process.cwd(), 'public');
@@ -53,5 +59,42 @@ describe('buildMarkdownPages', () => {
     const resultHub = pages.find((page) => page.outDir === '202607-torikumi/');
     expect(resultHub).toBeDefined();
     expect(resultHub!.content).toMatch(/- \[.*202607\d{2}-torikumi/);
+  });
+});
+
+describe('Markdown for Agents advertising', () => {
+  const SITE = 'https://osada.us';
+
+  it('exposes a stable MARKDOWN_ROUTES list', () => {
+    expect(MARKDOWN_ROUTES).toContain('');
+    expect(MARKDOWN_ROUTES).toContain('archives/');
+    expect(MARKDOWN_ROUTES).toContain('rikishi/');
+    expect(MARKDOWN_ROUTES).toContain('kimarite/');
+    expect(MARKDOWN_ROUTES).toContain('analytics/');
+    for (const monthKey of ['202603', '202605', '202607']) {
+      expect(MARKDOWN_ROUTES).toContain(`${monthKey}-banzuke/`);
+      expect(MARKDOWN_ROUTES).toContain(`${monthKey}-torikumi/`);
+      expect(MARKDOWN_ROUTES).toContain(`${monthKey}-yotei/`);
+    }
+  });
+
+  it('derives the public URL from the outDir', () => {
+    expect(markdownRoutePublicPath('')).toBe('/');
+    expect(markdownRoutePublicPath('archives/')).toBe('/archives/');
+    expect(markdownRoutePublicPath('202607-banzuke/')).toBe('/202607-banzuke/');
+  });
+
+  it('derives the alternate Markdown URL from the outDir', () => {
+    expect(markdownRouteAlternateUrl('', SITE)).toBe('https://osada.us/index.md');
+    expect(markdownRouteAlternateUrl('archives/', SITE)).toBe('https://osada.us/archives/index.md');
+  });
+
+  it('publishes a Link: rel="alternate" type="text/markdown" header for every Markdown route', () => {
+    const headers = readFileSync(resolve(process.cwd(), 'public/_headers'), 'utf8');
+    for (const outDir of MARKDOWN_ROUTES) {
+      const href = markdownRoutePublicPath(outDir);
+      const linkLine = `Link: <${href}index.md>; rel="alternate"; type="text/markdown"`;
+      expect(headers, `outDir=${outDir} should be advertised in _headers`).toContain(linkLine);
+    }
   });
 });

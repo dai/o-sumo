@@ -4,10 +4,11 @@ import { resolve } from 'node:path';
 
 export interface AgentSkillEntry {
   name: string;
-  type: 'agent-skill';
+  type: 'skill-md';
   description: string;
   url: string;
-  sha256: string;
+  /** RFC v0.2.0 compliant digest in the form `sha256:{64-hex-chars}`. */
+  digest: string;
 }
 
 export interface AgentSkillsIndex {
@@ -21,11 +22,11 @@ export interface AgentSkillsIndex {
  * `path` is relative to the `public/` directory and is read at build time
  * to compute the sha256 digest. `url` is the public absolute URL.
  */
-const SKILL_MANIFEST: ReadonlyArray<Omit<AgentSkillEntry, 'sha256'> & { path: string }> = [
+const SKILL_MANIFEST: ReadonlyArray<Omit<AgentSkillEntry, 'digest'> & { path: string }> = [
   {
     path: '.well-known/agent-skills/osumo-content/SKILL.md',
     name: 'osumo-content',
-    type: 'agent-skill',
+    type: 'skill-md',
     description:
       'Fetch official 大相撲 banzuke, torikumi, and rikishi data from the public o-sumo JSON API (https://osada.us/api/v1/*.json).',
     url: 'https://osada.us/.well-known/agent-skills/osumo-content/SKILL.md',
@@ -33,7 +34,7 @@ const SKILL_MANIFEST: ReadonlyArray<Omit<AgentSkillEntry, 'sha256'> & { path: st
   {
     path: '.well-known/agent-skills/osumo-discovery/SKILL.md',
     name: 'osumo-discovery',
-    type: 'agent-skill',
+    type: 'skill-md',
     description:
       'Locate the right page on https://osada.us/ for a given basho (YYYYMM), torikumi day (YYYYMMDD), rikishi (id or shikona), kimarite, or analytics view.',
     url: 'https://osada.us/.well-known/agent-skills/osumo-discovery/SKILL.md',
@@ -49,17 +50,17 @@ export function computeSha256(content: string | Buffer): string {
 }
 
 export function buildSkillEntry(
-  manifest: Omit<AgentSkillEntry, 'sha256'> & { path: string },
+  manifest: Omit<AgentSkillEntry, 'digest'> & { path: string },
   publicRoot: string,
 ): AgentSkillEntry {
   const absolutePath = resolve(publicRoot, manifest.path);
-  const digest = computeSha256(readFileSync(absolutePath));
+  const hex = computeSha256(readFileSync(absolutePath));
   return {
     name: manifest.name,
     type: manifest.type,
     description: manifest.description,
     url: manifest.url,
-    sha256: digest,
+    digest: `sha256:${hex}`,
   };
 }
 
