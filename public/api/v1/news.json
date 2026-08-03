@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-03T00:52:59.446760+00:00",
+  "updatedAt": "2026-08-03T07:22:03.336305+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-sponichi-spngoo-20260803-0241",
+      "title": "“最軽量”55キロの15歳が新弟子運動能力検査受検　高田川部屋の新道帝憲「体、スピードを生かしたい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260803-0241",
+      "publishedAt": "2026-08-03",
+      "publishedAtRaw": "スポニチアネックス　8月3日 15時59分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260803-0238",
+      "title": "【大相撲】御嶽海　進退を熟慮中「話を聞きながら先のこと考えて」　秋場所は8場所ぶり十両陥落確実",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260803-0238",
+      "publishedAt": "2026-08-03",
+      "publishedAtRaw": "スポニチアネックス　8月3日 15時54分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-20260803091",
+      "title": "“千代丸たん”が印象的なサスペンダー姿　惜しまれて引退の若隆元とまげ姿で協会の仕事に汗【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260803091",
+      "publishedAt": "2026-08-03",
+      "publishedAtRaw": "デイリースポーツ　8月3日 15時40分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-f-bt-tp1-260803-202608030000701",
+      "title": "体重48キロで高田川部屋入門の15歳「大きく強くなりたい」新弟子運動能力検査に合格",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260803-202608030000701",
+      "publishedAt": "2026-08-03",
+      "publishedAtRaw": "日刊スポーツ　8月3日 15時32分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-hochi-20260802-OHT1T51367",
       "title": "わんぱく相撲４年生の部で三島市の原桜汰が関脇に…１５２センチ、８９キロ「将来の目標は力士になることです」",
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260802-OHT1T51367",
       "publishedAt": "2026-08-03",
       "publishedAtRaw": "スポーツ報知　8月3日 7時20分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260803-0017",
-      "title": "義ノ富士　実家半壊「死ぬかと」　震度7熊本に帰省中だった　秋場所活躍で故郷に勇気を",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260803-0017",
-      "publishedAt": "2026-08-03",
-      "publishedAtRaw": "スポニチアネックス　8月3日 4時45分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260802-OHT1T51344",
-      "title": "【大相撲】宇土市出身の小結・義ノ富士が帰省中に熊本地震を被災　実家半壊に父の営む焼き肉店も被害「台風や雨が来てもしのぐことはできない」「相撲で元気づけられるように」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260802-OHT1T51344",
-      "publishedAt": "2026-08-03",
-      "publishedAtRaw": "スポーツ報知　8月3日 4時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260802-202608020001592",
-      "title": "左足負傷で状態「よくはない」安青錦、治療優先も巡業参加した理由とは　師匠の安治川親方が説明",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260802-202608020001592",
-      "publishedAt": "2026-08-02",
-      "publishedAtRaw": "日刊スポーツ　8月2日 20時48分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260802-567-GYT1T00133",
-      "title": "熊本出身の義ノ富士、実家帰省中に被災「死ぬかと思った」…「相撲に集中して」と夏巡業に送り出される",
-      "url": "https://topics.smt.docomo.ne.jp/article/yomiuri/sports/20260802-567-GYT1T00133",
-      "publishedAt": "2026-08-02",
-      "publishedAtRaw": "読売新聞　8月2日 19時03分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
