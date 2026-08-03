@@ -8,37 +8,33 @@ describe('agent discovery metadata', () => {
   const asPath = resolve(process.cwd(), 'public/.well-known/oauth-authorization-server');
   const asMeta = JSON.parse(readFileSync(asPath, 'utf8')) as Record<string, unknown>;
 
-  it('publishes a self-issued OAuth Protected Resource Metadata document', () => {
-    // RFC 9728 ‡2 requires `resource`; the rest are optional but scanners
-    // such as isitagentready.com require `authorization_servers` to be
-    // present (even if self-issued) plus `bearer_methods_supported` and
-    // `scopes_supported` for a full pass.
+  it('publishes metadata for a public, authentication-free resource', () => {
+    // RFC 9728 requires `resource`; the remaining fields are optional. Do not
+    // claim OAuth capabilities merely to satisfy a discovery scanner.
     expect(prm.resource).toBe('https://osada.us/');
     expect(prm.resource_documentation).toBe('https://osada.us/auth.md');
-  });
-
-  it('advertises a self-issued authorization server and bearer method support', () => {
-    expect(prm.authorization_servers).toEqual(['https://osada.us/']);
-    expect(prm.bearer_methods_supported).toContain('header');
-    expect(prm.scopes_supported).toContain('public');
+    expect(prm).not.toHaveProperty('authorization_servers');
+    expect(prm).not.toHaveProperty('bearer_methods_supported');
+    expect(prm).not.toHaveProperty('scopes_supported');
   });
 
   it('publishes an OAuth Authorization Server Metadata with an agent_auth block', () => {
-    // RFC 8414 requires `issuer`, `authorization_endpoint`, `token_endpoint`,
-    // `jwks_uri`, `grant_types_supported`, `response_types_supported`.
-    // isitagentready.com additionally requires an `agent_auth` block to be
-    // present in the same document so that the auth.md check can verify
-    // registration axes.
+    // Keep the RFC 8414 issuer while exposing only capabilities the site
+    // actually provides: agent-auth discovery and its documentation.
     expect(asMeta.issuer).toBe('https://osada.us/');
-    expect(asMeta.authorization_endpoint).toBe('https://osada.us/');
-    expect(asMeta.token_endpoint).toBe('https://osada.us/');
-    expect(asMeta.jwks_uri).toBe('https://osada.us/.well-known/jwks.json');
-    expect(asMeta.grant_types_supported).toContain('client_credentials');
-    expect(asMeta.response_types_supported).toContain('token');
+    expect(asMeta.service_documentation).toBe('https://osada.us/auth.md');
     expect(asMeta.agent_auth).toBeDefined();
     const agentAuth = asMeta.agent_auth as Record<string, unknown>;
     expect(agentAuth.skill).toBe('https://osada.us/auth.md');
+    expect(agentAuth.register_uri).toBe('not applicable');
     expect(agentAuth.identity_types_supported).toBe('not applicable');
+    expect(asMeta).not.toHaveProperty('authorization_endpoint');
+    expect(asMeta).not.toHaveProperty('token_endpoint');
+    expect(asMeta).not.toHaveProperty('jwks_uri');
+    expect(asMeta).not.toHaveProperty('grant_types_supported');
+    expect(asMeta).not.toHaveProperty('response_types_supported');
+    expect(asMeta).not.toHaveProperty('token_endpoint_auth_methods_supported');
+    expect(asMeta).not.toHaveProperty('scopes_supported');
   });
 
   it('does not publish OIDC Discovery metadata', () => {

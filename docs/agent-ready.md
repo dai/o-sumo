@@ -15,8 +15,8 @@ Cloudflare DNS zone, not the Pages project.
 | Path | Purpose |
 | --- | --- |
 | `/.well-known/api-catalog` | RFC 9727 linkset pointing at the public JSON APIs (banzuke, torikumi, rikishi). |
-| `/.well-known/oauth-authorization-server` | RFC 8414 OAuth Authorization Server Metadata. Self-issued for AI-agent discovery; includes a `agent_auth` extension block describing registration axes that are intentionally not supported. |
-| `/.well-known/oauth-protected-resource` | RFC 9728 metadata declaring the public JSON API as a resource with a self-issued `authorization_servers` entry pointing at `https://osada.us/`. |
+| `/.well-known/oauth-authorization-server` | RFC 8414-shaped discovery metadata retained to publish the `agent_auth` extension and documentation URL. The site provides no OAuth authorization, token, JWKS, Bearer-token, client-credentials, or scope capability; `agent_auth` explicitly says agent registration is not supported. |
+| `/.well-known/oauth-protected-resource` | RFC 9728 resource metadata identifying the public JSON API and its documentation. Because the resource is public and authentication-free, it advertises no authorization server, Bearer-token method, or authorization scope. |
 | `/.well-known/mcp/server-card.json` | MCP Server Card (SEP-1649). Indicates that no MCP server is hosted, and points agents at the public API catalog and skills index as the alternative discovery surfaces. |
 | `/.well-known/agent-skills/index.json` | Agent Skills index (RFC v0.2.0). Lists the skills published under `.well-known/agent-skills/`. |
 | `/.well-known/agent-skills/osumo-content/SKILL.md` | Skill description for fetching public API content. |
@@ -28,6 +28,11 @@ The agent-skills index is generated at build time by `vite.config.ts` (see
 `agentSkillsPlugin`). The sha256 digests in `index.json` are computed from
 the on-disk SKILL.md files, so changing the skill content automatically
 invalidates the cached digests on the next `npm run build`.
+
+The authentication metadata exists for agent discovery, not because o-sumo is
+an authorization server. Agents should use the `agent_auth` values to determine
+that registration is unavailable and access the listed resources without
+credentials.
 
 ## WebMCP
 
