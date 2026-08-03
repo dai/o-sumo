@@ -18,27 +18,33 @@ describe('auth.md', () => {
   });
 
   it('exposes the WorkOS auth.md draft fields inside the agent_auth block', () => {
-    // Each field must be present in the YAML block.
+    // Each field must be present in the YAML block. Scanners such as
+    // isitagentready.com look for an explicit `skill` reference plus
+    // each registration axis marked either by a concrete value or the
+    // literal "not applicable" string when no registration is offered.
     for (const field of [
-      'register_uri: null',
-      'identity_endpoint: null',
-      'claim_endpoint: null',
-      'events_endpoint: null',
-      'identity_types_supported: []',
-      'credential_types: []',
-      'assertion_types_supported: []',
-      'events_supported: []',
-      'scopes_supported: []',
+      'skill: https://osada.us/auth.md',
+      'register_uri: not applicable',
+      'identity_endpoint: not applicable',
+      'claim_endpoint: not applicable',
+      'events_endpoint: not applicable',
+      'identity_types_supported: not applicable',
+      'credential_types: not applicable',
+      'assertion_types_supported: not applicable',
+      'events_supported: not applicable',
+      'scopes_supported: not applicable',
     ]) {
       expect(content).toContain(field);
     }
   });
 
-  it('does not advertise any agent identity or credential type', () => {
-    // The lists are intentionally empty, but the field names must remain
-    // so scanners can recognize the structure.
-    expect(content).toMatch(/identity_types_supported: \[\]/);
-    expect(content).toMatch(/credential_types: \[\]/);
-    expect(content).toMatch(/assertion_types_supported: \[\]/);
+  it('marks every registration axis as not applicable', () => {
+    // No null literals or empty list literals should leak into the
+    // YAML block — the WorkOS auth.md draft prefers explicit "not
+    // applicable" tokens for fields that have no value.
+    expect(content).not.toMatch(/register_uri: null/);
+    expect(content).not.toMatch(/identity_endpoint: null/);
+    expect(content).not.toMatch(/identity_types_supported: \[\]/);
+    expect(content).not.toMatch(/credential_types: \[\]/);
   });
 });

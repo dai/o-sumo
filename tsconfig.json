@@ -35,6 +35,9 @@
     "app/**/*.test.ts",
     "app/**/*.test.tsx"
   ],
+  "exclude": [
+    "functions"
+  ],
   "references": [
     {
       "path": "./tsconfig.node.json"

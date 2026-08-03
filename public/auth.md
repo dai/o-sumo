@@ -47,20 +47,22 @@ draft, with every list intentionally empty.
 
 ```yaml
 agent_auth:
-  register_uri: null
-  identity_endpoint: null
-  claim_endpoint: null
-  events_endpoint: null
-  identity_types_supported: []
-  credential_types: []
+  skill: https://osada.us/auth.md
+  register_uri: not applicable
+  identity_endpoint: not applicable
+  claim_endpoint: not applicable
+  events_endpoint: not applicable
+  identity_types_supported: not applicable
+  credential_types: not applicable
   identity_assertion:
-    assertion_types_supported: []
-  events_supported: []
-  scopes_supported: []
+    assertion_types_supported: not applicable
+  events_supported: not applicable
+  scopes_supported: not applicable
   notes: >-
     o-sumo does not authenticate agents. Every endpoint under
-    https://osada.us/ is public. The lists above are intentionally
-    empty per the WorkOS auth.md spec.
+    https://osada.us/ is public. The fields above are intentionally
+    marked "not applicable" because no agent registration, identity
+    assertion, or scope negotiation is supported.
 ```
 
 ---

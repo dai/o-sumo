@@ -15,13 +15,13 @@ Cloudflare DNS zone, not the Pages project.
 | Path | Purpose |
 | --- | --- |
 | `/.well-known/api-catalog` | RFC 9727 linkset pointing at the public JSON APIs (banzuke, torikumi, rikishi). |
-| `/.well-known/oauth-protected-resource` | RFC 9728 metadata declaring the public JSON API as a resource with `authorization_servers: []`. |
+| `/.well-known/oauth-protected-resource` | RFC 9728 metadata declaring the public JSON API as a resource with a self-issued `authorization_servers` entry pointing at `https://osada.us/`. |
 | `/.well-known/mcp/server-card.json` | MCP Server Card (SEP-1649). Indicates that no MCP server is hosted, and points agents at the public API catalog and skills index as the alternative discovery surfaces. |
 | `/.well-known/agent-skills/index.json` | Agent Skills index (RFC v0.2.0). Lists the skills published under `.well-known/agent-skills/`. |
 | `/.well-known/agent-skills/osumo-content/SKILL.md` | Skill description for fetching public API content. |
 | `/.well-known/agent-skills/osumo-discovery/SKILL.md` | Skill description for navigating the site. |
 | `/auth.md` | Top-level auth.md indicating that no agent registration is offered and providing contact information. |
-| `/*.md` (parallel HTML routes) | Static Markdown views served with `Content-Type: text/markdown; charset=utf-8` and `Vary: Accept`. Satisfies the "Markdown for Agents" check. |
+| `/*.md` (parallel HTML routes) | Static Markdown views served with `Content-Type: text/markdown; charset=utf-8` and `Vary: Accept`. Satisfies the "Markdown for Agents" check. The matching `functions/_middleware.ts` rewrites any `Accept: text/markdown` request to the pre-rendered `index.md` file with the correct `Content-Type`. |
 
 The agent-skills index is generated at build time by `vite.config.ts` (see
 `agentSkillsPlugin`). The sha256 digests in `index.json` are computed from
