@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-03T07:22:03.336305+00:00",
+  "updatedAt": "2026-08-03T09:18:32.070417+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-nikkangendai-1236889",
+      "title": "「最強の新弟子」旭富士、デビュー4場所連続Ｖでも残る大きな課題",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1236889",
+      "publishedAt": "2026-08-03",
+      "publishedAtRaw": "日刊ゲンダイDIGITAL　8月3日 17時30分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_FF2NLEMKCZMMPOK23STCSENMNY",
+      "title": "ベテラン記者コラム　師匠が解説中に寝坊で不戦敗の丹治、付け人を務めた若隆景に恩返しを",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_FF2NLEMKCZMMPOK23STCSENMNY",
+      "publishedAt": "2026-08-03",
+      "publishedAtRaw": "SANSPO　8月3日 17時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260803-0271",
+      "title": "【大相撲】藤ノ川　夏巡業で旭富士らと稽古　秋場所での新三役濃厚で先代師匠から祝意",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260803-0271",
+      "publishedAt": "2026-08-03",
+      "publishedAtRaw": "スポニチアネックス　8月3日 16時46分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260803-OHT1T51193",
+      "title": "秋場所で新三役濃厚の藤ノ川「このしこ名で上がれていたら」　１４９年の歴史誇る伝統の「藤ノ川」で昇進なら２代目、４代目に次いで３人目",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260803-OHT1T51193",
+      "publishedAt": "2026-08-03",
+      "publishedAtRaw": "スポーツ報知　8月3日 16時41分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-sponichi-spngoo-20260803-0241",
       "title": "“最軽量”55キロの15歳が新弟子運動能力検査受検　高田川部屋の新道帝憲「体、スピードを生かしたい」",
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260803-0241",
       "publishedAt": "2026-08-03",
       "publishedAtRaw": "スポニチアネックス　8月3日 15時59分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260803-0238",
-      "title": "【大相撲】御嶽海　進退を熟慮中「話を聞きながら先のこと考えて」　秋場所は8場所ぶり十両陥落確実",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260803-0238",
-      "publishedAt": "2026-08-03",
-      "publishedAtRaw": "スポニチアネックス　8月3日 15時54分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260803091",
-      "title": "“千代丸たん”が印象的なサスペンダー姿　惜しまれて引退の若隆元とまげ姿で協会の仕事に汗【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260803091",
-      "publishedAt": "2026-08-03",
-      "publishedAtRaw": "デイリースポーツ　8月3日 15時40分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260803-202608030000701",
-      "title": "体重48キロで高田川部屋入門の15歳「大きく強くなりたい」新弟子運動能力検査に合格",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260803-202608030000701",
-      "publishedAt": "2026-08-03",
-      "publishedAtRaw": "日刊スポーツ　8月3日 15時32分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260802-OHT1T51367",
-      "title": "わんぱく相撲４年生の部で三島市の原桜汰が関脇に…１５２センチ、８９キロ「将来の目標は力士になることです」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260802-OHT1T51367",
-      "publishedAt": "2026-08-03",
-      "publishedAtRaw": "スポーツ報知　8月3日 7時20分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
