@@ -12,3 +12,10 @@
 # HTMLは短め
 /
   Cache-Control: public, max-age=300
+  Link: </.well-known/api-catalog>; rel="api-catalog"
+
+# Agent discovery API catalog
+/.well-known/api-catalog
+  Cache-Control: public, max-age=300
+  Content-Type: application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"
+  Link: </.well-known/api-catalog>; rel="api-catalog"

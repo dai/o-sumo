@@ -25,6 +25,40 @@ describe('PWA smoke config', () => {
     expect(redirects).toContain('/kimarite/ / 200');
   });
 
+  it('advertises the API catalog from the homepage response headers', () => {
+    const headers = readFileSync(join(process.cwd(), 'public/_headers'), 'utf-8');
+
+    expect(headers).toContain('Link: </.well-known/api-catalog>; rel="api-catalog"');
+    expect(headers).toContain(
+      [
+        '/.well-known/api-catalog',
+        '  Cache-Control: public, max-age=300',
+        '  Content-Type: application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"',
+        '  Link: </.well-known/api-catalog>; rel="api-catalog"',
+      ].join('\n'),
+    );
+  });
+
+  it('publishes a machine-readable API catalog under .well-known', () => {
+    const catalogPath = join(process.cwd(), 'public/.well-known/api-catalog');
+
+    expect(existsSync(catalogPath)).toBe(true);
+    const catalog = JSON.parse(readFileSync(catalogPath, 'utf-8'));
+    expect(catalog).toEqual({
+      linkset: [
+        {
+          anchor: 'https://osada.us/.well-known/api-catalog',
+          item: [
+            { href: 'https://osada.us/api/v1/banzuke.json' },
+            { href: 'https://osada.us/api/v1/news.json' },
+            { href: 'https://osada.us/api/v1/torikumi.json' },
+            { href: 'https://osada.us/api/v1/rikishi.json' },
+          ],
+        },
+      ],
+    });
+  });
+
   it('keeps auto-update strategy and API-only runtime caching', () => {
     const viteConfig = readFileSync(join(process.cwd(), 'vite.config.ts'), 'utf-8');
 

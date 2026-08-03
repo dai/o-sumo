@@ -1189,3 +1189,29 @@
 - Non-failing warnings: Node localStorage ExperimentalWarning、Vite 500 kB超chunk warning、Browserslist warning、依存導入時のaudit advisory 20件は既存または変更対象外として継続。
 
 ---
+
+# Agent discovery Link response headers（2026-08-03）
+
+## Plan
+- [x] homepage responseへRFC 8288形式の`api-catalog` Link headerを追加する
+- [x] `public/.well-known/api-catalog`へRFC 9727準拠のLinkset JSONを追加する
+- [x] TDDでheader構文、registered relation、catalog内容とmedia typeを固定する
+- [x] build成果物とローカルWranglerの実HTTP responseを検証する
+- [x] 最終レビュー後にcommit・pushし、新規PRを作成する
+
+## Design
+- Cloudflare Pagesの既存`public/_headers`を利用し、homepage `/`だけに`Link: </.well-known/api-catalog>; rel="api-catalog"`を付与する。
+- `/.well-known/api-catalog`は`application/linkset+json`で配信し、公開中の`banzuke.json`、`news.json`、`torikumi.json`、`rikishi.json`をAPI項目として列挙する。
+- AdSense loader、手動広告削除、GA、OGP、routing、既存APIデータは変更しない。
+
+## Review
+- Initial TDD RED: focused testは 2 failed / 7 passed。homepage Link headerと`/.well-known/api-catalog`の未存在を再現した。GREENは 1 file / 9 tests pass。
+- Independent review RED: RFC 9727 Section 2で必須のcatalog HEAD応答用Link headerと、公開API `news.json`の欠落を指摘。契約テストを更新して 2 failed / 7 passedを確認後、両方を追加して 9/9 passへ戻した。
+- Final automated validation: `npm run typecheck` pass、全Vitest 28 files / 194 tests pass、`npm run build` pass、`git diff --check` pass。
+- Build artifacts: `public/.well-known/api-catalog`と`dist/.well-known/api-catalog`は一致し、4 APIを持つ有効なLinkset JSON。`dist/_headers`にもhomepageとcatalog routeのLink header設定を保持した。
+- Wrangler: homepage GETは200かつ`Link: </.well-known/api-catalog>; rel="api-catalog"`。catalog GET / HEADは200、HEADにも同Link header、Content-TypeはRFC 9727 profile付き`application/linkset+json`。catalog内4 APIはすべて直接200。
+- AdSense regression: Wrangler homepage生HTMLで確認用loaderはhead内1件、手動広告コードは0件を維持した。
+- External scanner: 未デプロイbranchを外部scannerから参照できないため、PR previewまたは本番反映後に`checks.discoverability.linkHeaders.status = pass`を確認する。
+- Non-failing warnings: Node localStorage ExperimentalWarning、Vite 500 kB超chunk warning、Browserslist warningは既存または変更対象外として継続。
+
+---
