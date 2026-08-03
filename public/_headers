@@ -74,6 +74,11 @@
   Cache-Control: public, max-age=300
   Content-Type: application/json
 
+# OAuth Authorization Server Metadata (RFC 8414) + agent_auth extension
+/.well-known/oauth-authorization-server
+  Cache-Control: public, max-age=300
+  Content-Type: application/json
+
 # OAuth Protected Resource Metadata (RFC 9728)
 /.well-known/oauth-protected-resource
   Cache-Control: public, max-age=300
