@@ -6,16 +6,19 @@ describe('agent discovery metadata', () => {
   const prmPath = resolve(process.cwd(), 'public/.well-known/oauth-protected-resource');
   const prm = JSON.parse(readFileSync(prmPath, 'utf8')) as Record<string, unknown>;
 
-  it('publishes a minimal OAuth Protected Resource Metadata document', () => {
-    // RFC 9728 ‡3.2 "Parameters with zero values MUST be omitted."
+  it('publishes a self-issued OAuth Protected Resource Metadata document', () => {
+    // RFC 9728 ‡2 requires `resource`; the rest are optional but scanners
+    // such as isitagentready.com require `authorization_servers` to be
+    // present (even if self-issued) plus `bearer_methods_supported` and
+    // `scopes_supported` for a full pass.
     expect(prm.resource).toBe('https://osada.us/');
     expect(prm.resource_documentation).toBe('https://osada.us/auth.md');
   });
 
-  it('omits zero-valued arrays from the OAuth Protected Resource Metadata', () => {
-    expect(prm).not.toHaveProperty('authorization_servers');
-    expect(prm).not.toHaveProperty('bearer_methods_supported');
-    expect(prm).not.toHaveProperty('scopes_supported');
+  it('advertises a self-issued authorization server and bearer method support', () => {
+    expect(prm.authorization_servers).toEqual(['https://osada.us/']);
+    expect(prm.bearer_methods_supported).toContain('header');
+    expect(prm.scopes_supported).toContain('public');
   });
 
   it('does not publish OAuth/OIDC discovery metadata', () => {
