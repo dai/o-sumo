@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-04T00:50:58.546694+00:00",
+  "updatedAt": "2026-08-04T05:10:03.247683+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-hochi-20260804-OHT1T51072",
+      "title": "甲府出身の十両・竜電　地元の夏巡業で大歓声「秋場所は十両優勝して幕内に戻る」　高田川親方「精神面と脳みそと鍛えないと」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260804-OHT1T51072",
+      "publishedAt": "2026-08-04",
+      "publishedAtRaw": "スポーツ報知　8月4日 12時11分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-tokyosports-398205",
       "title": "【大相撲】関取の結婚式で行司が務める大事な仕事とは？　元力士が解説「めちゃくちゃうまい」",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260803-OHT1T51243",
       "publishedAt": "2026-08-03",
       "publishedAtRaw": "スポーツ報知　8月3日 18時26分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-nikkangendai-1236889",
-      "title": "「最強の新弟子」旭富士、デビュー4場所連続Ｖでも残る大きな課題",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1236889",
-      "publishedAt": "2026-08-03",
-      "publishedAtRaw": "日刊ゲンダイDIGITAL　8月3日 17時30分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
