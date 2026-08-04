@@ -1,5 +1,10 @@
 # Lessons
 
+## 2026-08-04 GitHub README の外部埋め込み
+
+- GitHub README では外部 JavaScript が実行されないため、X の公式 `<blockquote>` + `<script>` embed は使用しない。投稿画像を通常の Markdown image として表示し、画像全体を投稿 URL へのリンクにする。
+- README の表示変更は、HTML snippet の文字列一致だけで完了とせず、GitHub Markdown の制約を確認して実際の表示形を検証する。
+
 ## 2026-08-03 AI Agent Readiness 7 項目
 
 ### 1. jsdom テストで `document` を **全体置換** すると DOM API が壊れる
