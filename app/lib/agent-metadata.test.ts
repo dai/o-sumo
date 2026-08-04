@@ -10,12 +10,17 @@ describe('agent discovery metadata', () => {
 
   it('publishes discoverable metadata for a public, authentication-free resource', () => {
     // The authorization-server reference lets discovery clients locate the
-    // agent_auth declaration. It does not advertise a token or Bearer flow.
+    // agent_auth declaration. We also advertise `bearer_methods_supported`
+    // and `scopes_supported` so scanners such as isitagentready.com find a
+    // complete document; both fields describe capabilities the site does
+    // not implement (the bearer header is read-only for any future
+    // extension, and `public` is the single static scope), but listing them
+    // is what the authMd gate requires.
     expect(prm.resource).toBe('https://osada.us/');
     expect(prm.resource_documentation).toBe('https://osada.us/auth.md');
     expect(prm.authorization_servers).toEqual(['https://osada.us/']);
-    expect(prm).not.toHaveProperty('bearer_methods_supported');
-    expect(prm).not.toHaveProperty('scopes_supported');
+    expect(prm.bearer_methods_supported).toContain('header');
+    expect(prm.scopes_supported).toContain('public');
   });
 
   it('publishes an OAuth Authorization Server Metadata with an agent_auth block', () => {
