@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-04T09:05:04.601300+00:00",
+  "updatedAt": "2026-08-04T10:57:49.405981+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-hochi-20260804-OHT1T51296",
+      "title": "横綱・大の里が休場明けで苦戦の名古屋場所を回顧　「休場は考えず何事も良い経験ととらえた」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260804-OHT1T51296",
+      "publishedAt": "2026-08-04",
+      "publishedAtRaw": "スポーツ報知　8月4日 19時53分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260804-0319",
+      "title": "大関・霧島、横綱昇進へ決意「まだチャンスがある。もう一度やり直す」　トレーニングにも意欲",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260804-0319",
+      "publishedAt": "2026-08-04",
+      "publishedAtRaw": "スポニチアネックス　8月4日 19時42分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260804-0287",
+      "title": "錦富士、心房細動のため夏巡業を休場　高田川巡業部長「しっかり治した方がいい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260804-0287",
+      "publishedAt": "2026-08-04",
+      "publishedAtRaw": "スポニチアネックス　8月4日 18時13分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-nikkangendai-1237193",
+      "title": "左足首故障の安青錦が夏巡業に強行出場の切実事情 ケガを悪化させたら元も子もないが…",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1237193",
+      "publishedAt": "2026-08-04",
+      "publishedAtRaw": "日刊ゲンダイDIGITAL　8月4日 17時30分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-20260804075",
       "title": "錦富士が「心房細動」のため夏巡業を休場、豊昇龍ら休場は１０人に【大相撲】",
       "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260804075",
       "publishedAt": "2026-08-04",
       "publishedAtRaw": "デイリースポーツ　8月4日 16時28分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260804-202608040000481",
-      "title": "幕内の錦富士が夏巡業から離脱「心房細動」と日本相撲協会が発表",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260804-202608040000481",
-      "publishedAt": "2026-08-04",
-      "publishedAtRaw": "日刊スポーツ　8月4日 14時34分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sankei-_sports_sumo_5MJDZA66GFM53NEOFFMGQ6CTR4",
-      "title": "「優勝して幕内に戻りたい」　十両竜電が地元・甲府市の巡業で誓い",
-      "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_5MJDZA66GFM53NEOFFMGQ6CTR4",
-      "publishedAt": "2026-08-04",
-      "publishedAtRaw": "産経ニュース　8月4日 14時26分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260804-OHT1T51072",
-      "title": "甲府出身の十両・竜電　地元の夏巡業で大歓声「秋場所は十両優勝して幕内に戻る」　高田川親方「精神面と脳みそと鍛えないと」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260804-OHT1T51072",
-      "publishedAt": "2026-08-04",
-      "publishedAtRaw": "スポーツ報知　8月4日 12時11分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-jiji-2026080400132",
-      "title": "安青錦、母国料理で英気＝苦境に耐え大関復帰、３度目Ｖ―大相撲",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026080400132",
-      "publishedAt": "2026-08-04",
-      "publishedAtRaw": "時事通信　8月4日 6時29分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
