@@ -52,8 +52,8 @@
 - [x] `npm run typecheck` 緑
 - [x] `npm test` 緑（35 files / 242 tests pass）
 - [x] `npm run build` 緑
-- [ ] isitagentready.com で満点確認（デプロイ後）
-- [ ] リリース PR を作成
+- [x] isitagentready.com で満点確認（デプロイ後）
+- [x] リリース PR を作成
 
 ## レビュー
 
@@ -89,7 +89,7 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 - [x] `app/lib/auth-md.test.ts` と `app/lib/agent-metadata.test.ts` を placeholder 文字列の存在確認から、JSON/YAML の有効な型・URL・相互参照を検証する回帰テストへ更新する
 - [x] focused tests、typecheck、全テスト、build、`git diff --check` を実行する
 - [x] `dist` を `wrangler pages dev` で配信し、GET / HEAD の status、Content-Type、metadata の相互参照を実測する
-- [ ] デプロイ後に isitagentready.com の Auth.md 項目と総合100点を再スキャンする
+- [x] デプロイ後に isitagentready.com の Auth.md 項目と総合100点を再スキャンする
 
 ## Acceptance
 
@@ -118,3 +118,4 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 - Wrangler HTTP: `/auth.md`、`/.well-known/oauth-protected-resource`、`/.well-known/oauth-authorization-server` の GET / HEAD はすべて 200。Content-Type は Markdown 1件、JSON 2件とも単一かつ正しい値。
 - Wrangler content contract: Auth.md の H1 / credential metadata、Authorization Server Metadata の `register_uri` / `anonymous.credential_types_supported` を実レスポンスで確認し、`WRANGLER_AUTH_MD=OK`。
 - Independent review: metadata-only が実 credential 発行ではない点を明示し、YAML fence内の完全一致検証と重複 header 除去を追加した。
+- Production scan: isitagentready.com の Auth.md 項目を含む対象チェックが通過し、コマース以外で総合100点を確認した。
