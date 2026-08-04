@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-04T07:03:21.548106+00:00",
+  "updatedAt": "2026-08-04T09:05:04.601300+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-20260804075",
+      "title": "錦富士が「心房細動」のため夏巡業を休場、豊昇龍ら休場は１０人に【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260804075",
+      "publishedAt": "2026-08-04",
+      "publishedAtRaw": "デイリースポーツ　8月4日 16時28分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-f-bt-tp1-260804-202608040000481",
       "title": "幕内の錦富士が夏巡業から離脱「心房細動」と日本相撲協会が発表",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026080400132",
       "publishedAt": "2026-08-04",
       "publishedAtRaw": "時事通信　8月4日 6時29分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-tokyosports-398205",
-      "title": "【大相撲】関取の結婚式で行司が務める大事な仕事とは？　元力士が解説「めちゃくちゃうまい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-398205",
-      "publishedAt": "2026-08-04",
-      "publishedAtRaw": "東スポWEB　8月4日 6時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
