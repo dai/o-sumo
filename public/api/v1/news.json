@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-04T05:10:03.247683+00:00",
+  "updatedAt": "2026-08-04T07:03:21.548106+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,24 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-f-bt-tp1-260804-202608040000481",
+      "title": "幕内の錦富士が夏巡業から離脱「心房細動」と日本相撲協会が発表",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260804-202608040000481",
+      "publishedAt": "2026-08-04",
+      "publishedAtRaw": "日刊スポーツ　8月4日 14時34分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sankei-_sports_sumo_5MJDZA66GFM53NEOFFMGQ6CTR4",
+      "title": "「優勝して幕内に戻りたい」　十両竜電が地元・甲府市の巡業で誓い",
+      "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_5MJDZA66GFM53NEOFFMGQ6CTR4",
+      "publishedAt": "2026-08-04",
+      "publishedAtRaw": "産経ニュース　8月4日 14時26分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-hochi-20260804-OHT1T51072",
       "title": "甲府出身の十両・竜電　地元の夏巡業で大歓声「秋場所は十両優勝して幕内に戻る」　高田川親方「精神面と脳みそと鍛えないと」",
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260804-OHT1T51072",
@@ -25,38 +43,20 @@
       "sourceLabel": "dmenuスポーツ"
     },
     {
+      "id": "dmenu-docomo-jiji-2026080400132",
+      "title": "安青錦、母国料理で英気＝苦境に耐え大関復帰、３度目Ｖ―大相撲",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026080400132",
+      "publishedAt": "2026-08-04",
+      "publishedAtRaw": "時事通信　8月4日 6時29分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-tokyosports-398205",
       "title": "【大相撲】関取の結婚式で行司が務める大事な仕事とは？　元力士が解説「めちゃくちゃうまい」",
       "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-398205",
       "publishedAt": "2026-08-04",
       "publishedAtRaw": "東スポWEB　8月4日 6時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_PAVNVUGCORO3VOGP4SWH326TXI",
-      "title": "ただ一人の受検者だった新道帝憲は通過　大相撲秋場所の新弟子運動能力検査",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_PAVNVUGCORO3VOGP4SWH326TXI",
-      "publishedAt": "2026-08-03",
-      "publishedAtRaw": "SANSPO　8月3日 23時11分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260803-OHT1T51315",
-      "title": "幕内・琴栄峰が春巡業に続いて山響親方と下半身強化　継承された元横綱・北の湖の四股で大粒の汗「一門も違う中で、ありがたい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260803-OHT1T51315",
-      "publishedAt": "2026-08-03",
-      "publishedAtRaw": "スポーツ報知　8月3日 21時04分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260803-OHT1T51243",
-      "title": "秋場所で十両転落濃厚の御嶽海、今後については「巡業に出て、いろいろな人に会うだろうし、そこで考えてやっていきたい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260803-OHT1T51243",
-      "publishedAt": "2026-08-03",
-      "publishedAtRaw": "スポーツ報知　8月3日 18時26分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
