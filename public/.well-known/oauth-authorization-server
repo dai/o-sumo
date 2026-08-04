@@ -3,17 +3,12 @@
   "service_documentation": "https://osada.us/auth.md",
   "agent_auth": {
     "skill": "https://osada.us/auth.md",
-    "register_uri": "not applicable",
-    "identity_endpoint": "not applicable",
-    "claim_endpoint": "not applicable",
-    "events_endpoint": "not applicable",
-    "identity_types_supported": "not applicable",
-    "credential_types": "not applicable",
-    "identity_assertion": {
-      "assertion_types_supported": "not applicable"
+    "register_uri": "https://osada.us/auth.md#anonymous-public-access",
+    "claim_uri": "https://osada.us/auth.md#claim-and-revocation",
+    "identity_types_supported": ["anonymous"],
+    "anonymous": {
+      "credential_types_supported": ["none"]
     },
-    "events_supported": "not applicable",
-    "scopes_supported": "not applicable",
-    "notes": "o-sumo does not authenticate agents. Every endpoint under https://osada.us/ is public. The fields above are intentionally marked 'not applicable' because no agent registration, identity assertion, or scope negotiation is supported. See https://osada.us/auth.md for the human-facing documentation."
+    "notes": "Discovery-only metadata for a public service. Registration creates no account, credential, claim, or server-side state."
   }
 }
