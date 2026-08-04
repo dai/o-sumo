@@ -83,8 +83,3 @@
 /.well-known/oauth-protected-resource
   Cache-Control: public, max-age=300
   Content-Type: application/json
-
-# auth.md (root)
-/auth.md
-  Cache-Control: public, max-age=300
-  Content-Type: text/markdown; charset=utf-8

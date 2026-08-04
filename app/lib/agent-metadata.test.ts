@@ -24,15 +24,19 @@ describe('agent discovery metadata', () => {
   });
 
   it('publishes an OAuth Authorization Server Metadata with an agent_auth block', () => {
-    // Keep the RFC 8414 issuer while exposing only capabilities the site
-    // actually provides: agent-auth discovery and its documentation.
     expect(asMeta.issuer).toBe('https://osada.us/');
     expect(asMeta.service_documentation).toBe('https://osada.us/auth.md');
     expect(asMeta.agent_auth).toBeDefined();
     const agentAuth = asMeta.agent_auth as Record<string, unknown>;
     expect(agentAuth.skill).toBe('https://osada.us/auth.md');
-    expect(agentAuth.register_uri).toBe('not applicable');
-    expect(agentAuth.identity_types_supported).toBe('not applicable');
+    expect(agentAuth.register_uri).toBe('https://osada.us/auth.md#anonymous-public-access');
+    expect(agentAuth.claim_uri).toBe('https://osada.us/auth.md#claim-and-revocation');
+    expect(agentAuth.identity_types_supported).toEqual(['anonymous']);
+    expect(agentAuth.anonymous).toEqual({ credential_types_supported: ['none'] });
+    expect(agentAuth.notes).toContain('Registration creates no account, credential, claim, or server-side state.');
+    expect(agentAuth).not.toHaveProperty('revocation_uri');
+    expect(agentAuth).not.toHaveProperty('identity_assertion');
+    expect(agentAuth).not.toHaveProperty('events_supported');
     expect(asMeta).not.toHaveProperty('authorization_endpoint');
     expect(asMeta).not.toHaveProperty('token_endpoint');
     expect(asMeta).not.toHaveProperty('jwks_uri');

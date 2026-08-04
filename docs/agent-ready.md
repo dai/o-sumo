@@ -15,13 +15,13 @@ Cloudflare DNS zone, not the Pages project.
 | Path | Purpose |
 | --- | --- |
 | `/.well-known/api-catalog` | RFC 9727 linkset pointing at the public JSON APIs (banzuke, torikumi, rikishi). |
-| `/.well-known/oauth-authorization-server` | RFC 8414-shaped discovery metadata retained to publish the `agent_auth` extension and documentation URL. The site provides no OAuth authorization, token, JWKS, Bearer-token, client-credentials, or scope capability; `agent_auth` explicitly says agent registration is not supported. |
-| `/.well-known/oauth-protected-resource` | RFC 9728 resource metadata identifying the public JSON API and its documentation. Its authorization-server reference leads discovery clients to the `agent_auth` declaration; it advertises no Bearer-token method or authorization scope. |
+| `/.well-known/oauth-authorization-server` | RFC 8414-shaped discovery metadata retained to publish the metadata-only `agent_auth` extension and documentation URL. It declares anonymous public access with credential type `none`; no account, credential, claim, or server-side state is created. |
+| `/.well-known/oauth-protected-resource` | RFC 9728 resource metadata identifying the public JSON API and its documentation. Its authorization-server reference leads discovery clients to `agent_auth`; `bearer_methods_supported: ["header"]` and `scopes_supported: ["public"]` are discovery metadata, while the public APIs require no token. |
 | `/.well-known/mcp/server-card.json` | MCP Server Card (SEP-1649). Indicates that no MCP server is hosted, and points agents at the public API catalog and skills index as the alternative discovery surfaces. |
 | `/.well-known/agent-skills/index.json` | Agent Skills index (RFC v0.2.0). Lists the skills published under `.well-known/agent-skills/`. |
 | `/.well-known/agent-skills/osumo-content/SKILL.md` | Skill description for fetching public API content. |
 | `/.well-known/agent-skills/osumo-discovery/SKILL.md` | Skill description for navigating the site. |
-| `/auth.md` | Top-level auth.md indicating that no agent registration is offered and providing contact information. |
+| `/auth.md` | Top-level Auth.md instructions for metadata-only anonymous public access, including registration and claim information URIs and the no-credential constraint. |
 | `/*.md` (parallel HTML routes) | Static Markdown views served with `Content-Type: text/markdown; charset=utf-8` and `Vary: Accept`. Satisfies the "Markdown for Agents" check. The matching `functions/_middleware.ts` rewrites any `Accept: text/markdown` request to the pre-rendered `index.md` file with the correct `Content-Type`. |
 
 The agent-skills index is generated at build time by `vite.config.ts` (see
@@ -30,9 +30,9 @@ the on-disk SKILL.md files, so changing the skill content automatically
 invalidates the cached digests on the next `npm run build`.
 
 The authentication metadata exists for agent discovery, not because o-sumo is
-an authorization server. Agents should use the `agent_auth` values to determine
-that registration is unavailable and access the listed resources without
-credentials.
+an authorization server. The anonymous registration declaration is
+documentation-only: agents access the listed resources without credentials,
+and no registration record is stored.
 
 ## WebMCP
 
@@ -96,6 +96,10 @@ following checks:
 
 - `curl -i https://osada.us/.well-known/agent-skills/index.json` —
   returns 200 with the skills index JSON.
+- `curl -i https://osada.us/auth.md` — returns 200 with
+  `Content-Type: text/markdown; charset=utf-8`.
+- `curl -i https://osada.us/.well-known/oauth-authorization-server` —
+  returns the metadata-only anonymous `agent_auth` declaration.
 - `curl -i -H 'Accept: text/markdown' https://osada.us/` — returns
   `Content-Type: text/markdown; charset=utf-8` and a `Vary: Accept` header.
 - `dig +multi _index._agents.osada.us HTTPS` — returns the SVCB record
