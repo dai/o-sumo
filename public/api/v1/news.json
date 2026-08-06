@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-05T07:04:43.204532+00:00",
+  "updatedAt": "2026-08-06T00:44:41.817852+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-20260805166",
+      "title": "「ますますお若く少年のよう！」大減量の元貴景勝、湊川親方が弟子に囲まれて誕生日報告　まだ３０歳　「一番若く見える」",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260805166",
+      "publishedAt": "2026-08-05",
+      "publishedAtRaw": "デイリースポーツ　8月5日 23時27分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-f-bt-tp1-260805-202608050000537",
       "title": "笑顔の豊昇龍や黄色Ｔシャツ姿の力士も　立浪部屋ファンブック発売へ　売り上げ一部を熊本復興に",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260804-OHT1T51296",
       "publishedAt": "2026-08-04",
       "publishedAtRaw": "スポーツ報知　8月4日 19時53分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260804-0319",
-      "title": "大関・霧島、横綱昇進へ決意「まだチャンスがある。もう一度やり直す」　トレーニングにも意欲",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260804-0319",
-      "publishedAt": "2026-08-04",
-      "publishedAtRaw": "スポニチアネックス　8月4日 19時42分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
