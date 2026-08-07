@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-07T08:30:46.699836+00:00",
+  "updatedAt": "2026-08-07T10:23:24.365338+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-tbs-2859410",
-      "title": "大関返り咲きの安青錦「自分はここで終わる人間ではない」大横綱・千代の富士に通ずる“不屈”の精神で目指すは「一番上の番付」【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/tbs/sports/tbs-2859410",
+      "id": "dmenu-docomo-tokyosports-398615",
+      "title": "【大相撲】元明瀬山の井筒親方　日本相撲協会を退職…現役時代は個性派力士として活躍",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-398615",
       "publishedAt": "2026-08-07",
-      "publishedAtRaw": "TBS NEWS DIG　8月7日 17時00分",
+      "publishedAtRaw": "東スポWEB　8月7日 18時30分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_WTADAH5DFJNNZGT6RAAQB7DXTQ",
-      "title": "ベテラン記者コラム　旭富士、連勝止まるも4場所連続V！　各段優勝の夢はまだ続く",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_WTADAH5DFJNNZGT6RAAQB7DXTQ",
+      "id": "dmenu-docomo-f-bt-tp1-260807-202608070001129",
+      "title": "元幕内明瀬山の井筒親方が日本相撲協会を退職　23年秋場所で引退後、木瀬部屋付きで指導",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260807-202608070001129",
       "publishedAt": "2026-08-07",
-      "publishedAtRaw": "SANSPO　8月7日 17時00分",
+      "publishedAtRaw": "日刊スポーツ　8月7日 18時11分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-sp-tp0-260807-202608070000398",
-      "title": "吉田沙保里さんが大久保嘉人、豊ノ島一家との夏休みを報告　聖火リレーから川泳ぎまで",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-sp-tp0-260807-202608070000398",
+      "id": "dmenu-docomo-jiji-2026080700923",
+      "title": "元明瀬山の井筒親方が退職＝相撲協会",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026080700923",
       "publishedAt": "2026-08-07",
-      "publishedAtRaw": "日刊スポーツ　8月7日 12時25分",
+      "publishedAtRaw": "時事通信　8月7日 17時57分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260805166",
-      "title": "「ますますお若く少年のよう！」大減量の元貴景勝、湊川親方が弟子に囲まれて誕生日報告　まだ３０歳　「一番若く見える」",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260805166",
-      "publishedAt": "2026-08-05",
-      "publishedAtRaw": "デイリースポーツ　8月5日 23時27分",
+      "id": "dmenu-docomo-hochi-20260807-OHT1T51290",
+      "title": "「夏休み相撲健康体操」に不動豊が参加「緊張していたら相撲は取れない」　教習所に通う大森、垣添は「仲間が増えた」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260807-OHT1T51290",
+      "publishedAt": "2026-08-07",
+      "publishedAtRaw": "スポーツ報知　8月7日 17時57分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260805-202608050000537",
-      "title": "笑顔の豊昇龍や黄色Ｔシャツ姿の力士も　立浪部屋ファンブック発売へ　売り上げ一部を熊本復興に",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260805-202608050000537",
-      "publishedAt": "2026-08-05",
-      "publishedAtRaw": "日刊スポーツ　8月5日 14時27分",
+      "id": "dmenu-docomo-20260807096",
+      "title": "年寄・井筒が７日付で退職　日本相撲協会が発表　元幕内明瀬山",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260807096",
+      "publishedAt": "2026-08-07",
+      "publishedAtRaw": "デイリースポーツ　8月7日 17時40分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
