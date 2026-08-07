@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-07T04:43:45.754413+00:00",
+  "updatedAt": "2026-08-07T08:30:46.699836+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-tbs-2859410",
+      "title": "大関返り咲きの安青錦「自分はここで終わる人間ではない」大横綱・千代の富士に通ずる“不屈”の精神で目指すは「一番上の番付」【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/tbs/sports/tbs-2859410",
+      "publishedAt": "2026-08-07",
+      "publishedAtRaw": "TBS NEWS DIG　8月7日 17時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_WTADAH5DFJNNZGT6RAAQB7DXTQ",
+      "title": "ベテラン記者コラム　旭富士、連勝止まるも4場所連続V！　各段優勝の夢はまだ続く",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_WTADAH5DFJNNZGT6RAAQB7DXTQ",
+      "publishedAt": "2026-08-07",
+      "publishedAtRaw": "SANSPO　8月7日 17時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-f-sp-tp0-260807-202608070000398",
       "title": "吉田沙保里さんが大久保嘉人、豊ノ島一家との夏休みを報告　聖火リレーから川泳ぎまで",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260805-202608050000537",
       "publishedAt": "2026-08-05",
       "publishedAtRaw": "日刊スポーツ　8月5日 14時27分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260805-0052",
-      "title": "錦富士　心房細動のため夏巡業を休場…高田川巡業部長「しっかり治した方がいい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260805-0052",
-      "publishedAt": "2026-08-05",
-      "publishedAtRaw": "スポニチアネックス　8月5日 3時50分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260804-0331",
-      "title": "甲府市出身で35歳の十両・竜電、ご当所で奮闘「幕内に戻れるように」　高田川親方「精神面と脳みそを」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260804-0331",
-      "publishedAt": "2026-08-04",
-      "publishedAtRaw": "スポニチアネックス　8月4日 20時21分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
