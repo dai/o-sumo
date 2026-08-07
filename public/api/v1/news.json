@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-06T00:44:41.817852+00:00",
+  "updatedAt": "2026-08-07T04:43:45.754413+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-f-sp-tp0-260807-202608070000398",
+      "title": "吉田沙保里さんが大久保嘉人、豊ノ島一家との夏休みを報告　聖火リレーから川泳ぎまで",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-sp-tp0-260807-202608070000398",
+      "publishedAt": "2026-08-07",
+      "publishedAtRaw": "日刊スポーツ　8月7日 12時25分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-20260805166",
       "title": "「ますますお若く少年のよう！」大減量の元貴景勝、湊川親方が弟子に囲まれて誕生日報告　まだ３０歳　「一番若く見える」",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260804-0331",
       "publishedAt": "2026-08-04",
       "publishedAtRaw": "スポニチアネックス　8月4日 20時21分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260804-OHT1T51296",
-      "title": "横綱・大の里が休場明けで苦戦の名古屋場所を回顧　「休場は考えず何事も良い経験ととらえた」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260804-OHT1T51296",
-      "publishedAt": "2026-08-04",
-      "publishedAtRaw": "スポーツ報知　8月4日 19時53分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
