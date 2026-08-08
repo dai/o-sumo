@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-08T08:18:18.283058+00:00",
+  "updatedAt": "2026-08-08T10:13:39.960939+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-tokyosports-398738",
+      "title": "【大相撲】若隆景だけじゃない…呼出が「しこ名を呼びづらい」と思う力士は？元力士が解説",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-398738",
+      "publishedAt": "2026-08-08",
+      "publishedAtRaw": "東スポWEB　8月8日 17時18分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-hochi-20260808-OHT1T51225",
       "title": "幕下・不動豊が申し合い稽古で８連勝　大学４冠で春場所幕下付け出しデビューの男は「秋場所は全勝したい」",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260807-202608070001129",
       "publishedAt": "2026-08-07",
       "publishedAtRaw": "日刊スポーツ　8月7日 18時11分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-jiji-2026080700923",
-      "title": "元明瀬山の井筒親方が退職＝相撲協会",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026080700923",
-      "publishedAt": "2026-08-07",
-      "publishedAtRaw": "時事通信　8月7日 17時57分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
