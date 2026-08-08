@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-08T04:28:19.910077+00:00",
+  "updatedAt": "2026-08-08T08:18:18.283058+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-hochi-20260808-OHT1T51225",
+      "title": "幕下・不動豊が申し合い稽古で８連勝　大学４冠で春場所幕下付け出しデビューの男は「秋場所は全勝したい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260808-OHT1T51225",
+      "publishedAt": "2026-08-08",
+      "publishedAtRaw": "スポーツ報知　8月8日 16時08分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-hochi-20260808-OHT1T51099",
       "title": "３０年ぶり「８・８・８の日」 に新十両・時不動が末広がりの関取人生を誓う　「秋場所は全勝優勝目指す」",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026080700923",
       "publishedAt": "2026-08-07",
       "publishedAtRaw": "時事通信　8月7日 17時57分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260807-OHT1T51290",
-      "title": "「夏休み相撲健康体操」に不動豊が参加「緊張していたら相撲は取れない」　教習所に通う大森、垣添は「仲間が増えた」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260807-OHT1T51290",
-      "publishedAt": "2026-08-07",
-      "publishedAtRaw": "スポーツ報知　8月7日 17時57分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
