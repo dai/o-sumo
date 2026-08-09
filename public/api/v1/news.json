@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-09T08:18:51.185674+00:00",
+  "updatedAt": "2026-08-09T10:15:09.343373+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -21,6 +21,15 @@
       "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-398859",
       "publishedAt": "2026-08-09",
       "publishedAtRaw": "東スポWEB　8月9日 16時47分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-f-bt-tp1-260809-202608090000866",
+      "title": "横綱大の里が巡業で本格調整　竜電に胸を借りぶつかり稽古、三段目結山には指導",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260809-202608090000866",
+      "publishedAt": "2026-08-09",
+      "publishedAtRaw": "日刊スポーツ　8月9日 16時19分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-398738",
       "publishedAt": "2026-08-08",
       "publishedAtRaw": "東スポWEB　8月8日 17時18分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260808-OHT1T51225",
-      "title": "幕下・不動豊が申し合い稽古で８連勝　大学４冠で春場所幕下付け出しデビューの男は「秋場所は全勝したい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260808-OHT1T51225",
-      "publishedAt": "2026-08-08",
-      "publishedAtRaw": "スポーツ報知　8月8日 16時08分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
