@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-08T10:13:39.960939+00:00",
+  "updatedAt": "2026-08-09T08:18:51.185674+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-tokyosports-398859",
+      "title": "【大相撲】豊昇龍＆大の里の不振で霧島の綱取りが厳格化？　元ＮＨＫアナが指摘「横綱２人が…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-398859",
+      "publishedAt": "2026-08-09",
+      "publishedAtRaw": "東スポWEB　8月9日 16時47分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-f-bt-tp1-260809-202608090000666",
+      "title": "義ノ富士、被災実家は水道復旧「だいぶ片付けは進んでる」父の焼き肉店も営業再開へ",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260809-202608090000666",
+      "publishedAt": "2026-08-09",
+      "publishedAtRaw": "日刊スポーツ　8月9日 15時22分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-mainichi-20260808k0000m050150000c",
+      "title": "出羽海部屋の夏合宿、諏訪大神境内で始まる　千葉・東庄町",
+      "url": "https://topics.smt.docomo.ne.jp/article/mainichi/sports/mainichi-20260808k0000m050150000c",
+      "publishedAt": "2026-08-09",
+      "publishedAtRaw": "毎日新聞　8月9日 15時15分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-tokyosports-398738",
       "title": "【大相撲】若隆景だけじゃない…呼出が「しこ名を呼びづらい」と思う力士は？元力士が解説",
       "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-398738",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260808-OHT1T51225",
       "publishedAt": "2026-08-08",
       "publishedAtRaw": "スポーツ報知　8月8日 16時08分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260808-OHT1T51099",
-      "title": "３０年ぶり「８・８・８の日」 に新十両・時不動が末広がりの関取人生を誓う　「秋場所は全勝優勝目指す」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260808-OHT1T51099",
-      "publishedAt": "2026-08-08",
-      "publishedAtRaw": "スポーツ報知　8月8日 11時54分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-tokyosports-398615",
-      "title": "【大相撲】元明瀬山の井筒親方　日本相撲協会を退職…現役時代は個性派力士として活躍",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-398615",
-      "publishedAt": "2026-08-07",
-      "publishedAtRaw": "東スポWEB　8月7日 18時30分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260807-202608070001129",
-      "title": "元幕内明瀬山の井筒親方が日本相撲協会を退職　23年秋場所で引退後、木瀬部屋付きで指導",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260807-202608070001129",
-      "publishedAt": "2026-08-07",
-      "publishedAtRaw": "日刊スポーツ　8月7日 18時11分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
