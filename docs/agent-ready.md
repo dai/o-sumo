@@ -18,6 +18,7 @@ Cloudflare DNS zone, not the Pages project.
 | `/.well-known/oauth-authorization-server` | RFC 8414-shaped discovery metadata retained to publish the metadata-only `agent_auth` extension and documentation URL. It declares anonymous public access with credential type `none`; no account, credential, claim, or server-side state is created. |
 | `/.well-known/oauth-protected-resource` | RFC 9728 resource metadata identifying the public JSON API and its documentation. Its authorization-server reference leads discovery clients to `agent_auth`; `bearer_methods_supported: ["header"]` and `scopes_supported: ["public"]` are discovery metadata, while the public APIs require no token. |
 | `/.well-known/mcp/server-card.json` | MCP Server Card (SEP-1649). Indicates that no MCP server is hosted, and points agents at the public API catalog and skills index as the alternative discovery surfaces. |
+| `/.well-known/agent-card.json` | A2A Agent Card (A2A Protocol v1.0.0 §4.4.1). Published for discovery only — `supportedInterfaces` is an empty array because o-sumo is a static site with no A2A server. See [docs/agent-card.md](agent-card.md) for the discovery posture. |
 | `/.well-known/agent-skills/index.json` | Agent Skills index (RFC v0.2.0). Lists the skills published under `.well-known/agent-skills/`. |
 | `/.well-known/agent-skills/osumo-content/SKILL.md` | Skill description for fetching public API content. |
 | `/.well-known/agent-skills/osumo-discovery/SKILL.md` | Skill description for navigating the site. |

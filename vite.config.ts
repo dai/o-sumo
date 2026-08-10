@@ -72,6 +72,24 @@ function mcpServerCardPlugin(): Plugin {
   }
 }
 
+function a2aAgentCardPlugin(): Plugin {
+  let outDir = 'dist'
+  let publicDir = 'public'
+
+  return {
+    name: 'generate-a2a-agent-card',
+    apply: 'build',
+    configResolved(config) {
+      outDir = resolve(config.root, config.build.outDir)
+      publicDir = resolve(config.root, 'public')
+    },
+    async closeBundle() {
+      const { buildA2aAgentCard } = await import('./app/lib/a2a-agent-card')
+      buildA2aAgentCard(publicDir, outDir)
+    },
+  }
+}
+
 function markdownViewsPlugin(): Plugin {
   let outDir = 'dist'
   let publicDir = 'public'
@@ -96,6 +114,7 @@ export default defineConfig({
     sitemapPlugin(),
     agentSkillsPlugin(),
     mcpServerCardPlugin(),
+    a2aAgentCardPlugin(),
     markdownViewsPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
