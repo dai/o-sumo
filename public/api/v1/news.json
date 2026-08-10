@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-10T00:32:01.560115+00:00",
+  "updatedAt": "2026-08-10T04:37:18.752037+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-f-bt-tp1-260809-202608090001371",
-      "title": "霧島が夏巡業で本格始動「そろそろ、始めようかなと」時疾風、伯乃富士と10番申し合い稽古",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260809-202608090001371",
-      "publishedAt": "2026-08-09",
-      "publishedAtRaw": "日刊スポーツ　8月9日 19時11分",
+      "id": "dmenu-docomo-hochi-20260810-OHT1T51114",
+      "title": "幕下・可貴（かき）が白熱の１７番「落ち着いて自分の相撲を取りたい」同郷の元小結・遠藤から指導も",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260810-OHT1T51114",
+      "publishedAt": "2026-08-10",
+      "publishedAtRaw": "スポーツ報知　8月10日 12時42分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-398859",
-      "title": "【大相撲】豊昇龍＆大の里の不振で霧島の綱取りが厳格化？　元ＮＨＫアナが指摘「横綱２人が…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-398859",
-      "publishedAt": "2026-08-09",
-      "publishedAtRaw": "東スポWEB　8月9日 16時47分",
+      "id": "dmenu-docomo-tokyosports-398979",
+      "title": "【大相撲】元幕内・明瀬山が日本相撲協会退職を報告「今後も相撲に携わる仕事をしていきたい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-398979",
+      "publishedAt": "2026-08-10",
+      "publishedAtRaw": "東スポWEB　8月10日 12時41分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260809-202608090000866",
-      "title": "横綱大の里が巡業で本格調整　竜電に胸を借りぶつかり稽古、三段目結山には指導",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260809-202608090000866",
-      "publishedAt": "2026-08-09",
-      "publishedAtRaw": "日刊スポーツ　8月9日 16時19分",
+      "id": "dmenu-docomo-hochi-20260810-OHT1T51108",
+      "title": "イケメン幕下・大森「スー女ブーム」の火付け役、元小結・遠藤から指導を受け連勝…石川・穴水町の同郷、金沢学院大付高の先輩後輩",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260810-OHT1T51108",
+      "publishedAt": "2026-08-10",
+      "publishedAtRaw": "スポーツ報知　8月10日 12時39分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260809-202608090000666",
-      "title": "義ノ富士、被災実家は水道復旧「だいぶ片付けは進んでる」父の焼き肉店も営業再開へ",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260809-202608090000666",
-      "publishedAt": "2026-08-09",
-      "publishedAtRaw": "日刊スポーツ　8月9日 15時22分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260810-0156",
+      "title": "【大相撲】12月の冬巡業で沖縄・うるま場所開催　12月19、20日の2日間興行",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260810-0156",
+      "publishedAt": "2026-08-10",
+      "publishedAtRaw": "スポニチアネックス　8月10日 12時02分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-mainichi-20260808k0000m050150000c",
-      "title": "出羽海部屋の夏合宿、諏訪大神境内で始まる　千葉・東庄町",
-      "url": "https://topics.smt.docomo.ne.jp/article/mainichi/sports/mainichi-20260808k0000m050150000c",
-      "publishedAt": "2026-08-09",
-      "publishedAtRaw": "毎日新聞　8月9日 15時15分",
+      "id": "dmenu-docomo-tbs-2859536",
+      "title": "横審“異例の申し入れ”「相撲道における姿を見せる責任がある」不振続きの横綱2人に強い思い、強さと安定を求む【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/tbs/sports/tbs-2859536",
+      "publishedAt": "2026-08-10",
+      "publishedAtRaw": "TBS NEWS DIG　8月10日 12時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
