@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-10T06:39:59.009316+00:00",
+  "updatedAt": "2026-08-10T08:39:18.252067+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-chuspo-1294738",
+      "title": "安青錦、仙台市での夏巡業で左足の回復アピール 「大関として」休場は考えず…「相撲を好きになってほしい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1294738",
+      "publishedAt": "2026-08-10",
+      "publishedAtRaw": "中日スポーツ　8月10日 16時49分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260810-0255",
+      "title": "大関復帰の安青錦、看板力士としての自覚「触れ合って、さらに相撲を好きになって…」　夏巡業初日から参加",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260810-0255",
+      "publishedAt": "2026-08-10",
+      "publishedAtRaw": "スポニチアネックス　8月10日 16時47分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260810-OHT1T51194",
+      "title": "大相撲の冬巡業は１２月１９、２０日に沖縄・うるま市で開催決定！　８月１５日にはうるま市民にチケット先行販売も",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260810-OHT1T51194",
+      "publishedAt": "2026-08-10",
+      "publishedAtRaw": "スポーツ報知　8月10日 16時02分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260810-OHT1T51192",
+      "title": "十両・朝翠龍、秋場所で新入幕なら兄・朝紅龍と史上１４組目の兄弟幕内「一つの目標だった」…春場所前に亡くなった母の墓前に勝ち越しを報告",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260810-OHT1T51192",
+      "publishedAt": "2026-08-10",
+      "publishedAtRaw": "スポーツ報知　8月10日 15時58分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-hochi-20260810-OHT1T51174",
       "title": "幕下・竜翔が３２番で１９勝　大森らとマゲがほどけるほどの白熱稽古「いい稽古だった。秋場所は最低５勝したい」",
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260810-OHT1T51174",
       "publishedAt": "2026-08-10",
       "publishedAtRaw": "スポーツ報知　8月10日 15時22分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260810-OHT1T51169",
-      "title": "秋場所で新入幕確実、十両・朝翠龍が９日に２６歳誕生日「後悔しないように全力で生きたい」…先場所は東十両筆頭で１１勝",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260810-OHT1T51169",
-      "publishedAt": "2026-08-10",
-      "publishedAtRaw": "スポーツ報知　8月10日 15時07分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-sp-tp0-260810-202608100000543",
-      "title": "レスリング女王・登坂絵莉さんが“力士”に変身　まわし締め相撲稽古に臨む",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-sp-tp0-260810-202608100000543",
-      "publishedAt": "2026-08-10",
-      "publishedAtRaw": "日刊スポーツ　8月10日 14時08分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260810-0185",
-      "title": "【全国都道府県中学生相撲選手権】体重90キロの隍元哉が日本一！大型選手を次々撃破　兄は幕下の太秦",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260810-0185",
-      "publishedAt": "2026-08-10",
-      "publishedAtRaw": "スポニチアネックス　8月10日 13時51分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260810-OHT1T51114",
-      "title": "幕下・可貴（かき）が白熱の１７番「落ち着いて自分の相撲を取りたい」同郷の元小結・遠藤から指導も",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260810-OHT1T51114",
-      "publishedAt": "2026-08-10",
-      "publishedAtRaw": "スポーツ報知　8月10日 12時42分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
