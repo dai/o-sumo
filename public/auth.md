@@ -60,7 +60,27 @@ agent_auth:
 | Protected Resource Metadata | `https://osada.us/.well-known/oauth-protected-resource` |
 | Authorization Server Metadata | `https://osada.us/.well-known/oauth-authorization-server` |
 | Agent Skills | `https://osada.us/.well-known/agent-skills/index.json` |
+| Signature Directory | `https://osada.us/.well-known/http-message-signatures-directory` |
 | Sitemap | `https://osada.us/sitemap.xml` |
+
+## Web Bot Auth
+
+o-sumo publishes a signed [HTTP Message Signatures
+directory](https://datatracker.ietf.org/wg/webbotauth/about/) so peers
+that receive requests from this site can verify they came from the
+official key holder:
+
+- `GET /.well-known/http-message-signatures-directory` returns a JWKS
+  with at least one Ed25519 public key.
+- The response is itself signed per [RFC 9421](https://www.rfc-editor.org/rfc/rfc9421)
+  with `tag="http-message-signatures-directory"` and a 60-second
+  `created`/`expires` window. The `Signature` and `Signature-Input`
+  headers carry the signature and parameters; the `Signature-Agent`
+  header advertises the directory URL.
+
+o-sumo currently publishes this directory for outbound-signing
+verification. It does not yet sign outbound requests from the SPA
+itself, so you do not need to verify o-sumo's signatures today.
 
 ## Contact
 
@@ -70,3 +90,4 @@ corrections. Do not send credentials or private key material.
 ## Changelog
 
 - 2026-08-04 — Published anonymous public-access registration metadata.
+- 2026-08-10 — Published Web Bot Auth signature directory.

@@ -7,6 +7,8 @@ This directory contains Cloudflare Pages Functions for o-sumo:
 - [`a2a/[[path]].ts`](./a2a/[[path]].ts) — JSON-RPC 2.0 endpoint
   advertised in the A2A Agent Card's `supportedInterfaces[0].url`
   (`/.well-known/agent-card.json` → `https://osada.us/a2a`).
+- [`.well-known/http-message-signatures-directory.ts`](./.well-known/http-message-signatures-directory.ts)
+  — serves the Web Bot Auth signature directory (RFC 9421).
 
 ## Markdown for Agents — `_middleware.ts`
 
@@ -40,6 +42,43 @@ so the Function is a minimal JSON-RPC 2.0 surface:
 endpoint URL exposed in the card can evolve (e.g. `/a2a/v1`,
 `/a2a/messages`) without rewriting the card.
 
+## Web Bot Auth directory — `.well-known/http-message-signatures-directory.ts`
+
+Per the [IETF WebBotAuth WG](https://datatracker.ietf.org/wg/webbotauth/about/),
+o-sumo publishes a JWKS plus a self-signed
+[`application/http-message-signatures-directory+json`](https://www.rfc-editor.org/rfc/rfc9421)
+response so peers can verify outbound bot/agent requests by referring
+to the public key set advertised in this directory.
+
+The signing keypair is generated out-of-band by
+`scripts/generate_web_bot_auth_keys.mjs` and inlined as a module
+constant in `.well-known/_web-bot-auth-keys.ts` (Cloudflare Pages
+Functions run on the Workers runtime and cannot read arbitrary files at
+request time). The public JWK is also checked into
+`.web-bot-auth/public.jwk.json` for offline tooling.
+
+The Function signs each response with a fresh
+`created`/`expires`/`nonce` triple and returns:
+
+- `Content-Type: application/http-message-signatures-directory+json`
+- `Signature: sig1=:...:`   *(RFC 9421 base64-encoded Ed25519 signature)*
+- `Signature-Input: sig1=("@authority");alg="ed25519";keyid="...";tag="http-message-signatures-directory";created=...;expires=...;nonce="..."`
+- `Signature-Agent: "https://osada.us/.well-known/http-message-signatures-directory"`
+
+`created`/`expires` are 60 seconds apart, matches the 60-second
+`Cache-Control` set in `public/_headers`.
+
+The shared RFC 9421 primitives live in
+[`app/lib/web-bot-auth/rfc9421.ts`](../app/lib/web-bot-auth/rfc9421.ts)
+and are exercised by the Vitest suite
+(`app/lib/web-bot-auth/rfc9421.test.ts`,
+`app/lib/web-bot-auth/signer.test.ts`). End-to-end verification of the
+live signature uses:
+
+```bash
+TARGET_URL=http://127.0.0.1:3002 node scripts/verify_web_bot_auth_signature.mjs
+```
+
 ## Local development
 
 ```bash
@@ -53,6 +92,9 @@ curl -H 'Accept: text/markdown' http://127.0.0.1:3002/202607-banzuke/
 curl -i http://127.0.0.1:3002/a2a
 curl -i http://127.0.0.1:3002/a2a/ -H 'content-type: application/json' \
   -d '{"jsonrpc":"2.0","id":"1","method":"message/send"}'
+
+# Web Bot Auth directory (note the +json Content-Type and Signature headers)
+curl -i http://127.0.0.1:3002/.well-known/http-message-signatures-directory
 ```
 
 The plain `npm run dev` (Vite dev server) does **not** exercise
