@@ -82,6 +82,16 @@
   Content-Type: application/json
   Link: </.well-known/agent-card.json>; rel="agent-card"
 
+# A2A JSON-RPC endpoint (Cloudflare Pages Function, see functions/a2a/)
+# Implemented as a JSON-RPC 2.0 stub that returns -32601 Method not found
+# for every A2A method — the site has no task state.
+# See: https://a2a-protocol.org/latest/specification/#6-json-rpc-20-transport
+/a2a
+  Cache-Control: public, max-age=300, s-maxage=300, stale-while-revalidate=86400
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, POST, OPTIONS
+  Access-Control-Allow-Headers: Content-Type, Accept
+
 # OAuth Authorization Server Metadata (RFC 8414) + agent_auth extension
 /.well-known/oauth-authorization-server
   Cache-Control: public, max-age=300
