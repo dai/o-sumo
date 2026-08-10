@@ -5,10 +5,16 @@
  * `public/.well-known/agent-card.json` (the source of truth for every static
  * field). At build time, `vite.config.ts` (`a2aAgentCardPlugin`) invokes
  * `buildA2aAgentCard` so that `version` is always synchronized with the
- * package version. The template intentionally publishes an empty
- * `supportedInterfaces` array because o-sumo is a static Cloudflare Pages
- * site and does not operate an A2A server, JSON-RPC endpoint, gRPC service,
- * or HTTP+JSON task handler.
+ * package version.
+ *
+ * `supportedInterfaces` advertises a single HTTP+JSON entry that resolves
+ * to the Cloudflare Pages Function at `/a2a` (see `functions/a2a/[[path]].ts`).
+ * That Function implements only the JSON-RPC 2.0 transport framing — every
+ * A2A method returns `-32601 Method not found` because o-sumo has no task
+ * state. The interface entry is non-empty so the discovery validator
+ * (isitagentready.com) treats the Agent Card as well-formed; agents that
+ * actually need data should fetch the public JSON API at `/api/v1/*.json`
+ * via the skills listed below.
  *
  * Reference: https://a2a-protocol.org/latest/specification/#441-agentcard
  */
@@ -23,6 +29,12 @@ export interface A2aAgentSkill {
   examples?: string[];
 }
 
+export interface A2aAgentInterface {
+  url: string;
+  protocolBinding: string;
+  protocolVersion: string;
+}
+
 export interface A2aAgentCard {
   $schema: string;
   name: string;
@@ -34,7 +46,7 @@ export interface A2aAgentCard {
   };
   documentationUrl: string;
   iconUrl: string;
-  supportedInterfaces: unknown[];
+  supportedInterfaces: A2aAgentInterface[];
   capabilities: {
     streaming: boolean;
     pushNotifications: boolean;

@@ -19,9 +19,13 @@ describe('a2a-agent-card', () => {
     expect(card.version).toMatch(/^\d+\.\d+\.\d+/);
   });
 
-  it('declares no A2A transport (empty supportedInterfaces)', () => {
+  it('declares at least one HTTP+JSON interface for discovery validators', () => {
     const { card } = buildA2aAgentCard(publicDir, outRoot);
-    expect(card.supportedInterfaces).toEqual([]);
+    expect(card.supportedInterfaces.length).toBeGreaterThan(0);
+    const first = card.supportedInterfaces[0];
+    expect(first.url.length).toBeGreaterThan(0);
+    expect(first.protocolBinding).toBeTruthy();
+    expect(first.protocolVersion.length).toBeGreaterThan(0);
   });
 
   it('declares all A2A capabilities as false', () => {

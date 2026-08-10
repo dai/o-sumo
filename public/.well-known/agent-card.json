@@ -1,7 +1,7 @@
 {
   "$schema": "https://a2a-protocol.org/latest/specification/",
   "name": "o-sumo (大相撲アーカイブ)",
-  "description": "Static public archive of 大相撲 (Grand Sumo) banzuke, torikumi, and rikishi data. This Agent Card is published for discovery only — o-sumo does not operate an A2A server, JSON-RPC endpoint, gRPC service, or HTTP+JSON task handler. Agents should fetch the public JSON API at /api/v1/*.json and follow the skills listed below.",
+  "description": "Static public archive of 大相撲 (Grand Sumo) banzuke, torikumi, and rikishi data. The Agent Card advertises a JSON-RPC 2.0 endpoint at https://osada.us/a2a (A2A v1.0.0, HTTP+JSON transport). The endpoint implements only the JSON-RPC transport framing — o-sumo has no task state, so every A2A method (message/send, tasks/get, tasks/cancel, ...) returns -32601 Method not found. Agents should fetch the public JSON API at /api/v1/*.json and follow the skills listed below for actual data retrieval.",
   "version": "1.0.0",
   "provider": {
     "url": "https://osada.us/",
@@ -9,7 +9,13 @@
   },
   "documentationUrl": "https://osada.us/auth.md",
   "iconUrl": "https://osada.us/pwa-192.png",
-  "supportedInterfaces": [],
+  "supportedInterfaces": [
+    {
+      "url": "https://osada.us/a2a",
+      "protocolBinding": "HTTP+JSON",
+      "protocolVersion": "1.0.0"
+    }
+  ],
   "capabilities": {
     "streaming": false,
     "pushNotifications": false,
