@@ -101,3 +101,12 @@
 /.well-known/oauth-protected-resource
   Cache-Control: public, max-age=300
   Content-Type: application/json
+
+# Web Bot Auth (IETF WebBotAuth WG) signature directory
+# The response is self-signed per-request with a fresh `created`/`expires`/`nonce`,
+# so we cache for a single minute — long enough to absorb abuse, short enough that
+# the `expires` claim never lags behind the live signature.
+# See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Signature
+/.well-known/http-message-signatures-directory
+  Cache-Control: public, max-age=60
+  Content-Type: application/http-message-signatures-directory+json
