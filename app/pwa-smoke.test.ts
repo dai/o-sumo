@@ -55,6 +55,12 @@ describe('PWA smoke config', () => {
             { href: 'https://osada.us/api/v1/rikishi.json' },
           ],
         },
+        {
+          anchor: 'https://osada.us/',
+          rel: 'https://a2a-protocol.org/latest/specification/#441-agentcard',
+          href: 'https://osada.us/.well-known/agent-card.json',
+          title: 'A2A Agent Card (discovery only)',
+        },
       ],
     });
   });
