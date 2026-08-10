@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-10T04:37:18.752037+00:00",
+  "updatedAt": "2026-08-10T06:39:59.009316+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-hochi-20260810-OHT1T51174",
+      "title": "幕下・竜翔が３２番で１９勝　大森らとマゲがほどけるほどの白熱稽古「いい稽古だった。秋場所は最低５勝したい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260810-OHT1T51174",
+      "publishedAt": "2026-08-10",
+      "publishedAtRaw": "スポーツ報知　8月10日 15時22分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260810-OHT1T51169",
+      "title": "秋場所で新入幕確実、十両・朝翠龍が９日に２６歳誕生日「後悔しないように全力で生きたい」…先場所は東十両筆頭で１１勝",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260810-OHT1T51169",
+      "publishedAt": "2026-08-10",
+      "publishedAtRaw": "スポーツ報知　8月10日 15時07分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-f-sp-tp0-260810-202608100000543",
+      "title": "レスリング女王・登坂絵莉さんが“力士”に変身　まわし締め相撲稽古に臨む",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-sp-tp0-260810-202608100000543",
+      "publishedAt": "2026-08-10",
+      "publishedAtRaw": "日刊スポーツ　8月10日 14時08分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260810-0185",
+      "title": "【全国都道府県中学生相撲選手権】体重90キロの隍元哉が日本一！大型選手を次々撃破　兄は幕下の太秦",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260810-0185",
+      "publishedAt": "2026-08-10",
+      "publishedAtRaw": "スポニチアネックス　8月10日 13時51分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-hochi-20260810-OHT1T51114",
       "title": "幕下・可貴（かき）が白熱の１７番「落ち着いて自分の相撲を取りたい」同郷の元小結・遠藤から指導も",
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260810-OHT1T51114",
       "publishedAt": "2026-08-10",
       "publishedAtRaw": "スポーツ報知　8月10日 12時42分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-tokyosports-398979",
-      "title": "【大相撲】元幕内・明瀬山が日本相撲協会退職を報告「今後も相撲に携わる仕事をしていきたい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-398979",
-      "publishedAt": "2026-08-10",
-      "publishedAtRaw": "東スポWEB　8月10日 12時41分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260810-OHT1T51108",
-      "title": "イケメン幕下・大森「スー女ブーム」の火付け役、元小結・遠藤から指導を受け連勝…石川・穴水町の同郷、金沢学院大付高の先輩後輩",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260810-OHT1T51108",
-      "publishedAt": "2026-08-10",
-      "publishedAtRaw": "スポーツ報知　8月10日 12時39分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260810-0156",
-      "title": "【大相撲】12月の冬巡業で沖縄・うるま場所開催　12月19、20日の2日間興行",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260810-0156",
-      "publishedAt": "2026-08-10",
-      "publishedAtRaw": "スポニチアネックス　8月10日 12時02分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-tbs-2859536",
-      "title": "横審“異例の申し入れ”「相撲道における姿を見せる責任がある」不振続きの横綱2人に強い思い、強さと安定を求む【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/tbs/sports/tbs-2859536",
-      "publishedAt": "2026-08-10",
-      "publishedAtRaw": "TBS NEWS DIG　8月10日 12時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
