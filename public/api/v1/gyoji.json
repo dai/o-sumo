@@ -1,0 +1,42 @@
+{
+  "updatedAt": "2026-08-11T00:00:00Z",
+  "source": "https://www.sumo.or.jp/IrohaKyokaiMember/gyoji/",
+  "officials": [
+    {
+      "id": "kimura-shonosuke",
+      "name": "木村庄之助",
+      "yomi": "きむらしょうのすけ",
+      "rank": "立行司"
+    },
+    {
+      "id": "shikimori-inosuke",
+      "name": "式守伊之助",
+      "yomi": "しきもりいのすけ",
+      "rank": "立行司"
+    },
+    {
+      "id": "kimura-yodo",
+      "name": "木村容堂",
+      "yomi": "きむらようどう",
+      "rank": "三役格行司"
+    },
+    {
+      "id": "kimura-tamajiro",
+      "name": "木村玉治郎",
+      "yomi": "きむらたまじろう",
+      "rank": "三役格行司"
+    },
+    {
+      "id": "kimura-hisanosuke",
+      "name": "木村寿之介",
+      "yomi": "きむらひさのすけ",
+      "rank": "三役格行司"
+    },
+    {
+      "id": "kimura-konosuke",
+      "name": "木村晃之助",
+      "yomi": "きむらこうのすけ",
+      "rank": "幕内格行司"
+    }
+  ]
+}

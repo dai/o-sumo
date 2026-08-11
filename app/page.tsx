@@ -267,6 +267,8 @@ export default function Home() {
               <Link to="/rikishi/" className="cta-button secondary">
                 {t('home.heroRikishi')}
               </Link>
+              <Link to="/gyoji/" className="cta-button secondary">{t('home.heroGyoji')}</Link>
+              <Link to="/yobidashi/" className="cta-button secondary">{t('home.heroYobidashi')}</Link>
             </nav>
           </div>
           <div className="hero-visual" aria-hidden="true">

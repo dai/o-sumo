@@ -8,7 +8,11 @@ import { VitePWA } from 'vite-plugin-pwa'
 function sitemapPlugin(): Plugin {
   let outDir = 'dist'
   let rikishiIndexPath = ''
+  let gyojiIndexPath = ''
+  let yobidashiIndexPath = ''
   let rikishiItems: unknown = []
+  let gyojiItems: unknown = []
+  let yobidashiItems: unknown = []
 
   return {
     name: 'generate-sitemap',
@@ -16,16 +20,20 @@ function sitemapPlugin(): Plugin {
     configResolved(config) {
       outDir = resolve(config.root, config.build.outDir)
       rikishiIndexPath = resolve(config.root, 'public/api/v1/rikishi.json')
+      gyojiIndexPath = resolve(config.root, 'public/api/v1/gyoji.json')
+      yobidashiIndexPath = resolve(config.root, 'public/api/v1/yobidashi.json')
     },
     async buildStart() {
       const rikishiIndex = JSON.parse(readFileSync(rikishiIndexPath, 'utf8')) as { rikishi?: unknown }
       const { validateRikishiSitemapItems } = await import('./app/lib/sitemap')
       rikishiItems = validateRikishiSitemapItems(rikishiIndex.rikishi)
+      gyojiItems = (JSON.parse(readFileSync(gyojiIndexPath, 'utf8')) as { officials?: unknown }).officials
+      yobidashiItems = (JSON.parse(readFileSync(yobidashiIndexPath, 'utf8')) as { officials?: unknown }).officials
     },
     async closeBundle() {
       const { renderSitemapXml } = await import('./app/lib/sitemap')
       mkdirSync(outDir, { recursive: true })
-      writeFileSync(resolve(outDir, 'sitemap.xml'), renderSitemapXml(undefined, rikishiItems), 'utf8')
+      writeFileSync(resolve(outDir, 'sitemap.xml'), renderSitemapXml(undefined, rikishiItems, gyojiItems, yobidashiItems), 'utf8')
     },
   }
 }

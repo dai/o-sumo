@@ -55,7 +55,9 @@
     "analyticsFeatureLabel": "Grand Sumo Analytics",
     "analyticsFeatureTitle": "Dig into the Basho",
     "analyticsFeatureDescription": "Read the flow of the current basho through wins, undefeated rikishi, and kimarite.",
-    "analyticsFeatureAction": "View analytics"
+    "analyticsFeatureAction": "View analytics",
+    "heroGyoji": "Gyoji directory",
+    "heroYobidashi": "Yobidashi directory"
   },
   "analytics": {
     "eyebrow": "{{basho}} Analytics",
@@ -239,5 +241,24 @@
     "sourceHeading": "Source",
     "sourceDescription": "Profile data is sourced from the Japan Sumo Association.",
     "imageSourceDescription": "Displayed profile images are processed illustrations based on Japan Sumo Association profile photos and generated with MiniMax I2I Generation."
+  },
+  "officials": {
+    "gyoji": "Gyoji",
+    "yobidashi": "Yobidashi",
+    "listTitle": "{{label}} directory",
+    "listDescription": "Profiles of active {{label}} based on official Japan Sumo Association information.",
+    "detailTitle": "{{label}} profile",
+    "loadError": "The directory could not be loaded.",
+    "notFound": "This official was not found",
+    "backToList": "Back to the {{label}} directory",
+    "indexJson": "Directory JSON",
+    "sourceLink": "View the official JSA page",
+    "sourceDescription": "Profile information is sourced from the official Japan Sumo Association website.",
+    "noPhotos": "No photographs are used.",
+    "stageName": "Professional name",
+    "rank": "Rank",
+    "realName": "Legal name",
+    "affiliation": "Stable",
+    "birthplace": "Birthplace"
   }
 }

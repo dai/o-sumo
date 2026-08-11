@@ -1,5 +1,6 @@
 import { getAllArchiveRouteConfigs, getDayPath, type ArchiveRouteConfig } from './torikumi-routes';
 import { rikishiProfilePath } from './rikishi-profile';
+import { officialProfilePath, type OfficialKind } from './official-profile';
 import { normalizeCanonicalPath, toCanonicalUrl } from './site-url';
 
 export interface SitemapEntry {
@@ -10,7 +11,7 @@ export interface RikishiSitemapItem {
   id: number;
 }
 
-const FIXED_SITEMAP_PATHS = ['/', '/archives/', '/rikishi/', '/kimarite/', '/analytics/'] as const;
+const FIXED_SITEMAP_PATHS = ['/', '/archives/', '/rikishi/', '/gyoji/', '/yobidashi/', '/kimarite/', '/analytics/'] as const;
 
 function escapeXml(value: string): string {
   return value
@@ -48,6 +49,8 @@ export function validateRikishiSitemapItems(rikishiItems: unknown): RikishiSitem
 export function getSitemapEntries(
   routeConfigs: ArchiveRouteConfig[] = getAllArchiveRouteConfigs(),
   rikishiItems: unknown = [],
+  gyojiItems: unknown = [],
+  yobidashiItems: unknown = [],
 ): SitemapEntry[] {
   const entries: SitemapEntry[] = [];
   const seen = new Set<string>();
@@ -87,14 +90,27 @@ export function getSitemapEntries(
     appendEntry(rikishiProfilePath(rikishi.id));
   }
 
+  const appendOfficials = (kind: OfficialKind, items: unknown) => {
+    if (!Array.isArray(items)) throw new Error(`${kind} sitemap items must be an array`);
+    for (const item of items) {
+      const id = typeof item === 'object' && item !== null ? (item as { id?: unknown }).id : undefined;
+      if (typeof id !== 'string' || !/^[a-z0-9-]+$/.test(id)) throw new Error(`${kind} sitemap item must have a valid id`);
+      appendEntry(officialProfilePath(kind, id));
+    }
+  };
+  appendOfficials('gyoji', gyojiItems);
+  appendOfficials('yobidashi', yobidashiItems);
+
   return entries;
 }
 
 export function renderSitemapXml(
   routeConfigs: ArchiveRouteConfig[] = getAllArchiveRouteConfigs(),
   rikishiItems: unknown = [],
+  gyojiItems: unknown = [],
+  yobidashiItems: unknown = [],
 ): string {
-  const urls = getSitemapEntries(routeConfigs, rikishiItems)
+  const urls = getSitemapEntries(routeConfigs, rikishiItems, gyojiItems, yobidashiItems)
     .map((entry) => `  <url>\n    <loc>${escapeXml(toCanonicalUrl(entry.loc))}</loc>\n  </url>`)
     .join('\n');
 
