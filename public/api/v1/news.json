@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-11T06:26:04.613757+00:00",
+  "updatedAt": "2026-08-11T08:27:12.514798+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-kyodo_nor-2026081101000601",
+      "title": "阿武松部屋が能登合宿　師匠「復興の力に」",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026081101000601",
+      "publishedAt": "2026-08-11",
+      "publishedAtRaw": "共同通信　8月11日 17時23分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260811-OHT1T51212",
+      "title": "【大相撲】１２日の奥州巡業は予定通り開催へ   台風１５号の動向を注視し、力士らは１１日に仙台から移動",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260811-OHT1T51212",
+      "publishedAt": "2026-08-11",
+      "publishedAtRaw": "スポーツ報知　8月11日 16時54分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260811-0239",
+      "title": "横綱・大の里が夏巡業離脱　高田川巡業部長「横綱の責任感もあるだろうから」16日の弘前市から再合流予定",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260811-0239",
+      "publishedAt": "2026-08-11",
+      "publishedAtRaw": "スポニチアネックス　8月11日 16時39分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-hochi-20260811-OHT1T51144",
       "title": "横綱・大の里、夏巡業を離脱　高田川巡業部長「治療のため。戻ってくる前提」",
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260811-OHT1T51144",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1238982",
       "publishedAt": "2026-08-11",
       "publishedAtRaw": "日刊ゲンダイDIGITAL　8月11日 9時26分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260811-0048",
-      "title": "【大相撲夏巡業仙台場所】安青錦、慎重に調整「体と向き合いながら焦らないように」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260811-0048",
-      "publishedAt": "2026-08-11",
-      "publishedAtRaw": "スポニチアネックス　8月11日 5時10分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-thedigestweb-118598",
-      "title": "「美人の奥さまですねー」元横綱が銀座ぶらぶらで披露した“最愛の妻”が話題！「とってもオシャレ」「なんだか可愛いカップル」",
-      "url": "https://topics.smt.docomo.ne.jp/article/thedigestweb/sports/thedigestweb-118598",
-      "publishedAt": "2026-08-11",
-      "publishedAtRaw": "THE DIGEST　8月11日 4時39分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260810-OHT1T51168",
-      "title": "元横綱　激変した現在の姿！タンクトップの美人妻と“銀ブラ”「とってもオシャレ」再婚から６年の朝青龍氏",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260810-OHT1T51168",
-      "publishedAt": "2026-08-10",
-      "publishedAtRaw": "スポーツ報知　8月10日 20時25分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
