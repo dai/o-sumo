@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-10T10:33:27.486658+00:00",
+  "updatedAt": "2026-08-11T00:30:14.132128+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-sponichi-spngoo-20260811-0048",
+      "title": "【大相撲夏巡業仙台場所】安青錦、慎重に調整「体と向き合いながら焦らないように」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260811-0048",
+      "publishedAt": "2026-08-11",
+      "publishedAtRaw": "スポニチアネックス　8月11日 5時10分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-thedigestweb-118598",
+      "title": "「美人の奥さまですねー」元横綱が銀座ぶらぶらで披露した“最愛の妻”が話題！「とってもオシャレ」「なんだか可愛いカップル」",
+      "url": "https://topics.smt.docomo.ne.jp/article/thedigestweb/sports/thedigestweb-118598",
+      "publishedAt": "2026-08-11",
+      "publishedAtRaw": "THE DIGEST　8月11日 4時39分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260810-OHT1T51168",
+      "title": "元横綱　激変した現在の姿！タンクトップの美人妻と“銀ブラ”「とってもオシャレ」再婚から６年の朝青龍氏",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260810-OHT1T51168",
+      "publishedAt": "2026-08-10",
+      "publishedAtRaw": "スポーツ報知　8月10日 20時25分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-hochi-20260810-OHT1T51252",
       "title": "大関・霧島、２日連続の三番稽古で計１０番　綱取りへ「ここからしっかり体を戻す」",
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260810-OHT1T51252",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260810-0283",
       "publishedAt": "2026-08-10",
       "publishedAtRaw": "スポニチアネックス　8月10日 18時20分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260810-OHT1T51245",
-      "title": "安青錦、夏巡業休場は考えず「大関としてふれ合って、さらに相撲を好きになってくれれば」　左足は順調に回復",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260810-OHT1T51245",
-      "publishedAt": "2026-08-10",
-      "publishedAtRaw": "スポーツ報知　8月10日 18時11分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-tokyosports-399009",
-      "title": "【大相撲】〝怪力〟宇良　規格外の太ももに米国で話題沸騰「爆発的な動きを…」＝現地報道",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-399009",
-      "publishedAt": "2026-08-10",
-      "publishedAtRaw": "東スポWEB　8月10日 17時56分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-chuspo-1294738",
-      "title": "安青錦、仙台市での夏巡業で左足の回復アピール 「大関として」休場は考えず…「相撲を好きになってほしい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1294738",
-      "publishedAt": "2026-08-10",
-      "publishedAtRaw": "中日スポーツ　8月10日 16時49分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
