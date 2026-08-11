@@ -55,7 +55,9 @@
     "analyticsFeatureLabel": "大相撲アナリティクス",
     "analyticsFeatureTitle": "場所を掘る",
     "analyticsFeatureDescription": "勝ち星、無敗力士、決まり手から、今場所の流れを読み解きます。",
-    "analyticsFeatureAction": "アナリティクスを見る"
+    "analyticsFeatureAction": "アナリティクスを見る",
+    "heroGyoji": "行司名鑑",
+    "heroYobidashi": "呼出名鑑"
   },
   "analytics": {
     "eyebrow": "{{basho}}分析",
@@ -239,5 +241,24 @@
     "sourceHeading": "出典",
     "sourceDescription": "プロフィール情報の出典は日本相撲協会です。",
     "imageSourceDescription": "掲載画像は日本相撲協会プロフィール写真をもとに MiniMax I2I Generation で加工したプロフィールイラストです。"
+  },
+  "officials": {
+    "gyoji": "行司",
+    "yobidashi": "呼出",
+    "listTitle": "{{label}}名鑑",
+    "listDescription": "日本相撲協会の公式情報をもとに、現役{{label}}を紹介します。",
+    "detailTitle": "{{label}}プロフィール",
+    "loadError": "名鑑を読み込めませんでした。",
+    "notFound": "該当する人物が見つかりません",
+    "backToList": "{{label}}名鑑へ戻る",
+    "indexJson": "名鑑JSON",
+    "sourceLink": "日本相撲協会の公式ページを見る",
+    "sourceDescription": "掲載情報の出典は日本相撲協会公式サイトです。",
+    "noPhotos": "写真は使用していません。",
+    "stageName": "名跡・呼出名",
+    "rank": "階級",
+    "realName": "本名",
+    "affiliation": "所属部屋",
+    "birthplace": "出身地"
   }
 }

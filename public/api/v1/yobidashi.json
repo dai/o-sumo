@@ -1,0 +1,42 @@
+{
+  "updatedAt": "2026-08-11T00:00:00Z",
+  "source": "https://www.sumo.or.jp/IrohaKyokaiMember/yobidashi/",
+  "officials": [
+    {
+      "id": "jiro",
+      "name": "次郎",
+      "yomi": "じろう",
+      "rank": "立呼出"
+    },
+    {
+      "id": "katsuyuki",
+      "name": "克之",
+      "yomi": "かつゆき",
+      "rank": "副立呼出"
+    },
+    {
+      "id": "ryuji",
+      "name": "隆二",
+      "yomi": "りゅうじ",
+      "rank": "三役呼出"
+    },
+    {
+      "id": "shigeo",
+      "name": "重夫",
+      "yomi": "しげお",
+      "rank": "三役呼出"
+    },
+    {
+      "id": "shiro",
+      "name": "志朗",
+      "yomi": "しろう",
+      "rank": "三役呼出"
+    },
+    {
+      "id": "asahi",
+      "name": "旭",
+      "yomi": "あさひ",
+      "rank": "幕内呼出"
+    }
+  ]
+}

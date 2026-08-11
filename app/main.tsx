@@ -12,6 +12,7 @@ import TopLevelSlugPage from './TopLevelSlugPage'
 import ArchivesPage from './archives/page'
 import RikishiPage from './rikishi/page'
 import RikishiProfilePage from './rikishi/RikishiProfilePage'
+import { OfficialListPage, OfficialProfilePage } from './officials/page'
 import KimaritePage from './kimarite/page'
 import AnalyticsDashboardPage from './analytics/page'
 import ThemeToggle from './components/ThemeToggle'
@@ -74,6 +75,12 @@ function AppShell() {
         <Route path="/archives" element={<HashPreservingRedirect to="/archives/" />} />
         <Route path="/rikishi/" element={<RikishiPage />} />
         <Route path="/rikishi" element={<HashPreservingRedirect to="/rikishi/" />} />
+        <Route path="/gyoji/" element={<OfficialListPage kind="gyoji" />} />
+        <Route path="/gyoji" element={<HashPreservingRedirect to="/gyoji/" />} />
+        <Route path="/gyoji/:id" element={<TrailingSlashRoute><OfficialProfilePage kind="gyoji" /></TrailingSlashRoute>} />
+        <Route path="/yobidashi/" element={<OfficialListPage kind="yobidashi" />} />
+        <Route path="/yobidashi" element={<HashPreservingRedirect to="/yobidashi/" />} />
+        <Route path="/yobidashi/:id" element={<TrailingSlashRoute><OfficialProfilePage kind="yobidashi" /></TrailingSlashRoute>} />
         <Route path="/kimarite/" element={<KimaritePage />} />
         <Route path="/kimarite" element={<HashPreservingRedirect to="/kimarite/" />} />
         <Route path="/analytics/" element={<AnalyticsDashboardPage />} />

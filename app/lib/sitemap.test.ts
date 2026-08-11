@@ -137,6 +137,15 @@ describe('sitemap helpers', () => {
     expect(xml).not.toContain(`${SITE_ORIGIN}/api/v1/rikishi/101.json`);
   });
 
+  it('renders gyoji and yobidashi directory and profile URLs', () => {
+    const xml = renderSitemapXml([], [], [{ id: 'kimura-shonosuke' }], [{ id: 'jiro' }]);
+
+    expect(xml).toContain(`<loc>${SITE_ORIGIN}/gyoji/</loc>`);
+    expect(xml).toContain(`<loc>${SITE_ORIGIN}/gyoji/kimura-shonosuke/</loc>`);
+    expect(xml).toContain(`<loc>${SITE_ORIGIN}/yobidashi/</loc>`);
+    expect(xml).toContain(`<loc>${SITE_ORIGIN}/yobidashi/jiro/</loc>`);
+  });
+
   it('emits only unique, absolute, indexable canonical URLs', () => {
     const xml = renderSitemapXml();
     const locs = Array.from(xml.matchAll(/<loc>([^<]+)<\/loc>/g), (match) => match[1]);
