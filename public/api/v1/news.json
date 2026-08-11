@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-11T02:48:46.610333+00:00",
+  "updatedAt": "2026-08-11T06:26:04.613757+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-hochi-20260811-OHT1T51144",
+      "title": "横綱・大の里、夏巡業を離脱　高田川巡業部長「治療のため。戻ってくる前提」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260811-OHT1T51144",
+      "publishedAt": "2026-08-11",
+      "publishedAtRaw": "スポーツ報知　8月11日 15時14分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-nikkangendai-1238982",
       "title": "安青錦3度目Vはアッパレだが、私の大の里への評価は甘かった。両横綱よ「13勝の壁」を破ってみせよ【しまなみ親方の本場所感想戦】",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260810-OHT1T51168",
       "publishedAt": "2026-08-10",
       "publishedAtRaw": "スポーツ報知　8月10日 20時25分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260810-OHT1T51252",
-      "title": "大関・霧島、２日連続の三番稽古で計１０番　綱取りへ「ここからしっかり体を戻す」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260810-OHT1T51252",
-      "publishedAt": "2026-08-10",
-      "publishedAtRaw": "スポーツ報知　8月10日 18時40分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
