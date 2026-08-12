@@ -1,42 +1,426 @@
 {
-  "updatedAt": "2026-08-11T00:00:00Z",
+  "retrievedAt": "2026-08-12T00:27:59Z",
   "source": "https://www.sumo.or.jp/IrohaKyokaiMember/gyoji/",
   "officials": [
     {
-      "id": "kimura-shonosuke",
-      "name": "木村庄之助",
-      "yomi": "きむらしょうのすけ",
-      "rank": "立行司"
+      "id": 1986,
+      "name": "木村 庄之助",
+      "yomi": "きむら しょうのすけ",
+      "realName": "洞澤 裕司",
+      "rank": "立行司",
+      "rankCode": "tate-gyoji",
+      "affiliation": "九重",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/1986/"
     },
     {
-      "id": "shikimori-inosuke",
-      "name": "式守伊之助",
-      "yomi": "しきもりいのすけ",
-      "rank": "立行司"
+      "id": 1987,
+      "name": "式守 伊之助",
+      "yomi": "しきもり いのすけ",
+      "realName": "森田 善光",
+      "rank": "立行司",
+      "rankCode": "tate-gyoji",
+      "affiliation": "春日野",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/1987/"
     },
     {
-      "id": "kimura-yodo",
-      "name": "木村容堂",
-      "yomi": "きむらようどう",
-      "rank": "三役格行司"
+      "id": 1988,
+      "name": "木村 晃之助",
+      "yomi": "きむら こうのすけ",
+      "realName": "小島 俊明",
+      "rank": "三役行司",
+      "rankCode": "sanyaku-gyoji",
+      "affiliation": "九重",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/1988/"
     },
     {
-      "id": "kimura-tamajiro",
-      "name": "木村玉治郎",
-      "yomi": "きむらたまじろう",
-      "rank": "三役格行司"
+      "id": 1989,
+      "name": "木村 寿之介",
+      "yomi": "きむら ひさのすけ",
+      "realName": "波田 寿和",
+      "rank": "三役行司",
+      "rankCode": "sanyaku-gyoji",
+      "affiliation": "大島",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/1989/"
     },
     {
-      "id": "kimura-hisanosuke",
-      "name": "木村寿之介",
-      "yomi": "きむらひさのすけ",
-      "rank": "三役格行司"
+      "id": 1990,
+      "name": "式守 勘太夫",
+      "yomi": "しきもり かんだゆう",
+      "realName": "菊池 浩",
+      "rank": "三役行司",
+      "rankCode": "sanyaku-gyoji",
+      "affiliation": "朝日山",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/1990/"
     },
     {
-      "id": "kimura-konosuke",
-      "name": "木村晃之助",
-      "yomi": "きむらこうのすけ",
-      "rank": "幕内格行司"
+      "id": 1991,
+      "name": "木村 元基",
+      "yomi": "きむら もとき",
+      "realName": "岡村 浩道",
+      "rank": "幕内行司",
+      "rankCode": "makuuchi-gyoji",
+      "affiliation": "湊",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/1991/"
+    },
+    {
+      "id": 1993,
+      "name": "木村 秋治郎",
+      "yomi": "きむら あきじろう",
+      "realName": "中沢 繁広",
+      "rank": "幕内行司",
+      "rankCode": "makuuchi-gyoji",
+      "affiliation": "春日野",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/1993/"
+    },
+    {
+      "id": 1994,
+      "name": "式守 錦太夫",
+      "yomi": "しきもり きんだゆう",
+      "realName": "押田 裕光",
+      "rank": "幕内行司",
+      "rankCode": "makuuchi-gyoji",
+      "affiliation": "放駒",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/1994/"
+    },
+    {
+      "id": 1996,
+      "name": "木村 要之助",
+      "yomi": "きむら ようのすけ",
+      "realName": "奥野 真志",
+      "rank": "幕内行司",
+      "rankCode": "makuuchi-gyoji",
+      "affiliation": "八角",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/1996/"
+    },
+    {
+      "id": 1997,
+      "name": "式守 鬼一郎",
+      "yomi": "しきもり きいちろう",
+      "realName": "和智 修",
+      "rank": "幕内行司",
+      "rankCode": "makuuchi-gyoji",
+      "affiliation": "追手風",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/1997/"
+    },
+    {
+      "id": 1998,
+      "name": "木村 朝之助",
+      "yomi": "きむら あさのすけ",
+      "realName": "石田 勝也",
+      "rank": "幕内行司",
+      "rankCode": "makuuchi-gyoji",
+      "affiliation": "高砂",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/1998/"
+    },
+    {
+      "id": 1999,
+      "name": "木村 庄三郎",
+      "yomi": "きむら しょうざぶろう",
+      "realName": "重山 慶一郎",
+      "rank": "幕内行司",
+      "rankCode": "makuuchi-gyoji",
+      "affiliation": "田子ノ浦",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/1999/"
+    },
+    {
+      "id": 2000,
+      "name": "木村 光之助",
+      "yomi": "きむら みつのすけ",
+      "realName": "川原 誠",
+      "rank": "幕内行司",
+      "rankCode": "makuuchi-gyoji",
+      "affiliation": "高田川",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2000/"
+    },
+    {
+      "id": 2001,
+      "name": "木村 行宏",
+      "yomi": "きむら ゆきひろ",
+      "realName": "福永 幸敏",
+      "rank": "十両行司",
+      "rankCode": "juryo-gyoji",
+      "affiliation": "玉ノ井",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2001/"
+    },
+    {
+      "id": 2002,
+      "name": "式守 慎之助",
+      "yomi": "しきもり しんのすけ",
+      "realName": "水谷 洋二",
+      "rank": "十両行司",
+      "rankCode": "juryo-gyoji",
+      "affiliation": "放駒",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2002/"
+    },
+    {
+      "id": 2003,
+      "name": "木村 吉二郎",
+      "yomi": "きむら きちじろう",
+      "realName": "西野 昌宏",
+      "rank": "十両行司",
+      "rankCode": "juryo-gyoji",
+      "affiliation": "芝田山",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2003/"
+    },
+    {
+      "id": 2004,
+      "name": "木村 勘九郎",
+      "yomi": "きむら かんくろう",
+      "realName": "中村 佳己",
+      "rank": "十両行司",
+      "rankCode": "juryo-gyoji",
+      "affiliation": "山響",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2004/"
+    },
+    {
+      "id": 2005,
+      "name": "木村 千鷲",
+      "yomi": "きむら ちしゅう",
+      "realName": "小林 亮太",
+      "rank": "十両行司",
+      "rankCode": "juryo-gyoji",
+      "affiliation": "出羽海",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2005/"
+    },
+    {
+      "id": 2008,
+      "name": "木村 善之輔",
+      "yomi": "きむら ぜんのすけ",
+      "realName": "木村 誠",
+      "rank": "十両行司",
+      "rankCode": "juryo-gyoji",
+      "affiliation": "春日野",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2008/"
+    },
+    {
+      "id": 2318,
+      "name": "木村 幸三郎",
+      "yomi": "きむら こうざぶろう",
+      "realName": "宮坂 亮輔",
+      "rank": "十両行司",
+      "rankCode": "juryo-gyoji",
+      "affiliation": "八角",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2318/"
+    },
+    {
+      "id": 2322,
+      "name": "木村 秀朗",
+      "yomi": "きむら ひであき",
+      "realName": "森安 朗",
+      "rank": "十両行司",
+      "rankCode": "juryo-gyoji",
+      "affiliation": "玉ノ井",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2322/"
+    },
+    {
+      "id": 2323,
+      "name": "式守 与之吉",
+      "yomi": "しきもり よのきち",
+      "realName": "笹井 一輝",
+      "rank": "十両行司",
+      "rankCode": "juryo-gyoji",
+      "affiliation": "荒汐",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2323/"
+    },
+    {
+      "id": 2329,
+      "name": "木村 悟志",
+      "yomi": "きむら さとし",
+      "realName": "前田 悟志",
+      "rank": "幕下行司",
+      "rankCode": "makushita-gyoji",
+      "affiliation": "高砂",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2329/"
+    },
+    {
+      "id": 2330,
+      "name": "木村 猿ノ助",
+      "yomi": "きむら えんのすけ",
+      "realName": "石丸 悟",
+      "rank": "幕下行司",
+      "rankCode": "makushita-gyoji",
+      "affiliation": "二所ノ関",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2330/"
+    },
+    {
+      "id": 2333,
+      "name": "式守 友和",
+      "yomi": "しきもり ともかず",
+      "realName": "新家 宏昌",
+      "rank": "幕下行司",
+      "rankCode": "makushita-gyoji",
+      "affiliation": "大島",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2333/"
+    },
+    {
+      "id": 2336,
+      "name": "式守 輝乃典",
+      "yomi": "しきもり きのすけ",
+      "realName": "池上 和輝",
+      "rank": "幕下行司",
+      "rankCode": "makushita-gyoji",
+      "affiliation": "佐渡ヶ嶽",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2336/"
+    },
+    {
+      "id": 2337,
+      "name": "木村 一馬",
+      "yomi": "きむら かずま",
+      "realName": "岡田 一馬",
+      "rank": "幕下行司",
+      "rankCode": "makushita-gyoji",
+      "affiliation": "西岩",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2337/"
+    },
+    {
+      "id": 2348,
+      "name": "木村 錦太郎",
+      "yomi": "きむら きんたろう",
+      "realName": "松永 颯",
+      "rank": "幕下行司",
+      "rankCode": "makushita-gyoji",
+      "affiliation": "錦戸",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2348/"
+    },
+    {
+      "id": 2353,
+      "name": "式守 正一郎",
+      "yomi": "しきもり せいいちろう",
+      "realName": "福田 陸斗",
+      "rank": "幕下行司",
+      "rankCode": "makushita-gyoji",
+      "affiliation": "伊勢ヶ濱",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2353/"
+    },
+    {
+      "id": 2354,
+      "name": "木村 桜乃助",
+      "yomi": "きむら さくらのすけ",
+      "realName": "栗原 将之介",
+      "rank": "幕下行司",
+      "rankCode": "makushita-gyoji",
+      "affiliation": "式秀",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2354/"
+    },
+    {
+      "id": 2356,
+      "name": "式守 誠輔",
+      "yomi": "しきもり せいすけ",
+      "realName": "齋川 幸志",
+      "rank": "三段目行司",
+      "rankCode": "sandanme-gyoji",
+      "affiliation": "伊勢ヶ濱",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2356/"
+    },
+    {
+      "id": 2357,
+      "name": "式守 辰之助",
+      "yomi": "しきもり たつのすけ",
+      "realName": "水谷 恵輔",
+      "rank": "三段目行司",
+      "rankCode": "sandanme-gyoji",
+      "affiliation": "高田川",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2357/"
+    },
+    {
+      "id": 2359,
+      "name": "木村 成将",
+      "yomi": "きむら なりまさ",
+      "realName": "田島 成将",
+      "rank": "三段目行司",
+      "rankCode": "sandanme-gyoji",
+      "affiliation": "雷",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2359/"
+    },
+    {
+      "id": 2360,
+      "name": "木村 勝之介",
+      "yomi": "きむら かつのすけ",
+      "realName": "松本 海斗",
+      "rank": "三段目行司",
+      "rankCode": "sandanme-gyoji",
+      "affiliation": "大島",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2360/"
+    },
+    {
+      "id": 2361,
+      "name": "木村 啓太郎",
+      "yomi": "きむら けいたろう",
+      "realName": "秋葉 啓汰",
+      "rank": "三段目行司",
+      "rankCode": "sandanme-gyoji",
+      "affiliation": "武蔵川",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2361/"
+    },
+    {
+      "id": 2362,
+      "name": "木村 龍之助",
+      "yomi": "きむら りゅうのすけ",
+      "realName": "梶田 晴人",
+      "rank": "三段目行司",
+      "rankCode": "sandanme-gyoji",
+      "affiliation": "九重",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2362/"
+    },
+    {
+      "id": 2363,
+      "name": "木村 俊太",
+      "yomi": "きむら しゅんた",
+      "realName": "宇都木 俊太",
+      "rank": "三段目行司",
+      "rankCode": "sandanme-gyoji",
+      "affiliation": "錣山",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2363/"
+    },
+    {
+      "id": 2365,
+      "name": "式守 昂明",
+      "yomi": "しきもり こうめい",
+      "realName": "橋本 昂明",
+      "rank": "序二段行司",
+      "rankCode": "jonidan-gyoji",
+      "affiliation": "鳴戸",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2365/"
+    },
+    {
+      "id": 2366,
+      "name": "式守 鬼三郎",
+      "yomi": "しきもり きさぶろう",
+      "realName": "宮古 衆侯",
+      "rank": "序二段行司",
+      "rankCode": "jonidan-gyoji",
+      "affiliation": "時津風",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2366/"
+    },
+    {
+      "id": 2369,
+      "name": "木村 裕之助",
+      "yomi": "きむら ゆうのすけ",
+      "realName": "浦川 裕喜",
+      "rank": "序ノ口行司",
+      "rankCode": "jonokuchi-gyoji",
+      "affiliation": "田子ノ浦",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2369/"
+    },
+    {
+      "id": 2370,
+      "name": "式守 友三郎",
+      "yomi": "しきもり ともさぶろう",
+      "realName": "市川 友輝",
+      "rank": "序ノ口行司",
+      "rankCode": "jonokuchi-gyoji",
+      "affiliation": "音羽山",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2370/"
+    },
+    {
+      "id": 2371,
+      "name": "木村 先進",
+      "yomi": "きむら せんしん",
+      "realName": "古賀 成明",
+      "rank": "序ノ口行司",
+      "rankCode": "jonokuchi-gyoji",
+      "affiliation": "立浪",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/2371/"
     }
   ]
 }

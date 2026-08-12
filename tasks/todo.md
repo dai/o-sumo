@@ -77,7 +77,7 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 
 ## Plan
 
-- [ ] 公式HTMLパーサーをテスト先行で実装し、行司42名・呼出45名の一覧／個別JSONを生成する
+- [x] 公式HTMLパーサーをテスト先行で実装し、行司42名・呼出45名の一覧／個別JSONを生成する
 - [ ] 公式数値ID、日英階級表示、メタデータ、sitemapへUIとAPI型を接続する
 - [ ] 更新runbookを追加し、全テスト・型チェック・ビルド・HTTP配信を検証する
 - [ ] 独立レビューを通し、コミット・push・PRを作成する
@@ -85,6 +85,7 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 ## Review
 
 - 実装完了後にコマンド結果、生成件数、代表プロフィール、配信確認結果を記録する。
+- Task 1: `python scripts/update_official_profiles_test.py` はfixture取得の生成・不一致時の全出力未更新を確認して緑。公式HTMLから行司42名、呼出45名を取得し、数値IDの個別JSONと一覧JSONを生成、文字列slugの旧JSONを削除した。
 
 ---
 

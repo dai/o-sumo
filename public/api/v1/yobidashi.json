@@ -1,42 +1,456 @@
 {
-  "updatedAt": "2026-08-11T00:00:00Z",
+  "retrievedAt": "2026-08-12T00:27:59Z",
   "source": "https://www.sumo.or.jp/IrohaKyokaiMember/yobidashi/",
   "officials": [
     {
-      "id": "jiro",
-      "name": "次郎",
-      "yomi": "じろう",
-      "rank": "立呼出"
-    },
-    {
-      "id": "katsuyuki",
+      "id": 1935,
       "name": "克之",
       "yomi": "かつゆき",
-      "rank": "副立呼出"
+      "realName": "小山 克之",
+      "rank": "立呼出",
+      "rankCode": "tate-yobidashi",
+      "affiliation": "芝田山",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1935/"
     },
     {
-      "id": "ryuji",
-      "name": "隆二",
-      "yomi": "りゅうじ",
-      "rank": "三役呼出"
-    },
-    {
-      "id": "shigeo",
-      "name": "重夫",
-      "yomi": "しげお",
-      "rank": "三役呼出"
-    },
-    {
-      "id": "shiro",
+      "id": 1936,
       "name": "志朗",
       "yomi": "しろう",
-      "rank": "三役呼出"
+      "realName": "嶋田 義和",
+      "rank": "副立呼出",
+      "rankCode": "fuku-tate-yobidashi",
+      "affiliation": "大嶽",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1936/"
     },
     {
-      "id": "asahi",
+      "id": 1937,
+      "name": "重夫",
+      "yomi": "しげお",
+      "realName": "谷口 卓美",
+      "rank": "三役呼出",
+      "rankCode": "sanyaku-yobidashi",
+      "affiliation": "九重",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1937/"
+    },
+    {
+      "id": 1938,
+      "name": "吾郎",
+      "yomi": "ごろう",
+      "realName": "赤山 正春",
+      "rank": "三役呼出",
+      "rankCode": "sanyaku-yobidashi",
+      "affiliation": "大嶽",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1938/"
+    },
+    {
+      "id": 1939,
+      "name": "幸吉",
+      "yomi": "こうきち",
+      "realName": "千場 勝志",
+      "rank": "幕内呼出",
+      "rankCode": "makuuchi-yobidashi",
+      "affiliation": "大島",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1939/"
+    },
+    {
+      "id": 1940,
       "name": "旭",
-      "yomi": "あさひ",
-      "rank": "幕内呼出"
+      "yomi": "あきら",
+      "realName": "市川 俊幸",
+      "rank": "幕内呼出",
+      "rankCode": "makuuchi-yobidashi",
+      "affiliation": "大島",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1940/"
+    },
+    {
+      "id": 1941,
+      "name": "隆二",
+      "yomi": "りゅうじ",
+      "realName": "高橋 隆二",
+      "rank": "幕内呼出",
+      "rankCode": "makuuchi-yobidashi",
+      "affiliation": "伊勢ヶ濱",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1941/"
+    },
+    {
+      "id": 1942,
+      "name": "琴三",
+      "yomi": "ことぞう",
+      "realName": "都間 壮",
+      "rank": "幕内呼出",
+      "rankCode": "makuuchi-yobidashi",
+      "affiliation": "佐渡ヶ嶽",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1942/"
+    },
+    {
+      "id": 1943,
+      "name": "琴吉",
+      "yomi": "ことよし",
+      "realName": "高橋 正樹",
+      "rank": "幕内呼出",
+      "rankCode": "makuuchi-yobidashi",
+      "affiliation": "佐渡ヶ嶽",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1943/"
+    },
+    {
+      "id": 1944,
+      "name": "大吉",
+      "yomi": "だいきち",
+      "realName": "大庭 雄二",
+      "rank": "幕内呼出",
+      "rankCode": "makuuchi-yobidashi",
+      "affiliation": "八角",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1944/"
+    },
+    {
+      "id": 1945,
+      "name": "照喜",
+      "yomi": "てるき",
+      "realName": "工藤 隆久",
+      "rank": "幕内呼出",
+      "rankCode": "makuuchi-yobidashi",
+      "affiliation": "伊勢ヶ濱",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1945/"
+    },
+    {
+      "id": 1946,
+      "name": "幸司",
+      "yomi": "こうじ",
+      "realName": "波多野 琢磨",
+      "rank": "幕内呼出",
+      "rankCode": "makuuchi-yobidashi",
+      "affiliation": "浅香山",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1946/"
+    },
+    {
+      "id": 1947,
+      "name": "利樹之丞",
+      "yomi": "りきのじょう",
+      "realName": "土田 利樹",
+      "rank": "幕内呼出",
+      "rankCode": "makuuchi-yobidashi",
+      "affiliation": "高砂",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1947/"
+    },
+    {
+      "id": 1948,
+      "name": "光昭",
+      "yomi": "みつあき",
+      "realName": "金井 光昭",
+      "rank": "幕内呼出",
+      "rankCode": "makuuchi-yobidashi",
+      "affiliation": "田子ノ浦",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1948/"
+    },
+    {
+      "id": 1949,
+      "name": "邦夫",
+      "yomi": "くにお",
+      "realName": "前川 邦朗",
+      "rank": "十両呼出",
+      "rankCode": "juryo-yobidashi",
+      "affiliation": "高砂",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1949/"
+    },
+    {
+      "id": 1950,
+      "name": "松男",
+      "yomi": "まつお",
+      "realName": "美根 禎弘",
+      "rank": "十両呼出",
+      "rankCode": "juryo-yobidashi",
+      "affiliation": "放駒",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1950/"
+    },
+    {
+      "id": 1952,
+      "name": "弘行",
+      "yomi": "ひろゆき",
+      "realName": "今 弘行",
+      "rank": "十両呼出",
+      "rankCode": "juryo-yobidashi",
+      "affiliation": "西岩",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1952/"
+    },
+    {
+      "id": 1953,
+      "name": "禄郎",
+      "yomi": "ろくろう",
+      "realName": "荒木 謙三",
+      "rank": "十両呼出",
+      "rankCode": "juryo-yobidashi",
+      "affiliation": "中村",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1953/"
+    },
+    {
+      "id": 1954,
+      "name": "正男",
+      "yomi": "まさお",
+      "realName": "大高 紀之",
+      "rank": "十両呼出",
+      "rankCode": "juryo-yobidashi",
+      "affiliation": "西岩",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1954/"
+    },
+    {
+      "id": 1955,
+      "name": "悟",
+      "yomi": "さとる",
+      "realName": "山崎 悟",
+      "rank": "十両呼出",
+      "rankCode": "juryo-yobidashi",
+      "affiliation": "放駒",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1955/"
+    },
+    {
+      "id": 1957,
+      "name": "太助",
+      "yomi": "たすけ",
+      "realName": "小南 太助",
+      "rank": "十両呼出",
+      "rankCode": "juryo-yobidashi",
+      "affiliation": "山響",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1957/"
+    },
+    {
+      "id": 1958,
+      "name": "重太郎",
+      "yomi": "しげたろう",
+      "realName": "服部 勝則",
+      "rank": "十両呼出",
+      "rankCode": "juryo-yobidashi",
+      "affiliation": "九重",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1958/"
+    },
+    {
+      "id": 1961,
+      "name": "富士夫",
+      "yomi": "ふじお",
+      "realName": "小野寺 真将",
+      "rank": "十両呼出",
+      "rankCode": "juryo-yobidashi",
+      "affiliation": "伊勢ヶ濱",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1961/"
+    },
+    {
+      "id": 1964,
+      "name": "啓輔",
+      "yomi": "けいすけ",
+      "realName": "中野 大輔",
+      "rank": "十両呼出",
+      "rankCode": "juryo-yobidashi",
+      "affiliation": "芝田山",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1964/"
+    },
+    {
+      "id": 1965,
+      "name": "陽平",
+      "yomi": "ようへい",
+      "realName": "門岡 洋平",
+      "rank": "十両呼出",
+      "rankCode": "juryo-yobidashi",
+      "affiliation": "出羽海",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/1965/"
+    },
+    {
+      "id": 2207,
+      "name": "総一",
+      "yomi": "そういち",
+      "realName": "高橋 総一",
+      "rank": "十両呼出",
+      "rankCode": "juryo-yobidashi",
+      "affiliation": "山響",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/2207/"
+    },
+    {
+      "id": 2305,
+      "name": "照矢",
+      "yomi": "てるや",
+      "realName": "近藤 大督",
+      "rank": "幕下呼出",
+      "rankCode": "makushita-yobidashi",
+      "affiliation": "伊勢ヶ濱",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/2305/"
+    },
+    {
+      "id": 2308,
+      "name": "護",
+      "yomi": "まもる",
+      "realName": "長江 護",
+      "rank": "幕下呼出",
+      "rankCode": "makushita-yobidashi",
+      "affiliation": "時津風",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/2308/"
+    },
+    {
+      "id": 2315,
+      "name": "駿佑",
+      "yomi": "しゅんすけ",
+      "realName": "渡邉 賢",
+      "rank": "幕下呼出",
+      "rankCode": "makushita-yobidashi",
+      "affiliation": "玉ノ井",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/2315/"
+    },
+    {
+      "id": 2317,
+      "name": "耕平",
+      "yomi": "こうへい",
+      "realName": "大山 耕平",
+      "rank": "幕下呼出",
+      "rankCode": "makushita-yobidashi",
+      "affiliation": "片男波",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/2317/"
+    },
+    {
+      "id": 2318,
+      "name": "悠斗",
+      "yomi": "ゆうと",
+      "realName": "河島 悠斗",
+      "rank": "幕下呼出",
+      "rankCode": "makushita-yobidashi",
+      "affiliation": "立浪",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/2318/"
+    },
+    {
+      "id": 2321,
+      "name": "節男",
+      "yomi": "せつお",
+      "realName": "熊崎 悟",
+      "rank": "幕下呼出",
+      "rankCode": "makushita-yobidashi",
+      "affiliation": "錣山",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/2321/"
+    },
+    {
+      "id": 2324,
+      "name": "直起",
+      "yomi": "なおき",
+      "realName": "北島 直起",
+      "rank": "幕下呼出",
+      "rankCode": "makushita-yobidashi",
+      "affiliation": "木瀬",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/2324/"
+    },
+    {
+      "id": 2326,
+      "name": "慎",
+      "yomi": "しん",
+      "realName": "山木 慎之介",
+      "rank": "幕下呼出",
+      "rankCode": "makushita-yobidashi",
+      "affiliation": "音羽山",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/2326/"
+    },
+    {
+      "id": 2331,
+      "name": "重次郎",
+      "yomi": "しげじろう",
+      "realName": "宮城 圭佑",
+      "rank": "幕下呼出",
+      "rankCode": "makushita-yobidashi",
+      "affiliation": "九重",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/2331/"
+    },
+    {
+      "id": 2333,
+      "name": "鶴太郎",
+      "yomi": "つるたろう",
+      "realName": "本多 新太郎",
+      "rank": "三段目呼出",
+      "rankCode": "sandanme-yobidashi",
+      "affiliation": "錦戸",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/2333/"
+    },
+    {
+      "id": 2334,
+      "name": "大将",
+      "yomi": "ひろまさ",
+      "realName": "中村 大将",
+      "rank": "三段目呼出",
+      "rankCode": "sandanme-yobidashi",
+      "affiliation": "山響",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/2334/"
+    },
+    {
+      "id": 2337,
+      "name": "雄志",
+      "yomi": "ゆうじ",
+      "realName": "田畑 雄樹",
+      "rank": "三段目呼出",
+      "rankCode": "sandanme-yobidashi",
+      "affiliation": "境川",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/2337/"
+    },
+    {
+      "id": 2338,
+      "name": "広",
+      "yomi": "ひろし",
+      "realName": "平岡 良健",
+      "rank": "三段目呼出",
+      "rankCode": "sandanme-yobidashi",
+      "affiliation": "玉ノ井",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/2338/"
+    },
+    {
+      "id": 2340,
+      "name": "健太",
+      "yomi": "けんた",
+      "realName": "前田 健太",
+      "rank": "序二段呼出",
+      "rankCode": "jonidan-yobidashi",
+      "affiliation": "鳴戸",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/2340/"
+    },
+    {
+      "id": 2344,
+      "name": "天琉",
+      "yomi": "たける",
+      "realName": "宮坂 天琉",
+      "rank": "序二段呼出",
+      "rankCode": "jonidan-yobidashi",
+      "affiliation": "朝日山",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/2344/"
+    },
+    {
+      "id": 2345,
+      "name": "仁",
+      "yomi": "じん",
+      "realName": "関本 仁",
+      "rank": "序ノ口呼出",
+      "rankCode": "jonokuchi-yobidashi",
+      "affiliation": "阿武松",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/2345/"
+    },
+    {
+      "id": 2346,
+      "name": "隈二郎",
+      "yomi": "くまじろう",
+      "realName": "松元 羅衣矩",
+      "rank": "序ノ口呼出",
+      "rankCode": "jonokuchi-yobidashi",
+      "affiliation": "武隈",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/2346/"
+    },
+    {
+      "id": 2347,
+      "name": "勝希",
+      "yomi": "かつき",
+      "realName": "澤田 康希",
+      "rank": "序ノ口呼出",
+      "rankCode": "jonokuchi-yobidashi",
+      "affiliation": "大島",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/2347/"
+    },
+    {
+      "id": 2348,
+      "name": "寅太郎",
+      "yomi": "こたろう",
+      "realName": "林 瑞樹",
+      "rank": "序ノ口呼出",
+      "rankCode": "jonokuchi-yobidashi",
+      "affiliation": "錦戸",
+      "sourceUrl": "https://www.sumo.or.jp/Profile/yobidashi/2348/"
     }
   ]
 }
