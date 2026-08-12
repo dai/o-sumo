@@ -63,7 +63,7 @@ function AppShell() {
       <MetaHead>
         <ScrollToHash />
         <div className="global-notice-banner" role="status" aria-live="polite">
-          {t('global.july2026UpdateNotice')}
+          {t('global.officialDirectoryReleaseNotice')}
         </div>
         <div className="top-right-controls">
           <ThemeToggle />
