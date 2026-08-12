@@ -1,9 +1,10 @@
 import { createContext, useContext, useEffect, useState, type Dispatch, type PropsWithChildren, type SetStateAction } from 'react';
 import { useLocation } from 'react-router-dom';
 import { resolvePageMeta, type PageMeta } from '../lib/page-meta';
+import { normalizeCanonicalPath } from '../lib/site-url';
 
 type MetaAttribute = 'name' | 'property';
-export type PageMetaOverride = Pick<PageMeta, 'title' | 'description'>;
+export type PageMetaOverride = Pick<PageMeta, 'title' | 'description'> & { pathname: string };
 type PageMetaOverrideSetter = Dispatch<SetStateAction<PageMetaOverride | null>>;
 
 const PageMetaOverrideContext = createContext<PageMetaOverrideSetter | null>(null);
@@ -47,7 +48,7 @@ export function usePageMetaOverride(override: PageMetaOverride | null) {
     if (!setOverride) return undefined;
     setOverride(override);
     return () => setOverride(null);
-  }, [setOverride, override?.title, override?.description]);
+  }, [setOverride, override?.pathname, override?.title, override?.description]);
 }
 
 export default function MetaHead({ children }: PropsWithChildren) {
@@ -55,7 +56,11 @@ export default function MetaHead({ children }: PropsWithChildren) {
   const [override, setOverride] = useState<PageMetaOverride | null>(null);
 
   useEffect(() => {
-    const meta = { ...resolvePageMeta(pathname), ...override };
+    const matchingOverride = override
+      && normalizeCanonicalPath(override.pathname) === normalizeCanonicalPath(pathname)
+      ? override
+      : null;
+    const meta = { ...resolvePageMeta(pathname), ...matchingOverride };
     document.title = meta.title;
 
     META_FIELDS.forEach(({ attribute, key, content }) => {

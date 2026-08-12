@@ -4,7 +4,23 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { StrictMode } from 'react';
 import { Link, MemoryRouter, Route, Routes } from 'react-router-dom';
 import { OfficialProfilePage } from '../officials/page';
-import MetaHead from './MetaHead';
+import MetaHead, { usePageMetaOverride } from './MetaHead';
+
+const gyojiProfile = {
+  id: 1986,
+  name: '木村 庄之助',
+  yomi: 'きむら しょうのすけ',
+  realName: '洞澤 裕司',
+  rank: '立行司',
+  rankCode: 'tate-gyoji',
+  affiliation: '九重',
+  sourceUrl: 'https://www.sumo.or.jp/Profile/gyoji/1986/',
+  kind: 'gyoji',
+  birthDate: '1961-10-30',
+  birthplace: '東京都府中市',
+  adoptedAt: '1977-10',
+  retrievedAt: '2026-08-12T00:27:59Z',
+};
 
 const managedMetaSelectors = [
   'meta[name="description"]',
@@ -31,6 +47,15 @@ afterEach(() => {
 
 function contentOf(selector: string): string | null {
   return document.head.querySelector<HTMLMetaElement>(selector)?.content ?? null;
+}
+
+function PendingOfficialMetadata({ destination }: { destination: string }) {
+  usePageMetaOverride({
+    pathname: '/gyoji/1986/',
+    title: '木村 庄之助 | 行司プロフィール | o-sumo',
+    description: '木村 庄之助の大相撲行司プロフィール。階級や所属部屋などを紹介します。',
+  });
+  return <Link to={destination}>移動</Link>;
 }
 
 describe('MetaHead', () => {
@@ -94,21 +119,7 @@ describe('MetaHead', () => {
   it('uses a loaded official name for profile metadata while preserving the path-derived URL', async () => {
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
       ok: true,
-      json: async () => ({
-        id: 1986,
-        name: '木村 庄之助',
-        yomi: 'きむら しょうのすけ',
-        realName: '洞澤 裕司',
-        rank: '立行司',
-        rankCode: 'tate-gyoji',
-        affiliation: '九重',
-        sourceUrl: 'https://www.sumo.or.jp/Profile/gyoji/1986/',
-        kind: 'gyoji',
-        birthDate: '1961-10-30',
-        birthplace: '東京都府中市',
-        adoptedAt: '1977-10',
-        retrievedAt: '2026-08-12T00:27:59Z',
-      }),
+      json: async () => gyojiProfile,
     } as Response));
 
     render(
@@ -129,6 +140,32 @@ describe('MetaHead', () => {
       expect(contentOf('meta[name="twitter:title"]')).toBe('木村 庄之助 | 行司プロフィール | o-sumo');
       expect(contentOf('meta[name="twitter:description"]')).toBe('木村 庄之助の大相撲行司プロフィール。階級や所属部屋などを紹介します。');
       expect(contentOf('meta[property="og:url"]')).toBe('https://osada.us/gyoji/1986/');
+    });
+  });
+
+  it.each([
+    ['/gyoji/1987/', 'https://osada.us/gyoji/1987/', '行司プロフィール | o-sumo'],
+    ['/gyoji/', 'https://osada.us/gyoji/', '行司名鑑 | o-sumo'],
+    ['/gyoji/not-a-number/', 'https://osada.us/', 'o-sumo | 大相撲 番付・星取表'],
+  ])('never combines a new route URL with stale profile metadata while navigating to %s', async (destination, expectedUrl, expectedTitle) => {
+    const user = userEvent.setup();
+
+    render(
+      <MemoryRouter initialEntries={['/gyoji/1986/']}>
+        <MetaHead>
+          <PendingOfficialMetadata destination={destination} />
+        </MetaHead>
+      </MemoryRouter>,
+    );
+    await waitFor(() => expect(document.title).toBe('木村 庄之助 | 行司プロフィール | o-sumo'));
+
+    await user.click(screen.getByRole('link', { name: '移動' }));
+    await waitFor(() => {
+      expect(contentOf('meta[property="og:url"]')).toBe(expectedUrl);
+      expect(document.title).toBe(expectedTitle);
+      expect(contentOf('meta[name="description"]')).not.toContain('木村 庄之助');
+      expect(contentOf('meta[property="og:title"]')).not.toContain('木村 庄之助');
+      expect(contentOf('meta[name="twitter:title"]')).not.toContain('木村 庄之助');
     });
   });
 });

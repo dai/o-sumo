@@ -12,13 +12,17 @@ import {
 import '../rikishi/page.css';
 
 export function OfficialListPage({ kind }: { kind: OfficialKind }) {
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
   const [items, setItems] = React.useState<OfficialIndexItem[]>([]);
   const [retrievedAt, setRetrievedAt] = React.useState('');
   const [source, setSource] = React.useState('');
   const [status, setStatus] = React.useState<'loading' | 'ready' | 'error'>('loading');
   React.useEffect(() => {
     let active = true;
+    setItems([]);
+    setRetrievedAt('');
+    setSource('');
+    setStatus('loading');
     fetchOfficialIndex(kind).then((data) => {
       if (active) {
         setItems(data.officials);
@@ -30,6 +34,9 @@ export function OfficialListPage({ kind }: { kind: OfficialKind }) {
     return () => { active = false; };
   }, [kind]);
   const label = t(`officials.${kind}`);
+  const rankLabel = (item: OfficialIndexItem) => i18n.resolvedLanguage === 'ja'
+    ? item.rank
+    : t(`officials.ranks.${item.rankCode}`, { defaultValue: item.rank });
   return <div className="rikishi-page">
     <header className="rikishi-header"><nav className="site-header-nav" aria-label={t('global.siteNavigation')}><HomeLink placement="header" /></nav>
       <h1>{t('officials.listTitle', { label })}</h1><p>{t('officials.listDescription', { label })}</p>
@@ -42,7 +49,7 @@ export function OfficialListPage({ kind }: { kind: OfficialKind }) {
       {status === 'error' && <p className="rikishi-status warning">{t('officials.loadError')}</p>}
       {status === 'ready' && <section className="rikishi-profile-grid" aria-label={t('officials.listTitle', { label })}>
         {items.map((item) => <Link key={item.id} to={officialProfilePath(kind, item.id)} className="rikishi-profile-card">
-          <span className="rikishi-card-rank">{t(`officials.ranks.${item.rankCode}`, { defaultValue: item.rank })}</span><span className="rikishi-card-name">{item.name}</span>
+          <span className="rikishi-card-rank">{rankLabel(item)}</span><span className="rikishi-card-name">{item.name}</span>
           <span className="rikishi-card-yomi">{item.yomi}</span><span className="rikishi-card-romaji">{toRomaji(item.yomi)}</span>
         </Link>)}
       </section>}
@@ -57,7 +64,7 @@ function Field({ label, value }: { label: string; value: string }) {
 
 export function OfficialProfilePage({ kind }: { kind: OfficialKind }) {
   const { id = '' } = useParams();
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
   const [profile, setProfile] = React.useState<OfficialProfile | null>(null);
   const [status, setStatus] = React.useState<'loading' | 'ready' | 'not-found'>('loading');
   React.useEffect(() => {
@@ -68,8 +75,13 @@ export function OfficialProfilePage({ kind }: { kind: OfficialKind }) {
   const label = t(`officials.${kind}`);
   const numericId = /^[1-9]\d*$/.test(id) ? Number(id) : null;
   const currentProfile = profile?.kind === kind && profile.id === numericId ? profile : null;
-  const rankLabel = currentProfile ? t(`officials.ranks.${currentProfile.rankCode}`, { defaultValue: currentProfile.rank }) : '';
+  const rankLabel = currentProfile
+    ? (i18n.resolvedLanguage === 'ja'
+      ? currentProfile.rank
+      : t(`officials.ranks.${currentProfile.rankCode}`, { defaultValue: currentProfile.rank }))
+    : '';
   usePageMetaOverride(currentProfile ? {
+    pathname: officialProfilePath(kind, currentProfile.id),
     title: t('officials.profileMetaTitle', { name: currentProfile.name, label }),
     description: t('officials.profileMetaDescription', { name: currentProfile.name, label }),
   } : null);

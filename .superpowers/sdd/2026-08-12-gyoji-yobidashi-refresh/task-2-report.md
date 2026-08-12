@@ -97,3 +97,54 @@ buildには既存の500 kB超chunk warningとcaniuse-lite更新warningがある�
 - metadata overrideはページ固有のtitle / descriptionに限定し、既存のpathname正規化とcanonical URL生成を複製していない。
 - profile route変更時は現在のkind / 数値IDと一致する読み込み済みprofileだけを表示・metadata反映するため、前人物の情報を新URLへ流用しない。
 - focused test、全test、typecheck、build、diff checkの全てが緑で、Task 2範囲外の実装変更はない。
+
+## Review fix round 1
+
+`task-2-review.md`のImportant 3件をTDDで修正した。deferred Minorの`rankCode` unionはこのroundでは変更していない。
+
+### RED
+
+production code変更前に`app/officials/page.test.tsx`へ、行司一覧から呼出一覧へ切り替えて次のfetchを未解決にした状態、次fetch失敗状態、JSONの公式`rank`がlocale mapと異なる日本語一覧・詳細のテストを追加した。
+
+```text
+npm test -- --run app/officials/page.test.tsx app/components/MetaHead.test.tsx
+Test Files  1 failed | 1 passed (2)
+Tests       4 failed | 10 passed (14)
+```
+
+失敗は、kind切替中に旧行司が`/yobidashi/1986/`へ再リンクされ旧source / retrievedAtも残ること、fetch失敗後も旧sourceが残ること、日本語一覧・詳細がJSONの`rank`ではなくrankCode localeを表示することを示した。
+
+metadataは実ページのeffect順序だけに依存しない決定的な回帰テストへ強化した。読み込み済み人物overrideを保持したままプロフィール間、プロフィールから一覧、プロフィールから無効IDへ遷移すると、新しいOG URLに旧人物title / descriptionが結合した。
+
+```text
+npm test -- --run app/components/MetaHead.test.tsx
+Test Files  1 failed (1)
+Tests       3 failed | 3 passed (6)
+```
+
+### Changes
+
+- `PageMetaOverride`に適用対象`pathname`を持たせ、現在pathと正規化後に一致するoverrideだけをtitle / description / OG / Twitterへ適用した。
+- `OfficialListPage`はkind変更effect開始時にitems、source、retrievedAtを空にし、statusをloadingへ戻す。次fetch失敗時も旧directory情報を表示しない。
+- 日本語UIはJSONの公式`rank`を直接表示し、英語UIだけ`rankCode`から公式英語階級名を選ぶ。
+- 一覧遷移テストは次fetch未解決中に旧人物、旧source、旧retrievedAtが消えることを確認し、その後fetchを解決して正しい呼出URLになることも確認した。失敗遷移も別テストで確認した。
+- metadata遷移テストはプロフィール間、一覧、無効IDの3経路で、新pathのcanonical / OG URLに旧人物metadataが使われないことを確認した。
+
+### GREEN
+
+```text
+npm test -- --run app/officials/page.test.tsx app/components/MetaHead.test.tsx
+Test Files  2 passed (2)
+Tests       14 passed (14)
+
+npm test -- --run app/lib/official-profile.test.ts app/officials/page.test.tsx app/components/MetaHead.test.tsx app/lib/page-meta.test.ts app/lib/sitemap.test.ts app/lib/redirect-rules.test.ts
+Test Files  6 passed (6)
+Tests       73 passed (73)
+
+npm run typecheck  -> pass
+npm test           -> 40 files / 296 tests pass
+npm run build      -> pass
+git diff --check   -> pass
+```
+
+build warningは前roundと同じ既存のchunk sizeおよびcaniuse-lite更新通知だけだった。Task 1生成器と生成済みJSONには差分がない。
