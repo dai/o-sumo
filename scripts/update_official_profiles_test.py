@@ -1,6 +1,7 @@
 import importlib.util
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -176,6 +177,40 @@ class OfficialProfileGeneratorTest(unittest.TestCase):
 
             actual_files = {path.relative_to(output_root): path.read_bytes() for path in output_root.rglob("*") if path.is_file()}
             self.assertEqual(actual_files, expected_files)
+
+    def test_preserves_backups_when_install_and_restoration_both_fail(self):
+        generated = GENERATOR.generate(GENERATOR.fixture_fetcher(FIXTURES), "2026-08-12T00:00:00Z")
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            output_root = Path(temporary_directory)
+            (output_root / "gyoji").mkdir()
+            (output_root / "yobidashi").mkdir()
+            (output_root / "gyoji.json").write_bytes(b"old gyoji index\n")
+            (output_root / "yobidashi.json").write_bytes(b"old yobidashi index\n")
+            (output_root / "gyoji" / "old.json").write_bytes(b"old gyoji profile\n")
+            (output_root / "yobidashi" / "old.json").write_bytes(b"old yobidashi profile\n")
+            calls = 0
+
+            def fail_during_install_and_restoration(source, destination):
+                nonlocal calls
+                calls += 1
+                if calls == 6:
+                    raise OSError("injected install failure")
+                if calls == 7:
+                    raise OSError("injected restoration failure")
+                os.replace(source, destination)
+
+            with self.assertRaises(RuntimeError) as caught:
+                GENERATOR.write_json_outputs(output_root, generated, replace_operation=fail_during_install_and_restoration)
+
+            message = str(caught.exception)
+            match = re.search(r"recovery backup preserved at: (.+)$", message)
+            self.assertIsNotNone(match, message)
+            recovery_root = Path(match.group(1))
+            self.assertTrue(recovery_root.is_dir(), message)
+            self.assertEqual((recovery_root / "backup-gyoji.json").read_bytes(), b"old gyoji index\n")
+            self.assertEqual((recovery_root / "backup-yobidashi.json").read_bytes(), b"old yobidashi index\n")
+            self.assertEqual((recovery_root / "backup-gyoji" / "old.json").read_bytes(), b"old gyoji profile\n")
+            self.assertEqual((recovery_root / "backup-yobidashi" / "old.json").read_bytes(), b"old yobidashi profile\n")
 
 
 if __name__ == "__main__":

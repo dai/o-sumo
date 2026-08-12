@@ -260,6 +260,7 @@ def write_json_outputs(
     backups: list[tuple[Path, Path]] = []
     installed: list[Path] = []
     targets = [Path(f"{kind}.json") for kind in KINDS] + [Path(kind) for kind in KINDS]
+    cleanup_stage = True
     try:
         for kind, (index, profiles) in generated.items():
             (stage / kind).mkdir()
@@ -276,24 +277,32 @@ def write_json_outputs(
             destination = output_root / target
             replace_operation(stage / target, destination)
             installed.append(destination)
-    except Exception:
-        for destination in reversed(installed):
-            if destination.exists():
-                if destination.is_dir():
-                    shutil.rmtree(destination)
-                else:
-                    destination.unlink()
-        for destination, backup in reversed(backups):
-            if backup.exists():
+    except Exception as install_error:
+        try:
+            for destination in reversed(installed):
                 if destination.exists():
                     if destination.is_dir():
                         shutil.rmtree(destination)
                     else:
                         destination.unlink()
-                replace_operation(backup, destination)
+            for destination, backup in reversed(backups):
+                if backup.exists():
+                    if destination.exists():
+                        if destination.is_dir():
+                            shutil.rmtree(destination)
+                        else:
+                            destination.unlink()
+                    replace_operation(backup, destination)
+        except Exception as restoration_error:
+            cleanup_stage = False
+            raise RuntimeError(
+                f"output install failed ({install_error}); restoration failed ({restoration_error}); "
+                f"recovery backup preserved at: {stage.resolve()}"
+            ) from restoration_error
         raise
     finally:
-        shutil.rmtree(stage, ignore_errors=True)
+        if cleanup_stage:
+            shutil.rmtree(stage, ignore_errors=True)
 
 
 def main() -> int:

@@ -142,3 +142,43 @@ OK
 ```
 
 The atomic rollback test creates a complete four-target old snapshot, injects an `OSError` during the second staged install, and verifies every old file is restored byte-for-byte.
+
+## Review fix round 2
+
+### RED
+
+The new regression injects one failure during staged installation and a second failure during restoration:
+
+```text
+python scripts/update_official_profiles_test.py
+```
+
+```text
+FAIL: test_preserves_backups_when_install_and_restoration_both_fail
+AssertionError: unexpectedly None : injected restoration failure
+
+Ran 7 tests in 0.595s
+FAILED (failures=1)
+```
+
+The old handler surfaced no recovery path and unconditionally deleted the staging directory in `finally`.
+
+### Fix
+
+Rollback cleanup and restoration now run inside their own exception boundary. If either fails, the writer keeps the staging directory, raises a new error containing its absolute recovery path, and chains the restoration error. The normal successful rollback path still removes staging after restoring the complete old snapshot.
+
+### GREEN
+
+```text
+python scripts/update_official_profiles_test.py
+```
+
+```text
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 0.545s
+
+OK
+```
+
+The new test confirms that all four old index/detail backups remain readable at the reported recovery location after both injected failures.
