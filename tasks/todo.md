@@ -71,6 +71,23 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 
 ---
 
+# 行司・呼出名鑑 公式データ再実装（2026-08-12）
+
+詳細計画: `tasks/plans/2026-08-12-gyoji-yobidashi-refresh.md`
+
+## Plan
+
+- [ ] 公式HTMLパーサーをテスト先行で実装し、行司42名・呼出45名の一覧／個別JSONを生成する
+- [ ] 公式数値ID、日英階級表示、メタデータ、sitemapへUIとAPI型を接続する
+- [ ] 更新runbookを追加し、全テスト・型チェック・ビルド・HTTP配信を検証する
+- [ ] 独立レビューを通し、コミット・push・PRを作成する
+
+## Review
+
+- 実装完了後にコマンド結果、生成件数、代表プロフィール、配信確認結果を記録する。
+
+---
+
 # Auth.md agent registration metadata（2026-08-04）
 
 ## Scope
