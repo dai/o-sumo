@@ -4,7 +4,7 @@
 
 `docs/official-profile-refresh-runbook.md` を追加し、公式数値ID、写真不使用、生成、差分確認、JSON整合、アプリ・sitemap、Cloudflare Pages配信の更新手順を記録した。`tasks/todo.md` のTask 3とReviewも更新した。
 
-Documentation commit: `032237f0fc2d5fea760731aa90264a52d06d3d11` (`docs: add official profile refresh runbook`)。
+Documentation commit: `b8787ed2143a7fb054d65365be59b2d3cf8c56df` (`docs: add official profile refresh runbook`)。
 
 このタスクではproduction/runtime codeと生成済みJSONを変更していない。検証対象HEADは `0718ce08f7cb3ee3edd77de08568a7585560b1e7`（Task 2 review fix round 2）である。
 
