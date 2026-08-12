@@ -84,7 +84,7 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
   - [x] build時に一覧と個別JSONの存在・kind・ID一致を検証してからsitemapを生成する
   - [x] focused testをGREENにし、typecheck、全test、build、diff checkを通す
   - [x] Task 2の検証結果とセルフレビューをreportへ記録し、変更をcommitする
-- [ ] 更新runbookを追加し、全テスト・型チェック・ビルド・HTTP配信を検証する
+- [x] 更新runbookを追加し、全テスト・型チェック・ビルド・HTTP配信を検証する
 - [ ] 独立レビューを通し、コミット・push・PRを作成する
 
 ## Review
@@ -94,6 +94,7 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 - Task 2: focused Vitestは6 files / 66 tests、全Vitestは40 files / 289 tests、`npm run typecheck`、`npm run build`、`git diff --check`が緑。build後sitemapは行司42件・呼出45件の数値ID詳細URLと両一覧URLを含む。
 - Task 2: 一覧と個別JSONのID重複・非正数、個別JSON欠落、kind不一致、ID不一致を検証し、不整合時はbuildを失敗させる。生成器と生成済みJSONは変更していない。
 - Task 2 review fix round 2: 一覧取得状態を取得時のkindへ結び付け、effect実行前の同期遷移でも旧行・旧出典・旧取得日時を表示しない回帰テストを追加した。
+- Task 3: `docs/official-profile-refresh-runbook.md` に、公式数値ID、画像非使用、生成・差分・JSON整合・sitemap・Pages配信の手順を記録した。現行HEADで `python scripts/update_official_profiles_test.py`（7 tests）、focused Vitest（6 files / 74 tests）、`npm run typecheck`、`npm test`（40 files / 297 tests）、`npm run build` を再実行して緑。JSONは行司42件・呼出45件、個別JSONも同数、正の数値ID、画像系フィールド0件で整合した。`dist/sitemap.xml` は両一覧と87詳細URLを含む。`wrangler pages dev dist` 実測では一覧・代表詳細の末尾スラッシュ付きURLが200、なしURLが正しい301 Location、4 JSON APIが200 application/jsonだった。ブラウザで行司一覧と木村庄之助（1986）の詳細を確認し、公式出典、取得日時、写真不使用、数値ID URLの表示を確認した。
 
 ---
 
