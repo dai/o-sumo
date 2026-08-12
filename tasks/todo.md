@@ -93,6 +93,7 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 - Task 1: `python scripts/update_official_profiles_test.py` はfixture取得の生成・不一致時の全出力未更新を確認して緑。公式HTMLから行司42名、呼出45名を取得し、数値IDの個別JSONと一覧JSONを生成、文字列slugの旧JSONを削除した。
 - Task 2: focused Vitestは6 files / 66 tests、全Vitestは40 files / 289 tests、`npm run typecheck`、`npm run build`、`git diff --check`が緑。build後sitemapは行司42件・呼出45件の数値ID詳細URLと両一覧URLを含む。
 - Task 2: 一覧と個別JSONのID重複・非正数、個別JSON欠落、kind不一致、ID不一致を検証し、不整合時はbuildを失敗させる。生成器と生成済みJSONは変更していない。
+- Task 2 review fix round 2: 一覧取得状態を取得時のkindへ結び付け、effect実行前の同期遷移でも旧行・旧出典・旧取得日時を表示しない回帰テストを追加した。
 
 ---
 

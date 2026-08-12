@@ -13,26 +13,34 @@ import '../rikishi/page.css';
 
 export function OfficialListPage({ kind }: { kind: OfficialKind }) {
   const { t, i18n } = useTranslation('common');
-  const [items, setItems] = React.useState<OfficialIndexItem[]>([]);
-  const [retrievedAt, setRetrievedAt] = React.useState('');
-  const [source, setSource] = React.useState('');
-  const [status, setStatus] = React.useState<'loading' | 'ready' | 'error'>('loading');
+  const [directory, setDirectory] = React.useState<{
+    kind: OfficialKind | null;
+    items: OfficialIndexItem[];
+    retrievedAt: string;
+    source: string;
+    status: 'loading' | 'ready' | 'error';
+  }>({ kind: null, items: [], retrievedAt: '', source: '', status: 'loading' });
   React.useEffect(() => {
     let active = true;
-    setItems([]);
-    setRetrievedAt('');
-    setSource('');
-    setStatus('loading');
+    setDirectory({ kind, items: [], retrievedAt: '', source: '', status: 'loading' });
     fetchOfficialIndex(kind).then((data) => {
       if (active) {
-        setItems(data.officials);
-        setRetrievedAt(data.retrievedAt);
-        setSource(data.source);
-        setStatus('ready');
+        setDirectory({
+          kind,
+          items: data.officials,
+          retrievedAt: data.retrievedAt,
+          source: data.source,
+          status: 'ready',
+        });
       }
-    }).catch(() => active && setStatus('error'));
+    }).catch(() => active && setDirectory({ kind, items: [], retrievedAt: '', source: '', status: 'error' }));
     return () => { active = false; };
   }, [kind]);
+  const isCurrentDirectory = directory.kind === kind;
+  const items = isCurrentDirectory ? directory.items : [];
+  const retrievedAt = isCurrentDirectory ? directory.retrievedAt : '';
+  const source = isCurrentDirectory ? directory.source : '';
+  const status = isCurrentDirectory ? directory.status : 'loading';
   const label = t(`officials.${kind}`);
   const rankLabel = (item: OfficialIndexItem) => i18n.resolvedLanguage === 'ja'
     ? item.rank

@@ -148,3 +148,50 @@ git diff --check   -> pass
 ```
 
 build warningは前roundと同じ既存のchunk sizeおよびcaniuse-lite更新通知だけだった。Task 1生成器と生成済みJSONには差分がない。
+
+## Review fix round 2
+
+残っていたImportant findingをTDDで修正した。deferred Minorの`rankCode` unionは変更していない。
+
+### RED
+
+次の呼出fetchを未解決にしたまま、行司一覧を取得済みのcomponentへ`kind="yobidashi"`を同期commitする回帰テストを追加した。effect完了を待たず、callback内で旧行、旧source、旧retrievedAtがないことを検証した。
+
+```text
+npm test -- --run app/officials/page.test.tsx
+Test Files  1 failed (1)
+Tests       1 failed | 8 passed (9)
+```
+
+旧行司「木村 庄之助」が消えず、さらに新しいkindで`/yobidashi/1986/`へ再リンクされることを確認した。この失敗により、effect開始時のstate resetだけでは同期commitを保護できないことを再現した。
+
+### Changes
+
+- 一覧の`items`、`source`、`retrievedAt`、`status`を、取得対象の`kind`と同じ単一stateへまとめた。
+- 描画時にstateのkindと現在のkindを比較し、不一致なら旧データを使わずloading、空の一覧、空のsource / retrievedAtとして扱う。
+- effectはcurrent kindのloading、ready、errorを原子的に設定し、既存の`active` guardで完了順が逆転したfetchも無視する。
+- 回帰テストは`flushSync`で種別変更をcommitし、次effectがstateを消す順序へ依存せず旧情報が非表示になることを同期的に確認する。
+- レビュー修正から得たrequest keyと非同期stateの結び付け規則を`tasks/lessons.md`へ記録した。
+
+### GREEN
+
+```text
+npm test -- --run app/officials/page.test.tsx
+Test Files  1 passed (1)
+Tests       9 passed (9)
+
+npm test -- --run app/lib/official-profile.test.ts app/officials/page.test.tsx app/components/MetaHead.test.tsx app/lib/page-meta.test.ts app/lib/sitemap.test.ts app/lib/redirect-rules.test.ts
+Test Files  6 passed (6)
+Tests       74 passed (74)
+
+npm run typecheck  -> pass
+npm test           -> 40 files / 297 tests pass
+npm run build      -> pass
+git diff --check   -> pass
+```
+
+### Self-review
+
+- 旧データをeffectのcleanup順で消す方式ではなく、描画可能な取得結果をcurrent kindへ制約して根本原因を除いた。
+- loading、成功、失敗の各stateにkindが含まれるため、sourceだけが旧種別から残る部分状態は作られない。
+- Task 1の生成器、生成テスト、生成済みJSONには変更がなく、deferred Minorも対象外のまま維持した。

@@ -1,5 +1,7 @@
-import { cleanup, render, screen, waitFor } from '@testing-library/react';
+import { act, cleanup, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { useState } from 'react';
+import { flushSync } from 'react-dom';
 import { Link, MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { i18n } from '../lib/i18n';
@@ -91,6 +93,37 @@ describe('official directories', () => {
       }),
     } as Response);
     expect(await screen.findByRole('link', { name: /克之/ })).toHaveAttribute('href', '/yobidashi/1935/');
+  });
+
+  it('synchronously hides the previous directory before the next kind effect runs', async () => {
+    const nextResponse = deferredResponse();
+    let switchKind: (kind: 'gyoji' | 'yobidashi') => void = () => undefined;
+    vi.mocked(fetch)
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          retrievedAt: '2026-08-12T00:27:59Z',
+          source: 'https://www.sumo.or.jp/IrohaKyokaiMember/gyoji/',
+          officials: [indexItem],
+        }),
+      } as Response)
+      .mockReturnValueOnce(nextResponse.promise);
+
+    function SwitchableDirectory() {
+      const [kind, setKind] = useState<'gyoji' | 'yobidashi'>('gyoji');
+      switchKind = setKind;
+      return <OfficialListPage kind={kind} />;
+    }
+
+    render(<MemoryRouter><SwitchableDirectory /></MemoryRouter>);
+    expect(await screen.findByRole('link', { name: /木村 庄之助/ })).toHaveAttribute('href', '/gyoji/1986/');
+
+    act(() => {
+      flushSync(() => switchKind('yobidashi'));
+      expect(screen.queryByRole('link', { name: /木村 庄之助/ })).not.toBeInTheDocument();
+      expect(screen.queryByRole('link', { name: '日本相撲協会の公式ページを見る' })).not.toBeInTheDocument();
+      expect(screen.queryByText('取得日時: 2026-08-12 00:27 UTC')).not.toBeInTheDocument();
+    });
   });
 
   it('does not retain previous directory metadata when the next kind fails', async () => {
