@@ -1,10 +1,38 @@
-import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join, resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { torikumiArchive, torikumiMonthKey } from './torikumi-data';
 import { getSitemapEntries, renderSitemapXml } from './sitemap';
 import { SITE_ORIGIN } from './site-url';
 import { getAllArchiveRouteConfigs } from './torikumi-routes';
+import * as sitemapModule from './sitemap';
+
+type OfficialSitemapLoader = (kind: 'gyoji' | 'yobidashi', indexPath: string) => Array<{ id: number }>;
+
+function withOfficialFixture(
+  index: unknown,
+  profiles: Record<string, unknown>,
+  test: (indexPath: string) => void,
+) {
+  const root = mkdtempSync(join(tmpdir(), 'o-sumo-official-sitemap-'));
+  const profileDir = join(root, 'gyoji');
+  const indexPath = join(root, 'gyoji.json');
+  try {
+    mkdirSync(profileDir);
+    writeFileSync(indexPath, JSON.stringify(index));
+    for (const [filename, profile] of Object.entries(profiles)) {
+      writeFileSync(join(profileDir, filename), JSON.stringify(profile));
+    }
+    test(indexPath);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+}
+
+function officialSitemapLoader(): OfficialSitemapLoader | undefined {
+  return (sitemapModule as typeof sitemapModule & { loadOfficialSitemapItems?: OfficialSitemapLoader }).loadOfficialSitemapItems;
+}
 
 describe('sitemap helpers', () => {
   it('adds synthetic rikishi profile paths from an injected index', () => {
@@ -138,12 +166,57 @@ describe('sitemap helpers', () => {
   });
 
   it('renders gyoji and yobidashi directory and profile URLs', () => {
-    const xml = renderSitemapXml([], [], [{ id: 'kimura-shonosuke' }], [{ id: 'jiro' }]);
+    const xml = renderSitemapXml([], [], [{ id: 1986 }], [{ id: 1935 }]);
 
     expect(xml).toContain(`<loc>${SITE_ORIGIN}/gyoji/</loc>`);
-    expect(xml).toContain(`<loc>${SITE_ORIGIN}/gyoji/kimura-shonosuke/</loc>`);
+    expect(xml).toContain(`<loc>${SITE_ORIGIN}/gyoji/1986/</loc>`);
     expect(xml).toContain(`<loc>${SITE_ORIGIN}/yobidashi/</loc>`);
-    expect(xml).toContain(`<loc>${SITE_ORIGIN}/yobidashi/jiro/</loc>`);
+    expect(xml).toContain(`<loc>${SITE_ORIGIN}/yobidashi/1935/</loc>`);
+  });
+
+  it('rejects duplicate and non-positive official IDs', () => {
+    expect(() => getSitemapEntries([], [], [{ id: 1986 }, { id: 1986 }], [])).toThrow('gyoji sitemap contains duplicate id: 1986');
+    expect(() => getSitemapEntries([], [], [], [{ id: 0 }])).toThrow('yobidashi sitemap item at index 0 must have a positive integer id');
+    expect(() => getSitemapEntries([], [], [{ id: '1986' }], [])).toThrow('gyoji sitemap item at index 0 must have a positive integer id');
+  });
+
+  it('loads official sitemap entries only when every profile JSON exists and matches', () => {
+    const loader = officialSitemapLoader();
+    expect(loader).toBeTypeOf('function');
+    if (!loader) return;
+
+    withOfficialFixture(
+      { officials: [{ id: 1986 }] },
+      { '1986.json': { id: 1986, kind: 'gyoji' } },
+      (indexPath) => expect(loader('gyoji', indexPath)).toEqual([{ id: 1986 }]),
+    );
+  });
+
+  it('rejects an index entry whose profile JSON is missing', () => {
+    const loader = officialSitemapLoader();
+    expect(loader).toBeTypeOf('function');
+    if (!loader) return;
+
+    withOfficialFixture(
+      { officials: [{ id: 1986 }] },
+      {},
+      (indexPath) => expect(() => loader('gyoji', indexPath)).toThrow('Missing gyoji profile JSON for id 1986'),
+    );
+  });
+
+  it.each([
+    [{ id: 9999, kind: 'gyoji' }, 'gyoji profile JSON id mismatch for 1986'],
+    [{ id: 1986, kind: 'yobidashi' }, 'gyoji profile JSON kind mismatch for id 1986'],
+  ])('rejects a profile JSON that does not match its index entry', (profile, message) => {
+    const loader = officialSitemapLoader();
+    expect(loader).toBeTypeOf('function');
+    if (!loader) return;
+
+    withOfficialFixture(
+      { officials: [{ id: 1986 }] },
+      { '1986.json': profile },
+      (indexPath) => expect(() => loader('gyoji', indexPath)).toThrow(message),
+    );
   });
 
   it('emits only unique, absolute, indexable canonical URLs', () => {

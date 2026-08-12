@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import HomeLink from '../components/HomeLink';
+import { usePageMetaOverride } from '../components/MetaHead';
 import { formatUpdatedAt } from '../lib/updated-at';
 import { toRomaji } from '../lib/romaji';
 import {
@@ -13,12 +14,18 @@ import '../rikishi/page.css';
 export function OfficialListPage({ kind }: { kind: OfficialKind }) {
   const { t } = useTranslation('common');
   const [items, setItems] = React.useState<OfficialIndexItem[]>([]);
-  const [updatedAt, setUpdatedAt] = React.useState('');
+  const [retrievedAt, setRetrievedAt] = React.useState('');
+  const [source, setSource] = React.useState('');
   const [status, setStatus] = React.useState<'loading' | 'ready' | 'error'>('loading');
   React.useEffect(() => {
     let active = true;
     fetchOfficialIndex(kind).then((data) => {
-      if (active) { setItems(data.officials); setUpdatedAt(data.updatedAt); setStatus('ready'); }
+      if (active) {
+        setItems(data.officials);
+        setRetrievedAt(data.retrievedAt);
+        setSource(data.source);
+        setStatus('ready');
+      }
     }).catch(() => active && setStatus('error'));
     return () => { active = false; };
   }, [kind]);
@@ -26,14 +33,16 @@ export function OfficialListPage({ kind }: { kind: OfficialKind }) {
   return <div className="rikishi-page">
     <header className="rikishi-header"><nav className="site-header-nav" aria-label={t('global.siteNavigation')}><HomeLink placement="header" /></nav>
       <h1>{t('officials.listTitle', { label })}</h1><p>{t('officials.listDescription', { label })}</p>
-      {updatedAt && <p>{t('rikishi.updatedAt', { date: formatUpdatedAt(updatedAt) })}</p>}
+      {source && <p><a href={source} target="_blank" rel="noopener noreferrer">{t('officials.sourceLink')}</a></p>}
+      {retrievedAt && <p>{t('officials.retrievedAt', { date: formatUpdatedAt(retrievedAt) })}</p>}
+      <p>{t('officials.noPhotos')}</p>
     </header>
     <main className="rikishi-main">
       {status === 'loading' && <p className="rikishi-status">{t('rikishi.loading')}</p>}
       {status === 'error' && <p className="rikishi-status warning">{t('officials.loadError')}</p>}
       {status === 'ready' && <section className="rikishi-profile-grid" aria-label={t('officials.listTitle', { label })}>
         {items.map((item) => <Link key={item.id} to={officialProfilePath(kind, item.id)} className="rikishi-profile-card">
-          <span className="rikishi-card-rank">{item.rank}</span><span className="rikishi-card-name">{item.name}</span>
+          <span className="rikishi-card-rank">{t(`officials.ranks.${item.rankCode}`, { defaultValue: item.rank })}</span><span className="rikishi-card-name">{item.name}</span>
           <span className="rikishi-card-yomi">{item.yomi}</span><span className="rikishi-card-romaji">{toRomaji(item.yomi)}</span>
         </Link>)}
       </section>}
@@ -57,17 +66,24 @@ export function OfficialProfilePage({ kind }: { kind: OfficialKind }) {
     return () => { active = false; };
   }, [kind, id]);
   const label = t(`officials.${kind}`);
+  const numericId = /^[1-9]\d*$/.test(id) ? Number(id) : null;
+  const currentProfile = profile?.kind === kind && profile.id === numericId ? profile : null;
+  const rankLabel = currentProfile ? t(`officials.ranks.${currentProfile.rankCode}`, { defaultValue: currentProfile.rank }) : '';
+  usePageMetaOverride(currentProfile ? {
+    title: t('officials.profileMetaTitle', { name: currentProfile.name, label }),
+    description: t('officials.profileMetaDescription', { name: currentProfile.name, label }),
+  } : null);
   return <div className="rikishi-page">
     <header className="rikishi-header"><nav className="site-header-nav" aria-label={t('global.siteNavigation')}><HomeLink placement="header" /></nav>
-      <h1>{profile?.name ?? t('officials.detailTitle', { label })}</h1>{profile && <p>{profile.rank} / {toRomaji(profile.yomi)}</p>}
+      <h1>{currentProfile?.name ?? t('officials.detailTitle', { label })}</h1>{currentProfile && <p>{rankLabel} / {toRomaji(currentProfile.yomi)}</p>}
     </header>
     <main className="rikishi-main">
       {status === 'loading' && <p className="rikishi-status">{t('rikishi.loading')}</p>}
       {status === 'not-found' && <section className="rikishi-status warning"><h2>{t('officials.notFound')}</h2><Link to={officialListPath(kind)}>{t('officials.backToList', { label })}</Link></section>}
-      {status === 'ready' && profile && <article className="rikishi-profile-detail">
-        <div className="rikishi-profile-hero"><div><p className="rikishi-profile-rank">{profile.rank}</p><h2>{profile.name}</h2><p>{profile.yomi} / {toRomaji(profile.yomi)}</p><a href={profile.sourceUrl} target="_blank" rel="noopener noreferrer" className="rikishi-action-link">{t('officials.sourceLink')}</a></div></div>
-        <dl className="rikishi-profile-fields"><Field label={t('officials.stageName')} value={profile.name}/><Field label={t('officials.rank')} value={profile.rank}/><Field label={t('officials.realName')} value={profile.realName}/><Field label={t('officials.affiliation')} value={profile.affiliation}/><Field label={t('rikishi.birthDate')} value={profile.birthDate}/><Field label={t('officials.birthplace')} value={profile.birthplace}/><Field label={t('rikishi.debut')} value={profile.debut}/></dl>
-        <section className="rikishi-profile-source"><h2>{t('rikishi.sourceHeading')}</h2><p>{t('officials.sourceDescription')}</p><p>{t('officials.noPhotos')}</p><code>{officialApiPath(kind, profile.id)}</code><p>{t('rikishi.updatedAt', { date: formatUpdatedAt(profile.updatedAt) })}</p></section>
+      {status === 'ready' && currentProfile && <article className="rikishi-profile-detail">
+        <div className="rikishi-profile-hero"><div><p className="rikishi-profile-rank">{rankLabel}</p><h2>{currentProfile.name}</h2><p>{currentProfile.yomi} / {toRomaji(currentProfile.yomi)}</p><a href={currentProfile.sourceUrl} target="_blank" rel="noopener noreferrer" className="rikishi-action-link">{t('officials.sourceLink')}</a></div></div>
+        <dl className="rikishi-profile-fields"><Field label={t('officials.stageName')} value={currentProfile.name}/><Field label={t('officials.rank')} value={rankLabel}/><Field label={t('officials.realName')} value={currentProfile.realName}/><Field label={t('officials.affiliation')} value={currentProfile.affiliation}/><Field label={t('rikishi.birthDate')} value={currentProfile.birthDate}/><Field label={t('officials.birthplace')} value={currentProfile.birthplace}/><Field label={t('officials.adoptedAt')} value={currentProfile.adoptedAt}/>{currentProfile.nameHistory?.length ? <Field label={t('officials.nameHistory')} value={currentProfile.nameHistory.join(' → ')}/> : null}</dl>
+        <section className="rikishi-profile-source"><h2>{t('rikishi.sourceHeading')}</h2><p>{t('officials.sourceDescription')}</p><p>{t('officials.noPhotos')}</p><code>{officialApiPath(kind, currentProfile.id)}</code><p>{t('officials.retrievedAt', { date: formatUpdatedAt(currentProfile.retrievedAt) })}</p></section>
       </article>}
     </main>
     <footer className="rikishi-footer"><HomeLink placement="footer" /> <span> | </span><Link to={officialListPath(kind)}>{t('officials.backToList', { label })}</Link></footer>

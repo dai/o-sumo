@@ -60,16 +60,16 @@ function AppShell() {
     <BrowserRouter>
       <WebMcpProvider />
       <CanonicalUrl />
-      <MetaHead />
-      <ScrollToHash />
-      <div className="global-notice-banner" role="status" aria-live="polite">
-        {t('global.july2026UpdateNotice')}
-      </div>
-      <div className="top-right-controls">
-        <ThemeToggle />
-        <LanguageToggle />
-      </div>
-      <Routes>
+      <MetaHead>
+        <ScrollToHash />
+        <div className="global-notice-banner" role="status" aria-live="polite">
+          {t('global.july2026UpdateNotice')}
+        </div>
+        <div className="top-right-controls">
+          <ThemeToggle />
+          <LanguageToggle />
+        </div>
+        <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/archives/" element={<ArchivesPage />} />
         <Route path="/archives" element={<HashPreservingRedirect to="/archives/" />} />
@@ -117,7 +117,8 @@ function AppShell() {
         {/* Day pages (8-digit slugs) */}
         <Route path="/:slug" element={<TopLevelSlugPage />} />
         <Route path="/:slug/" element={<TopLevelSlugPage />} />
-      </Routes>
+        </Routes>
+      </MetaHead>
     </BrowserRouter>
   )
 }

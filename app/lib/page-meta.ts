@@ -98,7 +98,7 @@ export function resolvePageMeta(pathname: string): PageMeta {
     );
   }
 
-  if (/^\/(gyoji|yobidashi)\/[^/]+\/$/.test(canonicalPath)) {
+  if (/^\/(gyoji|yobidashi)\/[1-9]\d*\/$/.test(canonicalPath)) {
     const isGyoji = canonicalPath.startsWith('/gyoji/');
     return pageMeta(canonicalPath, `${isGyoji ? '行司' : '呼出'}プロフィール | o-sumo`, `大相撲の${isGyoji ? '行司' : '呼出'}プロフィールを紹介します。`);
   }

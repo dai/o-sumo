@@ -1,8 +1,9 @@
 import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { StrictMode } from 'react';
-import { Link, MemoryRouter } from 'react-router-dom';
+import { Link, MemoryRouter, Route, Routes } from 'react-router-dom';
+import { OfficialProfilePage } from '../officials/page';
 import MetaHead from './MetaHead';
 
 const managedMetaSelectors = [
@@ -23,6 +24,7 @@ const managedMetaSelectors = [
 
 afterEach(() => {
   cleanup();
+  vi.unstubAllGlobals();
   document.title = '';
   document.head.querySelectorAll(managedMetaSelectors.join(',')).forEach((element) => element.remove());
 });
@@ -86,6 +88,47 @@ describe('MetaHead', () => {
       expect(contentOf('meta[property="og:url"]')).toBe('https://osada.us/analytics/');
       expect(contentOf('meta[name="twitter:title"]')).toBe('大相撲データ分析 | o-sumo');
       expect(contentOf('meta[name="twitter:description"]')).toBe('大相撲の取組結果、力士、決まり手のデータを分析します。');
+    });
+  });
+
+  it('uses a loaded official name for profile metadata while preserving the path-derived URL', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        id: 1986,
+        name: '木村 庄之助',
+        yomi: 'きむら しょうのすけ',
+        realName: '洞澤 裕司',
+        rank: '立行司',
+        rankCode: 'tate-gyoji',
+        affiliation: '九重',
+        sourceUrl: 'https://www.sumo.or.jp/Profile/gyoji/1986/',
+        kind: 'gyoji',
+        birthDate: '1961-10-30',
+        birthplace: '東京都府中市',
+        adoptedAt: '1977-10',
+        retrievedAt: '2026-08-12T00:27:59Z',
+      }),
+    } as Response));
+
+    render(
+      <MemoryRouter initialEntries={['/gyoji/1986/']}>
+        <MetaHead>
+          <Routes>
+            <Route path="/gyoji/:id/" element={<OfficialProfilePage kind="gyoji" />} />
+          </Routes>
+        </MetaHead>
+      </MemoryRouter>,
+    );
+
+    await waitFor(() => {
+      expect(document.title).toBe('木村 庄之助 | 行司プロフィール | o-sumo');
+      expect(contentOf('meta[name="description"]')).toBe('木村 庄之助の大相撲行司プロフィール。階級や所属部屋などを紹介します。');
+      expect(contentOf('meta[property="og:title"]')).toBe('木村 庄之助 | 行司プロフィール | o-sumo');
+      expect(contentOf('meta[property="og:description"]')).toBe('木村 庄之助の大相撲行司プロフィール。階級や所属部屋などを紹介します。');
+      expect(contentOf('meta[name="twitter:title"]')).toBe('木村 庄之助 | 行司プロフィール | o-sumo');
+      expect(contentOf('meta[name="twitter:description"]')).toBe('木村 庄之助の大相撲行司プロフィール。階級や所属部屋などを紹介します。');
+      expect(contentOf('meta[property="og:url"]')).toBe('https://osada.us/gyoji/1986/');
     });
   });
 });

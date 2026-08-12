@@ -25,10 +25,10 @@ function sitemapPlugin(): Plugin {
     },
     async buildStart() {
       const rikishiIndex = JSON.parse(readFileSync(rikishiIndexPath, 'utf8')) as { rikishi?: unknown }
-      const { validateRikishiSitemapItems } = await import('./app/lib/sitemap')
+      const { loadOfficialSitemapItems, validateRikishiSitemapItems } = await import('./app/lib/sitemap')
       rikishiItems = validateRikishiSitemapItems(rikishiIndex.rikishi)
-      gyojiItems = (JSON.parse(readFileSync(gyojiIndexPath, 'utf8')) as { officials?: unknown }).officials
-      yobidashiItems = (JSON.parse(readFileSync(yobidashiIndexPath, 'utf8')) as { officials?: unknown }).officials
+      gyojiItems = loadOfficialSitemapItems('gyoji', gyojiIndexPath)
+      yobidashiItems = loadOfficialSitemapItems('yobidashi', yobidashiIndexPath)
     },
     async closeBundle() {
       const { renderSitemapXml } = await import('./app/lib/sitemap')

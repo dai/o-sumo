@@ -78,7 +78,12 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 ## Plan
 
 - [x] 公式HTMLパーサーをテスト先行で実装し、行司42名・呼出45名の一覧／個別JSONを生成する
-- [ ] 公式数値ID、日英階級表示、メタデータ、sitemapへUIとAPI型を接続する
+- [x] 公式数値ID、日英階級表示、メタデータ、sitemapへUIとAPI型を接続する
+  - [x] UI/API helper、動的metadata、sitemap入力検証、redirectのfocused testを先に追加し、期待したREDを確認する
+  - [x] 数値ID契約、日英階級、取得情報、写真不使用UI、not-found、人物metadataを最小実装する
+  - [x] build時に一覧と個別JSONの存在・kind・ID一致を検証してからsitemapを生成する
+  - [x] focused testをGREENにし、typecheck、全test、build、diff checkを通す
+  - [x] Task 2の検証結果とセルフレビューをreportへ記録し、変更をcommitする
 - [ ] 更新runbookを追加し、全テスト・型チェック・ビルド・HTTP配信を検証する
 - [ ] 独立レビューを通し、コミット・push・PRを作成する
 
@@ -86,6 +91,8 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 
 - 実装完了後にコマンド結果、生成件数、代表プロフィール、配信確認結果を記録する。
 - Task 1: `python scripts/update_official_profiles_test.py` はfixture取得の生成・不一致時の全出力未更新を確認して緑。公式HTMLから行司42名、呼出45名を取得し、数値IDの個別JSONと一覧JSONを生成、文字列slugの旧JSONを削除した。
+- Task 2: focused Vitestは6 files / 66 tests、全Vitestは40 files / 289 tests、`npm run typecheck`、`npm run build`、`git diff --check`が緑。build後sitemapは行司42件・呼出45件の数値ID詳細URLと両一覧URLを含む。
+- Task 2: 一覧と個別JSONのID重複・非正数、個別JSON欠落、kind不一致、ID不一致を検証し、不整合時はbuildを失敗させる。生成器と生成済みJSONは変更していない。
 
 ---
 

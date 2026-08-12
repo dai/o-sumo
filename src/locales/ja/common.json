@@ -255,10 +255,34 @@
     "sourceLink": "日本相撲協会の公式ページを見る",
     "sourceDescription": "掲載情報の出典は日本相撲協会公式サイトです。",
     "noPhotos": "写真は使用していません。",
+    "retrievedAt": "取得日時: {{date}}",
+    "profileMetaTitle": "{{name}} | {{label}}プロフィール | o-sumo",
+    "profileMetaDescription": "{{name}}の大相撲{{label}}プロフィール。階級や所属部屋などを紹介します。",
     "stageName": "名跡・呼出名",
     "rank": "階級",
     "realName": "本名",
     "affiliation": "所属部屋",
-    "birthplace": "出身地"
+    "birthplace": "出身地",
+    "adoptedAt": "採用年月",
+    "nameHistory": "行司名履歴",
+    "ranks": {
+      "tate-gyoji": "立行司",
+      "sanyaku-gyoji": "三役行司",
+      "makuuchi-gyoji": "幕内行司",
+      "juryo-gyoji": "十両行司",
+      "makushita-gyoji": "幕下行司",
+      "sandanme-gyoji": "三段目行司",
+      "jonidan-gyoji": "序二段行司",
+      "jonokuchi-gyoji": "序ノ口行司",
+      "tate-yobidashi": "立呼出",
+      "fuku-tate-yobidashi": "副立呼出",
+      "sanyaku-yobidashi": "三役呼出",
+      "makuuchi-yobidashi": "幕内呼出",
+      "juryo-yobidashi": "十両呼出",
+      "makushita-yobidashi": "幕下呼出",
+      "sandanme-yobidashi": "三段目呼出",
+      "jonidan-yobidashi": "序二段呼出",
+      "jonokuchi-yobidashi": "序ノ口呼出"
+    }
   }
 }

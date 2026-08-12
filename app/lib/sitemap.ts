@@ -1,3 +1,5 @@
+import { existsSync, readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 import { getAllArchiveRouteConfigs, getDayPath, type ArchiveRouteConfig } from './torikumi-routes';
 import { rikishiProfilePath } from './rikishi-profile';
 import { officialProfilePath, type OfficialKind } from './official-profile';
@@ -8,6 +10,10 @@ export interface SitemapEntry {
 }
 
 export interface RikishiSitemapItem {
+  id: number;
+}
+
+export interface OfficialSitemapItem {
   id: number;
 }
 
@@ -44,6 +50,49 @@ export function validateRikishiSitemapItems(rikishiItems: unknown): RikishiSitem
     seenIds.add(id);
     return { id };
   });
+}
+
+export function validateOfficialSitemapItems(kind: OfficialKind, items: unknown): OfficialSitemapItem[] {
+  if (!Array.isArray(items)) {
+    throw new Error(`${kind} sitemap items must be an array`);
+  }
+
+  const seenIds = new Set<number>();
+  return items.map((item, index) => {
+    const id = typeof item === 'object' && item !== null
+      ? (item as { id?: unknown }).id
+      : undefined;
+    if (typeof id !== 'number' || !Number.isSafeInteger(id) || id <= 0) {
+      throw new Error(`${kind} sitemap item at index ${index} must have a positive integer id`);
+    }
+    if (seenIds.has(id)) {
+      throw new Error(`${kind} sitemap contains duplicate id: ${id}`);
+    }
+    seenIds.add(id);
+    return { id };
+  });
+}
+
+export function loadOfficialSitemapItems(kind: OfficialKind, indexPath: string): OfficialSitemapItem[] {
+  const index = JSON.parse(readFileSync(indexPath, 'utf8')) as { officials?: unknown };
+  const items = validateOfficialSitemapItems(kind, index.officials);
+  const profileDirectory = join(dirname(indexPath), kind);
+
+  for (const item of items) {
+    const profilePath = join(profileDirectory, `${item.id}.json`);
+    if (!existsSync(profilePath)) {
+      throw new Error(`Missing ${kind} profile JSON for id ${item.id}`);
+    }
+    const profile = JSON.parse(readFileSync(profilePath, 'utf8')) as { id?: unknown; kind?: unknown };
+    if (profile.id !== item.id) {
+      throw new Error(`${kind} profile JSON id mismatch for ${item.id}`);
+    }
+    if (profile.kind !== kind) {
+      throw new Error(`${kind} profile JSON kind mismatch for id ${item.id}`);
+    }
+  }
+
+  return items;
 }
 
 export function getSitemapEntries(
@@ -91,10 +140,7 @@ export function getSitemapEntries(
   }
 
   const appendOfficials = (kind: OfficialKind, items: unknown) => {
-    if (!Array.isArray(items)) throw new Error(`${kind} sitemap items must be an array`);
-    for (const item of items) {
-      const id = typeof item === 'object' && item !== null ? (item as { id?: unknown }).id : undefined;
-      if (typeof id !== 'string' || !/^[a-z0-9-]+$/.test(id)) throw new Error(`${kind} sitemap item must have a valid id`);
+    for (const { id } of validateOfficialSitemapItems(kind, items)) {
       appendEntry(officialProfilePath(kind, id));
     }
   };

@@ -1,8 +1,12 @@
-import { useEffect } from 'react';
+import { createContext, useContext, useEffect, useState, type Dispatch, type PropsWithChildren, type SetStateAction } from 'react';
 import { useLocation } from 'react-router-dom';
 import { resolvePageMeta, type PageMeta } from '../lib/page-meta';
 
 type MetaAttribute = 'name' | 'property';
+export type PageMetaOverride = Pick<PageMeta, 'title' | 'description'>;
+type PageMetaOverrideSetter = Dispatch<SetStateAction<PageMetaOverride | null>>;
+
+const PageMetaOverrideContext = createContext<PageMetaOverrideSetter | null>(null);
 type MetaFieldDefinition = {
   attribute: MetaAttribute;
   key: string;
@@ -36,17 +40,28 @@ function reconcileMeta(attribute: MetaAttribute, value: string, content: string)
   elements.slice(1).forEach((duplicate) => duplicate.remove());
 }
 
-export default function MetaHead() {
-  const { pathname } = useLocation();
+export function usePageMetaOverride(override: PageMetaOverride | null) {
+  const setOverride = useContext(PageMetaOverrideContext);
 
   useEffect(() => {
-    const meta = resolvePageMeta(pathname);
+    if (!setOverride) return undefined;
+    setOverride(override);
+    return () => setOverride(null);
+  }, [setOverride, override?.title, override?.description]);
+}
+
+export default function MetaHead({ children }: PropsWithChildren) {
+  const { pathname } = useLocation();
+  const [override, setOverride] = useState<PageMetaOverride | null>(null);
+
+  useEffect(() => {
+    const meta = { ...resolvePageMeta(pathname), ...override };
     document.title = meta.title;
 
     META_FIELDS.forEach(({ attribute, key, content }) => {
       reconcileMeta(attribute, key, content(meta));
     });
-  }, [pathname]);
+  }, [pathname, override]);
 
-  return null;
+  return <PageMetaOverrideContext.Provider value={setOverride}>{children}</PageMetaOverrideContext.Provider>;
 }

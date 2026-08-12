@@ -57,6 +57,29 @@ describe('Cloudflare banzuke redirect rules', () => {
     });
   });
 
+  it.each(['gyoji', 'yobidashi'])('canonicalizes the %s list and numeric profiles before SPA fallbacks', (kind) => {
+    expect(evaluateRedirect(`/${kind}`)).toEqual({
+      source: `/${kind}`,
+      destination: `/${kind}/`,
+      status: 301,
+    });
+    expect(evaluateRedirect(`/${kind}/`)).toEqual({
+      source: `/${kind}/`,
+      destination: '/',
+      status: 200,
+    });
+    expect(evaluateRedirect(`/${kind}/1986`)).toEqual({
+      source: `/${kind}/:id`,
+      destination: `/${kind}/1986/`,
+      status: 301,
+    });
+    expect(evaluateRedirect(`/${kind}/1986/`)).toEqual({
+      source: `/${kind}/*`,
+      destination: '/',
+      status: 200,
+    });
+  });
+
   it.each(SUPPORTED_MONTH_KEYS)('defines the complete canonical and compatibility behavior for %s', (monthKey) => {
     const canonicalPath = `/${monthKey}-banzuke/`;
 
@@ -96,7 +119,7 @@ describe('Cloudflare banzuke redirect rules', () => {
   it('rewrites every SPA fallback to the root document', () => {
     const spaFallbacks = redirectRules().filter((rule) => rule.status === 200);
 
-    expect(spaFallbacks).toHaveLength(10);
+    expect(spaFallbacks).toHaveLength(14);
     expect(spaFallbacks.every((rule) => rule.destination === '/')).toBe(true);
   });
 });

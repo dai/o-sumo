@@ -255,10 +255,34 @@
     "sourceLink": "View the official JSA page",
     "sourceDescription": "Profile information is sourced from the official Japan Sumo Association website.",
     "noPhotos": "No photographs are used.",
+    "retrievedAt": "Retrieved: {{date}}",
+    "profileMetaTitle": "{{name}} | {{label}} profile | o-sumo",
+    "profileMetaDescription": "A Grand Sumo {{label}} profile for {{name}}, including rank and stable information.",
     "stageName": "Professional name",
     "rank": "Rank",
     "realName": "Legal name",
     "affiliation": "Stable",
-    "birthplace": "Birthplace"
+    "birthplace": "Birthplace",
+    "adoptedAt": "Adopted",
+    "nameHistory": "Gyoji name history",
+    "ranks": {
+      "tate-gyoji": "Chief Referee",
+      "sanyaku-gyoji": "Sanyaku Referee",
+      "makuuchi-gyoji": "Makuuchi Referee",
+      "juryo-gyoji": "Juryo Referee",
+      "makushita-gyoji": "Makushita Referee",
+      "sandanme-gyoji": "Sandanme Referee",
+      "jonidan-gyoji": "Jonidan Referee",
+      "jonokuchi-gyoji": "Jonokuchi Referee",
+      "tate-yobidashi": "Chief Yobidashi",
+      "fuku-tate-yobidashi": "Junior Chief Yobidashi",
+      "sanyaku-yobidashi": "Sanyaku Yobidashi",
+      "makuuchi-yobidashi": "Makuuchi Yobidashi",
+      "juryo-yobidashi": "Juryo Yobidashi",
+      "makushita-yobidashi": "Makushita Yobidashi",
+      "sandanme-yobidashi": "Sandanme Yobidashi",
+      "jonidan-yobidashi": "Jonidan Yobidashi",
+      "jonokuchi-yobidashi": "Jonokuchi Yobidashi"
+    }
   }
 }
