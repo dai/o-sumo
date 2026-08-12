@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-11T10:22:48.242895+00:00",
+  "updatedAt": "2026-08-12T00:35:40.050104+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260811-0292",
-      "title": "義ノ富士「片付けを手伝ってもらっていた」　熊本地震で被害、父が営む「焼肉草野」が10日に営業再開",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260811-0292",
-      "publishedAt": "2026-08-11",
-      "publishedAtRaw": "スポニチアネックス　8月11日 19時00分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260812-0063",
+      "title": "熱海富士の妹・武井陽奈、悔しい逆転負けも…兄の姿に重なって見えた",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260812-0063",
+      "publishedAt": "2026-08-12",
+      "publishedAtRaw": "スポニチアネックス　8月12日 5時20分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-chuspo-1295127",
-      "title": "元十両で暴行引退→格闘家転身のスダリオ剛が1回KO勝ち　6月に弟も同じ相手に勝利、兄弟で連勝【RIZIN】",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1295127",
-      "publishedAt": "2026-08-11",
-      "publishedAtRaw": "中日スポーツ　8月11日 18時24分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260812-0068",
+      "title": "大の里、夏巡業離脱　16日弘前から再合流予定　高田川巡業部長「ケガの治療のため」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260812-0068",
+      "publishedAt": "2026-08-12",
+      "publishedAtRaw": "スポニチアネックス　8月12日 5時10分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260811-202608110000988",
-      "title": "元横綱朝青龍、白タンクトップの14歳年下妻と“銀座デート”を公開「奥さま美人」「素敵な笑顔」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260811-202608110000988",
-      "publishedAt": "2026-08-11",
-      "publishedAtRaw": "日刊スポーツ　8月11日 17時50分",
+      "id": "dmenu-docomo-20260812019",
+      "title": "熱海富士の妹が個人＆団体で準Ｖ　「稽古が嫌だと思う時は、お兄ちゃんはもっとやっていると思う」",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260812019",
+      "publishedAt": "2026-08-12",
+      "publishedAtRaw": "デイリースポーツ　8月12日 5時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260811-OHT1T51240",
-      "title": "熱海富士の妹、武井陽奈が女子相撲で準優勝「お兄ちゃんは誰とやる時も自分の相撲を取る。そういう部分をまねして臨めた」…東京・立川市で開催、女子相撲の祭典「Ｊａｐａｎ　Ｖｅｎｕｓ　Ｓｕｍｏ　Ｆｅｓｔｉｖａｌ」で",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260811-OHT1T51240",
-      "publishedAt": "2026-08-11",
-      "publishedAtRaw": "スポーツ報知　8月11日 17時47分",
+      "id": "dmenu-docomo-hochi-20260811-OHT1T51338",
+      "title": "大栄翔、名横綱・千代の富士さんヒントに“ウルフ流トレ”で大関再挑戦を目指す「現役でいる以上は常に上を」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260811-OHT1T51338",
+      "publishedAt": "2026-08-12",
+      "publishedAtRaw": "スポーツ報知　8月12日 5時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260811104",
-      "title": "スダリオ剛が１年９カ月ぶり復活ＴＫＯ勝利で初戦突破　ヘビー級ＧＰ決勝で“怪物”エドポロキングと激突「必ず優勝します」",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260811104",
+      "id": "dmenu-docomo-20260811142",
+      "title": "会場騒然「強すぎる」女子相撲で高校生が大学生、社会人の世界女王経験者に圧勝！阿部なな「うれしいです」",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260811142",
       "publishedAt": "2026-08-11",
-      "publishedAtRaw": "デイリースポーツ　8月11日 17時39分",
+      "publishedAtRaw": "デイリースポーツ　8月11日 21時05分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
