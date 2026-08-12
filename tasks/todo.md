@@ -93,6 +93,13 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 - [x] バナー文言の回帰テスト、型チェック、全テスト、ビルドを通す
 - [x] 検証結果を記録し、PR #415へpushする
 
+### マージ前ドキュメント・リポジトリ整理
+
+- [x] README.md / README_en.mdを行司・呼出の画面、API、更新手順へ同期する
+- [x] 公開APIカタログをREADMEのAPI一覧と一致させる
+- [x] 一時・生成・内部レビュー成果物を軽く監査し、明白な不要物だけ除外する
+- [x] 型チェック、全テスト、ビルド、diff checkを通してPR #415へpushする
+
 ### Final fix wave（2026-08-12）
 
 - [x] 現行公式HTMLと同じ `<br>` 後の改行・空白を含むsanitized fixtureで生成器をREDにし、階級と読みの間だけ任意空白を許容しつつ一覧・詳細の氏名／読み／階級完全一致を維持する
@@ -119,6 +126,8 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 - Final fix wave: runbook整合性コマンドは正常snapshotでexit 0、`UniqueIds=False` の検査結果で `Official profile integrity check failed: gyoji` をthrowしてexit 1。Wrangler Pagesは両一覧・代表詳細が200、slashless 4 URLが対応する末尾スラッシュURLへ301、4 JSON APIが200 `application/json`だった。
 - 独立レビューでCritical／Important指摘0件、merge可能判定を確認した。`feat-gyoji` をpushし、draft PR #415を作成した。
 - トップバナー: 日本語を指定文言へ更新し、英語も同内容の告知へ更新した。focused test 2件、typecheck、全Vitest 41 files / 308 tests、build 135 modules、`git diff --check` がすべてexit 0。生成済みbundleに新文言が含まれ、旧七月場所文言が残っていないことを確認した。
+- マージ前同期: README日英へ行司・呼出の画面、API、公式出典、写真不使用、更新コマンドを追加し、Node要件とworkflow名の既存誤記を修正した。API仕様・変更履歴・APIカタログも新しい一覧／個別APIへ同期した。
+- リポジトリ軽量監査: 追跡済みの一時・ログ・ビルド出力、空ファイル、5 MiB超のファイル、疑わしいバックアップ名は0件。生成JSONとHTML fixtureは配信・テストに必要なため保持し、実装から参照されない内部SDD report 4件だけをPR差分から削除した。Python 7 tests、focused Vitest 9 tests、typecheck、全Vitest 41 files / 308 tests、build 135 modules、`git diff --check` はすべてexit 0。
 
 ---
 

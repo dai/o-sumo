@@ -5,7 +5,7 @@
 
 [日本語 README](./README.md)
 
-o-sumo is a static web app for publishing sumo banzuke and torikumi information. It is built with React 19, TypeScript, and Vite, and serves both a static site and static JSON APIs from Cloudflare Pages.
+o-sumo is a static web app for publishing sumo banzuke, torikumi, and rikishi, gyoji, and yobidashi directories. It is built with React 19, TypeScript, and Vite, and serves both a static site and static JSON APIs from Cloudflare Pages.
 
 ## Document Index
 
@@ -15,6 +15,7 @@ o-sumo is a static web app for publishing sumo banzuke and torikumi information.
 - API spec: `docs/api/v1.md` / `docs/api/v1.en.md`
 - API policy: `docs/api/policy.md` / `docs/api/policy.en.md`
 - API changelog: `docs/api/changelog.md` / `docs/api/changelog.en.md`
+- Gyoji and yobidashi refresh runbook: `docs/official-profile-refresh-runbook.md`
 
 ## Overview
 
@@ -23,6 +24,10 @@ o-sumo is a static web app for publishing sumo banzuke and torikumi information.
   - Archives: `/archives`
   - Rikishi list: `/rikishi`
   - Rikishi profile: `/rikishi/{id}`
+  - Gyoji directory: `/gyoji/`
+  - Gyoji profile: `/gyoji/{id}/`
+  - Yobidashi directory: `/yobidashi/`
+  - Yobidashi profile: `/yobidashi/{id}/`
   - Banzuke: `/{YYYYMM}-banzuke/`
   - Results hub: `/{YYYYMM}-torikumi`
   - Schedule hub: `/{YYYYMM}-yotei`
@@ -40,6 +45,10 @@ o-sumo is a static web app for publishing sumo banzuke and torikumi information.
   - `/api/v1/torikumi.json`
   - `/api/v1/rikishi.json`
   - `/api/v1/rikishi/{id}.json`
+  - `/api/v1/gyoji.json`
+  - `/api/v1/gyoji/{id}.json`
+  - `/api/v1/yobidashi.json`
+  - `/api/v1/yobidashi/{id}.json`
   - `/api/v1/news.json`
 
 Related docs:
@@ -61,7 +70,8 @@ Skill publishing:
 
 ## Key Features
 
-- Direct navigation from the homepage to `Banzuke / Schedule / Results / Rikishi Profiles`
+- Direct navigation from the homepage to `Banzuke / Schedule / Results / Rikishi, Gyoji, and Yobidashi Directories`
+- Bilingual lists and profiles for 42 active gyoji and 45 active yobidashi, sourced from the official Japan Sumo Association website. Official numeric IDs are used in page and JSON API URLs, and no photographs are published
 - Banzuke pages for makuuchi and juryo rankings and records, with MiniMax I2I Generation processed rikishi profile images and links to rikishi profiles
 - Monthly hub pages listing all 15 daily pages
 - Daily pages for makuuchi and juryo torikumi, with profile links on wrestler names
@@ -70,15 +80,15 @@ Skill publishing:
 - The month key is derived dynamically from generated data in `app/lib/torikumi-data.ts`
 - Homepage **Latest News** section split into two sub-sections: Japan Sumo Association announcements and Sumo World News (latest 5 from dmenu Sports)
 - Homepage **Kimarite** card links to the `/kimarite` index page that lists all 82 winning techniques, grouped by category with bilingual Japanese/English commentary
-- News JSON is regenerated automatically by the `daily-data-update` GitHub Actions workflow via the Python scraper (`/api/v1/news.json`)
+- News JSON is regenerated automatically by the `news-feed-update` GitHub Actions workflow via the Python scraper (`/api/v1/news.json`)
 
 ## Tech Stack
 
 - Frontend: React 19, TypeScript, React Router, Vite
 - Testing: Vitest, Testing Library, jsdom
-- Data generation: Python (`scripts/update_sumo_data.py`)
+- Data generation: Python (`scripts/update_sumo_data.py`, `scripts/update_official_profiles.py`)
 - Hosting: Cloudflare Pages
-- Data source: Nihon Sumo Kyokai Ajax endpoints
+- Data sources: Japan Sumo Association Ajax endpoints and the official gyoji/yobidashi member list and profile pages
 - Rikishi imagery: local PNG illustrations processed with MiniMax I2I Generation from Japan Sumo Association profile photos
 - News sources: Japan Sumo Association announcements page and dmenu Sports (`https://sumo.sports.smt.docomo.ne.jp/news/`)
 
@@ -86,7 +96,7 @@ Skill publishing:
 
 Requirements:
 
-- Node.js 18+
+- Node.js 20.19+ or 22.12+
 - npm 9+
 - Python 3.10+
 
@@ -129,6 +139,10 @@ Useful local URLs:
 - `http://localhost:3001/archives`
 - `http://localhost:3001/rikishi`
 - `http://localhost:3001/rikishi/{id}`
+- `http://localhost:3001/gyoji/`
+- `http://localhost:3001/gyoji/{id}/`
+- `http://localhost:3001/yobidashi/`
+- `http://localhost:3001/yobidashi/{id}/`
 - `http://localhost:3001/{YYYYMM}-banzuke/`
 - `http://localhost:3001/{YYYYMM}-torikumi`
 - `http://localhost:3001/{YYYYMM}-yotei`
@@ -183,6 +197,15 @@ News feed only (Japan Sumo Association announcements + dmenu Sports):
 python scripts/update_news_feed.py
 ```
 
+Gyoji and yobidashi directories only, sourced from the official Japan Sumo Association website:
+
+```bash
+python scripts/update_official_profiles.py
+python scripts/update_official_profiles_test.py
+```
+
+See `docs/official-profile-refresh-runbook.md` for generated-file and pre-publish integrity checks.
+
 For the July 2026 banzuke release on June 29, 2026, first confirm that the upstream source has switched to the July basho, then run:
 
 ```bash
@@ -205,6 +228,8 @@ Generated outputs:
 - `public/api/v1/rikishi.json`
 - `public/api/v1/rikishi/{id}.json` (one file per rikishi, including `name`, `yomi`, `currentRank`, `sourceUrl`, and `updatedAt`)
 - `public/api/v1/news.json`
+- `public/api/v1/gyoji.json` / `public/api/v1/gyoji/{id}.json` (42 gyoji)
+- `public/api/v1/yobidashi.json` / `public/api/v1/yobidashi/{id}.json` (45 yobidashi)
 - `public/images/rikishi/{id}.png` (processed profile illustrations for all rikishi, used permanently on both profile and banzuke pages)
 
 Key validations:
@@ -214,6 +239,7 @@ Key validations:
 - 15-day archives for both results and schedules
 - Published days are populated from source data when available
 - Unpublished days remain as `pending` placeholders
+- Gyoji and yobidashi list/detail JSON counts match and contain no image fields
 
 ## Automated Updates
 
@@ -269,6 +295,7 @@ Current main coverage:
 - banzuke sorting
 - 15-day hub rendering and sorting
 - daily torikumi sorting and pending-state rendering
+- gyoji/yobidashi lists and profiles, bilingual ranks, official numeric IDs, API paths, dynamic metadata, and sitemap entries
 
 GitHub Actions runs the following on pull requests and pushes to `main`, `codex/**`, and `automation/data-updates`:
 
@@ -287,7 +314,7 @@ GitHub Actions runs the following on pull requests and pushes to `main`, `codex/
 
 - GitHub Actions daily/realtime/news refreshes create or update the shared `automation/data-updates` PR when files change.
 - Schedules refresh at JST 13:00 / 19:00, results refresh every 10 minutes from JST 13:00 through 18:00, and news polls every 2 hours from JST 09:05 through 19:05.
-- Manual runs can be started with `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main`, `gh workflow run realtime-torikumi-update.yml -R dai/o-sumo --ref main`, or `gh workflow run news-feed-update.yml -R dai/o-sumo --ref main`.
+- Manual runs can be started with `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main`, `gh workflow run realtime-torikumi-direct-update.yml -R dai/o-sumo --ref main`, or `gh workflow run news-feed-update.yml -R dai/o-sumo --ref main`.
 - The realtime workflow uses `--torikumi-only --torikumi-scope result --skip-rikishi-fetch`, so it is limited to torikumi results.
 - If results still look stale, triage in this order: run history -> run logs (`event.schedule`, JST time, updatedAt fields) -> upstream `judge` values.
 - Keep the cache policy in `public/_headers` unchanged to control Cloudflare usage.
@@ -300,6 +327,7 @@ GitHub Actions runs the following on pull requests and pushes to `main`, `codex/
 - `app/archives/page.tsx`: archives page
 - `app/banzuke/page.tsx`: banzuke page
 - `app/kimarite/page.tsx`: all 82 kimarite listing page
+- `app/officials/page.tsx`: gyoji and yobidashi lists and profiles
 - `app/torikumi/page.tsx`: monthly hubs for results and schedules
 - `app/components/TorikumiDayPage.tsx`: daily result and schedule pages
 - `app/components/BanzukeTable.tsx`: banzuke table component
@@ -311,8 +339,10 @@ GitHub Actions runs the following on pull requests and pushes to `main`, `codex/
 - `app/lib/torikumi-data.ts`: torikumi archive data
 - `app/lib/news-data.ts`: static news feed data
 - `app/lib/kimarite-data.ts`: master list of all 82 winning techniques
+- `app/lib/official-profile.ts`: gyoji/yobidashi types, API fetching, and numeric-ID paths
 - `scripts/update_sumo_data.py`: data generation script for banzuke, torikumi, and rikishi profiles
 - `scripts/update_news_feed.py`: news feed generation script
+- `scripts/update_official_profiles.py`: gyoji and yobidashi data generator
 
 ## Contact
 

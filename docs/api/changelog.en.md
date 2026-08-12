@@ -2,6 +2,14 @@
 
 [日本語版](./changelog.md)
 
+## 2026-08-12
+
+### Gyoji And Yobidashi Directories
+
+- Added list APIs for 42 gyoji and 45 yobidashi plus detail APIs keyed by official numeric IDs
+- Added a photo-free data contract sourced from the official Japan Sumo Association website
+- Added the gyoji and yobidashi list APIs to `/.well-known/api-catalog`
+
 ## 2026-04-30
 
 ### Rikishi Image Credit And Banzuke Usage
