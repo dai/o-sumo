@@ -85,7 +85,7 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
   - [x] focused testをGREENにし、typecheck、全test、build、diff checkを通す
   - [x] Task 2の検証結果とセルフレビューをreportへ記録し、変更をcommitする
 - [x] 更新runbookを追加し、全テスト・型チェック・ビルド・HTTP配信を検証する
-- [ ] 独立レビューを通し、コミット・push・PRを作成する
+- [x] 独立レビューを通し、コミット・push・PRを作成する
 
 ### Final fix wave（2026-08-12）
 
@@ -111,6 +111,7 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 - Final fix wave: live生成は `gyoji=42 yobidashi=45`。index 2件とdetail 87件の計89 JSONをHEADと構造比較し、`retrievedAt: 2026-08-12T02:01:21Z` 以外の差分は0件だった。証明後は生成snapshotをHEADへ復元し、timestamp-only差分をcommit対象から除外した。
 - Final fix wave: final verificationはPython 7 tests、focused Vitest 6 files / 83 tests、typecheck、full Vitest 40 files / 306 tests、build 135 modulesがすべてexit 0。生成JSONは行司42/42・呼出45/45、safe unique ID、kind/ID、17 rankCode、画像field 0件、sitemap詳細42/45件が一致した。
 - Final fix wave: runbook整合性コマンドは正常snapshotでexit 0、`UniqueIds=False` の検査結果で `Official profile integrity check failed: gyoji` をthrowしてexit 1。Wrangler Pagesは両一覧・代表詳細が200、slashless 4 URLが対応する末尾スラッシュURLへ301、4 JSON APIが200 `application/json`だった。
+- 独立レビューでCritical／Important指摘0件、merge可能判定を確認した。`feat-gyoji` をpushし、draft PR #415を作成した。
 
 ---
 
