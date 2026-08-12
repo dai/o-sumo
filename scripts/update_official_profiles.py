@@ -9,7 +9,7 @@ import re
 import shutil
 import sys
 import tempfile
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Callable
@@ -112,7 +112,7 @@ def parse_index(html: str, kind: str) -> list[dict[str, object]]:
     officials: list[dict[str, object]] = []
     for row in rows[1:]:
         if len(row) != 4:
-            continue
+            raise ValueError(f"{kind} index has invalid row with {len(row)} cells")
         links = row[0]["links"]
         if not isinstance(links, list) or len(links) != 1:
             raise ValueError(f"{kind} index row has no unique profile link")
@@ -174,11 +174,16 @@ def parse_profile(html: str, official: dict[str, object], kind: str, retrieved_a
         raise ValueError(f"{kind} {official['id']} profile table was not found")
     heading = cell_text(table[0][0])
     name, yomi, rank = (str(official[key]) for key in ("name", "yomi", "rank"))
-    if name not in heading:
+    known_ranks = "|".join(re.escape(label) for label in RANK_CODES[kind])
+    heading_match = re.fullmatch(rf"(.+) ({known_ranks})\((.+)\)", heading)
+    if heading_match is None:
+        raise ValueError(f"profile heading is invalid for {kind} {official['id']}")
+    profile_name, profile_rank, profile_yomi = (clean(value) for value in heading_match.groups())
+    if profile_name != name:
         raise ValueError(f"name mismatch for {kind} {official['id']}")
-    if f"({yomi})" not in heading:
+    if profile_yomi != yomi:
         raise ValueError(f"yomi mismatch for {kind} {official['id']}")
-    if rank not in heading:
+    if profile_rank != rank:
         raise ValueError(f"rank mismatch for {kind} {official['id']}")
     fields = {cell_text(row[0]): cell_text(row[1]) for row in table[1:] if len(row) == 2 and str(row[0]["tag"]) == "th"}
     required = ("本名", "生年月日", "出身地", "所属部屋", "採用年月")
@@ -222,11 +227,19 @@ def fixture_fetcher(fixtures_dir: Path) -> Callable[[str], str]:
     return fetch
 
 
-def generate(fetch_text: Callable[[str], str], retrieved_at: str) -> dict[str, tuple[dict[str, object], list[dict[str, object]]]]:
+def canonicalize_retrieved_at(retrieved_at: str) -> str:
+    timestamp = retrieved_at[:-1] + "+00:00" if retrieved_at.endswith("Z") else retrieved_at
     try:
-        datetime.fromisoformat(retrieved_at.replace("Z", "+00:00"))
+        parsed = datetime.fromisoformat(timestamp)
     except ValueError as error:
-        raise ValueError(f"retrievedAt is not ISO 8601: {retrieved_at}") from error
+        raise ValueError("retrievedAt must be a UTC ISO 8601 timestamp") from error
+    if parsed.tzinfo is None or parsed.utcoffset() != timedelta(0):
+        raise ValueError("retrievedAt must be a UTC ISO 8601 timestamp")
+    return parsed.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def generate(fetch_text: Callable[[str], str], retrieved_at: str) -> dict[str, tuple[dict[str, object], list[dict[str, object]]]]:
+    retrieved_at = canonicalize_retrieved_at(retrieved_at)
     generated = {}
     for kind in KINDS:
         officials = parse_index(fetch_text(official_url(kind)), kind)
@@ -237,10 +250,15 @@ def generate(fetch_text: Callable[[str], str], retrieved_at: str) -> dict[str, t
     return generated
 
 
-def write_json_outputs(output_root: Path, generated: dict[str, tuple[dict[str, object], list[dict[str, object]]]]) -> None:
+def write_json_outputs(
+    output_root: Path,
+    generated: dict[str, tuple[dict[str, object], list[dict[str, object]]]],
+    replace_operation: Callable[[Path, Path], None] = os.replace,
+) -> None:
     output_root.mkdir(parents=True, exist_ok=True)
     stage = Path(tempfile.mkdtemp(prefix=".official-profiles-stage-", dir=output_root))
     backups: list[tuple[Path, Path]] = []
+    installed: list[Path] = []
     targets = [Path(f"{kind}.json") for kind in KINDS] + [Path(kind) for kind in KINDS]
     try:
         for kind, (index, profiles) in generated.items():
@@ -252,21 +270,27 @@ def write_json_outputs(output_root: Path, generated: dict[str, tuple[dict[str, o
             destination = output_root / target
             if destination.exists():
                 backup = stage / f"backup-{target.name}"
-                os.replace(destination, backup)
+                replace_operation(destination, backup)
                 backups.append((destination, backup))
         for target in targets:
-            os.replace(stage / target, output_root / target)
-    except Exception:
-        for target in targets:
             destination = output_root / target
-            if destination.exists() and not any(original == destination for original, _ in backups):
+            replace_operation(stage / target, destination)
+            installed.append(destination)
+    except Exception:
+        for destination in reversed(installed):
+            if destination.exists():
                 if destination.is_dir():
                     shutil.rmtree(destination)
                 else:
                     destination.unlink()
-        for destination, backup in backups:
-            if backup.exists() and not destination.exists():
-                os.replace(backup, destination)
+        for destination, backup in reversed(backups):
+            if backup.exists():
+                if destination.exists():
+                    if destination.is_dir():
+                        shutil.rmtree(destination)
+                    else:
+                        destination.unlink()
+                replace_operation(backup, destination)
         raise
     finally:
         shutil.rmtree(stage, ignore_errors=True)

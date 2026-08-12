@@ -102,3 +102,43 @@ Representative generated profile: `gyoji/1986.json` is 木村 庄之助, with `b
 ## Self-review
 
 The parser targets the official list/profile tables using `html.parser`, stores no HTML images or image URLs, and is intentionally strict on schema drift. Its JSON contract uses number IDs as required by the follow-up UI task. This Task does not change application or TypeScript files; the existing UI is therefore expected to be updated by Task 2 before an overall typecheck/build is considered meaningful.
+
+## Review fix round 1
+
+### RED
+
+After adding four regression tests, the focused command failed as expected:
+
+```text
+python scripts/update_official_profiles_test.py
+```
+
+```text
+FAIL: malformed list row returned exit code 0
+FAIL: embedded nonidentical detail name returned exit code 0
+FAIL: date-only, timezone-naive, and +09:00 retrievedAt values were accepted
+ERROR: write_json_outputs() got an unexpected keyword argument 'replace_operation'
+```
+
+### Fixes
+
+- A non-four-cell row in the selected official list table now raises a controlled `invalid row` error; it cannot be silently skipped.
+- The profile heading is parsed into normalized name, known-rank label, and yomi fields. Each must exactly equal the corresponding list field.
+- `retrievedAt` now requires a timezone-aware zero-offset ISO timestamp and is serialized canonically with `Z`.
+- `write_json_outputs` accepts an injectable replacement operation, records each successfully installed target, removes those targets on failure, and restores every backup in reverse order.
+
+### GREEN
+
+```text
+python scripts/update_official_profiles_test.py
+```
+
+```text
+......
+----------------------------------------------------------------------
+Ran 6 tests in 1.516s
+
+OK
+```
+
+The atomic rollback test creates a complete four-target old snapshot, injects an `OSError` during the second staged install, and verifies every old file is restored byte-for-byte.
