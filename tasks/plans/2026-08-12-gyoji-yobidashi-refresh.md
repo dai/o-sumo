@@ -37,6 +37,8 @@
 - 無効IDや存在しないJSONはnot-found表示にする。
 - 一覧・詳細のメタデータとcanonicalを維持し、可能な範囲で人物名をページタイトルへ反映する。
 - sitemapへ両一覧と全数値ID詳細URLを含め、入力を厳格に検証する。
+- `public/_redirects` に両一覧と数値ID詳細の末尾スラッシュ301およびSPA 200規則を追加する。
+- build時にindex掲載IDの個別JSON存在、kind、ID一致を検証し、欠落詳細を含むsitemapを生成しない。
 - UI、API helper、metadata、sitemapのテストを先にREDにし、その後最小実装でGREENにする。
 
 ## Task 3: 更新手順と総合検証
@@ -47,4 +49,5 @@
 - 生成後のJSONで行司42名、呼出45名、個別JSON件数一致、写真フィールド不在、代表値一致を確認する。
 - build後のsitemapに全87詳細URLと両一覧URLが含まれることを確認する。
 - ローカル配信で一覧・代表詳細・JSON API・末尾スラッシュのHTTPと表示を確認する。
+- `wrangler pages dev dist` で一覧・詳細の200、末尾スラッシュ301とLocationを実測する。
 - 最終レビュー後にコミット、push、PR作成まで行う。
