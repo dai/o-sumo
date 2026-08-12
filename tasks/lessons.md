@@ -1,5 +1,11 @@
 # Lessons
 
+## 2026-08-12 React一覧の種別切替で旧データを表示しない
+
+- `useEffect`内で旧一覧を空にするだけでは、propやrouteが変わった直後のcommitに間に合わず、旧項目を新しい種別のURLへ再リンクして表示することがある。
+- 非同期取得状態には、その結果を取得したrequest key（今回は`kind`）を保持する。描画時に現在のkeyと一致する結果だけを使い、不一致ならeffectの実行順に依存せずloadingとして扱う。
+- 回帰テストは次のfetchを未解決にし、`flushSync`で種別変更をcommitしたcallback内で、旧行・旧出典・旧取得日時が消えていることを同期的に検証する。
+
 ## 2026-08-04 GitHub README の外部埋め込み
 
 - GitHub README では外部 JavaScript が実行されないため、X の公式 `<blockquote>` + `<script>` embed は使用しない。投稿画像を通常の Markdown image として表示し、画像全体を投稿 URL へのリンクにする。

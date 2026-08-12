@@ -71,6 +71,66 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 
 ---
 
+# 行司・呼出名鑑 公式データ再実装（2026-08-12）
+
+詳細計画: `tasks/plans/2026-08-12-gyoji-yobidashi-refresh.md`
+
+## Plan
+
+- [x] 公式HTMLパーサーをテスト先行で実装し、行司42名・呼出45名の一覧／個別JSONを生成する
+- [x] 公式数値ID、日英階級表示、メタデータ、sitemapへUIとAPI型を接続する
+  - [x] UI/API helper、動的metadata、sitemap入力検証、redirectのfocused testを先に追加し、期待したREDを確認する
+  - [x] 数値ID契約、日英階級、取得情報、写真不使用UI、not-found、人物metadataを最小実装する
+  - [x] build時に一覧と個別JSONの存在・kind・ID一致を検証してからsitemapを生成する
+  - [x] focused testをGREENにし、typecheck、全test、build、diff checkを通す
+  - [x] Task 2の検証結果とセルフレビューをreportへ記録し、変更をcommitする
+- [x] 更新runbookを追加し、全テスト・型チェック・ビルド・HTTP配信を検証する
+- [x] 独立レビューを通し、コミット・push・PRを作成する
+
+### トップバナー更新
+
+- [x] 行司名鑑・呼出名鑑とAPI公開の告知へ日英バナーを更新する
+- [x] バナー文言の回帰テスト、型チェック、全テスト、ビルドを通す
+- [x] 検証結果を記録し、PR #415へpushする
+
+### マージ前ドキュメント・リポジトリ整理
+
+- [x] README.md / README_en.mdを行司・呼出の画面、API、更新手順へ同期する
+- [x] 公開APIカタログをREADMEのAPI一覧と一致させる
+- [x] 一時・生成・内部レビュー成果物を軽く監査し、明白な不要物だけ除外する
+- [x] 型チェック、全テスト、ビルド、diff checkを通してPR #415へpushする
+
+### Final fix wave（2026-08-12）
+
+- [x] 現行公式HTMLと同じ `<br>` 後の改行・空白を含むsanitized fixtureで生成器をREDにし、階級と読みの間だけ任意空白を許容しつつ一覧・詳細の氏名／読み／階級完全一致を維持する
+- [x] profile helperで無効IDとHTTP 404だけをnot-foundにし、network／5xx／JSON・rankCode不正は運用エラーとして再throwする回帰テストをREDからGREENにする
+- [x] profile取得stateを `{kind,id}` に結び付け、同期request-key遷移中はloading、旧profile・旧metadataなしとなるUI／metadata回帰テストをREDからGREENにする
+- [x] 全17値から導出した `OfficialRankCode` unionとruntime setをUI取得検証・sitemap build検証で共有し、不正rankCodeを拒否する
+- [x] rikishi／official sitemapの正ID・重複検証をlabel付き共通helperへ集約し、両方でpositive safe integerを要求する
+- [x] runbookのPowerShell整合性検査を件数不一致・重複ID・非正数／非safe integer・kind／ID不一致・画像fieldでthrowするfail-fast手順にし、slashless `/yobidashi` と `/yobidashi/1935` を追加する
+- [x] focused Python／Vitest、live 87件生成とretrievedAt以外の差分確認・snapshot復元、typecheck、全test、build、JSON／sitemap／Pages HTTP、`git diff --check` を実行する
+- [x] Final fix reportとこのReviewへRED/GREEN・live生成・全検証結果を記録し、修正をcommitする（pushしない）
+
+## Review
+
+- 実装完了後にコマンド結果、生成件数、代表プロフィール、配信確認結果を記録する。
+- Task 1: `python scripts/update_official_profiles_test.py` はfixture取得の生成・不一致時の全出力未更新を確認して緑。公式HTMLから行司42名、呼出45名を取得し、数値IDの個別JSONと一覧JSONを生成、文字列slugの旧JSONを削除した。
+- Task 2: focused Vitestは6 files / 66 tests、全Vitestは40 files / 289 tests、`npm run typecheck`、`npm run build`、`git diff --check`が緑。build後sitemapは行司42件・呼出45件の数値ID詳細URLと両一覧URLを含む。
+- Task 2: 一覧と個別JSONのID重複・非正数、個別JSON欠落、kind不一致、ID不一致を検証し、不整合時はbuildを失敗させる。生成器と生成済みJSONは変更していない。
+- Task 2 review fix round 2: 一覧取得状態を取得時のkindへ結び付け、effect実行前の同期遷移でも旧行・旧出典・旧取得日時を表示しない回帰テストを追加した。
+- Task 3: `docs/official-profile-refresh-runbook.md` に、公式数値ID、画像非使用、生成・差分・JSON整合・sitemap・Pages配信の手順を記録した。現行HEADで `python scripts/update_official_profiles_test.py`（7 tests）、focused Vitest（6 files / 74 tests）、`npm run typecheck`、`npm test`（40 files / 297 tests）、`npm run build` を再実行して緑。JSONは行司42件・呼出45件、個別JSONも同数、正の数値ID、画像系フィールド0件で整合した。`dist/sitemap.xml` は両一覧と87詳細URLを含む。`wrangler pages dev dist` 実測では一覧・代表詳細の末尾スラッシュ付きURLが200、なしURLが正しい301 Location、4 JSON APIが200 application/jsonだった。ブラウザで行司一覧と木村庄之助（1986）の詳細を確認し、公式出典、取得日時、写真不使用、数値ID URLの表示を確認した。
+- Final fix wave: 現行公式HTMLの `<br>` 後の改行・空白をfixtureへ反映すると、Python suiteは見出し不正を起点に3 failures / 3 errorsでREDになった。階級と読みの間だけ `\s*` を許容した後は7 testsがGREENで、氏名・階級・読みの完全一致判定は維持した。
+- Final fix wave: helper／UI／sitemapのproduction変更前focused Vitestは8 tests failed。network／500がnot-foundになる、同期request-key commitで旧詳細が残る、unsafe rikishi IDと未知rankCodeが受理されることを再現した。identity mismatchもinvalid payloadとして1 testのREDを追加した。
+- Final fix wave: live生成は `gyoji=42 yobidashi=45`。index 2件とdetail 87件の計89 JSONをHEADと構造比較し、`retrievedAt: 2026-08-12T02:01:21Z` 以外の差分は0件だった。証明後は生成snapshotをHEADへ復元し、timestamp-only差分をcommit対象から除外した。
+- Final fix wave: final verificationはPython 7 tests、focused Vitest 6 files / 83 tests、typecheck、full Vitest 40 files / 306 tests、build 135 modulesがすべてexit 0。生成JSONは行司42/42・呼出45/45、safe unique ID、kind/ID、17 rankCode、画像field 0件、sitemap詳細42/45件が一致した。
+- Final fix wave: runbook整合性コマンドは正常snapshotでexit 0、`UniqueIds=False` の検査結果で `Official profile integrity check failed: gyoji` をthrowしてexit 1。Wrangler Pagesは両一覧・代表詳細が200、slashless 4 URLが対応する末尾スラッシュURLへ301、4 JSON APIが200 `application/json`だった。
+- 独立レビューでCritical／Important指摘0件、merge可能判定を確認した。`feat-gyoji` をpushし、draft PR #415を作成した。
+- トップバナー: 日本語を指定文言へ更新し、英語も同内容の告知へ更新した。focused test 2件、typecheck、全Vitest 41 files / 308 tests、build 135 modules、`git diff --check` がすべてexit 0。生成済みbundleに新文言が含まれ、旧七月場所文言が残っていないことを確認した。
+- マージ前同期: README日英へ行司・呼出の画面、API、公式出典、写真不使用、更新コマンドを追加し、Node要件とworkflow名の既存誤記を修正した。API仕様・変更履歴・APIカタログも新しい一覧／個別APIへ同期した。
+- リポジトリ軽量監査: 追跡済みの一時・ログ・ビルド出力、空ファイル、5 MiB超のファイル、疑わしいバックアップ名は0件。生成JSONとHTML fixtureは配信・テストに必要なため保持し、実装から参照されない内部SDD report 4件だけをPR差分から削除した。Python 7 tests、focused Vitest 9 tests、typecheck、全Vitest 41 files / 308 tests、build 135 modules、`git diff --check` はすべてexit 0。
+
+---
+
 # Auth.md agent registration metadata（2026-08-04）
 
 ## Scope

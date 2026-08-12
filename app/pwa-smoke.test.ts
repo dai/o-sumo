@@ -50,9 +50,11 @@ describe('PWA smoke config', () => {
           anchor: 'https://osada.us/.well-known/api-catalog',
           item: [
             { href: 'https://osada.us/api/v1/banzuke.json' },
+            { href: 'https://osada.us/api/v1/gyoji.json' },
             { href: 'https://osada.us/api/v1/news.json' },
             { href: 'https://osada.us/api/v1/torikumi.json' },
             { href: 'https://osada.us/api/v1/rikishi.json' },
+            { href: 'https://osada.us/api/v1/yobidashi.json' },
           ],
         },
         {

@@ -12,6 +12,7 @@ import TopLevelSlugPage from './TopLevelSlugPage'
 import ArchivesPage from './archives/page'
 import RikishiPage from './rikishi/page'
 import RikishiProfilePage from './rikishi/RikishiProfilePage'
+import { OfficialListPage, OfficialProfilePage } from './officials/page'
 import KimaritePage from './kimarite/page'
 import AnalyticsDashboardPage from './analytics/page'
 import ThemeToggle from './components/ThemeToggle'
@@ -59,21 +60,27 @@ function AppShell() {
     <BrowserRouter>
       <WebMcpProvider />
       <CanonicalUrl />
-      <MetaHead />
-      <ScrollToHash />
-      <div className="global-notice-banner" role="status" aria-live="polite">
-        {t('global.july2026UpdateNotice')}
-      </div>
-      <div className="top-right-controls">
-        <ThemeToggle />
-        <LanguageToggle />
-      </div>
-      <Routes>
+      <MetaHead>
+        <ScrollToHash />
+        <div className="global-notice-banner" role="status" aria-live="polite">
+          {t('global.officialDirectoryReleaseNotice')}
+        </div>
+        <div className="top-right-controls">
+          <ThemeToggle />
+          <LanguageToggle />
+        </div>
+        <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/archives/" element={<ArchivesPage />} />
         <Route path="/archives" element={<HashPreservingRedirect to="/archives/" />} />
         <Route path="/rikishi/" element={<RikishiPage />} />
         <Route path="/rikishi" element={<HashPreservingRedirect to="/rikishi/" />} />
+        <Route path="/gyoji/" element={<OfficialListPage kind="gyoji" />} />
+        <Route path="/gyoji" element={<HashPreservingRedirect to="/gyoji/" />} />
+        <Route path="/gyoji/:id" element={<TrailingSlashRoute><OfficialProfilePage kind="gyoji" /></TrailingSlashRoute>} />
+        <Route path="/yobidashi/" element={<OfficialListPage kind="yobidashi" />} />
+        <Route path="/yobidashi" element={<HashPreservingRedirect to="/yobidashi/" />} />
+        <Route path="/yobidashi/:id" element={<TrailingSlashRoute><OfficialProfilePage kind="yobidashi" /></TrailingSlashRoute>} />
         <Route path="/kimarite/" element={<KimaritePage />} />
         <Route path="/kimarite" element={<HashPreservingRedirect to="/kimarite/" />} />
         <Route path="/analytics/" element={<AnalyticsDashboardPage />} />
@@ -110,7 +117,8 @@ function AppShell() {
         {/* Day pages (8-digit slugs) */}
         <Route path="/:slug" element={<TopLevelSlugPage />} />
         <Route path="/:slug/" element={<TopLevelSlugPage />} />
-      </Routes>
+        </Routes>
+      </MetaHead>
     </BrowserRouter>
   )
 }

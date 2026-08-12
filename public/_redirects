@@ -11,6 +11,14 @@
 /rikishi/ / 200
 /rikishi/:id /rikishi/:id/ 301
 /rikishi/* / 200
+/gyoji /gyoji/ 301
+/gyoji/ / 200
+/gyoji/:id /gyoji/:id/ 301
+/gyoji/* / 200
+/yobidashi /yobidashi/ 301
+/yobidashi/ / 200
+/yobidashi/:id /yobidashi/:id/ 301
+/yobidashi/* / 200
 /202603-banzuke /202603-banzuke/ 301
 /202603-banzuke/ / 200
 /202603-banduke /202603-banzuke/ 301

@@ -8,7 +8,7 @@
 
 [English README](./README_en.md)
 
-o-sumo は、大相撲の番付と取組情報を配信する静的 Web アプリです。React 19 + TypeScript + Vite で構築し、Cloudflare Pages から静的サイトと静的 JSON API を公開しています。
+o-sumo は、大相撲の番付、取組、力士・行司・呼出名鑑を配信する静的 Web アプリです。React 19 + TypeScript + Vite で構築し、Cloudflare Pages から静的サイトと静的 JSON API を公開しています。
 
 ## ドキュメント一覧
 
@@ -18,6 +18,7 @@ o-sumo は、大相撲の番付と取組情報を配信する静的 Web アプ�
 - API 仕様: `docs/api/v1.md` / `docs/api/v1.en.md`
 - API ポリシー: `docs/api/policy.md` / `docs/api/policy.en.md`
 - API 変更履歴: `docs/api/changelog.md` / `docs/api/changelog.en.md`
+- 行司・呼出データ更新手順: `docs/official-profile-refresh-runbook.md`
 
 ## 概要
 
@@ -26,6 +27,10 @@ o-sumo は、大相撲の番付と取組情報を配信する静的 Web アプ�
   - 過去場所一覧: `/archives`
   - 力士一覧: `/rikishi`
   - 力士プロフィール: `/rikishi/{id}`
+  - 行司名鑑: `/gyoji/`
+  - 行司プロフィール: `/gyoji/{id}/`
+  - 呼出名鑑: `/yobidashi/`
+  - 呼出プロフィール: `/yobidashi/{id}/`
   - 番付: `/{YYYYMM}-banzuke/`
   - 結果ハブ: `/{YYYYMM}-torikumi`
   - 予定ハブ: `/{YYYYMM}-yotei`
@@ -43,6 +48,10 @@ o-sumo は、大相撲の番付と取組情報を配信する静的 Web アプ�
   - `/api/v1/torikumi.json`
   - `/api/v1/rikishi.json`
   - `/api/v1/rikishi/{id}.json`
+  - `/api/v1/gyoji.json`
+  - `/api/v1/gyoji/{id}.json`
+  - `/api/v1/yobidashi.json`
+  - `/api/v1/yobidashi/{id}.json`
   - `/api/v1/news.json`
 
 関連ドキュメント:
@@ -59,7 +68,8 @@ Skill 公開:
 
 ## 主な機能
 
-- ホームから `番付 / 取組予定 / 結果 / 力士プロフィール` に直接遷移
+- ホームから `番付 / 取組予定 / 結果 / 力士・行司・呼出名鑑` に直接遷移
+- 日本相撲協会公式サイトを出典とする現役行司42名・呼出45名の一覧と個別プロフィールを日英表示。公式数値IDをURLとJSON APIに使用し、写真は掲載しません
 - 番付ページで幕内・十両の番付と成績を表示し、MiniMax I2I Generation で加工した力士プロフィール画像とあわせて力士プロフィールへ遷移
 - 月別ハブで 15 日分の日別ページを一覧表示
 - 日別ページで幕内・十両の取組を表示し、取組力士名からプロフィールへ遷移
@@ -68,15 +78,15 @@ Skill 公開:
 - 月キーは `app/lib/torikumi-data.ts` の生成データから動的に決まります
 - ホームの **最新ニュース** セクションで日本相撲協会のお知らせと相撲界ニュース（dmenu スポーツから最新 5 件）を 2 つのサブセクションに分けて表示
 - ホームの **決まり手** カードから全 82 手の索引ページ `/kimarite` へ遷移し、カテゴリ別の目次と並んで技の和英解説を閲覧可能
-- ニュース JSON は GitHub Actions の `daily-data-update` ワークフローから Python スクレイパで自動生成（`/api/v1/news.json`）
+- ニュース JSON は GitHub Actions の `news-feed-update` ワークフローから Python スクレイパで自動生成（`/api/v1/news.json`）
 
 ## 技術スタック
 
 - フロントエンド: React 19, TypeScript, React Router, Vite
 - テスト: Vitest, Testing Library, jsdom
-- データ生成: Python (`scripts/update_sumo_data.py`)
+- データ生成: Python (`scripts/update_sumo_data.py`, `scripts/update_official_profiles.py`)
 - 配信: Cloudflare Pages
-- データ取得元: 日本相撲協会の Ajax エンドポイント
+- データ取得元: 日本相撲協会の Ajax エンドポイント、および行司・呼出の公式会員一覧／プロフィールページ
 - 力士画像: 日本相撲協会プロフィール写真をベースに MiniMax I2I Generation で加工したローカル PNG
 - ニュース取得元: 日本相撲協会のお知らせページと dmenu スポーツ (`https://sumo.sports.smt.docomo.ne.jp/news/`)
 
@@ -84,7 +94,7 @@ Skill 公開:
 
 前提:
 
-- Node.js 18 以上
+- Node.js 20.19 以上、または 22.12 以上
 - npm 9 以上
 - Python 3.10 以上
 
@@ -127,6 +137,10 @@ npm run preview
 - `http://localhost:3001/archives`
 - `http://localhost:3001/rikishi`
 - `http://localhost:3001/rikishi/{id}`
+- `http://localhost:3001/gyoji/`
+- `http://localhost:3001/gyoji/{id}/`
+- `http://localhost:3001/yobidashi/`
+- `http://localhost:3001/yobidashi/{id}/`
 - `http://localhost:3001/{YYYYMM}-banzuke/`
 - `http://localhost:3001/{YYYYMM}-torikumi`
 - `http://localhost:3001/{YYYYMM}-yotei`
@@ -181,6 +195,15 @@ python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule
 python scripts/update_news_feed.py
 ```
 
+行司・呼出名鑑だけを日本相撲協会公式サイトから更新:
+
+```bash
+python scripts/update_official_profiles.py
+python scripts/update_official_profiles_test.py
+```
+
+生成内容と公開前の整合確認は `docs/official-profile-refresh-runbook.md` を参照してください。
+
 2026年6月29日の七月場所番付発表時は、取得元が七月場所を返すことを確認してから次を実行します。
 
 ```bash
@@ -202,6 +225,8 @@ npm run build
 - `public/api/v1/rikishi.json`
 - `public/api/v1/rikishi/{id}.json`（全力士分、`name` / `yomi` / `currentRank` / `sourceUrl` / `updatedAt` を含む）
 - `public/api/v1/news.json`（日本相撲協会お知らせ 3 件 + dmenu スポーツ最新 5 件）
+- `public/api/v1/gyoji.json` / `public/api/v1/gyoji/{id}.json`（行司42名）
+- `public/api/v1/yobidashi.json` / `public/api/v1/yobidashi/{id}.json`（呼出45名）
 - `public/images/rikishi/{id}.png`（全力士分の加工済みプロフィールイラスト、個別ページと番付ページで恒久的に使用）
 
 主な検証内容:
@@ -211,6 +236,7 @@ npm run build
 - 結果 / 予定アーカイブを 15 日分生成
 - 公開済み日は取得済みデータで埋める
 - 未更新日は `pending` のプレースホルダーとして残す
+- 行司42名・呼出45名の一覧と個別JSONが一致し、画像フィールドを含まない
 
 ## 自動更新
 
@@ -278,6 +304,7 @@ GitHub Actions で取組予定、取組結果、ニュース更新を分けて�
 - 番付ページのソート
 - 月別ハブの 15 日表示とソート
 - 日別取組ページのソートと未更新表示
+- 行司・呼出の一覧／詳細、日英階級、公式数値ID、APIパス、動的メタデータ、sitemap
 
 GitHub Actions では PR と `main` / `codex/**` / `automation/data-updates` への push で以下を実行します。
 
@@ -296,7 +323,7 @@ GitHub Actions では PR と `main` / `codex/**` / `automation/data-updates` へ
 
 - GitHub Actions の日次更新/結果更新/ニュース更新は、変更がある場合に `automation/data-updates` PR を作成または更新します。
 - 取組予定は JST 13:00 / 19:00、結果は JST 13:00-18:00 の10分おき、ニュースは JST 09:05-19:05 の2時間おきに確認します。
-- CLI では `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main` / `gh workflow run realtime-torikumi-update.yml -R dai/o-sumo --ref main` / `gh workflow run news-feed-update.yml -R dai/o-sumo --ref main` を使えます。
+- CLI では `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main` / `gh workflow run realtime-torikumi-direct-update.yml -R dai/o-sumo --ref main` / `gh workflow run news-feed-update.yml -R dai/o-sumo --ref main` を使えます。
 - 結果更新 workflow は `--torikumi-only --torikumi-scope result --skip-rikishi-fetch` を使い、取組結果に限定します。
 - 「結果未更新」を確認した場合は、`run履歴` → `runログ（event.schedule, JST, updatedAt系）` → `供給元 judge` の順で切り分けます。
 - Cloudflare の従量抑制のため、`public/_headers` でキャッシュ方針を固定します。
@@ -313,6 +340,7 @@ GitHub Actions では PR と `main` / `codex/**` / `automation/data-updates` へ
 - `app/archives/page.tsx`: 過去場所一覧ページ
 - `app/banzuke/page.tsx`: 番付ページ
 - `app/kimarite/page.tsx`: 全 82 手一覧ページ
+- `app/officials/page.tsx`: 行司・呼出の一覧／個別プロフィール
 - `app/torikumi/page.tsx`: 取組結果 / 取組予定の月別ハブ
 - `app/components/TorikumiDayPage.tsx`: 日別の結果 / 予定ページ
 - `app/components/BanzukeTable.tsx`: 番付テーブルコンポーネント
@@ -324,8 +352,10 @@ GitHub Actions では PR と `main` / `codex/**` / `automation/data-updates` へ
 - `app/lib/torikumi-data.ts`: 取組アーカイブデータ
 - `app/lib/news-data.ts`: ニュースフィードの静的データ
 - `app/lib/kimarite-data.ts`: 決まり手 82 手のマスタ
+- `app/lib/official-profile.ts`: 行司・呼出の型、API取得、数値IDパス
 - `scripts/update_sumo_data.py`: 番付・取組・力士プロファイル生成スクリプト
 - `scripts/update_news_feed.py`: ニュースフィード生成スクリプト
+- `scripts/update_official_profiles.py`: 行司・呼出データ生成スクリプト
 
 ## 連絡先
 

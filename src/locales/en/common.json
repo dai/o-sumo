@@ -1,6 +1,6 @@
 {
   "global": {
-    "july2026UpdateNotice": "The July 2026 basho has ended. See you again in September!",
+    "officialDirectoryReleaseNotice": "20260812 Update: Gyoji and yobidashi directories released, with APIs now available.",
     "homeLink": "Home",
     "siteNavigation": "Site navigation"
   },
@@ -55,7 +55,9 @@
     "analyticsFeatureLabel": "Grand Sumo Analytics",
     "analyticsFeatureTitle": "Dig into the Basho",
     "analyticsFeatureDescription": "Read the flow of the current basho through wins, undefeated rikishi, and kimarite.",
-    "analyticsFeatureAction": "View analytics"
+    "analyticsFeatureAction": "View analytics",
+    "heroGyoji": "Gyoji directory",
+    "heroYobidashi": "Yobidashi directory"
   },
   "analytics": {
     "eyebrow": "{{basho}} Analytics",
@@ -239,5 +241,48 @@
     "sourceHeading": "Source",
     "sourceDescription": "Profile data is sourced from the Japan Sumo Association.",
     "imageSourceDescription": "Displayed profile images are processed illustrations based on Japan Sumo Association profile photos and generated with MiniMax I2I Generation."
+  },
+  "officials": {
+    "gyoji": "Gyoji",
+    "yobidashi": "Yobidashi",
+    "listTitle": "{{label}} directory",
+    "listDescription": "Profiles of active {{label}} based on official Japan Sumo Association information.",
+    "detailTitle": "{{label}} profile",
+    "loadError": "The directory could not be loaded.",
+    "notFound": "This official was not found",
+    "backToList": "Back to the {{label}} directory",
+    "indexJson": "Directory JSON",
+    "sourceLink": "View the official JSA page",
+    "sourceDescription": "Profile information is sourced from the official Japan Sumo Association website.",
+    "noPhotos": "No photographs are used.",
+    "retrievedAt": "Retrieved: {{date}}",
+    "profileMetaTitle": "{{name}} | {{label}} profile | o-sumo",
+    "profileMetaDescription": "A Grand Sumo {{label}} profile for {{name}}, including rank and stable information.",
+    "stageName": "Professional name",
+    "rank": "Rank",
+    "realName": "Legal name",
+    "affiliation": "Stable",
+    "birthplace": "Birthplace",
+    "adoptedAt": "Adopted",
+    "nameHistory": "Gyoji name history",
+    "ranks": {
+      "tate-gyoji": "Chief Referee",
+      "sanyaku-gyoji": "Sanyaku Referee",
+      "makuuchi-gyoji": "Makuuchi Referee",
+      "juryo-gyoji": "Juryo Referee",
+      "makushita-gyoji": "Makushita Referee",
+      "sandanme-gyoji": "Sandanme Referee",
+      "jonidan-gyoji": "Jonidan Referee",
+      "jonokuchi-gyoji": "Jonokuchi Referee",
+      "tate-yobidashi": "Chief Yobidashi",
+      "fuku-tate-yobidashi": "Junior Chief Yobidashi",
+      "sanyaku-yobidashi": "Sanyaku Yobidashi",
+      "makuuchi-yobidashi": "Makuuchi Yobidashi",
+      "juryo-yobidashi": "Juryo Yobidashi",
+      "makushita-yobidashi": "Makushita Yobidashi",
+      "sandanme-yobidashi": "Sandanme Yobidashi",
+      "jonidan-yobidashi": "Jonidan Yobidashi",
+      "jonokuchi-yobidashi": "Jonokuchi Yobidashi"
+    }
   }
 }

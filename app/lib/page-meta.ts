@@ -48,6 +48,8 @@ export function resolvePageMeta(pathname: string): PageMeta {
       title: '力士一覧 | o-sumo',
       description: '大相撲力士のプロフィール、番付、成績を一覧で確認できます。',
     },
+    '/gyoji/': { title: '行司名鑑 | o-sumo', description: '大相撲の現役行司の階級とプロフィールを一覧で紹介します。' },
+    '/yobidashi/': { title: '呼出名鑑 | o-sumo', description: '大相撲の現役呼出の階級とプロフィールを一覧で紹介します。' },
     '/kimarite/': {
       title: '決まり手一覧 | o-sumo',
       description: '大相撲の決まり手を分類別にわかりやすく紹介します。',
@@ -94,6 +96,11 @@ export function resolvePageMeta(pathname: string): PageMeta {
       `${basho} ${dayLabel} ${isResult ? '取組・星取表' : '取組予定'} | o-sumo`,
       `${basho}${dayLabel}の${isResult ? '取組結果と星取表' : '取組予定'}を確認できます。`,
     );
+  }
+
+  if (/^\/(gyoji|yobidashi)\/[1-9]\d*\/$/.test(canonicalPath)) {
+    const isGyoji = canonicalPath.startsWith('/gyoji/');
+    return pageMeta(canonicalPath, `${isGyoji ? '行司' : '呼出'}プロフィール | o-sumo`, `大相撲の${isGyoji ? '行司' : '呼出'}プロフィールを紹介します。`);
   }
 
   if (/^\/rikishi\/[^/]+\/$/.test(canonicalPath)) {
