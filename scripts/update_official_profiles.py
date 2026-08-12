@@ -175,7 +175,7 @@ def parse_profile(html: str, official: dict[str, object], kind: str, retrieved_a
     heading = cell_text(table[0][0])
     name, yomi, rank = (str(official[key]) for key in ("name", "yomi", "rank"))
     known_ranks = "|".join(re.escape(label) for label in RANK_CODES[kind])
-    heading_match = re.fullmatch(rf"(.+) ({known_ranks})\((.+)\)", heading)
+    heading_match = re.fullmatch(rf"(.+) ({known_ranks})\s*\((.+)\)", heading)
     if heading_match is None:
         raise ValueError(f"profile heading is invalid for {kind} {official['id']}")
     profile_name, profile_rank, profile_yomi = (clean(value) for value in heading_match.groups())

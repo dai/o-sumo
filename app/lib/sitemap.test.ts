@@ -50,6 +50,7 @@ describe('sitemap helpers', () => {
   it.each([
     [[{ id: 0 }]],
     [[{ id: 101.5 }]],
+    [[{ id: Number.MAX_SAFE_INTEGER + 1 }]],
     [[{ id: 101 }, { id: 101 }]],
   ])('rejects invalid rikishi IDs: %j', (rikishiItems) => {
     expect(() => getSitemapEntries([], rikishiItems)).toThrow();
@@ -176,8 +177,8 @@ describe('sitemap helpers', () => {
 
   it('rejects duplicate and non-positive official IDs', () => {
     expect(() => getSitemapEntries([], [], [{ id: 1986 }, { id: 1986 }], [])).toThrow('gyoji sitemap contains duplicate id: 1986');
-    expect(() => getSitemapEntries([], [], [], [{ id: 0 }])).toThrow('yobidashi sitemap item at index 0 must have a positive integer id');
-    expect(() => getSitemapEntries([], [], [{ id: '1986' }], [])).toThrow('gyoji sitemap item at index 0 must have a positive integer id');
+    expect(() => getSitemapEntries([], [], [], [{ id: 0 }])).toThrow('yobidashi sitemap item at index 0 must have a positive safe integer id');
+    expect(() => getSitemapEntries([], [], [{ id: '1986' }], [])).toThrow('gyoji sitemap item at index 0 must have a positive safe integer id');
   });
 
   it('loads official sitemap entries only when every profile JSON exists and matches', () => {
@@ -186,8 +187,8 @@ describe('sitemap helpers', () => {
     if (!loader) return;
 
     withOfficialFixture(
-      { officials: [{ id: 1986 }] },
-      { '1986.json': { id: 1986, kind: 'gyoji' } },
+      { officials: [{ id: 1986, rankCode: 'tate-gyoji' }] },
+      { '1986.json': { id: 1986, kind: 'gyoji', rankCode: 'tate-gyoji' } },
       (indexPath) => expect(loader('gyoji', indexPath)).toEqual([{ id: 1986 }]),
     );
   });
@@ -198,24 +199,41 @@ describe('sitemap helpers', () => {
     if (!loader) return;
 
     withOfficialFixture(
-      { officials: [{ id: 1986 }] },
+      { officials: [{ id: 1986, rankCode: 'tate-gyoji' }] },
       {},
       (indexPath) => expect(() => loader('gyoji', indexPath)).toThrow('Missing gyoji profile JSON for id 1986'),
     );
   });
 
   it.each([
-    [{ id: 9999, kind: 'gyoji' }, 'gyoji profile JSON id mismatch for 1986'],
-    [{ id: 1986, kind: 'yobidashi' }, 'gyoji profile JSON kind mismatch for id 1986'],
+    [{ id: 9999, kind: 'gyoji', rankCode: 'tate-gyoji' }, 'gyoji profile JSON id mismatch for 1986'],
+    [{ id: 1986, kind: 'yobidashi', rankCode: 'tate-gyoji' }, 'gyoji profile JSON kind mismatch for id 1986'],
   ])('rejects a profile JSON that does not match its index entry', (profile, message) => {
     const loader = officialSitemapLoader();
     expect(loader).toBeTypeOf('function');
     if (!loader) return;
 
     withOfficialFixture(
-      { officials: [{ id: 1986 }] },
+      { officials: [{ id: 1986, rankCode: 'tate-gyoji' }] },
       { '1986.json': profile },
       (indexPath) => expect(() => loader('gyoji', indexPath)).toThrow(message),
+    );
+  });
+
+  it('rejects unknown rank codes in official index and profile build data', () => {
+    const loader = officialSitemapLoader();
+    expect(loader).toBeTypeOf('function');
+    if (!loader) return;
+
+    withOfficialFixture(
+      { officials: [{ id: 1986, rankCode: 'unknown-rank' }] },
+      { '1986.json': { id: 1986, kind: 'gyoji', rankCode: 'tate-gyoji' } },
+      (indexPath) => expect(() => loader('gyoji', indexPath)).toThrow('gyoji index item at index 0 has invalid rankCode'),
+    );
+    withOfficialFixture(
+      { officials: [{ id: 1986, rankCode: 'tate-gyoji' }] },
+      { '1986.json': { id: 1986, kind: 'gyoji', rankCode: 'unknown-rank' } },
+      (indexPath) => expect(() => loader('gyoji', indexPath)).toThrow('gyoji profile 1986 has invalid rankCode'),
     );
   });
 

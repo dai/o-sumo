@@ -87,6 +87,17 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 - [x] 更新runbookを追加し、全テスト・型チェック・ビルド・HTTP配信を検証する
 - [ ] 独立レビューを通し、コミット・push・PRを作成する
 
+### Final fix wave（2026-08-12）
+
+- [x] 現行公式HTMLと同じ `<br>` 後の改行・空白を含むsanitized fixtureで生成器をREDにし、階級と読みの間だけ任意空白を許容しつつ一覧・詳細の氏名／読み／階級完全一致を維持する
+- [x] profile helperで無効IDとHTTP 404だけをnot-foundにし、network／5xx／JSON・rankCode不正は運用エラーとして再throwする回帰テストをREDからGREENにする
+- [x] profile取得stateを `{kind,id}` に結び付け、同期request-key遷移中はloading、旧profile・旧metadataなしとなるUI／metadata回帰テストをREDからGREENにする
+- [x] 全17値から導出した `OfficialRankCode` unionとruntime setをUI取得検証・sitemap build検証で共有し、不正rankCodeを拒否する
+- [x] rikishi／official sitemapの正ID・重複検証をlabel付き共通helperへ集約し、両方でpositive safe integerを要求する
+- [x] runbookのPowerShell整合性検査を件数不一致・重複ID・非正数／非safe integer・kind／ID不一致・画像fieldでthrowするfail-fast手順にし、slashless `/yobidashi` と `/yobidashi/1935` を追加する
+- [x] focused Python／Vitest、live 87件生成とretrievedAt以外の差分確認・snapshot復元、typecheck、全test、build、JSON／sitemap／Pages HTTP、`git diff --check` を実行する
+- [x] Final fix reportとこのReviewへRED/GREEN・live生成・全検証結果を記録し、修正をcommitする（pushしない）
+
 ## Review
 
 - 実装完了後にコマンド結果、生成件数、代表プロフィール、配信確認結果を記録する。
@@ -95,6 +106,11 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 - Task 2: 一覧と個別JSONのID重複・非正数、個別JSON欠落、kind不一致、ID不一致を検証し、不整合時はbuildを失敗させる。生成器と生成済みJSONは変更していない。
 - Task 2 review fix round 2: 一覧取得状態を取得時のkindへ結び付け、effect実行前の同期遷移でも旧行・旧出典・旧取得日時を表示しない回帰テストを追加した。
 - Task 3: `docs/official-profile-refresh-runbook.md` に、公式数値ID、画像非使用、生成・差分・JSON整合・sitemap・Pages配信の手順を記録した。現行HEADで `python scripts/update_official_profiles_test.py`（7 tests）、focused Vitest（6 files / 74 tests）、`npm run typecheck`、`npm test`（40 files / 297 tests）、`npm run build` を再実行して緑。JSONは行司42件・呼出45件、個別JSONも同数、正の数値ID、画像系フィールド0件で整合した。`dist/sitemap.xml` は両一覧と87詳細URLを含む。`wrangler pages dev dist` 実測では一覧・代表詳細の末尾スラッシュ付きURLが200、なしURLが正しい301 Location、4 JSON APIが200 application/jsonだった。ブラウザで行司一覧と木村庄之助（1986）の詳細を確認し、公式出典、取得日時、写真不使用、数値ID URLの表示を確認した。
+- Final fix wave: 現行公式HTMLの `<br>` 後の改行・空白をfixtureへ反映すると、Python suiteは見出し不正を起点に3 failures / 3 errorsでREDになった。階級と読みの間だけ `\s*` を許容した後は7 testsがGREENで、氏名・階級・読みの完全一致判定は維持した。
+- Final fix wave: helper／UI／sitemapのproduction変更前focused Vitestは8 tests failed。network／500がnot-foundになる、同期request-key commitで旧詳細が残る、unsafe rikishi IDと未知rankCodeが受理されることを再現した。identity mismatchもinvalid payloadとして1 testのREDを追加した。
+- Final fix wave: live生成は `gyoji=42 yobidashi=45`。index 2件とdetail 87件の計89 JSONをHEADと構造比較し、`retrievedAt: 2026-08-12T02:01:21Z` 以外の差分は0件だった。証明後は生成snapshotをHEADへ復元し、timestamp-only差分をcommit対象から除外した。
+- Final fix wave: final verificationはPython 7 tests、focused Vitest 6 files / 83 tests、typecheck、full Vitest 40 files / 306 tests、build 135 modulesがすべてexit 0。生成JSONは行司42/42・呼出45/45、safe unique ID、kind/ID、17 rankCode、画像field 0件、sitemap詳細42/45件が一致した。
+- Final fix wave: runbook整合性コマンドは正常snapshotでexit 0、`UniqueIds=False` の検査結果で `Official profile integrity check failed: gyoji` をthrowしてexit 1。Wrangler Pagesは両一覧・代表詳細が200、slashless 4 URLが対応する末尾スラッシュURLへ301、4 JSON APIが200 `application/json`だった。
 
 ---
 

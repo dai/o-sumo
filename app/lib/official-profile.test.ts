@@ -1,5 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { fetchOfficialProfile, officialApiPath, officialProfilePath } from './official-profile';
+import {
+  fetchOfficialIndex, fetchOfficialProfile, officialApiPath, officialProfilePath,
+} from './official-profile';
 
 beforeEach(() => vi.stubGlobal('fetch', vi.fn()));
 afterEach(() => vi.unstubAllGlobals());
@@ -38,12 +40,40 @@ describe('official profiles', () => {
     expect(fetch).not.toHaveBeenCalled();
   });
 
-  it('treats a profile whose kind or ID does not match the route as not found', async () => {
+  it('rejects a profile whose kind or ID does not match the route as invalid payload', async () => {
     vi.mocked(fetch).mockResolvedValue({
       ok: true,
       json: async () => ({ id: 1935, kind: 'yobidashi' }),
     } as Response);
 
+    await expect(fetchOfficialProfile('gyoji', '1986')).rejects.toThrow('gyoji profile 1986 does not match its API identity');
+  });
+
+  it('treats an HTTP 404 profile response as not found', async () => {
+    vi.mocked(fetch).mockResolvedValue({ ok: false, status: 404 } as Response);
+
     await expect(fetchOfficialProfile('gyoji', '1986')).resolves.toBeNull();
+  });
+
+  it('surfaces network and HTTP 500 failures as operational errors', async () => {
+    vi.mocked(fetch).mockRejectedValueOnce(new TypeError('network unavailable'));
+    await expect(fetchOfficialProfile('gyoji', '1986')).rejects.toThrow('network unavailable');
+
+    vi.mocked(fetch).mockResolvedValueOnce({ ok: false, status: 500 } as Response);
+    await expect(fetchOfficialProfile('gyoji', '1986')).rejects.toThrow('Failed to fetch /api/v1/gyoji/1986.json: 500');
+  });
+
+  it('rejects unknown rank codes in fetched profile and index data', async () => {
+    vi.mocked(fetch).mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({ id: 1986, kind: 'gyoji', rankCode: 'unknown-rank' }),
+    } as Response);
+    await expect(fetchOfficialProfile('gyoji', '1986')).rejects.toThrow('gyoji profile 1986 has invalid rankCode');
+
+    vi.mocked(fetch).mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({ officials: [{ id: 1986, rankCode: 'unknown-rank' }] }),
+    } as Response);
+    await expect(fetchOfficialIndex('gyoji')).rejects.toThrow('gyoji index item at index 0 has invalid rankCode');
   });
 });

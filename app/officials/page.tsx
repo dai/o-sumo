@@ -44,7 +44,7 @@ export function OfficialListPage({ kind }: { kind: OfficialKind }) {
   const label = t(`officials.${kind}`);
   const rankLabel = (item: OfficialIndexItem) => i18n.resolvedLanguage === 'ja'
     ? item.rank
-    : t(`officials.ranks.${item.rankCode}`, { defaultValue: item.rank });
+    : t(`officials.ranks.${item.rankCode}`);
   return <div className="rikishi-page">
     <header className="rikishi-header"><nav className="site-header-nav" aria-label={t('global.siteNavigation')}><HomeLink placement="header" /></nav>
       <h1>{t('officials.listTitle', { label })}</h1><p>{t('officials.listDescription', { label })}</p>
@@ -73,20 +73,32 @@ function Field({ label, value }: { label: string; value: string }) {
 export function OfficialProfilePage({ kind }: { kind: OfficialKind }) {
   const { id = '' } = useParams();
   const { t, i18n } = useTranslation('common');
-  const [profile, setProfile] = React.useState<OfficialProfile | null>(null);
-  const [status, setStatus] = React.useState<'loading' | 'ready' | 'not-found'>('loading');
+  const [detail, setDetail] = React.useState<{
+    kind: OfficialKind | null;
+    id: string;
+    profile: OfficialProfile | null;
+    status: 'loading' | 'ready' | 'not-found' | 'error';
+  }>({ kind: null, id: '', profile: null, status: 'loading' });
   React.useEffect(() => {
-    let active = true; setStatus('loading');
-    fetchOfficialProfile(kind, id).then((data) => { if (active) { setProfile(data); setStatus(data ? 'ready' : 'not-found'); } });
+    let active = true;
+    setDetail({ kind, id, profile: null, status: 'loading' });
+    fetchOfficialProfile(kind, id)
+      .then((profile) => {
+        if (active) setDetail({ kind, id, profile, status: profile ? 'ready' : 'not-found' });
+      })
+      .catch(() => {
+        if (active) setDetail({ kind, id, profile: null, status: 'error' });
+      });
     return () => { active = false; };
   }, [kind, id]);
   const label = t(`officials.${kind}`);
-  const numericId = /^[1-9]\d*$/.test(id) ? Number(id) : null;
-  const currentProfile = profile?.kind === kind && profile.id === numericId ? profile : null;
+  const isCurrentDetail = detail.kind === kind && detail.id === id;
+  const status = isCurrentDetail ? detail.status : 'loading';
+  const currentProfile = isCurrentDetail && detail.status === 'ready' ? detail.profile : null;
   const rankLabel = currentProfile
     ? (i18n.resolvedLanguage === 'ja'
       ? currentProfile.rank
-      : t(`officials.ranks.${currentProfile.rankCode}`, { defaultValue: currentProfile.rank }))
+      : t(`officials.ranks.${currentProfile.rankCode}`))
     : '';
   usePageMetaOverride(currentProfile ? {
     pathname: officialProfilePath(kind, currentProfile.id),
@@ -99,6 +111,7 @@ export function OfficialProfilePage({ kind }: { kind: OfficialKind }) {
     </header>
     <main className="rikishi-main">
       {status === 'loading' && <p className="rikishi-status">{t('rikishi.loading')}</p>}
+      {status === 'error' && <p className="rikishi-status warning">{t('officials.loadError')}</p>}
       {status === 'not-found' && <section className="rikishi-status warning"><h2>{t('officials.notFound')}</h2><Link to={officialListPath(kind)}>{t('officials.backToList', { label })}</Link></section>}
       {status === 'ready' && currentProfile && <article className="rikishi-profile-detail">
         <div className="rikishi-profile-hero"><div><p className="rikishi-profile-rank">{rankLabel}</p><h2>{currentProfile.name}</h2><p>{currentProfile.yomi} / {toRomaji(currentProfile.yomi)}</p><a href={currentProfile.sourceUrl} target="_blank" rel="noopener noreferrer" className="rikishi-action-link">{t('officials.sourceLink')}</a></div></div>

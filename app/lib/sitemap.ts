@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { getAllArchiveRouteConfigs, getDayPath, type ArchiveRouteConfig } from './torikumi-routes';
 import { rikishiProfilePath } from './rikishi-profile';
-import { officialProfilePath, type OfficialKind } from './official-profile';
+import { isOfficialRankCode, officialProfilePath, type OfficialKind } from './official-profile';
 import { normalizeCanonicalPath, toCanonicalUrl } from './site-url';
 
 export interface SitemapEntry {
@@ -28,33 +28,9 @@ function escapeXml(value: string): string {
     .replace(/'/g, '&apos;');
 }
 
-export function validateRikishiSitemapItems(rikishiItems: unknown): RikishiSitemapItem[] {
-  if (!Array.isArray(rikishiItems)) {
-    throw new Error('Rikishi sitemap items must be an array');
-  }
-
-  const seenIds = new Set<number>();
-
-  return rikishiItems.map((item, index) => {
-    const id = typeof item === 'object' && item !== null
-      ? (item as { id?: unknown }).id
-      : undefined;
-
-    if (typeof id !== 'number' || !Number.isInteger(id) || id <= 0) {
-      throw new Error(`Rikishi sitemap item at index ${index} must have a positive integer id`);
-    }
-    if (seenIds.has(id)) {
-      throw new Error(`Rikishi sitemap contains duplicate id: ${id}`);
-    }
-
-    seenIds.add(id);
-    return { id };
-  });
-}
-
-export function validateOfficialSitemapItems(kind: OfficialKind, items: unknown): OfficialSitemapItem[] {
+function validateSitemapIdItems(label: string, items: unknown): Array<{ id: number }> {
   if (!Array.isArray(items)) {
-    throw new Error(`${kind} sitemap items must be an array`);
+    throw new Error(`${label} sitemap items must be an array`);
   }
 
   const seenIds = new Set<number>();
@@ -62,33 +38,50 @@ export function validateOfficialSitemapItems(kind: OfficialKind, items: unknown)
     const id = typeof item === 'object' && item !== null
       ? (item as { id?: unknown }).id
       : undefined;
+
     if (typeof id !== 'number' || !Number.isSafeInteger(id) || id <= 0) {
-      throw new Error(`${kind} sitemap item at index ${index} must have a positive integer id`);
+      throw new Error(`${label} sitemap item at index ${index} must have a positive safe integer id`);
     }
     if (seenIds.has(id)) {
-      throw new Error(`${kind} sitemap contains duplicate id: ${id}`);
+      throw new Error(`${label} sitemap contains duplicate id: ${id}`);
     }
+
     seenIds.add(id);
     return { id };
   });
 }
 
+export function validateRikishiSitemapItems(rikishiItems: unknown): RikishiSitemapItem[] {
+  return validateSitemapIdItems('Rikishi', rikishiItems);
+}
+
+export function validateOfficialSitemapItems(kind: OfficialKind, items: unknown): OfficialSitemapItem[] {
+  return validateSitemapIdItems(kind, items);
+}
+
 export function loadOfficialSitemapItems(kind: OfficialKind, indexPath: string): OfficialSitemapItem[] {
   const index = JSON.parse(readFileSync(indexPath, 'utf8')) as { officials?: unknown };
   const items = validateOfficialSitemapItems(kind, index.officials);
+  const indexRecords = index.officials as Array<{ rankCode?: unknown }>;
   const profileDirectory = join(dirname(indexPath), kind);
 
-  for (const item of items) {
+  for (const [itemIndex, item] of items.entries()) {
+    if (!isOfficialRankCode(indexRecords[itemIndex].rankCode)) {
+      throw new Error(`${kind} index item at index ${itemIndex} has invalid rankCode`);
+    }
     const profilePath = join(profileDirectory, `${item.id}.json`);
     if (!existsSync(profilePath)) {
       throw new Error(`Missing ${kind} profile JSON for id ${item.id}`);
     }
-    const profile = JSON.parse(readFileSync(profilePath, 'utf8')) as { id?: unknown; kind?: unknown };
+    const profile = JSON.parse(readFileSync(profilePath, 'utf8')) as { id?: unknown; kind?: unknown; rankCode?: unknown };
     if (profile.id !== item.id) {
       throw new Error(`${kind} profile JSON id mismatch for ${item.id}`);
     }
     if (profile.kind !== kind) {
       throw new Error(`${kind} profile JSON kind mismatch for id ${item.id}`);
+    }
+    if (!isOfficialRankCode(profile.rankCode)) {
+      throw new Error(`${kind} profile ${item.id} has invalid rankCode`);
     }
   }
 

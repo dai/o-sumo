@@ -44,19 +44,41 @@ git diff -- public/api/v1/gyoji.json public/api/v1/gyoji public/api/v1/yobidashi
 $checks = @('gyoji', 'yobidashi') | ForEach-Object {
   $kind = $_
   $index = Get-Content -Raw "public/api/v1/$kind.json" | ConvertFrom-Json
-  $profiles = @($index.officials | ForEach-Object {
-    Get-Content -Raw "public/api/v1/$kind/$($_.id).json" | ConvertFrom-Json
+  $indexItems = @($index.officials)
+  $ids = @($indexItems | ForEach-Object { $_.id })
+  $duplicateIds = @($ids | Group-Object | Where-Object { $_.Count -gt 1 })
+  $profiles = @($indexItems | ForEach-Object {
+    $expectedId = $_.id
+    $profile = Get-Content -Raw -ErrorAction Stop "public/api/v1/$kind/$expectedId.json" | ConvertFrom-Json
+    [pscustomobject]@{ ExpectedId = $expectedId; Profile = $profile }
   })
+  $detailFiles = @(Get-ChildItem -File "public/api/v1/$kind" -Filter '*.json')
   [pscustomobject]@{
     Kind = $kind
-    IndexCount = @($index.officials).Count
-    DetailCount = $profiles.Count
-    PositiveNumericIds = @($index.officials | Where-Object { $_.id -is [long] -and $_.id -gt 0 }).Count -eq @($index.officials).Count
-    MatchingKindAndId = @($profiles | Where-Object { $_.kind -ne $kind -or $_.id -notin @($index.officials.id) }).Count -eq 0
-    PhotoOrImageFields = @($profiles | ForEach-Object { $_.PSObject.Properties.Name } | Where-Object { $_ -match '(?i)(photo|image)' }).Count
+    IndexCount = $indexItems.Count
+    DetailCount = $detailFiles.Count
+    MatchingCounts = $indexItems.Count -eq $detailFiles.Count
+    PositiveSafeIntegerIds = @($indexItems | Where-Object {
+      $_.id -is [long] -and $_.id -gt 0 -and $_.id -le 9007199254740991
+    }).Count -eq $indexItems.Count
+    UniqueIds = $duplicateIds.Count -eq 0
+    MatchingKindAndId = @($profiles | Where-Object {
+      $_.Profile.kind -ne $kind -or $_.Profile.id -ne $_.ExpectedId
+    }).Count -eq 0
+    PhotoOrImageFields = @($profiles | ForEach-Object { $_.Profile.PSObject.Properties.Name } | Where-Object { $_ -match '(?i)(photo|image)' }).Count
   }
 }
 $checks | Format-Table -AutoSize
+$failed = @($checks | Where-Object {
+  -not $_.MatchingCounts -or
+  -not $_.PositiveSafeIntegerIds -or
+  -not $_.UniqueIds -or
+  -not $_.MatchingKindAndId -or
+  $_.PhotoOrImageFields -ne 0
+})
+if ($failed.Count -gt 0) {
+  throw "Official profile integrity check failed: $($failed.Kind -join ', ')"
+}
 ```
 
 6. 協会プロフィールの代表値と出典URLを確認します。例えば行司ID `1986` は、木村 庄之助、`birthDate: 1961-10-30`、`adoptedAt: 1977-10` です。
@@ -106,7 +128,9 @@ curl -sS -o /dev/null --max-redirs 0 -w '%{http_code} %{content_type} %{redirect
 curl -sS -o /dev/null --max-redirs 0 -w '%{http_code} %{content_type} %{redirect_url}\n' http://127.0.0.1:8788/gyoji/1986/
 curl -sS -o /dev/null --max-redirs 0 -w '%{http_code} %{content_type} %{redirect_url}\n' http://127.0.0.1:8788/gyoji/1986
 curl -sS -o /dev/null --max-redirs 0 -w '%{http_code} %{content_type} %{redirect_url}\n' http://127.0.0.1:8788/yobidashi/
+curl -sS -o /dev/null --max-redirs 0 -w '%{http_code} %{content_type} %{redirect_url}\n' http://127.0.0.1:8788/yobidashi
 curl -sS -o /dev/null --max-redirs 0 -w '%{http_code} %{content_type} %{redirect_url}\n' http://127.0.0.1:8788/yobidashi/1935/
+curl -sS -o /dev/null --max-redirs 0 -w '%{http_code} %{content_type} %{redirect_url}\n' http://127.0.0.1:8788/yobidashi/1935
 curl -sS -o /dev/null --max-redirs 0 -w '%{http_code} %{content_type}\n' http://127.0.0.1:8788/api/v1/gyoji.json
 curl -sS -o /dev/null --max-redirs 0 -w '%{http_code} %{content_type}\n' http://127.0.0.1:8788/api/v1/gyoji/1986.json
 curl -sS -o /dev/null --max-redirs 0 -w '%{http_code} %{content_type}\n' http://127.0.0.1:8788/api/v1/yobidashi.json

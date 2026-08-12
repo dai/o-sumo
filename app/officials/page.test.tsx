@@ -2,7 +2,7 @@ import { act, cleanup, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useState } from 'react';
 import { flushSync } from 'react-dom';
-import { Link, MemoryRouter, Route, Routes } from 'react-router-dom';
+import { Link, MemoryRouter, Route, Router, Routes } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { i18n } from '../lib/i18n';
 import { OfficialListPage, OfficialProfilePage } from './page';
@@ -231,5 +231,65 @@ describe('official directories', () => {
 
     expect(await screen.findByRole('heading', { name: '該当する人物が見つかりません' })).toBeInTheDocument();
     expect(fetch).not.toHaveBeenCalled();
+  });
+
+  it('shows not found for an HTTP 404 profile response', async () => {
+    vi.mocked(fetch).mockResolvedValue({ ok: false, status: 404 } as Response);
+    render(<MemoryRouter initialEntries={['/gyoji/1986/']}><Routes><Route path="/gyoji/:id/" element={<OfficialProfilePage kind="gyoji" />} /></Routes></MemoryRouter>);
+
+    expect(await screen.findByRole('heading', { name: '該当する人物が見つかりません' })).toBeInTheDocument();
+    expect(screen.queryByText('名鑑を読み込めませんでした。')).not.toBeInTheDocument();
+  });
+
+  it.each([
+    ['network failure', () => Promise.reject(new TypeError('network unavailable'))],
+    ['HTTP 500', () => Promise.resolve({ ok: false, status: 500 } as Response)],
+  ])('renders the load error instead of not found after %s', async (_label, response) => {
+    vi.mocked(fetch).mockImplementationOnce(response);
+    render(<MemoryRouter initialEntries={['/gyoji/1986/']}><Routes><Route path="/gyoji/:id/" element={<OfficialProfilePage kind="gyoji" />} /></Routes></MemoryRouter>);
+
+    expect(await screen.findByText('名鑑を読み込めませんでした。')).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: '該当する人物が見つかりません' })).not.toBeInTheDocument();
+    expect(screen.queryByText('木村 庄之助')).not.toBeInTheDocument();
+  });
+
+  it('synchronously shows loading without the previous profile while the next route ID is pending', async () => {
+    const nextResponse = deferredResponse();
+    let switchPath: (path: string) => void = () => undefined;
+    vi.mocked(fetch)
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          ...indexItem,
+          kind: 'gyoji',
+          birthDate: '1961-10-30',
+          birthplace: '東京都府中市',
+          adoptedAt: '1977-10',
+          retrievedAt: '2026-08-12T00:27:59Z',
+        }),
+      } as Response)
+      .mockReturnValueOnce(nextResponse.promise);
+
+    function ControlledProfileRoute() {
+      const [pathname, setPathname] = useState('/gyoji/1986/');
+      switchPath = setPathname;
+      return <Router
+        location={pathname}
+        navigator={{ createHref: () => '/', go: () => undefined, push: () => undefined, replace: () => undefined }}
+      >
+        <Routes><Route path="/gyoji/:id/" element={<OfficialProfilePage kind="gyoji" />} /></Routes>
+      </Router>;
+    }
+
+    render(<ControlledProfileRoute />);
+    expect(await screen.findByRole('heading', { name: '木村 庄之助', level: 1 })).toBeInTheDocument();
+
+    act(() => {
+      flushSync(() => switchPath('/gyoji/1987/'));
+      expect(screen.getByText('読み込み中です。')).toBeInTheDocument();
+      expect(screen.queryByText('木村 庄之助')).not.toBeInTheDocument();
+      expect(screen.queryByRole('link', { name: '日本相撲協会の公式ページを見る' })).not.toBeInTheDocument();
+      expect(screen.queryByText('取得日時: 2026-08-12 00:27 UTC')).not.toBeInTheDocument();
+    });
   });
 });
