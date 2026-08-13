@@ -18,6 +18,13 @@
 - 完全検証: `python scripts/update_sumo_data_parser_test.py`、`python scripts/update_sumo_data_torikumi_logic_test.py`、`npm run typecheck`、`npm test`（42 files / 313 tests）、`npm run build`、`git diff --check` がすべてexit 0。buildはPWA precacheまで生成した。
 - 差分レビュー: currentデータは七月スナップショットへの参照に集約し、巨大データの二重bundleを除去した。月別JSON endpoint・`202609` route・pendingデータ・workflow scheduleは追加していない。
 
+## 独立レビュー修正 round 1
+
+- [x] currentとの同一参照ではなく、七月snapshot自体の月・15日・公開状態・番付人数を回帰テストで固定する
+- [x] 七月snapshotを専用Rollup chunkへ分離するVite設定をREDから追加し、将来のcurrent実体と同一entryへ結合しないことを検証する
+- [x] API v1日英ドキュメントのtorikumi専用フィールドと番付例の更新時刻を実JSONへ同期する
+- [x] focused/full tests、typecheck、build、diff check、self-review、追加commitとreport追記を完了する
+
 ---
 
 # o-sumo AIエージェント対応 7項目

@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 import type { Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
+import { archiveDataManualChunks } from './app/lib/vite-archive-chunk'
 
 function sitemapPlugin(): Plugin {
   let outDir = 'dist'
@@ -178,6 +179,11 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: archiveDataManualChunks,
+      },
+    },
   },
   server: {
     port: 3001,

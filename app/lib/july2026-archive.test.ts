@@ -16,21 +16,28 @@ import {
 import { JULY2026_TORIKUMI_DATA } from './july2026-data';
 import { resolvePageMeta } from './page-meta';
 import { getSitemapEntries } from './sitemap';
-import { makuuchiData, juryo } from './sumo-data';
-import { torikumiData } from './torikumi-data';
 import { getAllArchiveRouteConfigs } from './torikumi-routes';
 
 describe('July 2026 archive', () => {
-  it('keeps immutable snapshots exactly equal to the finalized current July data', () => {
-    expect(torikumiData).toBe(JULY2026_TORIKUMI_DATA);
-    expect(makuuchiData).toBe(JULY2026_MAKUUCHI_DATA);
-    expect(juryo).toBe(JULY2026_JURYO_DATA);
-    expect(JULY2026_TORIKUMI_DATA).toEqual(torikumiData);
-    expect(JULY2026_MAKUUCHI_DATA).toEqual(makuuchiData);
-    expect(JULY2026_JURYO_DATA).toEqual(juryo);
-    expect(JULY2026_BASHO_NAME).toBe(torikumiData.bashoName);
-    expect(JULY2026_YEAR).toBe(torikumiData.year);
-    expect(JULY2026_UPDATED_AT).toBe(torikumiData.resultUpdatedAt);
+  it('keeps the finalized July snapshot contract independent from the current data module', () => {
+    const resultDays = JULY2026_TORIKUMI_DATA.resultDays ?? [];
+    const scheduleDays = JULY2026_TORIKUMI_DATA.scheduleDays ?? [];
+    const countRikishi = (groups: Array<{ east: unknown[]; west: unknown[] }>) => groups
+      .reduce((count, group) => count + group.east.length + group.west.length, 0);
+
+    expect(JULY2026_TORIKUMI_DATA).toMatchObject({
+      bashoId: 636,
+      bashoName: JULY2026_BASHO_NAME,
+      year: JULY2026_YEAR,
+      resultUpdatedAt: JULY2026_UPDATED_AT,
+    });
+    expect(resultDays).toHaveLength(15);
+    expect(scheduleDays).toHaveLength(15);
+    expect(resultDays.map((day) => day.pathDate)).toEqual(['20260712', '20260713', '20260714', '20260715', '20260716', '20260717', '20260718', '20260719', '20260720', '20260721', '20260722', '20260723', '20260724', '20260725', '20260726']);
+    expect(scheduleDays.map((day) => day.pathDate)).toEqual(resultDays.map((day) => day.pathDate));
+    expect([...resultDays, ...scheduleDays].every((day) => day.status === 'published')).toBe(true);
+    expect(countRikishi(JULY2026_MAKUUCHI_DATA)).toBe(42);
+    expect(countRikishi(JULY2026_JURYO_DATA)).toBe(28);
   });
 
   it('resolves July explicitly from its archive snapshots', () => {
