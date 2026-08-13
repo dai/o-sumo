@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-12T00:35:40.050104+00:00",
+  "updatedAt": "2026-08-13T00:36:46.765748+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_X5FLBNZNNVIUHK5RDXCUQRI45U",
+      "title": "大相撲コラム　東京開催場所と3月の春場所の入場料金改定　江戸時代では〝適正価格〟？！",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_X5FLBNZNNVIUHK5RDXCUQRI45U",
+      "publishedAt": "2026-08-13",
+      "publishedAtRaw": "SANSPO　8月13日 9時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260813-0089",
+      "title": "現役最長身の天昇山　最速タイ十両昇進へ「気持ちだけは負けない」　焼き肉を食べた量も規格外",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260813-0089",
+      "publishedAt": "2026-08-13",
+      "publishedAtRaw": "スポニチアネックス　8月13日 5時11分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-chuspo-1295608",
+      "title": "安青錦の付け人の幕下・安響、安治川部屋関取2人目へ強い思い　同郷先輩で目標の師匠にならい「九州場所で決めたい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1295608",
+      "publishedAt": "2026-08-12",
+      "publishedAtRaw": "中日スポーツ　8月12日 21時48分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-sponichi-spngoo-20260812-0063",
       "title": "熱海富士の妹・武井陽奈、悔しい逆転負けも…兄の姿に重なって見えた",
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260812-0063",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260812-0068",
       "publishedAt": "2026-08-12",
       "publishedAtRaw": "スポニチアネックス　8月12日 5時10分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260812019",
-      "title": "熱海富士の妹が個人＆団体で準Ｖ　「稽古が嫌だと思う時は、お兄ちゃんはもっとやっていると思う」",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260812019",
-      "publishedAt": "2026-08-12",
-      "publishedAtRaw": "デイリースポーツ　8月12日 5時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260811-OHT1T51338",
-      "title": "大栄翔、名横綱・千代の富士さんヒントに“ウルフ流トレ”で大関再挑戦を目指す「現役でいる以上は常に上を」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260811-OHT1T51338",
-      "publishedAt": "2026-08-12",
-      "publishedAtRaw": "スポーツ報知　8月12日 5時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260811142",
-      "title": "会場騒然「強すぎる」女子相撲で高校生が大学生、社会人の世界女王経験者に圧勝！阿部なな「うれしいです」",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260811142",
-      "publishedAt": "2026-08-11",
-      "publishedAtRaw": "デイリースポーツ　8月11日 21時05分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
