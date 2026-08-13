@@ -17,6 +17,7 @@
 - GREEN: 七月スナップショット、明示的月解決、PAST_BASHO、重複しないroute設定を実装後、focused回帰は5 tests、関連route/sitemap/metadataは57 testsが成功した。
 - 完全検証: `python scripts/update_sumo_data_parser_test.py`、`python scripts/update_sumo_data_torikumi_logic_test.py`、`npm run typecheck`、`npm test`（42 files / 313 tests）、`npm run build`、`git diff --check` がすべてexit 0。buildはPWA precacheまで生成した。
 - 差分レビュー: currentデータは七月スナップショットへの参照に集約し、巨大データの二重bundleを除去した。月別JSON endpoint・`202609` route・pendingデータ・workflow scheduleは追加していない。
+- コントローラ実測: Python 40 tests、Vitest 43 files / 315 tests、typecheck、build（July専用chunk 444.98 kB / main 1,345.40 kB）、`git diff --check` が成功。Wrangler delivery reportはBASE/LOCAL routing・metadata・sitemapすべてOK、`banzuke.json` / `torikumi.json` は200 `application/json`、独立レビューはspec/qualityともPASS。
 
 ## 独立レビュー修正 round 1
 
