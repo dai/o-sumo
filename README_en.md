@@ -206,17 +206,11 @@ python scripts/update_official_profiles_test.py
 
 See `docs/official-profile-refresh-runbook.md` for generated-file and pre-publish integrity checks.
 
-For the July 2026 banzuke release on June 29, 2026, first confirm that the upstream source has switched to the July basho, then run:
+The July basho is final and retained as immutable snapshots in `app/lib/july2026-data.ts` and `app/lib/july2026-banzuke-data.ts`. `/api/v1/banzuke.json` and `/api/v1/torikumi.json` continue to serve July until the September banzuke is officially published.
 
-```bash
-git pull --ff-only origin main
-python scripts/update_sumo_data.py --torikumi-scope schedule
-npm run typecheck
-npm test
-npm run build
-```
+After the official September banzuke release, confirm the upstream banzuke and torikumi schedule before starting the next update PR.
 
-Before publishing to `main`, verify that `banzuke.json` has `bashoName: "七月場所"`, `year: "令和八年"`, 42 makuuchi rikishi, and 28 juryo rikishi. Also verify that `torikumi.json` keeps `resultDays[0].pathDate = "20260510"` while switching `scheduleDays[0].pathDate` to `"20260712"`.
+The next update PR must preserve the July snapshots and switch banzuke, torikumi, public JSON, monthly routes, and sitemap together only after validating the new official data.
 
 Generated outputs:
 
@@ -255,10 +249,10 @@ Shared helpers under `scripts/ci/`:
 Workflows:
 
 - Daily update: `.github/workflows/daily-data-update.yml`
-  - schedule: JST 13:00 / 19:00
+   - trigger: manual only (`workflow_dispatch`) during the interval
   - updates torikumi schedules only (`--torikumi-only --torikumi-scope schedule`)
 - Realtime results update: `.github/workflows/realtime-torikumi-direct-update.yml`
-  - schedule: every 10 minutes from JST 13:00 through 18:50
+   - trigger: manual only (`workflow_dispatch`) during the interval
   - updates torikumi results only (`--torikumi-only --torikumi-scope result --skip-rikishi-fetch --strict-torikumi-fetch`)
   - logs: GitHub Actions job summary aggregates step results, commit state, and the run URL
 - News update: `.github/workflows/news-feed-update.yml`
@@ -310,10 +304,11 @@ GitHub Actions runs the following on pull requests and pushes to `main`, `codex/
 - SPA fallback file: `public/_redirects` (app routes only; `/api/v1/*` serves static JSON as-is)
 - Direct access to date-based URLs falls back to `index.html`
 
-## Operations Policy For The July 2026 Basho
+## Operations Between The July Archive And September Banzuke Release
 
-- GitHub Actions daily/realtime/news refreshes create or update the shared `automation/data-updates` PR when files change.
-- Schedules refresh at JST 13:00 / 19:00, results refresh every 10 minutes from JST 13:00 through 18:00, and news polls every 2 hours from JST 09:05 through 19:05.
+- The immutable July snapshots and current `/api/v1/banzuke.json` / `/api/v1/torikumi.json` remain in place until the September banzuke is officially published.
+- Torikumi schedule and result workflows are manual-only (`workflow_dispatch`); restore schedules in the next PR after that publication.
+- The news workflow remains scheduled every two hours from JST 09:05 through 19:05.
 - Manual runs can be started with `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main`, `gh workflow run realtime-torikumi-direct-update.yml -R dai/o-sumo --ref main`, or `gh workflow run news-feed-update.yml -R dai/o-sumo --ref main`.
 - The realtime workflow uses `--torikumi-only --torikumi-scope result --skip-rikishi-fetch`, so it is limited to torikumi results.
 - If results still look stale, triage in this order: run history -> run logs (`event.schedule`, JST time, updatedAt fields) -> upstream `judge` values.

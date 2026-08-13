@@ -1,3 +1,25 @@
+# 七月場所アーカイブ化と九月引き継ぎ準備（2026-08-13）
+
+## Plan
+
+- [x] 現行七月データと既存五月スナップショット契約を確認し、月解決・順序・route/metadata/sitemap互換性の回帰テストをREDで記録する
+- [x] 七月の不変TypeScriptスナップショットを追加し、明示的な月解決、PAST_BASHO、重複しないroute設定へ最小実装する
+- [x] plan.mdと日英の運用ドキュメントを九月番付公式発表待ちの状態に同期し、指定のPython/Vitest/型チェック/ビルド/diff検証を通す
+- [x] 差分を自己レビューし、Reviewへ検証証跡を追記してコミットとtask reportを作成する
+
+## Progress
+
+- [x] task-1-brief.md、tasks/lessons.md、既存のarchive実装とルート/sitemap構成を確認した
+
+## Review
+
+- RED: `npm test -- app/lib/july2026-archive.test.ts` は新しい七月スナップショットmoduleを解決できず失敗した。bundle重複を防ぐ同一参照の回帰も、別インスタンスであるため期待どおりREDだった。
+- GREEN: 七月スナップショット、明示的月解決、PAST_BASHO、重複しないroute設定を実装後、focused回帰は5 tests、関連route/sitemap/metadataは57 testsが成功した。
+- 完全検証: `python scripts/update_sumo_data_parser_test.py`、`python scripts/update_sumo_data_torikumi_logic_test.py`、`npm run typecheck`、`npm test`（42 files / 313 tests）、`npm run build`、`git diff --check` がすべてexit 0。buildはPWA precacheまで生成した。
+- 差分レビュー: currentデータは七月スナップショットへの参照に集約し、巨大データの二重bundleを除去した。月別JSON endpoint・`202609` route・pendingデータ・workflow scheduleは追加していない。
+
+---
+
 # o-sumo AIエージェント対応 7項目
 
 > プラン: [C:\Users\dai\.claude\plans\sparkling-snacking-micali.md](../../../../../../Users/dai/.claude/plans/sparkling-snacking-micali.md)

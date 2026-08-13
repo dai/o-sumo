@@ -204,17 +204,11 @@ python scripts/update_official_profiles_test.py
 
 生成内容と公開前の整合確認は `docs/official-profile-refresh-runbook.md` を参照してください。
 
-2026年6月29日の七月場所番付発表時は、取得元が七月場所を返すことを確認してから次を実行します。
+七月場所は確定済みで、`app/lib/july2026-data.ts` と `app/lib/july2026-banzuke-data.ts` に不変スナップショットを保持しています。`/api/v1/banzuke.json` と `/api/v1/torikumi.json` は、九月場所の番付が公式公開されるまで引き続き七月場所を返します。
 
-```bash
-git pull --ff-only origin main
-python scripts/update_sumo_data.py --torikumi-scope schedule
-npm run typecheck
-npm test
-npm run build
-```
+九月場所の公式番付公開後に、取得元・番付・取組日程を確認して次の更新PRを開始します。
 
-`banzuke.json` が `bashoName: "七月場所"`、`year: "令和八年"`、幕内42人、十両28人になっていることを確認してから `main` に反映します。あわせて `torikumi.json` は `resultDays[0].pathDate = "20260510"` を維持しつつ、`scheduleDays[0].pathDate = "20260712"` へ切り替わっていることを確認します。
+次の更新PRでは、現行の七月スナップショットを変更せず、`banzuke.json` と `torikumi.json` を新しい場所の確定データへ同時に切り替えます。切替前には、番付・取組・公開JSON・月別ルート・sitemapの整合性を検証します。
 
 生成・更新対象:
 
@@ -252,11 +246,11 @@ GitHub Actions で取組予定、取組結果、ニュース更新を分けて�
 ワークフロー一覧:
 
 - 日次更新: `.github/workflows/daily-data-update.yml`
-  - 実行時刻: JST 13:00 / 19:00
+  - トリガー: 休止中は手動のみ（`workflow_dispatch`）
   - 実行内容: 取組予定のみ更新（`--torikumi-only --torikumi-scope schedule`）
   - 手動実行: GitHub Actions の `Run workflow` または `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main`
 - 結果更新: `.github/workflows/realtime-torikumi-direct-update.yml`
-  - 実行時刻: JST 13:00-18:50、10分おき
+  - トリガー: 休止中は手動のみ（`workflow_dispatch`）
   - 実行内容: 取組結果のみ更新（`--torikumi-only --torikumi-scope result --skip-rikishi-fetch --strict-torikumi-fetch`）
   - 手動実行: GitHub Actions の `Run workflow` または `gh workflow run realtime-torikumi-direct-update.yml -R dai/o-sumo --ref main`
   - ログ: GitHub Actions の Job Summary に step result / committed / event / run URL を集約
@@ -319,10 +313,11 @@ GitHub Actions では PR と `main` / `codex/**` / `automation/data-updates` へ
 - SPA fallback: `public/_redirects`（アプリルートのみ。`/api/v1/*` は静的 JSON をそのまま配信）
 - 日付ベースの URL を直接開いても `index.html` にフォールバックします
 
-## 運用ポリシー（2026年七月場所向け）
+## 運用ポリシー（七月場所アーカイブ〜九月場所番付発表前）
 
-- GitHub Actions の日次更新/結果更新/ニュース更新は、変更がある場合に `automation/data-updates` PR を作成または更新します。
-- 取組予定は JST 13:00 / 19:00、結果は JST 13:00-18:00 の10分おき、ニュースは JST 09:05-19:05 の2時間おきに確認します。
+- 七月のTypeScriptスナップショットと現行の `/api/v1/banzuke.json` / `/api/v1/torikumi.json` は、九月場所の公式番付公開まで維持します。
+- 取組予定・結果のworkflowは `workflow_dispatch` のみとし、九月場所の番付公開後の次PRで schedule を復元します。
+- ニュース更新だけは JST 09:05-19:05 の2時間おきに継続します。
 - CLI では `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main` / `gh workflow run realtime-torikumi-direct-update.yml -R dai/o-sumo --ref main` / `gh workflow run news-feed-update.yml -R dai/o-sumo --ref main` を使えます。
 - 結果更新 workflow は `--torikumi-only --torikumi-scope result --skip-rikishi-fetch` を使い、取組結果に限定します。
 - 「結果未更新」を確認した場合は、`run履歴` → `runログ（event.schedule, JST, updatedAt系）` → `供給元 judge` の順で切り分けます。

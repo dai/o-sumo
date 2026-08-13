@@ -2,6 +2,7 @@
 import type { TorikumiDataSet } from './torikumi-data';
 import { MARCH2026_TORIKUMI_DATA } from './march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from './may2026-data';
+import { JULY2026_TORIKUMI_DATA } from './july2026-data';
 import { CURRENT_BASHO_ID } from './archive-basho-data';
 
 export interface ArchiveBasho {
@@ -15,6 +16,15 @@ export interface ArchiveBasho {
 }
 
 export const PAST_BASHO: ArchiveBasho[] = [
+  {
+    id: '202607',
+    year: '令和八年',
+    name: '七月場所',
+    data: JULY2026_TORIKUMI_DATA,
+    resultPath: '/202607-torikumi',
+    schedulePath: '/202607-yotei',
+    banzukePath: '/202607-banzuke',
+  },
   {
     id: '202605',
     year: '令和八年',

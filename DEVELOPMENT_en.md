@@ -62,17 +62,7 @@ python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule
 
 For the place-by-place rikishi profile refresh procedure, see `docs/rikishi-profile-refresh-runbook.md`.
 
-Procedure for the July 2026 banzuke release on June 29, 2026:
-
-```bash
-git pull --ff-only origin main
-python scripts/update_sumo_data.py --torikumi-scope schedule
-npm run typecheck
-npm test
-npm run build
-```
-
-Before publishing, verify that `public/api/v1/banzuke.json` has `bashoName: "七月場所"`, `year: "令和八年"`, 42 makuuchi rikishi, and 28 juryo rikishi. Also verify that `public/api/v1/torikumi.json` keeps `resultDays[0].pathDate = 20260510` while switching `scheduleDays[0].pathDate` to `20260712`.
+The July basho is final and has immutable snapshots in `app/lib/july2026-data.ts` and `app/lib/july2026-banzuke-data.ts`. Keep the current July `banzuke.json` and `torikumi.json` until the September banzuke is officially published. The next update PR must validate the official banzuke, torikumi schedule, public JSON, monthly routes, and sitemap together before switching them.
 
 Useful local URLs:
 
@@ -109,7 +99,7 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - Scope: torikumi schedule only (`--torikumi-only --torikumi-scope schedule`)
 - If files change, the workflow creates or updates a pull request from `automation/data-updates`
 
-- Workflow: `.github/workflows/realtime-torikumi-update.yml`
+- Workflow: `.github/workflows/realtime-torikumi-direct-update.yml`
 - Trigger: manual only (`workflow_dispatch`) — automatic schedule disabled after the July 2026 basho concluded (2026-07-26)
 - Scope: torikumi results only (`--torikumi-only --torikumi-scope result --skip-rikishi-fetch`)
 - If files change, the workflow creates or updates a pull request from `automation/data-updates`
@@ -120,21 +110,12 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - Scope: news feed (`python scripts/update_news_feed.py`)
 - If fetched items and source states are unchanged, `news.json` is not rewritten and no PR diff is produced
 
-## Operations Policy For The July 2026 Basho
+## Operations After The July 2026 Archive
 
-- Keep daily, realtime, and news changes in the shared `automation/data-updates` PR.
-- Keep realtime updates limited to torikumi results by using `--torikumi-only --torikumi-scope result --skip-rikishi-fetch`.
-- Keep news polling no-op when only `updatedAt` would change.
-- If results still look stale, triage in this order: run history -> run logs (`event.schedule`, JST time, updatedAt fields) -> upstream `judge` values.
-- After the June 29, 2026 banzuke release, manually run `python scripts/update_sumo_data.py --torikumi-scope schedule` to sync the July banzuke, torikumi schedule placeholders, and static API files. Keep the completed May results archive (`202605`) intact until July results start.
-- Keep the `public/_headers` cache policy unchanged to control Cloudflare usage.
-- Keep the PWA Service Worker on `registerType: "autoUpdate"` so updates are applied automatically.
-
-## Operations Between The July And September 2026 Basho
-
-- After senshuraku on 2026-07-26, the torikumi workflows (`daily-data-update.yml`, `realtime-torikumi-update.yml`) drop their `schedule` triggers and run on `workflow_dispatch` only. Reintroduce `on.schedule` after the September basho banzuke announcement.
-- `news-feed-update.yml` remains the only automatically scheduled workflow and continues refreshing news every two hours during the off-season.
-- The global notice banner shows "The July 2026 basho has ended. See you again in September!" until the September basho opening day; revert the wording afterwards.
+- Keep the July snapshots and current API unchanged until the official September banzuke release.
+- Keep `daily-data-update.yml` and `realtime-torikumi-direct-update.yml` manual-only (`workflow_dispatch`); restore schedules and remove the closing notice in the next PR after that release.
+- `news-feed-update.yml` remains the only scheduled workflow, refreshing news every two hours and skipping `news.json` writes when nothing changed.
+- Keep the `public/_headers` cache policy and PWA `registerType: "autoUpdate"` unchanged.
 
 ### Tests
 

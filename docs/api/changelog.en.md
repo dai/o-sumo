@@ -2,6 +2,14 @@
 
 [日本語版](./changelog.md)
 
+## 2026-08-13
+
+### July Archive And September Handoff Preparation
+
+- Added immutable TypeScript snapshots for finalized July 2026 (`202607`) torikumi and banzuke data
+- Kept monthly HTML routes, metadata, and sitemap entries unique while the public v1 JSON API remains on July
+- Synced operations documentation: torikumi workflows are manual-only until the official September banzuke release, while news remains scheduled
+
 ## 2026-08-12
 
 ### Gyoji And Yobidashi Directories

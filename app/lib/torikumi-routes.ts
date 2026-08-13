@@ -6,6 +6,7 @@ import {
 } from './torikumi-data';
 import { MARCH2026_TORIKUMI_DATA } from './march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from './may2026-data';
+import { JULY2026_TORIKUMI_DATA } from './july2026-data';
 import { updatedAtDateKey } from './updated-at';
 import {
   CURRENT_BANZUKE_PATH,
@@ -60,6 +61,10 @@ export const MAY2026_RESULT_PATH = '/202605-torikumi';
 export const MAY2026_SCHEDULE_PATH = '/202605-yotei';
 export const MAY2026_BANZUKE_PATH = '/202605-banzuke';
 
+export const JULY2026_RESULT_PATH = '/202607-torikumi';
+export const JULY2026_SCHEDULE_PATH = '/202607-yotei';
+export const JULY2026_BANZUKE_PATH = '/202607-banzuke';
+
 export const MARCH2026_RESULT_PATH = '/202603-torikumi';
 export const MARCH2026_SCHEDULE_PATH = '/202603-yotei';
 export const MARCH2026_BANZUKE_PATH = '/202603-banzuke';
@@ -86,6 +91,13 @@ const ARCHIVE_ROUTE_CONFIGS: Record<string, ArchiveRouteConfig> = {
     resultPath: withTrailingSlash(MAY2026_RESULT_PATH),
     schedulePath: withTrailingSlash(MAY2026_SCHEDULE_PATH),
     banzukePath: withTrailingSlash(MAY2026_BANZUKE_PATH),
+  },
+  '202607': {
+    monthKey: '202607',
+    archive: normalizeArchive(JULY2026_TORIKUMI_DATA),
+    resultPath: withTrailingSlash(JULY2026_RESULT_PATH),
+    schedulePath: withTrailingSlash(JULY2026_SCHEDULE_PATH),
+    banzukePath: withTrailingSlash(JULY2026_BANZUKE_PATH),
   },
 };
 

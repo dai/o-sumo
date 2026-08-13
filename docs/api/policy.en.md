@@ -10,13 +10,13 @@ The o-sumo API is operated on a best-effort basis by an individual maintainer. N
 
 Current update flows:
 
-- Daily update (torikumi schedule only): run `daily-data-update.yml` at JST 13:00 / 19:00
-- Realtime update (torikumi results only): run `realtime-torikumi-update.yml` every 10 minutes from JST 13:00 through 18:00
+- Daily update (torikumi schedule only): `daily-data-update.yml` is manual-only (`workflow_dispatch`) until the September banzuke is officially published
+- Realtime update (torikumi results only): `realtime-torikumi-direct-update.yml` is manual-only (`workflow_dispatch`) until the September banzuke is officially published
 - News update: run `news-feed-update.yml` every 2 hours from JST 09:00 through 19:00
 - When files change, the workflows create or update the shared `automation/data-updates` PR
 - News polling does not rewrite `news.json` when only `updatedAt` would change
 
-After the July 2026 banzuke release on June 29, 2026, the maintainer manually syncs `banzuke.json` to the July basho. In `torikumi.json`, `scheduleDays` move to the July basho while `resultDays` stay on the completed May archive (`202605`).
+The July basho is final. Keep current `banzuke.json` and `torikumi.json` data on July (`202607`) until the September banzuke is officially published. The next PR validates official data before restoring schedules, removing the closing notice, and switching current data.
 
 See the GitHub Actions workflows for the exact implementation.
 
