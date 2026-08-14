@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-14T00:36:34.936849+00:00",
+  "updatedAt": "2026-08-14T03:00:28.678767+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-ans-715440",
+      "title": "「男前です」　54歳になった貴乃花、すっきり新ヘアの近影が話題「以前と比べてお顔が…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/ans/sports/ans-715440",
+      "publishedAt": "2026-08-14",
+      "publishedAtRaw": "THE ANSWER　8月14日 11時43分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-thedigestweb-118730",
       "title": "「どんどん若返ってません？」雰囲気がらりの元横綱・貴乃花氏が公開した“54歳誕生日ショット”に脚光！「お顔が穏やか」「とってもダンディー」",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260813-0089",
       "publishedAt": "2026-08-13",
       "publishedAtRaw": "スポニチアネックス　8月13日 5時11分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-chuspo-1295608",
-      "title": "安青錦の付け人の幕下・安響、安治川部屋関取2人目へ強い思い　同郷先輩で目標の師匠にならい「九州場所で決めたい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1295608",
-      "publishedAt": "2026-08-12",
-      "publishedAtRaw": "中日スポーツ　8月12日 21時48分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
