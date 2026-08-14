@@ -30,6 +30,12 @@ export interface ArchiveRouteConfig {
   banzukePath: string;
 }
 
+export interface ArchiveHubRouteDefinition {
+  path: string;
+  canonicalPath: string;
+  page: 'banzuke' | TorikumiPageMode;
+}
+
 function stripTrailingSlash(path: string): string {
   if (path === '/') {
     return path;
@@ -121,6 +127,16 @@ export function getArchiveRouteConfigByMonthKey(monthKey: string): ArchiveRouteC
 
 export function getAllArchiveRouteConfigs(): ArchiveRouteConfig[] {
   return Object.values(ARCHIVE_ROUTE_CONFIGS).sort((left, right) => left.monthKey.localeCompare(right.monthKey));
+}
+
+export function getArchiveHubRouteDefinitions(
+  configs: ArchiveRouteConfig[] = getAllArchiveRouteConfigs(),
+): ArchiveHubRouteDefinition[] {
+  return configs.flatMap((config) => [
+    { path: stripTrailingSlash(config.banzukePath), canonicalPath: withTrailingSlash(config.banzukePath), page: 'banzuke' },
+    { path: stripTrailingSlash(config.resultPath), canonicalPath: withTrailingSlash(config.resultPath), page: 'result' },
+    { path: stripTrailingSlash(config.schedulePath), canonicalPath: withTrailingSlash(config.schedulePath), page: 'schedule' },
+  ]);
 }
 
 export function getArchiveRouteConfigForDateKey(dateKey: string): ArchiveRouteConfig | undefined {
