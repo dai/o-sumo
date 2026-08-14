@@ -1,48 +1,27 @@
-# Project Plan: Modern & Public-Interest Sumo API Site (o-sumo)
+# o-sumo 運用ロードマップ（2026年8月）
 
-## 1. プロジェクトの方向性とデザイン・アイデンティティ
-- [x] **カラーパレットの定義 (CSS Variables)**
-  - [x] 基調色: 墨色 (#1a1a1a), 生成り (#fdfaf5), 土俵土色 (#b58b5f)
-  - [x] アクセント色: 四神（青房: #0000ff, 白房: #ffffff, 赤房: #ff0000, 紫房: #800080）
-- [x] **タイポグラフィの選定**
-  - [x] タイトル用: モダンな楷書体、または力強い明朝体
-  - [x] データ/本文用: 可読性の高いモダン・サンセリフ (Inter, Noto Sans JP等)
-- [x] **モダンUIコンポーネントの設計**
-  - [x] Glassmorphism（透過エフェクト）を用いた力士カード
-  - [x] 土俵の「掃き目」を模した繊細なライン・バックグラウンドのSVG実装
+## 完了: 七月場所の締めとアーカイブ化
 
-## 2. コア機能の実装 (API活用)
-- [ ] **Interactive Banzuke (番付表)**
-  - [ ] `dai/o-sumo` APIから番付データを取得
-  - [ ] 伝統的な縦書きレイアウトとモダンなグリッドシステムの融合
-  - [ ] ホバー/タップによる詳細ポップアップ実装
-- [ ] **Hoshitori Matrix (星取表)**
-  - [ ] TypeScriptによる型安全な勝敗ロジックの実装
-  - [ ] ○/● をアイコンや房の色を用いた視覚的な表現に変換
-- [ ] **Real-time Schedule & Results (取組予定・結果)**
-  - [ ] 令和8年3月場所からのデータを時系列タイムラインで表示
-  - [ ] 決まり手（Kimarite）に連動した解説ツールチップの追加
+- [x] 確定した七月場所（`202607`）の取組・番付を不変TypeScriptスナップショットとして保存
+- [x] 七月を current の公開JSON/API/UI月に保ちつつ、七月・五月・三月を newest-first のアーカイブとして提供
+- [x] 月別ルート、metadata、sitemapがcurrent/archiveの重複URLを作らないことを検証
+- [x] 取組系workflowを `workflow_dispatch` のみにし、ニュース更新だけを定期実行として維持
 
-## 3. 公益性の担保とアクセシビリティ
-- [ ] **教育的コンテンツの統合**
-  - [ ] 相撲用語（Shikona dictionary等）の自動リンク化と用語解説の実装
-  - [ ] 決まり手の統計情報の可視化（Recharts等を使用したグラフ表示）
-- [ ] **ユニバーサルデザインの追求**
-  - [ ] 高コントラスト比の確保と文字サイズ変更機能
-  - [ ] WAI-ARIA準拠のスクリーンリーダー対応（特に表形式のデータ）
-- [x] **情報の透明性**
-  - [x] データ出典（公益財団法人日本相撲協会）とAPI（dai/o-sumo）の明示的なクレジット表記
+## 次のPR: 九月場所の公式番付公開後
 
-## 4. 技術スタック & 最適化
-- [ ] **TypeScript / Next.js (or React) 構成**
-  - [ ] APIレスポンスに対する厳格な型定義の作成
-- [ ] **PWA (Progressive Web App) 対応**
-  - [ ] 場所中でも素早く確認できるオフラインキャッシュ設定
-- [ ] **パフォーマンス最適化**
-  - [ ] 画像アセットのWebP化、フォントのサブセット化による高速化
+- [ ] 日本相撲協会の九月場所番付と取組日程が公開されたことを確認する
+- [ ] 生成器を実行して現行番付・取組・公開JSONを新しい場所へ同時に更新する
+- [ ] 新しい場所の型・JSON・15日分の日付・月別ルート・metadata・sitemapを検証する
+- [ ] 七月スナップショットと過去アーカイブの不変性を回帰テストで確認する
 
-## 5. 開発マイルストーン
-- [x] Phase 1: `base-ui` - カラー、フォント、基本レイアウトの構築
-- [ ] Phase 2: `data-integration` - API連携と番付・星取の基本表示
-- [ ] Phase 3: `polish` - アニメーション、インタラクション、アクセシビリティ対応
-- [ ] Phase 4: `public-release` - PWA化とデプロイ
+## 開場前の復帰条件
+
+- [ ] 公式番付、初日、取組日程、公開JSONの `bashoName` / `year` / 月キーが一致する
+- [ ] 番付、取組、日別ページ、WebMCP、Markdown view、redirect、header、metadata、sitemapを検証する
+- [ ] `daily-data-update.yml` と `realtime-torikumi-direct-update.yml` のscheduleを復元し、終了告知を通常表示へ戻す
+- [ ] `npm run typecheck`、`npm test`、`npm run build`、`git diff --check` を通す
+
+## 継続運用
+
+- ニュースworkflowは休止期間中も定期更新を継続し、内容差分がないときは `news.json` を更新しない。
+- 新しい公開API schemaや月別JSON endpointは追加せず、既存の `/api/v1/banzuke.json` と `/api/v1/torikumi.json` の互換性を維持する。

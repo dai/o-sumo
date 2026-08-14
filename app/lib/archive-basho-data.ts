@@ -16,6 +16,14 @@ import {
   MAY2026_YEAR,
 } from './may2026-banzuke-data';
 import { MAY2026_TORIKUMI_DATA } from './may2026-data';
+import {
+  JULY2026_BASHO_NAME,
+  JULY2026_JURYO_DATA,
+  JULY2026_MAKUUCHI_DATA,
+  JULY2026_UPDATED_AT,
+  JULY2026_YEAR,
+} from './july2026-banzuke-data';
+import { JULY2026_TORIKUMI_DATA } from './july2026-data';
 
 export interface ArchiveBanzukeData {
   bashoName: string;
@@ -49,12 +57,23 @@ const MAY2026_BANZUKE_DATA: ArchiveBanzukeData = {
   juryo: MAY2026_JURYO_DATA,
 };
 
+const JULY2026_BANZUKE_DATA: ArchiveBanzukeData = {
+  bashoName: JULY2026_BASHO_NAME,
+  year: JULY2026_YEAR,
+  updatedAt: JULY2026_UPDATED_AT,
+  makuuchi: JULY2026_MAKUUCHI_DATA,
+  juryo: JULY2026_JURYO_DATA,
+};
+
 export const CURRENT_BASHO_ID = torikumiMonthKey;
 export const CURRENT_RESULT_PATH = `/${CURRENT_BASHO_ID}-torikumi`;
 export const CURRENT_SCHEDULE_PATH = `/${CURRENT_BASHO_ID}-yotei`;
 export const CURRENT_BANZUKE_PATH = `/${CURRENT_BASHO_ID}-banzuke`;
 
 export function getTorikumiArchiveByMonthKey(monthKey: string): TorikumiDataSet {
+  if (monthKey === '202607') {
+    return JULY2026_TORIKUMI_DATA;
+  }
   if (monthKey === '202603') {
     return MARCH2026_TORIKUMI_DATA;
   }
@@ -65,6 +84,9 @@ export function getTorikumiArchiveByMonthKey(monthKey: string): TorikumiDataSet 
 }
 
 export function getBanzukeDataByMonthKey(monthKey: string): ArchiveBanzukeData {
+  if (monthKey === '202607') {
+    return JULY2026_BANZUKE_DATA;
+  }
   if (monthKey === '202603') {
     return MARCH2026_BANZUKE_DATA;
   }

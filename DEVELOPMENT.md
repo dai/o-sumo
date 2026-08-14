@@ -62,17 +62,7 @@ python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule
 
 場所ごとの力士プロフィール更新手順は `docs/rikishi-profile-refresh-runbook.md` を参照してください。
 
-2026年6月29日の七月場所番付発表時の手順:
-
-```bash
-git pull --ff-only origin main
-python scripts/update_sumo_data.py --torikumi-scope schedule
-npm run typecheck
-npm test
-npm run build
-```
-
-`public/api/v1/banzuke.json` の `bashoName` が `七月場所`、`year` が `令和八年`、幕内42人、十両28人であることを確認してから反映します。あわせて `public/api/v1/torikumi.json` は `resultDays[0].pathDate = 20260712` と `scheduleDays[0].pathDate = 20260712` に揃い、取組結果未更新日は pending のまま保持されることを確認します。
+七月場所は確定済みで、`app/lib/july2026-data.ts` と `app/lib/july2026-banzuke-data.ts` に不変スナップショットを保存しています。九月場所の番付が公式公開されるまでは、現行の `banzuke.json` と `torikumi.json` を七月場所のまま維持します。次の更新PRでは、公式番付・取組日程・公開JSON・月別ルート・sitemapを同時に検証してから切り替えます。
 
 ローカル確認先:
 
@@ -109,7 +99,7 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - 更新対象: 取組予定のみ（`--torikumi-only --torikumi-scope schedule`）
 - 変更がある場合は `automation/data-updates` ブランチの PR を作成または更新
 
-- Workflow: `.github/workflows/realtime-torikumi-update.yml`
+- Workflow: `.github/workflows/realtime-torikumi-direct-update.yml`
 - トリガー: 手動のみ（`workflow_dispatch`）— 七月場所終了（2026-07-26）後、自動スケジュールを停止
 - 更新対象: 取組結果のみ（`--torikumi-only --torikumi-scope result --skip-rikishi-fetch`）
 - 変更がある場合は `automation/data-updates` ブランチの PR を作成または更新
@@ -175,18 +165,9 @@ DNS-AID (SVCB/HTTPS) と DNSSEC の有効化は Cloudflare DNS 側の操作で�
 - 固定の `YYYYMM-*` ルートを増やすのではなく、生成データ由来の月キー解決を使います
 - `public/images/rikishi/*.png` は日本相撲協会プロフィール写真をもとに MiniMax I2I Generation で加工した画像です。再生成時は `MINIMAX_API_KEY` を設定して `python scripts/style_transfer_rikishi.py` を使います
 
-## 運用制約ポリシー（2026年七月場所向け）
+## 2026年七月場所アーカイブ後の運用
 
-- `daily-data-update.yml` / `realtime-torikumi-update.yml` / `news-feed-update.yml` は `automation/data-updates` の共有 PR に積む。
-- `realtime-torikumi-update.yml` は `--torikumi-only --torikumi-scope result --skip-rikishi-fetch` を使い、取組結果更新に限定する。
-- `news-feed-update.yml` は取得結果に差分がない場合、`updatedAt` だけでは `public/api/v1/news.json` を書き換えない。
-- 結果未更新時の確認順は `run履歴` → `runログ（event.schedule, JST, updatedAt系）` → `供給元 judge` とする。
-- 2026年6月29日の番付発表後は、手動で `python scripts/update_sumo_data.py --torikumi-scope schedule` を実行し、七月場所の番付・取組予定・静的 API を同期する。結果アーカイブも七月場所 (`202607`) に切り替え、未更新日は pending のまま保持する。
-- Cloudflare の従量抑制を優先し、`public/_headers` のキャッシュ方針（`/assets/*` 長期 immutable、`manifest` 1時間、`sw.js` 再検証、`/` 5分）を維持する。
-- PWA 更新は `vite-plugin-pwa` の `registerType: "autoUpdate"` を維持し、更新を自動反映する。
-
-## 2026 年七月場所終了後（8月休止〜九月場所再開前）の運用
-
-- 七月場所千秋楽（2026-07-26）以降は、取組系 Workflow（`daily-data-update.yml` / `realtime-torikumi-update.yml`）のスケジュールトリガーを停止し、`workflow_dispatch` のみで運用する。九月場所の番付発表後に `on.schedule` を復活させる。
-- 唯一の自動 Workflow は `news-feed-update.yml`。2 時間おきのニュース更新は休止期間中も継続する。
-- グローバルバナーは「令和八年七月場所が終了しました。また9月にお会いしましょう！」を表示し、九月場所の初日発表後に通常文言へ戻す。
+- 七月のスナップショットと現行APIは九月場所の番付公式公開まで変更しない。
+- `daily-data-update.yml` と `realtime-torikumi-direct-update.yml` は `workflow_dispatch` のみとし、scheduleの復元と終了告知の解除は公式番付公開後の次PRで行う。
+- 唯一の自動workflowである `news-feed-update.yml` は2時間おきのニュース更新を継続し、データに差分がない場合は `news.json` を書き換えない。
+- Cloudflareのキャッシュ方針とPWAの `registerType: "autoUpdate"` は維持する。

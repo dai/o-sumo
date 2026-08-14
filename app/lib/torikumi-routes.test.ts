@@ -4,6 +4,8 @@ import {
   findArchiveDay,
   getAdjacentDay,
   getArchiveRouteConfigForPathname,
+  getAllArchiveRouteConfigs,
+  getArchiveHubRouteDefinitions,
   getArchiveUpdatedAt,
   getArchiveUpdateMessage,
   getDayPath,
@@ -16,6 +18,7 @@ import {
 import { torikumiArchive, torikumiMonthKey } from './torikumi-data';
 import { MARCH2026_TORIKUMI_DATA } from './march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from './may2026-data';
+import { JULY2026_TORIKUMI_DATA } from './july2026-data';
 
 describe('torikumi route helpers', () => {
   it('parses dated top-level result slug', () => {
@@ -151,6 +154,37 @@ describe('torikumi route helpers', () => {
     expect(getHubPathForDateKey('20260322', 'result')).toBe('/202603-torikumi/');
     expect(getHubPathForDateKey('20260524', 'schedule')).toBe('/202605-yotei/');
     expect(getHubPath('result')).toBe('/202607-torikumi/');
+  });
+
+  it('defines canonical and redirect routes for all three July hubs exactly once', () => {
+    const routes = getArchiveHubRouteDefinitions();
+    const julyRoutes = routes.filter((route) => route.path.startsWith('/202607-'));
+
+    expect(julyRoutes).toEqual([
+      { path: '/202607-banzuke', canonicalPath: '/202607-banzuke/', page: 'banzuke' },
+      { path: '/202607-torikumi', canonicalPath: '/202607-torikumi/', page: 'result' },
+      { path: '/202607-yotei', canonicalPath: '/202607-yotei/', page: 'schedule' },
+    ]);
+    expect(new Set(routes.flatMap((route) => [route.path, route.canonicalPath])).size).toBe(routes.length * 2);
+  });
+
+  it('keeps archived July alongside a synthetic future current basho', () => {
+    const july = getAllArchiveRouteConfigs().find((config) => config.monthKey === '202607');
+    expect(july).toBeDefined();
+    const september = {
+      monthKey: '202609',
+      archive: JULY2026_TORIKUMI_DATA,
+      resultPath: '/202609-torikumi/',
+      schedulePath: '/202609-yotei/',
+      banzukePath: '/202609-banzuke/',
+    };
+    const paths = getArchiveHubRouteDefinitions([july!, september]).map((route) => route.canonicalPath);
+
+    expect(paths).toContain('/202607-banzuke/');
+    expect(paths).toContain('/202607-torikumi/');
+    expect(paths).toContain('/202607-yotei/');
+    expect(paths).toContain('/202609-banzuke/');
+    expect(paths).toHaveLength(6);
   });
 
   it('detects elapsed archive days from the supplied reference date', () => {
