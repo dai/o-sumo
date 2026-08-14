@@ -11,6 +11,7 @@ interface DocumentHolder {
 
 interface NavigatorHolder {
   modelContext?: {
+    registerTool?: ReturnType<typeof vi.fn>;
     provideContext?: ReturnType<typeof vi.fn>;
   };
 }
@@ -88,6 +89,24 @@ describe('WebMcpProvider', () => {
         <div data-testid="child">child</div>
       </WebMcpProvider>,
     );
+    const firstSignal = (registerTool.mock.calls[0] as unknown as [unknown, { signal: AbortSignal }])[1].signal;
+    expect(firstSignal.aborted).toBe(false);
+
+    unmount();
+    expect(firstSignal.aborted).toBe(true);
+  });
+
+  it('registers every tool via navigator.modelContext.registerTool when document.modelContext is missing', () => {
+    const registerTool = vi.fn();
+    setDocumentModelContext({});
+    setNavigatorModelContext({ modelContext: { registerTool } });
+
+    const { unmount } = render(
+      <WebMcpProvider>
+        <div data-testid="child">child</div>
+      </WebMcpProvider>,
+    );
+    expect(registerTool).toHaveBeenCalledTimes(4);
     const firstSignal = (registerTool.mock.calls[0] as unknown as [unknown, { signal: AbortSignal }])[1].signal;
     expect(firstSignal.aborted).toBe(false);
 
