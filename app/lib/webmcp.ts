@@ -39,7 +39,15 @@ interface DocumentModelContext {
 }
 
 interface NavigatorModelContext {
-  /** Legacy pre-W3C Draft API. */
+  /**
+   * Navigator-hosted registerTool API used by current browser discovery
+   * implementations.
+   */
+  registerTool?: (
+    tool: WebMcpToolDefinition,
+    options?: { signal?: AbortSignal },
+  ) => Promise<unknown>;
+  /** Legacy pre-registerTool API. */
   provideContext?: (context: { tools: WebMcpToolDefinition[] }) => unknown;
 }
 
@@ -238,21 +246,23 @@ export function hasWebMcpSupport(
   navigatorLike: { modelContext?: NavigatorModelContext } | undefined = typeof navigator !== 'undefined' ? (navigator as unknown as ModelContextNavigator) : undefined,
 ): boolean {
   return Boolean(
-    documentLike?.modelContext?.registerTool || navigatorLike?.modelContext?.provideContext,
+    documentLike?.modelContext?.registerTool ||
+      navigatorLike?.modelContext?.registerTool ||
+      navigatorLike?.modelContext?.provideContext,
   );
 }
 
 export interface WebMcpRegistrationResult {
   mode: 'document' | 'navigator' | 'unsupported';
-  /** Cleanup hook. Present only when `mode === 'document'`. */
+  /** Cleanup hook. Present for either registerTool implementation. */
   dispose?: () => void;
 }
 
 /**
  * Register WebMCP tools with the host browser. Prefers the W3C Draft
- * `document.modelContext.registerTool` API and falls back to the legacy
- * `navigator.modelContext.provideContext` if the host does not implement
- * the Draft yet.
+ * `document.modelContext.registerTool` API, supports browser builds that
+ * expose `navigator.modelContext.registerTool`, and finally falls back to
+ * the legacy `navigator.modelContext.provideContext` API.
  */
 export function registerWebMcpTools(
   documentLike: { modelContext?: DocumentModelContext } | undefined = typeof document !== 'undefined' ? (document as unknown as ModelContextDocument) : undefined,
@@ -272,9 +282,22 @@ export function registerWebMcpTools(
     };
   }
 
-  const nav = navigatorLike?.modelContext?.provideContext;
-  if (typeof nav === 'function') {
-    nav({ tools: [...tools] });
+  const navigatorContext = navigatorLike?.modelContext;
+  if (navigatorContext && typeof navigatorContext.registerTool === 'function') {
+    const controller = new AbortController();
+    const { signal } = controller;
+    for (const tool of tools) {
+      void navigatorContext.registerTool(tool, { signal });
+    }
+    return {
+      mode: 'navigator',
+      dispose: () => controller.abort(),
+    };
+  }
+
+  const provideContext = navigatorContext?.provideContext;
+  if (typeof provideContext === 'function') {
+    provideContext({ tools: [...tools] });
     return { mode: 'navigator' };
   }
 
