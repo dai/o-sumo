@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-14T08:34:22.630241+00:00",
+  "updatedAt": "2026-08-14T10:26:16.914598+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-20260814114",
+      "title": "父は空手の東京五輪コーチ、大相撲力士が右膝重傷から復帰へ　寅武蔵「早く番付を戻したい」術後初めて相撲取り手応え",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260814114",
+      "publishedAt": "2026-08-14",
+      "publishedAtRaw": "デイリースポーツ　8月14日 17時48分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-hochi-20260814-OHT1T51135",
       "title": "大相撲の関脇・琴勝峰、幕内・琴栄峰が兄弟でバラエティー番組初共演へ　番組関係者「琴栄峰関が大食漢だという情報が…」",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260813-OHT1T51344",
       "publishedAt": "2026-08-14",
       "publishedAtRaw": "スポーツ報知　8月14日 16時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260814-202608140000637",
-      "title": "54歳の誕生日を迎えた貴乃花氏が髪をバッサリ切って短髪に「イケメンがどんどん戻ってくる」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260814-202608140000637",
-      "publishedAt": "2026-08-14",
-      "publishedAtRaw": "日刊スポーツ　8月14日 15時02分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
