@@ -141,6 +141,12 @@ describe('WebMCP browser integration helpers', () => {
     ).toBe(true);
   });
 
+  it('hasWebMcpSupport returns true when navigator.modelContext.registerTool exists', () => {
+    expect(
+      hasWebMcpSupport({}, { modelContext: { registerTool: () => Promise.resolve() } }),
+    ).toBe(true);
+  });
+
   it('hasWebMcpSupport returns true when legacy navigator.modelContext.provideContext exists', () => {
     expect(
       hasWebMcpSupport({}, { modelContext: { provideContext: () => null } }),
@@ -172,6 +178,23 @@ describe('WebMCP browser integration helpers', () => {
     result.dispose?.();
     const lastSignal = (registerTool.mock.calls[0] as unknown as [unknown, { signal: AbortSignal }])[1].signal;
     expect(lastSignal.aborted).toBe(true);
+  });
+
+  it('registerWebMcpTools registers each tool through navigator.modelContext.registerTool', () => {
+    const registerTool = vi.fn();
+    const result = registerWebMcpTools({}, { modelContext: { registerTool } }, WEBMCP_TOOLS);
+    expect(result.mode).toBe('navigator');
+    expect(registerTool).toHaveBeenCalledTimes(WEBMCP_TOOLS.length);
+    for (const call of registerTool.mock.calls) {
+      const [tool, options] = call as [{ name: string }, { signal: AbortSignal } | undefined];
+      expect(typeof tool.name).toBe('string');
+      expect(options?.signal).toBeInstanceOf(AbortSignal);
+      expect(options?.signal.aborted).toBe(false);
+    }
+
+    result.dispose?.();
+    const firstSignal = (registerTool.mock.calls[0] as unknown as [unknown, { signal: AbortSignal }])[1].signal;
+    expect(firstSignal.aborted).toBe(true);
   });
 
   it('registerWebMcpTools falls back to navigator.modelContext.provideContext', () => {
