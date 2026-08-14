@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-14T06:38:03.115853+00:00",
+  "updatedAt": "2026-08-14T08:34:22.630241+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-hochi-20260814-OHT1T51135",
+      "title": "大相撲の関脇・琴勝峰、幕内・琴栄峰が兄弟でバラエティー番組初共演へ　番組関係者「琴栄峰関が大食漢だという情報が…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260814-OHT1T51135",
+      "publishedAt": "2026-08-14",
+      "publishedAtRaw": "スポーツ報知　8月14日 17時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-f-bt-tp1-260814-202608130000107",
+      "title": "琴勝峰と琴栄峰がTBS「いくらかわかる金？」でバラエティー初共演　スシローで食べまくる",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260814-202608130000107",
+      "publishedAt": "2026-08-14",
+      "publishedAtRaw": "日刊スポーツ　8月14日 17時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-20260814104",
+      "title": "母校の進学校が甲子園出場の大相撲力士、庄司「自分も頑張ります」横手の奮闘が刺激に",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260814104",
+      "publishedAt": "2026-08-14",
+      "publishedAtRaw": "デイリースポーツ　8月14日 16時37分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260813-OHT1T51344",
+      "title": "規格外の新弟子でも届かず…歴代１位デビュー２７連勝の元常幸龍・佐久間さんが記録挑戦時に感じた重圧",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260813-OHT1T51344",
+      "publishedAt": "2026-08-14",
+      "publishedAtRaw": "スポーツ報知　8月14日 16時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-f-bt-tp1-260814-202608140000637",
       "title": "54歳の誕生日を迎えた貴乃花氏が髪をバッサリ切って短髪に「イケメンがどんどん戻ってくる」",
       "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260814-202608140000637",
       "publishedAt": "2026-08-14",
       "publishedAtRaw": "日刊スポーツ　8月14日 15時02分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-ans-715440",
-      "title": "「以前と比べてお顔が…」　54歳になった元横綱、すっきり新ヘアお披露目で注目「男前です」",
-      "url": "https://topics.smt.docomo.ne.jp/article/ans/sports/ans-715440",
-      "publishedAt": "2026-08-14",
-      "publishedAtRaw": "THE ANSWER　8月14日 11時43分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-thedigestweb-118730",
-      "title": "「どんどん若返ってません？」雰囲気がらりの元横綱・貴乃花氏が公開した“54歳誕生日ショット”に脚光！「お顔が穏やか」「とってもダンディー」",
-      "url": "https://topics.smt.docomo.ne.jp/article/thedigestweb/sports/thedigestweb-118730",
-      "publishedAt": "2026-08-14",
-      "publishedAtRaw": "THE DIGEST　8月14日 4時34分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260813136",
-      "title": "貴乃花氏「すっきりと髪を整えていただきました」雰囲気一変の短髪ヘアに　「横綱、男前です」の声",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260813136",
-      "publishedAt": "2026-08-13",
-      "publishedAtRaw": "デイリースポーツ　8月13日 20時41分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_X5FLBNZNNVIUHK5RDXCUQRI45U",
-      "title": "大相撲コラム　東京開催場所と3月の春場所の入場料金改定　江戸時代では〝適正価格〟？！",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_X5FLBNZNNVIUHK5RDXCUQRI45U",
-      "publishedAt": "2026-08-13",
-      "publishedAtRaw": "SANSPO　8月13日 9時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
