@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-14T04:39:14.142890+00:00",
+  "updatedAt": "2026-08-14T06:38:03.115853+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-f-bt-tp1-260814-202608140000637",
+      "title": "54歳の誕生日を迎えた貴乃花氏が髪をバッサリ切って短髪に「イケメンがどんどん戻ってくる」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260814-202608140000637",
+      "publishedAt": "2026-08-14",
+      "publishedAtRaw": "日刊スポーツ　8月14日 15時02分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-ans-715440",
       "title": "「以前と比べてお顔が…」　54歳になった元横綱、すっきり新ヘアお披露目で注目「男前です」",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_X5FLBNZNNVIUHK5RDXCUQRI45U",
       "publishedAt": "2026-08-13",
       "publishedAtRaw": "SANSPO　8月13日 9時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260813-0089",
-      "title": "現役最長身の天昇山　最速タイ十両昇進へ「気持ちだけは負けない」　焼き肉を食べた量も規格外",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260813-0089",
-      "publishedAt": "2026-08-13",
-      "publishedAtRaw": "スポニチアネックス　8月13日 5時11分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
