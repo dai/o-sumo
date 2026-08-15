@@ -945,3 +945,53 @@ th {
     min-height: 40px;
   }
 }
+
+/* Route-level loading feedback for lazy-loaded pages. */
+.route-loading {
+  display: grid;
+  min-height: 22rem;
+  place-items: center;
+  padding: 2rem;
+  color: var(--color-muted);
+  font-weight: 700;
+}
+
+.share-current-link {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.share-current-link__button {
+  min-height: 38px;
+  padding: 0.4rem 0.65rem;
+  border: 1px solid var(--color-outline-variant);
+  background: var(--surface-container-lowest);
+  color: var(--color-primary);
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.share-current-link__button:hover,
+.share-current-link__button:focus-visible {
+  border-color: var(--color-secondary-light);
+  background: var(--color-primary-container);
+}
+
+.share-current-link__fallback {
+  display: grid;
+  gap: 0.2rem;
+  color: var(--color-muted);
+  font-size: 0.8rem;
+}
+
+.share-current-link__fallback input {
+  min-height: 36px;
+  min-width: min(100%, 20rem);
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--color-outline-variant);
+  background: var(--surface-container-lowest);
+  color: var(--color-primary);
+}

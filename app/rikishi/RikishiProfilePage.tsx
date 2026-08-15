@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import HomeLink from '../components/HomeLink';
+import MyRikishiToggle from '../components/MyRikishiToggle';
 import {
   fetchRikishiProfile,
   rikishiApiPath,
@@ -126,6 +127,8 @@ export default function RikishiProfilePage() {
                 <h2>{profile.name}</h2>
                 <p>{profile.yomi} / {toRomaji(profile.yomi)}</p>
                 <div className="rikishi-profile-actions">
+                  <MyRikishiToggle rikishiId={profile.id} />
+                  <Link to={`/compare/?ids=${profile.id}`} className="rikishi-action-link">{t('comparison.compareThis')}</Link>
                   <a href={profile.sourceUrl} target="_blank" rel="noopener noreferrer" className="rikishi-action-link">
                     {t('rikishi.kyokaiProfileLink')}
                   </a>

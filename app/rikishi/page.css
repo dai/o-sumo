@@ -250,3 +250,206 @@
     height: 132px;
   }
 }
+
+/* My rikishi controls keep cards navigable without nesting interactive elements. */
+.rikishi-profile-card {
+  align-content: start;
+}
+
+.rikishi-profile-card__link {
+  display: grid;
+  gap: 0.25rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.rikishi-profile-card__link:hover {
+  text-decoration: none;
+}
+
+.my-rikishi-toggle {
+  margin-top: auto;
+}
+
+.my-rikishi-toggle__button {
+  min-height: 38px;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--color-outline-variant);
+  background: var(--surface-container-low);
+  color: var(--color-primary);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.my-rikishi-toggle__button:hover,
+.my-rikishi-toggle__button:focus-visible,
+.my-rikishi-toggle__button.is-saved {
+  border-color: var(--color-secondary-light);
+  background: var(--color-primary-container);
+}
+
+.my-rikishi-toggle__status {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--color-tertiary);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .my-rikishi-toggle__button {
+    min-height: 44px;
+    width: 100%;
+  }
+}
+
+.my-rikishi-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.my-rikishi-clear {
+  min-height: 40px;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--color-outline-variant);
+  background: var(--surface-container-lowest);
+  color: var(--color-secondary);
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+  cursor: pointer;
+}
+
+.my-rikishi-empty {
+  display: grid;
+  gap: 0.75rem;
+  justify-items: start;
+}
+
+@media (max-width: 640px) {
+  .my-rikishi-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
+.compare-selector {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding: 1.25rem;
+  background: var(--surface-container-lowest);
+  box-shadow: var(--shadow-soft);
+}
+
+.compare-selector h2 {
+  margin: 0;
+}
+
+.compare-selector__status {
+  margin: 0;
+  color: var(--color-tertiary);
+  font-weight: 700;
+}
+
+.compare-selector__results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.6rem;
+}
+
+.compare-selector__option {
+  display: grid;
+  justify-items: start;
+  gap: 0.15rem;
+  min-height: 82px;
+  padding: 0.7rem;
+  border: 1px solid var(--color-outline-variant);
+  background: var(--surface-container-low);
+  color: var(--color-primary);
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+
+.compare-selector__option:hover,
+.compare-selector__option:focus-visible,
+.compare-selector__option.is-selected {
+  border-color: var(--color-secondary-light);
+  background: var(--color-primary-container);
+}
+
+.compare-selector__option span,
+.compare-selector__option small {
+  color: var(--color-muted);
+  font-size: 0.78rem;
+}
+
+.comparison-table-wrapper {
+  overflow-x: auto;
+  padding: 0.2rem;
+}
+
+.comparison-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  background: var(--surface-container-lowest);
+  box-shadow: var(--shadow-soft);
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--color-outline-variant);
+  text-align: left;
+}
+
+.comparison-table thead th {
+  color: var(--color-primary);
+  font-family: var(--font-serif);
+  font-weight: 800;
+}
+
+.comparison-table tbody th {
+  width: 30%;
+  color: var(--color-secondary);
+  font-size: 0.88rem;
+}
+
+.my-rikishi-toolbar__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.my-rikishi-compare-hint {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.my-rikishi-compare-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.4rem;
+  color: var(--color-secondary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.my-rikishi-compare-option input {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--color-secondary);
+}
