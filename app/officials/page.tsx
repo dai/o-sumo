@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import HomeLink from '../components/HomeLink';
+import ShareCurrentLink from '../components/ShareCurrentLink';
 import { usePageMetaOverride } from '../components/MetaHead';
 import { formatUpdatedAt } from '../lib/updated-at';
 import { toRomaji } from '../lib/romaji';
@@ -21,8 +22,7 @@ export function OfficialListPage({ kind }: { kind: OfficialKind }) {
     source: string;
     status: 'loading' | 'ready' | 'error';
   }>({ kind: null, items: [], retrievedAt: '', source: '', status: 'loading' });
-  const [query, setQuery] = React.useState('');
-  const [rankCode, setRankCode] = React.useState('all');
+  const [searchParams, setSearchParams] = useSearchParams();
   React.useEffect(() => {
     let active = true;
     setDirectory({ kind, items: [], retrievedAt: '', source: '', status: 'loading' });
@@ -49,15 +49,26 @@ export function OfficialListPage({ kind }: { kind: OfficialKind }) {
     ? item.rank
     : t(`officials.ranks.${item.rankCode}`);
   const rankCodes = React.useMemo(() => [...new Set(items.map((item) => item.rankCode))], [items]);
+  const query = searchParams.get('q') ?? '';
+  const requestedRankCode = searchParams.get('rank') ?? 'all';
+  const rankCode = rankCodes.some((code) => code === requestedRankCode) ? requestedRankCode : 'all';
   const activeRankLabel = rankCode === 'all' ? '' : t(`officials.ranks.${rankCode}`);
+  const setFilters = React.useCallback((nextQuery: string, nextRankCode: string, replace = true) => {
+    const next = new URLSearchParams(searchParams);
+    const normalizedQuery = nextQuery.trim();
+    if (normalizedQuery) next.set('q', normalizedQuery);
+    else next.delete('q');
+    if (nextRankCode === 'all') next.delete('rank');
+    else next.set('rank', nextRankCode);
+    setSearchParams(next, { replace });
+  }, [searchParams, setSearchParams]);
   const filteredItems = React.useMemo(() => items.filter((item) => (
     (rankCode === 'all' || item.rankCode === rankCode)
     && matchesSearch(query, item.name, item.yomi, toRomaji(item.yomi), item.rank, rankLabel(item))
   )), [items, query, rankCode, i18n.resolvedLanguage]);
   const hasFilters = Boolean(query.trim()) || rankCode !== 'all';
   const clearFilters = () => {
-    setQuery('');
-    setRankCode('all');
+    setFilters('', 'all', false);
   };
   return <div className="rikishi-page">
     <header className="rikishi-header"><nav className="site-header-nav" aria-label={t('global.siteNavigation')}><HomeLink placement="header" /></nav>
@@ -72,9 +83,9 @@ export function OfficialListPage({ kind }: { kind: OfficialKind }) {
       {status === 'ready' && <section className="rikishi-grid-section" aria-label={t('officials.listTitle', { label })}>
         <div className="directory-search">
           <label className="directory-search__label" htmlFor={`${kind}-search`}>{t('officials.searchLabel', { label })}</label>
-          <input id={`${kind}-search`} className="directory-search__input" type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={t('officials.searchPlaceholder')} />
+          <input id={`${kind}-search`} className="directory-search__input" type="search" value={query} onChange={(event) => setFilters(event.target.value, rankCode)} placeholder={t('officials.searchPlaceholder')} />
           <label className="directory-search__label" htmlFor={`${kind}-rank`}>{t('officials.rankFilterLabel')}</label>
-          <select id={`${kind}-rank`} className="directory-search__select" value={rankCode} onChange={(event) => setRankCode(event.target.value)}>
+          <select id={`${kind}-rank`} className="directory-search__select" value={rankCode} onChange={(event) => setFilters(query, event.target.value, false)}>
             <option value="all">{t('officials.rankFilterAll')}</option>
             {rankCodes.map((code) => <option key={code} value={code}>{t('officials.rankFilterOption', { rank: t(`officials.ranks.${code}`) })}</option>)}
           </select>
@@ -82,15 +93,16 @@ export function OfficialListPage({ kind }: { kind: OfficialKind }) {
             <p className="directory-search__count" role="status" aria-live="polite">
               {t('officials.searchResultCount', { count: filteredItems.length, total: items.length })}
             </p>
+            <ShareCurrentLink />
             {hasFilters ? (
               <div className="directory-filter-chips" aria-label={t('officials.activeFiltersLabel')}>
                 {query.trim() ? (
-                  <button type="button" className="directory-filter-chip" onClick={() => setQuery('')}>
+                  <button type="button" className="directory-filter-chip" onClick={() => setFilters('', rankCode, false)}>
                     {t('officials.activeQuery', { query })} <span aria-hidden="true">×</span>
                   </button>
                 ) : null}
                 {rankCode !== 'all' ? (
-                  <button type="button" className="directory-filter-chip" onClick={() => setRankCode('all')}>
+                  <button type="button" className="directory-filter-chip" onClick={() => setFilters(query, 'all', false)}>
                     {t('officials.activeRank', { rank: activeRankLabel })} <span aria-hidden="true">×</span>
                   </button>
                 ) : null}

@@ -17,7 +17,7 @@ function isActive(pathname: string, target: string): boolean {
 }
 
 function isDirectoryRoute(pathname: string): boolean {
-  return ['/rikishi/', '/gyoji/', '/yobidashi/'].some((path) => isActive(pathname, path));
+  return ['/rikishi/', '/my-rikishi/', '/compare/', '/gyoji/', '/yobidashi/'].some((path) => isActive(pathname, path));
 }
 
 export default function PrimaryNavigation({ placement = 'header' }: PrimaryNavigationProps) {
@@ -34,6 +34,8 @@ export default function PrimaryNavigation({ placement = 'header' }: PrimaryNavig
   ];
   const directoryLinks: NavigationLink[] = [
     { to: '/rikishi/', label: t('global.nav.rikishi') },
+    { to: '/my-rikishi/', label: t('myRikishi.navLabel') },
+    { to: '/compare/', label: t('comparison.navLabel') },
     { to: '/gyoji/', label: t('global.nav.gyoji') },
     { to: '/yobidashi/', label: t('global.nav.yobidashi') },
   ];
