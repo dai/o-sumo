@@ -5,6 +5,7 @@ import HomeLink from '../components/HomeLink';
 import { usePageMetaOverride } from '../components/MetaHead';
 import { formatUpdatedAt } from '../lib/updated-at';
 import { toRomaji } from '../lib/romaji';
+import { matchesSearch } from '../lib/search';
 import {
   fetchOfficialIndex, fetchOfficialProfile, officialApiPath, officialIndexApiPath,
   officialListPath, officialProfilePath, type OfficialKind, type OfficialIndexItem, type OfficialProfile,
@@ -20,6 +21,8 @@ export function OfficialListPage({ kind }: { kind: OfficialKind }) {
     source: string;
     status: 'loading' | 'ready' | 'error';
   }>({ kind: null, items: [], retrievedAt: '', source: '', status: 'loading' });
+  const [query, setQuery] = React.useState('');
+  const [rankCode, setRankCode] = React.useState('all');
   React.useEffect(() => {
     let active = true;
     setDirectory({ kind, items: [], retrievedAt: '', source: '', status: 'loading' });
@@ -45,6 +48,11 @@ export function OfficialListPage({ kind }: { kind: OfficialKind }) {
   const rankLabel = (item: OfficialIndexItem) => i18n.resolvedLanguage === 'ja'
     ? item.rank
     : t(`officials.ranks.${item.rankCode}`);
+  const rankCodes = React.useMemo(() => [...new Set(items.map((item) => item.rankCode))], [items]);
+  const filteredItems = React.useMemo(() => items.filter((item) => (
+    (rankCode === 'all' || item.rankCode === rankCode)
+    && matchesSearch(query, item.name, item.yomi, toRomaji(item.yomi), item.rank, rankLabel(item))
+  )), [items, query, rankCode, i18n.resolvedLanguage]);
   return <div className="rikishi-page">
     <header className="rikishi-header"><nav className="site-header-nav" aria-label={t('global.siteNavigation')}><HomeLink placement="header" /></nav>
       <h1>{t('officials.listTitle', { label })}</h1><p>{t('officials.listDescription', { label })}</p>
@@ -55,11 +63,24 @@ export function OfficialListPage({ kind }: { kind: OfficialKind }) {
     <main className="rikishi-main">
       {status === 'loading' && <p className="rikishi-status">{t('rikishi.loading')}</p>}
       {status === 'error' && <p className="rikishi-status warning">{t('officials.loadError')}</p>}
-      {status === 'ready' && <section className="rikishi-profile-grid" aria-label={t('officials.listTitle', { label })}>
-        {items.map((item) => <Link key={item.id} to={officialProfilePath(kind, item.id)} className="rikishi-profile-card">
+      {status === 'ready' && <section className="rikishi-grid-section" aria-label={t('officials.listTitle', { label })}>
+        <div className="directory-search">
+          <label className="directory-search__label" htmlFor={`${kind}-search`}>{t('officials.searchLabel', { label })}</label>
+          <input id={`${kind}-search`} className="directory-search__input" type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={t('officials.searchPlaceholder')} />
+          <label className="directory-search__label" htmlFor={`${kind}-rank`}>{t('officials.rankFilterLabel')}</label>
+          <select id={`${kind}-rank`} className="directory-search__select" value={rankCode} onChange={(event) => setRankCode(event.target.value)}>
+            <option value="all">{t('officials.rankFilterAll')}</option>
+            {rankCodes.map((code) => <option key={code} value={code}>{t('officials.rankFilterOption', { rank: t(`officials.ranks.${code}`) })}</option>)}
+          </select>
+          <p className="directory-search__count" role="status" aria-live="polite">{t('officials.searchResultCount', { count: filteredItems.length })}</p>
+        </div>
+        {filteredItems.length === 0 ? <p className="directory-search__empty">{t('officials.searchEmpty', { label })}</p> : null}
+        <div className="rikishi-profile-grid">
+        {filteredItems.map((item) => <Link key={item.id} to={officialProfilePath(kind, item.id)} className="rikishi-profile-card">
           <span className="rikishi-card-rank">{rankLabel(item)}</span><span className="rikishi-card-name">{item.name}</span>
           <span className="rikishi-card-yomi">{item.yomi}</span><span className="rikishi-card-romaji">{toRomaji(item.yomi)}</span>
         </Link>)}
+        </div>
       </section>}
     </main>
     <footer className="rikishi-footer"><HomeLink placement="footer" /> <span> | </span><a href={officialIndexApiPath(kind)}>{t('officials.indexJson')}</a></footer>

@@ -10,6 +10,8 @@ import {
   type TorikumiPageMode,
 } from '../lib/torikumi-routes';
 import HomeLink from '../components/HomeLink';
+import BashoContextBar from '../components/BashoContextBar';
+import { getBashoStatus } from '../lib/basho-status';
 import AbsenteesNotice, { type AbsenteeEntry } from '../components/AbsenteesNotice';
 import './page.css';
 import { formatUpdatedAt } from '../lib/updated-at';
@@ -59,6 +61,7 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
   const navModeLabel = mode === 'result'
     ? t('torikumi.hub.navResult')
     : t('torikumi.hub.navSchedule');
+  const bashoStatus = getBashoStatus(archive);
 
   return (
     <div className="torikumi-page">
@@ -72,6 +75,14 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
       </header>
 
       <main className="torikumi-main">
+        <BashoContextBar
+          archive={archive}
+          bashoTitle={`${archive.year}${archive.bashoName}`}
+          resultPath={resultPath}
+          schedulePath={schedulePath}
+          updatedAt={updatedAt}
+          status={bashoStatus}
+        />
         <section className="day-summary-card">
           <div>
             <div className="archive-eyebrow">
@@ -81,7 +92,9 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
             <p>
               {mode === 'result'
                 ? t('torikumi.hub.resultArchiveDescription')
-                : t('torikumi.hub.scheduleArchiveDescription')}
+                : bashoStatus.kind === 'final'
+                  ? t('torikumi.hub.scheduleFinalDescription')
+                  : t('torikumi.hub.scheduleArchiveDescription')}
             </p>
           </div>
           <nav className="archive-nav" aria-label={`${modeLabel}一覧の主要導線`}>

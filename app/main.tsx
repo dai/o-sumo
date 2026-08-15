@@ -23,6 +23,7 @@ import MetaHead from './components/MetaHead'
 import TrailingSlashRoute from './components/TrailingSlashRoute'
 import HashPreservingRedirect from './components/HashPreservingRedirect'
 import WebMcpProvider from './components/WebMcpProvider'
+import PrimaryNavigation from './components/PrimaryNavigation'
 import { getArchiveHubRouteDefinitions } from './lib/torikumi-routes'
 import { bootstrapTheme } from './lib/theme'
 import './globals.css'
@@ -50,10 +51,13 @@ function AppShell() {
         <div className="global-notice-banner" role="status" aria-live="polite">
           {t('global.officialDirectoryReleaseNotice')}
         </div>
+        <a className="skip-to-main" href="#main-content">{t('bashoStatus.skipToMain')}</a>
         <div className="top-right-controls">
           <ThemeToggle />
           <LanguageToggle />
         </div>
+        <PrimaryNavigation />
+        <div id="main-content" tabIndex={-1}>
         <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/archives/" element={<ArchivesPage />} />
@@ -94,6 +98,7 @@ function AppShell() {
         <Route path="/:slug" element={<TopLevelSlugPage />} />
         <Route path="/:slug/" element={<TopLevelSlugPage />} />
         </Routes>
+        </div>
       </MetaHead>
     </BrowserRouter>
   )

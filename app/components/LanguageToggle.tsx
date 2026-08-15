@@ -6,7 +6,7 @@ const LANG_CODES: Record<SupportedLang, string> = { ja: 'JA', en: 'EN' };
 const LANG_NAMES: Record<SupportedLang, string> = { ja: '日本語', en: 'English' };
 
 export default function LanguageToggle() {
-  const { i18n } = useTranslation('common');
+  const { i18n, t } = useTranslation('common');
   const resolvedLang = (i18n.resolvedLanguage === 'en' ? 'en' : 'ja') as SupportedLang;
 
   const handleSwitch = (lang: SupportedLang) => {
@@ -19,7 +19,7 @@ export default function LanguageToggle() {
   };
 
   return (
-    <div className="language-toggle" role="group" aria-label="言語切り替え">
+    <div className="language-toggle" role="group" aria-label={t('languageToggle.groupLabel')}>
       {SUPPORTED_LANGS.map((lang) => (
         <button
           key={lang}
@@ -27,6 +27,10 @@ export default function LanguageToggle() {
           className={`language-toggle-btn${resolvedLang === lang ? ' is-active' : ''}`}
           onClick={() => handleSwitch(lang)}
           aria-pressed={resolvedLang === lang}
+          aria-label={t('languageToggle.optionLabel', {
+            language: LANG_NAMES[lang],
+            state: t(resolvedLang === lang ? 'languageToggle.selected' : 'languageToggle.notSelected'),
+          })}
           title={LANG_NAMES[lang]}
         >
           {LANG_CODES[lang]}

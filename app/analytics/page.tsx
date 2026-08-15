@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import HomeLink from '../components/HomeLink';
+import BashoContextBar from '../components/BashoContextBar';
+import { getBashoStatus } from '../lib/basho-status';
 import { CURRENT_RESULT_PATH, CURRENT_SCHEDULE_PATH } from '../lib/archive-basho-data';
 import { makuuchiData, type Rikishi } from '../lib/sumo-data';
 import { torikumiArchive, torikumiMonthKey } from '../lib/torikumi-data';
@@ -113,10 +115,16 @@ export default function AnalyticsDashboardPage() {
   const bashoLabel = i18n.resolvedLanguage === 'en'
     ? englishBashoLabel
     : `${torikumiArchive.year}${torikumiArchive.bashoName}`;
+  const bashoStatus = getBashoStatus(torikumiArchive);
 
   const metricNote = (metric: DashboardMetric): string => {
     if (metric.key === 'records') return t('analytics.metrics.records.note', { rate: metric.note });
     if (metric.key === 'undefeated') return metric.note || t('analytics.metrics.undefeated.none');
+    if (metric.key === 'maxWins') {
+      return t(bashoStatus.kind === 'final'
+        ? 'analytics.metrics.maxWins.finalNote'
+        : 'analytics.metrics.maxWins.note');
+    }
     return t(`analytics.metrics.${metric.key}.note`);
   };
 
@@ -138,6 +146,14 @@ export default function AnalyticsDashboardPage() {
       </header>
 
       <main className="analytics-dashboard-main">
+        <BashoContextBar
+          archive={torikumiArchive}
+          bashoTitle={`${torikumiArchive.year}${torikumiArchive.bashoName}`}
+          resultPath={`${CURRENT_RESULT_PATH}/`}
+          schedulePath={`${CURRENT_SCHEDULE_PATH}/`}
+          updatedAt={torikumiArchive.updatedAt}
+          status={bashoStatus}
+        />
         <section className="analytics-dashboard-panel analytics-results-panel" aria-labelledby="results-heading">
           <div className="analytics-panel-header">
             <h2 id="results-heading">{t('analytics.results.heading')}</h2>

@@ -2,14 +2,40 @@
   "global": {
     "officialDirectoryReleaseNotice": "20260812 更新: 行司名鑑と呼出名鑑をリリース、APIも公開しました。",
     "homeLink": "ホーム",
-    "siteNavigation": "サイトナビゲーション"
+    "siteNavigation": "サイトナビゲーション",
+    "primaryNavigation": "主要ナビゲーション",
+    "nav": {
+      "home": "ホーム",
+      "banzuke": "番付",
+      "schedule": "取組予定",
+      "result": "結果",
+      "rikishi": "力士を探す"
+    }
   },
   "pwa": {
     "updateDialogTitle": "新しい更新があります。再読み込みしますか？"
   },
+  "bashoStatus": {
+    "contextLabel": "現在の場所情報",
+    "live": "現在 {{day}} 日目",
+    "upcoming": "開幕前",
+    "final": "場所は終了しました",
+    "updatedAt": "最終更新 {{date}}",
+    "viewSchedule": "取組予定を見る",
+    "viewResults": "結果を見る",
+    "viewFinalResults": "確定結果を見る",
+    "viewPastSchedule": "過去の予定を見る",
+    "skipToMain": "本文へスキップ"
+  },
   "themeToggle": {
     "ariaLabelDark": "現在のテーマはダーク。クリックでライトに切り替え",
     "ariaLabelLight": "現在のテーマはライト。クリックでダークに切り替え"
+  },
+  "languageToggle": {
+    "groupLabel": "言語切り替え",
+    "optionLabel": "{{language}}（{{state}}）",
+    "selected": "選択中",
+    "notSelected": "未選択"
   },
   "sortToggle": {
     "asc": "昇順",
@@ -20,6 +46,7 @@
     "siteTitle": "o-sumo",
     "siteSubtitle": "大相撲情報サイト",
     "heroDescription": "最新の番付、日別の取組結果、日別の取組予定をご覧ください。",
+    "heroFinalDescription": "今場所は終了しました。確定した取組結果、優勝・三賞、番付を振り返れます。",
     "heroBanzuke": "番付",
     "heroSchedule": "取組予定",
     "heroResult": "結果",
@@ -42,7 +69,13 @@
     "heroRikishi": "力士プロフィール",
     "heroDayIndicator": "現在 {{day}} 日目",
     "heroPreBashoStatus": "開幕前",
+    "heroFinalStatus": "場所は終了しました",
     "heroLastUpdated": "前回更新 {{timeJst}} JST",
+    "liveTorikumiTitle": "現在の取組、速報中！",
+    "liveTorikumiAction": "速報を見る",
+    "finalResultsTitle": "今場所の確定結果",
+    "finalResultsDescription": "今場所は終了しました。全取組の確定結果と優勝・三賞を確認できます。",
+    "finalResultsAction": "確定結果を見る",
     "newsSectionTitle": "最新ニュース",
     "newsSeeAll": "もっと見る",
     "newsEmpty": "新しいニュースはありません",
@@ -64,7 +97,8 @@
     "title": "大相撲アナリティクス",
     "description": "幕内の勝敗、上位争い、決まり手傾向をひと目で確認できるダッシュボードです。",
     "resultAction": "取組結果を見る",
-    "scheduleAction": "取組予定を見る",
+      "scheduleAction": "取組予定を見る",
+      "pastScheduleAction": "過去の予定を見る",
     "metrics": {
       "label": "主要指標",
       "makuuchi": {
@@ -82,7 +116,8 @@
       "maxWins": {
         "label": "最多勝ライン",
         "value": "{{count}}勝",
-        "note": "幕内の現在トップライン"
+        "note": "幕内の現在トップライン",
+        "finalNote": "幕内の確定最多勝"
       }
     },
     "leaders": {
@@ -142,6 +177,12 @@
     "banzukeListTitle": "番付一覧",
     "pageDescription": "{{gregorianBasho}}の幕内・十両力士の番付と成績 / URL: {{banzukePath}}",
     "sortLabel": "番付の並び順",
+    "discoveryLabel": "番付を探す",
+    "searchLabel": "力士を探す",
+    "searchPlaceholder": "四股名・かな・ローマ字・番付で検索",
+    "searchResultCount": "{{count}}人を表示中",
+    "searchEmpty": "一致する力士が見つかりません。四股名・かな・ローマ字を確認してください。",
+    "quickNavigation": "番付のクイック移動",
     "makuuchi": "幕内",
     "juryo": "十両",
     "east": "東",
@@ -176,6 +217,7 @@
       "updateDate": "更新日: {{date}}",
       "resultArchiveDescription": "初日から千秋楽までの結果ページを日付ごとに遡れます。未更新日は空状態で先に公開します。",
       "scheduleArchiveDescription": "初日から千秋楽までの予定ページを日付ごとに確認できます。未更新日は取組予定未更新として表示します。",
+      "scheduleFinalDescription": "この場所は終了しました。過去の取組予定を確認できます。確定した取組結果は結果一覧からご覧ください。",
       "navResult": "予定一覧",
       "navSchedule": "結果一覧",
       "navBanzuke": "番付",
@@ -199,6 +241,7 @@
       "updateDate": "更新日: {{date}}",
       "kimariteResult": "決まり手",
       "kimariteSchedule": "予定",
+      "winner": "勝",
       "matchScheduled": "取組予定",
       "absent": "(休場)",
       "absentBout": "{{division}} {{boutNo}}番 は休場により取組なし",
@@ -214,6 +257,14 @@
   "rikishi": {
     "listTitle": "力士プロフィール",
     "listDescription": "幕内・十両力士の基本情報と自前プロフィールページです。",
+    "searchLabel": "力士を探す",
+    "searchPlaceholder": "四股名・かな・ローマ字・番付で検索",
+    "divisionLabel": "階級で絞り込む",
+    "divisionAll": "すべて",
+    "divisionMakuuchi": "幕内",
+    "divisionJuryo": "十両",
+    "searchResultCount": "{{count}}人を表示中",
+    "searchEmpty": "一致する力士が見つかりません。検索語または絞り込み条件を変更してください。",
     "detailTitle": "力士プロフィール",
     "detailDescription": "力士IDに対応するプロフィールを表示します。",
     "updatedAt": "更新日: {{date}}",
@@ -247,6 +298,13 @@
     "yobidashi": "呼出",
     "listTitle": "{{label}}名鑑",
     "listDescription": "日本相撲協会の公式情報をもとに、現役{{label}}を紹介します。",
+    "searchLabel": "{{label}}を探す",
+    "searchPlaceholder": "氏名・かな・ローマ字・階級で検索",
+    "rankFilterLabel": "階級で絞り込む",
+    "rankFilterAll": "すべての階級",
+    "rankFilterOption": "階級: {{rank}}",
+    "searchResultCount": "{{count}}人を表示中",
+    "searchEmpty": "一致する{{label}}が見つかりません。検索語または階級を変更してください。",
     "detailTitle": "{{label}}プロフィール",
     "loadError": "名鑑を読み込めませんでした。",
     "notFound": "該当する人物が見つかりません",
