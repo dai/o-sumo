@@ -4,12 +4,16 @@
     "homeLink": "ホーム",
     "siteNavigation": "サイトナビゲーション",
     "primaryNavigation": "主要ナビゲーション",
+    "directoryNavigation": "人物名鑑",
     "nav": {
       "home": "ホーム",
       "banzuke": "番付",
       "schedule": "取組予定",
       "result": "結果",
-      "rikishi": "力士を探す"
+      "directory": "人物名鑑",
+      "rikishi": "力士",
+      "gyoji": "行司",
+      "yobidashi": "呼出"
     }
   },
   "pwa": {
@@ -303,7 +307,11 @@
     "rankFilterLabel": "階級で絞り込む",
     "rankFilterAll": "すべての階級",
     "rankFilterOption": "階級: {{rank}}",
-    "searchResultCount": "{{count}}人を表示中",
+    "searchResultCount": "全{{total}}人中 {{count}}人を表示",
+    "activeFiltersLabel": "適用中の絞り込み条件",
+    "activeQuery": "検索: {{query}}",
+    "activeRank": "階級: {{rank}}",
+    "clearFilters": "条件をクリア",
     "searchEmpty": "一致する{{label}}が見つかりません。検索語または階級を変更してください。",
     "detailTitle": "{{label}}プロフィール",
     "loadError": "名鑑を読み込めませんでした。",

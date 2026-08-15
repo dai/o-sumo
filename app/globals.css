@@ -833,3 +833,115 @@ th {
     white-space: normal;
   }
 }
+
+/* People directory: a visible second level that avoids hover-only navigation. */
+.primary-navigation-shell {
+  background: var(--surface-container-high);
+}
+
+.directory-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.3rem max(1rem, calc((100vw - 1180px) / 2)) 0.5rem;
+  border-top: 1px solid var(--color-outline-variant);
+  background: var(--surface-container-low);
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.directory-navigation__label {
+  flex: 0 0 auto;
+  margin-right: 0.25rem;
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.directory-navigation__link {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid transparent;
+  color: var(--color-primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.directory-navigation__link:hover,
+.directory-navigation__link:focus-visible,
+.directory-navigation__link.is-active {
+  border-color: var(--color-secondary-light);
+  background: var(--surface-container-lowest);
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .directory-navigation {
+    justify-content: flex-start;
+    padding-inline: 0.65rem;
+  }
+
+  .directory-navigation__link {
+    min-height: 44px;
+  }
+}
+
+/* Directory filtering feedback keeps active constraints visible and reversible. */
+.directory-search__feedback {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.directory-filter-chips {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.directory-filter-chip,
+.directory-search__reset {
+  min-height: 34px;
+  padding: 0.3rem 0.55rem;
+  border: 1px solid var(--color-outline-variant);
+  background: var(--surface-container-lowest);
+  color: var(--color-primary);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.directory-filter-chip:hover,
+.directory-filter-chip:focus-visible {
+  border-color: var(--color-secondary-light);
+  background: var(--color-primary-container);
+}
+
+.directory-search__reset {
+  color: var(--color-secondary);
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
+@media (max-width: 768px) {
+  .directory-search__feedback {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .directory-filter-chip,
+  .directory-search__reset {
+    min-height: 40px;
+  }
+}

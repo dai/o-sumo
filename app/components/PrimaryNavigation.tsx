@@ -6,35 +6,73 @@ type PrimaryNavigationProps = {
   placement?: 'header' | 'footer';
 };
 
+type NavigationLink = {
+  to: string;
+  label: string;
+};
+
 function isActive(pathname: string, target: string): boolean {
   if (target === '/') return pathname === '/';
   return pathname.startsWith(target.replace(/\/$/, ''));
+}
+
+function isDirectoryRoute(pathname: string): boolean {
+  return ['/rikishi/', '/gyoji/', '/yobidashi/'].some((path) => isActive(pathname, path));
 }
 
 export default function PrimaryNavigation({ placement = 'header' }: PrimaryNavigationProps) {
   const location = useLocation();
   const { t } = useTranslation('common');
   const archive = getArchiveRouteConfigForPathname(location.pathname);
-  const links = [
+  const directoryActive = isDirectoryRoute(location.pathname);
+  const links: NavigationLink[] = [
     { to: '/', label: t('global.nav.home') },
     { to: archive.banzukePath, label: t('global.nav.banzuke') },
     { to: archive.schedulePath, label: t('global.nav.schedule') },
     { to: archive.resultPath, label: t('global.nav.result') },
+    { to: '/rikishi/', label: t('global.nav.directory') },
+  ];
+  const directoryLinks: NavigationLink[] = [
     { to: '/rikishi/', label: t('global.nav.rikishi') },
+    { to: '/gyoji/', label: t('global.nav.gyoji') },
+    { to: '/yobidashi/', label: t('global.nav.yobidashi') },
   ];
 
   return (
-    <nav className={`primary-navigation primary-navigation--${placement}`} aria-label={t('global.primaryNavigation')}>
-      {links.map((link) => (
-        <Link
-          key={link.to}
-          to={link.to}
-          className={`primary-navigation__link${isActive(location.pathname, link.to) ? ' is-active' : ''}`}
-          aria-current={isActive(location.pathname, link.to) ? 'page' : undefined}
-        >
-          {link.label}
-        </Link>
-      ))}
-    </nav>
+    <div className={`primary-navigation-shell primary-navigation-shell--${placement}`}>
+      <nav className={`primary-navigation primary-navigation--${placement}`} aria-label={t('global.primaryNavigation')}>
+        {links.map((link) => {
+          const active = link.to === '/rikishi/' ? directoryActive : isActive(location.pathname, link.to);
+          return (
+            <Link
+              key={link.to}
+              to={link.to}
+              className={`primary-navigation__link${active ? ' is-active' : ''}`}
+              aria-current={active ? 'page' : undefined}
+            >
+              {link.label}
+            </Link>
+          );
+        })}
+      </nav>
+      {directoryActive ? (
+        <nav className="directory-navigation" aria-label={t('global.directoryNavigation')}>
+          <span className="directory-navigation__label">{t('global.directoryNavigation')}</span>
+          {directoryLinks.map((link) => {
+            const active = isActive(location.pathname, link.to);
+            return (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={`directory-navigation__link${active ? ' is-active' : ''}`}
+                aria-current={active ? 'page' : undefined}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+        </nav>
+      ) : null}
+    </div>
   );
 }

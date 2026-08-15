@@ -49,10 +49,16 @@ export function OfficialListPage({ kind }: { kind: OfficialKind }) {
     ? item.rank
     : t(`officials.ranks.${item.rankCode}`);
   const rankCodes = React.useMemo(() => [...new Set(items.map((item) => item.rankCode))], [items]);
+  const activeRankLabel = rankCode === 'all' ? '' : t(`officials.ranks.${rankCode}`);
   const filteredItems = React.useMemo(() => items.filter((item) => (
     (rankCode === 'all' || item.rankCode === rankCode)
     && matchesSearch(query, item.name, item.yomi, toRomaji(item.yomi), item.rank, rankLabel(item))
   )), [items, query, rankCode, i18n.resolvedLanguage]);
+  const hasFilters = Boolean(query.trim()) || rankCode !== 'all';
+  const clearFilters = () => {
+    setQuery('');
+    setRankCode('all');
+  };
   return <div className="rikishi-page">
     <header className="rikishi-header"><nav className="site-header-nav" aria-label={t('global.siteNavigation')}><HomeLink placement="header" /></nav>
       <h1>{t('officials.listTitle', { label })}</h1><p>{t('officials.listDescription', { label })}</p>
@@ -72,7 +78,26 @@ export function OfficialListPage({ kind }: { kind: OfficialKind }) {
             <option value="all">{t('officials.rankFilterAll')}</option>
             {rankCodes.map((code) => <option key={code} value={code}>{t('officials.rankFilterOption', { rank: t(`officials.ranks.${code}`) })}</option>)}
           </select>
-          <p className="directory-search__count" role="status" aria-live="polite">{t('officials.searchResultCount', { count: filteredItems.length })}</p>
+          <div className="directory-search__feedback">
+            <p className="directory-search__count" role="status" aria-live="polite">
+              {t('officials.searchResultCount', { count: filteredItems.length, total: items.length })}
+            </p>
+            {hasFilters ? (
+              <div className="directory-filter-chips" aria-label={t('officials.activeFiltersLabel')}>
+                {query.trim() ? (
+                  <button type="button" className="directory-filter-chip" onClick={() => setQuery('')}>
+                    {t('officials.activeQuery', { query })} <span aria-hidden="true">×</span>
+                  </button>
+                ) : null}
+                {rankCode !== 'all' ? (
+                  <button type="button" className="directory-filter-chip" onClick={() => setRankCode('all')}>
+                    {t('officials.activeRank', { rank: activeRankLabel })} <span aria-hidden="true">×</span>
+                  </button>
+                ) : null}
+                <button type="button" className="directory-search__reset" onClick={clearFilters}>{t('officials.clearFilters')}</button>
+              </div>
+            ) : null}
+          </div>
         </div>
         {filteredItems.length === 0 ? <p className="directory-search__empty">{t('officials.searchEmpty', { label })}</p> : null}
         <div className="rikishi-profile-grid">

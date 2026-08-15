@@ -4,12 +4,16 @@
     "homeLink": "Home",
     "siteNavigation": "Site navigation",
     "primaryNavigation": "Primary navigation",
+    "directoryNavigation": "People directory",
     "nav": {
       "home": "Home",
       "banzuke": "Banzuke",
       "schedule": "Schedule",
       "result": "Results",
-      "rikishi": "Find a rikishi"
+      "directory": "People directory",
+      "rikishi": "Rikishi",
+      "gyoji": "Gyoji",
+      "yobidashi": "Yobidashi"
     }
   },
   "pwa": {
@@ -303,7 +307,11 @@
     "rankFilterLabel": "Filter by rank",
     "rankFilterAll": "All ranks",
     "rankFilterOption": "Rank: {{rank}}",
-    "searchResultCount": "Showing {{count}} people",
+    "searchResultCount": "Showing {{count}} of {{total}} people",
+    "activeFiltersLabel": "Active filters",
+    "activeQuery": "Search: {{query}}",
+    "activeRank": "Rank: {{rank}}",
+    "clearFilters": "Clear filters",
     "searchEmpty": "No {{label}} matched. Change the search or rank filter.",
     "detailTitle": "{{label}} profile",
     "loadError": "The directory could not be loaded.",
