@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-15T02:27:01.180063+00:00",
+  "updatedAt": "2026-08-15T04:14:20.555961+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-f-bt-tp1-260815-202608150000384",
+      "title": "「浮輪デケェ！」大島部屋の力士が海水浴　元旭天鵬の大島親方も51歳とは思えぬ「いい体格」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260815-202608150000384",
+      "publishedAt": "2026-08-15",
+      "publishedAtRaw": "日刊スポーツ　8月15日 12時53分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-chuspo-1296770",
       "title": "「水3リットル」大栄翔の言葉が気になって…思わず2度聞き　豪快すぎる暑さ対策ルーティン「5年前くらいから…食事ごとにですよ」",
@@ -34,15 +43,6 @@
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260814-202608130000107",
-      "title": "琴勝峰と琴栄峰がTBS「いくらかわかる金？」でバラエティー初共演　スシローで食べまくる",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260814-202608130000107",
-      "publishedAt": "2026-08-14",
-      "publishedAtRaw": "日刊スポーツ　8月14日 17時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
       "id": "dmenu-docomo-hochi-20260814-OHT1T51135",
       "title": "大相撲の関脇・琴勝峰、幕内・琴栄峰が兄弟でバラエティー番組初共演へ　番組関係者「琴栄峰関が大食漢だという情報が…」",
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260814-OHT1T51135",
@@ -52,11 +52,11 @@
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260814104",
-      "title": "母校の進学校が甲子園出場の大相撲力士、庄司「自分も頑張ります」横手の奮闘が刺激に",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260814104",
+      "id": "dmenu-docomo-f-bt-tp1-260814-202608130000107",
+      "title": "琴勝峰と琴栄峰がTBS「いくらかわかる金？」でバラエティー初共演　スシローで食べまくる",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260814-202608130000107",
       "publishedAt": "2026-08-14",
-      "publishedAtRaw": "デイリースポーツ　8月14日 16時37分",
+      "publishedAtRaw": "日刊スポーツ　8月14日 17時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
