@@ -178,6 +178,7 @@ function renderUnifiedResultRows({
             ) : (
               <div className="torikumi-row" role="row" key={`${title}-${division}-${match.boutNo}`} id={divisionAnchorId(division, match.boutNo)}>
                 <div className={`cell east rikishi-card ${match.winner === 'east' ? 'winner' : ''}`}>
+                  {match.winner === 'east' ? <span className="winner-badge">{t('torikumi.day.winner')}</span> : null}
                   <RikishiMatchName name={match.eastName} profileUrl={match.eastProfileUrl} banzukePath={banzukePath} record={recordMap.get(match.eastProfileUrl)} />
                   <div className="english">{match.eastEnglish}</div>
                 </div>
@@ -185,6 +186,7 @@ function renderUnifiedResultRows({
                   {winnerLabel(match)}
                 </div>
                 <div className={`cell west rikishi-card ${match.winner === 'west' ? 'winner' : ''}`}>
+                  {match.winner === 'west' ? <span className="winner-badge">{t('torikumi.day.winner')}</span> : null}
                   <RikishiMatchName name={match.westName} profileUrl={match.westProfileUrl} banzukePath={banzukePath} record={recordMap.get(match.westProfileUrl)} />
                   <div className="english">{match.westEnglish}</div>
                 </div>

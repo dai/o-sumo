@@ -632,3 +632,316 @@ th {
     font-size: 10px;
   }
 }
+
+/* Shared task navigation and basho context */
+.skip-to-main {
+  position: fixed;
+  z-index: 30;
+  top: 0.75rem;
+  left: 0.75rem;
+  transform: translateY(-180%);
+  padding: 0.65rem 0.9rem;
+  color: var(--color-on-primary);
+  background: var(--color-primary-container);
+  font-weight: 700;
+}
+
+.skip-to-main:focus {
+  transform: translateY(0);
+}
+
+.primary-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 0.45rem max(1rem, calc((100vw - 1180px) / 2));
+  overflow-x: auto;
+  background: var(--surface-container-high);
+  scrollbar-width: thin;
+}
+
+.primary-navigation__link {
+  flex: 0 0 auto;
+  padding: 0.45rem 0.7rem;
+  color: var(--color-primary);
+  font-size: 0.86rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.primary-navigation__link:hover,
+.primary-navigation__link.is-active {
+  color: var(--color-on-primary);
+  background: var(--color-primary-container);
+  text-decoration: none;
+}
+
+#main-content:focus {
+  outline: none;
+}
+
+.basho-context-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 1180px;
+  margin: 1.25rem auto 0;
+  padding: 0.85rem 1rem;
+  background: var(--surface-container-high);
+  color: var(--color-dark-text);
+}
+
+.basho-context-bar--final {
+  background: color-mix(in srgb, var(--color-secondary-dim) 35%, var(--surface-container-high));
+}
+
+.basho-context-bar__summary,
+.basho-context-bar__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.45rem 0.8rem;
+}
+
+.basho-context-bar__title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+}
+
+.basho-context-bar__status {
+  color: var(--color-secondary);
+}
+
+.basho-context-bar__updated {
+  color: var(--color-muted);
+  font-size: 0.82rem;
+}
+
+.basho-context-bar__actions a {
+  color: var(--color-secondary);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .primary-navigation {
+    justify-content: flex-start;
+    padding-inline: 0.65rem;
+  }
+
+  .primary-navigation__link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .basho-context-bar {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Reusable discovery controls for banzuke and directories */
+.directory-search {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 0.55rem 0.85rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: var(--surface-container-low);
+}
+
+.directory-search__label {
+  grid-column: span 2;
+  color: var(--color-primary);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.directory-search__input,
+.directory-search__select {
+  min-height: 44px;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--color-border);
+  background: var(--surface-container-lowest);
+  color: var(--color-dark-text);
+  font: inherit;
+}
+
+.directory-search__input {
+  min-width: 0;
+}
+
+.directory-search__count {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+.directory-search__empty {
+  padding: 1rem;
+  background: var(--surface-container-low);
+  color: var(--color-muted);
+}
+
+.directory-anchors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.directory-anchors a {
+  padding: 0.35rem 0.65rem;
+  background: var(--surface-container-high);
+  font-weight: 700;
+}
+
+.banzuke-discovery {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.banzuke-discovery .directory-search__label,
+.banzuke-discovery .directory-search__input,
+.banzuke-discovery .directory-search__count,
+.banzuke-discovery .directory-anchors {
+  grid-column: auto;
+}
+
+@media (max-width: 768px) {
+  .directory-search {
+    grid-template-columns: 1fr;
+  }
+
+  .directory-search__label {
+    grid-column: auto;
+  }
+
+  .directory-search__count {
+    white-space: normal;
+  }
+}
+
+/* People directory: a visible second level that avoids hover-only navigation. */
+.primary-navigation-shell {
+  background: var(--surface-container-high);
+}
+
+.directory-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.3rem max(1rem, calc((100vw - 1180px) / 2)) 0.5rem;
+  border-top: 1px solid var(--color-outline-variant);
+  background: var(--surface-container-low);
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.directory-navigation__label {
+  flex: 0 0 auto;
+  margin-right: 0.25rem;
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.directory-navigation__link {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid transparent;
+  color: var(--color-primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.directory-navigation__link:hover,
+.directory-navigation__link:focus-visible,
+.directory-navigation__link.is-active {
+  border-color: var(--color-secondary-light);
+  background: var(--surface-container-lowest);
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .directory-navigation {
+    justify-content: flex-start;
+    padding-inline: 0.65rem;
+  }
+
+  .directory-navigation__link {
+    min-height: 44px;
+  }
+}
+
+/* Directory filtering feedback keeps active constraints visible and reversible. */
+.directory-search__feedback {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.directory-filter-chips {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.directory-filter-chip,
+.directory-search__reset {
+  min-height: 34px;
+  padding: 0.3rem 0.55rem;
+  border: 1px solid var(--color-outline-variant);
+  background: var(--surface-container-lowest);
+  color: var(--color-primary);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.directory-filter-chip:hover,
+.directory-filter-chip:focus-visible {
+  border-color: var(--color-secondary-light);
+  background: var(--color-primary-container);
+}
+
+.directory-search__reset {
+  color: var(--color-secondary);
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
+@media (max-width: 768px) {
+  .directory-search__feedback {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .directory-filter-chip,
+  .directory-search__reset {
+    min-height: 40px;
+  }
+}

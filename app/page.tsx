@@ -8,13 +8,14 @@ import {
   torikumiArchive,
   torikumiData,
   torikumiMonthKey,
-  type TorikumiArchiveDay,
   type TorikumiDataSet,
   type TorikumiDailyData,
 } from './lib/torikumi-data';
 import { CURRENT_RESULT_PATH, CURRENT_SCHEDULE_PATH } from './lib/archive-basho-data';
 import { PAST_BASHO } from './lib/archives-data';
 import HomeLink from './components/HomeLink';
+import BashoContextBar from './components/BashoContextBar';
+import { getBashoStatus } from './lib/basho-status';
 import NewsSection from './components/NewsSection';
 import KimariteCard from './components/KimariteCard';
 import { divisionAnchorId } from './lib/rikishi-display';
@@ -30,11 +31,6 @@ export const EDITORIAL_HOME_ENABLED = true;
 export function homeContainerClassName(editorialEnabled = EDITORIAL_HOME_ENABLED): string {
   return editorialEnabled ? 'home-container home-editorial' : 'home-container';
 }
-
-type LiveState =
-  | { kind: 'in-progress'; day: number }
-  | { kind: 'pre-basho' }
-  | { kind: 'frozen'; lastUpdatedLabel: string };
 
 type LiveTorikumiTarget = {
   href: string;
@@ -99,6 +95,19 @@ export function nearestTorikumiAnchor(dayData: TorikumiDailyData, jstMinutes: nu
   return null;
 }
 
+export function jstIsoDateOfDay(now: Date = new Date()): string {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    timeZone: 'Asia/Tokyo',
+  }).formatToParts(now);
+  const year = parts.find((part) => part.type === 'year')?.value ?? '';
+  const month = parts.find((part) => part.type === 'month')?.value ?? '';
+  const day = parts.find((part) => part.type === 'day')?.value ?? '';
+  return `${year}-${month}-${day}`;
+}
+
 export function buildLiveTorikumiTarget(
   archive: TorikumiDataSet,
   data: TorikumiDataSet,
@@ -143,89 +152,16 @@ export function buildLiveTorikumiTarget(
   };
 }
 
-function deriveLiveState(
-  today: TorikumiDailyData | null | undefined,
-  tomorrow: TorikumiDailyData | null | undefined,
-  fallbackUpdatedAt: string,
-  locale: string,
-  scheduleDays: TorikumiArchiveDay[] = [],
-): LiveState {
-  const currentIsoDate = jstIsoDateOfDay(new Date());
-  const scheduleMatch = scheduleDays.find((d) => d.isoDate === currentIsoDate);
-  if (scheduleMatch) {
-    return { kind: 'in-progress', day: scheduleMatch.day };
-  }
-
-  const todayDay = dayOfDailyData(today);
-  if (todayDay !== null && scheduleDays.length > 0) {
-    const firstIso = scheduleDays[0]?.isoDate;
-    if (currentIsoDate < (firstIso ?? currentIsoDate)) {
-      return { kind: 'pre-basho' };
-    }
-    return { kind: 'in-progress', day: todayDay };
-  }
-  if (todayDay !== null) {
-    return { kind: 'in-progress', day: todayDay };
-  }
-  if (dayOfDailyData(tomorrow) === 1) {
-    return { kind: 'pre-basho' };
-  }
-  return {
-    kind: 'frozen',
-    lastUpdatedLabel: formatUpdatedAtLabel(fallbackUpdatedAt, locale),
-  };
-}
-
-function jstIsoDateOfDay(now: Date = new Date()): string {
-  const parts = new Intl.DateTimeFormat('en-GB', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    timeZone: 'Asia/Tokyo',
-  }).formatToParts(now);
-  const year = parts.find((p) => p.type === 'year')?.value ?? '';
-  const month = parts.find((p) => p.type === 'month')?.value ?? '';
-  const day = parts.find((p) => p.type === 'day')?.value ?? '';
-  return `${year}-${month}-${day}`;
-}
-
-function formatUpdatedAtLabel(iso: string, locale: string): string {
-  if (!iso) return '';
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return iso;
-  if (locale.startsWith('ja')) {
-    const yyyy = d.getFullYear();
-    const mo = String(d.getMonth() + 1).padStart(2, '0');
-    const da = String(d.getDate()).padStart(2, '0');
-    const hh = String(d.getHours()).padStart(2, '0');
-    const mi = String(d.getMinutes()).padStart(2, '0');
-    return `${yyyy}-${mo}-${da} ${hh}:${mi}`;
-  }
-  const formatted = new Intl.DateTimeFormat('en-GB', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
-    timeZone: 'Asia/Tokyo',
-  }).format(d);
-  return `${formatted}`;
-}
-
 export default function Home() {
   const { t, i18n } = useTranslation('common');
   const locale = i18n.language || 'ja';
   const currentBashoTitle = `${torikumiArchive.year}${torikumiArchive.bashoName}`;
   const currentBanzukePath = getBanzukePathForMonthKey(torikumiMonthKey);
-  const liveState = deriveLiveState(
-    torikumiData.today,
-    torikumiData.tomorrow,
-    torikumiArchive.updatedAt,
-    locale,
-    torikumiArchive.scheduleDays,
-  );
+  const bashoStatus = getBashoStatus(torikumiArchive);
   const liveTorikumiTarget = buildLiveTorikumiTarget(torikumiArchive, torikumiData);
+  const featuredTorikumiTarget = bashoStatus.kind === 'final'
+    ? { href: `${CURRENT_RESULT_PATH}/`, description: t('home.finalResultsDescription') }
+    : liveTorikumiTarget;
 
   return (
     <div className={homeContainerClassName()}>
@@ -240,6 +176,14 @@ export default function Home() {
       </header>
 
       <main className="home-main">
+        <BashoContextBar
+          archive={torikumiArchive}
+          bashoTitle={currentBashoTitle}
+          resultPath={`${CURRENT_RESULT_PATH}/`}
+          schedulePath={`${CURRENT_SCHEDULE_PATH}/`}
+          updatedAt={torikumiArchive.updatedAt}
+          status={bashoStatus}
+        />
         {/* Current Basho - Hero Section */}
         <section className="hero-section" aria-labelledby="hero-basho-title">
           <div className="hero-editorial-copy">
@@ -247,13 +191,15 @@ export default function Home() {
               {currentBashoTitle}
             </h2>
             <p className="hero-day-indicator" aria-live="polite">
-              {liveState.kind === 'in-progress'
-                ? t('home.heroDayIndicator', { day: liveState.day })
-                : liveState.kind === 'pre-basho'
+              {bashoStatus.kind === 'live'
+                ? t('home.heroDayIndicator', { day: bashoStatus.day })
+                : bashoStatus.kind === 'upcoming'
                   ? t('home.heroPreBashoStatus')
-                  : t('home.heroLastUpdated', { timeJst: liveState.lastUpdatedLabel })}
+                  : t('home.heroFinalStatus')}
             </p>
-            <p className="hero-description">{t('home.heroDescription')}</p>
+            <p className="hero-description">
+              {bashoStatus.kind === 'final' ? t('home.heroFinalDescription') : t('home.heroDescription')}
+            </p>
             <nav className="hero-actions" aria-label="主要ページへの導線">
               <Link to={currentBanzukePath} className="cta-button">
                 {t('home.heroBanzuke')}
@@ -264,11 +210,7 @@ export default function Home() {
               <Link to={`${CURRENT_RESULT_PATH}/`} className="cta-button secondary">
                 {t('home.heroResult')}
               </Link>
-              <Link to="/rikishi/" className="cta-button secondary">
-                {t('home.heroRikishi')}
-              </Link>
-              <Link to="/gyoji/" className="cta-button secondary">{t('home.heroGyoji')}</Link>
-              <Link to="/yobidashi/" className="cta-button secondary">{t('home.heroYobidashi')}</Link>
+
             </nav>
           </div>
           <div className="hero-visual" aria-hidden="true">
@@ -283,12 +225,12 @@ export default function Home() {
           <section className="live-torikumi-section" aria-labelledby="live-torikumi-title">
             <div className="live-torikumi-copy">
               <h2 id="live-torikumi-title" className="live-torikumi-title">
-                現在の取組、速報中！
+                {bashoStatus.kind === 'final' ? t('home.finalResultsTitle') : t('home.liveTorikumiTitle')}
               </h2>
-              <p>{liveTorikumiTarget.description}</p>
+              <p>{featuredTorikumiTarget.description}</p>
             </div>
-            <Link to={liveTorikumiTarget.href} className="live-torikumi-link">
-              速報を見る
+            <Link to={featuredTorikumiTarget.href} className="live-torikumi-link">
+              {bashoStatus.kind === 'final' ? t('home.finalResultsAction') : t('home.liveTorikumiAction')}
             </Link>
           </section>
 
