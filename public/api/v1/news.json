@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-16T00:23:47.055862+00:00",
+  "updatedAt": "2026-08-16T10:09:19.236154+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_OKWIBVM3DBB6BLY6BMYAD3GBWA",
+      "title": "藤井康生氏「『30年、50年に1人の横綱じゃないか』。大げさに言いすぎた」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_OKWIBVM3DBB6BLY6BMYAD3GBWA",
+      "publishedAt": "2026-08-16",
+      "publishedAtRaw": "SANSPO　8月16日 19時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_CYDJPCBRJBCFLKWDMSTVM73EF4",
+      "title": "藤井康生氏「それが横綱なの？って言われたときに返す言葉がないかも…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_CYDJPCBRJBCFLKWDMSTVM73EF4",
+      "publishedAt": "2026-08-16",
+      "publishedAtRaw": "SANSPO　8月16日 18時08分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-tokyosports-399652",
       "title": "【大相撲】豊昇龍　横綱での優勝ゼロ…元ＮＨＫアナが擁護「叔父さんと比べても仕方がない」",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1296770",
       "publishedAt": "2026-08-15",
       "publishedAtRaw": "中日スポーツ　8月15日 10時19分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260814114",
-      "title": "父は空手の東京五輪コーチ、大相撲力士が右膝重傷から復帰へ　寅武蔵「早く番付を戻したい」術後初めて相撲取り手応え",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260814114",
-      "publishedAt": "2026-08-14",
-      "publishedAtRaw": "デイリースポーツ　8月14日 17時48分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260814-202608130000107",
-      "title": "琴勝峰と琴栄峰がTBS「いくらかわかる金？」でバラエティー初共演　スシローで食べまくる",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260814-202608130000107",
-      "publishedAt": "2026-08-14",
-      "publishedAtRaw": "日刊スポーツ　8月14日 17時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
