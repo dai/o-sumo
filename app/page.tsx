@@ -11,11 +11,11 @@ import {
   type TorikumiDataSet,
   type TorikumiDailyData,
 } from './lib/torikumi-data';
-import { CURRENT_RESULT_PATH, CURRENT_SCHEDULE_PATH } from './lib/archive-basho-data';
+
 import { PAST_BASHO } from './lib/archives-data';
 import HomeLink from './components/HomeLink';
 import BashoContextBar from './components/BashoContextBar';
-import { getBashoStatus } from './lib/basho-status';
+import { getBashoStatus, type BashoStatus } from './lib/basho-status';
 import NewsSection from './components/NewsSection';
 import KimariteCard from './components/KimariteCard';
 import { divisionAnchorId } from './lib/rikishi-display';
@@ -24,6 +24,11 @@ import './index.css';
 const LIVE_START_MINUTES = 13 * 60;
 const MAKUUCHI_START_MINUTES = 15 * 60 + 30;
 const LIVE_END_MINUTES = 18 * 60;
+// The homepage only needs the current route names. Deriving them from the
+// published month key avoids pulling every historical banzuke dataset into
+// the initial bundle through archive-basho-data.
+const CURRENT_RESULT_PATH = `/${torikumiMonthKey}-torikumi`;
+const CURRENT_SCHEDULE_PATH = `/${torikumiMonthKey}-yotei`;
 
 // Set to false for an immediate rollback to the legacy Top design.
 export const EDITORIAL_HOME_ENABLED = true;
@@ -36,6 +41,45 @@ type LiveTorikumiTarget = {
   href: string;
   description: string;
 };
+
+type HomeHeroPaths = {
+  banzuke: string;
+  schedule: string;
+  result: string;
+  live: string;
+};
+
+type HomeHeroAction = {
+  to: string;
+  labelKey: string;
+  primary: boolean;
+};
+
+/**
+ * Keeps the home hero aligned with the published basho status. The first
+ * action is the user’s most time-relevant task; subsequent actions remain
+ * available without competing with it visually.
+ */
+export function getHomeHeroActions(status: BashoStatus, paths: HomeHeroPaths): HomeHeroAction[] {
+  if (status.kind === 'live') {
+    return [
+      { to: paths.live, labelKey: 'home.heroTodayAction', primary: true },
+      { to: paths.result, labelKey: 'home.heroStandingsAction', primary: false },
+    ];
+  }
+
+  if (status.kind === 'upcoming') {
+    return [
+      { to: paths.banzuke, labelKey: 'home.heroBanzuke', primary: true },
+      { to: paths.schedule, labelKey: 'home.heroSchedule', primary: false },
+    ];
+  }
+
+  return [
+    { to: paths.result, labelKey: 'home.finalResultsAction', primary: true },
+    { to: paths.banzuke, labelKey: 'home.heroBanzuke', primary: false },
+  ];
+}
 
 function dayOfDailyData(d: TorikumiDailyData | null | undefined): number | null {
   if (!d) return null;
@@ -162,6 +206,12 @@ export default function Home() {
   const featuredTorikumiTarget = bashoStatus.kind === 'final'
     ? { href: `${CURRENT_RESULT_PATH}/`, description: t('home.finalResultsDescription') }
     : liveTorikumiTarget;
+  const heroActions = getHomeHeroActions(bashoStatus, {
+    banzuke: currentBanzukePath,
+    schedule: `${CURRENT_SCHEDULE_PATH}/`,
+    result: `${CURRENT_RESULT_PATH}/`,
+    live: featuredTorikumiTarget.href,
+  });
 
   return (
     <div className={homeContainerClassName()}>
@@ -198,19 +248,18 @@ export default function Home() {
                   : t('home.heroFinalStatus')}
             </p>
             <p className="hero-description">
-              {bashoStatus.kind === 'final' ? t('home.heroFinalDescription') : t('home.heroDescription')}
+              {bashoStatus.kind === 'final'
+                ? t('home.heroFinalDescription')
+                : bashoStatus.kind === 'upcoming'
+                  ? t('home.heroUpcomingDescription')
+                  : t('home.heroLiveDescription')}
             </p>
-            <nav className="hero-actions" aria-label="主要ページへの導線">
-              <Link to={currentBanzukePath} className="cta-button">
-                {t('home.heroBanzuke')}
-              </Link>
-              <Link to={`${CURRENT_SCHEDULE_PATH}/`} className="cta-button secondary">
-                {t('home.heroSchedule')}
-              </Link>
-              <Link to={`${CURRENT_RESULT_PATH}/`} className="cta-button secondary">
-                {t('home.heroResult')}
-              </Link>
-
+            <nav className="hero-actions" aria-label={t('home.heroActionsLabel')}>
+              {heroActions.map((action) => (
+                <Link key={action.to} to={action.to} className={`cta-button${action.primary ? '' : ' secondary'}`}>
+                  {t(action.labelKey)}
+                </Link>
+              ))}
             </nav>
           </div>
           <div className="hero-visual" aria-hidden="true">

@@ -1,25 +1,55 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import HomeLink from '../components/HomeLink';
+import MyRikishiToggle from '../components/MyRikishiToggle';
+import ShareCurrentLink from '../components/ShareCurrentLink';
 import { fetchRikishiIndex, rikishiProfilePath, type RikishiIndexItem } from '../lib/rikishi-profile';
 import { toRomaji } from '../lib/romaji';
 import { formatUpdatedAt } from '../lib/updated-at';
 import { matchesSearch } from '../lib/search';
 import './page.css';
 
+type RikishiDivision = 'all' | 'makuuchi' | 'juryo';
+
+export function normalizeRikishiDivision(value: string | null): RikishiDivision {
+  return value === 'makuuchi' || value === 'juryo' ? value : 'all';
+}
+
+function updateRikishiSearchParams(
+  current: URLSearchParams,
+  query: string,
+  division: RikishiDivision,
+): URLSearchParams {
+  const next = new URLSearchParams(current);
+  const normalizedQuery = query.trim();
+
+  if (normalizedQuery) next.set('q', normalizedQuery);
+  else next.delete('q');
+
+  if (division === 'all') next.delete('division');
+  else next.set('division', division);
+
+  return next;
+}
+
 export default function RikishiPage() {
   const { t } = useTranslation('common');
+  const [searchParams, setSearchParams] = useSearchParams();
   const [rikishi, setRikishi] = React.useState<RikishiIndexItem[]>([]);
   const [updatedAt, setUpdatedAt] = React.useState('');
   const [status, setStatus] = React.useState<'loading' | 'ready' | 'error'>('loading');
-  const [query, setQuery] = React.useState('');
-  const [division, setDivision] = React.useState<'all' | 'makuuchi' | 'juryo'>('all');
+  const query = searchParams.get('q') ?? '';
+  const division = normalizeRikishiDivision(searchParams.get('division'));
   const filteredRikishi = React.useMemo(() => rikishi.filter((item) => {
     const matchesDivision = division === 'all'
       || (division === 'juryo' ? item.currentRank.includes('十両') : !item.currentRank.includes('十両'));
     return matchesDivision && matchesSearch(query, item.name, item.yomi, toRomaji(item.yomi), item.currentRank);
   }), [division, query, rikishi]);
+
+  const setFilters = React.useCallback((nextQuery: string, nextDivision: RikishiDivision, replace = true) => {
+    setSearchParams(updateRikishiSearchParams(searchParams, nextQuery, nextDivision), { replace });
+  }, [searchParams, setSearchParams]);
 
   React.useEffect(() => {
     let active = true;
@@ -64,7 +94,7 @@ export default function RikishiPage() {
                 className="directory-search__input"
                 type="search"
                 value={query}
-                onChange={(event) => setQuery(event.target.value)}
+                onChange={(event) => setFilters(event.target.value, division)}
                 placeholder={t('rikishi.searchPlaceholder')}
               />
               <label className="directory-search__label" htmlFor="rikishi-division">{t('rikishi.divisionLabel')}</label>
@@ -72,7 +102,7 @@ export default function RikishiPage() {
                 id="rikishi-division"
                 className="directory-search__select"
                 value={division}
-                onChange={(event) => setDivision(event.target.value as 'all' | 'makuuchi' | 'juryo')}
+                onChange={(event) => setFilters(query, event.target.value as RikishiDivision, false)}
               >
                 <option value="all">{t('rikishi.divisionAll')}</option>
                 <option value="makuuchi">{t('rikishi.divisionMakuuchi')}</option>
@@ -81,16 +111,20 @@ export default function RikishiPage() {
               <p className="directory-search__count" role="status" aria-live="polite">
                 {t('rikishi.searchResultCount', { count: filteredRikishi.length })}
               </p>
+              <ShareCurrentLink />
             </div>
             {filteredRikishi.length === 0 ? <p className="directory-search__empty">{t('rikishi.searchEmpty')}</p> : null}
             <div className="rikishi-profile-grid">
               {filteredRikishi.map((item) => (
-                <Link key={item.id} to={rikishiProfilePath(item.id)} className="rikishi-profile-card">
-                  <span className="rikishi-card-rank">{item.currentRank}</span>
-                  <span className="rikishi-card-name">{item.name}</span>
-                  <span className="rikishi-card-yomi">{item.yomi}</span>
-                  <span className="rikishi-card-romaji">{toRomaji(item.yomi)}</span>
-                </Link>
+                <article key={item.id} className="rikishi-profile-card">
+                  <Link to={rikishiProfilePath(item.id)} className="rikishi-profile-card__link">
+                    <span className="rikishi-card-rank">{item.currentRank}</span>
+                    <span className="rikishi-card-name">{item.name}</span>
+                    <span className="rikishi-card-yomi">{item.yomi}</span>
+                    <span className="rikishi-card-romaji">{toRomaji(item.yomi)}</span>
+                  </Link>
+                  <MyRikishiToggle rikishiId={item.id} />
+                </article>
               ))}
             </div>
           </section>

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import BanzukeTable from '../components/BanzukeTable';
 import SortToggle from '../components/SortToggle';
+import ShareCurrentLink from '../components/ShareCurrentLink';
 import { type SortOrder, sortRankGroups } from '../lib/sorting';
 import { getArchiveRouteConfigForPathname, getHubPathForMonthKey } from '../lib/torikumi-routes';
 import HomeLink from '../components/HomeLink';
@@ -51,8 +52,18 @@ function useBanzukeContext() {
 }
 
 export default function BanzukePage() {
-  const [sortOrder, setSortOrder] = React.useState<SortOrder>('asc');
-  const [query, setQuery] = React.useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const sortOrder: SortOrder = searchParams.get('sort') === 'desc' ? 'desc' : 'asc';
+  const query = searchParams.get('q') ?? '';
+  const setDiscoveryState = React.useCallback((nextQuery: string, nextSortOrder: SortOrder, replace = true) => {
+    const next = new URLSearchParams(searchParams);
+    const normalizedQuery = nextQuery.trim();
+    if (normalizedQuery) next.set('q', normalizedQuery);
+    else next.delete('q');
+    if (nextSortOrder === 'asc') next.delete('sort');
+    else next.set('sort', nextSortOrder);
+    setSearchParams(next, { replace });
+  }, [searchParams, setSearchParams]);
   const { t } = useTranslation('common');
   const { bashoTitle, gregorianBashoLabel, banzukePath, monthKey, updatedAt, makuuchi, juryo: juryoRanks, archive, resultPath, schedulePath } = useBanzukeContext();
   const sortedMakuuchi = sortRankGroups(makuuchi, sortOrder);
@@ -90,7 +101,7 @@ export default function BanzukePage() {
             className="directory-search__input"
             type="search"
             value={query}
-            onChange={(event) => setQuery(event.target.value)}
+            onChange={(event) => setDiscoveryState(event.target.value, sortOrder)}
             placeholder={t('banzuke.searchPlaceholder')}
           />
           <p className="directory-search__count" role="status" aria-live="polite">
@@ -100,7 +111,8 @@ export default function BanzukePage() {
             <a href="#makuuchi">{t('banzuke.makuuchi')}</a>
             <a href="#juryo">{t('banzuke.juryo')}</a>
           </nav>
-          <SortToggle value={sortOrder} onChange={setSortOrder} label={t('banzuke.sortLabel')} />
+          <SortToggle value={sortOrder} onChange={(nextSortOrder) => setDiscoveryState(query, nextSortOrder, false)} label={t('banzuke.sortLabel')} />
+          <ShareCurrentLink />
         </section>
 
         <section className="banzuke-section" id="makuuchi">

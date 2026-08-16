@@ -21,6 +21,7 @@ import {
 import Home, {
   buildLiveTorikumiTarget,
   homeContainerClassName,
+  getHomeHeroActions,
   nearestTorikumiAnchor,
 } from './page';
 
@@ -101,6 +102,21 @@ describe('Home page', () => {
     expect(homeContainerClassName(false)).toBe('home-container');
   });
 
+  it('uses the most time-relevant hero CTA for each basho status', () => {
+    const paths = { banzuke: '/banzuke/', schedule: '/schedule/', result: '/results/', live: '/today/' };
+
+    expect(getHomeHeroActions({ kind: 'live', startDate: '2026-07-12', endDate: '2026-07-26', day: 4 }, paths)).toEqual([
+      { to: '/today/', labelKey: 'home.heroTodayAction', primary: true },
+      { to: '/results/', labelKey: 'home.heroStandingsAction', primary: false },
+    ]);
+    expect(getHomeHeroActions({ kind: 'upcoming', startDate: '2026-09-13', endDate: '2026-09-27', day: null }, paths)[0]).toEqual(
+      { to: '/banzuke/', labelKey: 'home.heroBanzuke', primary: true },
+    );
+    expect(getHomeHeroActions({ kind: 'final', startDate: '2026-07-12', endDate: '2026-07-26', day: null }, paths)[0]).toEqual(
+      { to: '/results/', labelKey: 'home.finalResultsAction', primary: true },
+    );
+  });
+
   it('renders the current basho as a Sites-inspired editorial hero', () => {
     render(
       <MemoryRouter>
@@ -163,7 +179,7 @@ describe('Home page', () => {
 
     expect(screen.queryByLabelText('令和八年五月場所最終結果')).not.toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: `${MAY2026_TORIKUMI_DATA.year} ${MAY2026_TORIKUMI_DATA.bashoName}` })).toBeInTheDocument();
-    expect(within(screen.getByLabelText('主要ページへの導線')).getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202607-banzuke/');
+    expect(within(screen.getByLabelText('今場所の主要な導線')).getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202607-banzuke/');
   });
 
   it('keeps March 2026 archive guidance on the top page', () => {
