@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-15T04:14:20.555961+00:00",
+  "updatedAt": "2026-08-16T00:23:47.055862+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-tokyosports-399652",
+      "title": "【大相撲】豊昇龍　横綱での優勝ゼロ…元ＮＨＫアナが擁護「叔父さんと比べても仕方がない」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-399652",
+      "publishedAt": "2026-08-16",
+      "publishedAtRaw": "東スポWEB　8月16日 6時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-f-bt-tp1-260815-202608150000384",
       "title": "「浮輪デケェ！」大島部屋の力士が海水浴　元旭天鵬の大島親方も51歳とは思えぬ「いい体格」",
@@ -39,15 +48,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260814114",
       "publishedAt": "2026-08-14",
       "publishedAtRaw": "デイリースポーツ　8月14日 17時48分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260814-OHT1T51135",
-      "title": "大相撲の関脇・琴勝峰、幕内・琴栄峰が兄弟でバラエティー番組初共演へ　番組関係者「琴栄峰関が大食漢だという情報が…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260814-OHT1T51135",
-      "publishedAt": "2026-08-14",
-      "publishedAtRaw": "スポーツ報知　8月14日 17時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
