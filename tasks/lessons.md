@@ -4,6 +4,7 @@
 
 - 四股名履歴のglobal aliasだけで対戦相手を現役IDへ解決すると、現役力士が後年使った旧名と、それ以前の同名の引退力士を誤って同一視する。active ownershipは同じ場所の`shikonaByPlace`でも一致する場合だけ確定する。
 - 現役同士として解決した取組は、canonical化後に双方のプロフィール観測が揃うことを必須にする。未解決active alias、片側観測、矛盾のいずれかがあれば、生成済みendpointを置換しない。
+- same-place ownershipがないだけではinactiveと断定しない。同場所で別名が明示されているか、対象場所が公式初土俵より前の場合だけ同名の別人として除外し、それ以外はpartial profile historyとして失敗させる。
 
 ## 2026-08-17 URL同期検索と日本語IME
 

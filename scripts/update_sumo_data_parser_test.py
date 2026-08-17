@@ -248,16 +248,27 @@ class BuildRikishiMatchupsTest(unittest.TestCase):
         profiles = {
             100: {
                 "shikonaHistory": ["現役一"],
-                "shikonaByPlace": {"古い場所": "現役一"},
+                "shikonaByPlace": {"平成二十四年七月場所": "現役一"},
                 "boutHistory": [
-                    {"place": "古い場所", "day": 1, "opponent": "再利用名", "outcome": "win"}
+                    {
+                        "place": "平成二十四年七月場所",
+                        "day": 1,
+                        "opponent": "再利用名",
+                        "outcome": "win",
+                    }
                 ],
             },
             200: {
+                "debut": "平成二十八年三月場所",
                 "shikonaHistory": ["再利用名", "現役二"],
-                "shikonaByPlace": {"新しい場所": "再利用名"},
+                "shikonaByPlace": {"平成二十八年三月場所": "再利用名"},
                 "boutHistory": [
-                    {"place": "新しい場所", "day": 1, "opponent": "引退力士", "outcome": "loss"}
+                    {
+                        "place": "平成二十八年三月場所",
+                        "day": 1,
+                        "opponent": "引退力士",
+                        "outcome": "loss",
+                    }
                 ],
             },
         }
@@ -420,6 +431,42 @@ class BuildRikishiMatchupsTest(unittest.TestCase):
 
 
 class GenerateRikishiMatchupsTest(unittest.TestCase):
+    def test_all_active_observations_skipped_preserves_previous_file_byte_for_byte(self) -> None:
+        active = [_active_rikishi(100, "現役一"), _active_rikishi(200, "現役二")]
+        profiles = {
+            100: {
+                "debut": "令和元年一月場所",
+                "shikonaHistory": ["現役一"],
+                "shikonaByPlace": {},
+                "boutHistory": [
+                    {"place": "令和二年一月場所", "day": 1, "opponent": "現役二", "outcome": "win"}
+                ],
+            },
+            200: {
+                "debut": "令和元年一月場所",
+                "shikonaHistory": ["現役二"],
+                "shikonaByPlace": {},
+                "boutHistory": [
+                    {"place": "令和二年一月場所", "day": 1, "opponent": "現役一", "outcome": "loss"}
+                ],
+            },
+        }
+        known_good = b'{"known":"good"}\n'
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_path = pathlib.Path(temp_dir) / "rikishi-matchups.json"
+            output_path.write_bytes(known_good)
+
+            with self.assertRaisesRegex(MODULE.MatchupDataError, "Unresolved active alias"):
+                MODULE.generate_rikishi_matchup_endpoint(
+                    active,
+                    profiles,
+                    profile_limit=0,
+                    output_path=output_path,
+                )
+
+            self.assertEqual(output_path.read_bytes(), known_good)
+
     def test_one_sided_active_bout_preserves_previous_file_byte_for_byte(self) -> None:
         active = [_active_rikishi(100, "現役一"), _active_rikishi(200, "現役二")]
         profiles = {

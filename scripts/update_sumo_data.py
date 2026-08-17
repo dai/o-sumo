@@ -229,6 +229,26 @@ def parse_japanese_number(raw: str) -> int:
     return total
 
 
+def parse_official_basho_key(raw: str) -> tuple[int, int] | None:
+    match = re.fullmatch(
+        r"(明治|大正|昭和|平成|令和)(元|[0-9〇一二三四五六七八九十]+)年"
+        r"([0-9〇一二三四五六七八九十]+)月場所",
+        str(raw).strip(),
+    )
+    if not match:
+        return None
+    era_start_year = {
+        "明治": 1867,
+        "大正": 1911,
+        "昭和": 1925,
+        "平成": 1988,
+        "令和": 2018,
+    }[match.group(1)]
+    era_year = 1 if match.group(2) == "元" else parse_japanese_number(match.group(2))
+    month = parse_japanese_number(match.group(3))
+    return era_start_year + era_year, month
+
+
 def extract_era_year_number(year_jp: str) -> int:
     match = re.search(r"令和([0-9〇一二三四五六七八九十]+)年", year_jp)
     if not match:
@@ -1782,6 +1802,23 @@ def load_rikishi_profile(rikishi_id: int) -> dict | None:
     return parse_profile_html(html)
 
 
+def active_alias_demonstrably_absent_at_place(
+    rikishi_id: int,
+    alias: str,
+    place: str,
+    profiles: dict[int, dict],
+) -> bool:
+    profile = profiles[rikishi_id]
+    shikona_by_place = profile.get("shikonaByPlace", {})
+    place_shikona = normalize_shikona(str(shikona_by_place.get(place, "")))
+    if place_shikona:
+        return place_shikona != alias
+
+    place_key = parse_official_basho_key(place)
+    debut_key = parse_official_basho_key(str(profile.get("debut", "")))
+    return place_key is not None and debut_key is not None and place_key < debut_key
+
+
 def build_rikishi_matchup_records(rikishi_list: list[dict], profiles: dict[int, dict]) -> list[dict]:
     active_ids = [int(rikishi["id"]) for rikishi in rikishi_list]
     if len(active_ids) != len(set(active_ids)):
@@ -1860,6 +1897,20 @@ def build_rikishi_matchup_records(rikishi_list: list[dict], profiles: dict[int, 
                 continue
             place_owners = place_alias_owners & alias_owners
             if not place_owners:
+                unresolved_owners = [
+                    owner_id
+                    for owner_id in alias_owners
+                    if not active_alias_demonstrably_absent_at_place(
+                        owner_id,
+                        opponent_name,
+                        place,
+                        profiles,
+                    )
+                ]
+                if unresolved_owners:
+                    raise MatchupDataError(
+                        f"Unresolved active alias: {opponent_name} at {place}"
+                    )
                 continue
             if len(place_owners) != 1:
                 raise MatchupDataError(
