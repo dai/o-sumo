@@ -336,6 +336,12 @@ export default function CompareRikishiPage() {
   const onDraftChange = (slot: 0 | 1, value: string, composing: boolean) => {
     const selectedId = slotsRef.current[slot];
     const selectedName = selectedId ? activeById.get(selectedId)?.name : null;
+    if (slot === 0 && !value && !selectedId && slotsRef.current[1] !== null) {
+      const remainingId = slotsRef.current[1];
+      setDrafts([activeById.get(remainingId)?.name ?? '', '']);
+      applySlots([remainingId, null]);
+      return;
+    }
     if (selectedId && value !== selectedName && !composing) {
       const next: CompareSlots = [...slotsRef.current] as CompareSlots;
       next[slot] = null;
