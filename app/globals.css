@@ -162,9 +162,9 @@
   --site-header-bg-image: url('/images/header-bg.jpg');
   --site-header-overlay: linear-gradient(
     120deg,
-    rgba(13, 14, 18, 0.84) 0%,
-    rgba(13, 14, 18, 0.72) 42%,
-    rgba(13, 14, 18, 0.86) 100%
+    rgba(13, 14, 18, 0.88) 0%,
+    rgba(13, 14, 18, 0.78) 42%,
+    rgba(13, 14, 18, 0.9) 100%
   );
   --site-header-text: #f5efde;
   --site-header-text-muted: #eadfbe;
