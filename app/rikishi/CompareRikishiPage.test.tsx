@@ -348,6 +348,27 @@ describe('CompareRikishiPage', () => {
     expect(screen.getByTestId('location')).toHaveTextContent('/compare/?ids=4279&view=compact');
   });
 
+  it('waits for composition end before compacting an empty replacement draft', async () => {
+    mockComparisonFetch();
+    renderPage('/compare/?ids=4230,4279&view=compact');
+    const first = await screen.findByRole('combobox', { name: '力士1' });
+    const second = screen.getByRole('combobox', { name: '力士2' });
+    await screen.findByRole('table');
+
+    fireEvent.change(first, { target: { value: 'Houshouryuu' } });
+    fireEvent.compositionStart(first);
+    fireEvent.change(first, { target: { value: '' } });
+
+    expect(first).toHaveValue('');
+    expect(second).toHaveValue('義ノ富士');
+
+    fireEvent.compositionEnd(first);
+
+    expect(first).toHaveValue('義ノ富士');
+    expect(second).toHaveValue('');
+    expect(screen.getByTestId('location')).toHaveTextContent('/compare/?ids=4279&view=compact');
+  });
+
   it('keeps IME composition as a local draft without URL writes or Enter selection', async () => {
     mockComparisonFetch();
     renderPage('/compare/?view=compact');
