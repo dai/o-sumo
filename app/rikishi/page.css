@@ -10,7 +10,7 @@
   text-align: center;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 50;
   box-shadow: var(--shadow-soft);
   background-image: var(--site-header-overlay), var(--site-header-bg-image);
   background-size: cover;

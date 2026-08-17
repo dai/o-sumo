@@ -8,10 +8,11 @@
 /* Header */
 .home-header {
   padding: 4rem 2rem;
+  padding-top: calc(4rem + 2.6rem); /* leave room for fixed top-right-controls */
   text-align: center;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 50;
   box-shadow: var(--shadow-soft);
   overflow: hidden;
 }
