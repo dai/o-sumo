@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-17T02:32:32.895208+00:00",
+  "updatedAt": "2026-08-17T08:19:52.931005+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-hochi-20260817-OHT1T51165",
+      "title": "日本相撲協会、秋場所の御免祝いを開催　３１日に新番付を発表",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260817-OHT1T51165",
+      "publishedAt": "2026-08-17",
+      "publishedAtRaw": "スポーツ報知　8月17日 16時37分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-hochi-20260816-OHT1T51351",
       "title": "大相撲・時不動が念願の関取に　新十両が明かした決意「本気でやって親孝行したかった」「入ったからには横綱、大関を目指したい」…シズオカビト",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-399652",
       "publishedAt": "2026-08-16",
       "publishedAtRaw": "東スポWEB　8月16日 6時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260815-202608150000384",
-      "title": "「浮輪デケェ！」大島部屋の力士が海水浴　元旭天鵬の大島親方も51歳とは思えぬ「いい体格」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260815-202608150000384",
-      "publishedAt": "2026-08-15",
-      "publishedAtRaw": "日刊スポーツ　8月15日 12時53分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
