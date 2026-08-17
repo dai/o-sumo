@@ -225,7 +225,7 @@
   font-weight: 800;
 }
 
-@media (max-width: var(--bp-desktop-sm)) {
+@media (max-width: 820px) {
   .analytics-metric-grid,
   .analytics-leader-list {
     grid-template-columns: 1fr;
@@ -236,7 +236,7 @@
   }
 }
 
-@media (max-width: var(--bp-sm)) {
+@media (max-width: 560px) {
   .analytics-technique-row {
     grid-template-columns: 1fr;
   }

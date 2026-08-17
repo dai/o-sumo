@@ -252,7 +252,7 @@
   text-decoration: underline;
 }
 
-@media (max-width: var(--bp-tablet)) {
+@media (max-width: 720px) {
   .rikishi-header {
     padding: 2rem 1rem;
   }
@@ -321,7 +321,7 @@
   font-weight: 700;
 }
 
-@media (max-width: var(--bp-md)) {
+@media (max-width: 640px) {
   .my-rikishi-toggle__button {
     min-height: 44px;
     width: 100%;
@@ -356,7 +356,7 @@
   justify-items: start;
 }
 
-@media (max-width: var(--bp-md)) {
+@media (max-width: 640px) {
   .my-rikishi-toolbar {
     align-items: stretch;
     flex-direction: column;

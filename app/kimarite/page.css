@@ -304,7 +304,7 @@
   text-wrap: pretty;
 }
 
-@media (max-width: var(--bp-lg)) {
+@media (max-width: 768px) {
   .kimarite-entry {
     grid-template-columns: 1fr;
   }
