@@ -18,7 +18,7 @@
 }
 
 .header-content {
-  max-width: 800px;
+  max-width: var(--layout-max-compact);
   margin: 0 auto;
   position: relative;
   z-index: 1;
@@ -41,7 +41,7 @@
 .home-main {
   flex: 1;
   padding: 3rem 2rem;
-  max-width: 1200px;
+  max-width: var(--layout-max-container);
   margin: 0 auto;
   width: 100%;
 }
@@ -1210,7 +1210,7 @@
 }
 
 .home-editorial .home-main {
-  max-width: 1240px;
+  max-width: var(--layout-max-wide);
   padding: clamp(2rem, 5vw, 5rem) clamp(1.25rem, 4vw, 4rem);
 }
 

@@ -26,7 +26,7 @@
 .archives-main {
   flex: 1;
   padding: 3rem 2rem;
-  max-width: 800px;
+  max-width: var(--layout-max-compact);
   margin: 0 auto;
   width: 100%;
 }

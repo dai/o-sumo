@@ -29,7 +29,7 @@
 
 .rikishi-main {
   flex: 1;
-  max-width: 1120px;
+  max-width: var(--layout-max-content);
   width: 100%;
   margin: 0 auto;
   padding: 2rem 1rem 3rem;

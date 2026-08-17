@@ -171,6 +171,15 @@
     --bp-xl: 860px;
     --bp-2xl: 1024px;
 
+    /* Layout container widths. --layout-max-* is independent of the
+        --bp-* breakpoint scale: it caps how wide a content column can
+        grow, not when layout shifts. Values were normalised during the
+        CDE-7 sweep; see commit cf194bd / siblings. */
+    --layout-max-compact: 800px;
+    --layout-max-content: 1120px;
+    --layout-max-container: 1200px;
+    --layout-max-wide: 1240px;
+
   /* Shared top header background */
   --site-header-bg-image: url('/images/header-bg.jpg');
   --site-header-overlay: linear-gradient(
@@ -447,7 +456,7 @@ th {
 
 /* Utility classes */
 .container {
-  max-width: 1200px;
+  max-width: var(--layout-max-container);
   margin: 0 auto;
   padding: 2rem 1rem;
 }
@@ -741,7 +750,7 @@ th {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  max-width: 1180px;
+  max-width: var(--layout-max-container);
   margin: 1.25rem auto 0;
   padding: 0.85rem 1rem;
   background: var(--surface-container-high);
