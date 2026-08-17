@@ -227,7 +227,7 @@
 .banzuke-table th,
 .banzuke-table td {
   vertical-align: top;
-  padding: 0.75rem;
+  padding: var(--table-cell-padding-y) var(--table-cell-padding-x);
   background: var(--surface-container-lowest);
 }
 

@@ -152,6 +152,12 @@
   --spacing-xl: 2rem;
   --spacing-2xl: 3rem;
 
+  /* Table cell rhythm. Apply via var(--table-cell-padding-y/x) so all
+     tables align. Existing values were 0.75rem/1rem (analytics, torikumi,
+     styles/banzuke.css) and 1rem (globals.css th/td default). */
+  --table-cell-padding-y: 0.75rem;
+  --table-cell-padding-x: 1rem;
+
   /* Shared top header background */
   --site-header-bg-image: url('/images/header-bg.jpg');
   --site-header-overlay: linear-gradient(
@@ -468,7 +474,7 @@ th {
   background: var(--gradient-primary);
   color: var(--color-on-primary);
   font-weight: 600;
-  padding: 1rem;
+  padding: var(--table-cell-padding-y) var(--table-cell-padding-x);
   text-align: center;
 }
 

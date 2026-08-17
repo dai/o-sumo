@@ -415,7 +415,7 @@
 
 .comparison-table th,
 .comparison-table td {
-  padding: 0.85rem 1rem;
+  padding: var(--table-cell-padding-y) var(--table-cell-padding-x);
   border-bottom: 1px solid var(--color-outline-variant);
   text-align: left;
 }
