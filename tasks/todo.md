@@ -306,5 +306,6 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 - Impeccable v4.1.1: `CompareRikishiPage.tsx` と `page.css` のdetector結果は `[]`。実ブラウザでもアクセシブル名、フォーカス操作、テーマ、レスポンシブ挙動を照合し、blocking findingはなかった。
 - 実ブラウザ: Wrangler配信の `/compare/?ids=4230,4279` で日本語／英語とlight／darkを切り替え、7行と `1-5`／`5-1` を確認。ローマ字 `Onosato` を入力し、ArrowDown／Enterで大の里へ置換、URL `ids=4227,4279` と表が同期した。360pxでは入力が1列（`gridTemplateColumns: 288px`）、body横溢れなし（360px）、表wrapperは328pxに対し566pxで横スクロール可能。160pxスクロール後も項目列は`position: sticky; left: 0px`でwrapper左端に残った。
 - Wrangler Pages: 公式の現行ローカル開発手順を確認後、Wrangler 4.71.0で`dist`を配信。`/compare` は301かつ `Location: /compare/`、`/compare/` は200 `text/html; charset=utf-8`、`/api/v1/rikishi-matchups.json` は200 `application/json` を実測した。push・deployは行っていない。
+- 最終レビュー修正: URL transitionの最初のcommit、置換draftのfocus、clear後のslot canonicalization、IME composition中の一時空値を追加回帰で修正した。最新HEADでfocused 3 files / 41 tests、全Vitest 49 files / 363 tests、Python全対象、typecheck、build、`git diff --check`が成功。実ブラウザのキーボード置換・360px横スクロールと、Wranglerの301／200／JSON配信を再実測し、最終独立レビューはCritical／Importantとも0件だった。
 
 ---
