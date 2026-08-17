@@ -155,30 +155,33 @@ function RikishiCombobox({ slot, items, selectedId, excludedId, draft, onDraftCh
         }}
         onKeyDown={onKeyDown}
       />
-      {open && candidates.length > 0 ? (
+      {open ? (
         <div id={listboxId} className="compare-combobox__listbox" role="listbox" aria-label={t('comparison.candidateListLabel', { label })}>
-          {candidates.map((item, index) => (
-            <button
-              id={`${inputId}-option-${item.id}`}
-              key={item.id}
-              type="button"
-              role="option"
-              tabIndex={-1}
-              aria-selected={item.id === selectedId}
-              className={`compare-combobox__option${index === activeIndex ? ' is-active' : ''}`}
-              onMouseDown={(event) => event.preventDefault()}
-              onClick={() => selectCandidate(item)}
-            >
-              <span className="compare-combobox__rank">{item.currentRank}</span>
-              <strong>{item.name}</strong>
-              <span>{item.yomi}</span>
-              <span>{toRomaji(item.yomi)}</span>
-            </button>
-          ))}
+          {candidates.length > 0
+            ? candidates.map((item, index) => (
+                <button
+                  id={`${inputId}-option-${item.id}`}
+                  key={item.id}
+                  type="button"
+                  role="option"
+                  tabIndex={-1}
+                  aria-selected={item.id === selectedId}
+                  className={`compare-combobox__option${index === activeIndex ? ' is-active' : ''}`}
+                  onMouseDown={(event) => event.preventDefault()}
+                  onClick={() => selectCandidate(item)}
+                >
+                  <span className="compare-combobox__rank">{item.currentRank}</span>
+                  <strong>{item.name}</strong>
+                  <span>{item.yomi}</span>
+                  <span>{toRomaji(item.yomi)}</span>
+                </button>
+              ))
+            : (
+                <div className="compare-combobox__empty" role="option" aria-selected="false" aria-disabled="true">
+                  {t('comparison.noResults')}
+                </div>
+              )}
         </div>
-      ) : null}
-      {open && draft.trim() && candidates.length === 0 ? (
-        <p className="compare-combobox__empty" role="status">{t('comparison.noResults')}</p>
       ) : null}
     </div>
   );
@@ -194,6 +197,7 @@ export default function CompareRikishiPage() {
   const [indexStatus, setIndexStatus] = React.useState<'loading' | 'ready' | 'error'>('loading');
   const [comparison, setComparison] = React.useState<ComparisonState | null>(null);
   const ownUrlWrite = React.useRef<string | null | undefined>(undefined);
+  const locallyRenderedRawIds = React.useRef(rawIds);
   const slotsRef = React.useRef(slots);
   slotsRef.current = slots;
 
@@ -202,6 +206,14 @@ export default function CompareRikishiPage() {
     [indexResponse],
   );
   const activeById = React.useMemo(() => new Map(activeIndex.map((item) => [item.id, item])), [activeIndex]);
+  const hasExternalUrlTransition = locallyRenderedRawIds.current !== rawIds;
+  const renderedSlots = hasExternalUrlTransition ? slotsFromSerialized(rawIds) : slots;
+  const renderedDrafts: CompareDrafts = hasExternalUrlTransition
+    ? [
+        renderedSlots[0] ? activeById.get(renderedSlots[0])?.name ?? '' : '',
+        renderedSlots[1] ? activeById.get(renderedSlots[1])?.name ?? '' : '',
+      ]
+    : drafts;
 
   const writeUrl = React.useCallback((nextSlots: CompareSlots, replace: boolean) => {
     const serialized = serializeSlots(nextSlots);
@@ -209,6 +221,7 @@ export default function CompareRikishiPage() {
     if (serialized) nextParams.set('ids', serialized);
     else nextParams.delete('ids');
     ownUrlWrite.current = serialized;
+    locallyRenderedRawIds.current = serialized;
     setSearchParams(nextParams, { replace });
   }, [searchParams, setSearchParams]);
 
@@ -224,6 +237,7 @@ export default function CompareRikishiPage() {
     const canonical = serializeSlots(normalizedSlots);
     if (ownUrlWrite.current === rawIds) {
       ownUrlWrite.current = undefined;
+      locallyRenderedRawIds.current = rawIds;
       return;
     }
     if (!sameSlots(slotsRef.current, normalizedSlots)) {
@@ -240,7 +254,10 @@ export default function CompareRikishiPage() {
       if (canonical) nextParams.set('ids', canonical);
       else nextParams.delete('ids');
       ownUrlWrite.current = canonical;
+      locallyRenderedRawIds.current = canonical;
       setSearchParams(nextParams, { replace: true });
+    } else {
+      locallyRenderedRawIds.current = rawIds;
     }
   }, [activeById, rawIds, searchParams, setSearchParams]);
 
@@ -249,7 +266,13 @@ export default function CompareRikishiPage() {
     fetchRikishiIndex()
       .then((data) => {
         if (!active) return;
+        const activeItemsById = new Map(data.rikishi.filter(isActiveSekitori).map((item) => [item.id, item]));
+        const current = slotsRef.current;
         setIndexResponse(data);
+        setDrafts([
+          current[0] ? activeItemsById.get(current[0])?.name ?? '' : '',
+          current[1] ? activeItemsById.get(current[1])?.name ?? '' : '',
+        ]);
         setIndexStatus('ready');
       })
       .catch(() => {
@@ -277,16 +300,18 @@ export default function CompareRikishiPage() {
     }
   }, [activeById, applySlots, indexResponse]);
 
-  const requestKey = slots[0] && slots[1] ? `${slots[0]},${slots[1]}` : null;
+  const firstSelectedId = renderedSlots[0];
+  const secondSelectedId = renderedSlots[1];
+  const requestKey = firstSelectedId && secondSelectedId ? `${firstSelectedId},${secondSelectedId}` : null;
   React.useEffect(() => {
-    if (!indexResponse || !requestKey || !slots[0] || !slots[1]) {
+    if (!indexResponse || !requestKey || !firstSelectedId || !secondSelectedId) {
       setComparison(null);
       return;
     }
-    if (!activeById.has(slots[0]) || !activeById.has(slots[1])) return;
+    if (!activeById.has(firstSelectedId) || !activeById.has(secondSelectedId)) return;
 
     let active = true;
-    const ids: [number, number] = [slots[0], slots[1]];
+    const ids: [number, number] = [firstSelectedId, secondSelectedId];
     setComparison({ key: requestKey, profileStatus: 'loading', matchupStatus: 'loading', profiles: null, matchup: null });
     Promise.allSettled([
       fetchRikishiProfilesFromIndex(indexResponse, ids),
@@ -305,7 +330,7 @@ export default function CompareRikishiPage() {
       setComparison({ key: requestKey, profileStatus, matchupStatus, profiles, matchup });
     });
     return () => { active = false; };
-  }, [activeById, indexResponse, requestKey, slots]);
+  }, [activeById, firstSelectedId, indexResponse, requestKey, secondSelectedId]);
 
   const onDraftChange = (slot: 0 | 1, value: string, composing: boolean) => {
     setDrafts((current) => slot === 0 ? [value, current[1]] : [current[0], value]);
@@ -338,7 +363,7 @@ export default function CompareRikishiPage() {
     && (currentComparison.matchupStatus === 'ready' || currentComparison.matchupStatus === 'error')
     && currentComparison.profiles,
   );
-  const completelyEmpty = slots.every((id) => id === null) && drafts.every((draft) => !draft);
+  const completelyEmpty = renderedSlots.every((id) => id === null) && renderedDrafts.every((draft) => !draft);
 
   const rows = currentComparison?.profiles ? [
     { label: t('comparison.rank'), values: currentComparison.profiles.map((profile) => textOrUnknown(profile.currentRank, unknown)) },
@@ -376,8 +401,8 @@ export default function CompareRikishiPage() {
                 <button type="button" className="compare-selector__clear" onClick={clearAll} disabled={completelyEmpty}>{t('comparison.clear')}</button>
               </div>
               <div className="compare-selector__slots">
-                <RikishiCombobox slot={0} items={activeIndex} selectedId={slots[0]} excludedId={slots[1]} draft={drafts[0]} onDraftChange={onDraftChange} onSelect={onSelect} />
-                <RikishiCombobox slot={1} items={activeIndex} selectedId={slots[1]} excludedId={slots[0]} draft={drafts[1]} onDraftChange={onDraftChange} onSelect={onSelect} />
+                <RikishiCombobox slot={0} items={activeIndex} selectedId={renderedSlots[0]} excludedId={renderedSlots[1]} draft={renderedDrafts[0]} onDraftChange={onDraftChange} onSelect={onSelect} />
+                <RikishiCombobox slot={1} items={activeIndex} selectedId={renderedSlots[1]} excludedId={renderedSlots[0]} draft={renderedDrafts[1]} onDraftChange={onDraftChange} onSelect={onSelect} />
               </div>
             </section>
 

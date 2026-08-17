@@ -1,6 +1,8 @@
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, useLocation, useSearchParams } from 'react-router-dom';
+import { flushSync } from 'react-dom';
+import { act, useLayoutEffect } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import CompareRikishiPage, { normalizeCompareIds } from './CompareRikishiPage';
 
@@ -70,9 +72,24 @@ function mockComparisonFetch(overrides: FetchOverrides = {}) {
   return fetchMock;
 }
 
-function LocationProbe() {
+type CommitSnapshot = {
+  search: string;
+  firstValue: string;
+  secondValue: string;
+  hasTable: boolean;
+};
+
+function LocationProbe({ onCommit }: { onCommit?: (snapshot: CommitSnapshot) => void }) {
   const location = useLocation();
   const [, setSearchParams] = useSearchParams();
+  useLayoutEffect(() => {
+    onCommit?.({
+      search: location.search,
+      firstValue: (document.querySelector('#compare-rikishi-1') as HTMLInputElement | null)?.value ?? '',
+      secondValue: (document.querySelector('#compare-rikishi-2') as HTMLInputElement | null)?.value ?? '',
+      hasTable: Boolean(document.querySelector('.comparison-table')),
+    });
+  }, [location.search, onCommit]);
   return (
     <>
       <output data-testid="location">{`${location.pathname}${location.search}`}</output>
@@ -81,11 +98,11 @@ function LocationProbe() {
   );
 }
 
-function renderPage(initialEntry = '/compare/') {
+function renderPage(initialEntry = '/compare/', onCommit?: (snapshot: CommitSnapshot) => void) {
   return render(
     <MemoryRouter initialEntries={[initialEntry]}>
       <CompareRikishiPage />
-      <LocationProbe />
+      <LocationProbe onCommit={onCommit} />
     </MemoryRouter>,
   );
 }
@@ -163,8 +180,12 @@ describe('CompareRikishiPage', () => {
 
     await user.type(input, '該当なし');
 
-    expect(await screen.findByText('一致する力士はいません。')).toBeInTheDocument();
-    expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+    const listbox = await screen.findByRole('listbox', { name: '力士1の候補' });
+    expect(input).toHaveAttribute('aria-expanded', 'true');
+    expect(input).toHaveAttribute('aria-controls', listbox.id);
+    const emptyOption = within(listbox).getByRole('option', { name: '一致する力士はいません。' });
+    expect(emptyOption).toHaveAttribute('aria-selected', 'false');
+    expect(emptyOption).toHaveAttribute('aria-disabled', 'true');
   });
 
   it('supports combobox ARIA relationships and keyboard selection while preventing duplicate choices', async () => {
@@ -280,6 +301,28 @@ describe('CompareRikishiPage', () => {
 
     await waitFor(() => expect(second).toHaveValue(''));
     expect(screen.getByTestId('location')).toHaveTextContent('/compare/?ids=4230&view=compact');
+  });
+
+  it('gates stale selectors and comparison table in the first committed render after external navigation', async () => {
+    const commits: CommitSnapshot[] = [];
+    mockComparisonFetch();
+    renderPage('/compare/?ids=4230,4279&view=compact', (snapshot) => commits.push(snapshot));
+    await screen.findByRole('table');
+    commits.length = 0;
+
+    act(() => {
+      flushSync(() => {
+        screen.getByRole('button', { name: 'Navigate to one rikishi' }).click();
+      });
+    });
+
+    const firstTransitionCommit = commits.find((snapshot) => snapshot.search === '?ids=4230&view=compact');
+    expect(firstTransitionCommit).toEqual({
+      search: '?ids=4230&view=compact',
+      firstValue: '安青錦',
+      secondValue: '',
+      hasTable: false,
+    });
   });
 
   it('renders exactly seven metrics with semantic headers, profile links, and ordered head-to-head results', async () => {
