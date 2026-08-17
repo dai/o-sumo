@@ -54,6 +54,7 @@ describe('PWA smoke config', () => {
             { href: 'https://osada.us/api/v1/news.json' },
             { href: 'https://osada.us/api/v1/torikumi.json' },
             { href: 'https://osada.us/api/v1/rikishi.json' },
+            { href: 'https://osada.us/api/v1/rikishi-matchups.json' },
             { href: 'https://osada.us/api/v1/yobidashi.json' },
           ],
         },

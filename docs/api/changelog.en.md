@@ -4,6 +4,14 @@
 
 ## 2026-08-17
 
+### Rikishi Comparison And Matchup API
+
+- Rebuilt `/compare/` around exactly two current makuuchi/juryo selections with shikona, kana, romaji, and rank search, URL sync, keyboard operation, and seven comparison metrics
+- Added `GET /api/v1/rikishi-matchups.json`, merging pre/post-rename shikona into official rikishi IDs and publishing ordered unique ID pairs with both career win totals from official basho/day profile history
+- Replaces the matchup JSON only after all target profiles pass retrieval, ID resolution, and cross-profile consistency checks; partial fetches or parse inconsistencies preserve the last valid file
+- At generation time, the official history gives Aonishiki (4230) vs Yoshinofuji (4279) as `1-5`; reversing comparison columns displays `5-1`
+- Synced `/.well-known/api-catalog`, the Japanese/English API specifications and READMEs, and the refresh runbook with the new endpoint
+
 ### Directory Search IME Input Fix
 
 - Introduced the shared `useDirectorySearchQuery` hook so in-progress IME composition is not pushed into the URL query for rikishi, gyoji/yobidashi, and banzuke directory searches
