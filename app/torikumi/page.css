@@ -387,7 +387,7 @@
   text-decoration: underline;
 }
 
-@media (max-width: var(--bp-xl)) {
+@media (max-width: 860px) {
   .torikumi-header {
     padding: 1rem 0.9rem;
   }

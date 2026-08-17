@@ -158,10 +158,15 @@
   --table-cell-padding-y: 0.75rem;
   --table-cell-padding-x: 1rem;
 
-  /* Layout breakpoint tokens. All @media (max-width: ...) rules in the
-     codebase consume these tokens so a future tuning happens in one
-     place. Tokens use names that map to existing caller values to
-     avoid behavior drift. */
+  /* Layout breakpoint tokens. The numeric values match the media
+     queries scattered throughout the codebase, but the media queries
+     inline the px value rather than reading `var(--bp-*)` here. We do
+     this because Chromium reliably evaluates `var()` inside
+     `@media (max-width: ...)` only in some contexts; inlining keeps
+     the breakpoint behavior consistent with the documented tokens.
+     If you tune a value below, also update the matching `@media`
+     rules in `app/index.css`, `app/globals.css`, and the various
+     `app/<page>/page.css` files. */
   --bp-xs: 480px;
   --bp-sm: 560px;
   --bp-md: 640px;
@@ -649,7 +654,7 @@ th {
 }
 
 /* Responsive */
-@media (max-width: var(--bp-lg)) {
+@media (max-width: 768px) {
   .global-notice-banner {
     font-size: 0.76rem;
     line-height: 1.45;
@@ -789,7 +794,7 @@ th {
   font-weight: 700;
 }
 
-@media (max-width: var(--bp-lg)) {
+@media (max-width: 768px) {
   .primary-navigation {
     justify-content: flex-start;
     padding-inline: 0.65rem;
@@ -884,7 +889,7 @@ th {
   grid-column: auto;
 }
 
-@media (max-width: var(--bp-lg)) {
+@media (max-width: 768px) {
   .directory-search {
     grid-template-columns: 1fr;
   }
@@ -946,7 +951,7 @@ th {
   text-decoration: none;
 }
 
-@media (max-width: var(--bp-lg)) {
+@media (max-width: 768px) {
   .directory-navigation {
     justify-content: flex-start;
     padding-inline: 0.65rem;
@@ -998,7 +1003,7 @@ th {
   text-underline-offset: 0.16em;
 }
 
-@media (max-width: var(--bp-lg)) {
+@media (max-width: 768px) {
   .directory-search__feedback {
     align-items: flex-start;
     flex-direction: column;

@@ -252,7 +252,7 @@
   text-decoration: underline;
 }
 
-@media (max-width: var(--bp-tablet)) {
+@media (max-width: 720px) {
   .rikishi-header {
     padding: 2rem 1rem;
   }
@@ -321,7 +321,7 @@
   font-weight: 700;
 }
 
-@media (max-width: var(--bp-md)) {
+@media (max-width: 640px) {
   .my-rikishi-toggle__button {
     min-height: 44px;
     width: 100%;
@@ -356,7 +356,7 @@
   justify-items: start;
 }
 
-@media (max-width: var(--bp-md)) {
+@media (max-width: 640px) {
   .my-rikishi-toolbar {
     align-items: stretch;
     flex-direction: column;
@@ -436,8 +436,8 @@
 }
 
 .comparison-table thead th {
-  background: var(--color-primary-container);
-  color: var(--color-primary);
+  background: var(--gradient-primary);
+  color: var(--color-on-primary);
   font-family: var(--font-serif);
   font-weight: 800;
   border-bottom: 1px solid var(--color-border);
@@ -445,6 +445,7 @@
 
 .comparison-table tbody th {
   width: 30%;
+  background-color: transparent;
   color: var(--color-secondary);
   font-size: 0.88rem;
 }

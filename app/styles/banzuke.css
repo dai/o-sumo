@@ -341,7 +341,7 @@
   pointer-events: none;
 }
 
-@media (max-width: var(--bp-lg)) {
+@media (max-width: 768px) {
   .rank-group {
     padding: 1rem;
   }
@@ -385,7 +385,7 @@
   }
 }
 
-@media (max-width: var(--bp-xs)) {
+@media (max-width: 480px) {
   .rank-group {
     padding: 0.75rem;
     margin-bottom: 1.5rem;
