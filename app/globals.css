@@ -158,16 +158,18 @@
   --table-cell-padding-y: 0.75rem;
   --table-cell-padding-x: 1rem;
 
-  /* Layout breakpoint tokens. Existing CSS still uses raw px values
-     (480/560/640/720/768/820/860) for backwards compatibility; new
-     rules should consume these tokens so breakpoints stay aligned
-     with the design grid. Migrate callers in a follow-up. */
+  /* Layout breakpoint tokens. All @media (max-width: ...) rules in the
+     codebase consume these tokens so a future tuning happens in one
+     place. Tokens use names that map to existing caller values to
+     avoid behavior drift. */
   --bp-xs: 480px;
   --bp-sm: 560px;
   --bp-md: 640px;
-  --bp-lg: 768px;
-  --bp-xl: 860px;
-  --bp-2xl: 1024px;
+    --bp-tablet: 720px;
+    --bp-lg: 768px;
+    --bp-desktop-sm: 820px;
+    --bp-xl: 860px;
+    --bp-2xl: 1024px;
 
   /* Shared top header background */
   --site-header-bg-image: url('/images/header-bg.jpg');
@@ -638,7 +640,7 @@ th {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: var(--bp-lg)) {
   .global-notice-banner {
     font-size: 0.76rem;
     line-height: 1.45;
@@ -778,7 +780,7 @@ th {
   font-weight: 700;
 }
 
-@media (max-width: 768px) {
+@media (max-width: var(--bp-lg)) {
   .primary-navigation {
     justify-content: flex-start;
     padding-inline: 0.65rem;
@@ -873,7 +875,7 @@ th {
   grid-column: auto;
 }
 
-@media (max-width: 768px) {
+@media (max-width: var(--bp-lg)) {
   .directory-search {
     grid-template-columns: 1fr;
   }
@@ -935,7 +937,7 @@ th {
   text-decoration: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: var(--bp-lg)) {
   .directory-navigation {
     justify-content: flex-start;
     padding-inline: 0.65rem;
@@ -987,7 +989,7 @@ th {
   text-underline-offset: 0.16em;
 }
 
-@media (max-width: 768px) {
+@media (max-width: var(--bp-lg)) {
   .directory-search__feedback {
     align-items: flex-start;
     flex-direction: column;

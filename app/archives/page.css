@@ -99,7 +99,7 @@
   color: var(--color-tertiary);
 }
 
-@media (max-width: 768px) {
+@media (max-width: var(--bp-lg)) {
   .archives-header {
     padding: 2rem 1rem;
   }

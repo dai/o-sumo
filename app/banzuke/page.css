@@ -185,7 +185,7 @@
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: var(--bp-lg)) {
   .page-header {
     padding: 2rem 1rem;
   }
@@ -228,7 +228,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: var(--bp-xs)) {
   .page-header {
     padding: 1.5rem 1rem;
   }

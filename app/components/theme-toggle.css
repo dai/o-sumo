@@ -70,7 +70,7 @@
   text-align: right;
 }
 
-@media (max-width: 768px) {
+@media (max-width: var(--bp-lg)) {
   .top-right-controls {
     top: 0.5rem;
     right: 0.55rem;
