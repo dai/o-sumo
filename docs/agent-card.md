@@ -29,9 +29,8 @@ exchange.
 
 1. Fetch the public JSON API at <https://osada.us/api/v1/*.json>.
 2. Use the skills listed in the card:
-   - `osumo-content` — fetch banzuke, torikumi, rikishi JSON
-   - `osumo-discovery` — resolve URLs for basho / day / rikishi pages
-   - `osumo-kimarite` — aggregate kimarite statistics
+   - `osumo-content` — fetch banzuke, torikumi, rikishi, gyoji, and yobidashi JSON
+   - `osumo-discovery` — resolve URLs for basho / day / rikishi / gyoji / yobidashi pages and discovery surfaces
 3. Read the matching `SKILL.md` files under
    `/.well-known/agent-skills/<skill-name>/SKILL.md` for usage rules.
 4. Follow the metadata links in the API catalog at

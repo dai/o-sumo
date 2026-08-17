@@ -8,9 +8,8 @@ credential is required.
 ## Discover
 
 1. Fetch `https://osada.us/.well-known/oauth-protected-resource`.
-2. Fetch the advertised authorization server metadata at
-   `https://osada.us/.well-known/oauth-authorization-server`.
-3. Read its `agent_auth` block and use the only supported identity type:
+2. Follow the `resource_documentation` link to this page (`/auth.md`).
+3. Read the `agent_auth` block below and use the only supported identity type:
    `anonymous`.
 
 The protected resource metadata advertises the `public` scope. The APIs remain
@@ -58,7 +57,6 @@ agent_auth:
 | --- | --- |
 | API catalog | `https://osada.us/.well-known/api-catalog` |
 | Protected Resource Metadata | `https://osada.us/.well-known/oauth-protected-resource` |
-| Authorization Server Metadata | `https://osada.us/.well-known/oauth-authorization-server` |
 | Agent Skills | `https://osada.us/.well-known/agent-skills/index.json` |
 | Signature Directory | `https://osada.us/.well-known/http-message-signatures-directory` |
 | Sitemap | `https://osada.us/sitemap.xml` |
@@ -91,3 +89,4 @@ corrections. Do not send credentials or private key material.
 
 - 2026-08-04 — Published anonymous public-access registration metadata.
 - 2026-08-10 — Published Web Bot Auth signature directory.
+- 2026-08-10 — Removed `/.well-known/oauth-authorization-server` and minimized `/.well-known/oauth-protected-resource` to `{ resource, resource_documentation }`. Discovery now flows from PRM to this page directly.

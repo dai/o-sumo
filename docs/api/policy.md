@@ -20,9 +20,27 @@ o-sumo API は個人運用のベストエフォート提供です。商用 SLA �
 
 結果未更新時の切り分け順:
 
-1. run履歴（Realtime実行漏れの有無）
-2. runログ（`event.schedule`, JST時刻, `resultUpdatedAt`, `scheduleUpdatedAt`）
+1. run履歴（Realtime実行漏れの有无）
 3. 供給元 API の `judge` 値（勝敗確定有無）
+
+## 更新日時の責務分離
+
+`updatedAt` を一律化せず、コンテンツの更新单位ごとに責務を分けます。画面・Markdown・CI のすべてで同じ値を読みます。
+
+- 番付 (`banzuke.json`): 結果更新と同一の `updatedAt`（= `torikumi.json.resultUpdatedAt`）。予定のみの更新では進まない
+- 結果 (`torikumi.json.resultDays` / 取組結果 hub・day): `resultUpdatedAt`
+- 予定 (`torikumi.json.scheduleDays` / 取組予定 hub・day): `scheduleUpdatedAt`
+- 過去場所 (`/202603/`, `/202605/`, `/202607/`): 月別 snapshot 内の `BanzukeData.updatedAt` / `TorikumiData.updatedAt`
+- 力士 index / detail: 各 JSON の `updatedAt`（detail にあれば detail を優先）
+- 行司・呼出 index / detail: 各 JSON の `retrievedAt`
+- ニュース記事: 各記事の `publishedAt`（feed 自体の `updatedAt` は画面表示しない）
+
+CI では次の值契約を検証します。
+
+- `torikumi.updatedAt === max(resultUpdatedAt, scheduleUpdatedAt)`
+- `banzuke.updatedAt === torikumi.resultUpdatedAt`
+
+更新日時を持たない静的ページ（Archives 一覧、Kimarite 一覧など）には、無関係な日時を流用しません。
 
 ## 互換性ポリシー
 

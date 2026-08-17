@@ -45,16 +45,6 @@
         "照ノ富士のプロフィールページ (/rikishi/{id}/) を rikishi.json の ID から解決する",
         "/sitemap.xml と /robots.txt を取得してクロール可能なページ一覧を作る"
       ]
-    },
-    {
-      "id": "osumo-kimarite",
-      "name": "osumo-kimarite",
-      "description": "Aggregate kimarite (決まり手) win counts and trends from the public rikishi data on https://osada.us/kimarite/ and /analytics/.",
-      "tags": ["sumo", "kimarite", "analytics", "statistics"],
-      "examples": [
-        "/kimarite/ の集計表を解釈して決まり手ランキングを作る",
-        "/analytics/ のページから力士の決まり手傾向を抽出する"
-      ]
     }
   ]
 }

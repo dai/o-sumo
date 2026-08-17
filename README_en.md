@@ -24,6 +24,8 @@ o-sumo is a static web app for publishing sumo banzuke, torikumi, and rikishi, g
   - Archives: `/archives`
   - Rikishi list: `/rikishi`
   - Rikishi profile: `/rikishi/{id}`
+  - My Rikishi: `/my-rikishi/`
+  - Compare Rikishi: `/compare/?ids={id1},{id2}…`
   - Gyoji directory: `/gyoji/`
   - Gyoji profile: `/gyoji/{id}/`
   - Yobidashi directory: `/yobidashi/`
@@ -34,10 +36,12 @@ o-sumo is a static web app for publishing sumo banzuke, torikumi, and rikishi, g
   - Daily result: `/{YYYYMMDD}-torikumi`
   - Daily schedule: `/{YYYYMMDD}-yotei`
   - Kimarite: `/kimarite`
+  - Basho analytics: `/analytics/`
 - Current route examples:
   - `/202607-banzuke/`
   - `/202607-torikumi`
   - `/20260712-yotei`
+  - `/compare/?ids=3842,4227`
   - `/kimarite`
 - The legacy banzuke URL `/{YYYYMM}-o-sumo/` redirects to the current banzuke URL.
 - Public APIs:
@@ -66,13 +70,20 @@ Skill publishing:
 
 - `SKILLS_en.md`
 - `SKILLS.md`
+- `public/.well-known/agent-skills/osumo-content/SKILL.md`
+- `public/.well-known/agent-skills/osumo-discovery/SKILL.md`
 - `skills/osumo-api/SKILL.md`
 
 ## Key Features
 
-- Direct navigation from the homepage to `Banzuke / Schedule / Results / Rikishi, Gyoji, and Yobidashi Directories`
+- Direct navigation from the homepage to `Banzuke / Schedule / Results / Rikishi Directory / Gyoji Directory / Yobidashi Directory / My Rikishi / Compare Rikishi / Basho Analytics`
 - Bilingual lists and profiles for 42 active gyoji and 45 active yobidashi, sourced from the official Japan Sumo Association website. Official numeric IDs are used in page and JSON API URLs, and no photographs are published
 - Banzuke pages for makuuchi and juryo rankings and records, with MiniMax I2I Generation processed rikishi profile images and links to rikishi profiles
+- My Rikishi (`/my-rikishi/`) stores up to 10 wrestlers by shikona with URL synchronisation and `localStorage` persistence across devices
+- Compare Rikishi (`/compare/?ids=…`) places up to 3 wrestlers side-by-side with career win/loss (excluding absent days from the win-rate denominator) and win-rate metrics
+- Basho analytics (`/analytics/`) shows makuuchi yusho, jun-yusho, kanto-sho, gin-o-sho, and juryo yusho for the current basho
+- The `BashoContextBar` is rendered above monthly hubs, daily pages, and the analytics page so users can jump between the current basho and past archives
+- The `ShareCurrentLink` button copies the current URL to the clipboard (with a manual fallback for non-secure contexts)
 - Monthly hub pages listing all 15 daily pages
 - Daily pages for makuuchi and juryo torikumi, with profile links on wrestler names
 - `ascending / descending` sorting on banzuke, hub, and daily pages
@@ -81,6 +92,7 @@ Skill publishing:
 - Homepage **Latest News** section split into two sub-sections: Japan Sumo Association announcements and Sumo World News (latest 5 from dmenu Sports)
 - Homepage **Kimarite** card links to the `/kimarite` index page that lists all 82 winning techniques, grouped by category with bilingual Japanese/English commentary
 - News JSON is regenerated automatically by the `news-feed-update` GitHub Actions workflow via the Python scraper (`/api/v1/news.json`)
+- Four WebMCP tools (`search_rikishi`, `list_basho`, `get_banzuke_for_month`, `get_torikumi_for_day`) are exposed for AI agents running in supported browsers (prefers `document.modelContext.registerTool` from the W3C Draft, falls back to `navigator.modelContext.registerTool`)
 
 ## Tech Stack
 
@@ -139,6 +151,8 @@ Useful local URLs:
 - `http://localhost:3001/archives`
 - `http://localhost:3001/rikishi`
 - `http://localhost:3001/rikishi/{id}`
+- `http://localhost:3001/my-rikishi/`
+- `http://localhost:3001/compare/?ids={id1},{id2}`
 - `http://localhost:3001/gyoji/`
 - `http://localhost:3001/gyoji/{id}/`
 - `http://localhost:3001/yobidashi/`
@@ -149,6 +163,7 @@ Useful local URLs:
 - `http://localhost:3001/{YYYYMMDD}-torikumi`
 - `http://localhost:3001/{YYYYMMDD}-yotei`
 - `http://localhost:3001/kimarite`
+- `http://localhost:3001/analytics/`
 - `http://localhost:3001/api/v1/news.json`
 
 ## Data Updates
@@ -290,6 +305,11 @@ Current main coverage:
 - 15-day hub rendering and sorting
 - daily torikumi sorting and pending-state rendering
 - gyoji/yobidashi lists and profiles, bilingual ranks, official numeric IDs, API paths, dynamic metadata, and sitemap entries
+- My Rikishi toggle, list, IME input correction, and URL synchronisation
+- Compare Rikishi (up to 3 wrestlers) career win/loss, win-rate, and absent-day exclusion
+- Basho analytics (`/analytics/`) makuuchi awards, special prizes, and juryo yusho
+- `BashoContextBar` basho status switching and updated-at display
+- `WebMcpProvider` four-tool registration with `document.modelContext.registerTool` / `navigator.modelContext.registerTool`
 
 GitHub Actions runs the following on pull requests and pushes to `main`, `codex/**`, and `automation/data-updates`:
 
@@ -324,10 +344,18 @@ GitHub Actions runs the following on pull requests and pushes to `main`, `codex/
 - `app/kimarite/page.tsx`: all 82 kimarite listing page
 - `app/officials/page.tsx`: gyoji and yobidashi lists and profiles
 - `app/torikumi/page.tsx`: monthly hubs for results and schedules
+- `app/analytics/page.tsx`: basho analytics page
+- `app/rikishi/MyRikishiPage.tsx`: My Rikishi page
+- `app/rikishi/CompareRikishiPage.tsx`: Compare Rikishi page
 - `app/components/TorikumiDayPage.tsx`: daily result and schedule pages
 - `app/components/BanzukeTable.tsx`: banzuke table component
+- `app/components/BashoContextBar.tsx`: context bar showing basho status and updated-at
+- `app/components/MyRikishiToggle.tsx`: My Rikishi toggle
+- `app/components/ShareCurrentLink.tsx`: copy current URL to clipboard
 - `app/components/NewsSection.tsx`: homepage news section (Japan Sumo Association + Sumo World News split sections)
 - `app/components/KimariteCard.tsx`: homepage kimarite entry card
+- `app/components/WebMcpProvider.tsx`: WebMCP tool registration (prefers `document.modelContext.registerTool`)
+- `app/components/PrimaryNavigation.tsx`: primary navigation
 - `app/lib/archives-data.ts`: past basho dataset
 - `app/lib/torikumi-routes.ts`: month-key URL resolution and navigation
 - `app/lib/sumo-data.ts`: banzuke data (includes rikishi type definitions)
@@ -335,6 +363,13 @@ GitHub Actions runs the following on pull requests and pushes to `main`, `codex/
 - `app/lib/news-data.ts`: static news feed data
 - `app/lib/kimarite-data.ts`: master list of all 82 winning techniques
 - `app/lib/official-profile.ts`: gyoji/yobidashi types, API fetching, and numeric-ID paths
+- `app/lib/my-rikishi.ts`: My Rikishi registration state (localStorage sync)
+- `app/lib/basho-status.ts`: basho status (live / upcoming / final) classification
+- `app/lib/webmcp.ts`: WebMCP tool definitions (4 tools)
+- `app/lib/july2026-data.ts`: immutable July 2026 (Nagoya) basho snapshot
+- `app/lib/july2026-banzuke-data.ts`: immutable July 2026 banzuke snapshot
+- `app/lib/archive-basho-data.ts`: aggregated past + current basho data
+- `app/lib/agent-skills.ts`: Agent Skills Index metadata
 - `scripts/update_sumo_data.py`: data generation script for banzuke, torikumi, and rikishi profiles
 - `scripts/update_news_feed.py`: news feed generation script
 - `scripts/update_official_profiles.py`: gyoji and yobidashi data generator
