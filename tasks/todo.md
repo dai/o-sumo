@@ -282,3 +282,21 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 - 完全検証: `npm run typecheck`、全Vitest 48 files / 336 tests、`npm run build`、`git diff --check` がすべてexit 0。buildの既存chunk size警告とBrowserslist更新警告のみ。
 
 ---
+
+# 力士比較ページ刷新（2026-08-17）
+
+詳細設計: `docs/superpowers/specs/2026-08-17-rikishi-comparison-refresh-design.md`
+
+実装計画: `docs/superpowers/plans/2026-08-17-rikishi-comparison-refresh.md`
+
+## Plan
+
+- [ ] 公式プロフィール履歴を改名前後の力士IDへ統合し、検証済み合い口JSONを生成する
+- [ ] 比較画面を2つのcomboboxと指定7項目の2人比較表へ刷新する
+- [ ] API／README／catalogを同期し、全テスト・実ブラウザ・Wrangler配信を検証する
+
+## Review
+
+- 実装後にRED／GREEN、代表合い口、全検証コマンド、ブラウザ／配信実測を記録する。
+
+---
