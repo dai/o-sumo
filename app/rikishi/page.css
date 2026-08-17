@@ -413,9 +413,11 @@
 }
 
 .comparison-table thead th {
+  background: var(--color-primary-container);
   color: var(--color-primary);
   font-family: var(--font-serif);
   font-weight: 800;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .comparison-table tbody th {

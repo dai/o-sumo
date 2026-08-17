@@ -206,11 +206,13 @@
 }
 
 .analytics-results-table thead th {
-  color: var(--color-muted-text);
+  background: var(--color-primary-container);
+  color: var(--color-primary);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .analytics-results-table tbody th {
