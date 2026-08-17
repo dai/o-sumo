@@ -337,6 +337,18 @@ button:focus-visible,
   box-shadow: var(--shadow-glow-secondary);
 }
 
+/* Stronger focus ring for users who request more contrast */
+@media (prefers-contrast: more) {
+  a:focus-visible,
+  button:focus-visible,
+  [role='button']:focus-visible,
+  [tabindex]:focus-visible {
+    outline-width: 3px;
+    outline-offset: 4px;
+    box-shadow: none;
+  }
+}
+
 /* Primary Button */
 button, .btn-primary {
   font-family: var(--font-sans);
