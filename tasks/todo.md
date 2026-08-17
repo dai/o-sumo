@@ -266,3 +266,19 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 - 独立レビュー: 重大・重要な指摘0件。現行index外の孤立detail `4275.json` は比較画面から参照されないため既存のまま保持し、今回の全件保証は現行index掲載70名を対象とする。
 
 ---
+
+# 20260817 バナー文言更新
+
+## Plan
+
+- [x] 日本語バナーの指定文言を回帰テストでREDにする
+- [x] 日本語ロケールを指定文言へ更新する
+- [x] focused test、typecheck、全テスト、build、diff checkを通してPR #434へpushする
+
+## Review
+
+- RED: 指定文言を期待するfocused testが旧 `20260812` 文言を受け取り、1件失敗した。
+- GREEN: 日本語ロケールを指定どおり更新し、focused 2 testsが成功した。英語文言は指定がないため変更していない。
+- 完全検証: `npm run typecheck`、全Vitest 48 files / 336 tests、`npm run build`、`git diff --check` がすべてexit 0。buildの既存chunk size警告とBrowserslist更新警告のみ。
+
+---
