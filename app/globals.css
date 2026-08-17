@@ -158,6 +158,17 @@
   --table-cell-padding-y: 0.75rem;
   --table-cell-padding-x: 1rem;
 
+  /* Layout breakpoint tokens. Existing CSS still uses raw px values
+     (480/560/640/720/768/820/860) for backwards compatibility; new
+     rules should consume these tokens so breakpoints stay aligned
+     with the design grid. Migrate callers in a follow-up. */
+  --bp-xs: 480px;
+  --bp-sm: 560px;
+  --bp-md: 640px;
+  --bp-lg: 768px;
+  --bp-xl: 860px;
+  --bp-2xl: 1024px;
+
   /* Shared top header background */
   --site-header-bg-image: url('/images/header-bg.jpg');
   --site-header-overlay: linear-gradient(
