@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-17T00:22:49.731279+00:00",
+  "updatedAt": "2026-08-17T02:32:32.895208+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -61,6 +61,15 @@
       "sourceLabel": "dmenuスポーツ"
     },
     {
+      "id": "sumo-association-759",
+      "title": "お知らせ",
+      "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=759",
+      "publishedAt": "2026-08-07",
+      "publishedAtRaw": "令和8年8月7日",
+      "sourceId": "sumo-association",
+      "sourceLabel": "日本相撲協会"
+    },
+    {
       "id": "sumo-association-757",
       "title": "本場所入場料金の改定について",
       "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=757",
@@ -75,15 +84,6 @@
       "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=756",
       "publishedAt": "2026-07-25",
       "publishedAtRaw": "令和8年7月25日",
-      "sourceId": "sumo-association",
-      "sourceLabel": "日本相撲協会"
-    },
-    {
-      "id": "sumo-association-755",
-      "title": "大相撲七月場所「土俵祭」についてのお知らせ",
-      "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=755",
-      "publishedAt": "2026-07-06",
-      "publishedAtRaw": "令和8年7月6日",
       "sourceId": "sumo-association",
       "sourceLabel": "日本相撲協会"
     }
