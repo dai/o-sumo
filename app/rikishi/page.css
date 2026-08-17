@@ -135,6 +135,15 @@
   font-weight: 900;
 }
 
+/* Officials (gyoji / yobidashi / etc.) never render a portrait. Collapse the
+   180px photo column so the hero stays compact, and use a subtle inset accent
+   that distinguishes officials from rikishi visually without dominating. */
+.rikishi-profile-hero--no-photo {
+  grid-template-columns: minmax(0, 1fr);
+  border-left: 2px solid color-mix(in srgb, var(--color-secondary) 70%, transparent);
+  padding-left: 1.25rem;
+}
+
 .rikishi-profile-actions {
   display: flex;
   flex-wrap: wrap;
@@ -243,7 +252,7 @@
   text-decoration: underline;
 }
 
-@media (max-width: 720px) {
+@media (max-width: var(--bp-tablet)) {
   .rikishi-header {
     padding: 2rem 1rem;
   }
@@ -306,7 +315,7 @@
   font-weight: 700;
 }
 
-@media (max-width: 640px) {
+@media (max-width: var(--bp-md)) {
   .my-rikishi-toggle__button {
     min-height: 44px;
     width: 100%;
@@ -341,7 +350,7 @@
   justify-items: start;
 }
 
-@media (max-width: 640px) {
+@media (max-width: var(--bp-md)) {
   .my-rikishi-toolbar {
     align-items: stretch;
     flex-direction: column;
