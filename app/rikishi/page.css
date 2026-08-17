@@ -273,6 +273,12 @@
   align-content: start;
 }
 
+/* Officials list cards share the hero's subtle accent for visual cohesion. */
+.rikishi-profile-card--official {
+  border-left: 2px solid color-mix(in srgb, var(--color-secondary) 70%, transparent);
+  padding-left: 1.25rem;
+}
+
 .rikishi-profile-card__link {
   display: grid;
   gap: 0.25rem;

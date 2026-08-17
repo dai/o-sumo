@@ -113,7 +113,7 @@ export function OfficialListPage({ kind }: { kind: OfficialKind }) {
         </div>
         {filteredItems.length === 0 ? <p className="directory-search__empty">{t('officials.searchEmpty', { label })}</p> : null}
         <div className="rikishi-profile-grid">
-        {filteredItems.map((item) => <Link key={item.id} to={officialProfilePath(kind, item.id)} className="rikishi-profile-card">
+        {filteredItems.map((item) => <Link key={item.id} to={officialProfilePath(kind, item.id)} className="rikishi-profile-card rikishi-profile-card--official">
           <span className="rikishi-card-rank">{rankLabel(item)}</span><span className="rikishi-card-name">{item.name}</span>
           <span className="rikishi-card-yomi">{item.yomi}</span><span className="rikishi-card-romaji">{toRomaji(item.yomi)}</span>
         </Link>)}
