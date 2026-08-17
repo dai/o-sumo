@@ -70,11 +70,19 @@ Useful local URLs:
 - `http://localhost:3001/archives`
 - `http://localhost:3001/rikishi`
 - `http://localhost:3001/rikishi/{id}`
+- `http://localhost:3001/my-rikishi/`
+- `http://localhost:3001/compare/?ids={id1},{id2}`
+- `http://localhost:3001/gyoji/`
+- `http://localhost:3001/gyoji/{id}/`
+- `http://localhost:3001/yobidashi/`
+- `http://localhost:3001/yobidashi/{id}/`
 - `http://localhost:3001/{YYYYMM}-banzuke/`
 - `http://localhost:3001/{YYYYMM}-torikumi`
 - `http://localhost:3001/{YYYYMM}-yotei`
 - `http://localhost:3001/{YYYYMMDD}-torikumi`
 - `http://localhost:3001/{YYYYMMDD}-yotei`
+- `http://localhost:3001/kimarite`
+- `http://localhost:3001/analytics/`
 
 ## Deploy
 
@@ -129,38 +137,74 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 
 ## Main Files
 
-- `app/main.tsx`: route definitions
+- `app/main.tsx`: route definitions. Includes `/`, `/archives/`, `/rikishi/`, `/rikishi/:id`, `/my-rikishi/`, `/compare/`, `/gyoji/`, `/gyoji/:id`, `/yobidashi/`, `/yobidashi/:id`, `/kimarite/`, `/analytics/`, and the month-key URLs derived from `app/lib/torikumi-routes.ts`.
 - `app/page.tsx`: homepage
 - `app/archives/page.tsx`: archives page
 - `app/banzuke/page.tsx`: banzuke page
 - `app/torikumi/page.tsx`: result / schedule hub page
+- `app/analytics/page.tsx`: basho analytics (makuuchi awards, special prizes, juryo yusho)
+- `app/rikishi/MyRikishiPage.tsx`: My Rikishi list with localStorage synchronisation
+- `app/rikishi/CompareRikishiPage.tsx`: Compare Rikishi page (up to 3 wrestlers, `useState` + URL Search Params)
+- `app/officials/page.tsx`: gyoji and yobidashi lists and profiles
 - `app/components/TorikumiDayPage.tsx`: daily torikumi page
+- `app/components/BanzukeTable.tsx`: banzuke table component
+- `app/components/BashoContextBar.tsx`: context bar showing basho status and updated-at
+- `app/components/MyRikishiToggle.tsx`: My Rikishi toggle
+- `app/components/ShareCurrentLink.tsx`: copy current URL to clipboard
+- `app/components/NewsSection.tsx`: homepage news section (split into Japan Sumo Association + Sumo World News)
+- `app/components/KimariteCard.tsx`: homepage kimarite entry card
+- `app/components/PrimaryNavigation.tsx`: primary navigation
+- `app/components/WebMcpProvider.tsx`: WebMCP tool registration (prefers `document.modelContext.registerTool`, falls back to `navigator.modelContext.registerTool`, cleans up via `AbortController`)
 - `app/lib/archives-data.ts`: past basho dataset
 - `app/lib/torikumi-routes.ts`: month-key and date URL resolution
-- `app/lib/torikumi-data.ts`: torikumi archive data
+- `app/lib/torikumi-data.ts`: torikumi archive data (includes `resultUpdatedAt` and `scheduleUpdatedAt`)
 - `app/lib/sumo-data.ts`: banzuke data
+- `app/lib/july2026-data.ts`: immutable July 2026 (Nagoya) basho snapshot (torikumi)
+- `app/lib/july2026-banzuke-data.ts`: immutable July 2026 banzuke snapshot
+- `app/lib/archive-basho-data.ts`: aggregated past + current basho data
+- `app/lib/basho-status.ts`: basho status (live / upcoming / final) classification
+- `app/lib/my-rikishi.ts`: My Rikishi registration state (localStorage sync, max 10)
+- `app/lib/webmcp.ts`: WebMCP four-tool definitions (`search_rikishi`, `list_basho`, `get_banzuke_for_month`, `get_torikumi_for_day`)
+- `app/lib/agent-skills.ts`: Agent Skills Index metadata
+- `app/lib/official-profile.ts`: gyoji/yobidashi types, API fetching, and numeric-ID paths
+- `app/lib/news-data.ts`: static news feed data
+- `app/lib/kimarite-data.ts`: master list of all 82 winning techniques
 - `scripts/update_sumo_data.py`: data generation script
+- `scripts/update_official_profiles.py`: gyoji and yobidashi data generator
+- `scripts/update_news_feed.py`: news feed generation script
 
 ## AI Agent Readiness (Agent-Ready)
 
 The following discovery endpoints are published under `public/.well-known/`:
 
 - `api-catalog` — RFC 9727 linkset pointing at the public JSON APIs
-- `openid-configuration` / `oauth-authorization-server` — OIDC / RFC 8414 metadata that declares no authentication flow
-- `oauth-protected-resource` — RFC 9728 Protected Resource metadata
-- `mcp/server-card.json` — MCP Server Card (SEP-1649). The site does not host an MCP server; alternative discovery endpoints are advertised instead.
+- `oauth-protected-resource` — RFC 9728 Protected Resource metadata (only `resource` and `resource_documentation`)
+- `mcp/server-card.json` — MCP Server Card (SEP-1649). The site does not host an MCP server; `endpoint` is `null` and `serverInfo.version` stays in sync with `package.json`.
 - `agent-skills/index.json` — Agent Skills Discovery RFC v0.2.0 index. The sha256 digests are computed at build time.
 - `http-message-signatures-directory` — Web Bot Auth (IETF WebBotAuth WG) signature directory. A Cloudflare Pages Function (`functions/.well-known/http-message-signatures-directory.ts`) publishes the JWKS and self-signs the response per RFC 9421 with `tag="http-message-signatures-directory"`. The Ed25519 keypair is generated by `scripts/generate_web_bot_auth_keys.mjs` and inlined into `functions/.well-known/_web-bot-auth-keys.ts` (the Workers runtime cannot read arbitrary files at request time).
 
-A top-level `auth.md` is also published at the site root with contact info only (no agent registration).
+`openid-configuration` and `oauth-authorization-server` were removed on 2026-08-10 (a 404 is now the expected state). The `auth.md` document at the site root declares anonymously-readable, credential-free public access instead.
+
+Two SKILL.md files are currently published under `public/.well-known/agent-skills/`:
+
+- `osumo-content/SKILL.md` — content discovery and read-only APIs
+- `osumo-discovery/SKILL.md` — references to `api-catalog`, `mcp-server-card`, and `agent-skills`
 
 Build-time behavior:
 
 - `agentSkillsPlugin` in `vite.config.ts` walks the `public/.well-known/agent-skills/` tree at build time, computes sha256 digests, and writes `index.json`
-- `markdownViewsPlugin` runs `scripts/build_markdown_views.ts` to emit static Markdown views (`dist/*/index.md`) for the main HTML routes, served with `Content-Type: text/markdown` and `Vary: Accept`
+- `markdownViewsPlugin` runs `scripts/build_markdown_views.ts` to emit static Markdown views (`dist/*/index.md`) for the main HTML routes, served with `Content-Type: text/markdown` and `Vary: Accept` (a pre-rendering approach that works on the Cloudflare Pages Free plan)
+- `mcpServerCardPlugin` keeps `mcp/server-card.json.serverInfo.version` in sync with `package.json`
 - Adding a new skill: drop `public/.well-known/agent-skills/<skill>/SKILL.md` and the next build will refresh the index automatically
 
-WebMCP is exposed through `navigator.modelContext.provideContext()` from `app/components/WebMcpProvider.tsx`. Browsers without `modelContext` (i.e. anything other than recent Chrome builds) gracefully no-op.
+WebMCP is exposed from `app/components/WebMcpProvider.tsx`. Priority is the W3C Draft `document.modelContext.registerTool`, then `navigator.modelContext.registerTool` for browser implementations, then the legacy `navigator.modelContext.provideContext`. Hosts without any of these get a no-op. An `AbortController.signal` scopes the registration to the component lifetime so route transitions clean up registrations.
+
+WebMCP tools currently published:
+
+- `search_rikishi` — partial-match search over `/api/v1/rikishi.json` by shikona or yomi (up to 20 matches)
+- `list_basho` — list of the current basho and past archives with their URLs
+- `get_banzuke_for_month` — resolve banzuke page and JSON URL for a `YYYYMM` month key
+- `get_torikumi_for_day` — resolve the daily page URL for a `YYYYMMDD` date
 
 DNS-AID (SVCB/HTTPS) and DNSSEC are configured in Cloudflare DNS, not in this repository. See `docs/agent-ready.md` for the operator-side runbook.
 
@@ -171,3 +215,6 @@ DNS-AID (SVCB/HTTPS) and DNSSEC are configured in Cloudflare DNS, not in this re
 - Month-key routes should be handled based on `app/lib/torikumi-routes.ts`
 - Do not add fixed `YYYYMM-*` routes; use month-key resolution derived from generated data
 - `public/images/rikishi/*.png` contains images processed with MiniMax I2I Generation from Japan Sumo Association profile photos. To regenerate them, set `MINIMAX_API_KEY` and run `python scripts/style_transfer_rikishi.py`
+- `app/lib/my-rikishi.ts` reads and writes `localStorage` under the `osumo.myRikishi.v1` key. There is no login or server-side state.
+- `/compare/?ids=…` accepts only positive integer IDs, deduplicates them, and caps at 3 entries
+- `WebMcpProvider` registers tools on an `AbortController`, so React Strict Mode mount/unmount cycles do not duplicate registrations

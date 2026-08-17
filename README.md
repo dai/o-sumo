@@ -27,6 +27,8 @@ o-sumo は、大相撲の番付、取組、力士・行司・呼出名鑑を配�
   - 過去場所一覧: `/archives`
   - 力士一覧: `/rikishi`
   - 力士プロフィール: `/rikishi/{id}`
+  - マイ力士: `/my-rikishi/`
+  - 力士比較: `/compare/?ids={id1},{id2}…`
   - 行司名鑑: `/gyoji/`
   - 行司プロフィール: `/gyoji/{id}/`
   - 呼出名鑑: `/yobidashi/`
@@ -37,10 +39,12 @@ o-sumo は、大相撲の番付、取組、力士・行司・呼出名鑑を配�
   - 日別結果: `/{YYYYMMDD}-torikumi`
   - 日別予定: `/{YYYYMMDD}-yotei`
   - 決まり手: `/kimarite`
+  - 場所ステータス分析: `/analytics/`
 - 現行ルート例:
   - `/202607-banzuke/`
   - `/202607-torikumi`
   - `/20260712-yotei`
+  - `/compare/?ids=3842,4227`
   - `/kimarite`
 - 旧番付 URL `/{YYYYMM}-o-sumo` は現行の番付 URL にリダイレクトされます。
 - 公開 API:
@@ -64,13 +68,20 @@ o-sumo は、大相撲の番付、取組、力士・行司・呼出名鑑を配�
 Skill 公開:
 
 - `SKILLS.md`
+- `public/.well-known/agent-skills/osumo-content/SKILL.md`
+- `public/.well-known/agent-skills/osumo-discovery/SKILL.md`
 - `skills/osumo-api/SKILL.md`
 
 ## 主な機能
 
-- ホームから `番付 / 取組予定 / 結果 / 力士・行司・呼出名鑑` に直接遷移
+- ホームから `番付 / 取組予定 / 結果 / 力士・行司・呼出名鑑 / マイ力士 / 力士比較 / 場所ステータス分析` に直接遷移
 - 日本相撲協会公式サイトを出典とする現役行司42名・呼出45名の一覧と個別プロフィールを日英表示。公式数値IDをURLとJSON APIに使用し、写真は掲載しません
 - 番付ページで幕内・十両の番付と成績を表示し、MiniMax I2I Generation で加工した力士プロフィール画像とあわせて力士プロフィールへ遷移
+- マイ力士 (`/my-rikishi/`) で最大10名まで四股名を登録し、URL 同期と `localStorage` 永続化で端末をまたいで保持
+- 力士比較 (`/compare/?ids=…`) で最大3名までの通算成績・通算勝率（現時点で勝敗の決まった取組のみ分母）を並列比較
+- 場所ステータス分析 (`/analytics/`) で幕内優勝・三賞・十両優勝を一覧表示
+- 月別ハブ・日別ページ・場所ステータス分析のヘッダーに `BashoContextBar` を表示し、現行場所と過去場所を視覚的に切替
+- 各ページの URL を `ShareCurrentLink` ボタンでクリップボードへコピー（手動フォールバック付き）
 - 月別ハブで 15 日分の日別ページを一覧表示
 - 日別ページで幕内・十両の取組を表示し、取組力士名からプロフィールへ遷移
 - 番付・月別ハブ・日別ページで `昇順 / 降順` を切り替え可能
@@ -79,6 +90,7 @@ Skill 公開:
 - ホームの **最新ニュース** セクションで日本相撲協会のお知らせと相撲界ニュース（dmenu スポーツから最新 5 件）を 2 つのサブセクションに分けて表示
 - ホームの **決まり手** カードから全 82 手の索引ページ `/kimarite` へ遷移し、カテゴリ別の目次と並んで技の和英解説を閲覧可能
 - ニュース JSON は GitHub Actions の `news-feed-update` ワークフローから Python スクレイパで自動生成（`/api/v1/news.json`）
+- AI エージェント対応ブラウザー向けに WebMCP 4 ツール (`search_rikishi` / `list_basho` / `get_banzuke_for_month` / `get_torikumi_for_day`) を公開 (`document.modelContext.registerTool` を優先、`navigator.modelContext.registerTool` にフォールバック)
 
 ## 技術スタック
 
@@ -137,6 +149,8 @@ npm run preview
 - `http://localhost:3001/archives`
 - `http://localhost:3001/rikishi`
 - `http://localhost:3001/rikishi/{id}`
+- `http://localhost:3001/my-rikishi/`
+- `http://localhost:3001/compare/?ids={id1},{id2}`
 - `http://localhost:3001/gyoji/`
 - `http://localhost:3001/gyoji/{id}/`
 - `http://localhost:3001/yobidashi/`
@@ -147,6 +161,7 @@ npm run preview
 - `http://localhost:3001/{YYYYMMDD}-torikumi`
 - `http://localhost:3001/{YYYYMMDD}-yotei`
 - `http://localhost:3001/kimarite`
+- `http://localhost:3001/analytics/`
 - `http://localhost:3001/api/v1/news.json`
 
 ## データ更新
@@ -299,6 +314,11 @@ GitHub Actions で取組予定、取組結果、ニュース更新を分けて�
 - 月別ハブの 15 日表示とソート
 - 日別取組ページのソートと未更新表示
 - 行司・呼出の一覧／詳細、日英階級、公式数値ID、APIパス、動的メタデータ、sitemap
+- マイ力士のトグル／一覧／IME 入力補正と URL 同期
+- 力士比較 (最大3名) の通算成績・通算勝率、休場除外
+- 場所ステータス分析 (`/analytics/`) の幕内・三賞・十両結果
+- `BashoContextBar` の場所状態切替と更新時刻表示
+- `WebMcpProvider` の 4 ツール登録 (`document.modelContext.registerTool` / `navigator.modelContext.registerTool`)
 
 GitHub Actions では PR と `main` / `codex/**` / `automation/data-updates` への push で以下を実行します。
 
@@ -337,10 +357,18 @@ GitHub Actions では PR と `main` / `codex/**` / `automation/data-updates` へ
 - `app/kimarite/page.tsx`: 全 82 手一覧ページ
 - `app/officials/page.tsx`: 行司・呼出の一覧／個別プロフィール
 - `app/torikumi/page.tsx`: 取組結果 / 取組予定の月別ハブ
+- `app/analytics/page.tsx`: 場所ステータス分析ページ
+- `app/rikishi/MyRikishiPage.tsx`: マイ力士ページ
+- `app/rikishi/CompareRikishiPage.tsx`: 力士比較ページ
 - `app/components/TorikumiDayPage.tsx`: 日別の結果 / 予定ページ
 - `app/components/BanzukeTable.tsx`: 番付テーブルコンポーネント
+- `app/components/BashoContextBar.tsx`: 場所ステータスと更新時刻を表示するコンテキストバー
+- `app/components/MyRikishiToggle.tsx`: マイ力士登録トグル
+- `app/components/ShareCurrentLink.tsx`: 現在の URL をクリップボードへコピー
 - `app/components/NewsSection.tsx`: ホームのニュースセクション（相撲協会 + 相撲界ニュースの 2 セクション）
 - `app/components/KimariteCard.tsx`: ホームの「決まり手」カード
+- `app/components/WebMcpProvider.tsx`: WebMCP ツール登録（`document.modelContext.registerTool` 優先）
+- `app/components/PrimaryNavigation.tsx`: プライマリーナビゲーション
 - `app/lib/archives-data.ts`: 過去場所データ
 - `app/lib/torikumi-routes.ts`: 月キー付き URL とナビゲーション解決
 - `app/lib/sumo-data.ts`: 番付データ（力士型定義を含む）
@@ -348,6 +376,13 @@ GitHub Actions では PR と `main` / `codex/**` / `automation/data-updates` へ
 - `app/lib/news-data.ts`: ニュースフィードの静的データ
 - `app/lib/kimarite-data.ts`: 決まり手 82 手のマスタ
 - `app/lib/official-profile.ts`: 行司・呼出の型、API取得、数値IDパス
+- `app/lib/my-rikishi.ts`: マイ力士の登録状態（localStorage 同期）
+- `app/lib/basho-status.ts`: 場所ステータス（live / upcoming / final）判定
+- `app/lib/webmcp.ts`: WebMCP ツール定義（4 ツール）
+- `app/lib/july2026-data.ts`: 七月場所（名古屋）不変スナップショット
+- `app/lib/july2026-banzuke-data.ts`: 七月場所番付不変スナップショット
+- `app/lib/archive-basho-data.ts`: 過去場所・現行場所の集約データ
+- `app/lib/agent-skills.ts`: Agent Skills Index メタデータ
 - `scripts/update_sumo_data.py`: 番付・取組・力士プロファイル生成スクリプト
 - `scripts/update_news_feed.py`: ニュースフィード生成スクリプト
 - `scripts/update_official_profiles.py`: 行司・呼出データ生成スクリプト

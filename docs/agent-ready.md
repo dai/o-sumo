@@ -14,17 +14,18 @@ Cloudflare DNS zone, not the Pages project.
 
 | Path | Purpose |
 | --- | --- |
-| `/.well-known/api-catalog` | RFC 9727 linkset pointing at the public JSON APIs (banzuke, torikumi, rikishi). |
-| `/.well-known/oauth-authorization-server` | RFC 8414-shaped discovery metadata retained to publish the metadata-only `agent_auth` extension and documentation URL. It declares anonymous public access with credential type `none`; no account, credential, claim, or server-side state is created. |
-| `/.well-known/oauth-protected-resource` | RFC 9728 resource metadata identifying the public JSON API and its documentation. Its authorization-server reference leads discovery clients to `agent_auth`; `bearer_methods_supported: ["header"]` and `scopes_supported: ["public"]` are discovery metadata, while the public APIs require no token. |
-| `/.well-known/mcp/server-card.json` | MCP Server Card (SEP-1649). Indicates that no MCP server is hosted, and points agents at the public API catalog and skills index as the alternative discovery surfaces. |
+| `/.well-known/api-catalog` | RFC 9727 linkset pointing at the public JSON APIs (banzuke, torikumi, rikishi, gyoji, yobidashi). |
+| `/.well-known/oauth-protected-resource` | RFC 9728 resource metadata identifying the public JSON API and its documentation. Returns `{ resource, resource_documentation }` — it points agents at `/auth.md` for the metadata-only `agent_auth` declaration. The public APIs require no token. |
+| `/.well-known/mcp/server-card.json` | MCP Server Card (SEP-1649). Indicates that no MCP server is hosted, and points agents at the public API catalog and skills index as the alternative discovery surfaces. `serverInfo.version` is synchronized with `package.json` at build time via `vite.config.ts` (`mcpServerCardPlugin`). |
 | `/.well-known/agent-card.json` | A2A Agent Card (A2A Protocol v1.0.0 §4.4.1). Published for discovery only — `supportedInterfaces` is an empty array because o-sumo is a static site with no A2A server. See [docs/agent-card.md](agent-card.md) for the discovery posture. |
-| `/.well-known/agent-skills/index.json` | Agent Skills index (RFC v0.2.0). Lists the skills published under `.well-known/agent-skills/`. |
-| `/.well-known/agent-skills/osumo-content/SKILL.md` | Skill description for fetching public API content. |
-| `/.well-known/agent-skills/osumo-discovery/SKILL.md` | Skill description for navigating the site. |
+| `/.well-known/agent-skills/index.json` | Agent Skills index (RFC v0.2.0). Lists the skills published under `.well-known/agent-skills/`. Generated at build time by `vite.config.ts` (`agentSkillsPlugin`); each entry carries `type: "skill-md"` and `digest: "sha256:{hex}"`. |
+| `/.well-known/agent-skills/osumo-content/SKILL.md` | Skill description for fetching public API content (banzuke, torikumi, rikishi, gyoji, yobidashi). |
+| `/.well-known/agent-skills/osumo-discovery/SKILL.md` | Skill description for navigating the discovery surfaces (`api-catalog`, `mcp-server-card`, `agent-skills`, `web-bot-auth`, etc.). |
 | `/.well-known/http-message-signatures-directory` | Web Bot Auth (IETF WebBotAuth WG) signature directory. Returns a JWKS with at least one Ed25519 public key, signed per RFC 9421 with `tag="http-message-signatures-directory"`. See [functions/README.md](../functions/README.md) for the implementation. |
 | `/auth.md` | Top-level Auth.md instructions for metadata-only anonymous public access, including registration and claim information URIs and the no-credential constraint. |
-| `/*.md` (parallel HTML routes) | Static Markdown views served with `Content-Type: text/markdown; charset=utf-8` and `Vary: Accept`. Satisfies the "Markdown for Agents" check. The matching `functions/_middleware.ts` rewrites any `Accept: text/markdown` request to the pre-rendered `index.md` file with the correct `Content-Type`. |
+| `/*.md` (parallel HTML routes) | Static Markdown views served with `Content-Type: text/markdown; charset=utf-8` and `Vary: Accept`. Satisfies the "Markdown for Agents" check. `index.md` files are pre-rendered at build time by `scripts/build_markdown_views.ts`, so the views work on the Cloudflare Pages Free plan. The matching `functions/_middleware.ts` rewrites any `Accept: text/markdown` request to the pre-rendered `index.md` file with the correct `Content-Type`. |
+
+Note: `/.well-known/openid-configuration` and `/.well-known/oauth-authorization-server` were removed in 2026-08-10 — a 404 on those paths is the expected state.
 
 The agent-skills index is generated at build time by `vite.config.ts` (see
 `agentSkillsPlugin`). The sha256 digests in `index.json` are computed from
@@ -38,18 +39,25 @@ and no registration record is stored.
 
 ## WebMCP
 
-`navigator.modelContext.provideContext()` is invoked on app mount from
-`app/components/WebMcpProvider.tsx`. The tools are defined in
-`app/lib/webmcp.ts`:
+WebMCP is registered from `app/components/WebMcpProvider.tsx` on app mount.
+The tools are defined in `app/lib/webmcp.ts`:
 
 - `search_rikishi` — partial-match search against the public rikishi index
 - `list_basho` — current and archive basho with their URLs
 - `get_banzuke_for_month` — resolve a YYYYMM to the banzuke JSON / page URLs
 - `get_torikumi_for_day` — resolve a YYYYMMDD to the torikumi / yotei page URL
 
-The provider is defensive: if `navigator.modelContext` is not available
-(currently Chrome 138+ behind a flag), the call is a no-op and the rest of
-the SPA continues to work.
+The provider follows the WebMCP registration priority:
+
+1. W3C Draft `document.modelContext.registerTool({ name, description, inputSchema, annotations, execute })`
+2. `navigator.modelContext.registerTool(...)` fallback
+4. (legacy) `navigator.modelContext.provideContext({ tools: [...] })`
+
+Registration and cleanup are managed with `AbortController.signal` so that
+React Strict Mode's double-mount does not duplicate tools. The provider is
+defensive: if neither `document.modelContext` nor `navigator.modelContext`
+is available (currently Chrome 138+ behind a flag), the call is a no-op and
+the rest of the SPA continues to work.
 
 ## DNS-AID (operator-side)
 
@@ -100,8 +108,10 @@ following checks:
   returns 200 with the skills index JSON.
 - `curl -i https://osada.us/auth.md` — returns 200 with
   `Content-Type: text/markdown; charset=utf-8`.
-- `curl -i https://osada.us/.well-known/oauth-authorization-server` —
-  returns the metadata-only anonymous `agent_auth` declaration.
+- `curl -i https://osada.us/.well-known/oauth-protected-resource` —
+  returns the minimized `{ resource, resource_documentation }` metadata.
+- `curl -i https://osada.us/.well-known/openid-configuration` — returns 404
+  (removed in 2026-08-10; this is the expected state).
 - `curl -i -H 'Accept: text/markdown' https://osada.us/` — returns
   `Content-Type: text/markdown; charset=utf-8` and a `Vary: Accept` header.
 - `dig +multi _index._agents.osada.us HTTPS` — returns the SVCB record

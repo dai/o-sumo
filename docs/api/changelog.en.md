@@ -2,6 +2,26 @@
 
 [日本語版](./changelog.md)
 
+## 2026-08-17
+
+### Directory Search IME Input Fix
+
+- Introduced the shared `useDirectorySearchQuery` hook so in-progress IME composition is not pushed into the URL query for rikishi, gyoji/yobidashi, and banzuke directory searches
+- Aligns the input field with the URL `q=` and auxiliary filters (rank, heya, shusshin) on Back / Forward navigation
+- Kept existing URL filters intact across the four surfaces; verified with focused and full Vitest suites
+
+### Compare Rikishi Career Record And Win Rate Fix
+
+- Extended the rikishi profile generator to interpret both the legacy 通算成績 label and the current 生涯戦歴 label (e.g. `401勝235敗34休` → `401-235-34`)
+- Redefined the compare screen win-rate denominator to use only bouts with a decisive winner (kusshi-susumu and fusen-make are excluded)
+- Example on `/compare/?ids=…`: Tobizaru (3842) `401-235-34 / 63.1%`, Onosato (4227) `189-69-26 / 73.3%`
+- Orphaned detail JSON outside the current index (e.g. `4275.json`) remains as-is; it is not referenced by the compare screen
+
+### Banner Copy Update (Official Directory Release)
+
+- Refreshed the Japanese banner from the 2026-08-12 gyoji/yobidashi directory announcement to the official directory release and its accompanying discovery surfaces
+- English banner unchanged — no copy was requested
+
 ## 2026-08-13
 
 ### July Archive And September Handoff Preparation
@@ -17,6 +37,25 @@
 - Added list APIs for 42 gyoji and 45 yobidashi plus detail APIs keyed by official numeric IDs
 - Added a photo-free data contract sourced from the official Japan Sumo Association website
 - Added the gyoji and yobidashi list APIs to `/.well-known/api-catalog`
+
+## 2026-08-10
+
+### AI Agent Readiness: Discovery Surface Rebuild
+
+- Migrated the Agent Skills Index to RFC v0.2.0 (`type: "skill-md"` + `digest: "sha256:{hex}"`) and published two SKILL.md files: `osumo-content` and `osumo-discovery`
+- Published the MCP Server Card under the new schema (build-time `serverInfo.version` sync via `mcpServerCardPlugin`, `endpoint: null`)
+- Removed `/.well-known/openid-configuration` and `/.well-known/oauth-authorization-server`; minimized `/.well-known/oauth-protected-resource` to `{ resource, resource_documentation }`
+- Switched Markdown for Agents to a build-time pre-render pipeline and added `Link: </index.md>; rel="alternate"; type="text/markdown"` headers on supported routes
+- Refreshed WebMCP to prefer W3C Draft `document.modelContext.registerTool` with a `navigator.modelContext.registerTool` fallback, exposing four tools: `search_rikishi`, `list_basho`, `get_banzuke_for_month`, `get_torikumi_for_day`
+- Published the Web Bot Auth directory at `/.well-known/http-message-signatures-directory` with JWKS and RFC 9421 signatures
+- Added the WorkOS-shaped `agent_auth` block to `public/auth.md` (`register_uri`, `identity_types_supported: ["anonymous"]`, `anonymous.credential_types_supported: ["none"]`)
+
+## 2026-08-04
+
+### auth.md Agent Registration Metadata
+
+- Documented anonymous, credential-free public access as the registration flow on `public/auth.md`, with a scanner-facing `agent_auth` block
+- Aligned Protected Resource Metadata and Authorization Server Metadata with the public, read-only service contract
 
 ## 2026-04-30
 

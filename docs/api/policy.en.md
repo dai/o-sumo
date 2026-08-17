@@ -26,6 +26,25 @@ Stale-result triage order:
 2. Run logs (`event.schedule`, JST time, `resultUpdatedAt`, `scheduleUpdatedAt`)
 3. Upstream API `judge` values (whether results are settled)
 
+## Timestamp Ownership
+
+`updatedAt` is not unified — each content unit owns its own timestamp. Generator, UI, Markdown, and CI all read the same field for the same purpose.
+
+- Banzuke (`banzuke.json`): `updatedAt` is bound to results — equals `torikumi.json.resultUpdatedAt`. It does NOT advance on schedule-only updates
+- Results (`torikumi.json.resultDays`, results hub/day): `resultUpdatedAt`
+- Schedule (`torikumi.json.scheduleDays`, schedule hub/day): `scheduleUpdatedAt`
+- Archives (`/202603/`, `/202605/`, `/202607/`): each snapshot's `BanzukeData.updatedAt` / `TorikumiData.updatedAt`
+- Rikishi index / detail: each JSON's `updatedAt`. Detail takes precedence over the index when both exist
+- Gyoji / yobidashi index / detail: each JSON's `retrievedAt`
+- News articles: each article's `publishedAt`. The feed's own `updatedAt` is NOT shown in the UI
+
+CI asserts these value contracts:
+
+- `torikumi.updatedAt === max(resultUpdatedAt, scheduleUpdatedAt)`
+- `banzuke.updatedAt === torikumi.resultUpdatedAt`
+
+Static pages that do not carry timestamps (Archives index, Kimarite index, etc.) must not display unrelated timestamps.
+
 ## Compatibility Policy
 
 - `/api/v1/*` prioritizes backward compatibility

@@ -1,5 +1,25 @@
 # API Changelog
 
+## 2026-08-17
+
+### 人物名鑑検索のIME入力修正
+
+- 人物名鑑（力士・行司・呼出）検索と番付検索で、IME 変換中の中間入力を URL クエリへ書き出さない共通フック `useDirectorySearchQuery` を導入
+- 履歴の Back / Forward で `q=` と階級・所属部屋・出身地といった補助フィルターが入力欄と URL で一致して復元されるよう挙動を統一
+- 力士・行司／呼出・番付の既存 URL フィルターを保ったまま、4 画面の focused / 全テストで型・入出力を検証
+
+### 力士比較の通算成績・通算勝率修正
+
+- 力士プロファイル生成器を旧「通算成績」と現行「生涯戦歴」の双方を解釈するよう拡張（例: `401勝235敗34休` を `401-235-34` として出力）
+- 比較画面の勝率計算を「勝敗が決した取組」だけを分母に再定義（休場・不戦敗を分母から除外）
+- `/compare/?ids=…` の例: 豊昇龍（3842） `401-235-34 / 63.1%`、大の里（4227） `189-69-26 / 73.3%`
+- 現行index外の孤立 detail（例: `4275.json`）は比較画面から参照されないため既存のまま保持
+
+### バナー文言更新（公式ディレクトリリリース告知）
+
+- 日本語バナーを 2026-08-12 の行司・呼出名鑑告知から、公式ディレクトリ公開とそれに伴う discovery サーフェス提供を示す文言へ更新
+- 英語バナーは指定がなかったため変更なし
+
 ## 2026-08-13
 
 ### 七月場所アーカイブと九月引き継ぎ準備
@@ -15,6 +35,25 @@
 - 行司42名・呼出45名の一覧APIと公式数値IDによる個別プロフィールAPIを追加
 - 日本相撲協会公式サイトを出典とし、写真・画像フィールドを含めないデータ契約を追加
 - `/.well-known/api-catalog` に行司・呼出の一覧APIを追加
+
+## 2026-08-10
+
+### AI Agent 対応 7 項目 — discovery サーフェス再構築
+
+- Agent Skills Index を RFC v0.2.0 形式（`type: "skill-md"` + `digest: "sha256:{hex}"`）へ移行し、`osumo-content` / `osumo-discovery` の 2 件を公開
+- MCP Server Card を新スキーマ（`serverInfo.version` が `package.json` と `mcpServerCardPlugin` で同期、`endpoint: null`）で公開
+- `/.well-known/openid-configuration` と `/.well-known/oauth-authorization-server` を削除し、`/.well-known/oauth-protected-resource` を `{ resource, resource_documentation }` のみに最小化
+- Markdown for Agents をビルド時に事前生成する方式へ統一し、`Link: </index.md>; rel="alternate"; type="text/markdown"` を公開ルートへ付与
+- WebMCP を W3C Draft `document.modelContext.registerTool` 優先、`navigator.modelContext.registerTool` フォールバックへ刷新し、4 ツール（`search_rikishi`, `list_basho`, `get_banzuke_for_month`, `get_torikumi_for_day`）を公開
+- Web Bot Auth ディレクトリ `/.well-known/http-message-signatures-directory` を公開し、JWKS と RFC 9421 署名を返却
+- `public/auth.md` に WorkOS 仕様の `agent_auth` ブロック（`register_uri`, `identity_types_supported: ["anonymous"]`, `anonymous.credential_types_supported: ["none"]`）を追加
+
+## 2026-08-04
+
+### auth.md に agent registration metadata を追加
+
+- `public/auth.md` に匿名・資格情報不要の公開アクセスを登録方式として記述し、scanner 向けの `agent_auth` メタデータを公開
+- Protected Resource Metadata / Authorization Server Metadata を公開読み取り専用サービスとして正しく指し示す形へ更新
 
 ## 2026-04-30
 
