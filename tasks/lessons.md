@@ -1,5 +1,11 @@
 # Lessons
 
+## 2026-08-17 URL同期検索と日本語IME
+
+- controlled inputの表示値をURL queryだけから読むと、各入力のnavigationでIMEのcomposition範囲が解除され、ローマ字とかなの連結や文字欠落が起きる。
+- 入力欄はローカルdraftを唯一の表示値にし、composition中はURLを更新せず、`compositionend`で確定値を同期する。URLは共有・復元用の二次状態として扱う。
+- 回帰確認はjsdomの完成済み文字列だけで終えず、Playwright/CDPの`Input.imeSetComposition`で変換途中の値、URL未更新、composition回数、確定後の入力値とURLを実測する。
+
 ## 2026-08-12 React一覧の種別切替で旧データを表示しない
 
 - `useEffect`内で旧一覧を空にするだけでは、propやrouteが変わった直後のcommitに間に合わず、旧項目を新しい種別のURLへ再リンクして表示することがある。

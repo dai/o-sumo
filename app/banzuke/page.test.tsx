@@ -1,12 +1,16 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, useLocation } from 'react-router-dom';
 import BanzukePage from './page';
 import BanzukeTable from '../components/BanzukeTable';
 import type { RankGroup } from '../lib/sumo-data';
 import { torikumiArchive } from '../lib/torikumi-data';
 import { formatUpdatedAt } from '../lib/updated-at';
 import { MAY2026_TORIKUMI_DATA } from '../lib/may2026-data';
+
+function LocationSearchProbe() {
+  return <output data-testid="location-search">{useLocation().search}</output>;
+}
 
 describe('BanzukePage', () => {
   it('keeps contact links in the footer and reverses rank-group sort order', async () => {
@@ -30,6 +34,29 @@ describe('BanzukePage', () => {
 
     const reversedFirstRank = screen.getAllByRole('heading', { level: 3 })[0];
     expect(reversedFirstRank.textContent).not.toBe('横綱');
+  });
+
+  it('does not write a banzuke search query to the URL during IME composition', () => {
+    render(
+      <MemoryRouter>
+        <BanzukePage />
+        <LocationSearchProbe />
+      </MemoryRouter>,
+    );
+
+    const input = screen.getByRole('searchbox', { name: '力士を探す' });
+    fireEvent.compositionStart(input);
+    fireEvent.change(input, { target: { value: 'ほう' } });
+
+    expect(input).toHaveValue('ほう');
+    expect(screen.getByTestId('location-search')).toBeEmptyDOMElement();
+
+    fireEvent.change(input, { target: { value: 'ほうしょうりゅう' } });
+    fireEvent.compositionEnd(input, { data: 'ほうしょうりゅう' });
+
+    expect(screen.getByTestId('location-search')).toHaveTextContent('?q=%E3%81%BB%E3%81%86%E3%81%97%E3%82%87%E3%81%86%E3%82%8A%E3%82%85%E3%81%86');
+    expect(screen.getByText('豊昇龍')).toBeInTheDocument();
+    expect(screen.queryByText('大の里')).not.toBeInTheDocument();
   });
 
   it('renders win, loss, rest, and null markers without counting null as rest', () => {

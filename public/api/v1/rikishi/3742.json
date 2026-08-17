@@ -3,17 +3,17 @@
   "name": "錦富士",
   "yomi": "にしきふじ",
   "currentRank": "前頭13",
-  "birthDate": "平成8年7月22日（29歳）",
+  "birthDate": "平成8年7月22日（30歳）",
   "height": 184,
   "weight": 155,
   "shusshin": "青森県十和田市",
   "debut": "平成二十八年九月場所",
   "careerStats": {
-    "wins": 0,
-    "losses": 0,
-    "draws": 0
+    "wins": 353,
+    "losses": 305,
+    "draws": 28
   },
   "photoUrl": "/images/rikishi/3742.png",
   "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/",
-  "updatedAt": "2026-06-29T14:28:45+09:00"
+  "updatedAt": "2026-08-17T10:27:47+09:00"
 }

@@ -72,6 +72,25 @@ def _official_makuuchi_payload_with_mixed_bout() -> dict:
 
 
 class ParseProfileHtmlTest(unittest.TestCase):
+    def test_parses_current_lifetime_record_label(self) -> None:
+        html = """
+        <dl>
+          <dt>生涯戦歴</dt>
+          <dd>401勝235敗34休（51場所）</dd>
+          <dt>幕内戦歴</dt>
+          <dd>319勝187敗34休（36場所）</dd>
+        </dl>
+        <table>
+          <tr><th>生年月日</th><td>平成11年5月22日（27歳）</td></tr>
+        </table>
+        """
+
+        profile = MODULE.parse_profile_html(html)
+
+        self.assertIsNotNone(profile)
+        assert profile is not None
+        self.assertEqual(profile["careerStats"], {"wins": 401, "losses": 235, "draws": 34})
+
     def test_keeps_shusshin_from_exact_label_without_related_list_override(self) -> None:
         html = """
         <meta property="og:image" content="https://www.sumo.or.jp/images/rikishi/3842.jpg" />

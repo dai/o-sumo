@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import HomeLink from '../components/HomeLink';
 import ShareCurrentLink from '../components/ShareCurrentLink';
@@ -7,6 +7,7 @@ import { usePageMetaOverride } from '../components/MetaHead';
 import { formatUpdatedAt } from '../lib/updated-at';
 import { toRomaji } from '../lib/romaji';
 import { matchesSearch } from '../lib/search';
+import { useDirectorySearchQuery } from '../lib/directory-search';
 import {
   fetchOfficialIndex, fetchOfficialProfile, officialApiPath, officialIndexApiPath,
   officialListPath, officialProfilePath, type OfficialKind, type OfficialIndexItem, type OfficialProfile,
@@ -22,7 +23,7 @@ export function OfficialListPage({ kind }: { kind: OfficialKind }) {
     source: string;
     status: 'loading' | 'ready' | 'error';
   }>({ kind: null, items: [], retrievedAt: '', source: '', status: 'loading' });
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { query, searchParams, setSearchParams, queryInputProps } = useDirectorySearchQuery();
   React.useEffect(() => {
     let active = true;
     setDirectory({ kind, items: [], retrievedAt: '', source: '', status: 'loading' });
@@ -49,7 +50,6 @@ export function OfficialListPage({ kind }: { kind: OfficialKind }) {
     ? item.rank
     : t(`officials.ranks.${item.rankCode}`);
   const rankCodes = React.useMemo(() => [...new Set(items.map((item) => item.rankCode))], [items]);
-  const query = searchParams.get('q') ?? '';
   const requestedRankCode = searchParams.get('rank') ?? 'all';
   const rankCode = rankCodes.some((code) => code === requestedRankCode) ? requestedRankCode : 'all';
   const activeRankLabel = rankCode === 'all' ? '' : t(`officials.ranks.${rankCode}`);
@@ -83,7 +83,7 @@ export function OfficialListPage({ kind }: { kind: OfficialKind }) {
       {status === 'ready' && <section className="rikishi-grid-section" aria-label={t('officials.listTitle', { label })}>
         <div className="directory-search">
           <label className="directory-search__label" htmlFor={`${kind}-search`}>{t('officials.searchLabel', { label })}</label>
-          <input id={`${kind}-search`} className="directory-search__input" type="search" value={query} onChange={(event) => setFilters(event.target.value, rankCode)} placeholder={t('officials.searchPlaceholder')} />
+          <input id={`${kind}-search`} className="directory-search__input" type="search" {...queryInputProps} placeholder={t('officials.searchPlaceholder')} />
           <label className="directory-search__label" htmlFor={`${kind}-rank`}>{t('officials.rankFilterLabel')}</label>
           <select id={`${kind}-rank`} className="directory-search__select" value={rankCode} onChange={(event) => setFilters(query, event.target.value, false)}>
             <option value="all">{t('officials.rankFilterAll')}</option>

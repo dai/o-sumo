@@ -37,8 +37,8 @@ function careerRecord(profile: RikishiProfile, unknown: string): string {
 }
 
 function careerWinRate(profile: RikishiProfile, unknown: string): string {
-  const { wins, losses, draws } = profile.careerStats;
-  const total = wins + losses + draws;
+  const { wins, losses } = profile.careerStats;
+  const total = wins + losses;
   return total > 0 ? `${((wins / total) * 100).toFixed(1)}%` : unknown;
 }
 
