@@ -206,8 +206,8 @@
 }
 
 .analytics-results-table thead th {
-  background: var(--color-primary-container);
-  color: var(--color-primary);
+  background: var(--gradient-primary);
+  color: var(--color-on-primary);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.12em;
