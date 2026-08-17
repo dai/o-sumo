@@ -229,3 +229,40 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 - Wrangler content contract: Auth.md の H1 / credential metadata、Authorization Server Metadata の `register_uri` / `anonymous.credential_types_supported` を実レスポンスで確認し、`WRANGLER_AUTH_MD=OK`。
 - Independent review: metadata-only が実 credential 発行ではない点を明示し、YAML fence内の完全一致検証と重複 header 除去を追加した。
 - Production scan: isitagentready.com の Auth.md 項目を含む対象チェックが通過し、コマース以外で総合100点を確認した。
+# 全ページ更新日時の再チェック（2026-08-17）
+
+詳細計画: `docs/superpowers/plans/2026-08-17-update-timestamp-synchronization-audit.md`
+
+## Plan
+
+- [ ] 生成データと月別 snapshot の更新日時契約をテストで固定する
+- [ ] 番付生成を結果更新日時へ連動させ、取組三日時の CI 検証を追加する
+- [ ] 現行・archive・人物名鑑の各画面で表示値を厳密に検証する
+- [ ] News・Archives・Kimarite の「更新日時を表示しない」仕様を固定する
+- [ ] 全テスト・build・Markdown・Wrangler route matrix を検証し PR #434 へ積む
+
+## Review
+
+- 実装後に source別の期待日時、画面の実測値、検証コマンド結果を記録する。
+
+---
+# 力士比較の通算成績・通算勝率修正（2026-08-17）
+
+## Plan
+
+- [x] 現行公式HTMLの「生涯戦歴」を再現する生成器テストをREDにする
+- [x] 比較画面で休場を勝率分母に含めない表示テストをREDにする
+- [x] 生成器と勝率計算を最小修正し、focused testsをGREENにする
+- [x] 力士プロフィール全件を再生成し、通算成績ゼロ件と代表値を検証する
+- [x] 型チェック、全テスト、build、diff check、画面実測を行う
+
+## Review
+
+- RED: 現行公式HTMLの `<dt>生涯戦歴</dt><dd>401勝235敗34休（51場所）</dd>` に対して生成器は `0勝0敗0休`、比較画面は休場込みで豊昇龍 `59.9%`、テストfixtureの大の里 `75.0%` を返し、Python 1件・Vitest 1件が期待どおり失敗した。
+- GREEN: 生成器は旧「通算成績」と現行「生涯戦歴」をともに認識し、勝率は勝敗が決した取組だけを分母にした。focused Python 41 tests、比較画面 3 testsが成功した。
+- live生成: `python scripts/update_sumo_data.py --rikishi-only` で現行index 70名を取得し、通算成績ゼロ件は0。豊昇龍 `401-235-34`、大の里 `189-69-26`。通算成績・updatedAt以外の差分は、誕生日を迎えた5名の年齢更新だけだった。
+- 完全検証: `npm run typecheck`、全Vitest 48 files / 336 tests、Python 41 tests、`npm run build`、`git diff --check` がすべてexit 0。buildの既存chunk size警告とBrowserslist更新警告のみ。
+- 実ブラウザ: `/compare/?ids=3842,4227` で豊昇龍 `401-235-34 / 63.1%`、大の里 `189-69-26 / 73.3%` を確認した。
+- 独立レビュー: 重大・重要な指摘0件。現行index外の孤立detail `4275.json` は比較画面から参照されないため既存のまま保持し、今回の全件保証は現行index掲載70名を対象とする。
+
+---

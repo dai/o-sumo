@@ -1561,7 +1561,7 @@ class ProfileParser(HTMLParser):
             self.current_data_label = "shusshin"
         elif data == "初土俵":
             self.current_data_label = "debut"
-        elif data == "通算成績":
+        elif data in {"通算成績", "生涯戦歴"}:
             self.current_data_label = "career"
         elif self.current_data_label:
             if self.current_data_label == "birth":
