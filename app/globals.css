@@ -228,6 +228,25 @@ h3 {
   font-weight: 600;
 }
 
+h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+h5 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+h6 {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--color-primary-muted);
+  text-transform: uppercase;
+}
+
 p {
   margin-bottom: var(--spacing-md);
 }
