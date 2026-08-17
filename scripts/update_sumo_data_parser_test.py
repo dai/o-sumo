@@ -1,5 +1,7 @@
 import importlib.util
+import json
 import pathlib
+import tempfile
 import unittest
 from datetime import date
 from unittest import mock
@@ -12,6 +14,79 @@ SPEC = importlib.util.spec_from_file_location(
 MODULE = importlib.util.module_from_spec(SPEC)
 assert SPEC.loader is not None
 SPEC.loader.exec_module(MODULE)
+
+
+def _profile_history_html(
+    shikona_history: str,
+    place: str,
+    opponents: list[str],
+    outcomes: list[str],
+    *,
+    duplicate: bool = False,
+    place_shikona: str | None = None,
+) -> str:
+    day_labels = [f"{day}日目" for day in range(1, 16)]
+    current_shikona = shikona_history.split("→")[-1].strip()
+    opponent_cells = "".join(f"<td>{opponent}</td>" for opponent in opponents)
+    outcome_cells = "".join(
+        f'<td><img src="/result.gif" alt="{outcome}"></td>'
+        for outcome in outcomes
+    )
+    history_rows = f"""
+      <tr>
+        <td class="player" rowspan="2">
+          <div class="box">
+            <span>{place}</span><span>東前頭筆頭</span><span>{place_shikona or current_shikona}&nbsp;太郎</span>
+          </div>
+        </td>
+        {outcome_cells}
+      </tr>
+      <tr class="name">{opponent_cells}</tr>
+    """
+    if duplicate:
+        history_rows += history_rows
+    return f"""
+      <table class="mdTable2">
+        <tr><th>しこ名履歴</th><td>{shikona_history}</td></tr>
+        <tr><th>生年月日</th><td>平成13年6月25日</td></tr>
+      </table>
+      <table class="main">
+        <tr><th></th>{''.join(f'<th>{label}</th>' for label in day_labels)}</tr>
+        {history_rows}
+      </table>
+    """
+
+
+def _active_rikishi(rikishi_id: int, name: str) -> dict:
+    return {
+        "id": rikishi_id,
+        "name": name,
+        "yomi": "",
+        "currentRank": "前頭",
+        "profileUrl": f"https://www.sumo.or.jp/ResultRikishiData/profile/{rikishi_id}/",
+    }
+
+
+def _single_bout_history_html(
+    shikona_history: str,
+    place: str,
+    day: int,
+    opponent: str,
+    outcome: str,
+    *,
+    place_shikona: str | None = None,
+) -> str:
+    opponents = [""] * 15
+    outcomes = [""] * 15
+    opponents[day - 1] = opponent
+    outcomes[day - 1] = outcome
+    return _profile_history_html(
+        shikona_history,
+        place,
+        opponents,
+        outcomes,
+        place_shikona=place_shikona,
+    )
 
 
 def _make_json_response(payload: bytes = b'{"Result":"1"}'):
@@ -72,6 +147,52 @@ def _official_makuuchi_payload_with_mixed_bout() -> dict:
 
 
 class ParseProfileHtmlTest(unittest.TestCase):
+    def test_parses_shikona_history_and_settled_bout_history(self) -> None:
+        html = _profile_history_html(
+            "草野 → 義ノ富士",
+            "令和七年五月場所",
+            ["安青錦", "大の里", "休場相手", "取組なし", *([""] * 11)],
+            ["白丸", "黒丸", "やすみ", "－", *([""] * 11)],
+        )
+
+        profile = MODULE.parse_profile_html(html)
+
+        self.assertIsNotNone(profile)
+        assert profile is not None
+        self.assertEqual(profile["shikonaHistory"], ["草野", "義ノ富士"])
+        self.assertEqual(
+            profile["boutHistory"],
+            [
+                {
+                    "place": "令和七年五月場所",
+                    "day": 1,
+                    "opponent": "安青錦",
+                    "outcome": "win",
+                },
+                {
+                    "place": "令和七年五月場所",
+                    "day": 2,
+                    "opponent": "大の里",
+                    "outcome": "loss",
+                },
+            ],
+        )
+
+    def test_deduplicates_repeated_history_markup_by_place_and_day(self) -> None:
+        html = _profile_history_html(
+            "安青錦",
+            "令和七年五月場所",
+            ["草野", *([""] * 14)],
+            ["白丸", *([""] * 14)],
+            duplicate=True,
+        )
+
+        profile = MODULE.parse_profile_html(html)
+
+        self.assertIsNotNone(profile)
+        assert profile is not None
+        self.assertEqual(len(profile["boutHistory"]), 1)
+
     def test_parses_current_lifetime_record_label(self) -> None:
         html = """
         <dl>
@@ -119,6 +240,234 @@ class ParseProfileHtmlTest(unittest.TestCase):
         self.assertEqual(profile["debut"], "平成十五年三月場所")
         self.assertEqual(profile["careerStats"], {"wins": 523, "losses": 410, "draws": 12})
         self.assertEqual(profile["photoUrl"], "https://www.sumo.or.jp/images/rikishi/3842.jpg")
+
+
+class BuildRikishiMatchupsTest(unittest.TestCase):
+    def test_resolves_reused_historical_alias_by_place(self) -> None:
+        active = [
+            _active_rikishi(100, "新一"),
+            _active_rikishi(200, "新二"),
+            _active_rikishi(300, "対戦者"),
+        ]
+        profiles = {
+            100: MODULE.parse_profile_html(
+                _single_bout_history_html(
+                    "同名 → 新一", "旧場所", 1, "対戦者", "黒丸", place_shikona="同名"
+                )
+            ),
+            200: MODULE.parse_profile_html(
+                _single_bout_history_html(
+                    "同名 → 新二", "新場所", 1, "引退力士", "白丸", place_shikona="同名"
+                )
+            ),
+            300: MODULE.parse_profile_html(
+                _single_bout_history_html("対戦者", "旧場所", 1, "同名", "白丸")
+            ),
+        }
+
+        records = MODULE.build_rikishi_matchup_records(active, profiles)
+
+        self.assertEqual(
+            records,
+            [
+                {
+                    "rikishi1Id": 100,
+                    "rikishi2Id": 300,
+                    "rikishi1Wins": 0,
+                    "rikishi2Wins": 1,
+                }
+            ],
+        )
+
+    def test_resolves_historical_shikona_and_normalizes_pair_order(self) -> None:
+        active = [_active_rikishi(4279, "義ノ富士"), _active_rikishi(4230, "安青錦")]
+        profiles = {
+            4230: MODULE.parse_profile_html(
+                _profile_history_html(
+                    "安青錦",
+                    "令和七年五月場所",
+                    ["草野", *([""] * 14)],
+                    ["白丸", *([""] * 14)],
+                )
+            ),
+            4279: MODULE.parse_profile_html(
+                _profile_history_html(
+                    "草野 → 義ノ富士",
+                    "令和七年五月場所",
+                    ["安青錦", *([""] * 14)],
+                    ["黒丸", *([""] * 14)],
+                )
+            ),
+        }
+
+        records = MODULE.build_rikishi_matchup_records(active, profiles)
+
+        self.assertEqual(
+            records,
+            [
+                {
+                    "rikishi1Id": 4230,
+                    "rikishi2Id": 4279,
+                    "rikishi1Wins": 1,
+                    "rikishi2Wins": 0,
+                }
+            ],
+        )
+
+    def test_rejects_conflicting_mirrored_bout_results(self) -> None:
+        active = [_active_rikishi(4230, "安青錦"), _active_rikishi(4279, "義ノ富士")]
+        profiles = {
+            4230: MODULE.parse_profile_html(
+                _profile_history_html(
+                    "安青錦",
+                    "令和七年五月場所",
+                    ["義ノ富士", *([""] * 14)],
+                    ["白丸", *([""] * 14)],
+                )
+            ),
+            4279: MODULE.parse_profile_html(
+                _profile_history_html(
+                    "草野 → 義ノ富士",
+                    "令和七年五月場所",
+                    ["安青錦", *([""] * 14)],
+                    ["白丸", *([""] * 14)],
+                )
+            ),
+        }
+
+        with self.assertRaisesRegex(MODULE.MatchupDataError, "Conflicting mirrored bout"):
+            MODULE.build_rikishi_matchup_records(active, profiles)
+
+    def test_representative_official_fixture_produces_one_five_from_4230(self) -> None:
+        active = [_active_rikishi(4230, "安青錦"), _active_rikishi(4279, "義ノ富士")]
+        official_bouts = [
+            ("令和六年五月場所", 11, "草野", "黒丸"),
+            ("令和七年七月場所", 14, "草野", "黒丸"),
+            ("令和七年十一月場所", 11, "義ノ富士", "黒丸"),
+            ("令和八年一月場所", 2, "義ノ富士", "白丸"),
+            ("令和八年三月場所", 2, "義ノ富士", "黒丸"),
+            ("令和八年七月場所", 4, "義ノ富士", "黒丸"),
+        ]
+        profiles = {
+            4230: MODULE.parse_profile_html(
+                "".join(
+                    _single_bout_history_html("安青錦", place, day, opponent, outcome)
+                    for place, day, opponent, outcome in official_bouts
+                )
+            ),
+            4279: MODULE.parse_profile_html(
+                "".join(
+                    _single_bout_history_html(
+                        "草野 → 義ノ富士",
+                        place,
+                        day,
+                        "安青錦",
+                        "白丸" if outcome == "黒丸" else "黒丸",
+                    )
+                    for place, day, _opponent, outcome in official_bouts
+                )
+            ),
+        }
+
+        records = MODULE.build_rikishi_matchup_records(active, profiles)
+
+        self.assertEqual(records[0]["rikishi1Wins"], 1)
+        self.assertEqual(records[0]["rikishi2Wins"], 5)
+
+
+class GenerateRikishiMatchupsTest(unittest.TestCase):
+    def test_partial_generation_preserves_previous_file_byte_for_byte(self) -> None:
+        active = [_active_rikishi(4230, "安青錦"), _active_rikishi(4279, "義ノ富士")]
+        profiles = {4230: {"shikonaHistory": ["安青錦"], "boutHistory": []}}
+        known_good = b'{"known":"good"}\n'
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_path = pathlib.Path(temp_dir) / "rikishi-matchups.json"
+            output_path.write_bytes(known_good)
+
+            wrote = MODULE.generate_rikishi_matchup_endpoint(
+                active,
+                profiles,
+                profile_limit=1,
+                output_path=output_path,
+            )
+
+            self.assertFalse(wrote)
+            self.assertEqual(output_path.read_bytes(), known_good)
+
+    def test_conflict_preserves_previous_file_byte_for_byte(self) -> None:
+        active = [_active_rikishi(4230, "安青錦"), _active_rikishi(4279, "義ノ富士")]
+        profiles = {
+            4230: {
+                "shikonaHistory": ["安青錦"],
+                "boutHistory": [
+                    {"place": "代表場所", "day": 1, "opponent": "義ノ富士", "outcome": "win"}
+                ],
+            },
+            4279: {
+                "shikonaHistory": ["草野", "義ノ富士"],
+                "boutHistory": [
+                    {"place": "代表場所", "day": 1, "opponent": "安青錦", "outcome": "win"}
+                ],
+            },
+        }
+        known_good = b'{"known":"good"}\n'
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_path = pathlib.Path(temp_dir) / "rikishi-matchups.json"
+            output_path.write_bytes(known_good)
+
+            with self.assertRaises(MODULE.MatchupDataError):
+                MODULE.generate_rikishi_matchup_endpoint(
+                    active,
+                    profiles,
+                    profile_limit=0,
+                    output_path=output_path,
+                )
+
+            self.assertEqual(output_path.read_bytes(), known_good)
+
+    def test_successful_generation_writes_valid_endpoint_document(self) -> None:
+        active = [_active_rikishi(4230, "安青錦"), _active_rikishi(4279, "義ノ富士")]
+        profiles = {
+            4230: {
+                "shikonaHistory": ["安青錦"],
+                "boutHistory": [
+                    {"place": "代表場所", "day": 1, "opponent": "草野", "outcome": "win"}
+                ],
+            },
+            4279: {
+                "shikonaHistory": ["草野", "義ノ富士"],
+                "boutHistory": [
+                    {"place": "代表場所", "day": 1, "opponent": "安青錦", "outcome": "loss"}
+                ],
+            },
+        }
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_path = pathlib.Path(temp_dir) / "rikishi-matchups.json"
+
+            wrote = MODULE.generate_rikishi_matchup_endpoint(
+                active,
+                profiles,
+                profile_limit=0,
+                output_path=output_path,
+            )
+            document = json.loads(output_path.read_text(encoding="utf-8"))
+
+        self.assertTrue(wrote)
+        self.assertRegex(document["updatedAt"], r"^\d{4}-\d{2}-\d{2}T")
+        self.assertEqual(
+            document["matchups"],
+            [
+                {
+                    "rikishi1Id": 4230,
+                    "rikishi2Id": 4279,
+                    "rikishi1Wins": 1,
+                    "rikishi2Wins": 0,
+                }
+            ],
+        )
 
 
 class PostJsonRequestHeadersTest(unittest.TestCase):

@@ -1,9 +1,11 @@
 import argparse
 import html as html_lib
 import json
+import os
 import random
 import re
 import sys
+import tempfile
 import time
 from datetime import date, datetime, timedelta
 from pathlib import Path
@@ -26,6 +28,7 @@ SITE_BASE_URL = "https://www.sumo.or.jp"
 SUMO_OUTPUT = Path("app/lib/sumo-data.ts")
 TORIKUMI_OUTPUT = Path("app/lib/torikumi-data.ts")
 API_DIR = Path("public/api/v1")
+RIKISHI_MATCHUPS_OUTPUT = API_DIR / "rikishi-matchups.json"
 EXPECTED_RIKISHI_COUNT = {1: 42, 2: 28}
 DIVISION_LABEL = {1: "幕内", 2: "十両"}
 TORIKUMI_BOUT_LIMIT = {1: 21, 2: 14}
@@ -64,6 +67,10 @@ KANJI_DIGIT = {
     "八": 8,
     "九": 9,
 }
+
+
+class MatchupDataError(ValueError):
+    """Raised when official profile histories cannot form a safe matchup dataset."""
 
 
 def post_json(path: str, payload: dict) -> dict:
@@ -148,6 +155,10 @@ def extract_shikona_text(raw: str) -> str:
     stripped = re.sub(r"<[^>]+>", "", raw)
     stripped = html_lib.unescape(stripped).replace("\u00a0", " ").replace("&nbsp;", " ")
     return re.sub(r"\s+", " ", stripped).strip()
+
+
+def normalize_shikona(raw: str) -> str:
+    return re.sub(r"\s+", "", html_lib.unescape(raw or ""))
 
 
 def split_shikona(full_name: str) -> str:
@@ -1530,9 +1541,31 @@ class ProfileParser(HTMLParser):
         self.current_data_label = ""
         self.capture_photo = False
         self.og_image = ""
+        self.shikona_history: list[str] = []
+        self.shikona_by_place: dict[str, str] = {}
+        self.bout_history: list[dict] = []
+        self._bout_by_identity: dict[tuple[str, int], dict] = {}
+        self._history_table_depth = 0
+        self._history_row: list[dict] | None = None
+        self._history_cell: dict | None = None
+        self._pending_history_results: tuple[str, list[str]] | None = None
 
     def handle_starttag(self, tag, attrs):
         attrs_dict = dict(attrs)
+        class_names = str(attrs_dict.get("class", "")).split()
+        if tag == "table" and self._history_table_depth:
+            self._history_table_depth += 1
+        elif tag == "table" and "main" in class_names:
+            self._history_table_depth = 1
+        elif self._history_table_depth and tag == "tr":
+            self._history_row = []
+        elif self._history_table_depth and tag in {"td", "th"} and self._history_row is not None:
+            self._history_cell = {
+                "classes": class_names,
+                "text": [],
+                "alts": [],
+            }
+
         if tag == "meta":
             prop = attrs_dict.get("property", "")
             if prop == "og:image":
@@ -1545,13 +1578,34 @@ class ProfileParser(HTMLParser):
                 self.photo_url = src
             if alt:
                 self.current_alt = alt
+            if self._history_cell is not None:
+                self._history_cell["alts"].append(alt.strip())
+
+    def handle_endtag(self, tag):
+        if not self._history_table_depth:
+            return
+        if tag in {"td", "th"} and self._history_cell is not None and self._history_row is not None:
+            self._history_row.append(self._history_cell)
+            self._history_cell = None
+        elif tag == "tr" and self._history_row is not None:
+            self._consume_history_row(self._history_row)
+            self._history_row = None
+            self._history_cell = None
+        elif tag == "table":
+            self._history_table_depth -= 1
+            if not self._history_table_depth:
+                self._pending_history_results = None
 
     def handle_data(self, data):
         data = data.strip()
         if not data:
             return
+        if self._history_cell is not None:
+            self._history_cell["text"].append(data)
         # Parse table data labels
-        if data in {"生年月日", "誕生日"}:
+        if data == "しこ名履歴":
+            self.current_data_label = "shikona"
+        elif data in {"生年月日", "誕生日"}:
             self.current_data_label = "birth"
         elif data == "身長":
             self.current_data_label = "height"
@@ -1564,7 +1618,17 @@ class ProfileParser(HTMLParser):
         elif data in {"通算成績", "生涯戦歴"}:
             self.current_data_label = "career"
         elif self.current_data_label:
-            if self.current_data_label == "birth":
+            if self.current_data_label == "shikona":
+                self.shikona_history = [
+                    name
+                    for name in (
+                        normalize_shikona(part)
+                        for part in re.split(r"\s*(?:→|⇒|->)\s*", data)
+                    )
+                    if name
+                ]
+                self.current_data_label = ""
+            elif self.current_data_label == "birth":
                 self.birth_date = data
                 self.current_data_label = ""
             elif self.current_data_label == "height":
@@ -1595,6 +1659,60 @@ class ProfileParser(HTMLParser):
                 if draws_match:
                     self.career_draws = int(draws_match.group(1))
                 self.current_data_label = ""
+
+    def _consume_history_row(self, cells: list[dict]) -> None:
+        player_index = next(
+            (index for index, cell in enumerate(cells) if "player" in cell["classes"]),
+            None,
+        )
+        if player_index is not None:
+            player_text = cells[player_index]["text"]
+            place_index = next(
+                (index for index, text in enumerate(player_text) if text.endswith("場所")),
+                None,
+            )
+            place = player_text[place_index] if place_index is not None else ""
+            if place and place_index is not None and len(player_text) > place_index + 2:
+                place_shikona = normalize_shikona(split_shikona(player_text[place_index + 2]))
+                existing_shikona = self.shikona_by_place.get(place)
+                if existing_shikona is not None and existing_shikona != place_shikona:
+                    raise MatchupDataError(f"Conflicting profile shikona for {place}")
+                if place_shikona:
+                    self.shikona_by_place[place] = place_shikona
+            outcomes = []
+            for cell in cells[player_index + 1:]:
+                alt = next((value for value in cell["alts"] if value), "")
+                outcomes.append(alt)
+            self._pending_history_results = (place, outcomes)
+            return
+
+        if self._pending_history_results is None:
+            return
+        place, outcomes = self._pending_history_results
+        self._pending_history_results = None
+        for day, (cell, raw_outcome) in enumerate(zip(cells, outcomes), start=1):
+            if raw_outcome == "白丸":
+                outcome = "win"
+            elif raw_outcome == "黒丸":
+                outcome = "loss"
+            else:
+                continue
+            opponent = normalize_shikona("".join(cell["text"]))
+            if not place or not opponent:
+                continue
+            bout = {
+                "place": place,
+                "day": day,
+                "opponent": opponent,
+                "outcome": outcome,
+            }
+            identity = (place, day)
+            existing = self._bout_by_identity.get(identity)
+            if existing is not None and existing != bout:
+                raise MatchupDataError(f"Conflicting duplicate profile bout: {place} day {day}")
+            if existing is None:
+                self._bout_by_identity[identity] = bout
+                self.bout_history.append(bout)
 
 
 def fetch_profile_html(rikishi_id: int) -> str | None:
@@ -1645,6 +1763,9 @@ def parse_profile_html(html: str) -> dict | None:
             "draws": parser.career_draws,
         },
         "photoUrl": photo_url,
+        "shikonaHistory": parser.shikona_history,
+        "shikonaByPlace": parser.shikona_by_place,
+        "boutHistory": parser.bout_history,
     }
 
     # Only return if we got some meaningful data
@@ -1659,6 +1780,180 @@ def load_rikishi_profile(rikishi_id: int) -> dict | None:
     if not html:
         return None
     return parse_profile_html(html)
+
+
+def build_rikishi_matchup_records(rikishi_list: list[dict], profiles: dict[int, dict]) -> list[dict]:
+    active_ids = [int(rikishi["id"]) for rikishi in rikishi_list]
+    if len(active_ids) != len(set(active_ids)):
+        raise MatchupDataError("Duplicate active rikishi IDs")
+
+    missing_ids = sorted(set(active_ids) - set(profiles))
+    if missing_ids:
+        raise MatchupDataError(f"Incomplete active profile set; missing IDs: {missing_ids}")
+
+    aliases: dict[str, set[int]] = {}
+    aliases_by_place: dict[tuple[str, str], set[int]] = {}
+    for rikishi in rikishi_list:
+        rikishi_id = int(rikishi["id"])
+        profile = profiles.get(rikishi_id)
+        if not isinstance(profile, dict):
+            raise MatchupDataError(f"Invalid active profile: {rikishi_id}")
+        shikona_history = profile.get("shikonaHistory")
+        bout_history = profile.get("boutHistory")
+        if not isinstance(shikona_history, list) or not shikona_history:
+            raise MatchupDataError(f"Missing shikona history for active profile: {rikishi_id}")
+        if not isinstance(bout_history, list) or not bout_history:
+            raise MatchupDataError(f"Missing bout history for active profile: {rikishi_id}")
+        current_name = normalize_shikona(str(rikishi.get("name", "")))
+        parsed_names = [normalize_shikona(str(name)) for name in shikona_history]
+        if current_name not in parsed_names:
+            raise MatchupDataError(f"Unresolved current shikona for active profile: {rikishi_id}")
+        names = [current_name, *parsed_names]
+        for raw_name in names:
+            name = normalize_shikona(str(raw_name))
+            if name:
+                aliases.setdefault(name, set()).add(rikishi_id)
+        shikona_by_place = profile.get("shikonaByPlace", {})
+        if not isinstance(shikona_by_place, dict):
+            raise MatchupDataError(f"Invalid shikona-by-place history: {rikishi_id}")
+        for raw_place, raw_name in shikona_by_place.items():
+            place = str(raw_place).strip()
+            name = normalize_shikona(str(raw_name))
+            if place and name:
+                aliases_by_place.setdefault((name, place), set()).add(rikishi_id)
+
+    canonical_bouts: dict[tuple[int, int, str, int], int] = {}
+    for profile_id in active_ids:
+        raw_bouts = profiles[profile_id].get("boutHistory", [])
+        if not isinstance(raw_bouts, list):
+            raise MatchupDataError(f"Invalid bout history for active profile: {profile_id}")
+        profile_bouts: dict[tuple[int, str, int], tuple[str, str]] = {}
+        for raw_bout in raw_bouts:
+            try:
+                place = str(raw_bout["place"]).strip()
+                day = int(raw_bout["day"])
+                opponent_name = normalize_shikona(str(raw_bout["opponent"]))
+                outcome = str(raw_bout["outcome"])
+            except (KeyError, TypeError, ValueError) as exc:
+                raise MatchupDataError(f"Invalid bout history entry for profile {profile_id}") from exc
+            if not place or not 1 <= day <= 15 or not opponent_name or outcome not in {"win", "loss"}:
+                raise MatchupDataError(f"Invalid bout history entry for profile {profile_id}")
+
+            profile_identity = (profile_id, place, day)
+            profile_value = (opponent_name, outcome)
+            existing_profile_value = profile_bouts.get(profile_identity)
+            if existing_profile_value is not None and existing_profile_value != profile_value:
+                raise MatchupDataError(
+                    f"Conflicting duplicate profile bout: {profile_id} {place} day {day}"
+                )
+            profile_bouts[profile_identity] = profile_value
+
+        for (_, place, day), (opponent_name, outcome) in profile_bouts.items():
+            alias_owners = aliases.get(opponent_name)
+            if not alias_owners:
+                continue
+            if len(alias_owners) == 1:
+                opponent_id = next(iter(alias_owners))
+            else:
+                place_owners = aliases_by_place.get((opponent_name, place), set()) & alias_owners
+                if len(place_owners) != 1:
+                    raise MatchupDataError(
+                        f"Unresolved active alias: {opponent_name} at {place}"
+                    )
+                opponent_id = next(iter(place_owners))
+            if opponent_id == profile_id:
+                continue
+            rikishi1_id, rikishi2_id = sorted((profile_id, opponent_id))
+            winner_id = profile_id if outcome == "win" else opponent_id
+            bout_identity = (rikishi1_id, rikishi2_id, place, day)
+            existing_winner = canonical_bouts.get(bout_identity)
+            if existing_winner is not None and existing_winner != winner_id:
+                raise MatchupDataError(
+                    "Conflicting mirrored bout: "
+                    f"{rikishi1_id}/{rikishi2_id} {place} day {day}"
+                )
+            canonical_bouts[bout_identity] = winner_id
+
+    pair_wins: dict[tuple[int, int], list[int]] = {}
+    for (rikishi1_id, rikishi2_id, _place, _day), winner_id in canonical_bouts.items():
+        wins = pair_wins.setdefault((rikishi1_id, rikishi2_id), [0, 0])
+        wins[0 if winner_id == rikishi1_id else 1] += 1
+
+    records = [
+        {
+            "rikishi1Id": rikishi1_id,
+            "rikishi2Id": rikishi2_id,
+            "rikishi1Wins": wins[0],
+            "rikishi2Wins": wins[1],
+        }
+        for (rikishi1_id, rikishi2_id), wins in sorted(pair_wins.items())
+    ]
+    validate_rikishi_matchup_records(records)
+    return records
+
+
+def validate_rikishi_matchup_records(records: list[dict]) -> None:
+    pairs: set[tuple[int, int]] = set()
+    for record in records:
+        values = (
+            record.get("rikishi1Id"),
+            record.get("rikishi2Id"),
+            record.get("rikishi1Wins"),
+            record.get("rikishi2Wins"),
+        )
+        if any(type(value) is not int for value in values):
+            raise MatchupDataError("Matchup fields must be integers")
+        rikishi1_id, rikishi2_id, rikishi1_wins, rikishi2_wins = values
+        if rikishi1_id >= rikishi2_id:
+            raise MatchupDataError("Matchup rikishi IDs must be ordered ascending")
+        if rikishi1_wins < 0 or rikishi2_wins < 0:
+            raise MatchupDataError("Matchup wins must be non-negative")
+        pair = (rikishi1_id, rikishi2_id)
+        if pair in pairs:
+            raise MatchupDataError(f"Duplicate matchup pair: {pair}")
+        pairs.add(pair)
+
+
+def generate_rikishi_matchup_endpoint(
+    rikishi_list: list[dict],
+    profiles: dict[int, dict],
+    *,
+    profile_limit: int,
+    output_path: Path = RIKISHI_MATCHUPS_OUTPUT,
+) -> bool:
+    if profile_limit > 0:
+        print("[info] Preserving rikishi-matchups.json after partial profile generation")
+        return False
+
+    records = build_rikishi_matchup_records(rikishi_list, profiles)
+    document = {
+        "updatedAt": current_timestamp_iso(),
+        "matchups": records,
+    }
+    content = json.dumps(document, ensure_ascii=False, indent=2)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    temp_path: Path | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            "w",
+            encoding="utf-8",
+            newline="\n",
+            dir=output_path.parent,
+            prefix=f".{output_path.name}.",
+            suffix=".tmp",
+            delete=False,
+        ) as handle:
+            handle.write(content)
+            handle.flush()
+            os.fsync(handle.fileno())
+            temp_path = Path(handle.name)
+        os.replace(temp_path, output_path)
+        temp_path = None
+    finally:
+        if temp_path is not None:
+            temp_path.unlink(missing_ok=True)
+    print(f"[info] Wrote {len(records)} matchups to {output_path}")
+    return True
 
 
 def build_rikishi_list(makuuchi: list[dict], juryo: list[dict]) -> list[dict]:
@@ -1821,7 +2116,8 @@ def main() -> None:
     # Handle rikishi profile fetching
     profiles: dict[int, dict] = {}
     if makuuchi is not None and juryo is not None and not args.skip_rikishi_fetch:
-        rikishi_list = build_rikishi_list(makuuchi, juryo)
+        active_rikishi_list = build_rikishi_list(makuuchi, juryo)
+        rikishi_list = active_rikishi_list
 
         limit = args.profile_limit
         if limit > 0:
@@ -1837,6 +2133,11 @@ def main() -> None:
             time.sleep(0.3)  # Be polite to the server
 
         write_rikishi_json(rikishi_list, profiles)
+        generate_rikishi_matchup_endpoint(
+            active_rikishi_list,
+            profiles,
+            profile_limit=args.profile_limit,
+        )
     elif makuuchi is not None and juryo is not None and args.skip_rikishi_fetch:
         print("[info] Skipping rikishi profile refresh (--skip-rikishi-fetch)")
 
