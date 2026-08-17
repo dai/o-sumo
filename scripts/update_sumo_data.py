@@ -1823,6 +1823,7 @@ def build_rikishi_matchup_records(rikishi_list: list[dict], profiles: dict[int, 
                 aliases_by_place.setdefault((name, place), set()).add(rikishi_id)
 
     canonical_bouts: dict[tuple[int, int, str, int], int] = {}
+    canonical_observers: dict[tuple[int, int, str, int], set[int]] = {}
     for profile_id in active_ids:
         raw_bouts = profiles[profile_id].get("boutHistory", [])
         if not isinstance(raw_bouts, list):
@@ -1850,17 +1851,21 @@ def build_rikishi_matchup_records(rikishi_list: list[dict], profiles: dict[int, 
 
         for (_, place, day), (opponent_name, outcome) in profile_bouts.items():
             alias_owners = aliases.get(opponent_name)
+            place_alias_owners = aliases_by_place.get((opponent_name, place), set())
             if not alias_owners:
-                continue
-            if len(alias_owners) == 1:
-                opponent_id = next(iter(alias_owners))
-            else:
-                place_owners = aliases_by_place.get((opponent_name, place), set()) & alias_owners
-                if len(place_owners) != 1:
+                if place_alias_owners:
                     raise MatchupDataError(
                         f"Unresolved active alias: {opponent_name} at {place}"
                     )
-                opponent_id = next(iter(place_owners))
+                continue
+            place_owners = place_alias_owners & alias_owners
+            if not place_owners:
+                continue
+            if len(place_owners) != 1:
+                raise MatchupDataError(
+                    f"Unresolved active alias: {opponent_name} at {place}"
+                )
+            opponent_id = next(iter(place_owners))
             if opponent_id == profile_id:
                 continue
             rikishi1_id, rikishi2_id = sorted((profile_id, opponent_id))
@@ -1873,6 +1878,16 @@ def build_rikishi_matchup_records(rikishi_list: list[dict], profiles: dict[int, 
                     f"{rikishi1_id}/{rikishi2_id} {place} day {day}"
                 )
             canonical_bouts[bout_identity] = winner_id
+            canonical_observers.setdefault(bout_identity, set()).add(profile_id)
+
+    for bout_identity in canonical_bouts:
+        rikishi1_id, rikishi2_id, place, day = bout_identity
+        expected_observers = {rikishi1_id, rikishi2_id}
+        if canonical_observers[bout_identity] != expected_observers:
+            raise MatchupDataError(
+                "Missing mirrored bout: "
+                f"{rikishi1_id}/{rikishi2_id} {place} day {day}"
+            )
 
     pair_wins: dict[tuple[int, int], list[int]] = {}
     for (rikishi1_id, rikishi2_id, _place, _day), winner_id in canonical_bouts.items():

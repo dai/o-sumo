@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-17T17:04:22+09:00",
+  "updatedAt": "2026-08-17T17:15:58+09:00",
   "matchups": [
     {
       "rikishi1Id": 2565,
@@ -1084,8 +1084,8 @@
     {
       "rikishi1Id": 2890,
       "rikishi2Id": 3705,
-      "rikishi1Wins": 8,
-      "rikishi2Wins": 4
+      "rikishi1Wins": 5,
+      "rikishi2Wins": 2
     },
     {
       "rikishi1Id": 2890,
@@ -1415,7 +1415,7 @@
       "rikishi1Id": 2892,
       "rikishi2Id": 3594,
       "rikishi1Wins": 3,
-      "rikishi2Wins": 7
+      "rikishi2Wins": 6
     },
     {
       "rikishi1Id": 2892,
@@ -1450,7 +1450,7 @@
     {
       "rikishi1Id": 2892,
       "rikishi2Id": 3705,
-      "rikishi1Wins": 3,
+      "rikishi1Wins": 2,
       "rikishi2Wins": 2
     },
     {
@@ -1763,7 +1763,7 @@
       "rikishi1Id": 3207,
       "rikishi2Id": 3594,
       "rikishi1Wins": 2,
-      "rikishi2Wins": 14
+      "rikishi2Wins": 13
     },
     {
       "rikishi1Id": 3207,
@@ -1799,7 +1799,7 @@
       "rikishi1Id": 3207,
       "rikishi2Id": 3705,
       "rikishi1Wins": 2,
-      "rikishi2Wins": 6
+      "rikishi2Wins": 4
     },
     {
       "rikishi1Id": 3207,
@@ -2068,8 +2068,8 @@
     {
       "rikishi1Id": 3255,
       "rikishi2Id": 3594,
-      "rikishi1Wins": 5,
-      "rikishi2Wins": 6
+      "rikishi1Wins": 4,
+      "rikishi2Wins": 4
     },
     {
       "rikishi1Id": 3255,
@@ -2105,7 +2105,7 @@
       "rikishi1Id": 3255,
       "rikishi2Id": 3705,
       "rikishi1Wins": 1,
-      "rikishi2Wins": 3
+      "rikishi2Wins": 2
     },
     {
       "rikishi1Id": 3255,
@@ -2458,7 +2458,7 @@
     {
       "rikishi1Id": 3265,
       "rikishi2Id": 3705,
-      "rikishi1Wins": 6,
+      "rikishi1Wins": 5,
       "rikishi2Wins": 5
     },
     {
@@ -2687,7 +2687,7 @@
       "rikishi1Id": 3334,
       "rikishi2Id": 3705,
       "rikishi1Wins": 2,
-      "rikishi2Wins": 2
+      "rikishi2Wins": 1
     },
     {
       "rikishi1Id": 3334,
@@ -3653,7 +3653,7 @@
       "rikishi1Id": 3371,
       "rikishi2Id": 3705,
       "rikishi1Wins": 5,
-      "rikishi2Wins": 7
+      "rikishi2Wins": 6
     },
     {
       "rikishi1Id": 3371,
@@ -3851,12 +3851,6 @@
       "rikishi1Id": 3376,
       "rikishi2Id": 3553,
       "rikishi1Wins": 1,
-      "rikishi2Wins": 0
-    },
-    {
-      "rikishi1Id": 3376,
-      "rikishi2Id": 3594,
-      "rikishi1Wins": 2,
       "rikishi2Wins": 0
     },
     {
@@ -4067,7 +4061,7 @@
       "rikishi1Id": 3485,
       "rikishi2Id": 3594,
       "rikishi1Wins": 10,
-      "rikishi2Wins": 11
+      "rikishi2Wins": 10
     },
     {
       "rikishi1Id": 3485,
@@ -7282,7 +7276,7 @@
     {
       "rikishi1Id": 3818,
       "rikishi2Id": 3844,
-      "rikishi1Wins": 1,
+      "rikishi1Wins": 0,
       "rikishi2Wins": 2
     },
     {
@@ -7905,18 +7899,6 @@
     },
     {
       "rikishi1Id": 3844,
-      "rikishi2Id": 3914,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3844,
-      "rikishi2Id": 3933,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3844,
       "rikishi2Id": 3939,
       "rikishi1Wins": 3,
       "rikishi2Wins": 0
@@ -7944,18 +7926,6 @@
       "rikishi2Id": 4079,
       "rikishi1Wins": 2,
       "rikishi2Wins": 5
-    },
-    {
-      "rikishi1Id": 3844,
-      "rikishi2Id": 4093,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3844,
-      "rikishi2Id": 4095,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 1
     },
     {
       "rikishi1Id": 3844,

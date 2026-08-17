@@ -1,5 +1,10 @@
 # Lessons
 
+## 2026-08-17 現役力士の改名履歴と同名の別人を混同しない
+
+- 四股名履歴のglobal aliasだけで対戦相手を現役IDへ解決すると、現役力士が後年使った旧名と、それ以前の同名の引退力士を誤って同一視する。active ownershipは同じ場所の`shikonaByPlace`でも一致する場合だけ確定する。
+- 現役同士として解決した取組は、canonical化後に双方のプロフィール観測が揃うことを必須にする。未解決active alias、片側観測、矛盾のいずれかがあれば、生成済みendpointを置換しない。
+
 ## 2026-08-17 URL同期検索と日本語IME
 
 - controlled inputの表示値をURL queryだけから読むと、各入力のnavigationでIMEのcomposition範囲が解除され、ローマ字とかなの連結や文字欠落が起きる。
