@@ -18,6 +18,7 @@
 - `aria-expanded="true"`のcomboboxは、候補0件でも`aria-controls`先のlistboxをDOMに保つ。ゼロ件文言は選択不可のoptionとして、IDREFとpopupの意味を壊さない。
 - 選択済みcomboboxのIME draftはcomposition中でも最初のcommitから旧選択名と不一致になる。URL更新をcompositionendまで待つ場合も、render時のdraft不一致で旧request key・比較表・profile値を同期的に隠す。
 - 1 IDのURLがslot位置を表現できないため、slot 1を空のまま確定した場合は残存選択をslot 1へ詰める。ただし非空draftで置換中は、focus中の入力と候補操作を同じslotに保持し、URLだけを一時的にcompactする。URL正規化でキーボード操作の対象slotを入れ替えない。
+- React RouterのURL更新はtransitionになるため、own-writeの目標URLを「描画済みURL」として先に記録しない。Router contextが追いつくまではローカル選択を描画し、外部navigationだけをURL由来stateで同期ゲートする。
 - API文書がISO 8601日時を約束するフィールドは、単なる`string`判定で受理しない。レスポンス境界で形式・実在日・parse可能性を検証し、任意文字列を取得失敗として扱う。
 
 ## 2026-08-12 React一覧の種別切替で旧データを表示しない

@@ -206,7 +206,7 @@ export default function CompareRikishiPage() {
     [indexResponse],
   );
   const activeById = React.useMemo(() => new Map(activeIndex.map((item) => [item.id, item])), [activeIndex]);
-  const hasExternalUrlTransition = locallyRenderedRawIds.current !== rawIds;
+  const hasExternalUrlTransition = ownUrlWrite.current !== rawIds && locallyRenderedRawIds.current !== rawIds;
   const renderedSlots = hasExternalUrlTransition ? slotsFromSerialized(rawIds) : slots;
   const renderedDrafts: CompareDrafts = hasExternalUrlTransition
     ? [
@@ -221,7 +221,6 @@ export default function CompareRikishiPage() {
     if (serialized) nextParams.set('ids', serialized);
     else nextParams.delete('ids');
     ownUrlWrite.current = serialized;
-    locallyRenderedRawIds.current = serialized;
     setSearchParams(nextParams, { replace });
   }, [searchParams, setSearchParams]);
 
@@ -254,7 +253,6 @@ export default function CompareRikishiPage() {
       if (canonical) nextParams.set('ids', canonical);
       else nextParams.delete('ids');
       ownUrlWrite.current = canonical;
-      locallyRenderedRawIds.current = canonical;
       setSearchParams(nextParams, { replace: true });
     } else {
       locallyRenderedRawIds.current = rawIds;

@@ -308,6 +308,28 @@ describe('CompareRikishiPage', () => {
     expect(screen.getByRole('combobox', { name: '力士2' })).toHaveValue('');
   });
 
+  it('renders the compacted sole selection in the first committed clear update', async () => {
+    const commits: CommitSnapshot[] = [];
+    mockComparisonFetch();
+    renderPage('/compare/?ids=4230,4279&view=compact', (snapshot) => commits.push(snapshot));
+    await screen.findByRole('table');
+    const first = screen.getByRole('combobox', { name: '力士1' });
+    commits.length = 0;
+
+    act(() => {
+      flushSync(() => {
+        fireEvent.change(first, { target: { value: '' } });
+      });
+    });
+
+    expect(commits[0]).toMatchObject({
+      firstValue: '義ノ富士',
+      secondValue: '',
+      hasTable: false,
+      comparisonText: '',
+    });
+  });
+
   it('keeps IME composition as a local draft without URL writes or Enter selection', async () => {
     mockComparisonFetch();
     renderPage('/compare/?view=compact');
