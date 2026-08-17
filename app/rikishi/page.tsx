@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import HomeLink from '../components/HomeLink';
 import MyRikishiToggle from '../components/MyRikishiToggle';
@@ -8,6 +8,7 @@ import { fetchRikishiIndex, rikishiProfilePath, type RikishiIndexItem } from '..
 import { toRomaji } from '../lib/romaji';
 import { formatUpdatedAt } from '../lib/updated-at';
 import { matchesSearch } from '../lib/search';
+import { useDirectorySearchQuery } from '../lib/directory-search';
 import './page.css';
 
 type RikishiDivision = 'all' | 'makuuchi' | 'juryo';
@@ -35,11 +36,10 @@ function updateRikishiSearchParams(
 
 export default function RikishiPage() {
   const { t } = useTranslation('common');
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { query, searchParams, setSearchParams, queryInputProps } = useDirectorySearchQuery();
   const [rikishi, setRikishi] = React.useState<RikishiIndexItem[]>([]);
   const [updatedAt, setUpdatedAt] = React.useState('');
   const [status, setStatus] = React.useState<'loading' | 'ready' | 'error'>('loading');
-  const query = searchParams.get('q') ?? '';
   const division = normalizeRikishiDivision(searchParams.get('division'));
   const filteredRikishi = React.useMemo(() => rikishi.filter((item) => {
     const matchesDivision = division === 'all'
@@ -93,8 +93,7 @@ export default function RikishiPage() {
                 id="rikishi-search"
                 className="directory-search__input"
                 type="search"
-                value={query}
-                onChange={(event) => setFilters(event.target.value, division)}
+                {...queryInputProps}
                 placeholder={t('rikishi.searchPlaceholder')}
               />
               <label className="directory-search__label" htmlFor="rikishi-division">{t('rikishi.divisionLabel')}</label>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import BanzukeTable from '../components/BanzukeTable';
 import SortToggle from '../components/SortToggle';
@@ -15,6 +15,7 @@ import { getBanzukeDataByMonthKey } from '../lib/archive-basho-data';
 import type { RankGroup } from '../lib/sumo-data';
 import { matchesSearch } from '../lib/search';
 import { toRomaji } from '../lib/romaji';
+import { useDirectorySearchQuery } from '../lib/directory-search';
 
 function filterRankGroups(groups: RankGroup[], query: string): RankGroup[] {
   if (!query.trim()) return groups;
@@ -52,9 +53,8 @@ function useBanzukeContext() {
 }
 
 export default function BanzukePage() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { query, searchParams, setSearchParams, queryInputProps } = useDirectorySearchQuery();
   const sortOrder: SortOrder = searchParams.get('sort') === 'desc' ? 'desc' : 'asc';
-  const query = searchParams.get('q') ?? '';
   const setDiscoveryState = React.useCallback((nextQuery: string, nextSortOrder: SortOrder, replace = true) => {
     const next = new URLSearchParams(searchParams);
     const normalizedQuery = nextQuery.trim();
@@ -100,8 +100,7 @@ export default function BanzukePage() {
             id="banzuke-search"
             className="directory-search__input"
             type="search"
-            value={query}
-            onChange={(event) => setDiscoveryState(event.target.value, sortOrder)}
+            {...queryInputProps}
             placeholder={t('banzuke.searchPlaceholder')}
           />
           <p className="directory-search__count" role="status" aria-live="polite">

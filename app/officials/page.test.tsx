@@ -1,8 +1,8 @@
-import { act, cleanup, render, screen, waitFor } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useState } from 'react';
 import { flushSync } from 'react-dom';
-import { Link, MemoryRouter, Route, Router, Routes } from 'react-router-dom';
+import { Link, MemoryRouter, Route, Router, Routes, useLocation } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { i18n } from '../lib/i18n';
 import { OfficialListPage, OfficialProfilePage } from './page';
@@ -22,6 +22,10 @@ function deferredResponse() {
   let resolve!: (response: Response) => void;
   const promise = new Promise<Response>((next) => { resolve = next; });
   return { promise, resolve };
+}
+
+function LocationSearchProbe() {
+  return <output data-testid="location-search">{useLocation().search}</output>;
 }
 
 beforeEach(() => {
@@ -50,6 +54,36 @@ describe('official directories', () => {
     expect(screen.getByRole('link', { name: '日本相撲協会の公式ページを見る' })).toHaveAttribute('href', 'https://www.sumo.or.jp/IrohaKyokaiMember/gyoji/');
     expect(screen.getByText('取得日時: 2026-08-12 00:27 UTC')).toBeInTheDocument();
     expect(screen.getByText('写真は使用していません。')).toBeInTheDocument();
+  });
+
+  it('does not write an official search query to the URL during IME composition', async () => {
+    vi.mocked(fetch).mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        retrievedAt: '2026-08-12T00:27:59Z',
+        source: 'https://www.sumo.or.jp/IrohaKyokaiMember/gyoji/',
+        officials: [indexItem],
+      }),
+    } as Response);
+    render(
+      <MemoryRouter initialEntries={['/gyoji/']}>
+        <OfficialListPage kind="gyoji" />
+        <LocationSearchProbe />
+      </MemoryRouter>,
+    );
+
+    const input = await screen.findByRole('searchbox', { name: '行司を探す' });
+    fireEvent.compositionStart(input);
+    fireEvent.change(input, { target: { value: 'きむ' } });
+
+    expect(input).toHaveValue('きむ');
+    expect(screen.getByTestId('location-search')).toBeEmptyDOMElement();
+
+    fireEvent.change(input, { target: { value: 'きむら' } });
+    fireEvent.compositionEnd(input, { data: 'きむら' });
+
+    await waitFor(() => expect(screen.getByTestId('location-search')).toHaveTextContent('?q=%E3%81%8D%E3%82%80%E3%82%89'));
+    expect(screen.getByRole('link', { name: /木村 庄之助/ })).toBeInTheDocument();
   });
 
   it('clears the previous directory while the next kind is still loading', async () => {

@@ -1,6 +1,6 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import RikishiPage from './page';
 import RikishiProfilePage from './RikishiProfilePage';
 
@@ -71,6 +71,10 @@ function mockFetch() {
   return fetchMock;
 }
 
+function LocationSearchProbe() {
+  return <output data-testid="location-search">{useLocation().search}</output>;
+}
+
 describe('Rikishi pages', () => {
   afterEach(() => {
     vi.unstubAllGlobals();
@@ -89,6 +93,34 @@ describe('Rikishi pages', () => {
     expect(await screen.findByRole('link', { name: /豊昇龍/ })).toHaveAttribute('href', '/rikishi/3842/');
     expect(screen.getByRole('link', { name: /欠損山/ })).toHaveAttribute('href', '/rikishi/9999/');
     expect(screen.getByText('更新日: 2026-04-27 08:15 JST')).toBeInTheDocument();
+  });
+
+  it('keeps Japanese IME composition local until the text is confirmed', async () => {
+    mockFetch();
+
+    render(
+      <MemoryRouter initialEntries={['/rikishi/']}>
+        <RikishiPage />
+        <LocationSearchProbe />
+      </MemoryRouter>,
+    );
+
+    const input = await screen.findByRole('searchbox', { name: '力士を探す' });
+    fireEvent.compositionStart(input);
+    fireEvent.change(input, { target: { value: 'ほう' } });
+
+    expect(input).toHaveValue('ほう');
+    expect(screen.getByTestId('location-search')).toBeEmptyDOMElement();
+
+    fireEvent.change(input, { target: { value: 'ほうしょうりゅう' } });
+    fireEvent.compositionEnd(input, { data: 'ほうしょうりゅう' });
+
+    await waitFor(() => {
+      expect(input).toHaveValue('ほうしょうりゅう');
+      expect(screen.getByTestId('location-search')).toHaveTextContent('?q=%E3%81%BB%E3%81%86%E3%81%97%E3%82%87%E3%81%86%E3%82%8A%E3%82%85%E3%81%86');
+    });
+    expect(screen.getByRole('link', { name: /豊昇龍/ })).toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /欠損山/ })).not.toBeInTheDocument();
   });
 
   it('renders a known profile with source link and copyable API JSON path', async () => {

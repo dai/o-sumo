@@ -1,3 +1,23 @@
+# 人物名鑑検索のIME入力修正（2026-08-17）
+
+## Plan
+
+- [x] IME変換中の入力値とURL同期を再現する失敗テストを追加する
+- [x] ローカルdraftを基準にする共通検索フックを最小実装する
+- [x] 力士・行司／呼出・番付検索へ適用し、既存URLフィルターを維持する
+- [x] focused test、型チェック、全テスト、ブラウザ実測を行い、Reviewへ証跡を記録する
+
+## Review
+
+- RED: 力士・行司／呼出・番付の各テストで、composition中の途中入力が即座に`?q=`へ書き込まれることを再現し、各suiteが1件ずつ期待どおり失敗した。
+- GREEN: ローカルdraft、composition guard、URL復元を`useDirectorySearchQuery`へ集約し、関連4 files / 30 testsが成功した。
+- 実ブラウザ: 高速日本語入力を力士・行司・呼出・番付で実行し、入力値とURL queryが4画面すべて完全一致した。CDP実IMEでは`き`→`きむ`→`きむら`の変換中はURL未更新、確定後は入力値・URLとも`木村`、`compositionstart/end`は各1回だった。
+- URL復元: `q=豊`から階級をpushし`q=大`へreplaceした後、Backで`q=豊`・階級all、Forwardで`q=大`・階級juryoへ入力欄とURLが一致して復元された。
+- 完全検証: `npm run typecheck`、`npm test`（48 files / 335 tests）、`npm run build`、`git diff --check`がすべてexit 0。buildの既存archive chunk警告とBrowserslist更新警告のみ。
+- 独立レビュー: 重大な指摘なし。実IMEと戻る・進むの実測を追加確認した。非IME入力のdebounceは今回の根因修正に不要なためスコープ外とした。
+
+---
+
 # 七月場所アーカイブ化と九月引き継ぎ準備（2026-08-13）
 
 ## Plan
