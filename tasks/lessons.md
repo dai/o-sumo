@@ -17,7 +17,7 @@
 - URLから復元する選択をpassive effectだけでstateへ同期すると、外部navigation後の最初のcommitに旧selectorや旧tableが残る。描画時はURL遷移を同期的に判定し、URL由来のrequest keyと選択で古い表示をゲートする。
 - `aria-expanded="true"`のcomboboxは、候補0件でも`aria-controls`先のlistboxをDOMに保つ。ゼロ件文言は選択不可のoptionとして、IDREFとpopupの意味を壊さない。
 - 選択済みcomboboxのIME draftはcomposition中でも最初のcommitから旧選択名と不一致になる。URL更新をcompositionendまで待つ場合も、render時のdraft不一致で旧request key・比較表・profile値を同期的に隠す。
-- 1 IDのURLがslot位置を表現できないなら、画面だけslot 2を保持してはいけない。slot 1解除時は残存選択を即座にslot 1へ詰め、編集中draftを空いたslotへ移して、同一URLが同一選択状態を復元するようにする。
+- 1 IDのURLがslot位置を表現できないため、slot 1を空のまま確定した場合は残存選択をslot 1へ詰める。ただし非空draftで置換中は、focus中の入力と候補操作を同じslotに保持し、URLだけを一時的にcompactする。URL正規化でキーボード操作の対象slotを入れ替えない。
 - API文書がISO 8601日時を約束するフィールドは、単なる`string`判定で受理しない。レスポンス境界で形式・実在日・parse可能性を検証し、任意文字列を取得失敗として扱う。
 
 ## 2026-08-12 React一覧の種別切替で旧データを表示しない

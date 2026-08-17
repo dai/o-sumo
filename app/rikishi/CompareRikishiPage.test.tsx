@@ -222,6 +222,30 @@ describe('CompareRikishiPage', () => {
     expect(second).toHaveAttribute('aria-expanded', 'false');
   });
 
+  it('keeps a non-empty slot 1 replacement draft in the focused combobox through keyboard selection', async () => {
+    mockComparisonFetch();
+    renderPage('/compare/?ids=4230,4279&view=compact');
+    const first = await screen.findByRole('combobox', { name: '力士1' });
+    const second = screen.getByRole('combobox', { name: '力士2' });
+    await screen.findByRole('table');
+
+    act(() => first.focus());
+    fireEvent.change(first, { target: { value: 'Houshouryuu' } });
+
+    expect(first).toHaveFocus();
+    expect(first).toHaveValue('Houshouryuu');
+    expect(second).toHaveValue('義ノ富士');
+    expect(screen.queryByRole('table')).not.toBeInTheDocument();
+    expect(screen.getByTestId('location')).toHaveTextContent('/compare/?ids=4279&view=compact');
+
+    fireEvent.keyDown(first, { key: 'ArrowDown' });
+    fireEvent.keyDown(first, { key: 'Enter' });
+
+    expect(first).toHaveValue('豊昇龍');
+    expect(second).toHaveValue('義ノ富士');
+    await waitFor(() => expect(screen.getByTestId('location')).toHaveTextContent('/compare/?ids=3842%2C4279&view=compact'));
+  });
+
   it('closes a combobox when focus leaves it and keeps options out of the tab order', async () => {
     const user = userEvent.setup();
     mockComparisonFetch();
@@ -325,8 +349,8 @@ describe('CompareRikishiPage', () => {
     });
 
     fireEvent.compositionEnd(first);
-    expect(first).toHaveValue('義ノ富士');
-    expect(second).toHaveValue('あお');
+    expect(first).toHaveValue('あお');
+    expect(second).toHaveValue('義ノ富士');
     await waitFor(() => expect(screen.getByTestId('location')).toHaveTextContent('/compare/?ids=4279&view=compact'));
   });
 

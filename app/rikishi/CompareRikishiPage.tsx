@@ -343,8 +343,13 @@ export default function CompareRikishiPage() {
       next[slot] = null;
       if (slot === 0 && next[1] !== null) {
         const remainingId = next[1];
-        setDrafts([activeById.get(remainingId)?.name ?? '', value]);
-        applySlots([remainingId, null]);
+        if (!value) {
+          setDrafts([activeById.get(remainingId)?.name ?? '', '']);
+          applySlots([remainingId, null]);
+          return;
+        }
+        setDrafts((current) => [value, current[1]]);
+        applySlots([null, remainingId]);
         return;
       }
       setDrafts((current) => slot === 0 ? [value, current[1]] : [current[0], value]);
