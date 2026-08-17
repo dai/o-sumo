@@ -51,7 +51,7 @@
 
 .rikishi-profile-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem;
 }
 
@@ -86,12 +86,20 @@
   font-family: var(--font-serif);
   font-size: 1.35rem;
   font-weight: 800;
+  writing-mode: horizontal-tb;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .rikishi-card-yomi,
 .rikishi-card-romaji {
   color: var(--color-muted);
   font-size: 0.9rem;
+  writing-mode: horizontal-tb;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .rikishi-profile-detail {
