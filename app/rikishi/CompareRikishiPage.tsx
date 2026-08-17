@@ -300,8 +300,11 @@ export default function CompareRikishiPage() {
     }
   }, [activeById, applySlots, indexResponse]);
 
-  const firstSelectedId = renderedSlots[0];
-  const secondSelectedId = renderedSlots[1];
+  const hasEditedSelection = renderedSlots.some((id, index) => (
+    id !== null && renderedDrafts[index] !== activeById.get(id)?.name
+  ));
+  const firstSelectedId = hasEditedSelection ? null : renderedSlots[0];
+  const secondSelectedId = hasEditedSelection ? null : renderedSlots[1];
   const requestKey = firstSelectedId && secondSelectedId ? `${firstSelectedId},${secondSelectedId}` : null;
   React.useEffect(() => {
     if (!indexResponse || !requestKey || !firstSelectedId || !secondSelectedId) {
@@ -333,14 +336,22 @@ export default function CompareRikishiPage() {
   }, [activeById, firstSelectedId, indexResponse, requestKey, secondSelectedId]);
 
   const onDraftChange = (slot: 0 | 1, value: string, composing: boolean) => {
-    setDrafts((current) => slot === 0 ? [value, current[1]] : [current[0], value]);
     const selectedId = slotsRef.current[slot];
     const selectedName = selectedId ? activeById.get(selectedId)?.name : null;
     if (selectedId && value !== selectedName && !composing) {
       const next: CompareSlots = [...slotsRef.current] as CompareSlots;
       next[slot] = null;
+      if (slot === 0 && next[1] !== null) {
+        const remainingId = next[1];
+        setDrafts([activeById.get(remainingId)?.name ?? '', value]);
+        applySlots([remainingId, null]);
+        return;
+      }
+      setDrafts((current) => slot === 0 ? [value, current[1]] : [current[0], value]);
       applySlots(next);
+      return;
     }
+    setDrafts((current) => slot === 0 ? [value, current[1]] : [current[0], value]);
   };
 
   const onSelect = (slot: 0 | 1, item: RikishiIndexItem) => {

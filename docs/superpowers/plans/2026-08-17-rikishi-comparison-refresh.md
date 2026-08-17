@@ -79,4 +79,3 @@
 - [ ] Verify Japanese/English, light/dark, keyboard interaction, and 360px layout in a real browser.
 - [ ] Serve `dist` with Wrangler and prove `/compare` 301, `/compare/` 200, and the matchup JSON 200 with `application/json`.
 - [ ] Record commands and results in the `tasks/todo.md` Review section, self-review the complete diff, and commit.
-

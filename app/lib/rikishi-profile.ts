@@ -53,6 +53,7 @@ export interface RikishiMatchupsResponse {
 
 const RIKISHI_INDEX_URL = '/api/v1/rikishi.json';
 const RIKISHI_MATCHUPS_URL = '/api/v1/rikishi-matchups.json';
+const ISO_8601_TIMESTAMP = /^(\d{4})-(\d{2})-(\d{2})T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d+)?(?:Z|[+-](?:[01]\d|2[0-3]):[0-5]\d)$/;
 
 export function rikishiProfilePath(id: number | string): string {
   return `/rikishi/${id}/`;
@@ -186,10 +187,23 @@ function isNonNegativeInteger(value: unknown): value is number {
   return Number.isInteger(value) && Number(value) >= 0;
 }
 
+function isIso8601Timestamp(value: unknown): value is string {
+  if (typeof value !== 'string') return false;
+  const match = value.match(ISO_8601_TIMESTAMP);
+  if (!match) return false;
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  const daysInMonth = month >= 1 && month <= 12
+    ? new Date(Date.UTC(year, month, 0)).getUTCDate()
+    : 0;
+  return day >= 1 && day <= daysInMonth && !Number.isNaN(Date.parse(value));
+}
+
 function isRikishiMatchupsResponse(value: unknown): value is RikishiMatchupsResponse {
   if (!value || typeof value !== 'object') return false;
   const candidate = value as { updatedAt?: unknown; matchups?: unknown };
-  if (typeof candidate.updatedAt !== 'string' || !Array.isArray(candidate.matchups)) return false;
+  if (!isIso8601Timestamp(candidate.updatedAt) || !Array.isArray(candidate.matchups)) return false;
 
   const seen = new Set<string>();
   return candidate.matchups.every((item) => {

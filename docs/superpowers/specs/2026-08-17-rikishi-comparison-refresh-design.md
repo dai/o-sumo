@@ -26,4 +26,3 @@
 - Python parser／generator tests、Vitest UI tests、typecheck、full Vitest、build、diff check、Impeccable detectを通す。
 - 実ブラウザで日英、light／dark、キーボード、360px幅を確認する。
 - Wrangler Pagesで `/compare` 301、`/compare/` 200、新JSON 200 `application/json` を実測する。
-

@@ -12,10 +12,13 @@
 - 入力欄はローカルdraftを唯一の表示値にし、composition中はURLを更新せず、`compositionend`で確定値を同期する。URLは共有・復元用の二次状態として扱う。
 - 回帰確認はjsdomの完成済み文字列だけで終えず、Playwright/CDPの`Input.imeSetComposition`で変換途中の値、URL未更新、composition回数、確定後の入力値とURLを実測する。
 
-## 2026-08-17 外部URL遷移とcomboboxのARIA参照
+## 2026-08-17 比較URL・IME commit・API検証
 
 - URLから復元する選択をpassive effectだけでstateへ同期すると、外部navigation後の最初のcommitに旧selectorや旧tableが残る。描画時はURL遷移を同期的に判定し、URL由来のrequest keyと選択で古い表示をゲートする。
 - `aria-expanded="true"`のcomboboxは、候補0件でも`aria-controls`先のlistboxをDOMに保つ。ゼロ件文言は選択不可のoptionとして、IDREFとpopupの意味を壊さない。
+- 選択済みcomboboxのIME draftはcomposition中でも最初のcommitから旧選択名と不一致になる。URL更新をcompositionendまで待つ場合も、render時のdraft不一致で旧request key・比較表・profile値を同期的に隠す。
+- 1 IDのURLがslot位置を表現できないなら、画面だけslot 2を保持してはいけない。slot 1解除時は残存選択を即座にslot 1へ詰め、編集中draftを空いたslotへ移して、同一URLが同一選択状態を復元するようにする。
+- API文書がISO 8601日時を約束するフィールドは、単なる`string`判定で受理しない。レスポンス境界で形式・実在日・parse可能性を検証し、任意文字列を取得失敗として扱う。
 
 ## 2026-08-12 React一覧の種別切替で旧データを表示しない
 

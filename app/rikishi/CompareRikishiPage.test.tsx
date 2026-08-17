@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor, within } from '@testing-library/rea
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, useLocation, useSearchParams } from 'react-router-dom';
 import { flushSync } from 'react-dom';
-import { act, useLayoutEffect } from 'react';
+import { act, Profiler } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import CompareRikishiPage, { normalizeCompareIds } from './CompareRikishiPage';
 
@@ -77,19 +77,31 @@ type CommitSnapshot = {
   firstValue: string;
   secondValue: string;
   hasTable: boolean;
+  comparisonText: string;
 };
 
-function LocationProbe({ onCommit }: { onCommit?: (snapshot: CommitSnapshot) => void }) {
+function captureCommit(search: string): CommitSnapshot {
+  return {
+    search,
+    firstValue: (document.querySelector('#compare-rikishi-1') as HTMLInputElement | null)?.value ?? '',
+    secondValue: (document.querySelector('#compare-rikishi-2') as HTMLInputElement | null)?.value ?? '',
+    hasTable: Boolean(document.querySelector('.comparison-table')),
+    comparisonText: document.querySelector('.comparison-table')?.textContent ?? '',
+  };
+}
+
+function ObservedComparePage({ onCommit }: { onCommit?: (snapshot: CommitSnapshot) => void }) {
+  const location = useLocation();
+  return (
+    <Profiler id="compare-page" onRender={() => onCommit?.(captureCommit(location.search))}>
+      <CompareRikishiPage />
+    </Profiler>
+  );
+}
+
+function LocationProbe() {
   const location = useLocation();
   const [, setSearchParams] = useSearchParams();
-  useLayoutEffect(() => {
-    onCommit?.({
-      search: location.search,
-      firstValue: (document.querySelector('#compare-rikishi-1') as HTMLInputElement | null)?.value ?? '',
-      secondValue: (document.querySelector('#compare-rikishi-2') as HTMLInputElement | null)?.value ?? '',
-      hasTable: Boolean(document.querySelector('.comparison-table')),
-    });
-  }, [location.search, onCommit]);
   return (
     <>
       <output data-testid="location">{`${location.pathname}${location.search}`}</output>
@@ -101,8 +113,8 @@ function LocationProbe({ onCommit }: { onCommit?: (snapshot: CommitSnapshot) => 
 function renderPage(initialEntry = '/compare/', onCommit?: (snapshot: CommitSnapshot) => void) {
   return render(
     <MemoryRouter initialEntries={[initialEntry]}>
-      <CompareRikishiPage />
-      <LocationProbe onCommit={onCommit} />
+      <ObservedComparePage onCommit={onCommit} />
+      <LocationProbe />
     </MemoryRouter>,
   );
 }
@@ -224,7 +236,7 @@ describe('CompareRikishiPage', () => {
     expect(first).toHaveAttribute('aria-expanded', 'false');
   });
 
-  it('updates ordered ids one slot at a time, clears an edited selection, and globally clears while preserving unrelated params', async () => {
+  it('updates ordered ids, compacts a remaining selection, and globally clears while preserving unrelated params', async () => {
     const user = userEvent.setup();
     mockComparisonFetch();
     renderPage('/compare/?ids=4230&view=compact');
@@ -236,9 +248,8 @@ describe('CompareRikishiPage', () => {
     await waitFor(() => expect(screen.getByTestId('location')).toHaveTextContent('/compare/?ids=4230%2C4279&view=compact'));
 
     await user.clear(first);
-    await user.type(first, '新');
-    expect(first).toHaveValue('新');
-    expect(second).toHaveValue('義ノ富士');
+    expect(first).toHaveValue('義ノ富士');
+    expect(second).toHaveValue('');
     await waitFor(() => expect(screen.getByTestId('location')).toHaveTextContent('/compare/?ids=4279&view=compact'));
 
     const clear = screen.getByRole('button', { name: '比較をクリア' });
@@ -249,7 +260,7 @@ describe('CompareRikishiPage', () => {
     expect(screen.getByTestId('location')).toHaveTextContent('/compare/?view=compact');
   });
 
-  it('keeps slot 2 locally after slot 1 is edited, while the compact shared URL reloads its sole id into slot 1', async () => {
+  it('compacts a sole remaining rikishi into slot 1 so the live state matches its shared URL', async () => {
     const user = userEvent.setup();
     mockComparisonFetch();
     const view = renderPage('/compare/?ids=4230,4279&view=compact');
@@ -258,10 +269,9 @@ describe('CompareRikishiPage', () => {
     await waitFor(() => expect(second).toHaveValue('義ノ富士'));
 
     await user.clear(first);
-    await user.type(first, '新');
 
-    expect(first).toHaveValue('新');
-    expect(second).toHaveValue('義ノ富士');
+    expect(first).toHaveValue('義ノ富士');
+    expect(second).toHaveValue('');
     await waitFor(() => expect(screen.getByTestId('location')).toHaveTextContent('/compare/?ids=4279&view=compact'));
 
     view.unmount();
@@ -288,6 +298,36 @@ describe('CompareRikishiPage', () => {
     expect(screen.queryByRole('table')).not.toBeInTheDocument();
     fireEvent.compositionEnd(input);
     expect(screen.getByTestId('location')).toHaveTextContent('/compare/?view=compact');
+  });
+
+  it('hides the selected comparison in the first committed IME draft change', async () => {
+    const commits: CommitSnapshot[] = [];
+    mockComparisonFetch();
+    renderPage('/compare/?ids=4230,4279&view=compact', (snapshot) => commits.push(snapshot));
+    await screen.findByRole('table');
+    const first = screen.getByRole('combobox', { name: '力士1' });
+    const second = screen.getByRole('combobox', { name: '力士2' });
+    commits.length = 0;
+
+    fireEvent.compositionStart(first);
+    act(() => {
+      flushSync(() => {
+        fireEvent.change(first, { target: { value: 'あお' } });
+      });
+    });
+
+    const firstDraftCommit = commits.find((snapshot) => snapshot.firstValue === 'あお');
+    expect(firstDraftCommit).toMatchObject({
+      search: '?ids=4230,4279&view=compact',
+      secondValue: '義ノ富士',
+      hasTable: false,
+      comparisonText: '',
+    });
+
+    fireEvent.compositionEnd(first);
+    expect(first).toHaveValue('義ノ富士');
+    expect(second).toHaveValue('あお');
+    await waitFor(() => expect(screen.getByTestId('location')).toHaveTextContent('/compare/?ids=4279&view=compact'));
   });
 
   it('resets removed slot text when navigation changes the URL externally', async () => {
@@ -322,6 +362,7 @@ describe('CompareRikishiPage', () => {
       firstValue: '安青錦',
       secondValue: '',
       hasTable: false,
+      comparisonText: '',
     });
   });
 
@@ -352,6 +393,15 @@ describe('CompareRikishiPage', () => {
     renderPage('/compare/?ids=4230,3842');
     row = await screen.findByRole('row', { name: /対戦成績/ });
     expect(within(row).getAllByRole('cell').map((cell) => cell.textContent)).toEqual(['0-0', '0-0']);
+  });
+
+  it('rejects a matchup response whose updatedAt is not an ISO 8601 timestamp', async () => {
+    mockComparisonFetch({ matchups: jsonResponse({ ...matchupResponse, updatedAt: 'August 17, 2026' }) });
+    renderPage('/compare/?ids=4230,4279');
+
+    expect(await screen.findByText('対戦成績を読み込めませんでした。')).toBeInTheDocument();
+    const row = await screen.findByRole('row', { name: /対戦成績/ });
+    expect(within(row).getAllByRole('cell').map((cell) => cell.textContent)).toEqual(['不明', '不明']);
   });
 
   it('shows separate index, profile, and matchup failure states without a partially labelled table', async () => {
