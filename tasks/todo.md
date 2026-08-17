@@ -291,7 +291,7 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 
 ## Plan
 
-- [ ] 公式プロフィール履歴を改名前後の力士IDへ統合し、検証済み合い口JSONを生成する
+- [x] 公式プロフィール履歴を改名前後の力士IDへ統合し、検証済み合い口JSONを生成する
 - [ ] 比較画面を2つのcomboboxと指定7項目の2人比較表へ刷新する
 - [ ] API／README／catalogを同期し、全テスト・実ブラウザ・Wrangler配信を検証する
 
