@@ -216,6 +216,7 @@
 }
 
 .analytics-results-table tbody th {
+  background-color: transparent;
   color: var(--color-primary);
   font-weight: 800;
 }

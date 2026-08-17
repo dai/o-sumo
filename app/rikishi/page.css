@@ -445,6 +445,7 @@
 
 .comparison-table tbody th {
   width: 30%;
+  background-color: transparent;
   color: var(--color-secondary);
   font-size: 0.88rem;
 }
