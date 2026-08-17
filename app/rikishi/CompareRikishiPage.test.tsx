@@ -1,47 +1,98 @@
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { MemoryRouter, useLocation, useSearchParams } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import CompareRikishiPage, { normalizeCompareIds } from './CompareRikishiPage';
 
 const comparisonIndex = {
   updatedAt: '2026-08-17T10:00:00+09:00',
   rikishi: [
+    { id: 4230, name: '安青錦', yomi: 'あおにしき', currentRank: '関脇', profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/4230/' },
+    { id: 4279, name: '義ノ富士', yomi: 'よしのふじ', currentRank: '小結', profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/4279/' },
     { id: 3842, name: '豊昇龍', yomi: 'ほうしょうりゅう', currentRank: '横綱', profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/3842/' },
-    { id: 4227, name: '大の里', yomi: 'おおのさと', currentRank: '横綱', profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/4227/' },
+    { id: 5000, name: '幕下力士', yomi: 'まくしたりきし', currentRank: '幕下1', profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/5000/' },
   ],
 };
 
 const comparisonProfiles = {
+  4230: {
+    id: 4230, name: '安青錦', yomi: 'あおにしき', currentRank: '関脇', birthDate: '', height: 182, weight: 140,
+    shusshin: 'ウクライナ', debut: '令和五年七月場所', careerStats: { wins: 100, losses: 30, draws: 0 }, photoUrl: '',
+    sourceUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/4230/', updatedAt: '2026-08-17T10:00:00+09:00',
+  },
+  4279: {
+    id: 4279, name: '義ノ富士', yomi: 'よしのふじ', currentRank: '小結', birthDate: '', height: 193, weight: 172,
+    shusshin: '東京都', debut: '令和六年三月場所', careerStats: { wins: 80, losses: 20, draws: 0 }, photoUrl: '',
+    sourceUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/4279/', updatedAt: '2026-08-17T10:00:00+09:00',
+  },
   3842: {
     id: 3842, name: '豊昇龍', yomi: 'ほうしょうりゅう', currentRank: '横綱', birthDate: '', height: 188, weight: 150,
     shusshin: 'モンゴル', debut: '平成三十年一月場所', careerStats: { wins: 401, losses: 235, draws: 34 }, photoUrl: '',
     sourceUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/3842/', updatedAt: '2026-08-17T10:00:00+09:00',
   },
-  4227: {
-    id: 4227, name: '大の里', yomi: 'おおのさと', currentRank: '横綱', birthDate: '', height: 192, weight: 191,
-    shusshin: '石川県', debut: '令和五年五月場所', careerStats: { wins: 120, losses: 30, draws: 10 }, photoUrl: '',
-    sourceUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/4227/', updatedAt: '2026-08-17T10:00:00+09:00',
-  },
 };
 
-function mockComparisonFetch() {
-  vi.stubGlobal('fetch', vi.fn((input: RequestInfo | URL) => {
+const matchupResponse = {
+  updatedAt: '2026-08-17T17:24:24+09:00',
+  matchups: [{ rikishi1Id: 4230, rikishi2Id: 4279, rikishi1Wins: 1, rikishi2Wins: 5 }],
+};
+
+type FetchOverrides = {
+  index?: Response | Promise<Response>;
+  profiles?: Partial<Record<number, Response | Promise<Response>>>;
+  matchups?: Response | Promise<Response>;
+};
+
+function jsonResponse(value: unknown, status = 200): Response {
+  return new Response(JSON.stringify(value), { status, headers: { 'Content-Type': 'application/json' } });
+}
+
+function mockComparisonFetch(overrides: FetchOverrides = {}) {
+  const fetchMock = vi.fn((input: RequestInfo | URL) => {
     const url = String(input);
     if (url === '/api/v1/rikishi.json') {
-      return Promise.resolve(new Response(JSON.stringify(comparisonIndex), { status: 200 }));
+      return Promise.resolve(overrides.index ?? jsonResponse(comparisonIndex));
+    }
+    if (url === '/api/v1/rikishi-matchups.json') {
+      return Promise.resolve(overrides.matchups ?? jsonResponse(matchupResponse));
     }
     const match = url.match(/^\/api\/v1\/rikishi\/(\d+)\.json$/);
     if (match) {
-      const profile = comparisonProfiles[Number(match[1]) as keyof typeof comparisonProfiles];
-      return Promise.resolve(new Response(JSON.stringify(profile), { status: profile ? 200 : 404 }));
+      const id = Number(match[1]);
+      const overridden = overrides.profiles?.[id];
+      if (overridden) return Promise.resolve(overridden);
+      const profile = comparisonProfiles[id as keyof typeof comparisonProfiles];
+      return Promise.resolve(profile ? jsonResponse(profile) : jsonResponse({}, 404));
     }
-    return Promise.resolve(new Response('', { status: 404 }));
-  }));
+    return Promise.resolve(jsonResponse({}, 404));
+  });
+  vi.stubGlobal('fetch', fetchMock);
+  return fetchMock;
+}
+
+function LocationProbe() {
+  const location = useLocation();
+  const [, setSearchParams] = useSearchParams();
+  return (
+    <>
+      <output data-testid="location">{`${location.pathname}${location.search}`}</output>
+      <button type="button" onClick={() => setSearchParams({ ids: '4230', view: 'compact' })}>Navigate to one rikishi</button>
+    </>
+  );
+}
+
+function renderPage(initialEntry = '/compare/') {
+  return render(
+    <MemoryRouter initialEntries={[initialEntry]}>
+      <CompareRikishiPage />
+      <LocationProbe />
+    </MemoryRouter>,
+  );
 }
 
 describe('normalizeCompareIds', () => {
-  it('accepts up to three unique positive integer ids', () => {
-    expect(normalizeCompareIds('1,2,2,3,4,invalid,0')).toEqual([1, 2, 3]);
+  it('keeps only the first two unique positive integer ids', () => {
+    expect(normalizeCompareIds('4230,4279,4230,3842,invalid,0,-1')).toEqual([4230, 4279]);
   });
 
   it('returns an empty selection for missing ids', () => {
@@ -54,21 +105,257 @@ describe('CompareRikishiPage', () => {
     vi.unstubAllGlobals();
   });
 
-  it('shows career records and calculates win rates without absences', async () => {
+  it('normalizes a legacy three-id URL, preserves unrelated params, and prefills both labelled slots in order', async () => {
     mockComparisonFetch();
+    renderPage('/compare/?ids=4230,4279,3842&view=compact');
 
-    render(
-      <MemoryRouter initialEntries={['/rikishi/compare/?ids=3842,4227']}>
-        <CompareRikishiPage />
-      </MemoryRouter>,
-    );
+    const first = await screen.findByRole('combobox', { name: '力士1' });
+    await waitFor(() => expect(first).toHaveValue('安青錦'));
+    expect(screen.getByRole('combobox', { name: '力士2' })).toHaveValue('義ノ富士');
+    await waitFor(() => expect(screen.getByTestId('location')).toHaveTextContent('/compare/?ids=4230%2C4279&view=compact'));
+  });
 
-    const recordRow = await screen.findByRole('row', { name: /通算成績/ });
-    expect(recordRow).toHaveTextContent('401-235-34');
-    expect(recordRow).toHaveTextContent('120-30-10');
+  it('prefills only slot 1 for one valid id and removes invalid or duplicate ids', async () => {
+    mockComparisonFetch();
+    renderPage('/compare/?ids=4230,4230,nope&tab=stats');
 
-    const winRateRow = screen.getByRole('row', { name: /通算勝率/ });
-    expect(winRateRow).toHaveTextContent('63.1%');
-    expect(winRateRow).toHaveTextContent('80.0%');
+    expect(await screen.findByRole('combobox', { name: '力士1' })).toHaveValue('安青錦');
+    expect(screen.getByRole('combobox', { name: '力士2' })).toHaveValue('');
+    await waitFor(() => expect(screen.getByTestId('location')).toHaveTextContent('/compare/?ids=4230&tab=stats'));
+  });
+
+  it('removes inactive or unknown ids and compacts the remaining valid id into slot 1', async () => {
+    mockComparisonFetch();
+    renderPage('/compare/?ids=5000,4230&tab=stats');
+
+    const first = await screen.findByRole('combobox', { name: '力士1' });
+    const second = screen.getByRole('combobox', { name: '力士2' });
+    await waitFor(() => expect(first).toHaveValue('安青錦'));
+    expect(second).toHaveValue('');
+    await waitFor(() => expect(screen.getByTestId('location')).toHaveTextContent('/compare/?ids=4230&tab=stats'));
+  });
+
+  it.each([
+    ['安青錦', '安青錦'],
+    ['あおにしき', '安青錦'],
+    ['Aonishiki', '安青錦'],
+    ['横綱', '豊昇龍'],
+  ])('searches active rikishi by %s and exposes rank, name, yomi, and romaji', async (query, expectedName) => {
+    const user = userEvent.setup();
+    mockComparisonFetch();
+    renderPage();
+    const input = await screen.findByRole('combobox', { name: '力士1' });
+
+    await user.type(input, query);
+
+    const option = await screen.findByRole('option', { name: new RegExp(expectedName) });
+    expect(option).toHaveTextContent(/(関脇|横綱)/);
+    expect(option).toHaveTextContent(/(あおにしき|ほうしょうりゅう)/);
+    expect(option).toHaveTextContent(/(Aonishiki|Houshouryuu)/);
+    expect(screen.queryByRole('option', { name: /幕下力士/ })).not.toBeInTheDocument();
+  });
+
+  it('shows a distinct zero-results state', async () => {
+    const user = userEvent.setup();
+    mockComparisonFetch();
+    renderPage();
+    const input = await screen.findByRole('combobox', { name: '力士1' });
+
+    await user.type(input, '該当なし');
+
+    expect(await screen.findByText('一致する力士はいません。')).toBeInTheDocument();
+    expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+  });
+
+  it('supports combobox ARIA relationships and keyboard selection while preventing duplicate choices', async () => {
+    const user = userEvent.setup();
+    mockComparisonFetch();
+    renderPage();
+    const first = await screen.findByRole('combobox', { name: '力士1' });
+
+    await user.click(first);
+    const firstListbox = screen.getByRole('listbox', { name: '力士1の候補' });
+    expect(first).toHaveAttribute('aria-controls', firstListbox.id);
+    expect(first).toHaveAttribute('aria-expanded', 'true');
+    await user.keyboard('{ArrowDown}');
+    expect(first).toHaveAttribute('aria-activedescendant', within(firstListbox).getAllByRole('option')[0].id);
+    await user.keyboard('{Enter}');
+    expect(first).toHaveValue('安青錦');
+
+    const second = screen.getByRole('combobox', { name: '力士2' });
+    await user.click(second);
+    expect(screen.queryByRole('option', { name: /安青錦/ })).not.toBeInTheDocument();
+    await user.keyboard('{ArrowDown}{ArrowUp}{Escape}');
+    expect(second).toHaveAttribute('aria-expanded', 'false');
+  });
+
+  it('closes a combobox when focus leaves it and keeps options out of the tab order', async () => {
+    const user = userEvent.setup();
+    mockComparisonFetch();
+    renderPage();
+    const first = await screen.findByRole('combobox', { name: '力士1' });
+    const second = screen.getByRole('combobox', { name: '力士2' });
+
+    await user.click(first);
+    await user.tab();
+
+    expect(second).toHaveFocus();
+    expect(first).toHaveAttribute('aria-expanded', 'false');
+  });
+
+  it('updates ordered ids one slot at a time, clears an edited selection, and globally clears while preserving unrelated params', async () => {
+    const user = userEvent.setup();
+    mockComparisonFetch();
+    renderPage('/compare/?ids=4230&view=compact');
+    const first = await screen.findByRole('combobox', { name: '力士1' });
+    const second = screen.getByRole('combobox', { name: '力士2' });
+
+    await user.click(second);
+    await user.keyboard('{ArrowDown}{Enter}');
+    await waitFor(() => expect(screen.getByTestId('location')).toHaveTextContent('/compare/?ids=4230%2C4279&view=compact'));
+
+    await user.clear(first);
+    await user.type(first, '新');
+    expect(first).toHaveValue('新');
+    expect(second).toHaveValue('義ノ富士');
+    await waitFor(() => expect(screen.getByTestId('location')).toHaveTextContent('/compare/?ids=4279&view=compact'));
+
+    const clear = screen.getByRole('button', { name: '比較をクリア' });
+    await user.click(clear);
+    expect(first).toHaveValue('');
+    expect(second).toHaveValue('');
+    expect(clear).toBeDisabled();
+    expect(screen.getByTestId('location')).toHaveTextContent('/compare/?view=compact');
+  });
+
+  it('keeps slot 2 locally after slot 1 is edited, while the compact shared URL reloads its sole id into slot 1', async () => {
+    const user = userEvent.setup();
+    mockComparisonFetch();
+    const view = renderPage('/compare/?ids=4230,4279&view=compact');
+    const first = await screen.findByRole('combobox', { name: '力士1' });
+    const second = screen.getByRole('combobox', { name: '力士2' });
+    await waitFor(() => expect(second).toHaveValue('義ノ富士'));
+
+    await user.clear(first);
+    await user.type(first, '新');
+
+    expect(first).toHaveValue('新');
+    expect(second).toHaveValue('義ノ富士');
+    await waitFor(() => expect(screen.getByTestId('location')).toHaveTextContent('/compare/?ids=4279&view=compact'));
+
+    view.unmount();
+    vi.unstubAllGlobals();
+    mockComparisonFetch();
+    renderPage('/compare/?ids=4279&view=compact');
+
+    const reloadedFirst = await screen.findByRole('combobox', { name: '力士1' });
+    await waitFor(() => expect(reloadedFirst).toHaveValue('義ノ富士'));
+    expect(screen.getByRole('combobox', { name: '力士2' })).toHaveValue('');
+  });
+
+  it('keeps IME composition as a local draft without URL writes or Enter selection', async () => {
+    mockComparisonFetch();
+    renderPage('/compare/?view=compact');
+    const input = await screen.findByRole('combobox', { name: '力士1' });
+
+    fireEvent.compositionStart(input);
+    fireEvent.change(input, { target: { value: 'あお' } });
+    fireEvent.keyDown(input, { key: 'Enter', isComposing: true });
+
+    expect(input).toHaveValue('あお');
+    expect(screen.getByTestId('location')).toHaveTextContent('/compare/?view=compact');
+    expect(screen.queryByRole('table')).not.toBeInTheDocument();
+    fireEvent.compositionEnd(input);
+    expect(screen.getByTestId('location')).toHaveTextContent('/compare/?view=compact');
+  });
+
+  it('resets removed slot text when navigation changes the URL externally', async () => {
+    const user = userEvent.setup();
+    mockComparisonFetch();
+    renderPage('/compare/?ids=4230,4279&view=compact');
+    const second = await screen.findByRole('combobox', { name: '力士2' });
+    await waitFor(() => expect(second).toHaveValue('義ノ富士'));
+
+    await user.click(screen.getByRole('button', { name: 'Navigate to one rikishi' }));
+
+    await waitFor(() => expect(second).toHaveValue(''));
+    expect(screen.getByTestId('location')).toHaveTextContent('/compare/?ids=4230&view=compact');
+  });
+
+  it('renders exactly seven metrics with semantic headers, profile links, and ordered head-to-head results', async () => {
+    mockComparisonFetch();
+    renderPage('/compare/?ids=4230,4279');
+
+    const table = await screen.findByRole('table', { name: '力士比較表' });
+    expect(within(table).getByText('力士比較表')).toBeInTheDocument();
+    expect(within(table).getAllByRole('row')).toHaveLength(8);
+    expect(within(table).queryByRole('row', { name: /通算勝率/ })).not.toBeInTheDocument();
+    expect(within(table).getByRole('link', { name: '安青錦' })).toHaveAttribute('href', '/rikishi/4230/');
+    expect(within(table).getByRole('link', { name: '義ノ富士' })).toHaveAttribute('href', '/rikishi/4279/');
+    const headToHead = within(table).getByRole('row', { name: /対戦成績/ });
+    expect(headToHead).toHaveTextContent('1-5');
+    expect(headToHead).toHaveTextContent('5-1');
+  });
+
+  it('reverses head-to-head results with display order and uses 0-0 for an absent valid pair', async () => {
+    mockComparisonFetch();
+    const view = renderPage('/compare/?ids=4279,4230');
+    let row = await screen.findByRole('row', { name: /対戦成績/ });
+    expect(within(row).getAllByRole('cell').map((cell) => cell.textContent)).toEqual(['5-1', '1-5']);
+
+    view.unmount();
+    vi.unstubAllGlobals();
+    mockComparisonFetch();
+    renderPage('/compare/?ids=4230,3842');
+    row = await screen.findByRole('row', { name: /対戦成績/ });
+    expect(within(row).getAllByRole('cell').map((cell) => cell.textContent)).toEqual(['0-0', '0-0']);
+  });
+
+  it('shows separate index, profile, and matchup failure states without a partially labelled table', async () => {
+    mockComparisonFetch({ index: jsonResponse({}, 500) });
+    const indexView = renderPage('/compare/?ids=4230,4279');
+    expect(await screen.findByText('力士一覧を読み込めませんでした。')).toBeInTheDocument();
+    indexView.unmount();
+
+    vi.unstubAllGlobals();
+    mockComparisonFetch({ profiles: { 4279: jsonResponse({}, 500) } });
+    const profileView = renderPage('/compare/?ids=4230,4279');
+    expect(await screen.findByText('力士プロフィールを読み込めませんでした。')).toBeInTheDocument();
+    expect(screen.queryByRole('table')).not.toBeInTheDocument();
+    profileView.unmount();
+
+    vi.unstubAllGlobals();
+    mockComparisonFetch({ matchups: jsonResponse({ updatedAt: '', matchups: [{ rikishi1Id: 4230 }] }) });
+    renderPage('/compare/?ids=4230,4279');
+    expect(await screen.findByText('対戦成績を読み込めませんでした。')).toBeInTheDocument();
+    const unknownRow = await screen.findByRole('row', { name: /対戦成績/ });
+    expect(within(unknownRow).getAllByRole('cell').map((cell) => cell.textContent)).toEqual(['不明', '不明']);
+  });
+
+  it('shows a missing-profile state and never labels a partial comparison table', async () => {
+    mockComparisonFetch({ profiles: { 4279: jsonResponse({}, 404) } });
+    renderPage('/compare/?ids=4230,4279');
+
+    expect(await screen.findByText('選択した力士のプロフィールが見つかりません。')).toBeInTheDocument();
+    expect(screen.queryByRole('table')).not.toBeInTheDocument();
+  });
+
+  it('suppresses stale profile results after the ordered request key changes', async () => {
+    let resolveOldProfile!: (response: Response) => void;
+    const oldProfile = new Promise<Response>((resolve) => { resolveOldProfile = resolve; });
+    mockComparisonFetch({ profiles: { 4279: oldProfile } });
+    const user = userEvent.setup();
+    renderPage('/compare/?ids=4230,4279');
+    const second = await screen.findByRole('combobox', { name: '力士2' });
+
+    await user.clear(second);
+    await user.type(second, '豊昇龍');
+    await user.keyboard('{ArrowDown}{Enter}');
+    const table = await screen.findByRole('table');
+    expect(within(table).getByRole('link', { name: '豊昇龍' })).toBeInTheDocument();
+    expect(within(table).queryByRole('link', { name: '義ノ富士' })).not.toBeInTheDocument();
+
+    resolveOldProfile(jsonResponse(comparisonProfiles[4279]));
+    await waitFor(() => expect(within(table).queryByRole('link', { name: '義ノ富士' })).not.toBeInTheDocument());
   });
 });

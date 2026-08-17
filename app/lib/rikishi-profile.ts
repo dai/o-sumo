@@ -39,7 +39,20 @@ export interface RikishiProfile extends RikishiProfileDetail {
   updatedAt: string;
 }
 
+export interface RikishiMatchup {
+  rikishi1Id: number;
+  rikishi2Id: number;
+  rikishi1Wins: number;
+  rikishi2Wins: number;
+}
+
+export interface RikishiMatchupsResponse {
+  updatedAt: string;
+  matchups: RikishiMatchup[];
+}
+
 const RIKISHI_INDEX_URL = '/api/v1/rikishi.json';
+const RIKISHI_MATCHUPS_URL = '/api/v1/rikishi-matchups.json';
 
 export function rikishiProfilePath(id: number | string): string {
   return `/rikishi/${id}/`;
@@ -67,6 +80,15 @@ async function fetchJson<T>(url: string): Promise<T> {
   return response.json() as Promise<T>;
 }
 
+async function fetchOptionalJson<T>(url: string): Promise<T | null> {
+  const response = await fetch(url);
+  if (response.status === 404) return null;
+  if (!response.ok) {
+    throw new Error(`Failed to fetch ${url}: ${response.status}`);
+  }
+  return response.json() as Promise<T>;
+}
+
 export async function fetchRikishiIndex(): Promise<RikishiIndexResponse> {
   return fetchJson<RikishiIndexResponse>(RIKISHI_INDEX_URL);
 }
@@ -84,6 +106,40 @@ export async function fetchRikishiProfile(id: number): Promise<RikishiProfile | 
   } catch {
     return mergeRikishiProfile(indexItem, emptyProfileDetail(id), index.updatedAt);
   }
+}
+
+export async function fetchRikishiProfilesFromIndex(
+  index: RikishiIndexResponse,
+  ids: number[],
+): Promise<Array<RikishiProfile | null>> {
+  return Promise.all(ids.map(async (id) => {
+    const indexItem = index.rikishi.find((rikishi) => rikishi.id === id);
+    if (!indexItem) return null;
+    const detail = await fetchOptionalJson<RikishiProfileDetail>(rikishiApiPath(id));
+    return detail ? mergeRikishiProfile(indexItem, detail, index.updatedAt) : null;
+  }));
+}
+
+export async function fetchRikishiMatchups(): Promise<RikishiMatchupsResponse> {
+  const payload = await fetchJson<unknown>(RIKISHI_MATCHUPS_URL);
+  if (!isRikishiMatchupsResponse(payload)) {
+    throw new Error('Invalid rikishi matchup response');
+  }
+  return payload;
+}
+
+export function findOrderedMatchup(
+  response: RikishiMatchupsResponse,
+  firstId: number,
+  secondId: number,
+): [number, number] {
+  const lowId = Math.min(firstId, secondId);
+  const highId = Math.max(firstId, secondId);
+  const matchup = response.matchups.find((item) => item.rikishi1Id === lowId && item.rikishi2Id === highId);
+  if (!matchup) return [0, 0];
+  return firstId === lowId
+    ? [matchup.rikishi1Wins, matchup.rikishi2Wins]
+    : [matchup.rikishi2Wins, matchup.rikishi1Wins];
 }
 
 export function mergeRikishiProfile(
@@ -124,4 +180,32 @@ function emptyProfileDetail(id: number): RikishiProfileDetail {
     },
     photoUrl: '',
   };
+}
+
+function isNonNegativeInteger(value: unknown): value is number {
+  return Number.isInteger(value) && Number(value) >= 0;
+}
+
+function isRikishiMatchupsResponse(value: unknown): value is RikishiMatchupsResponse {
+  if (!value || typeof value !== 'object') return false;
+  const candidate = value as { updatedAt?: unknown; matchups?: unknown };
+  if (typeof candidate.updatedAt !== 'string' || !Array.isArray(candidate.matchups)) return false;
+
+  const seen = new Set<string>();
+  return candidate.matchups.every((item) => {
+    if (!item || typeof item !== 'object') return false;
+    const matchup = item as Partial<RikishiMatchup>;
+    if (
+      !isNonNegativeInteger(matchup.rikishi1Id)
+      || !isNonNegativeInteger(matchup.rikishi2Id)
+      || !isNonNegativeInteger(matchup.rikishi1Wins)
+      || !isNonNegativeInteger(matchup.rikishi2Wins)
+      || Number(matchup.rikishi1Id) <= 0
+      || Number(matchup.rikishi2Id) <= Number(matchup.rikishi1Id)
+    ) return false;
+    const key = `${matchup.rikishi1Id},${matchup.rikishi2Id}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
 }

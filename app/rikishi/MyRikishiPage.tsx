@@ -48,7 +48,7 @@ export default function MyRikishiPage() {
   const toggleCompare = (id: number) => {
     setCompareIds((current) => current.includes(id)
       ? current.filter((selectedId) => selectedId !== id)
-      : current.length < 3 ? [...current, id] : current);
+      : current.length < 2 ? [...current, id] : current);
   };
 
   return (
@@ -93,7 +93,12 @@ export default function MyRikishiPage() {
                   </Link>
                   <MyRikishiToggle rikishiId={item.id} />
                   <label className="my-rikishi-compare-option">
-                    <input type="checkbox" checked={compareIds.includes(item.id)} onChange={() => toggleCompare(item.id)} />
+                    <input
+                      type="checkbox"
+                      checked={compareIds.includes(item.id)}
+                      disabled={compareIds.length >= 2 && !compareIds.includes(item.id)}
+                      onChange={() => toggleCompare(item.id)}
+                    />
                     {t('myRikishi.selectForCompare')}
                   </label>
                 </article>
