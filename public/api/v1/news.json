@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-17T08:19:52.931005+00:00",
+  "updatedAt": "2026-08-17T10:14:38.200438+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-jiji-2026081700745",
+      "title": "新番付発表は３１日＝大相撲秋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026081700745",
+      "publishedAt": "2026-08-17",
+      "publishedAtRaw": "時事通信　8月17日 18時07分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_TQ6I2MRBFZIRFB3NIYADWZ7INU",
+      "title": "日本相撲協会が御免祝い　9月1日に親方や力士ら協会員を対象とした研修会　秋場所前後の日程発表",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_TQ6I2MRBFZIRFB3NIYADWZ7INU",
+      "publishedAt": "2026-08-17",
+      "publishedAtRaw": "SANSPO　8月17日 17時38分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-f-bt-tp1-260817-202608170000879",
+      "title": "８・31新番付発表、横審稽古総見は一般公開なし　日本相撲協会が秋場所の御免祝い開催",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260817-202608170000879",
+      "publishedAt": "2026-08-17",
+      "publishedAtRaw": "日刊スポーツ　8月17日 17時27分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-hochi-20260817-OHT1T51165",
       "title": "日本相撲協会、秋場所の御免祝いを開催　３１日に新番付を発表",
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260817-OHT1T51165",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260816-OHT1T51351",
       "publishedAt": "2026-08-17",
       "publishedAtRaw": "スポーツ報知　8月17日 5時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_OKWIBVM3DBB6BLY6BMYAD3GBWA",
-      "title": "藤井康生氏「『30年、50年に1人の横綱じゃないか』。大げさに言いすぎた」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_OKWIBVM3DBB6BLY6BMYAD3GBWA",
-      "publishedAt": "2026-08-16",
-      "publishedAtRaw": "SANSPO　8月16日 19時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_CYDJPCBRJBCFLKWDMSTVM73EF4",
-      "title": "藤井康生氏「それが横綱なの？って言われたときに返す言葉がないかも…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_CYDJPCBRJBCFLKWDMSTVM73EF4",
-      "publishedAt": "2026-08-16",
-      "publishedAtRaw": "SANSPO　8月16日 18時08分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-tokyosports-399652",
-      "title": "【大相撲】豊昇龍　横綱での優勝ゼロ…元ＮＨＫアナが擁護「叔父さんと比べても仕方がない」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-399652",
-      "publishedAt": "2026-08-16",
-      "publishedAtRaw": "東スポWEB　8月16日 6時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
