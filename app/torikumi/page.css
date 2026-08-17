@@ -11,7 +11,7 @@
   text-align: center;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 50;
   box-shadow: var(--shadow-soft);
 }
 
@@ -35,7 +35,7 @@
 }
 
 .torikumi-main {
-  max-width: 1100px;
+  max-width: var(--layout-max-content);
   width: 100%;
   margin: 0 auto;
   padding: 2rem 1rem 3rem;
@@ -285,7 +285,7 @@
 }
 
 .cell {
-  padding: 0.75rem 1rem;
+  padding: var(--table-cell-padding-y) var(--table-cell-padding-x);
 }
 
 .torikumi-rikishi-link {
@@ -387,7 +387,7 @@
   text-decoration: underline;
 }
 
-@media (max-width: 860px) {
+@media (max-width: var(--bp-xl)) {
   .torikumi-header {
     padding: 1rem 0.9rem;
   }

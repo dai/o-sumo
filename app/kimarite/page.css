@@ -69,7 +69,7 @@
 .kimarite-main {
   flex: 1;
   width: 100%;
-  max-width: 1080px;
+  max-width: var(--layout-max-content);
   margin: 0 auto;
   padding: clamp(2rem, 5vw, 3.5rem) clamp(1rem, 3vw, 1.75rem);
   display: flex;
@@ -304,7 +304,7 @@
   text-wrap: pretty;
 }
 
-@media (max-width: 768px) {
+@media (max-width: var(--bp-lg)) {
   .kimarite-entry {
     grid-template-columns: 1fr;
   }

@@ -227,7 +227,7 @@
 .banzuke-table th,
 .banzuke-table td {
   vertical-align: top;
-  padding: 0.75rem;
+  padding: var(--table-cell-padding-y) var(--table-cell-padding-x);
   background: var(--surface-container-lowest);
 }
 
@@ -341,7 +341,7 @@
   pointer-events: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: var(--bp-lg)) {
   .rank-group {
     padding: 1rem;
   }
@@ -385,7 +385,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: var(--bp-xs)) {
   .rank-group {
     padding: 0.75rem;
     margin-bottom: 1.5rem;
