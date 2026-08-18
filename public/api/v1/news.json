@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-18T06:14:57.782773+00:00",
+  "updatedAt": "2026-08-18T08:14:49.808960+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-f-bt-tp1-260818-202608180000670",
-      "title": "最軽量力士の宇瑠寅60・4キロ「夏場なので減る」前回から2キロ減　50キロ台のライバル入門",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260818-202608180000670",
+      "id": "dmenu-docomo-hochi-20260818-OHT1T51233",
+      "title": "熊本市出身の佐田の海、熊本地震は「本当に大変なことだと思う」　秋場所へ「少しでも辛いことが忘れられる時間になってもらえたら」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260818-OHT1T51233",
       "publishedAt": "2026-08-18",
-      "publishedAtRaw": "日刊スポーツ　8月18日 15時02分",
+      "publishedAtRaw": "スポーツ報知　8月18日 16時35分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-chuspo-1298118",
-      "title": "イケメンぶり注目のホープ・大森、右目にあざがある姿で健康診断「男前になったなと言われてます」【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1298118",
+      "id": "dmenu-docomo-20260818100",
+      "title": "大相撲力士「痛くてツラい」嘉陽が健診採血に苦悶の表情、横綱のしこ名継ぐ旭富士は看護師に逆質問",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260818100",
       "publishedAt": "2026-08-18",
-      "publishedAtRaw": "中日スポーツ　8月18日 14時27分",
+      "publishedAtRaw": "デイリースポーツ　8月18日 16時32分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-chuspo-1298102",
-      "title": "玉鷲、巡業不参加は久しぶり「自分のやることだけやって。部屋で頑張って」家族との触れ合いもモチベーションに【大相撲・定期健康診断】",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1298102",
+      "id": "dmenu-docomo-hochi-20260818-OHT1T51223",
+      "title": "十両・玉鷲、久しぶりの巡業不参加に「『みんな頑張ってるな』と最初は気になったが、自分も部屋で頑張っている」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260818-OHT1T51223",
       "publishedAt": "2026-08-18",
-      "publishedAtRaw": "中日スポーツ　8月18日 14時04分",
+      "publishedAtRaw": "スポーツ報知　8月18日 16時31分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260818-OHT1T51126",
-      "title": "名古屋場所全休の十両・白鷹山が健康診断を受診　右アキレス腱断裂から初場所での復帰を目指す「強くなって戻ってきて、今度こそ幕内に」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260818-OHT1T51126",
+      "id": "dmenu-docomo-f-bt-tp1-260818-202608180000792",
+      "title": "“イケメン力士”大森の右目にアザ「男前になったと言われました」稽古で負傷…採血で顔ゆがめる",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260818-202608180000792",
       "publishedAt": "2026-08-18",
-      "publishedAtRaw": "スポーツ報知　8月18日 13時42分",
+      "publishedAtRaw": "日刊スポーツ　8月18日 16時30分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260818-0153",
-      "title": "角界最軽量の宇瑠寅は2・1キロ減の60・4キロ　50キロ台の新弟子出現に「対戦してみたい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260818-0153",
+      "id": "dmenu-docomo-f-bt-tp1-260818-202608180000761",
+      "title": "注射にたじたじ垣添「体に針入れること自体が意味分からない」井畑ツッコミ「大げさすぎ。演技」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260818-202608180000761",
       "publishedAt": "2026-08-18",
-      "publishedAtRaw": "スポニチアネックス　8月18日 13時04分",
+      "publishedAtRaw": "日刊スポーツ　8月18日 16時28分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
