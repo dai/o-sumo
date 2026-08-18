@@ -16,6 +16,7 @@ import {
 } from '../lib/torikumi-routes';
 import HomeLink from './HomeLink';
 import AbsenteesNotice from './AbsenteesNotice';
+import PageBreadcrumb from './PageBreadcrumb';
 import '../torikumi/page.css';
 import { formatUpdatedAt } from '../lib/updated-at';
 import { getBanzukeDataByMonthKey, CURRENT_BASHO_ID } from '../lib/archive-basho-data';
@@ -383,6 +384,14 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
       </header>
 
       <main className="torikumi-main">
+        <PageBreadcrumb
+          ariaLabel={t('rikishi.breadcrumbLabel')}
+          items={[
+            { label: t('global.homeLink'), href: '/' },
+            { label: `${archive.year}${archive.bashoName}`, href: mode === 'result' ? resultPath : schedulePath },
+            { label: day.dayHead },
+          ]}
+        />
         <section className="day-summary-card">
           <div>
             <div className="archive-eyebrow">{day.pathDate}</div>

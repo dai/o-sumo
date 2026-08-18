@@ -105,6 +105,7 @@
   "analytics": {
     "eyebrow": "{{basho}} Analytics",
     "title": "Grand Sumo Analytics",
+    "crumb": "Grand Sumo Analytics",
     "description": "A dashboard for Makuuchi records, the leading rikishi, and kimarite trends.",
     "resultAction": "View results",
     "scheduleAction": "View schedule",
@@ -174,6 +175,7 @@
   },
   "archives": {
     "pageTitle": "Past Basho",
+    "crumb": "Archives",
     "pageDescription": "Banzuke and torikumi results from previous tournaments.",
     "banzuke": "Banzuke",
     "result": "Results",
@@ -184,6 +186,7 @@
   },
   "banzuke": {
     "pageTitle": "Sumo",
+    "crumb": "Banzuke",
     "banzukeListTitle": "Banzuke",
     "pageDescription": "Makuuchi and Juryo banzuke and records for {{gregorianBasho}} / URL: {{banzukePath}}",
     "sortLabel": "Banzuke order",
@@ -224,6 +227,7 @@
     "hub": {
       "resultListTitle": "Results",
       "scheduleListTitle": "Schedule",
+      "crumb": "Torikumi",
       "updateDate": "Updated: {{date}}",
       "resultArchiveDescription": "Follow results from day 1 through senshuraku. Unpublished days are shown as placeholders.",
       "scheduleArchiveDescription": "View scheduled matches from day 1 through senshuraku. Unpublished days are marked as upcoming.",
@@ -284,6 +288,7 @@
     "profileMissing": "A selected rikishi profile could not be found.",
     "matchupError": "Could not load the head-to-head record.",
     "tableLabel": "Rikishi comparison table",
+    "crumb": "Compare rikishi",
     "metric": "Metric",
     "rank": "Current rank",
     "height": "Height",

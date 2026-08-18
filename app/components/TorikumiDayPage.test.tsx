@@ -37,6 +37,16 @@ describe('TorikumiDayPage', () => {
     expect(screen.queryByText('連絡先:')).not.toBeInTheDocument();
   });
 
+  it('exposes a breadcrumb back to home, the basho hub, and the current day', () => {
+    const firstResultDay = torikumiArchive.resultDays[0];
+    renderPage(firstResultDay, 'result');
+
+    const breadcrumb = screen.getByRole('navigation', { name: 'パンくず' });
+    expect(within(breadcrumb).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
+    expect(within(breadcrumb).getByRole('link', { name: /七月場所|五月場所|三月場所/ })).toHaveAttribute('href', getHubPathForDateKey(firstResultDay.pathDate, 'result'));
+    expect(within(breadcrumb).getByText(/初日|二の丸|.*日目/)).toBeInTheDocument();
+  });
+
   it('switches bout sorting between ascending and descending', async () => {
     const user = userEvent.setup();
     const marchScheduleDay = MARCH2026_TORIKUMI_DATA.scheduleDays?.find(

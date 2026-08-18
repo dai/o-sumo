@@ -5,15 +5,19 @@
 }
 
 .analytics-dashboard-header {
-  padding: clamp(3rem, 8vw, 5rem) 2rem 3rem;
+  padding: 0.85rem 1rem;
   text-align: center;
-  background: linear-gradient(180deg, var(--surface-container-low) 0%, transparent 100%);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--shadow-soft);
+  background: var(--surface-container-lowest);
 }
 
 .analytics-dashboard-eyebrow {
-  margin: 1.5rem 0 0.75rem;
+  margin: 0.2rem 0 0.15rem;
   color: var(--color-secondary);
-  font-size: 0.82rem;
+  font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -23,14 +27,15 @@
   margin: 0;
   color: var(--color-primary);
   font-family: var(--font-serif);
-  font-size: clamp(2.35rem, 7vw, 4.5rem);
+  font-size: clamp(1.3rem, 3vw, 2rem);
   line-height: 1.1;
 }
 
 .analytics-dashboard-description {
   max-width: 42rem;
-  margin: 1.25rem auto 0;
-  line-height: 1.85;
+  margin: 0.4rem auto 0;
+  line-height: 1.5;
+  font-size: 0.85rem;
 }
 
 .analytics-dashboard-actions {
@@ -241,4 +246,48 @@
   .analytics-technique-row {
     grid-template-columns: 1fr;
   }
+}
+
+/* PageBreadcrumb — shared breadcrumb used across detail pages. */
+.page-breadcrumb {
+  margin-bottom: 1rem;
+  padding: 0.4rem 0.6rem;
+  background: var(--surface-container-low);
+  font-size: 0.85rem;
+}
+
+.page-breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page-breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-secondary);
+}
+
+.page-breadcrumb__item a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
+.page-breadcrumb__item a:hover,
+.page-breadcrumb__item a:focus-visible {
+  color: var(--color-primary);
+}
+
+.page-breadcrumb__item[aria-current="page"] {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.page-breadcrumb__sep {
+  color: var(--color-muted);
+  user-select: none;
 }

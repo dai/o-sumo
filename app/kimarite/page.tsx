@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import HomeLink from '../components/HomeLink';
+import PageBreadcrumb from '../components/PageBreadcrumb';
 import {
   KIMARITE_LIST,
   CATEGORY_ORDER,
@@ -37,6 +38,13 @@ export default function KimaritePage() {
       </header>
 
       <main className="kimarite-main">
+        <PageBreadcrumb
+          ariaLabel={t('rikishi.breadcrumbLabel')}
+          items={[
+            { label: t('global.homeLink'), href: '/' },
+            { label: t('kimarite.cardTitle') },
+          ]}
+        />
         <nav className="kimarite-toc" aria-label={t('kimarite.tocLabel')}>
           <h2 className="kimarite-toc-heading">{t('kimarite.tocHeading')}</h2>
           <ol className="kimarite-toc-list">

@@ -194,6 +194,18 @@ describe('TorikumiHubPage', () => {
     expect(screen.getAllByRole('link').some((l) => l.getAttribute('href') === `/${firstCurrentDay!.pathDate}-torikumi/`)).toBe(true);
   });
 
+  it('exposes a breadcrumb on the basho hub back to home', () => {
+    render(
+      <MemoryRouter initialEntries={['/202607-torikumi']}>
+        <TorikumiHubPage mode="result" />
+      </MemoryRouter>,
+    );
+
+    const breadcrumb = screen.getByRole('navigation', { name: 'パンくず' });
+    expect(within(breadcrumb).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
+    expect(within(breadcrumb).getByText(/2026.*七月場所|令和八年七月場所/)).toBeInTheDocument();
+  });
+
   it('renders 202603 schedule hub with 202603 day links', () => {
     render(
       <MemoryRouter initialEntries={['/202603-yotei']}>

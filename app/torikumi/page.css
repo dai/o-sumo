@@ -7,7 +7,7 @@
 
 /* Shared background is defined in globals.css */
 .torikumi-header {
-  padding: 3rem 2rem;
+  padding: 0.85rem 1rem;
   text-align: center;
   position: sticky;
   top: 0;
@@ -16,8 +16,9 @@
 }
 
 .torikumi-header h1 {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.2rem;
   font-family: var(--font-serif);
+  font-size: 1.4rem;
 }
 
 .torikumi-header p {
@@ -389,11 +390,12 @@
 
 @media (max-width: 860px) {
   .torikumi-header {
-    padding: 1rem 0.9rem;
+    padding: 0.6rem 0.85rem;
   }
 
   .torikumi-header h1 {
     margin-bottom: 0.2rem;
+    font-size: 1.15rem;
   }
 
   .torikumi-header p {
@@ -458,4 +460,48 @@
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 0.18em;
+}
+
+/* PageBreadcrumb — shared breadcrumb used across detail pages. */
+.page-breadcrumb {
+  margin-bottom: 1rem;
+  padding: 0.4rem 0.6rem;
+  background: var(--surface-container-low);
+  font-size: 0.85rem;
+}
+
+.page-breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page-breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-secondary);
+}
+
+.page-breadcrumb__item a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
+.page-breadcrumb__item a:hover,
+.page-breadcrumb__item a:focus-visible {
+  color: var(--color-primary);
+}
+
+.page-breadcrumb__item[aria-current="page"] {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.page-breadcrumb__sep {
+  color: var(--color-muted);
+  user-select: none;
 }

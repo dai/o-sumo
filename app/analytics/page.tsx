@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import HomeLink from '../components/HomeLink';
 import BashoContextBar from '../components/BashoContextBar';
+import PageBreadcrumb from '../components/PageBreadcrumb';
 import { getBashoStatus } from '../lib/basho-status';
 import { CURRENT_RESULT_PATH, CURRENT_SCHEDULE_PATH } from '../lib/archive-basho-data';
 import { makuuchiData, type Rikishi } from '../lib/sumo-data';
@@ -146,6 +147,13 @@ export default function AnalyticsDashboardPage() {
       </header>
 
       <main className="analytics-dashboard-main">
+        <PageBreadcrumb
+          ariaLabel={t('rikishi.breadcrumbLabel')}
+          items={[
+            { label: t('global.homeLink'), href: '/' },
+            { label: t('analytics.crumb') },
+          ]}
+        />
         <BashoContextBar
           archive={torikumiArchive}
           bashoTitle={`${torikumiArchive.year}${torikumiArchive.bashoName}`}

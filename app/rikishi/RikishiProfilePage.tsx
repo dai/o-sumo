@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import HomeLink from '../components/HomeLink';
 import MyRikishiToggle from '../components/MyRikishiToggle';
+import PageBreadcrumb from '../components/PageBreadcrumb';
 import {
   fetchRikishiIndex,
   fetchRikishiProfile,
@@ -154,19 +155,14 @@ export default function RikishiProfilePage() {
 
       <main className="rikishi-main">
         {profile ? (
-          <nav className="rikishi-breadcrumb" aria-label={t('rikishi.breadcrumbLabel')}>
-            <ol className="rikishi-breadcrumb__list">
-              <li className="rikishi-breadcrumb__item">
-                <Link to="/">{t('global.homeLink')}</Link>
-              </li>
-              <li className="rikishi-breadcrumb__item" aria-hidden="true">›</li>
-              <li className="rikishi-breadcrumb__item">
-                <Link to="/rikishi/">{t('rikishi.listTitle')}</Link>
-              </li>
-              <li className="rikishi-breadcrumb__item" aria-hidden="true">›</li>
-              <li className="rikishi-breadcrumb__item" aria-current="page">{profile.name}</li>
-            </ol>
-          </nav>
+          <PageBreadcrumb
+            ariaLabel={t('rikishi.breadcrumbLabel')}
+            items={[
+              { label: t('global.homeLink'), href: '/' },
+              { label: t('rikishi.listTitle'), href: '/rikishi/' },
+              { label: profile.name },
+            ]}
+          />
         ) : null}
 
         {status === 'loading' ? <p className="rikishi-status">{t('rikishi.loading')}</p> : null}

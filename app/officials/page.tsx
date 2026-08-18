@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import HomeLink from '../components/HomeLink';
 import ShareCurrentLink from '../components/ShareCurrentLink';
+import PageBreadcrumb from '../components/PageBreadcrumb';
 import { usePageMetaOverride } from '../components/MetaHead';
 import { formatUpdatedAt } from '../lib/updated-at';
 import { toRomaji } from '../lib/romaji';
@@ -168,6 +169,16 @@ export function OfficialProfilePage({ kind }: { kind: OfficialKind }) {
       <h1>{currentProfile?.name ?? t('officials.detailTitle', { label })}</h1>{currentProfile && <p>{rankLabel} / {toRomaji(currentProfile.yomi)}</p>}
     </header>
     <main className="rikishi-main">
+      {currentProfile ? (
+        <PageBreadcrumb
+          ariaLabel={t('rikishi.breadcrumbLabel')}
+          items={[
+            { label: t('global.homeLink'), href: '/' },
+            { label: t('officials.listTitle', { label }), href: officialListPath(kind) },
+            { label: currentProfile.name },
+          ]}
+        />
+      ) : null}
       {status === 'loading' && <p className="rikishi-status">{t('rikishi.loading')}</p>}
       {status === 'error' && <p className="rikishi-status warning">{t('officials.loadError')}</p>}
       {status === 'not-found' && <section className="rikishi-status warning"><h2>{t('officials.notFound')}</h2><Link to={officialListPath(kind)}>{t('officials.backToList', { label })}</Link></section>}

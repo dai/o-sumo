@@ -1,4 +1,4 @@
-import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useState } from 'react';
 import { flushSync } from 'react-dom';
@@ -243,6 +243,42 @@ describe('official directories', () => {
     expect(screen.getByText('1979-08')).toBeInTheDocument();
     expect(screen.getByText('取得日時: 2026-08-12 00:27 UTC')).toBeInTheDocument();
     expect(screen.queryByRole('img')).not.toBeInTheDocument();
+  });
+
+  it('exposes a breadcrumb back to home and the gyoji directory', async () => {
+    vi.mocked(fetch).mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        kind: 'gyoji', id: 1986, name: '木村 庄之助', yomi: 'きむら しょうのすけ', rank: '立行司', rankCode: 'tate-gyoji',
+        realName: '洞澤 裕司', affiliation: '九重', birthDate: '1961-10-30', birthplace: '東京都府中市',
+        adoptedAt: '1977-10', sourceUrl: 'https://www.sumo.or.jp/Profile/gyoji/1986/', retrievedAt: '2026-08-12T00:27:59Z',
+      }),
+    } as Response);
+    render(<MemoryRouter initialEntries={['/gyoji/1986/']}><Routes><Route path="/gyoji/:id/" element={<OfficialProfilePage kind="gyoji" />} /></Routes></MemoryRouter>);
+
+    await screen.findByRole('heading', { name: '木村 庄之助', level: 1 });
+    const breadcrumb = screen.getByRole('navigation', { name: 'パンくず' });
+    expect(within(breadcrumb).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
+    expect(within(breadcrumb).getByRole('link', { name: '行司名鑑' })).toHaveAttribute('href', '/gyoji/');
+    expect(within(breadcrumb).getByText('木村 庄之助')).toBeInTheDocument();
+  });
+
+  it('exposes a breadcrumb back to home and the yobidashi directory', async () => {
+    vi.mocked(fetch).mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        kind: 'yobidashi', id: 1935, name: '克之', yomi: 'かつゆき', rank: '立呼出', rankCode: 'tate-yobidashi',
+        realName: '小山 克之', affiliation: '芝田山', birthDate: '1964-02-06', birthplace: '大阪府大阪市鶴見区',
+        adoptedAt: '1979-08', sourceUrl: 'https://www.sumo.or.jp/Profile/yobidashi/1935/', retrievedAt: '2026-08-12T00:27:59Z',
+      }),
+    } as Response);
+    render(<MemoryRouter initialEntries={['/yobidashi/1935/']}><Routes><Route path="/yobidashi/:id/" element={<OfficialProfilePage kind="yobidashi" />} /></Routes></MemoryRouter>);
+
+    await screen.findByRole('heading', { name: '克之', level: 1 });
+    const breadcrumb = screen.getByRole('navigation', { name: 'パンくず' });
+    expect(within(breadcrumb).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
+    expect(within(breadcrumb).getByRole('link', { name: '呼出名鑑' })).toHaveAttribute('href', '/yobidashi/');
+    expect(within(breadcrumb).getByText('克之')).toBeInTheDocument();
   });
 
   it('preserves the official JSON rank on a Japanese profile', async () => {
