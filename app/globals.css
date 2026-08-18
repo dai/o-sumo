@@ -10,13 +10,13 @@
   --shijin-white: #ffffff;
   --shijin-red: #ff0000;
   --shijin-purple: #800080;
-  --color-primary: #5f5e5e;
-  --color-primary-container: #1f3348;
-  --color-primary-muted: #7d7d7c;
-  --color-secondary: #735c00;
+  --color-primary: #1d3a5f;
+  --color-primary-container: #e6f0fa;
+  --color-primary-muted: #6b7c93;
+  --color-secondary: #c2410c;
   --color-dohyo-clay: var(--dohyo-clay);
-  --color-secondary-light: #fed65b;
-  --color-secondary-dim: #b79d46;
+  --color-secondary-light: #fbbf24;
+  --color-secondary-dim: #f59e0b;
   --color-tertiary: #7d4a9e;
   --color-tertiary-container: #efe5f7;
   --color-accent-gold: var(--color-secondary-light);
@@ -39,24 +39,24 @@
   --color-surface: #ffffff;
   --color-focus: #0c5a8a;
   --color-focus-outline: rgba(12, 90, 138, 0.45);
-  --color-on-primary: #f8f8f6;
+  --color-on-primary: #1d3a5f;
   --color-on-secondary: #1a1c1a;
   --color-on-tertiary: #f8f8f6;
 
   /* Status accents */
-  --color-east: #3977b6;
-  --color-west: #9a4b8b;
-  --color-win: #735c00;
-  --color-loss: #515b66;
-  --color-draw: #8a8f97;
+  --color-east: #2563eb;
+  --color-west: #c026d3;
+  --color-win: #c2410c;
+  --color-loss: #475569;
+  --color-draw: #94a3b8;
 
   /* Legacy mappings for compatibility */
   --color-primary-legacy: var(--color-primary-container);
   --color-secondary-legacy: var(--color-tertiary);
 
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #1f3348 0%, #3a516a 100%);
-  --gradient-secondary: linear-gradient(135deg, #fed65b 0%, #d5a82d 100%);
+  --gradient-primary: linear-gradient(135deg, #1d3a5f 0%, #2c5282 100%);
+  --gradient-secondary: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
   --gradient-gold: var(--gradient-secondary);
 
   /* Atmospheric depth */
