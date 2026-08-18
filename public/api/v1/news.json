@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-18T04:17:46.396793+00:00",
+  "updatedAt": "2026-08-18T06:14:57.782773+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-f-bt-tp1-260818-202608180000670",
+      "title": "最軽量力士の宇瑠寅60・4キロ「夏場なので減る」前回から2キロ減　50キロ台のライバル入門",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260818-202608180000670",
+      "publishedAt": "2026-08-18",
+      "publishedAtRaw": "日刊スポーツ　8月18日 15時02分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-chuspo-1298118",
+      "title": "イケメンぶり注目のホープ・大森、右目にあざがある姿で健康診断「男前になったなと言われてます」【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1298118",
+      "publishedAt": "2026-08-18",
+      "publishedAtRaw": "中日スポーツ　8月18日 14時27分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-chuspo-1298102",
+      "title": "玉鷲、巡業不参加は久しぶり「自分のやることだけやって。部屋で頑張って」家族との触れ合いもモチベーションに【大相撲・定期健康診断】",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1298102",
+      "publishedAt": "2026-08-18",
+      "publishedAtRaw": "中日スポーツ　8月18日 14時04分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260818-OHT1T51126",
+      "title": "名古屋場所全休の十両・白鷹山が健康診断を受診　右アキレス腱断裂から初場所での復帰を目指す「強くなって戻ってきて、今度こそ幕内に」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260818-OHT1T51126",
+      "publishedAt": "2026-08-18",
+      "publishedAtRaw": "スポーツ報知　8月18日 13時42分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-sponichi-spngoo-20260818-0153",
       "title": "角界最軽量の宇瑠寅は2・1キロ減の60・4キロ　50キロ台の新弟子出現に「対戦してみたい」",
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260818-0153",
       "publishedAt": "2026-08-18",
       "publishedAtRaw": "スポニチアネックス　8月18日 13時04分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-tokyosports-399895",
-      "title": "【大相撲】まげを結わないと力士は外出できない…床山がいない時はどうする？　元力士が解説",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-399895",
-      "publishedAt": "2026-08-18",
-      "publishedAtRaw": "東スポWEB　8月18日 11時43分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260818-0032",
-      "title": "【カープの支度部屋】マツダスタジアム“改涼”効果！氷風呂、ブルペンにエアコン…暑熱対策で本拠地成績↑",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260818-0032",
-      "publishedAt": "2026-08-18",
-      "publishedAtRaw": "スポニチアネックス　8月18日 5時05分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-jiji-2026081700745",
-      "title": "新番付発表は３１日＝大相撲秋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026081700745",
-      "publishedAt": "2026-08-17",
-      "publishedAtRaw": "時事通信　8月17日 18時07分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_TQ6I2MRBFZIRFB3NIYADWZ7INU",
-      "title": "日本相撲協会が御免祝い　9月1日に親方や力士ら協会員を対象とした研修会　秋場所前後の日程発表",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_TQ6I2MRBFZIRFB3NIYADWZ7INU",
-      "publishedAt": "2026-08-17",
-      "publishedAtRaw": "SANSPO　8月17日 17時38分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
