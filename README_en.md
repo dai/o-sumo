@@ -15,6 +15,7 @@ o-sumo is a static web app for publishing sumo banzuke, torikumi, and rikishi, g
 - API spec: `docs/api/v1.md` / `docs/api/v1.en.md`
 - API policy: `docs/api/policy.md` / `docs/api/policy.en.md`
 - API changelog: `docs/api/changelog.md` / `docs/api/changelog.en.md`
+- Rikishi profile and matchup refresh runbook: `docs/rikishi-profile-refresh-runbook.md`
 - Gyoji and yobidashi refresh runbook: `docs/official-profile-refresh-runbook.md`
 
 ## Overview
@@ -25,7 +26,7 @@ o-sumo is a static web app for publishing sumo banzuke, torikumi, and rikishi, g
   - Rikishi list: `/rikishi`
   - Rikishi profile: `/rikishi/{id}`
   - My Rikishi: `/my-rikishi/`
-  - Compare Rikishi: `/compare/?ids={id1},{id2}…`
+  - Compare Rikishi: `/compare/?ids={id1},{id2}`
   - Gyoji directory: `/gyoji/`
   - Gyoji profile: `/gyoji/{id}/`
   - Yobidashi directory: `/yobidashi/`
@@ -49,6 +50,7 @@ o-sumo is a static web app for publishing sumo banzuke, torikumi, and rikishi, g
   - `/api/v1/torikumi.json`
   - `/api/v1/rikishi.json`
   - `/api/v1/rikishi/{id}.json`
+  - `/api/v1/rikishi-matchups.json`
   - `/api/v1/gyoji.json`
   - `/api/v1/gyoji/{id}.json`
   - `/api/v1/yobidashi.json`
@@ -80,7 +82,7 @@ Skill publishing:
 - Bilingual lists and profiles for 42 active gyoji and 45 active yobidashi, sourced from the official Japan Sumo Association website. Official numeric IDs are used in page and JSON API URLs, and no photographs are published
 - Banzuke pages for makuuchi and juryo rankings and records, with MiniMax I2I Generation processed rikishi profile images and links to rikishi profiles
 - My Rikishi (`/my-rikishi/`) stores up to 10 wrestlers by shikona with URL synchronisation and `localStorage` persistence across devices
-- Compare Rikishi (`/compare/?ids=…`) places up to 3 wrestlers side-by-side with career win/loss (excluding absent days from the win-rate denominator) and win-rate metrics
+- Compare Rikishi (`/compare/?ids={id1},{id2}`) searches the current makuuchi and juryo roster and compares exactly two rikishi across seven profile metrics, including official-history career head-to-head
 - Basho analytics (`/analytics/`) shows makuuchi yusho, jun-yusho, kanto-sho, gin-o-sho, and juryo yusho for the current basho
 - The `BashoContextBar` is rendered above monthly hubs, daily pages, and the analytics page so users can jump between the current basho and past archives
 - The `ShareCurrentLink` button copies the current URL to the clipboard (with a manual fallback for non-secure contexts)
@@ -164,6 +166,7 @@ Useful local URLs:
 - `http://localhost:3001/{YYYYMMDD}-yotei`
 - `http://localhost:3001/kimarite`
 - `http://localhost:3001/analytics/`
+- `http://localhost:3001/api/v1/rikishi-matchups.json`
 - `http://localhost:3001/api/v1/news.json`
 
 ## Data Updates
@@ -179,6 +182,8 @@ Rikishi profiles only:
 ```bash
 python scripts/update_sumo_data.py --rikishi-only
 ```
+
+This full-profile refresh also generates `rikishi-matchups.json`, resolving shikona before and after name changes to official rikishi IDs. The file is replaced only after all target profiles pass retrieval, ID resolution, and cross-profile consistency checks; partial fetches and parse failures preserve the last valid file. See `docs/rikishi-profile-refresh-runbook.md` for pre-publish checks.
 
 Rikishi profiles only, limited to the first 10 profiles (for testing):
 
@@ -236,6 +241,7 @@ Generated outputs:
 - `public/api/v1/torikumi.json`
 - `public/api/v1/rikishi.json`
 - `public/api/v1/rikishi/{id}.json` (one file per rikishi, including `name`, `yomi`, `currentRank`, `sourceUrl`, and `updatedAt`)
+- `public/api/v1/rikishi-matchups.json` (unique official ID pairs and both career win totals derived from profile history)
 - `public/api/v1/news.json`
 - `public/api/v1/gyoji.json` / `public/api/v1/gyoji/{id}.json` (42 gyoji)
 - `public/api/v1/yobidashi.json` / `public/api/v1/yobidashi/{id}.json` (45 yobidashi)
@@ -306,7 +312,7 @@ Current main coverage:
 - daily torikumi sorting and pending-state rendering
 - gyoji/yobidashi lists and profiles, bilingual ranks, official numeric IDs, API paths, dynamic metadata, and sitemap entries
 - My Rikishi toggle, list, IME input correction, and URL synchronisation
-- Compare Rikishi (up to 3 wrestlers) career win/loss, win-rate, and absent-day exclusion
+- Compare Rikishi (exactly two wrestlers) search, URL sync, seven metrics, and head-to-head results from both display perspectives
 - Basho analytics (`/analytics/`) makuuchi awards, special prizes, and juryo yusho
 - `BashoContextBar` basho status switching and updated-at display
 - `WebMcpProvider` four-tool registration with `document.modelContext.registerTool` / `navigator.modelContext.registerTool`

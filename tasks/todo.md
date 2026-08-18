@@ -282,3 +282,30 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 - 完全検証: `npm run typecheck`、全Vitest 48 files / 336 tests、`npm run build`、`git diff --check` がすべてexit 0。buildの既存chunk size警告とBrowserslist更新警告のみ。
 
 ---
+
+# 力士比較ページ刷新（2026-08-17）
+
+詳細設計: `docs/superpowers/specs/2026-08-17-rikishi-comparison-refresh-design.md`
+
+実装計画: `docs/superpowers/plans/2026-08-17-rikishi-comparison-refresh.md`
+
+## Plan
+
+- [x] 公式プロフィール履歴を改名前後の力士IDへ統合し、検証済み合い口JSONを生成する
+- [x] 比較画面を2つのcomboboxと指定7項目の2人比較表へ刷新する
+- [x] API／README／catalogを同期し、全テスト・実ブラウザ・Wrangler配信を検証する
+
+## Review
+
+- 合い口生成: 日本相撲協会プロフィールの場所・日別履歴を改名前後の公式力士IDへ統合し、PC／モバイル重複と休場・取組なしを除外した。全件取得・ID解決・双方履歴の一致後だけJSONを置き換え、部分取得・未解決名・片側履歴・相互不一致では既存の正常ファイルを保持する回帰テストを追加した。
+- 公式値の判断: 2026-08-17生成時点の公式履歴では安青錦（4230）対 義ノ富士（4279）は `1-5`（反対列 `5-1`）。計画中の `6-2` は表示例であり、公式履歴を正本とする要件を優先してハードコードしなかった。
+- UI: 現役幕内・十両から選ぶ独立comboboxを2つ実装し、四股名・かな・ローマ字・番付、IME、上下キー／Enter／Escape、タッチ、重複禁止、1人・旧3人URLの正規化、選択中の旧表非表示、clear一括リセットに対応した。2人揃った場合だけ、現在の番付・身長・体重・出身地・初土俵・通算成績・合い口の7行を表示する。
+- catalog TDD: `rikishi-matchups.json` を期待する `app/pwa-smoke.test.ts` を先に追加すると1 testが意図どおりRED。`public/.well-known/api-catalog` 同期後は9 testsがGREEN。日英API仕様・README・changelog・力士更新Runbookも新契約へ同期した。
+- データ検証: Pythonはparser 55 tests、official profiles 7 tests、news feed 6 tests、torikumi logicがすべて成功。JSON独立検証は1,790ペアで `rikishi1Id < rikishi2Id`、ペア一意、勝数が非負整数、代表4230/4279が `1-5` であることを確認した。
+- フロントエンド検証: focused Vitest 6 files / 50 tests、全Vitest 49 files / 357 tests、`npm run typecheck`、`npm run build`、`git diff --check` が成功。buildは既存のarchive chunk sizeとBrowserslist更新警告のみ。
+- Impeccable v4.1.1: `CompareRikishiPage.tsx` と `page.css` のdetector結果は `[]`。実ブラウザでもアクセシブル名、フォーカス操作、テーマ、レスポンシブ挙動を照合し、blocking findingはなかった。
+- 実ブラウザ: Wrangler配信の `/compare/?ids=4230,4279` で日本語／英語とlight／darkを切り替え、7行と `1-5`／`5-1` を確認。ローマ字 `Onosato` を入力し、ArrowDown／Enterで大の里へ置換、URL `ids=4227,4279` と表が同期した。360pxでは入力が1列（`gridTemplateColumns: 288px`）、body横溢れなし（360px）、表wrapperは328pxに対し566pxで横スクロール可能。160pxスクロール後も項目列は`position: sticky; left: 0px`でwrapper左端に残った。
+- Wrangler Pages: 公式の現行ローカル開発手順を確認後、Wrangler 4.71.0で`dist`を配信。`/compare` は301かつ `Location: /compare/`、`/compare/` は200 `text/html; charset=utf-8`、`/api/v1/rikishi-matchups.json` は200 `application/json` を実測した。push・deployは行っていない。
+- 最終レビュー修正: URL transitionの最初のcommit、置換draftのfocus、clear後のslot canonicalization、IME composition中の一時空値を追加回帰で修正した。最新HEADでfocused 3 files / 41 tests、全Vitest 49 files / 363 tests、Python全対象、typecheck、build、`git diff --check`が成功。実ブラウザのキーボード置換・360px横スクロールと、Wranglerの301／200／JSON配信を再実測し、最終独立レビューはCritical／Importantとも0件だった。
+
+---

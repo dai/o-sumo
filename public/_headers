@@ -9,9 +9,9 @@
 /sw.js
   Cache-Control: public, max-age=0, must-revalidate
 
-# HTMLは短め
+# HTMLは短め (PWA Service Worker 更新を確実にするため短く)
 /
-  Cache-Control: public, max-age=300
+  Cache-Control: public, max-age=60, must-revalidate
   Link: </.well-known/api-catalog>; rel="api-catalog"
   Link: </.well-known/agent-skills/index.json>; rel="agent-skills"
   Link: </.well-known/agent-card.json>; rel="agent-card"

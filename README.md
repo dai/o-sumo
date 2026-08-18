@@ -18,6 +18,7 @@ o-sumo は、大相撲の番付、取組、力士・行司・呼出名鑑を配�
 - API 仕様: `docs/api/v1.md` / `docs/api/v1.en.md`
 - API ポリシー: `docs/api/policy.md` / `docs/api/policy.en.md`
 - API 変更履歴: `docs/api/changelog.md` / `docs/api/changelog.en.md`
+- 力士プロフィール・合い口更新手順: `docs/rikishi-profile-refresh-runbook.md`
 - 行司・呼出データ更新手順: `docs/official-profile-refresh-runbook.md`
 
 ## 概要
@@ -28,7 +29,7 @@ o-sumo は、大相撲の番付、取組、力士・行司・呼出名鑑を配�
   - 力士一覧: `/rikishi`
   - 力士プロフィール: `/rikishi/{id}`
   - マイ力士: `/my-rikishi/`
-  - 力士比較: `/compare/?ids={id1},{id2}…`
+  - 力士比較: `/compare/?ids={id1},{id2}`
   - 行司名鑑: `/gyoji/`
   - 行司プロフィール: `/gyoji/{id}/`
   - 呼出名鑑: `/yobidashi/`
@@ -52,6 +53,7 @@ o-sumo は、大相撲の番付、取組、力士・行司・呼出名鑑を配�
   - `/api/v1/torikumi.json`
   - `/api/v1/rikishi.json`
   - `/api/v1/rikishi/{id}.json`
+  - `/api/v1/rikishi-matchups.json`
   - `/api/v1/gyoji.json`
   - `/api/v1/gyoji/{id}.json`
   - `/api/v1/yobidashi.json`
@@ -78,7 +80,7 @@ Skill 公開:
 - 日本相撲協会公式サイトを出典とする現役行司42名・呼出45名の一覧と個別プロフィールを日英表示。公式数値IDをURLとJSON APIに使用し、写真は掲載しません
 - 番付ページで幕内・十両の番付と成績を表示し、MiniMax I2I Generation で加工した力士プロフィール画像とあわせて力士プロフィールへ遷移
 - マイ力士 (`/my-rikishi/`) で最大10名まで四股名を登録し、URL 同期と `localStorage` 永続化で端末をまたいで保持
-- 力士比較 (`/compare/?ids=…`) で最大3名までの通算成績・通算勝率（現時点で勝敗の決まった取組のみ分母）を並列比較
+- 力士比較 (`/compare/?ids={id1},{id2}`) で現役幕内・十両の2人を検索し、プロフィール7項目と公式履歴由来の通算合い口を比較
 - 場所ステータス分析 (`/analytics/`) で幕内優勝・三賞・十両優勝を一覧表示
 - 月別ハブ・日別ページ・場所ステータス分析のヘッダーに `BashoContextBar` を表示し、現行場所と過去場所を視覚的に切替
 - 各ページの URL を `ShareCurrentLink` ボタンでクリップボードへコピー（手動フォールバック付き）
@@ -162,6 +164,7 @@ npm run preview
 - `http://localhost:3001/{YYYYMMDD}-yotei`
 - `http://localhost:3001/kimarite`
 - `http://localhost:3001/analytics/`
+- `http://localhost:3001/api/v1/rikishi-matchups.json`
 - `http://localhost:3001/api/v1/news.json`
 
 ## データ更新
@@ -177,6 +180,8 @@ python scripts/update_sumo_data.py
 ```bash
 python scripts/update_sumo_data.py --rikishi-only
 ```
+
+この全件更新ではプロフィール詳細に加え、改名前後の四股名を公式力士IDへ統合した `rikishi-matchups.json` も生成します。全対象の取得・ID解決・相互整合が完了した場合だけ置き換え、部分取得や解析失敗時は正常な既存ファイルを保持します。公開前の確認手順は `docs/rikishi-profile-refresh-runbook.md` を参照してください。
 
 力士プロファイル取得を最初の10人に限定（テスト用）:
 
@@ -233,6 +238,7 @@ python scripts/update_official_profiles_test.py
 - `public/api/v1/torikumi.json`
 - `public/api/v1/rikishi.json`
 - `public/api/v1/rikishi/{id}.json`（全力士分、`name` / `yomi` / `currentRank` / `sourceUrl` / `updatedAt` を含む）
+- `public/api/v1/rikishi-matchups.json`（公式プロフィール履歴から生成した一意なIDペアと双方の勝数）
 - `public/api/v1/news.json`（日本相撲協会お知らせ 3 件 + dmenu スポーツ最新 5 件）
 - `public/api/v1/gyoji.json` / `public/api/v1/gyoji/{id}.json`（行司42名）
 - `public/api/v1/yobidashi.json` / `public/api/v1/yobidashi/{id}.json`（呼出45名）
@@ -315,7 +321,7 @@ GitHub Actions で取組予定、取組結果、ニュース更新を分けて�
 - 日別取組ページのソートと未更新表示
 - 行司・呼出の一覧／詳細、日英階級、公式数値ID、APIパス、動的メタデータ、sitemap
 - マイ力士のトグル／一覧／IME 入力補正と URL 同期
-- 力士比較 (最大3名) の通算成績・通算勝率、休場除外
+- 力士比較（2名固定）の4種類検索、URL同期、指定7項目、列順に応じた合い口表示
 - 場所ステータス分析 (`/analytics/`) の幕内・三賞・十両結果
 - `BashoContextBar` の場所状態切替と更新時刻表示
 - `WebMcpProvider` の 4 ツール登録 (`document.modelContext.registerTool` / `navigator.modelContext.registerTool`)

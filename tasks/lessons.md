@@ -1,10 +1,27 @@
 # Lessons
 
+## 2026-08-17 現役力士の改名履歴と同名の別人を混同しない
+
+- 四股名履歴のglobal aliasだけで対戦相手を現役IDへ解決すると、現役力士が後年使った旧名と、それ以前の同名の引退力士を誤って同一視する。active ownershipは同じ場所の`shikonaByPlace`でも一致する場合だけ確定する。
+- 現役同士として解決した取組は、canonical化後に双方のプロフィール観測が揃うことを必須にする。未解決active alias、片側観測、矛盾のいずれかがあれば、生成済みendpointを置換しない。
+- same-place ownershipがないだけではinactiveと断定しない。同場所で別名が明示されているか、対象場所が公式初土俵より前の場合だけ同名の別人として除外し、それ以外はpartial profile historyとして失敗させる。
+
 ## 2026-08-17 URL同期検索と日本語IME
 
 - controlled inputの表示値をURL queryだけから読むと、各入力のnavigationでIMEのcomposition範囲が解除され、ローマ字とかなの連結や文字欠落が起きる。
 - 入力欄はローカルdraftを唯一の表示値にし、composition中はURLを更新せず、`compositionend`で確定値を同期する。URLは共有・復元用の二次状態として扱う。
 - 回帰確認はjsdomの完成済み文字列だけで終えず、Playwright/CDPの`Input.imeSetComposition`で変換途中の値、URL未更新、composition回数、確定後の入力値とURLを実測する。
+
+## 2026-08-17 比較URL・IME commit・API検証
+
+- URLから復元する選択をpassive effectだけでstateへ同期すると、外部navigation後の最初のcommitに旧selectorや旧tableが残る。描画時はURL遷移を同期的に判定し、URL由来のrequest keyと選択で古い表示をゲートする。
+- `aria-expanded="true"`のcomboboxは、候補0件でも`aria-controls`先のlistboxをDOMに保つ。ゼロ件文言は選択不可のoptionとして、IDREFとpopupの意味を壊さない。
+- 選択済みcomboboxのIME draftはcomposition中でも最初のcommitから旧選択名と不一致になる。URL更新をcompositionendまで待つ場合も、render時のdraft不一致で旧request key・比較表・profile値を同期的に隠す。
+- 1 IDのURLがslot位置を表現できないため、slot 1を空のまま確定した場合は残存選択をslot 1へ詰める。ただし非空draftで置換中は、focus中の入力と候補操作を同じslotに保持し、URLだけを一時的にcompactする。URL正規化でキーボード操作の対象slotを入れ替えない。
+- 置換draftによって選択IDを先に外した後、draftを空へ戻す経路もclear確定として扱う。handler分岐は現在のslot IDだけでなく、反対slotに残る選択とdraft値の組み合わせまで回帰テストする。
+- IME composition中の空値は確定clearではない。空draftのcompact条件も`composing`でゲートし、compositionend後だけ選択位置を確定する。
+- React RouterのURL更新はtransitionになるため、own-writeの目標URLを「描画済みURL」として先に記録しない。Router contextが追いつくまではローカル選択を描画し、外部navigationだけをURL由来stateで同期ゲートする。
+- API文書がISO 8601日時を約束するフィールドは、単なる`string`判定で受理しない。レスポンス境界で形式・実在日・parse可能性を検証し、任意文字列を取得失敗として扱う。
 
 ## 2026-08-12 React一覧の種別切替で旧データを表示しない
 

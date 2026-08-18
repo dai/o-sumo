@@ -7,6 +7,8 @@
 /analytics/ / 200
 /kimarite /kimarite/ 301
 /kimarite/ / 200
+/compare /compare/ 301
+/compare/ / 200
 /rikishi /rikishi/ 301
 /rikishi/ / 200
 /rikishi/:id /rikishi/:id/ 301
