@@ -352,7 +352,15 @@
     "debut": "Debut",
     "sourceHeading": "Source",
     "sourceDescription": "Profile data is sourced from the Japan Sumo Association.",
-    "imageSourceDescription": "Displayed profile images are processed illustrations based on Japan Sumo Association profile photos and generated with MiniMax I2I Generation."
+    "imageSourceDescription": "Displayed profile images are processed illustrations based on Japan Sumo Association profile photos and generated with MiniMax I2I Generation.",
+    "breadcrumbLabel": "Breadcrumb",
+    "careerHeading": "Career record",
+    "careerRecord": "Career record",
+    "careerWinRate": "Win rate",
+    "careerWinRateValue": "Win rate {{percent}}%",
+    "careerBouts": "Bouts",
+    "careerBoutsValue": "Bouts {{count}}",
+    "sameRankHeading": "Other {{rank}} rikishi"
   },
   "officials": {
     "gyoji": "Gyoji",

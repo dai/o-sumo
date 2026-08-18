@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import RikishiPage from './page';
@@ -13,6 +13,20 @@ const rikishiIndex = {
       yomi: 'ほうしょうりゅう',
       currentRank: '横綱',
       profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/3842/',
+    },
+    {
+      id: 4227,
+      name: '大の里',
+      yomi: 'おおのさと',
+      currentRank: '横綱',
+      profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/4227/',
+    },
+    {
+      id: 3622,
+      name: '霧島',
+      yomi: 'きりしま',
+      currentRank: '大関',
+      profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/3622/',
     },
     {
       id: 9999,
@@ -35,9 +49,9 @@ const profileDetail = {
   shusshin: 'モンゴル',
   debut: '平成三十年一月場所',
   careerStats: {
-    wins: 0,
-    losses: 0,
-    draws: 0,
+    wins: 401,
+    losses: 235,
+    draws: 34,
   },
   photoUrl: '/images/rikishi/3842.png',
   sourceUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/3842/',
@@ -158,6 +172,75 @@ describe('Rikishi pages', () => {
 
     expect(writeText).toHaveBeenCalledWith('/api/v1/rikishi/3842.json');
     expect(await screen.findByRole('button', { name: 'コピーしました' })).toBeInTheDocument();
+  });
+
+  it('shows the career record with wins / losses / draws, win rate, and bouts', async () => {
+    mockFetch();
+
+    render(
+      <MemoryRouter initialEntries={['/rikishi/3842']}>
+        <Routes>
+          <Route path="/rikishi/:id" element={<RikishiProfilePage />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    await screen.findByRole('heading', { level: 1, name: '豊昇龍' });
+    const region = await screen.findByRole('region', { name: '通算成績' });
+    expect(within(region).getByText('401勝 235敗 34分')).toBeInTheDocument();
+    expect(within(region).getByText('勝率 63%')).toBeInTheDocument();
+    expect(within(region).getByText('出場 670')).toBeInTheDocument();
+  });
+
+  it('lists same-rank rikishi from the public index', async () => {
+    mockFetch();
+
+    render(
+      <MemoryRouter initialEntries={['/rikishi/3842']}>
+        <Routes>
+          <Route path="/rikishi/:id" element={<RikishiProfilePage />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    await screen.findByRole('heading', { level: 1, name: '豊昇龍' });
+    const region = await screen.findByRole('region', { name: '横綱の力士' });
+    expect(within(region).getByRole('link', { name: /大の里/ })).toHaveAttribute('href', '/rikishi/4227/');
+    expect(within(region).queryByRole('link', { name: /豊昇龍/ })).not.toBeInTheDocument();
+    expect(within(region).queryByRole('link', { name: /霧島/ })).not.toBeInTheDocument();
+  });
+
+  it('hides the same-rank section when only the current rikishi has that rank', async () => {
+    mockFetch();
+
+    render(
+      <MemoryRouter initialEntries={['/rikishi/9999']}>
+        <Routes>
+          <Route path="/rikishi/:id" element={<RikishiProfilePage />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    await screen.findByRole('heading', { level: 1, name: '欠損山' });
+    expect(screen.queryByRole('region', { name: '前頭1の力士' })).not.toBeInTheDocument();
+  });
+
+  it('exposes a breadcrumb to the rikishi list and the home page', async () => {
+    mockFetch();
+
+    render(
+      <MemoryRouter initialEntries={['/rikishi/3842']}>
+        <Routes>
+          <Route path="/rikishi/:id" element={<RikishiProfilePage />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    await screen.findByRole('heading', { level: 1, name: '豊昇龍' });
+    const breadcrumb = screen.getByRole('navigation', { name: 'パンくず' });
+    expect(within(breadcrumb).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
+    expect(within(breadcrumb).getByRole('link', { name: '力士プロフィール' })).toHaveAttribute('href', '/rikishi/');
+    expect(within(breadcrumb).getByText('豊昇龍')).toBeInTheDocument();
   });
 
   it('shows unknown labels for missing profile fields', async () => {

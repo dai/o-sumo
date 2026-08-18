@@ -352,7 +352,15 @@
     "debut": "初土俵",
     "sourceHeading": "出典",
     "sourceDescription": "プロフィール情報の出典は日本相撲協会です。",
-    "imageSourceDescription": "掲載画像は日本相撲協会プロフィール写真をもとに MiniMax I2I Generation で加工したプロフィールイラストです。"
+    "imageSourceDescription": "掲載画像は日本相撲協会プロフィール写真をもとに MiniMax I2I Generation で加工したプロフィールイラストです。",
+    "breadcrumbLabel": "パンくず",
+    "careerHeading": "通算成績",
+    "careerRecord": "通算成績",
+    "careerWinRate": "勝率",
+    "careerWinRateValue": "勝率 {{percent}}%",
+    "careerBouts": "出場数",
+    "careerBoutsValue": "出場 {{count}}",
+    "sameRankHeading": "{{rank}}の力士"
   },
   "officials": {
     "gyoji": "行司",

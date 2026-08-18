@@ -640,3 +640,136 @@
     min-width: 560px;
   }
 }
+
+.rikishi-breadcrumb {
+  margin-bottom: 1.25rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--surface-container-low);
+  font-size: 0.88rem;
+}
+
+.rikishi-breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rikishi-breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-secondary);
+}
+
+.rikishi-breadcrumb__item a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
+.rikishi-breadcrumb__item[aria-current="page"] {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.rikishi-profile-career {
+  padding: 1.25rem 1.5rem;
+  background: var(--surface-container-lowest);
+  box-shadow: var(--shadow-soft);
+}
+
+.rikishi-profile-career h2 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--color-primary);
+}
+
+.rikishi-profile-career__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.rikishi-profile-career__stats > div {
+  padding: 0.85rem 1rem;
+  background: var(--surface-container-low);
+}
+
+.rikishi-profile-career__stats dt {
+  color: var(--color-secondary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.25rem;
+}
+
+.rikishi-profile-career__stats dd {
+  margin: 0;
+  color: var(--color-primary);
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.rikishi-profile-same-rank {
+  padding: 1.25rem 1.5rem;
+  background: var(--surface-container-low);
+}
+
+.rikishi-profile-same-rank h2 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--color-primary);
+}
+
+.rikishi-profile-same-rank__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rikishi-profile-same-rank__link {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.65rem 0.75rem;
+  background: var(--surface-container-lowest);
+  color: inherit;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.rikishi-profile-same-rank__link:hover,
+.rikishi-profile-same-rank__link:focus-visible {
+  background: var(--color-primary-container);
+  text-decoration: none;
+}
+
+.rikishi-profile-same-rank__name {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.rikishi-profile-same-rank__yomi {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 720px) {
+  .rikishi-profile-career,
+  .rikishi-profile-same-rank {
+    padding: 1rem;
+  }
+}
