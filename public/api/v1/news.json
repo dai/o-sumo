@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-18T08:14:49.808960+00:00",
+  "updatedAt": "2026-08-18T10:11:57.322734+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-20260818121",
+      "title": "【大相撲】イケメンで話題の大森が痛々しく右目腫らす「男前になったな、と言われます」稽古中の負傷に宗治",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260818121",
+      "publishedAt": "2026-08-18",
+      "publishedAtRaw": "デイリースポーツ　8月18日 18時44分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260818-OHT1T51262",
+      "title": "元海上自衛隊員の序ノ口・宇座が採血に苦戦　１時間以上要して相撲教習所の授業時間に間に合わず「こんなにかかると思いませんでした」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260818-OHT1T51262",
+      "publishedAt": "2026-08-18",
+      "publishedAtRaw": "スポーツ報知　8月18日 17時26分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-hochi-20260818-OHT1T51233",
       "title": "熊本市出身の佐田の海、熊本地震は「本当に大変なことだと思う」　秋場所へ「少しでも辛いことが忘れられる時間になってもらえたら」",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260818-OHT1T51223",
       "publishedAt": "2026-08-18",
       "publishedAtRaw": "スポーツ報知　8月18日 16時31分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260818-202608180000792",
-      "title": "“イケメン力士”大森の右目にアザ「男前になったと言われました」稽古で負傷…採血で顔ゆがめる",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260818-202608180000792",
-      "publishedAt": "2026-08-18",
-      "publishedAtRaw": "日刊スポーツ　8月18日 16時30分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260818-202608180000761",
-      "title": "注射にたじたじ垣添「体に針入れること自体が意味分からない」井畑ツッコミ「大げさすぎ。演技」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260818-202608180000761",
-      "publishedAt": "2026-08-18",
-      "publishedAtRaw": "日刊スポーツ　8月18日 16時28分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
