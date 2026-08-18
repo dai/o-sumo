@@ -273,7 +273,7 @@
     "title": "Compare rikishi",
     "description": "Compare public profile details and career records side by side.",
     "selectTitle": "Choose rikishi to compare",
-    "selectDescription": "Choose {{max}} rikishi.",
+    "selectDescription": "Select {{max}} rikishi to expand the comparison table.",
     "searchLabel": "Find a rikishi to compare",
     "slotLabel": "Rikishi {{number}}",
     "candidateListLabel": "Candidates for {{label}}",

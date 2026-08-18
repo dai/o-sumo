@@ -132,7 +132,9 @@ function RikishiCombobox({ slot, items, selectedId, excludedId, draft, onDraftCh
         }
       }}
     >
-      <label className="directory-search__label" htmlFor={inputId}>{label}</label>
+      <label className="compare-combobox__slot-label" htmlFor={inputId}>
+        {label}
+      </label>
       <input
         id={inputId}
         className="directory-search__input compare-combobox__input"

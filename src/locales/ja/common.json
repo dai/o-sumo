@@ -273,7 +273,7 @@
     "title": "力士比較",
     "description": "公開プロフィールの基本情報と通算成績を横並びで比較できます。",
     "selectTitle": "比較する力士を選ぶ",
-    "selectDescription": "{{max}}人の力士を選択してください。",
+    "selectDescription": "力士{{max}}人を選択すると比較表が展開します",
     "searchLabel": "比較対象を探す",
     "slotLabel": "力士{{number}}",
     "candidateListLabel": "{{label}}の候補",

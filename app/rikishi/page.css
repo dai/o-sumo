@@ -465,6 +465,27 @@
   min-width: 0;
 }
 
+.compare-combobox__slot-label {
+  display: inline-block;
+  margin-bottom: 0.6rem;
+  padding: 0.3rem 0.85rem;
+  background: var(--color-primary-container);
+  color: var(--color-on-primary-container);
+  border: 1px solid color-mix(in srgb, var(--color-secondary) 30%, transparent);
+  border-radius: 999px;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.compare-combobox__slot-label:hover,
+.compare-combobox__slot-label:focus-visible {
+  background: color-mix(in srgb, var(--color-primary-container) 85%, var(--color-secondary-light));
+}
+
 .compare-combobox__input:focus-visible {
   outline: 3px solid var(--color-secondary-light);
   outline-offset: 2px;
@@ -610,11 +631,14 @@
 }
 
 .comparison-table thead th {
-  background: var(--gradient-primary);
-  color: var(--color-on-primary);
+  background: var(--color-primary);
+  color: var(--yokozuna-text);
   font-family: var(--font-serif);
   font-weight: 800;
-  border-bottom: 1px solid var(--color-border);
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  border-bottom: 2px solid var(--color-secondary);
+  padding-block: 0.85rem;
 }
 
 .comparison-table tbody th {
@@ -633,7 +657,19 @@
 
 .comparison-table thead th:first-child {
   z-index: 2;
-  background: var(--gradient-primary);
+  background: var(--color-primary);
+}
+
+.comparison-table thead th a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.comparison-table thead th a:hover,
+.comparison-table thead th a:focus-visible {
+  color: var(--color-secondary-light);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
 }
 
 .my-rikishi-toolbar__actions {
