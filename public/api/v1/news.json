@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-19T04:18:11.886942+00:00",
+  "updatedAt": "2026-08-19T08:15:25.290106+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-sponichi-spngoo-20260819-0276",
+      "title": "名古屋場所途中休場の幕内・若ノ勝が秋場所出場へ意欲「出る気持ちで体を動かしています」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260819-0276",
+      "publishedAt": "2026-08-19",
+      "publishedAtRaw": "スポニチアネックス　8月19日 16時27分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-jiji-202608190092621225",
+      "title": "豊昇龍、右膝手術明かす",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-202608190092621225",
+      "publishedAt": "2026-08-19",
+      "publishedAtRaw": "時事通信　8月19日 16時03分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-f-bt-tp1-260819-202608190000704",
+      "title": "森麗が健康診断で最後に受診「注射が苦手とかはない」秋場所へ「今まで通りやるだけ」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260819-202608190000704",
+      "publishedAt": "2026-08-19",
+      "publishedAtRaw": "日刊スポーツ　8月19日 15時42分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-jiji-2026081900737",
+      "title": "豊昇龍、右膝手術明かす＝復帰時期は「分からない」―大相撲",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026081900737",
+      "publishedAt": "2026-08-19",
+      "publishedAtRaw": "時事通信　8月19日 15時42分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-sponichi-spngoo-20260819-0183",
       "title": "横綱・豊昇龍が7月29日に右膝の手術を行ったことを明かす　秋場所出場は厳しい状況に",
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260819-0183",
       "publishedAt": "2026-08-19",
       "publishedAtRaw": "スポニチアネックス　8月19日 12時57分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-kyodo_nor-2026081901000587",
-      "title": "横綱豊昇龍、右膝手術を明かす　秋場所出場は厳しい状況か",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026081901000587",
-      "publishedAt": "2026-08-19",
-      "publishedAtRaw": "共同通信　8月19日 12時21分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260819-202608190000302",
-      "title": "横綱豊昇龍が右膝手術を明かす「こんなひどいとは思わなかった」秋場所出場は難しい状況か",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260819-202608190000302",
-      "publishedAt": "2026-08-19",
-      "publishedAtRaw": "日刊スポーツ　8月19日 11時51分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260819-OHT1T51048",
-      "title": "横綱・豊昇龍が右ひざ手術したことを明かす　秋場所出場厳しく「ファンに合わす顔がない」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260819-OHT1T51048",
-      "publishedAt": "2026-08-19",
-      "publishedAtRaw": "スポーツ報知　8月19日 11時12分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260819064",
-      "title": "大相撲　横綱豊昇龍が右膝手術激白「こんなひどいとはおもわなかった」名古屋場所後に靱帯修復術　秋場所の出場は厳しく",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260819064",
-      "publishedAt": "2026-08-19",
-      "publishedAtRaw": "デイリースポーツ　8月19日 10時36分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
