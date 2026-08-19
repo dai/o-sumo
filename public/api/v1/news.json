@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-19T00:22:03.755844+00:00",
+  "updatedAt": "2026-08-19T02:31:06.290386+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-hochi-20260819-OHT1T51048",
+      "title": "横綱・豊昇龍が右ひざ手術したことを明かす　秋場所出場厳しく「ファンに合わす顔がない」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260819-OHT1T51048",
+      "publishedAt": "2026-08-19",
+      "publishedAtRaw": "スポーツ報知　8月19日 11時12分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-20260819064",
+      "title": "大相撲　横綱豊昇龍が右膝手術激白「こんなひどいとはおもわなかった」名古屋場所後に靱帯修復術　秋場所の出場は厳しく",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260819064",
+      "publishedAt": "2026-08-19",
+      "publishedAtRaw": "デイリースポーツ　8月19日 10時36分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-numberweb-871611",
       "title": "「親方は、僕以上に僕に自信を持ってくれている」安青錦＆安治川親方が語った“酒と泪の夜”…休場考えるも「親方の顔を見たら…」",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260819013",
       "publishedAt": "2026-08-19",
       "publishedAtRaw": "デイリースポーツ　8月19日 5時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260819012",
-      "title": "佐田の海　相撲で熊本に勇気届ける　熊本市出身の決意　「気が晴れるような相撲を取りたい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260819012",
-      "publishedAt": "2026-08-19",
-      "publishedAtRaw": "デイリースポーツ　8月19日 5時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260818121",
-      "title": "【大相撲】イケメンで話題の大森が痛々しく右目腫らす「男前になったな、と言われます」稽古中の負傷に宗治",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260818121",
-      "publishedAt": "2026-08-18",
-      "publishedAtRaw": "デイリースポーツ　8月18日 18時44分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
