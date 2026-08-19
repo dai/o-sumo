@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { PAST_BASHO } from '../lib/archives-data';
 import HomeLink from '../components/HomeLink';
+import PageBreadcrumb from '../components/PageBreadcrumb';
 import './page.css';
 
 export default function ArchivesPage() {
@@ -18,6 +19,13 @@ export default function ArchivesPage() {
       </header>
 
       <main className="archives-main">
+        <PageBreadcrumb
+          ariaLabel={t('rikishi.breadcrumbLabel')}
+          items={[
+            { label: t('global.homeLink'), href: '/' },
+            { label: t('archives.crumb') },
+          ]}
+        />
         <div className="archives-list">
           {PAST_BASHO.map((archive) => (
             <article key={archive.id} className="archive-item">

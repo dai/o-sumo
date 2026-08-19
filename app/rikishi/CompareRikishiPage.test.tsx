@@ -164,6 +164,16 @@ describe('CompareRikishiPage', () => {
     await waitFor(() => expect(screen.getByTestId('location')).toHaveTextContent('/compare/?ids=4230&tab=stats'));
   });
 
+  it('exposes a breadcrumb on the compare page back to home and the rikishi directory', async () => {
+    mockComparisonFetch();
+    renderPage();
+
+    const breadcrumb = await screen.findByRole('navigation', { name: 'パンくず' });
+    expect(within(breadcrumb).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
+    expect(within(breadcrumb).getByRole('link', { name: '力士プロフィール' })).toHaveAttribute('href', '/rikishi/');
+    expect(within(breadcrumb).getByText('力士を比較')).toBeInTheDocument();
+  });
+
   it.each([
     ['安青錦', '安青錦'],
     ['あおにしき', '安青錦'],

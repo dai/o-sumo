@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import KimaritePage from './page';
@@ -58,5 +58,17 @@ describe('KimaritePage', () => {
 
     const abemaLink = screen.getByRole('link', { name: 'ABEMA の解説を見る' });
     expect(abemaLink).toHaveAttribute('href', 'https://abema.tv/lp/sumo-winning-technique');
+  });
+
+  it('exposes a breadcrumb on the kimarite page back to home', () => {
+    render(
+      <MemoryRouter>
+        <KimaritePage />
+      </MemoryRouter>,
+    );
+
+    const breadcrumb = screen.getByRole('navigation', { name: 'パンくず' });
+    expect(within(breadcrumb).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
+    expect(within(breadcrumb).getByText('決まり手')).toBeInTheDocument();
   });
 });

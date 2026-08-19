@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import BanzukeTable from '../components/BanzukeTable';
 import SortToggle from '../components/SortToggle';
 import ShareCurrentLink from '../components/ShareCurrentLink';
+import PageBreadcrumb from '../components/PageBreadcrumb';
 import { type SortOrder, sortRankGroups } from '../lib/sorting';
 import { getArchiveRouteConfigForPathname, getHubPathForMonthKey } from '../lib/torikumi-routes';
 import HomeLink from '../components/HomeLink';
@@ -87,6 +88,14 @@ export default function BanzukePage() {
       </header>
 
       <main className="page-main">
+        <PageBreadcrumb
+          ariaLabel={t('rikishi.breadcrumbLabel')}
+          items={[
+            { label: t('global.homeLink'), href: '/' },
+            { label: t('banzuke.crumb'), href: '/archives/' },
+            { label: bashoTitle },
+          ]}
+        />
         <BashoContextBar
           archive={archive}
           bashoTitle={bashoTitle}

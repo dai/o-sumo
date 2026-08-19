@@ -7,10 +7,13 @@
 
 /* Header */
 .kimarite-header {
-  padding: clamp(3rem, 6vw, 4.5rem) clamp(1.5rem, 4vw, 2.5rem) clamp(2rem, 4vw, 2.75rem);
+  padding: 0.85rem 1rem;
   background: var(--surface-container-low);
   text-align: center;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--shadow-soft);
   overflow: hidden;
 }
 
@@ -21,8 +24,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 280px;
-  height: 280px;
+  width: 180px;
+  height: 180px;
   border: 1px solid var(--color-secondary);
   border-radius: 50%;
   opacity: 0.12;
@@ -37,27 +40,27 @@
 
 .kimarite-header-title {
   font-family: var(--font-serif);
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.4rem, 3vw, 2rem);
   font-weight: 700;
   color: var(--color-primary);
   letter-spacing: -0.02em;
-  margin: 0 0 0.6rem;
+  margin: 0 0 0.2rem;
   text-wrap: balance;
 }
 
 .kimarite-header-description {
   font-family: var(--font-sans);
-  font-size: clamp(0.95rem, 1.8vw, 1.05rem);
-  line-height: 1.7;
+  font-size: clamp(0.8rem, 1.4vw, 0.95rem);
+  line-height: 1.5;
   color: var(--color-dark-text);
   max-width: 60ch;
-  margin: 0 auto 0.75rem;
+  margin: 0 auto 0.4rem;
   text-wrap: pretty;
 }
 
 .kimarite-header-count {
   font-family: var(--font-sans);
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -405,4 +408,47 @@
   color: var(--color-primary);
   text-decoration: underline;
   outline: none;
+}
+/* PageBreadcrumb — shared breadcrumb used across detail pages. */
+.page-breadcrumb {
+  margin-bottom: 1rem;
+  padding: 0.4rem 0.6rem;
+  background: var(--surface-container-low);
+  font-size: 0.85rem;
+}
+
+.page-breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page-breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-secondary);
+}
+
+.page-breadcrumb__item a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
+.page-breadcrumb__item a:hover,
+.page-breadcrumb__item a:focus-visible {
+  color: var(--color-primary);
+}
+
+.page-breadcrumb__item[aria-current="page"] {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.page-breadcrumb__sep {
+  color: var(--color-muted);
+  user-select: none;
 }

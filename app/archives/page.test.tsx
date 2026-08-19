@@ -18,4 +18,16 @@ describe('ArchivesPage', () => {
     expect(links.find((link) => link.getAttribute('href') === '/202605-yotei/')).toBeDefined();
     expect(within(screen.getByRole('contentinfo')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
   });
+
+  it('exposes a breadcrumb on the archives page back to home', () => {
+    render(
+      <MemoryRouter>
+        <ArchivesPage />
+      </MemoryRouter>,
+    );
+
+    const breadcrumb = screen.getByRole('navigation', { name: 'パンくず' });
+    expect(within(breadcrumb).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
+    expect(within(breadcrumb).getByText('アーカイブ')).toBeInTheDocument();
+  });
 });

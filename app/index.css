@@ -7,8 +7,8 @@
 
 /* Header */
 .home-header {
-  padding: 4rem 2rem;
-  padding-top: calc(4rem + 2.6rem); /* leave room for fixed top-right-controls */
+  padding: 1rem 1.5rem;
+  padding-top: calc(1rem + 2.6rem); /* leave room for fixed top-right-controls */
   text-align: center;
   position: sticky;
   top: 0;
@@ -25,17 +25,17 @@
 }
 
 .home-title {
-  font-size: 3.5rem;
+  font-size: 2rem;
   font-weight: 900;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   letter-spacing: 0.02em;
   font-family: var(--font-serif);
 }
 
 .home-subtitle {
-  font-size: 1.25rem;
+  font-size: 0.95rem;
   font-weight: 400;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
 }
 
 .home-main {
@@ -802,15 +802,15 @@
 /* Responsive */
 @media (max-width: 768px) {
   .home-header {
-    padding: 2rem 1rem;
+    padding: 0.75rem 1rem;
   }
 
   .home-title {
-    font-size: 1.67rem;
+    font-size: 1.35rem;
   }
 
   .home-subtitle {
-    font-size: 1rem;
+    font-size: 0.85rem;
   }
 
   .home-main {
@@ -872,11 +872,11 @@
 
 @media (max-width: 480px) {
   .home-header {
-    padding: 1.5rem 1rem;
+    padding: 0.6rem 0.85rem;
   }
 
   .home-title {
-    font-size: 2rem;
+    font-size: 1.2rem;
   }
 
   .hero-basho-title {

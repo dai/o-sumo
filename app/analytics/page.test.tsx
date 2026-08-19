@@ -1,4 +1,4 @@
-import { act, render, screen } from '@testing-library/react';
+import { act, render, screen, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import { i18n } from '../lib/i18n';
@@ -16,6 +16,18 @@ describe('AnalyticsDashboardPage', () => {
     expect(screen.getByRole('heading', { level: 1, name: '大相撲アナリティクス' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '取組結果を見る' })).toHaveAttribute('href', '/202607-torikumi/');
     expect(screen.getByRole('link', { name: '取組予定を見る' })).toHaveAttribute('href', '/202607-yotei/');
+  });
+
+  it('exposes a breadcrumb on the analytics page back to home', () => {
+    render(
+      <MemoryRouter>
+        <AnalyticsDashboardPage />
+      </MemoryRouter>,
+    );
+
+    const breadcrumb = screen.getByRole('navigation', { name: 'パンくず' });
+    expect(within(breadcrumb).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
+    expect(within(breadcrumb).getByText('大相撲アナリティクス')).toBeInTheDocument();
   });
 
   it('renders the finalized July 2026 champions and special prizes', () => {

@@ -105,6 +105,7 @@
   "analytics": {
     "eyebrow": "{{basho}}分析",
     "title": "大相撲アナリティクス",
+    "crumb": "大相撲アナリティクス",
     "description": "幕内の勝敗、上位争い、決まり手傾向をひと目で確認できるダッシュボードです。",
     "resultAction": "取組結果を見る",
       "scheduleAction": "取組予定を見る",
@@ -173,6 +174,7 @@
     "footerNavigation": "サイト内リンク"
   },
   "archives": {
+    "crumb": "アーカイブ",
     "pageTitle": "過去場所一覧",
     "pageDescription": "過去の場所の番付と取組結果です。",
     "banzuke": "番付",
@@ -184,6 +186,7 @@
   },
   "banzuke": {
     "pageTitle": "大相撲",
+    "crumb": "番付",
     "banzukeListTitle": "番付一覧",
     "pageDescription": "{{gregorianBasho}}の幕内・十両力士の番付と成績 / URL: {{banzukePath}}",
     "sortLabel": "番付の並び順",
@@ -224,6 +227,7 @@
     "hub": {
       "resultListTitle": "結果一覧",
       "scheduleListTitle": "予定一覧",
+      "crumb": "取組",
       "updateDate": "更新日: {{date}}",
       "resultArchiveDescription": "初日から千秋楽までの結果ページを日付ごとに遡れます。未更新日は空状態で先に公開します。",
       "scheduleArchiveDescription": "初日から千秋楽までの予定ページを日付ごとに確認できます。未更新日は取組予定未更新として表示します。",
@@ -269,7 +273,7 @@
     "title": "力士比較",
     "description": "公開プロフィールの基本情報と通算成績を横並びで比較できます。",
     "selectTitle": "比較する力士を選ぶ",
-    "selectDescription": "{{max}}人の力士を選択してください。",
+    "selectDescription": "力士{{max}}人を選択すると比較表が展開します",
     "searchLabel": "比較対象を探す",
     "slotLabel": "力士{{number}}",
     "candidateListLabel": "{{label}}の候補",
@@ -284,6 +288,7 @@
     "profileMissing": "選択した力士のプロフィールが見つかりません。",
     "matchupError": "対戦成績を読み込めませんでした。",
     "tableLabel": "力士比較表",
+    "crumb": "力士を比較",
     "metric": "項目",
     "rank": "現在の番付",
     "height": "身長",
@@ -352,7 +357,15 @@
     "debut": "初土俵",
     "sourceHeading": "出典",
     "sourceDescription": "プロフィール情報の出典は日本相撲協会です。",
-    "imageSourceDescription": "掲載画像は日本相撲協会プロフィール写真をもとに MiniMax I2I Generation で加工したプロフィールイラストです。"
+    "imageSourceDescription": "掲載画像は日本相撲協会プロフィール写真をもとに MiniMax I2I Generation で加工したプロフィールイラストです。",
+    "breadcrumbLabel": "パンくず",
+    "careerHeading": "通算成績",
+    "careerRecord": "通算成績",
+    "careerWinRate": "勝率",
+    "careerWinRateValue": "勝率 {{percent}}%",
+    "careerBouts": "出場数",
+    "careerBoutsValue": "出場 {{count}}",
+    "sameRankHeading": "{{rank}}の力士"
   },
   "officials": {
     "gyoji": "行司",

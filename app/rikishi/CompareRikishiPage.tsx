@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import HomeLink from '../components/HomeLink';
+import PageBreadcrumb from '../components/PageBreadcrumb';
 import {
   fetchRikishiIndex,
   fetchRikishiMatchups,
@@ -131,7 +132,9 @@ function RikishiCombobox({ slot, items, selectedId, excludedId, draft, onDraftCh
         }
       }}
     >
-      <label className="directory-search__label" htmlFor={inputId}>{label}</label>
+      <label className="compare-combobox__slot-label" htmlFor={inputId}>
+        {label}
+      </label>
       <input
         id={inputId}
         className="directory-search__input compare-combobox__input"
@@ -408,6 +411,14 @@ export default function CompareRikishiPage() {
         <p>{t('comparison.description')}</p>
       </header>
       <main className="rikishi-main">
+        <PageBreadcrumb
+          ariaLabel={t('rikishi.breadcrumbLabel')}
+          items={[
+            { label: t('global.homeLink'), href: '/' },
+            { label: t('rikishi.listTitle'), href: '/rikishi/' },
+            { label: t('comparison.crumb') },
+          ]}
+        />
         {indexStatus === 'loading' ? <p className="rikishi-status">{t('rikishi.loading')}</p> : null}
         {indexStatus === 'error' ? <p className="rikishi-status warning">{t('comparison.indexError')}</p> : null}
         {indexStatus === 'ready' ? (

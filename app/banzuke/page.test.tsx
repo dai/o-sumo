@@ -204,4 +204,16 @@ describe('BanzukePage', () => {
     expect(screen.getByText(`更新日: ${formatUpdatedAt(MAY2026_TORIKUMI_DATA.updatedAt)}`)).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '取組結果一覧' })).toHaveAttribute('href', '/202605-torikumi/');
   });
+
+  it('exposes a breadcrumb on the banzuke page back to home', () => {
+    render(
+      <MemoryRouter>
+        <BanzukePage />
+      </MemoryRouter>,
+    );
+
+    const breadcrumb = screen.getByRole('navigation', { name: 'パンくず' });
+    expect(within(breadcrumb).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
+    expect(within(breadcrumb).getByText(/七月場所/)).toBeInTheDocument();
+  });
 });
