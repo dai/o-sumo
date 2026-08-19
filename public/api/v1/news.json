@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-19T02:31:06.290386+00:00",
+  "updatedAt": "2026-08-19T04:18:11.886942+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-sponichi-spngoo-20260819-0183",
+      "title": "横綱・豊昇龍が7月29日に右膝の手術を行ったことを明かす　秋場所出場は厳しい状況に",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260819-0183",
+      "publishedAt": "2026-08-19",
+      "publishedAtRaw": "スポニチアネックス　8月19日 12時57分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-kyodo_nor-2026081901000587",
+      "title": "横綱豊昇龍、右膝手術を明かす　秋場所出場は厳しい状況か",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026081901000587",
+      "publishedAt": "2026-08-19",
+      "publishedAtRaw": "共同通信　8月19日 12時21分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-f-bt-tp1-260819-202608190000302",
+      "title": "横綱豊昇龍が右膝手術を明かす「こんなひどいとは思わなかった」秋場所出場は難しい状況か",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260819-202608190000302",
+      "publishedAt": "2026-08-19",
+      "publishedAtRaw": "日刊スポーツ　8月19日 11時51分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-hochi-20260819-OHT1T51048",
       "title": "横綱・豊昇龍が右ひざ手術したことを明かす　秋場所出場厳しく「ファンに合わす顔がない」",
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260819-OHT1T51048",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260819064",
       "publishedAt": "2026-08-19",
       "publishedAtRaw": "デイリースポーツ　8月19日 10時36分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-numberweb-871611",
-      "title": "「親方は、僕以上に僕に自信を持ってくれている」安青錦＆安治川親方が語った“酒と泪の夜”…休場考えるも「親方の顔を見たら…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/numberweb/sports/numberweb-871611",
-      "publishedAt": "2026-08-19",
-      "publishedAtRaw": "Number Web　8月19日 6時01分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260819-0080",
-      "title": "【大相撲】佐田の海　故郷・熊本へ届ける　秋場所で「少しでもいい相撲を」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260819-0080",
-      "publishedAt": "2026-08-19",
-      "publishedAtRaw": "スポニチアネックス　8月19日 5時05分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260819013",
-      "title": "最軽量３７歳・宇瑠寅（うるとら）　２・１キロ減で６０・４キロ　「食べているのですが、なかなか…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260819013",
-      "publishedAt": "2026-08-19",
-      "publishedAtRaw": "デイリースポーツ　8月19日 5時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
