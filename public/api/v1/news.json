@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-19T08:15:25.290106+00:00",
+  "updatedAt": "2026-08-19T10:11:21.329515+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-f-bt-tp1-260819-202608190001131",
+      "title": "豊昇龍、右ひざ手術受けていたこと明かす　秋場所出場は難しい状況「手術しなければ復帰に１年」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260819-202608190001131",
+      "publishedAt": "2026-08-19",
+      "publishedAtRaw": "日刊スポーツ　8月19日 18時47分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260819-OHT1T51292",
+      "title": "名古屋場所途中休場の幕内・若ノ勝「ケガをした時は悔しかったが、学べるものもたくさんあった」　秋場所へ「出る気で稽古をしている」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260819-OHT1T51292",
+      "publishedAt": "2026-08-19",
+      "publishedAtRaw": "スポーツ報知　8月19日 18時46分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260819-OHT1T51284",
+      "title": "夏巡業休場の幕内・欧勝馬　名古屋場所後に右肘を手術したことを明かす　秋場所へ「間に合わすしかない」…健康診断",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260819-OHT1T51284",
+      "publishedAt": "2026-08-19",
+      "publishedAtRaw": "スポーツ報知　8月19日 18時25分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-sponichi-spngoo-20260819-0276",
       "title": "名古屋場所途中休場の幕内・若ノ勝が秋場所出場へ意欲「出る気持ちで体を動かしています」",
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260819-0276",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-202608190092621225",
       "publishedAt": "2026-08-19",
       "publishedAtRaw": "時事通信　8月19日 16時03分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260819-202608190000704",
-      "title": "森麗が健康診断で最後に受診「注射が苦手とかはない」秋場所へ「今まで通りやるだけ」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260819-202608190000704",
-      "publishedAt": "2026-08-19",
-      "publishedAtRaw": "日刊スポーツ　8月19日 15時42分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-jiji-2026081900737",
-      "title": "豊昇龍、右膝手術明かす＝復帰時期は「分からない」―大相撲",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026081900737",
-      "publishedAt": "2026-08-19",
-      "publishedAtRaw": "時事通信　8月19日 15時42分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260819-0183",
-      "title": "横綱・豊昇龍が7月29日に右膝の手術を行ったことを明かす　秋場所出場は厳しい状況に",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260819-0183",
-      "publishedAt": "2026-08-19",
-      "publishedAtRaw": "スポニチアネックス　8月19日 12時57分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
