@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-18T10:11:57.322734+00:00",
+  "updatedAt": "2026-08-19T00:22:03.755844+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-numberweb-871611",
+      "title": "「親方は、僕以上に僕に自信を持ってくれている」安青錦＆安治川親方が語った“酒と泪の夜”…休場考えるも「親方の顔を見たら…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/numberweb/sports/numberweb-871611",
+      "publishedAt": "2026-08-19",
+      "publishedAtRaw": "Number Web　8月19日 6時01分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260819-0080",
+      "title": "【大相撲】佐田の海　故郷・熊本へ届ける　秋場所で「少しでもいい相撲を」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260819-0080",
+      "publishedAt": "2026-08-19",
+      "publishedAtRaw": "スポニチアネックス　8月19日 5時05分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-20260819013",
+      "title": "最軽量３７歳・宇瑠寅（うるとら）　２・１キロ減で６０・４キロ　「食べているのですが、なかなか…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260819013",
+      "publishedAt": "2026-08-19",
+      "publishedAtRaw": "デイリースポーツ　8月19日 5時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-20260819012",
+      "title": "佐田の海　相撲で熊本に勇気届ける　熊本市出身の決意　「気が晴れるような相撲を取りたい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260819012",
+      "publishedAt": "2026-08-19",
+      "publishedAtRaw": "デイリースポーツ　8月19日 5時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-20260818121",
       "title": "【大相撲】イケメンで話題の大森が痛々しく右目腫らす「男前になったな、と言われます」稽古中の負傷に宗治",
       "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260818121",
       "publishedAt": "2026-08-18",
       "publishedAtRaw": "デイリースポーツ　8月18日 18時44分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260818-OHT1T51262",
-      "title": "元海上自衛隊員の序ノ口・宇座が採血に苦戦　１時間以上要して相撲教習所の授業時間に間に合わず「こんなにかかると思いませんでした」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260818-OHT1T51262",
-      "publishedAt": "2026-08-18",
-      "publishedAtRaw": "スポーツ報知　8月18日 17時26分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260818-OHT1T51233",
-      "title": "熊本市出身の佐田の海、熊本地震は「本当に大変なことだと思う」　秋場所へ「少しでも辛いことが忘れられる時間になってもらえたら」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260818-OHT1T51233",
-      "publishedAt": "2026-08-18",
-      "publishedAtRaw": "スポーツ報知　8月18日 16時35分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260818100",
-      "title": "大相撲力士「痛くてツラい」嘉陽が健診採血に苦悶の表情、横綱のしこ名継ぐ旭富士は看護師に逆質問",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260818100",
-      "publishedAt": "2026-08-18",
-      "publishedAtRaw": "デイリースポーツ　8月18日 16時32分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260818-OHT1T51223",
-      "title": "十両・玉鷲、久しぶりの巡業不参加に「『みんな頑張ってるな』と最初は気になったが、自分も部屋で頑張っている」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260818-OHT1T51223",
-      "publishedAt": "2026-08-18",
-      "publishedAtRaw": "スポーツ報知　8月18日 16時31分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
