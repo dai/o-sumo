@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-20T00:22:28.476132+00:00",
+  "updatedAt": "2026-08-20T08:17:00.557954+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-kyodo_nor-2026082001001004",
+      "title": "夏巡業の大の里、関取と初稽古　藤凌駕に9戦全勝",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026082001001004",
+      "publishedAt": "2026-08-20",
+      "publishedAtRaw": "共同通信　8月20日 16時12分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-tokyosports-400009",
+      "title": "【田上明連載＃3】三遊亭円楽さんに紹介され相撲からプロレスの世界へ 馬場さんの印象は「顔、でけぇ」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-400009",
+      "publishedAt": "2026-08-20",
+      "publishedAtRaw": "東スポWEB　8月20日 16時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-chuspo-1299119",
+      "title": "大の里、「ほんとに立派」力士会が寄贈した気仙沼の屋外土俵を見学 「大相撲を見ていただいて…いい姿を見せたい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1299119",
+      "publishedAt": "2026-08-20",
+      "publishedAtRaw": "中日スポーツ　8月20日 15時59分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-chuspo-1299111",
+      "title": "大の里が稽古再開　藤凌駕を三番稽古の相手に指名「勢いがある力士なのでやってみたかった」【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1299111",
+      "publishedAt": "2026-08-20",
+      "publishedAtRaw": "中日スポーツ　8月20日 15時41分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-20260820024",
       "title": "豊昇龍「こんなにひどかったとは」　名古屋場所後に右膝手術を告白「ちゃんとしている姿を見せたい」復帰時期未定、秋場所欠場へ",
       "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260820024",
       "publishedAt": "2026-08-20",
       "publishedAtRaw": "デイリースポーツ　8月20日 5時01分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260820-0071",
-      "title": "豊昇龍　9・13秋場所厳しく…右膝手術を明かす「こんなにひどいとは思ってなかった」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260820-0071",
-      "publishedAt": "2026-08-20",
-      "publishedAtRaw": "スポニチアネックス　8月20日 4時20分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260819-OHT1T51374",
-      "title": "新十両・時不動　採血で“不動心”　脈探し１０分表情変えず「注射は怖くない」…健康診断",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260819-OHT1T51374",
-      "publishedAt": "2026-08-19",
-      "publishedAtRaw": "スポーツ報知　8月19日 21時47分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260819146",
-      "title": "若ノ勝は手術回避で捲土重来誓う、欧勝海と欧勝馬は手術からの復帰目指す　大相撲健康診断",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260819146",
-      "publishedAt": "2026-08-19",
-      "publishedAtRaw": "デイリースポーツ　8月19日 20時17分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260819-OHT1T51327",
-      "title": "十両・嘉陽「夏のテーマは立ち合い」稽古で鋭い立ち合い光る…お盆休みの思い出も明かす",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260819-OHT1T51327",
-      "publishedAt": "2026-08-19",
-      "publishedAtRaw": "スポーツ報知　8月19日 19時52分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
