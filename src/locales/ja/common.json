@@ -14,7 +14,8 @@
       "directory": "人物名鑑",
       "rikishi": "力士",
       "gyoji": "行司",
-      "yobidashi": "呼出"
+      "yobidashi": "呼出",
+      "about": "当サイトについて"
     }
   },
   "pwa": {
@@ -74,6 +75,7 @@
     "pastBashoHeading": "{{year}} {{name}}",
     "pastBashoDays": "日別:",
     "footerCopyright": "© 2026 o-sumo. All rights reserved.",
+    "footerAbout": "当サイトについて・プライバシーポリシー",
     "footerDaisuke": "Daisuke on X",
     "footerGithub": "GitHub",
     "heroRikishi": "力士プロフィール",
@@ -398,6 +400,40 @@
       "sandanme-yobidashi": "三段目呼出",
       "jonidan-yobidashi": "序二段呼出",
       "jonokuchi-yobidashi": "序ノ口呼出"
+    }
+  },
+  "about": {
+    "pageTitle": "当サイトについて・プライバシーポリシー",
+    "pageDescription": "o-sumoのサイト概要、データ出典、免責事項、プライバシーポリシー、広告配信、運営者情報について。",
+    "siteSection": {
+      "title": "当サイト（o-sumo）について",
+      "description": "o-sumo（オオ相撲）は、大相撲の番付表、取組結果、星取表、力士・行司・呼出名鑑、決まり手、データ分析などをシンプルかつ軽快に閲覧できる非公式ファンサイトです。本場所の開催中は日々の取組結果を迅速に更新し、過去の場所のアーカイブデータも網羅的に提供しています。",
+      "featuresTitle": "主な機能・特徴",
+      "feature1": "最新および過去の番付表の閲覧",
+      "feature2": "本場所中の日別取組結果・星取表の速報とアーカイブ",
+      "feature3": "力士・行司・呼出のプロフィール名鑑・検索・マイ力士登録",
+      "feature4": "決まり手解説および取組データ分析"
+    },
+    "dataSection": {
+      "title": "データ出典および免責事項",
+      "sourceText": "当サイトに掲載されている大相撲の番付・取組結果・成績・力士情報などのデータは、公益財団法人日本相撲協会の公式発表情報等を参考に個人で集約・分析して提供しています。",
+      "disclaimerText": "当サイトは個人が開発・運営する非公式ファンサイトであり、公益財団法人日本相撲協会とは一切関係ありません。掲載情報の正確性・網羅性には細心の注意を払っておりますが、その内容の完全性や有用性を保証するものではありません。公式の確定結果や正式な情報につきましては、日本相撲協会公式ウェブサイトをご確認ください。当サイトの利用により生じた損害やトラブル等について、運営者は一切の責任を負いかねますのであらかじめご了承ください。"
+    },
+    "privacySection": {
+      "title": "プライバシーポリシー・広告配信・Cookieについて",
+      "adsTitle": "広告配信（Google AdSense）について",
+      "adsText": "当サイトでは、第三者配信事業者であるGoogleによる広告配信サービス「Google AdSense」を利用しています。Googleなどの第三者配信事業者は、Cookieを使用して、ユーザーが当サイトや他のウェブサイトに過去にアクセスした際の情報に基づいて広告を配信します。Googleが広告Cookieを使用することにより、ユーザーが当サイトや他のサイトにアクセスした際の情報に基づいて、適切な広告をユーザーに表示できます。",
+      "optoutText": "ユーザーは、Googleの広告設定（https://adssettings.google.com/）でパーソナライズ広告を無効にできます。また、www.aboutads.info にアクセスすることで、パーソナライズ広告に使われる第三者配信事業者のCookieを無効にすることも可能です。",
+      "analyticsTitle": "アクセス解析ツール（Google Analytics）について",
+      "analyticsText": "当サイトでは、サイトの利用状況を把握し改善するためにGoogle社のアクセス解析ツール「Google Analytics」を使用しています。Google Analyticsはデータの収集のためにCookieを使用しています。このデータは匿名で収集されており、個人を特定するものではありません。Cookieを無効にすることで収集を拒否することができますので、お使いのブラウザの設定をご確認ください。"
+    },
+    "operatorSection": {
+      "title": "運営者情報・お問い合わせ",
+      "operatorLabel": "運営者",
+      "operatorValue": "Daisuke",
+      "contactText": "当サイトに関するご意見・ご感想・不具合のご報告・データの誤りのご指摘などは、X（旧Twitter）のダイレクトメッセージまたはGitHubのIssueよりご連絡いただけますと幸いです。",
+      "xLink": "Daisuke on X (@daisuke)",
+      "githubLink": "GitHub リポジトリ (dai/o-sumo)"
     }
   }
 }

@@ -346,6 +346,8 @@ export default function Home() {
         <nav aria-label="ホームの外部リンク">
           <HomeLink placement="footer" />
           {' | '}
+          <Link to="/about/">{t('home.footerAbout')}</Link>
+          {' | '}
           <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">{t('home.footerDaisuke')}</a>
           {' | '}
           <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">{t('home.footerGithub')}</a>

@@ -58,6 +58,10 @@ export function resolvePageMeta(pathname: string): PageMeta {
       title: '大相撲データ分析 | o-sumo',
       description: '大相撲の取組結果、力士、決まり手のデータを分析します。',
     },
+    '/about/': {
+      title: '当サイトについて・プライバシーポリシー | o-sumo',
+      description: 'o-sumoのサイト概要、データ出典、免責事項、プライバシーポリシー、広告配信、運営者情報について。',
+    },
   };
   const fixedPage = fixedPages[canonicalPath];
   if (fixedPage) return pageMeta(canonicalPath, fixedPage.title, fixedPage.description);
