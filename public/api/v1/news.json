@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-19T10:11:21.329515+00:00",
+  "updatedAt": "2026-08-20T00:22:28.476132+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-f-bt-tp1-260819-202608190001131",
-      "title": "豊昇龍、右ひざ手術受けていたこと明かす　秋場所出場は難しい状況「手術しなければ復帰に１年」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260819-202608190001131",
-      "publishedAt": "2026-08-19",
-      "publishedAtRaw": "日刊スポーツ　8月19日 18時47分",
+      "id": "dmenu-docomo-20260820024",
+      "title": "豊昇龍「こんなにひどかったとは」　名古屋場所後に右膝手術を告白「ちゃんとしている姿を見せたい」復帰時期未定、秋場所欠場へ",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260820024",
+      "publishedAt": "2026-08-20",
+      "publishedAtRaw": "デイリースポーツ　8月20日 5時01分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260819-OHT1T51292",
-      "title": "名古屋場所途中休場の幕内・若ノ勝「ケガをした時は悔しかったが、学べるものもたくさんあった」　秋場所へ「出る気で稽古をしている」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260819-OHT1T51292",
-      "publishedAt": "2026-08-19",
-      "publishedAtRaw": "スポーツ報知　8月19日 18時46分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260820-0071",
+      "title": "豊昇龍　9・13秋場所厳しく…右膝手術を明かす「こんなにひどいとは思ってなかった」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260820-0071",
+      "publishedAt": "2026-08-20",
+      "publishedAtRaw": "スポニチアネックス　8月20日 4時20分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260819-OHT1T51284",
-      "title": "夏巡業休場の幕内・欧勝馬　名古屋場所後に右肘を手術したことを明かす　秋場所へ「間に合わすしかない」…健康診断",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260819-OHT1T51284",
+      "id": "dmenu-docomo-hochi-20260819-OHT1T51374",
+      "title": "新十両・時不動　採血で“不動心”　脈探し１０分表情変えず「注射は怖くない」…健康診断",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260819-OHT1T51374",
       "publishedAt": "2026-08-19",
-      "publishedAtRaw": "スポーツ報知　8月19日 18時25分",
+      "publishedAtRaw": "スポーツ報知　8月19日 21時47分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260819-0276",
-      "title": "名古屋場所途中休場の幕内・若ノ勝が秋場所出場へ意欲「出る気持ちで体を動かしています」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260819-0276",
+      "id": "dmenu-docomo-20260819146",
+      "title": "若ノ勝は手術回避で捲土重来誓う、欧勝海と欧勝馬は手術からの復帰目指す　大相撲健康診断",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260819146",
       "publishedAt": "2026-08-19",
-      "publishedAtRaw": "スポニチアネックス　8月19日 16時27分",
+      "publishedAtRaw": "デイリースポーツ　8月19日 20時17分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-jiji-202608190092621225",
-      "title": "豊昇龍、右膝手術明かす",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-202608190092621225",
+      "id": "dmenu-docomo-hochi-20260819-OHT1T51327",
+      "title": "十両・嘉陽「夏のテーマは立ち合い」稽古で鋭い立ち合い光る…お盆休みの思い出も明かす",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260819-OHT1T51327",
       "publishedAt": "2026-08-19",
-      "publishedAtRaw": "時事通信　8月19日 16時03分",
+      "publishedAtRaw": "スポーツ報知　8月19日 19時52分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
