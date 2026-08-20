@@ -141,7 +141,7 @@
       "description": "公開済みの幕内取組結果から頻出の決まり手を集計しています。"
     },
     "results": {
-      "heading": "令和八年七月場所 結果",
+      "heading": "{{basho}} 結果",
       "description": "日本相撲協会発表の幕内・十両優勝と三賞を一覧で紹介します。",
       "tableHeading": "区分",
       "tableRikishi": "力士",
