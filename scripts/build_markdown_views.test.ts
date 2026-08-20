@@ -20,6 +20,7 @@ describe('buildMarkdownPages', () => {
     expect(dirs).toContain('rikishi/');
     expect(dirs).toContain('kimarite/');
     expect(dirs).toContain('analytics/');
+    expect(dirs).toContain('about/');
     for (const monthKey of ['202603', '202605', '202607']) {
       expect(dirs).toContain(`${monthKey}-banzuke/`);
       expect(dirs).toContain(`${monthKey}-torikumi/`);

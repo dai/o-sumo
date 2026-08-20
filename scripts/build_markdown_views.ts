@@ -315,12 +315,42 @@ function renderHomeMarkdown(): string {
       '- [力士一覧](https://osada.us/rikishi/)',
       '- [決まり手](https://osada.us/kimarite/)',
       '- [分析](https://osada.us/analytics/)',
+      '- [当サイトについて・プライバシーポリシー](https://osada.us/about/)',
       '',
       '### エージェント向けエンドポイント',
       '',
       '- [API カタログ](https://osada.us/.well-known/api-catalog)',
       '- [Agent Skills index](https://osada.us/.well-known/agent-skills/index.json)',
       '- [auth.md](https://osada.us/auth.md)',
+    ].join('\n'),
+  });
+}
+
+function renderAboutMarkdown(): string {
+  return renderMarkdownPage({
+    title: '当サイトについて・プライバシーポリシー | o-sumo',
+    description: 'o-sumoのサイト概要、データ出典、免責事項、プライバシーポリシー、広告配信、運営者情報について。',
+    canonical: `${SITE}/about/`,
+    body: [
+      '## 当サイト（o-sumo）について',
+      '',
+      'o-sumo（オオ相撲）は、大相撲の番付表、取組結果、星取表、力士・行司・呼出名鑑、決まり手、データ分析などをシンプルかつ軽快に閲覧できる非公式ファンサイトです。',
+      '',
+      '## データ出典および免責事項',
+      '',
+      '当サイトに掲載されている大相撲のデータは、公益財団法人日本相撲協会の公式発表情報等を参考に個人で集約・分析して提供しています。',
+      '当サイトは個人が開発・運営する非公式ファンサイトであり、公益財団法人日本相撲協会とは一切関係ありません。',
+      '',
+      '## プライバシーポリシー・広告配信（Google AdSense）について',
+      '',
+      '当サイトでは、第三者配信事業者であるGoogleによる広告配信サービス「Google AdSense」を利用しています。Googleなどの第三者配信事業者は、Cookieを使用して、ユーザーが当サイトや他のウェブサイトに過去にアクセスした際の情報に基づいて広告を配信します。',
+      'ユーザーは、Googleの広告設定（ https://adssettings.google.com/ ）でパーソナライズ広告を無効にできます。',
+      '',
+      '## 運営者情報',
+      '',
+      '- 運営者: Daisuke',
+      '- X: [Daisuke on X (@daisuke)](https://x.com/daisuke)',
+      '- GitHub: [dai/o-sumo](https://github.com/dai/o-sumo)',
     ].join('\n'),
   });
 }
@@ -363,6 +393,10 @@ export function buildMarkdownPages(publicDir: string, outRoot: string): Markdown
     outDir: 'analytics/',
     content: renderAnalyticsMarkdown(),
   });
+  routes.push({
+    outDir: 'about/',
+    content: renderAboutMarkdown(),
+  });
 
   // Iterate over the supported basho set.
   for (const monthKey of ['202603', '202605', '202607']) {
@@ -395,6 +429,7 @@ export const MARKDOWN_ROUTES: ReadonlyArray<string> = [
   'rikishi/',
   'kimarite/',
   'analytics/',
+  'about/',
   ...['202603', '202605', '202607'].flatMap((monthKey) => [
     `${monthKey}-banzuke/`,
     `${monthKey}-torikumi/`,
