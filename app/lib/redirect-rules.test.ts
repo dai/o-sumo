@@ -145,7 +145,7 @@ describe('Cloudflare banzuke redirect rules', () => {
   it('rewrites every SPA fallback to the root document', () => {
     const spaFallbacks = redirectRules().filter((rule) => rule.status === 200);
 
-    expect(spaFallbacks).toHaveLength(15);
+    expect(spaFallbacks).toHaveLength(16);
     expect(spaFallbacks.every((rule) => rule.destination === '/')).toBe(true);
   });
 });
