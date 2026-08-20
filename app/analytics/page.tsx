@@ -164,7 +164,7 @@ export default function AnalyticsDashboardPage() {
         />
         <section className="analytics-dashboard-panel analytics-results-panel" aria-labelledby="results-heading">
           <div className="analytics-panel-header">
-            <h2 id="results-heading">{t('analytics.results.heading')}</h2>
+            <h2 id="results-heading">{t('analytics.results.heading', { basho: bashoLabel })}</h2>
             <p>{t('analytics.results.description')}</p>
           </div>
           <table className="analytics-results-table">

@@ -37,7 +37,7 @@ describe('AnalyticsDashboardPage', () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByRole('heading', { level: 2, name: '令和八年七月場所 結果' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: /七月場所 結果/ })).toBeInTheDocument();
     expect(screen.getByRole('row', { name: '幕内最高優勝 安青錦 12勝3敗' })).toBeInTheDocument();
     expect(screen.getByRole('row', { name: '殊勲賞 藤ノ川 8勝7敗' })).toBeInTheDocument();
     expect(screen.getByRole('row', { name: '敢闘賞 熱海富士 12勝3敗' })).toBeInTheDocument();
