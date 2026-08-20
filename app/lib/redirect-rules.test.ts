@@ -129,6 +129,19 @@ describe('Cloudflare banzuke redirect rules', () => {
     expect(banzukeRules.every((rule) => !rule.destination.includes('#'))).toBe(true);
   });
 
+  it('canonicalizes fixed pages before SPA fallbacks', () => {
+    expect(evaluateRedirect('/about')).toEqual({
+      source: '/about',
+      destination: '/about/',
+      status: 301,
+    });
+    expect(evaluateRedirect('/about/')).toEqual({
+      source: '/about/',
+      destination: '/',
+      status: 200,
+    });
+  });
+
   it('rewrites every SPA fallback to the root document', () => {
     const spaFallbacks = redirectRules().filter((rule) => rule.status === 200);
 

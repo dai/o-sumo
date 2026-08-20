@@ -14,7 +14,8 @@
       "directory": "People directory",
       "rikishi": "Rikishi",
       "gyoji": "Gyoji",
-      "yobidashi": "Yobidashi"
+      "yobidashi": "Yobidashi",
+      "about": "About"
     }
   },
   "pwa": {
@@ -74,6 +75,7 @@
     "pastBashoHeading": "{{year}} {{name}}",
     "pastBashoDays": "Days:",
     "footerCopyright": "© 2026 o-sumo. All rights reserved.",
+    "footerAbout": "About & Privacy Policy",
     "footerDaisuke": "Daisuke on X",
     "footerGithub": "GitHub",
     "heroRikishi": "Rikishi Profiles",
@@ -419,6 +421,40 @@
       "sandanme-yobidashi": "Sandanme Yobidashi",
       "jonidan-yobidashi": "Jonidan Yobidashi",
       "jonokuchi-yobidashi": "Jonokuchi Yobidashi"
+    }
+  },
+  "about": {
+    "pageTitle": "About o-sumo & Privacy Policy",
+    "pageDescription": "Overview of o-sumo, data sources, disclaimer, privacy policy, advertising, and operator information.",
+    "siteSection": {
+      "title": "About This Site (o-sumo)",
+      "description": "o-sumo is an unofficial fan website designed to provide fast, clean, and comprehensive access to Grand Sumo banzuke, daily bout results, win-loss records, rikishi/gyoji/yobidashi directories, kimarite techniques, and data analytics. During active basho tournaments, daily results are updated promptly, and past tournament archives are maintained.",
+      "featuresTitle": "Key Features",
+      "feature1": "View current and historical banzuke tables",
+      "feature2": "Real-time and archived daily bout results and standings",
+      "feature3": "Profiles, search, and personal tracking (My Rikishi) for wrestlers and officials",
+      "feature4": "Winning technique explanations and bout data analytics"
+    },
+    "dataSection": {
+      "title": "Data Sources & Disclaimer",
+      "sourceText": "The sumo tournament data (banzuke, results, records, and wrestler details) presented on this site is aggregated and analyzed based on publicly available information from the Japan Sumo Association.",
+      "disclaimerText": "This website is an independent unofficial fan site and is not affiliated with the Japan Sumo Association. While we make every effort to ensure data accuracy, we do not guarantee its completeness or suitability. For official final records, please refer to the official Japan Sumo Association website. The site operator assumes no responsibility for any actions taken based on the information provided on this website."
+    },
+    "privacySection": {
+      "title": "Privacy Policy, Advertising & Cookies",
+      "adsTitle": "Third-Party Advertising (Google AdSense)",
+      "adsText": "This site uses Google AdSense, a third-party advertising service provided by Google LLC. Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites. Google's use of advertising cookies enables it and its partners to serve ads to users based on their visits to sites on the Internet.",
+      "optoutText": "Users may opt out of personalized advertising by visiting Google Ads Settings (https://adssettings.google.com/) or by visiting www.aboutads.info.",
+      "analyticsTitle": "Web Analytics (Google Analytics)",
+      "analyticsText": "This site uses Google Analytics to measure and understand traffic and usage patterns in order to improve site experience. Google Analytics uses cookies to collect data. This data is collected anonymously and does not personally identify individuals. You can opt out of data collection by disabling cookies in your browser settings."
+    },
+    "operatorSection": {
+      "title": "Operator & Contact",
+      "operatorLabel": "Operator",
+      "operatorValue": "Daisuke",
+      "contactText": "For feedback, inquiries, bug reports, or data corrections regarding this site, please reach out via direct message on X (formerly Twitter) or by opening an issue on GitHub.",
+      "xLink": "Daisuke on X (@daisuke)",
+      "githubLink": "GitHub Repository (dai/o-sumo)"
     }
   }
 }
