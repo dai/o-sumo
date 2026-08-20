@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-20T08:17:00.557954+00:00",
+  "updatedAt": "2026-08-20T10:12:34.302345+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -20,7 +20,16 @@
       "title": "夏巡業の大の里、関取と初稽古　藤凌駕に9戦全勝",
       "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026082001001004",
       "publishedAt": "2026-08-20",
-      "publishedAtRaw": "共同通信　8月20日 16時12分",
+      "publishedAtRaw": "共同通信　8月20日 17時58分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-chuspo-1299126",
+      "title": "安青錦、宮城・気仙沼での夏巡業から取組に参加　左足は「だいぶ状態がよくなった」慎重に稽古重ねる【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1299126",
+      "publishedAt": "2026-08-20",
+      "publishedAtRaw": "中日スポーツ　8月20日 16時09分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1299111",
       "publishedAt": "2026-08-20",
       "publishedAtRaw": "中日スポーツ　8月20日 15時41分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260820024",
-      "title": "豊昇龍「こんなにひどかったとは」　名古屋場所後に右膝手術を告白「ちゃんとしている姿を見せたい」復帰時期未定、秋場所欠場へ",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260820024",
-      "publishedAt": "2026-08-20",
-      "publishedAtRaw": "デイリースポーツ　8月20日 5時01分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
