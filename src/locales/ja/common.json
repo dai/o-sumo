@@ -298,12 +298,15 @@
     "origin": "出身地",
     "debut": "初土俵",
     "careerRecord": "通算成績",
-    "headToHead": "対戦成績"
+    "headToHead": "対戦成績",
+    "copyUrl": "URLをコピーする"
   },
   "sharing": {
     "copyLink": "共有リンクをコピー",
     "copied": "リンクをコピーしました",
-    "copyManually": "このURLをコピーしてください"
+    "copyManually": "このURLをコピーしてください",
+    "copyApiLink": "リンクをコピー",
+    "copyApiLinkDone": "コピーしました"
   },
   "myRikishi": {
     "navLabel": "マイ力士",
@@ -343,9 +346,6 @@
     "backToList": "力士一覧へ戻る",
     "indexJsonLink": "力士一覧JSON",
     "apiJsonPathLabel": "API JSON",
-    "copyApiJsonPath": "コピー",
-    "copyApiJsonPathDone": "コピーしました",
-    "copyApiJsonPathFailed": "コピーできませんでした",
     "kyokaiProfileLink": "相撲協会プロフィールを見る",
     "footerNavigation": "力士プロフィールページの関連リンク",
     "unknown": "不明",

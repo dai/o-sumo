@@ -18,6 +18,32 @@
 
 ---
 
+# API・ページ共有リンク調整（2026-08-21）
+
+## Plan
+
+- [x] 行司・呼出一覧から共有リンクを削除し、両個別ページのAPI JSON直下へ完全URLコピーを追加する
+- [x] 力士個別ページのAPI JSONコピーを完全URLへ変更する
+- [x] 力士比較ページへ、正規化済みの現在URLをコピーする導線を追加する
+- [x] focused/full test、typecheck、build、Impeccable、実ブラウザで検証する
+
+## Constraints
+
+- 完全URLは固定ドメインではなく、実行中の `window.location.origin` と既存APIパスを結合する
+- API JSONの画面表示は既存の相対パスを維持し、クリップボードへ渡す値だけを完全URL化する
+- 比較URLはRouterの現在値を正本とし、正規化済みID、並び順、無関係なqueryを保持する
+- 行司・呼出以外の一覧ページにある既存の共有導線は変更しない
+
+## Review
+
+- RED: 既存3 suiteへ仕様テストを追加し、一覧の不要な共有、個別ページの完全URL未対応、比較ページの導線未実装を6件の失敗で再現した。さらにClipboard APIを利用できない場合のフォールバック2件も失敗から開始した。
+- GREEN: API URLコピーを共通コンポーネントへ集約し、行司・呼出・力士で同じ完全URLと手動コピー表示を利用するようにした。比較ページは既存の現在URL共有を再利用し、focused 4 files / 62 testsが成功した。
+- 完全検証: `npm test`（52 files / 393 tests）、`npm run typecheck`、`npm run build`、`git diff --check`がすべてexit 0。buildは既存のarchive chunk警告とBrowserslist更新警告のみ。
+- UI品質: Impeccable検査は指摘0件。独立レビューで指摘されたClipboard API非対応・拒否時の完全URL表示を追加し、再レビューでは重要指摘なしだった。
+- 実ブラウザ: Wrangler上で行司・呼出・力士のAPI完全URLと、queryを保持した力士比較URLのコピー内容を確認した。390px幅で横スクロールなし、操作ボタンは全幅、コンソール警告・エラー0件だった。
+
+---
+
 # 七月場所アーカイブ化と九月引き継ぎ準備（2026-08-13）
 
 ## Plan

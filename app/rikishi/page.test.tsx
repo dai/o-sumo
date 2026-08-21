@@ -168,9 +168,9 @@ describe('Rikishi pages', () => {
       screen.getByText('掲載画像は日本相撲協会プロフィール写真をもとに MiniMax I2I Generation で加工したプロフィールイラストです。'),
     ).toBeInTheDocument();
 
-    await user.click(screen.getByRole('button', { name: 'コピー' }));
+    await user.click(screen.getByRole('button', { name: 'リンクをコピー' }));
 
-    expect(writeText).toHaveBeenCalledWith('/api/v1/rikishi/3842.json');
+    expect(writeText).toHaveBeenCalledWith(`${window.location.origin}/api/v1/rikishi/3842.json`);
     expect(await screen.findByRole('button', { name: 'コピーしました' })).toBeInTheDocument();
   });
 

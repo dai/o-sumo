@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import HomeLink from '../components/HomeLink';
 import PageBreadcrumb from '../components/PageBreadcrumb';
+import ShareCurrentLink from '../components/ShareCurrentLink';
 import {
   fetchRikishiIndex,
   fetchRikishiMatchups,
@@ -429,7 +430,10 @@ export default function CompareRikishiPage() {
                   <h2 id="compare-selector-title">{t('comparison.selectTitle')}</h2>
                   <p>{t('comparison.selectDescription', { max: MAX_COMPARE_RIKISHI })}</p>
                 </div>
-                <button type="button" className="compare-selector__clear" onClick={clearAll} disabled={completelyEmpty}>{t('comparison.clear')}</button>
+                <div className="compare-selector__actions">
+                  <ShareCurrentLink idleLabel={t('comparison.copyUrl')} />
+                  <button type="button" className="compare-selector__clear" onClick={clearAll} disabled={completelyEmpty}>{t('comparison.clear')}</button>
+                </div>
               </div>
               <div className="compare-selector__slots">
                 <RikishiCombobox slot={0} items={activeIndex} selectedId={renderedSlots[0]} excludedId={renderedSlots[1]} draft={renderedDrafts[0]} onDraftChange={onDraftChange} onSelect={onSelect} />

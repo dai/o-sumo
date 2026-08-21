@@ -170,9 +170,8 @@
 }
 
 .rikishi-api-json-path {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
+  display: inline-grid;
+  justify-items: start;
   gap: 0.5rem;
   min-width: 0;
   padding: 0.55rem 0.65rem;
@@ -429,6 +428,14 @@
 
 .compare-selector__heading p {
   margin-bottom: 0;
+}
+
+.compare-selector__actions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.65rem;
 }
 
 .compare-selector__clear {
@@ -713,7 +720,9 @@
     display: grid;
   }
 
-  .compare-selector__clear {
+  .compare-selector__actions,
+  .compare-selector__clear,
+  .compare-selector__actions .share-current-link {
     width: 100%;
   }
 

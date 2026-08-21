@@ -298,12 +298,15 @@
     "origin": "Place of origin",
     "debut": "Professional debut",
     "careerRecord": "Career record",
-    "headToHead": "Head-to-head"
+    "headToHead": "Head-to-head",
+    "copyUrl": "Copy page URL"
   },
   "sharing": {
     "copyLink": "Copy share link",
     "copied": "Link copied",
-    "copyManually": "Copy this URL"
+    "copyManually": "Copy this URL",
+    "copyApiLink": "Copy link",
+    "copyApiLinkDone": "Copied"
   },
   "myRikishi": {
     "navLabel": "My rikishi",
@@ -343,9 +346,6 @@
     "backToList": "Back to rikishi list",
     "indexJsonLink": "Rikishi index JSON",
     "apiJsonPathLabel": "API JSON",
-    "copyApiJsonPath": "Copy",
-    "copyApiJsonPathDone": "Copied",
-    "copyApiJsonPathFailed": "Could not copy",
     "kyokaiProfileLink": "View Kyokai profile",
     "footerNavigation": "Rikishi profile related links",
     "unknown": "Unknown",

@@ -144,6 +144,40 @@ describe('CompareRikishiPage', () => {
     await waitFor(() => expect(screen.getByTestId('location')).toHaveTextContent('/compare/?ids=4230%2C4279&view=compact'));
   });
 
+  it('copies the complete current URL after comparison parameters are normalized', async () => {
+    const user = userEvent.setup();
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText },
+    });
+    mockComparisonFetch();
+    renderPage('/compare/?ids=4230,4279,3842&view=compact');
+
+    await waitFor(() => expect(screen.getByTestId('location')).toHaveTextContent('/compare/?ids=4230%2C4279&view=compact'));
+    await user.click(screen.getByRole('button', { name: 'URLをコピーする' }));
+
+    expect(writeText).toHaveBeenCalledWith(`${window.location.origin}/compare/?ids=4230%2C4279&view=compact`);
+    expect(screen.getByRole('button', { name: 'リンクをコピーしました' })).toBeInTheDocument();
+  });
+
+  it('shows the complete comparison URL for manual copying when the Clipboard API is unavailable', async () => {
+    const user = userEvent.setup();
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: undefined,
+    });
+    mockComparisonFetch();
+    renderPage('/compare/?ids=4230&view=compact');
+
+    await screen.findByRole('combobox', { name: '力士1' });
+    await user.click(screen.getByRole('button', { name: 'URLをコピーする' }));
+
+    expect(screen.getByRole('textbox', { name: 'このURLをコピーしてください' })).toHaveValue(
+      `${window.location.origin}/compare/?ids=4230&view=compact`,
+    );
+  });
+
   it('prefills only slot 1 for one valid id and removes invalid or duplicate ids', async () => {
     mockComparisonFetch();
     renderPage('/compare/?ids=4230,4230,nope&tab=stats');

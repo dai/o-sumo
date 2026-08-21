@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import HomeLink from '../components/HomeLink';
-import ShareCurrentLink from '../components/ShareCurrentLink';
+import CopyApiJsonLink from '../components/CopyApiJsonLink';
 import PageBreadcrumb from '../components/PageBreadcrumb';
 import { usePageMetaOverride } from '../components/MetaHead';
 import { formatUpdatedAt } from '../lib/updated-at';
@@ -94,7 +94,6 @@ export function OfficialListPage({ kind }: { kind: OfficialKind }) {
             <p className="directory-search__count" role="status" aria-live="polite">
               {t('officials.searchResultCount', { count: filteredItems.length, total: items.length })}
             </p>
-            <ShareCurrentLink />
             {hasFilters ? (
               <div className="directory-filter-chips" aria-label={t('officials.activeFiltersLabel')}>
                 {query.trim() ? (
@@ -185,7 +184,7 @@ export function OfficialProfilePage({ kind }: { kind: OfficialKind }) {
       {status === 'ready' && currentProfile && <article className="rikishi-profile-detail">
         <div className="rikishi-profile-hero rikishi-profile-hero--no-photo"><div><p className="rikishi-profile-rank">{rankLabel}</p><h2>{currentProfile.name}</h2><p>{currentProfile.yomi} / {toRomaji(currentProfile.yomi)}</p><a href={currentProfile.sourceUrl} target="_blank" rel="noopener noreferrer" className="rikishi-action-link">{t('officials.sourceLink')}</a></div></div>
         <dl className="rikishi-profile-fields"><Field label={t('officials.stageName')} value={currentProfile.name}/><Field label={t('officials.rank')} value={rankLabel}/><Field label={t('officials.realName')} value={currentProfile.realName}/><Field label={t('officials.affiliation')} value={currentProfile.affiliation}/><Field label={t('rikishi.birthDate')} value={currentProfile.birthDate}/><Field label={t('officials.birthplace')} value={currentProfile.birthplace}/><Field label={t('officials.adoptedAt')} value={currentProfile.adoptedAt}/>{currentProfile.nameHistory?.length ? <Field label={t('officials.nameHistory')} value={currentProfile.nameHistory.join(' → ')}/> : null}</dl>
-        <section className="rikishi-profile-source"><h2>{t('rikishi.sourceHeading')}</h2><p>{t('officials.sourceDescription')}</p><p>{t('officials.noPhotos')}</p><code>{officialApiPath(kind, currentProfile.id)}</code><p>{t('officials.retrievedAt', { date: formatUpdatedAt(currentProfile.retrievedAt) })}</p></section>
+        <section className="rikishi-profile-source"><h2>{t('rikishi.sourceHeading')}</h2><p>{t('officials.sourceDescription')}</p><p>{t('officials.noPhotos')}</p><div className="rikishi-api-json-path"><code>{officialApiPath(kind, currentProfile.id)}</code><CopyApiJsonLink path={officialApiPath(kind, currentProfile.id)} /></div><p>{t('officials.retrievedAt', { date: formatUpdatedAt(currentProfile.retrievedAt) })}</p></section>
       </article>}
     </main>
     <footer className="rikishi-footer"><HomeLink placement="footer" /> <span> | </span><Link to={officialListPath(kind)}>{t('officials.backToList', { label })}</Link></footer>
