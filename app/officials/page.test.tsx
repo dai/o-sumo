@@ -54,6 +54,7 @@ describe('official directories', () => {
     expect(screen.getByRole('link', { name: '日本相撲協会の公式ページを見る' })).toHaveAttribute('href', 'https://www.sumo.or.jp/IrohaKyokaiMember/gyoji/');
     expect(screen.getByText('取得日時: 2026-08-12 00:27 UTC')).toBeInTheDocument();
     expect(screen.getByText('写真は使用していません。')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: '共有リンクをコピー' })).not.toBeInTheDocument();
   });
 
   it('does not write an official search query to the URL during IME composition', async () => {
@@ -84,6 +85,30 @@ describe('official directories', () => {
 
     await waitFor(() => expect(screen.getByTestId('location-search')).toHaveTextContent('?q=%E3%81%8D%E3%82%80%E3%82%89'));
     expect(screen.getByRole('link', { name: /木村 庄之助/ })).toBeInTheDocument();
+  });
+
+  it.each([
+    ['gyoji' as const, '行司'],
+    ['yobidashi' as const, '呼出'],
+  ])('does not render a share button on the %s directory', async (kind, label) => {
+    vi.mocked(fetch).mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        retrievedAt: '2026-08-12T00:27:59Z',
+        source: `https://www.sumo.or.jp/IrohaKyokaiMember/${kind}/`,
+        officials: [{
+          ...indexItem,
+          id: kind === 'gyoji' ? 1986 : 1935,
+          name: kind === 'gyoji' ? '木村 庄之助' : '克之',
+          rank: kind === 'gyoji' ? '立行司' : '立呼出',
+          rankCode: kind === 'gyoji' ? 'tate-gyoji' : 'tate-yobidashi',
+        }],
+      }),
+    } as Response);
+    render(<MemoryRouter><OfficialListPage kind={kind} /></MemoryRouter>);
+
+    await screen.findByRole('region', { name: `${label}名鑑` });
+    expect(screen.queryByRole('button', { name: '共有リンクをコピー' })).not.toBeInTheDocument();
   });
 
   it('clears the previous directory while the next kind is still loading', async () => {
@@ -243,6 +268,55 @@ describe('official directories', () => {
     expect(screen.getByText('1979-08')).toBeInTheDocument();
     expect(screen.getByText('取得日時: 2026-08-12 00:27 UTC')).toBeInTheDocument();
     expect(screen.queryByRole('img')).not.toBeInTheDocument();
+  });
+
+  it.each([
+    {
+      kind: 'gyoji' as const,
+      id: 1986,
+      name: '木村 庄之助',
+      apiPath: '/api/v1/gyoji/1986.json',
+      rank: '立行司',
+      rankCode: 'tate-gyoji',
+    },
+    {
+      kind: 'yobidashi' as const,
+      id: 1935,
+      name: '克之',
+      apiPath: '/api/v1/yobidashi/1935.json',
+      rank: '立呼出',
+      rankCode: 'tate-yobidashi',
+    },
+  ])('copies the complete $kind API JSON URL from the profile', async ({ kind, id, name, apiPath, rank, rankCode }) => {
+    const user = userEvent.setup();
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText },
+    });
+    vi.mocked(fetch).mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        kind, id, name, yomi: 'よみ', rank, rankCode,
+        realName: '本名', affiliation: '所属部屋', birthDate: '1961-10-30', birthplace: '東京都',
+        adoptedAt: '1977-10', sourceUrl: `https://www.sumo.or.jp/Profile/${kind}/${id}/`, retrievedAt: '2026-08-12T00:27:59Z',
+      }),
+    } as Response);
+    render(
+      <MemoryRouter initialEntries={[`/${kind}/${id}/`]}>
+        <Routes><Route path={`/${kind}/:id/`} element={<OfficialProfilePage kind={kind} />} /></Routes>
+      </MemoryRouter>,
+    );
+
+    await screen.findByRole('heading', { name, level: 1 });
+    const apiPathElement = screen.getByText(apiPath);
+    const sourceSection = apiPathElement.closest('section');
+    expect(sourceSection).not.toBeNull();
+
+    await user.click(within(sourceSection!).getByRole('button', { name: 'リンクをコピー' }));
+
+    expect(writeText).toHaveBeenCalledWith(`${window.location.origin}${apiPath}`);
+    expect(within(sourceSection!).getByRole('button', { name: 'コピーしました' })).toBeInTheDocument();
   });
 
   it('exposes a breadcrumb back to home and the gyoji directory', async () => {

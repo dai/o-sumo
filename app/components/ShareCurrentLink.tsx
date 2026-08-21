@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-export default function ShareCurrentLink() {
+export default function ShareCurrentLink({ idleLabel }: { idleLabel?: string }) {
   const { t } = useTranslation('common');
   const location = useLocation();
   const [status, setStatus] = React.useState<'idle' | 'copied' | 'fallback'>('idle');
@@ -27,7 +27,7 @@ export default function ShareCurrentLink() {
   return (
     <div className="share-current-link">
       <button type="button" className="share-current-link__button" onClick={copy}>
-        {status === 'copied' ? t('sharing.copied') : t('sharing.copyLink')}
+        {status === 'copied' ? t('sharing.copied') : (idleLabel ?? t('sharing.copyLink'))}
       </button>
       {status === 'fallback' ? (
         <label className="share-current-link__fallback">

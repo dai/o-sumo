@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import HomeLink from '../components/HomeLink';
+import CopyApiJsonLink from '../components/CopyApiJsonLink';
 import MyRikishiToggle from '../components/MyRikishiToggle';
 import PageBreadcrumb from '../components/PageBreadcrumb';
 import {
@@ -60,27 +61,8 @@ export default function RikishiProfilePage() {
   const [profile, setProfile] = React.useState<RikishiProfile | null>(null);
   const [sameRank, setSameRank] = React.useState<RikishiIndexItem[]>([]);
   const [status, setStatus] = React.useState<'loading' | 'ready' | 'not-found' | 'error'>('loading');
-  const [copyStatus, setCopyStatus] = React.useState<'idle' | 'copied' | 'failed'>('idle');
   const numericId = Number(id);
   const unknownLabel = t('rikishi.unknown');
-
-  const copyApiJsonPath = async () => {
-    if (!profile) {
-      return;
-    }
-
-    if (!navigator.clipboard?.writeText) {
-      setCopyStatus('failed');
-      return;
-    }
-
-    try {
-      await navigator.clipboard.writeText(rikishiApiPath(profile.id));
-      setCopyStatus('copied');
-    } catch {
-      setCopyStatus('failed');
-    }
-  };
 
   React.useEffect(() => {
     let active = true;
@@ -135,10 +117,6 @@ export default function RikishiProfilePage() {
       active = false;
     };
   }, [profile?.id, profile?.currentRank]);
-
-  React.useEffect(() => {
-    setCopyStatus('idle');
-  }, [profile?.id]);
 
   const career = profile ? formatCareerRecord(profile) : null;
 
@@ -196,12 +174,7 @@ export default function RikishiProfilePage() {
                   <div className="rikishi-api-json-path">
                     <span className="rikishi-api-json-label">{t('rikishi.apiJsonPathLabel')}</span>
                     <code>{rikishiApiPath(profile.id)}</code>
-                    <button type="button" className="rikishi-copy-button" onClick={copyApiJsonPath}>
-                      {copyStatus === 'copied' ? t('rikishi.copyApiJsonPathDone') : t('rikishi.copyApiJsonPath')}
-                    </button>
-                    {copyStatus === 'failed' ? (
-                      <span className="rikishi-copy-status" role="status">{t('rikishi.copyApiJsonPathFailed')}</span>
-                    ) : null}
+                    <CopyApiJsonLink path={rikishiApiPath(profile.id)} />
                   </div>
                 </div>
               </div>
