@@ -23,11 +23,11 @@ To add a premium edge, use Glassmorphism for floating navigation elements. Use a
 ---
  
 ## 3. Typography: The Modern Mincho
-The typographic system relies on the tension between the ceremonial `notoSerif` and the functional `Space Grotesk`.
- 
-- **Display & Headlines (notoSerif):** These are your "brush strokes." Use `display-lg` (3.5rem) with generous letter-spacing to anchor pages. The serif reflects the elegance of Japanese calligraphy (Mincho style).
-- **Body & Labels (Space Grotesk):** This is your "modern architecture." The sans-serif provides a clean, neutral counter-balance to the expressive headings.
-- **Hierarchy as Identity:** Use extreme scale—pairing a massive `display-md` headline with a tiny, all-caps `label-md` sub-header—to create an editorial, high-end look.
+The typographic system uses one bilingual editorial stack: **Source Serif 4** owns Latin letters and numerals, while unsupported Japanese glyphs fall through to **Shippori Mincho**. This keeps the scripts distinct but harmonious without changing families inside a sentence.
+
+- **Display & Headlines:** Japanese titles use Shippori Mincho's calligraphic weight; their Latin letters and numerals use Source Serif 4. Use generous space and deliberate weight contrast to anchor pages.
+- **Body & Labels:** The same stack keeps long bilingual copy coherent. Source Serif 4 provides readable Latin text and clear data figures; Shippori Mincho carries Japanese prose.
+- **Hierarchy as Identity:** Distinguish display, body, label, metadata, and data roles through size, weight, spacing, tone, and tabular numerals rather than an unrelated sans-serif family.
  
 ---
  

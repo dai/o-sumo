@@ -309,3 +309,27 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 - 最終レビュー修正: URL transitionの最初のcommit、置換draftのfocus、clear後のslot canonicalization、IME composition中の一時空値を追加回帰で修正した。最新HEADでfocused 3 files / 41 tests、全Vitest 49 files / 363 tests、Python全対象、typecheck、build、`git diff --check`が成功。実ブラウザのキーボード置換・360px横スクロールと、Wranglerの301／200／JSON配信を再実測し、最終独立レビューはCritical／Importantとも0件だった。
 
 ---
+
+# 令和八年九月場所向け全体フォント刷新（2026-08-21）
+
+## Plan
+
+- [x] Impeccable v4 の診断結果に従い、`PRODUCT.md` を schema 1 へ移行する
+- [x] 現行タイポグラフィと配信を独立監査し、役割・weight・fallback の契約を確定する
+- [x] 回帰テストを先に追加し、現行フォントで意図どおり RED になることを確認する
+- [x] 日本語を Shippori Mincho、英数字を Source Serif 4 とする全体トークンへ最小変更する
+- [x] `DESIGN.md` のタイポグラフィ仕様を実装と同期する
+- [x] focused test、typecheck、全Vitest、build、Impeccable scan、実ブラウザで検証する
+
+## Review
+
+- Impeccable v4.1.1 に更新通知はなく、doctorの旧 `Register` / product schema指摘を解消した。`PRODUCT.md` はschema 1へ移行し、未検証の文書言語同期とWCAG適合を事実どおり明記した。最新 `origin/main` への載せ替え後、doctorに残るのは「401 visual commits」の再読推奨だけで、今回の変更対象であるタイポグラフィ節は現行実装へ同期した。
+- 独立監査ではSpace Groteskのoverused-font警告1件、サイズ役割の分散、外部フォント配信、未提供900 weightを検出した。実装後のImpeccable type scanは `[]`。
+- TDD REDは現行 `Noto Serif JP` が選定済み `Source Serif 4` を満たさず1件失敗。GREENでは見出し・本文の両トークンが `Source Serif 4` と `Shippori Mincho` を含み、Source Serif 4が先に評価されることをcomputed CSS custom propertyで検証した。
+- `app/globals.css` の2トークンだけを共通stackへ変更した。Source Serif 4を先頭に置いて英数字を担当させ、未収録の日本語をShippori Minchoへフォールバックする。900指定3件は提供範囲内の800へ変更した。
+- Google Fonts CSSはHTTP 200、両familyを含み、10件の `fonts.gstatic.com` URLを返した。実ブラウザでは日本語subset 6件とLatin subset 1件がloadedになった。
+- Wrangler Pages上のhomeと番付をdesktop / 390px、light / dark、日英切替状態で確認した。body・見出し・力士名のcomputed stackは新pairingで、ページ横溢れと力士名overflowは0件。console warningも0件だった。
+- 全Vitestで、直前のAbout追加コミットが `/about/` fallbackを増やした一方、総数期待だけ15のまま残した既存失敗を再現した。`public/_redirects` の16件すべてと個別About契約を確認した後、同じ修正を含む最新 `origin/main`（PR #456）へ載せ替えたため、redirectテストのローカル差分は残していない。
+- 最新 `origin/main` 上の最終検証はfocused 1 file / 1 test、全Vitest 52 files / 386 tests、typecheck、build 151 modules、`git diff --check`が成功した。リポジトリにlint scriptはないため、typecheck・差分whitespace検査・Impeccable type scan（0件）をlint相当として実施。buildには既存のarchive chunk size警告とBrowserslist更新警告のみ。独立した仕様・品質レビュー2件の共通指摘だったfont stack順序もテストへ追加し、残るCritical / Important指摘は0件。
+
+---
