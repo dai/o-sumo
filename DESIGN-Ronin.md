@@ -26,12 +26,12 @@ Treat the UI as a series of physical layers:
  
 ---
  
-## 3. Typography: The Dual-Era Scale
-The typography is a dialogue between two eras. We use **Noto Serif** (Calligraphic weight) for human, traditional elements and **Space Grotesk** (Monospaced feel) for technical, data-driven elements.
- 
-*   **Display & Headline (Noto Serif):** Used for wrestler names, tournament titles, and ritual headings. These should be set with generous tracking or tight, aggressive kerning depending on the context to mimic ink-brush strokes.
-*   **Title & Body (Space Grotesk):** Used for statistics, rankings, and portal navigation. This provides the "futuristic" contrast, making the data feel like a high-tech telemetry feed.
-*   **Labels (Space Grotesk):** All labels must be uppercase with `0.05em` letter spacing to emphasize the "monospaced" technical aesthetic.
+## 3. Typography: The Dual-Script Editorial Scale
+The typography pairs **Shippori Mincho** for Japanese glyphs with **Source Serif 4** for Latin letters and numerals. The shared serif construction preserves the ritual voice in dark mode while Source Serif 4 keeps rankings and statistics precise.
+
+*   **Display & Headline:** Wrestler names, tournament titles, and ritual headings use the shared bilingual stack with decisive weight and measured tracking.
+*   **Title & Body:** Japanese text falls through to Shippori Mincho; Latin text and numerals remain Source Serif 4 for consistent reading and data comparison.
+*   **Labels:** Use restrained uppercase and spacing where the content is English. Do not force Japanese labels into Latin-style tracking.
  
 ---
  
@@ -48,7 +48,7 @@ In this system, depth is "Atmospheric" rather than "Physical."
 ## 5. Components
  
 ### Buttons
-*   **Primary:** Sharp 0px corners. Background is a gradient of `secondary` to `secondary-fixed-dim`. Text is `on-secondary` (dark teal) in Space Grotesk Bold.
+*   **Primary:** Sharp 0px corners. Background is a gradient of `secondary` to `secondary-fixed-dim`. Text is `on-secondary` (dark teal) in Source Serif 4 Bold with Shippori Mincho fallback.
 *   **Secondary (Glass):** Semi-transparent background with a `secondary` ghost-border (20% opacity).
  
 ### Cards (The Modular Unit)
