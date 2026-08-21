@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-20T10:12:34.302345+00:00",
+  "updatedAt": "2026-08-21T04:18:59.012929+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-f-bt-tp1-260821-202608210000451",
+      "title": "獅司　雷親方に誕生日プレゼントも「自分で言うのはちょっと恥ずかしい」師匠は喜びの笑顔",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260821-202608210000451",
+      "publishedAt": "2026-08-21",
+      "publishedAtRaw": "日刊スポーツ　8月21日 13時06分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-kyodo_nor-2026082001001004",
       "title": "夏巡業の大の里、関取と初稽古　藤凌駕に9戦全勝",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1299119",
       "publishedAt": "2026-08-20",
       "publishedAtRaw": "中日スポーツ　8月20日 15時59分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-chuspo-1299111",
-      "title": "大の里が稽古再開　藤凌駕を三番稽古の相手に指名「勢いがある力士なのでやってみたかった」【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1299111",
-      "publishedAt": "2026-08-20",
-      "publishedAtRaw": "中日スポーツ　8月20日 15時41分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
