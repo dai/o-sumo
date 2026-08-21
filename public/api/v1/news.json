@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-21T08:18:04.411592+00:00",
+  "updatedAt": "2026-08-21T10:12:39.236117+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-sponichi-spngoo-20260821-0253",
+      "title": "【夏巡業】幕内最年長36歳の高安が“居残り稽古”　誰もいない土俵脇で四股踏み「いい見本になれば」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260821-0253",
+      "publishedAt": "2026-08-21",
+      "publishedAtRaw": "スポニチアネックス　8月21日 18時17分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-chuspo-1299811",
+      "title": "【大相撲】高安、「下半身がおろそかになりがちなので」巡業居残り稽古で黙々と四股踏む姿に観客も拍手",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1299811",
+      "publishedAt": "2026-08-21",
+      "publishedAtRaw": "中日スポーツ　8月21日 18時16分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-20260821095",
+      "title": "兄弟同時幕内が確実の朝翠龍「浮かれている場合ではない」新入幕へ気を引き締める【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260821095",
+      "publishedAt": "2026-08-21",
+      "publishedAtRaw": "デイリースポーツ　8月21日 18時15分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-nikkangendai-1241617",
+      "title": "豊昇龍が長期離脱で大の里までピンチ！ “ひとり横綱”の重圧で「共倒れ」にならないか",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1241617",
+      "publishedAt": "2026-08-21",
+      "publishedAtRaw": "日刊ゲンダイDIGITAL　8月21日 17時10分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-20260821086",
       "title": "朝青龍も参加した高砂部屋平塚合宿がスタート、師匠の元朝赤龍「新弟子の頃からお世話に」節目の３０回目【大相撲】",
       "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260821086",
       "publishedAt": "2026-08-21",
       "publishedAtRaw": "デイリースポーツ　8月21日 17時01分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260821085",
-      "title": "名門国立大出身力士が進化へ懸命、朝力丸「場所で生かせるように」高砂部屋夏合宿スタート",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260821085",
-      "publishedAt": "2026-08-21",
-      "publishedAtRaw": "デイリースポーツ　8月21日 17時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-tokyosports-400141",
-      "title": "【田上明連載＃4】1987年ジャパンプロレス入門　小橋建太は当時から練習をよくやってるやつだったよ",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-400141",
-      "publishedAt": "2026-08-21",
-      "publishedAtRaw": "東スポWEB　8月21日 16時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260821-202608210000451",
-      "title": "獅司　雷親方に誕生日プレゼントも「自分で言うのはちょっと恥ずかしい」師匠は喜びの笑顔",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260821-202608210000451",
-      "publishedAt": "2026-08-21",
-      "publishedAtRaw": "日刊スポーツ　8月21日 13時06分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-kyodo_nor-2026082001001004",
-      "title": "夏巡業の大の里、関取と初稽古　藤凌駕に9戦全勝",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026082001001004",
-      "publishedAt": "2026-08-20",
-      "publishedAtRaw": "共同通信　8月20日 17時58分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
