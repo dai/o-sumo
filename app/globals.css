@@ -752,50 +752,6 @@ th {
   outline: none;
 }
 
-.basho-context-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  max-width: var(--layout-max-container);
-  margin: 1.25rem auto 0;
-  padding: 0.85rem 1rem;
-  background: var(--surface-container-high);
-  color: var(--color-dark-text);
-}
-
-.basho-context-bar--final {
-  background: color-mix(in srgb, var(--color-secondary-dim) 35%, var(--surface-container-high));
-}
-
-.basho-context-bar__summary,
-.basho-context-bar__actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.45rem 0.8rem;
-}
-
-.basho-context-bar__title {
-  font-family: var(--font-serif);
-  font-weight: 700;
-}
-
-.basho-context-bar__status {
-  color: var(--color-secondary);
-}
-
-.basho-context-bar__updated {
-  color: var(--color-muted);
-  font-size: 0.82rem;
-}
-
-.basho-context-bar__actions a {
-  color: var(--color-secondary);
-  font-size: 0.88rem;
-  font-weight: 700;
-}
-
 @media (max-width: 768px) {
   .primary-navigation {
     justify-content: flex-start;
@@ -806,12 +762,6 @@ th {
     min-height: 44px;
     display: inline-flex;
     align-items: center;
-  }
-
-  .basho-context-bar {
-    align-items: flex-start;
-    flex-direction: column;
-    margin-top: 0.75rem;
   }
 }
 

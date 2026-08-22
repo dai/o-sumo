@@ -141,7 +141,6 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - `app/officials/page.tsx`: 行司・呼出の一覧／個別プロフィール
 - `app/components/TorikumiDayPage.tsx`: 日別の取組ページ
 - `app/components/BanzukeTable.tsx`: 番付テーブル
-- `app/components/BashoContextBar.tsx`: 場所ステータスと更新時刻のコンテキストバー
 - `app/components/MyRikishiToggle.tsx`: マイ力士のトグル
 - `app/components/ShareCurrentLink.tsx`: 現URLのクリップボードコピー
 - `app/components/NewsSection.tsx`: ホームのニュース 2 セクション

@@ -14,7 +14,6 @@ import {
 
 import { PAST_BASHO } from './lib/archives-data';
 import HomeLink from './components/HomeLink';
-import BashoContextBar from './components/BashoContextBar';
 import { getBashoStatus, type BashoStatus } from './lib/basho-status';
 import NewsSection from './components/NewsSection';
 import KimariteCard from './components/KimariteCard';
@@ -226,14 +225,6 @@ export default function Home() {
       </header>
 
       <main className="home-main">
-        <BashoContextBar
-          archive={torikumiArchive}
-          bashoTitle={currentBashoTitle}
-          resultPath={`${CURRENT_RESULT_PATH}/`}
-          schedulePath={`${CURRENT_SCHEDULE_PATH}/`}
-          updatedAt={torikumiArchive.updatedAt}
-          status={bashoStatus}
-        />
         {/* Current Basho - Hero Section */}
         <section className="hero-section" aria-labelledby="hero-basho-title">
           <div className="hero-editorial-copy">
