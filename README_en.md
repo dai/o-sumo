@@ -84,7 +84,6 @@ Skill publishing:
 - My Rikishi (`/my-rikishi/`) stores up to 10 wrestlers by shikona with URL synchronisation and `localStorage` persistence across devices
 - Compare Rikishi (`/compare/?ids={id1},{id2}`) searches the current makuuchi and juryo roster and compares exactly two rikishi across seven profile metrics, including official-history career head-to-head
 - Basho analytics (`/analytics/`) shows makuuchi yusho, jun-yusho, kanto-sho, gin-o-sho, and juryo yusho for the current basho
-- The `BashoContextBar` is rendered above monthly hubs, daily pages, and the analytics page so users can jump between the current basho and past archives
 - The `ShareCurrentLink` button copies the current URL to the clipboard (with a manual fallback for non-secure contexts)
 - Monthly hub pages listing all 15 daily pages
 - Daily pages for makuuchi and juryo torikumi, with profile links on wrestler names
@@ -314,7 +313,6 @@ Current main coverage:
 - My Rikishi toggle, list, IME input correction, and URL synchronisation
 - Compare Rikishi (exactly two wrestlers) search, URL sync, seven metrics, and head-to-head results from both display perspectives
 - Basho analytics (`/analytics/`) makuuchi awards, special prizes, and juryo yusho
-- `BashoContextBar` basho status switching and updated-at display
 - `WebMcpProvider` four-tool registration with `document.modelContext.registerTool` / `navigator.modelContext.registerTool`
 
 GitHub Actions runs the following on pull requests and pushes to `main`, `codex/**`, and `automation/data-updates`:
@@ -355,7 +353,6 @@ GitHub Actions runs the following on pull requests and pushes to `main`, `codex/
 - `app/rikishi/CompareRikishiPage.tsx`: Compare Rikishi page
 - `app/components/TorikumiDayPage.tsx`: daily result and schedule pages
 - `app/components/BanzukeTable.tsx`: banzuke table component
-- `app/components/BashoContextBar.tsx`: context bar showing basho status and updated-at
 - `app/components/MyRikishiToggle.tsx`: My Rikishi toggle
 - `app/components/ShareCurrentLink.tsx`: copy current URL to clipboard
 - `app/components/NewsSection.tsx`: homepage news section (Japan Sumo Association + Sumo World News split sections)

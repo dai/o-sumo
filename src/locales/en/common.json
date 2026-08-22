@@ -22,15 +22,11 @@
     "updateDialogTitle": "A new update is available. Reload now?"
   },
   "bashoStatus": {
-    "contextLabel": "Current basho information",
     "live": "Day {{day}} in progress",
     "upcoming": "Pre-basho",
     "final": "Basho complete",
     "updatedAt": "Last updated {{date}}",
-    "viewSchedule": "View schedule",
     "viewResults": "View results",
-    "viewFinalResults": "View final results",
-    "viewPastSchedule": "View past schedule",
     "skipToMain": "Skip to main content"
   },
   "themeToggle": {

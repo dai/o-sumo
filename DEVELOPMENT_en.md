@@ -148,7 +148,6 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - `app/officials/page.tsx`: gyoji and yobidashi lists and profiles
 - `app/components/TorikumiDayPage.tsx`: daily torikumi page
 - `app/components/BanzukeTable.tsx`: banzuke table component
-- `app/components/BashoContextBar.tsx`: context bar showing basho status and updated-at
 - `app/components/MyRikishiToggle.tsx`: My Rikishi toggle
 - `app/components/ShareCurrentLink.tsx`: copy current URL to clipboard
 - `app/components/NewsSection.tsx`: homepage news section (split into Japan Sumo Association + Sumo World News)

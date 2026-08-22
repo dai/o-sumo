@@ -10,7 +10,6 @@ import {
   type TorikumiPageMode,
 } from '../lib/torikumi-routes';
 import HomeLink from '../components/HomeLink';
-import BashoContextBar from '../components/BashoContextBar';
 import { getBashoStatus } from '../lib/basho-status';
 import AbsenteesNotice, { type AbsenteeEntry } from '../components/AbsenteesNotice';
 import PageBreadcrumb from '../components/PageBreadcrumb';
@@ -83,14 +82,6 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
             { label: t('torikumi.hub.crumb'), href: '/archives/' },
             { label: `${archive.year}${archive.bashoName}` },
           ]}
-        />
-        <BashoContextBar
-          archive={archive}
-          bashoTitle={`${archive.year}${archive.bashoName}`}
-          resultPath={resultPath}
-          schedulePath={schedulePath}
-          updatedAt={updatedAt}
-          status={bashoStatus}
         />
         <section className="day-summary-card">
           <div>

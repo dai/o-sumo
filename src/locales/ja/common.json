@@ -22,15 +22,11 @@
     "updateDialogTitle": "新しい更新があります。再読み込みしますか？"
   },
   "bashoStatus": {
-    "contextLabel": "現在の場所情報",
     "live": "現在 {{day}} 日目",
     "upcoming": "開幕前",
     "final": "場所は終了しました",
     "updatedAt": "最終更新 {{date}}",
-    "viewSchedule": "取組予定を見る",
     "viewResults": "結果を見る",
-    "viewFinalResults": "確定結果を見る",
-    "viewPastSchedule": "過去の予定を見る",
     "skipToMain": "本文へスキップ"
   },
   "themeToggle": {
