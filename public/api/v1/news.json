@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-22T00:21:56.109404+00:00",
+  "updatedAt": "2026-08-22T08:11:02.519903+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-sponichi-spngoo-20260822-0259",
+      "title": "【夏巡業】誕生日プレゼントは年齢分のぶつかり　23歳伯乃富士に大の里、琴桜、霧島3人の壁",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260822-0259",
+      "publishedAt": "2026-08-22",
+      "publishedAtRaw": "スポニチアネックス　8月22日 16時47分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260822-OHT1T51223",
+      "title": "大嶽部屋の力士が江ノ島の海を背にゴミ拾い　サザエさん、マスオさんも登場…どすこいビーチクリーン２０２６",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260822-OHT1T51223",
+      "publishedAt": "2026-08-22",
+      "publishedAtRaw": "スポーツ報知　8月22日 15時28分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260822-0220",
+      "title": "【夏巡業】大の里が熱海富士、藤青雲と7勝1敗　左おっつけも繰り出し「動きは良かった」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260822-0220",
+      "publishedAt": "2026-08-22",
+      "publishedAtRaw": "スポニチアネックス　8月22日 15時15分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-sponichi-spngoo-20260822-0073",
       "title": "高安　夏巡業で異例の“居残り稽古”　秋場所へ意欲的調整「三役に戻りたい」",
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260822-0073",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260822013",
       "publishedAt": "2026-08-22",
       "publishedAtRaw": "デイリースポーツ　8月22日 5時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-tokyosports-400315",
-      "title": "元暴走王・小川直也氏が元貴闘力と再会　月間1000万円のビジネス話に「発想がすごい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-400315",
-      "publishedAt": "2026-08-21",
-      "publishedAtRaw": "東スポWEB　8月21日 22時04分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-kyodo_nor-2026082101001362",
-      "title": "全中で相撲除外、代替全国大会へ　来年8月に両国国技館",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026082101001362",
-      "publishedAt": "2026-08-21",
-      "publishedAtRaw": "共同通信　8月21日 19時25分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260821-0253",
-      "title": "【夏巡業】幕内最年長36歳の高安が“居残り稽古”　誰もいない土俵脇で四股踏み「いい見本になれば」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260821-0253",
-      "publishedAt": "2026-08-21",
-      "publishedAtRaw": "スポニチアネックス　8月21日 18時17分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
