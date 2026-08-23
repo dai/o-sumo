@@ -640,66 +640,29 @@
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
 }
 
-.past-basho-days {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  align-items: center;
+.past-basho-index-action {
+  margin: -1rem 0 3rem;
 }
 
-.past-basho-days-label {
-  font-size: 0.85rem;
-  color: var(--color-dark-text);
-  opacity: 0.7;
-  margin: 0;
-  margin-right: 0.5rem;
-  font-family: var(--font-sans);
-  letter-spacing: 0.05em;
-}
-
-.past-basho-day-link {
+.past-basho-index-link {
   display: inline-flex;
-  align-items: baseline;
-  gap: 0.15em;
-  background: var(--surface-container-lowest);
-  color: var(--color-primary);
-  padding: 0.45rem 0.85rem;
-  font-family: var(--font-sans);
-  font-feature-settings: 'tnum' 1;
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background-color 150ms cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 150ms cubic-bezier(0.22, 1, 0.36, 1),
-    color 150ms cubic-bezier(0.22, 1, 0.36, 1);
-  min-width: 2.6rem;
-  justify-content: center;
+  align-items: center;
+  min-height: 44px;
+  color: var(--color-secondary);
+  font-weight: 700;
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
 }
 
-.past-basho-day-link:hover {
-  background: var(--color-primary-container);
+.past-basho-index-link:hover,
+.past-basho-index-link:focus-visible {
   color: var(--color-on-primary);
-  box-shadow: var(--shadow-soft);
-  text-decoration: none;
-}
-
-.past-basho-day-link:focus-visible {
-  outline: 2px solid var(--color-secondary);
-  outline-offset: 2px;
-}
-
-.past-basho-day-num {
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.02em;
-}
-
-.past-basho-day-suffix {
-  font-size: 0.78em;
-  letter-spacing: 0.04em;
-  opacity: 0.85;
+  background: var(--color-primary-container);
+  text-decoration-color: currentColor;
 }
 
 .features-grid {
@@ -916,15 +879,6 @@
   .news-item-source {
     align-self: start;
   }
-
-  .kimarite-home-list {
-    grid-template-columns: 1fr;
-  }
-
-  .kimarite-home-item--yorikiri .kimarite-home-name,
-  .kimarite-home-item--oshidashi .kimarite-home-name {
-    font-size: 2.4rem;
-  }
 }
 
 /* Kimarite home card — visually distinct from news: tighter surface,
@@ -1104,6 +1058,17 @@
   font-variant-numeric: tabular-nums;
 }
 
+@media (max-width: 480px) {
+  .kimarite-home-list {
+    grid-template-columns: 1fr;
+  }
+
+  .kimarite-home-item--yorikiri .kimarite-home-name,
+  .kimarite-home-item--oshidashi .kimarite-home-name {
+    font-size: 2.4rem;
+  }
+}
+
 /* Reduced motion: collapse transitions, suppress lift on primary CTA */
 @media (prefers-reduced-motion: reduce) {
   .cta-button,
@@ -1112,8 +1077,6 @@
   .cta-button.secondary:hover,
   .live-torikumi-link,
   .live-torikumi-link:hover,
-  .past-basho-day-link,
-  .past-basho-day-link:hover,
   .home-footer a,
   .news-item-link,
   .news-section-see-all,
@@ -1518,16 +1481,14 @@
   gap: 0.75rem 1.25rem;
 }
 
-.home-editorial .past-basho-day-link {
-  color: var(--home-ink);
-  background: transparent;
-  border-bottom: 1px solid var(--home-rule);
+.home-editorial .past-basho-index-link {
+  color: var(--home-red-dark);
 }
 
-.home-editorial .past-basho-day-link:hover {
+.home-editorial .past-basho-index-link:hover,
+.home-editorial .past-basho-index-link:focus-visible {
   color: var(--home-paper);
   background: var(--home-ink);
-  box-shadow: none;
 }
 
 .home-editorial .home-footer {

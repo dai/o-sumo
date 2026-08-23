@@ -754,14 +754,26 @@ th {
 
 @media (max-width: 768px) {
   .primary-navigation {
-    justify-content: flex-start;
-    padding-inline: 0.65rem;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0.25rem;
+    padding: 0.5rem 0.65rem;
+    overflow-x: visible;
   }
 
   .primary-navigation__link {
+    grid-column: span 2;
+    min-width: 0;
     min-height: 44px;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .primary-navigation__link:nth-child(n + 4) {
+    grid-column: span 3;
   }
 }
 
@@ -905,12 +917,29 @@ th {
 
 @media (max-width: 768px) {
   .directory-navigation {
-    justify-content: flex-start;
-    padding-inline: 0.65rem;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0.25rem;
+    padding: 0.5rem 0.65rem;
+    overflow-x: visible;
+  }
+
+  .directory-navigation__label {
+    grid-column: 1 / -1;
+    margin-right: 0;
   }
 
   .directory-navigation__link {
+    grid-column: span 2;
+    min-width: 0;
     min-height: 44px;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .directory-navigation__link:nth-of-type(n + 4) {
+    grid-column: span 3;
   }
 }
 
