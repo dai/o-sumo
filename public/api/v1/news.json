@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-23T02:34:38.805641+00:00",
+  "updatedAt": "2026-08-23T10:09:09.852458+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_J3N2L35VJRCVDCJRFU4PP7A3KA",
+      "title": "藤井康生氏「貴花田ー寺尾。平成3年3月場所11日目。忘れもしません」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_J3N2L35VJRCVDCJRFU4PP7A3KA",
+      "publishedAt": "2026-08-23",
+      "publishedAtRaw": "SANSPO　8月23日 18時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_DRYXCJS7C5DXNL4GHOIA5OEX2I",
+      "title": "藤井康生氏「大関復帰プラス優勝まで果たした代償としてかなり無理を…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_DRYXCJS7C5DXNL4GHOIA5OEX2I",
+      "publishedAt": "2026-08-23",
+      "publishedAtRaw": "SANSPO　8月23日 17時28分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-sanspo-_sports_sumo_CHFBISEL7FFJ7GKLZJ5Z6EOBKQ",
       "title": "藤井康生氏「9月場所はかなり厳しいというか出場するのが難しいかなと」",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260823-0103",
       "publishedAt": "2026-08-23",
       "publishedAtRaw": "スポニチアネックス　8月23日 4時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-chuspo-1300295",
-      "title": "【大相撲】左太もも手術の若隆景、師匠はリハビリ開始と説明も再起の時期は「考えずに」治療最優先の方針示す",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1300295",
-      "publishedAt": "2026-08-22",
-      "publishedAtRaw": "中日スポーツ　8月22日 19時03分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-chuspo-1300283",
-      "title": "【大相撲】伯乃富士、23歳誕生日に23度のぶつかり稽古　横綱と大関から”プレゼント”「ありがたいこと。ぜいたくなことです」",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1300283",
-      "publishedAt": "2026-08-22",
-      "publishedAtRaw": "中日スポーツ　8月22日 18時34分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
