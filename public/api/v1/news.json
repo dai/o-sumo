@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-22T10:09:02.433007+00:00",
+  "updatedAt": "2026-08-23T00:24:00.080237+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260823-0103",
+      "title": "【大相撲夏巡業】伯乃富士　23歳誕生日に横綱＆大関と23回ぶつかり稽古「ありがたいこと」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260823-0103",
+      "publishedAt": "2026-08-23",
+      "publishedAtRaw": "スポニチアネックス　8月23日 4時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-chuspo-1300295",
+      "title": "【大相撲】左太もも手術の若隆景、師匠はリハビリ開始と説明も再起の時期は「考えずに」治療最優先の方針示す",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1300295",
+      "publishedAt": "2026-08-22",
+      "publishedAtRaw": "中日スポーツ　8月22日 19時03分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-chuspo-1300283",
       "title": "【大相撲】伯乃富士、23歳誕生日に23度のぶつかり稽古　横綱と大関から”プレゼント”「ありがたいこと。ぜいたくなことです」",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260822-0259",
       "publishedAt": "2026-08-22",
       "publishedAtRaw": "スポニチアネックス　8月22日 16時47分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260822-OHT1T51223",
-      "title": "大嶽部屋の力士が江ノ島の海を背にゴミ拾い　サザエさん、マスオさんも登場…どすこいビーチクリーン２０２６",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260822-OHT1T51223",
-      "publishedAt": "2026-08-22",
-      "publishedAtRaw": "スポーツ報知　8月22日 15時28分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260822-0220",
-      "title": "【夏巡業】大の里が熱海富士、藤青雲と7勝1敗　左おっつけも繰り出し「動きは良かった」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260822-0220",
-      "publishedAt": "2026-08-22",
-      "publishedAtRaw": "スポニチアネックス　8月22日 15時15分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
