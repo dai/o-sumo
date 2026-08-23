@@ -752,66 +752,28 @@ th {
   outline: none;
 }
 
-.basho-context-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  max-width: var(--layout-max-container);
-  margin: 1.25rem auto 0;
-  padding: 0.85rem 1rem;
-  background: var(--surface-container-high);
-  color: var(--color-dark-text);
-}
-
-.basho-context-bar--final {
-  background: color-mix(in srgb, var(--color-secondary-dim) 35%, var(--surface-container-high));
-}
-
-.basho-context-bar__summary,
-.basho-context-bar__actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.45rem 0.8rem;
-}
-
-.basho-context-bar__title {
-  font-family: var(--font-serif);
-  font-weight: 700;
-}
-
-.basho-context-bar__status {
-  color: var(--color-secondary);
-}
-
-.basho-context-bar__updated {
-  color: var(--color-muted);
-  font-size: 0.82rem;
-}
-
-.basho-context-bar__actions a {
-  color: var(--color-secondary);
-  font-size: 0.88rem;
-  font-weight: 700;
-}
-
 @media (max-width: 768px) {
   .primary-navigation {
-    justify-content: flex-start;
-    padding-inline: 0.65rem;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0.25rem;
+    padding: 0.5rem 0.65rem;
+    overflow-x: visible;
   }
 
   .primary-navigation__link {
+    grid-column: span 2;
+    min-width: 0;
     min-height: 44px;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
   }
 
-  .basho-context-bar {
-    align-items: flex-start;
-    flex-direction: column;
-    margin-top: 0.75rem;
+  .primary-navigation__link:nth-child(n + 4) {
+    grid-column: span 3;
   }
 }
 
@@ -955,12 +917,29 @@ th {
 
 @media (max-width: 768px) {
   .directory-navigation {
-    justify-content: flex-start;
-    padding-inline: 0.65rem;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0.25rem;
+    padding: 0.5rem 0.65rem;
+    overflow-x: visible;
+  }
+
+  .directory-navigation__label {
+    grid-column: 1 / -1;
+    margin-right: 0;
   }
 
   .directory-navigation__link {
+    grid-column: span 2;
+    min-width: 0;
     min-height: 44px;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .directory-navigation__link:nth-of-type(n + 4) {
+    grid-column: span 3;
   }
 }
 

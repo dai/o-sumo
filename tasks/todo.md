@@ -359,3 +359,23 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 - 最新 `origin/main` 上の最終検証はfocused 1 file / 1 test、全Vitest 52 files / 386 tests、typecheck、build 151 modules、`git diff --check`が成功した。リポジトリにlint scriptはないため、typecheck・差分whitespace検査・Impeccable type scan（0件）をlint相当として実施。buildには既存のarchive chunk size警告とBrowserslist更新警告のみ。独立した仕様・品質レビュー2件の共通指摘だったfont stack順序もテストへ追加し、残るCritical / Important指摘は0件。
 
 ---
+
+# ホーム・iPhone上部導線のUX改善（2026-08-22）
+
+## Plan
+
+- [x] RED: ホームが過去場所の日別リンクを常時展開せず、全アーカイブへの日英導線を表示する回帰テストを追加する
+- [x] GREEN: `PAST_BASHO` 全件の番付・予定・結果を維持し、日別リンクを `/archives/` へ集約する
+- [x] iPhone幅では告知・テーマ・言語を重ねず、主要ナビと人物ナビを3列＋2列で常時表示し、全操作を44px以上にする
+- [x] 320px・375px・390pxの日英／light・dark、キーボード、横溢れを実ブラウザで確認する
+- [x] focused tests、全Vitest、typecheck、build、Impeccable scan、`git diff --check`を通す
+
+## Review
+
+- RED: ホームテストは日別リンク残存と一覧導線未実装の2件だけが期待どおり失敗。CSS基準値も320pxでナビ横あふれ、告知との重なり、44px未満を確認。
+- GREEN: ホームテスト16件が成功。全過去場所と各3導線を維持し、日別45リンクを削除、日英の `/archives/` 導線を追加。
+- 実ブラウザ: 320px・375px・390px × 日英 × light・darkの12条件ですべて横あふれなし、主要ナビ3＋2、44px操作領域、告知との非重複を確認。人物ナビも320pxで3＋2かつ横あふれなし。既存のbutton・link要素を維持し、キーボード操作契約を変更していない。
+- 追加修正: 320pxの本文横あふれは既存の決まり手一覧用メディアクエリが後続の基本ルールに上書きされていたことが原因。ルール順を直して1列表示を有効化。
+- 検証: focused 16件、全Vitest、typecheck、Vite本番build、`git diff --check`、Impeccable scanに成功。独立レビューはCritical・Importantなし。buildには既存の大きなアーカイブchunkとBrowserslist更新の警告あり。
+
+---

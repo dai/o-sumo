@@ -14,7 +14,6 @@ import {
 
 import { PAST_BASHO } from './lib/archives-data';
 import HomeLink from './components/HomeLink';
-import BashoContextBar from './components/BashoContextBar';
 import { getBashoStatus, type BashoStatus } from './lib/basho-status';
 import NewsSection from './components/NewsSection';
 import KimariteCard from './components/KimariteCard';
@@ -197,8 +196,7 @@ export function buildLiveTorikumiTarget(
 }
 
 export default function Home() {
-  const { t, i18n } = useTranslation('common');
-  const locale = i18n.language || 'ja';
+  const { t } = useTranslation('common');
   const currentBashoTitle = `${torikumiArchive.year}${torikumiArchive.bashoName}`;
   const currentBanzukePath = getBanzukePathForMonthKey(torikumiMonthKey);
   const bashoStatus = getBashoStatus(torikumiArchive);
@@ -226,14 +224,6 @@ export default function Home() {
       </header>
 
       <main className="home-main">
-        <BashoContextBar
-          archive={torikumiArchive}
-          bashoTitle={currentBashoTitle}
-          resultPath={`${CURRENT_RESULT_PATH}/`}
-          schedulePath={`${CURRENT_SCHEDULE_PATH}/`}
-          updatedAt={torikumiArchive.updatedAt}
-          status={bashoStatus}
-        />
         {/* Current Basho - Hero Section */}
         <section className="hero-section" aria-labelledby="hero-basho-title">
           <div className="hero-editorial-copy">
@@ -320,24 +310,13 @@ export default function Home() {
                 {t('home.heroResult')}
               </Link>
             </nav>
-            <div className="past-basho-days">
-              <p className="past-basho-days-label">{t('home.pastBashoDays')}</p>
-              {pastBasho.data.resultDays?.map((day) => (
-                <Link
-                  key={day.pathDate}
-                  to={`/${day.pathDate}-torikumi/`}
-                  className="past-basho-day-link"
-                  aria-label={t('torikumi.day.dayHead', { day: day.day })}
-                >
-                  <span className="past-basho-day-num">{day.day}</span>
-                  <span className="past-basho-day-suffix" aria-hidden="true">
-                    {locale.startsWith('ja') ? '日' : ''}
-                  </span>
-                </Link>
-              ))}
-            </div>
           </section>
         ))}
+        <div className="past-basho-index-action">
+          <Link to="/archives/" className="past-basho-index-link">
+            {t('home.pastBashoAll')}
+          </Link>
+        </div>
       </main>
 
       <footer className="home-footer">

@@ -8,7 +8,6 @@ import PageBreadcrumb from '../components/PageBreadcrumb';
 import { type SortOrder, sortRankGroups } from '../lib/sorting';
 import { getArchiveRouteConfigForPathname, getHubPathForMonthKey } from '../lib/torikumi-routes';
 import HomeLink from '../components/HomeLink';
-import BashoContextBar from '../components/BashoContextBar';
 import './page.css';
 import { formatGregorianBashoLabel } from '../lib/basho-meta';
 import { formatUpdatedAt } from '../lib/updated-at';
@@ -66,7 +65,7 @@ export default function BanzukePage() {
     setSearchParams(next, { replace });
   }, [searchParams, setSearchParams]);
   const { t } = useTranslation('common');
-  const { bashoTitle, gregorianBashoLabel, banzukePath, monthKey, updatedAt, makuuchi, juryo: juryoRanks, archive, resultPath, schedulePath } = useBanzukeContext();
+  const { bashoTitle, gregorianBashoLabel, banzukePath, monthKey, updatedAt, makuuchi, juryo: juryoRanks } = useBanzukeContext();
   const sortedMakuuchi = sortRankGroups(makuuchi, sortOrder);
   const sortedJuryo = sortRankGroups(juryoRanks, sortOrder);
   const filteredMakuuchi = filterRankGroups(sortedMakuuchi, query);
@@ -95,13 +94,6 @@ export default function BanzukePage() {
             { label: t('banzuke.crumb'), href: '/archives/' },
             { label: bashoTitle },
           ]}
-        />
-        <BashoContextBar
-          archive={archive}
-          bashoTitle={bashoTitle}
-          resultPath={resultPath}
-          schedulePath={schedulePath}
-          updatedAt={updatedAt}
         />
         <section className="page-toolbar banzuke-discovery" aria-label={t('banzuke.discoveryLabel')}>
           <label className="directory-search__label" htmlFor="banzuke-search">{t('banzuke.searchLabel')}</label>

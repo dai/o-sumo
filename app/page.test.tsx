@@ -163,7 +163,8 @@ describe('Home page', () => {
     expect(mayBanzukeLink).toHaveAttribute('href', `${MAY2026_BANZUKE_PATH}/`);
     expect(mayYoteiLink).toHaveAttribute('href', `${MAY2026_SCHEDULE_PATH}/`);
     expect(mayTorikumiLink).toHaveAttribute('href', `${MAY2026_RESULT_PATH}/`);
-    expect(allLinks.find((l) => l.getAttribute('href') === `/${firstMayDay!.pathDate}-torikumi/`)).toBeDefined();
+    expect(allLinks.find((l) => l.getAttribute('href') === `/${firstMayDay!.pathDate}-torikumi/`)).toBeUndefined();
+    expect(screen.getByRole('link', { name: '過去の場所をすべて見る' })).toHaveAttribute('href', '/archives/');
     expect(screen.queryByText('連絡先:')).not.toBeInTheDocument();
     expect(within(screen.getByRole('banner')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
     expect(within(screen.getByRole('contentinfo')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
@@ -195,6 +196,19 @@ describe('Home page', () => {
     expect(allLinks.find((link) => link.getAttribute('href') === `${MARCH2026_BANZUKE_PATH}/`)).toBeDefined();
   });
 
+  it('translates the archive index action when English is selected', async () => {
+    await act(() => i18n.changeLanguage('en'));
+
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByRole('link', { name: 'View all past basho' })).toHaveAttribute('href', '/archives/');
+
+    await act(() => i18n.changeLanguage('ja'));
+  });
   it('renders the news section heading on the top page', () => {
     render(
       <MemoryRouter>

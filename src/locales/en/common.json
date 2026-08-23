@@ -22,15 +22,11 @@
     "updateDialogTitle": "A new update is available. Reload now?"
   },
   "bashoStatus": {
-    "contextLabel": "Current basho information",
     "live": "Day {{day}} in progress",
     "upcoming": "Pre-basho",
     "final": "Basho complete",
     "updatedAt": "Last updated {{date}}",
-    "viewSchedule": "View schedule",
     "viewResults": "View results",
-    "viewFinalResults": "View final results",
-    "viewPastSchedule": "View past schedule",
     "skipToMain": "Skip to main content"
   },
   "themeToggle": {
@@ -73,7 +69,7 @@
     "championshipLabelDay14": "as of end of Day 14",
     "championshipLabelDay": "Day {{day}}",
     "pastBashoHeading": "{{year}} {{name}}",
-    "pastBashoDays": "Days:",
+    "pastBashoAll": "View all past basho",
     "footerCopyright": "© 2026 o-sumo. All rights reserved.",
     "footerAbout": "About & Privacy Policy",
     "footerDaisuke": "Daisuke on X",

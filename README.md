@@ -82,7 +82,6 @@ Skill 公開:
 - マイ力士 (`/my-rikishi/`) で最大10名まで四股名を登録し、URL 同期と `localStorage` 永続化で端末をまたいで保持
 - 力士比較 (`/compare/?ids={id1},{id2}`) で現役幕内・十両の2人を検索し、プロフィール7項目と公式履歴由来の通算合い口を比較
 - 場所ステータス分析 (`/analytics/`) で幕内優勝・三賞・十両優勝を一覧表示
-- 月別ハブ・日別ページ・場所ステータス分析のヘッダーに `BashoContextBar` を表示し、現行場所と過去場所を視覚的に切替
 - 各ページの URL を `ShareCurrentLink` ボタンでクリップボードへコピー（手動フォールバック付き）
 - 月別ハブで 15 日分の日別ページを一覧表示
 - 日別ページで幕内・十両の取組を表示し、取組力士名からプロフィールへ遷移
@@ -323,7 +322,6 @@ GitHub Actions で取組予定、取組結果、ニュース更新を分けて�
 - マイ力士のトグル／一覧／IME 入力補正と URL 同期
 - 力士比較（2名固定）の4種類検索、URL同期、指定7項目、列順に応じた合い口表示
 - 場所ステータス分析 (`/analytics/`) の幕内・三賞・十両結果
-- `BashoContextBar` の場所状態切替と更新時刻表示
 - `WebMcpProvider` の 4 ツール登録 (`document.modelContext.registerTool` / `navigator.modelContext.registerTool`)
 
 GitHub Actions では PR と `main` / `codex/**` / `automation/data-updates` への push で以下を実行します。
@@ -368,7 +366,6 @@ GitHub Actions では PR と `main` / `codex/**` / `automation/data-updates` へ
 - `app/rikishi/CompareRikishiPage.tsx`: 力士比較ページ
 - `app/components/TorikumiDayPage.tsx`: 日別の結果 / 予定ページ
 - `app/components/BanzukeTable.tsx`: 番付テーブルコンポーネント
-- `app/components/BashoContextBar.tsx`: 場所ステータスと更新時刻を表示するコンテキストバー
 - `app/components/MyRikishiToggle.tsx`: マイ力士登録トグル
 - `app/components/ShareCurrentLink.tsx`: 現在の URL をクリップボードへコピー
 - `app/components/NewsSection.tsx`: ホームのニュースセクション（相撲協会 + 相撲界ニュースの 2 セクション）
