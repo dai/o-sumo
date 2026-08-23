@@ -379,3 +379,25 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 - 検証: focused 16件、全Vitest、typecheck、Vite本番build、`git diff --check`、Impeccable scanに成功。独立レビューはCritical・Importantなし。buildには既存の大きなアーカイブchunkとBrowserslist更新の警告あり。
 
 ---
+
+# 硝子のコンパクトトレイ型ナビ（2026-08-23）
+
+## Plan
+
+- [x] RED: 主要メニューのホーム削除と人物サブメニュー開閉の回帰テストを追加する
+- [x] GREEN: 現在地付きトリガー、Escape、外側クリック、遷移後クローズを実装する
+- [x] STYLE: 主要4項目を一段のglass trayへ変更し、人物サブメニューも同じ視覚言語へ揃える
+- [x] VERIFY: focused tests、全Vitest、typecheck、build、Impeccable scan、`git diff --check`を通す
+- [x] BROWSER: 320px・375px・390px、日英、light・dark、キーボード操作と横溢れを確認する
+- [x] REVIEW: 独立レビューを反映し、結果を記録する
+
+## Review
+
+- TDD: 新規8テストが修正前に要件どおり失敗することを確認し、実装後は8件すべて成功。ホーム削除、過去場所URL、開閉、Escape時のフォーカス復帰、外側クリック、遷移後クローズ、パス境界、日英を固定した。
+- 実装: 主要ナビを4項目一段の硝子トレイへ変更。人物名鑑は現在地付きトリガーと5項目の展開トレイにし、操作領域を45px確保した。
+- ブラウザ: 320px・375px・390px × 日英 × light・darkの12条件で横溢れなし、主要4項目一段、人物メニュー3項目＋2項目、Escape後のフォーカス復帰を確認した。
+- 目視修正: sticky見出し（z-index 50）が展開メニューを覆う状態を描画順で再現し、ナビshellをz-index 60へ変更。390px幅でリンクが最前面に表示されることを再確認した。
+- 検証: 全Vitest 54ファイル・403件、typecheck、Vite本番build、Impeccable scan 2対象・指摘0件、`git diff --check`に成功。buildには既存の大きなarchive chunkとBrowserslist更新の警告あり。
+- 独立レビュー: Critical・Important・Minorの指摘なし。専用8テストとtypecheckもレビュー側で再確認済み。
+
+---
