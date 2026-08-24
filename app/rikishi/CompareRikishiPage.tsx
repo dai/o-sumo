@@ -16,6 +16,16 @@ import {
 } from '../lib/rikishi-profile';
 import { matchesSearch } from '../lib/search';
 import { toRomaji } from '../lib/romaji';
+import { useMyRikishi } from '../lib/my-rikishi';
+import {
+  analyzeAikuchi,
+  calculateCareerWinRate,
+  calculateStatDiff,
+  getRikishiCurrentBashoInfo,
+  getRikishiKimariteStats,
+  FEATURED_MATCHUP_PRESETS,
+} from '../lib/rikishi-compare-data';
+import { generatedRikishiAvatarDataUrl } from '../lib/rikishi-avatar';
 import './page.css';
 
 const MAX_COMPARE_RIKISHI = 2;
@@ -108,11 +118,11 @@ function RikishiCombobox({ slot, items, selectedId, excludedId, draft, onDraftCh
     if (event.key === 'ArrowDown') {
       event.preventDefault();
       setOpen(true);
-      setActiveIndex((current) => candidates.length ? (current + 1) % candidates.length : -1);
+      setActiveIndex((current) => (candidates.length ? (current + 1) % candidates.length : -1));
     } else if (event.key === 'ArrowUp') {
       event.preventDefault();
       setOpen(true);
-      setActiveIndex((current) => candidates.length ? (current <= 0 ? candidates.length - 1 : current - 1) : -1);
+      setActiveIndex((current) => (candidates.length ? (current <= 0 ? candidates.length - 1 : current - 1) : -1));
     } else if (event.key === 'Enter' && open && activeIndex >= 0 && candidates[activeIndex]) {
       event.preventDefault();
       selectCandidate(candidates[activeIndex]);
@@ -148,11 +158,10 @@ function RikishiCombobox({ slot, items, selectedId, excludedId, draft, onDraftCh
         value={draft}
         placeholder={t('rikishi.searchPlaceholder')}
         onFocus={() => setOpen(true)}
-        onChange={(event) => {
-          setOpen(true);
-          onDraftChange(slot, event.target.value, composing.current);
+        onChange={(event) => onDraftChange(slot, event.target.value, composing.current)}
+        onCompositionStart={() => {
+          composing.current = true;
         }}
-        onCompositionStart={() => { composing.current = true; }}
         onCompositionEnd={(event) => {
           composing.current = false;
           onDraftChange(slot, event.currentTarget.value, false);
@@ -160,93 +169,428 @@ function RikishiCombobox({ slot, items, selectedId, excludedId, draft, onDraftCh
         onKeyDown={onKeyDown}
       />
       {open ? (
-        <div id={listboxId} className="compare-combobox__listbox" role="listbox" aria-label={t('comparison.candidateListLabel', { label })}>
-          {candidates.length > 0
-            ? candidates.map((item, index) => (
-                <button
-                  id={`${inputId}-option-${item.id}`}
+        <ul
+          id={listboxId}
+          className="compare-combobox__listbox"
+          role="listbox"
+          aria-label={t('comparison.candidateListLabel', { label })}
+        >
+          {candidates.length === 0 ? (
+            <li className="compare-combobox__empty" role="option" aria-selected="false">
+              {t('comparison.noResults')}
+            </li>
+          ) : (
+            candidates.map((item, index) => {
+              const isSelected = item.id === selectedId;
+              const isActive = index === activeIndex;
+              return (
+                <li
                   key={item.id}
-                  type="button"
+                  id={`${inputId}-option-${item.id}`}
+                  className={`compare-combobox__option${isSelected ? ' is-selected' : ''}${isActive ? ' is-active' : ''}`}
                   role="option"
-                  tabIndex={-1}
-                  aria-selected={item.id === selectedId}
-                  className={`compare-combobox__option${index === activeIndex ? ' is-active' : ''}`}
-                  onMouseDown={(event) => event.preventDefault()}
-                  onClick={() => selectCandidate(item)}
+                  aria-selected={isSelected}
+                  onMouseDown={(event) => {
+                    event.preventDefault();
+                    selectCandidate(item);
+                  }}
                 >
-                  <span className="compare-combobox__rank">{item.currentRank}</span>
-                  <strong>{item.name}</strong>
-                  <span>{item.yomi}</span>
-                  <span>{toRomaji(item.yomi)}</span>
-                </button>
-              ))
-            : (
-                <div className="compare-combobox__empty" role="option" aria-selected="false" aria-disabled="true">
-                  {t('comparison.noResults')}
-                </div>
-              )}
-        </div>
+                  <span className="compare-combobox__option-name">{item.name}</span>
+                  <span className="compare-combobox__option-rank">{item.currentRank}</span>
+                </li>
+              );
+            })
+          )}
+        </ul>
       ) : null}
     </div>
   );
 }
 
-export default function CompareRikishiPage() {
+// -------------------------------------------------------------
+// Component: VS Header Card (東 vs 西 対決カード)
+// -------------------------------------------------------------
+function CompareVsCard({ profiles }: { profiles: [RikishiProfile, RikishiProfile] }) {
   const { t } = useTranslation('common');
+  const [profileA, profileB] = profiles;
+  const currentBashoA = getRikishiCurrentBashoInfo(profileA.id);
+  const currentBashoB = getRikishiCurrentBashoInfo(profileB.id);
+
+  const avatarA = generatedRikishiAvatarDataUrl({ id: profileA.id, name: profileA.name, side: 'east' });
+  const avatarB = generatedRikishiAvatarDataUrl({ id: profileB.id, name: profileB.name, side: 'west' });
+
+  return (
+    <section className="compare-vs-card" aria-label="力士対戦カード">
+      {/* Rikishi A (East) */}
+      <div className="compare-vs-card__side compare-vs-card__side--east">
+        <img
+          src={avatarA}
+          alt=""
+          className="compare-vs-card__avatar"
+          width="88"
+          height="88"
+        />
+        <div className="compare-vs-card__info">
+          <span className="compare-vs-card__rank">{profileA.currentRank}</span>
+          <h3 className="compare-vs-card__name">
+            <Link to={rikishiProfilePath(profileA.id)}>{profileA.name}</Link>
+          </h3>
+          <span className="compare-vs-card__yomi">{toRomaji(profileA.yomi)}</span>
+          <div className="compare-vs-card__meta">
+            <span>{profileA.shusshin}</span>
+            {currentBashoA ? (
+              <span className="compare-vs-card__basho-record">
+                {t('comparison.currentBashoRecord')}: <strong>{currentBashoA.wins}勝{currentBashoA.losses}敗</strong>
+              </span>
+            ) : null}
+          </div>
+        </div>
+      </div>
+
+      {/* VS Badge */}
+      <div className="compare-vs-card__divider" aria-hidden="true">
+        <span className="compare-vs-card__vs-badge">{t('comparison.vsLabel')}</span>
+      </div>
+
+      {/* Rikishi B (West) */}
+      <div className="compare-vs-card__side compare-vs-card__side--west">
+        <img
+          src={avatarB}
+          alt=""
+          className="compare-vs-card__avatar"
+          width="88"
+          height="88"
+        />
+        <div className="compare-vs-card__info">
+          <span className="compare-vs-card__rank">{profileB.currentRank}</span>
+          <h3 className="compare-vs-card__name">
+            <Link to={rikishiProfilePath(profileB.id)}>{profileB.name}</Link>
+          </h3>
+          <span className="compare-vs-card__yomi">{toRomaji(profileB.yomi)}</span>
+          <div className="compare-vs-card__meta">
+            <span>{profileB.shusshin}</span>
+            {currentBashoB ? (
+              <span className="compare-vs-card__basho-record">
+                {t('comparison.currentBashoRecord')}: <strong>{currentBashoB.wins}勝{currentBashoB.losses}敗</strong>
+              </span>
+            ) : null}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// -------------------------------------------------------------
+// Component: 【Primary】合口（直接対戦成績）スコアボード
+// -------------------------------------------------------------
+function AikuchiScoreboard({
+  profiles,
+  matchup,
+}: {
+  profiles: [RikishiProfile, RikishiProfile];
+  matchup: [number, number] | null;
+}) {
+  const { t } = useTranslation('common');
+  const [profileA, profileB] = profiles;
+  const winsA = matchup ? matchup[0] : 0;
+  const winsB = matchup ? matchup[1] : 0;
+  const stats = analyzeAikuchi(winsA, winsB);
+
+  const getBadgeText = () => {
+    if (stats.totalBouts === 0) return t('comparison.aikuchiNone');
+    if (stats.leader === null) return t('comparison.aikuchiEven');
+    const leaderName = stats.leader === 0 ? profileA.name : profileB.name;
+    return t('comparison.aikuchiLead', { name: leaderName, diff: stats.diff });
+  };
+
+  return (
+    <section className="compare-aikuchi" aria-labelledby="aikuchi-title">
+      <div className="compare-aikuchi__header">
+        <div className="compare-aikuchi__title-wrap">
+          <span className="compare-aikuchi__badge-icon" aria-hidden="true">⚔️</span>
+          <h2 id="aikuchi-title" className="compare-aikuchi__title">{t('comparison.aikuchiTitle')}</h2>
+        </div>
+        <p className="compare-aikuchi__subtitle">{t('comparison.aikuchiSubtitle')}</p>
+      </div>
+
+      <div className="compare-aikuchi__scoreboard">
+        {/* Left Rikishi Score */}
+        <div className={`compare-aikuchi__score-side${stats.leader === 0 ? ' is-leader' : ''}`}>
+          <span className="compare-aikuchi__rikishi-name">{profileA.name}</span>
+          <div className="compare-aikuchi__score-val">{stats.winsA}</div>
+          <span className="compare-aikuchi__win-rate">
+            {stats.totalBouts > 0 ? t('comparison.aikuchiWinRate', { rate: stats.winRateA }) : '-'}
+          </span>
+        </div>
+
+        {/* Center Total / Status */}
+        <div className="compare-aikuchi__center">
+          <div className="compare-aikuchi__total-bouts">
+            {stats.totalBouts > 0 ? t('comparison.aikuchiTotal', { total: stats.totalBouts }) : t('comparison.aikuchiTotal', { total: 0 })}
+          </div>
+          <div className={`compare-aikuchi__status-pill${stats.leader !== null ? ' is-lead' : ' is-even'}`}>
+            {getBadgeText()}
+          </div>
+        </div>
+
+        {/* Right Rikishi Score */}
+        <div className={`compare-aikuchi__score-side${stats.leader === 1 ? ' is-leader' : ''}`}>
+          <span className="compare-aikuchi__rikishi-name">{profileB.name}</span>
+          <div className="compare-aikuchi__score-val">{stats.winsB}</div>
+          <span className="compare-aikuchi__win-rate">
+            {stats.totalBouts > 0 ? t('comparison.aikuchiWinRate', { rate: stats.winRateB }) : '-'}
+          </span>
+        </div>
+      </div>
+
+      {/* Visual Meter Bar */}
+      {stats.totalBouts > 0 ? (
+        <div className="compare-aikuchi__meter-container" aria-hidden="true">
+          <div
+            className="compare-aikuchi__meter-bar compare-aikuchi__meter-bar--a"
+            style={{ width: `${stats.winRateA}%` }}
+          />
+          <div
+            className="compare-aikuchi__meter-bar compare-aikuchi__meter-bar--b"
+            style={{ width: `${stats.winRateB}%` }}
+          />
+        </div>
+      ) : null}
+    </section>
+  );
+}
+
+// -------------------------------------------------------------
+// Component: 体格・スタッツ差 ビジュアル比較バー
+// -------------------------------------------------------------
+function StatComparisonBars({ profiles }: { profiles: [RikishiProfile, RikishiProfile] }) {
+  const { t } = useTranslation('common');
+  const [profileA, profileB] = profiles;
+
+  const heightDiff = calculateStatDiff(profileA.height || 0, profileB.height || 0);
+  const weightDiff = calculateStatDiff(profileA.weight || 0, profileB.weight || 0);
+
+  const careerA = calculateCareerWinRate(profileA);
+  const careerB = calculateCareerWinRate(profileB);
+  const careerRateValA = parseFloat(careerA.rate) || 0;
+  const careerRateValB = parseFloat(careerB.rate) || 0;
+  const winRateDiff = calculateStatDiff(careerRateValA, careerRateValB);
+
+  return (
+    <section className="compare-stats-card" aria-labelledby="physical-stats-title">
+      <div className="compare-stats-card__header">
+        <h2 id="physical-stats-title" className="compare-stats-card__title">{t('comparison.physicalTitle')}</h2>
+      </div>
+
+      <div className="compare-stats-list">
+        {/* Height */}
+        <div className="compare-stat-row">
+          <div className="compare-stat-row__top">
+            <span className={`compare-stat-val compare-stat-val--left${heightDiff.advantage === 0 ? ' is-better' : ''}`}>
+              {profileA.height ? `${profileA.height} cm` : '-'}
+            </span>
+            <span className="compare-stat-label">{t('comparison.height')}</span>
+            <span className={`compare-stat-val compare-stat-val--right${heightDiff.advantage === 1 ? ' is-better' : ''}`}>
+              {profileB.height ? `${profileB.height} cm` : '-'}
+            </span>
+          </div>
+          <div className="compare-stat-bars" aria-hidden="true">
+            <div className="compare-stat-bar-track compare-stat-bar-track--left">
+              <div
+                className={`compare-stat-bar-fill compare-stat-bar-fill--left${heightDiff.advantage === 0 ? ' is-max' : ''}`}
+                style={{ width: `${Math.min(100, Math.max(10, ((profileA.height || 0) / 205) * 100))}%` }}
+              />
+            </div>
+            <div className="compare-stat-bar-track compare-stat-bar-track--right">
+              <div
+                className={`compare-stat-bar-fill compare-stat-bar-fill--right${heightDiff.advantage === 1 ? ' is-max' : ''}`}
+                style={{ width: `${Math.min(100, Math.max(10, ((profileB.height || 0) / 205) * 100))}%` }}
+              />
+            </div>
+          </div>
+          {heightDiff.diff > 0 ? (
+            <div className="compare-stat-diff">
+              {heightDiff.advantage === 0 ? profileA.name : profileB.name} {t('comparison.diffAdvantage', { value: heightDiff.diff, unit: 'cm' })}
+            </div>
+          ) : null}
+        </div>
+
+        {/* Weight */}
+        <div className="compare-stat-row">
+          <div className="compare-stat-row__top">
+            <span className={`compare-stat-val compare-stat-val--left${weightDiff.advantage === 0 ? ' is-better' : ''}`}>
+              {profileA.weight ? `${profileA.weight} kg` : '-'}
+            </span>
+            <span className="compare-stat-label">{t('comparison.weight')}</span>
+            <span className={`compare-stat-val compare-stat-val--right${weightDiff.advantage === 1 ? ' is-better' : ''}`}>
+              {profileB.weight ? `${profileB.weight} kg` : '-'}
+            </span>
+          </div>
+          <div className="compare-stat-bars" aria-hidden="true">
+            <div className="compare-stat-bar-track compare-stat-bar-track--left">
+              <div
+                className={`compare-stat-bar-fill compare-stat-bar-fill--left${weightDiff.advantage === 0 ? ' is-max' : ''}`}
+                style={{ width: `${Math.min(100, Math.max(10, ((profileA.weight || 0) / 200) * 100))}%` }}
+              />
+            </div>
+            <div className="compare-stat-bar-track compare-stat-bar-track--right">
+              <div
+                className={`compare-stat-bar-fill compare-stat-bar-fill--right${weightDiff.advantage === 1 ? ' is-max' : ''}`}
+                style={{ width: `${Math.min(100, Math.max(10, ((profileB.weight || 0) / 200) * 100))}%` }}
+              />
+            </div>
+          </div>
+          {weightDiff.diff > 0 ? (
+            <div className="compare-stat-diff">
+              {weightDiff.advantage === 0 ? profileA.name : profileB.name} {t('comparison.diffAdvantage', { value: weightDiff.diff, unit: 'kg' })}
+            </div>
+          ) : null}
+        </div>
+
+        {/* Career Win Rate */}
+        <div className="compare-stat-row">
+          <div className="compare-stat-row__top">
+            <span className={`compare-stat-val compare-stat-val--left${winRateDiff.advantage === 0 ? ' is-better' : ''}`}>
+              {careerA.rate}
+            </span>
+            <span className="compare-stat-label">{t('comparison.careerWinRate')}</span>
+            <span className={`compare-stat-val compare-stat-val--right${winRateDiff.advantage === 1 ? ' is-better' : ''}`}>
+              {careerB.rate}
+            </span>
+          </div>
+          <div className="compare-stat-bars" aria-hidden="true">
+            <div className="compare-stat-bar-track compare-stat-bar-track--left">
+              <div
+                className={`compare-stat-bar-fill compare-stat-bar-fill--left${winRateDiff.advantage === 0 ? ' is-max' : ''}`}
+                style={{ width: `${Math.min(100, careerRateValA)}%` }}
+              />
+            </div>
+            <div className="compare-stat-bar-track compare-stat-bar-track--right">
+              <div
+                className={`compare-stat-bar-fill compare-stat-bar-fill--right${winRateDiff.advantage === 1 ? ' is-max' : ''}`}
+                style={{ width: `${Math.min(100, careerRateValB)}%` }}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// -------------------------------------------------------------
+// Component: 得意決まり手比較
+// -------------------------------------------------------------
+function KimariteComparison({ profiles }: { profiles: [RikishiProfile, RikishiProfile] }) {
+  const { t } = useTranslation('common');
+  const [profileA, profileB] = profiles;
+  const statsA = React.useMemo(() => getRikishiKimariteStats(profileA.name, 4), [profileA.name]);
+  const statsB = React.useMemo(() => getRikishiKimariteStats(profileB.name, 4), [profileB.name]);
+
+  return (
+    <section className="compare-kimarite-card" aria-labelledby="kimarite-comp-title">
+      <div className="compare-kimarite-card__header">
+        <h2 id="kimarite-comp-title" className="compare-kimarite-card__title">{t('comparison.kimariteTitle')}</h2>
+        <p className="compare-kimarite-card__subtitle">{t('comparison.kimariteSubtitle')}</p>
+      </div>
+
+      <div className="compare-kimarite-grid">
+        {/* Left Rikishi Kimarite */}
+        <div className="compare-kimarite-col compare-kimarite-col--left">
+          <h3 className="compare-kimarite-col__name">{profileA.name}</h3>
+          {statsA.length === 0 ? (
+            <p className="compare-kimarite-empty">{t('comparison.kimariteNone')}</p>
+          ) : (
+            <ul className="compare-kimarite-list">
+              {statsA.map((item, idx) => (
+                <li key={item.name} className="compare-kimarite-item">
+                  <span className="compare-kimarite-item__rank">{idx + 1}</span>
+                  <span className="compare-kimarite-item__name">{item.name}</span>
+                  <span className="compare-kimarite-item__count">{item.count}勝</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        {/* Right Rikishi Kimarite */}
+        <div className="compare-kimarite-col compare-kimarite-col--right">
+          <h3 className="compare-kimarite-col__name">{profileB.name}</h3>
+          {statsB.length === 0 ? (
+            <p className="compare-kimarite-empty">{t('comparison.kimariteNone')}</p>
+          ) : (
+            <ul className="compare-kimarite-list">
+              {statsB.map((item, idx) => (
+                <li key={item.name} className="compare-kimarite-item">
+                  <span className="compare-kimarite-item__rank">{idx + 1}</span>
+                  <span className="compare-kimarite-item__name">{item.name}</span>
+                  <span className="compare-kimarite-item__count">{item.count}勝</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// -------------------------------------------------------------
+// Main Component
+// -------------------------------------------------------------
+export default function CompareRikishiPage() {
+  const { t, i18n } = useTranslation('common');
   const [searchParams, setSearchParams] = useSearchParams();
   const rawIds = searchParams.get('ids');
-  const [slots, setSlots] = React.useState<CompareSlots>(() => slotsFromSerialized(rawIds));
-  const [drafts, setDrafts] = React.useState<CompareDrafts>(['', '']);
   const [indexResponse, setIndexResponse] = React.useState<RikishiIndexResponse | null>(null);
   const [indexStatus, setIndexStatus] = React.useState<'loading' | 'ready' | 'error'>('loading');
   const [comparison, setComparison] = React.useState<ComparisonState | null>(null);
-  const ownUrlWrite = React.useRef<string | null | undefined>(undefined);
-  const locallyRenderedRawIds = React.useRef(rawIds);
-  const slotsRef = React.useRef(slots);
-  slotsRef.current = slots;
 
-  const activeIndex = React.useMemo(
-    () => (indexResponse?.rikishi ?? []).filter(isActiveSekitori),
-    [indexResponse],
-  );
-  const activeById = React.useMemo(() => new Map(activeIndex.map((item) => [item.id, item])), [activeIndex]);
-  const hasExternalUrlTransition = ownUrlWrite.current !== rawIds && locallyRenderedRawIds.current !== rawIds;
-  const renderedSlots = hasExternalUrlTransition ? slotsFromSerialized(rawIds) : slots;
-  const renderedDrafts: CompareDrafts = hasExternalUrlTransition
-    ? [
-        renderedSlots[0] ? activeById.get(renderedSlots[0])?.name ?? '' : '',
-        renderedSlots[1] ? activeById.get(renderedSlots[1])?.name ?? '' : '',
-      ]
-    : drafts;
+  const { ids: myRikishiIds } = useMyRikishi();
 
-  const writeUrl = React.useCallback((nextSlots: CompareSlots, replace: boolean) => {
-    const serialized = serializeSlots(nextSlots);
-    const nextParams = new URLSearchParams(searchParams);
-    if (serialized) nextParams.set('ids', serialized);
-    else nextParams.delete('ids');
-    ownUrlWrite.current = serialized;
-    setSearchParams(nextParams, { replace });
-  }, [searchParams, setSearchParams]);
+  const activeIndex = React.useMemo(() => (
+    indexResponse?.rikishi.filter(isActiveSekitori) ?? []
+  ), [indexResponse]);
 
-  const applySlots = React.useCallback((nextSlots: CompareSlots, replace = false) => {
+  const activeById = React.useMemo(() => (
+    new Map(activeIndex.map((item) => [item.id, item]))
+  ), [activeIndex]);
+
+  const initialSlots = React.useMemo(() => slotsFromSerialized(rawIds), [rawIds]);
+  const [drafts, setDrafts] = React.useState<CompareDrafts>(['', '']);
+  const slotsRef = React.useRef<CompareSlots>(initialSlots);
+  const renderedSlots = slotsRef.current;
+  const renderedDrafts = drafts;
+  const locallyRenderedRawIds = React.useRef<string | null>(rawIds);
+  const ownUrlWrite = React.useRef<string | null>(null);
+
+  const applySlots = React.useCallback((nextSlots: CompareSlots) => {
     slotsRef.current = nextSlots;
-    setSlots(nextSlots);
-    setComparison(null);
-    writeUrl(nextSlots, replace);
-  }, [writeUrl]);
+    const nextSerialized = serializeSlots(nextSlots);
+    if (nextSerialized === rawIds) return;
+    const nextParams = new URLSearchParams(searchParams);
+    if (nextSerialized) nextParams.set('ids', nextSerialized);
+    else nextParams.delete('ids');
+    ownUrlWrite.current = nextSerialized;
+    setSearchParams(nextParams, { replace: true });
+  }, [rawIds, searchParams, setSearchParams]);
 
   React.useEffect(() => {
-    const normalizedSlots = slotsFromSerialized(rawIds);
-    const canonical = serializeSlots(normalizedSlots);
-    if (ownUrlWrite.current === rawIds) {
-      ownUrlWrite.current = undefined;
+    if (rawIds === ownUrlWrite.current) {
       locallyRenderedRawIds.current = rawIds;
+      ownUrlWrite.current = null;
       return;
     }
+    if (rawIds === locallyRenderedRawIds.current) return;
+    const incomingSlots = slotsFromSerialized(rawIds);
+    const normalizedSlots: CompareSlots = [
+      incomingSlots[0] && activeById.has(incomingSlots[0]) ? incomingSlots[0] : null,
+      incomingSlots[1] && activeById.has(incomingSlots[1]) ? incomingSlots[1] : null,
+    ];
+    const canonical = serializeSlots(normalizedSlots);
     if (!sameSlots(slotsRef.current, normalizedSlots)) {
       slotsRef.current = normalizedSlots;
-      setSlots(normalizedSlots);
-      setComparison(null);
     }
     setDrafts([
       normalizedSlots[0] ? activeById.get(normalizedSlots[0])?.name ?? '' : '',
@@ -281,42 +625,29 @@ export default function CompareRikishiPage() {
         if (!active) return;
         setIndexStatus('error');
       });
-    return () => { active = false; };
+    return () => {
+      active = false;
+    };
   }, []);
 
-  React.useEffect(() => {
-    if (!indexResponse) return;
-    const validIds = new Set(indexResponse.rikishi.filter(isActiveSekitori).map((item) => item.id));
-    const current = slotsRef.current;
-    const hasInvalidId = current.some((id) => id !== null && !validIds.has(id));
-    const survivingIds = current.filter((id): id is number => id !== null && validIds.has(id));
-    const validated: CompareSlots = hasInvalidId
-      ? [survivingIds[0] ?? null, survivingIds[1] ?? null]
-      : current;
-    if (!sameSlots(current, validated)) {
-      setDrafts([
-        validated[0] ? activeById.get(validated[0])?.name ?? '' : '',
-        validated[1] ? activeById.get(validated[1])?.name ?? '' : '',
-      ]);
-      applySlots(validated, true);
-    }
-  }, [activeById, applySlots, indexResponse]);
-
-  const hasEditedSelection = renderedSlots.some((id, index) => (
-    id !== null && renderedDrafts[index] !== activeById.get(id)?.name
-  ));
-  const firstSelectedId = hasEditedSelection ? null : renderedSlots[0];
-  const secondSelectedId = hasEditedSelection ? null : renderedSlots[1];
+  const firstSelectedId = renderedSlots[0];
+  const secondSelectedId = renderedSlots[1];
   const requestKey = firstSelectedId && secondSelectedId ? `${firstSelectedId},${secondSelectedId}` : null;
-  React.useEffect(() => {
-    if (!indexResponse || !requestKey || !firstSelectedId || !secondSelectedId) {
-      setComparison(null);
-      return;
-    }
-    if (!activeById.has(firstSelectedId) || !activeById.has(secondSelectedId)) return;
 
-    let active = true;
+  React.useEffect(() => {
+    if (!firstSelectedId || !secondSelectedId || !indexResponse) {
+      setComparison(null);
+      return undefined;
+    }
+    if (!activeById.has(firstSelectedId) || !activeById.has(secondSelectedId)) {
+      setComparison({ key: `${firstSelectedId},${secondSelectedId}`, profileStatus: 'missing', matchupStatus: 'error', profiles: null, matchup: null });
+      return undefined;
+    }
+
     const ids: [number, number] = [firstSelectedId, secondSelectedId];
+    const requestKey = `${ids[0]},${ids[1]}`;
+    let active = true;
+
     setComparison({ key: requestKey, profileStatus: 'loading', matchupStatus: 'loading', profiles: null, matchup: null });
     Promise.allSettled([
       fetchRikishiProfilesFromIndex(indexResponse, ids),
@@ -327,15 +658,17 @@ export default function CompareRikishiPage() {
       const profileStatus: LoadStatus = profileResult.status === 'rejected'
         ? 'error'
         : loadedProfiles?.every(Boolean) ? 'ready' : 'missing';
-      const profiles = profileStatus === 'ready' ? loadedProfiles as [RikishiProfile, RikishiProfile] : null;
+      const profiles = profileStatus === 'ready' ? (loadedProfiles as [RikishiProfile, RikishiProfile]) : null;
       const matchupStatus = matchupResult.status === 'fulfilled' ? 'ready' : 'error';
       const matchup = matchupResult.status === 'fulfilled'
         ? findOrderedMatchup(matchupResult.value, ids[0], ids[1])
         : null;
       setComparison({ key: requestKey, profileStatus, matchupStatus, profiles, matchup });
     });
-    return () => { active = false; };
-  }, [activeById, firstSelectedId, indexResponse, requestKey, secondSelectedId]);
+    return () => {
+      active = false;
+    };
+  }, [activeById, firstSelectedId, indexResponse, secondSelectedId]);
 
   const onDraftChange = (slot: 0 | 1, value: string, composing: boolean) => {
     const selectedId = slotsRef.current[slot];
@@ -356,22 +689,24 @@ export default function CompareRikishiPage() {
           applySlots([remainingId, null]);
           return;
         }
-        setDrafts((current) => [value, current[1]]);
-        applySlots([null, remainingId]);
-        return;
       }
-      setDrafts((current) => slot === 0 ? [value, current[1]] : [current[0], value]);
       applySlots(next);
-      return;
     }
-    setDrafts((current) => slot === 0 ? [value, current[1]] : [current[0], value]);
+    setDrafts((current) => (slot === 0 ? [value, current[1]] : [current[0], value]));
   };
 
   const onSelect = (slot: 0 | 1, item: RikishiIndexItem) => {
     const next: CompareSlots = [...slotsRef.current] as CompareSlots;
     next[slot] = item.id;
-    setDrafts((current) => slot === 0 ? [item.name, current[1]] : [current[0], item.name]);
+    setDrafts((current) => (slot === 0 ? [item.name, current[1]] : [current[0], item.name]));
     applySlots(next);
+  };
+
+  const selectPair = (idA: number, idB: number) => {
+    const nameA = activeById.get(idA)?.name ?? '';
+    const nameB = activeById.get(idB)?.name ?? '';
+    setDrafts([nameA, nameB]);
+    applySlots([idA, idB]);
   };
 
   const clearAll = () => {
@@ -415,6 +750,7 @@ export default function CompareRikishiPage() {
           <p>{t('comparison.description')}</p>
         </div>
       </header>
+
       <main className="rikishi-main">
         <PageBreadcrumb
           ariaLabel={t('rikishi.breadcrumbLabel')}
@@ -424,10 +760,48 @@ export default function CompareRikishiPage() {
             { label: t('comparison.crumb') },
           ]}
         />
+
         {indexStatus === 'loading' ? <p className="rikishi-status">{t('rikishi.loading')}</p> : null}
         {indexStatus === 'error' ? <p className="rikishi-status warning">{t('comparison.indexError')}</p> : null}
+
         {indexStatus === 'ready' ? (
           <>
+            {/* Quick Pick Chips (注目対戦 & マイ力士) */}
+            <section className="compare-quick-picks" aria-label={t('comparison.quickPicksTitle')}>
+              <div className="compare-quick-picks__header">
+                <span className="compare-quick-picks__icon" aria-hidden="true">🔥</span>
+                <span className="compare-quick-picks__title">{t('comparison.quickPicksTitle')}</span>
+              </div>
+              <div className="compare-quick-picks__list">
+                {FEATURED_MATCHUP_PRESETS.map((preset) => {
+                  const isSelected = renderedSlots[0] === preset.ids[0] && renderedSlots[1] === preset.ids[1];
+                  const label = i18n.language === 'en' ? preset.labelEn : preset.labelJa;
+                  return (
+                    <button
+                      key={preset.id}
+                      type="button"
+                      className={`compare-quick-chip${isSelected ? ' is-selected' : ''}`}
+                      onClick={() => selectPair(preset.ids[0], preset.ids[1])}
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
+
+                {/* My Rikishi Pairs */}
+                {myRikishiIds.length >= 2 ? (
+                  <button
+                    type="button"
+                    className="compare-quick-chip compare-quick-chip--my"
+                    onClick={() => selectPair(myRikishiIds[0], myRikishiIds[1])}
+                  >
+                    ★ {t('comparison.myRikishiPicksTitle')}
+                  </button>
+                ) : null}
+              </div>
+            </section>
+
+            {/* Selection Comboboxes */}
             <section className="compare-selector" aria-labelledby="compare-selector-title">
               <div className="compare-selector__heading">
                 <div>
@@ -436,7 +810,9 @@ export default function CompareRikishiPage() {
                 </div>
                 <div className="compare-selector__actions">
                   <ShareCurrentLink idleLabel={t('comparison.copyUrl')} />
-                  <button type="button" className="compare-selector__clear" onClick={clearAll} disabled={completelyEmpty}>{t('comparison.clear')}</button>
+                  <button type="button" className="compare-selector__clear" onClick={clearAll} disabled={completelyEmpty}>
+                    {t('comparison.clear')}
+                  </button>
                 </div>
               </div>
               <div className="compare-selector__slots">
@@ -445,37 +821,68 @@ export default function CompareRikishiPage() {
               </div>
             </section>
 
+            {/* Status Messages */}
             {!requestKey ? <p className="rikishi-status">{t('comparison.needMore')}</p> : null}
             {requestKey && (!currentComparison || currentComparison.profileStatus === 'loading' || currentComparison.matchupStatus === 'loading') ? <p className="rikishi-status">{t('comparison.loading')}</p> : null}
             {currentComparison?.profileStatus === 'error' ? <p className="rikishi-status warning">{t('comparison.profileError')}</p> : null}
             {currentComparison?.profileStatus === 'missing' ? <p className="rikishi-status warning">{t('comparison.profileMissing')}</p> : null}
             {currentComparison?.matchupStatus === 'error' ? <p className="rikishi-status warning">{t('comparison.matchupError')}</p> : null}
+
+            {/* Compare Content */}
             {tableReady && currentComparison?.profiles ? (
-              <section className="comparison-table-wrapper">
-                <table className="comparison-table">
-                  <caption>{t('comparison.tableLabel')}</caption>
-                  <thead>
-                    <tr>
-                      <th scope="col">{t('comparison.metric')}</th>
-                      {currentComparison.profiles.map((profile) => <th key={profile.id} scope="col"><Link to={rikishiProfilePath(profile.id)}>{profile.name}</Link></th>)}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {rows.map((row) => (
-                      <tr key={row.label}>
-                        <th scope="row">{row.label}</th>
-                        {row.values.map((value, index) => <td key={currentComparison.profiles?.[index].id}>{value}</td>)}
+              <div className="compare-content-grid">
+                {/* 1. VS Header Card */}
+                <CompareVsCard profiles={currentComparison.profiles} />
+
+                {/* 2. 【Primary】合口（直接対戦成績）スコアボード */}
+                <AikuchiScoreboard
+                  profiles={currentComparison.profiles}
+                  matchup={currentComparison.matchup}
+                />
+
+                {/* 3. 体格・スタッツ比較バー */}
+                <StatComparisonBars profiles={currentComparison.profiles} />
+
+                {/* 4. 得意決まり手比較 */}
+                <KimariteComparison profiles={currentComparison.profiles} />
+
+                {/* 5. 詳細スペック一覧テーブル */}
+                <section className="comparison-table-wrapper">
+                  <table className="comparison-table">
+                    <caption>{t('comparison.tableLabel')}</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">{t('comparison.metric')}</th>
+                        {currentComparison.profiles.map((profile) => (
+                          <th key={profile.id} scope="col">
+                            <Link to={rikishiProfilePath(profile.id)}>{profile.name}</Link>
+                          </th>
+                        ))}
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </section>
+                    </thead>
+                    <tbody>
+                      {rows.map((row) => (
+                        <tr key={row.label}>
+                          <th scope="row">{row.label}</th>
+                          {row.values.map((value, index) => (
+                            <td key={currentComparison.profiles?.[index].id}>{value}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </section>
+              </div>
             ) : null}
           </>
         ) : null}
       </main>
+
       <footer className="rikishi-footer">
-        <nav aria-label={t('rikishi.footerNavigation')}><HomeLink placement="footer" /> <span> | </span><Link to="/rikishi/">{t('myRikishi.findRikishi')}</Link></nav>
+        <nav aria-label={t('rikishi.footerNavigation')}>
+          <HomeLink placement="footer" /> <span> | </span>
+          <Link to="/rikishi/">{t('myRikishi.findRikishi')}</Link>
+        </nav>
       </footer>
     </div>
   );
