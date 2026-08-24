@@ -29,12 +29,18 @@ export default function KimaritePage() {
   return (
     <div className="kimarite-page">
       <header className="kimarite-header">
-        <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
-          <HomeLink placement="header" />
-        </nav>
-        <h1 className="kimarite-header-title">{t('kimarite.pageTitle')}</h1>
-        <p className="kimarite-header-description">{t('kimarite.pageDescription')}</p>
-        <p className="kimarite-header-count">{t('kimarite.totalCount', { count: KIMARITE_LIST.length })}</p>
+        <div className="site-header-top-row">
+          <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
+            <HomeLink placement="header" />
+          </nav>
+          <h1 className="kimarite-header-title">{t('kimarite.pageTitle')}</h1>
+        </div>
+        <div className="site-header-desc-row">
+          <p className="kimarite-header-description">{t('kimarite.pageDescription')}</p>
+        </div>
+        <div className="site-header-meta-row">
+          <p className="kimarite-header-count">{t('kimarite.totalCount', { count: KIMARITE_LIST.length })}</p>
+        </div>
       </header>
 
       <main className="kimarite-main">

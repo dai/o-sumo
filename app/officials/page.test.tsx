@@ -52,7 +52,7 @@ describe('official directories', () => {
     expect(await screen.findByRole('link', { name: /木村 庄之助/ })).toHaveAttribute('href', '/gyoji/1986/');
     expect(screen.getByText('立行司')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '日本相撲協会の公式ページを見る' })).toHaveAttribute('href', 'https://www.sumo.or.jp/IrohaKyokaiMember/gyoji/');
-    expect(screen.getByText('取得日時: 2026-08-12 00:27 UTC')).toBeInTheDocument();
+    expect(screen.getByText('取得日時: 2026.08.12 00:27 UTC')).toBeInTheDocument();
     expect(screen.getByText('写真は使用していません。')).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: '共有リンクをコピー' })).not.toBeInTheDocument();
   });
@@ -141,7 +141,7 @@ describe('official directories', () => {
     expect(await screen.findByText('読み込み中です。')).toBeInTheDocument();
     expect(screen.queryByText('木村 庄之助')).not.toBeInTheDocument();
     expect(screen.queryByRole('link', { name: '日本相撲協会の公式ページを見る' })).not.toBeInTheDocument();
-    expect(screen.queryByText('取得日時: 2026-08-12 00:27 UTC')).not.toBeInTheDocument();
+    expect(screen.queryByText('取得日時: 2026.08.12 00:27 UTC')).not.toBeInTheDocument();
 
     nextResponse.resolve({
       ok: true,
@@ -181,7 +181,7 @@ describe('official directories', () => {
       flushSync(() => switchKind('yobidashi'));
       expect(screen.queryByRole('link', { name: /木村 庄之助/ })).not.toBeInTheDocument();
       expect(screen.queryByRole('link', { name: '日本相撲協会の公式ページを見る' })).not.toBeInTheDocument();
-      expect(screen.queryByText('取得日時: 2026-08-12 00:27 UTC')).not.toBeInTheDocument();
+      expect(screen.queryByText('取得日時: 2026.08.12 00:27 UTC')).not.toBeInTheDocument();
     });
   });
 
@@ -213,7 +213,7 @@ describe('official directories', () => {
     expect(await screen.findByText('名鑑を読み込めませんでした。')).toBeInTheDocument();
     expect(screen.queryByText('木村 庄之助')).not.toBeInTheDocument();
     expect(screen.queryByRole('link', { name: '日本相撲協会の公式ページを見る' })).not.toBeInTheDocument();
-    expect(screen.queryByText('取得日時: 2026-08-12 00:27 UTC')).not.toBeInTheDocument();
+    expect(screen.queryByText('取得日時: 2026.08.12 00:27 UTC')).not.toBeInTheDocument();
   });
 
   it('uses the official English rank labels when the English UI is selected', async () => {
@@ -266,7 +266,7 @@ describe('official directories', () => {
 
     await waitFor(() => expect(screen.getByRole('heading', { name: '克之', level: 1 })).toBeInTheDocument());
     expect(screen.getByText('1979-08')).toBeInTheDocument();
-    expect(screen.getByText('取得日時: 2026-08-12 00:27 UTC')).toBeInTheDocument();
+    expect(screen.getByText('取得日時: 2026.08.12 00:27 UTC')).toBeInTheDocument();
     expect(screen.queryByRole('img')).not.toBeInTheDocument();
   });
 
@@ -433,7 +433,7 @@ describe('official directories', () => {
       expect(screen.getByText('読み込み中です。')).toBeInTheDocument();
       expect(screen.queryByText('木村 庄之助')).not.toBeInTheDocument();
       expect(screen.queryByRole('link', { name: '日本相撲協会の公式ページを見る' })).not.toBeInTheDocument();
-      expect(screen.queryByText('取得日時: 2026-08-12 00:27 UTC')).not.toBeInTheDocument();
+      expect(screen.queryByText('取得日時: 2026.08.12 00:27 UTC')).not.toBeInTheDocument();
     });
   });
 });

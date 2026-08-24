@@ -11,11 +11,15 @@ export default function ArchivesPage() {
   return (
     <div className="archives-page">
       <header className="archives-header">
-        <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
-          <HomeLink placement="header" />
-        </nav>
-        <h1>{t('archives.pageTitle')}</h1>
-        <p>{t('archives.pageDescription')}</p>
+        <div className="site-header-top-row">
+          <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
+            <HomeLink placement="header" />
+          </nav>
+          <h1 className="site-header-title">{t('archives.pageTitle')}</h1>
+        </div>
+        <div className="site-header-desc-row">
+          <p>{t('archives.pageDescription')}</p>
+        </div>
       </header>
 
       <main className="archives-main">

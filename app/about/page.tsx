@@ -8,11 +8,15 @@ export default function AboutPage() {
   return (
     <div className="about-page">
       <header className="about-header">
-        <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
-          <HomeLink placement="header" />
-        </nav>
-        <h1 className="about-header-title">{t('about.pageTitle')}</h1>
-        <p className="about-header-description">{t('about.pageDescription')}</p>
+        <div className="site-header-top-row">
+          <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
+            <HomeLink placement="header" />
+          </nav>
+          <h1 className="about-header-title">{t('about.pageTitle')}</h1>
+        </div>
+        <div className="site-header-desc-row">
+          <p className="about-header-description">{t('about.pageDescription')}</p>
+        </div>
       </header>
 
       <main className="about-main">

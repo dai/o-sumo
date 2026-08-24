@@ -102,10 +102,24 @@ describe('PrimaryNavigation', () => {
     expect(screen.getByRole('link', { name: '人物名鑑' })).not.toHaveAttribute('aria-current');
   });
 
+  afterEach(async () => {
+    await i18n.changeLanguage('ja');
+  });
+
   it('names the people directory trigger and current page in English', async () => {
     await i18n.changeLanguage('en');
     renderNavigation('/gyoji/');
 
     expect(screen.getByRole('button', { name: /People directory.*Gyoji/i })).toHaveAttribute('aria-expanded', 'false');
+  });
+
+  it('displays the saved count in the my-rikishi directory link', async () => {
+    const user = userEvent.setup();
+    renderNavigation('/rikishi/');
+
+    const trigger = screen.getByRole('button', { name: /人物名鑑.*力士/ });
+    await user.click(trigger);
+
+    expect(within(screen.getByRole('navigation', { name: '人物名鑑' })).getByRole('link', { name: /マイ力士/ })).toHaveAttribute('href', '/my-rikishi/');
   });
 });

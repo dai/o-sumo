@@ -407,9 +407,13 @@ export default function CompareRikishiPage() {
   return (
     <div className="rikishi-page">
       <header className="rikishi-header">
-        <nav className="site-header-nav" aria-label={t('global.siteNavigation')}><HomeLink placement="header" /></nav>
-        <h1>{t('comparison.title')}</h1>
-        <p>{t('comparison.description')}</p>
+        <div className="site-header-top-row">
+          <nav className="site-header-nav" aria-label={t('global.siteNavigation')}><HomeLink placement="header" /></nav>
+          <h1 className="site-header-title">{t('comparison.title')}</h1>
+        </div>
+        <div className="site-header-desc-row">
+          <p>{t('comparison.description')}</p>
+        </div>
       </header>
       <main className="rikishi-main">
         <PageBreadcrumb

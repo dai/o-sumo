@@ -123,12 +123,20 @@ export default function RikishiProfilePage() {
   return (
     <div className="rikishi-page">
       <header className="rikishi-header">
-        <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
-          <HomeLink placement="header" />
-        </nav>
-        <h1>{profile ? profile.name : t('rikishi.detailTitle')}</h1>
-        <p>{profile ? `${profile.currentRank} / ${toRomaji(profile.yomi)}` : t('rikishi.detailDescription')}</p>
-        {profile?.updatedAt ? <p>{t('rikishi.updatedAt', { date: formatUpdatedAt(profile.updatedAt) })}</p> : null}
+        <div className="site-header-top-row">
+          <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
+            <HomeLink placement="header" />
+          </nav>
+          <h1 className="site-header-title">{profile ? profile.name : t('rikishi.detailTitle')}</h1>
+        </div>
+        <div className="site-header-desc-row">
+          <p>{profile ? `${profile.currentRank} / ${toRomaji(profile.yomi)}` : t('rikishi.detailDescription')}</p>
+        </div>
+        {profile?.updatedAt ? (
+          <div className="site-header-meta-row">
+            <p>{t('rikishi.updatedAt', { date: formatUpdatedAt(profile.updatedAt) })}</p>
+          </div>
+        ) : null}
       </header>
 
       <main className="rikishi-main">

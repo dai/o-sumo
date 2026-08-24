@@ -15,6 +15,7 @@ import AbsenteesNotice, { type AbsenteeEntry } from '../components/AbsenteesNoti
 import PageBreadcrumb from '../components/PageBreadcrumb';
 import './page.css';
 import { formatUpdatedAt } from '../lib/updated-at';
+import { formatBashoTitle } from '../lib/basho-meta';
 
 function useArchive(): { archive: TorikumiDataSet; resultPath: string; schedulePath: string; banzukePath: string } {
   const location = useLocation();
@@ -52,7 +53,8 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
   const sourceDays = mode === 'result' ? archive.resultDays : archive.scheduleDays;
   const days = sortArchiveDays(sourceDays ?? [], sortOrder);
   const absentees = mode === 'schedule' ? findLatestAbsentees(archive) : [];
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
+  const bashoTitle = formatBashoTitle({ year: archive.year, bashoName: archive.bashoName }, i18n.language);
 
   const modeLabel = mode === 'result'
     ? t('torikumi.hub.resultListTitle')
@@ -66,12 +68,20 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
   return (
     <div className="torikumi-page">
       <header className="torikumi-header">
-        <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
-          <HomeLink placement="header" />
-        </nav>
-        <h1>{archive.year}{archive.bashoName}{modeLabel}</h1>
-        <p>{t('torikumi.hub.updateDate', { date: formatUpdatedAt(updatedAt) })}</p>
-        <AbsenteesNotice entries={absentees} />
+        <div className="site-header-top-row">
+          <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
+            <HomeLink placement="header" />
+          </nav>
+          <h1 className="site-header-title">{bashoTitle} {modeLabel}</h1>
+        </div>
+        {absentees.length > 0 ? (
+          <div className="site-header-desc-row">
+            <AbsenteesNotice entries={absentees} />
+          </div>
+        ) : null}
+        <div className="site-header-meta-row">
+          <p>{t('torikumi.hub.updateDate', { date: formatUpdatedAt(updatedAt) })}</p>
+        </div>
       </header>
 
       <main className="torikumi-main">
@@ -80,14 +90,11 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
           items={[
             { label: t('global.homeLink'), href: '/' },
             { label: t('torikumi.hub.crumb'), href: '/archives/' },
-            { label: `${archive.year}${archive.bashoName}` },
+            { label: bashoTitle },
           ]}
         />
         <section className="day-summary-card">
           <div>
-            <div className="archive-eyebrow">
-              {(mode === 'result' ? resultPath : schedulePath).replace(/^\/|\/$/g, '')}
-            </div>
             <h2>{t('torikumi.hub.dayArchiveHeading', { mode: modeLabel })}</h2>
             <p>
               {mode === 'result'

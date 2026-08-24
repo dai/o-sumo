@@ -72,11 +72,23 @@ export function OfficialListPage({ kind }: { kind: OfficialKind }) {
     setFilters('', 'all', false);
   };
   return <div className="rikishi-page">
-    <header className="rikishi-header"><nav className="site-header-nav" aria-label={t('global.siteNavigation')}><HomeLink placement="header" /></nav>
-      <h1>{t('officials.listTitle', { label })}</h1><p>{t('officials.listDescription', { label })}</p>
-      {source && <p><a href={source} target="_blank" rel="noopener noreferrer">{t('officials.sourceLink')}</a></p>}
-      {retrievedAt && <p>{t('officials.retrievedAt', { date: formatUpdatedAt(retrievedAt) })}</p>}
-      <p>{t('officials.noPhotos')}</p>
+    <header className="officials-header">
+      <div className="site-header-top-row">
+        <nav className="site-header-nav" aria-label={t('global.siteNavigation')}><HomeLink placement="header" /></nav>
+        <h1 className="site-header-title">{t('officials.listTitle', { label })}</h1>
+      </div>
+      <div className="site-header-desc-row">
+        <p>{t('officials.listDescription', { label })}</p>
+      </div>
+      {source ? (
+        <div className="site-header-links-row">
+          <p><a href={source} target="_blank" rel="noopener noreferrer" className="site-header-link">{t('officials.sourceLink')}</a></p>
+        </div>
+      ) : null}
+      <div className="site-header-meta-row">
+        {retrievedAt && <p>{t('officials.retrievedAt', { date: formatUpdatedAt(retrievedAt) })}</p>}
+        <p>{t('officials.noPhotos')}</p>
+      </div>
     </header>
     <main className="rikishi-main">
       {status === 'loading' && <p className="rikishi-status">{t('rikishi.loading')}</p>}
@@ -164,8 +176,16 @@ export function OfficialProfilePage({ kind }: { kind: OfficialKind }) {
     description: t('officials.profileMetaDescription', { name: currentProfile.name, label }),
   } : null);
   return <div className="rikishi-page">
-    <header className="rikishi-header"><nav className="site-header-nav" aria-label={t('global.siteNavigation')}><HomeLink placement="header" /></nav>
-      <h1>{currentProfile?.name ?? t('officials.detailTitle', { label })}</h1>{currentProfile && <p>{rankLabel} / {toRomaji(currentProfile.yomi)}</p>}
+    <header className="officials-header">
+      <div className="site-header-top-row">
+        <nav className="site-header-nav" aria-label={t('global.siteNavigation')}><HomeLink placement="header" /></nav>
+        <h1 className="site-header-title">{currentProfile?.name ?? t('officials.detailTitle', { label })}</h1>
+      </div>
+      {currentProfile ? (
+        <div className="site-header-desc-row">
+          <p>{rankLabel} / {toRomaji(currentProfile.yomi)}</p>
+        </div>
+      ) : null}
     </header>
     <main className="rikishi-main">
       {currentProfile ? (

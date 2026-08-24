@@ -74,12 +74,20 @@ export default function RikishiPage() {
   return (
     <div className="rikishi-page">
       <header className="rikishi-header">
-        <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
-          <HomeLink placement="header" />
-        </nav>
-        <h1>{t('rikishi.listTitle')}</h1>
-        <p>{t('rikishi.listDescription')}</p>
-        {updatedAt ? <p>{t('rikishi.updatedAt', { date: formatUpdatedAt(updatedAt) })}</p> : null}
+        <div className="site-header-top-row">
+          <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
+            <HomeLink placement="header" />
+          </nav>
+          <h1 className="site-header-title">{t('rikishi.listTitle')}</h1>
+        </div>
+        <div className="site-header-desc-row">
+          <p>{t('rikishi.listDescription')}</p>
+        </div>
+        {updatedAt ? (
+          <div className="site-header-meta-row">
+            <p>{t('rikishi.updatedAt', { date: formatUpdatedAt(updatedAt) })}</p>
+          </div>
+        ) : null}
       </header>
 
       <main className="rikishi-main">

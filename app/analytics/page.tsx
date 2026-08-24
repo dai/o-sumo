@@ -131,15 +131,21 @@ export default function AnalyticsDashboardPage() {
   return (
     <div className="analytics-dashboard-page">
       <header className="analytics-dashboard-header">
-        <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
-          <HomeLink placement="header" />
-        </nav>
-        <p className="analytics-dashboard-eyebrow">{t('analytics.eyebrow', { basho: bashoLabel })}</p>
-        <h1 className="analytics-dashboard-title">{t('analytics.title')}</h1>
-        <p className="analytics-dashboard-description">
-          {t('analytics.description')}
-        </p>
-        <div className="analytics-dashboard-actions">
+        <div className="site-header-top-row">
+          <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
+            <HomeLink placement="header" />
+          </nav>
+          <div className="site-header-heading-group">
+            <span className="analytics-dashboard-eyebrow">{t('analytics.eyebrow', { basho: bashoLabel })}</span>
+            <h1 className="analytics-dashboard-title">{t('analytics.title')}</h1>
+          </div>
+        </div>
+        <div className="site-header-desc-row">
+          <p className="analytics-dashboard-description">
+            {t('analytics.description')}
+          </p>
+        </div>
+        <div className="site-header-links-row analytics-dashboard-actions">
           <Link to={`${CURRENT_RESULT_PATH}/`} className="analytics-dashboard-action primary">{t('analytics.resultAction')}</Link>
           <Link to={`${CURRENT_SCHEDULE_PATH}/`} className="analytics-dashboard-action">{t('analytics.scheduleAction')}</Link>
         </div>

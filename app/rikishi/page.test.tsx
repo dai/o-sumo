@@ -106,7 +106,7 @@ describe('Rikishi pages', () => {
     expect(screen.getByText('読み込み中です。')).toBeInTheDocument();
     expect(await screen.findByRole('link', { name: /豊昇龍/ })).toHaveAttribute('href', '/rikishi/3842/');
     expect(screen.getByRole('link', { name: /欠損山/ })).toHaveAttribute('href', '/rikishi/9999/');
-    expect(screen.getByText('更新日: 2026-04-27 08:15 JST')).toBeInTheDocument();
+    expect(screen.getByText('更新日: 2026.04.27 08:15 JST')).toBeInTheDocument();
   });
 
   it('keeps Japanese IME composition local until the text is confirmed', async () => {

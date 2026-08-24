@@ -169,7 +169,7 @@ describe('BanzukePage', () => {
 
     expect(screen.queryByText(/<strong>東<\/strong>/)).not.toBeInTheDocument();
     expect(screen.getByText('東と西の欄に力士の四股名と読み仮名、成績、星取表が表示されます。')).toBeInTheDocument();
-    expect(screen.getByText('技術スタック: Cloudflare Pages、React、TypeScript')).toBeInTheDocument();
+    expect(screen.queryByText(/技術スタック/)).not.toBeInTheDocument();
   });
 
   it('shows the current banzuke update timestamp', () => {

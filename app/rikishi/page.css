@@ -5,26 +5,14 @@
   background: var(--surface);
 }
 
-.rikishi-header {
-  padding: 0.85rem 1rem;
+.rikishi-header,
+.officials-header {
+  padding: 0.75rem 1rem;
   text-align: center;
   position: sticky;
   top: 0;
   z-index: 50;
   box-shadow: var(--shadow-soft);
-  background-image: var(--site-header-overlay), var(--site-header-bg-image);
-  background-size: cover;
-  background-position: center;
-  color: var(--site-header-text);
-}
-
-.rikishi-header h1,
-.rikishi-header p {
-  color: var(--site-header-text);
-}
-
-.rikishi-header p {
-  opacity: 0.86;
 }
 
 .rikishi-main {

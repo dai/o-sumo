@@ -16,6 +16,7 @@ import { PAST_BASHO } from './lib/archives-data';
 import HomeLink from './components/HomeLink';
 import { getBashoStatus, type BashoStatus } from './lib/basho-status';
 import NewsSection from './components/NewsSection';
+import { formatBashoTitle } from './lib/basho-meta';
 import KimariteCard from './components/KimariteCard';
 import { divisionAnchorId } from './lib/rikishi-display';
 import './index.css';
@@ -196,8 +197,11 @@ export function buildLiveTorikumiTarget(
 }
 
 export default function Home() {
-  const { t } = useTranslation('common');
-  const currentBashoTitle = `${torikumiArchive.year}${torikumiArchive.bashoName}`;
+  const { t, i18n } = useTranslation('common');
+  const currentBashoTitle = formatBashoTitle(
+    { year: torikumiArchive.year, bashoName: torikumiArchive.bashoName, monthKey: torikumiMonthKey },
+    i18n.language,
+  );
   const currentBanzukePath = getBanzukePathForMonthKey(torikumiMonthKey);
   const bashoStatus = getBashoStatus(torikumiArchive);
   const liveTorikumiTarget = buildLiveTorikumiTarget(torikumiArchive, torikumiData);
@@ -294,10 +298,7 @@ export default function Home() {
         {PAST_BASHO.map((pastBasho) => (
           <section key={pastBasho.id} className="past-basho-section">
             <h2 className="past-basho-heading">
-              {t('home.pastBashoHeading', {
-                year: pastBasho.year,
-                name: pastBasho.name,
-              })}
+              {formatBashoTitle({ year: pastBasho.year, bashoName: pastBasho.name, monthKey: pastBasho.id }, i18n.language)}
             </h2>
             <nav className="past-basho-actions" aria-label={`${pastBasho.name}への導線`}>
               <Link to={`${pastBasho.banzukePath}/`} className="cta-button secondary">
