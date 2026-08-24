@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-24T00:23:18.518730+00:00",
+  "updatedAt": "2026-08-24T02:34:42.339849+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-kyodo_nor-2026082401000410",
+      "title": "夏恒例、相撲健康体操が最終日　朝から熱気、約400人集まる",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026082401000410",
+      "publishedAt": "2026-08-24",
+      "publishedAtRaw": "共同通信　8月24日 10時40分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-sanspo-_sports_sumo_FTPKULJ5P5GL3DQA37JCULBE6I",
       "title": "元貴景勝「自分も中学横綱になったときに『横綱になりたい』と言って…」",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_DRYXCJS7C5DXNL4GHOIA5OEX2I",
       "publishedAt": "2026-08-23",
       "publishedAtRaw": "SANSPO　8月23日 17時28分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_CHFBISEL7FFJ7GKLZJ5Z6EOBKQ",
-      "title": "藤井康生氏「9月場所はかなり厳しいというか出場するのが難しいかなと」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_CHFBISEL7FFJ7GKLZJ5Z6EOBKQ",
-      "publishedAt": "2026-08-23",
-      "publishedAtRaw": "SANSPO　8月23日 11時21分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
