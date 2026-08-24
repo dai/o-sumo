@@ -20,6 +20,8 @@ import PageBreadcrumb from './PageBreadcrumb';
 import '../torikumi/page.css';
 import { formatUpdatedAt } from '../lib/updated-at';
 import { getBanzukeDataByMonthKey, CURRENT_BASHO_ID } from '../lib/archive-basho-data';
+import { useMyRikishi } from '../lib/my-rikishi';
+import { formatBashoTitle } from '../lib/basho-meta';
 
 const BOTTOM_TO_TOP_DIVISIONS: Array<'幕内' | '十両'> = ['十両', '幕内'];
 
@@ -57,17 +59,26 @@ function createRecordMap(monthKey: string): Map<string, { wins: number; losses: 
 }
 
 function RikishiMatchName({ name, profileUrl, banzukePath, record }: { name: string; profileUrl: string; banzukePath: string; record?: { wins: number; losses: number; draws: number } }) {
+  const { t } = useTranslation('common');
+  const { isSaved } = useMyRikishi();
   const id = extractRikishiIdFromProfileUrl(profileUrl);
   const shikona = displayName(name, profileUrl);
   const recordText = formatRecord(record);
+  const isMyRikishi = id !== null && isSaved(id);
+
+  const badge = isMyRikishi ? (
+    <span className="my-rikishi-badge" aria-label={t('myRikishi.badgeLabel')}>
+      <span className="my-rikishi-badge__icon" aria-hidden="true">★</span>
+    </span>
+  ) : null;
 
   if (!id) {
-    return <div className="name">{shikona}{recordText}</div>;
+    return <div className="name">{shikona}{recordText}{badge}</div>;
   }
 
   return (
     <Link to={banzukeRikishiPath(banzukePath, id)} className="torikumi-rikishi-link">
-      <span className="name">{shikona}{recordText}</span>
+      <span className="name">{shikona}{recordText}{badge}</span>
     </Link>
   );
 }
@@ -345,8 +356,9 @@ function getArchiveForPath(pathDate: string) {
 
 export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay; mode: TorikumiPageMode }) {
   const [sortOrder, setSortOrder] = React.useState<SortOrder>('asc');
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
   const { monthKey, archive, resultPath, schedulePath, banzukePath } = getArchiveForPath(day.pathDate);
+  const bashoTitle = formatBashoTitle({ year: archive.year, bashoName: archive.bashoName, monthKey }, i18n.language);
   const prevDay = getAdjacentDay(day, mode, 'prev');
   const nextDay = getAdjacentDay(day, mode, 'next');
   const visibleDay = getVisibleDayData(day, archive, mode);
@@ -374,13 +386,23 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
   return (
     <div className="torikumi-page">
       <header className="torikumi-header">
-        <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
-          <HomeLink placement="header" />
-        </nav>
-        <h1>{archive.year}{archive.bashoName}{modeLabel}</h1>
-        <p>{day.dayHead}</p>
-        <p>{t('torikumi.day.updateDate', { date: formatUpdatedAt(updatedAt) })}</p>
-        <AbsenteesNotice entries={absentees} />
+        <div className="site-header-top-row">
+          <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
+            <HomeLink placement="header" />
+          </nav>
+          <div className="site-header-heading-group">
+            <h1 className="site-header-title">{bashoTitle}{modeLabel}</h1>
+            <span className="page-subtitle">{day.dayHead}</span>
+          </div>
+        </div>
+        {absentees.length > 0 ? (
+          <div className="site-header-desc-row">
+            <AbsenteesNotice entries={absentees} />
+          </div>
+        ) : null}
+        <div className="site-header-meta-row">
+          <p>{t('torikumi.day.updateDate', { date: formatUpdatedAt(updatedAt) })}</p>
+        </div>
       </header>
 
       <main className="torikumi-main">
@@ -388,13 +410,12 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
           ariaLabel={t('rikishi.breadcrumbLabel')}
           items={[
             { label: t('global.homeLink'), href: '/' },
-            { label: `${archive.year}${archive.bashoName}`, href: mode === 'result' ? resultPath : schedulePath },
+            { label: bashoTitle, href: mode === 'result' ? resultPath : schedulePath },
             { label: day.dayHead },
           ]}
         />
         <section className="day-summary-card">
           <div>
-            <div className="archive-eyebrow">{day.pathDate}</div>
             <h2>{day.label}の{modeLabel}</h2>
             <p>{modeDescription}</p>
             {day.status === 'pending' ? <p className="status-message warning">{day.statusMessage}</p> : null}

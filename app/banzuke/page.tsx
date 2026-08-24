@@ -9,7 +9,7 @@ import { type SortOrder, sortRankGroups } from '../lib/sorting';
 import { getArchiveRouteConfigForPathname, getHubPathForMonthKey } from '../lib/torikumi-routes';
 import HomeLink from '../components/HomeLink';
 import './page.css';
-import { formatGregorianBashoLabel } from '../lib/basho-meta';
+import { formatGregorianBashoLabel, formatBashoTitle } from '../lib/basho-meta';
 import { formatUpdatedAt } from '../lib/updated-at';
 import { getBanzukeDataByMonthKey } from '../lib/archive-basho-data';
 import type { RankGroup } from '../lib/sumo-data';
@@ -32,7 +32,7 @@ function countRikishi(groups: RankGroup[]): number {
   return groups.reduce((total, group) => total + group.east.length + group.west.length, 0);
 }
 
-function useBanzukeContext() {
+function useBanzukeContext(lang: string = 'ja') {
   const location = useLocation();
   const routeConfig = getArchiveRouteConfigForPathname(location.pathname);
   const monthKey = routeConfig.monthKey;
@@ -40,8 +40,8 @@ function useBanzukeContext() {
 
   return {
     monthKey,
-    bashoTitle: `${banzuke.year}${banzuke.bashoName}`,
-    gregorianBashoLabel: formatGregorianBashoLabel(monthKey),
+    bashoTitle: formatBashoTitle({ year: banzuke.year, bashoName: banzuke.bashoName, monthKey }, lang),
+    gregorianBashoLabel: formatGregorianBashoLabel(monthKey, lang),
     banzukePath: routeConfig.banzukePath,
     resultPath: routeConfig.resultPath,
     schedulePath: routeConfig.schedulePath,
@@ -53,6 +53,7 @@ function useBanzukeContext() {
 }
 
 export default function BanzukePage() {
+  const { t, i18n } = useTranslation('common');
   const { query, searchParams, setSearchParams, queryInputProps } = useDirectorySearchQuery();
   const sortOrder: SortOrder = searchParams.get('sort') === 'desc' ? 'desc' : 'asc';
   const setDiscoveryState = React.useCallback((nextQuery: string, nextSortOrder: SortOrder, replace = true) => {
@@ -64,8 +65,7 @@ export default function BanzukePage() {
     else next.set('sort', nextSortOrder);
     setSearchParams(next, { replace });
   }, [searchParams, setSearchParams]);
-  const { t } = useTranslation('common');
-  const { bashoTitle, gregorianBashoLabel, banzukePath, monthKey, updatedAt, makuuchi, juryo: juryoRanks } = useBanzukeContext();
+  const { bashoTitle, gregorianBashoLabel, monthKey, updatedAt, makuuchi, juryo: juryoRanks } = useBanzukeContext(i18n.language);
   const sortedMakuuchi = sortRankGroups(makuuchi, sortOrder);
   const sortedJuryo = sortRankGroups(juryoRanks, sortOrder);
   const filteredMakuuchi = filterRankGroups(sortedMakuuchi, query);
@@ -75,13 +75,19 @@ export default function BanzukePage() {
   return (
     <div className="page-container">
       <header className="page-header">
-        <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
-          <HomeLink placement="header" />
-        </nav>
-        <div className="header-content">
-          <h1 className="page-title">{t('banzuke.pageTitle')}</h1>
-          <h2 className="page-subtitle">{bashoTitle} {t('banzuke.banzukeListTitle')}</h2>
-          <p className="page-description">{t('banzuke.pageDescription', { gregorianBasho: gregorianBashoLabel, banzukePath })}</p>
+        <div className="site-header-top-row">
+          <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
+            <HomeLink placement="header" />
+          </nav>
+          <div className="site-header-heading-group">
+            <h1 className="page-title">{t('banzuke.pageTitle')}</h1>
+            <h2 className="page-subtitle">{bashoTitle} {t('banzuke.banzukeListTitle')}</h2>
+          </div>
+        </div>
+        <div className="site-header-desc-row">
+          <p className="page-description">{t('banzuke.pageDescription', { gregorianBasho: gregorianBashoLabel })}</p>
+        </div>
+        <div className="site-header-meta-row">
           <p className="page-description">{t('banzuke.updatedAt', { date: formatUpdatedAt(updatedAt) })}</p>
         </div>
       </header>
@@ -142,9 +148,6 @@ export default function BanzukePage() {
             </p>
             <p>
               {t('banzuke.aboutDescription2')}
-            </p>
-            <p>
-              {t('banzuke.techStack')}
             </p>
           </div>
         </section>

@@ -54,12 +54,18 @@ export default function MyRikishiPage() {
   return (
     <div className="rikishi-page">
       <header className="rikishi-header">
-        <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
-          <HomeLink placement="header" />
-        </nav>
-        <h1>{t('myRikishi.listTitle')}</h1>
-        <p>{t('myRikishi.listDescription')}</p>
-        <p>{t('myRikishi.storageNote')}</p>
+        <div className="site-header-top-row">
+          <nav className="site-header-nav" aria-label={t('global.siteNavigation')}>
+            <HomeLink placement="header" />
+          </nav>
+          <h1 className="site-header-title">{t('myRikishi.listTitle')}</h1>
+        </div>
+        <div className="site-header-desc-row">
+          <p>{t('myRikishi.listDescription')}</p>
+        </div>
+        <div className="site-header-meta-row">
+          <p>{t('myRikishi.storageNote')}</p>
+        </div>
       </header>
       <main className="rikishi-main">
         {status === 'loading' ? <p className="rikishi-status">{t('rikishi.loading')}</p> : null}

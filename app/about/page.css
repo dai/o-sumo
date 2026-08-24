@@ -7,51 +7,29 @@
 
 /* Header */
 .about-header {
-  padding: clamp(3rem, 6vw, 4.5rem) clamp(1.5rem, 4vw, 2.5rem) clamp(2rem, 4vw, 2.75rem);
-  background: var(--surface-container-low);
+  padding: 0.75rem 1rem;
   text-align: center;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--shadow-soft);
   overflow: hidden;
-}
-
-.about-header::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 280px;
-  height: 280px;
-  border: 1px solid var(--color-secondary);
-  border-radius: 50%;
-  opacity: 0.12;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.about-header > * {
-  position: relative;
-  z-index: 1;
 }
 
 .about-header-title {
   font-family: var(--font-serif);
-  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-size: 1.4rem;
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--site-header-text);
   letter-spacing: -0.02em;
-  margin: 0 0 0.6rem;
-  text-wrap: balance;
+  margin: 0;
 }
 
 .about-header-description {
-  font-family: var(--font-sans);
-  font-size: clamp(0.95rem, 1.8vw, 1.05rem);
-  line-height: 1.7;
-  color: var(--color-dark-text);
-  max-width: 60ch;
-  margin: 0 auto;
-  text-wrap: pretty;
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--site-header-text);
+  opacity: 0.9;
 }
 
 /* Main Content */

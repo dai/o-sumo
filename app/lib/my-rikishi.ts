@@ -112,6 +112,7 @@ export function useMyRikishi() {
   return {
     ids,
     has: (id: number) => ids.includes(id),
+    isSaved: (id: number) => ids.includes(id),
     toggle,
     clear,
     maxCount: MY_RIKISHI_MAX_COUNT,

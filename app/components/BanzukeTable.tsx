@@ -13,6 +13,8 @@ import {
 } from '../lib/rikishi-avatar';
 import '../styles/banzuke.css';
 
+import { useMyRikishi } from '../lib/my-rikishi';
+
 interface BanzukeTableProps {
   rankGroup: RankGroup;
   monthKey?: string;
@@ -68,6 +70,8 @@ const Hoshitori = ({ rikishi, resultLinkMap }: { rikishi: Rikishi; resultLinkMap
 
 const RikishiCell = ({ rikishi, resultLinkMap }: { rikishi: Rikishi; resultLinkMap: Map<string, string> }) => {
   const { t } = useTranslation('common');
+  const { isSaved } = useMyRikishi();
+  const isMyRikishi = isSaved(rikishi.id);
   const name = displayShikona(rikishi, profileNameMap);
   const wins = rikishi.wins ?? 0;
   const losses = rikishi.losses ?? 0;
@@ -83,7 +87,7 @@ const RikishiCell = ({ rikishi, resultLinkMap }: { rikishi: Rikishi; resultLinkM
   const photoUrl = localRikishiImagePath(rikishi.id);
 
   return (
-    <div className="rikishi-cell" id={`rikishi-${rikishi.id}`}>
+    <div className={`rikishi-cell${isMyRikishi ? ' is-my-rikishi' : ''}`} id={`rikishi-${rikishi.id}`}>
       <Link to={rikishiProfilePath(rikishi.id)} className="rikishi-photo-link" aria-label={`${name}のo-sumoプロフィールを開く`}>
         <img
           className="rikishi-photo"
@@ -100,7 +104,14 @@ const RikishiCell = ({ rikishi, resultLinkMap }: { rikishi: Rikishi; resultLinkM
         />
       </Link>
       <Link to={rikishiProfilePath(rikishi.id)} className="rikishi-name-link">
-        <div className="rikishi-name">{name}</div>
+        <div className="rikishi-name">
+          {name}
+          {isMyRikishi ? (
+            <span className="my-rikishi-badge" aria-label={t('myRikishi.badgeLabel')}>
+              <span className="my-rikishi-badge__icon" aria-hidden="true">★</span>
+            </span>
+          ) : null}
+        </div>
       </Link>
       <div className="rikishi-en">({toRomaji(rikishi.yomi)})</div>
       <div className="record">{recordText}</div>

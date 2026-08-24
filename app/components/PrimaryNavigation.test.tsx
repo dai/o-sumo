@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
@@ -19,6 +19,10 @@ beforeEach(async () => {
 });
 
 describe('PrimaryNavigation', () => {
+  afterEach(async () => {
+    await i18n.changeLanguage('ja');
+  });
+
   it('omits the duplicate home item while preserving archive-aware basho links', () => {
     renderNavigation(MARCH2026_BANZUKE_PATH);
 
@@ -107,5 +111,15 @@ describe('PrimaryNavigation', () => {
     renderNavigation('/gyoji/');
 
     expect(screen.getByRole('button', { name: /People directory.*Gyoji/i })).toHaveAttribute('aria-expanded', 'false');
+  });
+
+  it('displays the saved count in the my-rikishi directory link', async () => {
+    const user = userEvent.setup();
+    renderNavigation('/rikishi/');
+
+    const trigger = screen.getByRole('button', { name: /人物名鑑.*力士/ });
+    await user.click(trigger);
+
+    expect(within(screen.getByRole('navigation', { name: '人物名鑑' })).getByRole('link', { name: /マイ力士/ })).toHaveAttribute('href', '/my-rikishi/');
   });
 });

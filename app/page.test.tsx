@@ -92,6 +92,10 @@ function createLiveTargetFixture(): { archive: TorikumiDataSet; data: TorikumiDa
   };
 }
 
+beforeEach(async () => {
+  await act(() => i18n.changeLanguage('ja'));
+});
+
 afterEach(() => {
   vi.useRealTimers();
 });
@@ -154,7 +158,8 @@ describe('Home page', () => {
     const mayTorikumiLink = allLinks.find((l) => l.getAttribute('href') === `${MAY2026_RESULT_PATH}/`);
     const firstMayDay = MAY2026_TORIKUMI_DATA.resultDays?.[0];
 
-    expect(screen.getByRole('heading', { level: 2, name: currentHeroTitle })).toBeInTheDocument();
+    const hero = document.querySelector<HTMLElement>('.hero-section');
+    expect(within(hero!).getByRole('heading', { level: 2, name: currentHeroTitle })).toBeInTheDocument();
     expect(banzukeLink).toHaveAttribute('href', '/202607-banzuke/');
     expect(yoteiLink).toHaveAttribute('href', '/202607-yotei/');
     expect(kekkaLink).toHaveAttribute('href', '/202607-torikumi/');
@@ -179,7 +184,7 @@ describe('Home page', () => {
     );
 
     expect(screen.queryByLabelText('令和八年五月場所最終結果')).not.toBeInTheDocument();
-    expect(screen.getByRole('heading', { level: 2, name: `${MAY2026_TORIKUMI_DATA.year} ${MAY2026_TORIKUMI_DATA.bashoName}` })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: `${MAY2026_TORIKUMI_DATA.year}${MAY2026_TORIKUMI_DATA.bashoName}` })).toBeInTheDocument();
     expect(within(screen.getByLabelText('今場所の主要な導線')).getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202607-banzuke/');
   });
 
@@ -192,7 +197,7 @@ describe('Home page', () => {
 
     const allLinks = screen.getAllByRole('link');
 
-    expect(screen.getByRole('heading', { level: 2, name: `${MARCH2026_TORIKUMI_DATA.year} ${MARCH2026_TORIKUMI_DATA.bashoName}` })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: `${MARCH2026_TORIKUMI_DATA.year}${MARCH2026_TORIKUMI_DATA.bashoName}` })).toBeInTheDocument();
     expect(allLinks.find((link) => link.getAttribute('href') === `${MARCH2026_BANZUKE_PATH}/`)).toBeDefined();
   });
 
@@ -310,7 +315,7 @@ describe('Home page', () => {
     expect(analyticsCard).not.toBeNull();
     expect(featureGrid).toContainElement(liveCard);
     expect(featureGrid).toContainElement(analyticsCard);
-    expect(within(analyticsCard!).getByRole('heading', { name: '場所を掘る' })).toBeInTheDocument();
+    expect(within(analyticsCard!).getByRole('heading', { name: '場所分析・三賞・決まり手傾向' })).toBeInTheDocument();
     expect(within(analyticsCard!).getByText('大相撲アナリティクス')).toBeInTheDocument();
     expect(within(analyticsCard!).getByRole('link', { name: 'アナリティクスを見る' })).toHaveAttribute('href', '/analytics/');
   });
@@ -326,8 +331,8 @@ describe('Home page', () => {
 
     const analyticsCard = document.querySelector<HTMLElement>('.analytics-feature-card');
     expect(analyticsCard).not.toBeNull();
-    expect(within(analyticsCard!).getByRole('heading', { name: 'Dig into the Basho' })).toBeInTheDocument();
-    expect(within(analyticsCard!).getByRole('link', { name: 'View analytics' })).toHaveAttribute('href', '/analytics/');
+    expect(within(analyticsCard!).getByRole('heading', { name: 'Basho Analytics & Kimarite Trends' })).toBeInTheDocument();
+    expect(within(analyticsCard!).getByRole('link', { name: 'View Analytics' })).toHaveAttribute('href', '/analytics/');
 
     await act(() => i18n.changeLanguage('ja'));
   });

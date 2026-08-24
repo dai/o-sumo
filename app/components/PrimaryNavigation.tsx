@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { getArchiveRouteConfigForPathname } from '../lib/torikumi-routes';
+import { useMyRikishi } from '../lib/my-rikishi';
 
 type PrimaryNavigationProps = {
   placement?: 'header' | 'footer';
@@ -31,12 +32,14 @@ function isDirectoryRoute(pathname: string): boolean {
 export default function PrimaryNavigation({ placement = 'header' }: PrimaryNavigationProps) {
   const location = useLocation();
   const { t } = useTranslation('common');
+  const { ids: myRikishiIds } = useMyRikishi();
   const archive = getArchiveRouteConfigForPathname(location.pathname);
   const directoryActive = isDirectoryRoute(location.pathname);
   const [directoryOpen, setDirectoryOpen] = useState(false);
   const directoryTrayRef = useRef<HTMLDivElement>(null);
   const directoryTriggerRef = useRef<HTMLButtonElement>(null);
   const directoryPanelId = 'people-directory-navigation';
+  const myRikishiCountLabel = myRikishiIds.length > 0 ? ` (${myRikishiIds.length})` : '';
   const links: NavigationLink[] = [
     { to: archive.banzukePath, label: t('global.nav.banzuke') },
     { to: archive.schedulePath, label: t('global.nav.schedule') },
@@ -45,7 +48,7 @@ export default function PrimaryNavigation({ placement = 'header' }: PrimaryNavig
   ];
   const directoryLinks: NavigationLink[] = [
     { to: '/rikishi/', label: t('global.nav.rikishi') },
-    { to: '/my-rikishi/', label: t('myRikishi.navLabel') },
+    { to: '/my-rikishi/', label: `${t('myRikishi.navLabel')}${myRikishiCountLabel}` },
     { to: '/compare/', label: t('comparison.navLabel') },
     { to: '/gyoji/', label: t('global.nav.gyoji') },
     { to: '/yobidashi/', label: t('global.nav.yobidashi') },

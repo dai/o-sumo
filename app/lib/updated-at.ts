@@ -10,7 +10,7 @@ function formatOffset(offset?: string): string {
 
 export function formatUpdatedAt(updatedAt: string): string {
   if (DATE_ONLY_PATTERN.test(updatedAt)) {
-    return updatedAt;
+    return updatedAt.replace(/-/g, '.');
   }
 
   const match = updatedAt.match(DATE_TIME_PATTERN);
@@ -19,7 +19,7 @@ export function formatUpdatedAt(updatedAt: string): string {
   }
 
   const [, date, time, offset] = match;
-  return `${date} ${time}${formatOffset(offset)}`;
+  return `${date.replace(/-/g, '.')} ${time}${formatOffset(offset)}`;
 }
 
 export function updatedAtDateKey(updatedAt: string): string | null {

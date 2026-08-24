@@ -65,9 +65,7 @@
   --shadow-glow-secondary: 0 0 0 1px rgba(115, 92, 0, 0.4), 0 0 14px rgba(254, 214, 91, 0.26);
   --shadow-glow-tertiary: 0 0 0 1px rgba(125, 74, 158, 0.35), 0 0 14px rgba(125, 74, 158, 0.22);
 
-  /* Washi texture - subtle grain overlay */
-  --texture-washi: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  --texture-opacity: 0.025;
+  /* Texture - subtle traditional brush line (hakeme) */
   --texture-hakeme: url("data:image/svg+xml,%3Csvg width='96' height='96' viewBox='0 0 96 96' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 18h96M0 42h96M0 66h96M0 90h96' stroke='%23b58b5f' stroke-opacity='.18' stroke-width='1'/%3E%3Cpath d='M8 0v96M40 0v96M72 0v96' stroke='%231a1a1a' stroke-opacity='.045' stroke-width='1'/%3E%3C/svg%3E");
 
   /* Rank-specific gradients */
@@ -217,7 +215,7 @@ html {
 body {
   font-family: var(--font-sans);
   background-color: var(--surface);
-  background-image: var(--texture-hakeme), var(--texture-washi);
+  background-image: var(--texture-hakeme);
   background-attachment: fixed;
   color: var(--color-dark-text);
   line-height: 1.8;
@@ -290,12 +288,130 @@ p {
 .home-header,
 .page-header,
 .torikumi-header,
-.archives-header {
+.rikishi-header,
+.officials-header,
+.archives-header,
+.about-header,
+.analytics-dashboard-header {
   background-image: var(--site-header-overlay), var(--site-header-bg-image);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   color: var(--site-header-text);
+  padding: 0.75rem 1rem;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--shadow-soft);
+}
+
+/* 3-Row Header Layout (Row 1: Logo + Heading, Row 2: Description + Links, Row 3: Meta + Notes) */
+.site-header-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.2rem;
+}
+
+.site-header-top-row .site-header-nav {
+  margin-bottom: 0;
+}
+
+.site-header-top-row h1,
+.site-header-top-row .page-title,
+.site-header-title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--site-header-text);
+  line-height: 1.25;
+}
+
+.site-header-top-row .page-subtitle {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: var(--font-serif);
+  color: var(--site-header-text-muted);
+}
+
+.site-header-heading-group {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* 4-Row Header Layout (Row 1: Logo + Heading, Row 2: Description, Row 3: Links, Row 4: Meta + Notes) */
+.site-header-desc-row,
+.site-header-mid-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.15rem;
+  font-size: 0.88rem;
+  color: var(--site-header-text);
+  opacity: 0.92;
+}
+
+.site-header-desc-row p,
+.site-header-desc-row span,
+.site-header-mid-row p,
+.site-header-mid-row span {
+  margin: 0;
+}
+
+.site-header-links-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.15rem;
+  font-size: 0.85rem;
+}
+
+.site-header-links-row p,
+.site-header-links-row span {
+  margin: 0;
+}
+
+.site-header-links-row a,
+.site-header-mid-row a,
+.site-header-link {
+  color: #fef08a;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.site-header-links-row a:hover,
+.site-header-mid-row a:hover,
+.site-header-link:hover {
+  color: #ffffff;
+}
+
+.site-header-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+  color: var(--site-header-text-muted);
+  opacity: 0.85;
+}
+
+.site-header-meta-row p,
+.site-header-meta-row span {
+  margin: 0;
 }
 
 .home-header .home-title,
@@ -314,11 +430,13 @@ p {
 }
 
 .site-header-nav {
-  position: relative;
-  z-index: 1;
+  position: absolute;
+  top: 0.65rem;
+  left: 0.85rem;
+  z-index: 10;
   display: flex;
-  justify-content: center;
-  margin-bottom: 1rem;
+  align-items: center;
+  margin-bottom: 0;
 }
 
 .site-home-link {
@@ -328,18 +446,65 @@ p {
 }
 
 .site-home-link--header {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   color: var(--site-header-text);
-  padding: 0.35rem 0.85rem;
-  background: rgba(255, 255, 255, 0.12);
+  padding: 0.35rem;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.site-logo-favicon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: block;
+  flex-shrink: 0;
+}
+
+.site-logo-tooltip {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  background: rgba(15, 23, 42, 0.94);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(-2px);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  z-index: 100;
+}
+
+.site-home-link--header:hover .site-logo-tooltip,
+.site-home-link--header:focus-visible .site-logo-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }
 
 .site-home-link--header:hover {
-  color: var(--site-header-text);
-  background: rgba(255, 255, 255, 0.2);
-  text-decoration: none;
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(254, 214, 91, 0.6);
+  transform: scale(1.05);
+  box-shadow: 0 0 14px rgba(254, 214, 91, 0.35);
 }
 
 .site-home-link--footer {
@@ -349,6 +514,51 @@ p {
 .site-home-link--footer:hover {
   color: var(--color-tertiary);
   text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .home-header,
+  .page-header,
+  .torikumi-header,
+  .rikishi-header,
+  .officials-header,
+  .archives-header,
+  .about-header,
+  .analytics-dashboard-header {
+    padding-top: 2.8rem;
+  }
+
+  .site-header-nav {
+    top: 0.5rem;
+    left: 0.65rem;
+  }
+}
+
+/* My Rikishi Badges & Highlights */
+.my-rikishi-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.15rem 0.45rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  background: rgba(194, 65, 12, 0.12);
+  color: var(--color-secondary);
+  border: 1px solid rgba(194, 65, 12, 0.3);
+  margin-left: 0.35rem;
+  vertical-align: middle;
+}
+
+[data-theme='dark'] .my-rikishi-badge {
+  background: rgba(230, 254, 255, 0.12);
+  color: var(--color-secondary);
+  border-color: rgba(230, 254, 255, 0.35);
+}
+
+.my-rikishi-badge__icon {
+  font-size: 0.8rem;
+  color: var(--color-secondary-dim);
 }
 
 a {
