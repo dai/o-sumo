@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-24T08:21:26.730704+00:00",
+  "updatedAt": "2026-08-24T10:19:07.260077+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-f-bt-tp1-260824-202608240000919",
-      "title": "熱海富士が申し合い稽古で10番取り７連勝含む８勝２敗、土俵下に落ちヒヤリも大事至らず順調",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260824-202608240000919",
+      "id": "dmenu-docomo-f-bt-tp1-260824-202608240001193",
+      "title": "義ノ富士が日大同期の一意を指名、大学以来の申し合い対決は一意が２戦２勝",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260824-202608240001193",
       "publishedAt": "2026-08-24",
-      "publishedAtRaw": "日刊スポーツ　8月24日 17時09分",
+      "publishedAtRaw": "日刊スポーツ　8月24日 19時01分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_LLBZLUEY2RJRVCNJ3E4MW4CR5Q",
-      "title": "安青錦、9月6日に江東区内で優勝パレード「楽しみ。うれしい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_LLBZLUEY2RJRVCNJ3E4MW4CR5Q",
+      "id": "dmenu-docomo-sponichi-spngoo-20260824-0302",
+      "title": "大関・安青錦「楽しみしかない。やれると思っていなかったので」　9・6優勝パレード心待ち",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260824-0302",
       "publishedAt": "2026-08-24",
-      "publishedAtRaw": "SANSPO　8月24日 17時08分",
+      "publishedAtRaw": "スポニチアネックス　8月24日 18時49分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_6TC3G2BROVOJHPIBZWWYIG53OU",
-      "title": "高安、稽古中に左脚付け根部分に違和感「どうにかしたい。自分でも残念」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_6TC3G2BROVOJHPIBZWWYIG53OU",
+      "id": "dmenu-docomo-hochi-20260824-OHT1T51254",
+      "title": "安青錦、優勝パレード開催決定に喜び「やれると思ってなかった。楽しみしかない」　９月６日に東京・江東区で",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260824-OHT1T51254",
       "publishedAt": "2026-08-24",
-      "publishedAtRaw": "SANSPO　8月24日 17時07分",
+      "publishedAtRaw": "スポーツ報知　8月24日 18時40分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-kyodo_nor-2026082401001003",
-      "title": "熱海富士、大関昇進へ充実の稽古　計10番、巨体生かした攻め",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026082401001003",
+      "id": "dmenu-docomo-20260824101",
+      "title": "安青錦が師匠・元安美錦の故郷青森を巡る、師匠の母から手料理「ナスの漬物が美味しかった」【大相撲夏巡業】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260824101",
       "publishedAt": "2026-08-24",
-      "publishedAtRaw": "共同通信　8月24日 16時40分",
+      "publishedAtRaw": "デイリースポーツ　8月24日 18時18分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260824-202608240000824",
-      "title": "安青錦が足袋などサポート外し調整「感覚戻したい」９月６日の優勝パレードは「うれしい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260824-202608240000824",
+      "id": "dmenu-docomo-jiji-2026082400769",
+      "title": "安青錦、焦らず＝パレードは発奮材料に―大相撲夏巡業",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026082400769",
       "publishedAt": "2026-08-24",
-      "publishedAtRaw": "日刊スポーツ　8月24日 16時08分",
+      "publishedAtRaw": "時事通信　8月24日 18時15分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
