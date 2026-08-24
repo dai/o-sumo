@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-23T10:09:09.852458+00:00",
+  "updatedAt": "2026-08-24T00:23:18.518730+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_FTPKULJ5P5GL3DQA37JCULBE6I",
+      "title": "元貴景勝「自分も中学横綱になったときに『横綱になりたい』と言って…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_FTPKULJ5P5GL3DQA37JCULBE6I",
+      "publishedAt": "2026-08-23",
+      "publishedAtRaw": "SANSPO　8月23日 20時49分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_JOM3BGWVPNF6JBBL7FUGOS7E5Y",
+      "title": "元貴景勝「人生で一番うれしかったといっても過言ではないぐらいの出来事」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_JOM3BGWVPNF6JBBL7FUGOS7E5Y",
+      "publishedAt": "2026-08-23",
+      "publishedAtRaw": "SANSPO　8月23日 20時07分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-sanspo-_sports_sumo_J3N2L35VJRCVDCJRFU4PP7A3KA",
       "title": "藤井康生氏「貴花田ー寺尾。平成3年3月場所11日目。忘れもしません」",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_CHFBISEL7FFJ7GKLZJ5Z6EOBKQ",
       "publishedAt": "2026-08-23",
       "publishedAtRaw": "SANSPO　8月23日 11時21分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_46IILPVU4JHH5MPH7EQWQY6SXU",
-      "title": "NHK大相撲「平成23年（2011年）に中学横綱に輝いた元大関・貴景勝」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_46IILPVU4JHH5MPH7EQWQY6SXU",
-      "publishedAt": "2026-08-23",
-      "publishedAtRaw": "SANSPO　8月23日 10時32分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260823-0103",
-      "title": "【大相撲夏巡業】伯乃富士　23歳誕生日に横綱＆大関と23回ぶつかり稽古「ありがたいこと」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260823-0103",
-      "publishedAt": "2026-08-23",
-      "publishedAtRaw": "スポニチアネックス　8月23日 4時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
