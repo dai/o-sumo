@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
@@ -19,6 +19,10 @@ beforeEach(async () => {
 });
 
 describe('PrimaryNavigation', () => {
+  afterEach(async () => {
+    await i18n.changeLanguage('ja');
+  });
+
   it('omits the duplicate home item while preserving archive-aware basho links', () => {
     renderNavigation(MARCH2026_BANZUKE_PATH);
 
@@ -100,10 +104,6 @@ describe('PrimaryNavigation', () => {
 
     expect(screen.queryByRole('button', { name: /人物名鑑/ })).not.toBeInTheDocument();
     expect(screen.getByRole('link', { name: '人物名鑑' })).not.toHaveAttribute('aria-current');
-  });
-
-  afterEach(async () => {
-    await i18n.changeLanguage('ja');
   });
 
   it('names the people directory trigger and current page in English', async () => {
