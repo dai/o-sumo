@@ -173,6 +173,578 @@
   box-shadow: 0 4px 16px rgba(115, 92, 0, 0.3);
 }
 
+/* Daily Highlights Section (今日のみどころ) */
+.daily-highlights-section {
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  padding: 1.75rem 2rem;
+  background: var(--surface-container-lowest);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: 8px;
+  box-shadow: var(--shadow-ambient);
+}
+
+.daily-highlights-section__header {
+  margin-bottom: 1.5rem;
+}
+
+.daily-highlights-section__title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.daily-highlights-section__icon {
+  font-size: 1.35rem;
+}
+
+.daily-highlights-section__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 3vw, 1.85rem);
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.daily-highlights-section__badge {
+  padding: 0.25rem 0.65rem;
+  background: var(--color-primary-container);
+  color: var(--color-primary);
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.daily-highlights-section__subtitle {
+  margin: 0.35rem 0 0;
+  font-size: 0.88rem;
+  color: var(--color-muted);
+}
+
+.daily-highlights-section__sample-badge {
+  padding: 0.2rem 0.65rem;
+  background: #fef08a;
+  color: #854d0e;
+  border: 1px dashed #ca8a04;
+  border-radius: 9999px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.daily-highlights-section__dev-note {
+  margin: 0.4rem 0 0;
+  font-size: 0.8rem;
+  color: #b45309;
+  font-weight: 500;
+}
+
+/* =========================================================================
+   バリバリモダンな「一言物申す」ギミックボックス (DailyMonomosuBox)
+   ========================================================================= */
+.monomosu-box-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.monomosu-box {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.04) 0%, rgba(180, 83, 9, 0.08) 100%);
+  border: 1px solid rgba(180, 83, 9, 0.2);
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+/* 縦置き和モダンバッジ */
+.monomosu-vertical-badge {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: 0.15em;
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  font-weight: 900;
+  padding: 0.45rem 0.25rem;
+  background: linear-gradient(180deg, #1e293b, #0f172a);
+  color: #fbbf24;
+  border: 1px solid #d97706;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.monomosu-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.monomosu-title {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #b45309;
+}
+
+.monomosu-text {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.monomosu-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+/* 座布団リアクションボタン */
+.monomosu-zabuton-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  background: #ffffff;
+  border: 1px solid #f59e0b;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #b45309;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(245, 158, 11, 0.15);
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.monomosu-zabuton-btn:hover {
+  transform: translateY(-1px) scale(1.02);
+  background: #fef3c7;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
+}
+
+.monomosu-zabuton-btn:active {
+  transform: scale(0.96);
+}
+
+.monomosu-zabuton-icon {
+  font-size: 1.1rem;
+}
+
+.monomosu-zabuton-fly {
+  position: absolute;
+  top: -24px;
+  right: 50%;
+  transform: translateX(50%);
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: #dc2626;
+  pointer-events: none;
+  animation: zabutonFly 0.6s ease-out forwards;
+}
+
+@keyframes zabutonFly {
+  0% {
+    opacity: 1;
+    transform: translateX(50%) translateY(0) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(50%) translateY(-18px) scale(1.2) rotate(15deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(50%) translateY(-32px) scale(1) rotate(-10deg);
+  }
+}
+
+/* フォームトグルボタン */
+.monomosu-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.85rem;
+  background: var(--surface-container-low);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.monomosu-toggle-btn:hover,
+.monomosu-toggle-btn.is-active {
+  background: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+}
+
+/* ドロワーフォーム */
+.monomosu-form-drawer {
+  margin-top: 0.5rem;
+  padding: 0.85rem 1rem;
+  background: var(--surface-container-low);
+  border: 1px solid rgba(180, 83, 9, 0.25);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  animation: drawerSlide 0.2s ease-out;
+}
+
+.monomosu-form-drawer[hidden] {
+  display: none;
+}
+
+@keyframes drawerSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.monomosu-textarea {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.88rem;
+  border: 1px solid var(--color-outline-variant);
+  border-radius: 6px;
+  background: var(--surface-container-lowest);
+  color: var(--color-primary);
+  resize: vertical;
+}
+
+.monomosu-textarea:focus {
+  outline: none;
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+}
+
+.monomosu-drawer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.monomosu-drawer-hint {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+}
+
+.monomosu-share-btn {
+  font-size: 0.82rem;
+  padding: 0.4rem 0.85rem;
+  background: #f59e0b;
+  color: #1c1917;
+  border: none;
+  font-weight: 800;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.monomosu-share-btn:hover {
+  background: #d97706;
+  color: #ffffff;
+}
+
+.monomosu-toast {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #15803d;
+  background: #dcfce7;
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .monomosu-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .monomosu-vertical-badge {
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .monomosu-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.daily-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.daily-highlights-grid__additional {
+  display: contents;
+}
+
+.daily-highlights-grid__additional[hidden] {
+  display: none;
+}
+
+.daily-highlights-more-toggle {
+  display: block;
+  margin: 1rem auto 0;
+}
+
+.daily-highlight-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.4rem;
+  background: var(--surface-container-low);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.daily-highlight-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+
+.daily-highlight-card__header {
+  margin-bottom: 0.85rem;
+}
+
+.daily-highlight-card__tag {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  background: #fef08a;
+  color: #854d0e;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.35rem;
+}
+
+.daily-highlight-card__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1.35;
+}
+
+.daily-highlight-card__faceoff {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--color-outline-variant);
+  border-bottom: 1px solid var(--color-outline-variant);
+  margin-bottom: 0.85rem;
+}
+
+.daily-highlight-side {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.daily-highlight-side--east {
+  flex-direction: row;
+}
+
+.daily-highlight-side--west {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.daily-highlight-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.daily-highlight-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.daily-highlight-rank {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.daily-highlight-name {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.daily-highlight-name a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.daily-highlight-name a:hover {
+  color: var(--color-secondary);
+}
+
+.daily-highlight-record {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+.daily-highlight-vs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.daily-highlight-vs__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #b91c1c, #831843);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 900;
+  font-family: var(--font-serif);
+  box-shadow: 0 2px 8px rgba(185, 28, 28, 0.3);
+}
+
+/* Aikuchi (Head-to-Head) in Highlight Card */
+.daily-highlight-aikuchi {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.85rem;
+  padding: 0.65rem 0.85rem;
+  background: var(--surface-container-lowest);
+  border-radius: 6px;
+  border: 1px solid var(--color-outline-variant);
+}
+
+.daily-highlight-aikuchi__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+}
+
+.daily-highlight-aikuchi__name {
+  color: var(--color-primary);
+}
+
+.daily-highlight-aikuchi__name strong {
+  color: var(--color-secondary);
+}
+
+.daily-highlight-aikuchi__badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #854d0e;
+  background: #fef9c3;
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.daily-highlight-aikuchi__meter {
+  display: flex;
+  height: 6px;
+  border-radius: 9999px;
+  overflow: hidden;
+  background: var(--surface-container-low);
+}
+
+.daily-highlight-aikuchi__bar--east {
+  background: #3b82f6;
+}
+
+.daily-highlight-aikuchi__bar--west {
+  background: #ef4444;
+}
+
+.daily-highlight-card__description {
+  margin: 0 0 1rem;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--color-dark-text);
+  flex: 1;
+}
+
+.daily-highlight-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.daily-highlight-btn {
+  font-size: 0.85rem;
+  padding: 0.45rem 0.9rem;
+}
+
+.daily-highlight-bout-link {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  text-decoration: none;
+}
+
+.daily-highlight-bout-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .daily-highlights-section {
+    padding: 1.25rem 1rem;
+  }
+
+  .daily-highlight-card__faceoff {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .daily-highlight-side--west {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
 .home-feature-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1270,6 +1842,287 @@
   box-shadow: none;
 }
 
+/* Daily Highlights: Digital Washi, using the same paper and ink vocabulary. */
+.home-editorial .daily-highlights-section {
+  margin-bottom: clamp(3rem, 7vw, 6rem);
+  padding: 0;
+  color: var(--home-ink);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.home-editorial .daily-highlights-section__header {
+  margin-bottom: 1.5rem;
+}
+
+.home-editorial .daily-highlights-section__title-wrap {
+  align-items: baseline;
+  gap: 0.55rem 1rem;
+}
+
+.home-editorial .daily-highlights-section__title {
+  color: var(--home-ink);
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.home-editorial .daily-highlights-section__badge,
+.home-editorial .daily-highlights-section__sample-badge {
+  padding: 0;
+  color: var(--home-red);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+}
+
+.home-editorial .daily-highlights-section__subtitle,
+.home-editorial .daily-highlights-section__dev-note {
+  color: var(--home-muted);
+}
+
+.home-editorial .monomosu-box-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.home-editorial .monomosu-box {
+  gap: 1.25rem;
+  padding: 1rem 1.25rem;
+  color: var(--home-ink);
+  background: var(--home-paper-deep);
+  border: 0;
+  border-left: 3px solid var(--home-red);
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.home-editorial .monomosu-vertical-badge {
+  padding: 0;
+  color: var(--home-red);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.home-editorial .monomosu-title {
+  color: var(--home-red);
+}
+
+.home-editorial .monomosu-text {
+  color: var(--home-ink);
+  font-weight: 600;
+}
+
+.home-editorial .monomosu-zabuton-btn,
+.home-editorial .monomosu-toggle-btn,
+.home-editorial .daily-highlights-more-toggle {
+  padding: 0.3rem 0;
+  color: var(--home-ink);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  border-radius: 0;
+  box-shadow: none;
+  transform: none;
+}
+
+.home-editorial .monomosu-zabuton-btn:hover,
+.home-editorial .monomosu-zabuton-btn:active,
+.home-editorial .monomosu-toggle-btn:hover,
+.home-editorial .monomosu-toggle-btn.is-active,
+.home-editorial .daily-highlights-more-toggle:hover {
+  color: var(--home-red);
+  background: transparent;
+  border-color: currentColor;
+  box-shadow: none;
+  transform: none;
+}
+
+.home-editorial .monomosu-zabuton-fly {
+  color: var(--home-red);
+}
+
+.home-editorial .monomosu-form-drawer {
+  padding: 1rem 1.25rem;
+  color: var(--home-ink);
+  background: var(--home-paper-deep);
+  border: 0;
+  border-left: 3px solid var(--home-red);
+  border-radius: 0;
+}
+
+.home-editorial .monomosu-textarea,
+.home-editorial .monomosu-manual-copy textarea {
+  color: var(--home-ink);
+  background: var(--home-paper);
+  border: 1px solid var(--home-rule);
+  border-radius: 0;
+}
+
+.home-editorial .monomosu-drawer-hint {
+  color: var(--home-muted);
+}
+
+.home-editorial .monomosu-form-label {
+  color: var(--home-ink);
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.home-editorial .monomosu-share-btn {
+  padding: 0.3rem 0;
+  color: var(--home-ink);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.home-editorial .monomosu-share-btn:hover {
+  color: var(--home-red);
+  background: transparent;
+}
+
+.home-editorial .monomosu-toast {
+  padding: 0.45rem 0.75rem;
+  color: var(--home-ink);
+  background: var(--home-paper);
+  border-left: 3px solid var(--home-red);
+  border-radius: 0;
+}
+
+.home-editorial .daily-highlights-grid {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+
+.home-editorial .daily-highlight-card {
+  padding: 1.4rem;
+  color: var(--home-ink);
+  background: var(--home-paper-deep);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  transition: none;
+}
+
+.home-editorial .daily-highlight-card:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+.home-editorial .daily-highlight-card__tag {
+  padding: 0;
+  color: var(--home-red);
+  background: transparent;
+  border-radius: 0;
+}
+
+.home-editorial .daily-highlight-card__title,
+.home-editorial .daily-highlight-name a,
+.home-editorial .daily-highlight-aikuchi__name {
+  color: var(--home-ink);
+}
+
+.home-editorial .daily-highlight-card__faceoff {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  border-color: var(--home-rule);
+}
+
+.home-editorial .daily-highlight-avatar {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.home-editorial .daily-highlight-rank,
+.home-editorial .daily-highlight-aikuchi__name strong {
+  color: var(--home-red);
+}
+
+.home-editorial .daily-highlight-record,
+.home-editorial .daily-highlight-card__description {
+  color: var(--home-muted);
+}
+
+.home-editorial .daily-highlight-vs__badge {
+  width: auto;
+  height: auto;
+  color: var(--home-red);
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.home-editorial .daily-highlight-aikuchi {
+  padding: 0.7rem 0.85rem;
+  background: var(--home-paper);
+  border: 0;
+  border-radius: 0;
+}
+
+.home-editorial .daily-highlight-aikuchi__badge {
+  padding: 0;
+  color: var(--home-muted);
+  background: transparent;
+  border-radius: 0;
+}
+
+.home-editorial .daily-highlight-aikuchi__meter {
+  height: 4px;
+  background: var(--home-paper-deep);
+  border-radius: 0;
+}
+
+.home-editorial .daily-highlight-aikuchi__bar--east {
+  background: var(--home-ink);
+}
+
+.home-editorial .daily-highlight-aikuchi__bar--west {
+  background: var(--home-red);
+}
+
+.home-editorial .daily-highlight-btn,
+.home-editorial .daily-highlight-bout-link {
+  padding: 0.25rem 0;
+  color: var(--home-ink);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  box-shadow: none;
+  text-decoration: none;
+}
+
+.home-editorial .daily-highlight-btn:hover,
+.home-editorial .daily-highlight-bout-link:hover {
+  color: var(--home-red);
+  background: transparent;
+  border-color: currentColor;
+  box-shadow: none;
+  transform: none;
+}
+
+.home-editorial .monomosu-zabuton-btn:focus-visible,
+.home-editorial .monomosu-toggle-btn:focus-visible,
+.home-editorial .monomosu-share-btn:focus-visible,
+.home-editorial .daily-highlights-more-toggle:focus-visible,
+.home-editorial .daily-highlight-btn:focus-visible,
+.home-editorial .daily-highlight-bout-link:focus-visible,
+.home-editorial .daily-highlight-name a:focus-visible,
+.home-editorial .monomosu-textarea:focus-visible,
+.home-editorial .monomosu-manual-copy textarea:focus-visible {
+  outline: 2px solid var(--home-red);
+  outline-offset: 4px;
+  box-shadow: none;
+}
+
 .home-editorial .hero-visual {
   display: block;
   position: relative;
@@ -1575,5 +2428,91 @@
   .home-editorial .kimarite-home-section,
   .home-editorial .past-basho-section {
     padding-top: 1.75rem;
+  }
+
+  .home-editorial .daily-highlights-section {
+    padding: 0;
+  }
+
+  .home-editorial .monomosu-box {
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .home-editorial .monomosu-actions {
+    justify-content: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .home-editorial .daily-highlights-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .home-editorial .daily-highlight-card {
+    padding: 1rem 0.75rem;
+  }
+
+  .home-editorial .daily-highlight-card__faceoff {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 0.4rem;
+  }
+
+  .home-editorial .daily-highlight-side {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .home-editorial .daily-highlight-side--west {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .home-editorial .daily-highlight-avatar {
+    width: 42px;
+    height: 42px;
+  }
+
+  .home-editorial .daily-highlight-name {
+    font-size: 1rem;
+  }
+
+  .home-editorial .daily-highlight-aikuchi__top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0.25rem 0.5rem;
+  }
+
+  .home-editorial .daily-highlight-aikuchi__badge {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    text-align: center;
+  }
+
+  .home-editorial .daily-highlight-aikuchi__name:last-child {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: right;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-editorial .daily-highlight-card,
+  .home-editorial .daily-highlight-card:hover,
+  .home-editorial .monomosu-zabuton-btn,
+  .home-editorial .monomosu-zabuton-btn:hover,
+  .home-editorial .monomosu-toggle-btn,
+  .home-editorial .monomosu-toggle-btn:hover,
+  .home-editorial .daily-highlights-more-toggle,
+  .home-editorial .daily-highlights-more-toggle:hover {
+    transition: none;
+    transform: none;
+  }
+
+  .home-editorial .monomosu-zabuton-fly,
+  .home-editorial .monomosu-form-drawer {
+    animation: none;
+    transform: none;
   }
 }

@@ -79,10 +79,19 @@ Skill publishing:
 ## Key Features
 
 - Direct navigation from the homepage to `Banzuke / Schedule / Results / Rikishi Directory / Gyoji Directory / Yobidashi Directory / My Rikishi / Compare Rikishi / Basho Analytics`
+- **Today's Highlights (Featured Matchups)**:
+  - Prominently featured right below the Hero on the homepage with 1-2 curated matchups for the day
+  - Displays East vs West bout cards, shikona, rank badges, deterministic avatars, **Aikuchi (head-to-head record and two-tone win rate bar)**, insightful bout preview commentary, and one-tap direct links to the Rikishi Comparison page
+  - Includes a smart fallback to generate highlights from the daily musubi bout when manual preview data is not registered
+- **Revamped Rikishi Comparison (`/compare/?ids={id1},{id2}`)**:
+  - Highlights **Aikuchi (Head-to-Head Record / Compatibility)** as the primary hero scoreboard with score, win rate, contextual lead badge, and two-tone ratio meter
+  - East vs West graphical faceoff card (rank, avatar, current basho win-loss record)
+  - Physical stats visual comparison bars (height, weight, career win rate) with advantage indicators
+  - Top winning techniques (Kimarite) side-by-side ranking dynamically aggregated from tournament archives
+  - Quick-pick matchup presets (Yokozuna, Ozeki, Sekiwake, Sanyaku rivalries) and one-tap selection for saved My Rikishi pairs
 - Bilingual lists and profiles for 42 active gyoji and 45 active yobidashi, sourced from the official Japan Sumo Association website. Official numeric IDs are used in page and JSON API URLs, and no photographs are published
 - Banzuke pages for makuuchi and juryo rankings and records, with MiniMax I2I Generation processed rikishi profile images and links to rikishi profiles
-- My Rikishi (`/my-rikishi/`) stores up to 10 wrestlers by shikona with URL synchronisation and `localStorage` persistence across devices
-- Compare Rikishi (`/compare/?ids={id1},{id2}`) searches the current makuuchi and juryo roster and compares exactly two rikishi across seven profile metrics, including official-history career head-to-head
+- My Rikishi (`/my-rikishi/`) stores up to 10 wrestlers by shikona with navigation count badges, URL synchronisation, and `localStorage` persistence across devices
 - Basho analytics (`/analytics/`) shows makuuchi yusho, jun-yusho, kanto-sho, gin-o-sho, and juryo yusho for the current basho
 - The `ShareCurrentLink` button copies the current URL to the clipboard (with a manual fallback for non-secure contexts)
 - Monthly hub pages listing all 15 daily pages

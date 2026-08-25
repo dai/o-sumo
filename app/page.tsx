@@ -18,6 +18,7 @@ import { getBashoStatus, type BashoStatus } from './lib/basho-status';
 import NewsSection from './components/NewsSection';
 import { formatBashoTitle } from './lib/basho-meta';
 import KimariteCard from './components/KimariteCard';
+import DailyHighlightsSection from './components/DailyHighlightsSection';
 import { divisionAnchorId } from './lib/rikishi-display';
 import './index.css';
 
@@ -263,6 +264,13 @@ export default function Home() {
             <span className="hero-shikiri hero-shikiri-right" />
           </div>
         </section>
+
+        {/* Daily Highlights Section (今日のみどころ・注目取組) */}
+        <DailyHighlightsSection
+          monthKey={torikumiMonthKey}
+          archive={torikumiArchive}
+          bashoStatus={bashoStatus}
+        />
 
         <div className="home-feature-grid">
           <section className="live-torikumi-section" aria-labelledby="live-torikumi-title">

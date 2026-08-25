@@ -333,6 +333,51 @@ describe('Home page', () => {
     expect(analyticsCard).not.toBeNull();
     expect(within(analyticsCard!).getByRole('heading', { name: 'Basho Analytics & Kimarite Trends' })).toBeInTheDocument();
     expect(within(analyticsCard!).getByRole('link', { name: 'View Analytics' })).toHaveAttribute('href', '/analytics/');
+    await act(() => i18n.changeLanguage('ja'));
+  });
+
+  it('renders the final-day highlights with monomosu and official bout links', () => {
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+
+    const highlightsSection = document.querySelector<HTMLElement>('.daily-highlights-section');
+    expect(highlightsSection).not.toBeNull();
+    expect(within(highlightsSection!).getByRole('heading', { level: 2, name: '千秋楽を振り返る' })).toBeInTheDocument();
+
+    expect(within(highlightsSection!).queryByText(/これは表示例です/)).not.toBeInTheDocument();
+    expect(within(highlightsSection!).queryByText(/九月場所開幕に向けた先行プレビュー/)).not.toBeInTheDocument();
+
+    // Monomosu Box
+    const monomosuBox = highlightsSection!.querySelector<HTMLElement>('.monomosu-box');
+    expect(monomosuBox).not.toBeNull();
+    expect(within(monomosuBox!).getByText('物申す')).toBeInTheDocument();
+    expect(within(monomosuBox!).getByRole('button', { name: /座布団を投げる/ })).toBeInTheDocument();
+
+    const compareLinks = within(highlightsSection!).getAllByRole('link', { name: /詳しく比較する/ });
+    expect(compareLinks.length).toBeGreaterThanOrEqual(1);
+    expect(compareLinks[0]).toHaveAttribute('href', expect.stringContaining('/compare/?ids='));
+    expect(within(highlightsSection!).getByRole('link', { name: /取組を見る/ }))
+      .toHaveAttribute('href', '/20260726-torikumi/#bout-makuuchi-21');
+  });
+
+  it('translates the daily highlights section and monomosu box when English is selected', async () => {
+    await act(() => i18n.changeLanguage('en'));
+
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+
+    const highlightsSection = document.querySelector<HTMLElement>('.daily-highlights-section');
+    expect(highlightsSection).not.toBeNull();
+    expect(within(highlightsSection!).getByRole('heading', { level: 2, name: 'Final Day Recap' })).toBeInTheDocument();
+    expect(within(highlightsSection!).queryByText(/Sample Data/)).not.toBeInTheDocument();
+    expect(within(highlightsSection!).getByText('VOICE')).toBeInTheDocument();
+    expect(within(highlightsSection!).getAllByRole('link', { name: /Compare Rikishi/ }).length).toBeGreaterThanOrEqual(1);
 
     await act(() => i18n.changeLanguage('ja'));
   });
@@ -346,6 +391,7 @@ describe('Home page', () => {
 
     const main = document.querySelector('main');
     const hero = document.querySelector('.hero-section');
+    const highlights = document.querySelector('.daily-highlights-section');
     const featureGrid = document.querySelector('.home-feature-grid');
     const live = document.querySelector('.live-torikumi-section');
     const news = document.querySelector('.news-section');
@@ -353,6 +399,7 @@ describe('Home page', () => {
 
     expect(main).not.toBeNull();
     expect(hero).not.toBeNull();
+    expect(highlights).not.toBeNull();
     expect(featureGrid).not.toBeNull();
     expect(live).not.toBeNull();
     expect(news).not.toBeNull();
@@ -360,12 +407,14 @@ describe('Home page', () => {
 
     // The bitwise flag 4 means DOCUMENT_POSITION_FOLLOWING, i.e. `other` is
     // positioned later in the document than `node`.
-    const heroBeforeFeatures = hero!.compareDocumentPosition(featureGrid!) & Node.DOCUMENT_POSITION_FOLLOWING;
+    const heroBeforeHighlights = hero!.compareDocumentPosition(highlights!) & Node.DOCUMENT_POSITION_FOLLOWING;
+    const highlightsBeforeFeatures = highlights!.compareDocumentPosition(featureGrid!) & Node.DOCUMENT_POSITION_FOLLOWING;
     const featuresBeforeNews = featureGrid!.compareDocumentPosition(news!) & Node.DOCUMENT_POSITION_FOLLOWING;
     const heroBeforeNews = hero!.compareDocumentPosition(news!) & Node.DOCUMENT_POSITION_FOLLOWING;
     const newsBeforePast = news!.compareDocumentPosition(firstPastBasho!) & Node.DOCUMENT_POSITION_FOLLOWING;
 
-    expect(heroBeforeFeatures).toBeTruthy();
+    expect(heroBeforeHighlights).toBeTruthy();
+    expect(highlightsBeforeFeatures).toBeTruthy();
     expect(featuresBeforeNews).toBeTruthy();
     expect(heroBeforeNews).toBeTruthy();
     expect(newsBeforePast).toBeTruthy();
