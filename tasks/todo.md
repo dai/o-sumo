@@ -3,7 +3,7 @@
 ## Plan
 
 - [x] 段階1: 場所状態と日別URLを一貫させ、モバイル段階開示と共有fallbackをTDDで実装する
-- [ ] 段階2: Daily Highlights / 一言物申すを既存Digital Washiの色・余白・直角表現へ統合する
+- [x] 段階2: Daily Highlights / 一言物申すを既存Digital Washiの色・余白・直角表現へ統合する
 - [ ] 段階3: ラベル、ARIA関連、live region、focus、reduced motionを仕上げる
 - [ ] focused/full tests、typecheck、build、diff check、Impeccable、Wrangler、実ブラウザを検証する
 - [ ] `luna_worker`の読み取り専用レビューを反映し、3コミットをpushしてPR Preview/CIを確認する
@@ -20,6 +20,8 @@
 - 段階1 RED: resolver、日別アンカー、モバイル開閉、端末内座布団、native shareから手動コピーまでの契約テストを追加し、未実装による失敗を確認した。
 - 段階1 GREEN: focused 4 files / 34 tests、`npm run typecheck`、`git diff --check`がすべてexit 0。千秋楽は七月26日の公開結果と正確な取組アンカーを表示し、別場所の初日へfallbackしない。
 - 段階1 独立レビュー: final共有文にupcoming固定文が残る問題を再現して修正。再レビューでP0/P1なしを確認した。
+- 段階2: 既存の紙・墨・朱tokenだけで透明な外枠、紙面差のカード、編集者注、下線操作へ統合。装飾絵文字、角丸、glass、影、青赤メーターを除去した。
+- 段階2 実ブラウザ: 390pxは横overflow 0、主役1件、東149px・VS17px・西149pxの3列を維持。1440pxは単独カードが全幅、light/dark・日英で紙面と文字の判読性を確認した。
 
 ---
 

@@ -141,11 +141,11 @@ function FeaturedMatchupCard({
       {/* Actions */}
       <div className="daily-highlight-card__actions">
         <Link to={matchup.compareHref} className="cta-button secondary daily-highlight-btn">
-          📊 {t('highlights.compareAction')}
+          {t('highlights.compareAction')}
         </Link>
         {matchup.boutHref ? (
           <Link to={matchup.boutHref} className="daily-highlight-bout-link">
-            📅 {t('highlights.viewBoutAction')}
+            {t('highlights.viewBoutAction')}
           </Link>
         ) : null}
       </div>
@@ -227,7 +227,6 @@ export default function DailyHighlightsSection({
     <section className="daily-highlights-section" aria-labelledby="daily-highlights-title">
       <div className="daily-highlights-section__header">
         <div className="daily-highlights-section__title-wrap">
-          <span className="daily-highlights-section__icon" aria-hidden="true">⚔️</span>
           <h2 id="daily-highlights-title" className="daily-highlights-section__title">
             {sectionTitle}
           </h2>

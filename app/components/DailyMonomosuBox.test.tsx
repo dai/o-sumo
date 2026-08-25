@@ -29,11 +29,11 @@ describe('DailyMonomosuBox', () => {
     render(<DailyMonomosuBox monthKey="202609" day={1} shareTitle="九月場所 初日" />);
 
     const button = screen.getByRole('button', { name: /この端末で座布団を投げる/ });
-    expect(button).toHaveTextContent('0 枚');
+    expect(button).toHaveTextContent('この端末の座布団 0枚');
 
     await user.click(button);
 
-    expect(button).toHaveTextContent('1 枚');
+    expect(button).toHaveTextContent('この端末の座布団 1枚');
     expect(window.localStorage.getItem('osumo_daily_zabuton_count:202609:1')).toBe('1');
   });
 

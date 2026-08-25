@@ -104,11 +104,10 @@ export default function DailyMonomosuBox({
             title={t('highlights.zabutonAction')}
             aria-label={`${t('highlights.zabutonDeviceAction')} (${zabutonCount})`}
           >
-            <span className="monomosu-zabuton-icon">💺</span>
             <span className="monomosu-zabuton-label">
-              {t('highlights.zabutonCount', { count: zabutonCount })}
+              {t('highlights.zabutonDeviceCount', { count: zabutonCount })}
             </span>
-            {isThrowing && <span className="monomosu-zabuton-fly">💺 +1</span>}
+            {isThrowing && <span className="monomosu-zabuton-fly">+1</span>}
           </button>
 
           {/* フォームトグル */}
@@ -119,7 +118,7 @@ export default function DailyMonomosuBox({
             aria-expanded={isFormOpen}
             aria-label={isFormOpen ? t('highlights.closeForm') : t('highlights.toggleForm')}
           >
-            💬 {isFormOpen ? t('highlights.closeForm') : t('highlights.toggleForm')}
+            {isFormOpen ? t('highlights.closeForm') : t('highlights.toggleForm')}
           </button>
         </div>
       </div>
@@ -144,7 +143,7 @@ export default function DailyMonomosuBox({
               onClick={handleShare}
               aria-label={t('highlights.shareAction')}
             >
-              📤 {t('highlights.shareAction')}
+              {t('highlights.shareAction')}
             </button>
           </div>
           {shareStatus === 'shared' || shareStatus === 'copied' ? (
