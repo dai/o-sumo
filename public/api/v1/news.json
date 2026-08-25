@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-25T04:18:22.265951+00:00",
+  "updatedAt": "2026-08-25T08:19:57.832585+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-chuspo-1301337",
-      "title": "【大相撲】高安が左脚の付け根を痛め夏巡業再休場　高田川巡業部長「ここで無理したら9月場所にも影響」",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1301337",
+      "id": "dmenu-docomo-f-bt-tp1-260825-202608250000643",
+      "title": "暑すぎ…支度部屋移動のハプニング「夏はクーラーがないと」来夏の巡業開催地は冷房有無を考慮か",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260825-202608250000643",
       "publishedAt": "2026-08-25",
-      "publishedAtRaw": "中日スポーツ　8月25日 12時26分",
+      "publishedAtRaw": "日刊スポーツ　8月25日 17時14分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260825-OHT1T51035",
-      "title": "高安、夏巡業を離脱　２４日の稽古中に左脚を負傷",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260825-OHT1T51035",
+      "id": "dmenu-docomo-hochi-20260825-OHT1T51195",
+      "title": "夏巡業を再離脱の幕内・高安は「左内転筋筋損傷」…日本相撲協会が診断書を公表",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260825-OHT1T51195",
       "publishedAt": "2026-08-25",
-      "publishedAtRaw": "スポーツ報知　8月25日 11時44分",
+      "publishedAtRaw": "スポーツ報知　8月25日 17時09分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260825-OHT1T51015",
-      "title": "高田みづえさんが１１年ぶり歌披露　２５日ＮＨＫ「うたコン」　元大関・若嶋津さんと８５年結婚、相撲部屋のおかみに転身…当時の思い出も語る",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260825-OHT1T51015",
+      "id": "dmenu-docomo-kyodo_nor-2026082501001232",
+      "title": "大の里が豪ノ山らと12番　夏巡業「いい稽古できた」",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026082501001232",
       "publishedAt": "2026-08-25",
-      "publishedAtRaw": "スポーツ報知　8月25日 11時30分",
+      "publishedAtRaw": "共同通信　8月25日 16時53分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-dailyshincho-1490307",
-      "title": "名古屋場所「2日連続金星」で大ブレイク「藤ノ川」　幕内最軽量21歳が魅せる「気合相撲」は“父の教え”あってこそ【令和の名力士たち】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailyshincho/sports/dailyshincho-1490307",
+      "id": "dmenu-docomo-sankei-_sports_sumo_4P7KT4TZHVJK3EFDM5ZCSPP2AA",
+      "title": "大の里が豪ノ山、平戸海と計12番　「しっかり稽古して初日へ」　大相撲流山巡業",
+      "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_4P7KT4TZHVJK3EFDM5ZCSPP2AA",
       "publishedAt": "2026-08-25",
-      "publishedAtRaw": "デイリー新潮　8月25日 11時02分",
+      "publishedAtRaw": "産経ニュース　8月25日 16時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-400656",
-      "title": "【大相撲】世界のボディビルダーを震撼させるマッチョ力士・宇良　極太の脚は「100％遺伝」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-400656",
+      "id": "dmenu-docomo-tokyosports-400695",
+      "title": "【大相撲】大の里　夏巡業で平幕相手に８勝４敗　苦戦した名古屋場所からの雪辱へ「また初日に向けて」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-400695",
       "publishedAt": "2026-08-25",
-      "publishedAtRaw": "東スポWEB　8月25日 6時00分",
+      "publishedAtRaw": "東スポWEB　8月25日 15時46分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
