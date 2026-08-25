@@ -336,7 +336,7 @@ describe('Home page', () => {
     await act(() => i18n.changeLanguage('ja'));
   });
 
-  it('renders the daily highlights section with matchup cards and compare links', () => {
+  it('renders the daily highlights section with sample badge, monomosu box, and compare links', () => {
     render(
       <MemoryRouter>
         <Home />
@@ -347,12 +347,22 @@ describe('Home page', () => {
     expect(highlightsSection).not.toBeNull();
     expect(within(highlightsSection!).getByRole('heading', { level: 2, name: /今日のみどころ|好取組プレビュー/ })).toBeInTheDocument();
 
+    // Sample preview badge & dev note
+    expect(within(highlightsSection!).getByText(/これは表示例です/)).toBeInTheDocument();
+    expect(within(highlightsSection!).getByText(/九月場所開幕に向けた先行プレビュー/)).toBeInTheDocument();
+
+    // Monomosu Box
+    const monomosuBox = highlightsSection!.querySelector<HTMLElement>('.monomosu-box');
+    expect(monomosuBox).not.toBeNull();
+    expect(within(monomosuBox!).getByText('物申す')).toBeInTheDocument();
+    expect(within(monomosuBox!).getByRole('button', { name: /座布団を投げる/ })).toBeInTheDocument();
+
     const compareLinks = within(highlightsSection!).getAllByRole('link', { name: /詳しく比較する/ });
     expect(compareLinks.length).toBeGreaterThanOrEqual(1);
     expect(compareLinks[0]).toHaveAttribute('href', expect.stringContaining('/compare/?ids='));
   });
 
-  it('translates the daily highlights section when English is selected', async () => {
+  it('translates the daily highlights section and monomosu box when English is selected', async () => {
     await act(() => i18n.changeLanguage('en'));
 
     render(
@@ -364,6 +374,8 @@ describe('Home page', () => {
     const highlightsSection = document.querySelector<HTMLElement>('.daily-highlights-section');
     expect(highlightsSection).not.toBeNull();
     expect(within(highlightsSection!).getByRole('heading', { level: 2, name: /Today's Highlights|Matchup Preview/ })).toBeInTheDocument();
+    expect(within(highlightsSection!).getByText(/Sample Data/)).toBeInTheDocument();
+    expect(within(highlightsSection!).getByText('VOICE')).toBeInTheDocument();
     expect(within(highlightsSection!).getAllByRole('link', { name: /Compare Rikishi/ }).length).toBeGreaterThanOrEqual(1);
 
     await act(() => i18n.changeLanguage('ja'));

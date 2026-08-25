@@ -10,6 +10,8 @@ import {
 import type { TorikumiDailyData } from '../lib/torikumi-data';
 import type { BashoStatus } from '../lib/basho-status';
 
+import DailyMonomosuBox from './DailyMonomosuBox';
+
 export interface DailyHighlightsSectionProps {
   monthKey: string;
   bashoStatus: BashoStatus;
@@ -210,9 +212,16 @@ export default function DailyHighlightsSection({
             {sectionTitle}
           </h2>
           <span className="daily-highlights-section__badge">{dateBadge}</span>
+          <span className="daily-highlights-section__sample-badge" aria-label={t('highlights.devBadge')}>
+            {t('highlights.devBadge')}
+          </span>
         </div>
         <p className="daily-highlights-section__subtitle">{sectionSubtitle}</p>
+        <p className="daily-highlights-section__dev-note">{t('highlights.devNote')}</p>
       </div>
+
+      {/* 一言物申す モダン1行ギミックボックス */}
+      <DailyMonomosuBox />
 
       <div className="daily-highlights-grid">
         {highlightsResult.matchups.map((matchup) => (

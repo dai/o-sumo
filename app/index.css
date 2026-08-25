@@ -221,6 +221,275 @@
   color: var(--color-muted);
 }
 
+.daily-highlights-section__sample-badge {
+  padding: 0.2rem 0.65rem;
+  background: #fef08a;
+  color: #854d0e;
+  border: 1px dashed #ca8a04;
+  border-radius: 9999px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.daily-highlights-section__dev-note {
+  margin: 0.4rem 0 0;
+  font-size: 0.8rem;
+  color: #b45309;
+  font-weight: 500;
+}
+
+/* =========================================================================
+   バリバリモダンな「一言物申す」ギミックボックス (DailyMonomosuBox)
+   ========================================================================= */
+.monomosu-box-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.monomosu-box {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.04) 0%, rgba(180, 83, 9, 0.08) 100%);
+  border: 1px solid rgba(180, 83, 9, 0.2);
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+/* 縦置き和モダンバッジ */
+.monomosu-vertical-badge {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: 0.15em;
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  font-weight: 900;
+  padding: 0.45rem 0.25rem;
+  background: linear-gradient(180deg, #1e293b, #0f172a);
+  color: #fbbf24;
+  border: 1px solid #d97706;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.monomosu-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.monomosu-title {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #b45309;
+}
+
+.monomosu-text {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.monomosu-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+/* 座布団リアクションボタン */
+.monomosu-zabuton-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  background: #ffffff;
+  border: 1px solid #f59e0b;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #b45309;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(245, 158, 11, 0.15);
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.monomosu-zabuton-btn:hover {
+  transform: translateY(-1px) scale(1.02);
+  background: #fef3c7;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
+}
+
+.monomosu-zabuton-btn:active {
+  transform: scale(0.96);
+}
+
+.monomosu-zabuton-icon {
+  font-size: 1.1rem;
+}
+
+.monomosu-zabuton-fly {
+  position: absolute;
+  top: -24px;
+  right: 50%;
+  transform: translateX(50%);
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: #dc2626;
+  pointer-events: none;
+  animation: zabutonFly 0.6s ease-out forwards;
+}
+
+@keyframes zabutonFly {
+  0% {
+    opacity: 1;
+    transform: translateX(50%) translateY(0) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(50%) translateY(-18px) scale(1.2) rotate(15deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(50%) translateY(-32px) scale(1) rotate(-10deg);
+  }
+}
+
+/* フォームトグルボタン */
+.monomosu-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.85rem;
+  background: var(--surface-container-low);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.monomosu-toggle-btn:hover,
+.monomosu-toggle-btn.is-active {
+  background: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+}
+
+/* ドロワーフォーム */
+.monomosu-form-drawer {
+  margin-top: 0.5rem;
+  padding: 0.85rem 1rem;
+  background: var(--surface-container-low);
+  border: 1px solid rgba(180, 83, 9, 0.25);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  animation: drawerSlide 0.2s ease-out;
+}
+
+@keyframes drawerSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.monomosu-textarea {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.88rem;
+  border: 1px solid var(--color-outline-variant);
+  border-radius: 6px;
+  background: var(--surface-container-lowest);
+  color: var(--color-primary);
+  resize: vertical;
+}
+
+.monomosu-textarea:focus {
+  outline: none;
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+}
+
+.monomosu-drawer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.monomosu-drawer-hint {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+}
+
+.monomosu-share-btn {
+  font-size: 0.82rem;
+  padding: 0.4rem 0.85rem;
+  background: #f59e0b;
+  color: #1c1917;
+  border: none;
+  font-weight: 800;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.monomosu-share-btn:hover {
+  background: #d97706;
+  color: #ffffff;
+}
+
+.monomosu-toast {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #15803d;
+  background: #dcfce7;
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .monomosu-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .monomosu-vertical-badge {
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .monomosu-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
 .daily-highlights-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
