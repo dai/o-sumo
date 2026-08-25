@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-25T08:19:57.832585+00:00",
+  "updatedAt": "2026-08-25T10:13:02.619131+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-f-bt-tp1-260825-202608250000643",
-      "title": "暑すぎ…支度部屋移動のハプニング「夏はクーラーがないと」来夏の巡業開催地は冷房有無を考慮か",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260825-202608250000643",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_7D2CFBSLKJJ75JK3BBH3GM5FU4",
+      "title": "高安が夏巡業を再び休場　24日離脱の診断は「左内転筋筋損傷」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_7D2CFBSLKJJ75JK3BBH3GM5FU4",
       "publishedAt": "2026-08-25",
-      "publishedAtRaw": "日刊スポーツ　8月25日 17時14分",
+      "publishedAtRaw": "SANSPO　8月25日 18時56分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260825-OHT1T51195",
-      "title": "夏巡業を再離脱の幕内・高安は「左内転筋筋損傷」…日本相撲協会が診断書を公表",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260825-OHT1T51195",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_EJMGVQYGXNLDZJ5IU6VUNRAOZ4",
+      "title": "大の里が〝暗中模索〟から脱出？　夏巡業で復調気配「今はやれることをやれている」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_EJMGVQYGXNLDZJ5IU6VUNRAOZ4",
       "publishedAt": "2026-08-25",
-      "publishedAtRaw": "スポーツ報知　8月25日 17時09分",
+      "publishedAtRaw": "SANSPO　8月25日 18時54分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-kyodo_nor-2026082501001232",
-      "title": "大の里が豪ノ山らと12番　夏巡業「いい稽古できた」",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026082501001232",
+      "id": "dmenu-docomo-20260825084",
+      "title": "琴栄峰と琴勝峰の父“亀仙人”が巡業で息子にエール「何しろケガがないように」兄弟ファッションを披露【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260825084",
       "publishedAt": "2026-08-25",
-      "publishedAtRaw": "共同通信　8月25日 16時53分",
+      "publishedAtRaw": "デイリースポーツ　8月25日 18時26分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sankei-_sports_sumo_4P7KT4TZHVJK3EFDM5ZCSPP2AA",
-      "title": "大の里が豪ノ山、平戸海と計12番　「しっかり稽古して初日へ」　大相撲流山巡業",
-      "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_4P7KT4TZHVJK3EFDM5ZCSPP2AA",
+      "id": "dmenu-docomo-hochi-20260825-OHT1T51230",
+      "title": "流山南高出身の阿炎、流山巡業で凱旋に大きな歓声「知ってもらえるだけでうれしい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260825-OHT1T51230",
       "publishedAt": "2026-08-25",
-      "publishedAtRaw": "産経ニュース　8月25日 16時00分",
+      "publishedAtRaw": "スポーツ報知　8月25日 18時22分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-400695",
-      "title": "【大相撲】大の里　夏巡業で平幕相手に８勝４敗　苦戦した名古屋場所からの雪辱へ「また初日に向けて」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-400695",
+      "id": "dmenu-docomo-20260825079",
+      "title": "高安が左脚負傷で巡業から再び離脱、巡業部長は休場に理解【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260825079",
       "publishedAt": "2026-08-25",
-      "publishedAtRaw": "東スポWEB　8月25日 15時46分",
+      "publishedAtRaw": "デイリースポーツ　8月25日 17時58分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
