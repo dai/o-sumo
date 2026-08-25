@@ -333,6 +333,7 @@ describe('Home page', () => {
     expect(analyticsCard).not.toBeNull();
     expect(within(analyticsCard!).getByRole('heading', { name: 'Basho Analytics & Kimarite Trends' })).toBeInTheDocument();
     expect(within(analyticsCard!).getByRole('link', { name: 'View Analytics' })).toHaveAttribute('href', '/analytics/');
+<<<<<<< HEAD
 
     await act(() => i18n.changeLanguage('ja'));
   });
