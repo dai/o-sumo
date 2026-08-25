@@ -4,9 +4,9 @@
 
 - [x] 段階1: 場所状態と日別URLを一貫させ、モバイル段階開示と共有fallbackをTDDで実装する
 - [x] 段階2: Daily Highlights / 一言物申すを既存Digital Washiの色・余白・直角表現へ統合する
-- [ ] 段階3: ラベル、ARIA関連、live region、focus、reduced motionを仕上げる
-- [ ] focused/full tests、typecheck、build、diff check、Impeccable、Wrangler、実ブラウザを検証する
-- [ ] `luna_worker`の読み取り専用レビューを反映し、3コミットをpushしてPR Preview/CIを確認する
+- [x] 段階3: ラベル、ARIA関連、live region、focus、reduced motionを仕上げる
+- [x] focused/full tests、typecheck、build、diff check、Impeccable、Wrangler、実ブラウザを検証する
+- [x] `luna_worker`の読み取り専用レビューを反映し、3コミットをpushしてPR Preview/CIを確認する
 
 ## Constraints
 
@@ -22,6 +22,12 @@
 - 段階1 独立レビュー: final共有文にupcoming固定文が残る問題を再現して修正。再レビューでP0/P1なしを確認した。
 - 段階2: 既存の紙・墨・朱tokenだけで透明な外枠、紙面差のカード、編集者注、下線操作へ統合。装飾絵文字、角丸、glass、影、青赤メーターを除去した。
 - 段階2 実ブラウザ: 390pxは横overflow 0、主役1件、東149px・VS17px・西149pxの3列を維持。1440pxは単独カードが全幅、light/dark・日英で紙面と文字の判読性を確認した。
+- 段階3 RED/GREEN: 固定ID、合口要約、可視label、live通知の不足を5件の失敗で固定し、focused 3 files / 27 testsをGREEN化。user-eventでEnter開閉、Tab移動、入力、共有、Space再閉鎖を完走した。
+- 段階3 実ブラウザ: dark・200%相当720pxで横overflow 0。textareaの可視label/説明関連、合口要約、focus outlineを確認し、reduced-motion時はdrawer・座布団ともanimation/transformが`none`だった。
+- 段階3 独立レビュー: 閉状態の`aria-controls`参照先を常設hidden drawerへ修正し、閉じたtextareaがアクセシビリティツリーから除外されるテストを追加。再レビューでP0/P1なし。
+- 完全検証: `npm test` 58 files / 405 tests、`npm run typecheck`、`npm run build`、`git diff --check origin/main...HEAD`が成功。buildの既存chunk/Browserslist警告のみ。
+- UI品質: Impeccable detectorは変更TSX 3件すべて0件。Wranglerはhome/dayともHTTP 200で、ホームから`/20260726-torikumi/#bout-makuuchi-21`へ遷移し、対象行「熱海富士 対 霧島」が実在・表示領域内に入ることを確認した。
+- 共有: native shareキャンセルは実ブラウザで無通知、Clipboard成功・失敗時の手動コピーはfocused testで確認。390/720/1440px、light/dark、日英で横overflow 0だった。
 
 ---
 

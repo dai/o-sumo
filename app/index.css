@@ -405,6 +405,10 @@
   animation: drawerSlide 0.2s ease-out;
 }
 
+.monomosu-form-drawer[hidden] {
+  display: none;
+}
+
 @keyframes drawerSlide {
   from {
     opacity: 0;
@@ -1965,6 +1969,13 @@
   color: var(--home-muted);
 }
 
+.home-editorial .monomosu-form-label {
+  color: var(--home-ink);
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
 .home-editorial .monomosu-share-btn {
   padding: 0.3rem 0;
   color: var(--home-ink);
@@ -2096,6 +2107,20 @@
   border-color: currentColor;
   box-shadow: none;
   transform: none;
+}
+
+.home-editorial .monomosu-zabuton-btn:focus-visible,
+.home-editorial .monomosu-toggle-btn:focus-visible,
+.home-editorial .monomosu-share-btn:focus-visible,
+.home-editorial .daily-highlights-more-toggle:focus-visible,
+.home-editorial .daily-highlight-btn:focus-visible,
+.home-editorial .daily-highlight-bout-link:focus-visible,
+.home-editorial .daily-highlight-name a:focus-visible,
+.home-editorial .monomosu-textarea:focus-visible,
+.home-editorial .monomosu-manual-copy textarea:focus-visible {
+  outline: 2px solid var(--home-red);
+  outline-offset: 4px;
+  box-shadow: none;
 }
 
 .home-editorial .hero-visual {
@@ -2469,5 +2494,25 @@
     grid-column: 2;
     grid-row: 1;
     text-align: right;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-editorial .daily-highlight-card,
+  .home-editorial .daily-highlight-card:hover,
+  .home-editorial .monomosu-zabuton-btn,
+  .home-editorial .monomosu-zabuton-btn:hover,
+  .home-editorial .monomosu-toggle-btn,
+  .home-editorial .monomosu-toggle-btn:hover,
+  .home-editorial .daily-highlights-more-toggle,
+  .home-editorial .daily-highlights-more-toggle:hover {
+    transition: none;
+    transform: none;
+  }
+
+  .home-editorial .monomosu-zabuton-fly,
+  .home-editorial .monomosu-form-drawer {
+    animation: none;
+    transform: none;
   }
 }

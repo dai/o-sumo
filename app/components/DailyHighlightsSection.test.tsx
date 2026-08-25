@@ -57,6 +57,7 @@ describe('DailyHighlightsSection', () => {
     expect(within(section).queryByText(/表示例/)).not.toBeInTheDocument();
     expect(within(section).getByText('千秋楽の結びを合口とともに振り返ります。')).toBeInTheDocument();
     expect(within(section).queryByText(/九月場所|初日から/)).not.toBeInTheDocument();
+    expect(within(section).getByRole('group', { name: '熱海富士 0勝 - 0勝 霧島' })).toBeInTheDocument();
     expect(within(section).getByRole('link', { name: /取組を見る/ })).toHaveAttribute(
       'href',
       '/20260726-torikumi/#bout-makuuchi-21',
@@ -87,12 +88,18 @@ describe('DailyHighlightsSection', () => {
     expect(within(section).queryByRole('link', { name: /取組を見る/ })).not.toBeInTheDocument();
     const trigger = within(section).getByRole('button', { name: 'ほかの注目取組を表示' });
     expect(trigger).toHaveAttribute('aria-expanded', 'false');
-    expect(trigger).toHaveAttribute('aria-controls');
+    expect(trigger).toHaveAttribute('aria-controls', 'daily-highlights-additional-matchups');
 
     await user.click(trigger);
 
     expect(within(section).getAllByRole('article')).toHaveLength(2);
     expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    expect(trigger).toHaveFocus();
+
+    await user.keyboard(' ');
+
+    expect(within(section).getAllByRole('article')).toHaveLength(1);
+    expect(trigger).toHaveAttribute('aria-expanded', 'false');
     expect(trigger).toHaveFocus();
   });
 

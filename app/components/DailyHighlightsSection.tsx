@@ -115,7 +115,16 @@ function FeaturedMatchupCard({
       </div>
 
       {/* Aikuchi (Head-to-Head) Bar */}
-      <div className="daily-highlight-aikuchi" aria-label={t('highlights.aikuchiLabel')}>
+      <div
+        className="daily-highlight-aikuchi"
+        role="group"
+        aria-label={t('highlights.aikuchiSummary', {
+          nameA: matchup.east.name,
+          winsA: aikuchi.winsA,
+          winsB: aikuchi.winsB,
+          nameB: matchup.west.name,
+        })}
+      >
         <div className="daily-highlight-aikuchi__top">
           <span className="daily-highlight-aikuchi__name">{matchup.east.name} <strong>{aikuchi.winsA}勝</strong></span>
           <span className="daily-highlight-aikuchi__badge">{getAikuchiBadgeText()}</span>
@@ -182,7 +191,7 @@ export default function DailyHighlightsSection({
   const isEn = i18n.language === 'en';
   const isMobile = useMobileHighlights();
   const [isMoreOpen, setIsMoreOpen] = React.useState(false);
-  const additionalMatchupsId = React.useId();
+  const additionalMatchupsId = 'daily-highlights-additional-matchups';
 
   const target = React.useMemo(() => resolveDailyHighlightsTarget({
     archive,

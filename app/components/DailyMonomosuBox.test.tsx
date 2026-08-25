@@ -35,6 +35,34 @@ describe('DailyMonomosuBox', () => {
 
     expect(button).toHaveTextContent('この端末の座布団 1枚');
     expect(window.localStorage.getItem('osumo_daily_zabuton_count:202609:1')).toBe('1');
+    expect(screen.getByRole('status')).toHaveTextContent('この端末の座布団は1枚です');
+  });
+
+  it('connects the disclosure, visible textarea label, and writing hint', async () => {
+    const user = userEvent.setup();
+    setClipboard({ writeText: vi.fn().mockResolvedValue(undefined) });
+    render(<DailyMonomosuBox monthKey="202609" day={1} shareTitle="九月場所 初日" />);
+
+    const toggle = screen.getByRole('button', { name: 'あなたも物申す' });
+    expect(toggle).toHaveAttribute('aria-controls', 'daily-monomosu-drawer');
+    expect(document.getElementById('daily-monomosu-drawer')).toHaveAttribute('hidden');
+    expect(screen.queryByRole('textbox', { name: 'あなたのひとこと' })).not.toBeInTheDocument();
+
+    toggle.focus();
+    await user.keyboard('{Enter}');
+
+    const textarea = screen.getByRole('textbox', { name: 'あなたのひとこと' });
+    expect(document.getElementById('daily-monomosu-drawer')).not.toHaveAttribute('hidden');
+    expect(document.getElementById('daily-monomosu-drawer')).toContainElement(textarea);
+    expect(textarea).toHaveAttribute('aria-describedby', 'daily-monomosu-hint');
+    expect(document.getElementById('daily-monomosu-hint')).toHaveTextContent('注目ポイントをシェア');
+
+    await user.type(textarea, '結びの一番に注目');
+    await user.tab();
+    const shareButton = screen.getByRole('button', { name: '予想を共有' });
+    expect(shareButton).toHaveFocus();
+    await user.keyboard('{Enter}');
+    expect(screen.getByRole('status')).toHaveTextContent('クリップボードにコピーしました');
   });
 
   it('uses the native share sheet with the current page URL when available', async () => {
@@ -88,6 +116,8 @@ describe('DailyMonomosuBox', () => {
 
     const manualCopy = screen.getByRole('textbox', { name: 'この内容をコピーしてください' });
     expect((manualCopy as HTMLTextAreaElement).value).toContain(window.location.href);
+    expect(screen.getByRole('status')).toHaveTextContent('自動コピーできませんでした');
+    expect(manualCopy).toHaveAttribute('aria-describedby', 'daily-monomosu-copy-status');
   });
 
   it('treats cancellation of the native share sheet as a neutral outcome', async () => {

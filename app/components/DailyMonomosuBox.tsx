@@ -12,11 +12,11 @@ export default function DailyMonomosuBox({
   shareTitle: string;
   customComment?: string;
 }) {
-  const { t, i18n } = useTranslation('common');
-  const isEn = i18n.language === 'en';
+  const { t } = useTranslation('common');
 
   const storageKey = `osumo_daily_zabuton_count:${monthKey}:${day}`;
   const [zabutonCount, setZabutonCount] = useState<number>(0);
+  const [zabutonAnnouncement, setZabutonAnnouncement] = useState<number | null>(null);
   const [isThrowing, setIsThrowing] = useState<boolean>(false);
   const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
   const [userThought, setUserThought] = useState<string>('');
@@ -36,6 +36,7 @@ export default function DailyMonomosuBox({
     setIsThrowing(true);
     const newCount = zabutonCount + 1;
     setZabutonCount(newCount);
+    setZabutonAnnouncement(newCount);
     try {
       localStorage.setItem(storageKey, newCount.toString());
     } catch {
@@ -107,7 +108,7 @@ export default function DailyMonomosuBox({
             <span className="monomosu-zabuton-label">
               {t('highlights.zabutonDeviceCount', { count: zabutonCount })}
             </span>
-            {isThrowing && <span className="monomosu-zabuton-fly">+1</span>}
+            {isThrowing && <span className="monomosu-zabuton-fly" aria-hidden="true">+1</span>}
           </button>
 
           {/* フォームトグル */}
@@ -116,6 +117,7 @@ export default function DailyMonomosuBox({
             className={`monomosu-toggle-btn ${isFormOpen ? 'is-active' : ''}`}
             onClick={() => setIsFormOpen(!isFormOpen)}
             aria-expanded={isFormOpen}
+            aria-controls="daily-monomosu-drawer"
             aria-label={isFormOpen ? t('highlights.closeForm') : t('highlights.toggleForm')}
           >
             {isFormOpen ? t('highlights.closeForm') : t('highlights.toggleForm')}
@@ -123,19 +125,33 @@ export default function DailyMonomosuBox({
         </div>
       </div>
 
+      {zabutonAnnouncement !== null ? (
+        <span className="sr-only" role="status" aria-live="polite">
+          {t('highlights.zabutonStatus', { count: zabutonAnnouncement })}
+        </span>
+      ) : null}
+
       {/* インライン展開フォーム */}
-      {isFormOpen && (
-        <div className="monomosu-form-drawer">
+      <div
+        id="daily-monomosu-drawer"
+        className="monomosu-form-drawer"
+        hidden={!isFormOpen}
+      >
+          <label className="monomosu-form-label" htmlFor="daily-monomosu-textarea">
+            {t('highlights.formLabel')}
+          </label>
           <textarea
+            id="daily-monomosu-textarea"
             className="monomosu-textarea"
             placeholder={t('highlights.formPlaceholder')}
+            aria-describedby="daily-monomosu-hint"
             rows={2}
             value={userThought}
             onChange={(e) => setUserThought(e.target.value)}
           />
           <div className="monomosu-drawer-footer">
-            <span className="monomosu-drawer-hint">
-              {isEn ? 'Share your thoughts with the sumo community' : 'あなたの注目ポイントをシェアできます'}
+            <span id="daily-monomosu-hint" className="monomosu-drawer-hint">
+              {t('highlights.formHint')}
             </span>
             <button
               type="button"
@@ -147,23 +163,33 @@ export default function DailyMonomosuBox({
             </button>
           </div>
           {shareStatus === 'shared' || shareStatus === 'copied' ? (
-            <div className="monomosu-toast" role="status">
+            <div className="monomosu-toast" role="status" aria-live="polite">
               {shareStatus === 'shared' ? t('highlights.sharedToast') : t('highlights.copiedToast')}
             </div>
           ) : null}
           {shareStatus === 'fallback' ? (
-            <label className="share-current-link__fallback monomosu-manual-copy">
-              <span>{t('highlights.manualCopy')}</span>
-              <textarea
-                value={manualCopyContent}
-                readOnly
-                rows={4}
-                onFocus={(event) => event.currentTarget.select()}
-              />
-            </label>
+            <>
+              <div
+                id="daily-monomosu-copy-status"
+                className="monomosu-toast"
+                role="status"
+                aria-live="polite"
+              >
+                {t('highlights.copyFailedStatus')}
+              </div>
+              <label className="share-current-link__fallback monomosu-manual-copy">
+                <span>{t('highlights.manualCopy')}</span>
+                <textarea
+                  value={manualCopyContent}
+                  readOnly
+                  rows={4}
+                  aria-describedby="daily-monomosu-copy-status"
+                  onFocus={(event) => event.currentTarget.select()}
+                />
+              </label>
+            </>
           ) : null}
-        </div>
-      )}
+      </div>
     </div>
   );
 }
