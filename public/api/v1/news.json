@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-25T00:22:26.148853+00:00",
+  "updatedAt": "2026-08-25T02:30:38.064514+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,11 +16,29 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-dailyshincho-1490307",
+      "title": "名古屋場所「2日連続金星」で大ブレイク「藤ノ川」　幕内最軽量21歳が魅せる「気合相撲」は“父の教え”あってこそ【令和の名力士たち】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailyshincho/sports/dailyshincho-1490307",
+      "publishedAt": "2026-08-25",
+      "publishedAtRaw": "デイリー新潮　8月25日 11時02分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-tokyosports-400656",
       "title": "【大相撲】世界のボディビルダーを震撼させるマッチョ力士・宇良　極太の脚は「100％遺伝」",
       "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-400656",
       "publishedAt": "2026-08-25",
       "publishedAtRaw": "東スポWEB　8月25日 6時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260825-0095",
+      "title": "安青錦、夏巡業は基礎運動で汗「焦らず」　相撲取る稽古再開は番付発表後の見通し",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260825-0095",
+      "publishedAt": "2026-08-25",
+      "publishedAtRaw": "スポニチアネックス　8月25日 5時10分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260825-0092",
       "publishedAt": "2026-08-25",
       "publishedAtRaw": "スポニチアネックス　8月25日 5時10分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260825-0095",
-      "title": "安青錦、夏巡業は基礎運動で汗「焦らず」　相撲取る稽古再開は番付発表後の見通し",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260825-0095",
-      "publishedAt": "2026-08-25",
-      "publishedAtRaw": "スポニチアネックス　8月25日 5時10分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260825004",
-      "title": "安青錦　秋場所へマイペース調整　負傷左足に配慮「焦らないように」　師匠の母の手料理で英気養う「ナスの漬物がおいしかった」",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260825004",
-      "publishedAt": "2026-08-25",
-      "publishedAtRaw": "デイリースポーツ　8月25日 5時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
