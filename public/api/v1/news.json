@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-24T10:19:07.260077+00:00",
+  "updatedAt": "2026-08-25T00:22:26.148853+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-f-bt-tp1-260824-202608240001193",
-      "title": "義ノ富士が日大同期の一意を指名、大学以来の申し合い対決は一意が２戦２勝",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260824-202608240001193",
-      "publishedAt": "2026-08-24",
-      "publishedAtRaw": "日刊スポーツ　8月24日 19時01分",
+      "id": "dmenu-docomo-tokyosports-400656",
+      "title": "【大相撲】世界のボディビルダーを震撼させるマッチョ力士・宇良　極太の脚は「100％遺伝」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-400656",
+      "publishedAt": "2026-08-25",
+      "publishedAtRaw": "東スポWEB　8月25日 6時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260824-0302",
-      "title": "大関・安青錦「楽しみしかない。やれると思っていなかったので」　9・6優勝パレード心待ち",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260824-0302",
-      "publishedAt": "2026-08-24",
-      "publishedAtRaw": "スポニチアネックス　8月24日 18時49分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260825-0094",
+      "title": "熱海富士　大関獲りへ夏巡業で存在感発揮　高田川巡業部長も期待",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260825-0094",
+      "publishedAt": "2026-08-25",
+      "publishedAtRaw": "スポニチアネックス　8月25日 5時10分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260824-OHT1T51254",
-      "title": "安青錦、優勝パレード開催決定に喜び「やれると思ってなかった。楽しみしかない」　９月６日に東京・江東区で",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260824-OHT1T51254",
-      "publishedAt": "2026-08-24",
-      "publishedAtRaw": "スポーツ報知　8月24日 18時40分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260825-0092",
+      "title": "高安　夏巡業の稽古中に左脚付け根負傷「治療しなきゃ駄目ですね。自分でも残念」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260825-0092",
+      "publishedAt": "2026-08-25",
+      "publishedAtRaw": "スポニチアネックス　8月25日 5時10分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260824101",
-      "title": "安青錦が師匠・元安美錦の故郷青森を巡る、師匠の母から手料理「ナスの漬物が美味しかった」【大相撲夏巡業】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260824101",
-      "publishedAt": "2026-08-24",
-      "publishedAtRaw": "デイリースポーツ　8月24日 18時18分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260825-0095",
+      "title": "安青錦、夏巡業は基礎運動で汗「焦らず」　相撲取る稽古再開は番付発表後の見通し",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260825-0095",
+      "publishedAt": "2026-08-25",
+      "publishedAtRaw": "スポニチアネックス　8月25日 5時10分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-jiji-2026082400769",
-      "title": "安青錦、焦らず＝パレードは発奮材料に―大相撲夏巡業",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026082400769",
-      "publishedAt": "2026-08-24",
-      "publishedAtRaw": "時事通信　8月24日 18時15分",
+      "id": "dmenu-docomo-20260825004",
+      "title": "安青錦　秋場所へマイペース調整　負傷左足に配慮「焦らないように」　師匠の母の手料理で英気養う「ナスの漬物がおいしかった」",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260825004",
+      "publishedAt": "2026-08-25",
+      "publishedAtRaw": "デイリースポーツ　8月25日 5時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
