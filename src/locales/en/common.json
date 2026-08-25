@@ -98,8 +98,23 @@
     "analyticsFeatureTitle": "Basho Analytics & Kimarite Trends",
     "analyticsFeatureDescription": "Discover tournament flow through win leaders, special prizes, and kimarite patterns.",
     "analyticsFeatureAction": "View Analytics",
-    "heroGyoji": "Gyoji directory",
-    "heroYobidashi": "Yobidashi directory"
+    "heroGyoji": "Gyoji Directory",
+    "heroYobidashi": "Yobidashi Directory"
+  },
+  "highlights": {
+    "sectionTitle": "Today's Highlights",
+    "sectionSubtitle": "Featured bouts of the day with aikuchi records & preview",
+    "previewTitle": "Featured Matchup Preview",
+    "previewSubtitle": "Key rivalry clashes for the tournament",
+    "compareAction": "Compare Rikishi",
+    "viewBoutAction": "View Bout",
+    "aikuchiLabel": "Aikuchi",
+    "aikuchiSummary": "{{nameA}} {{winsA}} - {{winsB}} {{nameB}}",
+    "aikuchiLead": "{{name}} leads (+{{diff}})",
+    "aikuchiEven": "Even Record (50/50)",
+    "aikuchiNone": "First Encounter",
+    "defaultMusubiTitle": "Final Bout of the Day",
+    "defaultMusubiDesc": "The concluding matchup of the day. A high-stakes clash between top-tier rikishi."
   },
   "analytics": {
     "eyebrow": "{{basho}} Analytics",

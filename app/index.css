@@ -173,6 +173,292 @@
   box-shadow: 0 4px 16px rgba(115, 92, 0, 0.3);
 }
 
+/* Daily Highlights Section (今日のみどころ) */
+.daily-highlights-section {
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  padding: 1.75rem 2rem;
+  background: var(--surface-container-lowest);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: 8px;
+  box-shadow: var(--shadow-ambient);
+}
+
+.daily-highlights-section__header {
+  margin-bottom: 1.5rem;
+}
+
+.daily-highlights-section__title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.daily-highlights-section__icon {
+  font-size: 1.35rem;
+}
+
+.daily-highlights-section__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 3vw, 1.85rem);
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.daily-highlights-section__badge {
+  padding: 0.25rem 0.65rem;
+  background: var(--color-primary-container);
+  color: var(--color-primary);
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.daily-highlights-section__subtitle {
+  margin: 0.35rem 0 0;
+  font-size: 0.88rem;
+  color: var(--color-muted);
+}
+
+.daily-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.daily-highlight-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.4rem;
+  background: var(--surface-container-low);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.daily-highlight-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+
+.daily-highlight-card__header {
+  margin-bottom: 0.85rem;
+}
+
+.daily-highlight-card__tag {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  background: #fef08a;
+  color: #854d0e;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.35rem;
+}
+
+.daily-highlight-card__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1.35;
+}
+
+.daily-highlight-card__faceoff {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--color-outline-variant);
+  border-bottom: 1px solid var(--color-outline-variant);
+  margin-bottom: 0.85rem;
+}
+
+.daily-highlight-side {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.daily-highlight-side--east {
+  flex-direction: row;
+}
+
+.daily-highlight-side--west {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.daily-highlight-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.daily-highlight-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.daily-highlight-rank {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.daily-highlight-name {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.daily-highlight-name a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.daily-highlight-name a:hover {
+  color: var(--color-secondary);
+}
+
+.daily-highlight-record {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+.daily-highlight-vs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.daily-highlight-vs__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #b91c1c, #831843);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 900;
+  font-family: var(--font-serif);
+  box-shadow: 0 2px 8px rgba(185, 28, 28, 0.3);
+}
+
+/* Aikuchi (Head-to-Head) in Highlight Card */
+.daily-highlight-aikuchi {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.85rem;
+  padding: 0.65rem 0.85rem;
+  background: var(--surface-container-lowest);
+  border-radius: 6px;
+  border: 1px solid var(--color-outline-variant);
+}
+
+.daily-highlight-aikuchi__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+}
+
+.daily-highlight-aikuchi__name {
+  color: var(--color-primary);
+}
+
+.daily-highlight-aikuchi__name strong {
+  color: var(--color-secondary);
+}
+
+.daily-highlight-aikuchi__badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #854d0e;
+  background: #fef9c3;
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.daily-highlight-aikuchi__meter {
+  display: flex;
+  height: 6px;
+  border-radius: 9999px;
+  overflow: hidden;
+  background: var(--surface-container-low);
+}
+
+.daily-highlight-aikuchi__bar--east {
+  background: #3b82f6;
+}
+
+.daily-highlight-aikuchi__bar--west {
+  background: #ef4444;
+}
+
+.daily-highlight-card__description {
+  margin: 0 0 1rem;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--color-dark-text);
+  flex: 1;
+}
+
+.daily-highlight-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.daily-highlight-btn {
+  font-size: 0.85rem;
+  padding: 0.45rem 0.9rem;
+}
+
+.daily-highlight-bout-link {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  text-decoration: none;
+}
+
+.daily-highlight-bout-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .daily-highlights-section {
+    padding: 1.25rem 1rem;
+  }
+
+  .daily-highlight-card__faceoff {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .daily-highlight-side--west {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
 .home-feature-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

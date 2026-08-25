@@ -337,6 +337,39 @@ describe('Home page', () => {
     await act(() => i18n.changeLanguage('ja'));
   });
 
+  it('renders the daily highlights section with matchup cards and compare links', () => {
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+
+    const highlightsSection = document.querySelector<HTMLElement>('.daily-highlights-section');
+    expect(highlightsSection).not.toBeNull();
+    expect(within(highlightsSection!).getByRole('heading', { level: 2, name: /今日のみどころ|好取組プレビュー/ })).toBeInTheDocument();
+
+    const compareLinks = within(highlightsSection!).getAllByRole('link', { name: /詳しく比較する/ });
+    expect(compareLinks.length).toBeGreaterThanOrEqual(1);
+    expect(compareLinks[0]).toHaveAttribute('href', expect.stringContaining('/compare/?ids='));
+  });
+
+  it('translates the daily highlights section when English is selected', async () => {
+    await act(() => i18n.changeLanguage('en'));
+
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+
+    const highlightsSection = document.querySelector<HTMLElement>('.daily-highlights-section');
+    expect(highlightsSection).not.toBeNull();
+    expect(within(highlightsSection!).getByRole('heading', { level: 2, name: /Today's Highlights|Matchup Preview/ })).toBeInTheDocument();
+    expect(within(highlightsSection!).getAllByRole('link', { name: /Compare Rikishi/ }).length).toBeGreaterThanOrEqual(1);
+
+    await act(() => i18n.changeLanguage('ja'));
+  });
+
   it('places the feature cards and news between the current basho hero and the past-basho map', () => {
     render(
       <MemoryRouter>
@@ -346,6 +379,7 @@ describe('Home page', () => {
 
     const main = document.querySelector('main');
     const hero = document.querySelector('.hero-section');
+    const highlights = document.querySelector('.daily-highlights-section');
     const featureGrid = document.querySelector('.home-feature-grid');
     const live = document.querySelector('.live-torikumi-section');
     const news = document.querySelector('.news-section');
@@ -353,6 +387,7 @@ describe('Home page', () => {
 
     expect(main).not.toBeNull();
     expect(hero).not.toBeNull();
+    expect(highlights).not.toBeNull();
     expect(featureGrid).not.toBeNull();
     expect(live).not.toBeNull();
     expect(news).not.toBeNull();
@@ -360,12 +395,14 @@ describe('Home page', () => {
 
     // The bitwise flag 4 means DOCUMENT_POSITION_FOLLOWING, i.e. `other` is
     // positioned later in the document than `node`.
-    const heroBeforeFeatures = hero!.compareDocumentPosition(featureGrid!) & Node.DOCUMENT_POSITION_FOLLOWING;
+    const heroBeforeHighlights = hero!.compareDocumentPosition(highlights!) & Node.DOCUMENT_POSITION_FOLLOWING;
+    const highlightsBeforeFeatures = highlights!.compareDocumentPosition(featureGrid!) & Node.DOCUMENT_POSITION_FOLLOWING;
     const featuresBeforeNews = featureGrid!.compareDocumentPosition(news!) & Node.DOCUMENT_POSITION_FOLLOWING;
     const heroBeforeNews = hero!.compareDocumentPosition(news!) & Node.DOCUMENT_POSITION_FOLLOWING;
     const newsBeforePast = news!.compareDocumentPosition(firstPastBasho!) & Node.DOCUMENT_POSITION_FOLLOWING;
 
-    expect(heroBeforeFeatures).toBeTruthy();
+    expect(heroBeforeHighlights).toBeTruthy();
+    expect(highlightsBeforeFeatures).toBeTruthy();
     expect(featuresBeforeNews).toBeTruthy();
     expect(heroBeforeNews).toBeTruthy();
     expect(newsBeforePast).toBeTruthy();

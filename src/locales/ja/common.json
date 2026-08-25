@@ -101,6 +101,21 @@
     "heroGyoji": "行司名鑑",
     "heroYobidashi": "呼出名鑑"
   },
+  "highlights": {
+    "sectionTitle": "今日のみどころ",
+    "sectionSubtitle": "注目の一番と対戦の合口・みどころ解説",
+    "previewTitle": "注目の好取組プレビュー",
+    "previewSubtitle": "本場所を沸かせる注目のライバル対決",
+    "compareAction": "詳しく比較する",
+    "viewBoutAction": "取組を見る",
+    "aikuchiLabel": "合口",
+    "aikuchiSummary": "{{nameA}} {{winsA}}勝 - {{winsB}}勝 {{nameB}}",
+    "aikuchiLead": "{{name}} が {{diff}} 勝ち越し",
+    "aikuchiEven": "五分の合口（互角）",
+    "aikuchiNone": "本場所での初顔合わせ",
+    "defaultMusubiTitle": "本日の結びの一番",
+    "defaultMusubiDesc": "本日の土俵を締めくくる大一番。両力士の気迫あふれる熱戦に注目です。"
+  },
   "analytics": {
     "eyebrow": "{{basho}}分析",
     "title": "大相撲アナリティクス",
