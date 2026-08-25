@@ -6,9 +6,14 @@ import {
   getDailyHighlights,
   getHeadToHeadRecord,
   DAILY_HIGHLIGHTS_REGISTRY,
+  resolveDailyHighlightsTarget,
 } from './daily-highlights-data';
+import { torikumiArchive } from './torikumi-data';
+import { getDayPath } from './torikumi-routes';
 
 describe('daily-highlights-data', () => {
+  const lastScheduleDay = torikumiArchive.scheduleDays[torikumiArchive.scheduleDays.length - 1];
+
   it('finds rikishi by id and name', () => {
     const hoshoryu = findRikishiById(3842);
     expect(hoshoryu).toBeDefined();
@@ -44,16 +49,92 @@ describe('daily-highlights-data', () => {
     expect(enriched?.compareHref).toBe('/compare/?ids=3842,4227');
   });
 
-  it('resolves daily highlights from the registry', () => {
-    const highlights = getDailyHighlights({ monthKey: '202609', day: 1 });
-    expect(highlights.matchups.length).toBeGreaterThanOrEqual(1);
-    expect(highlights.dateTextJa).toContain('九月場所');
-    expect(highlights.isFallback).toBe(false);
+  it('resolves upcoming highlights from the first scheduled day', () => {
+    const target = resolveDailyHighlightsTarget({
+      archive: torikumiArchive,
+      bashoStatus: {
+        kind: 'upcoming',
+        startDate: torikumiArchive.scheduleDays[0].isoDate,
+        endDate: lastScheduleDay?.isoDate ?? null,
+        day: null,
+      },
+    });
+
+    expect(target).toEqual({
+      day: torikumiArchive.scheduleDays[0],
+      mode: 'schedule',
+    });
   });
 
-  it('falls back gracefully when given an unlisted day or monthKey', () => {
-    const fallbackHighlights = getDailyHighlights({ monthKey: '202699', day: 99 });
-    expect(fallbackHighlights.matchups.length).toBeGreaterThanOrEqual(1);
-    expect(fallbackHighlights.isFallback).toBe(true);
+  it('resolves live highlights from published results before the schedule', () => {
+    const resultDay = torikumiArchive.resultDays[3];
+    const target = resolveDailyHighlightsTarget({
+      archive: torikumiArchive,
+      bashoStatus: {
+        kind: 'live',
+        startDate: torikumiArchive.scheduleDays[0].isoDate,
+        endDate: lastScheduleDay?.isoDate ?? null,
+        day: resultDay.day,
+      },
+    });
+
+    expect(target).toEqual({ day: resultDay, mode: 'result' });
+  });
+
+  it('falls back to the same live schedule day when its result is unpublished', () => {
+    const scheduleDay = torikumiArchive.scheduleDays[3];
+    const archive = {
+      ...torikumiArchive,
+      resultDays: torikumiArchive.resultDays.filter((day) => day.day !== scheduleDay.day),
+    };
+
+    expect(resolveDailyHighlightsTarget({
+      archive,
+      bashoStatus: {
+        kind: 'live',
+        startDate: archive.scheduleDays[0].isoDate,
+        endDate: archive.scheduleDays[archive.scheduleDays.length - 1]?.isoDate ?? null,
+        day: scheduleDay.day,
+      },
+    })).toEqual({ day: scheduleDay, mode: 'schedule' });
+  });
+
+  it('resolves final highlights from the latest published result with matches', () => {
+    const finalDay = torikumiArchive.resultDays[torikumiArchive.resultDays.length - 1]!;
+    const target = resolveDailyHighlightsTarget({
+      archive: torikumiArchive,
+      bashoStatus: {
+        kind: 'final',
+        startDate: torikumiArchive.scheduleDays[0].isoDate,
+        endDate: lastScheduleDay?.isoDate ?? null,
+        day: null,
+      },
+    });
+
+    expect(target).toEqual({ day: finalDay, mode: 'result' });
+
+    const highlights = getDailyHighlights({ monthKey: '202607', target: target! });
+    expect(highlights).not.toBeNull();
+    expect(highlights?.day).toBe(15);
+    expect(highlights?.pathDate).toBe('20260726');
+    expect(highlights?.mode).toBe('result');
+    expect(highlights?.matchups[0]).toMatchObject({
+      east: { id: 4055, name: '熱海富士' },
+      west: { id: 3622, name: '霧島' },
+      boutHref: `${getDayPath(finalDay, 'result')}#bout-makuuchi-21`,
+    });
+  });
+
+  it('does not fall back to another basho when no target day can be resolved', () => {
+    const emptyArchive = {
+      ...torikumiArchive,
+      resultDays: [],
+      scheduleDays: [],
+    };
+
+    expect(resolveDailyHighlightsTarget({
+      archive: emptyArchive,
+      bashoStatus: { kind: 'final', startDate: null, endDate: null, day: null },
+    })).toBeNull();
   });
 });

@@ -336,7 +336,7 @@ describe('Home page', () => {
     await act(() => i18n.changeLanguage('ja'));
   });
 
-  it('renders the daily highlights section with sample badge, monomosu box, and compare links', () => {
+  it('renders the final-day highlights with monomosu and official bout links', () => {
     render(
       <MemoryRouter>
         <Home />
@@ -345,11 +345,10 @@ describe('Home page', () => {
 
     const highlightsSection = document.querySelector<HTMLElement>('.daily-highlights-section');
     expect(highlightsSection).not.toBeNull();
-    expect(within(highlightsSection!).getByRole('heading', { level: 2, name: /今日のみどころ|好取組プレビュー/ })).toBeInTheDocument();
+    expect(within(highlightsSection!).getByRole('heading', { level: 2, name: '千秋楽を振り返る' })).toBeInTheDocument();
 
-    // Sample preview badge & dev note
-    expect(within(highlightsSection!).getByText(/これは表示例です/)).toBeInTheDocument();
-    expect(within(highlightsSection!).getByText(/九月場所開幕に向けた先行プレビュー/)).toBeInTheDocument();
+    expect(within(highlightsSection!).queryByText(/これは表示例です/)).not.toBeInTheDocument();
+    expect(within(highlightsSection!).queryByText(/九月場所開幕に向けた先行プレビュー/)).not.toBeInTheDocument();
 
     // Monomosu Box
     const monomosuBox = highlightsSection!.querySelector<HTMLElement>('.monomosu-box');
@@ -360,6 +359,8 @@ describe('Home page', () => {
     const compareLinks = within(highlightsSection!).getAllByRole('link', { name: /詳しく比較する/ });
     expect(compareLinks.length).toBeGreaterThanOrEqual(1);
     expect(compareLinks[0]).toHaveAttribute('href', expect.stringContaining('/compare/?ids='));
+    expect(within(highlightsSection!).getByRole('link', { name: /取組を見る/ }))
+      .toHaveAttribute('href', '/20260726-torikumi/#bout-makuuchi-21');
   });
 
   it('translates the daily highlights section and monomosu box when English is selected', async () => {
@@ -373,8 +374,8 @@ describe('Home page', () => {
 
     const highlightsSection = document.querySelector<HTMLElement>('.daily-highlights-section');
     expect(highlightsSection).not.toBeNull();
-    expect(within(highlightsSection!).getByRole('heading', { level: 2, name: /Today's Highlights|Matchup Preview/ })).toBeInTheDocument();
-    expect(within(highlightsSection!).getByText(/Sample Data/)).toBeInTheDocument();
+    expect(within(highlightsSection!).getByRole('heading', { level: 2, name: 'Final Day Recap' })).toBeInTheDocument();
+    expect(within(highlightsSection!).queryByText(/Sample Data/)).not.toBeInTheDocument();
     expect(within(highlightsSection!).getByText('VOICE')).toBeInTheDocument();
     expect(within(highlightsSection!).getAllByRole('link', { name: /Compare Rikishi/ }).length).toBeGreaterThanOrEqual(1);
 

@@ -1,7 +1,15 @@
 import { makuuchiData, juryo, type Rikishi } from './sumo-data';
-import { torikumiMonthKey, type TorikumiDailyData } from './torikumi-data';
+import {
+  torikumiMonthKey,
+  type TorikumiArchiveDay,
+  type TorikumiDataSet,
+  type TorikumiDailyData,
+  type TorikumiMatch,
+} from './torikumi-data';
 import { analyzeAikuchi, type AikuchiAnalysis } from './rikishi-compare-data';
 import { divisionAnchorId } from './rikishi-display';
+import type { BashoStatus } from './basho-status';
+import { getDayPath, type TorikumiPageMode } from './torikumi-routes';
 
 export interface FeaturedMatchup {
   id: string;
@@ -52,16 +60,23 @@ export interface EnrichedFeaturedMatchup {
   descriptionEn: string;
   aikuchi: AikuchiAnalysis;
   compareHref: string;
-  boutAnchor?: string;
+  boutHref?: string;
 }
 
 export interface DailyHighlightsResult {
   monthKey: string;
   day: number;
+  pathDate: string;
+  mode: TorikumiPageMode;
   dateTextJa: string;
   dateTextEn: string;
   matchups: EnrichedFeaturedMatchup[];
   isFallback: boolean;
+}
+
+export interface DailyHighlightsTarget {
+  day: TorikumiArchiveDay;
+  mode: TorikumiPageMode;
 }
 
 // -------------------------------------------------------------
@@ -177,6 +192,7 @@ export const DAILY_HIGHLIGHTS_REGISTRY: DailyHighlightsEntry[] = [
 export function enrichFeaturedMatchup(
   featured: FeaturedMatchup,
   matchupWinsMap?: Map<string, [number, number]>,
+  boutHref?: string,
 ): EnrichedFeaturedMatchup | null {
   const eastRikishi = findRikishiById(featured.eastId);
   const westRikishi = findRikishiById(featured.westId);
@@ -228,21 +244,113 @@ export function enrichFeaturedMatchup(
     descriptionEn: featured.descriptionEn,
     aikuchi,
     compareHref: `/compare/?ids=${featured.eastId},${featured.westId}`,
-    boutAnchor: featured.boutAnchor,
+    boutHref,
   };
 }
 
 // -------------------------------------------------------------
-// Main Resolver with Smart Fallback
+// Day and route resolver
 // -------------------------------------------------------------
-export function getDailyHighlights(options?: {
+function hasMatches(day: TorikumiArchiveDay): boolean {
+  return day.data.makuuchi.matches.length > 0 || day.data.juryo.matches.length > 0;
+}
+
+function sortedDays(days: TorikumiArchiveDay[] | undefined): TorikumiArchiveDay[] {
+  return [...(days ?? [])].sort((left, right) => left.day - right.day);
+}
+
+export function resolveDailyHighlightsTarget({
+  archive,
+  bashoStatus,
+}: {
+  archive: TorikumiDataSet;
+  bashoStatus: BashoStatus;
+}): DailyHighlightsTarget | null {
+  const scheduleDays = sortedDays(archive.scheduleDays);
+  const resultDays = sortedDays(archive.resultDays);
+
+  if (bashoStatus.kind === 'upcoming') {
+    const day = scheduleDays[0];
+    return day ? { day, mode: 'schedule' } : null;
+  }
+
+  if (bashoStatus.kind === 'live') {
+    if (bashoStatus.day === null) return null;
+
+    const resultDay = resultDays.find((day) => (
+      day.day === bashoStatus.day && day.status === 'published' && hasMatches(day)
+    ));
+    if (resultDay) return { day: resultDay, mode: 'result' };
+
+    const scheduleDay = scheduleDays.find((day) => day.day === bashoStatus.day);
+    return scheduleDay ? { day: scheduleDay, mode: 'schedule' } : null;
+  }
+
+  const publishedResultDays = resultDays
+    .filter((day) => day.status === 'published' && hasMatches(day));
+  const finalDay = publishedResultDays[publishedResultDays.length - 1];
+  return finalDay ? { day: finalDay, mode: 'result' } : null;
+}
+
+function rikishiIdFromProfileUrl(profileUrl: string): number | null {
+  const match = profileUrl.match(/\/profile\/(\d+)\/?/);
+  return match ? Number(match[1]) : null;
+}
+
+function findOfficialBout(
+  dailyData: TorikumiDailyData,
+  eastId: number,
+  westId: number,
+): TorikumiMatch | null {
+  const matches = [...dailyData.makuuchi.matches, ...dailyData.juryo.matches];
+  return matches.find((match) => (
+    rikishiIdFromProfileUrl(match.eastProfileUrl) === eastId
+    && rikishiIdFromProfileUrl(match.westProfileUrl) === westId
+  )) ?? null;
+}
+
+function boutHref(day: TorikumiArchiveDay, mode: TorikumiPageMode, match: TorikumiMatch): string {
+  return `${getDayPath(day, mode)}#${divisionAnchorId(match.division, match.boutNo)}`;
+}
+
+function fallbackFeaturedMatchup(
+  target: DailyHighlightsTarget,
+): { featured: FeaturedMatchup; match: TorikumiMatch } | null {
+  const makuuchiMatches = target.day.data.makuuchi.matches;
+  const match = makuuchiMatches[makuuchiMatches.length - 1];
+  if (!match) return null;
+
+  const eastId = rikishiIdFromProfileUrl(match.eastProfileUrl);
+  const westId = rikishiIdFromProfileUrl(match.westProfileUrl);
+  if (eastId === null || westId === null) return null;
+
+  return {
+    match,
+    featured: {
+      id: `${target.day.pathDate}-musubi-auto`,
+      eastId,
+      westId,
+      tagJa: '結びの一番',
+      tagEn: 'Final Bout of the Day',
+      titleJa: '本日の結びの一番',
+      titleEn: 'Final Bout of the Day',
+      descriptionJa: '土俵を締めくくる結びの一番。両力士の合口と直接対決に注目です。',
+      descriptionEn: 'The concluding bout of the day, with the head-to-head record providing the key context.',
+    },
+  };
+}
+
+// -------------------------------------------------------------
+// Main resolver
+// -------------------------------------------------------------
+export function getDailyHighlights(options: {
   monthKey?: string;
-  day?: number;
-  dailyData?: TorikumiDailyData | null;
+  target: DailyHighlightsTarget;
   matchupWinsMap?: Map<string, [number, number]>;
-}): DailyHighlightsResult {
+}): DailyHighlightsResult | null {
   const monthKey = options?.monthKey ?? torikumiMonthKey;
-  const day = options?.day ?? 1;
+  const { target } = options;
+  const day = target.day.day;
 
   // 1. Look up from static registry
   const exactEntry = DAILY_HIGHLIGHTS_REGISTRY.find(
@@ -250,14 +358,25 @@ export function getDailyHighlights(options?: {
   );
 
   if (exactEntry) {
+    const allowUnconfirmedPreview = target.mode === 'schedule';
     const enriched = exactEntry.featured
-      .map((f) => enrichFeaturedMatchup(f, options?.matchupWinsMap))
+      .map((featured) => {
+        const officialBout = findOfficialBout(target.day.data, featured.eastId, featured.westId);
+        if (!officialBout && !allowUnconfirmedPreview) return null;
+        return enrichFeaturedMatchup(
+          featured,
+          options.matchupWinsMap,
+          officialBout ? boutHref(target.day, target.mode, officialBout) : undefined,
+        );
+      })
       .filter((m): m is EnrichedFeaturedMatchup => m !== null);
 
     if (enriched.length > 0) {
       return {
         monthKey: exactEntry.monthKey,
         day: exactEntry.day,
+        pathDate: target.day.pathDate,
+        mode: target.mode,
         dateTextJa: exactEntry.dateTextJa,
         dateTextEn: exactEntry.dateTextEn,
         matchups: enriched,
@@ -266,53 +385,25 @@ export function getDailyHighlights(options?: {
     }
   }
 
-  // 2. Smart Fallback from dailyData (e.g. musubi no ichiban from makuuchi)
-  if (options?.dailyData && options.dailyData.makuuchi.matches.length > 0) {
-    const matches = options.dailyData.makuuchi.matches;
-    const musubiMatch = matches[matches.length - 1]; // last bout is musubi
-    const eastRikishi = findRikishiByName(musubiMatch.eastName);
-    const westRikishi = findRikishiByName(musubiMatch.westName);
+  // 2. Fallback to the official musubi bout for the resolved day only.
+  const fallback = fallbackFeaturedMatchup(target);
+  if (!fallback) return null;
 
-    if (eastRikishi && westRikishi) {
-      const fallbackFeatured: FeaturedMatchup = {
-        id: `${monthKey}-day${day}-musubi-auto`,
-        eastId: eastRikishi.id,
-        westId: westRikishi.id,
-        tagJa: '本日の結びの一番',
-        tagEn: 'Final Bout of the Day',
-        titleJa: `${eastRikishi.name} vs ${westRikishi.name}`,
-        titleEn: `${eastRikishi.name} vs ${westRikishi.name}`,
-        descriptionJa: '本日の土俵を締めくくる結びの大一番。両力士の合口と直接対決に注目です。',
-        descriptionEn: 'The final concluding bout of today. Watch the clash between both top-ranking rikishi.',
-        boutAnchor: divisionAnchorId('幕内', musubiMatch.boutNo),
-      };
-
-      const enriched = enrichFeaturedMatchup(fallbackFeatured, options.matchupWinsMap);
-      if (enriched) {
-        return {
-          monthKey,
-          day,
-          dateTextJa: `第${day}日目`,
-          dateTextEn: `Day ${day}`,
-          matchups: [enriched],
-          isFallback: true,
-        };
-      }
-    }
-  }
-
-  // 3. Ultimate Fallback (Default Hoshoryu vs Onosato)
-  const defaultEntry = DAILY_HIGHLIGHTS_REGISTRY[0];
-  const defaultEnriched = defaultEntry.featured
-    .map((f) => enrichFeaturedMatchup(f, options?.matchupWinsMap))
-    .filter((m): m is EnrichedFeaturedMatchup => m !== null);
+  const enriched = enrichFeaturedMatchup(
+    fallback.featured,
+    options.matchupWinsMap,
+    boutHref(target.day, target.mode, fallback.match),
+  );
+  if (!enriched) return null;
 
   return {
-    monthKey: defaultEntry.monthKey,
-    day: defaultEntry.day,
-    dateTextJa: defaultEntry.dateTextJa,
-    dateTextEn: defaultEntry.dateTextEn,
-    matchups: defaultEnriched,
+    monthKey,
+    day,
+    pathDate: target.day.pathDate,
+    mode: target.mode,
+    dateTextJa: target.day.label || `第${day}日目`,
+    dateTextEn: day === 15 ? 'Final Day' : `Day ${day}`,
+    matchups: [enriched],
     isFallback: true,
   };
 }

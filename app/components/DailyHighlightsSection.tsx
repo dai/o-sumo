@@ -4,32 +4,25 @@ import { useTranslation } from 'react-i18next';
 import { generatedRikishiAvatarDataUrl } from '../lib/rikishi-avatar';
 import {
   getDailyHighlights,
+  resolveDailyHighlightsTarget,
   type DailyHighlightsResult,
   type EnrichedFeaturedMatchup,
 } from '../lib/daily-highlights-data';
-import type { TorikumiDailyData } from '../lib/torikumi-data';
+import type { TorikumiDataSet } from '../lib/torikumi-data';
 import type { BashoStatus } from '../lib/basho-status';
 
 import DailyMonomosuBox from './DailyMonomosuBox';
 
 export interface DailyHighlightsSectionProps {
   monthKey: string;
+  archive: TorikumiDataSet;
   bashoStatus: BashoStatus;
-  currentDayData?: TorikumiDailyData | null;
-  schedulePath?: string;
-  resultPath?: string;
 }
 
 function FeaturedMatchupCard({
   matchup,
-  schedulePath,
-  resultPath,
-  isLive,
 }: {
   matchup: EnrichedFeaturedMatchup;
-  schedulePath?: string;
-  resultPath?: string;
-  isLive: boolean;
 }) {
   const { t, i18n } = useTranslation('common');
   const isEn = i18n.language === 'en';
@@ -56,14 +49,6 @@ function FeaturedMatchupCard({
     const leaderName = aikuchi.leader === 0 ? matchup.east.name : matchup.west.name;
     return t('highlights.aikuchiLead', { name: leaderName, diff: aikuchi.diff });
   };
-
-  const boutHref = matchup.boutAnchor
-    ? isLive && resultPath
-      ? `${resultPath}/#${matchup.boutAnchor}`
-      : schedulePath
-        ? `${schedulePath}/#${matchup.boutAnchor}`
-        : null
-    : null;
 
   return (
     <article className="daily-highlight-card" aria-labelledby={`highlight-title-${matchup.id}`}>
@@ -158,8 +143,8 @@ function FeaturedMatchupCard({
         <Link to={matchup.compareHref} className="cta-button secondary daily-highlight-btn">
           📊 {t('highlights.compareAction')}
         </Link>
-        {boutHref ? (
-          <Link to={boutHref} className="daily-highlight-bout-link">
+        {matchup.boutHref ? (
+          <Link to={matchup.boutHref} className="daily-highlight-bout-link">
             📅 {t('highlights.viewBoutAction')}
           </Link>
         ) : null}
@@ -168,26 +153,49 @@ function FeaturedMatchupCard({
   );
 }
 
+function useMobileHighlights(): boolean {
+  const query = '(max-width: 600px)';
+  const [isMobile, setIsMobile] = React.useState(() => (
+    typeof window !== 'undefined' && typeof window.matchMedia === 'function'
+      ? window.matchMedia(query).matches
+      : false
+  ));
+
+  React.useEffect(() => {
+    if (typeof window.matchMedia !== 'function') return undefined;
+    const media = window.matchMedia(query);
+    const update = () => setIsMobile(media.matches);
+    update();
+    media.addEventListener?.('change', update);
+    return () => media.removeEventListener?.('change', update);
+  }, []);
+
+  return isMobile;
+}
+
 export default function DailyHighlightsSection({
   monthKey,
+  archive,
   bashoStatus,
-  currentDayData,
-  schedulePath,
-  resultPath,
 }: DailyHighlightsSectionProps) {
   const { t, i18n } = useTranslation('common');
   const isEn = i18n.language === 'en';
+  const isMobile = useMobileHighlights();
+  const [isMoreOpen, setIsMoreOpen] = React.useState(false);
+  const additionalMatchupsId = React.useId();
 
-  const dayNumber = bashoStatus.kind === 'live' ? (bashoStatus.day ?? 1) : 1;
-  const isLive = bashoStatus.kind === 'live';
+  const target = React.useMemo(() => resolveDailyHighlightsTarget({
+    archive,
+    bashoStatus,
+  }), [archive, bashoStatus]);
 
-  const highlightsResult: DailyHighlightsResult = React.useMemo(() => {
+  const highlightsResult: DailyHighlightsResult | null = React.useMemo(() => {
+    if (!target) return null;
     return getDailyHighlights({
       monthKey,
-      day: dayNumber,
-      dailyData: currentDayData,
+      target,
     });
-  }, [monthKey, dayNumber, currentDayData]);
+  }, [monthKey, target]);
 
   if (!highlightsResult || highlightsResult.matchups.length === 0) {
     return null;
@@ -195,13 +203,25 @@ export default function DailyHighlightsSection({
 
   const sectionTitle = bashoStatus.kind === 'upcoming'
     ? t('highlights.previewTitle')
-    : t('highlights.sectionTitle');
+    : bashoStatus.kind === 'final'
+      ? t('highlights.finalTitle')
+      : t('highlights.sectionTitle');
 
   const sectionSubtitle = bashoStatus.kind === 'upcoming'
     ? t('highlights.previewSubtitle')
-    : t('highlights.sectionSubtitle');
+    : bashoStatus.kind === 'final'
+      ? t('highlights.finalSubtitle')
+      : t('highlights.sectionSubtitle');
 
   const dateBadge = isEn ? highlightsResult.dateTextEn : highlightsResult.dateTextJa;
+  const showSampleNotice = bashoStatus.kind === 'upcoming';
+  const monomosuComment = bashoStatus.kind === 'upcoming'
+    ? t('highlights.monomosuUpcomingText')
+    : bashoStatus.kind === 'final'
+      ? t('highlights.monomosuFinalText')
+      : t('highlights.monomosuLiveText');
+  const [primaryMatchup, ...additionalMatchups] = highlightsResult.matchups;
+  const showAdditionalMatchups = !isMobile || isMoreOpen;
 
   return (
     <section className="daily-highlights-section" aria-labelledby="daily-highlights-title">
@@ -212,28 +232,52 @@ export default function DailyHighlightsSection({
             {sectionTitle}
           </h2>
           <span className="daily-highlights-section__badge">{dateBadge}</span>
-          <span className="daily-highlights-section__sample-badge" aria-label={t('highlights.devBadge')}>
-            {t('highlights.devBadge')}
-          </span>
+          {showSampleNotice ? (
+            <span className="daily-highlights-section__sample-badge" aria-label={t('highlights.devBadge')}>
+              {t('highlights.devBadge')}
+            </span>
+          ) : null}
         </div>
         <p className="daily-highlights-section__subtitle">{sectionSubtitle}</p>
-        <p className="daily-highlights-section__dev-note">{t('highlights.devNote')}</p>
+        {showSampleNotice ? (
+          <p className="daily-highlights-section__dev-note">{t('highlights.devNote')}</p>
+        ) : null}
       </div>
 
       {/* 一言物申す モダン1行ギミックボックス */}
-      <DailyMonomosuBox />
+      <DailyMonomosuBox
+        monthKey={highlightsResult.monthKey}
+        day={highlightsResult.day}
+        shareTitle={dateBadge}
+        customComment={monomosuComment}
+      />
 
       <div className="daily-highlights-grid">
-        {highlightsResult.matchups.map((matchup) => (
+        <FeaturedMatchupCard matchup={primaryMatchup} />
+        <div
+          id={additionalMatchupsId}
+          className="daily-highlights-grid__additional"
+          hidden={!showAdditionalMatchups}
+        >
+          {additionalMatchups.map((matchup) => (
           <FeaturedMatchupCard
             key={matchup.id}
             matchup={matchup}
-            schedulePath={schedulePath}
-            resultPath={resultPath}
-            isLive={isLive}
           />
-        ))}
+          ))}
+        </div>
       </div>
+      {isMobile && additionalMatchups.length > 0 ? (
+        <button
+          type="button"
+          className="daily-highlights-more-toggle"
+          aria-expanded={isMoreOpen}
+          aria-controls={additionalMatchupsId}
+          onClick={() => setIsMoreOpen((open) => !open)}
+        >
+          {isMoreOpen ? t('highlights.hideMore') : t('highlights.showMore')}
+        </button>
+      ) : null}
     </section>
   );
 }

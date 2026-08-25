@@ -496,6 +496,19 @@
   gap: 1.5rem;
 }
 
+.daily-highlights-grid__additional {
+  display: contents;
+}
+
+.daily-highlights-grid__additional[hidden] {
+  display: none;
+}
+
+.daily-highlights-more-toggle {
+  display: block;
+  margin: 1rem auto 0;
+}
+
 .daily-highlight-card {
   display: flex;
   flex-direction: column;

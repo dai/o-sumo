@@ -1,3 +1,28 @@
+# PR #479 今日のみどころ UX・デザイン修正（2026-08-25）
+
+## Plan
+
+- [x] 段階1: 場所状態と日別URLを一貫させ、モバイル段階開示と共有fallbackをTDDで実装する
+- [ ] 段階2: Daily Highlights / 一言物申すを既存Digital Washiの色・余白・直角表現へ統合する
+- [ ] 段階3: ラベル、ARIA関連、live region、focus、reduced motionを仕上げる
+- [ ] focused/full tests、typecheck、build、diff check、Impeccable、Wrangler、実ブラウザを検証する
+- [ ] `luna_worker`の読み取り専用レビューを反映し、3コミットをpushしてPR Preview/CIを確認する
+
+## Constraints
+
+- `upcoming`は最初の予定日、`live`は当日の結果または予定、`final`は最新の公開結果を表示する
+- 解決不能時は別場所へfallbackせず、セクションを表示しない
+- 新しいバックエンド・集計API・依存パッケージは追加しない
+- 既存ルート、比較URL、日英切替、テーマ保存、ホームのセクション順を維持する
+
+## Review
+
+- 段階1 RED: resolver、日別アンカー、モバイル開閉、端末内座布団、native shareから手動コピーまでの契約テストを追加し、未実装による失敗を確認した。
+- 段階1 GREEN: focused 4 files / 34 tests、`npm run typecheck`、`git diff --check`がすべてexit 0。千秋楽は七月26日の公開結果と正確な取組アンカーを表示し、別場所の初日へfallbackしない。
+- 段階1 独立レビュー: final共有文にupcoming固定文が残る問題を再現して修正。再レビューでP0/P1なしを確認した。
+
+---
+
 # 人物名鑑検索のIME入力修正（2026-08-17）
 
 ## Plan

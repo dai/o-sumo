@@ -268,10 +268,8 @@ export default function Home() {
         {/* Daily Highlights Section (今日のみどころ・注目取組) */}
         <DailyHighlightsSection
           monthKey={torikumiMonthKey}
+          archive={torikumiArchive}
           bashoStatus={bashoStatus}
-          currentDayData={torikumiData.today}
-          schedulePath={CURRENT_SCHEDULE_PATH}
-          resultPath={CURRENT_RESULT_PATH}
         />
 
         <div className="home-feature-grid">
