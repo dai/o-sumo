@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-25T02:30:38.064514+00:00",
+  "updatedAt": "2026-08-25T04:18:22.265951+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-chuspo-1301337",
+      "title": "【大相撲】高安が左脚の付け根を痛め夏巡業再休場　高田川巡業部長「ここで無理したら9月場所にも影響」",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1301337",
+      "publishedAt": "2026-08-25",
+      "publishedAtRaw": "中日スポーツ　8月25日 12時26分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260825-OHT1T51035",
+      "title": "高安、夏巡業を離脱　２４日の稽古中に左脚を負傷",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260825-OHT1T51035",
+      "publishedAt": "2026-08-25",
+      "publishedAtRaw": "スポーツ報知　8月25日 11時44分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260825-OHT1T51015",
+      "title": "高田みづえさんが１１年ぶり歌披露　２５日ＮＨＫ「うたコン」　元大関・若嶋津さんと８５年結婚、相撲部屋のおかみに転身…当時の思い出も語る",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260825-OHT1T51015",
+      "publishedAt": "2026-08-25",
+      "publishedAtRaw": "スポーツ報知　8月25日 11時30分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-dailyshincho-1490307",
       "title": "名古屋場所「2日連続金星」で大ブレイク「藤ノ川」　幕内最軽量21歳が魅せる「気合相撲」は“父の教え”あってこそ【令和の名力士たち】",
       "url": "https://topics.smt.docomo.ne.jp/article/dailyshincho/sports/dailyshincho-1490307",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-400656",
       "publishedAt": "2026-08-25",
       "publishedAtRaw": "東スポWEB　8月25日 6時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260825-0095",
-      "title": "安青錦、夏巡業は基礎運動で汗「焦らず」　相撲取る稽古再開は番付発表後の見通し",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260825-0095",
-      "publishedAt": "2026-08-25",
-      "publishedAtRaw": "スポニチアネックス　8月25日 5時10分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260825-0094",
-      "title": "熱海富士　大関獲りへ夏巡業で存在感発揮　高田川巡業部長も期待",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260825-0094",
-      "publishedAt": "2026-08-25",
-      "publishedAtRaw": "スポニチアネックス　8月25日 5時10分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260825-0092",
-      "title": "高安　夏巡業の稽古中に左脚付け根負傷「治療しなきゃ駄目ですね。自分でも残念」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260825-0092",
-      "publishedAt": "2026-08-25",
-      "publishedAtRaw": "スポニチアネックス　8月25日 5時10分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
