@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-25T10:13:02.619131+00:00",
+  "updatedAt": "2026-08-26T00:23:21.059669+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-hochi-20260825-OHT1T51327",
+      "title": "新十両・時不動の昇進を祝う会…地元・焼津市で先輩関取の翠富士が飛び入り参加「秋場所で対戦したら…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260825-OHT1T51327",
+      "publishedAt": "2026-08-26",
+      "publishedAtRaw": "スポーツ報知　8月26日 7時15分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-tokyosports-400752",
+      "title": "【大相撲】来年からV賞金＆給金UP 「総額でいくら使ったのか…」秀ノ山親方明かす〝力士の金銭事情〟",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-400752",
+      "publishedAt": "2026-08-26",
+      "publishedAtRaw": "東スポWEB　8月26日 6時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260825-OHT1T51264",
+      "title": "大の里「いい稽古ができた」　得意の秋場所で１年ぶりVへ　豪ノ山、平戸海に８勝４敗",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260825-OHT1T51264",
+      "publishedAt": "2026-08-26",
+      "publishedAtRaw": "スポーツ報知　8月26日 5時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-sanspo-_sports_sumo_7D2CFBSLKJJ75JK3BBH3GM5FU4",
       "title": "高安が夏巡業を再び休場　24日離脱の診断は「左内転筋筋損傷」",
       "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_7D2CFBSLKJJ75JK3BBH3GM5FU4",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_EJMGVQYGXNLDZJ5IU6VUNRAOZ4",
       "publishedAt": "2026-08-25",
       "publishedAtRaw": "SANSPO　8月25日 18時54分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260825084",
-      "title": "琴栄峰と琴勝峰の父“亀仙人”が巡業で息子にエール「何しろケガがないように」兄弟ファッションを披露【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260825084",
-      "publishedAt": "2026-08-25",
-      "publishedAtRaw": "デイリースポーツ　8月25日 18時26分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260825-OHT1T51230",
-      "title": "流山南高出身の阿炎、流山巡業で凱旋に大きな歓声「知ってもらえるだけでうれしい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260825-OHT1T51230",
-      "publishedAt": "2026-08-25",
-      "publishedAtRaw": "スポーツ報知　8月25日 18時22分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260825079",
-      "title": "高安が左脚負傷で巡業から再び離脱、巡業部長は休場に理解【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260825079",
-      "publishedAt": "2026-08-25",
-      "publishedAtRaw": "デイリースポーツ　8月25日 17時58分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
