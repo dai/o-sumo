@@ -1,3 +1,35 @@
+# PR #485 今日のみどころ公式取組連動化（2026-08-26）
+
+## Plan
+
+- [x] TDD: pending日=公式取組未発表、published=公式取組あり、final=千秋楽の3状態を data 層 + component 層で固定する
+- [x] `DAILY_HIGHLIGHTS_REGISTRY`（202609初日・202607千秋楽の手書き固定対戦・固定解説）と `KNOWN_MATCHUPS`（手入力の合口）を削除
+- [x] `getDailyHighlights` を公式幕内の musubi からの自動生成のみに置き換え、対象日の makuuchi.matches が空なら `null` を返す
+- [x] `enrichFeaturedMatchup` の aikuchi を `AikuchiAnalysis | null` 化、未取得状態とJSON成功時のみ表示
+- [x] `DailyHighlightsSection` で `/api/v1/rikishi-matchups.json` を取得し `matchupWinsMap` を組み立てて `getDailyHighlights` へ伝搬
+- [x] pending UI = 「今日のみどころ / 公式取組発表待ち / 公式取組の発表後に、注目取組・合口・比較への導線を掲載します。」のみ。力士名・記事・合口group・比較・取組リンク・一言物申す・モバイル段階開示の一切を出さない
+- [x] published 状態は monomosu / 比較リンク / 取組アンカー `#bout-makuuchi-{boutNo}` を従来どおり維持、日英も維持
+- [x] i18n: `pendingBadge` / `pendingBody` を追加し、`previewTitle` / `previewSubtitle` / `devBadge` / `devNote` / `monomosuUpcomingText`（=未発表用の文言）を削除
+- [x] `tasks/todo.md` と `README.md` / `README_en.md` を「手動registry優先」から「公式公開済み取組から自動生成、未発表時は待機表示」へ同期
+
+## Constraints
+
+- 公開API・JSON schema・比較URL形式・番付/結果/予定の各ルートは変更しない
+- 力士比較ページの合口スコアボードと挙動を揃える（`/api/v1/rikishi-matchups.json` 経由、失敗時は合口を隠す）
+- ホームのセクション順、テーマ、言語切替、Digital Washi の紙・墨・朱トークンを維持
+- 新しいバックエンド・集計API・依存パッケージは追加しない
+
+## Review
+
+- RED: `daily-highlights-data.test.ts` と `DailyHighlightsSection.test.tsx` に pending / published / final の各シナリオを追加し、削除した registry/KNOWN_MATCHUPS 由来の参照を全削除して focused RED を確認した
+- GREEN: data層 11 tests / component層 6 tests すべて通過。`npm test` 58 files / 411 tests、`npm run typecheck`、`npm run build` がすべて exit 0
+- 比較href: 公開済み取組から組み立てたカードで `/compare/?ids={eastId},{westId}` を維持。例: 20260726 = `/compare/?ids=4055,3622`
+- 取組アンカー: `getDayPath(target.day, mode)#bout-makuuchi-{boutNo}` 形式を維持（例: `/20260726-torikumi/#bout-makuuchi-21`）
+- 合口: `rikishi-matchups.json` のマッチに存在する場合のみ東西順で `[winsA, winsB]` をキャッシュ。JSON未掲載ペアは `0-0` を誤ってキャッシュしない
+- i18n: ja/en とも pending・final・monomosu の文言を新規追加、未発表専用文言（preview/dev/Upcoming）を削除
+
+---
+
 # PR #479 今日のみどころ UX・デザイン修正（2026-08-25）
 
 ## Plan

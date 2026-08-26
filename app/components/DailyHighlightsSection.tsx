@@ -7,10 +7,11 @@ import {
   resolveDailyHighlightsTarget,
   type DailyHighlightsResult,
   type EnrichedFeaturedMatchup,
+  type MatchupWinsMap,
 } from '../lib/daily-highlights-data';
 import type { TorikumiDataSet } from '../lib/torikumi-data';
 import type { BashoStatus } from '../lib/basho-status';
-
+import { fetchRikishiMatchups, findOrderedMatchup } from '../lib/rikishi-profile';
 import DailyMonomosuBox from './DailyMonomosuBox';
 
 export interface DailyHighlightsSectionProps {
@@ -43,7 +44,8 @@ function FeaturedMatchupCard({
   const description = isEn ? matchup.descriptionEn || matchup.descriptionJa : matchup.descriptionJa;
 
   const aikuchi = matchup.aikuchi;
-  const getAikuchiBadgeText = () => {
+  const getAikuchiBadgeText = (): string => {
+    if (!aikuchi) return '';
     if (aikuchi.totalBouts === 0) return t('highlights.aikuchiNone');
     if (aikuchi.leader === null) return t('highlights.aikuchiEven');
     const leaderName = aikuchi.leader === 0 ? matchup.east.name : matchup.west.name;
@@ -52,7 +54,6 @@ function FeaturedMatchupCard({
 
   return (
     <article className="daily-highlight-card" aria-labelledby={`highlight-title-${matchup.id}`}>
-      {/* Header Tag & Title */}
       <div className="daily-highlight-card__header">
         {tag ? <span className="daily-highlight-card__tag">{tag}</span> : null}
         {title ? (
@@ -62,9 +63,7 @@ function FeaturedMatchupCard({
         ) : null}
       </div>
 
-      {/* VS Rikishi Faceoff */}
       <div className="daily-highlight-card__faceoff">
-        {/* East Rikishi */}
         <div className="daily-highlight-side daily-highlight-side--east">
           <img
             src={avatarEast}
@@ -86,12 +85,10 @@ function FeaturedMatchupCard({
           </div>
         </div>
 
-        {/* VS Badge */}
         <div className="daily-highlight-vs" aria-hidden="true">
           <span className="daily-highlight-vs__badge">VS</span>
         </div>
 
-        {/* West Rikishi */}
         <div className="daily-highlight-side daily-highlight-side--west">
           <img
             src={avatarWest}
@@ -114,40 +111,39 @@ function FeaturedMatchupCard({
         </div>
       </div>
 
-      {/* Aikuchi (Head-to-Head) Bar */}
-      <div
-        className="daily-highlight-aikuchi"
-        role="group"
-        aria-label={t('highlights.aikuchiSummary', {
-          nameA: matchup.east.name,
-          winsA: aikuchi.winsA,
-          winsB: aikuchi.winsB,
-          nameB: matchup.west.name,
-        })}
-      >
-        <div className="daily-highlight-aikuchi__top">
-          <span className="daily-highlight-aikuchi__name">{matchup.east.name} <strong>{aikuchi.winsA}勝</strong></span>
-          <span className="daily-highlight-aikuchi__badge">{getAikuchiBadgeText()}</span>
-          <span className="daily-highlight-aikuchi__name"><strong>{aikuchi.winsB}勝</strong> {matchup.west.name}</span>
-        </div>
-        {aikuchi.totalBouts > 0 ? (
-          <div className="daily-highlight-aikuchi__meter" aria-hidden="true">
-            <div
-              className="daily-highlight-aikuchi__bar daily-highlight-aikuchi__bar--east"
-              style={{ width: `${aikuchi.winRateA}%` }}
-            />
-            <div
-              className="daily-highlight-aikuchi__bar daily-highlight-aikuchi__bar--west"
-              style={{ width: `${aikuchi.winRateB}%` }}
-            />
+      {aikuchi ? (
+        <div
+          className="daily-highlight-aikuchi"
+          role="group"
+          aria-label={t('highlights.aikuchiSummary', {
+            nameA: matchup.east.name,
+            winsA: aikuchi.winsA,
+            winsB: aikuchi.winsB,
+            nameB: matchup.west.name,
+          })}
+        >
+          <div className="daily-highlight-aikuchi__top">
+            <span className="daily-highlight-aikuchi__name">{matchup.east.name} <strong>{aikuchi.winsA}勝</strong></span>
+            <span className="daily-highlight-aikuchi__badge">{getAikuchiBadgeText()}</span>
+            <span className="daily-highlight-aikuchi__name"><strong>{aikuchi.winsB}勝</strong> {matchup.west.name}</span>
           </div>
-        ) : null}
-      </div>
+          {aikuchi.totalBouts > 0 ? (
+            <div className="daily-highlight-aikuchi__meter" aria-hidden="true">
+              <div
+                className="daily-highlight-aikuchi__bar daily-highlight-aikuchi__bar--east"
+                style={{ width: `${aikuchi.winRateA}%` }}
+              />
+              <div
+                className="daily-highlight-aikuchi__bar daily-highlight-aikuchi__bar--west"
+                style={{ width: `${aikuchi.winRateB}%` }}
+              />
+            </div>
+          ) : null}
+        </div>
+      ) : null}
 
-      {/* Description Preview */}
       <p className="daily-highlight-card__description">{description}</p>
 
-      {/* Actions */}
       <div className="daily-highlight-card__actions">
         <Link to={matchup.compareHref} className="cta-button secondary daily-highlight-btn">
           {t('highlights.compareAction')}
@@ -162,24 +158,43 @@ function FeaturedMatchupCard({
   );
 }
 
-function useMobileHighlights(): boolean {
-  const query = '(max-width: 600px)';
-  const [isMobile, setIsMobile] = React.useState(() => (
-    typeof window !== 'undefined' && typeof window.matchMedia === 'function'
-      ? window.matchMedia(query).matches
-      : false
-  ));
+function buildMatchupWinsMap(
+  response: Awaited<ReturnType<typeof fetchRikishiMatchups>>,
+  ids: Array<[number, number]>,
+): MatchupWinsMap {
+  const map: MatchupWinsMap = new Map();
+  for (const [firstId, secondId] of ids) {
+    const wins = findOrderedMatchup(response, firstId, secondId);
+    const knownPair = response.matchups.some((item) => (
+      (item.rikishi1Id === firstId && item.rikishi2Id === secondId)
+      || (item.rikishi1Id === secondId && item.rikishi2Id === firstId)
+    ));
+    // Only seed the cache when the JSON explicitly listed the pair. A
+    // `0-0` lookup for an unlisted pair must NOT surface as a misleading
+    // "first meeting" record.
+    if (knownPair) {
+      map.set(`${firstId},${secondId}`, wins);
+    }
+  }
+  return map;
+}
 
-  React.useEffect(() => {
-    if (typeof window.matchMedia !== 'function') return undefined;
-    const media = window.matchMedia(query);
-    const update = () => setIsMobile(media.matches);
-    update();
-    media.addEventListener?.('change', update);
-    return () => media.removeEventListener?.('change', update);
-  }, []);
-
-  return isMobile;
+function extractPairIds(target: NonNullable<ReturnType<typeof resolveDailyHighlightsTarget>>): Array<[number, number]> {
+  const pairs: Array<[number, number]> = [];
+  for (const match of [
+    ...target.day.data.makuuchi.matches,
+    ...target.day.data.juryo.matches,
+  ]) {
+    const eastMatch = match.eastProfileUrl.match(/\/profile\/(\d+)\/?/);
+    const westMatch = match.westProfileUrl.match(/\/profile\/(\d+)\/?/);
+    if (!eastMatch || !westMatch) continue;
+    const eastId = Number(eastMatch[1]);
+    const westId = Number(westMatch[1]);
+    if (Number.isInteger(eastId) && Number.isInteger(westId)) {
+      pairs.push([eastId, westId]);
+    }
+  }
+  return pairs;
 }
 
 export default function DailyHighlightsSection({
@@ -189,48 +204,79 @@ export default function DailyHighlightsSection({
 }: DailyHighlightsSectionProps) {
   const { t, i18n } = useTranslation('common');
   const isEn = i18n.language === 'en';
-  const isMobile = useMobileHighlights();
-  const [isMoreOpen, setIsMoreOpen] = React.useState(false);
-  const additionalMatchupsId = 'daily-highlights-additional-matchups';
 
   const target = React.useMemo(() => resolveDailyHighlightsTarget({
     archive,
     bashoStatus,
   }), [archive, bashoStatus]);
 
+  const [matchupWinsMap, setMatchupWinsMap] = React.useState<MatchupWinsMap>(() => new Map());
+
+  React.useEffect(() => {
+    if (!target) {
+      setMatchupWinsMap(new Map());
+      return undefined;
+    }
+    let active = true;
+    const ids = extractPairIds(target);
+    fetchRikishiMatchups()
+      .then((response) => {
+        if (!active) return;
+        setMatchupWinsMap(buildMatchupWinsMap(response, ids));
+      })
+      .catch(() => {
+        if (!active) return;
+        setMatchupWinsMap(new Map());
+      });
+    return () => {
+      active = false;
+    };
+  }, [target]);
+
   const highlightsResult: DailyHighlightsResult | null = React.useMemo(() => {
     if (!target) return null;
     return getDailyHighlights({
       monthKey,
       target,
+      matchupWinsMap: matchupWinsMap.size > 0 ? matchupWinsMap : undefined,
     });
-  }, [monthKey, target]);
+  }, [monthKey, target, matchupWinsMap]);
 
-  if (!highlightsResult || highlightsResult.matchups.length === 0) {
-    return null;
+  if (!target) return null;
+
+  const sectionTitle = bashoStatus.kind === 'final'
+    ? t('highlights.finalTitle')
+    : t('highlights.sectionTitle');
+
+  const sectionSubtitle = bashoStatus.kind === 'final'
+    ? t('highlights.finalSubtitle')
+    : t('highlights.sectionSubtitle');
+
+  const dateBadge = isEn
+    ? `Day ${target.day.day}`
+    : target.day.label || `第${target.day.day}日目`;
+
+  if (highlightsResult === null) {
+    return (
+      <section className="daily-highlights-section" aria-labelledby="daily-highlights-title">
+        <div className="daily-highlights-section__header">
+          <div className="daily-highlights-section__title-wrap">
+            <h2 id="daily-highlights-title" className="daily-highlights-section__title">
+              {sectionTitle}
+            </h2>
+            <span className="daily-highlights-section__badge">{dateBadge}</span>
+            <span className="daily-highlights-section__pending-badge">
+              {t('highlights.pendingBadge')}
+            </span>
+          </div>
+          <p className="daily-highlights-section__subtitle">{sectionSubtitle}</p>
+        </div>
+        <p className="daily-highlights-section__pending-body">
+          {t('highlights.pendingBody')}
+        </p>
+      </section>
+    );
   }
-
-  const sectionTitle = bashoStatus.kind === 'upcoming'
-    ? t('highlights.previewTitle')
-    : bashoStatus.kind === 'final'
-      ? t('highlights.finalTitle')
-      : t('highlights.sectionTitle');
-
-  const sectionSubtitle = bashoStatus.kind === 'upcoming'
-    ? t('highlights.previewSubtitle')
-    : bashoStatus.kind === 'final'
-      ? t('highlights.finalSubtitle')
-      : t('highlights.sectionSubtitle');
-
-  const dateBadge = isEn ? highlightsResult.dateTextEn : highlightsResult.dateTextJa;
-  const showSampleNotice = bashoStatus.kind === 'upcoming';
-  const monomosuComment = bashoStatus.kind === 'upcoming'
-    ? t('highlights.monomosuUpcomingText')
-    : bashoStatus.kind === 'final'
-      ? t('highlights.monomosuFinalText')
-      : t('highlights.monomosuLiveText');
-  const [primaryMatchup, ...additionalMatchups] = highlightsResult.matchups;
-  const showAdditionalMatchups = !isMobile || isMoreOpen;
 
   return (
     <section className="daily-highlights-section" aria-labelledby="daily-highlights-title">
@@ -239,53 +285,27 @@ export default function DailyHighlightsSection({
           <h2 id="daily-highlights-title" className="daily-highlights-section__title">
             {sectionTitle}
           </h2>
-          <span className="daily-highlights-section__badge">{dateBadge}</span>
-          {showSampleNotice ? (
-            <span className="daily-highlights-section__sample-badge" aria-label={t('highlights.devBadge')}>
-              {t('highlights.devBadge')}
-            </span>
-          ) : null}
+          <span className="daily-highlights-section__badge">
+            {isEn ? highlightsResult.dateTextEn : highlightsResult.dateTextJa}
+          </span>
         </div>
         <p className="daily-highlights-section__subtitle">{sectionSubtitle}</p>
-        {showSampleNotice ? (
-          <p className="daily-highlights-section__dev-note">{t('highlights.devNote')}</p>
-        ) : null}
       </div>
 
-      {/* 一言物申す モダン1行ギミックボックス */}
       <DailyMonomosuBox
         monthKey={highlightsResult.monthKey}
         day={highlightsResult.day}
-        shareTitle={dateBadge}
-        customComment={monomosuComment}
+        shareTitle={isEn ? highlightsResult.dateTextEn : highlightsResult.dateTextJa}
+        customComment={bashoStatus.kind === 'final'
+          ? t('highlights.monomosuFinalText')
+          : t('highlights.monomosuLiveText')}
       />
 
       <div className="daily-highlights-grid">
-        <FeaturedMatchupCard matchup={primaryMatchup} />
-        <div
-          id={additionalMatchupsId}
-          className="daily-highlights-grid__additional"
-          hidden={!showAdditionalMatchups}
-        >
-          {additionalMatchups.map((matchup) => (
-          <FeaturedMatchupCard
-            key={matchup.id}
-            matchup={matchup}
-          />
-          ))}
-        </div>
+        {highlightsResult.matchups.map((matchup) => (
+          <FeaturedMatchupCard key={matchup.id} matchup={matchup} />
+        ))}
       </div>
-      {isMobile && additionalMatchups.length > 0 ? (
-        <button
-          type="button"
-          className="daily-highlights-more-toggle"
-          aria-expanded={isMoreOpen}
-          aria-controls={additionalMatchupsId}
-          onClick={() => setIsMoreOpen((open) => !open)}
-        >
-          {isMoreOpen ? t('highlights.hideMore') : t('highlights.showMore')}
-        </button>
-      ) : null}
     </section>
   );
 }

@@ -82,7 +82,9 @@ Skill publishing:
 - **Today's Highlights (Featured Matchups)**:
   - Prominently featured right below the Hero on the homepage with 1-2 curated matchups for the day
   - Displays East vs West bout cards, shikona, rank badges, deterministic avatars, **Aikuchi (head-to-head record and two-tone win rate bar)**, insightful bout preview commentary, and one-tap direct links to the Rikishi Comparison page
-  - Includes a smart fallback to generate highlights from the daily musubi bout when manual preview data is not registered
+  - Generated automatically from the official musubi bout on days with published torikumi data; hand-written static matchups, fixed descriptions, and hand-curated head-to-head records have been removed
+  - On days without an official torikumi, renders only a neutral "Today's Highlights / Awaiting Official Bouts / Featured bouts, aikuchi, and comparison links will appear after the official torikumi is published." notice — no rikishi names, articles, aikuchi, comparison/bout links, or commentary box
+  - Aikuchi is sourced exclusively from `/api/v1/rikishi-matchups.json` (pre-aggregated from official profile history) and is only shown when the JSON loads successfully. On failure the aikuchi block is hidden while comparison and bout links remain available
 - **Revamped Rikishi Comparison (`/compare/?ids={id1},{id2}`)**:
   - Highlights **Aikuchi (Head-to-Head Record / Compatibility)** as the primary hero scoreboard with score, win rate, contextual lead badge, and two-tone ratio meter
   - East vs West graphical faceoff card (rank, avatar, current basho win-loss record)
