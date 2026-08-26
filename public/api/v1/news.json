@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-26T08:20:02.216308+00:00",
+  "updatedAt": "2026-08-26T10:16:25.792495+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,11 +16,29 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-hochi-20260826-OHT1T51252",
+      "title": "幕内・一山本、先代師匠のおかみ・高田みづえさんの１１年ぶりテレビ歌唱に感慨「やっぱりうまいなと感じた」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260826-OHT1T51252",
+      "publishedAt": "2026-08-26",
+      "publishedAtRaw": "スポーツ報知　8月26日 17時59分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-kyodo_nor-2026082601000892",
       "title": "安青錦「自分に期待して」　大関復帰、秋場所へ意欲",
       "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026082601000892",
       "publishedAt": "2026-08-26",
-      "publishedAtRaw": "共同通信　8月26日 17時11分",
+      "publishedAtRaw": "共同通信　8月26日 17時39分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260826-OHT1T51225",
+      "title": "幕内・藤ノ川、気合の１７番　首痛軽減で夏巡業は連日申し合い稽古　秋場所は新三役濃厚「なおさら今は稽古したい」　高田川巡業部長が首強化アドバイスも",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260826-OHT1T51225",
+      "publishedAt": "2026-08-26",
+      "publishedAtRaw": "スポーツ報知　8月26日 17時29分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260826-202608260000615",
       "publishedAt": "2026-08-26",
       "publishedAtRaw": "日刊スポーツ　8月26日 16時18分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260826-202608260000613",
-      "title": "一山本「専業主婦になりたいです」友風、湘南乃海と夏巡業で爆笑質問コーナー　観衆から拍手も",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260826-202608260000613",
-      "publishedAt": "2026-08-26",
-      "publishedAtRaw": "日刊スポーツ　8月26日 16時07分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260826-OHT1T51118",
-      "title": "“相撲の聖地”の出羽海部屋に「すみだ子どもＰＲ大使」稽古見学＆ちゃんこ体験！出羽海親方おもてなし「子どもたちが相撲をもっと好きになってくれたら」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260826-OHT1T51118",
-      "publishedAt": "2026-08-26",
-      "publishedAtRaw": "スポーツ報知　8月26日 15時21分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
