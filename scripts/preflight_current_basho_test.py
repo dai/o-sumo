@@ -200,6 +200,21 @@ class PreflightGateTests(unittest.TestCase):
                 archive_gate = next(gate for gate in gates if gate.name == "outgoing archive uniqueness")
                 self.assertFalse(archive_gate.ok)
 
+    def test_outgoing_archive_paths_must_belong_to_current_month_record(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            write_authoritative_sources(root)
+            (root / "app/lib/archives-data.ts").write_text(
+                "const items = ["
+                "{ id: '202607', resultPath: '/202605-torikumi', schedulePath: '/202605-yotei', banzukePath: '/202605-banzuke' },"
+                "{ id: '202605', resultPath: '/202607-torikumi', schedulePath: '/202607-yotei', banzukePath: '/202607-banzuke' }"
+                "];",
+                encoding="utf-8",
+            )
+            gates = MODULE.evaluate_source_contracts(root, "202607", "202609", official_schedule())
+            archive_gate = next(gate for gate in gates if gate.name == "outgoing archive uniqueness")
+            self.assertFalse(archive_gate.ok)
+
     def test_target_paths_use_official_schedule_days(self):
         paths = MODULE._target_paths(official_schedule())
         self.assertIn("/20260913-torikumi/", paths)

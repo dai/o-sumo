@@ -386,10 +386,20 @@ def _discover_authoritative_sitemap_paths(root: Path) -> list[str]:
     return list(dict.fromkeys(path.rstrip("/") or "/" for path in paths))
 
 
+def _archive_records(archive_text: str) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
+    for match in re.finditer(r"\{[^{}]*\bid\s*:\s*['\"](\d{6})['\"][^{}]*\}", archive_text, flags=re.S):
+        record = match.group(0)
+        paths = re.findall(r"(?:resultPath|schedulePath|banzukePath):\s*['\"]([^'\"]+)", record)
+        records.append({"id": match.group(1), "paths": paths})
+    return records
+
+
 def evaluate_source_contracts(root: Path, current_month: str, target_month: str, schedule: OfficialSchedule) -> list[Gate]:
     archive_text = _read_text(root, "app/lib/archives-data.ts")
-    archive_ids = re.findall(r"\bid:\s*['\"](\d{6})['\"]", archive_text)
-    archive_paths = re.findall(r"(?:resultPath|schedulePath|banzukePath):\s*['\"]([^'\"]+)", archive_text)
+    archive_records = _archive_records(archive_text)
+    archive_ids = [record["id"] for record in archive_records]
+    archive_paths = [path for record in archive_records for path in record["paths"]]
     expected_archive_paths = {
         f"/{current_month}-torikumi",
         f"/{current_month}-yotei",
@@ -400,7 +410,9 @@ def evaluate_source_contracts(root: Path, current_month: str, target_month: str,
         and archive_ids.count(current_month) == 1
         and len(archive_ids) == len(set(archive_ids))
         and len(archive_paths) == len(set(archive_paths))
-        and all(archive_paths.count(path) == 1 for path in expected_archive_paths)
+        and len((current_records := [record for record in archive_records if record["id"] == current_month])) == 1
+        and set(current_records[0]["paths"]) == expected_archive_paths
+        and len(current_records[0]["paths"]) == len(expected_archive_paths)
     )
     source = "app/lib/archives-data.ts"
     gates = [_gate("outgoing archive uniqueness", "unique archive ids and paths", f"ids={len(archive_ids)} paths={len(archive_paths)}", source, archive_ok)]
