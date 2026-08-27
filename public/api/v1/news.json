@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-27T01:56:06.126914+00:00",
+  "updatedAt": "2026-08-27T06:15:46.072840+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_BFMHHR5I5BFYBKLCR3XNFDUOMY",
+      "title": "白鵬氏「大鵬さんの32回優勝を更新したとき…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_BFMHHR5I5BFYBKLCR3XNFDUOMY",
+      "publishedAt": "2026-08-27",
+      "publishedAtRaw": "SANSPO　8月27日 14時51分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-f-bt-tp1-260827-202608270000389",
+      "title": "10月５日に落語大相撲圓雀場所を開催　相撲と落語のコラボイベントに押尾川親方ら出演",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260827-202608270000389",
+      "publishedAt": "2026-08-27",
+      "publishedAtRaw": "日刊スポーツ　8月27日 12時55分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-tokyosports-400892",
       "title": "【大相撲】一山本が〝神対応〟を連発するワケ「少しでも貢献できればと…」",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260826-OHT1T51295",
       "publishedAt": "2026-08-26",
       "publishedAtRaw": "スポーツ報知　8月26日 19時30分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sankei-_sports_sumo_H7PRI3R745M3NBDGSSNB53PEE4",
-      "title": "藤ノ川が精力的に17番　高田川巡業部長の指導受け首を強化　大相撲夏巡業",
-      "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_H7PRI3R745M3NBDGSSNB53PEE4",
-      "publishedAt": "2026-08-26",
-      "publishedAtRaw": "産経ニュース　8月26日 19時28分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260826-OHT1T51252",
-      "title": "幕内・一山本、先代師匠のおかみ・高田みづえさんの１１年ぶりテレビ歌唱に感慨「やっぱりうまいなと感じた」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260826-OHT1T51252",
-      "publishedAt": "2026-08-26",
-      "publishedAtRaw": "スポーツ報知　8月26日 17時59分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
