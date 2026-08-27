@@ -153,6 +153,9 @@ npm test
 # Production build
 npm run build
 
+# Read-only current-data switch preflight
+npm run preflight:current-data
+
 # Local preview of the built app
 npm run preview
 ```
@@ -237,6 +240,8 @@ python scripts/update_official_profiles_test.py
 See `docs/official-profile-refresh-runbook.md` for generated-file and pre-publish integrity checks.
 
 The July basho is final and retained as immutable snapshots in `app/lib/july2026-data.ts` and `app/lib/july2026-banzuke-data.ts`. `/api/v1/banzuke.json` and `/api/v1/torikumi.json` continue to serve July until the September banzuke is officially published.
+
+Run `npm run preflight:current-data` before switching current data. It fetches the official annual schedule and banzuke, then checks current banzuke/torikumi, archives, routes, sitemap, and workflow consistency without writing files. Defaults are `--current-month 202607 --target-month 202609`. It prints `READY` and exits 0 only when every gate is `[OK]`; official publication/fetch failures and contract mismatches print `BLOCKED` and exit 1. The generator is not run, and data, routes, sitemap, redirects, and workflow schedules are not changed.
 
 After the official September banzuke release, confirm the upstream banzuke and torikumi schedule before starting the next update PR.
 

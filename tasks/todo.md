@@ -466,3 +466,23 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 - 独立レビュー: Critical・Important・Minorの指摘なし。専用8テストとtypecheckもレビュー側で再確認済み。
 
 ---
+
+# 令和八年九月場所 current-data 切替 preflight（2026-08-27）
+
+## Plan
+
+- [x] 最新 `origin/main` の隔離 worktree で baseline を確認する
+- [x] RED: 公式番付・公式15日程・current/archive・route/sitemap・workflow の失敗条件を fixture テストで固定する
+- [x] GREEN: 読み取り専用 `scripts/preflight_current_basho.py` と `npm run preflight:current-data` を実装する
+- [x] README に実行方法、exit code、公式公開前は `BLOCKED` になることを記載する
+- [x] Python tests、focused Vitest、全Vitest、typecheck、build、live preflight、diff check を実行する
+- [ ] 独立レビューを反映し、Review に結果を記録する
+
+## Review
+
+- RED: production module未作成の状態で `python scripts/preflight_current_basho_test.py` を実行し、想定どおり `FileNotFoundError` で失敗した。その後、official schedule/banzuke、local contracts、route/sitemap/redirect、manual workflowのfixtureを追加した。
+- GREEN: `python scripts/preflight_current_basho_test.py` は5 tests OK。fixture注入の `run_preflight` は `READY` / exit 0。公式取得失敗は local fallbackせず `BLOCKED` / exit 1になる構成にした。
+- 完全検証: `npm test` は58 files / 411 tests pass、`npm run typecheck`、`npm run build`、`git diff --check` はexit 0。`npm run preflight:current-data` は公式年間日程・公式番付（幕内42／十両28）、現行七月データ、route/sitemap uniqueness、manual-only workflowsをすべて `[OK]` として `READY` / exit 0。
+- scope review: generator・202609 data・route・sitemap entry・redirect・workflow scheduleは追加・変更していない。読み取り専用スクリプトとfixture、package script、README、task reportのみを追加・更新した。
+
+---
