@@ -52,6 +52,8 @@ JAPANESE_DIGITS = {"〇": 0, "一": 1, "二": 2, "三": 3, "四": 4, "五": 5, "
 @dataclass(frozen=True)
 class OfficialSchedule:
     month_key: str
+    announcement_date: date
+    banzuke_date: date
     start_date: date
     end_date: date
     days: tuple[date, ...]
@@ -144,6 +146,16 @@ def _schedule_dates_in_text(raw: str, default_year: int) -> list[date]:
     return dates
 
 
+def _schedule_date_fields(raw: str, default_year: int) -> list[date]:
+    fields: list[date] = []
+    cells = re.findall(r"<t[dh]\b[^>]*>(.*?)</t[dh]>", raw, flags=re.I | re.S)
+    for cell in cells:
+        dates = _schedule_dates_in_text(_strip_html(cell), default_year)
+        if dates:
+            fields.append(dates[0])
+    return fields
+
+
 def parse_official_schedule(html: str, month_key: str) -> OfficialSchedule:
     """Parse one basho row from the official annual schedule HTML."""
     if not re.fullmatch(r"20\d{4}", month_key):
@@ -152,19 +164,24 @@ def parse_official_schedule(html: str, month_key: str) -> OfficialSchedule:
     name = MONTH_NAMES.get(month, f"{month}月場所")
     rows = re.findall(r"<tr\b[^>]*>(.*?)</tr>", html, flags=re.I | re.S)
     candidates = [row for row in rows if name in _strip_html(row)]
-    if candidates:
-        candidates = [_strip_html(row) for row in candidates]
-    else:
+    if not candidates:
         plain = _strip_html(html)
         candidates = [plain[index : index + 500] for index in [m.start() for m in re.finditer(re.escape(name), plain)]]
     for candidate in candidates:
-        dates = _schedule_dates_in_text(candidate, year)
-        dates = [item for item in dates if item.year == year and item.month == month]
-        if len(dates) >= 2:
-            start_date, end_date = dates[-2:]
-            if end_date >= start_date:
-                days = tuple(start_date + timedelta(days=offset) for offset in range((end_date - start_date).days + 1))
-                return OfficialSchedule(month_key, start_date, end_date, days)
+        dates = _schedule_date_fields(candidate, year)
+        if len(dates) < 4:
+            continue
+        announcement_date, banzuke_date, start_date, end_date = dates[:4]
+        if (
+            start_date.year == year
+            and start_date.month == month
+            and end_date.year == year
+            and end_date.month == month
+            and announcement_date <= banzuke_date <= start_date
+            and (end_date - start_date).days == 14
+        ):
+            days = tuple(start_date + timedelta(days=offset) for offset in range(15))
+            return OfficialSchedule(month_key, announcement_date, banzuke_date, start_date, end_date, days)
     raise ValueError(f"official schedule row not found for {month_key} ({name})")
 
 
@@ -187,21 +204,69 @@ def _count_banzuke_rows(payload: dict[str, Any], division: str) -> int:
     return count
 
 
-def parse_official_banzuke(payload: dict[str, Any], month_key: str) -> OfficialBanzuke:
+def _banzuke_identities(payload: dict[str, Any]) -> list[dict[str, Any]]:
+    containers = [payload.get(key) for key in ("makuuchi", "juryo") if isinstance(payload.get(key), dict)]
+    if not containers:
+        containers = [payload]
+    identities: list[dict[str, Any]] = []
+    for container in containers:
+        info = container.get("BashoInfo") if isinstance(container.get("BashoInfo"), dict) else container
+        name = str(info.get("basho_name", ""))
+        year_jp = str(info.get("year_jp", ""))
+        try:
+            start = date.fromisoformat(str(info.get("start_date", ""))[:10])
+            end = date.fromisoformat(str(info.get("end_date", ""))[:10])
+        except ValueError:
+            continue
+        if not name or not year_jp:
+            continue
+        if not str(info.get("basho_id", "")):
+            continue
+        identities.append({
+            "name": name,
+            "year": year_jp,
+            "start": start,
+            "end": end,
+            "month_key": f"{start.year:04d}{start.month:02d}",
+            "basho_id": str(info.get("basho_id", "")),
+        })
+    return identities
+
+
+def parse_official_banzuke(
+    payload: dict[str, Any],
+    month_key: str,
+    *,
+    schedule: OfficialSchedule | None = None,
+) -> OfficialBanzuke:
     if not isinstance(payload, dict) or str(payload.get("Result", "1")) != "1":
         raise ValueError("official banzuke response is not published")
     payload_month = str(payload.get("month_key", ""))
     if payload_month and payload_month != month_key:
         raise ValueError(f"official banzuke month mismatch: {payload_month}")
-    payload_name = str(payload.get("basho_name", ""))
     expected_name = MONTH_NAMES.get(int(month_key[4:]), f"{int(month_key[4:])}月場所")
-    if payload_name and payload_name != expected_name:
-        raise ValueError(f"official banzuke basho mismatch: {payload_name}")
+    division_payloads = [payload.get(key) for key in ("makuuchi", "juryo") if isinstance(payload.get(key), dict)]
+    if division_payloads and any(str(item.get("Result", "1")) != "1" for item in division_payloads):
+        raise ValueError("official banzuke division response is not published")
+    identities = _banzuke_identities(payload)
+    if not identities:
+        raise ValueError("official banzuke response has no BashoInfo identity")
+    for identity in identities:
+        if identity["name"] != expected_name:
+            raise ValueError(f"official banzuke basho mismatch: {identity['name']}")
+        if identity["month_key"] != month_key:
+            raise ValueError(f"official banzuke date mismatch: {identity['month_key']}")
+        if schedule is not None and (identity["start"] != schedule.start_date or identity["end"] != schedule.end_date):
+            raise ValueError("official banzuke identity does not match annual schedule")
+        if schedule is not None and _year_from_text(identity["year"]) != schedule.start_date.year:
+            raise ValueError("official banzuke year does not match annual schedule")
+    if len({(item["name"], item["year"], item["start"], item["end"], item["basho_id"]) for item in identities}) != 1:
+        raise ValueError("official banzuke divisions disagree on BashoInfo identity")
     makuuchi_count = _count_banzuke_rows(payload.get("makuuchi", payload), "makuuchi")
     juryo_count = _count_banzuke_rows(payload.get("juryo", payload), "juryo")
     if makuuchi_count == 0 or juryo_count == 0:
         raise ValueError("official banzuke response has no division rows")
-    return OfficialBanzuke(month_key, str(payload.get("year_jp", payload.get("year", ""))), makuuchi_count, juryo_count)
+    return OfficialBanzuke(month_key, identities[0]["year"], makuuchi_count, juryo_count)
 
 
 def _gate(name: str, expected: object, actual: object, source: str, ok: bool | None = None) -> Gate:
@@ -273,6 +338,26 @@ def _read_text(root: Path, relative: str) -> str:
     return path.read_text(encoding="utf-8") if path.is_file() else ""
 
 
+def _discover_route_paths(root: Path) -> list[str]:
+    paths: list[str] = []
+    for relative in ("app/lib/archives-data.ts", "app/lib/archive-basho-data.ts", "app/lib/torikumi-routes.ts", "public/_redirects"):
+        text = _read_text(root, relative)
+        for value in re.findall(r"['\"](/?20\d{4}(?:\d{2})?-(?:banzuke|torikumi|yotei)/?)['\"]", text):
+            paths.append(value.rstrip("/") or "/")
+        for value in re.findall(r"^\s*(/20\d{4}(?:\d{2})?-(?:banzuke|torikumi|yotei)/?)\s+", text, flags=re.M):
+            paths.append(value.rstrip("/") or "/")
+    return paths
+
+
+def _discover_sitemap_paths(root: Path) -> list[str]:
+    paths: list[str] = []
+    for relative in ("public/sitemap.xml", "dist/sitemap.xml"):
+        text = _read_text(root, relative)
+        for value in re.findall(r"<loc>[^<]*?(20\d{4}(?:\d{2})?-(?:banzuke|torikumi|yotei)/?)</loc>", text):
+            paths.append("/" + value.rstrip("/"))
+    return paths
+
+
 def evaluate_source_contracts(root: Path, current_month: str, target_month: str) -> list[Gate]:
     archive_text = _read_text(root, "app/lib/archives-data.ts")
     archive_ids = re.findall(r"\bid:\s*['\"](\d{6})['\"]", archive_text)
@@ -281,8 +366,16 @@ def evaluate_source_contracts(root: Path, current_month: str, target_month: str)
     source = "app/lib/archives-data.ts"
     gates = [_gate("outgoing archive uniqueness", "unique archive ids and paths", f"ids={len(archive_ids)} paths={len(archive_paths)}", source, archive_ok)]
     target_paths = _target_paths(target_month)
-    gates.append(_gate("simulated target route uniqueness", str(len(target_paths)), len(set(target_paths)), "preflight simulation", len(target_paths) == len(set(target_paths))))
-    gates.append(_gate("simulated target sitemap uniqueness", str(len(target_paths)), len(set(target_paths)), "preflight simulation", len(target_paths) == len(set(target_paths))))
+    target_normalized = {path.rstrip("/") or "/" for path in target_paths}
+    route_paths = _discover_route_paths(root)
+    sitemap_paths = _discover_sitemap_paths(root)
+    route_collisions = sorted(target_normalized & set(route_paths))
+    sitemap_collisions = sorted(target_normalized & set(sitemap_paths))
+    sitemap_duplicates = sorted({path for path in sitemap_paths if sitemap_paths.count(path) > 1})
+    route_actual = f"collision={','.join(route_collisions) or 'none'}"
+    sitemap_actual = f"collision={','.join(sitemap_collisions) or 'none'} duplicate={','.join(sitemap_duplicates) or 'none'}"
+    gates.append(_gate("simulated target route uniqueness", "no collision with current route config", route_actual, "route model + virtual target", not route_collisions))
+    gates.append(_gate("simulated target sitemap uniqueness", "no collision or duplicate in current sitemap", sitemap_actual, "sitemap model + virtual target", not sitemap_collisions and not sitemap_duplicates))
     target_token = re.compile(rf"(?:{re.escape(target_month)}(?:\d{{2}})?|/{re.escape(target_month)}-)")
     references: list[str] = []
     for relative in SOURCE_FILES:
@@ -321,13 +414,18 @@ def _fetch_text(url: str, *, timeout: int = 30) -> str:
         return response.read().decode("utf-8")
 
 
-def fetch_official_banzuke(target_month: str, *, fetch_text: Callable[[str], str] = _fetch_text) -> dict[str, Any]:
+def fetch_official_banzuke(
+    target_month: str,
+    *,
+    schedule: OfficialSchedule | None = None,
+    fetch_text: Callable[[str], str] = _fetch_text,
+) -> dict[str, Any]:
     page = fetch_text(BANZUKE_PAGE_URL)
     basho_id_match = re.search(r'id=["\']bashoId["\']\s+value=["\'](\d+)', page) or re.search(r'value=["\'](\d+)["\']\s+id=["\']bashoId', page)
     if not basho_id_match:
         raise ValueError("official banzuke page has no bashoId")
-    if MONTH_NAMES.get(int(target_month[4:]), f"{int(target_month[4:])}月場所") not in _strip_html(page):
-        raise ValueError(f"official banzuke page does not publish {target_month}")
+    if schedule is None:
+        schedule = parse_official_schedule(fetch_text(ANNUAL_SCHEDULE_URL), target_month)
     result: dict[str, Any] = {"month_key": target_month, "makuuchi": {}, "juryo": {}}
     for division, key in ((1, "makuuchi"), (2, "juryo")):
         payload = urlencode({"kakuzuke_id": str(division), "basho_id": basho_id_match.group(1), "page": "1"}).encode("utf-8")
@@ -347,6 +445,7 @@ def fetch_official_banzuke(target_month: str, *, fetch_text: Callable[[str], str
         )
         with urlopen(request, timeout=30) as response:
             result[key] = json.loads(response.read().decode("utf-8"))
+    parse_official_banzuke(result, target_month, schedule=schedule)
     return result
 
 
@@ -368,8 +467,8 @@ def run_preflight(
         schedule = None
         gates.append(_gate("official schedule fetched and parsed", "published target row", repr(exc), ANNUAL_SCHEDULE_URL, False))
     try:
-        banzuke_payload = banzuke_payload if banzuke_payload is not None else fetch_official_banzuke(target_month)
-        banzuke = parse_official_banzuke(banzuke_payload, target_month)
+        banzuke_payload = banzuke_payload if banzuke_payload is not None else fetch_official_banzuke(target_month, schedule=schedule)
+        banzuke = parse_official_banzuke(banzuke_payload, target_month, schedule=schedule)
         gates.append(_gate("official banzuke fetched and parsed", "published target divisions", f"makuuchi={banzuke.makuuchi_count} juryo={banzuke.juryo_count}", BANZUKE_PAGE_URL, True))
     except Exception as exc:
         banzuke = None

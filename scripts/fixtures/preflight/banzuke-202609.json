@@ -2,6 +2,37 @@
   "Result": "1",
   "year_jp": "令和八年",
   "basho_name": "九月場所",
-  "makuuchi_count": 42,
-  "juryo_count": 28
+  "BashoInfo": {
+    "basho_id": 637,
+    "basho_name": "九月場所",
+    "year_jp": "令和八年",
+    "start_date": "2026-09-13",
+    "end_date": "2026-09-27"
+  },
+  "makuuchi": {
+    "Result": "1",
+    "basho_name": "九月場所",
+    "year_jp": "令和八年",
+    "BashoInfo": {
+      "basho_id": 637,
+      "basho_name": "九月場所",
+      "year_jp": "令和八年",
+      "start_date": "2026-09-13",
+      "end_date": "2026-09-27"
+    },
+    "makuuchi_count": 42
+  },
+  "juryo": {
+    "Result": "1",
+    "basho_name": "九月場所",
+    "year_jp": "令和八年",
+    "BashoInfo": {
+      "basho_id": 637,
+      "basho_name": "九月場所",
+      "year_jp": "令和八年",
+      "start_date": "2026-09-13",
+      "end_date": "2026-09-27"
+    },
+    "juryo_count": 28
+  }
 }

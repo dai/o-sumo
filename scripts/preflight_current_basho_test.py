@@ -5,6 +5,9 @@ import sys
 import tempfile
 import unittest
 from datetime import date
+from contextlib import redirect_stdout
+from io import StringIO
+from unittest import mock
 
 
 SCRIPT = pathlib.Path(__file__).with_name("preflight_current_basho.py")
@@ -64,6 +67,8 @@ class PreflightParsingTests(unittest.TestCase):
         self.assertEqual(schedule.start_date, date(2026, 9, 13))
         self.assertEqual(schedule.end_date, date(2026, 9, 27))
         self.assertEqual(schedule.days, tuple(date(2026, 9, day) for day in range(13, 28)))
+        self.assertEqual(schedule.announcement_date, date(2026, 8, 8))
+        self.assertEqual(schedule.banzuke_date, date(2026, 8, 31))
 
     def test_official_banzuke_fixture_has_expected_division_counts(self):
         payload = json.loads((FIXTURES / "banzuke-202609.json").read_text(encoding="utf-8"))
@@ -80,6 +85,28 @@ class PreflightParsingTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             MODULE.parse_official_banzuke(payload, "202609")
 
+    def test_schedule_requires_structural_four_date_fields_and_exact_interval(self):
+        malformed = "<tr><td>九月場所</td><td>令和8年8/8(土)</td><td>令和8年8/31(月)</td><td>令和8年9/13(日)</td><td>令和8年9/26(土)</td></tr>"
+        with self.assertRaises(ValueError):
+            MODULE.parse_official_schedule(malformed, "202609")
+
+    def test_banzuke_identity_must_match_target_dates_in_both_divisions(self):
+        payload = json.loads((FIXTURES / "banzuke-202609.json").read_text(encoding="utf-8"))
+        payload["juryo"]["BashoInfo"]["start_date"] = "2026-07-12"
+        with self.assertRaises(ValueError):
+            MODULE.parse_official_banzuke(payload, "202609", schedule=MODULE.parse_official_schedule((FIXTURES / "annual-schedule-202609.html").read_text(encoding="utf-8"), "202609"))
+
+    def test_run_preflight_blocks_official_fetch_failure_and_wrong_count(self):
+        schedule = (FIXTURES / "annual-schedule-202609.html").read_text(encoding="utf-8")
+        banzuke = json.loads((FIXTURES / "banzuke-202609.json").read_text(encoding="utf-8"))
+        with mock.patch.object(MODULE, "fetch_official_banzuke", side_effect=RuntimeError("official endpoint unavailable")):
+            failed_fetch = MODULE.run_preflight(root=pathlib.Path("."), schedule_html=schedule)
+        self.assertEqual((failed_fetch.status, failed_fetch.exit_code), ("BLOCKED", 1))
+
+        banzuke["makuuchi"]["makuuchi_count"] = 41
+        wrong_count = MODULE.run_preflight(root=pathlib.Path("."), schedule_html=schedule, banzuke_payload=banzuke)
+        self.assertEqual((wrong_count.status, wrong_count.exit_code), ("BLOCKED", 1))
+
 
 class PreflightGateTests(unittest.TestCase):
     def test_current_payload_contract_passes_and_duplicate_day_fails(self):
@@ -90,6 +117,24 @@ class PreflightGateTests(unittest.TestCase):
         _, duplicate_torikumi = current_payload(duplicate_day=True)
         duplicate_gates = MODULE.evaluate_local_contracts(banzuke, duplicate_torikumi, "202607")
         self.assertTrue(any(not gate.ok for gate in duplicate_gates))
+
+    def test_duplicate_archive_id_fails_the_archive_gate(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            (root / "app/lib").mkdir(parents=True)
+            (root / "public").mkdir()
+            (root / ".github/workflows").mkdir(parents=True)
+            (root / "app/lib/archives-data.ts").write_text(
+                "const items = [{ id: '202607', resultPath: '/202607-torikumi', schedulePath: '/202607-yotei', banzukePath: '/202607-banzuke' }, { id: '202607', resultPath: '/202605-torikumi', schedulePath: '/202605-yotei', banzukePath: '/202605-banzuke' }];",
+                encoding="utf-8",
+            )
+            (root / "public/_redirects").write_text("", encoding="utf-8")
+            for workflow in MODULE.WORKFLOW_FILES:
+                path = root / workflow
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text("on:\n  workflow_dispatch:\n", encoding="utf-8")
+            archive_gate = next(gate for gate in MODULE.evaluate_source_contracts(root, "202607", "202609") if gate.name == "outgoing archive uniqueness")
+            self.assertFalse(archive_gate.ok)
 
     def test_target_routes_are_unique_and_absent_from_current_sources(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -110,6 +155,82 @@ class PreflightGateTests(unittest.TestCase):
             (root / "public/_redirects").write_text("/202609-banzuke /202609-banzuke/ 301", encoding="utf-8")
             blocked = MODULE.evaluate_source_contracts(root, "202607", "202609")
             self.assertTrue(any(not gate.ok for gate in blocked))
+
+    def test_route_and_sitemap_collision_is_reported_against_existing_sources(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            (root / "app/lib").mkdir(parents=True)
+            (root / "public").mkdir()
+            (root / ".github/workflows").mkdir(parents=True)
+            (root / "app/lib/archives-data.ts").write_text("const item = { id: '202607', resultPath: '/202607-torikumi', schedulePath: '/202607-yotei', banzukePath: '/202607-banzuke' };", encoding="utf-8")
+            (root / "app/lib/torikumi-routes.ts").write_text("const paths = ['/202609-banzuke/'];", encoding="utf-8")
+            (root / "public/_redirects").write_text("", encoding="utf-8")
+            (root / "public/sitemap.xml").write_text("<loc>https://osada.us/20260901-torikumi/</loc>", encoding="utf-8")
+            for workflow in MODULE.WORKFLOW_FILES:
+                path = root / workflow
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text("on:\n  workflow_dispatch:\n", encoding="utf-8")
+
+            gates = MODULE.evaluate_source_contracts(root, "202607", "202609")
+            route_gate = next(gate for gate in gates if gate.name == "simulated target route uniqueness")
+            sitemap_gate = next(gate for gate in gates if gate.name == "simulated target sitemap uniqueness")
+            self.assertFalse(route_gate.ok)
+            self.assertFalse(sitemap_gate.ok)
+
+    def test_workflow_dispatch_is_required_and_schedule_is_forbidden(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            (root / "app/lib").mkdir(parents=True)
+            (root / "public").mkdir()
+            (root / "app/lib/archives-data.ts").write_text("const item = { id: '202607', resultPath: '/202607-torikumi', schedulePath: '/202607-yotei', banzukePath: '/202607-banzuke' };", encoding="utf-8")
+            (root / "public/_redirects").write_text("", encoding="utf-8")
+            (root / ".github/workflows").mkdir(parents=True)
+            (root / MODULE.WORKFLOW_FILES[0]).write_text("on:\n  schedule:\n    - cron: '0 0 * * *'\n", encoding="utf-8")
+            (root / MODULE.WORKFLOW_FILES[1]).write_text("on:\n", encoding="utf-8")
+            gates = MODULE.evaluate_source_contracts(root, "202607", "202609")
+            workflow_gate = next(gate for gate in gates if gate.name == "data workflows manual-only")
+            self.assertFalse(workflow_gate.ok)
+
+    def test_main_prints_gate_format_and_final_status_exit(self):
+        result = MODULE.PreflightResult((MODULE.Gate("example", "yes", "no", "fixture", False),), "BLOCKED")
+        original = MODULE.run_preflight
+        MODULE.run_preflight = lambda **_: result
+        output = StringIO()
+        try:
+            with redirect_stdout(output):
+                exit_code = MODULE.main(["--repo-root", "."])
+        finally:
+            MODULE.run_preflight = original
+        self.assertEqual(exit_code, 1)
+        self.assertEqual(output.getvalue().splitlines(), ["[FAIL] example expected=yes actual=no source=fixture", "BLOCKED"])
+
+        ready = MODULE.PreflightResult((MODULE.Gate("example", "yes", "yes", "fixture", True),), "READY")
+        MODULE.run_preflight = lambda **_: ready
+        output = StringIO()
+        try:
+            with redirect_stdout(output):
+                exit_code = MODULE.main(["--repo-root", "."])
+        finally:
+            MODULE.run_preflight = original
+        self.assertEqual(exit_code, 0)
+        self.assertEqual(output.getvalue().splitlines(), ["[OK] example expected=yes actual=yes source=fixture", "READY"])
+
+    def test_preflight_is_read_only(self):
+        tracked = [
+            pathlib.Path("scripts/preflight_current_basho.py"),
+            pathlib.Path("scripts/preflight_current_basho_test.py"),
+            pathlib.Path("public/api/v1/banzuke.json"),
+            pathlib.Path("public/api/v1/torikumi.json"),
+            pathlib.Path("app/lib/archives-data.ts"),
+            pathlib.Path("app/lib/torikumi-routes.ts"),
+            pathlib.Path("public/_redirects"),
+        ]
+        before = {path: path.read_bytes() for path in tracked}
+        schedule = (FIXTURES / "annual-schedule-202609.html").read_text(encoding="utf-8")
+        banzuke = json.loads((FIXTURES / "banzuke-202609.json").read_text(encoding="utf-8"))
+        MODULE.run_preflight(root=pathlib.Path("."), schedule_html=schedule, banzuke_payload=banzuke)
+        after = {path: path.read_bytes() for path in tracked}
+        self.assertEqual(before, after)
 
 
 if __name__ == "__main__":
