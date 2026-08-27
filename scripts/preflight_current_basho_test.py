@@ -157,6 +157,20 @@ class PreflightParsingTests(unittest.TestCase):
         wrong_count = MODULE.run_preflight(root=pathlib.Path("."), schedule_html=schedule, banzuke_payload=banzuke)
         self.assertEqual((wrong_count.status, wrong_count.exit_code), ("BLOCKED", 1))
 
+    def test_wrong_official_identity_reports_ascii_stable_month_evidence(self):
+        schedule = (FIXTURES / "annual-schedule-202609.html").read_text(encoding="utf-8")
+        banzuke = json.loads((FIXTURES / "banzuke-202609.json").read_text(encoding="utf-8"))
+        for division in ("makuuchi", "juryo"):
+            banzuke[division]["BashoInfo"].update({
+                "basho_name": "七月場所",
+                "start_date": "2026-07-12",
+                "end_date": "2026-07-26",
+            })
+        result = MODULE.run_preflight(root=pathlib.Path("."), schedule_html=schedule, banzuke_payload=banzuke)
+        gate = next(gate for gate in result.gates if gate.name == "official banzuke fetched and parsed")
+        self.assertIn("expected=202609 actual=202607", gate.actual)
+        self.assertEqual((result.status, result.exit_code), ("BLOCKED", 1))
+
 
 class PreflightGateTests(unittest.TestCase):
     def test_current_payload_contract_passes_and_duplicate_day_fails(self):

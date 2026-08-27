@@ -250,10 +250,10 @@ def parse_official_banzuke(
     expected_name = MONTH_NAMES.get(int(month_key[4:]), f"{int(month_key[4:])}月場所")
     identities = _banzuke_identities(payload)
     for identity in identities:
+        if identity["month_key"] != month_key:
+            raise ValueError(f"official banzuke identity mismatch expected={month_key} actual={identity['month_key']}")
         if identity["name"] != expected_name:
             raise ValueError(f"official banzuke basho mismatch: {identity['name']}")
-        if identity["month_key"] != month_key:
-            raise ValueError(f"official banzuke date mismatch: {identity['month_key']}")
         if schedule is not None and (identity["start"] != schedule.start_date or identity["end"] != schedule.end_date):
             raise ValueError("official banzuke identity does not match annual schedule")
         if schedule is not None and _year_from_text(identity["year"]) != schedule.start_date.year:
