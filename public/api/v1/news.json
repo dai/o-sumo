@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-27T06:15:46.072840+00:00",
+  "updatedAt": "2026-08-27T11:33:49.887426+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_BFMHHR5I5BFYBKLCR3XNFDUOMY",
-      "title": "白鵬氏「大鵬さんの32回優勝を更新したとき…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_BFMHHR5I5BFYBKLCR3XNFDUOMY",
+      "id": "dmenu-docomo-hochi-20260827-OHT1T51308",
+      "title": "大の里、視察の師匠の前で１１番「左がうまく使えていた。悪くないと思う」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260827-OHT1T51308",
       "publishedAt": "2026-08-27",
-      "publishedAtRaw": "SANSPO　8月27日 14時51分",
+      "publishedAtRaw": "スポーツ報知　8月27日 19時08分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260827-202608270000389",
-      "title": "10月５日に落語大相撲圓雀場所を開催　相撲と落語のコラボイベントに押尾川親方ら出演",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260827-202608270000389",
+      "id": "dmenu-docomo-hochi-20260827-OHT1T51303",
+      "title": "幕内・藤凌駕、夏巡業を離脱　稽古で右手親指を負傷「力が入らない状態」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260827-OHT1T51303",
       "publishedAt": "2026-08-27",
-      "publishedAtRaw": "日刊スポーツ　8月27日 12時55分",
+      "publishedAtRaw": "スポーツ報知　8月27日 19時03分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-400892",
-      "title": "【大相撲】一山本が〝神対応〟を連発するワケ「少しでも貢献できればと…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-400892",
+      "id": "dmenu-docomo-f-bt-tp1-260827-202608270001063",
+      "title": "義ノ富士、実家が「全損」判定　帰省中に熊本地震で自身も被災「トレイがぶっ壊れてベッドが…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260827-202608270001063",
       "publishedAt": "2026-08-27",
-      "publishedAtRaw": "東スポWEB　8月27日 6時00分",
+      "publishedAtRaw": "日刊スポーツ　8月27日 18時50分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_MRK7IKMJJRLVLEERYSV6WVX2Z4",
-      "title": "21歳・新三役昇進確実の藤ノ川、首も進化「稽古では当たって前へ出ることしか考えていない」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_MRK7IKMJJRLVLEERYSV6WVX2Z4",
-      "publishedAt": "2026-08-26",
-      "publishedAtRaw": "SANSPO　8月26日 19時53分",
+      "id": "dmenu-docomo-kyodo_nor-2026082701001381",
+      "title": "横綱豊昇龍、秋場所出場は厳しい　師匠示唆、今後に危機感",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026082701001381",
+      "publishedAt": "2026-08-27",
+      "publishedAtRaw": "共同通信　8月27日 17時41分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260826-OHT1T51295",
-      "title": "友風が地元・川崎巡業に凱旋で大歓声「十両でも声をかけられるのはうれしい」…ハンデを抱える右脚を考慮して、夏巡業は２３日から途中合流",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260826-OHT1T51295",
-      "publishedAt": "2026-08-26",
-      "publishedAtRaw": "スポーツ報知　8月26日 19時30分",
+      "id": "dmenu-docomo-f-bt-tp1-260827-202608270000856",
+      "title": "横綱大の里に６戦全敗…藤凌駕が負傷で病院へ　「大丈夫です」強調も…午後の取組外れる",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260827-202608270000856",
+      "publishedAt": "2026-08-27",
+      "publishedAtRaw": "日刊スポーツ　8月27日 17時32分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
