@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-26T10:16:25.792495+00:00",
+  "updatedAt": "2026-08-27T01:56:06.126914+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-tokyosports-400892",
+      "title": "【大相撲】一山本が〝神対応〟を連発するワケ「少しでも貢献できればと…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-400892",
+      "publishedAt": "2026-08-27",
+      "publishedAtRaw": "東スポWEB　8月27日 6時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_MRK7IKMJJRLVLEERYSV6WVX2Z4",
+      "title": "21歳・新三役昇進確実の藤ノ川、首も進化「稽古では当たって前へ出ることしか考えていない」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_MRK7IKMJJRLVLEERYSV6WVX2Z4",
+      "publishedAt": "2026-08-26",
+      "publishedAtRaw": "SANSPO　8月26日 19時53分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260826-OHT1T51295",
+      "title": "友風が地元・川崎巡業に凱旋で大歓声「十両でも声をかけられるのはうれしい」…ハンデを抱える右脚を考慮して、夏巡業は２３日から途中合流",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260826-OHT1T51295",
+      "publishedAt": "2026-08-26",
+      "publishedAtRaw": "スポーツ報知　8月26日 19時30分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sankei-_sports_sumo_H7PRI3R745M3NBDGSSNB53PEE4",
+      "title": "藤ノ川が精力的に17番　高田川巡業部長の指導受け首を強化　大相撲夏巡業",
+      "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_H7PRI3R745M3NBDGSSNB53PEE4",
+      "publishedAt": "2026-08-26",
+      "publishedAtRaw": "産経ニュース　8月26日 19時28分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-hochi-20260826-OHT1T51252",
       "title": "幕内・一山本、先代師匠のおかみ・高田みづえさんの１１年ぶりテレビ歌唱に感慨「やっぱりうまいなと感じた」",
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260826-OHT1T51252",
       "publishedAt": "2026-08-26",
       "publishedAtRaw": "スポーツ報知　8月26日 17時59分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-kyodo_nor-2026082601000892",
-      "title": "安青錦「自分に期待して」　大関復帰、秋場所へ意欲",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026082601000892",
-      "publishedAt": "2026-08-26",
-      "publishedAtRaw": "共同通信　8月26日 17時39分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260826-OHT1T51225",
-      "title": "幕内・藤ノ川、気合の１７番　首痛軽減で夏巡業は連日申し合い稽古　秋場所は新三役濃厚「なおさら今は稽古したい」　高田川巡業部長が首強化アドバイスも",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260826-OHT1T51225",
-      "publishedAt": "2026-08-26",
-      "publishedAtRaw": "スポーツ報知　8月26日 17時29分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260826-202608260000616",
-      "title": "友風は初給料と賞金を「全部母親に」一山本は家賃ぼやき　夏巡業質問コーナーで観客笑わせる",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260826-202608260000616",
-      "publishedAt": "2026-08-26",
-      "publishedAtRaw": "日刊スポーツ　8月26日 16時19分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260826-202608260000615",
-      "title": "湘南乃海の好きな曲はもちろん「湘南乃風」一山本は「中島みゆき」夏巡業質問コーナーで珍回答も",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260826-202608260000615",
-      "publishedAt": "2026-08-26",
-      "publishedAtRaw": "日刊スポーツ　8月26日 16時18分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
