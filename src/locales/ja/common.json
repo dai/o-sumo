@@ -1,6 +1,6 @@
 {
   "global": {
-    "officialDirectoryReleaseNotice": "20260817 更新: マイ力士機能の追加と使いやすさ向上。力士、行司、呼出が探しやすくなりました！",
+    "officialDirectoryReleaseNotice": "このサイトは20260831の番付発表とともに九月場所の幕を開けます。",
     "homeLink": "ホーム",
     "backToHome": "ホームに戻る",
     "siteNavigation": "サイトナビゲーション",
@@ -51,7 +51,7 @@
     "heroDescription": "最新の番付、日別の取組結果、日別の取組予定をご覧ください。",
     "heroLiveDescription": "きょうの取組と星取を確認し、場所の流れを追えます。",
     "heroUpcomingDescription": "番付と日程を確認して、初日へ向けた準備をしましょう。",
-    "heroFinalDescription": "今場所は終了しました。確定した取組結果、優勝・三賞、番付を振り返れます。",
+    "heroFinalDescription": "今（七月）場所は終了しました。確定した取組結果、優勝・三賞、番付を振り返ることができます。",
     "heroActionsLabel": "今場所の主要な導線",
     "heroTodayAction": "本日の取組を見る",
     "heroStandingsAction": "結果・星取を見る",

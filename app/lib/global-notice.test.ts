@@ -3,15 +3,15 @@ import jaCommon from '../../src/locales/ja/common.json';
 import enCommon from '../../src/locales/en/common.json';
 
 describe('global release notice', () => {
-  it('announces My Rikishi and directory usability improvements in Japanese', () => {
+  it('announces the September basho opening in Japanese', () => {
     expect(jaCommon.global.officialDirectoryReleaseNotice).toBe(
-      '20260817 更新: マイ力士機能の追加と使いやすさ向上。力士、行司、呼出が探しやすくなりました！',
+      'このサイトは20260831の番付発表とともに九月場所の幕を開けます。',
     );
   });
 
-  it('announces the same release in English', () => {
+  it('announces the September basho opening in English', () => {
     expect(enCommon.global.officialDirectoryReleaseNotice).toBe(
-      '20260812 Update: Gyoji and yobidashi directories released, with APIs now available.',
+      'This site will open the September basho together with the banzuke release on 20260831.',
     );
   });
 });

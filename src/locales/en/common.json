@@ -1,6 +1,6 @@
 {
   "global": {
-    "officialDirectoryReleaseNotice": "20260812 Update: Gyoji and yobidashi directories released, with APIs now available.",
+    "officialDirectoryReleaseNotice": "This site will open the September basho together with the banzuke release on 20260831.",
     "homeLink": "Home",
     "backToHome": "Back to Home",
     "siteNavigation": "Site navigation",
@@ -51,7 +51,7 @@
     "heroDescription": "Browse the latest banzuke, daily torikumi results, and scheduled matches.",
     "heroLiveDescription": "Follow today’s bouts and standings as the basho unfolds.",
     "heroUpcomingDescription": "Review the banzuke and schedule while the first day approaches.",
-    "heroFinalDescription": "This basho is complete. Review final results, the championship, special prizes, and the banzuke.",
+    "heroFinalDescription": "The July basho is complete. You can review final bout results, the championship, special prizes, and the banzuke.",
     "heroActionsLabel": "Key links for this basho",
     "heroTodayAction": "View today’s bouts",
     "heroStandingsAction": "View results and standings",
