@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
+    "preflight:current-data": "python scripts/preflight_current_basho.py",
     "verify:delivery-flow": "pwsh ./scripts/verify_delivery_flow.ps1"
   },
   "repository": {

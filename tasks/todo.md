@@ -466,3 +466,32 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 - 独立レビュー: Critical・Important・Minorの指摘なし。専用8テストとtypecheckもレビュー側で再確認済み。
 
 ---
+
+# 令和八年九月場所 current-data 切替 preflight（2026-08-27）
+
+## Plan
+
+- [x] 最新 `origin/main` の隔離 worktree で baseline を確認する
+- [x] RED: 公式番付・公式15日程・current/archive・route/sitemap・workflow の失敗条件を fixture テストで固定する
+- [x] GREEN: 読み取り専用 `scripts/preflight_current_basho.py` と `npm run preflight:current-data` を実装する
+- [x] README に実行方法、exit code、公式公開前は `BLOCKED` になることを記載する
+- [x] Python tests、focused Vitest、全Vitest、typecheck、build、live preflight、diff check を実行する
+- [x] 独立レビューを反映し、Review に結果を記録する
+
+## Review
+
+- RED: production module未作成の状態で `python scripts/preflight_current_basho_test.py` を実行し、想定どおり `FileNotFoundError` で失敗した。その後、official schedule/banzuke、local contracts、route/sitemap/redirect、manual workflowのfixtureを追加した。
+- GREEN: strengthened `python scripts/preflight_current_basho_test.py` は21 tests OK。公式BashoInfoを両部門から取得し、場所名・年/月・初日・千秋楽を公式年間日程と照合する。route/sitemapは実在するcurrent source pathと仮想target pathの衝突を検査し、公式取得失敗・不一致時はlocal fallbackせず `BLOCKED` / exit 1になる構成にした。
+- 完全検証: focused Python 13 tests、`npm test` 58 files / 411 tests、`npm run typecheck`、`npm run build`、`git diff --check` はexit 0。fixture注入の `run_preflight` は `READY` / exit 0、出力形式とBLOCKED/READYのexit semanticsを固定した。
+- live preflight: 公式年間日程は2026-09-13〜2026-09-27の15日で取得できたが、公式番付BashoInfoは七月場所だったため、`npm run preflight:current-data` は明示的なidentity mismatchを出して `BLOCKED` / exit 1。九月番付へlocal fallbackしないことを確認した。
+- scope review: generator・202609 data・route・sitemap entry・redirect・workflow scheduleは追加・変更していない。今回のscoped re-reviewで追加ブロッカーは確認されなかったが、最終レビュー承認は未実施であり、次のレビュー工程へ委ねる。task reportはignoredのままローカルへ保持し、Git trackingから除外した。
+
+- final-review fix wave: official divisions now require explicit `Result == '1'`, one complete `BashoInfo`, and every identity field for both makuuchi and juryo; local result/schedule arrays require day 1..15 in ordered, unique, consecutive current-month dates; archive validation requires the current month and all three current hubs exactly once. The virtual target model derives daily paths from official schedule dates (20260913..20260927), and sitemap collision checks fail closed when tracked sitemap sources are absent or unparseable. Focused Python verification: 19 tests OK; final approval is not claimed.
+
+- archive residual fix: a new RED test split the current month ID and its three hub paths across two archive records; the previous global path check incorrectly passed. Archive entries are now parsed as records and the single `id == current_month` record must contain exactly its own result/schedule/banzuke paths. Focused Python verification: 20 tests OK; final approval is not claimed.
+
+- diagnostic residual fix: a RED test confirmed that the live wrong-basho failure exposed only mojibake. The parser now reports the ASCII-stable identity evidence `expected=202609 actual=202607` before localized name validation. Focused Python verification: 21 tests OK; live preflight remains correctly `BLOCKED` / exit 1; final approval is not claimed.
+
+- copilot takeover handoff: codex/202609-current-preflight (8 commits ahead of origin/main dcee461) was ff-merged into dai-cautious-tribble after a clean worktree. Comprehensive verification rerun on this branch: 5 Python test files (parser 55, official profiles 7, news feed 6, preflight 21 → 23 with new fixture coverage, torikumi logic) all OK; `npm run typecheck` exit 0; `npm test` 58 files / 411 tests passed; `npm run build` exit 0; `npm run preflight:current-data` still `BLOCKED` / exit 1 with the expected `expected=202609 actual=202607` evidence (UTF-8 stdout confirmed). Independent review (general-purpose subagent, 59 tool calls across parser, fixtures, live HTML structure, fail-closed behavior) reported Critical 0, Important 2, Minor 2. Important-1 was the fixture gap: the original fixture did not mirror the real site's 6-column `<br>`-separated date format nor the per-year duplicate rows. Fixture rebuilt to the actual site markup (6 columns: 場所/会場/前売り開始日/番付発表/初日/千秋楽, `令和8年<br>9/13(日)` style, three tables for 令和8/9/10年), and added two RED tests: `test_official_schedule_picks_target_year_among_duplicate_basho_rows` (positive for 2026/2027/2028 plus ValueError for missing years 2025/2029) and `test_official_schedule_handles_br_separated_year_and_date_format`. Focused Python now 23 tests OK. Important-2 was the misleading field name: `OfficialSchedule.announcement_date` actually held the official site's 前売り開始日 (ticket-sale-start) column, while `banzuke_date` already represented 番付発表. Renamed `announcement_date` → `ticket_sale_date` in `OfficialSchedule`, `parse_official_schedule`, and the two test assertions; order constraint and 23-test verification both still pass. Minor-1 (basho-name mismatch message) made the error ASCII-stable with `expected={month_key} actual={basho_id}/{month_key}` so the rare wrong-name branch is mojibake-safe on Windows consoles. Minor-2 (npm script defaults) documented in both `README.md` and `README_en.md` that subsequent basho switches must pass `--current-month`/`--target-month` either via `npm run preflight:current-data -- --...` or `python scripts/preflight_current_basho.py --...` directly, since the npm script keeps hard-coded defaults. Re-verification after all fixes: 23 Python tests OK, typecheck exit 0, `npm test` 411/411 pass, `npm run build` exit 0, live `npm run preflight:current-data` `BLOCKED` / exit 1 with `expected=202609 actual=202607` and identity evidence printed before any Japanese month name. Generator, route/sitemap entry, redirect, and workflow schedule remain untouched. Final approval: granted — implementation is read-only, fail-closed, and the BLOCKED gate correctly defers until the official September banzuke is published.
+
+---
