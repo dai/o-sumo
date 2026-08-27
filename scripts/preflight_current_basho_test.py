@@ -91,7 +91,7 @@ class PreflightParsingTests(unittest.TestCase):
         self.assertEqual(schedule.start_date, date(2026, 9, 13))
         self.assertEqual(schedule.end_date, date(2026, 9, 27))
         self.assertEqual(schedule.days, tuple(date(2026, 9, day) for day in range(13, 28)))
-        self.assertEqual(schedule.announcement_date, date(2026, 8, 8))
+        self.assertEqual(schedule.ticket_sale_date, date(2026, 8, 8))
         self.assertEqual(schedule.banzuke_date, date(2026, 8, 31))
 
     def test_official_banzuke_fixture_has_expected_division_counts(self):
@@ -170,6 +170,42 @@ class PreflightParsingTests(unittest.TestCase):
         gate = next(gate for gate in result.gates if gate.name == "official banzuke fetched and parsed")
         self.assertIn("expected=202609 actual=202607", gate.actual)
         self.assertEqual((result.status, result.exit_code), ("BLOCKED", 1))
+
+    def test_official_schedule_picks_target_year_among_duplicate_basho_rows(self):
+        # The official annual schedule lists the same basho name across multiple
+        # years (e.g. 九月場所 for 令和8/9/10年). The parser must select the row
+        # whose first day matches the requested target month, not the first
+        # matching row in document order.
+        html = (FIXTURES / "annual-schedule-202609.html").read_text(encoding="utf-8")
+
+        schedule_202609 = MODULE.parse_official_schedule(html, "202609")
+        self.assertEqual(schedule_202609.start_date, date(2026, 9, 13))
+        self.assertEqual(schedule_202609.end_date, date(2026, 9, 27))
+
+        schedule_202709 = MODULE.parse_official_schedule(html, "202709")
+        self.assertEqual(schedule_202709.start_date, date(2027, 9, 12))
+        self.assertEqual(schedule_202709.end_date, date(2027, 9, 26))
+
+        schedule_202809 = MODULE.parse_official_schedule(html, "202809")
+        self.assertEqual(schedule_202809.start_date, date(2028, 9, 10))
+        self.assertEqual(schedule_202809.end_date, date(2028, 9, 24))
+
+        # Years not present in the fixture must be rejected so the parser
+        # never silently falls back to a different year's row.
+        with self.assertRaises(ValueError):
+            MODULE.parse_official_schedule(html, "202509")
+        with self.assertRaises(ValueError):
+            MODULE.parse_official_schedule(html, "202909")
+
+    def test_official_schedule_handles_br_separated_year_and_date_format(self):
+        # Real schedule page renders dates as `令和8年<br>8/8(土)` with `<br>`
+        # between the year and the slash-formatted date. The fixture mirrors
+        # that format so the parser is exercised against the actual site
+        # markup rather than a simplified stand-in.
+        html = (FIXTURES / "annual-schedule-202609.html").read_text(encoding="utf-8")
+        schedule = MODULE.parse_official_schedule(html, "202609")
+        self.assertEqual(schedule.ticket_sale_date, date(2026, 8, 8))
+        self.assertEqual(schedule.banzuke_date, date(2026, 8, 31))
 
 
 class PreflightGateTests(unittest.TestCase):

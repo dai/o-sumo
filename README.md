@@ -241,6 +241,8 @@ python scripts/update_official_profiles_test.py
 
 切替前の確認は `npm run preflight:current-data` で実行します。公式年間日程と公式番付を取得し、現行の番付・取組、archive、ルート、sitemap、workflow の整合性を読み取り専用で検査します。既定値は `--current-month 202607 --target-month 202609` です。すべてのゲートが `[OK]` のときだけ `READY`（exit code 0）、公式公開前・取得失敗・不整合がある場合は `BLOCKED`（exit code 1）になります。生成器は実行せず、データ・ルート・sitemap・redirect・workflow は変更しません。
 
+別の月を確認するときは `npm run preflight:current-data -- --current-month YYYYMM --target-month YYYYMM` のように npm 経由で `--` 以降に引数を渡してください（npm 8.x 以降）。あるいは `python scripts/preflight_current_basho.py --current-month YYYYMM --target-month YYYYMM` を直接呼び出すこともできます。npm script は固定の既定値のままなので、次回以降の切替時は月引数を毎回指定してください。
+
 九月場所の公式番付公開後に、取得元・番付・取組日程を確認して次の更新PRを開始します。
 
 次の更新PRでは、現行の七月スナップショットを変更せず、`banzuke.json` と `torikumi.json` を新しい場所の確定データへ同時に切り替えます。切替前には、番付・取組・公開JSON・月別ルート・sitemapの整合性を検証します。

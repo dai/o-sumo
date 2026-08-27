@@ -51,7 +51,7 @@ JAPANESE_DIGITS = {"〇": 0, "一": 1, "二": 2, "三": 3, "四": 4, "五": 5, "
 @dataclass(frozen=True)
 class OfficialSchedule:
     month_key: str
-    announcement_date: date
+    ticket_sale_date: date
     banzuke_date: date
     start_date: date
     end_date: date
@@ -170,17 +170,17 @@ def parse_official_schedule(html: str, month_key: str) -> OfficialSchedule:
         dates = _schedule_date_fields(candidate, year)
         if len(dates) < 4:
             continue
-        announcement_date, banzuke_date, start_date, end_date = dates[:4]
+        ticket_sale_date, banzuke_date, start_date, end_date = dates[:4]
         if (
             start_date.year == year
             and start_date.month == month
             and end_date.year == year
             and end_date.month == month
-            and announcement_date <= banzuke_date <= start_date
+            and ticket_sale_date <= banzuke_date <= start_date
             and (end_date - start_date).days == 14
         ):
             days = tuple(start_date + timedelta(days=offset) for offset in range(15))
-            return OfficialSchedule(month_key, announcement_date, banzuke_date, start_date, end_date, days)
+            return OfficialSchedule(month_key, ticket_sale_date, banzuke_date, start_date, end_date, days)
     raise ValueError(f"official schedule row not found for {month_key} ({name})")
 
 
@@ -253,7 +253,9 @@ def parse_official_banzuke(
         if identity["month_key"] != month_key:
             raise ValueError(f"official banzuke identity mismatch expected={month_key} actual={identity['month_key']}")
         if identity["name"] != expected_name:
-            raise ValueError(f"official banzuke basho mismatch: {identity['name']}")
+            raise ValueError(
+                f"official banzuke basho mismatch expected={month_key} actual={identity['basho_id']}/{identity['month_key']}"
+            )
         if schedule is not None and (identity["start"] != schedule.start_date or identity["end"] != schedule.end_date):
             raise ValueError("official banzuke identity does not match annual schedule")
         if schedule is not None and _year_from_text(identity["year"]) != schedule.start_date.year:
