@@ -58,6 +58,30 @@ def current_payload(*, month: str = "202607", duplicate_day: bool = False) -> tu
     return banzuke, torikumi
 
 
+def official_schedule() -> MODULE.OfficialSchedule:
+    html = (FIXTURES / "annual-schedule-202609.html").read_text(encoding="utf-8")
+    return MODULE.parse_official_schedule(html, "202609")
+
+
+def write_authoritative_sources(root: pathlib.Path, *, route_text: str = "", sitemap_source: bool = True) -> None:
+    (root / "app/lib").mkdir(parents=True, exist_ok=True)
+    (root / "public").mkdir(parents=True, exist_ok=True)
+    (root / ".github/workflows").mkdir(parents=True, exist_ok=True)
+    (root / "app/lib/archives-data.ts").write_text(
+        "const item = { id: '202607', resultPath: '/202607-torikumi', schedulePath: '/202607-yotei', banzukePath: '/202607-banzuke' };",
+        encoding="utf-8",
+    )
+    (root / "app/lib/torikumi-routes.ts").write_text(route_text, encoding="utf-8")
+    (root / "public/_redirects").write_text("", encoding="utf-8")
+    if sitemap_source:
+        (root / "app/lib/sitemap.ts").write_text(
+            "export function getSitemapEntries() { return days.filter((day) => day.status === 'published'); }",
+            encoding="utf-8",
+        )
+    for workflow in MODULE.WORKFLOW_FILES:
+        (root / workflow).write_text("on:\n  workflow_dispatch:\n", encoding="utf-8")
+
+
 class PreflightParsingTests(unittest.TestCase):
     def test_official_schedule_fixture_has_target_month_and_15_consecutive_days(self):
         html = (FIXTURES / "annual-schedule-202609.html").read_text(encoding="utf-8")
@@ -96,6 +120,32 @@ class PreflightParsingTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             MODULE.parse_official_banzuke(payload, "202609", schedule=MODULE.parse_official_schedule((FIXTURES / "annual-schedule-202609.html").read_text(encoding="utf-8"), "202609"))
 
+    def test_official_banzuke_requires_both_explicit_published_complete_divisions(self):
+        fixture = json.loads((FIXTURES / "banzuke-202609.json").read_text(encoding="utf-8"))
+        required_fields = ("basho_id", "basho_name", "year_jp", "start_date", "end_date")
+        for division in ("makuuchi", "juryo"):
+            missing_division = json.loads(json.dumps(fixture))
+            del missing_division[division]
+            with self.subTest(case=f"missing {division}"):
+                with self.assertRaises(ValueError):
+                    MODULE.parse_official_banzuke(missing_division, "202609")
+            missing_result = json.loads(json.dumps(fixture))
+            del missing_result[division]["Result"]
+            with self.subTest(case=f"missing {division} Result"):
+                with self.assertRaises(ValueError):
+                    MODULE.parse_official_banzuke(missing_result, "202609")
+            missing_info = json.loads(json.dumps(fixture))
+            del missing_info[division]["BashoInfo"]
+            with self.subTest(case=f"missing {division} BashoInfo"):
+                with self.assertRaises(ValueError):
+                    MODULE.parse_official_banzuke(missing_info, "202609")
+            for field in required_fields:
+                missing_field = json.loads(json.dumps(fixture))
+                del missing_field[division]["BashoInfo"][field]
+                with self.subTest(case=f"missing {division} {field}"):
+                    with self.assertRaises(ValueError):
+                        MODULE.parse_official_banzuke(missing_field, "202609")
+
     def test_run_preflight_blocks_official_fetch_failure_and_wrong_count(self):
         schedule = (FIXTURES / "annual-schedule-202609.html").read_text(encoding="utf-8")
         banzuke = json.loads((FIXTURES / "banzuke-202609.json").read_text(encoding="utf-8"))
@@ -118,6 +168,61 @@ class PreflightGateTests(unittest.TestCase):
         duplicate_gates = MODULE.evaluate_local_contracts(banzuke, duplicate_torikumi, "202607")
         self.assertTrue(any(not gate.ok for gate in duplicate_gates))
 
+    def test_day_contract_rejects_duplicate_gap_and_out_of_order_dates(self):
+        banzuke, torikumi = current_payload()
+        for case in ("duplicate", "gap", "out_of_order"):
+            mutated = json.loads(json.dumps(torikumi))
+            entries = mutated["resultDays"]
+            if case == "duplicate":
+                entries[1]["pathDate"] = entries[0]["pathDate"]
+                entries[1]["isoDate"] = entries[0]["isoDate"]
+            elif case == "gap":
+                entries[1]["pathDate"] = "20260715"
+                entries[1]["isoDate"] = "2026-07-15"
+            else:
+                entries[0]["pathDate"], entries[1]["pathDate"] = entries[1]["pathDate"], entries[0]["pathDate"]
+                entries[0]["isoDate"], entries[1]["isoDate"] = entries[1]["isoDate"], entries[0]["isoDate"]
+            with self.subTest(case=case):
+                gates = MODULE.evaluate_local_contracts(banzuke, mutated, "202607")
+                self.assertFalse(next(gate for gate in gates if gate.name == "local result day contract").ok)
+
+    def test_outgoing_archive_requires_current_month_and_all_current_hubs(self):
+        schedule = official_schedule()
+        for archive_text in (
+            "const item = { id: '202605', resultPath: '/202605-torikumi', schedulePath: '/202605-yotei', banzukePath: '/202605-banzuke' };",
+            "const item = { id: '202607', resultPath: '/202605-torikumi', schedulePath: '/202607-yotei', banzukePath: '/202607-banzuke' };",
+        ):
+            with tempfile.TemporaryDirectory() as directory:
+                root = pathlib.Path(directory)
+                write_authoritative_sources(root)
+                (root / "app/lib/archives-data.ts").write_text(archive_text, encoding="utf-8")
+                gates = MODULE.evaluate_source_contracts(root, "202607", "202609", schedule)
+                archive_gate = next(gate for gate in gates if gate.name == "outgoing archive uniqueness")
+                self.assertFalse(archive_gate.ok)
+
+    def test_target_paths_use_official_schedule_days(self):
+        paths = MODULE._target_paths(official_schedule())
+        self.assertIn("/20260913-torikumi/", paths)
+        self.assertIn("/20260927-yotei/", paths)
+        self.assertNotIn("/20260901-torikumi/", paths)
+
+    def test_target_route_and_sitemap_collisions_cover_every_official_day(self):
+        schedule = official_schedule()
+        daily_collision = " ".join(f"'/{day.strftime('%Y%m%d')}-torikumi/'" for day in schedule.days)
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            write_authoritative_sources(root, route_text=f"const paths = [{daily_collision}];")
+            gates = MODULE.evaluate_source_contracts(root, "202607", "202609", schedule)
+            self.assertFalse(next(g for g in gates if g.name == "simulated target route uniqueness").ok)
+            self.assertFalse(next(g for g in gates if g.name == "simulated target sitemap uniqueness").ok)
+
+    def test_missing_authoritative_sitemap_source_fails_closed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            write_authoritative_sources(root, sitemap_source=False)
+            gates = MODULE.evaluate_source_contracts(root, "202607", "202609", official_schedule())
+            self.assertFalse(next(g for g in gates if g.name == "simulated target sitemap uniqueness").ok)
+
     def test_duplicate_archive_id_fails_the_archive_gate(self):
         with tempfile.TemporaryDirectory() as directory:
             root = pathlib.Path(directory)
@@ -133,7 +238,7 @@ class PreflightGateTests(unittest.TestCase):
                 path = root / workflow
                 path.parent.mkdir(parents=True, exist_ok=True)
                 path.write_text("on:\n  workflow_dispatch:\n", encoding="utf-8")
-            archive_gate = next(gate for gate in MODULE.evaluate_source_contracts(root, "202607", "202609") if gate.name == "outgoing archive uniqueness")
+            archive_gate = next(gate for gate in MODULE.evaluate_source_contracts(root, "202607", "202609", official_schedule()) if gate.name == "outgoing archive uniqueness")
             self.assertFalse(archive_gate.ok)
 
     def test_target_routes_are_unique_and_absent_from_current_sources(self):
@@ -149,11 +254,12 @@ class PreflightGateTests(unittest.TestCase):
             (root / ".github/workflows/daily-data-update.yml").write_text("on:\n  workflow_dispatch:\n", encoding="utf-8")
             (root / ".github/workflows/realtime-torikumi-direct-update.yml").write_text("on:\n  workflow_dispatch:\n", encoding="utf-8")
 
-            gates = MODULE.evaluate_source_contracts(root, "202607", "202609")
+            (root / "app/lib/sitemap.ts").write_text("export function getSitemapEntries() { return days.filter((day) => day.status === 'published'); }", encoding="utf-8")
+            gates = MODULE.evaluate_source_contracts(root, "202607", "202609", official_schedule())
             self.assertTrue(all(gate.ok for gate in gates), gates)
 
             (root / "public/_redirects").write_text("/202609-banzuke /202609-banzuke/ 301", encoding="utf-8")
-            blocked = MODULE.evaluate_source_contracts(root, "202607", "202609")
+            blocked = MODULE.evaluate_source_contracts(root, "202607", "202609", official_schedule())
             self.assertTrue(any(not gate.ok for gate in blocked))
 
     def test_route_and_sitemap_collision_is_reported_against_existing_sources(self):
@@ -171,7 +277,7 @@ class PreflightGateTests(unittest.TestCase):
                 path.parent.mkdir(parents=True, exist_ok=True)
                 path.write_text("on:\n  workflow_dispatch:\n", encoding="utf-8")
 
-            gates = MODULE.evaluate_source_contracts(root, "202607", "202609")
+            gates = MODULE.evaluate_source_contracts(root, "202607", "202609", official_schedule())
             route_gate = next(gate for gate in gates if gate.name == "simulated target route uniqueness")
             sitemap_gate = next(gate for gate in gates if gate.name == "simulated target sitemap uniqueness")
             self.assertFalse(route_gate.ok)
@@ -187,7 +293,7 @@ class PreflightGateTests(unittest.TestCase):
             (root / ".github/workflows").mkdir(parents=True)
             (root / MODULE.WORKFLOW_FILES[0]).write_text("on:\n  schedule:\n    - cron: '0 0 * * *'\n", encoding="utf-8")
             (root / MODULE.WORKFLOW_FILES[1]).write_text("on:\n", encoding="utf-8")
-            gates = MODULE.evaluate_source_contracts(root, "202607", "202609")
+            gates = MODULE.evaluate_source_contracts(root, "202607", "202609", official_schedule())
             workflow_gate = next(gate for gate in gates if gate.name == "data workflows manual-only")
             self.assertFalse(workflow_gate.ok)
 

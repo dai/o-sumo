@@ -481,9 +481,11 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 ## Review
 
 - RED: production module未作成の状態で `python scripts/preflight_current_basho_test.py` を実行し、想定どおり `FileNotFoundError` で失敗した。その後、official schedule/banzuke、local contracts、route/sitemap/redirect、manual workflowのfixtureを追加した。
-- GREEN: strengthened `python scripts/preflight_current_basho_test.py` は13 tests OK。公式BashoInfoを両部門から取得し、場所名・年/月・初日・千秋楽を公式年間日程と照合する。route/sitemapは実在するcurrent source pathと仮想target pathの衝突を検査し、公式取得失敗・不一致時はlocal fallbackせず `BLOCKED` / exit 1になる構成にした。
+- GREEN: strengthened `python scripts/preflight_current_basho_test.py` は19 tests OK。公式BashoInfoを両部門から取得し、場所名・年/月・初日・千秋楽を公式年間日程と照合する。route/sitemapは実在するcurrent source pathと仮想target pathの衝突を検査し、公式取得失敗・不一致時はlocal fallbackせず `BLOCKED` / exit 1になる構成にした。
 - 完全検証: focused Python 13 tests、`npm test` 58 files / 411 tests、`npm run typecheck`、`npm run build`、`git diff --check` はexit 0。fixture注入の `run_preflight` は `READY` / exit 0、出力形式とBLOCKED/READYのexit semanticsを固定した。
 - live preflight: 公式年間日程は2026-09-13〜2026-09-27の15日で取得できたが、公式番付BashoInfoは七月場所だったため、`npm run preflight:current-data` は明示的なidentity mismatchを出して `BLOCKED` / exit 1。九月番付へlocal fallbackしないことを確認した。
 - scope review: generator・202609 data・route・sitemap entry・redirect・workflow scheduleは追加・変更していない。今回のscoped re-reviewで追加ブロッカーは確認されなかったが、最終レビュー承認は未実施であり、次のレビュー工程へ委ねる。task reportはignoredのままローカルへ保持し、Git trackingから除外した。
+
+- final-review fix wave: official divisions now require explicit `Result == '1'`, one complete `BashoInfo`, and every identity field for both makuuchi and juryo; local result/schedule arrays require day 1..15 in ordered, unique, consecutive current-month dates; archive validation requires the current month and all three current hubs exactly once. The virtual target model derives daily paths from official schedule dates (20260913..20260927), and sitemap collision checks fail closed when tracked sitemap sources are absent or unparseable. Focused Python verification: 19 tests OK; final approval is not claimed.
 
 ---

@@ -34,8 +34,7 @@ SOURCE_FILES = (
     "app/lib/archive-basho-data.ts",
     "app/lib/torikumi-routes.ts",
     "public/_redirects",
-    "public/sitemap.xml",
-    "dist/sitemap.xml",
+    "app/lib/sitemap.ts",
     "vite.config.ts",
 )
 MONTH_NAMES = {
@@ -204,33 +203,37 @@ def _count_banzuke_rows(payload: dict[str, Any], division: str) -> int:
     return count
 
 
+def _banzuke_identity(container: object, division: str) -> dict[str, Any]:
+    if not isinstance(container, dict):
+        raise ValueError(f"official banzuke missing {division} payload")
+    if container.get("Result") != "1":
+        raise ValueError(f"official banzuke {division} response is not published")
+    info = container.get("BashoInfo")
+    if not isinstance(info, dict):
+        raise ValueError(f"official banzuke {division} response has no BashoInfo")
+    required = ("basho_id", "basho_name", "year_jp", "start_date", "end_date")
+    missing = [field for field in required if info.get(field) in (None, "")]
+    if missing:
+        raise ValueError(f"official banzuke {division} identity missing {','.join(missing)}")
+    try:
+        start = date.fromisoformat(str(info["start_date"])[:10])
+        end = date.fromisoformat(str(info["end_date"])[:10])
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"official banzuke {division} identity has invalid dates") from exc
+    return {
+        "name": str(info["basho_name"]),
+        "year": str(info["year_jp"]),
+        "start": start,
+        "end": end,
+        "month_key": f"{start.year:04d}{start.month:02d}",
+        "basho_id": str(info["basho_id"]),
+    }
+
+
 def _banzuke_identities(payload: dict[str, Any]) -> list[dict[str, Any]]:
-    containers = [payload.get(key) for key in ("makuuchi", "juryo") if isinstance(payload.get(key), dict)]
-    if not containers:
-        containers = [payload]
-    identities: list[dict[str, Any]] = []
-    for container in containers:
-        info = container.get("BashoInfo") if isinstance(container.get("BashoInfo"), dict) else container
-        name = str(info.get("basho_name", ""))
-        year_jp = str(info.get("year_jp", ""))
-        try:
-            start = date.fromisoformat(str(info.get("start_date", ""))[:10])
-            end = date.fromisoformat(str(info.get("end_date", ""))[:10])
-        except ValueError:
-            continue
-        if not name or not year_jp:
-            continue
-        if not str(info.get("basho_id", "")):
-            continue
-        identities.append({
-            "name": name,
-            "year": year_jp,
-            "start": start,
-            "end": end,
-            "month_key": f"{start.year:04d}{start.month:02d}",
-            "basho_id": str(info.get("basho_id", "")),
-        })
-    return identities
+    if not isinstance(payload, dict):
+        raise ValueError("official banzuke response is not an object")
+    return [_banzuke_identity(payload.get(division), division) for division in ("makuuchi", "juryo")]
 
 
 def parse_official_banzuke(
@@ -239,18 +242,13 @@ def parse_official_banzuke(
     *,
     schedule: OfficialSchedule | None = None,
 ) -> OfficialBanzuke:
-    if not isinstance(payload, dict) or str(payload.get("Result", "1")) != "1":
+    if not isinstance(payload, dict):
         raise ValueError("official banzuke response is not published")
     payload_month = str(payload.get("month_key", ""))
     if payload_month and payload_month != month_key:
         raise ValueError(f"official banzuke month mismatch: {payload_month}")
     expected_name = MONTH_NAMES.get(int(month_key[4:]), f"{int(month_key[4:])}月場所")
-    division_payloads = [payload.get(key) for key in ("makuuchi", "juryo") if isinstance(payload.get(key), dict)]
-    if division_payloads and any(str(item.get("Result", "1")) != "1" for item in division_payloads):
-        raise ValueError("official banzuke division response is not published")
     identities = _banzuke_identities(payload)
-    if not identities:
-        raise ValueError("official banzuke response has no BashoInfo identity")
     for identity in identities:
         if identity["name"] != expected_name:
             raise ValueError(f"official banzuke basho mismatch: {identity['name']}")
@@ -260,7 +258,7 @@ def parse_official_banzuke(
             raise ValueError("official banzuke identity does not match annual schedule")
         if schedule is not None and _year_from_text(identity["year"]) != schedule.start_date.year:
             raise ValueError("official banzuke year does not match annual schedule")
-    if len({(item["name"], item["year"], item["start"], item["end"], item["basho_id"]) for item in identities}) != 1:
+    if len(identities) != 2 or len({(item["name"], item["year"], item["start"], item["end"], item["basho_id"]) for item in identities}) != 1:
         raise ValueError("official banzuke divisions disagree on BashoInfo identity")
     makuuchi_count = _count_banzuke_rows(payload.get("makuuchi", payload), "makuuchi")
     juryo_count = _count_banzuke_rows(payload.get("juryo", payload), "juryo")
@@ -298,13 +296,21 @@ def _days_contract(entries: object, current_month: str) -> tuple[bool, str]:
     day_numbers = [entry.get("day") for entry in entries if isinstance(entry, dict)]
     if len(entries) != 15 or sorted(day_numbers) != list(range(1, 16)):
         return False, f"count={len(entries)} days={day_numbers}"
-    for entry in entries:
+    parsed_dates: list[date] = []
+    for index, entry in enumerate(entries):
         if not isinstance(entry, dict) or not str(entry.get("pathDate", "")).startswith(current_month):
             return False, f"invalid pathDate={entry.get('pathDate') if isinstance(entry, dict) else entry}"
         parsed = _date_from_entry(entry)
         if parsed is None or entry.get("isoDate") != parsed.isoformat() or parsed.month != int(current_month[4:]):
             return False, f"date mismatch={entry.get('pathDate')} / {entry.get('isoDate')}"
-    return True, "15 unique days with matching ISO dates"
+        if entry.get("day") != index + 1:
+            return False, f"day order mismatch={entry.get('day')} at index={index}"
+        parsed_dates.append(parsed)
+    if len(set(parsed_dates)) != 15:
+        return False, f"duplicate pathDate values={len(set(parsed_dates))}/15"
+    if any(parsed_dates[index] + timedelta(days=1) != parsed_dates[index + 1] for index in range(14)):
+        return False, f"pathDate sequence={','.join(item.isoformat() for item in parsed_dates)}"
+    return True, "15 unique consecutive days with matching ISO dates"
 
 
 def evaluate_local_contracts(banzuke: dict[str, Any], torikumi: dict[str, Any], current_month: str) -> list[Gate]:
@@ -323,8 +329,9 @@ def evaluate_local_contracts(banzuke: dict[str, Any], torikumi: dict[str, Any], 
     ]
 
 
-def _target_paths(target_month: str) -> list[str]:
-    dates = [f"{target_month}{day:02d}" for day in range(1, 16)]
+def _target_paths(schedule: OfficialSchedule) -> list[str]:
+    target_month = schedule.month_key
+    dates = [day.strftime("%Y%m%d") for day in schedule.days]
     return [
         f"/{target_month}-banzuke/",
         f"/{target_month}-torikumi/",
@@ -338,9 +345,12 @@ def _read_text(root: Path, relative: str) -> str:
     return path.read_text(encoding="utf-8") if path.is_file() else ""
 
 
-def _discover_route_paths(root: Path) -> list[str]:
+def _discover_route_paths(root: Path, *, include_redirects: bool = True) -> list[str]:
     paths: list[str] = []
-    for relative in ("app/lib/archives-data.ts", "app/lib/archive-basho-data.ts", "app/lib/torikumi-routes.ts", "public/_redirects"):
+    relatives = ("app/lib/archives-data.ts", "app/lib/archive-basho-data.ts", "app/lib/torikumi-routes.ts")
+    if include_redirects:
+        relatives += ("public/_redirects",)
+    for relative in relatives:
         text = _read_text(root, relative)
         for value in re.findall(r"['\"](/?20\d{4}(?:\d{2})?-(?:banzuke|torikumi|yotei)/?)['\"]", text):
             paths.append(value.rstrip("/") or "/")
@@ -349,33 +359,71 @@ def _discover_route_paths(root: Path) -> list[str]:
     return paths
 
 
-def _discover_sitemap_paths(root: Path) -> list[str]:
+def _discover_authoritative_sitemap_paths(root: Path) -> list[str]:
+    sitemap_source = _read_text(root, "app/lib/sitemap.ts")
+    archive_source = _read_text(root, "app/lib/archives-data.ts")
+    route_source = _read_text(root, "app/lib/torikumi-routes.ts")
+    if not sitemap_source or "getSitemapEntries" not in sitemap_source or "status === 'published'" not in sitemap_source:
+        raise ValueError("tracked sitemap model is missing or unparseable")
+    if not archive_source or not route_source:
+        raise ValueError("tracked archive route model is missing or unparseable")
     paths: list[str] = []
-    for relative in ("public/sitemap.xml", "dist/sitemap.xml"):
-        text = _read_text(root, relative)
-        for value in re.findall(r"<loc>[^<]*?(20\d{4}(?:\d{2})?-(?:banzuke|torikumi|yotei)/?)</loc>", text):
-            paths.append("/" + value.rstrip("/"))
-    return paths
+    paths.extend(_discover_route_paths(root, include_redirects=False))
+    imported_files = re.findall(r"from\s+['\"](\./[^'\"]+)['\"]", archive_source)
+    for imported in imported_files:
+        imported_path = root / "app/lib" / (imported[2:] if imported.startswith("./") else imported)
+        if imported_path.suffix == "":
+            imported_path = imported_path.with_suffix(".ts")
+        source = imported_path.read_text(encoding="utf-8") if imported_path.is_file() else ""
+        if not source:
+            raise ValueError(f"tracked archive data source is missing: {imported_path.name}")
+        for match in re.finditer(r"[\"']?pathDate[\"']?\s*:\s*[\"'](20\d{6})[\"']", source):
+            nearby = source[max(0, match.start() - 240):match.end() + 240]
+            if re.search(r"[\"']?status[\"']?\s*:\s*[\"']published[\"']", nearby):
+                paths.extend(f"/{match.group(1)}-{mode}/" for mode in ("torikumi", "yotei"))
+    if not paths:
+        raise ValueError("tracked sitemap model has no paths")
+    return list(dict.fromkeys(path.rstrip("/") or "/" for path in paths))
 
 
-def evaluate_source_contracts(root: Path, current_month: str, target_month: str) -> list[Gate]:
+def evaluate_source_contracts(root: Path, current_month: str, target_month: str, schedule: OfficialSchedule) -> list[Gate]:
     archive_text = _read_text(root, "app/lib/archives-data.ts")
     archive_ids = re.findall(r"\bid:\s*['\"](\d{6})['\"]", archive_text)
     archive_paths = re.findall(r"(?:resultPath|schedulePath|banzukePath):\s*['\"]([^'\"]+)", archive_text)
-    archive_ok = bool(archive_ids) and len(archive_ids) == len(set(archive_ids)) and len(archive_paths) == len(set(archive_paths))
+    expected_archive_paths = {
+        f"/{current_month}-torikumi",
+        f"/{current_month}-yotei",
+        f"/{current_month}-banzuke",
+    }
+    archive_ok = (
+        bool(archive_ids)
+        and archive_ids.count(current_month) == 1
+        and len(archive_ids) == len(set(archive_ids))
+        and len(archive_paths) == len(set(archive_paths))
+        and all(archive_paths.count(path) == 1 for path in expected_archive_paths)
+    )
     source = "app/lib/archives-data.ts"
     gates = [_gate("outgoing archive uniqueness", "unique archive ids and paths", f"ids={len(archive_ids)} paths={len(archive_paths)}", source, archive_ok)]
-    target_paths = _target_paths(target_month)
+    target_paths = _target_paths(schedule)
     target_normalized = {path.rstrip("/") or "/" for path in target_paths}
     route_paths = _discover_route_paths(root)
-    sitemap_paths = _discover_sitemap_paths(root)
+    try:
+        sitemap_paths = _discover_authoritative_sitemap_paths(root)
+        sitemap_source_ok = True
+    except (OSError, ValueError) as exc:
+        sitemap_paths = []
+        sitemap_source_ok = False
+        sitemap_source_error = repr(exc)
     route_collisions = sorted(target_normalized & set(route_paths))
     sitemap_collisions = sorted(target_normalized & set(sitemap_paths))
     sitemap_duplicates = sorted({path for path in sitemap_paths if sitemap_paths.count(path) > 1})
     route_actual = f"collision={','.join(route_collisions) or 'none'}"
-    sitemap_actual = f"collision={','.join(sitemap_collisions) or 'none'} duplicate={','.join(sitemap_duplicates) or 'none'}"
+    sitemap_actual = (
+        f"collision={','.join(sitemap_collisions) or 'none'} duplicate={','.join(sitemap_duplicates) or 'none'}"
+        if sitemap_source_ok else f"source unavailable={sitemap_source_error}"
+    )
     gates.append(_gate("simulated target route uniqueness", "no collision with current route config", route_actual, "route model + virtual target", not route_collisions))
-    gates.append(_gate("simulated target sitemap uniqueness", "no collision or duplicate in current sitemap", sitemap_actual, "sitemap model + virtual target", not sitemap_collisions and not sitemap_duplicates))
+    gates.append(_gate("simulated target sitemap uniqueness", "no collision or duplicate in current sitemap", sitemap_actual, "tracked sitemap model + virtual target", sitemap_source_ok and not sitemap_collisions and not sitemap_duplicates))
     target_token = re.compile(rf"(?:{re.escape(target_month)}(?:\d{{2}})?|/{re.escape(target_month)}-)")
     references: list[str] = []
     for relative in SOURCE_FILES:
@@ -396,7 +444,7 @@ def evaluate_source_contracts(root: Path, current_month: str, target_month: str)
     return gates
 
 
-def evaluate_preflight_files(root: Path, current_month: str, target_month: str) -> list[Gate]:
+def evaluate_preflight_files(root: Path, current_month: str, target_month: str, schedule: OfficialSchedule | None) -> list[Gate]:
     gates: list[Gate] = []
     try:
         banzuke = json.loads((root / "public/api/v1/banzuke.json").read_text(encoding="utf-8"))
@@ -404,7 +452,10 @@ def evaluate_preflight_files(root: Path, current_month: str, target_month: str) 
         gates.extend(evaluate_local_contracts(banzuke, torikumi, current_month))
     except Exception as exc:
         gates.append(_gate("local data readable", "banzuke.json and torikumi.json", repr(exc), "public/api/v1", False))
-    gates.extend(evaluate_source_contracts(root, current_month, target_month))
+    if schedule is None:
+        gates.append(_gate("source contract model", "official schedule required", "official schedule unavailable", "official sources", False))
+    else:
+        gates.extend(evaluate_source_contracts(root, current_month, target_month, schedule))
     return gates
 
 
@@ -477,7 +528,7 @@ def run_preflight(
         gates.extend(evaluate_official_readiness(schedule, banzuke, target_month))
     else:
         gates.append(_gate("official readiness", "schedule and banzuke both published", "official source unavailable", "official sources", False))
-    gates.extend(evaluate_preflight_files(root, current_month, target_month))
+    gates.extend(evaluate_preflight_files(root, current_month, target_month, schedule))
     return PreflightResult(tuple(gates), "READY" if all(gate.ok for gate in gates) else "BLOCKED")
 
 
