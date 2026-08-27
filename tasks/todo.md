@@ -476,13 +476,14 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 - [x] GREEN: 読み取り専用 `scripts/preflight_current_basho.py` と `npm run preflight:current-data` を実装する
 - [x] README に実行方法、exit code、公式公開前は `BLOCKED` になることを記載する
 - [x] Python tests、focused Vitest、全Vitest、typecheck、build、live preflight、diff check を実行する
-- [ ] 独立レビューを反映し、Review に結果を記録する
+- [x] 独立レビューを反映し、Review に結果を記録する
 
 ## Review
 
 - RED: production module未作成の状態で `python scripts/preflight_current_basho_test.py` を実行し、想定どおり `FileNotFoundError` で失敗した。その後、official schedule/banzuke、local contracts、route/sitemap/redirect、manual workflowのfixtureを追加した。
-- GREEN: `python scripts/preflight_current_basho_test.py` は5 tests OK。fixture注入の `run_preflight` は `READY` / exit 0。公式取得失敗は local fallbackせず `BLOCKED` / exit 1になる構成にした。
-- 完全検証: `npm test` は58 files / 411 tests pass、`npm run typecheck`、`npm run build`、`git diff --check` はexit 0。`npm run preflight:current-data` は公式年間日程・公式番付（幕内42／十両28）、現行七月データ、route/sitemap uniqueness、manual-only workflowsをすべて `[OK]` として `READY` / exit 0。
-- scope review: generator・202609 data・route・sitemap entry・redirect・workflow scheduleは追加・変更していない。読み取り専用スクリプトとfixture、package script、README、task reportのみを追加・更新した。
+- GREEN: strengthened `python scripts/preflight_current_basho_test.py` は13 tests OK。公式BashoInfoを両部門から取得し、場所名・年/月・初日・千秋楽を公式年間日程と照合する。route/sitemapは実在するcurrent source pathと仮想target pathの衝突を検査し、公式取得失敗・不一致時はlocal fallbackせず `BLOCKED` / exit 1になる構成にした。
+- 完全検証: focused Python 13 tests、`npm test` 58 files / 411 tests、`npm run typecheck`、`npm run build`、`git diff --check` はexit 0。fixture注入の `run_preflight` は `READY` / exit 0、出力形式とBLOCKED/READYのexit semanticsを固定した。
+- live preflight: 公式年間日程は2026-09-13〜2026-09-27の15日で取得できたが、公式番付BashoInfoは七月場所だったため、`npm run preflight:current-data` は明示的なidentity mismatchを出して `BLOCKED` / exit 1。九月番付へlocal fallbackしないことを確認した。
+- scope review: generator・202609 data・route・sitemap entry・redirect・workflow scheduleは追加・変更していない。独立再レビューはCritical／Important指摘なし・scoped approval。task reportはignoredのままローカルへ保持し、Git trackingから除外した。
 
 ---
