@@ -22,7 +22,7 @@ export interface AgentSkillsIndex {
  * `path` is relative to the `public/` directory and is read at build time
  * to compute the sha256 digest. `url` is the public absolute URL.
  */
-const SKILL_MANIFEST: ReadonlyArray<Omit<AgentSkillEntry, 'digest'> & { path: string }> = [
+export const SKILL_MANIFEST: ReadonlyArray<Omit<AgentSkillEntry, 'digest'> & { path: string }> = [
   {
     path: '.well-known/agent-skills/osumo-content/SKILL.md',
     name: 'osumo-content',
