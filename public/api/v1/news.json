@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-28T03:20:06.514231+00:00",
+  "updatedAt": "2026-08-28T12:01:09.502388+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260828-0029",
-      "title": "豊昇龍　秋場所出場絶望的で師匠から“最後通告”　復帰場所「優勝しないと厳しいぞ」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260828-0029",
+      "id": "dmenu-docomo-hochi-20260828-OHT1T51319",
+      "title": "相撲博物館、秋場所の企画展は「千代の山とその弟子」　第４１代横綱の生誕１００年を記念",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260828-OHT1T51319",
       "publishedAt": "2026-08-28",
-      "publishedAtRaw": "スポニチアネックス　8月28日 5時00分",
+      "publishedAtRaw": "スポーツ報知　8月28日 20時09分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260827-OHT1T51308",
-      "title": "大の里、視察の師匠の前で１１番「左がうまく使えていた。悪くないと思う」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260827-OHT1T51308",
-      "publishedAt": "2026-08-27",
-      "publishedAtRaw": "スポーツ報知　8月27日 19時08分",
+      "id": "dmenu-docomo-20260828134",
+      "title": "横綱大の里と好内容の相撲取った熱海富士、元稀勢の里が評価「間違いなく大関に上がりそうな感じ」【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260828134",
+      "publishedAt": "2026-08-28",
+      "publishedAtRaw": "デイリースポーツ　8月28日 20時01分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260827-OHT1T51303",
-      "title": "幕内・藤凌駕、夏巡業を離脱　稽古で右手親指を負傷「力が入らない状態」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260827-OHT1T51303",
-      "publishedAt": "2026-08-27",
-      "publishedAtRaw": "スポーツ報知　8月27日 19時03分",
+      "id": "dmenu-docomo-f-bt-tp1-260828-202608280001147",
+      "title": "横綱大の里　大関昇進を狙う熱海富士と熱のこもった稽古　二所ノ関親方「良い稽古をしている」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260828-202608280001147",
+      "publishedAt": "2026-08-28",
+      "publishedAtRaw": "日刊スポーツ　8月28日 19時46分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260827-202608270001063",
-      "title": "義ノ富士、実家が「全損」判定　帰省中に熊本地震で自身も被災「トイレがぶっ壊れてベッドが…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260827-202608270001063",
-      "publishedAt": "2026-08-27",
-      "publishedAtRaw": "日刊スポーツ　8月27日 18時50分",
+      "id": "dmenu-docomo-f-bt-tp1-260828-202608280001212",
+      "title": "一意が夏巡業で一番おいしかったものとは…答えに独特表現「生きていました」大の里からも学び",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260828-202608280001212",
+      "publishedAt": "2026-08-28",
+      "publishedAtRaw": "日刊スポーツ　8月28日 19時37分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-kyodo_nor-2026082701001381",
-      "title": "横綱豊昇龍、秋場所出場は厳しい　師匠示唆、今後に危機感",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026082701001381",
-      "publishedAt": "2026-08-27",
-      "publishedAtRaw": "共同通信　8月27日 17時41分",
+      "id": "dmenu-docomo-20260828126",
+      "title": "霧島に泥だらけにされた一意は悲鳴「本当に覚えていない」初の巡業で一番の美味はあきたこまち「米が好き」【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260828126",
+      "publishedAt": "2026-08-28",
+      "publishedAtRaw": "デイリースポーツ　8月28日 19時29分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
