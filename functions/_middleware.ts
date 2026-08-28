@@ -20,7 +20,7 @@
  * `tsconfig.json` excludes this directory from the project's typecheck.
  */
 
-import { prefersMarkdown } from '../../app/lib/content-negotiation';
+import { prefersMarkdown } from '../app/lib/content-negotiation';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const onRequest = async (context: any): Promise<Response> => {

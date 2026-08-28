@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { onRequestGet } from '../http-message-signatures-directory';
+import { onRequestGet } from '../../../../functions/.well-known/http-message-signatures-directory';
 
 describe('http-message-signatures-directory function', () => {
   beforeEach(() => {
