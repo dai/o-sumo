@@ -23,28 +23,5 @@
   },
   "defaultInputModes": ["text/plain", "application/json"],
   "defaultOutputModes": ["text/markdown", "application/json", "text/html"],
-  "skills": [
-    {
-      "id": "osumo-content",
-      "name": "osumo-content",
-      "description": "Fetch official 大相撲 banzuke, torikumi, and rikishi data from the public o-sumo JSON API (https://osada.us/api/v1/*.json).",
-      "tags": ["sumo", "banzuke", "torikumi", "rikishi", "json-api"],
-      "examples": [
-        "https://osada.us/api/v1/banzuke.json の updatedAt を取得して差分更新を判断する",
-        "https://osada.us/api/v1/torikumi.json から 202607 場所の 15 日分の取組結果を取得する",
-        "https://osada.us/api/v1/rikishi.json から力士の ID と四股名一覧を取得する"
-      ]
-    },
-    {
-      "id": "osumo-discovery",
-      "name": "osumo-discovery",
-      "description": "Locate the right page on https://osada.us/ for a given basho (YYYYMM), torikumi day (YYYYMMDD), rikishi (id or shikona), kimarite, or analytics view.",
-      "tags": ["sumo", "site-map", "url-resolution", "navigation"],
-      "examples": [
-        "2026 年 7 月場所の番付ページの URL を組み立てる",
-        "照ノ富士のプロフィールページ (/rikishi/{id}/) を rikishi.json の ID から解決する",
-        "/sitemap.xml と /robots.txt を取得してクロール可能なページ一覧を作る"
-      ]
-    }
-  ]
+  "skills": []
 }
