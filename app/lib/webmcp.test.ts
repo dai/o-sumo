@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { WEBMCP_TOOLS, hasWebMcpSupport, registerWebMcpTools } from './webmcp';
+import { PAST_BASHO } from './archives-data';
 
 describe('webmcp tools', () => {
   it('exposes the expected tool names', () => {
@@ -41,11 +42,11 @@ describe('list_basho execution', () => {
 });
 
 describe('get_banzuke_for_month execution', () => {
-  it('accepts supported month keys', () => {
+  it.each(PAST_BASHO.map((b) => b.id))('accepts supported month key %s', (monthKey) => {
     const tool = WEBMCP_TOOLS.find((t) => t.name === 'get_banzuke_for_month');
     if (!tool) throw new Error('get_banzuke_for_month missing');
-    const result = tool.execute({ monthKey: '202603' }) as { monthKey: string };
-    expect(result.monthKey).toBe('202603');
+    const result = tool.execute({ monthKey }) as { monthKey: string };
+    expect(result.monthKey).toBe(monthKey);
   });
 
   it('rejects unsupported month keys', () => {
@@ -53,6 +54,9 @@ describe('get_banzuke_for_month execution', () => {
     if (!tool) throw new Error('get_banzuke_for_month missing');
     const result = tool.execute({ monthKey: '209999' }) as { error: string };
     expect(result.error).toMatch(/Unsupported/);
+    // The supported list is derived from PAST_BASHO at runtime — the message
+    // should mention at least one of those ids.
+    expect(result.error).toContain(PAST_BASHO[0].id);
   });
 
   it('rejects malformed month keys', () => {
