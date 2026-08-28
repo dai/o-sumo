@@ -540,9 +540,10 @@ PR #479 が到達した 7 項目（API catalog / OAuth-PRM / MCP Server Card / A
 - [x] PR 1 (#494) squash-merged → `817d56a`
 - [x] PR 2 (#495) squash-merged → `88d1a30a`
 - [x] PR 3 (#496) squash-merged → `e3195e7`
-- [x] PR 4 (docs refresh) マージ待ち
+- [x] PR 4 (#497, docs refresh) squash-merged → `4ed514d`
 - [x] 満点 7 項目維持（PR 1〜3 で強化、満点を崩さず）
 - [x] docs/agent-ready.md が Phase 1 完了状態を反映
 - [x] tasks/lessons.md に Phase 1 サマリ + 新規 Lesson 2 件追加
 - [x] tasks/todo.md に Phase 1 レビュー追加（本_section）
-- [ ] PR 4 マージ後、全ローカル / リモートブランチ cleanup
+- [x] PR 4 マージ後、全ローカル / リモートブランチ cleanup完了（`docs/agent-phase1-refresh` ローカル削除、`origin` 側は `--delete-branch` で削除済）
+- [x] `.codex/` を `.gitignore` に追加（`.codex/config.toml` を追跡外へ）

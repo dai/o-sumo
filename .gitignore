@@ -46,3 +46,4 @@ output/playwright/
 # These belong to the developer's local environment, not the project.
 .agents/
 .claude/skills/
+.codex/
