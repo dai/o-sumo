@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-27T11:33:49.887426+00:00",
+  "updatedAt": "2026-08-28T03:20:06.514231+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260828-0029",
+      "title": "豊昇龍　秋場所出場絶望的で師匠から“最後通告”　復帰場所「優勝しないと厳しいぞ」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260828-0029",
+      "publishedAt": "2026-08-28",
+      "publishedAtRaw": "スポニチアネックス　8月28日 5時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-hochi-20260827-OHT1T51308",
       "title": "大の里、視察の師匠の前で１１番「左がうまく使えていた。悪くないと思う」",
@@ -35,7 +44,7 @@
     },
     {
       "id": "dmenu-docomo-f-bt-tp1-260827-202608270001063",
-      "title": "義ノ富士、実家が「全損」判定　帰省中に熊本地震で自身も被災「トレイがぶっ壊れてベッドが…」",
+      "title": "義ノ富士、実家が「全損」判定　帰省中に熊本地震で自身も被災「トイレがぶっ壊れてベッドが…」",
       "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260827-202608270001063",
       "publishedAt": "2026-08-27",
       "publishedAtRaw": "日刊スポーツ　8月27日 18時50分",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026082701001381",
       "publishedAt": "2026-08-27",
       "publishedAtRaw": "共同通信　8月27日 17時41分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260827-202608270000856",
-      "title": "横綱大の里に６戦全敗…藤凌駕が負傷で病院へ　「大丈夫です」強調も…午後の取組外れる",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260827-202608270000856",
-      "publishedAt": "2026-08-27",
-      "publishedAtRaw": "日刊スポーツ　8月27日 17時32分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
