@@ -171,3 +171,34 @@ Cloudflare Agent Skills Discovery RFC v0.2.0 は `digest: "sha256:{64-hex}"` 形
 - `matches`が空の部門は`absentees`を空に固定し、「未公開」を「全員休場」と誤表示しない。
 - `post_json`は`Origin`/`Referer`不足で403を招く。AJAXエンドポイントごとにRefererを付与して取得安定性を上げる。
 - `--torikumi-only`時に番付APIが落ちても、既存`torikumi.json`から`basho_id/day`を復元して更新継続できるようにする。
+
+## 2026-08-28 Phase 1 完了記録（PR #494 / #495 / #496 / docs refresh）
+
+PR #479 で満点に到達した AI Agent Readiness 7 項目を維持しつつ、保守性と可観測性を底上げする 4 PR を 2026-08-28 に順次マージした。
+
+| PR | commit | スコープ | 満点項目への影響 |
+| --- | --- | --- | --- |
+| PR 1 (#494) | `817d56a` | Task 2-A + 5-A + 7-A: discovery 表面整理（WebMCP `provideContext` JSDoc、`oauth-authorization-server` 残置明文化、`bashoListForMonthKey` の `PAST_BASHO` 動的化） | ⑥ WebMCP ↑ |
+| PR 2 (#495) | `88d1a30a` | Task 6-A: A2A Agent Card skills 同期 plugin（`mapSkillEntryToA2aSkill()` で `skills[]` を `SKILL_MANIFEST` から派生） | ④ A2A / ① Discovery 整合 |
+| PR 3 (#496) | `e3195e7` | Task 11-A + 11-D: `prefersMarkdown` (RFC 9110 §12.5.1) pure 関数化 + `functions/_middleware.ts` substring match 置換 + `app/lib/__tests__/functions/` に直接テスト | ⑤ Markdown ↑ / ⑦ Functions ↑ |
+
+### Lesson #9: Discovery surface は single source of truth から派生させる
+
+`bashoListForMonthKey` も `skills[]` も、手書きの固定値ではなく **`PAST_BASHO` / `SKILL_MANIFEST` を source of truth として派生** する。新規 basho 追加や skill 追加は source of truth への追記に集約され、WebMCP と A2A Agent Card の双方が自動的に同期する。
+
+**Why**: 同じデータを 2 箇所（template のハードコード + 派生関数の元データ）で持つと、drift で PR #479 の満点を崩すリスクがあった。`SKILL_MANIFEST` を `export const` 化した PR 2 で、`skills[]` が source から導出されることを `npm run build` 後の `dist/.well-known/agent-card.json` で検証できる。
+
+**How to apply**: 新規 discovery surface を追加するとき、最初の手書き template の直下に「source of truth を export し、ビルド時に派生する」設計を入れる。手書きの固定配列を残したまま派生関数を追加しない。
+
+### Lesson #10: Cloudflare 依存は pure 関数で分離して Vitest 単体テスト化する
+
+`functions/_middleware.ts` のような Pages Functions は wrangler が bundle するため、`functions/` 配下に `.test.ts` を置くと vitest import が Pages build を破壊する（PR 3 の最初の CI 失敗）。Functions から呼ぶロジックは **`app/lib/` の pure 関数に切り出し**、テストは **`app/lib/__tests__/` 配下に置く**。Functions 側はその pure 関数の薄いラッパに保つ。
+
+**Why**: `prefersMarkdown` を `functions/_middleware.ts` 内に直接書けば CI は通るが、`Accept` ヘッダの境界条件（q=0、ワイルドカード、パース失敗時の安全側）を網羅する単体テストが書けなくなる。`app/lib/content-negotiation.ts` に切り出すと、`tsconfig.json` の `functions` exclude を維持しつつ Node + jsdom で 8 it が GREEN になる。
+
+**How to apply**: Cloudflare 固有 API（`context.nextContext()`, `context.env.ASSETS`, `crypto.subtle.sign('Ed25519', ...)` など）に依存しないロジックは `app/lib/` に切り出す。Functions は thin wrapper にして、Vitest は Node 環境で動く pure 関数に対してだけ書く。Functions 配下の直接テストが必要なら `app/lib/__tests__/functions/` に置く。
+
+### 既存 Lesson #4 / #5 の有効性
+
+- **Lesson #4**（WebMCP API 名前空間）— PR 1 で `NavigatorModelContext` / `registerWebMcpTools` の JSDoc を 4 段階検出順序として明文化済み。
+- **Lesson #5**（RFC 9728 §3.2）— PR 1 で `oauth-authorization-server` を「`agent_auth` 拡張付き metadata-only discovery surface として残置」と `docs/agent-ready.md` に明記済み。

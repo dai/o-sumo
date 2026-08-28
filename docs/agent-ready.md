@@ -17,13 +17,13 @@ Cloudflare DNS zone, not the Pages project.
 | `/.well-known/api-catalog` | RFC 9727 linkset pointing at the public JSON APIs (banzuke, torikumi, rikishi, gyoji, yobidashi). |
 | `/.well-known/oauth-protected-resource` | RFC 9728 resource metadata identifying the public JSON API and its documentation. Returns `{ resource, resource_documentation }` — it points agents at `/auth.md` for the metadata-only `agent_auth` declaration. The public APIs require no token. |
 | `/.well-known/mcp/server-card.json` | MCP Server Card (SEP-1649). Indicates that no MCP server is hosted, and points agents at the public API catalog and skills index as the alternative discovery surfaces. `serverInfo.version` is synchronized with `package.json` at build time via `vite.config.ts` (`mcpServerCardPlugin`). |
-| `/.well-known/agent-card.json` | A2A Agent Card (A2A Protocol v1.0.0 §4.4.1). Published for discovery only — `supportedInterfaces` is an empty array because o-sumo is a static site with no A2A server. See [docs/agent-card.md](agent-card.md) for the discovery posture. |
+| `/.well-known/agent-card.json` | A2A Agent Card (A2A Protocol v1.0.0 §4.4.1). Published for discovery only — `supportedInterfaces` is non-empty (HTTP+JSON pointing at `/a2a`), but the A2A endpoint returns `-32601 Method not found` for every method because o-sumo has no task state. `skills[]` is derived from `SKILL_MANIFEST` (`app/lib/agent-skills.ts`) via `mapSkillEntryToA2aSkill()` at build time, and `version` is synchronized with `package.json` via `vite.config.ts` (`a2aAgentCardPlugin`). See [docs/agent-card.md](agent-card.md) for the discovery posture. |
 | `/.well-known/agent-skills/index.json` | Agent Skills index (RFC v0.2.0). Lists the skills published under `.well-known/agent-skills/`. Generated at build time by `vite.config.ts` (`agentSkillsPlugin`); each entry carries `type: "skill-md"` and `digest: "sha256:{hex}"`. |
 | `/.well-known/agent-skills/osumo-content/SKILL.md` | Skill description for fetching public API content (banzuke, torikumi, rikishi, gyoji, yobidashi). |
 | `/.well-known/agent-skills/osumo-discovery/SKILL.md` | Skill description for navigating the discovery surfaces (`api-catalog`, `mcp-server-card`, `agent-skills`, `web-bot-auth`, etc.). |
-| `/.well-known/http-message-signatures-directory` | Web Bot Auth (IETF WebBotAuth WG) signature directory. Returns a JWKS with at least one Ed25519 public key, signed per RFC 9421 with `tag="http-message-signatures-directory"`. See [functions/README.md](../functions/README.md) for the implementation. |
+| `/.well-known/http-message-signatures-directory` | Web Bot Auth (IETF WebBotAuth WG) signature directory. Returns a JWKS with at least one Ed25519 public key, signed per RFC 9421 with `tag="http-message-signatures-directory"`. See the dedicated **Web Bot Auth** section below. |
 | `/auth.md` | Top-level Auth.md instructions for metadata-only anonymous public access, including registration and claim information URIs and the no-credential constraint. |
-| `/*.md` (parallel HTML routes) | Static Markdown views served with `Content-Type: text/markdown; charset=utf-8` and `Vary: Accept`. Satisfies the "Markdown for Agents" check. `index.md` files are pre-rendered at build time by `scripts/build_markdown_views.ts`, so the views work on the Cloudflare Pages Free plan. The matching `functions/_middleware.ts` rewrites any `Accept: text/markdown` request to the pre-rendered `index.md` file with the correct `Content-Type`. |
+| `/*.md` (parallel HTML routes) | Static Markdown views served with `Content-Type: text/markdown; charset=utf-8` and `Vary: Accept`. Satisfies the "Markdown for Agents" check. `index.md` files are pre-rendered at build time by `scripts/build_markdown_views.ts`, so the views work on the Cloudflare Pages Free plan. The matching `functions/_middleware.ts` calls `prefersMarkdown()` (`app/lib/content-negotiation.ts`) to evaluate the `Accept` header per RFC 9110 §12.5.1 and rewrites markdown-positive requests to the pre-rendered `index.md` with the correct `Content-Type`. |
 
 Note: `/.well-known/openid-configuration` was removed in 2026-08-10 (404 expected).
 `/.well-known/oauth-authorization-server` is intentionally kept as a
@@ -47,7 +47,7 @@ The tools are defined in `app/lib/webmcp.ts`:
 
 - `search_rikishi` — partial-match search against the public rikishi index
 - `list_basho` — current and archive basho with their URLs
-- `get_banzuke_for_month` — resolve a YYYYMM to the banzuke JSON / page URLs
+- `get_banzuke_for_month` — resolve a YYYYMM to the banzuke JSON / page URLs. The accepted month set is derived dynamically from `PAST_BASHO` (`app/lib/archives-data.ts`) via `bashoListForMonthKey()` so that adding a new basho to the source of truth automatically extends the WebMCP tool.
 - `get_torikumi_for_day` — resolve a YYYYMMDD to the torikumi / yotei page URL
 
 The provider follows the WebMCP registration priority (per Lesson #4):
@@ -61,6 +61,29 @@ React Strict Mode's double-mount does not duplicate tools. The provider is
 defensive: if neither `document.modelContext` nor `navigator.modelContext`
 is available (currently Chrome 138+ behind a flag), the call is a no-op and
 the rest of the SPA continues to work.
+
+## Web Bot Auth (IETF WebBotAuth WG)
+
+`/.well-known/http-message-signatures-directory` is served by
+`functions/.well-known/http-message-signatures-directory.ts`. The handler
+returns a JWKS containing at least one Ed25519 public key and signs the
+response per RFC 9421 with `tag="http-message-signatures-directory"`,
+covering `@authority`. The signing keypair is generated by
+`scripts/generate_web_bot_auth_keys.mjs` and committed as
+`functions/.well-known/_web-bot-auth-keys.ts`. The shared RFC 9421
+primitives (`base64UrlEncode`, `buildSignatureBase`, `buildSignatureParams`,
+`formatSignatureHeader`, `formatSignatureInputHeader`) live in
+`app/lib/web-bot-auth/rfc9421.ts` so the SPA client signer and this server
+function stay in lock-step.
+
+The function is exercised by
+`app/lib/__tests__/functions/http-message-signatures-directory.test.ts`,
+which calls `onRequestGet` directly with a fixed system time and asserts
+the `Content-Type`, `Signature` / `Signature-Input` headers, and the JWKS
+shape. The test deliberately lives under `app/lib/__tests__/functions/`
+rather than `functions/.well-known/__tests__/` because the Cloudflare Pages
+build (wrangler) bundles every `.ts` file under `functions/` — a colocated
+Vitest test would pull in `vitest` and break the Pages build.
 
 ## DNS-AID (operator-side)
 
@@ -133,3 +156,5 @@ following checks:
   `scripts/build_markdown_views.ts` markdown generator.
 - The DNS-AID record and DNSSEC configuration are zone-scoped and live in
   Cloudflare DNS, not in this repository.
+
+Last reviewed: 2026-08-28 (Phase 1 refresh — PR #494, #495, #496).

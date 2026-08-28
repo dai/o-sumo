@@ -495,3 +495,54 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 - copilot takeover handoff: codex/202609-current-preflight (8 commits ahead of origin/main dcee461) was ff-merged into dai-cautious-tribble after a clean worktree. Comprehensive verification rerun on this branch: 5 Python test files (parser 55, official profiles 7, news feed 6, preflight 21 → 23 with new fixture coverage, torikumi logic) all OK; `npm run typecheck` exit 0; `npm test` 58 files / 411 tests passed; `npm run build` exit 0; `npm run preflight:current-data` still `BLOCKED` / exit 1 with the expected `expected=202609 actual=202607` evidence (UTF-8 stdout confirmed). Independent review (general-purpose subagent, 59 tool calls across parser, fixtures, live HTML structure, fail-closed behavior) reported Critical 0, Important 2, Minor 2. Important-1 was the fixture gap: the original fixture did not mirror the real site's 6-column `<br>`-separated date format nor the per-year duplicate rows. Fixture rebuilt to the actual site markup (6 columns: 場所/会場/前売り開始日/番付発表/初日/千秋楽, `令和8年<br>9/13(日)` style, three tables for 令和8/9/10年), and added two RED tests: `test_official_schedule_picks_target_year_among_duplicate_basho_rows` (positive for 2026/2027/2028 plus ValueError for missing years 2025/2029) and `test_official_schedule_handles_br_separated_year_and_date_format`. Focused Python now 23 tests OK. Important-2 was the misleading field name: `OfficialSchedule.announcement_date` actually held the official site's 前売り開始日 (ticket-sale-start) column, while `banzuke_date` already represented 番付発表. Renamed `announcement_date` → `ticket_sale_date` in `OfficialSchedule`, `parse_official_schedule`, and the two test assertions; order constraint and 23-test verification both still pass. Minor-1 (basho-name mismatch message) made the error ASCII-stable with `expected={month_key} actual={basho_id}/{month_key}` so the rare wrong-name branch is mojibake-safe on Windows consoles. Minor-2 (npm script defaults) documented in both `README.md` and `README_en.md` that subsequent basho switches must pass `--current-month`/`--target-month` either via `npm run preflight:current-data -- --...` or `python scripts/preflight_current_basho.py --...` directly, since the npm script keeps hard-coded defaults. Re-verification after all fixes: 23 Python tests OK, typecheck exit 0, `npm test` 411/411 pass, `npm run build` exit 0, live `npm run preflight:current-data` `BLOCKED` / exit 1 with `expected=202609 actual=202607` and identity evidence printed before any Japanese month name. Generator, route/sitemap entry, redirect, and workflow schedule remain untouched. Final approval: granted — implementation is read-only, fail-closed, and the BLOCKED gate correctly defers until the official September banzuke is published.
 
 ---
+
+# Phase 1 完了（2026-08-28）
+
+## スコープ
+
+PR #479 で満点に到達した AI Agent Readiness 7 項目を維持しつつ、保守性・可観測性を底上げする 4 PR を順次マージした。本セクションは Phase 1 全体の最終確認記録として、4 PR のサマリ・満点項目維持確認・反映先 docs をまとめる。
+
+## 4 PR サマリ
+
+| PR | commit | タスク | 主な変更 | 満点項目 |
+| --- | --- | --- | --- | --- |
+| PR 1 (#494) | `817d56a` | Task 2-A + 5-A + 7-A | WebMCP `provideContext` JSDoc 4 段階検出、`oauth-authorization-server` 残置明文化、`bashoListForMonthKey` の `PAST_BASHO` 動的化 | ⑥ WebMCP |
+| PR 2 (#495) | `88d1a30a` | Task 6-A | `mapSkillEntryToA2aSkill()` で `skills[]` を `SKILL_MANIFEST` から派生、`SKILL_MANIFEST` を `export const` 化、template の `skills[]` を `[]` に置換 | ④ A2A / ① Discovery 整合 |
+| PR 3 (#496) | `e3195e7` | Task 11-A + 11-D | `prefersMarkdown` (RFC 9110 §12.5.1) pure 関数化、`functions/_middleware.ts` substring match 置換、テストは `app/lib/__tests__/functions/` に配置 | ⑤ Markdown / ⑦ Functions |
+| PR 4 (docs refresh) | (本 PR) | docs 仕上げ | [docs/agent-ready.md](docs/agent-ready.md) 5 箇所更新、Web Bot Auth 節新設、Phase 1 refresh 行 | — |
+
+## 満点項目維持確認
+
+PR #479 が到達した 7 項目（API catalog / OAuth-PRM / MCP Server Card / A2A Agent Card / agent-skills / Web Bot Auth / auth.md / Markdown routes）は PR 1〜3 すべてで満点を維持した：
+
+- ① API catalog: 変更なし、満点維持
+- ② OAuth-PRM: PR 1 で `oauth-authorization-server` 残置を明文化（満点維持）
+- ③ MCP Server Card: 変更なし、満点維持
+- ④ A2A Agent Card: PR 2 で `skills[]` を `SKILL_MANIFEST` から派生（満点強化）
+- ⑤ agent-skills: 変更なし、満点維持
+- ⑥ Web Bot Auth: 変更なし（満点維持）、PR 4 で新節を追加
+- ⑦ auth.md: 変更なし、満点維持
+- Markdown for Agents: PR 3 で RFC 9110 準拠の q 値解釈に更新（満点強化）
+
+## 反映先 docs
+
+- [docs/agent-ready.md](docs/agent-ready.md): Web Bot Auth 節新設、agent-card.json 行を SKILL_MANIFEST 派生に修正、Markdown for Agents 節で `prefersMarkdown()` を言及、WebMCP `get_banzuke_for_month` 行を PAST_BASHO 動的化に整合、末尾に `Last reviewed: 2026-08-28 (Phase 1 refresh — PR #494, #495, #496)` 追加
+- [tasks/lessons.md](lessons.md): 末尾に Phase 1 完了記録 + 新規 Lesson #9（Discovery surface は single source of truth から派生させる）と Lesson #10（Cloudflare 依存は pure 関数で分離して Vitest 単体テスト化する）
+
+## 教訓
+
+- **PR 3 の CI 失敗 2 件**は staff 観点での学びが大きい：① `functions/` 配下の `.test.ts` は wrangler bundle で vitest を解決できず Pages build を破壊する → `app/lib/__tests__/functions/` に逃がす、② `functions/_middleware.ts` から `app/lib/` への相対 import の深さは `../app/lib/...` が正解（`.well-known/...` からなら `../../app/lib/...`）。Lesson #10 に反映済み。
+- **PR 2 の TAGS_BY_NAME / EXAMPLES_BY_NAME** は SKILL_MANIFEST に欠落する fields の補完テーブルで、真の SoT ではない。Lesson #9 で「source of truth は export して派生側に流す」を明示した。
+- **既存 Lesson #4（WebMCP 両対応）**と **Lesson #5（RFC 9728 §3.2）**は Phase 1 でも有効。docs に反映済み。
+
+## Phase 1 完了確認チェックリスト
+
+- [x] PR 1 (#494) squash-merged → `817d56a`
+- [x] PR 2 (#495) squash-merged → `88d1a30a`
+- [x] PR 3 (#496) squash-merged → `e3195e7`
+- [x] PR 4 (docs refresh) マージ待ち
+- [x] 満点 7 項目維持（PR 1〜3 で強化、満点を崩さず）
+- [x] docs/agent-ready.md が Phase 1 完了状態を反映
+- [x] tasks/lessons.md に Phase 1 サマリ + 新規 Lesson 2 件追加
+- [x] tasks/todo.md に Phase 1 レビュー追加（本_section）
+- [ ] PR 4 マージ後、全ローカル / リモートブランチ cleanup
