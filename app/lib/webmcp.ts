@@ -41,13 +41,19 @@ interface DocumentModelContext {
 interface NavigatorModelContext {
   /**
    * Navigator-hosted registerTool API used by current browser discovery
-   * implementations.
+   * implementations (W3C Community Group Draft 2026-07-28).
+   * Chrome 138+ exposes this on `document.modelContext`; some early Chrome
+   * builds also expose it on `navigator.modelContext` behind a flag.
    */
   registerTool?: (
     tool: WebMcpToolDefinition,
     options?: { signal?: AbortSignal },
   ) => Promise<unknown>;
-  /** Legacy pre-registerTool API. */
+  /**
+   * Legacy pre-registerTool API.
+   * Used by isitagentready.com scanners and Chrome implementations prior
+   * to the W3C Draft rename. Kept per Lesson #4 for backward compatibility.
+   */
   provideContext?: (context: { tools: WebMcpToolDefinition[] }) => unknown;
 }
 
@@ -135,9 +141,10 @@ async function searchRikishi(input: unknown) {
 }
 
 function bashoListForMonthKey(monthKey: string) {
-  const supported = new Set(['202603', '202605', '202607']);
+  const supported = new Set(PAST_BASHO.map((b) => b.id));
+  const supportedList = PAST_BASHO.map((b) => b.id).join(', ');
   if (!/^\d{6}$/.test(monthKey) || !supported.has(monthKey)) {
-    return { error: 'Unsupported monthKey; expected YYYYMM with a supported basho (202603, 202605, 202607).' };
+    return { error: `Unsupported monthKey; expected YYYYMM with a supported basho (${supportedList}).` };
   }
   return {
     monthKey,
@@ -199,8 +206,7 @@ export const WEBMCP_TOOLS: ReadonlyArray<WebMcpToolDefinition> = [
   },
   {
     name: 'get_banzuke_for_month',
-    description:
-      'Resolve the public banzuke JSON URL and HTML page URL for a given month key (YYYYMM). Supported: 202603, 202605, 202607.',
+    description: `Resolve the public banzuke JSON URL and HTML page URL for a given month key (YYYYMM). Supported: ${PAST_BASHO.map((b) => b.id).join(', ')}.`,
     inputSchema: {
       type: 'object',
       properties: {
@@ -259,10 +265,14 @@ export interface WebMcpRegistrationResult {
 }
 
 /**
- * Register WebMCP tools with the host browser. Prefers the W3C Draft
- * `document.modelContext.registerTool` API, supports browser builds that
- * expose `navigator.modelContext.registerTool`, and finally falls back to
- * the legacy `navigator.modelContext.provideContext` API.
+ * Register WebMCP tools with the host browser.
+ *
+ * Detection order (per Lesson #4):
+ * 1. `document.modelContext.registerTool` — W3C Draft, Chrome 138+
+ * 2. `navigator.modelContext.registerTool` — early Chrome builds behind a flag
+ * 3. `navigator.modelContext.provideContext` — legacy API used by
+ *    isitagentready.com and pre-138 Chrome. Kept for backward compatibility.
+ * 4. else — `mode: 'unsupported'`
  */
 export function registerWebMcpTools(
   documentLike: { modelContext?: DocumentModelContext } | undefined = typeof document !== 'undefined' ? (document as unknown as ModelContextDocument) : undefined,

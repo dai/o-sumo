@@ -25,7 +25,10 @@ Cloudflare DNS zone, not the Pages project.
 | `/auth.md` | Top-level Auth.md instructions for metadata-only anonymous public access, including registration and claim information URIs and the no-credential constraint. |
 | `/*.md` (parallel HTML routes) | Static Markdown views served with `Content-Type: text/markdown; charset=utf-8` and `Vary: Accept`. Satisfies the "Markdown for Agents" check. `index.md` files are pre-rendered at build time by `scripts/build_markdown_views.ts`, so the views work on the Cloudflare Pages Free plan. The matching `functions/_middleware.ts` rewrites any `Accept: text/markdown` request to the pre-rendered `index.md` file with the correct `Content-Type`. |
 
-Note: `/.well-known/openid-configuration` and `/.well-known/oauth-authorization-server` were removed in 2026-08-10 — a 404 on those paths is the expected state.
+Note: `/.well-known/openid-configuration` was removed in 2026-08-10 (404 expected).
+`/.well-known/oauth-authorization-server` is intentionally kept as a
+metadata-only discovery surface carrying an `agent_auth` block per
+Lesson #5.
 
 The agent-skills index is generated at build time by `vite.config.ts` (see
 `agentSkillsPlugin`). The sha256 digests in `index.json` are computed from
@@ -47,11 +50,11 @@ The tools are defined in `app/lib/webmcp.ts`:
 - `get_banzuke_for_month` — resolve a YYYYMM to the banzuke JSON / page URLs
 - `get_torikumi_for_day` — resolve a YYYYMMDD to the torikumi / yotei page URL
 
-The provider follows the WebMCP registration priority:
+The provider follows the WebMCP registration priority (per Lesson #4):
 
-1. W3C Draft `document.modelContext.registerTool({ name, description, inputSchema, annotations, execute })`
-2. `navigator.modelContext.registerTool(...)` fallback
-4. (legacy) `navigator.modelContext.provideContext({ tools: [...] })`
+1. W3C Draft `document.modelContext.registerTool({ name, description, inputSchema, annotations, execute })` — Chrome 138+
+2. `navigator.modelContext.registerTool(...)` — early Chrome builds behind a flag
+3. (legacy) `navigator.modelContext.provideContext({ tools: [...] })` — kept for isitagentready.com and pre-138 Chrome
 
 Registration and cleanup are managed with `AbortController.signal` so that
 React Strict Mode's double-mount does not duplicate tools. The provider is
