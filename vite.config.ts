@@ -192,6 +192,13 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './app/test/setup.ts',
     globals: true,
+    // PR 3 / Task 11-D: include Functions tests (functions/**/*.test.ts).
+    // Vitest's default `**/*.{test,spec}.{js,ts}` already picks them up,
+    // but listing them explicitly documents the intent and stays in sync
+    // if `tsconfig.json` is ever extended to cover `functions/`. Note:
+    // `app/**/*.test.tsx` must remain in the list because React component
+    // tests use the `.tsx` extension.
+    include: ['app/**/*.test.{ts,tsx}', 'functions/**/*.test.ts'],
     // 番付などの大きなデータを扱う jsdom テストを同時に走らせると、CI の負荷次第で
     // タイムアウトする。ファイル単位の並列化だけを止め、テストを安定させる。
     fileParallelism: false,
