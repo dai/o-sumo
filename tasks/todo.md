@@ -496,6 +496,56 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 
 ---
 
+# Phase 1 完了後のブランチ整理（2026-08-28）
+
+## Plan
+
+- [x] Phase 1 (#494/#495/#496/#497) マージ後の不要ブランチ棚卸しを Plan A → Plan B Step 2 で実施
+- [x] ローカルマージ済みブランチを削除（merged PR tip のため `-d` 拒否は `-D` で対応）
+- [x] リモート追跡ブランチを `push --delete` で削除（PR マージ済みを `origin` 側から消去）
+- [x] `git remote prune origin` で消えたリモート追跡を掃除
+- [x] worktree-bound のマージ済みブランチ（7 worktree）を `git worktree remove` 後に `-D`
+- [x] detached HEAD worktree `C:/codex/worktrees/dd0e/o-sumo` を残置（#416 merged、復元不要だが安全側に保持）
+- [ ] NO-PR 5 本は保留（要人間判断）。`tasks/todo.md` で記録のみ
+
+## Review
+
+- 実施前: ローカル 35 / リモート追跡 11 / worktree 12
+- 実施後: ローカル 8 / リモート追跡 6 / worktree 4
+- 削除内訳（ローカル 27 本 / リモート 12 本）: `20260822`, `a2a-ready`, `agy-renovate-20260824`, `ci/daily-data-update-auto-merge`, `codex/actions-final-tuning`, `codex/api-share-links-20260821`, `codex/final-check-for-production`, `codex/fix-changes-not-reflecting-after-merging-pr83` 系統×4, `codex/fix-live-torikumi-test`, `codex/rikishi-comparison-refresh`, `codex/rikishi-profile-pages`, `codex/september-prep-july-archive`, `css-visual-polish`, `dai-cautious-tribble`, `dai-fantastic-engine`, `dai-highlights-official-bouts-only`, `dai-urban-adventure`, `feat-about`, `feat-gyoji`, `feat-sep-2026`, `feat/daily-highlights-section`, `feat/update-hero-and-notice`, `feature/fix-hero-and-absentees`, `fix/daily-data-update-pat`, `fix/daily-workflow-auto-merge`, `fix-redirect-rules-test`, `fix/test-workflow-pull-request-target`, `fonts-20260821`, `renovate-aug`, `test/fix-current-day-torikumi-tests-new`, `ui-hide-absent-torikumi-bouts`
+- worktree 削除: `dai-cautious-tribble` / `feat-gyoji` / `actions-final-tuning` / `api-share-links-20260821` / `renovate-aug` / `rikishi-comparison-refresh` / `september-prep-july-archive` の 7 worktree を `git worktree remove` で除去。すべて `git status` clean を確認後に実施。
+- 残置 worktree 4: `main` (本 checkout), `dai-solid-potato` (本 session), `codex/202609-current-preflight` (NO-PR, 8 unique commits, 要方針), `codex/highlights-official-bouts-only` (NO-PR, 9 files M dirty, 要方針)
+- `-d` で 17 本拒否された原因は「branch tip commit が HEAD の祖先ではない」（PR squash-merge で別 SHA が main tip になるため）。これは Git の標準動作で、機能的には `-D` で問題ない（reflog に commit は残るため 30 日以内なら復元可能）
+- detached worktree `C:/codex/worktrees/dd0e/o-sumo` は #416 merged 後の tip 17c8057。復元不要なため安全側で残置
+- detached worktree `C:/dai/GitHub/copilot-worktrees/o-sumo/dai-congenial-spoon` / `dai-redesigned-sniffle` は既に Worktree 管理外（`Test-Path` で `MISSING`）。`git worktree prune` でメタデータ掃除可能だが副作用なし
+- `origin/automation/news-updates-*` 4 本は GitHub Actions の workflow artifact（`automation/news-updates-*.yml` が push する一時 branch）。残置が正常動作
+- 完全検証は今回未実施（`docs/` のみ変更のため typecheck / build / test は不要範囲）。`git diff --check` は clean。`npm run preflight:current-data` は今回スコープ外だが、preflight 関連 commit は main に squash-merge 済みで影響なし
+
+## 残置 NO-PR 5 本（Plan B Step 4 で人間判断）
+
+- `codex-gse-20260824` (8d6c589): 比較ページ改装。`agy-renovate-20260824` (#473) が同目的の別実装で merged。unique 差分 8 commits → 救出するか diff 確認してから削除するか要判断
+- `dai-effective-broccoli` (d6eb199): `ui-hide-absent-torikumi-bouts` と同 tip hash → 重複参照。削除可
+- `test/fix-current-day-torikumi-tests` (d637394): 後継 `test/fix-current-day-torikumi-tests-new` (#185) merged。削除可
+- `codex/highlights-official-bouts-only` (bb0c1af): `dai-highlights-official-bouts-only` (#485) と類似名だが別 branch。9 files M dirty → worktree 内で差分救出 or 破棄を判断
+- `codex/202609-current-preflight` (b7aeae0): 8 commits unique、`tasks/todo.md:495` で承認記録あり。PR 化 or 削除を判断
+
+---
+
+# Stash 棚卸し（2026-08-28）
+
+## Plan
+
+- [ ] 5 件の stash を確認（3 週間〜5 ヶ月前の WIP）
+
+## Review
+
+- `stash@{0}` On codex/fix-prm-scopes-supported (3 weeks ago): gh-stack-test 用途、`codex/fix-prm-scopes-supported` branch は存在しない（既に削除済）。stash 単独で残った状態
+- `stash@{1}` On main (7 weeks ago): codex-preserve-local-before-update — `main` 由来の WIP
+- `stash@{2}` On fix/news-empty-test (8 weeks ago): WIP commit 115365f、`fix/news-empty-test` branch も存在しない
+- `stash@{3}` On main (3 months ago): "2" のみ。内容不明
+- `stash@{4}` On main (5 months ago): WIP commit fa6faab、kanji 用料→取組予定 修正
+- 全 stash は復元先 branch が無いか古く、復元時の衝突リスクが高い。Plan B Step 5 で `git stash clear` か個別削除を予定
+
 # Phase 1 完了（2026-08-28）
 
 ## スコープ
