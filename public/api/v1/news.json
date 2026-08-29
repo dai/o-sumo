@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-29T06:28:47.415607+00:00",
+  "updatedAt": "2026-08-29T08:22:18.265205+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-tokyosports-401150",
+      "title": "【大相撲】お相撲さん２人で合計４１０キロ！　タクシーの意外な乗車方法とは…元力士が解説",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-401150",
+      "publishedAt": "2026-08-29",
+      "publishedAtRaw": "東スポWEB　8月29日 17時05分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260829-0213",
+      "title": "元北勝富士の大山親方が語るサウナと相撲【前編】「汗も涙も全て出た…」現役時代の最も心に残る思い出とは",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260829-0213",
+      "publishedAt": "2026-08-29",
+      "publishedAtRaw": "スポニチアネックス　8月29日 16時45分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-jiji-2026082900284",
+      "title": "朝乃山に充実感＝大相撲",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026082900284",
+      "publishedAt": "2026-08-29",
+      "publishedAtRaw": "時事通信　8月29日 16時19分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-tokyosports-401138",
       "title": "元旭天鵬の大島親方　横綱８人と対戦して一番強いと思った力士「朝青龍、白鵬とかいたけど…」",
       "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-401138",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1303719",
       "publishedAt": "2026-08-29",
       "publishedAtRaw": "中日スポーツ　8月29日 13時43分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-chuspo-1303686",
-      "title": "元大関把瑠都・ホーヴェルソンさん、「恥ずかしかった」ということは… 元横綱白鵬翔さんと対談、意外な悩みを告白",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1303686",
-      "publishedAt": "2026-08-29",
-      "publishedAtRaw": "中日スポーツ　8月29日 11時56分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-nikkangendai-1243660",
-      "title": "横綱豊昇龍に師匠が“最後通牒”も…起死回生の手本は「モンゴル出身の先輩横綱」か",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1243660",
-      "publishedAt": "2026-08-29",
-      "publishedAtRaw": "日刊ゲンダイDIGITAL　8月29日 10時55分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-mainichi-20260828k0000m050356000c",
-      "title": "有力1年生が登場　30日の学生相撲・全国体重別　軽・中量級展望",
-      "url": "https://topics.smt.docomo.ne.jp/article/mainichi/sports/mainichi-20260828k0000m050356000c",
-      "publishedAt": "2026-08-29",
-      "publishedAtRaw": "毎日新聞　8月29日 9時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
