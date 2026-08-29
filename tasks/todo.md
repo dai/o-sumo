@@ -546,6 +546,27 @@ WebMCP は `document.modelContext.registerTool` 優先 + `AbortController.signal
 - `stash@{4}` On main (5 months ago): WIP commit fa6faab、kanji 用料→取組予定 修正
 - 全 stash は復元先 branch が無いか古く、復元時の衝突リスクが高い。Plan B Step 5 で `git stash clear` か個別削除を予定
 
+---
+
+# heroFinalDescription の動的化（2026-08-29）
+
+## Plan
+
+- [x] 九月 final モードで「七月」ハードコードが再発するリスクを恒久対策する
+- [x] `app/lib/basho-meta.ts` に `getFinalBashoName(info, lang)` ヘルパーを追加（JA: bashoName as-is、EN: monthKey → MONTH_NAMES_EN 派生）
+- [x] `app/page.tsx` で `finalBashoName` を算出し `t('home.heroFinalDescription', { bashoName })` に渡す
+- [x] `src/locales/{ja,en}/common.json` の文字列を `{{bashoName}}` プレースホルダに置換
+- [x] `app/lib/basho-meta.test.ts` を新設し JA/EN/edge 5 件テスト
+- [x] typecheck / focused test / 全Vitest / build / diff check を回す
+
+## Review
+
+- 元問題: `home.heroFinalDescription` が ja/en 両方で「七月」「July」ハードコード。次の場所が九月になったとき final モードで沈黙 desynchronize する。九月切り替わり時に人手書き換えが必要（運用忘れリスク）
+- 恒久対策: bashoName / monthKey を source of truth とし、i18n テンプレートで `{{bashoName}}` を補間。九月、五月、場所を問わず自動追従
+- 検証: focused `app/lib/basho-meta.test.ts` 7 tests / `app/page.test.tsx` 18 tests = 25 OK、全 Vitest 404/404 pass、`npm run typecheck` exit 0、`npm run build` exit 0、`git diff --check` clean
+- マージ: `0712708 fix(home): interpolate final-basho name into heroFinalDescription` (5 files, +71/-4)
+- 副次効果: 九月以降の切替で locale 文字列の人手修正が不要。Lesson #11 候補（"Locale 文字列に月/場所をハードコードせず派生させる"）として `tasks/lessons.md` への追記は別途判断
+
 # Phase 1 完了（2026-08-28）
 
 ## スコープ

@@ -172,6 +172,12 @@ Cloudflare Agent Skills Discovery RFC v0.2.0 は `digest: "sha256:{64-hex}"` 形
 - `post_json`は`Origin`/`Referer`不足で403を招く。AJAXエンドポイントごとにRefererを付与して取得安定性を上げる。
 - `--torikumi-only`時に番付APIが落ちても、既存`torikumi.json`から`basho_id/day`を復元して更新継続できるようにする。
 
+## 2026-08-29 Locale 文字列に月や場所をハードコードしない
+- ヒーロー copy (`home.heroFinalDescription` 等) に「七月」「July」を直書きすると、次の場所に切り替わった瞬間に沈黙 desynchronize する。人の目視レビューなしには検出できない。
+- locale 文字列は `{{bashoName}}` などの補間プレースホルダを持たせ、表示側で公開済みデータ (`torikumiArchive.bashoName` / `monthKey`) から派生させる。`basho-meta.ts` のように localized 月名テーブル (`MONTH_NAMES_EN`) を一枚用意し、JA は raw 値、EN は派生値を使う。
+- Lesson #9（Discovery surface は SoT から派生）と同じ思想。文字列リテラルが「単一 source of truth」として振舞うのを避け、プログラム的に計算できる値は計算させる。
+- 検証は「九月 mode でも正しい月名が表示される」を Vitest で固定する。locale 文字列の shift-jis / ハードコード検出 lint が将来あれば併用したい。
+
 ## 2026-08-28 Phase 1 完了記録（PR #494 / #495 / #496 / docs refresh）
 
 PR #479 で満点に到達した AI Agent Readiness 7 項目を維持しつつ、保守性と可観測性を底上げする 4 PR を 2026-08-28 に順次マージした。
