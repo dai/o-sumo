@@ -59,5 +59,30 @@ export function formatBashoTitle(
   return `${info.year || ''}${info.bashoName || ''}`;
 }
 
+/**
+ * Returns the basho name used in `final` mode hero copy. The legacy copy
+ * hardcoded the month ("七月" / "July"), which silently desynchronized once
+ * a new basho started. Templates now interpolate `{{bashoName}}` and this
+ * helper provides the localized value from the published archive data.
+ */
+export function getFinalBashoName(
+  info: { bashoName?: string; monthKey?: string },
+  lang: string = 'ja',
+): string {
+  if (lang === 'en') {
+    const monthKey = (() => {
+      if (info.monthKey) return info.monthKey.slice(4, 6);
+      if (info.bashoName) return BASHO_NAME_TO_MONTH_KEY[info.bashoName];
+      return null;
+    })();
+    if (monthKey) {
+      const monthName = MONTH_NAMES_EN[monthKey] ?? MONTH_NAMES_EN[String(Number(monthKey))];
+      if (monthName) return monthName;
+    }
+    return info.bashoName ?? '';
+  }
+  return info.bashoName ?? '';
+}
+
 export const bashoTitle = `${torikumiArchive.year}${torikumiArchive.bashoName}`;
 export const gregorianBashoLabel = formatGregorianBashoLabel(torikumiMonthKey);

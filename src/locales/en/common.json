@@ -51,7 +51,7 @@
     "heroDescription": "Browse the latest banzuke, daily torikumi results, and scheduled matches.",
     "heroLiveDescription": "Follow today’s bouts and standings as the basho unfolds.",
     "heroUpcomingDescription": "Review the banzuke and schedule while the first day approaches.",
-    "heroFinalDescription": "The July basho is complete. You can review final bout results, the championship, special prizes, and the banzuke.",
+    "heroFinalDescription": "The {{bashoName}} basho is complete. You can review final bout results, the championship, special prizes, and the banzuke.",
     "heroActionsLabel": "Key links for this basho",
     "heroTodayAction": "View today’s bouts",
     "heroStandingsAction": "View results and standings",
