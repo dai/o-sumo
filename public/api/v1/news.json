@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-29T04:19:55.011416+00:00",
+  "updatedAt": "2026-08-29T06:28:47.415607+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-tokyosports-401138",
+      "title": "元旭天鵬の大島親方　横綱８人と対戦して一番強いと思った力士「朝青龍、白鵬とかいたけど…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-401138",
+      "publishedAt": "2026-08-29",
+      "publishedAtRaw": "東スポWEB　8月29日 14時57分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-chuspo-1303719",
+      "title": "「相撲がオリンピック種目になることが夢」白鵬さんと対談した元大関把瑠都は現在エストニア相撲連盟会長",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1303719",
+      "publishedAt": "2026-08-29",
+      "publishedAtRaw": "中日スポーツ　8月29日 13時43分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-chuspo-1303686",
       "title": "元大関把瑠都・ホーヴェルソンさん、「恥ずかしかった」ということは… 元横綱白鵬翔さんと対談、意外な悩みを告白",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/mainichi/sports/mainichi-20260828k0000m050356000c",
       "publishedAt": "2026-08-29",
       "publishedAtRaw": "毎日新聞　8月29日 9時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_5LS3Q5EWYFBR5IH56GMYD2DCSI",
-      "title": "大島親方「朝青龍、白鵬。若かったというのもあるんだけど貴乃花さん」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_5LS3Q5EWYFBR5IH56GMYD2DCSI",
-      "publishedAt": "2026-08-29",
-      "publishedAtRaw": "SANSPO　8月29日 8時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_WNNGZ5V26VDANP6VGT2EBUZM2M",
-      "title": "元把瑠都「横綱も当時、私の倍くらい強かったので…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_WNNGZ5V26VDANP6VGT2EBUZM2M",
-      "publishedAt": "2026-08-29",
-      "publishedAtRaw": "SANSPO　8月29日 7時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
