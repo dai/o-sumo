@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-28T12:01:09.502388+00:00",
+  "updatedAt": "2026-08-29T00:47:06.220563+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260828-OHT1T51319",
-      "title": "相撲博物館、秋場所の企画展は「千代の山とその弟子」　第４１代横綱の生誕１００年を記念",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260828-OHT1T51319",
-      "publishedAt": "2026-08-28",
-      "publishedAtRaw": "スポーツ報知　8月28日 20時09分",
+      "id": "dmenu-docomo-mainichi-20260828k0000m050356000c",
+      "title": "有力1年生が登場　30日の学生相撲・全国体重別　軽・中量級展望",
+      "url": "https://topics.smt.docomo.ne.jp/article/mainichi/sports/mainichi-20260828k0000m050356000c",
+      "publishedAt": "2026-08-29",
+      "publishedAtRaw": "毎日新聞　8月29日 9時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260828134",
-      "title": "横綱大の里と好内容の相撲取った熱海富士、元稀勢の里が評価「間違いなく大関に上がりそうな感じ」【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260828134",
-      "publishedAt": "2026-08-28",
-      "publishedAtRaw": "デイリースポーツ　8月28日 20時01分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_5LS3Q5EWYFBR5IH56GMYD2DCSI",
+      "title": "大島親方「朝青龍、白鵬。若かったというのもあるんだけど貴乃花さん」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_5LS3Q5EWYFBR5IH56GMYD2DCSI",
+      "publishedAt": "2026-08-29",
+      "publishedAtRaw": "SANSPO　8月29日 8時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260828-202608280001147",
-      "title": "横綱大の里　大関昇進を狙う熱海富士と熱のこもった稽古　二所ノ関親方「良い稽古をしている」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260828-202608280001147",
-      "publishedAt": "2026-08-28",
-      "publishedAtRaw": "日刊スポーツ　8月28日 19時46分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_WNNGZ5V26VDANP6VGT2EBUZM2M",
+      "title": "元把瑠都「横綱も当時、私の倍くらい強かったので…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_WNNGZ5V26VDANP6VGT2EBUZM2M",
+      "publishedAt": "2026-08-29",
+      "publishedAtRaw": "SANSPO　8月29日 7時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260828-202608280001212",
-      "title": "一意が夏巡業で一番おいしかったものとは…答えに独特表現「生きていました」大の里からも学び",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260828-202608280001212",
-      "publishedAt": "2026-08-28",
-      "publishedAtRaw": "日刊スポーツ　8月28日 19時37分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_FUIDEIU4OZEFJHO7O5XNMPD3LA",
+      "title": "白鵬氏「邪魔したね」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_FUIDEIU4OZEFJHO7O5XNMPD3LA",
+      "publishedAt": "2026-08-29",
+      "publishedAtRaw": "SANSPO　8月29日 6時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260828126",
-      "title": "霧島に泥だらけにされた一意は悲鳴「本当に覚えていない」初の巡業で一番の美味はあきたこまち「米が好き」【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260828126",
-      "publishedAt": "2026-08-28",
-      "publishedAtRaw": "デイリースポーツ　8月28日 19時29分",
+      "id": "dmenu-docomo-hochi-20260828-OHT1T51384",
+      "title": "二所ノ関親方　熱海富士にうなる「腰が重くなっている。間違いなく大関に上がる」　大の里に５勝６敗と善戦",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260828-OHT1T51384",
+      "publishedAt": "2026-08-29",
+      "publishedAtRaw": "スポーツ報知　8月29日 6時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
