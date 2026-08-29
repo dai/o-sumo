@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-29T08:22:18.265205+00:00",
+  "updatedAt": "2026-08-29T10:16:04.507387+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-tokyosports-401150",
-      "title": "【大相撲】お相撲さん２人で合計４１０キロ！　タクシーの意外な乗車方法とは…元力士が解説",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-401150",
+      "id": "dmenu-docomo-hochi-20260829-OHT1T51256",
+      "title": "元大関・朝乃山が相撲を取る稽古再開し５番　「そろそろ取ろうと思っていた」 地元・富山の豪雨被害には「戦う姿をみせたい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260829-OHT1T51256",
       "publishedAt": "2026-08-29",
-      "publishedAtRaw": "東スポWEB　8月29日 17時05分",
+      "publishedAtRaw": "スポーツ報知　8月29日 19時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260829-0213",
-      "title": "元北勝富士の大山親方が語るサウナと相撲【前編】「汗も涙も全て出た…」現役時代の最も心に残る思い出とは",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260829-0213",
+      "id": "dmenu-docomo-hochi-20260829-OHT1T51234",
+      "title": "草加市出身の幕下・峰刃、草加巡業に初参加　大関・琴桜に胸を借り「ありがたいですね」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260829-OHT1T51234",
       "publishedAt": "2026-08-29",
-      "publishedAtRaw": "スポニチアネックス　8月29日 16時45分",
+      "publishedAtRaw": "スポーツ報知　8月29日 18時24分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-jiji-2026082900284",
-      "title": "朝乃山に充実感＝大相撲",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026082900284",
+      "id": "dmenu-docomo-sponichi-spngoo-20260829-0259",
+      "title": "大関・琴桜、秋場所へ「やるべきことをやっている。基礎をきちっと」　ご当所力士に胸出し",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260829-0259",
       "publishedAt": "2026-08-29",
-      "publishedAtRaw": "時事通信　8月29日 16時19分",
+      "publishedAtRaw": "スポニチアネックス　8月29日 18時21分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-401138",
-      "title": "元旭天鵬の大島親方　横綱８人と対戦して一番強いと思った力士「朝青龍、白鵬とかいたけど…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-401138",
+      "id": "dmenu-docomo-tokyosports-401158",
+      "title": "【大相撲】力士が入院したら病院食で足りる？ 元幕内力士「多めに出してくれるけど…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-401158",
       "publishedAt": "2026-08-29",
-      "publishedAtRaw": "東スポWEB　8月29日 14時57分",
+      "publishedAtRaw": "東スポWEB　8月29日 18時15分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-chuspo-1303719",
-      "title": "「相撲がオリンピック種目になることが夢」白鵬さんと対談した元大関把瑠都は現在エストニア相撲連盟会長",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1303719",
+      "id": "dmenu-docomo-hochi-20260829-OHT1T51225",
+      "title": "大栄翔「ご近所さんなので」　追手風部屋から徒歩圏内の草加巡業で声援に感謝",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260829-OHT1T51225",
       "publishedAt": "2026-08-29",
-      "publishedAtRaw": "中日スポーツ　8月29日 13時43分",
+      "publishedAtRaw": "スポーツ報知　8月29日 18時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
