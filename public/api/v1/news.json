@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-29T02:23:44.677436+00:00",
+  "updatedAt": "2026-08-29T04:19:55.011416+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-chuspo-1303686",
+      "title": "元大関把瑠都・ホーヴェルソンさん、「恥ずかしかった」ということは… 元横綱白鵬翔さんと対談、意外な悩みを告白",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1303686",
+      "publishedAt": "2026-08-29",
+      "publishedAtRaw": "中日スポーツ　8月29日 11時56分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-nikkangendai-1243660",
       "title": "横綱豊昇龍に師匠が“最後通牒”も…起死回生の手本は「モンゴル出身の先輩横綱」か",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_WNNGZ5V26VDANP6VGT2EBUZM2M",
       "publishedAt": "2026-08-29",
       "publishedAtRaw": "SANSPO　8月29日 7時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_FUIDEIU4OZEFJHO7O5XNMPD3LA",
-      "title": "白鵬氏「邪魔したね」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_FUIDEIU4OZEFJHO7O5XNMPD3LA",
-      "publishedAt": "2026-08-29",
-      "publishedAtRaw": "SANSPO　8月29日 6時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
