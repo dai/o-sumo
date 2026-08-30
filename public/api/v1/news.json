@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-30T06:30:01.111763+00:00",
+  "updatedAt": "2026-08-30T08:22:58.473936+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-mainichi-20260830k0000m050116000c",
-      "title": "東日本横綱の駒大・阿部が初優勝　全国体重別135キロ以上級",
-      "url": "https://topics.smt.docomo.ne.jp/article/mainichi/sports/mainichi-20260830k0000m050116000c",
+      "id": "dmenu-docomo-f-bt-tp1-260830-202608300000887",
+      "title": "「無理するなよと言ってるけど…」34歳宇良の“皆勤”を高田川巡業部長が高評価　夏巡業が終了",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260830-202608300000887",
       "publishedAt": "2026-08-30",
-      "publishedAtRaw": "毎日新聞　8月30日 15時21分",
+      "publishedAtRaw": "日刊スポーツ　8月30日 17時13分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-401245",
-      "title": "【大相撲】28日間にわたる夏巡業が終了　高田川巡業部長「本場所と並んで大事な２本柱の仕事」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-401245",
+      "id": "dmenu-docomo-f-bt-tp1-260830-202608300000886",
+      "title": "夏巡業全日程が終了、横綱大の里「暑すぎて…」\"冷房なし\"を笑顔で回顧　左肩の状態も説明",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260830-202608300000886",
       "publishedAt": "2026-08-30",
-      "publishedAtRaw": "東スポWEB　8月30日 14時43分",
+      "publishedAtRaw": "日刊スポーツ　8月30日 17時09分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260830-0002",
-      "title": "元北勝富士の大山親方が語るサウナと相撲【後編】「ぶっ飛びました」断髪後の快感と親方業務に勤しむ日々",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260830-0002",
+      "id": "dmenu-docomo-sponichi-spngoo-20260830-0257",
+      "title": "横綱・大の里「四股、すり足を徹底的にやっていく」　夏巡業28日間の全日程終了「相撲に興味を持って…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260830-0257",
       "publishedAt": "2026-08-30",
-      "publishedAtRaw": "スポニチアネックス　8月30日 11時30分",
+      "publishedAtRaw": "スポニチアネックス　8月30日 17時04分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-mainichi-20260829k0000m050080000c",
-      "title": "初戦から好取組続々　30日学生相撲・全日本体重別　重量級展望",
-      "url": "https://topics.smt.docomo.ne.jp/article/mainichi/sports/mainichi-20260829k0000m050080000c",
+      "id": "dmenu-docomo-f-bt-tp1-260830-202608300000865",
+      "title": "28日間の夏巡業が終了「金もうけではない。相撲に興味持ってもらえたら」高田川巡業部長の思い",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260830-202608300000865",
       "publishedAt": "2026-08-30",
-      "publishedAtRaw": "毎日新聞　8月30日 8時00分",
+      "publishedAtRaw": "日刊スポーツ　8月30日 16時48分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_EDCUERA4NJCJRFU7CUKDLQRVBM",
-      "title": "藤井康生氏「気の毒なんですよ。横綱になってから優勝がないと言われて」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_EDCUERA4NJCJRFU7CUKDLQRVBM",
+      "id": "dmenu-docomo-kyodo_nor-2026083001000665",
+      "title": "大の里「走り切れた」　夏巡業終了、日程緩和へ",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026083001000665",
       "publishedAt": "2026-08-30",
-      "publishedAtRaw": "SANSPO　8月30日 6時00分",
+      "publishedAtRaw": "共同通信　8月30日 16時41分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
