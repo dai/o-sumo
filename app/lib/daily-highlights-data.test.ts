@@ -6,6 +6,7 @@ import {
   type FeaturedMatchup,
 } from './daily-highlights-data';
 import { torikumiArchive, type TorikumiDataSet, type TorikumiArchiveDay } from './torikumi-data';
+import { JULY2026_TORIKUMI_DATA } from './july2026-data';
 import { getDayPath } from './torikumi-routes';
 
 describe('daily-highlights-data', () => {
@@ -29,13 +30,14 @@ describe('daily-highlights-data', () => {
   });
 
   it('resolves live highlights from published results before the schedule', () => {
-    const resultDay = torikumiArchive.resultDays[3];
+    const julyArchive = JULY2026_TORIKUMI_DATA;
+    const resultDay = julyArchive.resultDays![3];
     const target = resolveDailyHighlightsTarget({
-      archive: torikumiArchive,
+      archive: julyArchive,
       bashoStatus: {
         kind: 'live',
-        startDate: torikumiArchive.scheduleDays[0].isoDate,
-        endDate: lastScheduleDay?.isoDate ?? null,
+        startDate: julyArchive.scheduleDays![0].isoDate,
+        endDate: julyArchive.scheduleDays![julyArchive.scheduleDays!.length - 1]?.isoDate ?? null,
         day: resultDay.day,
       },
     });
@@ -62,12 +64,14 @@ describe('daily-highlights-data', () => {
   });
 
   it('resolves final highlights from the latest published result with matches', () => {
-    const finalDay = torikumiArchive.resultDays[torikumiArchive.resultDays.length - 1]!;
+    const julyArchive = JULY2026_TORIKUMI_DATA;
+    const finalDay = julyArchive.resultDays![julyArchive.resultDays!.length - 1]!;
+    const lastScheduleDay = julyArchive.scheduleDays?.[julyArchive.scheduleDays.length - 1];
     const target = resolveDailyHighlightsTarget({
-      archive: torikumiArchive,
+      archive: julyArchive,
       bashoStatus: {
         kind: 'final',
-        startDate: torikumiArchive.scheduleDays[0].isoDate,
+        startDate: julyArchive.scheduleDays![0].isoDate,
         endDate: lastScheduleDay?.isoDate ?? null,
         day: null,
       },
@@ -149,9 +153,10 @@ describe('getDailyHighlights pending state', () => {
   });
 
   it('does not synthesize matchups from a static registry when official data exists', () => {
-    const finalDay = torikumiArchive.resultDays[torikumiArchive.resultDays.length - 1]!;
+    const julyArchive = JULY2026_TORIKUMI_DATA;
+    const finalDay = julyArchive.resultDays![julyArchive.resultDays!.length - 1]!;
     const target = resolveDailyHighlightsTarget({
-      archive: torikumiArchive,
+      archive: julyArchive,
       bashoStatus: { kind: 'final', startDate: null, endDate: null, day: null },
     });
     expect(target).toEqual({ day: finalDay, mode: 'result' });

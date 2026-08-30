@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { MARCH2026_TORIKUMI_DATA } from '../lib/march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from '../lib/may2026-data';
+import { JULY2026_TORIKUMI_DATA } from '../lib/july2026-data';
 import { torikumiArchive } from '../lib/torikumi-data';
 import { getDayPath } from '../lib/torikumi-routes';
 import TorikumiHubPage, { findLatestAbsentees } from './page';
@@ -14,13 +15,14 @@ describe('TorikumiHubPage', () => {
       name: '豊昇龍',
       profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/3842/',
     };
-    const resultDay = torikumiArchive.resultDays?.find((day) => day.status === 'published');
-    const scheduleDay = torikumiArchive.scheduleDays?.find((day) => day.status === 'published');
+    const julyData = JULY2026_TORIKUMI_DATA;
+    const resultDay = julyData.resultDays?.find((day) => day.status === 'published');
+    const scheduleDay = julyData.scheduleDays?.find((day) => day.status === 'published');
     expect(resultDay).toBeDefined();
     expect(scheduleDay).toBeDefined();
 
     const entries = findLatestAbsentees({
-      ...torikumiArchive,
+      ...julyData,
       resultDays: [{ ...resultDay!, day: 13 }],
       scheduleDays: [{
         ...scheduleDay!,
@@ -180,18 +182,18 @@ describe('TorikumiHubPage', () => {
     expect(screen.getAllByRole('link').some((l) => l.getAttribute('href') === `/${firstMayDay!.pathDate}-torikumi/`)).toBe(true);
   });
 
-  it('renders 202607 hub route with July archive links as the current basho', () => {
+  it('renders 202607 hub route with July archive links', () => {
     render(
       <MemoryRouter initialEntries={['/202607-torikumi']}>
         <TorikumiHubPage mode="result" />
       </MemoryRouter>,
     );
 
-    const firstCurrentDay = torikumiArchive.resultDays?.[0];
+    const firstJulyDay = JULY2026_TORIKUMI_DATA.resultDays?.[0];
     expect(screen.getByRole('heading', { level: 1, name: /七月場所/ })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202607-banzuke/');
-    expect(firstCurrentDay).toBeDefined();
-    expect(screen.getAllByRole('link').some((l) => l.getAttribute('href') === `/${firstCurrentDay!.pathDate}-torikumi/`)).toBe(true);
+    expect(firstJulyDay).toBeDefined();
+    expect(screen.getAllByRole('link').some((l) => l.getAttribute('href') === `/${firstJulyDay!.pathDate}-torikumi/`)).toBe(true);
   });
 
   it('exposes a breadcrumb on the basho hub back to home', () => {

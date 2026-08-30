@@ -55,13 +55,13 @@ describe('July 2026 archive', () => {
     expect(PAST_BASHO.map((basho) => basho.id)).toEqual(['202607', '202605', '202603']);
   });
 
-  it('keeps July routes, metadata, and sitemap URLs unique while July remains current', () => {
+  it('keeps routes, metadata, and sitemap URLs unique across all basho', () => {
     const routeConfigs = getAllArchiveRouteConfigs();
     const monthKeys = routeConfigs.map((config) => config.monthKey);
     const routePaths = routeConfigs.flatMap((config) => [config.banzukePath, config.resultPath, config.schedulePath]);
     const sitemapPaths = getSitemapEntries(routeConfigs).map((entry) => entry.loc);
 
-    expect(monthKeys).toEqual(['202603', '202605', '202607']);
+    expect(monthKeys).toEqual(['202603', '202605', '202607', '202609']);
     expect(new Set(monthKeys).size).toBe(monthKeys.length);
     expect(new Set(routePaths).size).toBe(routePaths.length);
     expect(sitemapPaths.filter((path) => path === '/202607-banzuke/')).toHaveLength(1);
@@ -73,13 +73,13 @@ describe('July 2026 archive', () => {
     });
   });
 
-  it('keeps the current public JSON API on July data', () => {
+  it('keeps the current public JSON API on September data', () => {
     const banzukeJson = JSON.parse(readFileSync(resolve(process.cwd(), 'public/api/v1/banzuke.json'), 'utf8'));
     const torikumiJson = JSON.parse(readFileSync(resolve(process.cwd(), 'public/api/v1/torikumi.json'), 'utf8'));
 
-    expect(banzukeJson).toMatchObject({ bashoName: '七月場所', year: '令和八年' });
-    expect(torikumiJson).toMatchObject({ bashoName: '七月場所', year: '令和八年' });
-    expect(torikumiJson.resultDays[0].pathDate).toBe('20260712');
-    expect(torikumiJson.scheduleDays[0].pathDate).toBe('20260712');
+    expect(banzukeJson).toMatchObject({ bashoName: '九月場所', year: '令和八年' });
+    expect(torikumiJson).toMatchObject({ bashoName: '九月場所', year: '令和八年' });
+    expect(torikumiJson.resultDays[0].pathDate).toBe('20260913');
+    expect(torikumiJson.scheduleDays[0].pathDate).toBe('20260913');
   });
 });

@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import DailyHighlightsSection from './DailyHighlightsSection';
 import { i18n } from '../lib/i18n';
 import { torikumiArchive, type TorikumiDataSet, type TorikumiArchiveDay } from '../lib/torikumi-data';
+import { JULY2026_TORIKUMI_DATA } from '../lib/july2026-data';
 
 function mockMobileViewport(matches: boolean) {
   Object.defineProperty(window, 'matchMedia', {
@@ -89,7 +90,7 @@ describe('DailyHighlightsSection', () => {
     });
 
     try {
-      renderHighlights(torikumiArchive, '202607', 'final', null);
+      renderHighlights(JULY2026_TORIKUMI_DATA, '202607', 'final', null);
 
       const section = await screen.findByRole('region', { name: '千秋楽を振り返る' });
       expect(within(section).getByText('千秋楽')).toBeInTheDocument();
@@ -153,7 +154,7 @@ describe('DailyHighlightsSection', () => {
     vi.stubGlobal('fetch', fetchSpy);
 
     try {
-      renderHighlights(torikumiArchive, '202607', 'final', null);
+      renderHighlights(JULY2026_TORIKUMI_DATA, '202607', 'final', null);
 
       const section = await screen.findByRole('region', { name: '千秋楽を振り返る' });
       await waitFor(() => {

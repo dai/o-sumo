@@ -5,6 +5,7 @@ import { afterEach, vi } from 'vitest';
 import TorikumiDayPage from './TorikumiDayPage';
 import { MARCH2026_TORIKUMI_DATA } from '../lib/march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from '../lib/may2026-data';
+import { JULY2026_TORIKUMI_DATA } from '../lib/july2026-data';
 import { torikumiArchive, type TorikumiArchiveDay } from '../lib/torikumi-data';
 import { getBanzukePathForDateKey, getHubPathForDateKey } from '../lib/torikumi-routes';
 import * as torikumiRoutes from '../lib/torikumi-routes';
@@ -43,7 +44,7 @@ describe('TorikumiDayPage', () => {
 
     const breadcrumb = screen.getByRole('navigation', { name: 'パンくず' });
     expect(within(breadcrumb).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
-    expect(within(breadcrumb).getByRole('link', { name: /七月場所|五月場所|三月場所/ })).toHaveAttribute('href', getHubPathForDateKey(firstResultDay.pathDate, 'result'));
+    expect(within(breadcrumb).getByRole('link', { name: /九月場所|七月場所|五月場所|三月場所/ })).toHaveAttribute('href', getHubPathForDateKey(firstResultDay.pathDate, 'result'));
     expect(within(breadcrumb).getByText(/初日|二の丸|.*日目/)).toBeInTheDocument();
   });
 
@@ -82,7 +83,7 @@ describe('TorikumiDayPage', () => {
   });
 
   it('shows result matches as one bottom-to-top flow from juryo through makuuchi', () => {
-    const firstResultDay = torikumiArchive.resultDays[0];
+    const firstResultDay = JULY2026_TORIKUMI_DATA.resultDays![0];
     renderPage(firstResultDay, 'result');
 
     // Result mode renders a single unified table: 十両 → 幕内の順に boutNo 昇順で結合し、
@@ -216,7 +217,7 @@ describe('TorikumiDayPage', () => {
   });
 
   it('shows the opening-day absentees from the current schedule data', () => {
-    const openingDay = torikumiArchive.scheduleDays.find((day) => day.day === 1);
+    const openingDay = JULY2026_TORIKUMI_DATA.scheduleDays?.find((day) => day.day === 1);
     expect(openingDay).toBeDefined();
 
     renderPage(openingDay!, 'schedule');
@@ -228,7 +229,7 @@ describe('TorikumiDayPage', () => {
   });
 
   it('shows all 14th-day absentees from the current schedule data', () => {
-    const day14 = torikumiArchive.scheduleDays.find((day) => day.day === 14);
+    const day14 = JULY2026_TORIKUMI_DATA.scheduleDays?.find((day) => day.day === 14);
     expect(day14?.pathDate).toBe('20260725');
 
     renderPage(day14!, 'schedule');

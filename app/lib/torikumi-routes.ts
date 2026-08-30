@@ -63,13 +63,17 @@ export function parseTopLevelSlug(slug: string): ParsedTorikumiSlug | null {
   };
 }
 
-export const MAY2026_RESULT_PATH = '/202605-torikumi';
-export const MAY2026_SCHEDULE_PATH = '/202605-yotei';
-export const MAY2026_BANZUKE_PATH = '/202605-banzuke';
+export const SEPTEMBER2026_RESULT_PATH = '/202609-torikumi';
+export const SEPTEMBER2026_SCHEDULE_PATH = '/202609-yotei';
+export const SEPTEMBER2026_BANZUKE_PATH = '/202609-banzuke';
 
 export const JULY2026_RESULT_PATH = '/202607-torikumi';
 export const JULY2026_SCHEDULE_PATH = '/202607-yotei';
 export const JULY2026_BANZUKE_PATH = '/202607-banzuke';
+
+export const MAY2026_RESULT_PATH = '/202605-torikumi';
+export const MAY2026_SCHEDULE_PATH = '/202605-yotei';
+export const MAY2026_BANZUKE_PATH = '/202605-banzuke';
 
 export const MARCH2026_RESULT_PATH = '/202603-torikumi';
 export const MARCH2026_SCHEDULE_PATH = '/202603-yotei';

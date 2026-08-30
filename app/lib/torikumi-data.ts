@@ -1,5 +1,3 @@
-import { JULY2026_TORIKUMI_DATA } from './july2026-data';
-
 export interface TorikumiMatch {
   division: '幕内' | '十両';
   boutNo: number;
@@ -59,7 +57,830 @@ export interface TorikumiDataSet {
   scheduleDays?: TorikumiArchiveDay[];
 }
 
-export const torikumiData: TorikumiDataSet = JULY2026_TORIKUMI_DATA;
+export const torikumiData: TorikumiDataSet = {
+  "bashoId": 637,
+  "bashoName": "九月場所",
+  "year": "令和八年",
+  "updatedAt": "2026-08-31T07:40:29+09:00",
+  "resultUpdatedAt": "2026-08-31T07:40:29+09:00",
+  "scheduleUpdatedAt": "2026-08-31T07:40:29+09:00",
+  "today": null,
+  "tomorrow": null,
+  "resultDays": [
+    {
+      "day": 1,
+      "isoDate": "2026-09-13",
+      "pathDate": "20260913",
+      "label": "初日",
+      "dayHead": "初日： 令和8年9月13日(日)",
+      "status": "pending",
+      "statusMessage": "結果未更新",
+      "data": {
+        "makuuchi": {
+          "day": 1,
+          "dayName": "取組日 初日",
+          "dayHead": "初日： 令和8年9月13日(日)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 1,
+          "dayName": "取組日 初日",
+          "dayHead": "初日： 令和8年9月13日(日)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 2,
+      "isoDate": "2026-09-14",
+      "pathDate": "20260914",
+      "label": "二日目",
+      "dayHead": "二日目： 令和8年9月14日(月)",
+      "status": "pending",
+      "statusMessage": "結果未更新",
+      "data": {
+        "makuuchi": {
+          "day": 2,
+          "dayName": "取組日 二日目",
+          "dayHead": "二日目： 令和8年9月14日(月)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 2,
+          "dayName": "取組日 二日目",
+          "dayHead": "二日目： 令和8年9月14日(月)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 3,
+      "isoDate": "2026-09-15",
+      "pathDate": "20260915",
+      "label": "三日目",
+      "dayHead": "三日目： 令和8年9月15日(火)",
+      "status": "pending",
+      "statusMessage": "結果未更新",
+      "data": {
+        "makuuchi": {
+          "day": 3,
+          "dayName": "取組日 三日目",
+          "dayHead": "三日目： 令和8年9月15日(火)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 3,
+          "dayName": "取組日 三日目",
+          "dayHead": "三日目： 令和8年9月15日(火)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 4,
+      "isoDate": "2026-09-16",
+      "pathDate": "20260916",
+      "label": "四日目",
+      "dayHead": "四日目： 令和8年9月16日(水)",
+      "status": "pending",
+      "statusMessage": "結果未更新",
+      "data": {
+        "makuuchi": {
+          "day": 4,
+          "dayName": "取組日 四日目",
+          "dayHead": "四日目： 令和8年9月16日(水)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 4,
+          "dayName": "取組日 四日目",
+          "dayHead": "四日目： 令和8年9月16日(水)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 5,
+      "isoDate": "2026-09-17",
+      "pathDate": "20260917",
+      "label": "五日目",
+      "dayHead": "五日目： 令和8年9月17日(木)",
+      "status": "pending",
+      "statusMessage": "結果未更新",
+      "data": {
+        "makuuchi": {
+          "day": 5,
+          "dayName": "取組日 五日目",
+          "dayHead": "五日目： 令和8年9月17日(木)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 5,
+          "dayName": "取組日 五日目",
+          "dayHead": "五日目： 令和8年9月17日(木)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 6,
+      "isoDate": "2026-09-18",
+      "pathDate": "20260918",
+      "label": "六日目",
+      "dayHead": "六日目： 令和8年9月18日(金)",
+      "status": "pending",
+      "statusMessage": "結果未更新",
+      "data": {
+        "makuuchi": {
+          "day": 6,
+          "dayName": "取組日 六日目",
+          "dayHead": "六日目： 令和8年9月18日(金)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 6,
+          "dayName": "取組日 六日目",
+          "dayHead": "六日目： 令和8年9月18日(金)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 7,
+      "isoDate": "2026-09-19",
+      "pathDate": "20260919",
+      "label": "七日目",
+      "dayHead": "七日目： 令和8年9月19日(土)",
+      "status": "pending",
+      "statusMessage": "結果未更新",
+      "data": {
+        "makuuchi": {
+          "day": 7,
+          "dayName": "取組日 七日目",
+          "dayHead": "七日目： 令和8年9月19日(土)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 7,
+          "dayName": "取組日 七日目",
+          "dayHead": "七日目： 令和8年9月19日(土)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 8,
+      "isoDate": "2026-09-20",
+      "pathDate": "20260920",
+      "label": "中日",
+      "dayHead": "中日： 令和8年9月20日(日)",
+      "status": "pending",
+      "statusMessage": "結果未更新",
+      "data": {
+        "makuuchi": {
+          "day": 8,
+          "dayName": "取組日 中日",
+          "dayHead": "中日： 令和8年9月20日(日)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 8,
+          "dayName": "取組日 中日",
+          "dayHead": "中日： 令和8年9月20日(日)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 9,
+      "isoDate": "2026-09-21",
+      "pathDate": "20260921",
+      "label": "九日目",
+      "dayHead": "九日目： 令和8年9月21日(月)",
+      "status": "pending",
+      "statusMessage": "結果未更新",
+      "data": {
+        "makuuchi": {
+          "day": 9,
+          "dayName": "取組日 九日目",
+          "dayHead": "九日目： 令和8年9月21日(月)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 9,
+          "dayName": "取組日 九日目",
+          "dayHead": "九日目： 令和8年9月21日(月)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 10,
+      "isoDate": "2026-09-22",
+      "pathDate": "20260922",
+      "label": "十日目",
+      "dayHead": "十日目： 令和8年9月22日(火)",
+      "status": "pending",
+      "statusMessage": "結果未更新",
+      "data": {
+        "makuuchi": {
+          "day": 10,
+          "dayName": "取組日 十日目",
+          "dayHead": "十日目： 令和8年9月22日(火)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 10,
+          "dayName": "取組日 十日目",
+          "dayHead": "十日目： 令和8年9月22日(火)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 11,
+      "isoDate": "2026-09-23",
+      "pathDate": "20260923",
+      "label": "十一日目",
+      "dayHead": "十一日目： 令和8年9月23日(水)",
+      "status": "pending",
+      "statusMessage": "結果未更新",
+      "data": {
+        "makuuchi": {
+          "day": 11,
+          "dayName": "取組日 十一日目",
+          "dayHead": "十一日目： 令和8年9月23日(水)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 11,
+          "dayName": "取組日 十一日目",
+          "dayHead": "十一日目： 令和8年9月23日(水)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 12,
+      "isoDate": "2026-09-24",
+      "pathDate": "20260924",
+      "label": "十二日目",
+      "dayHead": "十二日目： 令和8年9月24日(木)",
+      "status": "pending",
+      "statusMessage": "結果未更新",
+      "data": {
+        "makuuchi": {
+          "day": 12,
+          "dayName": "取組日 十二日目",
+          "dayHead": "十二日目： 令和8年9月24日(木)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 12,
+          "dayName": "取組日 十二日目",
+          "dayHead": "十二日目： 令和8年9月24日(木)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 13,
+      "isoDate": "2026-09-25",
+      "pathDate": "20260925",
+      "label": "十三日目",
+      "dayHead": "十三日目： 令和8年9月25日(金)",
+      "status": "pending",
+      "statusMessage": "結果未更新",
+      "data": {
+        "makuuchi": {
+          "day": 13,
+          "dayName": "取組日 十三日目",
+          "dayHead": "十三日目： 令和8年9月25日(金)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 13,
+          "dayName": "取組日 十三日目",
+          "dayHead": "十三日目： 令和8年9月25日(金)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 14,
+      "isoDate": "2026-09-26",
+      "pathDate": "20260926",
+      "label": "十四日目",
+      "dayHead": "十四日目： 令和8年9月26日(土)",
+      "status": "pending",
+      "statusMessage": "結果未更新",
+      "data": {
+        "makuuchi": {
+          "day": 14,
+          "dayName": "取組日 十四日目",
+          "dayHead": "十四日目： 令和8年9月26日(土)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 14,
+          "dayName": "取組日 十四日目",
+          "dayHead": "十四日目： 令和8年9月26日(土)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 15,
+      "isoDate": "2026-09-27",
+      "pathDate": "20260927",
+      "label": "千秋楽",
+      "dayHead": "千秋楽： 令和8年9月27日(日)",
+      "status": "pending",
+      "statusMessage": "結果未更新",
+      "data": {
+        "makuuchi": {
+          "day": 15,
+          "dayName": "取組日 千秋楽",
+          "dayHead": "千秋楽： 令和8年9月27日(日)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 15,
+          "dayName": "取組日 千秋楽",
+          "dayHead": "千秋楽： 令和8年9月27日(日)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    }
+  ],
+  "scheduleDays": [
+    {
+      "day": 1,
+      "isoDate": "2026-09-13",
+      "pathDate": "20260913",
+      "label": "初日",
+      "dayHead": "初日： 令和8年9月13日(日)",
+      "status": "pending",
+      "statusMessage": "取組予定未更新",
+      "data": {
+        "makuuchi": {
+          "day": 1,
+          "dayName": "取組日 初日",
+          "dayHead": "初日： 令和8年9月13日(日)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 1,
+          "dayName": "取組日 初日",
+          "dayHead": "初日： 令和8年9月13日(日)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 2,
+      "isoDate": "2026-09-14",
+      "pathDate": "20260914",
+      "label": "二日目",
+      "dayHead": "二日目： 令和8年9月14日(月)",
+      "status": "pending",
+      "statusMessage": "取組予定未更新",
+      "data": {
+        "makuuchi": {
+          "day": 2,
+          "dayName": "取組日 二日目",
+          "dayHead": "二日目： 令和8年9月14日(月)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 2,
+          "dayName": "取組日 二日目",
+          "dayHead": "二日目： 令和8年9月14日(月)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 3,
+      "isoDate": "2026-09-15",
+      "pathDate": "20260915",
+      "label": "三日目",
+      "dayHead": "三日目： 令和8年9月15日(火)",
+      "status": "pending",
+      "statusMessage": "取組予定未更新",
+      "data": {
+        "makuuchi": {
+          "day": 3,
+          "dayName": "取組日 三日目",
+          "dayHead": "三日目： 令和8年9月15日(火)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 3,
+          "dayName": "取組日 三日目",
+          "dayHead": "三日目： 令和8年9月15日(火)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 4,
+      "isoDate": "2026-09-16",
+      "pathDate": "20260916",
+      "label": "四日目",
+      "dayHead": "四日目： 令和8年9月16日(水)",
+      "status": "pending",
+      "statusMessage": "取組予定未更新",
+      "data": {
+        "makuuchi": {
+          "day": 4,
+          "dayName": "取組日 四日目",
+          "dayHead": "四日目： 令和8年9月16日(水)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 4,
+          "dayName": "取組日 四日目",
+          "dayHead": "四日目： 令和8年9月16日(水)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 5,
+      "isoDate": "2026-09-17",
+      "pathDate": "20260917",
+      "label": "五日目",
+      "dayHead": "五日目： 令和8年9月17日(木)",
+      "status": "pending",
+      "statusMessage": "取組予定未更新",
+      "data": {
+        "makuuchi": {
+          "day": 5,
+          "dayName": "取組日 五日目",
+          "dayHead": "五日目： 令和8年9月17日(木)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 5,
+          "dayName": "取組日 五日目",
+          "dayHead": "五日目： 令和8年9月17日(木)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 6,
+      "isoDate": "2026-09-18",
+      "pathDate": "20260918",
+      "label": "六日目",
+      "dayHead": "六日目： 令和8年9月18日(金)",
+      "status": "pending",
+      "statusMessage": "取組予定未更新",
+      "data": {
+        "makuuchi": {
+          "day": 6,
+          "dayName": "取組日 六日目",
+          "dayHead": "六日目： 令和8年9月18日(金)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 6,
+          "dayName": "取組日 六日目",
+          "dayHead": "六日目： 令和8年9月18日(金)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 7,
+      "isoDate": "2026-09-19",
+      "pathDate": "20260919",
+      "label": "七日目",
+      "dayHead": "七日目： 令和8年9月19日(土)",
+      "status": "pending",
+      "statusMessage": "取組予定未更新",
+      "data": {
+        "makuuchi": {
+          "day": 7,
+          "dayName": "取組日 七日目",
+          "dayHead": "七日目： 令和8年9月19日(土)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 7,
+          "dayName": "取組日 七日目",
+          "dayHead": "七日目： 令和8年9月19日(土)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 8,
+      "isoDate": "2026-09-20",
+      "pathDate": "20260920",
+      "label": "中日",
+      "dayHead": "中日： 令和8年9月20日(日)",
+      "status": "pending",
+      "statusMessage": "取組予定未更新",
+      "data": {
+        "makuuchi": {
+          "day": 8,
+          "dayName": "取組日 中日",
+          "dayHead": "中日： 令和8年9月20日(日)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 8,
+          "dayName": "取組日 中日",
+          "dayHead": "中日： 令和8年9月20日(日)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 9,
+      "isoDate": "2026-09-21",
+      "pathDate": "20260921",
+      "label": "九日目",
+      "dayHead": "九日目： 令和8年9月21日(月)",
+      "status": "pending",
+      "statusMessage": "取組予定未更新",
+      "data": {
+        "makuuchi": {
+          "day": 9,
+          "dayName": "取組日 九日目",
+          "dayHead": "九日目： 令和8年9月21日(月)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 9,
+          "dayName": "取組日 九日目",
+          "dayHead": "九日目： 令和8年9月21日(月)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 10,
+      "isoDate": "2026-09-22",
+      "pathDate": "20260922",
+      "label": "十日目",
+      "dayHead": "十日目： 令和8年9月22日(火)",
+      "status": "pending",
+      "statusMessage": "取組予定未更新",
+      "data": {
+        "makuuchi": {
+          "day": 10,
+          "dayName": "取組日 十日目",
+          "dayHead": "十日目： 令和8年9月22日(火)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 10,
+          "dayName": "取組日 十日目",
+          "dayHead": "十日目： 令和8年9月22日(火)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 11,
+      "isoDate": "2026-09-23",
+      "pathDate": "20260923",
+      "label": "十一日目",
+      "dayHead": "十一日目： 令和8年9月23日(水)",
+      "status": "pending",
+      "statusMessage": "取組予定未更新",
+      "data": {
+        "makuuchi": {
+          "day": 11,
+          "dayName": "取組日 十一日目",
+          "dayHead": "十一日目： 令和8年9月23日(水)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 11,
+          "dayName": "取組日 十一日目",
+          "dayHead": "十一日目： 令和8年9月23日(水)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 12,
+      "isoDate": "2026-09-24",
+      "pathDate": "20260924",
+      "label": "十二日目",
+      "dayHead": "十二日目： 令和8年9月24日(木)",
+      "status": "pending",
+      "statusMessage": "取組予定未更新",
+      "data": {
+        "makuuchi": {
+          "day": 12,
+          "dayName": "取組日 十二日目",
+          "dayHead": "十二日目： 令和8年9月24日(木)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 12,
+          "dayName": "取組日 十二日目",
+          "dayHead": "十二日目： 令和8年9月24日(木)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 13,
+      "isoDate": "2026-09-25",
+      "pathDate": "20260925",
+      "label": "十三日目",
+      "dayHead": "十三日目： 令和8年9月25日(金)",
+      "status": "pending",
+      "statusMessage": "取組予定未更新",
+      "data": {
+        "makuuchi": {
+          "day": 13,
+          "dayName": "取組日 十三日目",
+          "dayHead": "十三日目： 令和8年9月25日(金)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 13,
+          "dayName": "取組日 十三日目",
+          "dayHead": "十三日目： 令和8年9月25日(金)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 14,
+      "isoDate": "2026-09-26",
+      "pathDate": "20260926",
+      "label": "十四日目",
+      "dayHead": "十四日目： 令和8年9月26日(土)",
+      "status": "pending",
+      "statusMessage": "取組予定未更新",
+      "data": {
+        "makuuchi": {
+          "day": 14,
+          "dayName": "取組日 十四日目",
+          "dayHead": "十四日目： 令和8年9月26日(土)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 14,
+          "dayName": "取組日 十四日目",
+          "dayHead": "十四日目： 令和8年9月26日(土)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    },
+    {
+      "day": 15,
+      "isoDate": "2026-09-27",
+      "pathDate": "20260927",
+      "label": "千秋楽",
+      "dayHead": "千秋楽： 令和8年9月27日(日)",
+      "status": "pending",
+      "statusMessage": "取組予定未更新",
+      "data": {
+        "makuuchi": {
+          "day": 15,
+          "dayName": "取組日 千秋楽",
+          "dayHead": "千秋楽： 令和8年9月27日(日)",
+          "division": "幕内",
+          "matches": [],
+          "absentees": []
+        },
+        "juryo": {
+          "day": 15,
+          "dayName": "取組日 千秋楽",
+          "dayHead": "千秋楽： 令和8年9月27日(日)",
+          "division": "十両",
+          "matches": [],
+          "absentees": []
+        }
+      }
+    }
+  ]
+};
 
 export const torikumiArchive = {
   bashoName: torikumiData.bashoName,
