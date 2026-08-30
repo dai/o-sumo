@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-30T04:21:46.424979+00:00",
+  "updatedAt": "2026-08-30T06:30:01.111763+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-mainichi-20260830k0000m050116000c",
+      "title": "東日本横綱の駒大・阿部が初優勝　全国体重別135キロ以上級",
+      "url": "https://topics.smt.docomo.ne.jp/article/mainichi/sports/mainichi-20260830k0000m050116000c",
+      "publishedAt": "2026-08-30",
+      "publishedAtRaw": "毎日新聞　8月30日 15時21分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-tokyosports-401245",
+      "title": "【大相撲】28日間にわたる夏巡業が終了　高田川巡業部長「本場所と並んで大事な２本柱の仕事」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-401245",
+      "publishedAt": "2026-08-30",
+      "publishedAtRaw": "東スポWEB　8月30日 14時43分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-sponichi-spngoo-20260830-0002",
       "title": "元北勝富士の大山親方が語るサウナと相撲【後編】「ぶっ飛びました」断髪後の快感と親方業務に勤しむ日々",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_EDCUERA4NJCJRFU7CUKDLQRVBM",
       "publishedAt": "2026-08-30",
       "publishedAtRaw": "SANSPO　8月30日 6時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260830-0099",
-      "title": "琴桜「基礎をきちっと」　亡き恩人へ「いい結果届ける」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260830-0099",
-      "publishedAt": "2026-08-30",
-      "publishedAtRaw": "スポニチアネックス　8月30日 4時10分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-mainichi-20260828k0000m050347000c",
-      "title": "レスリングと相撲の「二刀流」　慶応大・佐藤、全国体重別に挑む",
-      "url": "https://topics.smt.docomo.ne.jp/article/mainichi/sports/mainichi-20260828k0000m050347000c",
-      "publishedAt": "2026-08-29",
-      "publishedAtRaw": "毎日新聞　8月29日 20時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
