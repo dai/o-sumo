@@ -345,7 +345,8 @@ async function main() {
       process.stdin.on('end', () => resolve(text));
       process.stdin.on('error', reject);
     });
-    process.stdout.write(`${JSON.stringify(assessCollectedEnvironment(JSON.parse(input)))}\n`);
+    const sanitized = input.replace(/^\uFEFF/, '');
+    process.stdout.write(`${JSON.stringify(assessCollectedEnvironment(JSON.parse(sanitized)))}\n`);
     return;
   }
   const baseUrlIndex = process.argv.indexOf('--base-url');

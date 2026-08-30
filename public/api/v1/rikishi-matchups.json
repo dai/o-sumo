@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-17T17:24:24+09:00",
+  "updatedAt": "2026-08-31T07:40:29+09:00",
   "matchups": [
     {
       "rikishi1Id": 2565,
@@ -42,12 +42,6 @@
       "rikishi2Id": 3265,
       "rikishi1Wins": 8,
       "rikishi2Wins": 8
-    },
-    {
-      "rikishi1Id": 2565,
-      "rikishi2Id": 3334,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 0
     },
     {
       "rikishi1Id": 2565,
@@ -228,12 +222,6 @@
       "rikishi2Id": 3990,
       "rikishi1Wins": 1,
       "rikishi2Wins": 3
-    },
-    {
-      "rikishi1Id": 2565,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 1
     },
     {
       "rikishi1Id": 2565,
@@ -588,12 +576,6 @@
       "rikishi2Id": 3990,
       "rikishi1Wins": 2,
       "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 2629,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 1
     },
     {
       "rikishi1Id": 2629,
@@ -1161,12 +1143,6 @@
     },
     {
       "rikishi1Id": 2890,
-      "rikishi2Id": 3914,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 0
-    },
-    {
-      "rikishi1Id": 2890,
       "rikishi2Id": 3933,
       "rikishi1Wins": 3,
       "rikishi2Wins": 4
@@ -1191,14 +1167,14 @@
     },
     {
       "rikishi1Id": 2890,
-      "rikishi2Id": 3990,
-      "rikishi1Wins": 4,
-      "rikishi2Wins": 4
+      "rikishi2Id": 3988,
+      "rikishi1Wins": 0,
+      "rikishi2Wins": 1
     },
     {
       "rikishi1Id": 2890,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 0,
+      "rikishi2Id": 3990,
+      "rikishi1Wins": 4,
       "rikishi2Wins": 4
     },
     {
@@ -1365,12 +1341,6 @@
     },
     {
       "rikishi1Id": 2892,
-      "rikishi2Id": 3334,
-      "rikishi1Wins": 6,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 2892,
       "rikishi2Id": 3337,
       "rikishi1Wins": 5,
       "rikishi2Wins": 10
@@ -1527,9 +1497,9 @@
     },
     {
       "rikishi1Id": 2892,
-      "rikishi2Id": 3914,
-      "rikishi1Wins": 2,
-      "rikishi2Wins": 0
+      "rikishi2Id": 3927,
+      "rikishi1Wins": 0,
+      "rikishi2Wins": 1
     },
     {
       "rikishi1Id": 2892,
@@ -1557,15 +1527,15 @@
     },
     {
       "rikishi1Id": 2892,
-      "rikishi2Id": 3990,
+      "rikishi2Id": 3988,
       "rikishi1Wins": 1,
-      "rikishi2Wins": 2
+      "rikishi2Wins": 0
     },
     {
       "rikishi1Id": 2892,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 1
+      "rikishi2Id": 3990,
+      "rikishi1Wins": 1,
+      "rikishi2Wins": 2
     },
     {
       "rikishi1Id": 2892,
@@ -1632,6 +1602,12 @@
       "rikishi2Id": 4124,
       "rikishi1Wins": 1,
       "rikishi2Wins": 2
+    },
+    {
+      "rikishi1Id": 2892,
+      "rikishi2Id": 4142,
+      "rikishi1Wins": 0,
+      "rikishi2Wins": 1
     },
     {
       "rikishi1Id": 2892,
@@ -1710,12 +1686,6 @@
       "rikishi2Id": 3265,
       "rikishi1Wins": 7,
       "rikishi2Wins": 10
-    },
-    {
-      "rikishi1Id": 3207,
-      "rikishi2Id": 3334,
-      "rikishi1Wins": 2,
-      "rikishi2Wins": 1
     },
     {
       "rikishi1Id": 3207,
@@ -1875,12 +1845,6 @@
     },
     {
       "rikishi1Id": 3207,
-      "rikishi2Id": 3914,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 0
-    },
-    {
-      "rikishi1Id": 3207,
       "rikishi2Id": 3933,
       "rikishi1Wins": 6,
       "rikishi2Wins": 3
@@ -1902,12 +1866,6 @@
       "rikishi2Id": 3990,
       "rikishi1Wins": 3,
       "rikishi2Wins": 5
-    },
-    {
-      "rikishi1Id": 3207,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 2,
-      "rikishi2Wins": 2
     },
     {
       "rikishi1Id": 3207,
@@ -2181,12 +2139,6 @@
     },
     {
       "rikishi1Id": 3255,
-      "rikishi2Id": 3914,
-      "rikishi1Wins": 2,
-      "rikishi2Wins": 3
-    },
-    {
-      "rikishi1Id": 3255,
       "rikishi2Id": 3933,
       "rikishi1Wins": 1,
       "rikishi2Wins": 4
@@ -2211,15 +2163,15 @@
     },
     {
       "rikishi1Id": 3255,
-      "rikishi2Id": 3990,
-      "rikishi1Wins": 3,
-      "rikishi2Wins": 0
+      "rikishi2Id": 3988,
+      "rikishi1Wins": 0,
+      "rikishi2Wins": 2
     },
     {
       "rikishi1Id": 3255,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 2,
-      "rikishi2Wins": 1
+      "rikishi2Id": 3990,
+      "rikishi1Wins": 3,
+      "rikishi2Wins": 0
     },
     {
       "rikishi1Id": 3255,
@@ -2376,12 +2328,6 @@
       "rikishi2Id": 4336,
       "rikishi1Wins": 0,
       "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3265,
-      "rikishi2Id": 3334,
-      "rikishi1Wins": 3,
-      "rikishi2Wins": 2
     },
     {
       "rikishi1Id": 3265,
@@ -2636,336 +2582,6 @@
       "rikishi2Wins": 1
     },
     {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3337,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 3
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3367,
-      "rikishi1Wins": 7,
-      "rikishi2Wins": 8
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3371,
-      "rikishi1Wins": 2,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3485,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 3
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3594,
-      "rikishi1Wins": 3,
-      "rikishi2Wins": 3
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3616,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 3
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3620,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 0
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3682,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 4
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3705,
-      "rikishi1Wins": 2,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3711,
-      "rikishi1Wins": 9,
-      "rikishi2Wins": 3
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3742,
-      "rikishi1Wins": 4,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3743,
-      "rikishi1Wins": 3,
-      "rikishi2Wins": 3
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3753,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 0
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3761,
-      "rikishi1Wins": 5,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3803,
-      "rikishi1Wins": 5,
-      "rikishi2Wins": 6
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3818,
-      "rikishi1Wins": 4,
-      "rikishi2Wins": 3
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3839,
-      "rikishi1Wins": 5,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3840,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3842,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3844,
-      "rikishi1Wins": 2,
-      "rikishi2Wins": 0
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3907,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3914,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3933,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3939,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 6
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3969,
-      "rikishi1Wins": 16,
-      "rikishi2Wins": 3
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3983,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 3990,
-      "rikishi1Wins": 3,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 3,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4055,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 4
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4079,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 4
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4093,
-      "rikishi1Wins": 2,
-      "rikishi2Wins": 6
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4095,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 5
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4101,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 5
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4108,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4112,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4116,
-      "rikishi1Wins": 3,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4120,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 4
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4121,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4124,
-      "rikishi1Wins": 4,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4158,
-      "rikishi1Wins": 3,
-      "rikishi2Wins": 5
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4164,
-      "rikishi1Wins": 2,
-      "rikishi2Wins": 5
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4165,
-      "rikishi1Wins": 3,
-      "rikishi2Wins": 5
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4171,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4175,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4187,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 4
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4191,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4227,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4231,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4232,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4243,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4267,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 0
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4279,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4285,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4287,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 0
-    },
-    {
-      "rikishi1Id": 3334,
-      "rikishi2Id": 4336,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 0
-    },
-    {
       "rikishi1Id": 3337,
       "rikishi2Id": 3367,
       "rikishi1Wins": 3,
@@ -3107,12 +2723,6 @@
       "rikishi1Id": 3337,
       "rikishi2Id": 3907,
       "rikishi1Wins": 1,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3337,
-      "rikishi2Id": 3914,
-      "rikishi1Wins": 3,
       "rikishi2Wins": 1
     },
     {
@@ -3393,12 +3003,6 @@
     },
     {
       "rikishi1Id": 3367,
-      "rikishi2Id": 3914,
-      "rikishi1Wins": 3,
-      "rikishi2Wins": 3
-    },
-    {
-      "rikishi1Id": 3367,
       "rikishi2Id": 3933,
       "rikishi1Wins": 2,
       "rikishi2Wins": 6
@@ -3423,15 +3027,15 @@
     },
     {
       "rikishi1Id": 3367,
-      "rikishi2Id": 3990,
-      "rikishi1Wins": 3,
-      "rikishi2Wins": 5
+      "rikishi2Id": 3988,
+      "rikishi1Wins": 2,
+      "rikishi2Wins": 0
     },
     {
       "rikishi1Id": 3367,
-      "rikishi2Id": 4025,
+      "rikishi2Id": 3990,
       "rikishi1Wins": 3,
-      "rikishi2Wins": 2
+      "rikishi2Wins": 5
     },
     {
       "rikishi1Id": 3367,
@@ -3726,12 +3330,6 @@
       "rikishi2Id": 3990,
       "rikishi1Wins": 0,
       "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3371,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 2,
-      "rikishi2Wins": 0
     },
     {
       "rikishi1Id": 3371,
@@ -4197,12 +3795,6 @@
     },
     {
       "rikishi1Id": 3485,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 0
-    },
-    {
-      "rikishi1Id": 3485,
       "rikishi2Id": 4055,
       "rikishi1Wins": 6,
       "rikishi2Wins": 5
@@ -4437,12 +4029,6 @@
     },
     {
       "rikishi1Id": 3521,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3521,
       "rikishi2Id": 4055,
       "rikishi1Wins": 1,
       "rikishi2Wins": 6
@@ -4671,12 +4257,6 @@
     },
     {
       "rikishi1Id": 3553,
-      "rikishi2Id": 3914,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 0
-    },
-    {
-      "rikishi1Id": 3553,
       "rikishi2Id": 3933,
       "rikishi1Wins": 5,
       "rikishi2Wins": 5
@@ -4703,12 +4283,6 @@
       "rikishi1Id": 3553,
       "rikishi2Id": 3990,
       "rikishi1Wins": 4,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3553,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 2,
       "rikishi2Wins": 1
     },
     {
@@ -4971,12 +4545,6 @@
     },
     {
       "rikishi1Id": 3594,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 2,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3594,
       "rikishi2Id": 4055,
       "rikishi1Wins": 2,
       "rikishi2Wins": 7
@@ -5418,12 +4986,6 @@
       "rikishi2Id": 3990,
       "rikishi1Wins": 2,
       "rikishi2Wins": 3
-    },
-    {
-      "rikishi1Id": 3620,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 3,
-      "rikishi2Wins": 2
     },
     {
       "rikishi1Id": 3620,
@@ -5919,12 +5481,6 @@
     },
     {
       "rikishi1Id": 3682,
-      "rikishi2Id": 3914,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3682,
       "rikishi2Id": 3933,
       "rikishi1Wins": 1,
       "rikishi2Wins": 2
@@ -5951,12 +5507,6 @@
       "rikishi1Id": 3682,
       "rikishi2Id": 3990,
       "rikishi1Wins": 3,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3682,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 1,
       "rikishi2Wins": 1
     },
     {
@@ -6165,12 +5715,6 @@
     },
     {
       "rikishi1Id": 3705,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 3705,
       "rikishi2Id": 4055,
       "rikishi1Wins": 11,
       "rikishi2Wins": 5
@@ -6330,12 +5874,6 @@
       "rikishi2Id": 3990,
       "rikishi1Wins": 2,
       "rikishi2Wins": 4
-    },
-    {
-      "rikishi1Id": 3711,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 1
     },
     {
       "rikishi1Id": 3711,
@@ -6519,12 +6057,6 @@
     },
     {
       "rikishi1Id": 3742,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 2,
-      "rikishi2Wins": 3
-    },
-    {
-      "rikishi1Id": 3742,
       "rikishi2Id": 4079,
       "rikishi1Wins": 1,
       "rikishi2Wins": 1
@@ -6687,12 +6219,6 @@
     },
     {
       "rikishi1Id": 3743,
-      "rikishi2Id": 3914,
-      "rikishi1Wins": 2,
-      "rikishi2Wins": 0
-    },
-    {
-      "rikishi1Id": 3743,
       "rikishi2Id": 3933,
       "rikishi1Wins": 4,
       "rikishi2Wins": 3
@@ -6720,12 +6246,6 @@
       "rikishi2Id": 3990,
       "rikishi1Wins": 2,
       "rikishi2Wins": 3
-    },
-    {
-      "rikishi1Id": 3743,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 1
     },
     {
       "rikishi1Id": 3743,
@@ -7035,12 +6555,6 @@
     },
     {
       "rikishi1Id": 3761,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 0
-    },
-    {
-      "rikishi1Id": 3761,
       "rikishi2Id": 4055,
       "rikishi1Wins": 3,
       "rikishi2Wins": 1
@@ -7173,12 +6687,6 @@
     },
     {
       "rikishi1Id": 3803,
-      "rikishi2Id": 3914,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 3803,
       "rikishi2Id": 3939,
       "rikishi1Wins": 1,
       "rikishi2Wins": 1
@@ -7287,7 +6795,7 @@
     },
     {
       "rikishi1Id": 3818,
-      "rikishi2Id": 3914,
+      "rikishi2Id": 3927,
       "rikishi1Wins": 1,
       "rikishi2Wins": 0
     },
@@ -7317,15 +6825,15 @@
     },
     {
       "rikishi1Id": 3818,
-      "rikishi2Id": 3990,
-      "rikishi1Wins": 3,
-      "rikishi2Wins": 2
+      "rikishi2Id": 3988,
+      "rikishi1Wins": 1,
+      "rikishi2Wins": 0
     },
     {
       "rikishi1Id": 3818,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 4,
-      "rikishi2Wins": 3
+      "rikishi2Id": 3990,
+      "rikishi1Wins": 3,
+      "rikishi2Wins": 2
     },
     {
       "rikishi1Id": 3818,
@@ -7491,9 +6999,9 @@
     },
     {
       "rikishi1Id": 3839,
-      "rikishi2Id": 3914,
+      "rikishi2Id": 3927,
       "rikishi1Wins": 1,
-      "rikishi2Wins": 3
+      "rikishi2Wins": 0
     },
     {
       "rikishi1Id": 3839,
@@ -7521,15 +7029,15 @@
     },
     {
       "rikishi1Id": 3839,
-      "rikishi2Id": 3990,
-      "rikishi1Wins": 3,
+      "rikishi2Id": 3988,
+      "rikishi1Wins": 1,
       "rikishi2Wins": 2
     },
     {
       "rikishi1Id": 3839,
-      "rikishi2Id": 4025,
+      "rikishi2Id": 3990,
       "rikishi1Wins": 3,
-      "rikishi2Wins": 5
+      "rikishi2Wins": 2
     },
     {
       "rikishi1Id": 3839,
@@ -7983,7 +7491,7 @@
     },
     {
       "rikishi1Id": 3907,
-      "rikishi2Id": 3914,
+      "rikishi2Id": 3927,
       "rikishi1Wins": 1,
       "rikishi2Wins": 0
     },
@@ -8016,12 +7524,6 @@
       "rikishi2Id": 3990,
       "rikishi1Wins": 6,
       "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3907,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 3,
-      "rikishi2Wins": 0
     },
     {
       "rikishi1Id": 3907,
@@ -8138,152 +7640,92 @@
       "rikishi2Wins": 1
     },
     {
-      "rikishi1Id": 3914,
+      "rikishi1Id": 3927,
       "rikishi2Id": 3933,
       "rikishi1Wins": 0,
       "rikishi2Wins": 1
     },
     {
-      "rikishi1Id": 3914,
-      "rikishi2Id": 3939,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 4
-    },
-    {
-      "rikishi1Id": 3914,
-      "rikishi2Id": 3969,
-      "rikishi1Wins": 2,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 3914,
+      "rikishi1Id": 3927,
       "rikishi2Id": 3983,
-      "rikishi1Wins": 3,
-      "rikishi2Wins": 5
-    },
-    {
-      "rikishi1Id": 3914,
-      "rikishi2Id": 3990,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 3914,
-      "rikishi2Id": 4093,
       "rikishi1Wins": 1,
       "rikishi2Wins": 1
     },
     {
-      "rikishi1Id": 3914,
-      "rikishi2Id": 4095,
-      "rikishi1Wins": 3,
+      "rikishi1Id": 3927,
+      "rikishi2Id": 3988,
+      "rikishi1Wins": 1,
       "rikishi2Wins": 3
     },
     {
-      "rikishi1Id": 3914,
-      "rikishi2Id": 4101,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 3914,
-      "rikishi2Id": 4116,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3914,
-      "rikishi2Id": 4120,
+      "rikishi1Id": 3927,
+      "rikishi2Id": 4095,
       "rikishi1Wins": 0,
-      "rikishi2Wins": 1
+      "rikishi2Wins": 3
     },
     {
-      "rikishi1Id": 3914,
+      "rikishi1Id": 3927,
+      "rikishi2Id": 4112,
+      "rikishi1Wins": 1,
+      "rikishi2Wins": 0
+    },
+    {
+      "rikishi1Id": 3927,
       "rikishi2Id": 4121,
-      "rikishi1Wins": 3,
+      "rikishi1Wins": 1,
       "rikishi2Wins": 2
     },
     {
-      "rikishi1Id": 3914,
+      "rikishi1Id": 3927,
       "rikishi2Id": 4124,
       "rikishi1Wins": 0,
-      "rikishi2Wins": 2
+      "rikishi2Wins": 1
     },
     {
-      "rikishi1Id": 3914,
-      "rikishi2Id": 4158,
+      "rikishi1Id": 3927,
+      "rikishi2Id": 4142,
       "rikishi1Wins": 1,
-      "rikishi2Wins": 4
+      "rikishi2Wins": 0
     },
     {
-      "rikishi1Id": 3914,
+      "rikishi1Id": 3927,
       "rikishi2Id": 4164,
-      "rikishi1Wins": 2,
-      "rikishi2Wins": 2
+      "rikishi1Wins": 0,
+      "rikishi2Wins": 1
     },
     {
-      "rikishi1Id": 3914,
+      "rikishi1Id": 3927,
       "rikishi2Id": 4165,
-      "rikishi1Wins": 5,
+      "rikishi1Wins": 0,
+      "rikishi2Wins": 3
+    },
+    {
+      "rikishi1Id": 3927,
+      "rikishi2Id": 4175,
+      "rikishi1Wins": 0,
       "rikishi2Wins": 2
     },
     {
-      "rikishi1Id": 3914,
-      "rikishi2Id": 4171,
-      "rikishi1Wins": 2,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3914,
-      "rikishi2Id": 4175,
-      "rikishi1Wins": 2,
-      "rikishi2Wins": 3
-    },
-    {
-      "rikishi1Id": 3914,
+      "rikishi1Id": 3927,
       "rikishi2Id": 4191,
+      "rikishi1Wins": 1,
+      "rikishi2Wins": 2
+    },
+    {
+      "rikishi1Id": 3927,
+      "rikishi2Id": 4227,
       "rikishi1Wins": 0,
       "rikishi2Wins": 1
     },
     {
-      "rikishi1Id": 3914,
-      "rikishi2Id": 4232,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 3
-    },
-    {
-      "rikishi1Id": 3914,
+      "rikishi1Id": 3927,
       "rikishi2Id": 4243,
       "rikishi1Wins": 1,
-      "rikishi2Wins": 0
+      "rikishi2Wins": 3
     },
     {
-      "rikishi1Id": 3914,
+      "rikishi1Id": 3927,
       "rikishi2Id": 4267,
-      "rikishi1Wins": 3,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 3914,
-      "rikishi2Id": 4279,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 0
-    },
-    {
-      "rikishi1Id": 3914,
-      "rikishi2Id": 4285,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 5
-    },
-    {
-      "rikishi1Id": 3914,
-      "rikishi2Id": 4287,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3914,
-      "rikishi2Id": 4336,
       "rikishi1Wins": 1,
       "rikishi2Wins": 0
     },
@@ -8304,18 +7746,18 @@
       "rikishi2Id": 3983,
       "rikishi1Wins": 2,
       "rikishi2Wins": 0
+    },
+    {
+      "rikishi1Id": 3933,
+      "rikishi2Id": 3988,
+      "rikishi1Wins": 0,
+      "rikishi2Wins": 1
     },
     {
       "rikishi1Id": 3933,
       "rikishi2Id": 3990,
       "rikishi1Wins": 3,
       "rikishi2Wins": 10
-    },
-    {
-      "rikishi1Id": 3933,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 3,
-      "rikishi2Wins": 1
     },
     {
       "rikishi1Id": 3933,
@@ -8625,15 +8067,15 @@
     },
     {
       "rikishi1Id": 3969,
-      "rikishi2Id": 3990,
-      "rikishi1Wins": 0,
+      "rikishi2Id": 3988,
+      "rikishi1Wins": 2,
       "rikishi2Wins": 1
     },
     {
       "rikishi1Id": 3969,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 4,
-      "rikishi2Wins": 3
+      "rikishi2Id": 3990,
+      "rikishi1Wins": 0,
+      "rikishi2Wins": 1
     },
     {
       "rikishi1Id": 3969,
@@ -8787,12 +8229,6 @@
     },
     {
       "rikishi1Id": 3983,
-      "rikishi2Id": 4025,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 3983,
       "rikishi2Id": 4093,
       "rikishi1Wins": 1,
       "rikishi2Wins": 1
@@ -8912,10 +8348,100 @@
       "rikishi2Wins": 0
     },
     {
-      "rikishi1Id": 3990,
-      "rikishi2Id": 4025,
+      "rikishi1Id": 3988,
+      "rikishi2Id": 3990,
+      "rikishi1Wins": 1,
+      "rikishi2Wins": 0
+    },
+    {
+      "rikishi1Id": 3988,
+      "rikishi2Id": 4079,
+      "rikishi1Wins": 0,
+      "rikishi2Wins": 2
+    },
+    {
+      "rikishi1Id": 3988,
+      "rikishi2Id": 4093,
+      "rikishi1Wins": 1,
+      "rikishi2Wins": 3
+    },
+    {
+      "rikishi1Id": 3988,
+      "rikishi2Id": 4095,
+      "rikishi1Wins": 0,
+      "rikishi2Wins": 2
+    },
+    {
+      "rikishi1Id": 3988,
+      "rikishi2Id": 4116,
       "rikishi1Wins": 4,
+      "rikishi2Wins": 0
+    },
+    {
+      "rikishi1Id": 3988,
+      "rikishi2Id": 4120,
+      "rikishi1Wins": 2,
+      "rikishi2Wins": 2
+    },
+    {
+      "rikishi1Id": 3988,
+      "rikishi2Id": 4124,
+      "rikishi1Wins": 2,
+      "rikishi2Wins": 2
+    },
+    {
+      "rikishi1Id": 3988,
+      "rikishi2Id": 4142,
+      "rikishi1Wins": 1,
+      "rikishi2Wins": 0
+    },
+    {
+      "rikishi1Id": 3988,
+      "rikishi2Id": 4158,
+      "rikishi1Wins": 2,
+      "rikishi2Wins": 3
+    },
+    {
+      "rikishi1Id": 3988,
+      "rikishi2Id": 4164,
+      "rikishi1Wins": 0,
+      "rikishi2Wins": 1
+    },
+    {
+      "rikishi1Id": 3988,
+      "rikishi2Id": 4165,
+      "rikishi1Wins": 1,
+      "rikishi2Wins": 3
+    },
+    {
+      "rikishi1Id": 3988,
+      "rikishi2Id": 4187,
+      "rikishi1Wins": 0,
+      "rikishi2Wins": 1
+    },
+    {
+      "rikishi1Id": 3988,
+      "rikishi2Id": 4191,
+      "rikishi1Wins": 3,
+      "rikishi2Wins": 1
+    },
+    {
+      "rikishi1Id": 3988,
+      "rikishi2Id": 4227,
+      "rikishi1Wins": 0,
+      "rikishi2Wins": 1
+    },
+    {
+      "rikishi1Id": 3988,
+      "rikishi2Id": 4230,
+      "rikishi1Wins": 0,
       "rikishi2Wins": 4
+    },
+    {
+      "rikishi1Id": 3988,
+      "rikishi2Id": 4231,
+      "rikishi1Wins": 0,
+      "rikishi2Wins": 2
     },
     {
       "rikishi1Id": 3990,
@@ -9053,138 +8579,6 @@
       "rikishi1Id": 3990,
       "rikishi2Id": 4336,
       "rikishi1Wins": 0,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 4025,
-      "rikishi2Id": 4055,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 4025,
-      "rikishi2Id": 4079,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 4025,
-      "rikishi2Id": 4093,
-      "rikishi1Wins": 2,
-      "rikishi2Wins": 4
-    },
-    {
-      "rikishi1Id": 4025,
-      "rikishi2Id": 4095,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 4025,
-      "rikishi2Id": 4101,
-      "rikishi1Wins": 3,
-      "rikishi2Wins": 4
-    },
-    {
-      "rikishi1Id": 4025,
-      "rikishi2Id": 4112,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 4025,
-      "rikishi2Id": 4116,
-      "rikishi1Wins": 5,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 4025,
-      "rikishi2Id": 4120,
-      "rikishi1Wins": 5,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 4025,
-      "rikishi2Id": 4121,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 4025,
-      "rikishi2Id": 4124,
-      "rikishi1Wins": 5,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 4025,
-      "rikishi2Id": 4158,
-      "rikishi1Wins": 3,
-      "rikishi2Wins": 4
-    },
-    {
-      "rikishi1Id": 4025,
-      "rikishi2Id": 4164,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 4025,
-      "rikishi2Id": 4165,
-      "rikishi1Wins": 3,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 4025,
-      "rikishi2Id": 4171,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 5
-    },
-    {
-      "rikishi1Id": 4025,
-      "rikishi2Id": 4175,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 5
-    },
-    {
-      "rikishi1Id": 4025,
-      "rikishi2Id": 4187,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 4025,
-      "rikishi2Id": 4191,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 2
-    },
-    {
-      "rikishi1Id": 4025,
-      "rikishi2Id": 4230,
-      "rikishi1Wins": 1,
-      "rikishi2Wins": 0
-    },
-    {
-      "rikishi1Id": 4025,
-      "rikishi2Id": 4231,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 4025,
-      "rikishi2Id": 4243,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 4025,
-      "rikishi2Id": 4279,
-      "rikishi1Wins": 0,
-      "rikishi2Wins": 1
-    },
-    {
-      "rikishi1Id": 4025,
-      "rikishi2Id": 4336,
-      "rikishi1Wins": 1,
       "rikishi2Wins": 1
     },
     {
@@ -9486,6 +8880,12 @@
       "rikishi2Id": 4124,
       "rikishi1Wins": 2,
       "rikishi2Wins": 2
+    },
+    {
+      "rikishi1Id": 4095,
+      "rikishi2Id": 4142,
+      "rikishi1Wins": 2,
+      "rikishi2Wins": 0
     },
     {
       "rikishi1Id": 4095,
@@ -10198,6 +9598,36 @@
     {
       "rikishi1Id": 4124,
       "rikishi2Id": 4336,
+      "rikishi1Wins": 0,
+      "rikishi2Wins": 1
+    },
+    {
+      "rikishi1Id": 4142,
+      "rikishi2Id": 4158,
+      "rikishi1Wins": 0,
+      "rikishi2Wins": 1
+    },
+    {
+      "rikishi1Id": 4142,
+      "rikishi2Id": 4165,
+      "rikishi1Wins": 1,
+      "rikishi2Wins": 0
+    },
+    {
+      "rikishi1Id": 4142,
+      "rikishi2Id": 4175,
+      "rikishi1Wins": 0,
+      "rikishi2Wins": 1
+    },
+    {
+      "rikishi1Id": 4142,
+      "rikishi2Id": 4267,
+      "rikishi1Wins": 0,
+      "rikishi2Wins": 1
+    },
+    {
+      "rikishi1Id": 4142,
+      "rikishi2Id": 4279,
       "rikishi1Wins": 0,
       "rikishi2Wins": 1
     },

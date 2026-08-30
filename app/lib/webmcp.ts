@@ -11,7 +11,7 @@
  */
 import { fetchRikishiIndex, rikishiProfilePath, type RikishiIndexItem } from './rikishi-profile';
 import { PAST_BASHO } from './archives-data';
-import { CURRENT_BANZUKE_PATH, CURRENT_RESULT_PATH, CURRENT_SCHEDULE_PATH } from './archive-basho-data';
+import { CURRENT_BANZUKE_PATH, CURRENT_BASHO_ID, CURRENT_RESULT_PATH, CURRENT_SCHEDULE_PATH } from './archive-basho-data';
 
 export interface WebMcpToolAnnotations {
   readOnlyHint?: boolean;
@@ -141,8 +141,8 @@ async function searchRikishi(input: unknown) {
 }
 
 function bashoListForMonthKey(monthKey: string) {
-  const supported = new Set(PAST_BASHO.map((b) => b.id));
-  const supportedList = PAST_BASHO.map((b) => b.id).join(', ');
+  const supported = new Set([CURRENT_BASHO_ID, ...PAST_BASHO.map((b) => b.id)]);
+  const supportedList = Array.from(supported).join(', ');
   if (!/^\d{6}$/.test(monthKey) || !supported.has(monthKey)) {
     return { error: `Unsupported monthKey; expected YYYYMM with a supported basho (${supportedList}).` };
   }
@@ -206,7 +206,7 @@ export const WEBMCP_TOOLS: ReadonlyArray<WebMcpToolDefinition> = [
   },
   {
     name: 'get_banzuke_for_month',
-    description: `Resolve the public banzuke JSON URL and HTML page URL for a given month key (YYYYMM). Supported: ${PAST_BASHO.map((b) => b.id).join(', ')}.`,
+    description: `Resolve the public banzuke JSON URL and HTML page URL for a given month key (YYYYMM). Supported: ${[CURRENT_BASHO_ID, ...PAST_BASHO.map((b) => b.id)].join(', ')}.`,
     inputSchema: {
       type: 'object',
       properties: {

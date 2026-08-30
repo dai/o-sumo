@@ -858,8 +858,8 @@ class LoadDivisionRikishiFallbackTest(unittest.TestCase):
         with mock.patch.object(MODULE, "load_banzuke_meta", return_value={"BanzukeTable": []}):
             rikishi = MODULE.load_division_rikishi(2)
 
-        self.assertIn(3334, rikishi)
-        self.assertEqual(rikishi[3334]["name"], "白鷹山")
+        self.assertIn(3983, rikishi)
+        self.assertEqual(rikishi[3983]["name"], "出羽ノ龍")
 
 
 class OfficialBashoScheduleTest(unittest.TestCase):

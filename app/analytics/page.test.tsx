@@ -14,8 +14,8 @@ describe('AnalyticsDashboardPage', () => {
     );
 
     expect(screen.getByRole('heading', { level: 1, name: '大相撲アナリティクス' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: '取組結果を見る' })).toHaveAttribute('href', '/202607-torikumi/');
-    expect(screen.getByRole('link', { name: '取組予定を見る' })).toHaveAttribute('href', '/202607-yotei/');
+    expect(screen.getByRole('link', { name: '取組結果を見る' })).toHaveAttribute('href', '/202609-torikumi/');
+    expect(screen.getByRole('link', { name: '取組予定を見る' })).toHaveAttribute('href', '/202609-yotei/');
   });
 
   it('exposes a breadcrumb on the analytics page back to home', () => {
@@ -37,7 +37,7 @@ describe('AnalyticsDashboardPage', () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByRole('heading', { level: 2, name: /七月場所 結果/ })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: /九月場所 結果|七月場所 結果/ })).toBeInTheDocument();
     expect(screen.getByRole('row', { name: '幕内最高優勝 安青錦 12勝3敗' })).toBeInTheDocument();
     expect(screen.getByRole('row', { name: '殊勲賞 藤ノ川 8勝7敗' })).toBeInTheDocument();
     expect(screen.getByRole('row', { name: '敢闘賞 熱海富士 12勝3敗' })).toBeInTheDocument();
@@ -98,7 +98,7 @@ describe('AnalyticsDashboardPage', () => {
     expect(screen.getByRole('heading', { level: 1, name: 'Grand Sumo Analytics' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: 'Win Leaders' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: 'Kimarite Trends' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { level: 2, name: 'July 2026 Basho Results' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: 'September 2026 Basho Results' })).toBeInTheDocument();
 
     await act(() => i18n.changeLanguage('ja'));
   });

@@ -88,15 +88,15 @@ describe('torikumi route helpers', () => {
 
 
   it('reflects July opening-day absentees after the schedule announcement', () => {
-    const firstScheduleDay = torikumiArchive.scheduleDays[0];
-    const firstResultDay = torikumiArchive.resultDays[0];
+    const firstScheduleDay = JULY2026_TORIKUMI_DATA.scheduleDays?.[0];
+    const firstResultDay = JULY2026_TORIKUMI_DATA.resultDays?.[0];
     const scheduleAbsentees = [
-      ...(firstScheduleDay.data.makuuchi.absentees ?? []),
-      ...(firstScheduleDay.data.juryo.absentees ?? []),
+      ...(firstScheduleDay?.data.makuuchi.absentees ?? []),
+      ...(firstScheduleDay?.data.juryo.absentees ?? []),
     ].map((entry) => entry.name);
     const resultAbsentees = [
-      ...(firstResultDay.data.makuuchi.absentees ?? []),
-      ...(firstResultDay.data.juryo.absentees ?? []),
+      ...(firstResultDay?.data.makuuchi.absentees ?? []),
+      ...(firstResultDay?.data.juryo.absentees ?? []),
     ].map((entry) => entry.name);
 
     expect(scheduleAbsentees).toEqual(['若隆景', '白鷹山']);
@@ -140,6 +140,7 @@ describe('torikumi route helpers', () => {
     const marchConfig = getArchiveRouteConfigForPathname('/202603-banzuke');
     const mayConfig = getArchiveRouteConfigForPathname('/202605-torikumi');
     const julyConfig = getArchiveRouteConfigForPathname('/202607-torikumi');
+    const septemberConfig = getArchiveRouteConfigForPathname('/202609-torikumi');
     const activeMonthKey = torikumiArchive.scheduleDays[0]?.pathDate.slice(0, 6);
     expect(torikumiMonthKey).toBe(activeMonthKey);
     expect(torikumiArchive.resultDays[0]?.pathDate.startsWith(torikumiMonthKey)).toBe(true);
@@ -151,9 +152,10 @@ describe('torikumi route helpers', () => {
     expect(mayConfig.archive.bashoName).toBe('五月場所');
     expect(mayConfig.archive.resultDays?.[0]?.pathDate).toBe('20260510');
     expect(julyConfig.monthKey).toBe('202607');
+    expect(septemberConfig.monthKey).toBe('202609');
     expect(getHubPathForDateKey('20260322', 'result')).toBe('/202603-torikumi/');
     expect(getHubPathForDateKey('20260524', 'schedule')).toBe('/202605-yotei/');
-    expect(getHubPath('result')).toBe('/202607-torikumi/');
+    expect(getHubPath('result')).toBe('/202609-torikumi/');
   });
 
   it('defines canonical and redirect routes for all three July hubs exactly once', () => {

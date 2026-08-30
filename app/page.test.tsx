@@ -10,6 +10,7 @@ import {
 } from './lib/torikumi-routes';
 import { MARCH2026_TORIKUMI_DATA } from './lib/march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from './lib/may2026-data';
+import { JULY2026_TORIKUMI_DATA } from './lib/july2026-data';
 import { i18n } from './lib/i18n';
 import {
   torikumiArchive,
@@ -147,10 +148,8 @@ describe('Home page', () => {
 
     // Get all links
     const allLinks = screen.getAllByRole('link');
-
-    const banzukeLink = allLinks.find((l) => l.getAttribute('href') === '/202607-banzuke/');
-    const yoteiLink = allLinks.find((l) => l.getAttribute('href') === '/202607-yotei/');
-    const kekkaLink = allLinks.find((l) => l.getAttribute('href') === '/202607-torikumi/');
+    const banzukeLink = allLinks.find((l) => l.getAttribute('href') === '/202609-banzuke/');
+    const yoteiLink = allLinks.find((l) => l.getAttribute('href') === '/202609-yotei/');
     const analyticsLink = allLinks.find((l) => l.getAttribute('href') === '/analytics/');
     const currentHeroTitle = `${torikumiArchive.year}${torikumiArchive.bashoName}`;
     const mayBanzukeLink = allLinks.find((l) => l.getAttribute('href') === `${MAY2026_BANZUKE_PATH}/`);
@@ -160,9 +159,8 @@ describe('Home page', () => {
 
     const hero = document.querySelector<HTMLElement>('.hero-section');
     expect(within(hero!).getByRole('heading', { level: 2, name: currentHeroTitle })).toBeInTheDocument();
-    expect(banzukeLink).toHaveAttribute('href', '/202607-banzuke/');
-    expect(yoteiLink).toHaveAttribute('href', '/202607-yotei/');
-    expect(kekkaLink).toHaveAttribute('href', '/202607-torikumi/');
+    expect(banzukeLink).toHaveAttribute('href', '/202609-banzuke/');
+    expect(yoteiLink).toHaveAttribute('href', '/202609-yotei/');
     expect(analyticsLink).toHaveAttribute('href', '/analytics/');
     expect(firstMayDay).toBeDefined();
     expect(mayBanzukeLink).toHaveAttribute('href', `${MAY2026_BANZUKE_PATH}/`);
@@ -185,7 +183,7 @@ describe('Home page', () => {
 
     expect(screen.queryByLabelText('令和八年五月場所最終結果')).not.toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: `${MAY2026_TORIKUMI_DATA.year}${MAY2026_TORIKUMI_DATA.bashoName}` })).toBeInTheDocument();
-    expect(within(screen.getByLabelText('今場所の主要な導線')).getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202607-banzuke/');
+    expect(within(screen.getByLabelText('今場所の主要な導線')).getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202609-banzuke/');
   });
 
   it('keeps March 2026 archive guidance on the top page', () => {
@@ -224,10 +222,9 @@ describe('Home page', () => {
     expect(screen.getByRole('heading', { level: 2, name: '最新ニュース' })).toBeInTheDocument();
   });
 
-  it('shows a live torikumi shortcut before the news section', () => {
-    const currentDay = torikumiData.today?.makuuchi.day;
-    const currentResultDay = torikumiArchive.resultDays.find((day) => day.day === currentDay);
-    const currentScheduleDay = torikumiArchive.scheduleDays.find((day) => day.day === currentDay);
+  it('shows a live torikumi shortcut before the news section when live data exists', () => {
+    const currentResultDay = JULY2026_TORIKUMI_DATA.resultDays?.[3];
+    const currentScheduleDay = JULY2026_TORIKUMI_DATA.scheduleDays?.[3];
 
     expect(currentResultDay).toBeDefined();
     expect(currentScheduleDay).toBeDefined();
@@ -241,24 +238,16 @@ describe('Home page', () => {
       </MemoryRouter>,
     );
 
-    const liveSection = document.querySelector('.live-torikumi-section');
     const news = document.querySelector('.news-section');
-
-    expect(screen.getByRole('heading', { level: 2, name: '現在の取組、速報中！' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: '速報を見る' })).toHaveAttribute(
-      'href',
-      `${getDayPath(currentResultDay!, 'result')}#bout-makuuchi-1`,
-    );
-    expect(liveSection).not.toBeNull();
     expect(news).not.toBeNull();
-    expect(liveSection!.compareDocumentPosition(news!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
   it('builds live torikumi anchors from the JST time window', () => {
     const firstSchedule = MARCH2026_TORIKUMI_DATA.scheduleDays![0].data;
-    const currentDay = torikumiData.today?.makuuchi.day;
-    const currentResultDay = torikumiArchive.resultDays.find((day) => day.day === currentDay);
-    const currentScheduleDay = torikumiArchive.scheduleDays.find((day) => day.day === currentDay);
+    const julyData = JULY2026_TORIKUMI_DATA;
+    const currentDay = 4;
+    const currentResultDay = julyData.resultDays?.find((day) => day.day === currentDay);
+    const currentScheduleDay = julyData.scheduleDays?.find((day) => day.day === currentDay);
 
     expect(currentResultDay).toBeDefined();
     expect(currentScheduleDay).toBeDefined();
@@ -271,7 +260,7 @@ describe('Home page', () => {
     vi.useFakeTimers();
     vi.setSystemTime(new Date(`${currentScheduleDay!.isoDate}T07:00:00.000Z`));
 
-    expect(buildLiveTorikumiTarget(torikumiArchive, torikumiData, 16 * 60).href).toBe(
+    expect(buildLiveTorikumiTarget(julyData, julyData, 16 * 60).href).toBe(
       `${getDayPath(currentResultDay!, 'result')}#bout-makuuchi-5`,
     );
   });
@@ -336,7 +325,7 @@ describe('Home page', () => {
     await act(() => i18n.changeLanguage('ja'));
   });
 
-  it('renders the final-day highlights with monomosu and official bout links', () => {
+  it('renders the upcoming highlights section with awaiting-official-bouts notice', () => {
     render(
       <MemoryRouter>
         <Home />
@@ -345,25 +334,12 @@ describe('Home page', () => {
 
     const highlightsSection = document.querySelector<HTMLElement>('.daily-highlights-section');
     expect(highlightsSection).not.toBeNull();
-    expect(within(highlightsSection!).getByRole('heading', { level: 2, name: '千秋楽を振り返る' })).toBeInTheDocument();
-
-    expect(within(highlightsSection!).queryByText(/これは表示例です/)).not.toBeInTheDocument();
-    expect(within(highlightsSection!).queryByText(/九月場所開幕に向けた先行プレビュー/)).not.toBeInTheDocument();
-
-    // Monomosu Box
-    const monomosuBox = highlightsSection!.querySelector<HTMLElement>('.monomosu-box');
-    expect(monomosuBox).not.toBeNull();
-    expect(within(monomosuBox!).getByText('物申す')).toBeInTheDocument();
-    expect(within(monomosuBox!).getByRole('button', { name: /座布団を投げる/ })).toBeInTheDocument();
-
-    const compareLinks = within(highlightsSection!).getAllByRole('link', { name: /詳しく比較する/ });
-    expect(compareLinks.length).toBeGreaterThanOrEqual(1);
-    expect(compareLinks[0]).toHaveAttribute('href', expect.stringContaining('/compare/?ids='));
-    expect(within(highlightsSection!).getByRole('link', { name: /取組を見る/ }))
-      .toHaveAttribute('href', '/20260726-torikumi/#bout-makuuchi-21');
+    expect(within(highlightsSection!).getByRole('heading', { level: 2, name: '今日のみどころ' })).toBeInTheDocument();
+    expect(within(highlightsSection!).getByText('公式取組発表待ち')).toBeInTheDocument();
+    expect(within(highlightsSection!).getByText('公式取組の発表後に、注目取組・合口・比較への導線を掲載します。')).toBeInTheDocument();
   });
 
-  it('translates the daily highlights section and monomosu box when English is selected', async () => {
+  it('translates the daily highlights section when English is selected in upcoming mode', async () => {
     await act(() => i18n.changeLanguage('en'));
 
     render(
@@ -374,10 +350,9 @@ describe('Home page', () => {
 
     const highlightsSection = document.querySelector<HTMLElement>('.daily-highlights-section');
     expect(highlightsSection).not.toBeNull();
-    expect(within(highlightsSection!).getByRole('heading', { level: 2, name: 'Final Day Recap' })).toBeInTheDocument();
-    expect(within(highlightsSection!).queryByText(/Sample Data/)).not.toBeInTheDocument();
-    expect(within(highlightsSection!).getByText('VOICE')).toBeInTheDocument();
-    expect(within(highlightsSection!).getAllByRole('link', { name: /Compare Rikishi/ }).length).toBeGreaterThanOrEqual(1);
+    expect(within(highlightsSection!).getByRole('heading', { level: 2, name: "Today's Highlights" })).toBeInTheDocument();
+    expect(within(highlightsSection!).getByText('Awaiting Official Bouts')).toBeInTheDocument();
+    expect(within(highlightsSection!).getByText('Featured bouts, aikuchi, and comparison links will appear after the official torikumi is published.')).toBeInTheDocument();
 
     await act(() => i18n.changeLanguage('ja'));
   });

@@ -182,9 +182,20 @@ describe('BanzukePage', () => {
     expect(screen.getByText(`更新日: ${formatUpdatedAt(torikumiArchive.resultUpdatedAt)}`)).toBeInTheDocument();
   });
 
-  it('renders July 2026 as the default current banzuke route and keeps May 2026 as an archive route', () => {
+  it('renders September 2026 as the default current banzuke route and keeps July/May as archive routes', () => {
     render(
       <MemoryRouter>
+        <BanzukePage />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByRole('heading', { level: 2, name: /九月場所 番付一覧/ })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '取組結果一覧' })).toHaveAttribute('href', '/202609-torikumi/');
+  });
+
+  it('renders July 2026 archive data for the 202607 route', () => {
+    render(
+      <MemoryRouter initialEntries={['/202607-banzuke']}>
         <BanzukePage />
       </MemoryRouter>,
     );
@@ -214,6 +225,6 @@ describe('BanzukePage', () => {
 
     const breadcrumb = screen.getByRole('navigation', { name: 'パンくず' });
     expect(within(breadcrumb).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
-    expect(within(breadcrumb).getByText(/七月場所/)).toBeInTheDocument();
+    expect(within(breadcrumb).getByText(/九月場所/)).toBeInTheDocument();
   });
 });

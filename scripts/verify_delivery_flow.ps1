@@ -9,6 +9,8 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+$OutputEncoding = [System.Text.Encoding]::UTF8
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
 function Get-TorikumiFromOriginMain {
   $jsonText = git show origin/main:public/api/v1/torikumi.json 2>$null
