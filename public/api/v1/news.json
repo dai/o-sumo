@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-29T10:16:04.507387+00:00",
+  "updatedAt": "2026-08-30T00:57:22.914028+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260829-OHT1T51256",
-      "title": "元大関・朝乃山が相撲を取る稽古再開し５番　「そろそろ取ろうと思っていた」 地元・富山の豪雨被害には「戦う姿をみせたい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260829-OHT1T51256",
-      "publishedAt": "2026-08-29",
-      "publishedAtRaw": "スポーツ報知　8月29日 19時00分",
+      "id": "dmenu-docomo-mainichi-20260829k0000m050080000c",
+      "title": "初戦から好取組続々　30日学生相撲・全日本体重別　重量級展望",
+      "url": "https://topics.smt.docomo.ne.jp/article/mainichi/sports/mainichi-20260829k0000m050080000c",
+      "publishedAt": "2026-08-30",
+      "publishedAtRaw": "毎日新聞　8月30日 8時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260829-OHT1T51234",
-      "title": "草加市出身の幕下・峰刃、草加巡業に初参加　大関・琴桜に胸を借り「ありがたいですね」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260829-OHT1T51234",
-      "publishedAt": "2026-08-29",
-      "publishedAtRaw": "スポーツ報知　8月29日 18時24分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_EDCUERA4NJCJRFU7CUKDLQRVBM",
+      "title": "藤井康生氏「気の毒なんですよ。横綱になってから優勝がないと言われて」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_EDCUERA4NJCJRFU7CUKDLQRVBM",
+      "publishedAt": "2026-08-30",
+      "publishedAtRaw": "SANSPO　8月30日 6時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260829-0259",
-      "title": "大関・琴桜、秋場所へ「やるべきことをやっている。基礎をきちっと」　ご当所力士に胸出し",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260829-0259",
-      "publishedAt": "2026-08-29",
-      "publishedAtRaw": "スポニチアネックス　8月29日 18時21分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260830-0099",
+      "title": "琴桜「基礎をきちっと」　亡き恩人へ「いい結果届ける」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260830-0099",
+      "publishedAt": "2026-08-30",
+      "publishedAtRaw": "スポニチアネックス　8月30日 4時10分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-401158",
-      "title": "【大相撲】力士が入院したら病院食で足りる？ 元幕内力士「多めに出してくれるけど…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-401158",
+      "id": "dmenu-docomo-mainichi-20260828k0000m050347000c",
+      "title": "レスリングと相撲の「二刀流」　慶応大・佐藤、全国体重別に挑む",
+      "url": "https://topics.smt.docomo.ne.jp/article/mainichi/sports/mainichi-20260828k0000m050347000c",
       "publishedAt": "2026-08-29",
-      "publishedAtRaw": "東スポWEB　8月29日 18時15分",
+      "publishedAtRaw": "毎日新聞　8月29日 20時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260829-OHT1T51225",
-      "title": "大栄翔「ご近所さんなので」　追手風部屋から徒歩圏内の草加巡業で声援に感謝",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260829-OHT1T51225",
+      "id": "dmenu-docomo-20260829097",
+      "title": "大関琴桜のかわいがりに感謝、巡業会場から徒歩圏に実家の幕下力士に大歓声「地元の歓声がありがたかった」【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260829097",
       "publishedAt": "2026-08-29",
-      "publishedAtRaw": "スポーツ報知　8月29日 18時00分",
+      "publishedAtRaw": "デイリースポーツ　8月29日 19時31分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
