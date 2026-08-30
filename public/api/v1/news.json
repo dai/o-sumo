@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-30T00:57:22.914028+00:00",
+  "updatedAt": "2026-08-30T04:21:46.424979+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260830-0002",
+      "title": "元北勝富士の大山親方が語るサウナと相撲【後編】「ぶっ飛びました」断髪後の快感と親方業務に勤しむ日々",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260830-0002",
+      "publishedAt": "2026-08-30",
+      "publishedAtRaw": "スポニチアネックス　8月30日 11時30分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-mainichi-20260829k0000m050080000c",
       "title": "初戦から好取組続々　30日学生相撲・全日本体重別　重量級展望",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/mainichi/sports/mainichi-20260828k0000m050347000c",
       "publishedAt": "2026-08-29",
       "publishedAtRaw": "毎日新聞　8月29日 20時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260829097",
-      "title": "大関琴桜のかわいがりに感謝、巡業会場から徒歩圏に実家の幕下力士に大歓声「地元の歓声がありがたかった」【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260829097",
-      "publishedAt": "2026-08-29",
-      "publishedAtRaw": "デイリースポーツ　8月29日 19時31分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
