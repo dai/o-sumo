@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-30T08:22:58.473936+00:00",
+  "updatedAt": "2026-08-30T10:16:35.344685+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-f-bt-tp1-260830-202608300000887",
-      "title": "「無理するなよと言ってるけど…」34歳宇良の“皆勤”を高田川巡業部長が高評価　夏巡業が終了",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260830-202608300000887",
+      "id": "dmenu-docomo-hochi-20260830-OHT1T51277",
+      "title": "幕内・美ノ海、夏巡業最終日に申し合い稽古初参加で１２番「しっかりやれた」　初日から基礎を徹底",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260830-OHT1T51277",
       "publishedAt": "2026-08-30",
-      "publishedAtRaw": "日刊スポーツ　8月30日 17時13分",
+      "publishedAtRaw": "スポーツ報知　8月30日 19時08分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260830-202608300000886",
-      "title": "夏巡業全日程が終了、横綱大の里「暑すぎて…」\"冷房なし\"を笑顔で回顧　左肩の状態も説明",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260830-202608300000886",
+      "id": "dmenu-docomo-hochi-20260830-OHT1T51252",
+      "title": "大関・安青錦が夏巡業を完走「いろいろな人と関わって、気持ち的にもリフレッシュできた」　左足の回復は順調",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260830-OHT1T51252",
       "publishedAt": "2026-08-30",
-      "publishedAtRaw": "日刊スポーツ　8月30日 17時09分",
+      "publishedAtRaw": "スポーツ報知　8月30日 18時34分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260830-0257",
-      "title": "横綱・大の里「四股、すり足を徹底的にやっていく」　夏巡業28日間の全日程終了「相撲に興味を持って…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260830-0257",
+      "id": "dmenu-docomo-jiji-202608300092790308",
+      "title": "大相撲夏巡業が終了",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-202608300092790308",
       "publishedAt": "2026-08-30",
-      "publishedAtRaw": "スポニチアネックス　8月30日 17時04分",
+      "publishedAtRaw": "時事通信　8月30日 18時25分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260830-202608300000865",
-      "title": "28日間の夏巡業が終了「金もうけではない。相撲に興味持ってもらえたら」高田川巡業部長の思い",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260830-202608300000865",
+      "id": "dmenu-docomo-f-bt-tp1-260830-202608300001135",
+      "title": "全身泥だらけ、フラフラ…朝白龍が大関霧島から“かわいがり”受ける「強くなれる」夏巡業最終日",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260830-202608300001135",
       "publishedAt": "2026-08-30",
-      "publishedAtRaw": "日刊スポーツ　8月30日 16時48分",
+      "publishedAtRaw": "日刊スポーツ　8月30日 18時07分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-kyodo_nor-2026083001000665",
-      "title": "大の里「走り切れた」　夏巡業終了、日程緩和へ",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026083001000665",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_J5YIZ5BWVVK7ZJ4GT62OAQ5ZJE",
+      "title": "夏巡業が終了…横綱大の里、秋場所へ「初日に合わせて稽古をしていく」　大関復帰の安青錦「焦らずやっていきたい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_J5YIZ5BWVVK7ZJ4GT62OAQ5ZJE",
       "publishedAt": "2026-08-30",
-      "publishedAtRaw": "共同通信　8月30日 16時41分",
+      "publishedAtRaw": "SANSPO　8月30日 18時05分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
