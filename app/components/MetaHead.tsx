@@ -4,21 +4,21 @@ import { resolvePageMeta, type PageMeta } from '../lib/page-meta';
 import { normalizeCanonicalPath } from '../lib/site-url';
 
 type MetaAttribute = 'name' | 'property';
-export type PageMetaOverride = Pick<PageMeta, 'title' | 'description'> & { pathname: string };
+export type PageMetaOverride = Pick<PageMeta, 'title' | 'description'> & { pathname: string; socialUrl?: string };
 type PageMetaOverrideSetter = Dispatch<SetStateAction<PageMetaOverride | null>>;
 
 const PageMetaOverrideContext = createContext<PageMetaOverrideSetter | null>(null);
 type MetaFieldDefinition = {
   attribute: MetaAttribute;
   key: string;
-  content: (meta: PageMeta) => string;
+  content: (meta: PageMeta, socialUrl: string) => string;
 };
 
 const META_FIELDS = [
   { attribute: 'name', key: 'description', content: (meta) => meta.description },
   { attribute: 'property', key: 'og:title', content: (meta) => meta.title },
   { attribute: 'property', key: 'og:description', content: (meta) => meta.description },
-  { attribute: 'property', key: 'og:url', content: (meta) => meta.canonicalUrl },
+  { attribute: 'property', key: 'og:url', content: (_meta, socialUrl) => socialUrl },
   { attribute: 'property', key: 'og:image', content: (meta) => meta.imageUrl },
   { attribute: 'property', key: 'og:type', content: (meta) => meta.type },
   { attribute: 'property', key: 'og:site_name', content: () => 'o-sumo' },
@@ -48,7 +48,7 @@ export function usePageMetaOverride(override: PageMetaOverride | null) {
     if (!setOverride) return undefined;
     setOverride(override);
     return () => setOverride(null);
-  }, [setOverride, override?.pathname, override?.title, override?.description]);
+  }, [setOverride, override?.pathname, override?.title, override?.description, override?.socialUrl]);
 }
 
 export default function MetaHead({ children }: PropsWithChildren) {
@@ -61,10 +61,11 @@ export default function MetaHead({ children }: PropsWithChildren) {
       ? override
       : null;
     const meta = { ...resolvePageMeta(pathname), ...matchingOverride };
+    const socialUrl = matchingOverride?.socialUrl ?? meta.canonicalUrl;
     document.title = meta.title;
 
     META_FIELDS.forEach(({ attribute, key, content }) => {
-      reconcileMeta(attribute, key, content(meta));
+      reconcileMeta(attribute, key, content(meta, socialUrl));
     });
   }, [pathname, override]);
 

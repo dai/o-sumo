@@ -5,6 +5,7 @@ import HomeLink from '../components/HomeLink';
 import CopyApiJsonLink from '../components/CopyApiJsonLink';
 import MyRikishiToggle from '../components/MyRikishiToggle';
 import PageBreadcrumb from '../components/PageBreadcrumb';
+import { usePageMetaOverride } from '../components/MetaHead';
 import {
   fetchRikishiIndex,
   fetchRikishiProfile,
@@ -16,6 +17,7 @@ import {
 import { isLocalRikishiImagePath } from '../lib/rikishi-avatar';
 import { toRomaji } from '../lib/romaji';
 import { formatUpdatedAt } from '../lib/updated-at';
+import { SITE_ORIGIN } from '../lib/site-url';
 import './page.css';
 
 const SAME_RANK_LIMIT = 8;
@@ -119,6 +121,12 @@ export default function RikishiProfilePage() {
   }, [profile?.id, profile?.currentRank]);
 
   const career = profile ? formatCareerRecord(profile) : null;
+  usePageMetaOverride(profile ? {
+    pathname: rikishiProfilePath(profile.id),
+    title: t('rikishi.profileMetaTitle', { name: profile.name }),
+    description: t('rikishi.profileMetaDescription', { name: profile.name }),
+    socialUrl: new URL(rikishiProfilePath(profile.id), SITE_ORIGIN).toString(),
+  } : null);
 
   return (
     <div className="rikishi-page">

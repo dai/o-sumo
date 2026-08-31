@@ -3,7 +3,7 @@
 This directory contains Cloudflare Pages Functions for o-sumo:
 
 - [`_middleware.ts`](./_middleware.ts) — catch-all middleware that powers
-  the **Markdown for Agents** dynamic content negotiation.
+  **Markdown for Agents** content negotiation and server-rendered social metadata.
 - [`a2a/[[path]].ts`](./a2a/[[path]].ts) — JSON-RPC 2.0 endpoint
   advertised in the A2A Agent Card's `supportedInterfaces[0].url`
   (`/.well-known/agent-card.json` → `https://osada.us/a2a`).
@@ -19,6 +19,13 @@ This directory contains Cloudflare Pages Functions for o-sumo:
    `<route>/index.md` from the Pages static assets and returns it with
    `Content-Type: text/markdown; charset=utf-8` plus `Vary: Accept`.
 3. Otherwise, falls back to the normal SPA routing.
+
+For comparison URLs and named rikishi, gyoji, and yobidashi detail pages,
+the same middleware reads the public API indexes and rewrites the initial HTML
+`title`, description, Open Graph, and Twitter metadata. This lets social crawlers
+see page-specific Japanese metadata without running JavaScript. Unknown or
+unavailable records use the existing route fallback. Rewritten HTML is cached for
+60 seconds, varies on `Accept`, and drops validators invalidated by transformation.
 
 The pre-built `.md` files are generated at build time by
 `scripts/build_markdown_views.ts` (`vite.config.ts` / `markdownViewsPlugin`).

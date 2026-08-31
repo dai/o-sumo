@@ -1,53 +1,71 @@
 /**
- * Cloudflare Pages Functions middleware that powers the
- * **Markdown for Agents** dynamic content negotiation.
- *
- * The pre-rendered `dist/<route>/index.md` files are produced at build
- * time by `scripts/build_markdown_views.ts` (wired through
- * `vite.config.ts` / `markdownViewsPlugin`). When a request advertises
- * `text/markdown` in `Accept`, this middleware swaps the response body
- * for the matching `.md` file with `Content-Type: text/markdown`
- * and `Vary: Accept`, and strips the headers that conflict with a
- * regenerated body (so conditional requests no longer match).
- *
- * Non-markdown requests pass through to the normal SPA routing.
- *
- * The Cloudflare Pages Functions runtime supplies `Request`, `Response`,
- * `Headers`, `URL`, and `context.env.ASSETS` as ambient globals, so the
- * handler is written without an explicit `PagesFunction` annotation to
- * avoid pulling in `@cloudflare/workers-types` as a global type
- * provider (which would shadow `Element.append` in the host project).
- * `tsconfig.json` excludes this directory from the project's typecheck.
+ * Cloudflare Pages Functions middleware for Markdown-for-Agents and
+ * server-rendered social metadata on named detail pages.
  */
 
 import { prefersMarkdown } from '../app/lib/content-negotiation';
+import {
+  prepareShareMetadataHeaders,
+  resolveShareMetadataForPayload,
+  shareCollectionForPath,
+  type ShareCollection,
+} from '../app/lib/share-meta-response';
+import type { ShareMetaOverride } from '../app/lib/share-meta';
+
+async function loadSharePayload(context: any, requestUrl: URL, collection: ShareCollection) {
+  const assetUrl = new URL(`/api/v1/${collection}.json`, requestUrl);
+  const response = await context.env.ASSETS.fetch(assetUrl);
+  if (!response.ok) return null;
+  return response.json();
+}
+
+function rewriteSocialMetadata(response: Response, metadata: ShareMetaOverride) {
+  const rewriter = new HTMLRewriter()
+    .on('title', { element: (element) => element.setInnerContent(metadata.title) })
+    .on('meta[name="description"]', { element: (element) => element.setAttribute('content', metadata.description) })
+    .on('meta[property="og:title"]', { element: (element) => element.setAttribute('content', metadata.title) })
+    .on('meta[property="og:description"]', { element: (element) => element.setAttribute('content', metadata.description) })
+    .on('meta[property="og:url"]', { element: (element) => element.setAttribute('content', metadata.socialUrl) })
+    .on('meta[name="twitter:title"]', { element: (element) => element.setAttribute('content', metadata.title) })
+    .on('meta[name="twitter:description"]', { element: (element) => element.setAttribute('content', metadata.description) });
+  const transformed = rewriter.transform(response);
+  const headers = prepareShareMetadataHeaders(transformed.headers);
+  return new Response(transformed.body, { status: transformed.status, statusText: transformed.statusText, headers });
+}
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const onRequest = async (context: any): Promise<Response> => {
   const accept: string = context.request.headers.get('Accept') ?? '';
-  if (!prefersMarkdown(accept)) {
-    return context.next();
+  if (prefersMarkdown(accept)) {
+    const url = new URL(context.request.url);
+    const basePath = url.pathname.replace(/\/$/, '') || '';
+    const mdPath = `${basePath}/index.md`;
+    const mdResponse = await context.env.ASSETS.fetch(new URL(mdPath, context.request.url));
+
+    if (mdResponse.ok) {
+      const body = await mdResponse.arrayBuffer();
+      const headers = new Headers();
+      headers.set('Content-Type', 'text/markdown; charset=utf-8');
+      headers.set('Vary', 'Accept');
+      return new Response(body, { status: 200, headers });
+    }
   }
 
-  const url = new URL(context.request.url);
-  const basePath = url.pathname.replace(/\/$/, '') || '';
-  const mdPath = `${basePath}/index.md`;
-  const mdResponse = await context.env.ASSETS.fetch(new URL(mdPath, context.request.url));
+  const requestUrl = new URL(context.request.url);
+  const collection = shareCollectionForPath(requestUrl.pathname);
+  if (!collection) return context.next();
 
-  if (!mdResponse.ok) {
-    // No matching `.md` was pre-rendered — fall back to SPA routing.
-    return context.next();
+  const response = await context.next();
+  try {
+    const payload = await loadSharePayload(context, requestUrl, collection);
+    return rewriteSocialMetadata(
+      response,
+      resolveShareMetadataForPayload(requestUrl, collection, payload),
+    );
+  } catch {
+    return rewriteSocialMetadata(
+      response,
+      resolveShareMetadataForPayload(requestUrl, collection, null),
+    );
   }
-
-  const body = await mdResponse.arrayBuffer();
-  const headers = new Headers();
-  headers.set('Content-Type', 'text/markdown; charset=utf-8');
-  headers.set('Vary', 'Accept');
-  // Cloudflare's Markdown-for-Agents spec drops these because the
-  // converted body cannot satisfy the original conditional headers.
-  headers.delete('ETag');
-  headers.delete('Last-Modified');
-  headers.delete('Content-Encoding');
-  headers.delete('Content-Range');
-  return new Response(body, { status: 200, headers });
 };

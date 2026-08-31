@@ -618,3 +618,17 @@ PR #479 が到達した 7 項目（API catalog / OAuth-PRM / MCP Server Card / A
 - [x] tasks/todo.md に Phase 1 レビュー追加（本_section）
 - [x] PR 4 マージ後、全ローカル / リモートブランチ cleanup完了（`docs/agent-phase1-refresh` ローカル削除、`origin` 側は `--delete-branch` で削除済）
 - [x] `.codex/` を `.gitignore` に追加（`.codex/config.toml` を追跡外へ）
+
+# 共有URLのページ固有メタデータ（2026-08-31）
+
+## Plan
+
+- [x] RED: 比較・力士詳細の固有タイトル、OG URL、無効比較のフォールバックをテストで固定
+- [x] GREEN: ブラウザheadとPages配信HTMLを公開APIの力士名で更新
+- [x] VERIFY: 全Vitest、typecheck、build、Wrangler HTTPを確認
+## Review
+
+- 共有カード: 比較は2名、力士・行司・呼出詳細は名前入りのtitle、OG、Twitterメタデータを配信HTMLとブラウザheadで更新する。
+- フォールバック: 未指定・不正・取得不能時はページ種別の汎用メタデータを返す。
+- キャッシュ契約: 書き換えHTMLは `Vary: Accept` と60秒キャッシュを付与し、変換後に無効となるvalidator・encoding・rangeヘッダーを除去する。
+- 検証: focused 5 files / 22 tests、全Vitest 64 files / 428 tests、typecheck、Vite build、Wranglerの生HTML・Markdown・レスポンスヘッダーを確認済み。

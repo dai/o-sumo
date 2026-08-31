@@ -48,6 +48,10 @@ export function resolvePageMeta(pathname: string): PageMeta {
       title: '力士一覧 | o-sumo',
       description: '大相撲力士のプロフィール、番付、成績を一覧で確認できます。',
     },
+    '/compare/': {
+      title: '力士比較 | o-sumo',
+      description: '幕内・十両力士の合口、体格、得意決まり手、通算成績を比較できます。',
+    },
     '/gyoji/': { title: '行司名鑑 | o-sumo', description: '大相撲の現役行司の階級とプロフィールを一覧で紹介します。' },
     '/yobidashi/': { title: '呼出名鑑 | o-sumo', description: '大相撲の現役呼出の階級とプロフィールを一覧で紹介します。' },
     '/kimarite/': {
