@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-31T04:25:23.547538+00:00",
+  "updatedAt": "2026-08-31T06:42:43.921860+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-f-bt-tp1-260831-202608310000656",
+      "title": "198年ぶり京都出身の新三役が誕生「今日聞きました」新関脇の21歳藤ノ川が喜び語る",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260831-202608310000656",
+      "publishedAt": "2026-08-31",
+      "publishedAtRaw": "日刊スポーツ　8月31日 15時20分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-tokyosports-401365",
+      "title": "【大相撲】新入幕・朝翠龍　対戦してみたい力士は日体大の同期・横綱大の里「目標になる存在」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-401365",
+      "publishedAt": "2026-08-31",
+      "publishedAtRaw": "東スポWEB　8月31日 15時08分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-f-bt-tp1-260831-202608310000560",
+      "title": "新関脇の藤ノ川「番付運良かった」祝福の連絡とともに驚きの声も「みんな小結だと…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260831-202608310000560",
+      "publishedAt": "2026-08-31",
+      "publishedAtRaw": "日刊スポーツ　8月31日 14時17分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260831-OHT1T51105",
+      "title": "京都出身１９８年ぶりの新関脇・藤ノ川、昇進に喜び「新三役は今年の目標でもあった。実現できてうれしい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260831-OHT1T51105",
+      "publishedAt": "2026-08-31",
+      "publishedAtRaw": "スポーツ報知　8月31日 13時24分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-f-bt-tp1-260831-202608310000424",
       "title": "大関復帰の安青錦「特別な思いない」“恒例”の新番付表での写真撮影なし「一番上の番付狙う」",
       "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260831-202608310000424",
       "publishedAt": "2026-08-31",
       "publishedAtRaw": "日刊スポーツ　8月31日 13時22分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260831-202608310000387",
-      "title": "角界入りをやめた花田秀虎さん、相撲は「ちやほやされて物足りなさを感じた」　今後は海外挑戦へ",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260831-202608310000387",
-      "publishedAt": "2026-08-31",
-      "publishedAtRaw": "日刊スポーツ　8月31日 12時57分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_NAPPNMFG2VGSRGBHUIR24SGPGI",
-      "title": "安青錦、大関復帰も「上を目指す気持ちは変わっていない」けがの状態は「少しずつ良くなっている」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_NAPPNMFG2VGSRGBHUIR24SGPGI",
-      "publishedAt": "2026-08-31",
-      "publishedAtRaw": "SANSPO　8月31日 12時20分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-tokyosports-401344",
-      "title": "【大相撲】大関復帰の安青錦　怒涛の１年を振り返る「いろんなことがありすぎた。大関に上がったり…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-401344",
-      "publishedAt": "2026-08-31",
-      "publishedAtRaw": "東スポWEB　8月31日 11時50分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-kyodo_nor-2026083101000598",
-      "title": "安青錦「特別な思いない」　秋場所で大関復帰、最高位へ決意",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026083101000598",
-      "publishedAt": "2026-08-31",
-      "publishedAtRaw": "共同通信　8月31日 11時37分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
