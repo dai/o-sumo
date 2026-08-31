@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-30T10:16:35.344685+00:00",
+  "updatedAt": "2026-08-31T00:58:32.121392+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260830-OHT1T51277",
-      "title": "幕内・美ノ海、夏巡業最終日に申し合い稽古初参加で１２番「しっかりやれた」　初日から基礎を徹底",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260830-OHT1T51277",
-      "publishedAt": "2026-08-30",
-      "publishedAtRaw": "スポーツ報知　8月30日 19時08分",
+      "id": "dmenu-docomo-jiji-2026083100178",
+      "title": "藤ノ川、新三役で西関脇＝伯乃富士も新小結に―大相撲秋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026083100178",
+      "publishedAt": "2026-08-31",
+      "publishedAtRaw": "時事通信　8月31日 9時03分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260830-OHT1T51252",
-      "title": "大関・安青錦が夏巡業を完走「いろいろな人と関わって、気持ち的にもリフレッシュできた」　左足の回復は順調",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260830-OHT1T51252",
-      "publishedAt": "2026-08-30",
-      "publishedAtRaw": "スポーツ報知　8月30日 18時34分",
+      "id": "dmenu-docomo-20260831045",
+      "title": "史上１４組目の兄弟幕内が誕生！朝紅龍＆朝翠龍、錦木は幸運な十両残留【大相撲秋場所番付発表】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260831045",
+      "publishedAt": "2026-08-31",
+      "publishedAtRaw": "デイリースポーツ　8月31日 8時31分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-jiji-202608300092790308",
-      "title": "大相撲夏巡業が終了",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-202608300092790308",
-      "publishedAt": "2026-08-30",
-      "publishedAtRaw": "時事通信　8月30日 18時25分",
+      "id": "dmenu-docomo-20260831044",
+      "title": "藤ノ川が新関脇！京都からの新三役は１９８年ぶり、１０位タイのスピード出世【大相撲秋場所番付発表】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260831044",
+      "publishedAt": "2026-08-31",
+      "publishedAtRaw": "デイリースポーツ　8月31日 8時31分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260830-202608300001135",
-      "title": "全身泥だらけ、フラフラ…朝白龍が大関霧島から“かわいがり”受ける「強くなれる」夏巡業最終日",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260830-202608300001135",
-      "publishedAt": "2026-08-30",
-      "publishedAtRaw": "日刊スポーツ　8月30日 18時07分",
+      "id": "dmenu-docomo-f-bt-tp1-260831-202608310000091",
+      "title": "元アマ横綱の花田秀虎氏は角界入り断念　ギリギリまで迷うも最終チャンスの新弟子検査受検せず",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260831-202608310000091",
+      "publishedAt": "2026-08-31",
+      "publishedAtRaw": "日刊スポーツ　8月31日 8時14分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_J5YIZ5BWVVK7ZJ4GT62OAQ5ZJE",
-      "title": "夏巡業が終了…横綱大の里、秋場所へ「初日に合わせて稽古をしていく」　大関復帰の安青錦「焦らずやっていきたい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_J5YIZ5BWVVK7ZJ4GT62OAQ5ZJE",
-      "publishedAt": "2026-08-30",
-      "publishedAtRaw": "SANSPO　8月30日 18時05分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260831-0107",
+      "title": "藤ノ川が新関脇に昇進　京都府からは実に198年ぶり　大相撲秋場所番付発表",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260831-0107",
+      "publishedAt": "2026-08-31",
+      "publishedAtRaw": "スポニチアネックス　8月31日 6時44分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
