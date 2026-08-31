@@ -311,7 +311,7 @@
     "navLabel": "力士比較",
     "title": "力士比較",
     "description": "幕内・十両力士の合口（直接対戦成績）、体格差、得意決まり手、通算成績を徹底比較できます。",
-    "shareMetaTitle": "{{first}}と{{second}}の比較 | o-sumo",
+    "shareMetaTitle": "#{{first}} と #{{second}} の合口は？徹底比較 | o-sumo",
     "shareMetaDescription": "大相撲力士{{first}}と{{second}}の合口、体格、得意決まり手、通算成績を比較できます。",
     "selectTitle": "比較する力士を選ぶ",
     "selectDescription": "力士{{max}}人を選択すると合口・体格・技の比較が展開します",

@@ -55,7 +55,7 @@ export function resolveShareMetaOverride(url: URL, data: ShareMetaData): ShareMe
     const secondName = findName(data.rikishi, secondId);
     if (!firstName || !secondName) return null;
     return {
-      title: `${firstName}と${secondName}の比較 | o-sumo`,
+      title: `#${firstName} と #${secondName} の合口は？徹底比較 | o-sumo`,
       description: `大相撲力士${firstName}と${secondName}の合口、体格、得意決まり手、通算成績を比較できます。`,
       socialUrl,
     };

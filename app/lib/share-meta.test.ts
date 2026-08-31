@@ -13,7 +13,7 @@ const data = {
 describe('resolveShareMetaOverride', () => {
   it('uses both selected rikishi names for a comparison share URL', () => {
     expect(resolveShareMetaOverride(new URL('https://osada.us/compare/?ids=3842,4227'), data)).toEqual({
-      title: '豊昇龍と大の里の比較 | o-sumo',
+      title: '#豊昇龍 と #大の里 の合口は？徹底比較 | o-sumo',
       description: '大相撲力士豊昇龍と大の里の合口、体格、得意決まり手、通算成績を比較できます。',
       socialUrl: 'https://osada.us/compare/?ids=3842,4227',
     });

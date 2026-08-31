@@ -44,7 +44,7 @@ beforeEach(async () => {
 });
 
 describe('rikishi share metadata', () => {
-  it('publishes both selected names and the query URL for a comparison', async () => {
+  it('publishes the Japanese deep-dive title to browser and social metadata for a comparison', async () => {
     mockFetch();
     render(
       <MemoryRouter initialEntries={['/compare/?ids=3842,4227']}>
@@ -53,8 +53,26 @@ describe('rikishi share metadata', () => {
     );
 
     await waitFor(() => {
-      expect(document.title).toBe('豊昇龍と大の里の比較 | o-sumo');
+      expect(document.title).toBe('#豊昇龍 と #大の里 の合口は？徹底比較 | o-sumo');
+      expect(document.head.querySelector<HTMLMetaElement>('meta[property="og:title"]')?.content).toBe('#豊昇龍 と #大の里 の合口は？徹底比較 | o-sumo');
+      expect(document.head.querySelector<HTMLMetaElement>('meta[name="twitter:title"]')?.content).toBe('#豊昇龍 と #大の里 の合口は？徹底比較 | o-sumo');
       expect(document.head.querySelector<HTMLMetaElement>('meta[property="og:url"]')?.content).toBe('https://osada.us/compare/?ids=3842,4227');
+    });
+  });
+
+  it('publishes the English deep-dive title to browser and social metadata for a comparison', async () => {
+    await i18n.changeLanguage('en');
+    mockFetch();
+    render(
+      <MemoryRouter initialEntries={['/compare/?ids=3842,4227']}>
+        <MetaHead><Routes><Route path="/compare/" element={<CompareRikishiPage />} /></Routes></MetaHead>
+      </MemoryRouter>,
+    );
+
+    await waitFor(() => {
+      expect(document.title).toBe('#豊昇龍 vs #大の里: Head-to-head deep dive | o-sumo');
+      expect(document.head.querySelector<HTMLMetaElement>('meta[property="og:title"]')?.content).toBe('#豊昇龍 vs #大の里: Head-to-head deep dive | o-sumo');
+      expect(document.head.querySelector<HTMLMetaElement>('meta[name="twitter:title"]')?.content).toBe('#豊昇龍 vs #大の里: Head-to-head deep dive | o-sumo');
     });
   });
 

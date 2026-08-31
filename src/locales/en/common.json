@@ -311,7 +311,7 @@
     "navLabel": "Compare rikishi",
     "title": "Compare rikishi",
     "description": "Compare head-to-head records (aikuchi), physical build, top kimarite, and career stats side by side.",
-    "shareMetaTitle": "{{first}} vs {{second}} | Compare rikishi | o-sumo",
+    "shareMetaTitle": "#{{first}} vs #{{second}}: Head-to-head deep dive | o-sumo",
     "shareMetaDescription": "Compare the head-to-head record, physical build, top kimarite, and career stats of {{first}} and {{second}}.",
     "selectTitle": "Choose rikishi to compare",
     "selectDescription": "Select {{max}} rikishi to expand the head-to-head match stats and physical comparison.",
