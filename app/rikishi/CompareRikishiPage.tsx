@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import HomeLink from '../components/HomeLink';
 import PageBreadcrumb from '../components/PageBreadcrumb';
+import { usePageMetaOverride } from '../components/MetaHead';
 import ShareCurrentLink from '../components/ShareCurrentLink';
 import {
   fetchRikishiIndex,
@@ -16,6 +17,7 @@ import {
 } from '../lib/rikishi-profile';
 import { matchesSearch } from '../lib/search';
 import { toRomaji } from '../lib/romaji';
+import { SITE_ORIGIN } from '../lib/site-url';
 import { useMyRikishi } from '../lib/my-rikishi';
 import {
   analyzeAikuchi,
@@ -542,6 +544,7 @@ function KimariteComparison({ profiles }: { profiles: [RikishiProfile, RikishiPr
 export default function CompareRikishiPage() {
   const { t, i18n } = useTranslation('common');
   const [searchParams, setSearchParams] = useSearchParams();
+  const { pathname, search } = useLocation();
   const rawIds = searchParams.get('ids');
   const [indexResponse, setIndexResponse] = React.useState<RikishiIndexResponse | null>(null);
   const [indexStatus, setIndexStatus] = React.useState<'loading' | 'ready' | 'error'>('loading');
@@ -717,6 +720,14 @@ export default function CompareRikishiPage() {
 
   const unknown = t('rikishi.unknown');
   const currentComparison = requestKey && comparison?.key === requestKey ? comparison : null;
+  const shareMetaOverride = currentComparison?.profiles ? {
+    pathname,
+    title: t('comparison.shareMetaTitle', { first: currentComparison.profiles[0].name, second: currentComparison.profiles[1].name }),
+    description: t('comparison.shareMetaDescription', { first: currentComparison.profiles[0].name, second: currentComparison.profiles[1].name }),
+    socialUrl: new URL(`${pathname}${search}`, SITE_ORIGIN).toString(),
+  } : null;
+  usePageMetaOverride(shareMetaOverride);
+
   const tableReady = Boolean(
     currentComparison?.profileStatus === 'ready'
     && (currentComparison.matchupStatus === 'ready' || currentComparison.matchupStatus === 'error')
