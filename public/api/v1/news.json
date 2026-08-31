@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-31T08:30:41.238924+00:00",
+  "updatedAt": "2026-08-31T10:21:11.242057+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_WJ7XBGXGUFDCRPHL3OKLJGLBN4",
-      "title": "朝翠龍、兄の朝紅龍と史上14組目の兄弟幕内　「スパルタ」亡き母のおかげ「今となってはいい思い出」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_WJ7XBGXGUFDCRPHL3OKLJGLBN4",
+      "id": "dmenu-docomo-sponichi-spngoo-20260831-0292",
+      "title": "新関脇・藤ノ川「思っていたより早かった」京都府から緋縅以来198年ぶり新三役「今年の目標でもあった」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260831-0292",
       "publishedAt": "2026-08-31",
-      "publishedAtRaw": "SANSPO　8月31日 17時19分",
+      "publishedAtRaw": "スポニチアネックス　8月31日 19時04分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-jiji-202608310092806722",
-      "title": "藤ノ川、勝ち越し目指して",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-202608310092806722",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_UFB5KHJAIVDE5IN4BLFI2EOLJM",
+      "title": "花田秀虎「相撲である程度、活躍して物足りなさをすごい感じたというか」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_UFB5KHJAIVDE5IN4BLFI2EOLJM",
       "publishedAt": "2026-08-31",
-      "publishedAtRaw": "時事通信　8月31日 17時12分",
+      "publishedAtRaw": "SANSPO　8月31日 19時02分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260831-202608310000944",
-      "title": "朝翠龍が新入幕、兄朝紅龍と兄弟幕内「結構スパルタだった」亡き母へ相撲で親孝行誓う",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260831-202608310000944",
+      "id": "dmenu-docomo-fnn-1104902",
+      "title": "大関復帰の安青錦「自分らしい相撲を取ってまた一番上の番付を狙えるように」　9月13日からの秋場所で綱取り目指す",
+      "url": "https://topics.smt.docomo.ne.jp/article/fnn/sports/fnn-1104902",
       "publishedAt": "2026-08-31",
-      "publishedAtRaw": "日刊スポーツ　8月31日 16時51分",
+      "publishedAtRaw": "FNNプライムオンライン　8月31日 18時53分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260831-OHT1T51175",
-      "title": "大関・安青錦が一日警察署長「緊張もあったが、うまくやれた」チラシ配布や横断訓練で交通安全を呼びかけ",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260831-OHT1T51175",
+      "id": "dmenu-docomo-chuspo-1304712",
+      "title": "【大相撲】父はモンゴル相撲横綱の新入幕の寿之富士　元横綱白鵬からスカウト、師匠の元照ノ富士「伸びしろしかない」三役期待",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1304712",
       "publishedAt": "2026-08-31",
-      "publishedAtRaw": "スポーツ報知　8月31日 16時38分",
+      "publishedAtRaw": "中日スポーツ　8月31日 18時47分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-ans-721237",
-      "title": "月曜早朝…大相撲協会が発表「急にびっくり…！」「ついに」　安青錦復帰＆21歳昇進に相次ぐ祝福",
-      "url": "https://topics.smt.docomo.ne.jp/article/ans/sports/ans-721237",
+      "id": "dmenu-docomo-chuspo-1304702",
+      "title": "【大相撲】体重123キロの新関脇・藤ノ川、行くぞ21世紀最軽量大関　幕内最年少21歳は198年ぶり京都出身の新三役",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1304702",
       "publishedAt": "2026-08-31",
-      "publishedAtRaw": "THE ANSWER　8月31日 16時33分",
+      "publishedAtRaw": "中日スポーツ　8月31日 18時39分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
