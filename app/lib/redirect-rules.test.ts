@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 const redirectsPath = resolve(process.cwd(), 'public', '_redirects');
-const SUPPORTED_MONTH_KEYS = ['202603', '202605', '202607'] as const;
+const SUPPORTED_MONTH_KEYS = ['202603', '202605', '202607', '202609'] as const;
 
 interface RedirectRule {
   source: string;
@@ -125,7 +125,7 @@ describe('Cloudflare banzuke redirect rules', () => {
   it('does not invent a fragment in any banzuke redirect destination', () => {
     const banzukeRules = redirectRules().filter((rule) => rule.source.includes('banzuke') || rule.source.includes('banduke') || rule.source.includes('o-sumo'));
 
-    expect(banzukeRules.length).toBe(18);
+    expect(banzukeRules.length).toBe(24);
     expect(banzukeRules.every((rule) => !rule.destination.includes('#'))).toBe(true);
   });
 
@@ -145,7 +145,7 @@ describe('Cloudflare banzuke redirect rules', () => {
   it('rewrites every SPA fallback to the root document', () => {
     const spaFallbacks = redirectRules().filter((rule) => rule.status === 200);
 
-    expect(spaFallbacks).toHaveLength(16);
+    expect(spaFallbacks).toHaveLength(17);
     expect(spaFallbacks.every((rule) => rule.destination === '/')).toBe(true);
   });
 });
