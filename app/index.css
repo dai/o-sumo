@@ -1752,7 +1752,7 @@
 .home-editorial .hero-section {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(19rem, 0.9fr);
-  align-items: center;
+  align-items: start;
   gap: clamp(2.5rem, 7vw, 6.5rem);
   margin-bottom: clamp(3rem, 7vw, 6rem);
   padding: 0 0 clamp(3rem, 6vw, 5rem);
@@ -1763,13 +1763,57 @@
   border-bottom: 1px solid var(--home-rule);
 }
 
+.home-editorial .hero-editorial-copy {
+  position: sticky;
+  top: clamp(1rem, 3vw, 2rem);
+  align-self: start;
+  max-width: 42rem;
+}
+
+.home-editorial .home-illustration {
+  position: relative;
+  display: block;
+  margin: clamp(3rem, 7vw, 6rem) 0 clamp(1rem, 3vw, 2rem);
+  width: 100%;
+  max-width: 44rem;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: clamp(10rem, 18vw, 16rem);
+  overflow: hidden;
+  background: var(--home-paper-deep);
+}
+
+.home-editorial .home-illustration .hero-sun {
+  top: 14%;
+  right: 18%;
+  width: min(38%, 8.5rem);
+}
+
+.home-editorial .home-illustration .hero-dohyo {
+  right: 14%;
+  bottom: 18%;
+  width: 70%;
+  height: 32%;
+}
+
+.home-editorial .home-illustration .hero-shikiri {
+  bottom: 32%;
+  width: 12%;
+}
+
+.home-editorial .home-illustration .hero-shikiri-left {
+  left: 36%;
+}
+
+.home-editorial .home-illustration .hero-shikiri-right {
+  right: 26%;
+}
+
 .home-editorial .hero-section::before {
   content: none;
 }
 
-.home-editorial .hero-editorial-copy {
-  max-width: 42rem;
-}
+
 
 .home-editorial .hero-basho-title {
   margin: 0 0 1.25rem;
@@ -2131,28 +2175,21 @@
   background: var(--home-paper-deep);
 }
 
-.home-editorial .hero-sun {
+.home-editorial .home-illustration .hero-sun {
   position: absolute;
-  top: 11%;
-  right: 13%;
-  width: min(56%, 15rem);
   aspect-ratio: 1;
   background: var(--home-red);
   border-radius: 50%;
 }
 
-.home-editorial .hero-dohyo {
+.home-editorial .home-illustration .hero-dohyo {
   position: absolute;
-  right: 9%;
-  bottom: 15%;
-  width: 82%;
-  height: 31%;
   border: clamp(0.7rem, 1.4vw, 1.1rem) solid var(--home-ink);
   border-radius: 50%;
   transform: skewY(-3deg);
 }
 
-.home-editorial .hero-dohyo::before {
+.home-editorial .home-illustration .hero-dohyo::before {
   content: '';
   position: absolute;
   inset: 17%;
@@ -2160,22 +2197,12 @@
   border-radius: 50%;
 }
 
-.home-editorial .hero-shikiri {
+.home-editorial .home-illustration .hero-shikiri {
   position: absolute;
-  bottom: 27%;
   z-index: 1;
-  width: 16%;
   height: 3px;
   background: var(--home-ink);
   transform: rotate(-3deg);
-}
-
-.home-editorial .hero-shikiri-left {
-  left: 31%;
-}
-
-.home-editorial .hero-shikiri-right {
-  right: 21%;
 }
 
 .home-editorial .live-torikumi-section {
@@ -2367,11 +2394,16 @@
   }
 
   .home-editorial .hero-editorial-copy {
+    position: static;
     max-width: 46rem;
   }
 
   .home-editorial .hero-visual {
     min-height: 21rem;
+  }
+
+  .home-editorial .home-illustration {
+    min-height: clamp(9rem, 22vw, 14rem);
   }
 }
 
@@ -2418,6 +2450,11 @@
 
   .home-editorial .hero-visual {
     min-height: 17rem;
+  }
+
+  .home-editorial .home-illustration {
+    min-height: clamp(7rem, 26vw, 11rem);
+    max-width: 28rem;
   }
 
   .home-editorial .live-torikumi-section {

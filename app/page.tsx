@@ -261,20 +261,14 @@ export default function Home() {
               ))}
             </nav>
           </div>
-          <div className="hero-visual" aria-hidden="true">
-            <span className="hero-sun" />
-            <span className="hero-dohyo" />
-            <span className="hero-shikiri hero-shikiri-left" />
-            <span className="hero-shikiri hero-shikiri-right" />
-          </div>
-        </section>
 
-        {/* Daily Highlights Section (今日のみどころ・注目取組) */}
-        <DailyHighlightsSection
-          monthKey={torikumiMonthKey}
-          archive={torikumiArchive}
-          bashoStatus={bashoStatus}
-        />
+          {/* Daily Highlights Section (今日のみどころ・注目取組) */}
+          <DailyHighlightsSection
+            monthKey={torikumiMonthKey}
+            archive={torikumiArchive}
+            bashoStatus={bashoStatus}
+          />
+        </section>
 
         <div className="home-feature-grid">
           <section className="live-torikumi-section" aria-labelledby="live-torikumi-title">
@@ -329,6 +323,14 @@ export default function Home() {
           <Link to="/archives/" className="past-basho-index-link">
             {t('home.pastBashoAll')}
           </Link>
+        </div>
+
+        {/* Hero illustration moved to the very bottom of the page */}
+        <div className="home-illustration" aria-hidden="true">
+          <span className="hero-sun" />
+          <span className="hero-dohyo" />
+          <span className="hero-shikiri hero-shikiri-left" />
+          <span className="hero-shikiri hero-shikiri-right" />
         </div>
       </main>
 

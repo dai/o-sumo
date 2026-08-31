@@ -130,13 +130,17 @@ describe('Home page', () => {
     );
 
     const home = document.querySelector('.home-container');
-    const hero = document.querySelector('.hero-section');
-    const visual = document.querySelector('.hero-visual');
+    const hero = document.querySelector<HTMLElement>('.hero-section');
+    const illustration = document.querySelector('.home-illustration');
+    const highlights = document.querySelector<HTMLElement>('.daily-highlights-section');
 
     expect(home).toHaveClass('home-editorial');
     expect(hero).not.toBeNull();
     expect(hero!.querySelector('.hero-editorial-copy')).not.toBeNull();
-    expect(visual).toHaveAttribute('aria-hidden', 'true');
+    expect(illustration).not.toBeNull();
+    expect(illustration).toHaveAttribute('aria-hidden', 'true');
+    // Daily Highlights now occupies the right column of the hero section.
+    expect(hero).toContainElement(highlights!);
   });
 
   it('shows the main navigation links and footer-only contact links', () => {
@@ -371,6 +375,8 @@ describe('Home page', () => {
     const live = document.querySelector('.live-torikumi-section');
     const news = document.querySelector('.news-section');
     const firstPastBasho = document.querySelector('.past-basho-section');
+    const pastBashoIndex = document.querySelector('.past-basho-index-action');
+    const illustration = document.querySelector('.home-illustration');
 
     expect(main).not.toBeNull();
     expect(hero).not.toBeNull();
@@ -379,6 +385,8 @@ describe('Home page', () => {
     expect(live).not.toBeNull();
     expect(news).not.toBeNull();
     expect(firstPastBasho).not.toBeNull();
+    expect(pastBashoIndex).not.toBeNull();
+    expect(illustration).not.toBeNull();
 
     // The bitwise flag 4 means DOCUMENT_POSITION_FOLLOWING, i.e. `other` is
     // positioned later in the document than `node`.
@@ -387,12 +395,14 @@ describe('Home page', () => {
     const featuresBeforeNews = featureGrid!.compareDocumentPosition(news!) & Node.DOCUMENT_POSITION_FOLLOWING;
     const heroBeforeNews = hero!.compareDocumentPosition(news!) & Node.DOCUMENT_POSITION_FOLLOWING;
     const newsBeforePast = news!.compareDocumentPosition(firstPastBasho!) & Node.DOCUMENT_POSITION_FOLLOWING;
+    const pastBeforeIllustration = pastBashoIndex!.compareDocumentPosition(illustration!) & Node.DOCUMENT_POSITION_FOLLOWING;
 
     expect(heroBeforeHighlights).toBeTruthy();
     expect(highlightsBeforeFeatures).toBeTruthy();
     expect(featuresBeforeNews).toBeTruthy();
     expect(heroBeforeNews).toBeTruthy();
     expect(newsBeforePast).toBeTruthy();
+    expect(pastBeforeIllustration).toBeTruthy();
   });
 
   it('falls back to the empty-state message when no news items are available', () => {
