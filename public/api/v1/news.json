@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-31T00:58:32.121392+00:00",
+  "updatedAt": "2026-08-31T02:29:43.621801+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-hochi-20260831-OHT1T51076",
+      "title": "安青錦、大関復帰も「特別な思いはない。上を目指す気持ちに変わりはない」名古屋場所優勝から臨む秋場所へ…番付発表会見",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260831-OHT1T51076",
+      "publishedAt": "2026-08-31",
+      "publishedAtRaw": "スポーツ報知　8月31日 11時09分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260831-OHT1T51071",
+      "title": "伯乃富士が新小結　鳥取出身で６２年ぶり「すごく光栄」師匠の元横綱・照ノ富士「勢いではなく実力」…秋場所番付発表",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260831-OHT1T51071",
+      "publishedAt": "2026-08-31",
+      "publishedAtRaw": "スポーツ報知　8月31日 10時50分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-20260831-567-GYT1T00068",
+      "title": "大相撲秋場所で新関脇昇進の藤ノ川、京都府出身では１９８年ぶりの新三役…名古屋場所優勝の安青錦は東大関に復帰",
+      "url": "https://topics.smt.docomo.ne.jp/article/yomiuri/sports/20260831-567-GYT1T00068",
+      "publishedAt": "2026-08-31",
+      "publishedAtRaw": "読売新聞　8月31日 10時48分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-jiji-2026083100178",
       "title": "藤ノ川、新三役で西関脇＝伯乃富士も新小結に―大相撲秋場所",
       "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026083100178",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260831045",
       "publishedAt": "2026-08-31",
       "publishedAtRaw": "デイリースポーツ　8月31日 8時31分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260831044",
-      "title": "藤ノ川が新関脇！京都からの新三役は１９８年ぶり、１０位タイのスピード出世【大相撲秋場所番付発表】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260831044",
-      "publishedAt": "2026-08-31",
-      "publishedAtRaw": "デイリースポーツ　8月31日 8時31分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260831-202608310000091",
-      "title": "元アマ横綱の花田秀虎氏は角界入り断念　ギリギリまで迷うも最終チャンスの新弟子検査受検せず",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260831-202608310000091",
-      "publishedAt": "2026-08-31",
-      "publishedAtRaw": "日刊スポーツ　8月31日 8時14分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260831-0107",
-      "title": "藤ノ川が新関脇に昇進　京都府からは実に198年ぶり　大相撲秋場所番付発表",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260831-0107",
-      "publishedAt": "2026-08-31",
-      "publishedAtRaw": "スポニチアネックス　8月31日 6時44分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
