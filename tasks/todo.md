@@ -1,3 +1,36 @@
+# o-sumo 読みもの（blog.osada.us）実装（2026-09-01）
+
+## Plan
+
+- [ ] `blog/posts/YYYY-MM-DD-<slug>.md`、frontmatter検証、Markdown静的生成、`dist-blog/`出力を実装する
+- [ ] 公開記事から`public/api/v1/blog.json`を生成し、main siteが`news-data.ts`と同じ静的import方式で読み込む導線を実装する
+- [ ] ホームヘッダー直後・ヒーロー前に`BlogUpdatesSection`を追加し、0件非表示、最大9件、日英見出し、レスポンシブ列数を実装する
+- [ ] 初回記事、RSS 2.0、sitemap、robots、404、canonical/OG/Twitter、Digital Washiのブログ画面を実装する
+- [ ] 生成器・トップUIの回帰テストと、full test、型チェック、main/blog buildを実行する
+
+## Verification
+
+- [ ] `npm test`、`npm run typecheck`、`npm run build`、`npm run blog:build`、`git diff --check`を成功させる
+- [ ] Wranglerで`dist`と`dist-blog`を別々に配信し、トップ、一覧、記事、RSS、sitemap、404をHTTPとブラウザで確認する
+- [ ] 1280px、タブレット、390pxでの列数、横スクロール0、light/dark、可視focus、見出し階層、記事遷移を確認する
+
+## Cloudflare Release
+
+- [ ] `o-sumo-blog` Pages projectをrepository root、`npm ci && npm run blog:build`、output `dist-blog`、`NODE_VERSION=22`で作成し、最初のPreviewを確認する
+- [ ] Pages Custom domainsから`blog.osada.us`を関連付け、HTTPS、canonical、OG、RSS、sitemap、トップからの記事遷移を本番で確認する
+- [ ] Custom domain有効化後に限り、account-level Cloudflare Bulk Redirectで`o-sumo-blog.pages.dev`をパス・query保持の301で`blog.osada.us`へ転送する
+
+## Delivery
+
+- [ ] 検証結果、Pages URL、custom domain状態をこのセクションのReviewへ記録する
+- [ ] 差分を自己レビューし、focused commit、push、PRを作成する
+
+## Review
+
+- [ ] 実装後に検証証跡、レビュー結果、公開状態を記録する
+
+---
+
 # PR #485 今日のみどころ公式取組連動化（2026-08-26）
 
 ## Plan
