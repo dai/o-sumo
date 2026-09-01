@@ -28,7 +28,8 @@
 - [ ] 検証結果、Pages URL、custom domain状態をこのセクションのReviewへ記録する
 - [ ] 差分を自己レビューする
 - [ ] focused commitを作成する
-- [ ] pushしてPRを作成する
+- [ ] pushする
+- [ ] PRを作成する
 
 ## Review
 
