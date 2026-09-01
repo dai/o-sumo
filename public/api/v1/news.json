@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-01T06:35:26.119511+00:00",
+  "updatedAt": "2026-09-01T08:29:03.957851+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-hochi-20260901-OHT1T51200",
+      "title": "錦木、十両残留に「ギリギリ残っていて良かった」　先場所は西１４枚目で負け越しも番付据え置き",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260901-OHT1T51200",
+      "publishedAt": "2026-09-01",
+      "publishedAtRaw": "スポーツ報知　9月1日 16時56分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-kyodo_nor-2026090101001218",
+      "title": "綱とりへ霧島「楽しくいきたい」　先場所に続き挑戦",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026090101001218",
+      "publishedAt": "2026-09-01",
+      "publishedAtRaw": "共同通信　9月1日 16時36分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260901-OHT1T51186",
+      "title": "幕内・錦富士「息ができなくなって…」　夏巡業休場理由の「心房細動」の症状を明かす　現在は稽古も再開",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260901-OHT1T51186",
+      "publishedAt": "2026-09-01",
+      "publishedAtRaw": "スポーツ報知　9月1日 16時35分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-sankei-_sports_sumo_RWQBJBLAG5PJJIIG666ZPGSG5A",
       "title": "若隆景「復帰に向けて少しずつ前進」　コンパートメント症候群で左脚手術",
       "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_RWQBJBLAG5PJJIIG666ZPGSG5A",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1305046",
       "publishedAt": "2026-09-01",
       "publishedAtRaw": "中日スポーツ　9月1日 14時54分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260901-0180",
-      "title": "右膝手術の豊昇龍が四股を踏み始めたことを明かす　秋場所出否は「ギリギリまで分からない」と明言避ける",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260901-0180",
-      "publishedAt": "2026-09-01",
-      "publishedAtRaw": "スポニチアネックス　9月1日 14時34分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260901-202609010000456",
-      "title": "左脚手術の若隆景が経過を説明「すごく激しい痛み。出血が止まらなくて…」壮絶手術を振り返る",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260901-202609010000456",
-      "publishedAt": "2026-09-01",
-      "publishedAtRaw": "日刊スポーツ　9月1日 14時16分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260901-202609010000437",
-      "title": "右ひざ手術の横綱豊昇龍、秋場所は「ギリギリまで分からない」回復は「普通の人より早すぎ」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260901-202609010000437",
-      "publishedAt": "2026-09-01",
-      "publishedAtRaw": "日刊スポーツ　9月1日 14時14分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
