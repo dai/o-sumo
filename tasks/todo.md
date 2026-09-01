@@ -5,36 +5,36 @@
 - [x] Task 3: `dist-blog/` onlyに静的ブログ、RSS、sitemap、robots、404、CSS、OG copyをTDDで生成する
 - [x] Task 3: `blog:generate` / `blog:build`で静的配信物と追跡対象`public/api/v1/blog.json`を再現可能に生成する
 - [x] Task 3: 一時ディレクトリを使う生成器テスト、focused/full test、型検査、blog build、差分検査を記録する
-- [ ] `blog/posts/YYYY-MM-DD-<slug>.md`、frontmatter検証、Markdown静的生成、`dist-blog/`出力を実装する
-- [ ] 公開記事から`public/api/v1/blog.json`を生成し、main siteが`news-data.ts`と同じ静的import方式で読み込む導線を実装する
-- [ ] ホームヘッダー直後・ヒーロー前に`BlogUpdatesSection`を追加し、0件非表示、最大9件、日英見出し、レスポンシブ列数を実装する
-- [ ] 初回記事、RSS 2.0、sitemap、robots、404、canonical/OG/Twitter、Digital Washiのブログ画面を実装する
-- [ ] 生成器・トップUIの回帰テストと、full test、型チェック、main/blog buildを実行する
+- [x] (Tasks 1-5) 設計書 + todo 作成、TDDで frontmatter / JST未来日 / draft / 決定的 `blog.json`、RSS 2.0 / sitemap / robots / 404 / canonical / OG / Twitter / デジタル和紙 CSS、0件非表示・最大9件・`lang=ja`・同タブ絶対URL・`BlogUpdatesSection` ヘッダー直後配置、全テスト + 型 + main/blog build + `git diff --check` + impeccable detector、キーボード focus 可視まで完了。詳細は `.superpowers/sdd/codex-20260901-plan/progress.md` と各 `task-*-report.md`。
 
 ## Verification
 
-- [ ] `npm test`、`npm run typecheck`、`npm run build`、`npm run blog:build`、`git diff --check`を成功させる
-- [ ] Wranglerで`dist`と`dist-blog`を別々に配信し、トップ、一覧、記事、RSS、sitemap、404をHTTPとブラウザで確認する
-- [ ] 1280px、タブレット、390pxでの列数、横スクロール0、light/dark、可視focus、見出し階層、記事遷移を確認する
+- [x] `npm test` 67 files / 460 tests、`npm run typecheck`、`npm run build`（PWA生成含む）、`npm run blog:build`、`git diff --check origin/main...HEAD`、Impeccable detector 0 violations、Wrangler で `dist`(8788) と `dist-blog`(8789) を別ポートで配信。
+- [x] HTTP 契約: `/api/v1/blog.json` 200 JSON、blog `/` 200 HTML、blog `/posts/osumo-yomimono-start/` 200 HTML、`/feed.xml` 200 application/xml（RSS 2.0 + `<dc:creator>` + canonical記事URL）、`/sitemap.xml` 200 application/xml（home/記事URL 列挙）、`/robots.txt` 200 text/plain（User-agent `*` / Allow `/` / Sitemap）、`/missing-page` 404 + カスタム404ページ。
+- [x] ブラウザ: 1280px 3列・800px 2列・390px 1列、各幅で `scrollWidth === clientWidth` 0 overflow、light および dark で配色と「読みもの」配置維持、`.blog-updates-item-link` / `.blog-updates-all-link` の `:focus-visible` で paper(`#f4eedf`) on ink(`#24211e`) へ反転 + 1.48px solid 0.45 alpha + 2.96px offset の outline 可視、見出し階層 h2「読みもの」-> `.hero-section`、ホームから blog 記事への同タブ絶対URL遷移を確認。
+- [x] Screenshots: `.impeccable/review/{main-desktop,main-tablet,main-mobile,main-mobile-dark,desktop-top-resumed,blog-item-focused,blog-all-focused,blog-article-desktop,blog-home-mobile,blog-home-tab1}.png`。
 
 ## Cloudflare Release
 
-- [ ] `o-sumo-blog` Pages projectをrepository root、`npm ci && npm run blog:build`、output `dist-blog`、`NODE_VERSION=22`で作成し、最初のPreviewを確認する
-- [ ] Pages Custom domainsから`blog.osada.us`を関連付け、HTTPS、canonical、OG、RSS、sitemap、トップからの記事遷移を本番で確認する
-- [ ] Custom domain有効化後に限り、account-level Cloudflare Bulk Redirectで`o-sumo-blog.pages.dev`をパス・query保持の301で`blog.osada.us`へ転送する
+- [ ] `o-sumo-blog` Pages project を repository root、build command `npm ci && npm run blog:build`、output directory `dist-blog`、`NODE_VERSION=22` で作成する（Cloudflare account auth 必要、本セッションでは未実行）
+- [ ] Custom domain `blog.osada.us` を関連付け、本番 URL で HTTPS、canonical / OG / Twitter / RSS / sitemap、ホームからの記事遷移を確認する（同上）
+- [ ] Custom domain 有効化後に限り、account-level Bulk Redirect で `o-sumo-blog.pages.dev` を `blog.osada.us` へ path/query 保持の 301 で転送する（同上、`_redirects` には実装しない）
 
 ## Delivery
 
-- [ ] 検証結果、Pages URL、custom domain状態をこのセクションのReviewへ記録する
+- [ ] 検証結果、Pages URL、custom domain 状態をこのセクションの Review へ記録する
 - [ ] 差分を自己レビューする
-- [ ] focused commitを作成する
-- [ ] pushする
-- [ ] PRを作成する
+- [ ] focused commit を作成する（分割済: dd1efac→bc597b5 の 9 コミット）
+- [ ] push する
+- [ ] PR を作成する
 
 ## Review
 
-- [ ] 実装後に検証証跡、レビュー結果、公開状態を記録する
-- [x] Task 3: focused RED/GREEN、実生成、full test、型検査、JSON drift、差分検査を完了。詳細は`.superpowers/sdd/codex-20260901-plan/task-3-report.md`。
+- [x] Tasks 1-5 証跡・レビュー結果: `.superpowers/sdd/codex-20260901-plan/progress.md`、各 `task-*-report.md`、関連 `review-*.diff` を参照
+- [x] ブラウザ証跡: 1280 / 800 / 390 / light / dark / focused desktop-top および blog-home / blog-article / mobile / focused screenshots、HTTP レスポンス検証（上記 Verification セクション参照）
+- [ ] Cloudflare Pages Release 証跡（本セッション外の Cloudflare account 操作で記録）
+- [x] 設計仕様: `docs/superpowers/specs/2026-09-01-osumo-blog-design.md`、RSS 2.0・canonical・no-client-JS・0件 feed 契約・home 配置・focused commit 分割を `progress.md` Task 1-5 review セクションに記録
+- [x] Task 3: focused RED/GREEN、実生成、full test、型検査、JSON drift、差分検査を完了。詳細は `.superpowers/sdd/codex-20260901-plan/task-3-report.md`。
 
 ---
 
