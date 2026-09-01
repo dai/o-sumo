@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-31T10:21:11.242057+00:00",
+  "updatedAt": "2026-09-01T01:04:23.052455+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260831-0292",
-      "title": "新関脇・藤ノ川「思っていたより早かった」京都府から緋縅以来198年ぶり新三役「今年の目標でもあった」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260831-0292",
-      "publishedAt": "2026-08-31",
-      "publishedAtRaw": "スポニチアネックス　8月31日 19時04分",
+      "id": "dmenu-docomo-hochi-20260901-OHT1T51031",
+      "title": "新十両・丹治が番付発表後の初稽古　初白まわし披露「まわしが茶色になるくらい稽古を頑張りたい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260901-OHT1T51031",
+      "publishedAt": "2026-09-01",
+      "publishedAtRaw": "スポーツ報知　9月1日 9時23分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_UFB5KHJAIVDE5IN4BLFI2EOLJM",
-      "title": "花田秀虎「相撲である程度、活躍して物足りなさをすごい感じたというか」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_UFB5KHJAIVDE5IN4BLFI2EOLJM",
-      "publishedAt": "2026-08-31",
-      "publishedAtRaw": "SANSPO　8月31日 19時02分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260901-0004",
+      "title": "【元横綱・稀勢の里コラム】弟子には四股名を大事にしてほしい　“新戦力”小林梅太に期待",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260901-0004",
+      "publishedAt": "2026-09-01",
+      "publishedAtRaw": "スポニチアネックス　9月1日 7時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-fnn-1104902",
-      "title": "大関復帰の安青錦「自分らしい相撲を取ってまた一番上の番付を狙えるように」　9月13日からの秋場所で綱取り目指す",
-      "url": "https://topics.smt.docomo.ne.jp/article/fnn/sports/fnn-1104902",
-      "publishedAt": "2026-08-31",
-      "publishedAtRaw": "FNNプライムオンライン　8月31日 18時53分",
+      "id": "dmenu-docomo-tokyosports-401442",
+      "title": "【大相撲】安青錦が圧倒Ｖに意欲「本割で決めると、どんな気持ちなのか知りたい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-401442",
+      "publishedAt": "2026-09-01",
+      "publishedAtRaw": "東スポWEB　9月1日 6時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-chuspo-1304712",
-      "title": "【大相撲】父はモンゴル相撲横綱の新入幕の寿之富士　元横綱白鵬からスカウト、師匠の元照ノ富士「伸びしろしかない」三役期待",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1304712",
-      "publishedAt": "2026-08-31",
-      "publishedAtRaw": "中日スポーツ　8月31日 18時47分",
+      "id": "dmenu-docomo-tokyosports-401438",
+      "title": "【大相撲】秋場所の本命・安青錦、対抗・熱海富士　秀ノ山親方が指摘する２人の〝強み〟",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-401438",
+      "publishedAt": "2026-09-01",
+      "publishedAtRaw": "東スポWEB　9月1日 6時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-chuspo-1304702",
-      "title": "【大相撲】体重123キロの新関脇・藤ノ川、行くぞ21世紀最軽量大関　幕内最年少21歳は198年ぶり京都出身の新三役",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1304702",
-      "publishedAt": "2026-08-31",
-      "publishedAtRaw": "中日スポーツ　8月31日 18時39分",
+      "id": "dmenu-docomo-hochi-20260831-OHT1T51294",
+      "title": "藤ノ川、京都出身１９８年ぶり新三役　江戸時代後期、西郷隆盛が生まれた１８２８年以来…時空を超えた偉業だ「期待に応えられるように頑張りたい」　大相撲秋場所番付発表",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260831-OHT1T51294",
+      "publishedAt": "2026-09-01",
+      "publishedAtRaw": "スポーツ報知　9月1日 5時05分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
