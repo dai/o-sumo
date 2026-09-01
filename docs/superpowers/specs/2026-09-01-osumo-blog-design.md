@@ -62,7 +62,7 @@ interface BlogFeed {
 }
 ```
 
-`items`はすべての公開記事を公開日降順で持つ。`updatedAt`は最新公開記事の`publishedAt`であり、build時刻を使用しない。CIは再生成後に`git diff --exit-code -- public/api/v1/blog.json`を実行し、同期漏れを検出する。
+`items`はすべての公開記事を公開日降順で持つ。公開記事が0件の場合、`updatedAt`は空文字列（`''`）とする。これは実装上必須の`string`型と一致する。公開記事がある場合、`updatedAt`は最新公開記事の`publishedAt`であり、build時刻を使用しない。CIは再生成後に`git diff --exit-code -- public/api/v1/blog.json`を実行し、同期漏れを検出する。
 
 ## Blog experience and visual design
 
