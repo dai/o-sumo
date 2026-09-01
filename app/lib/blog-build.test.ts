@@ -79,6 +79,18 @@ describe('standalone blog build', () => {
     expect(readFileSync(join(site.output, 'og-default.jpg'), 'utf8')).toBe('blog-og-image')
   })
 
+  it('loads the established bilingual font stack in generated CSS', () => {
+    const site = fixture()
+    writePost(site.posts, '2026-09-01-fonts.md', 'title: 記事\ndescription: 説明\npublishedAt: 2026-09-01\ndraft: false')
+
+    build(site)
+
+    const css = readFileSync(join(site.output, 'assets', 'blog.css'), 'utf8')
+    expect(css).toContain("@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700;8..60,800&display=swap');")
+    expect(css).toContain('font-family: "Source Serif 4", "Shippori Mincho", "Yu Mincho", "Hiragino Mincho ProN", serif;')
+    expect(css).toContain('h1, h2 { font-family: "Source Serif 4", "Shippori Mincho", "Yu Mincho", "Hiragino Mincho ProN", serif;')
+  })
+
   it('excludes drafts from HTML, RSS, sitemap, and generated JSON', () => {
     const site = fixture()
     writePost(site.posts, '2026-09-01-public.md', 'title: 公開\ndescription: 公開説明\npublishedAt: 2026-09-01\ndraft: false')
@@ -141,6 +153,18 @@ describe('standalone blog build', () => {
     expect((feed.match(/<item>/g) ?? [])).toHaveLength(20)
     expect(feed.indexOf('記事21')).toBeLessThan(feed.indexOf('記事20'))
     expect(feed).not.toContain('記事1</title>')
+  })
+
+  it('uses Dublin Core creator metadata instead of invalid RSS author text', () => {
+    const site = fixture()
+    writePost(site.posts, '2026-09-01-creator.md', 'title: 記事\ndescription: 説明\npublishedAt: 2026-09-01\ndraft: false')
+
+    build(site)
+
+    const feed = readFileSync(join(site.output, 'feed.xml'), 'utf8')
+    expect(feed).toContain('<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">')
+    expect(feed).toContain('<dc:creator>dai</dc:creator>')
+    expect(feed).not.toContain('<author>dai</author>')
   })
 
   it('uses the exact blog canonical origin in sitemap and robots', () => {

@@ -80,12 +80,12 @@ function renderFeedXml(posts: BlogPost[]): string {
     <link>${escapeXml(post.url)}</link>
     <guid isPermaLink="true">${escapeXml(post.url)}</guid>
     <description>${escapeXml(post.description)}</description>
-    <author>dai</author>
+    <dc:creator>dai</dc:creator>
     <pubDate>${new Date(`${post.publishedAt}T00:00:00+09:00`).toUTCString()}</pubDate>
   </item>`).join('\n')
   const lastBuildDate = posts[0] ? new Date(`${posts[0].publishedAt}T00:00:00+09:00`).toUTCString() : ''
   return `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <channel>
   <title>${BLOG_TITLE}</title>
   <link>${BLOG_ORIGIN}/</link>
@@ -107,14 +107,16 @@ ${urls.map((url) => `  <url><loc>${escapeXml(url)}</loc></url>`).join('\n')}
 `
 }
 
-const BLOG_CSS = `:root {
+const BLOG_CSS = `@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700;8..60,800&display=swap');
+
+:root {
   color-scheme: light dark;
   --paper: #f7f1e3;
   --ink: #1d1a16;
   --vermilion: #9e2b20;
   --gold: #9a6d1e;
   --rule: #b8a58a;
-  font-family: "Source Serif 4", "Shippori Mincho", Georgia, serif;
+  font-family: "Source Serif 4", "Shippori Mincho", "Yu Mincho", "Hiragino Mincho ProN", serif;
 }
 
 * { box-sizing: border-box; }
@@ -130,7 +132,7 @@ a:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
 .site-header { border-bottom: 1px solid var(--rule); padding: 1.25rem 0; }
 .site-title { font-size: 1.2rem; font-weight: 700; text-decoration: none; }
 .intro { padding: 4.5rem 0 2.25rem; border-bottom: 3px solid var(--vermilion); }
-h1, h2 { font-family: "Shippori Mincho", "Source Serif 4", serif; line-height: 1.35; text-wrap: balance; }
+h1, h2 { font-family: "Source Serif 4", "Shippori Mincho", "Yu Mincho", "Hiragino Mincho ProN", serif; line-height: 1.35; text-wrap: balance; }
 h1 { margin: 0; font-size: clamp(2.1rem, 7vw, 4.5rem); letter-spacing: -0.03em; }
 h2 { margin: 0.35rem 0; font-size: clamp(1.4rem, 4vw, 2rem); }
 .post-list { margin: 0; padding: 0; list-style: none; }

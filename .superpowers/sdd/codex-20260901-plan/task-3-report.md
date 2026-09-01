@@ -54,3 +54,23 @@ dist-blog/
 ## Review and concerns
 
 The build generates no app JavaScript and does not write the sibling main `dist` output. The generated feed JSON was already current, so no content-only JSON diff was introduced. The report does not claim a Pages deployment or browser deployment verification; those are outside Task 3's local build scope.
+
+## Fix Round 1: review findings
+
+### RED
+
+Command: `npm test -- app/lib/blog-build.test.ts`
+
+Result: exit 1; 10 tests, 2 failed as expected.
+
+- `loads the established bilingual font stack in generated CSS` failed because the generated CSS had neither the established Google Fonts import nor the complete Source Serif 4-first stack for headings.
+- `uses Dublin Core creator metadata instead of invalid RSS author text` failed because the generated feed used `<rss version="2.0">` and `<author>dai</author>` rather than a Dublin Core creator declaration.
+
+### GREEN
+
+Applied only the requested corrections: the generated CSS now imports the same Shippori Mincho and Source Serif 4 URL as `app/globals.css`, and body plus headings use the Source Serif 4-first stack with the established Japanese fallbacks. RSS now declares `xmlns:dc="http://purl.org/dc/elements/1.1/"` and emits `<dc:creator>dai</dc:creator>`.
+
+- `npm test -- app/lib/blog-build.test.ts` — exit 0, 10 tests passed.
+- `npm run blog:build` — exit 0.
+- `npm run typecheck` — exit 0.
+- `git diff --check` — exit 0.
