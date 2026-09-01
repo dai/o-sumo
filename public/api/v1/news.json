@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-01T01:04:23.052455+00:00",
+  "updatedAt": "2026-09-01T04:23:22.896045+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-tbs-2910827",
+      "title": "【大相撲】大関・霧島が“三度目の正直”へ　混戦の秋場所で「綱とり」再挑戦、求められる“14勝以上”",
+      "url": "https://topics.smt.docomo.ne.jp/article/tbs/sports/tbs-2910827",
+      "publishedAt": "2026-09-01",
+      "publishedAtRaw": "TBS NEWS DIG　9月1日 12時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-hochi-20260901-OHT1T51031",
       "title": "新十両・丹治が番付発表後の初稽古　初白まわし披露「まわしが茶色になるくらい稽古を頑張りたい」",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-401438",
       "publishedAt": "2026-09-01",
       "publishedAtRaw": "東スポWEB　9月1日 6時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260831-OHT1T51294",
-      "title": "藤ノ川、京都出身１９８年ぶり新三役　江戸時代後期、西郷隆盛が生まれた１８２８年以来…時空を超えた偉業だ「期待に応えられるように頑張りたい」　大相撲秋場所番付発表",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260831-OHT1T51294",
-      "publishedAt": "2026-09-01",
-      "publishedAtRaw": "スポーツ報知　9月1日 5時05分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
