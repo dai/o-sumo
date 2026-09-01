@@ -33,5 +33,11 @@ jobs:
       - name: Run tests
         run: npm test
 
+      - name: Generate standalone blog
+        run: npm run blog:generate
+
+      - name: Verify tracked blog feed is current
+        run: git diff --exit-code -- public/api/v1/blog.json
+
       - name: Build app
         run: npm run build

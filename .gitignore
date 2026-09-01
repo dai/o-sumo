@@ -6,6 +6,7 @@ Mode=Exclusive
 
 # Build output
 dist/
+dist-blog/
 build/
 
 # Environment variables

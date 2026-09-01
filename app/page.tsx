@@ -19,6 +19,7 @@ import NewsSection from './components/NewsSection';
 import { formatBashoTitle, getFinalBashoName } from './lib/basho-meta';
 import KimariteCard from './components/KimariteCard';
 import DailyHighlightsSection from './components/DailyHighlightsSection';
+import BlogUpdatesSection from './components/BlogUpdatesSection';
 import { divisionAnchorId } from './lib/rikishi-display';
 import './index.css';
 
@@ -233,6 +234,8 @@ export default function Home() {
       </header>
 
       <main className="home-main">
+        <BlogUpdatesSection />
+
         {/* Current Basho - Hero Section */}
         <section className="hero-section" aria-labelledby="hero-basho-title">
           <div className="hero-editorial-copy">

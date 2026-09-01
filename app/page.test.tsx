@@ -143,6 +143,27 @@ describe('Home page', () => {
     expect(hero).toContainElement(highlights!);
   });
 
+  it('places blog updates between the header and hero while keeping daily highlights in the hero', () => {
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+
+    const header = document.querySelector<HTMLElement>('.home-header');
+    const blogUpdates = document.querySelector<HTMLElement>('.blog-updates-section');
+    const hero = document.querySelector<HTMLElement>('.hero-section');
+    const highlights = document.querySelector<HTMLElement>('.daily-highlights-section');
+
+    expect(header).not.toBeNull();
+    expect(blogUpdates).not.toBeNull();
+    expect(hero).not.toBeNull();
+    expect(highlights).not.toBeNull();
+    expect(header!.compareDocumentPosition(blogUpdates!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(blogUpdates!.compareDocumentPosition(hero!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(hero).toContainElement(highlights!);
+  });
+
   it('shows the main navigation links and footer-only contact links', () => {
     render(
       <MemoryRouter>
