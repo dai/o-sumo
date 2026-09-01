@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-01T04:23:22.896045+00:00",
+  "updatedAt": "2026-09-01T06:35:26.119511+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-tbs-2910827",
-      "title": "【大相撲】大関・霧島が“三度目の正直”へ　混戦の秋場所で「綱とり」再挑戦、求められる“14勝以上”",
-      "url": "https://topics.smt.docomo.ne.jp/article/tbs/sports/tbs-2910827",
+      "id": "dmenu-docomo-sankei-_sports_sumo_RWQBJBLAG5PJJIIG666ZPGSG5A",
+      "title": "若隆景「復帰に向けて少しずつ前進」　コンパートメント症候群で左脚手術",
+      "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_RWQBJBLAG5PJJIIG666ZPGSG5A",
       "publishedAt": "2026-09-01",
-      "publishedAtRaw": "TBS NEWS DIG　9月1日 12時00分",
+      "publishedAtRaw": "産経ニュース　9月1日 15時05分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260901-OHT1T51031",
-      "title": "新十両・丹治が番付発表後の初稽古　初白まわし披露「まわしが茶色になるくらい稽古を頑張りたい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260901-OHT1T51031",
+      "id": "dmenu-docomo-chuspo-1305046",
+      "title": "横綱豊昇龍、秋場所出場「ギリギリまで分からない。僕は出たい気持ち」 名古屋場所後に右膝手術、四股を再開【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1305046",
       "publishedAt": "2026-09-01",
-      "publishedAtRaw": "スポーツ報知　9月1日 9時23分",
+      "publishedAtRaw": "中日スポーツ　9月1日 14時54分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260901-0004",
-      "title": "【元横綱・稀勢の里コラム】弟子には四股名を大事にしてほしい　“新戦力”小林梅太に期待",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260901-0004",
+      "id": "dmenu-docomo-sponichi-spngoo-20260901-0180",
+      "title": "右膝手術の豊昇龍が四股を踏み始めたことを明かす　秋場所出否は「ギリギリまで分からない」と明言避ける",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260901-0180",
       "publishedAt": "2026-09-01",
-      "publishedAtRaw": "スポニチアネックス　9月1日 7時00分",
+      "publishedAtRaw": "スポニチアネックス　9月1日 14時34分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-401442",
-      "title": "【大相撲】安青錦が圧倒Ｖに意欲「本割で決めると、どんな気持ちなのか知りたい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-401442",
+      "id": "dmenu-docomo-f-bt-tp1-260901-202609010000456",
+      "title": "左脚手術の若隆景が経過を説明「すごく激しい痛み。出血が止まらなくて…」壮絶手術を振り返る",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260901-202609010000456",
       "publishedAt": "2026-09-01",
-      "publishedAtRaw": "東スポWEB　9月1日 6時00分",
+      "publishedAtRaw": "日刊スポーツ　9月1日 14時16分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-401438",
-      "title": "【大相撲】秋場所の本命・安青錦、対抗・熱海富士　秀ノ山親方が指摘する２人の〝強み〟",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-401438",
+      "id": "dmenu-docomo-f-bt-tp1-260901-202609010000437",
+      "title": "右ひざ手術の横綱豊昇龍、秋場所は「ギリギリまで分からない」回復は「普通の人より早すぎ」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260901-202609010000437",
       "publishedAt": "2026-09-01",
-      "publishedAtRaw": "東スポWEB　9月1日 6時00分",
+      "publishedAtRaw": "日刊スポーツ　9月1日 14時14分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
