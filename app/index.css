@@ -46,6 +46,85 @@
   width: 100%;
 }
 
+/* Home blog updates */
+.blog-updates-section {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  color: var(--color-text);
+  background: var(--surface-container-low);
+}
+
+.blog-updates-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.blog-updates-title {
+  margin: 0;
+  color: var(--color-primary);
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-wrap: balance;
+}
+
+.blog-updates-all-link {
+  color: var(--color-tertiary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.blog-updates-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.blog-updates-item {
+  display: grid;
+  gap: 0.45rem;
+  min-width: 0;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--color-secondary-light);
+}
+
+.blog-updates-item:nth-child(3n + 1) {
+  padding-left: 0;
+}
+
+.blog-updates-date {
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+
+.blog-updates-item-link {
+  color: inherit;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  text-decoration: none;
+}
+
+.blog-updates-item-link:hover,
+.blog-updates-item-link:focus-visible,
+.blog-updates-all-link:hover,
+.blog-updates-all-link:focus-visible {
+  color: var(--surface);
+  background: var(--color-primary);
+}
+
 /* Hero section - surface hierarchy, no border */
 .hero-section {
   background: linear-gradient(180deg, var(--surface-container-low) 0%, var(--surface) 100%);
@@ -1352,6 +1431,18 @@
     padding: 1.5rem 1rem;
   }
 
+  .blog-updates-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .blog-updates-item:nth-child(3n + 1) {
+    padding-left: 1.25rem;
+  }
+
+  .blog-updates-item:nth-child(2n + 1) {
+    padding-left: 0;
+  }
+
   .hero-section {
     padding: 2rem 1.5rem;
   }
@@ -1421,6 +1512,26 @@
   .hero-section::before {
     width: 180px;
     height: 180px;
+  }
+
+  .blog-updates-section {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .blog-updates-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .blog-updates-list {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-updates-item,
+  .blog-updates-item:nth-child(3n + 1),
+  .blog-updates-item:nth-child(2n + 1) {
+    padding: 0.9rem 0;
   }
 
   .feature-card h3 {
@@ -2297,6 +2408,7 @@
 }
 
 .home-editorial .news-section,
+.home-editorial .blog-updates-section,
 .home-editorial .kimarite-home-section,
 .home-editorial .past-basho-section {
   margin-bottom: clamp(3rem, 6vw, 5rem);
@@ -2308,6 +2420,7 @@
 }
 
 .home-editorial .news-section-title,
+.home-editorial .blog-updates-title,
 .home-editorial .news-subsection-title,
 .home-editorial .kimarite-home-title,
 .home-editorial .past-basho-heading {
@@ -2315,6 +2428,7 @@
 }
 
 .home-editorial .news-section-title,
+.home-editorial .blog-updates-title,
 .home-editorial .kimarite-home-title,
 .home-editorial .past-basho-heading {
   font-size: clamp(1.75rem, 4vw, 2.75rem);
@@ -2324,11 +2438,13 @@
 
 .home-editorial .news-subsection + .news-subsection,
 .home-editorial .news-item,
-.home-editorial .news-item:last-child {
+.home-editorial .news-item:last-child,
+.home-editorial .blog-updates-item {
   border-color: var(--home-rule);
 }
 
 .home-editorial .news-item-link,
+.home-editorial .blog-updates-item-link,
 .home-editorial .kimarite-home-link {
   color: var(--home-ink);
 }
@@ -2339,7 +2455,16 @@
   background: var(--home-ink);
 }
 
+.home-editorial .blog-updates-item-link:hover,
+.home-editorial .blog-updates-item-link:focus-visible,
+.home-editorial .blog-updates-all-link:hover,
+.home-editorial .blog-updates-all-link:focus-visible {
+  color: var(--home-paper);
+  background: var(--home-ink);
+}
+
 .home-editorial .news-subsection-see-all,
+.home-editorial .blog-updates-all-link,
 .home-editorial .kimarite-home-see-all,
 .home-editorial .kimarite-home-romaji,
 .home-editorial .home-footer a {
@@ -2462,6 +2587,7 @@
   }
 
   .home-editorial .news-section,
+  .home-editorial .blog-updates-section,
   .home-editorial .kimarite-home-section,
   .home-editorial .past-basho-section {
     padding-top: 1.75rem;
