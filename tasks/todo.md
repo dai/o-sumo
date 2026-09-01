@@ -22,11 +22,11 @@
 
 ## Delivery
 
-- [ ] 検証結果、Pages URL、custom domain 状態をこのセクションの Review へ記録する
-- [ ] 差分を自己レビューする
-- [ ] focused commit を作成する（分割済: dd1efac→bc597b5 の 9 コミット）
-- [ ] push する
-- [ ] PR を作成する
+- [x] 検証結果、Pages URL、custom domain 状態をこのセクションの Review へ記録する（PR [#523](https://github.com/dai/o-sumo/pull/523) 経由でマージ後 Cloudflare Release を実行）
+- [x] 差分を自己レビューする（22 files / +1850 / -2、`git diff --check` 0、Impeccable detector 0 violations）
+- [x] focused commit を作成する（dd1efac→b455889 の 10 コミット、各タスク 1 commit）
+- [x] push する（`refs/heads/blog-section` → `b455889` published、`origin/main` 1d6edf1 + 10 commits）
+- [x] PR を作成する（[dai/o-sumo#523](https://github.com/dai/o-sumo/pull/523)、Open、base=main、head=blog-section）
 
 ## Review
 
