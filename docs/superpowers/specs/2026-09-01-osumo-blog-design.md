@@ -66,7 +66,7 @@ interface BlogFeed {
 
 ## Blog experience and visual design
 
-デザインモードはReadとする。既存のDigital Washi、Shippori Mincho、Source Serif 4、墨・朱・金の配色を継承する。角はsharp cornersとし、丸角、独自テーマ切替、JavaScriptによるテーマ制御を追加しない。light/darkは`prefers-color-scheme`で切り替える。
+デザインモードはReadとする。既存のDigital Washi、Shippori Mincho、Source Serif 4、墨・朱・金の配色を継承する。ブログ体験にはクライアントJavaScriptを追加しない。角はsharp cornersとし、丸角や独自テーマ切替を追加しない。light/darkは`prefers-color-scheme`で切り替える。
 
 一覧には公開日、タイトル、descriptionを表示する。記事ページにはタイトル、公開日、著者`dai`、本文、`osada.usへ戻る`を表示する。
 
