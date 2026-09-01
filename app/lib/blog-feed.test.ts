@@ -32,14 +32,18 @@ describe('blog feed metadata', () => {
   })
 
   it.each([
-    ['missing title', 'description: 説明\npublishedAt: 2026-09-01\ndraft: false'],
-    ['unknown key', 'title: 題名\ndescription: 説明\npublishedAt: 2026-09-01\ndraft: false\nextra: no'],
-    ['wrong title type', 'title: 42\ndescription: 説明\npublishedAt: 2026-09-01\ndraft: false'],
-    ['wrong draft type', 'title: 題名\ndescription: 説明\npublishedAt: 2026-09-01\ndraft: yes'],
-  ])('rejects %s frontmatter', (_name, frontmatter) => {
+    ['missing title', 'description: 説明\npublishedAt: 2026-09-01\ndraft: false', /frontmatter/i],
+    ['unknown key', 'title: 題名\ndescription: 説明\npublishedAt: 2026-09-01\ndraft: false\nextra: no', /frontmatter/i],
+    ['wrong title type', 'title: 42\ndescription: 説明\npublishedAt: 2026-09-01\ndraft: false', /frontmatter/i],
+    ['blank title', 'title: ""\ndescription: 説明\npublishedAt: 2026-09-01\ndraft: false', /frontmatter/i],
+    ['blank description', 'title: 題名\ndescription: ""\npublishedAt: 2026-09-01\ndraft: false', /frontmatter/i],
+    ['wrong description type', 'title: 題名\ndescription: 42\npublishedAt: 2026-09-01\ndraft: false', /frontmatter/i],
+    ['wrong draft type', 'title: 題名\ndescription: 説明\npublishedAt: 2026-09-01\ndraft: yes', /frontmatter/i],
+    ['wrong publishedAt type', 'title: 題名\ndescription: 説明\npublishedAt: 42\ndraft: false', /date/i],
+  ])('rejects %s frontmatter', (_name, frontmatter, expectedError) => {
     const directory = postsDirectory()
     writePost(directory, '2026-09-01-invalid.md', frontmatter)
-    expect(() => loadBlogPosts(directory, { todayJst: '2026-09-01' })).toThrow(/frontmatter/i)
+    expect(() => loadBlogPosts(directory, { todayJst: '2026-09-01' })).toThrow(expectedError)
   })
 
   it('rejects invalid dates and filename/publishedAt mismatches', () => {
@@ -77,6 +81,13 @@ describe('blog feed metadata', () => {
     writePost(directory, '2026-08-31-old.md', 'title: 古い\ndescription: 説明\npublishedAt: 2026-08-31\ndraft: false')
 
     expect(buildBlogFeed(directory, { todayJst: '2026-09-02' }).items.map((item) => item.slug)).toEqual(['alpha', 'zeta', 'old'])
+  })
+
+  it('returns an empty public feed when every real post is a draft', () => {
+    const directory = postsDirectory()
+    writePost(directory, '2026-09-01-hidden.md', 'title: 下書き\ndescription: 説明\npublishedAt: 2026-09-01\ndraft: true')
+
+    expect(buildBlogFeed(directory, { todayJst: '2026-09-01' })).toEqual({ updatedAt: '', items: [] })
   })
 
   it('writes deterministic JSON and derives updatedAt from content, not the clock', () => {
