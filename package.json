@@ -12,7 +12,8 @@
     "test:watch": "vitest",
     "preflight:current-data": "python scripts/preflight_current_basho.py",
     "verify:delivery-flow": "pwsh ./scripts/verify_delivery_flow.ps1",
-    "blog:generate": "tsx scripts/build_blog_feed.ts"
+    "blog:generate": "tsx scripts/build_blog.ts",
+    "blog:build": "tsx scripts/build_blog.ts"
   },
   "repository": {
     "type": "git",

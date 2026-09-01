@@ -82,7 +82,7 @@ function validatePost(filePath: string, options: BlogFeedOptions): BlogPost {
   if (typeof parsed.data.description !== 'string' || parsed.data.description.trim() === '') throw new Error(`Invalid frontmatter description in ${filename}`)
   if (typeof parsed.data.draft !== 'boolean') throw new Error(`Invalid frontmatter draft in ${filename}`)
 
-  const publishedAt = dateFromParts(extractPublishedAtToken(parsed.matter), 'publishedAt')
+  const publishedAt = dateFromParts(extractPublishedAtToken(source), 'publishedAt')
   if (filenameDate !== publishedAt) throw new Error(`Filename date does not match publishedAt in ${filename}`)
   const today = dateFromParts(options.todayJst ?? todayInJst(), 'today')
   if (publishedAt > today) throw new Error(`Future publishedAt date in ${filename}`)

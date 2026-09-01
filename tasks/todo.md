@@ -2,6 +2,9 @@
 
 ## Plan
 
+- [x] Task 3: `dist-blog/` onlyに静的ブログ、RSS、sitemap、robots、404、CSS、OG copyをTDDで生成する
+- [x] Task 3: `blog:generate` / `blog:build`で静的配信物と追跡対象`public/api/v1/blog.json`を再現可能に生成する
+- [x] Task 3: 一時ディレクトリを使う生成器テスト、focused/full test、型検査、blog build、差分検査を記録する
 - [ ] `blog/posts/YYYY-MM-DD-<slug>.md`、frontmatter検証、Markdown静的生成、`dist-blog/`出力を実装する
 - [ ] 公開記事から`public/api/v1/blog.json`を生成し、main siteが`news-data.ts`と同じ静的import方式で読み込む導線を実装する
 - [ ] ホームヘッダー直後・ヒーロー前に`BlogUpdatesSection`を追加し、0件非表示、最大9件、日英見出し、レスポンシブ列数を実装する
@@ -28,6 +31,7 @@
 ## Review
 
 - [ ] 実装後に検証証跡、レビュー結果、公開状態を記録する
+- [x] Task 3: focused RED/GREEN、実生成、full test、型検査、JSON drift、差分検査を完了。詳細は`.superpowers/sdd/codex-20260901-plan/task-3-report.md`。
 
 ---
 
