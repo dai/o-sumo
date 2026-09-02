@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-02T06:38:33.535725+00:00",
+  "updatedAt": "2026-09-02T08:28:01.230571+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260902-0193",
-      "title": "大関・霧島が稽古再開「どんどん稽古」　3度目綱獲りへ八角理事長が激励「こんなチャンスなかなか来ない」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260902-0193",
+      "id": "dmenu-docomo-kyodo_nor-2026090201001202",
+      "title": "大の里15番、秋場所へ稽古再開　鋭い出足、内容に納得",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026090201001202",
       "publishedAt": "2026-09-02",
-      "publishedAtRaw": "スポニチアネックス　9月2日 14時28分",
+      "publishedAtRaw": "共同通信　9月2日 17時09分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-chuspo-1305530",
-      "title": "【大相撲】ウクライナ出身・獅司、自己最重量182キロで秋場所へ、師匠の雷親方「次は三役を」",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1305530",
+      "id": "dmenu-docomo-jiji-2026090200857",
+      "title": "綱とり霧島、自然体で＝大相撲秋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026090200857",
       "publishedAt": "2026-09-02",
-      "publishedAtRaw": "中日スポーツ　9月2日 13時56分",
+      "publishedAtRaw": "時事通信　9月2日 16時25分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_SHARZFCKO5HAHO6GK2AITKTACA",
-      "title": "白鵬氏「かつて土俵でしのぎを削った大関把瑠都と…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_SHARZFCKO5HAHO6GK2AITKTACA",
+      "id": "dmenu-docomo-hochi-20260902-OHT1T51195",
+      "title": "秋場所の新弟子検査、元アマ横綱の花田秀虎は受検せず　ハワイ出身・砂田昌宏ライダーら４人が申し込み",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260902-OHT1T51195",
       "publishedAt": "2026-09-02",
-      "publishedAtRaw": "SANSPO　9月2日 13時48分",
+      "publishedAtRaw": "スポーツ報知　9月2日 16時12分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260902065",
-      "title": "若隆景が大粒の汗、左脚緊急手術から復活目指しトレーニング【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260902065",
+      "id": "dmenu-docomo-f-bt-tp1-260902-202609020000582",
+      "title": "秋場所新弟子検査の受検者発表…元アマ横綱花田秀虎さんの名前なし　体重55キロ新道帝憲ら受検",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260902-202609020000582",
       "publishedAt": "2026-09-02",
-      "publishedAtRaw": "デイリースポーツ　9月2日 12時40分",
+      "publishedAtRaw": "日刊スポーツ　9月2日 16時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_4KMMJQZ2Q5JWZPADNIYU32BZFI",
-      "title": "若隆景、左脚切断危機乗り越え「ほっとしている」　復帰は未定も…すでに稽古再開",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_4KMMJQZ2Q5JWZPADNIYU32BZFI",
+      "id": "dmenu-docomo-hochi-20260902-OHT1T51178",
+      "title": "大関・霧島、秋場所へ稽古再開　重さ１１キロのバット型の器具を使った新トレーニングも「普段使わない筋肉が強くなる」…１３日初日",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260902-OHT1T51178",
       "publishedAt": "2026-09-02",
-      "publishedAtRaw": "SANSPO　9月2日 5時00分",
+      "publishedAtRaw": "スポーツ報知　9月2日 15時47分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
