@@ -1,6 +1,14 @@
 {
-  "updatedAt": "2026-09-01",
+  "updatedAt": "2026-09-02",
   "items": [
+    {
+      "slug": "day2",
+      "title": "二日目",
+      "description": "随筆力なんてない、書くこと、書き続けることがプラクティス",
+      "url": "https://blog.osada.us/posts/day2/",
+      "publishedAt": "2026-09-02",
+      "author": "dai"
+    },
     {
       "slug": "osumo-yomimono-start",
       "title": "o-sumo 読みものを始めます",
