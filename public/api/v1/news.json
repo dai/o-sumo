@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-01T10:23:12.210754+00:00",
+  "updatedAt": "2026-09-02T00:54:18.247240+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-20260901093",
-      "title": "若隆景　「コンパートメント症候群」左脚の緊急手術を説明「激しい痛み、１分１秒を争うと」復帰時期は未定【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260901093",
-      "publishedAt": "2026-09-01",
-      "publishedAtRaw": "デイリースポーツ　9月1日 18時57分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_4KMMJQZ2Q5JWZPADNIYU32BZFI",
+      "title": "若隆景、左脚切断危機乗り越え「ほっとしている」　復帰は未定も…すでに稽古再開",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_4KMMJQZ2Q5JWZPADNIYU32BZFI",
+      "publishedAt": "2026-09-02",
+      "publishedAtRaw": "SANSPO　9月2日 5時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260901-0249",
-      "title": "左脚手術の若隆景が経過を説明　リハビリは順調「復帰に向けて少しづつ前進しているかな」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260901-0249",
-      "publishedAt": "2026-09-01",
-      "publishedAtRaw": "スポニチアネックス　9月1日 18時27分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260902-0061",
+      "title": "若隆景「凄い激しい痛み」　左脚手術の状況語る…秋場所全休予定もリハビリは順調",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260902-0061",
+      "publishedAt": "2026-09-02",
+      "publishedAtRaw": "スポニチアネックス　9月2日 4時30分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260901086",
-      "title": "豊昇龍「僕は出たい気持ち」右膝手術も意欲、体重は一時１５キロ減も回復【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260901086",
+      "id": "dmenu-docomo-hochi-20260901-OHT1T51405",
+      "title": "ＡＢＥＭＡが秋場所のキービジュアル公開！両横綱と大関・安青錦らがメイン！「これは壮観」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260901-OHT1T51405",
       "publishedAt": "2026-09-01",
-      "publishedAtRaw": "デイリースポーツ　9月1日 18時12分",
+      "publishedAtRaw": "スポーツ報知　9月1日 23時43分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260901-OHT1T51231",
-      "title": "左太もも手術で名古屋場所全休の若隆景が力士会出席　復帰時期は未定も「経過は良好」関取衆の前で笑顔も",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260901-OHT1T51231",
+      "id": "dmenu-docomo-chuspo-1305215",
+      "title": "綱とりの霧島、家族パワーで「三度目の正直」Vだ　相撲好きの長女アヤゴーちゃんと喜怒哀楽分かち合い突き進む【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1305215",
       "publishedAt": "2026-09-01",
-      "publishedAtRaw": "スポーツ報知　9月1日 18時06分",
+      "publishedAtRaw": "中日スポーツ　9月1日 20時08分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260901-OHT1T51229",
-      "title": "霧島　２場所連続で優勝逃すも「自分の目標は変わってない」　３度目の正直に向けジムワークを導入",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260901-OHT1T51229",
+      "id": "dmenu-docomo-chuspo-1305197",
+      "title": "若隆景、「出血が止まらなくて危ないと…」左脚の緊急手術は生死に関わる状況ですぐに2度目の手術受けたと明かす【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1305197",
       "publishedAt": "2026-09-01",
-      "publishedAtRaw": "スポーツ報知　9月1日 18時01分",
+      "publishedAtRaw": "中日スポーツ　9月1日 19時30分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
