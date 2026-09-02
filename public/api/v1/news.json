@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-02T00:54:18.247240+00:00",
+  "updatedAt": "2026-09-02T04:25:06.171094+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-20260902065",
+      "title": "若隆景が大粒の汗、左脚緊急手術から復活目指しトレーニング【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260902065",
+      "publishedAt": "2026-09-02",
+      "publishedAtRaw": "デイリースポーツ　9月2日 12時40分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-sanspo-_sports_sumo_4KMMJQZ2Q5JWZPADNIYU32BZFI",
       "title": "若隆景、左脚切断危機乗り越え「ほっとしている」　復帰は未定も…すでに稽古再開",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1305215",
       "publishedAt": "2026-09-01",
       "publishedAtRaw": "中日スポーツ　9月1日 20時08分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-chuspo-1305197",
-      "title": "若隆景、「出血が止まらなくて危ないと…」左脚の緊急手術は生死に関わる状況ですぐに2度目の手術受けたと明かす【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1305197",
-      "publishedAt": "2026-09-01",
-      "publishedAtRaw": "中日スポーツ　9月1日 19時30分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
