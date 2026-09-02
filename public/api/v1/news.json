@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-02T04:25:06.171094+00:00",
+  "updatedAt": "2026-09-02T06:38:33.535725+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-sponichi-spngoo-20260902-0193",
+      "title": "大関・霧島が稽古再開「どんどん稽古」　3度目綱獲りへ八角理事長が激励「こんなチャンスなかなか来ない」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260902-0193",
+      "publishedAt": "2026-09-02",
+      "publishedAtRaw": "スポニチアネックス　9月2日 14時28分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-chuspo-1305530",
+      "title": "【大相撲】ウクライナ出身・獅司、自己最重量182キロで秋場所へ、師匠の雷親方「次は三役を」",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1305530",
+      "publishedAt": "2026-09-02",
+      "publishedAtRaw": "中日スポーツ　9月2日 13時56分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_SHARZFCKO5HAHO6GK2AITKTACA",
+      "title": "白鵬氏「かつて土俵でしのぎを削った大関把瑠都と…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_SHARZFCKO5HAHO6GK2AITKTACA",
+      "publishedAt": "2026-09-02",
+      "publishedAtRaw": "SANSPO　9月2日 13時48分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-20260902065",
       "title": "若隆景が大粒の汗、左脚緊急手術から復活目指しトレーニング【大相撲】",
       "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260902065",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_4KMMJQZ2Q5JWZPADNIYU32BZFI",
       "publishedAt": "2026-09-02",
       "publishedAtRaw": "SANSPO　9月2日 5時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260902-0061",
-      "title": "若隆景「凄い激しい痛み」　左脚手術の状況語る…秋場所全休予定もリハビリは順調",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260902-0061",
-      "publishedAt": "2026-09-02",
-      "publishedAtRaw": "スポニチアネックス　9月2日 4時30分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260901-OHT1T51405",
-      "title": "ＡＢＥＭＡが秋場所のキービジュアル公開！両横綱と大関・安青錦らがメイン！「これは壮観」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260901-OHT1T51405",
-      "publishedAt": "2026-09-01",
-      "publishedAtRaw": "スポーツ報知　9月1日 23時43分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-chuspo-1305215",
-      "title": "綱とりの霧島、家族パワーで「三度目の正直」Vだ　相撲好きの長女アヤゴーちゃんと喜怒哀楽分かち合い突き進む【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1305215",
-      "publishedAt": "2026-09-01",
-      "publishedAtRaw": "中日スポーツ　9月1日 20時08分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
