@@ -66,7 +66,6 @@ describe('standalone blog build', () => {
 
     expect(outputTree(site.output)).toEqual([
       '404.html',
-      '_redirects',
       'assets/blog.css',
       'feed.xml',
       'index.html',
@@ -185,26 +184,6 @@ describe('standalone blog build', () => {
     build(site)
 
     expect(readFileSync(join(site.output, '404.html'), 'utf8')).toContain('<a href="/">読みものの一覧へ戻る</a>')
-  })
-
-  it('writes a Pages _redirects file that 301s every pages.dev URL to blog.osada.us', () => {
-    const site = fixture()
-    writePost(site.posts, '2026-09-02-redirect.md', 'title: リダイレクト記事\ndescription: 説明\npublishedAt: 2026-09-02\ndraft: false')
-    writePost(site.posts, '2026-09-01-keep.md', 'title: 既存記事\ndescription: 説明\npublishedAt: 2026-09-01\ndraft: false')
-
-    build(site)
-
-    const redirects = readFileSync(join(site.output, '_redirects'), 'utf8')
-    expect(redirects).toContain('https://o-sumo-blog.pages.dev/posts/:slug  https://blog.osada.us/posts/:slug  301')
-    expect(redirects).toContain('https://o-sumo-blog.pages.dev/feed.xml      https://blog.osada.us/feed.xml     301')
-    expect(redirects).toContain('https://o-sumo-blog.pages.dev/sitemap.xml   https://blog.osada.us/sitemap.xml  301')
-    expect(redirects).toContain('https://o-sumo-blog.pages.dev/robots.txt    https://blog.osada.us/robots.txt   301')
-    expect(redirects).toContain('https://o-sumo-blog.pages.dev/og-default.jpg https://blog.osada.us/og-default.jpg 301')
-    expect(redirects).toContain('https://o-sumo-blog.pages.dev/assets/:path  https://blog.osada.us/assets/:path 301')
-    expect(redirects).toContain('https://o-sumo-blog.pages.dev/404.html      https://blog.osada.us/404.html     301')
-    expect(redirects).toContain('https://o-sumo-blog.pages.dev/:slug         https://blog.osada.us/:slug        301')
-    expect(redirects).toContain('https://o-sumo-blog.pages.dev/posts/redirect  https://blog.osada.us/posts/redirect  301')
-    expect(redirects).toContain('https://o-sumo-blog.pages.dev/posts/keep  https://blog.osada.us/posts/keep  301')
   })
 
   it('repeats builds with byte-identical text outputs and generated JSON', () => {
