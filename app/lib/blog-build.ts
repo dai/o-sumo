@@ -107,6 +107,28 @@ ${urls.map((url) => `  <url><loc>${escapeXml(url)}</loc></url>`).join('\n')}
 `
 }
 
+// Pages _redirects: host-mapped rewrites that move o-sumo-blog.pages.dev
+// traffic to blog.osada.us with the path and query preserved. Pages reads
+// this file at deploy time and applies the rules before the static asset
+// lookup, so the request never reaches a 404.
+function renderRedirects(posts: BlogPost[]): string {
+  const lines: string[] = [
+    '# Send every o-sumo-blog.pages.dev request to the custom domain.',
+    'https://o-sumo-blog.pages.dev/posts/:slug  https://blog.osada.us/posts/:slug  301',
+    'https://o-sumo-blog.pages.dev/feed.xml      https://blog.osada.us/feed.xml     301',
+    'https://o-sumo-blog.pages.dev/sitemap.xml   https://blog.osada.us/sitemap.xml  301',
+    'https://o-sumo-blog.pages.dev/robots.txt    https://blog.osada.us/robots.txt   301',
+    'https://o-sumo-blog.pages.dev/og-default.jpg https://blog.osada.us/og-default.jpg 301',
+    'https://o-sumo-blog.pages.dev/assets/:path  https://blog.osada.us/assets/:path 301',
+    'https://o-sumo-blog.pages.dev/404.html      https://blog.osada.us/404.html     301',
+    'https://o-sumo-blog.pages.dev/:slug         https://blog.osada.us/:slug        301',
+  ]
+  for (const post of posts) {
+    lines.push(`https://o-sumo-blog.pages.dev/posts/${post.slug}  https://blog.osada.us/posts/${post.slug}  301`)
+  }
+  return `${lines.join('\n')}\n`
+}
+
 const BLOG_CSS = `@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700;8..60,800&display=swap');
 
 :root {
@@ -169,6 +191,7 @@ export function buildBlogSite(options: BlogBuildOptions): BlogFeed {
   writeText(join(options.outputDirectory, 'sitemap.xml'), renderSitemapXml(posts))
   writeText(join(options.outputDirectory, 'robots.txt'), 'User-agent: *\nAllow: /\nSitemap: https://blog.osada.us/sitemap.xml\n')
   writeText(join(options.outputDirectory, '404.html'), documentHtml('ページが見つかりません', '指定されたページは見つかりません。', `${BLOG_ORIGIN}/404.html`, '/assets/blog.css', '<section class="intro"><h1>ページが見つかりません</h1><p><a href="/">読みものの一覧へ戻る</a></p></section>'))
+  writeText(join(options.outputDirectory, '_redirects'), renderRedirects(posts))
   writeText(join(options.outputDirectory, 'assets', 'blog.css'), BLOG_CSS)
   copyFileSync(options.ogImagePath, join(options.outputDirectory, 'og-default.jpg'))
   writeBlogFeedJson(feed, options.feedJsonPath)
