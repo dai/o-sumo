@@ -47,6 +47,8 @@ function documentHtml(title: string, description: string, canonical: string, sty
   <meta name="twitter:title" content="${escapeHtml(fullTitle)}">
   <meta name="twitter:description" content="${escapeHtml(description)}">
   <meta name="twitter:image" content="${DEFAULT_IMAGE_URL}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="${stylesheetHref}">
 </head>
 <body>
@@ -112,19 +114,21 @@ const BLOG_CSS = `@import url('https://fonts.googleapis.com/css2?family=Shippori
 :root {
   color-scheme: light dark;
   --paper: #f7f1e3;
+  --sunken: #efe7d4;
   --ink: #1d1a16;
+  --ink-muted: #5a534a;
   --vermilion: #9e2b20;
   --gold: #9a6d1e;
-  --rule: #b8a58a;
+  --rule: #a89272;
   font-family: "Source Serif 4", "Shippori Mincho", "Yu Mincho", "Hiragino Mincho ProN", serif;
 }
 
 * { box-sizing: border-box; }
 html { background: var(--paper); color: var(--ink); }
-body { margin: 0; min-width: 320px; line-height: 1.85; }
+body { margin: 0; min-width: 320px; line-height: 1.85; line-break: strict; overflow-wrap: break-word; text-spacing-trim: space-first; }
 a { color: inherit; text-decoration-color: var(--gold); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
 a:hover { color: var(--vermilion); }
-a:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
 ::selection { background: var(--vermilion); color: var(--paper); }
 ::-webkit-scrollbar { width: 12px; }
 ::-webkit-scrollbar-thumb { background: var(--gold); border: 3px solid var(--paper); }
@@ -132,24 +136,53 @@ a:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
 .site-header { border-bottom: 1px solid var(--rule); padding: 1.25rem 0; }
 .site-title { font-size: 1.2rem; font-weight: 700; text-decoration: none; }
 .intro { padding: 4.5rem 0 2.25rem; border-bottom: 3px solid var(--vermilion); }
-h1, h2 { font-family: "Source Serif 4", "Shippori Mincho", "Yu Mincho", "Hiragino Mincho ProN", serif; line-height: 1.35; text-wrap: balance; }
-h1 { margin: 0; font-size: clamp(2.1rem, 7vw, 4.5rem); letter-spacing: -0.03em; }
+h1, h2 { font-family: "Source Serif 4", "Shippori Mincho", "Yu Mincho", "Hiragino Mincho ProN", serif; line-height: 1.35; text-wrap: balance; font-feature-settings: "palt" 1; }
+h1 { margin: 0; font-size: clamp(2.1rem, 7vw, 4.5rem); }
 h2 { margin: 0.35rem 0; font-size: clamp(1.4rem, 4vw, 2rem); }
 .post-list { margin: 0; padding: 0; list-style: none; }
 .post-list-item { border-bottom: 1px solid var(--rule); padding: 2rem 0; }
 .post-list-item p, .intro p { margin: 0; }
-time, .author { color: var(--vermilion); font-variant-numeric: tabular-nums; }
+time, .author { color: var(--ink-muted); font-variant-numeric: tabular-nums; }
 .post { padding: 4rem 0; }
 .post header { border-bottom: 3px solid var(--vermilion); padding-bottom: 2rem; }
 .author { margin: 0.5rem 0 0; }
 .post-body { margin-top: 2.5rem; }
-.post-body p, .post-body ul, .post-body ol { max-width: 72ch; }
-.post-body blockquote { margin: 1.5rem 0; padding: 0 1.25rem; border-inline-start: 1px solid var(--gold); }
-.post-body code { color: var(--vermilion); }
+.post-body h2, .post-body h3, .post-body h4 { font-feature-settings: "palt" 1; line-height: 1.45; text-wrap: balance; }
+.post-body h2 { margin: 3.5rem 0 0.75rem; }
+.post-body h3 { margin: 2.75rem 0 0.5rem; font-size: clamp(1.25rem, 3vw, 1.55rem); }
+.post-body h4 { margin: 2rem 0 0.35rem; font-size: 1.1rem; color: var(--ink-muted); }
+.post-body > :first-child { margin-top: 0; }
+.post-body h2 + p, .post-body h3 + p, .post-body h4 + p { margin-top: 0; }
+.post-body ul, .post-body ol { padding-inline-start: 1.5rem; }
+.post-body li + li { margin-top: 0.5rem; }
+.post-body li::marker { color: var(--gold); }
+.post-body blockquote { margin: 1.5rem 0; padding: 0 1.25rem; border-inline-start: 1px solid var(--gold); color: var(--ink-muted); }
+.post-body strong { font-weight: 700; }
+.post-body img { display: block; max-width: 100%; height: auto; margin: 2rem 0; }
+.post-body hr { border: 0; margin: 3.5rem auto; width: 0.4rem; height: 0.4rem; background: var(--vermilion); }
+.post-body table { width: 100%; margin: 2rem 0; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.post-body th { text-align: start; font-weight: 700; padding: 0.5rem 0.75rem; border-bottom: 2px solid var(--rule); }
+.post-body td { padding: 0.5rem 0.75rem; vertical-align: baseline; }
+.post-body code { color: var(--vermilion); font-size: 0.9em; }
+.post-body pre { margin: 2rem 0; padding: 1.25rem; background: var(--sunken); overflow-x: auto; line-height: 1.7; }
+.post-body pre code { color: inherit; font-size: 0.85em; }
 .return-link { margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); }
 
+@media (prefers-contrast: more) {
+  a:focus-visible { outline-width: 3px; }
+}
+
 @media (prefers-color-scheme: dark) {
-  :root { --paper: #1d1a16; --ink: #f7f1e3; --vermilion: #ec897b; --gold: #e0bb67; --rule: #76674f; }
+  :root { --paper: #1d1a16; --sunken: #262119; --ink: #f7f1e3; --ink-muted: #a89b86; --vermilion: #ec897b; --gold: #e0bb67; --rule: #8a7757; }
+}
+
+@media print {
+  :root { --paper: #ffffff; --sunken: #f2f2f2; --ink: #101010; --ink-muted: #4a4a4a; --vermilion: #101010; --gold: #101010; --rule: #999999; }
+  .site-header, .return-link { display: none; }
+  .intro, .post header { border-bottom-width: 1px; }
+  .post, .intro { padding-top: 0; }
+  .post-body pre, .post-body blockquote, .post-body table { break-inside: avoid; }
+  h1, h2, h3, h4 { break-after: avoid; }
 }
 `
 
