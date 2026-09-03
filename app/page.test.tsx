@@ -143,7 +143,7 @@ describe('Home page', () => {
     expect(hero).toContainElement(highlights!);
   });
 
-  it('places blog updates between the header and hero while keeping daily highlights in the hero', () => {
+  it('places blog updates below the hero while keeping daily highlights in the hero', () => {
     render(
       <MemoryRouter>
         <Home />
@@ -159,8 +159,7 @@ describe('Home page', () => {
     expect(blogUpdates).not.toBeNull();
     expect(hero).not.toBeNull();
     expect(highlights).not.toBeNull();
-    expect(header!.compareDocumentPosition(blogUpdates!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-    expect(blogUpdates!.compareDocumentPosition(hero!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(hero!.compareDocumentPosition(blogUpdates!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(hero).toContainElement(highlights!);
   });
 
@@ -208,7 +207,7 @@ describe('Home page', () => {
 
     expect(screen.queryByLabelText('令和八年五月場所最終結果')).not.toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: `${MAY2026_TORIKUMI_DATA.year}${MAY2026_TORIKUMI_DATA.bashoName}` })).toBeInTheDocument();
-    expect(within(screen.getByLabelText('今場所の主要な導線')).getByRole('link', { name: '番付' })).toHaveAttribute('href', '/202609-banzuke/');
+    expect(within(screen.getByLabelText('今場所の主要な導線')).getByRole('link', { name: /星取表|番付/ })).toHaveAttribute('href', '/202609-banzuke/');
   });
 
   it('keeps March 2026 archive guidance on the top page', () => {
@@ -313,7 +312,7 @@ describe('Home page', () => {
   });
 
 
-  it('promotes analytics as a 場所を掘る feature beside the live shortcut', () => {
+  it('promotes analytics as a 場所を掘る feature in the feature grid', () => {
     render(
       <MemoryRouter>
         <Home />
@@ -321,17 +320,29 @@ describe('Home page', () => {
     );
 
     const featureGrid = document.querySelector<HTMLElement>('.home-feature-grid');
-    const liveCard = document.querySelector<HTMLElement>('.live-torikumi-section');
     const analyticsCard = document.querySelector<HTMLElement>('.analytics-feature-card');
 
     expect(featureGrid).not.toBeNull();
-    expect(liveCard).not.toBeNull();
     expect(analyticsCard).not.toBeNull();
-    expect(featureGrid).toContainElement(liveCard);
     expect(featureGrid).toContainElement(analyticsCard);
     expect(within(analyticsCard!).getByRole('heading', { name: '場所分析・三賞・決まり手傾向' })).toBeInTheDocument();
     expect(within(analyticsCard!).getByText('大相撲アナリティクス')).toBeInTheDocument();
     expect(within(analyticsCard!).getByRole('link', { name: 'アナリティクスを見る' })).toHaveAttribute('href', '/analytics/');
+  });
+
+  it('renders the smart hub 4-card quick navigation with today, banzuke, tomorrow, and my-rikishi', () => {
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+
+    const quickNav = screen.getByLabelText('今場所の主要な導線');
+    expect(quickNav).toBeInTheDocument();
+    expect(within(quickNav).getByRole('link', { name: /本日の取組/ })).toBeInTheDocument();
+    expect(within(quickNav).getByRole('link', { name: /星取表/ })).toHaveAttribute('href', '/202609-banzuke/');
+    expect(within(quickNav).getByRole('link', { name: /明日の割/ })).toHaveAttribute('href', '/202609-yotei/');
+    expect(within(quickNav).getByRole('link', { name: /マイ力士/ })).toHaveAttribute('href', '/my-rikishi/');
   });
 
   it('translates the analytics feature card when English is selected', async () => {
@@ -393,7 +404,6 @@ describe('Home page', () => {
     const hero = document.querySelector('.hero-section');
     const highlights = document.querySelector('.daily-highlights-section');
     const featureGrid = document.querySelector('.home-feature-grid');
-    const live = document.querySelector('.live-torikumi-section');
     const news = document.querySelector('.news-section');
     const firstPastBasho = document.querySelector('.past-basho-section');
     const pastBashoIndex = document.querySelector('.past-basho-index-action');
@@ -403,7 +413,6 @@ describe('Home page', () => {
     expect(hero).not.toBeNull();
     expect(highlights).not.toBeNull();
     expect(featureGrid).not.toBeNull();
-    expect(live).not.toBeNull();
     expect(news).not.toBeNull();
     expect(firstPastBasho).not.toBeNull();
     expect(pastBashoIndex).not.toBeNull();

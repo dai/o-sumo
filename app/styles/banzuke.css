@@ -435,3 +435,192 @@
     height: 48px;
   }
 }
+
+/* =========================================================================
+   Leaderboard & My Rikishi Filter (Digital Washi: 0px radius, No-Line)
+   ========================================================================= */
+.leaderboard-section {
+  margin-bottom: 2rem;
+}
+
+.leaderboard-table {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+}
+
+.leaderboard-head {
+  display: grid;
+  grid-template-columns: 44px 1fr 130px minmax(260px, 1.2fr);
+  gap: 0.75rem;
+  padding: 0.6rem 1rem;
+  background: var(--surface-container-high);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--color-primary);
+  border-radius: 0;
+}
+
+.leaderboard-row {
+  display: grid;
+  grid-template-columns: 44px 1fr 130px minmax(260px, 1.2fr);
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  align-items: center;
+  background: var(--surface-container-lowest);
+  transition: background-color 150ms ease;
+  border-radius: 0;
+  position: relative;
+}
+
+.leaderboard-row:hover {
+  background: var(--surface-container-low);
+}
+
+.leaderboard-row.is-my-rikishi {
+  background: color-mix(in srgb, var(--color-secondary-light, #fed65b) 12%, var(--surface-container-lowest));
+  border-left: 4px solid var(--color-secondary);
+}
+
+.lb-rank-number {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--color-muted);
+}
+
+.lb-rikishi-info {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.lb-rikishi-rank {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+.lb-rikishi-name {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.lb-rikishi-name:hover {
+  color: var(--color-secondary);
+  text-decoration: underline;
+}
+
+.lb-rikishi-yomi {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+}
+
+.lb-record {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.lb-record-text {
+  font-size: 0.92rem;
+  color: var(--color-primary);
+}
+
+.lb-record-text strong {
+  font-size: 1.1rem;
+  margin: 0 0.1rem;
+}
+
+.lb-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0.1rem 0.4rem;
+  border-radius: 0;
+  letter-spacing: 0.04em;
+}
+
+.lb-badge--kachikoshi {
+  background: var(--color-secondary);
+  color: #ffffff;
+}
+
+.lb-badge--makekoshi {
+  background: var(--surface-container-high);
+  color: var(--color-muted);
+}
+
+.leaderboard-empty {
+  padding: 1.5rem;
+  background: var(--surface-container-lowest);
+  color: var(--color-muted);
+  text-align: center;
+}
+
+/* View Mode & Filter Controls in toolbar */
+.banzuke-view-controls {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.banzuke-mode-btn,
+.banzuke-filter-btn {
+  border: none;
+  background: var(--surface-container-high);
+  color: var(--color-primary);
+  padding: 0.5rem 0.9rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0;
+  transition: all 150ms ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.banzuke-mode-btn:hover,
+.banzuke-filter-btn:hover {
+  background: var(--surface-bright);
+}
+
+.banzuke-mode-btn.active,
+.banzuke-filter-btn.active {
+  background: var(--color-primary);
+  color: var(--surface);
+}
+
+@media (max-width: 768px) {
+  .leaderboard-head {
+    display: none;
+  }
+
+  .leaderboard-row {
+    grid-template-columns: 36px 1fr;
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .lb-record {
+    grid-column: 2;
+  }
+
+  .lb-hoshitori {
+    grid-column: 1 / -1;
+    overflow-x: auto;
+    padding-top: 0.25rem;
+  }
+}

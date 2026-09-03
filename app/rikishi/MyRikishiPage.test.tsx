@@ -38,4 +38,18 @@ describe('MyRikishiPage comparison selection', () => {
     await user.click(third);
     expect(third).not.toBeChecked();
   });
+
+  it('renders tournament record and match information on rikishi cards', async () => {
+    localStorage.setItem(MY_RIKISHI_STORAGE_KEY, JSON.stringify([3842]));
+    vi.stubGlobal('fetch', vi.fn(() => Promise.resolve(new Response(JSON.stringify(index), { status: 200 }))));
+    render(<MemoryRouter><MyRikishiPage /></MemoryRouter>);
+
+    const cards = await screen.findAllByRole('article');
+    expect(cards).toHaveLength(1);
+    const card = cards[0];
+
+    // Card contains rikishi name and dashboard elements
+    expect(within(card).getByText('豊昇龍')).toBeInTheDocument();
+    expect(within(card).getByText('今場所の成績')).toBeInTheDocument();
+  });
 });

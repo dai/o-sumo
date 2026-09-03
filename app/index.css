@@ -2004,6 +2004,117 @@
   box-shadow: none;
 }
 
+/* =========================================================================
+   Smart Hub 4-card Quick Navigation (Digital Washi: 0px radius, No-Line)
+   ========================================================================= */
+.home-quick-nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.5rem, 1.5vw, 0.85rem);
+  margin-top: 1.75rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .home-quick-nav {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.quick-nav-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(0.75rem, 1.8vw, 1.15rem);
+  background: var(--home-paper-deep, #eae8e1);
+  color: var(--home-ink, #1a1c1a);
+  text-decoration: none;
+  border-radius: 0;
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 180ms ease,
+    color 180ms ease;
+  position: relative;
+  min-height: 4.25rem;
+}
+
+.quick-nav-card:hover,
+.quick-nav-card:focus-visible {
+  background: var(--surface-container-high, #e0ded7);
+  transform: translateY(-2px);
+  text-decoration: none;
+  color: var(--home-ink, #1a1c1a);
+}
+
+.quick-nav-card.primary {
+  background: var(--home-ink, #1a1c1a);
+  color: var(--home-paper, #faf9f6);
+}
+
+.quick-nav-card.primary:hover,
+.quick-nav-card.primary:focus-visible {
+  background: #0f1010;
+  color: #ffffff;
+}
+
+.quick-nav-card__label {
+  font-family: var(--font-serif);
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+
+.quick-nav-card__sub {
+  font-size: 0.76rem;
+  color: var(--home-muted, #72716b);
+  line-height: 1.4;
+}
+
+.quick-nav-card.primary .quick-nav-card__sub {
+  color: var(--home-paper-deep, #eae8e1);
+  opacity: 0.85;
+}
+
+.quick-nav-card__badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.1rem 0.35rem;
+  background: var(--home-red, #ba1a1a);
+  color: #ffffff;
+  border-radius: 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+[data-theme='dark'] .quick-nav-card {
+  background: var(--surface-container, #1e1f1d);
+  color: var(--on-surface, #e2e2df);
+}
+
+[data-theme='dark'] .quick-nav-card:hover,
+[data-theme='dark'] .quick-nav-card:focus-visible {
+  background: var(--surface-container-high, #292a27);
+}
+
+[data-theme='dark'] .quick-nav-card.primary {
+  background: var(--surface-container-highest, #333532);
+  color: #ffffff;
+}
+
+[data-theme='dark'] .quick-nav-card.primary:hover,
+[data-theme='dark'] .quick-nav-card.primary:focus-visible {
+  background: var(--color-primary, #6b6965);
+}
+
+[data-theme='dark'] .quick-nav-card.primary .quick-nav-card__sub {
+  color: var(--on-surface-variant, #c4c3be);
+}
+
 /* Daily Highlights: Digital Washi, using the same paper and ink vocabulary. */
 .home-editorial .daily-highlights-section {
   margin-bottom: clamp(3rem, 7vw, 6rem);

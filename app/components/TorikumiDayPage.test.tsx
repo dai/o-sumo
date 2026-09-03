@@ -10,9 +10,10 @@ import { torikumiArchive, type TorikumiArchiveDay } from '../lib/torikumi-data';
 import { getBanzukePathForDateKey, getHubPathForDateKey } from '../lib/torikumi-routes';
 import * as torikumiRoutes from '../lib/torikumi-routes';
 import { formatUpdatedAt } from '../lib/updated-at';
+import { extractRikishiIdFromProfileUrl } from '../lib/rikishi-profile';
 
 function renderPage(day: TorikumiArchiveDay, mode: 'result' | 'schedule' = 'result') {
-  render(
+  return render(
     <MemoryRouter>
       <TorikumiDayPage day={day} mode={mode} />
     </MemoryRouter>,
@@ -402,4 +403,57 @@ describe('TorikumiDayPage', () => {
     expect(banzukeLinks.length).toBeGreaterThan(0);
     expect(banzukeLinks.some((link) => /（\d+勝\d+敗/.test(link.textContent ?? ''))).toBe(true);
   });
+
+  it('renders 15-day mokufuda navigation bar with active day indicator', () => {
+    const firstResultDay = torikumiArchive.resultDays[0];
+    renderPage(firstResultDay, 'result');
+
+    const dayBar = screen.getByRole('navigation', { name: '15日間取組日程' });
+    expect(dayBar).toBeInTheDocument();
+
+    const chips = within(dayBar).getAllByRole('link');
+    expect(chips.length).toBe(15);
+
+    // Day 1 has label "初" and is current
+    expect(chips[0]).toHaveAttribute('aria-current', 'page');
+    expect(within(chips[0]).getByText('初')).toBeInTheDocument();
+
+    // Day 8 has label "中"
+    expect(within(chips[7]).getByText('中')).toBeInTheDocument();
+
+    // Day 15 has label "楽"
+    expect(within(chips[14]).getByText('楽')).toBeInTheDocument();
+  });
+
+  it('filters matches and highlights rows when my-rikishi filter is toggled', async () => {
+    const user = userEvent.setup();
+    const marchDay = MARCH2026_TORIKUMI_DATA.resultDays?.find((day) => day.data.makuuchi.matches.length > 0);
+    expect(marchDay).toBeDefined();
+
+    const targetMatch = marchDay!.data.makuuchi.matches[0];
+    const targetName = targetMatch.eastName;
+    const targetId = extractRikishiIdFromProfileUrl(targetMatch.eastProfileUrl);
+    expect(targetId).not.toBeNull();
+
+    localStorage.setItem('o-sumo:my-rikishi:v1', JSON.stringify([targetId]));
+
+    const { container } = renderPage(marchDay!, 'result');
+
+    const filterBtn = screen.getByRole('button', { name: '★ マイ力士のみ' });
+    expect(filterBtn).toBeInTheDocument();
+    expect(filterBtn).not.toHaveClass('active');
+
+    // Click to activate filter
+    await user.click(filterBtn);
+
+    expect(filterBtn).toHaveClass('active');
+
+    // Check row highlight and target rikishi presence
+    const myMatchRow = container.querySelector('.torikumi-row.is-my-rikishi-match');
+    expect(myMatchRow).toBeInTheDocument();
+    expect(myMatchRow).toHaveTextContent('竜電');
+
+    localStorage.clear();
+  });
 });
+
