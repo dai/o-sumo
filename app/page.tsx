@@ -214,12 +214,6 @@ export default function Home() {
   const featuredTorikumiTarget = bashoStatus.kind === 'final'
     ? { href: `${CURRENT_RESULT_PATH}/`, description: t('home.finalResultsDescription') }
     : liveTorikumiTarget;
-  const heroActions = getHomeHeroActions(bashoStatus, {
-    banzuke: currentBanzukePath,
-    schedule: `${CURRENT_SCHEDULE_PATH}/`,
-    result: `${CURRENT_RESULT_PATH}/`,
-    live: featuredTorikumiTarget.href,
-  });
   const quickNavItems = [
     {
       to: featuredTorikumiTarget.href,

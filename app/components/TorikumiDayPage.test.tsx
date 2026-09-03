@@ -431,7 +431,6 @@ describe('TorikumiDayPage', () => {
     expect(marchDay).toBeDefined();
 
     const targetMatch = marchDay!.data.makuuchi.matches[0];
-    const targetName = targetMatch.eastName;
     const targetId = extractRikishiIdFromProfileUrl(targetMatch.eastProfileUrl);
     expect(targetId).not.toBeNull();
 
