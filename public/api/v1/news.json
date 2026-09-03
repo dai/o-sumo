@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-03T06:33:49.699977+00:00",
+  "updatedAt": "2026-09-03T08:27:57.229774+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -25,6 +25,33 @@
       "sourceLabel": "日本相撲協会"
     },
     {
+      "id": "dmenu-docomo-kyodo_nor-2026090301001301",
+      "title": "大関琴桜が15番、本格始動　積極的に前に、上々の内容",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026090301001301",
+      "publishedAt": "2026-09-03",
+      "publishedAtRaw": "共同通信　9月3日 16時35分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-tokyosports-401593",
+      "title": "【田上明連載＃11】幻は幻で終わって良かった…北尾光司との試合、馬場さんが「やれ！」って",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-401593",
+      "publishedAt": "2026-09-03",
+      "publishedAtRaw": "東スポWEB　9月3日 16時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260903-OHT1T51158",
+      "title": "大関・琴桜、秋場所へ本格的な稽古を再開　大栄翔らに１１勝４敗「思ったよりは良かった。続けていければ」…１３日初日",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260903-OHT1T51158",
+      "publishedAt": "2026-09-03",
+      "publishedAtRaw": "スポーツ報知　9月3日 15時47分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-hochi-20260903-OHT1T51148",
       "title": "大栄翔、番付発表後初の出稽古で１１番　７場所ぶり三役復帰も「もっと上を目指して」…１３日初日・秋場所",
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260903-OHT1T51148",
@@ -39,33 +66,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260903-OHT1T51146",
       "publishedAt": "2026-09-03",
       "publishedAtRaw": "スポーツ報知　9月3日 15時07分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260903-OHT1T51133",
-      "title": "幕内・琴勝峰、前に出る好内容で１１勝４敗　弟・琴栄峰と東西で前頭筆頭「もう一度優勝を目指していきたい」…１３日初日・秋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260903-OHT1T51133",
-      "publishedAt": "2026-09-03",
-      "publishedAtRaw": "スポーツ報知　9月3日 14時42分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260903-0010",
-      "title": "相撲で熊本に勇気を!　新弟子検査受検の19歳・小林梅太「実家は水道止まった」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260903-0010",
-      "publishedAt": "2026-09-03",
-      "publishedAtRaw": "スポニチアネックス　9月3日 4時30分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260903-0011",
-      "title": "霧島「巡業中もしてた」　3度目綱獲り場所へ闘志「稽古はうそつかない」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260903-0011",
-      "publishedAt": "2026-09-03",
-      "publishedAtRaw": "スポニチアネックス　9月3日 4時29分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
