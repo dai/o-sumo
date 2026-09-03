@@ -112,6 +112,9 @@
   object-fit: cover;
   object-position: 50% 20%;
   background: var(--surface-container-high);
+  padding: 6px;
+  box-shadow: inset 0 0 0 1px var(--color-border);
+  box-sizing: border-box;
 }
 
 .rikishi-profile-photo-placeholder {

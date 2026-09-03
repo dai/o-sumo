@@ -1815,14 +1815,21 @@
   top: auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
+  justify-content: flex-start;
+  gap: 1.25rem;
   padding: 1.4rem clamp(1.25rem, 4vw, 4rem);
   color: var(--home-ink);
   text-align: left;
   background: transparent;
   box-shadow: none;
   border-bottom: 1px solid var(--home-rule);
+}
+
+.home-editorial .site-header-nav {
+  position: static;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .home-editorial .header-content {
@@ -2359,15 +2366,26 @@
 }
 
 .home-editorial .analytics-feature-link {
-  color: var(--color-on-primary);
+  color: #ffffff;
   background: var(--color-secondary);
 }
 
 .home-editorial .analytics-feature-link:hover,
 .home-editorial .analytics-feature-link:focus-visible {
-  color: var(--color-on-primary);
+  color: #ffffff;
   background: var(--color-secondary);
   box-shadow: 0 0 0 2px var(--home-paper-deep), 0 0 0 4px var(--color-secondary);
+}
+
+[data-theme='dark'] .home-editorial .analytics-feature-link {
+  color: #0b1518;
+  background: var(--color-secondary);
+}
+
+[data-theme='dark'] .home-editorial .analytics-feature-link:hover,
+[data-theme='dark'] .home-editorial .analytics-feature-link:focus-visible {
+  color: #0b1518;
+  background: var(--color-secondary-light);
 }
 
 .home-editorial .live-torikumi-title,
@@ -2411,11 +2429,11 @@
 .home-editorial .blog-updates-section,
 .home-editorial .kimarite-home-section,
 .home-editorial .past-basho-section {
-  margin-bottom: clamp(3rem, 6vw, 5rem);
-  padding: clamp(2rem, 4vw, 3rem) 0 0;
+  margin-bottom: clamp(3.5rem, 7vw, 6rem);
+  padding: clamp(2.5rem, 5vw, 4rem) 0 0;
   color: var(--home-ink);
   background: transparent;
-  border-top: 1px solid var(--home-rule);
+  border-top: none;
   box-shadow: none;
 }
 
@@ -2436,14 +2454,29 @@
   letter-spacing: -0.02em;
 }
 
-.home-editorial .news-subsection + .news-subsection,
-.home-editorial .news-item,
-.home-editorial .news-item:last-child,
-.home-editorial .blog-updates-item {
-  border-color: var(--home-rule);
+.home-editorial .news-subsection + .news-subsection {
+  margin-top: 2.5rem;
 }
 
-.home-editorial .news-item-link,
+.home-editorial .news-item,
+.home-editorial .news-item:last-child {
+  border: none;
+  margin-bottom: 0.35rem;
+}
+
+.home-editorial .blog-updates-item {
+  border: none;
+}
+
+.home-editorial .news-item-link {
+  color: var(--home-ink);
+  padding: 0.85rem 1.15rem;
+  background: var(--surface-container-low);
+  border-radius: 0;
+  transition: background-color 160ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 160ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 .home-editorial .blog-updates-item-link,
 .home-editorial .kimarite-home-link {
   color: var(--home-ink);
@@ -2482,8 +2515,51 @@
   background: var(--home-ink);
 }
 
+.home-editorial .past-basho-section {
+  margin-bottom: 1.5rem;
+  padding: 1.75rem 2rem;
+  color: var(--home-ink);
+  background: var(--surface-container-low);
+  border-top: none;
+  box-shadow: none;
+  transition: background-color 180ms ease;
+}
+
+.home-editorial .past-basho-section:hover {
+  background: var(--surface-container-high);
+}
+
+.home-editorial .past-basho-heading {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
 .home-editorial .past-basho-actions {
-  gap: 0.75rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+}
+
+.home-editorial .past-basho-actions .cta-button.secondary {
+  padding: 0.5rem 1.15rem;
+  font-size: 0.88rem;
+  background: var(--surface-container-lowest);
+  border: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.home-editorial .past-basho-actions .cta-button.secondary:hover,
+.home-editorial .past-basho-actions .cta-button.secondary:focus-visible {
+  color: var(--home-paper);
+  background: var(--home-ink);
+}
+
+.home-editorial .past-basho-index-action {
+  margin-top: 1.5rem;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
 }
 
 .home-editorial .past-basho-index-link {
@@ -2534,19 +2610,24 @@
 
 @media (max-width: 560px) {
   .home-editorial .home-header {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 0.65rem;
-    padding: 1.1rem 1rem;
+    align-items: center;
+    flex-direction: row;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .home-editorial .site-header-nav {
+    position: static;
   }
 
   .home-editorial .header-content {
-    order: -1;
-    align-items: flex-start;
+    order: 0;
+    align-items: baseline;
   }
 
   .home-editorial .home-header .home-title {
     font-size: 1.55rem;
+    margin: 0;
   }
 
   .home-editorial .home-header .home-subtitle {

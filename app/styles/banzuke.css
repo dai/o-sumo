@@ -277,14 +277,17 @@
   height: 112px;
   color: inherit;
   text-decoration: none;
+  background: var(--surface-container-low);
+  padding: 4px;
+  box-shadow: inset 0 0 0 1px var(--color-border);
+  box-sizing: border-box;
 }
 
 .rikishi-photo {
-  width: 112px;
-  height: 112px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: 50% 20%;
-  background: var(--surface-container-low);
 }
 
 .record {
