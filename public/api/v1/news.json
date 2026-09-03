@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-02T10:21:34.133692+00:00",
+  "updatedAt": "2026-09-03T00:54:42.188594+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-sponichi-spngoo-20260903-0010",
+      "title": "相撲で熊本に勇気を!　新弟子検査受検の19歳・小林梅太「実家は水道止まった」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260903-0010",
+      "publishedAt": "2026-09-03",
+      "publishedAtRaw": "スポニチアネックス　9月3日 4時30分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260903-0011",
+      "title": "霧島「巡業中もしてた」　3度目綱獲り場所へ闘志「稽古はうそつかない」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260903-0011",
+      "publishedAt": "2026-09-03",
+      "publishedAtRaw": "スポニチアネックス　9月3日 4時29分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-sponichi-spngoo-20260902-0382",
+      "title": "熊本地震で大きな被害を受けた八代市出身の小林梅太が4日の新弟子検査受検へ「故郷に元気を」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260902-0382",
+      "publishedAt": "2026-09-02",
+      "publishedAtRaw": "スポニチアネックス　9月2日 22時18分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-kyodo_nor-2026090201001202",
       "title": "大の里15番、秋場所へ稽古再開　鋭い出足、内容に納得",
       "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026090201001202",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1244664",
       "publishedAt": "2026-09-02",
       "publishedAtRaw": "日刊ゲンダイDIGITAL　9月2日 17時25分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-jiji-2026090200857",
-      "title": "綱とり霧島、自然体で＝大相撲秋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026090200857",
-      "publishedAt": "2026-09-02",
-      "publishedAtRaw": "時事通信　9月2日 16時25分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260902-OHT1T51195",
-      "title": "秋場所の新弟子検査、元アマ横綱の花田秀虎は受検せず　ハワイ出身・砂田昌宏ライダーら４人が申し込み",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260902-OHT1T51195",
-      "publishedAt": "2026-09-02",
-      "publishedAtRaw": "スポーツ報知　9月2日 16時12分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260902-202609020000582",
-      "title": "秋場所新弟子検査の受検者発表…元アマ横綱花田秀虎さんの名前なし　体重55キロ新道帝憲ら受検",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260902-202609020000582",
-      "publishedAt": "2026-09-02",
-      "publishedAtRaw": "日刊スポーツ　9月2日 16時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
