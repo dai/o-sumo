@@ -164,3 +164,96 @@ export default function BanzukeTable({ rankGroup, monthKey }: BanzukeTableProps)
     </div>
   );
 }
+
+export interface BanzukeLeaderboardProps {
+  divisionTitle: string;
+  rikishiList: Rikishi[];
+  monthKey?: string;
+  myRikishiOnly?: boolean;
+}
+
+export function BanzukeLeaderboard({
+  divisionTitle,
+  rikishiList,
+  monthKey,
+  myRikishiOnly,
+}: BanzukeLeaderboardProps) {
+  const { t } = useTranslation('common');
+  const resultLinkMap = useMemo(() => buildResultLinkMap(monthKey), [monthKey]);
+  const { isSaved } = useMyRikishi();
+
+  const displayedList = useMemo(() => {
+    if (!myRikishiOnly) return rikishiList;
+    return rikishiList.filter((r) => isSaved(r.id));
+  }, [rikishiList, myRikishiOnly, isSaved]);
+
+  return (
+    <div className="leaderboard-section">
+      <h3 className="rank-title">{divisionTitle} {t('banzuke.viewLeaderboard')}</h3>
+      {displayedList.length === 0 ? (
+        <p className="leaderboard-empty">{t('banzuke.searchEmpty')}</p>
+      ) : (
+        <div className="leaderboard-table" role="table" aria-label={`${divisionTitle}の勝敗順成績表`}>
+          <div className="leaderboard-head" role="rowgroup">
+            <div className="lb-cell lb-rank">{t('banzuke.leaderboardRank')}</div>
+            <div className="lb-cell lb-rikishi">{t('rikishi.name')}</div>
+            <div className="lb-cell lb-record">{t('banzuke.hoshitoriLabel')}</div>
+            <div className="lb-cell lb-hoshitori">{t('banzuke.hoshitoriLabel')} (15日)</div>
+          </div>
+          {displayedList.map((rikishi, index) => {
+            const wins = rikishi.wins ?? 0;
+            const losses = rikishi.losses ?? 0;
+            const draws = rikishi.draws ?? 0;
+            const isKachikoshi = wins >= 8;
+            const isMakekoshi = losses >= 8;
+            const isMy = isSaved(rikishi.id);
+            const name = displayShikona(rikishi, profileNameMap);
+
+            return (
+              <div
+                key={rikishi.id}
+                className={`leaderboard-row${isMy ? ' is-my-rikishi' : ''}${isKachikoshi ? ' is-kachikoshi' : ''}`}
+                role="row"
+                id={`rikishi-${rikishi.id}`}
+              >
+                <div className="lb-cell lb-rank" role="cell">
+                  <span className="lb-rank-number">{index + 1}</span>
+                </div>
+                <div className="lb-cell lb-rikishi" role="cell">
+                  <div className="lb-rikishi-info">
+                    <span className="lb-rikishi-rank">{rikishi.rank}</span>
+                    <Link to={rikishiProfilePath(rikishi.id)} className="lb-rikishi-name">
+                      {name}
+                      {isMy && (
+                        <span className="my-rikishi-badge" aria-label={t('myRikishi.badgeLabel')}>
+                          <span className="my-rikishi-badge__icon" aria-hidden="true">★</span>
+                        </span>
+                      )}
+                    </Link>
+                    <span className="lb-rikishi-yomi">({toRomaji(rikishi.yomi)})</span>
+                  </div>
+                </div>
+                <div className="lb-cell lb-record" role="cell">
+                  <span className="lb-record-text">
+                    <strong>{wins}</strong>{t('banzuke.winShort')}
+                    <strong>{losses}</strong>{t('banzuke.lossShort')}
+                    {draws > 0 ? <span>{draws}{t('banzuke.absenceShort')}</span> : null}
+                  </span>
+                  {isKachikoshi && (
+                    <span className="lb-badge lb-badge--kachikoshi">{t('banzuke.kachikoshi')}</span>
+                  )}
+                  {isMakekoshi && (
+                    <span className="lb-badge lb-badge--makekoshi">{t('banzuke.makekoshi')}</span>
+                  )}
+                </div>
+                <div className="lb-cell lb-hoshitori" role="cell">
+                  <Hoshitori rikishi={rikishi} resultLinkMap={resultLinkMap} />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}

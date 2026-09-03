@@ -40,10 +40,112 @@
   max-width: var(--layout-max-content);
   width: 100%;
   margin: 0 auto;
-  padding: 2rem 1rem 3rem;
+  padding: clamp(0.75rem, 2vw, 1.25rem) 1rem 3rem;
 }
 
-/* Day summary - surface card */
+/* Top toolbar: Breadcrumb + Archive links */
+.torikumi-top-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.65rem;
+}
+
+.torikumi-top-toolbar .page-breadcrumb {
+  margin-bottom: 0;
+}
+
+/* 15-Day Mokufuda Navigation Bar (Digital Washi: 0px radius, No-Line) */
+.torikumi-day-bar {
+  background: var(--surface-container-lowest);
+  padding: 0.35rem 0.5rem;
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 0.75rem;
+}
+
+.torikumi-day-bar__scroll {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  padding-bottom: 2px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mokufuda-chip {
+  flex: 0 0 auto;
+  min-width: 2.25rem;
+  height: 2.85rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-container-low);
+  color: var(--color-primary);
+  text-decoration: none;
+  border-radius: 0;
+  padding: 0.2rem 0.35rem;
+  transition: background-color 150ms ease, color 150ms ease;
+  position: relative;
+}
+
+.mokufuda-chip:hover,
+.mokufuda-chip:focus-visible {
+  background: var(--surface-container-high);
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.mokufuda-chip.active {
+  background: var(--color-primary);
+  color: var(--surface);
+}
+
+.mokufuda-chip.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-secondary);
+}
+
+.mokufuda-chip__main {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.mokufuda-chip__sub {
+  font-size: 0.62rem;
+  line-height: 1;
+  opacity: 0.75;
+}
+
+.mokufuda-chip.pending {
+  opacity: 0.6;
+}
+
+[data-theme='dark'] .mokufuda-chip {
+  background: var(--surface-container, #1e1f1d);
+  color: var(--on-surface, #e2e2df);
+}
+
+[data-theme='dark'] .mokufuda-chip:hover,
+[data-theme='dark'] .mokufuda-chip:focus-visible {
+  background: var(--surface-container-high, #292a27);
+}
+
+[data-theme='dark'] .mokufuda-chip.active {
+  background: var(--surface-container-highest, #333532);
+  color: #ffffff;
+}
+
+/* Day summary - compact surface card */
 .day-summary-card {
   background: var(--surface-container-lowest);
   padding: 1.25rem 1.5rem;
@@ -53,6 +155,77 @@
   gap: 1rem;
   align-items: center;
   margin-bottom: 1.25rem;
+}
+
+.day-summary-card--compact {
+  padding: 0.6rem 1rem;
+  margin-bottom: 0.85rem;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.day-summary-card__info {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.day-summary-card__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.pager-nav--inline {
+  margin-bottom: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+}
+
+.day-summary-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.my-rikishi-filter-btn {
+  border: none;
+  background: var(--surface-container-high);
+  color: var(--color-primary);
+  padding: 0.4rem 0.75rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0;
+  transition: all 150ms ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.my-rikishi-filter-btn:hover {
+  background: var(--surface-bright);
+}
+
+.my-rikishi-filter-btn.active {
+  background: var(--color-primary);
+  color: var(--surface);
+}
+
+/* My Rikishi match row highlight (Digital Washi: 0px radius, No-Line) */
+.torikumi-row.is-my-rikishi-match {
+  background: color-mix(in srgb, var(--color-secondary-light, #fed65b) 14%, var(--surface-container-lowest));
+  box-shadow: inset 4px 0 0 var(--color-secondary);
+}
+
+.torikumi-row.is-my-rikishi-match:hover {
+  background: color-mix(in srgb, var(--color-secondary-light, #fed65b) 20%, var(--surface-container-low));
 }
 
 .archive-eyebrow {

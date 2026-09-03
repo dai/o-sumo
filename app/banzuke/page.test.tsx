@@ -227,4 +227,46 @@ describe('BanzukePage', () => {
     expect(within(breadcrumb).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
     expect(within(breadcrumb).getByText(/九月場所/)).toBeInTheDocument();
   });
+
+  it('switches between banzuke view and leaderboard view', async () => {
+    const user = userEvent.setup();
+    render(
+      <MemoryRouter>
+        <BanzukePage />
+      </MemoryRouter>,
+    );
+
+    // Initial view: banzuke tables
+    expect(screen.getByRole('button', { name: '番付順' })).toHaveClass('active');
+    expect(screen.getByRole('table', { name: '横綱の東西番付表' })).toBeInTheDocument();
+
+    // Click leaderboard button
+    await user.click(screen.getByRole('button', { name: '勝敗順' }));
+
+    expect(screen.getByRole('button', { name: '勝敗順' })).toHaveClass('active');
+    expect(screen.getByRole('table', { name: '幕内の勝敗順成績表' })).toBeInTheDocument();
+    expect(screen.getByText('幕内 勝敗順')).toBeInTheDocument();
+  });
+
+  it('filters rikishi when my-rikishi-only toggle is active', async () => {
+    const user = userEvent.setup();
+    // 3842: 豊昇龍
+    localStorage.setItem('o-sumo:my-rikishi:v1', JSON.stringify([3842]));
+
+    render(
+      <MemoryRouter>
+        <BanzukePage />
+      </MemoryRouter>,
+    );
+
+    // Toggle my rikishi only
+    await user.click(screen.getByRole('button', { name: '★ マイ力士のみ' }));
+
+    expect(screen.getByRole('button', { name: '★ マイ力士のみ' })).toHaveClass('active');
+    expect(screen.getByText('豊昇龍')).toBeInTheDocument();
+    expect(screen.queryByText('大の里')).not.toBeInTheDocument();
+
+    localStorage.clear();
+  });
 });
+

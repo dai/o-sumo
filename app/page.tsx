@@ -214,12 +214,33 @@ export default function Home() {
   const featuredTorikumiTarget = bashoStatus.kind === 'final'
     ? { href: `${CURRENT_RESULT_PATH}/`, description: t('home.finalResultsDescription') }
     : liveTorikumiTarget;
-  const heroActions = getHomeHeroActions(bashoStatus, {
-    banzuke: currentBanzukePath,
-    schedule: `${CURRENT_SCHEDULE_PATH}/`,
-    result: `${CURRENT_RESULT_PATH}/`,
-    live: featuredTorikumiTarget.href,
-  });
+  const quickNavItems = [
+    {
+      to: featuredTorikumiTarget.href,
+      label: t('home.quickNavToday'),
+      sub: bashoStatus.kind === 'live' ? t('home.quickNavTodaySub') : t('home.heroResult'),
+      primary: true,
+      badge: bashoStatus.kind === 'live' ? '速報' : undefined,
+    },
+    {
+      to: currentBanzukePath,
+      label: t('home.quickNavBanzuke'),
+      sub: t('home.quickNavBanzukeSub'),
+      primary: false,
+    },
+    {
+      to: `${CURRENT_SCHEDULE_PATH}/`,
+      label: t('home.quickNavTomorrow'),
+      sub: t('home.quickNavTomorrowSub'),
+      primary: false,
+    },
+    {
+      to: '/my-rikishi/',
+      label: t('home.quickNavMyRikishi'),
+      sub: t('home.quickNavMyRikishiSub'),
+      primary: false,
+    },
+  ];
 
   return (
     <div className={homeContainerClassName()}>
@@ -234,9 +255,7 @@ export default function Home() {
       </header>
 
       <main className="home-main">
-        <BlogUpdatesSection />
-
-        {/* Current Basho - Hero Section */}
+        {/* Current Basho - Hero Section (Smart Hub) */}
         <section className="hero-section" aria-labelledby="hero-basho-title">
           <div className="hero-editorial-copy">
             <h2 id="hero-basho-title" className="hero-basho-title">
@@ -256,10 +275,20 @@ export default function Home() {
                   ? t('home.heroUpcomingDescription')
                   : t('home.heroLiveDescription')}
             </p>
-            <nav className="hero-actions" aria-label={t('home.heroActionsLabel')}>
-              {heroActions.map((action) => (
-                <Link key={action.to} to={action.to} className={`cta-button${action.primary ? '' : ' secondary'}`}>
-                  {t(action.labelKey)}
+
+            {/* Smart Hub 4 Quick Navs */}
+            <nav className="home-quick-nav hero-actions" aria-label={t('home.heroActionsLabel')}>
+              {quickNavItems.map((item) => (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  className={`quick-nav-card${item.primary ? ' primary' : ''}`}
+                >
+                  <span className="quick-nav-card__label">
+                    {item.label}
+                    {item.badge ? <span className="quick-nav-card__badge">{item.badge}</span> : null}
+                  </span>
+                  <span className="quick-nav-card__sub">{item.sub}</span>
                 </Link>
               ))}
             </nav>
@@ -273,19 +302,10 @@ export default function Home() {
           />
         </section>
 
-        <div className="home-feature-grid">
-          <section className="live-torikumi-section" aria-labelledby="live-torikumi-title">
-            <div className="live-torikumi-copy">
-              <h2 id="live-torikumi-title" className="live-torikumi-title">
-                {bashoStatus.kind === 'final' ? t('home.finalResultsTitle') : t('home.liveTorikumiTitle')}
-              </h2>
-              <p>{featuredTorikumiTarget.description}</p>
-            </div>
-            <Link to={featuredTorikumiTarget.href} className="live-torikumi-link">
-              {bashoStatus.kind === 'final' ? t('home.finalResultsAction') : t('home.liveTorikumiAction')}
-            </Link>
-          </section>
+        {/* Secondary updates moved below the hero */}
+        <BlogUpdatesSection />
 
+        <div className="home-feature-grid">
           <section className="analytics-feature-card" aria-labelledby="analytics-feature-title">
             <div className="analytics-feature-copy">
               <p className="analytics-feature-label">{t('home.analyticsFeatureLabel')}</p>
@@ -298,11 +318,12 @@ export default function Home() {
               {t('home.analyticsFeatureAction')}
             </Link>
           </section>
+
+          {/* Kimarite Card Section */}
+          <KimariteCard />
         </div>
 
         <NewsSection />
-
-        <KimariteCard />
 
         {PAST_BASHO.map((pastBasho) => (
           <section key={pastBasho.id} className="past-basho-section">

@@ -1224,6 +1224,126 @@
   accent-color: var(--color-secondary);
 }
 
+/* =========================================================================
+   My Rikishi Tournament Dashboard (Digital Washi: 0px radius, No-Line)
+   ========================================================================= */
+.my-rikishi-dashboard {
+  margin-top: 0.85rem;
+  padding: 0.75rem;
+  background: var(--surface-container-low);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  border-radius: 0;
+}
+
+.my-rikishi-record {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  color: var(--color-primary);
+}
+
+.my-rikishi-record__label {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+.my-rikishi-record__score strong {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0.1rem;
+}
+
+.my-rikishi-bouts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.my-rikishi-bout {
+  padding: 0.5rem 0.65rem;
+  background: var(--surface-container-lowest);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.82rem;
+  border-radius: 0;
+}
+
+.my-rikishi-bout__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.my-rikishi-bout__tag {
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+}
+
+.my-rikishi-bout__outcome {
+  font-weight: 800;
+  font-size: 0.72rem;
+  padding: 0.08rem 0.35rem;
+  border-radius: 0;
+  letter-spacing: 0.04em;
+}
+
+.my-rikishi-bout__outcome.win {
+  background: color-mix(in srgb, var(--color-secondary) 25%, transparent);
+  color: var(--color-secondary);
+}
+
+.my-rikishi-bout__outcome.loss {
+  background: var(--surface-container-high);
+  color: var(--color-muted);
+}
+
+.my-rikishi-bout__outcome.pending {
+  background: var(--surface-container);
+  color: var(--color-primary);
+}
+
+.my-rikishi-bout__body {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.my-rikishi-bout__vs {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.my-rikishi-bout__kimarite {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+}
+
+.my-rikishi-bout__link {
+  color: var(--color-secondary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-decoration: none;
+  margin-top: 0.15rem;
+}
+
+.my-rikishi-bout__link:hover {
+  text-decoration: underline;
+}
+
+.my-rikishi-bout__empty {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  font-style: italic;
+}
+
 @media (max-width: 640px) {
   .compare-selector__heading,
   .compare-selector__slots {

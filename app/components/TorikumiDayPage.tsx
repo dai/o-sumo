@@ -147,6 +147,12 @@ function getUnifiedResultSections(dayData: { makuuchi: TorikumiDivisionDay; jury
     .filter((section) => section.matches.length > 0);
 }
 
+function matchInvolvesMyRikishi(match: TorikumiMatch, isSaved: (id: number) => boolean): boolean {
+  const eastId = extractRikishiIdFromProfileUrl(match.eastProfileUrl);
+  const westId = extractRikishiIdFromProfileUrl(match.westProfileUrl);
+  return (eastId !== null && isSaved(eastId)) || (westId !== null && isSaved(westId));
+}
+
 function renderUnifiedResultRows({
   sections,
   title,
@@ -154,6 +160,7 @@ function renderUnifiedResultRows({
   banzukePath,
   recordMap,
   absenteeIds,
+  isSaved,
 }: {
   sections: UnifiedResultSection[];
   title: string;
@@ -161,6 +168,7 @@ function renderUnifiedResultRows({
   banzukePath: string;
   recordMap: Map<string, { wins: number; losses: number; draws: number }>;
   absenteeIds: Set<number>;
+  isSaved: (id: number) => boolean;
 }) {
   return (
     <div className="torikumi-table" role="table" aria-label={title}>
@@ -174,10 +182,11 @@ function renderUnifiedResultRows({
           <div className="division-divider" role="row">
             <span>{t('torikumi.day.divisionMatchCount', { division, count: matches.length })}</span>
           </div>
-          {matches.map((match) => (
-            matchInvolvesAbsent(match, absenteeIds) ? (
+          {matches.map((match) => {
+            const isMyMatch = matchInvolvesMyRikishi(match, isSaved);
+            return matchInvolvesAbsent(match, absenteeIds) ? (
               <div
-                className="torikumi-row torikumi-row-absent"
+                className={`torikumi-row torikumi-row-absent${isMyMatch ? ' is-my-rikishi-match' : ''}`}
                 role="row"
                 key={`${title}-${division}-${match.boutNo}`}
                 id={divisionAnchorId(division, match.boutNo)}
@@ -188,7 +197,12 @@ function renderUnifiedResultRows({
                 <div className="cell absent-placeholder" />
               </div>
             ) : (
-              <div className="torikumi-row" role="row" key={`${title}-${division}-${match.boutNo}`} id={divisionAnchorId(division, match.boutNo)}>
+              <div
+                className={`torikumi-row${isMyMatch ? ' is-my-rikishi-match' : ''}`}
+                role="row"
+                key={`${title}-${division}-${match.boutNo}`}
+                id={divisionAnchorId(division, match.boutNo)}
+              >
                 <div className={`cell east rikishi-card ${match.winner === 'east' ? 'winner' : ''}`}>
                   {match.winner === 'east' ? <span className="winner-badge">{t('torikumi.day.winner')}</span> : null}
                   <RikishiMatchName name={match.eastName} profileUrl={match.eastProfileUrl} banzukePath={banzukePath} record={recordMap.get(match.eastProfileUrl)} />
@@ -203,8 +217,8 @@ function renderUnifiedResultRows({
                   <div className="english">{match.westEnglish}</div>
                 </div>
               </div>
-            )
-          ))}
+            );
+          })}
         </React.Fragment>
       ))}
     </div>
@@ -240,6 +254,8 @@ function TorikumiTable({
   banzukePath,
   recordMap,
   absenteeIds,
+  myRikishiOnly,
+  isSaved,
 }: {
   title: string;
   dayData: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay };
@@ -249,18 +265,33 @@ function TorikumiTable({
   banzukePath: string;
   recordMap: Map<string, { wins: number; losses: number; draws: number }>;
   absenteeIds: Set<number>;
+  myRikishiOnly: boolean;
+  isSaved: (id: number) => boolean;
 }) {
   if (mode === 'result') {
-    const sections = getUnifiedResultSections(dayData);
+    let sections = getUnifiedResultSections(dayData);
+    if (myRikishiOnly) {
+      sections = sections
+        .map((sec) => ({
+          ...sec,
+          matches: sec.matches.filter((m) => matchInvolvesMyRikishi(m, isSaved)),
+        }))
+        .filter((sec) => sec.matches.length > 0);
+    }
+
     return (
       <section className="division-section">
         <h2>{title}</h2>
-        {sections.length === 0 ? (
+        {myRikishiOnly && sections.length === 0 ? (
+          <div className="empty-division-message">
+            {t('torikumi.day.noMyRikishiMatches')}
+          </div>
+        ) : sections.length === 0 ? (
           <div className="empty-division-message">
             {t('torikumi.day.resultNotUpdated', { division: '十両' })}
           </div>
         ) : (
-          renderUnifiedResultRows({ sections, title, t, banzukePath, recordMap, absenteeIds })
+          renderUnifiedResultRows({ sections, title, t, banzukePath, recordMap, absenteeIds, isSaved })
         )}
       </section>
     );
@@ -271,12 +302,20 @@ function TorikumiTable({
       <h2>{title}</h2>
       {BOTTOM_TO_TOP_DIVISIONS.map((division) => {
         const meta = sectionMeta(dayData, division);
-        const matches = sortMatches(byDivision(dayData, division), getDisplaySortOrder(mode, division, sortOrder));
+        let matches = sortMatches(byDivision(dayData, division), getDisplaySortOrder(mode, division, sortOrder));
+        if (myRikishiOnly) {
+          matches = matches.filter((m) => matchInvolvesMyRikishi(m, isSaved));
+        }
+
         return (
           <div key={`${title}-${division}`}>
             <h3>{t('torikumi.day.divisionMatchCount', { division, count: matches.length })}</h3>
             <p className="status-message">{meta.dayHead}</p>
-            {matches.length === 0 ? (
+            {myRikishiOnly && matches.length === 0 ? (
+              <div className="empty-division-message">
+                {t('torikumi.day.noMyRikishiMatches')}
+              </div>
+            ) : matches.length === 0 ? (
               <div className="empty-division-message">
                 {t('torikumi.day.scheduleNotUpdated', { division })}
               </div>
@@ -287,10 +326,11 @@ function TorikumiTable({
                   <div className="cell kimarite">{t('torikumi.day.kimariteSchedule')}</div>
                   <div className="cell west">{t('banzuke.west')}</div>
                 </div>
-                {matches.map((match: TorikumiMatch) => (
-                  matchInvolvesAbsent(match, absenteeIds) ? (
+                {matches.map((match: TorikumiMatch) => {
+                  const isMyMatch = matchInvolvesMyRikishi(match, isSaved);
+                  return matchInvolvesAbsent(match, absenteeIds) ? (
                     <div
-                      className="torikumi-row torikumi-row-absent"
+                      className={`torikumi-row torikumi-row-absent${isMyMatch ? ' is-my-rikishi-match' : ''}`}
                       role="row"
                       key={`${title}-${division}-${match.boutNo}`}
                       id={divisionAnchorId(division, match.boutNo)}
@@ -301,7 +341,12 @@ function TorikumiTable({
                       <div className="cell absent-placeholder" />
                     </div>
                   ) : (
-                    <div className="torikumi-row" role="row" key={`${title}-${division}-${match.boutNo}`} id={divisionAnchorId(division, match.boutNo)}>
+                    <div
+                      className={`torikumi-row${isMyMatch ? ' is-my-rikishi-match' : ''}`}
+                      role="row"
+                      key={`${title}-${division}-${match.boutNo}`}
+                      id={divisionAnchorId(division, match.boutNo)}
+                    >
                       <div className={`cell east rikishi-card ${match.winner === 'east' ? 'winner' : ''}`}>
                         <RikishiMatchName name={match.eastName} profileUrl={match.eastProfileUrl} banzukePath={banzukePath} record={recordMap.get(match.eastProfileUrl)} />
                         <div className="english">{match.eastEnglish}</div>
@@ -316,8 +361,8 @@ function TorikumiTable({
                         <div className="english">{match.westEnglish}</div>
                       </div>
                     </div>
-                  )
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>
@@ -354,8 +399,70 @@ function getArchiveForPath(pathDate: string) {
   };
 }
 
+function getMokufudaLabel(dayNumber: number, isJa: boolean): { main: string; sub?: string } {
+  if (isJa) {
+    if (dayNumber === 1) return { main: '初', sub: '日' };
+    if (dayNumber === 8) return { main: '中', sub: '日' };
+    if (dayNumber === 15) return { main: '楽', sub: '日' };
+    return { main: `${dayNumber}`, sub: '日' };
+  }
+  return { main: `${dayNumber}`, sub: 'D' };
+}
+
+function TorikumiDayBar({
+  archive,
+  currentDay,
+  mode,
+  t,
+  isJa,
+}: {
+  archive: { resultDays?: TorikumiArchiveDay[]; scheduleDays?: TorikumiArchiveDay[] };
+  currentDay: TorikumiArchiveDay;
+  mode: TorikumiPageMode;
+  t: ReturnType<typeof useTranslation>['t'];
+  isJa: boolean;
+}) {
+  const days = (mode === 'result' ? archive.resultDays : archive.scheduleDays) ?? archive.resultDays ?? [];
+  const activeRef = React.useRef<HTMLAnchorElement | null>(null);
+
+  React.useEffect(() => {
+    if (activeRef.current && typeof activeRef.current.scrollIntoView === 'function') {
+      activeRef.current.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+    }
+  }, [currentDay.pathDate]);
+
+  return (
+    <nav className="torikumi-day-bar" aria-label={t('torikumi.day.dayNavigationLabel')}>
+      <div className="torikumi-day-bar__scroll">
+        {days.map((dayItem) => {
+          const isActive = dayItem.pathDate === currentDay.pathDate;
+          const dayNo = dayItem.day ?? (days.indexOf(dayItem) + 1);
+          const { main, sub } = getMokufudaLabel(dayNo, isJa);
+          const isPending = dayItem.status === 'pending';
+
+          return (
+            <Link
+              key={dayItem.pathDate}
+              to={getDayPath(dayItem, mode)}
+              ref={isActive ? activeRef : undefined}
+              className={`mokufuda-chip${isActive ? ' active' : ''}${isPending ? ' pending' : ''}`}
+              aria-current={isActive ? 'page' : undefined}
+              title={`${dayItem.label} (${mode === 'result' ? '結果' : '予定'})`}
+            >
+              <span className="mokufuda-chip__main">{main}</span>
+              <span className="mokufuda-chip__sub">{sub}</span>
+            </Link>
+          );
+        })}
+      </div>
+    </nav>
+  );
+}
+
 export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay; mode: TorikumiPageMode }) {
   const [sortOrder, setSortOrder] = React.useState<SortOrder>('asc');
+  const [myRikishiOnly, setMyRikishiOnly] = React.useState(false);
+  const { isSaved } = useMyRikishi();
   const { t, i18n } = useTranslation('common');
   const { monthKey, archive, resultPath, schedulePath, banzukePath } = getArchiveForPath(day.pathDate);
   const bashoTitle = formatBashoTitle({ year: archive.year, bashoName: archive.bashoName, monthKey }, i18n.language);
@@ -367,9 +474,6 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
   const modeLabel = mode === 'result'
     ? t('torikumi.day.modeResult')
     : t('torikumi.day.modeSchedule');
-  const modeDescription = mode === 'result'
-    ? t('torikumi.day.modeDescriptionResult')
-    : t('torikumi.day.modeDescriptionSchedule');
   const absentees = uniqueAbsentees(visibleDayData);
   const absenteeIds = React.useMemo(() => {
     const ids = new Set<number>();
@@ -406,30 +510,50 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
       </header>
 
       <main className="torikumi-main">
-        <PageBreadcrumb
-          ariaLabel={t('rikishi.breadcrumbLabel')}
-          items={[
-            { label: t('global.homeLink'), href: '/' },
-            { label: bashoTitle, href: mode === 'result' ? resultPath : schedulePath },
-            { label: day.dayHead },
-          ]}
-        />
-        <section className="day-summary-card">
-          <div>
-            <h2>{day.label}の{modeLabel}</h2>
-            <p>{modeDescription}</p>
-            {day.status === 'pending' ? <p className="status-message warning">{day.statusMessage}</p> : null}
-          </div>
+        <div className="torikumi-top-toolbar">
+          <PageBreadcrumb
+            ariaLabel={t('rikishi.breadcrumbLabel')}
+            items={[
+              { label: t('global.homeLink'), href: '/' },
+              { label: bashoTitle, href: mode === 'result' ? resultPath : schedulePath },
+              { label: day.dayHead },
+            ]}
+          />
           <nav className="archive-nav" aria-label={`${modeLabel}ページの主要導線`}>
             <Link to={mode === 'result' ? resultPath : schedulePath} className="archive-link">{t('archives.list')}</Link>
             <Link to={banzukePath} className="archive-link">{t('archives.banzuke')}</Link>
           </nav>
-        </section>
+        </div>
 
-        <nav className="pager-nav" aria-label={`${modeLabel}の日別ナビゲーション`}>
-          <span>{prevDay ? <Link to={getDayPath(prevDay, mode)}>← {prevDay.label}</Link> : t('torikumi.day.prevDayNone')}</span>
-          <span>{nextDay ? <Link to={getDayPath(nextDay, mode)}>{nextDay.label} →</Link> : t('torikumi.day.nextDayNone')}</span>
-        </nav>
+        {/* 15-day Mokufuda navigation bar */}
+        <TorikumiDayBar
+          archive={archive}
+          currentDay={day}
+          mode={mode}
+          t={t}
+          isJa={i18n.language.startsWith('ja')}
+        />
+
+        <section className="day-summary-card day-summary-card--compact">
+          <div className="day-summary-card__info">
+            <h2 className="day-summary-card__title">{day.label}の{modeLabel}</h2>
+            {day.status === 'pending' ? <span className="status-message warning">{day.statusMessage}</span> : null}
+          </div>
+          <div className="day-summary-card__actions">
+            <button
+              type="button"
+              className={`my-rikishi-filter-btn${myRikishiOnly ? ' active' : ''}`}
+              onClick={() => setMyRikishiOnly((current) => !current)}
+              aria-pressed={myRikishiOnly}
+            >
+              {t('torikumi.day.filterMyRikishi')}
+            </button>
+            <nav className="pager-nav pager-nav--inline" aria-label={`${modeLabel}の日別ナビゲーション`}>
+              <span>{prevDay ? <Link to={getDayPath(prevDay, mode)}>← {prevDay.label}</Link> : t('torikumi.day.prevDayNone')}</span>
+              <span>{nextDay ? <Link to={getDayPath(nextDay, mode)}>{nextDay.label} →</Link> : t('torikumi.day.nextDayNone')}</span>
+            </nav>
+          </div>
+        </section>
 
         {mode === 'schedule' && (
           <section className="sort-toolbar-section">
@@ -437,7 +561,18 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
           </section>
         )}
 
-        <TorikumiTable title={`${day.label}の${modeLabel}`} dayData={visibleDayData} mode={mode} sortOrder={sortOrder} t={t} banzukePath={banzukePath} recordMap={recordMap} absenteeIds={absenteeIds} />
+        <TorikumiTable
+          title={`${day.label}の${modeLabel}`}
+          dayData={visibleDayData}
+          mode={mode}
+          sortOrder={sortOrder}
+          t={t}
+          banzukePath={banzukePath}
+          recordMap={recordMap}
+          absenteeIds={absenteeIds}
+          myRikishiOnly={myRikishiOnly}
+          isSaved={isSaved}
+        />
       </main>
 
       <footer className="torikumi-footer">
