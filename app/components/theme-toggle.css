@@ -14,22 +14,23 @@
   align-items: center;
   gap: 0.55rem;
   padding: 0.45rem 0.7rem;
-  border: none;
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--color-border);
+  background: rgba(253, 250, 245, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   color: var(--color-primary);
   letter-spacing: 0.05em;
   font-size: 0.75rem;
   font-weight: 700;
   line-height: 1;
-  box-shadow: var(--shadow-soft);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 [data-theme='dark'] .theme-toggle {
-  background: rgba(17, 19, 25, 0.78);
+  background: rgba(17, 19, 25, 0.94);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
 }
 
 .theme-toggle:hover {
@@ -102,6 +103,7 @@
 .language-toggle {
   display: flex;
   border: 1px solid var(--color-border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   overflow: hidden;
 }
 
