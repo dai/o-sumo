@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://osada.us/sitemap.xml
+Agentmap: https://osada.us/.well-known/ai-catalog.json
