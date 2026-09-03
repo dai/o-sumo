@@ -13,8 +13,9 @@
 /
   Cache-Control: public, max-age=60, must-revalidate
   Link: </.well-known/api-catalog>; rel="api-catalog"
+  Link: </.well-known/agent-card.json>; rel="describedby"
+  Link: </.well-known/mcp/server-card.json>; rel="service-desc"
   Link: </.well-known/agent-skills/index.json>; rel="agent-skills"
-  Link: </.well-known/agent-card.json>; rel="agent-card"
   Link: </auth.md>; rel="auth.md"
   Link: </index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
   Vary: Accept
@@ -22,37 +23,51 @@
 # Markdown for Agents: advertise the pre-rendered index.md for each route
 /archives/
   Link: </archives/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+  Vary: Accept
 /rikishi/
   Link: </rikishi/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+  Vary: Accept
 /kimarite/
   Link: </kimarite/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+  Vary: Accept
 /analytics/
   Link: </analytics/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+  Vary: Accept
 /about/
   Link: </about/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+  Vary: Accept
 /202603-banzuke/
   Link: </202603-banzuke/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+  Vary: Accept
 /202603-torikumi/
   Link: </202603-torikumi/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+  Vary: Accept
 /202603-yotei/
   Link: </202603-yotei/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+  Vary: Accept
 /202605-banzuke/
   Link: </202605-banzuke/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+  Vary: Accept
 /202605-torikumi/
   Link: </202605-torikumi/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+  Vary: Accept
 /202605-yotei/
   Link: </202605-yotei/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+  Vary: Accept
 /202607-banzuke/
   Link: </202607-banzuke/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+  Vary: Accept
 /202607-torikumi/
   Link: </202607-torikumi/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+  Vary: Accept
 /202607-yotei/
   Link: </202607-yotei/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+  Vary: Accept
 
 # Markdown for Agents: served as text/markdown when requested
 /*.md
   Content-Type: text/markdown; charset=utf-8
-  Cache-Control: public, max-age=300
+  Cache-Control: private, no-cache, no-transform
   Vary: Accept
 
 # Agent discovery API catalog

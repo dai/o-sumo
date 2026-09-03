@@ -7,10 +7,11 @@
  * - Quality factors (`;q=`) are interpreted on a 0–1 scale.
  * - `q=0` is treated as an explicit refusal of that media-range.
  * - Omitted `;q=` defaults to `q=1`.
- * - The wildcards `*\/*` and `text\/*` both match `text/markdown`.
+ * - Wildcards `*\/*` and `text\/*` default to HTML for standard web resources.
  * - Media types are compared case-insensitively.
- * - The `text/markdown` media-range wins only when its effective q is
- *   strictly greater than the effective q of any `text/html` media-range.
+ * - The `text/markdown` media-range must be explicitly requested and wins only
+ *   when its effective q is strictly greater than the effective q of any
+ *   media-range that matches `text/html`.
  *
  * The function is **pure** — no I/O, no shared state — so it can be
  * tested directly in Vitest without a Cloudflare Pages Functions harness.
@@ -76,28 +77,29 @@ export function prefersMarkdown(accept: string): boolean {
 
   if (parsed.length === 0) return false;
 
-  // Effective q for markdown: direct hit, or wildcard that covers it.
+  // Markdown requires an explicit `text/markdown` media-range.
+  // Wildcards (*/* or text/*) default to HTML for standard web resources.
   let markdownQ = 0;
   for (const p of parsed) {
     if (p.matchesMarkdown) {
-      markdownQ = Math.max(markdownQ, p.q);
-      continue;
-    }
-    if (p.isWildcardAll) {
-      markdownQ = Math.max(markdownQ, p.q);
-      continue;
-    }
-    if (p.isWildcardType && p.type === 'text') {
       markdownQ = Math.max(markdownQ, p.q);
     }
   }
 
   if (markdownQ === 0) return false;
 
-  // Effective q for html: only a direct hit competes with markdown.
+  // Effective q for html: direct hit or wildcard covering it.
   let htmlQ = 0;
   for (const p of parsed) {
     if (p.matchesHtml) {
+      htmlQ = Math.max(htmlQ, p.q);
+      continue;
+    }
+    if (p.isWildcardAll) {
+      htmlQ = Math.max(htmlQ, p.q);
+      continue;
+    }
+    if (p.isWildcardType && p.type === 'text') {
       htmlQ = Math.max(htmlQ, p.q);
     }
   }
