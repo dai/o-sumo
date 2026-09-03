@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-03T00:54:42.188594+00:00",
+  "updatedAt": "2026-09-03T06:33:49.699977+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,42 @@
     }
   ],
   "items": [
+    {
+      "id": "sumo-association-761",
+      "title": "大相撲九月場所「土俵祭」のご案内",
+      "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=761",
+      "publishedAt": "2026-09-03",
+      "publishedAtRaw": "令和8年9月3日",
+      "sourceId": "sumo-association",
+      "sourceLabel": "日本相撲協会"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260903-OHT1T51148",
+      "title": "大栄翔、番付発表後初の出稽古で１１番　７場所ぶり三役復帰も「もっと上を目指して」…１３日初日・秋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260903-OHT1T51148",
+      "publishedAt": "2026-09-03",
+      "publishedAtRaw": "スポーツ報知　9月3日 15時11分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260903-OHT1T51146",
+      "title": "秋場所で自己最高位の西前頭筆頭・琴栄峰が１７番　初の上位総当たりへ「やっぱり楽しみ。思い切り胸を借りるつもりで」…１３日初日",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260903-OHT1T51146",
+      "publishedAt": "2026-09-03",
+      "publishedAtRaw": "スポーツ報知　9月3日 15時07分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260903-OHT1T51133",
+      "title": "幕内・琴勝峰、前に出る好内容で１１勝４敗　弟・琴栄峰と東西で前頭筆頭「もう一度優勝を目指していきたい」…１３日初日・秋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260903-OHT1T51133",
+      "publishedAt": "2026-09-03",
+      "publishedAtRaw": "スポーツ報知　9月3日 14時42分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-sponichi-spngoo-20260903-0010",
       "title": "相撲で熊本に勇気を!　新弟子検査受検の19歳・小林梅太「実家は水道止まった」",
@@ -34,33 +70,6 @@
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260902-0382",
-      "title": "熊本地震で大きな被害を受けた八代市出身の小林梅太が4日の新弟子検査受検へ「故郷に元気を」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260902-0382",
-      "publishedAt": "2026-09-02",
-      "publishedAtRaw": "スポニチアネックス　9月2日 22時18分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-kyodo_nor-2026090201001202",
-      "title": "大の里15番、秋場所へ稽古再開　鋭い出足、内容に納得",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026090201001202",
-      "publishedAt": "2026-09-02",
-      "publishedAtRaw": "共同通信　9月2日 17時43分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-nikkangendai-1244664",
-      "title": "大関復帰の安青錦、ケガ完治せずも休まぬワケ 「横綱」年内昇進までノンストップで駆け上がる？",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1244664",
-      "publishedAt": "2026-09-02",
-      "publishedAtRaw": "日刊ゲンダイDIGITAL　9月2日 17時25分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
       "id": "sumo-association-759",
       "title": "お知らせ",
       "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=759",
@@ -75,15 +84,6 @@
       "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=757",
       "publishedAt": "2026-07-30",
       "publishedAtRaw": "令和8年7月30日",
-      "sourceId": "sumo-association",
-      "sourceLabel": "日本相撲協会"
-    },
-    {
-      "id": "sumo-association-756",
-      "title": "引退のお知らせ",
-      "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=756",
-      "publishedAt": "2026-07-25",
-      "publishedAtRaw": "令和8年7月25日",
       "sourceId": "sumo-association",
       "sourceLabel": "日本相撲協会"
     }
