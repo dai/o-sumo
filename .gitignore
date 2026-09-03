@@ -41,6 +41,7 @@ Thumbs.db
 .impeccable/
 .superpowers/
 .playwright-cli/
+.playwright-mcp/
 output/playwright/
 
 # AI tooling — per-machine skill bundles (mirror of C:\Users\dai\.claude\skills\)
