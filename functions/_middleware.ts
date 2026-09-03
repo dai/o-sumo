@@ -39,6 +39,7 @@ function rewriteSocialMetadata(response: Response, metadata: ShareMetaOverride) 
 
 export const HOME_LINK_HEADERS = [
   '</.well-known/api-catalog>; rel="api-catalog"',
+  '</.well-known/ai-catalog.json>; rel="ai-catalog"',
   '</.well-known/agent-card.json>; rel="describedby"',
   '</.well-known/mcp/server-card.json>; rel="service-desc"',
   '</.well-known/agent-skills/index.json>; rel="agent-skills"',

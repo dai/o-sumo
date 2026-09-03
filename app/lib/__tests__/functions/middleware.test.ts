@@ -4,6 +4,7 @@ import { onRequest, HOME_LINK_HEADERS } from '../../../../functions/_middleware'
 describe('Cloudflare Pages Functions _middleware', () => {
   it('exports valid HOME_LINK_HEADERS containing RFC 8288 / RFC 9727 relation types', () => {
     expect(HOME_LINK_HEADERS).toContain('</.well-known/api-catalog>; rel="api-catalog"');
+    expect(HOME_LINK_HEADERS).toContain('</.well-known/ai-catalog.json>; rel="ai-catalog"');
     expect(HOME_LINK_HEADERS).toContain('</.well-known/agent-card.json>; rel="describedby"');
     expect(HOME_LINK_HEADERS).toContain('</.well-known/mcp/server-card.json>; rel="service-desc"');
     expect(HOME_LINK_HEADERS).toContain('</.well-known/agent-skills/index.json>; rel="agent-skills"');

@@ -1,0 +1,37 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "o-sumo",
+    "identifier": "osada.us"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:osada.us:mcp-server:o-sumo-mcp",
+      "displayName": "o-sumo MCP Server Card",
+      "type": "application/mcp-server+json",
+      "url": "https://osada.us/.well-known/mcp/server-card.json",
+      "description": "Grand Sumo (大相撲) banzuke, torikumi, and rikishi archive MCP Server Card."
+    },
+    {
+      "identifier": "urn:air:osada.us:agent:a2a",
+      "displayName": "o-sumo A2A Agent",
+      "type": "application/a2a-agent-card+json",
+      "url": "https://osada.us/.well-known/agent-card.json",
+      "description": "A2A Agent Card describing o-sumo's public sumo archive capabilities."
+    },
+    {
+      "identifier": "urn:air:osada.us:skills:index",
+      "displayName": "o-sumo Agent Skills",
+      "type": "application/agent-skills+json",
+      "url": "https://osada.us/.well-known/agent-skills/index.json",
+      "description": "Index of agent skills for fetching Grand Sumo banzuke, torikumi, and rikishi profiles."
+    },
+    {
+      "identifier": "urn:air:osada.us:api:catalog",
+      "displayName": "o-sumo API Catalog",
+      "type": "application/linkset+json",
+      "url": "https://osada.us/.well-known/api-catalog",
+      "description": "RFC 9727 API Catalog for o-sumo public JSON endpoints."
+    }
+  ]
+}
