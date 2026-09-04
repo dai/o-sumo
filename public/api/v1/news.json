@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-03T08:27:57.229774+00:00",
+  "updatedAt": "2026-09-04T04:23:29.256399+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,51 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-f-bt-tp1-260904-202609040000492",
+      "title": "横審稽古総見で豊昇龍と安青錦は相撲を取らず　高安、藤凌駕、欧勝馬、藤青雲は欠席",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260904-202609040000492",
+      "publishedAt": "2026-09-04",
+      "publishedAtRaw": "日刊スポーツ　9月4日 13時02分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-tokyosports-401852",
+      "title": "【大相撲】右ヒザ手術の豊昇龍は相撲を取らず「ケガが悪化したら終わり。ちゃんと治したい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-401852",
+      "publishedAt": "2026-09-04",
+      "publishedAtRaw": "東スポWEB　9月4日 13時02分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-f-bt-tp1-260904-202609040000484",
+      "title": "大の里が稽古総見で15番10勝、霧島と11番の熱戦「課題はまだ多い」初日へ見つめ直す",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260904-202609040000484",
+      "publishedAt": "2026-09-04",
+      "publishedAtRaw": "日刊スポーツ　9月4日 12時57分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-chuspo-1306563",
+      "title": "豊昇龍、右膝にサポーター…横審の稽古総見に現れるも相撲は取らず「医者の言うことを聞かないと…」【大相撲】",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1306563",
+      "publishedAt": "2026-09-04",
+      "publishedAtRaw": "中日スポーツ　9月4日 12時35分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-kyodo_nor-2026090401000803",
+      "title": "稽古総見、綱とり霧島10勝6敗　大の里は10勝5敗",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026090401000803",
+      "publishedAt": "2026-09-04",
+      "publishedAtRaw": "共同通信　9月4日 12時30分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "sumo-association-761",
       "title": "大相撲九月場所「土俵祭」のご案内",
       "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=761",
@@ -23,51 +68,6 @@
       "publishedAtRaw": "令和8年9月3日",
       "sourceId": "sumo-association",
       "sourceLabel": "日本相撲協会"
-    },
-    {
-      "id": "dmenu-docomo-kyodo_nor-2026090301001301",
-      "title": "大関琴桜が15番、本格始動　積極的に前に、上々の内容",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026090301001301",
-      "publishedAt": "2026-09-03",
-      "publishedAtRaw": "共同通信　9月3日 16時35分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-tokyosports-401593",
-      "title": "【田上明連載＃11】幻は幻で終わって良かった…北尾光司との試合、馬場さんが「やれ！」って",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-401593",
-      "publishedAt": "2026-09-03",
-      "publishedAtRaw": "東スポWEB　9月3日 16時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260903-OHT1T51158",
-      "title": "大関・琴桜、秋場所へ本格的な稽古を再開　大栄翔らに１１勝４敗「思ったよりは良かった。続けていければ」…１３日初日",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260903-OHT1T51158",
-      "publishedAt": "2026-09-03",
-      "publishedAtRaw": "スポーツ報知　9月3日 15時47分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260903-OHT1T51148",
-      "title": "大栄翔、番付発表後初の出稽古で１１番　７場所ぶり三役復帰も「もっと上を目指して」…１３日初日・秋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260903-OHT1T51148",
-      "publishedAt": "2026-09-03",
-      "publishedAtRaw": "スポーツ報知　9月3日 15時11分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260903-OHT1T51146",
-      "title": "秋場所で自己最高位の西前頭筆頭・琴栄峰が１７番　初の上位総当たりへ「やっぱり楽しみ。思い切り胸を借りるつもりで」…１３日初日",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260903-OHT1T51146",
-      "publishedAt": "2026-09-03",
-      "publishedAtRaw": "スポーツ報知　9月3日 15時07分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
     },
     {
       "id": "sumo-association-759",
