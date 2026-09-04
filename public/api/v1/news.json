@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-04T06:33:04.790418+00:00",
+  "updatedAt": "2026-09-04T08:27:09.133923+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-f-bt-tp1-260904-202609040000742",
-      "title": "豊昇龍が稽古総見で相撲取らず「ここでけがしたら終わり」八角理事長は秋場所出場へ厳しい見方",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260904-202609040000742",
+      "id": "dmenu-docomo-hochi-20260904-OHT1T51204",
+      "title": "３６歳・錦木が連日の出稽古　２０歳の丹治らと充実の１７番「疲れました。このペースで続けていければ」…１３日初日・秋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260904-OHT1T51204",
       "publishedAt": "2026-09-04",
-      "publishedAtRaw": "日刊スポーツ　9月4日 15時13分",
+      "publishedAtRaw": "スポーツ報知　9月4日 17時22分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260904082",
-      "title": "大相撲　ハワイ育ち砂田昌宏ライダー元十両の父超え誓う「相撲やりたい」レスリング最重量級ハワイ高校王者＆アメフトで活躍　新弟子検査",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260904082",
+      "id": "dmenu-docomo-hochi-20260904-OHT1T51202",
+      "title": "右膝手術の豊昇龍、横審稽古総見で相撲は取らず「ここで悪化したらもう終わりなので」　秋場所出場可否は熟考…１３日初日",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260904-OHT1T51202",
       "publishedAt": "2026-09-04",
-      "publishedAtRaw": "デイリースポーツ　9月4日 15時12分",
+      "publishedAtRaw": "スポーツ報知　9月4日 17時18分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_PCNKPPEWY5GHVG36QJHFEIMLHE",
-      "title": "白鵬氏「大関昇進、十両優勝も…大阪っていうのは出世場所」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_PCNKPPEWY5GHVG36QJHFEIMLHE",
+      "id": "dmenu-docomo-20260904104",
+      "title": "大相撲　大関とりの熱海富士を高評価、八角理事長「もうすぐ上がるような話。馬力がある」",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260904104",
       "publishedAt": "2026-09-04",
-      "publishedAtRaw": "SANSPO　9月4日 14時55分",
+      "publishedAtRaw": "デイリースポーツ　9月4日 17時11分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_6TJU4MPDNNH6LNZR6O4KGW4F24",
-      "title": "白鵬氏「横綱になったときに全場所優勝する目標を立ててやってました」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_6TJU4MPDNNH6LNZR6O4KGW4F24",
+      "id": "dmenu-docomo-sponichi-spngoo-20260904-0269",
+      "title": "【秋場所新弟子検査】元十両・砂浜を父に持つ砂田昌宏ライダーが決意「貴乃花さん、父を目標に」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260904-0269",
       "publishedAt": "2026-09-04",
-      "publishedAtRaw": "SANSPO　9月4日 14時52分",
+      "publishedAtRaw": "スポニチアネックス　9月4日 16時59分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_AHFGV5WDRZG75L2VOXPPKURZWU",
-      "title": "白鵬氏「元宮城野部屋の弟子たちをチェックしています」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_AHFGV5WDRZG75L2VOXPPKURZWU",
+      "id": "dmenu-docomo-hochi-20260904-OHT1T51190",
+      "title": "新十両・丹治、本場所仕様の『深緑色』の締め込み姿で１７番　前日は日帰りで地元福島に凱旋「応援してもらっている分、結果を出さないと」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260904-OHT1T51190",
       "publishedAt": "2026-09-04",
-      "publishedAtRaw": "SANSPO　9月4日 14時48分",
+      "publishedAtRaw": "スポーツ報知　9月4日 16時57分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
