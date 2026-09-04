@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-04T04:23:29.256399+00:00",
+  "updatedAt": "2026-09-04T06:33:04.790418+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-f-bt-tp1-260904-202609040000492",
-      "title": "横審稽古総見で豊昇龍と安青錦は相撲を取らず　高安、藤凌駕、欧勝馬、藤青雲は欠席",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260904-202609040000492",
+      "id": "dmenu-docomo-f-bt-tp1-260904-202609040000742",
+      "title": "豊昇龍が稽古総見で相撲取らず「ここでけがしたら終わり」八角理事長は秋場所出場へ厳しい見方",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260904-202609040000742",
       "publishedAt": "2026-09-04",
-      "publishedAtRaw": "日刊スポーツ　9月4日 13時02分",
+      "publishedAtRaw": "日刊スポーツ　9月4日 15時13分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-401852",
-      "title": "【大相撲】右ヒザ手術の豊昇龍は相撲を取らず「ケガが悪化したら終わり。ちゃんと治したい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-401852",
+      "id": "dmenu-docomo-20260904082",
+      "title": "大相撲　ハワイ育ち砂田昌宏ライダー元十両の父超え誓う「相撲やりたい」レスリング最重量級ハワイ高校王者＆アメフトで活躍　新弟子検査",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260904082",
       "publishedAt": "2026-09-04",
-      "publishedAtRaw": "東スポWEB　9月4日 13時02分",
+      "publishedAtRaw": "デイリースポーツ　9月4日 15時12分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260904-202609040000484",
-      "title": "大の里が稽古総見で15番10勝、霧島と11番の熱戦「課題はまだ多い」初日へ見つめ直す",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260904-202609040000484",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_PCNKPPEWY5GHVG36QJHFEIMLHE",
+      "title": "白鵬氏「大関昇進、十両優勝も…大阪っていうのは出世場所」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_PCNKPPEWY5GHVG36QJHFEIMLHE",
       "publishedAt": "2026-09-04",
-      "publishedAtRaw": "日刊スポーツ　9月4日 12時57分",
+      "publishedAtRaw": "SANSPO　9月4日 14時55分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-chuspo-1306563",
-      "title": "豊昇龍、右膝にサポーター…横審の稽古総見に現れるも相撲は取らず「医者の言うことを聞かないと…」【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1306563",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_6TJU4MPDNNH6LNZR6O4KGW4F24",
+      "title": "白鵬氏「横綱になったときに全場所優勝する目標を立ててやってました」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_6TJU4MPDNNH6LNZR6O4KGW4F24",
       "publishedAt": "2026-09-04",
-      "publishedAtRaw": "中日スポーツ　9月4日 12時35分",
+      "publishedAtRaw": "SANSPO　9月4日 14時52分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-kyodo_nor-2026090401000803",
-      "title": "稽古総見、綱とり霧島10勝6敗　大の里は10勝5敗",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026090401000803",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_AHFGV5WDRZG75L2VOXPPKURZWU",
+      "title": "白鵬氏「元宮城野部屋の弟子たちをチェックしています」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_AHFGV5WDRZG75L2VOXPPKURZWU",
       "publishedAt": "2026-09-04",
-      "publishedAtRaw": "共同通信　9月4日 12時30分",
+      "publishedAtRaw": "SANSPO　9月4日 14時48分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
