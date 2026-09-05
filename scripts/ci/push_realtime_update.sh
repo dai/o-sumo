@@ -2,7 +2,6 @@
 set -euo pipefail
 
 target_branch=${GITHUB_REF_NAME:-main}
-validate_command=${VALIDATE_COMMAND:-python scripts/ci/validate_torikumi.py}
 
 for attempt in 1 2 3; do
   if git push origin "HEAD:${target_branch}"; then
@@ -20,7 +19,7 @@ for attempt in 1 2 3; do
     echo "Rebase conflict; remote data was preserved. Start a manual fresh rerun." >&2
     exit 1
   fi
-  if ! bash -c "$validate_command"; then
+  if ! python scripts/ci/validate_torikumi.py; then
     echo "Rebased payload validation failed; start a manual fresh rerun." >&2
     exit 1
   fi
