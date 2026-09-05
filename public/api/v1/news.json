@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-05T00:51:20.510238+00:00",
+  "updatedAt": "2026-09-05T02:26:23.294816+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-chuspo-1307000",
+      "title": "39歳・佐田の海、新弟子時代の忘れられない言葉　大関武双山に順番譲ろうとしたが…「自分なんてカオじゃない」行列での“信念”今に生きる",
+      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1307000",
+      "publishedAt": "2026-09-05",
+      "publishedAtRaw": "中日スポーツ　9月5日 10時23分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-tokyosports-401939",
       "title": "【大相撲】大の里　復活なるか？　舞の海氏は不安視「ちょっと心配。今場所も苦労しそう」",
@@ -46,15 +55,6 @@
       "id": "dmenu-docomo-20260905003",
       "title": "大関とりの熱海富士　力強い動きに八角理事長「あれはもうすぐ上がるような話。馬力がある」と高評価",
       "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260905003",
-      "publishedAt": "2026-09-05",
-      "publishedAtRaw": "デイリースポーツ　9月5日 5時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260905002",
-      "title": "ハワイ育ちの砂田昌宏ライダー　目標は「貴乃花さんと私の父」父は元十両砂浜　学生時代はレスリング最重量級ハワイ高校王者",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260905002",
       "publishedAt": "2026-09-05",
       "publishedAtRaw": "デイリースポーツ　9月5日 5時00分",
       "sourceId": "dmenu-docomo",
