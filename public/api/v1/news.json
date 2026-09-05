@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-04T10:20:04.442516+00:00",
+  "updatedAt": "2026-09-05T00:51:20.510238+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260904-OHT1T51259",
-      "title": "親方衆もどよめく　体重５７キロの軽量力士が誕生へ　新弟子検査受検の新道帝憲",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260904-OHT1T51259",
-      "publishedAt": "2026-09-04",
-      "publishedAtRaw": "スポーツ報知　9月4日 18時56分",
+      "id": "dmenu-docomo-tokyosports-401939",
+      "title": "【大相撲】大の里　復活なるか？　舞の海氏は不安視「ちょっと心配。今場所も苦労しそう」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-401939",
+      "publishedAt": "2026-09-05",
+      "publishedAtRaw": "東スポWEB　9月5日 6時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-chuspo-1306752",
-      "title": "【大相撲】165センチ・57キロ現役最軽量力士誕生！15歳・新道帝憲、運動能力テストから2キロ増量　朝食に「パンとか食べてます」「食べたらすぐ寝る」",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1306752",
-      "publishedAt": "2026-09-04",
-      "publishedAtRaw": "中日スポーツ　9月4日 18時17分",
+      "id": "dmenu-docomo-f-bt-tp1-260905-202609040001184",
+      "title": "大の里「状態は良くなっている」10勝５敗でも手応え、八角理事長は「まだまだ腰が高い」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260905-202609040001184",
+      "publishedAt": "2026-09-05",
+      "publishedAtRaw": "日刊スポーツ　9月5日 6時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-chuspo-1306741",
-      "title": "【大相撲】父はハワイ出身の元十両砂浜！18歳・砂田昌宏ライダーが体格検査パス　目標は「貴乃花さん」と「お父さん」",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1306741",
-      "publishedAt": "2026-09-04",
-      "publishedAtRaw": "中日スポーツ　9月4日 18時07分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260905-0086",
+      "title": "大関・霧島「負けない気持ちで」13日初日秋場所　いざ綱獲りへ　稽古総見で16番10勝",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260905-0086",
+      "publishedAt": "2026-09-05",
+      "publishedAtRaw": "スポニチアネックス　9月5日 5時15分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260904-202609040001063",
-      "title": "元水戸泉の錦戸親方が64歳誕生日　22歳下ソプラノ歌手妻と仲睦まじく乾杯「今年も元気に…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260904-202609040001063",
-      "publishedAt": "2026-09-04",
-      "publishedAtRaw": "日刊スポーツ　9月4日 17時58分",
+      "id": "dmenu-docomo-20260905003",
+      "title": "大関とりの熱海富士　力強い動きに八角理事長「あれはもうすぐ上がるような話。馬力がある」と高評価",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260905003",
+      "publishedAt": "2026-09-05",
+      "publishedAtRaw": "デイリースポーツ　9月5日 5時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260904-202609040001149",
-      "title": "新弟子の小林梅太、しこ名は「松の里」に　横綱大の里と稽古「でかい…。圧力がすごかった」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260904-202609040001149",
-      "publishedAt": "2026-09-04",
-      "publishedAtRaw": "日刊スポーツ　9月4日 17時49分",
+      "id": "dmenu-docomo-20260905002",
+      "title": "ハワイ育ちの砂田昌宏ライダー　目標は「貴乃花さんと私の父」父は元十両砂浜　学生時代はレスリング最重量級ハワイ高校王者",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260905002",
+      "publishedAt": "2026-09-05",
+      "publishedAtRaw": "デイリースポーツ　9月5日 5時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
