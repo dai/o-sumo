@@ -1,10 +1,12 @@
 name: Daily Sumo Data Update
 
 on:
+  schedule:
+    - cron: '0 4,6,8,10 * * *'
   workflow_dispatch:
 
 concurrency:
-  group: osumo-schedule-update-branch
+  group: osumo-torikumi-update
   cancel-in-progress: false
 
 permissions:
@@ -35,7 +37,8 @@ jobs:
         run: |
           bash scripts/ci/run_torikumi_generator.sh \
             --torikumi-only \
-            --torikumi-scope schedule
+            --torikumi-scope schedule \
+            2> >(tee "$RUNNER_TEMP/torikumi-generator.stderr" >&2)
 
       - name: Validate torikumi payload
         id: validate
@@ -81,6 +84,7 @@ jobs:
             public/api/v1/torikumi.json
 
       - name: Enable auto-merge
+        id: auto-merge
         if: steps.create-pr.outputs.pull-request-operation == 'created'
         env:
           GH_TOKEN: ${{ secrets.GH_PAT || github.token }}
@@ -94,6 +98,17 @@ jobs:
           fi
           echo "Enabling auto-merge for PR #${PR_NUMBER} (squash)"
           gh pr merge "${PR_NUMBER}" --auto --squash --delete-branch=false
+
+      - name: Inspect current PR state
+        id: pr-state
+        if: always() && steps.create-pr.outputs.pull-request-number != ''
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT || github.token }}
+          PR_NUMBER: ${{ steps.create-pr.outputs.pull-request-number }}
+        shell: bash
+        run: |
+          gh pr view "$PR_NUMBER" --json state,mergeStateStatus,statusCheckRollup,url \
+            --jq '"pr_state=" + .state + "\nmerge_state=" + .mergeStateStatus + "\nchecks=" + ([.statusCheckRollup[]?.conclusion // .statusCheckRollup[]?.status] | join(",")) + "\npr_url=" + .url' >> "$GITHUB_OUTPUT"
 
       - name: Write run summary
         if: always()
@@ -109,11 +124,25 @@ jobs:
             echo "| Create PR | ${{ steps.create-pr.outcome }} |"
             echo "| PR Number | ${{ steps.create-pr.outputs.pull-request-number }} |"
             echo "| PR Operation | ${{ steps.create-pr.outputs.pull-request-operation }} |"
+            echo "| Auto-merge request | ${{ steps.auto-merge.outcome }} |"
+            echo "| Current PR state | ${{ steps.pr-state.outputs.pr_state || 'unknown' }} |"
+            echo "| Current merge state | ${{ steps.pr-state.outputs.merge_state || 'unknown' }} |"
+            echo "| Current checks | ${{ steps.pr-state.outputs.checks || 'unknown; inspect PR link' }} |"
             echo ""
+            if [ "${{ steps.generate.outcome }}" = "success" ]; then
+              python scripts/ci/workflow_summary.py schedule public/api/v1/torikumi.json || echo "- generated data summary unavailable"
+            else
+              echo "### Generator diagnostics"
+              echo '```text'
+              sed -n '1,120p' "$RUNNER_TEMP/torikumi-generator.stderr" 2>/dev/null || echo "stderr unavailable"
+              echo '```'
+              echo "Existing JSON was preserved and is not reported as newly generated."
+            fi
             echo "- event: \`${{ github.event_name }}\`"
             echo "- schedule: \`${{ github.event.schedule || 'manual' }}\`"
             echo "- jst_now: \`$(TZ=Asia/Tokyo date +'%Y-%m-%dT%H:%M:%S%z')\`"
             echo "- run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            echo "- pr: ${{ steps.pr-state.outputs.pr_url || 'unknown; inspect run link' }}"
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Notify Discord on failure
@@ -129,4 +158,3 @@ jobs:
         shell: bash
         run: |
           bash scripts/ci/notify_discord.sh "${STATUS}" "${TITLE}" "${DETAIL}" || echo "::warning::notify_discord failed"
-

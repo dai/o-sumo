@@ -659,6 +659,59 @@ PR #479 が到達した 7 項目（API catalog / OAuth-PRM / MCP Server Card / A
 - [x] PR 4 マージ後、全ローカル / リモートブランチ cleanup完了（`docs/agent-phase1-refresh` ローカル削除、`origin` 側は `--delete-branch` で削除済）
 - [x] `.codex/` を `.gitignore` に追加（`.codex/config.toml` を追跡外へ）
 
+# 九月場所の取組更新再開（2026-09-05）
+
+## Plan
+
+- [x] 最新origin/mainから専用worktreeと `sep-scheduling` を作成。元の変更は保持。
+- [x] 引き継ぎ計画を確認。parser既存55テスト成功。
+- [x] 予定の完全性ゲートとvalidatorをTDDで実装。parser63件・validator5件成功、独立レビュー指摘を修正済み。
+- [x] Daily / Realtimeのcron、summary、concurrencyを更新。
+- [x] 日本語・英語の運用ドキュメントを同期。
+- [x] Python / Vitest / typecheck / build / diff確認と独立レビュー。
+
+## Review
+
+### 検証結果（2026-09-05）
+
+- 5 commits (0254e32 → 5373976 → 8d78e4a → a1144ba → 07a0abd) を `origin/main` から 5 ahead で push 可能。
+- Python: parser 63 / validate_torikumi 5 / workflow_summary 3 / workflow_config 2 = **73 tests OK**。
+- Bash: `push_realtime_update_test.sh` で conflict シナリオ再現、`OK`。
+- Vitest: **68 files / 474 tests** pass。
+- `npm run typecheck` exit 0、`npm run build` exit 0（PWA 118 entries precache）。
+- `git diff --check origin/main...HEAD` exit 0。
+- `python scripts/ci/validate_torikumi.py public/api/v1/torikumi.json` exit 0。
+
+### 独立レビュー（subagent: general-purpose, 46 tool uses）
+
+verdict: **PASS with minor follow-ups**。P0 = 0、P1 × 6、P2 × 5。9/12 manual run までにマージ可能な状態。
+
+### 既知の制限事項（plan §10 acceptance には影響なし、別 PR で対応）
+
+- **P1-1**: `validate_torikumi.py` は `scheduleDays` のみ inspect。`resultDays` の duplicate bout / cross-division 重複 / absentees-participants 交差は未検査（`--strict-torikumi-fetch` で防いでいるが validator としては未対称）。
+- **P1-2**: `update_sumo_data.py` の `observed_settled_day` / `observed_any_match_day` が `loaded_days` のみで計算。`fetch_days` 外の既存公開日を取り込まず、`effective_today_day` が archive より遅れる可能性。
+- **P1-3**: `push_realtime_update.sh` の rebase 後に generator を再実行しない。rebased `main` が新データでも、push 内容は rebased base のまま stale になり得る。README 既知制限として記載済み。
+- **P1-4**: Realtime の `commit_sha` 出力は push 成功時のみセット。rebase conflict / validate 失敗時は Job Summary に literal "none" と表示される（"未commit" と "commit X 失敗" の区別なし）。
+- **P1-5**: Daily / Realtime が同一 concurrency group `osumo-torikumi-update` で `cancel-in-progress: false`。Daily の PR が unmerge の間に Realtime が main に push すると、Daily の `automation/schedule-updates` branch が取り残される。既知制限として記載済み。
+- **P1-6**: `workflow_config_test.py` の `jst_slots` parser は `*/N` / 単一分 / `H-H` / `H,H` のみ対応。`0/15` や名前付き alias は誤解釈（現行 cron は対象外）。
+- **P2-2**: `workflow_summary.py` が `bashoId` / `bashoName` を出力しない。Job Summary から対象場所が識別できない。
+
+### フォローアップ（九月場所終了後の cron 停止と併せて別 PR で実施予定）
+
+- 上記 P1-1〜6 を TDD で修正、validator / parser / workflow_summary の focused test を追加
+- `concurrency` の Daily / Realtime 分離可否を再評価
+- `bashoId` / `bashoName` を Job Summary に追加
+- 9/27 場所終了後に `workflow_dispatch` のみへ戻す PR を別出し
+
+### 残課題（plan §4 当日運用に書いた未実施項目）
+
+- [ ] 9/12 公式発表後に `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main` を手動実行
+- [ ] 生成 PR の必須 check 成功と auto-merge を確認
+- [ ] 本番 `https://osada.us/api/v1/torikumi.json` で初日 schedule が `published`、両部門に公式発表と一致する取組、`scheduleUpdatedAt` 更新を確認
+- [ ] 初日結果が `pending` のまま維持されていることを確認
+
+詳細計画: `tasks/plans/2026-09-05-september-torikumi-actions-handoff.md`
+
 # 共有URLのページ固有メタデータ（2026-08-31）
 
 ## Plan

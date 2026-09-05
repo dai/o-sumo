@@ -33,6 +33,14 @@ jobs:
       - name: Run tests
         run: npm test
 
+      - name: Install workflow test dependencies
+        run: python -m pip install PyYAML==6.0.3
+
+      - name: Test data parsers and workflow operations
+        run: |
+          python -m unittest scripts.update_sumo_data_parser_test scripts.ci.validate_torikumi_test scripts.ci.workflow_summary_test scripts.ci.workflow_config_test
+          bash scripts/ci/push_realtime_update_test.sh
+
       - name: Generate standalone blog
         run: npm run blog:generate
 

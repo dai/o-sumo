@@ -13,6 +13,7 @@ export interface TorikumiMatch {
   westProfileUrl: string;
   kimarite: string;
   winner?: 'east' | 'west' | null;
+  isPlayoff?: true;
 }
 
 export interface TorikumiDivisionDay {

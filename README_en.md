@@ -275,7 +275,7 @@ Key validations:
 
 ## Automated Updates
 
-GitHub Actions uses separate workflows for torikumi schedules, torikumi results, and news. When files change, each workflow creates or updates the shared `automation/*-updates` PR.
+GitHub Actions separates torikumi schedules, results, and news. Daily schedule updates open a PR and request auto-merge after checks; realtime result updates validate and push directly to `main`.
 
 Shared helpers under `scripts/ci/`:
 
@@ -287,10 +287,10 @@ Shared helpers under `scripts/ci/`:
 Workflows:
 
 - Daily update: `.github/workflows/daily-data-update.yml`
-   - trigger: manual only (`workflow_dispatch`) during the interval
+  - trigger: JST 13:00, 15:00, 17:00, and 19:00 plus `workflow_dispatch`
   - updates torikumi schedules only (`--torikumi-only --torikumi-scope schedule`)
 - Realtime results update: `.github/workflows/realtime-torikumi-direct-update.yml`
-   - trigger: manual only (`workflow_dispatch`) during the interval
+  - trigger: every 10 minutes from JST 13:00 through 18:50 plus `workflow_dispatch`
   - updates torikumi results only (`--torikumi-only --torikumi-scope result --skip-rikishi-fetch --strict-torikumi-fetch`)
   - logs: GitHub Actions job summary aggregates step results, commit state, and the run URL
 - News update: `.github/workflows/news-feed-update.yml`
@@ -346,10 +346,13 @@ GitHub Actions runs the following on pull requests and pushes to `main`, `codex/
 - SPA fallback file: `public/_redirects` (app routes only; `/api/v1/*` serves static JSON as-is)
 - Direct access to date-based URLs falls back to `index.html`
 
-## Operations Between The July Archive And September Banzuke Release
+## September Basho Operations
 
-- The immutable July snapshots and current `/api/v1/banzuke.json` / `/api/v1/torikumi.json` remain in place until the September banzuke is officially published.
-- Torikumi schedule and result workflows are manual-only (`workflow_dispatch`); restore schedules in the next PR after that publication.
+- The current APIs have switched to September; keep the July TypeScript snapshots immutable as archives.
+- Scheduled triggers activate only after this workflow change reaches the default `main` branch. Runs may be delayed or skipped, and the shared concurrency lock does not cover an outstanding Daily PR merge; there is no guaranteed ten-minute publication SLA.
+- After the official September 12 torikumi publication, run `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main`, watch the run, then inspect PR checks and merge, the JSON on `main`, and production JSON. Empty data for both divisions before publication is a no-op, not successful publication.
+- After the September 27 final results and next-day verification, remove both cron schedules in a separate PR. Summaries are point-in-time snapshots, not merge or deployment proof.
+- `preflight:current-data` is a transition-only safety gate that requires paused workflows, not an in-tournament readiness check. The validator permits only the precise fusen exception and generation preserves old data on partial fetch failure.
 - The news workflow remains scheduled every two hours from JST 09:05 through 19:05.
 - Manual runs can be started with `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main`, `gh workflow run realtime-torikumi-direct-update.yml -R dai/o-sumo --ref main`, or `gh workflow run news-feed-update.yml -R dai/o-sumo --ref main`.
 - The realtime workflow uses `--torikumi-only --torikumi-scope result --skip-rikishi-fetch`, so it is limited to torikumi results.

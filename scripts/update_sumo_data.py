@@ -625,7 +625,7 @@ def parse_torikumi_match(raw: dict, division: str, bout_no: int) -> dict:
     east_id = safe_int(east.get("rikishi_id", 0), 0)
     west_id = safe_int(west.get("rikishi_id", 0), 0)
 
-    return {
+    parsed = {
         "division": division,
         "boutNo": bout_no,
         "eastName": east_name,
@@ -641,6 +641,9 @@ def parse_torikumi_match(raw: dict, division: str, bout_no: int) -> dict:
         "kimarite": kimarite,
         "winner": winner,
     }
+    if raw.get("_isPlayoff") is True:
+        parsed["isPlayoff"] = True
+    return parsed
 
 
 def extract_bout_no(raw: dict, fallback: int) -> int:
@@ -727,7 +730,7 @@ def merge_torikumi_raw_matches(data: dict, kakuzuke_id: int | None = None) -> li
             # The displayed bout numbers are normalized after parsing.  Use
             # the merged order here because FinalMuch may restart its local
             # numbering at one on senshuraku.
-            merged.append((len(merged) + 1, raw))
+            merged.append((len(merged) + 1, {**raw, "_isPlayoff": collection_name == "FinalMuch"}))
 
     return merged
 
@@ -744,14 +747,24 @@ def load_torikumi_day(basho_id: int, day: int, kakuzuke_id: int) -> dict:
 
     merged_matches = merge_torikumi_raw_matches(data, kakuzuke_id=kakuzuke_id)
     if not merged_matches:
+        raw_collections = (data.get("TorikumiData"), data.get("FinalMuch"))
+        if any(raw not in (None, [], {}) for raw in raw_collections):
+            raise ValueError(f"取組データ解析失敗: {DIVISION_LABEL[kakuzuke_id]} day={day}")
         raise ValueError(f"取組データ未公開: {DIVISION_LABEL[kakuzuke_id]} day={day}")
 
     parsed = []
+    parse_failures = 0
     for sequential_idx, (extracted_bout_no, match) in enumerate(merged_matches, start=1):
         try:
             parsed.append(parse_torikumi_match(match, DIVISION_LABEL[kakuzuke_id], sequential_idx))
         except Exception:
-            continue
+            parse_failures += 1
+
+    if parse_failures:
+        raise ValueError(
+            f"取組データ解析失敗: {DIVISION_LABEL[kakuzuke_id]} day={day} "
+            f"failed_rows={parse_failures}"
+        )
 
     bout_limit = TORIKUMI_BOUT_LIMIT[kakuzuke_id]
     parsed = parsed[:bout_limit]
@@ -807,14 +820,21 @@ def try_load_torikumi_day(
             f"division={DIVISION_LABEL[kakuzuke_id]} ({exc})",
             file=sys.stderr,
         )
-        return None
+        return TORIKUMI_FETCH_ERROR
     except Exception as exc:
         print(
             f"[warn] torikumi fetch failed: basho_id={basho_id}, day={day}, "
             f"division={DIVISION_LABEL[kakuzuke_id]} ({exc})",
             file=sys.stderr,
         )
-        return None
+        return TORIKUMI_FETCH_ERROR
+
+
+TORIKUMI_FETCH_ERROR = object()
+
+
+def requires_complete_schedule(scope: str) -> bool:
+    return scope in {"schedule", "all"}
 
 
 def resolve_basho_start_date(
@@ -1045,6 +1065,7 @@ def build_torikumi_dataset(
     fetch_days: set[int] | None = None,
     official_start_date: date | None = None,
     strict_fetch: bool = False,
+    require_complete_schedule: bool = False,
 ) -> dict:
     rosters = {
         "makuuchi": load_division_rikishi(1),
@@ -1073,13 +1094,22 @@ def build_torikumi_dataset(
                 expected_unpublished=expected_unpublished,
             )
         if strict_fetch and not expected_unpublished:
-            if makuuchi_day is None:
+            if makuuchi_day is None or makuuchi_day is TORIKUMI_FETCH_ERROR:
                 unexpected_fetch_failures.append((day, 1))
-            if juryo_day is None:
+            if juryo_day is None or juryo_day is TORIKUMI_FETCH_ERROR:
                 unexpected_fetch_failures.append((day, 2))
+        if require_complete_schedule:
+            division_values = ((1, makuuchi_day), (2, juryo_day))
+            errors = [k for k, value in division_values if value is TORIKUMI_FETCH_ERROR]
+            published = [k for k, value in division_values if isinstance(value, dict) and bool(value.get("matches"))]
+            missing = [k for k, value in division_values if value is None or (isinstance(value, dict) and not value.get("matches"))]
+            if errors or (published and missing):
+                failed = errors + missing
+                failure_text = ", ".join(f"day={day} division={DIVISION_LABEL[k]}" for k in failed)
+                raise RuntimeError(f"incomplete official schedule fetch: {failure_text}")
         loaded_days[day] = {
-            "makuuchi": makuuchi_day,
-            "juryo": juryo_day,
+            "makuuchi": None if makuuchi_day is TORIKUMI_FETCH_ERROR else makuuchi_day,
+            "juryo": None if juryo_day is TORIKUMI_FETCH_ERROR else juryo_day,
         }
 
     if strict_fetch and unexpected_fetch_failures:
@@ -1434,6 +1464,7 @@ def write_torikumi_data(dataset: dict, year_jp: str, basho_name: str) -> None:
   westProfileUrl: string;
   kimarite: string;
   winner?: 'east' | 'west' | null;
+  isPlayoff?: true;
 }}
 
 export interface TorikumiDivisionDay {{
@@ -2181,6 +2212,8 @@ def main() -> None:
 
     # Handle rikishi profile fetching
     profiles: dict[int, dict] = {}
+    active_rikishi_list: list[dict] = []
+    rikishi_list: list[dict] = []
     if makuuchi is not None and juryo is not None and not args.skip_rikishi_fetch:
         active_rikishi_list = build_rikishi_list(makuuchi, juryo)
         rikishi_list = active_rikishi_list
@@ -2198,12 +2231,6 @@ def main() -> None:
                 profiles[rikishi["id"]] = profile
             time.sleep(0.3)  # Be polite to the server
 
-        write_rikishi_json(rikishi_list, profiles)
-        generate_rikishi_matchup_endpoint(
-            active_rikishi_list,
-            profiles,
-            profile_limit=args.profile_limit,
-        )
     elif makuuchi is not None and juryo is not None and args.skip_rikishi_fetch:
         print("[info] Skipping rikishi profile refresh (--skip-rikishi-fetch)")
 
@@ -2245,6 +2272,7 @@ def main() -> None:
             fetch_days=fetch_days,
             official_start_date=official_start_date,
             strict_fetch=args.strict_torikumi_fetch,
+            require_complete_schedule=requires_complete_schedule(args.torikumi_scope),
         )
         torikumi_dataset["bashoId"] = basho_id
         torikumi_dataset = apply_torikumi_scope(
@@ -2262,6 +2290,14 @@ def main() -> None:
         if not torikumi_changed:
             print("[info] Torikumi payload unchanged; preserving existing timestamps")
 
+        if makuuchi is not None and juryo is not None and not args.skip_rikishi_fetch:
+            write_rikishi_json(rikishi_list, profiles)
+            generate_rikishi_matchup_endpoint(
+                active_rikishi_list,
+                profiles,
+                profile_limit=args.profile_limit,
+            )
+
         if makuuchi is not None and juryo is not None:
             write_sumo_data(makuuchi, juryo)
         write_torikumi_data(torikumi_dataset, year_jp, basho_name)
@@ -2275,6 +2311,13 @@ def main() -> None:
             f"schedule_days={len(torikumi_dataset['scheduleDays'])}"
         )
     else:
+        if makuuchi is not None and juryo is not None and not args.skip_rikishi_fetch:
+            write_rikishi_json(rikishi_list, profiles)
+            generate_rikishi_matchup_endpoint(
+                active_rikishi_list,
+                profiles,
+                profile_limit=args.profile_limit,
+            )
         print(
             f"updated: rikishi_only, "
             f"profiles_collected={len(profiles)}"

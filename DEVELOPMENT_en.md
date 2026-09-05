@@ -103,18 +103,18 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 ### Data Updates
 
 - Workflow: `.github/workflows/daily-data-update.yml`
-- Trigger: manual only (`workflow_dispatch`) — automatic schedule disabled after the July 2026 basho concluded (2026-07-26)
+- Trigger: JST 13:00, 15:00, 17:00, and 19:00 plus `workflow_dispatch`
 - Scope: torikumi schedule only (`--torikumi-only --torikumi-scope schedule`)
-- If files change, the workflow creates or updates a pull request from `automation/data-updates`
+- If files change, it opens a PR and requests auto-merge after checks
 
 - Workflow: `.github/workflows/realtime-torikumi-direct-update.yml`
-- Trigger: manual only (`workflow_dispatch`) — automatic schedule disabled after the July 2026 basho concluded (2026-07-26)
+- Trigger: every 10 minutes from JST 13:00 through 18:50 plus `workflow_dispatch`
 - Scope: torikumi results only (`--torikumi-only --torikumi-scope result --skip-rikishi-fetch`)
-- If files change, the workflow creates or updates a pull request from `automation/data-updates`
+- If files change, it validates and pushes directly to `main`; rebase conflicts fail closed for a fresh manual rerun
 - Always logs `github.event.schedule`, current JST time, `resultUpdatedAt`, and `scheduleUpdatedAt`
 
 - Workflow: `.github/workflows/news-feed-update.yml`
-- Schedule: every 2 hours from JST 09:00 through 19:00 (the only automatically scheduled workflow)
+- Schedule: every 2 hours from JST 09:05 through 19:05
 - Scope: news feed (`python scripts/update_news_feed.py`)
 - If fetched items and source states are unchanged, `news.json` is not rewritten and no PR diff is produced
 
@@ -124,6 +124,8 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - Keep `daily-data-update.yml` and `realtime-torikumi-direct-update.yml` manual-only (`workflow_dispatch`); restore schedules and remove the closing notice in the next PR after that release.
 - `news-feed-update.yml` remains the only scheduled workflow, refreshing news every two hours and skipping `news.json` writes when nothing changed.
 - Keep the `public/_headers` cache policy and PWA `registerType: "autoUpdate"` unchanged.
+
+The current APIs are now September while July snapshots remain immutable archives. After official publication on September 12, manually run Daily and separately verify the run, PR checks/merge, JSON on `main`, and production JSON; both divisions empty before publication is a no-op. Schedules activate only once merged to default-branch `main`, can be delayed or skipped, and have no ten-minute SLA. Remove cron in a separate PR after the September 27 final and next-day verification. Summaries are snapshots, not deployment proof. `preflight:current-data` is a transition-only gate used while workflows are paused. Fusen is a narrow validator exception and partial fetch failures preserve old data.
 
 ### Tests
 

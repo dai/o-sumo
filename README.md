@@ -272,7 +272,7 @@ python scripts/update_official_profiles_test.py
 
 ## 自動更新
 
-GitHub Actions で取組予定、取組結果、ニュース更新を分けています。変更がある場合はいずれも `automation/*-updates` ブランチの PR を作成または更新します。
+GitHub Actions で取組予定、取組結果、ニュース更新を分けています。日次予定更新は PR を作成してテスト通過後の auto-merge を要求し、リアルタイム結果更新は検証後に `main` へ直接 push します。
 
 共通スクリプト:
 
@@ -284,11 +284,11 @@ GitHub Actions で取組予定、取組結果、ニュース更新を分けて�
 ワークフロー一覧:
 
 - 日次更新: `.github/workflows/daily-data-update.yml`
-  - トリガー: 休止中は手動のみ（`workflow_dispatch`）
+  - トリガー: JST 13:00 / 15:00 / 17:00 / 19:00 と `workflow_dispatch`
   - 実行内容: 取組予定のみ更新（`--torikumi-only --torikumi-scope schedule`）
   - 手動実行: GitHub Actions の `Run workflow` または `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main`
 - 結果更新: `.github/workflows/realtime-torikumi-direct-update.yml`
-  - トリガー: 休止中は手動のみ（`workflow_dispatch`）
+  - トリガー: JST 13:00-18:50 の10分間隔と `workflow_dispatch`
   - 実行内容: 取組結果のみ更新（`--torikumi-only --torikumi-scope result --skip-rikishi-fetch --strict-torikumi-fetch`）
   - 手動実行: GitHub Actions の `Run workflow` または `gh workflow run realtime-torikumi-direct-update.yml -R dai/o-sumo --ref main`
   - ログ: GitHub Actions の Job Summary に step result / committed / event / run URL を集約
@@ -355,10 +355,13 @@ GitHub Actions では PR と `main` / `codex/**` / `automation/data-updates` へ
 - SPA fallback: `public/_redirects`（アプリルートのみ。`/api/v1/*` は静的 JSON をそのまま配信）
 - 日付ベースの URL を直接開いても `index.html` にフォールバックします
 
-## 運用ポリシー（七月場所アーカイブ〜九月場所番付発表前）
+## 九月場所の更新運用
 
-- 七月のTypeScriptスナップショットと現行の `/api/v1/banzuke.json` / `/api/v1/torikumi.json` は、九月場所の公式番付公開まで維持します。
-- 取組予定・結果のworkflowは `workflow_dispatch` のみとし、九月場所の番付公開後の次PRで schedule を復元します。
+- 九月の current API は切替済みです。七月の TypeScript snapshot は不変 archive として維持します。
+- schedule は workflow を含む変更が既定 branch の `main` に merge された後だけ有効です。共通 lock は未 merge の日次 PR との競合までは防げず、混雑時は実行が遅延または skip され得るため10分以内の反映保証はありません。
+- 9月12日の公式取組公開後、`gh workflow run daily-data-update.yml -R dai/o-sumo --ref main` を手動実行し、run、PR checks と merge、`main` の JSON、本番 JSON を順に確認します。公開前に両部門が空なら no-op であり、公開成功ではありません。
+- 9月27日の最終結果と翌日の確認後、cron 削除は別 PR で行います。summary は実行時点の snapshot であり、merge や deploy の証明ではありません。
+- `preflight:current-data` は workflow 停止中に行う場所切替専用の安全 gate で、場所中の readiness check ではありません。`不戦` は validator の限定的例外で、取得の部分失敗時は旧データを保持します。
 - ニュース更新だけは JST 09:05-19:05 の2時間おきに継続します。
 - CLI では `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main` / `gh workflow run realtime-torikumi-direct-update.yml -R dai/o-sumo --ref main` / `gh workflow run news-feed-update.yml -R dai/o-sumo --ref main` を使えます。
 - 結果更新 workflow は `--torikumi-only --torikumi-scope result --skip-rikishi-fetch` を使い、取組結果に限定します。

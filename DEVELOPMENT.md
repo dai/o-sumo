@@ -103,18 +103,18 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 ### データ更新
 
 - Workflow: `.github/workflows/daily-data-update.yml`
-- トリガー: 手動のみ（`workflow_dispatch`）— 七月場所終了（2026-07-26）後、自動スケジュールを停止
+- トリガー: JST 13:00 / 15:00 / 17:00 / 19:00 と `workflow_dispatch`
 - 更新対象: 取組予定のみ（`--torikumi-only --torikumi-scope schedule`）
-- 変更がある場合は `automation/data-updates` ブランチの PR を作成または更新
+- 変更がある場合は PR を作成し、check 通過後の auto-merge を要求
 
 - Workflow: `.github/workflows/realtime-torikumi-direct-update.yml`
-- トリガー: 手動のみ（`workflow_dispatch`）— 七月場所終了（2026-07-26）後、自動スケジュールを停止
+- トリガー: JST 13:00-18:50 の10分間隔と `workflow_dispatch`
 - 更新対象: 取組結果のみ（`--torikumi-only --torikumi-scope result --skip-rikishi-fetch`）
-- 変更がある場合は `automation/data-updates` ブランチの PR を作成または更新
+- 変更がある場合は検証後に `main` へ直接 push。競合時は rebase を中止して手動再実行
 - 実行ログへ `github.event.schedule` / JST現在時刻 / `resultUpdatedAt` / `scheduleUpdatedAt` を出力
 
 - Workflow: `.github/workflows/news-feed-update.yml`
-- 実行時刻: JST 09:00-19:00、2時間おき（唯一の自動実行 Workflow）
+- 実行時刻: JST 09:05-19:05、2時間おき
 - 更新対象: ニュースフィード（`python scripts/update_news_feed.py`）
 - 取得結果が変わらない場合は `news.json` を書き換えず、PR 差分を作らない
 
@@ -216,4 +216,6 @@ DNS-AID (SVCB/HTTPS) と DNSSEC の有効化は Cloudflare DNS 側の操作で�
 - 七月のスナップショットと現行APIは九月場所の番付公式公開まで変更しない。
 - `daily-data-update.yml` と `realtime-torikumi-direct-update.yml` は `workflow_dispatch` のみとし、scheduleの復元と終了告知の解除は公式番付公開後の次PRで行う。
 - 唯一の自動workflowである `news-feed-update.yml` は2時間おきのニュース更新を継続し、データに差分がない場合は `news.json` を書き換えない。
+
+九月 current API への切替後も七月 snapshot は不変です。9月12日の公式公開後は Daily を手動実行し、run、PR check/merge、`main` JSON、本番 JSON を個別確認します。事前の両部門空は no-op です。schedule は変更が既定 branch に merge されてから有効で、遅延・skip があり得ます。9月27日最終結果の翌日確認後、cron を別 PR で削除します。summary は deploy 証明ではありません。`preflight:current-data` は workflow を止めて使う切替専用 gate です。不戦は限定例外で、部分取得失敗時は旧データを保持します。
 - Cloudflareのキャッシュ方針とPWAの `registerType: "autoUpdate"` は維持する。
