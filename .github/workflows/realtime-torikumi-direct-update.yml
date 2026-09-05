@@ -1,10 +1,12 @@
 name: Realtime Torikumi Direct Update
 
 on:
+  schedule:
+    - cron: '*/10 4-9 * * *'
   workflow_dispatch:
 
 concurrency:
-  group: osumo-result-direct-update
+  group: osumo-torikumi-update
   cancel-in-progress: false
 
 permissions:
@@ -36,7 +38,8 @@ jobs:
             --torikumi-only \
             --torikumi-scope result \
             --skip-rikishi-fetch \
-            --strict-torikumi-fetch
+            --strict-torikumi-fetch \
+            2> >(tee "$RUNNER_TEMP/torikumi-generator.stderr" >&2)
 
       - name: Validate torikumi payload
         id: validate
@@ -55,29 +58,13 @@ jobs:
           if git diff --cached --quiet; then
             echo "::notice::No realtime torikumi changes to commit."
             echo "committed=false" >> "$GITHUB_OUTPUT"
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
           echo "committed=true" >> "$GITHUB_OUTPUT"
           git commit -m "chore: realtime torikumi update"
-
-          # A scheduled checkout can race with another workflow run or a PR
-          # merge. Always name the remote ref explicitly, and when rebasing
-          # keep this run's freshly generated data if both commits touched the
-          # same generated file.
-          target_branch="${GITHUB_REF_NAME:-main}"
-          for attempt in 1 2 3; do
-            if git push origin "HEAD:${target_branch}"; then
-              break
-            elif [ "$attempt" -lt 3 ]; then
-              echo "::warning::Push rejected (attempt ${attempt}), rebasing on remote and retrying..."
-              git fetch origin "${target_branch}"
-              git rebase -X theirs "origin/${target_branch}"
-            else
-              echo "Push failed after 3 attempts."
-              exit 1
-            fi
-          done
+          bash scripts/ci/push_realtime_update.sh
 
       - name: Write run summary
         if: always()
@@ -92,7 +79,18 @@ jobs:
             echo "| Validate | ${{ steps.validate.outcome }} |"
             echo "| Commit | ${{ steps.commit.outcome }} |"
             echo "| Committed | ${{ steps.commit.outputs.committed }} |"
+            echo "| Pushed | ${{ steps.commit.outputs.pushed }} |"
+            echo "| Commit SHA | ${{ steps.commit.outputs.commit_sha || 'none' }} |"
             echo ""
+            if [ "${{ steps.generate.outcome }}" = "success" ]; then
+              python scripts/ci/workflow_summary.py result public/api/v1/torikumi.json || echo "- generated data summary unavailable"
+            else
+              echo "### Generator diagnostics"
+              echo '```text'
+              sed -n '1,120p' "$RUNNER_TEMP/torikumi-generator.stderr" 2>/dev/null || echo "stderr unavailable"
+              echo '```'
+              echo "Existing JSON was preserved and is not reported as newly generated."
+            fi
             echo "- event: \`${{ github.event_name }}\`"
             echo "- schedule: \`${{ github.event.schedule || 'manual' }}\`"
             echo "- jst_now: \`$(TZ=Asia/Tokyo date +'%Y-%m-%dT%H:%M:%S%z')\`"
