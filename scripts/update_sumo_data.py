@@ -744,6 +744,9 @@ def load_torikumi_day(basho_id: int, day: int, kakuzuke_id: int) -> dict:
 
     merged_matches = merge_torikumi_raw_matches(data, kakuzuke_id=kakuzuke_id)
     if not merged_matches:
+        raw_collections = (data.get("TorikumiData"), data.get("FinalMuch"))
+        if any(raw not in (None, [], {}) for raw in raw_collections):
+            raise ValueError(f"取組データ解析失敗: {DIVISION_LABEL[kakuzuke_id]} day={day}")
         raise ValueError(f"取組データ未公開: {DIVISION_LABEL[kakuzuke_id]} day={day}")
 
     parsed = []
@@ -807,14 +810,21 @@ def try_load_torikumi_day(
             f"division={DIVISION_LABEL[kakuzuke_id]} ({exc})",
             file=sys.stderr,
         )
-        return None
+        return TORIKUMI_FETCH_ERROR
     except Exception as exc:
         print(
             f"[warn] torikumi fetch failed: basho_id={basho_id}, day={day}, "
             f"division={DIVISION_LABEL[kakuzuke_id]} ({exc})",
             file=sys.stderr,
         )
-        return None
+        return TORIKUMI_FETCH_ERROR
+
+
+TORIKUMI_FETCH_ERROR = object()
+
+
+def requires_complete_schedule(scope: str) -> bool:
+    return scope in {"schedule", "all"}
 
 
 def resolve_basho_start_date(
@@ -1045,6 +1055,7 @@ def build_torikumi_dataset(
     fetch_days: set[int] | None = None,
     official_start_date: date | None = None,
     strict_fetch: bool = False,
+    require_complete_schedule: bool = False,
 ) -> dict:
     rosters = {
         "makuuchi": load_division_rikishi(1),
@@ -1073,13 +1084,22 @@ def build_torikumi_dataset(
                 expected_unpublished=expected_unpublished,
             )
         if strict_fetch and not expected_unpublished:
-            if makuuchi_day is None:
+            if makuuchi_day is None or makuuchi_day is TORIKUMI_FETCH_ERROR:
                 unexpected_fetch_failures.append((day, 1))
-            if juryo_day is None:
+            if juryo_day is None or juryo_day is TORIKUMI_FETCH_ERROR:
                 unexpected_fetch_failures.append((day, 2))
+        if require_complete_schedule:
+            division_values = ((1, makuuchi_day), (2, juryo_day))
+            errors = [k for k, value in division_values if value is TORIKUMI_FETCH_ERROR]
+            published = [k for k, value in division_values if isinstance(value, dict) and bool(value.get("matches"))]
+            missing = [k for k, value in division_values if value is None or (isinstance(value, dict) and not value.get("matches"))]
+            if errors or (published and missing):
+                failed = errors + missing
+                failure_text = ", ".join(f"day={day} division={DIVISION_LABEL[k]}" for k in failed)
+                raise RuntimeError(f"incomplete official schedule fetch: {failure_text}")
         loaded_days[day] = {
-            "makuuchi": makuuchi_day,
-            "juryo": juryo_day,
+            "makuuchi": None if makuuchi_day is TORIKUMI_FETCH_ERROR else makuuchi_day,
+            "juryo": None if juryo_day is TORIKUMI_FETCH_ERROR else juryo_day,
         }
 
     if strict_fetch and unexpected_fetch_failures:
@@ -2245,6 +2265,7 @@ def main() -> None:
             fetch_days=fetch_days,
             official_start_date=official_start_date,
             strict_fetch=args.strict_torikumi_fetch,
+            require_complete_schedule=requires_complete_schedule(args.torikumi_scope),
         )
         torikumi_dataset["bashoId"] = basho_id
         torikumi_dataset = apply_torikumi_scope(

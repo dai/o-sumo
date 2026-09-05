@@ -1040,6 +1040,85 @@ class OfficialBashoScheduleTest(unittest.TestCase):
                 )
         self.assertIn("resultDays", payload)
 
+    def test_schedule_gate_accepts_both_divisions_on_day_one_before_start(self) -> None:
+        def load_day(_basho_id, day, kakuzuke_id, *, expected_unpublished):
+            return {"day": day, "division": MODULE.DIVISION_LABEL[kakuzuke_id], "matches": [{"boutNo": 1}]}
+
+        with mock.patch.object(MODULE, "load_division_rikishi", return_value={}):
+            with mock.patch.object(MODULE, "try_load_torikumi_day", side_effect=load_day):
+                payload = MODULE.build_torikumi_dataset(
+                    637, 0, "2026-09-12T12:00:00+09:00", fetch_days={1},
+                    official_start_date=date(2026, 9, 13), require_complete_schedule=True,
+                )
+        self.assertEqual(payload["scheduleDays"][0]["status"], "published")
+
+    def test_schedule_gate_rejects_each_partial_division_and_reports_it(self) -> None:
+        for missing_id, missing_label in ((1, "幕内"), (2, "十両")):
+            with self.subTest(missing=missing_label):
+                def load_day(_basho_id, day, kakuzuke_id, *, expected_unpublished):
+                    if kakuzuke_id == missing_id:
+                        return None
+                    return {"day": day, "matches": [{"boutNo": 1}]}
+                with mock.patch.object(MODULE, "load_division_rikishi", return_value={}):
+                    with mock.patch.object(MODULE, "try_load_torikumi_day", side_effect=load_day):
+                        with self.assertRaisesRegex(RuntimeError, f"day=1 division={missing_label}"):
+                            MODULE.build_torikumi_dataset(
+                                637, 0, "2026-09-12T12:00:00+09:00", fetch_days={1},
+                                official_start_date=date(2026, 9, 13), require_complete_schedule=True,
+                            )
+
+    def test_schedule_gate_rejects_fetch_error_but_allows_both_unpublished(self) -> None:
+        with mock.patch.object(MODULE, "load_division_rikishi", return_value={}):
+            with mock.patch.object(MODULE, "try_load_torikumi_day", return_value=None):
+                payload = MODULE.build_torikumi_dataset(
+                    637, 0, "2026-09-12T12:00:00+09:00", fetch_days={1},
+                    official_start_date=date(2026, 9, 13), require_complete_schedule=True,
+                )
+            with mock.patch.object(MODULE, "try_load_torikumi_day", side_effect=[MODULE.TORIKUMI_FETCH_ERROR, None]):
+                with self.assertRaisesRegex(RuntimeError, "day=1 division=幕内"):
+                    MODULE.build_torikumi_dataset(
+                        637, 0, "2026-09-12T12:00:00+09:00", fetch_days={1},
+                        official_start_date=date(2026, 9, 13), require_complete_schedule=True,
+                    )
+        self.assertEqual(payload["scheduleDays"][0]["status"], "pending")
+
+    def test_schedule_gate_checks_next_day_and_preserves_complete_existing_day_when_unpublished(self) -> None:
+        existing_makuuchi = MODULE.build_empty_division_day(1, date(2026, 9, 13), 1)
+        existing_juryo = MODULE.build_empty_division_day(1, date(2026, 9, 13), 2)
+        existing_makuuchi["matches"] = [{"boutNo": 1}]
+        existing_juryo["matches"] = [{"boutNo": 1}]
+        existing = {
+            "scheduleDays": [{"day": 1, "data": {"makuuchi": existing_makuuchi, "juryo": existing_juryo}}],
+        }
+        with mock.patch.object(MODULE, "load_division_rikishi", return_value={}):
+            with mock.patch.object(MODULE, "try_load_torikumi_day", return_value=None):
+                payload = MODULE.build_torikumi_dataset(
+                    637, 0, "2026-09-12T12:00:00+09:00", existing, fetch_days={1},
+                    official_start_date=date(2026, 9, 13), require_complete_schedule=True,
+                )
+            responses = [
+                {"matches": [{"boutNo": 1}]}, {"matches": [{"boutNo": 1}]},
+                {"matches": [{"boutNo": 1}]}, None,
+            ]
+            with mock.patch.object(MODULE, "try_load_torikumi_day", side_effect=responses):
+                with self.assertRaisesRegex(RuntimeError, "day=2 division=十両"):
+                    MODULE.build_torikumi_dataset(
+                        637, 1, "2026-09-13T12:00:00+09:00", fetch_days={1, 2},
+                        official_start_date=date(2026, 9, 13), require_complete_schedule=True,
+                    )
+        self.assertTrue(payload["scheduleDays"][0]["data"]["makuuchi"]["matches"])
+
+    def test_nonempty_malformed_response_is_fetch_error_not_unpublished(self) -> None:
+        malformed = {"Result": "1", "TorikumiData": "broken", "FinalMuch": []}
+        with mock.patch.object(MODULE, "post_json", return_value=malformed):
+            result = MODULE.try_load_torikumi_day(637, 1, 1, expected_unpublished=True)
+        self.assertIs(result, MODULE.TORIKUMI_FETCH_ERROR)
+
+    def test_result_scope_does_not_enable_schedule_gate(self) -> None:
+        self.assertFalse(MODULE.requires_complete_schedule("result"))
+        self.assertTrue(MODULE.requires_complete_schedule("schedule"))
+        self.assertTrue(MODULE.requires_complete_schedule("all"))
+
 
 class DeriveAbsenteesTest(unittest.TestCase):
     def test_derives_absentees_from_roster_minus_active_ids(self) -> None:
