@@ -10,13 +10,16 @@ assert SPEC.loader is not None
 SPEC.loader.exec_module(MODULE)
 
 
-def match(east=1, west=2, *, kimarite="", winner=None):
-    return {
+def match(east=1, west=2, *, kimarite="", winner=None, is_playoff=False):
+    value = {
         "eastProfileUrl": f"https://www.sumo.or.jp/ResultRikishiData/profile/{east}/",
         "westProfileUrl": f"https://www.sumo.or.jp/ResultRikishiData/profile/{west}/",
         "kimarite": kimarite,
         "winner": winner,
     }
+    if is_playoff:
+        value["isPlayoff"] = True
+    return value
 
 
 def payload(makuuchi=None, juryo=None, *, absentees=None):
@@ -61,6 +64,7 @@ class ValidateTorikumiTest(unittest.TestCase):
         self.assertEqual(self.run_payload(payload(makuuchi=[match(1, 2)], absentees=absentee)), 1)
         self.assertEqual(self.run_payload(payload(makuuchi=[match(1, 2, kimarite="不戦", winner="east")], absentees=absentee)), 0)
         self.assertEqual(self.run_payload(payload(makuuchi=[match(1, 2, kimarite="不戦", winner="west")], absentees=absentee)), 1)
+        self.assertEqual(self.run_payload(payload(makuuchi=[match(1, 2, kimarite="不戦", winner="east"), match(2, 5)], absentees=absentee)), 1)
 
     def test_malformed_structure_returns_one(self):
         value = payload()
@@ -69,9 +73,11 @@ class ValidateTorikumiTest(unittest.TestCase):
         self.assertEqual(self.run_payload([]), 1)
 
     def test_allows_senshuraku_playoff_repeat_but_not_duplicate_pair(self):
-        playoff = set_published_day(payload(makuuchi=[match(1, 2), match(1, 5)]), 15)
+        playoff = set_published_day(payload(makuuchi=[match(1, 2), match(1, 5, is_playoff=True)]), 15)
+        ordinary = set_published_day(payload(makuuchi=[match(1, 2), match(1, 5)]), 15)
         duplicate = set_published_day(payload(makuuchi=[match(1, 2), match(2, 1)]), 15)
         self.assertEqual(self.run_payload(playoff), 0)
+        self.assertEqual(self.run_payload(ordinary), 1)
         self.assertEqual(self.run_payload(duplicate), 1)
 
 

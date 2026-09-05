@@ -625,7 +625,7 @@ def parse_torikumi_match(raw: dict, division: str, bout_no: int) -> dict:
     east_id = safe_int(east.get("rikishi_id", 0), 0)
     west_id = safe_int(west.get("rikishi_id", 0), 0)
 
-    return {
+    parsed = {
         "division": division,
         "boutNo": bout_no,
         "eastName": east_name,
@@ -641,6 +641,9 @@ def parse_torikumi_match(raw: dict, division: str, bout_no: int) -> dict:
         "kimarite": kimarite,
         "winner": winner,
     }
+    if raw.get("_isPlayoff") is True:
+        parsed["isPlayoff"] = True
+    return parsed
 
 
 def extract_bout_no(raw: dict, fallback: int) -> int:
@@ -727,7 +730,7 @@ def merge_torikumi_raw_matches(data: dict, kakuzuke_id: int | None = None) -> li
             # The displayed bout numbers are normalized after parsing.  Use
             # the merged order here because FinalMuch may restart its local
             # numbering at one on senshuraku.
-            merged.append((len(merged) + 1, raw))
+            merged.append((len(merged) + 1, {**raw, "_isPlayoff": collection_name == "FinalMuch"}))
 
     return merged
 
@@ -750,11 +753,18 @@ def load_torikumi_day(basho_id: int, day: int, kakuzuke_id: int) -> dict:
         raise ValueError(f"取組データ未公開: {DIVISION_LABEL[kakuzuke_id]} day={day}")
 
     parsed = []
+    parse_failures = 0
     for sequential_idx, (extracted_bout_no, match) in enumerate(merged_matches, start=1):
         try:
             parsed.append(parse_torikumi_match(match, DIVISION_LABEL[kakuzuke_id], sequential_idx))
         except Exception:
-            continue
+            parse_failures += 1
+
+    if parse_failures:
+        raise ValueError(
+            f"取組データ解析失敗: {DIVISION_LABEL[kakuzuke_id]} day={day} "
+            f"failed_rows={parse_failures}"
+        )
 
     bout_limit = TORIKUMI_BOUT_LIMIT[kakuzuke_id]
     parsed = parsed[:bout_limit]
@@ -1454,6 +1464,7 @@ def write_torikumi_data(dataset: dict, year_jp: str, basho_name: str) -> None:
   westProfileUrl: string;
   kimarite: string;
   winner?: 'east' | 'west' | null;
+  isPlayoff?: true;
 }}
 
 export interface TorikumiDivisionDay {{
@@ -2201,6 +2212,8 @@ def main() -> None:
 
     # Handle rikishi profile fetching
     profiles: dict[int, dict] = {}
+    active_rikishi_list: list[dict] = []
+    rikishi_list: list[dict] = []
     if makuuchi is not None and juryo is not None and not args.skip_rikishi_fetch:
         active_rikishi_list = build_rikishi_list(makuuchi, juryo)
         rikishi_list = active_rikishi_list
@@ -2218,12 +2231,6 @@ def main() -> None:
                 profiles[rikishi["id"]] = profile
             time.sleep(0.3)  # Be polite to the server
 
-        write_rikishi_json(rikishi_list, profiles)
-        generate_rikishi_matchup_endpoint(
-            active_rikishi_list,
-            profiles,
-            profile_limit=args.profile_limit,
-        )
     elif makuuchi is not None and juryo is not None and args.skip_rikishi_fetch:
         print("[info] Skipping rikishi profile refresh (--skip-rikishi-fetch)")
 
@@ -2283,6 +2290,14 @@ def main() -> None:
         if not torikumi_changed:
             print("[info] Torikumi payload unchanged; preserving existing timestamps")
 
+        if makuuchi is not None and juryo is not None and not args.skip_rikishi_fetch:
+            write_rikishi_json(rikishi_list, profiles)
+            generate_rikishi_matchup_endpoint(
+                active_rikishi_list,
+                profiles,
+                profile_limit=args.profile_limit,
+            )
+
         if makuuchi is not None and juryo is not None:
             write_sumo_data(makuuchi, juryo)
         write_torikumi_data(torikumi_dataset, year_jp, basho_name)
@@ -2296,6 +2311,13 @@ def main() -> None:
             f"schedule_days={len(torikumi_dataset['scheduleDays'])}"
         )
     else:
+        if makuuchi is not None and juryo is not None and not args.skip_rikishi_fetch:
+            write_rikishi_json(rikishi_list, profiles)
+            generate_rikishi_matchup_endpoint(
+                active_rikishi_list,
+                profiles,
+                profile_limit=args.profile_limit,
+            )
         print(
             f"updated: rikishi_only, "
             f"profiles_collected={len(profiles)}"

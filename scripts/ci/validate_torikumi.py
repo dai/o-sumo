@@ -9,6 +9,7 @@ Usage:
 
 from __future__ import annotations
 
+from collections import Counter
 import json
 import re
 import sys
@@ -51,6 +52,7 @@ def validate_published_schedules(data: dict) -> None:
         if not isinstance(day_data, dict):
             raise ValueError(f"published schedule day={day} data must be an object")
         participants: set[int] = set()
+        appearances: Counter[int] = Counter()
         bouts: set[tuple[int, int]] = set()
         permitted_absentee_overlap: set[int] = set()
         absentee_ids: set[int] = set()
@@ -73,14 +75,16 @@ def validate_published_schedules(data: dict) -> None:
                 pair = tuple(sorted((east, west)))
                 if pair in bouts:
                     raise ValueError(f"day={day} duplicate bout {pair}")
-                # FinalMuch playoff bouts are flattened into the day-15 match
-                # list without retaining source metadata. Repeated wrestlers
-                # are therefore legitimate on senshuraku, while a repeated
-                # identical pairing remains invalid on every day.
-                if day != 15 and (east in participants or west in participants):
+                is_playoff = bout.get("isPlayoff") is True
+                if bout.get("isPlayoff") not in (None, True):
+                    raise ValueError(f"day={day} isPlayoff must be true when present")
+                if is_playoff and day != 15:
+                    raise ValueError(f"day={day} playoff marker is only valid on day 15")
+                if (east in participants or west in participants) and not is_playoff:
                     raise ValueError(f"day={day} duplicate participant")
                 bouts.add(pair)
                 participants.update((east, west))
+                appearances.update((east, west))
                 if str(bout.get("kimarite", "")).strip() == "不戦":
                     if bout.get("winner") == "east":
                         permitted_absentee_overlap.add(west)
@@ -95,7 +99,11 @@ def validate_published_schedules(data: dict) -> None:
                 if absentee_id in absentee_ids:
                     raise ValueError(f"day={day} duplicate absentee")
                 absentee_ids.add(absentee_id)
-        illegal_overlap = (participants & absentee_ids) - permitted_absentee_overlap
+        precise_fusen_losers = {
+            rikishi_id for rikishi_id in permitted_absentee_overlap
+            if appearances[rikishi_id] == 1
+        }
+        illegal_overlap = (participants & absentee_ids) - precise_fusen_losers
         if illegal_overlap:
             raise ValueError(f"day={day} participant/absentee overlap: {sorted(illegal_overlap)}")
 
