@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-05T04:21:25.641561+00:00",
+  "updatedAt": "2026-09-05T08:22:39.597685+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-kyodo_nor-2026090501001416",
+      "title": "豊昇龍の出場可否、11日に判断　師匠「完璧な状態にしないと」",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026090501001416",
+      "publishedAt": "2026-09-05",
+      "publishedAtRaw": "共同通信　9月5日 16時58分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-kyodo_nor-2026090501001357",
+      "title": "36歳の高安が上位戦へ意欲　幕内最年長",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026090501001357",
+      "publishedAt": "2026-09-05",
+      "publishedAtRaw": "共同通信　9月5日 16時07分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-jiji-202609050092898457",
+      "title": "東大アメフト部が稽古体験",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-202609050092898457",
+      "publishedAt": "2026-09-05",
+      "publishedAtRaw": "時事通信　9月5日 15時42分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-jiji-2026090500343",
+      "title": "東大アメフト部が稽古体験＝大関琴桜ら胸出す―大相撲",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026090500343",
+      "publishedAt": "2026-09-05",
+      "publishedAtRaw": "時事通信　9月5日 15時39分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-nikkangendai-1245282",
       "title": "大の里が“横綱病”払拭？ 関係者もビックリな「ガムシャラ」は好転の兆し",
       "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1245282",
       "publishedAt": "2026-09-05",
       "publishedAtRaw": "日刊ゲンダイDIGITAL　9月5日 11時05分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-chuspo-1307000",
-      "title": "39歳・佐田の海、新弟子時代の忘れられない言葉　大関武双山に順番譲ろうとしたが…「自分なんてカオじゃない」行列での“信念”今に生きる",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1307000",
-      "publishedAt": "2026-09-05",
-      "publishedAtRaw": "中日スポーツ　9月5日 10時23分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-tokyosports-401939",
-      "title": "【大相撲】大の里　復活なるか？　舞の海氏は不安視「ちょっと心配。今場所も苦労しそう」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-401939",
-      "publishedAt": "2026-09-05",
-      "publishedAtRaw": "東スポWEB　9月5日 6時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260905-202609040001184",
-      "title": "大の里「状態は良くなっている」10勝５敗でも手応え、八角理事長は「まだまだ腰が高い」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260905-202609040001184",
-      "publishedAt": "2026-09-05",
-      "publishedAtRaw": "日刊スポーツ　9月5日 6時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260905-0086",
-      "title": "大関・霧島「負けない気持ちで」13日初日秋場所　いざ綱獲りへ　稽古総見で16番10勝",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260905-0086",
-      "publishedAt": "2026-09-05",
-      "publishedAtRaw": "スポニチアネックス　9月5日 5時15分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
