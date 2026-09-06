@@ -121,8 +121,8 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 ## Operations After The July 2026 Archive
 
 - Keep the July snapshots and current API unchanged until the official September banzuke release.
-- Keep `daily-data-update.yml` and `realtime-torikumi-direct-update.yml` manual-only (`workflow_dispatch`); restore schedules and remove the closing notice in the next PR after that release.
-- `news-feed-update.yml` remains the only scheduled workflow, refreshing news every two hours and skipping `news.json` writes when nothing changed.
+- During the September basho (2026-09-13 through 2026-09-27) `daily-data-update.yml` (JST 13:00 / 15:00 / 17:00 / 19:00) and `realtime-torikumi-direct-update.yml` (every 10 minutes from JST 13:00 through 18:50) run on their cron schedules, with `workflow_dispatch` retained as a manual fallback. After the September 27 final results and next-day verification, removing the cron schedules and reverting to `workflow_dispatch`-only is handled in a separate PR.
+- `news-feed-update.yml` continues to refresh the news feed every two hours, skipping `news.json` writes when nothing changed.
 - Keep the `public/_headers` cache policy and PWA `registerType: "autoUpdate"` unchanged.
 
 The current APIs are now September while July snapshots remain immutable archives. After official publication on September 12, manually run Daily and separately verify the run, PR checks/merge, JSON on `main`, and production JSON; both divisions empty before publication is a no-op. Schedules activate only once merged to default-branch `main`, can be delayed or skipped, and have no ten-minute SLA. Remove cron in a separate PR after the September 27 final and next-day verification. Summaries are snapshots, not deployment proof. `preflight:current-data` is a transition-only gate used while workflows are paused. Fusen is a narrow validator exception and partial fetch failures preserve old data.
