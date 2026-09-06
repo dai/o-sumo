@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-06T06:29:45.320521+00:00",
+  "updatedAt": "2026-09-06T08:23:34.084228+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-ntv_news24-2026090609288645",
+      "title": "【大相撲】3場所ぶり3度目優勝の安青錦　6日に予定されていた優勝パレードが悪天候のため中止",
+      "url": "https://topics.smt.docomo.ne.jp/article/ntv_news24/sports/ntv_news24-2026090609288645",
+      "publishedAt": "2026-09-06",
+      "publishedAtRaw": "日テレNEWS NNN　9月6日 17時01分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-jiji-202609060092928871",
+      "title": "霧島、上々の動き　大相撲",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-202609060092928871",
+      "publishedAt": "2026-09-06",
+      "publishedAtRaw": "時事通信　9月6日 15時48分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-kyodo_nor-2026090601001194",
       "title": "琴桜、秋場所へ19番　「しっかりやる」",
       "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026090601001194",
       "publishedAt": "2026-09-06",
-      "publishedAtRaw": "共同通信　9月6日 15時03分",
+      "publishedAtRaw": "共同通信　9月6日 15時45分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260906-0191",
-      "title": "安青錦の優勝パレード中止　安治川部屋が発表「警察からの指導もあり」　都内は悪天候",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260906-0191",
+      "id": "dmenu-docomo-jiji-2026090600252",
+      "title": "霧島、上々の動き＝藤ノ川らと１５番―大相撲",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026090600252",
       "publishedAt": "2026-09-06",
-      "publishedAtRaw": "スポニチアネックス　9月6日 14時12分",
+      "publishedAtRaw": "時事通信　9月6日 15時36分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260906070",
-      "title": "大相撲　安青錦の優勝パレード、開催当日に急転中止「警察からの指導もあり」　都内は大雨の予報",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260906070",
+      "id": "dmenu-docomo-sponichi-spngoo-20260906-0209",
+      "title": "新関脇・藤ノ川「思い切り当たって体は動いていた」大関・霧島らと19番　秋場所へ「ケガなくいけている」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260906-0209",
       "publishedAt": "2026-09-06",
-      "publishedAtRaw": "デイリースポーツ　9月6日 14時02分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260906-OHT1T51107",
-      "title": "大関・安青錦の優勝パレードが都内の大雨予報で中止に　安治川部屋のＸで「警察からの指導」と報告",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260906-OHT1T51107",
-      "publishedAt": "2026-09-06",
-      "publishedAtRaw": "スポーツ報知　9月6日 13時38分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260906-OHT1T51093",
-      "title": "新入幕の朝翠龍が右目を８針縫ったこと明かす　兄弟子・朝乃山との相撲で受傷も「初日には全然問題ない」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260906-OHT1T51093",
-      "publishedAt": "2026-09-06",
-      "publishedAtRaw": "スポーツ報知　9月6日 12時47分",
+      "publishedAtRaw": "スポニチアネックス　9月6日 15時23分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
