@@ -85,10 +85,10 @@ jobs:
             if [ "${{ steps.generate.outcome }}" = "success" ]; then
               python scripts/ci/workflow_summary.py result public/api/v1/torikumi.json || echo "- generated data summary unavailable"
             else
-              echo "### Generator diagnostics"
-              echo '```text'
-              sed -n '1,120p' "$RUNNER_TEMP/torikumi-generator.stderr" 2>/dev/null || echo "stderr unavailable"
-              echo '```'
+              python scripts/ci/workflow_summary.py diagnostics "$RUNNER_TEMP/torikumi-generator.stderr" \
+                "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+                || echo "- diagnostics unavailable"
+              echo ""
               echo "Existing JSON was preserved and is not reported as newly generated."
             fi
             echo "- event: \`${{ github.event_name }}\`"
@@ -103,10 +103,8 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           STATUS: failure
           TITLE: 'Realtime Torikumi Direct Update failed'
-          DETAIL: |
-            - event: `${{ github.event_name }}`
-            - schedule: `${{ github.event.schedule || 'manual' }}`
-            - run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         shell: bash
         run: |
-          bash scripts/ci/notify_discord.sh "${STATUS}" "${TITLE}" "${DETAIL}" || echo "::warning::notify_discord failed"
+          detail=$(python scripts/ci/workflow_summary.py diagnostics "$RUNNER_TEMP/torikumi-generator.stderr" "${RUN_URL}" 2>/dev/null || echo "- diagnostics unavailable")
+          bash scripts/ci/notify_discord.sh "${STATUS}" "${TITLE}" "${detail}" || echo "::warning::notify_discord failed"
