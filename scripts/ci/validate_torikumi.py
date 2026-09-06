@@ -52,8 +52,10 @@ def validate_published_schedules(data: dict) -> None:
         if not isinstance(day_data, dict):
             raise ValueError(f"published schedule day={day} data must be an object")
         participants: set[int] = set()
+        participant_divisions: dict[int, str] = {}
         appearances: Counter[int] = Counter()
-        bouts: set[tuple[int, int]] = set()
+        ordinary_bouts: set[tuple[int, int]] = set()
+        bout_numbers: set[int] = set()
         permitted_absentee_overlap: set[int] = set()
         absentee_ids: set[int] = set()
         for division in ("makuuchi", "juryo"):
@@ -73,17 +75,27 @@ def validate_published_schedules(data: dict) -> None:
                 if east == west:
                     raise ValueError(f"day={day} bout has identical participants")
                 pair = tuple(sorted((east, west)))
-                if pair in bouts:
-                    raise ValueError(f"day={day} duplicate bout {pair}")
                 is_playoff = bout.get("isPlayoff") is True
                 if bout.get("isPlayoff") not in (None, True):
                     raise ValueError(f"day={day} isPlayoff must be true when present")
                 if is_playoff and day != 15:
                     raise ValueError(f"day={day} playoff marker is only valid on day 15")
+                bout_no = bout.get("boutNo")
+                if isinstance(bout_no, bool) or not isinstance(bout_no, int) or bout_no <= 0:
+                    raise ValueError(f"day={day} boutNo must be a positive integer")
+                if bout_no in bout_numbers:
+                    raise ValueError(f"day={day} duplicate boutNo {bout_no}")
+                bout_numbers.add(bout_no)
+                if not is_playoff and pair in ordinary_bouts:
+                    raise ValueError(f"day={day} duplicate ordinary bout {pair}")
                 if (east in participants or west in participants) and not is_playoff:
                     raise ValueError(f"day={day} duplicate participant")
-                bouts.add(pair)
+                if any(rikishi in participant_divisions and participant_divisions[rikishi] != division for rikishi in (east, west)):
+                    raise ValueError(f"day={day} participant appears across divisions")
+                if not is_playoff:
+                    ordinary_bouts.add(pair)
                 participants.update((east, west))
+                participant_divisions.update({east: division, west: division})
                 appearances.update((east, west))
                 if str(bout.get("kimarite", "")).strip() == "不戦":
                     if bout.get("winner") == "east":

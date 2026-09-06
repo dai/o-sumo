@@ -694,7 +694,9 @@ def normalize_torikumi_collection(raw_collection: object) -> list[dict]:
         return matches
     if not isinstance(raw_collection, dict):
         return []
-    if isinstance(raw_collection.get("east"), dict) and isinstance(raw_collection.get("west"), dict):
+    if "east" in raw_collection or "west" in raw_collection:
+        if not isinstance(raw_collection.get("east"), dict) or not isinstance(raw_collection.get("west"), dict):
+            raise ValueError("malformed bout candidate: east and west must be objects")
         return [raw_collection]
 
     matches = []
@@ -704,29 +706,23 @@ def normalize_torikumi_collection(raw_collection: object) -> list[dict]:
     return matches
 
 
-def torikumi_match_identity(raw: dict) -> tuple[int, int] | None:
-    east = raw.get("east") or {}
-    west = raw.get("west") or {}
-    east_id = safe_int(east.get("rikishi_id"), 0)
-    west_id = safe_int(west.get("rikishi_id"), 0)
-    if east_id <= 0 or west_id <= 0:
-        return None
-    return east_id, west_id
+def torikumi_match_identity(raw: dict) -> str:
+    """Identify one official record, not merely a participant pairing."""
+    return json.dumps(raw, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
 
 
 def merge_torikumi_raw_matches(data: dict, kakuzuke_id: int | None = None) -> list[tuple[int, dict]]:
     merged: list[tuple[int, dict]] = []
-    seen_matches: set[tuple[int, int]] = set()
+    seen_matches: set[str] = set()
 
     for collection_name in ("TorikumiData", "FinalMuch"):
         for raw in normalize_torikumi_collection(data.get(collection_name, [])):
             if kakuzuke_id is not None and not _is_target_division(raw, kakuzuke_id):
                 continue
             identity = torikumi_match_identity(raw)
-            if identity is not None and identity in seen_matches:
+            if identity in seen_matches:
                 continue
-            if identity is not None:
-                seen_matches.add(identity)
+            seen_matches.add(identity)
             # The displayed bout numbers are normalized after parsing.  Use
             # the merged order here because FinalMuch may restart its local
             # numbering at one on senshuraku.
@@ -745,7 +741,12 @@ def load_torikumi_day(basho_id: int, day: int, kakuzuke_id: int) -> dict:
     if data.get("Result") != "1":
         raise RuntimeError(f"torikumiAjax failed: kakuzuke_id={kakuzuke_id}, day={day}")
 
-    merged_matches = merge_torikumi_raw_matches(data, kakuzuke_id=kakuzuke_id)
+    try:
+        merged_matches = merge_torikumi_raw_matches(data, kakuzuke_id=kakuzuke_id)
+    except ValueError as exc:
+        raise ValueError(
+            f"day={day} division={DIVISION_LABEL[kakuzuke_id]} malformed official response: {exc}"
+        ) from exc
     if not merged_matches:
         raw_collections = (data.get("TorikumiData"), data.get("FinalMuch"))
         if any(raw not in (None, [], {}) for raw in raw_collections):
@@ -767,7 +768,9 @@ def load_torikumi_day(basho_id: int, day: int, kakuzuke_id: int) -> dict:
         )
 
     bout_limit = TORIKUMI_BOUT_LIMIT[kakuzuke_id]
-    parsed = parsed[:bout_limit]
+    regular = [match for match in parsed if match.get("isPlayoff") is not True][:bout_limit]
+    playoffs = [match for match in parsed if match.get("isPlayoff") is True]
+    parsed = [{**match, "boutNo": idx} for idx, match in enumerate([*regular, *playoffs], start=1)]
 
     if not parsed:
         raise ValueError(f"取組データ解析失敗: {DIVISION_LABEL[kakuzuke_id]} day={day}")
@@ -1016,8 +1019,10 @@ def sanitize_division_day(division_day: dict, kakuzuke_id: int) -> dict:
         key=lambda item: safe_int(item.get("boutNo"), 0),
     )
     bout_limit = TORIKUMI_BOUT_LIMIT[kakuzuke_id]
+    regular = [match for match in matches if match.get("isPlayoff") is not True][:bout_limit]
+    playoffs = [match for match in matches if match.get("isPlayoff") is True]
     normalized_matches = []
-    for idx, match in enumerate(matches[:bout_limit], start=1):
+    for idx, match in enumerate([*regular, *playoffs], start=1):
         normalized_matches.append({**match, "boutNo": idx})
     return {
         **division_day,
@@ -1399,14 +1404,67 @@ def strip_torikumi_timestamps(value: object) -> object:
     return value
 
 
-def has_substantive_torikumi_diff(candidate: dict, existing: dict | None) -> bool:
+def build_torikumi_public_payload(torikumi_dataset: dict, year_jp: str, basho_name: str) -> dict:
+    """Build the canonical public torikumi payload that gets written to torikumi.json.
+
+    Both the writer and the no-op comparator must use this same builder so a
+    re-fetch with no substantive change produces a byte-identical output and
+    no skip-eligible PR.  bashoId is taken from the dataset (set by main from
+    banzuke metadata); bashoName/year are supplied externally because
+    build_torikumi_dataset does not own those fields.
+    """
+    return {
+        "bashoId": torikumi_dataset["bashoId"],
+        "bashoName": basho_name,
+        "year": year_jp,
+        "updatedAt": torikumi_dataset["updatedAt"],
+        "resultUpdatedAt": torikumi_dataset["resultUpdatedAt"],
+        "scheduleUpdatedAt": torikumi_dataset["scheduleUpdatedAt"],
+        "today": torikumi_dataset["today"],
+        "tomorrow": torikumi_dataset["tomorrow"],
+        "resultDays": torikumi_dataset["resultDays"],
+        "scheduleDays": torikumi_dataset["scheduleDays"],
+    }
+
+
+def has_substantive_torikumi_diff(
+    candidate: dict,
+    existing: dict | None,
+    *,
+    year_jp: str,
+    basho_name: str,
+) -> bool:
     if existing is None:
         return True
-    return strip_torikumi_timestamps(candidate) != strip_torikumi_timestamps(existing)
+    candidate_payload = strip_torikumi_timestamps(
+        build_torikumi_public_payload(candidate, year_jp, basho_name)
+    )
+    existing_subset = {
+        key: existing[key]
+        for key in (
+            "bashoId",
+            "bashoName",
+            "year",
+            "today",
+            "tomorrow",
+            "resultDays",
+            "scheduleDays",
+        )
+        if key in existing
+    }
+    return candidate_payload != strip_torikumi_timestamps(existing_subset)
 
 
-def preserve_torikumi_timestamps_if_unchanged(candidate: dict, existing: dict | None) -> tuple[dict, bool]:
-    if has_substantive_torikumi_diff(candidate, existing):
+def preserve_torikumi_timestamps_if_unchanged(
+    candidate: dict,
+    existing: dict | None,
+    *,
+    year_jp: str,
+    basho_name: str,
+) -> tuple[dict, bool]:
+    if has_substantive_torikumi_diff(
+        candidate, existing, year_jp=year_jp, basho_name=basho_name
+    ):
         return candidate, True
 
     assert existing is not None
@@ -1547,6 +1605,8 @@ def write_api_json(
     basho_name: str,
     makuuchi: list[dict] | None = None,
     juryo: list[dict] | None = None,
+    *,
+    write_torikumi_json: bool = True,
 ) -> None:
     API_DIR.mkdir(parents=True, exist_ok=True)
     if makuuchi is not None and juryo is not None:
@@ -1559,19 +1619,9 @@ def write_api_json(
         }
         write_text_lf(API_DIR / "banzuke.json", json.dumps(banzuke_json, ensure_ascii=False, indent=2))
 
-    torikumi_json = {
-        "bashoId": torikumi_dataset["bashoId"],
-        "bashoName": basho_name,
-        "year": year_jp,
-        "updatedAt": torikumi_dataset["updatedAt"],
-        "resultUpdatedAt": torikumi_dataset["resultUpdatedAt"],
-        "scheduleUpdatedAt": torikumi_dataset["scheduleUpdatedAt"],
-        "today": torikumi_dataset["today"],
-        "tomorrow": torikumi_dataset["tomorrow"],
-        "resultDays": torikumi_dataset["resultDays"],
-        "scheduleDays": torikumi_dataset["scheduleDays"],
-    }
-    write_text_lf(API_DIR / "torikumi.json", json.dumps(torikumi_json, ensure_ascii=False, indent=2))
+    if write_torikumi_json:
+        torikumi_json = build_torikumi_public_payload(torikumi_dataset, year_jp, basho_name)
+        write_text_lf(API_DIR / "torikumi.json", json.dumps(torikumi_json, ensure_ascii=False, indent=2))
 
 
 # Profile page parser for extracting rikishi details from HTML
@@ -2286,6 +2336,8 @@ def main() -> None:
         torikumi_dataset, torikumi_changed = preserve_torikumi_timestamps_if_unchanged(
             torikumi_dataset,
             existing_torikumi,
+            year_jp=year_jp,
+            basho_name=basho_name,
         )
         if not torikumi_changed:
             print("[info] Torikumi payload unchanged; preserving existing timestamps")
@@ -2300,8 +2352,21 @@ def main() -> None:
 
         if makuuchi is not None and juryo is not None:
             write_sumo_data(makuuchi, juryo)
-        write_torikumi_data(torikumi_dataset, year_jp, basho_name)
-        write_api_json(torikumi_dataset, year_jp, basho_name, makuuchi, juryo)
+        if torikumi_changed:
+            write_torikumi_data(torikumi_dataset, year_jp, basho_name)
+            write_api_json(torikumi_dataset, year_jp, basho_name, makuuchi, juryo)
+        else:
+            # No-op: skip torikumi JSON/TS writes so the on-disk files stay
+            # byte-identical to before. banzuke.json may still need to be
+            # written when makuuchi/juryo are refreshed (full mode).
+            write_api_json(
+                torikumi_dataset,
+                year_jp,
+                basho_name,
+                makuuchi,
+                juryo,
+                write_torikumi_json=False,
+            )
 
         print(
             "updated: "

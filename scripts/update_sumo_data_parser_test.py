@@ -743,6 +743,14 @@ class ParseTorikumiMatchTest(unittest.TestCase):
 
 
 class LoadTorikumiDayTest(unittest.TestCase):
+    def test_rejects_candidate_with_null_side_even_when_another_row_is_valid(self) -> None:
+        valid = _official_torikumi_match("通常", 1, 1, 7100)
+        malformed = {"east": None, "west": {"kaku_id": 1, "rikishi_id": 7200}}
+        with mock.patch.object(MODULE, "post_json", return_value={
+            "Result": "1", "TorikumiData": [valid, malformed], "FinalMuch": []}):
+            with self.assertRaisesRegex(ValueError, "day=1.*division=幕内.*malformed"):
+                MODULE.load_torikumi_day(637, 1, 1)
+
     def test_makuuchi_keeps_mixed_bout_and_all_twenty_pure_bouts(self) -> None:
         payload = _official_makuuchi_payload_with_mixed_bout()
 
@@ -807,6 +815,22 @@ class LoadTorikumiDayTest(unittest.TestCase):
         )
 
         self.assertEqual(len(merged), 1)
+
+    def test_same_pair_with_distinct_official_playoff_record_is_preserved(self) -> None:
+        regular = {**_official_torikumi_match("通常", 1, 1, 6000), "torikumi_no": 21}
+        playoff = {**regular, "torikumi_no": 1, "judge": 1}
+        merged = MODULE.merge_torikumi_raw_matches(
+            {"TorikumiData": [regular], "FinalMuch": [playoff]}, kakuzuke_id=1)
+        self.assertEqual(len(merged), 2)
+
+    def test_full_regular_card_keeps_playoff_beyond_normal_limit(self) -> None:
+        regular = [_official_torikumi_match(f"通常{i}", 1, 1, 8000 + i * 2) for i in range(21)]
+        playoff = _official_torikumi_match("決定", 1, 1, 9000)
+        with mock.patch.object(MODULE, "post_json", return_value={
+            "Result": "1", "TorikumiData": regular, "FinalMuch": [playoff]}):
+            day = MODULE.load_torikumi_day(637, 15, 1)
+        self.assertEqual(len(day["matches"]), 22)
+        self.assertTrue(day["matches"][-1]["isPlayoff"])
 
     def test_mixed_valid_and_malformed_target_rows_fail_instead_of_publishing_partial_division(self) -> None:
         valid = _official_torikumi_match("通常", 1, 1, 7000)
@@ -1360,6 +1384,7 @@ class TorikumiSubstantiveDiffTest(unittest.TestCase):
         result_match = {**base_match, "kimarite": result_kimarite, "winner": result_winner}
         schedule_match = {**base_match, "kimarite": schedule_kimarite, "winner": schedule_winner}
         return {
+            "bashoId": 637,
             "bashoName": "五月場所",
             "year": "令和八年",
             "updatedAt": updated_at,
@@ -1443,7 +1468,9 @@ class TorikumiSubstantiveDiffTest(unittest.TestCase):
         existing = self.make_dataset(updated_at="2026-05-11T10:00:00+09:00")
         candidate = self.make_dataset(updated_at="2026-05-11T10:05:00+09:00")
 
-        self.assertFalse(MODULE.has_substantive_torikumi_diff(candidate, existing))
+        self.assertFalse(MODULE.has_substantive_torikumi_diff(
+            candidate, existing, year_jp="令和八年", basho_name="五月場所"
+        ))
 
     def test_detects_result_winner_change(self) -> None:
         existing = self.make_dataset(updated_at="2026-05-11T10:00:00+09:00")
@@ -1453,13 +1480,17 @@ class TorikumiSubstantiveDiffTest(unittest.TestCase):
             result_winner="west",
         )
 
-        self.assertTrue(MODULE.has_substantive_torikumi_diff(candidate, existing))
+        self.assertTrue(MODULE.has_substantive_torikumi_diff(
+            candidate, existing, year_jp="令和八年", basho_name="五月場所"
+        ))
 
     def test_detects_absentee_change(self) -> None:
         existing = self.make_dataset(updated_at="2026-05-11T10:00:00+09:00", absentees=[4227])
         candidate = self.make_dataset(updated_at="2026-05-11T10:05:00+09:00", absentees=[4230])
 
-        self.assertTrue(MODULE.has_substantive_torikumi_diff(candidate, existing))
+        self.assertTrue(MODULE.has_substantive_torikumi_diff(
+            candidate, existing, year_jp="令和八年", basho_name="五月場所"
+        ))
 
     def test_detects_schedule_fusen_change(self) -> None:
         existing = self.make_dataset(updated_at="2026-05-11T10:00:00+09:00")
@@ -1469,18 +1500,254 @@ class TorikumiSubstantiveDiffTest(unittest.TestCase):
             schedule_winner="west",
         )
 
-        self.assertTrue(MODULE.has_substantive_torikumi_diff(candidate, existing))
+        self.assertTrue(MODULE.has_substantive_torikumi_diff(
+            candidate, existing, year_jp="令和八年", basho_name="五月場所"
+        ))
 
     def test_preserves_existing_timestamps_when_no_substantive_diff(self) -> None:
         existing = self.make_dataset(updated_at="2026-05-11T10:00:00+09:00")
         candidate = self.make_dataset(updated_at="2026-05-11T10:05:00+09:00")
 
-        merged, changed = MODULE.preserve_torikumi_timestamps_if_unchanged(candidate, existing)
+        merged, changed = MODULE.preserve_torikumi_timestamps_if_unchanged(
+            candidate, existing, year_jp="令和八年", basho_name="五月場所"
+        )
 
         self.assertFalse(changed)
         self.assertEqual(merged["updatedAt"], existing["updatedAt"])
         self.assertEqual(merged["resultUpdatedAt"], existing["resultUpdatedAt"])
         self.assertEqual(merged["scheduleUpdatedAt"], existing["scheduleUpdatedAt"])
+
+    def test_detects_basho_name_change_against_existing_json(self) -> None:
+        existing = self.make_dataset(updated_at="2026-05-11T10:00:00+09:00")
+        candidate = self.make_dataset(updated_at="2026-05-11T10:05:00+09:00")
+        candidate_new_basho = {**candidate, "bashoName": "七月場所"}
+
+        self.assertFalse(MODULE.has_substantive_torikumi_diff(
+            candidate, existing, year_jp="令和八年", basho_name="五月場所"
+        ))
+        self.assertTrue(MODULE.has_substantive_torikumi_diff(
+            candidate_new_basho, existing, year_jp="令和八年", basho_name="七月場所"
+        ))
+
+    def test_detects_year_change_against_existing_json(self) -> None:
+        existing = self.make_dataset(updated_at="2026-05-11T10:00:00+09:00")
+        candidate = self.make_dataset(updated_at="2026-05-11T10:05:00+09:00")
+        candidate_new_year = {**candidate, "year": "令和九年"}
+
+        self.assertFalse(MODULE.has_substantive_torikumi_diff(
+            candidate, existing, year_jp="令和八年", basho_name="五月場所"
+        ))
+        self.assertTrue(MODULE.has_substantive_torikumi_diff(
+            candidate_new_year, existing, year_jp="令和九年", basho_name="五月場所"
+        ))
+
+    def test_candidate_without_basho_metadata_matches_existing_via_canonical_builder(self) -> None:
+        """Real candidates from build_torikumi_dataset omit bashoName/year.
+        The comparator must derive them from year_jp/basho_name instead of
+        treating the missing keys as a substantive diff."""
+        existing = self.make_dataset(updated_at="2026-05-11T10:00:00+09:00")
+        candidate_inner = {
+            "updatedAt": "2026-05-11T10:05:00+09:00",
+            "resultUpdatedAt": "2026-05-11T10:05:00+09:00",
+            "scheduleUpdatedAt": "2026-05-11T10:05:00+09:00",
+            "bashoId": 637,
+            "today": existing["today"],
+            "tomorrow": existing["tomorrow"],
+            "resultDays": existing["resultDays"],
+            "scheduleDays": existing["scheduleDays"],
+        }
+
+        self.assertFalse(MODULE.has_substantive_torikumi_diff(
+            candidate_inner, existing, year_jp="令和八年", basho_name="五月場所"
+        ))
+
+    def test_preserves_timestamps_when_candidate_lacks_basho_metadata(self) -> None:
+        existing = self.make_dataset(updated_at="2026-05-11T10:00:00+09:00")
+        candidate_inner = {
+            "updatedAt": "2026-05-11T10:05:00+09:00",
+            "resultUpdatedAt": "2026-05-11T10:05:00+09:00",
+            "scheduleUpdatedAt": "2026-05-11T10:05:00+09:00",
+            "bashoId": 637,
+            "today": existing["today"],
+            "tomorrow": existing["tomorrow"],
+            "resultDays": existing["resultDays"],
+            "scheduleDays": existing["scheduleDays"],
+        }
+
+        merged, changed = MODULE.preserve_torikumi_timestamps_if_unchanged(
+            candidate_inner, existing, year_jp="令和八年", basho_name="五月場所"
+        )
+
+        self.assertFalse(changed)
+        self.assertEqual(merged["updatedAt"], existing["updatedAt"])
+        self.assertEqual(merged["resultUpdatedAt"], existing["resultUpdatedAt"])
+        self.assertEqual(merged["scheduleUpdatedAt"], existing["scheduleUpdatedAt"])
+
+    def test_canonical_payload_includes_basho_metadata(self) -> None:
+        dataset = {
+            "bashoId": 637,
+            "updatedAt": "2026-05-11T10:05:00+09:00",
+            "resultUpdatedAt": "2026-05-11T10:05:00+09:00",
+            "scheduleUpdatedAt": "2026-05-11T10:05:00+09:00",
+            "today": None,
+            "tomorrow": None,
+            "resultDays": [],
+            "scheduleDays": [],
+        }
+        payload = MODULE.build_torikumi_public_payload(dataset, year_jp="令和八年", basho_name="五月場所")
+
+        self.assertEqual(payload["bashoId"], 637)
+        self.assertEqual(payload["bashoName"], "五月場所")
+        self.assertEqual(payload["year"], "令和八年")
+        self.assertEqual(payload["resultDays"], [])
+        self.assertEqual(payload["scheduleDays"], [])
+
+
+class WriteApiJsonSkipTest(unittest.TestCase):
+    """Verify the no-op path leaves on-disk torikumi.json byte-identical."""
+
+    def _populate_torikumi(self, api_dir: pathlib.Path) -> str:
+        existing_text = json.dumps(
+            {
+                "bashoId": 637,
+                "bashoName": "五月場所",
+                "year": "令和八年",
+                "updatedAt": "2026-05-11T10:00:00+09:00",
+                "resultUpdatedAt": "2026-05-11T10:00:00+09:00",
+                "scheduleUpdatedAt": "2026-05-11T10:00:00+09:00",
+                "today": None,
+                "tomorrow": None,
+                "resultDays": [],
+                "scheduleDays": [],
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+        api_dir.mkdir(parents=True, exist_ok=True)
+        torikumi_path = api_dir / "torikumi.json"
+        torikumi_path.write_text(existing_text, encoding="utf-8")
+        return existing_text
+
+    def test_write_torikumi_json_false_leaves_torikumi_json_unchanged(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            api_dir = pathlib.Path(temp_dir) / "public" / "api" / "v1"
+            original_bytes = self._populate_torikumi(api_dir)
+            dataset = {
+                "bashoId": 637,
+                "updatedAt": "2026-05-11T10:05:00+09:00",
+                "resultUpdatedAt": "2026-05-11T10:05:00+09:00",
+                "scheduleUpdatedAt": "2026-05-11T10:05:00+09:00",
+                "today": None,
+                "tomorrow": None,
+                "resultDays": [],
+                "scheduleDays": [],
+            }
+            with mock.patch.object(MODULE, "API_DIR", api_dir):
+                MODULE.write_api_json(
+                    dataset,
+                    year_jp="令和八年",
+                    basho_name="五月場所",
+                    write_torikumi_json=False,
+                )
+            after_bytes = (api_dir / "torikumi.json").read_text(encoding="utf-8")
+            self.assertEqual(after_bytes, original_bytes)
+
+    def test_write_torikumi_json_true_writes_torikumi_json(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            api_dir = pathlib.Path(temp_dir) / "public" / "api" / "v1"
+            self._populate_torikumi(api_dir)
+            dataset = {
+                "bashoId": 637,
+                "updatedAt": "2026-05-11T10:05:00+09:00",
+                "resultUpdatedAt": "2026-05-11T10:05:00+09:00",
+                "scheduleUpdatedAt": "2026-05-11T10:05:00+09:00",
+                "today": None,
+                "tomorrow": None,
+                "resultDays": [],
+                "scheduleDays": [],
+            }
+            with mock.patch.object(MODULE, "API_DIR", api_dir):
+                MODULE.write_api_json(
+                    dataset,
+                    year_jp="令和八年",
+                    basho_name="五月場所",
+                    write_torikumi_json=True,
+                )
+            after = json.loads((api_dir / "torikumi.json").read_text(encoding="utf-8"))
+            self.assertEqual(after["bashoName"], "五月場所")
+            self.assertEqual(after["year"], "令和八年")
+            self.assertEqual(after["updatedAt"], "2026-05-11T10:05:00+09:00")
+
+    def test_no_op_preserves_timestamps_and_skips_torikumi_json_write(self) -> None:
+        """End-to-end: existing fixture unchanged -> timestamps preserved, file untouched."""
+        with tempfile.TemporaryDirectory() as temp_dir:
+            api_dir = pathlib.Path(temp_dir) / "public" / "api" / "v1"
+            original_bytes = self._populate_torikumi(api_dir)
+            existing = json.loads(original_bytes)
+            candidate = {
+                **existing,
+                "updatedAt": "2026-05-11T10:05:00+09:00",
+                "resultUpdatedAt": "2026-05-11T10:05:00+09:00",
+                "scheduleUpdatedAt": "2026-05-11T10:05:00+09:00",
+            }
+            merged, changed = MODULE.preserve_torikumi_timestamps_if_unchanged(
+                candidate, existing, year_jp="令和八年", basho_name="五月場所"
+            )
+            self.assertFalse(changed)
+            self.assertEqual(merged["updatedAt"], existing["updatedAt"])
+            self.assertEqual(merged["resultUpdatedAt"], existing["resultUpdatedAt"])
+            self.assertEqual(merged["scheduleUpdatedAt"], existing["scheduleUpdatedAt"])
+
+            with mock.patch.object(MODULE, "API_DIR", api_dir):
+                MODULE.write_api_json(
+                    merged,
+                    year_jp="令和八年",
+                    basho_name="五月場所",
+                    write_torikumi_json=changed,
+                )
+            after_bytes = (api_dir / "torikumi.json").read_text(encoding="utf-8")
+            self.assertEqual(after_bytes, original_bytes)
+
+    def test_changed_substantive_writes_new_torikumi_json(self) -> None:
+        """Substantive change -> write_torikumi_json is True -> file overwritten with new payload."""
+        with tempfile.TemporaryDirectory() as temp_dir:
+            api_dir = pathlib.Path(temp_dir) / "public" / "api" / "v1"
+            original_bytes = self._populate_torikumi(api_dir)
+            existing = json.loads(original_bytes)
+            new_schedule_day = {
+                "day": 1,
+                "pathDate": "20260510",
+                "status": "published",
+                "statusMessage": None,
+                "data": {
+                    "makuuchi": {"day": 1, "division": "幕内", "matches": [], "absentees": []},
+                    "juryo": {"day": 1, "division": "十両", "matches": [], "absentees": []},
+                },
+            }
+            candidate = {
+                **existing,
+                "updatedAt": "2026-05-11T10:05:00+09:00",
+                "resultUpdatedAt": "2026-05-11T10:05:00+09:00",
+                "scheduleUpdatedAt": "2026-05-11T10:05:00+09:00",
+                "scheduleDays": [new_schedule_day],
+            }
+            merged, changed = MODULE.preserve_torikumi_timestamps_if_unchanged(
+                candidate, existing, year_jp="令和八年", basho_name="五月場所"
+            )
+            self.assertTrue(changed)
+
+            with mock.patch.object(MODULE, "API_DIR", api_dir):
+                MODULE.write_api_json(
+                    merged,
+                    year_jp="令和八年",
+                    basho_name="五月場所",
+                    write_torikumi_json=changed,
+                )
+            after_bytes = (api_dir / "torikumi.json").read_text(encoding="utf-8")
+            self.assertNotEqual(after_bytes, original_bytes)
+            after = json.loads(after_bytes)
+            self.assertEqual(after["scheduleUpdatedAt"], "2026-05-11T10:05:00+09:00")
+            self.assertEqual(after["scheduleDays"], [new_schedule_day])
 
 
 class ResolveCurrentBashoDayTest(unittest.TestCase):
