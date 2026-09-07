@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-07T00:58:10.869363+00:00",
+  "updatedAt": "2026-09-07T04:24:51.881098+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-nikkangendai-1245726",
+      "title": "大関復帰の安青錦が“スロー調整”の不気味 「先場所Vで何かを掴んだのかも…」と協会内でもウワサに",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1245726",
+      "publishedAt": "2026-09-07",
+      "publishedAtRaw": "日刊ゲンダイDIGITAL　9月7日 11時42分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-sanspo-_sports_sumo_QADAT57ZFFEFZESLKPIS6EP7UI",
       "title": "松山千春「お前、勝昭のこと思い出すことあるか？って言ったら…」",
@@ -48,15 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_UVEFL6CGDRGZLGTJPGDRUL6JD4",
       "publishedAt": "2026-09-07",
       "publishedAtRaw": "SANSPO　9月7日 5時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_3HULS3BICNEV3OXU646SPC7P24",
-      "title": "松山千春「『北勝海は強くなりそうか？』って言ったら千代の富士が…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_3HULS3BICNEV3OXU646SPC7P24",
-      "publishedAt": "2026-09-07",
-      "publishedAtRaw": "SANSPO　9月7日 4時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
