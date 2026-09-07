@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-07T06:43:23.140780+00:00",
+  "updatedAt": "2026-09-07T08:31:12.263256+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260907-OHT1T51118",
-      "title": "大関・琴桜　横綱・大の里と白熱の連続２０番、４勝１６敗と負け越すも前に出続け「勝ちにつながる相撲を取れた」と充実",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260907-OHT1T51118",
+      "id": "dmenu-docomo-numberweb-871865",
+      "title": "大ケガで土俵上の夢は潰え…体重110kgから70kgに！圧巻の“超ムキムキボディ”に変貌した元力士の新たな挑戦「大会で優勝する姿を見せたい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/numberweb/sports/numberweb-871865",
       "publishedAt": "2026-09-07",
-      "publishedAtRaw": "スポーツ報知　9月7日 15時17分",
+      "publishedAtRaw": "Number Web　9月7日 17時01分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-jiji-2026090700607",
-      "title": "大の里、琴桜と２０番＝大相撲",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026090700607",
+      "id": "dmenu-docomo-20260907089",
+      "title": "大の里「久々に優勝したい」琴桜に１６勝４敗で手応え、１年ぶり賜杯へ着々",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260907089",
       "publishedAt": "2026-09-07",
-      "publishedAtRaw": "時事通信　9月7日 15時10分",
+      "publishedAtRaw": "デイリースポーツ　9月7日 16時55分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sankei-_sports_sumo_LXGUN5WYE5KI7BDOLBNJE72ZSA",
-      "title": "大の里、琴桜と20番　「腰が落ちていた」と下半身の安定に手応え　二所ノ関一門連合稽古",
-      "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_LXGUN5WYE5KI7BDOLBNJE72ZSA",
+      "id": "dmenu-docomo-f-bt-tp1-260907-202609070000891",
+      "title": "大関琴桜、横綱大の里に４勝16敗も「勝ちにつながる相撲」左足首にはテーピング",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260907-202609070000891",
       "publishedAt": "2026-09-07",
-      "publishedAtRaw": "産経ニュース　9月7日 14時35分",
+      "publishedAtRaw": "日刊スポーツ　9月7日 16時54分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260907-202609070000554",
-      "title": "横綱大の里、大関琴桜に16勝４敗「久々の東京で、久々に優勝したい」２年連続Ｖの秋場所へ調整",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260907-202609070000554",
+      "id": "dmenu-docomo-sponichi-spngoo-20260907-0234",
+      "title": "連合稽古で大の里が琴桜との三番稽古で16勝4敗「下半身がどっしり決まっている」と好感触",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260907-0234",
       "publishedAt": "2026-09-07",
-      "publishedAtRaw": "日刊スポーツ　9月7日 13時44分",
+      "publishedAtRaw": "スポニチアネックス　9月7日 16時02分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260907-OHT1T51083",
-      "title": "横綱・大の里　大関・琴桜に１６勝４敗「東京で久々に優勝したい」…二所ノ関一門連合稽古",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260907-OHT1T51083",
+      "id": "dmenu-docomo-jiji-202609070092954719",
+      "title": "大の里、琴桜と２０番",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-202609070092954719",
       "publishedAt": "2026-09-07",
-      "publishedAtRaw": "スポーツ報知　9月7日 13時37分",
+      "publishedAtRaw": "時事通信　9月7日 15時39分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
