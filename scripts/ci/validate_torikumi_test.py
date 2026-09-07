@@ -16,6 +16,7 @@ def match(east=1, west=2, *, kimarite="", winner=None, is_playoff=False):
         "westProfileUrl": f"https://www.sumo.or.jp/ResultRikishiData/profile/{west}/",
         "kimarite": kimarite,
         "winner": winner,
+        "boutNo": east,
     }
     if is_playoff:
         value["isPlayoff"] = True
@@ -74,11 +75,28 @@ class ValidateTorikumiTest(unittest.TestCase):
 
     def test_allows_senshuraku_playoff_repeat_but_not_duplicate_pair(self):
         playoff = set_published_day(payload(makuuchi=[match(1, 2), match(1, 5, is_playoff=True)]), 15)
+        playoff["scheduleDays"][0]["data"]["makuuchi"]["matches"][1]["boutNo"] = 2
         ordinary = set_published_day(payload(makuuchi=[match(1, 2), match(1, 5)]), 15)
+        ordinary["scheduleDays"][0]["data"]["makuuchi"]["matches"][1]["boutNo"] = 2
         duplicate = set_published_day(payload(makuuchi=[match(1, 2), match(2, 1)]), 15)
+        duplicate["scheduleDays"][0]["data"]["makuuchi"]["matches"][1]["boutNo"] = 2
         self.assertEqual(self.run_payload(playoff), 0)
         self.assertEqual(self.run_payload(ordinary), 1)
         self.assertEqual(self.run_payload(duplicate), 1)
+
+    def test_allows_reversed_same_pair_playoff_and_multiple_distinct_playoffs(self):
+        value = set_published_day(payload(makuuchi=[
+            match(1, 2), match(2, 1, is_playoff=True), match(1, 2, is_playoff=True)]), 15)
+        value["scheduleDays"][0]["data"]["makuuchi"]["matches"][1]["boutNo"] = 22
+        value["scheduleDays"][0]["data"]["makuuchi"]["matches"][2]["boutNo"] = 23
+        self.assertEqual(self.run_payload(value), 0)
+
+    def test_rejects_duplicate_bout_number_and_cross_division_playoff_reappearance(self):
+        duplicate_no = set_published_day(payload(makuuchi=[match(1, 2), match(5, 6, is_playoff=True)]), 15)
+        duplicate_no["scheduleDays"][0]["data"]["makuuchi"]["matches"][1]["boutNo"] = 1
+        cross = set_published_day(payload(makuuchi=[match(1, 2)], juryo=[match(2, 3, is_playoff=True)]), 15)
+        self.assertEqual(self.run_payload(duplicate_no), 1)
+        self.assertEqual(self.run_payload(cross), 1)
 
 
 if __name__ == "__main__":

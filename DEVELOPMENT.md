@@ -214,8 +214,8 @@ DNS-AID (SVCB/HTTPS) と DNSSEC の有効化は Cloudflare DNS 側の操作で�
 ## 2026年七月場所アーカイブ後の運用
 
 - 七月のスナップショットと現行APIは九月場所の番付公式公開まで変更しない。
-- `daily-data-update.yml` と `realtime-torikumi-direct-update.yml` は `workflow_dispatch` のみとし、scheduleの復元と終了告知の解除は公式番付公開後の次PRで行う。
-- 唯一の自動workflowである `news-feed-update.yml` は2時間おきのニュース更新を継続し、データに差分がない場合は `news.json` を書き換えない。
+- 9月場所開催中（2026-09-13〜2026-09-27）は `daily-data-update.yml`（JST 13/15/17/19 時）と `realtime-torikumi-direct-update.yml`（JST 13:00–18:50 の10分間隔）が cron で起動する。`workflow_dispatch` は fallback として残置。9月27日最終結果の翌日確認後、cron 停止と `workflow_dispatch` のみの運用復帰は別 PR で行う。
+- `news-feed-update.yml` は引き続き2時間おきのニュース更新を継続し、データに差分がない場合は `news.json` を書き換えない。
 
 九月 current API への切替後も七月 snapshot は不変です。9月12日の公式公開後は Daily を手動実行し、run、PR check/merge、`main` JSON、本番 JSON を個別確認します。事前の両部門空は no-op です。schedule は変更が既定 branch に merge されてから有効で、遅延・skip があり得ます。9月27日最終結果の翌日確認後、cron を別 PR で削除します。summary は deploy 証明ではありません。`preflight:current-data` は workflow を止めて使う切替専用 gate です。不戦は限定例外で、部分取得失敗時は旧データを保持します。
 - Cloudflareのキャッシュ方針とPWAの `registerType: "autoUpdate"` は維持する。

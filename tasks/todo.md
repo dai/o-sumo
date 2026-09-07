@@ -659,6 +659,20 @@ PR #479 が到達した 7 項目（API catalog / OAuth-PRM / MCP Server Card / A
 - [x] PR 4 マージ後、全ローカル / リモートブランチ cleanup完了（`docs/agent-phase1-refresh` ローカル削除、`origin` 側は `--delete-branch` で削除済）
 - [x] `.codex/` を `.gitignore` に追加（`.codex/config.toml` を追跡外へ）
 
+# PR #550 follow-up（2026-09-06）
+
+## Plan
+
+- [x] 最新mainから `fix/sep-scheduling-validation` の専用worktreeを作成。既存変更は保持。
+- [x] 承認済み計画を `tasks/plans/2026-09-06-september-validation-fixes.md` に保存。Python既存73件成功。
+- [ ] 不正応答・未公開no-op・決定戦・通知・運用文書をTDDで修正。
+- [ ] 全検証と独立レビュー、公開データ・過去場所の差分なしを確認。
+- [ ] 新規PR作成、Testと両Pages check成功を確認。
+
+## Review
+
+実装中。merge、auto-merge設定、本番workflow起動、実Discord送信は対象外。
+
 # 九月場所の取組更新再開（2026-09-05）
 
 ## Plan

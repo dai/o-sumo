@@ -51,6 +51,24 @@ class WorkflowSummaryTest(unittest.TestCase):
             path.write_text(json.dumps([]), encoding="utf-8")
             self.assertEqual(module.main(["schedule", str(path)]), 1)
 
+    def test_cli_diagnostics_renders_allowlisted_fields_from_stderr(self):
+        module = self.load_module()
+        with tempfile.TemporaryDirectory() as folder:
+            stderr_path = pathlib.Path(folder) / "stderr.txt"
+            stderr_path.write_text(
+                "incomplete official schedule fetch: day=3 division=十両\n",
+                encoding="utf-8",
+            )
+            exit_code = module.main(["diagnostics", str(stderr_path), "https://example/runs/42"])
+            self.assertEqual(exit_code, 0)
+
+    def test_cli_diagnostics_returns_one_for_missing_stderr_file(self):
+        module = self.load_module()
+        with tempfile.TemporaryDirectory() as folder:
+            stderr_path = pathlib.Path(folder) / "missing.txt"
+            exit_code = module.main(["diagnostics", str(stderr_path), "https://example/runs/43"])
+            self.assertEqual(exit_code, 1)
+
 
 if __name__ == "__main__":
     unittest.main()

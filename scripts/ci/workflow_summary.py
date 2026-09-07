@@ -1,8 +1,17 @@
 #!/usr/bin/env python3
 """Render generated torikumi facts for GitHub step summaries."""
+import importlib.util
 import json
 import pathlib
 import sys
+
+
+_DIAGNOSTICS_SPEC = importlib.util.spec_from_file_location(
+    "torikumi_diagnostics",
+    pathlib.Path(__file__).with_name("torikumi_diagnostics.py"),
+)
+DIAGNOSTICS = importlib.util.module_from_spec(_DIAGNOSTICS_SPEC)
+_DIAGNOSTICS_SPEC.loader.exec_module(DIAGNOSTICS)
 
 
 def _matches(day, division):
@@ -33,9 +42,20 @@ def render(scope, payload):
     return "\n".join(lines)
 
 
+def render_diagnostics(stderr_text, run_url):
+    """Render allowlisted diagnostics from generator stderr."""
+    extracted = DIAGNOSTICS.extract_diagnostics(stderr_text, run_url)
+    return DIAGNOSTICS.format_diagnostics_markdown(extracted)
+
+
 def main(argv=None):
     argv = sys.argv[1:] if argv is None else argv
     try:
+        if len(argv) >= 3 and argv[0] == "diagnostics":
+            _, _stderr_path, run_url = argv[:3]
+            stderr_text = pathlib.Path(_stderr_path).read_text(encoding="utf-8", errors="replace")
+            print(render_diagnostics(stderr_text, run_url))
+            return 0
         scope, filename = argv
         if scope not in {"schedule", "result"}:
             raise ValueError("scope must be schedule or result")
