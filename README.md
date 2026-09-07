@@ -42,11 +42,12 @@ o-sumo は、大相撲の番付、取組、力士・行司・呼出名鑑を配�
   - 決まり手: `/kimarite`
   - 場所ステータス分析: `/analytics/`
 - 現行ルート例:
-  - `/202607-banzuke/`
-  - `/202607-torikumi`
-  - `/20260712-yotei`
+  - `/202609-banzuke/`
+  - `/202609-torikumi/`
+  - `/20260913-yotei/`
   - `/compare/?ids=3842,4227`
   - `/kimarite`
+- 読みもの: `https://blog.osada.us/`
 - 旧番付 URL `/{YYYYMM}-o-sumo` は現行の番付 URL にリダイレクトされます。
 - 公開 API:
   - `/api/v1/banzuke.json`
@@ -59,6 +60,7 @@ o-sumo は、大相撲の番付、取組、力士・行司・呼出名鑑を配�
   - `/api/v1/yobidashi.json`
   - `/api/v1/yobidashi/{id}.json`
   - `/api/v1/news.json`
+  - `/api/v1/blog.json`
 
 関連ドキュメント:
 
@@ -102,6 +104,7 @@ Skill 公開:
 - ホームの **最新ニュース** セクションで日本相撲協会のお知らせと相撲界ニュース（dmenu スポーツから最新 5 件）を 2 つのサブセクションに分けて表示
 - ホームの **決まり手** カードから全 82 手の索引ページ `/kimarite` へ遷移し、カテゴリ別の目次と並んで技の和英解説を閲覧可能
 - ニュース JSON は GitHub Actions の `news-feed-update` ワークフローから Python スクレイパで自動生成（`/api/v1/news.json`）
+- 「読みもの」は `blog/posts/*.md` で管理する日本語の静的ブログです。`blog.osada.us` 用の配信物は `npm run blog:build` で `dist-blog/` に生成し、トップページ連携用の `/api/v1/blog.json` も同時に更新します
 - AI エージェント対応ブラウザー向けに WebMCP 4 ツール (`search_rikishi` / `list_basho` / `get_banzuke_for_month` / `get_torikumi_for_day`) を公開 (`document.modelContext.registerTool` を優先、`navigator.modelContext.registerTool` にフォールバック)
 
 ## 技術スタック
@@ -156,6 +159,9 @@ npm run preflight:current-data
 
 # ビルド結果のローカル確認
 npm run preview
+
+# 読みものの配信物を生成
+npm run blog:generate
 ```
 
 ローカル確認先:
@@ -237,15 +243,13 @@ python scripts/update_official_profiles_test.py
 
 生成内容と公開前の整合確認は `docs/official-profile-refresh-runbook.md` を参照してください。
 
-七月場所は確定済みで、`app/lib/july2026-data.ts` と `app/lib/july2026-banzuke-data.ts` に不変スナップショットを保持しています。`/api/v1/banzuke.json` と `/api/v1/torikumi.json` は、九月場所の番付が公式公開されるまで引き続き七月場所を返します。
+七月場所は確定済みで、`app/lib/july2026-data.ts` と `app/lib/july2026-banzuke-data.ts` に不変スナップショットを保持しています。現在の `/api/v1/banzuke.json` と `/api/v1/torikumi.json` は九月場所を返し、七月場所はアーカイブとして参照できます。
 
-切替前の確認は `npm run preflight:current-data` で実行します。公式年間日程と公式番付を取得し、現行の番付・取組、archive、ルート、sitemap、workflow の整合性を読み取り専用で検査します。既定値は `--current-month 202607 --target-month 202609` です。すべてのゲートが `[OK]` のときだけ `READY`（exit code 0）、公式公開前・取得失敗・不整合がある場合は `BLOCKED`（exit code 1）になります。生成器は実行せず、データ・ルート・sitemap・redirect・workflow は変更しません。
+場所切替前の確認は `npm run preflight:current-data` で実行します。公式年間日程と公式番付を取得し、現行の番付・取組、archive、ルート、sitemap、workflow の整合性を読み取り専用で検査します。今回の九月場所切替では `--current-month 202607 --target-month 202609` を使用しました。すべてのゲートが `[OK]` のときだけ `READY`（exit code 0）、公式公開前・取得失敗・不整合がある場合は `BLOCKED`（exit code 1）になります。生成器は実行せず、データ・ルート・sitemap・redirect・workflow は変更しません。
 
 別の月を確認するときは `npm run preflight:current-data -- --current-month YYYYMM --target-month YYYYMM` のように npm 経由で `--` 以降に引数を渡してください（npm 8.x 以降）。あるいは `python scripts/preflight_current_basho.py --current-month YYYYMM --target-month YYYYMM` を直接呼び出すこともできます。npm script は固定の既定値のままなので、次回以降の切替時は月引数を毎回指定してください。
 
-九月場所の公式番付公開後に、取得元・番付・取組日程を確認して次の更新PRを開始します。
-
-次の更新PRでは、現行の七月スナップショットを変更せず、`banzuke.json` と `torikumi.json` を新しい場所の確定データへ同時に切り替えます。切替前には、番付・取組・公開JSON・月別ルート・sitemapの整合性を検証します。
+次の場所への切替では、現行の九月場所データと七月場所の不変スナップショットを変更せず、`banzuke.json` と `torikumi.json` を新しい場所の確定データへ同時に切り替えます。切替前には、番付・取組・公開JSON・月別ルート・sitemapの整合性を検証します。
 
 生成・更新対象:
 
@@ -406,10 +410,12 @@ GitHub Actions では PR と `main` / `codex/**` / `automation/data-updates` へ
 - `app/lib/july2026-data.ts`: 七月場所（名古屋）不変スナップショット
 - `app/lib/july2026-banzuke-data.ts`: 七月場所番付不変スナップショット
 - `app/lib/archive-basho-data.ts`: 過去場所・現行場所の集約データ
+- `app/lib/blog-build.ts`: 読みものの静的HTML・RSS・sitemap生成
 - `app/lib/agent-skills.ts`: Agent Skills Index メタデータ
 - `scripts/update_sumo_data.py`: 番付・取組・力士プロファイル生成スクリプト
 - `scripts/update_news_feed.py`: ニュースフィード生成スクリプト
 - `scripts/update_official_profiles.py`: 行司・呼出データ生成スクリプト
+- `scripts/build_blog.ts`: 読みもの配信物と `blog.json` の生成スクリプト
 
 ## 連絡先
 

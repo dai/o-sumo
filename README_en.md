@@ -39,11 +39,12 @@ o-sumo is a static web app for publishing sumo banzuke, torikumi, and rikishi, g
   - Kimarite: `/kimarite`
   - Basho analytics: `/analytics/`
 - Current route examples:
-  - `/202607-banzuke/`
-  - `/202607-torikumi`
-  - `/20260712-yotei`
+  - `/202609-banzuke/`
+  - `/202609-torikumi/`
+  - `/20260913-yotei/`
   - `/compare/?ids=3842,4227`
   - `/kimarite`
+- Stories: `https://blog.osada.us/`
 - The legacy banzuke URL `/{YYYYMM}-o-sumo/` redirects to the current banzuke URL.
 - Public APIs:
   - `/api/v1/banzuke.json`
@@ -56,6 +57,7 @@ o-sumo is a static web app for publishing sumo banzuke, torikumi, and rikishi, g
   - `/api/v1/yobidashi.json`
   - `/api/v1/yobidashi/{id}.json`
   - `/api/v1/news.json`
+  - `/api/v1/blog.json`
 
 Related docs:
 
@@ -104,6 +106,7 @@ Skill publishing:
 - Homepage **Latest News** section split into two sub-sections: Japan Sumo Association announcements and Sumo World News (latest 5 from dmenu Sports)
 - Homepage **Kimarite** card links to the `/kimarite` index page that lists all 82 winning techniques, grouped by category with bilingual Japanese/English commentary
 - News JSON is regenerated automatically by the `news-feed-update` GitHub Actions workflow via the Python scraper (`/api/v1/news.json`)
+- Stories are managed as Japanese Markdown posts in `blog/posts/*.md`. Run `npm run blog:build` to generate the standalone `blog.osada.us` output in `dist-blog/` and refresh `/api/v1/blog.json` for homepage integration
 - Four WebMCP tools (`search_rikishi`, `list_basho`, `get_banzuke_for_month`, `get_torikumi_for_day`) are exposed for AI agents running in supported browsers (prefers `document.modelContext.registerTool` from the W3C Draft, falls back to `navigator.modelContext.registerTool`)
 
 ## Tech Stack
@@ -158,6 +161,9 @@ npm run preflight:current-data
 
 # Local preview of the built app
 npm run preview
+
+# Generate the Stories site output
+npm run blog:generate
 ```
 
 Useful local URLs:
@@ -239,15 +245,13 @@ python scripts/update_official_profiles_test.py
 
 See `docs/official-profile-refresh-runbook.md` for generated-file and pre-publish integrity checks.
 
-The July basho is final and retained as immutable snapshots in `app/lib/july2026-data.ts` and `app/lib/july2026-banzuke-data.ts`. `/api/v1/banzuke.json` and `/api/v1/torikumi.json` continue to serve July until the September banzuke is officially published.
+The July basho is final and retained as immutable snapshots in `app/lib/july2026-data.ts` and `app/lib/july2026-banzuke-data.ts`. The current `/api/v1/banzuke.json` and `/api/v1/torikumi.json` serve September; July remains available as an archive.
 
-Run `npm run preflight:current-data` before switching current data. It fetches the official annual schedule and banzuke, then checks current banzuke/torikumi, archives, routes, sitemap, and workflow consistency without writing files. Defaults are `--current-month 202607 --target-month 202609`. It prints `READY` and exits 0 only when every gate is `[OK]`; official publication/fetch failures and contract mismatches print `BLOCKED` and exit 1. The generator is not run, and data, routes, sitemap, redirects, and workflow schedules are not changed.
+Run `npm run preflight:current-data` before switching current data. It fetches the official annual schedule and banzuke, then checks current banzuke/torikumi, archives, routes, sitemap, and workflow consistency without writing files. The September 2026 switch used `--current-month 202607 --target-month 202609`. It prints `READY` and exits 0 only when every gate is `[OK]`; official publication/fetch failures and contract mismatches print `BLOCKED` and exit 1. The generator is not run, and data, routes, sitemap, redirects, and workflow schedules are not changed.
 
 To check a different basho month, pass arguments after `--` so npm forwards them to the script: `npm run preflight:current-data -- --current-month YYYYMM --target-month YYYYMM` (npm 8+). You can also invoke the script directly: `python scripts/preflight_current_basho.py --current-month YYYYMM --target-month YYYYMM`. The npm script keeps the hard-coded defaults, so subsequent switches must specify the months explicitly.
 
-After the official September banzuke release, confirm the upstream banzuke and torikumi schedule before starting the next update PR.
-
-The next update PR must preserve the July snapshots and switch banzuke, torikumi, public JSON, monthly routes, and sitemap together only after validating the new official data.
+For the next basho switch, preserve the current September data and the immutable July snapshots, and switch banzuke, torikumi, public JSON, monthly routes, and sitemap together only after validating the new official data.
 
 Generated outputs:
 
@@ -393,10 +397,12 @@ GitHub Actions runs the following on pull requests and pushes to `main`, `codex/
 - `app/lib/july2026-data.ts`: immutable July 2026 (Nagoya) basho snapshot
 - `app/lib/july2026-banzuke-data.ts`: immutable July 2026 banzuke snapshot
 - `app/lib/archive-basho-data.ts`: aggregated past + current basho data
+- `app/lib/blog-build.ts`: static HTML, RSS, and sitemap generation for Stories
 - `app/lib/agent-skills.ts`: Agent Skills Index metadata
 - `scripts/update_sumo_data.py`: data generation script for banzuke, torikumi, and rikishi profiles
 - `scripts/update_news_feed.py`: news feed generation script
 - `scripts/update_official_profiles.py`: gyoji and yobidashi data generator
+- `scripts/build_blog.ts`: Stories output and `blog.json` generator
 
 ## Contact
 
