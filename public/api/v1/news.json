@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-07T04:24:51.881098+00:00",
+  "updatedAt": "2026-09-07T06:43:23.140780+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-nikkangendai-1245726",
-      "title": "大関復帰の安青錦が“スロー調整”の不気味 「先場所Vで何かを掴んだのかも…」と協会内でもウワサに",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1245726",
+      "id": "dmenu-docomo-hochi-20260907-OHT1T51118",
+      "title": "大関・琴桜　横綱・大の里と白熱の連続２０番、４勝１６敗と負け越すも前に出続け「勝ちにつながる相撲を取れた」と充実",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260907-OHT1T51118",
       "publishedAt": "2026-09-07",
-      "publishedAtRaw": "日刊ゲンダイDIGITAL　9月7日 11時42分",
+      "publishedAtRaw": "スポーツ報知　9月7日 15時17分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_QADAT57ZFFEFZESLKPIS6EP7UI",
-      "title": "松山千春「お前、勝昭のこと思い出すことあるか？って言ったら…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_QADAT57ZFFEFZESLKPIS6EP7UI",
+      "id": "dmenu-docomo-jiji-2026090700607",
+      "title": "大の里、琴桜と２０番＝大相撲",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026090700607",
       "publishedAt": "2026-09-07",
-      "publishedAtRaw": "SANSPO　9月7日 8時00分",
+      "publishedAtRaw": "時事通信　9月7日 15時10分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_KHH4OGO2IJDHBGGNX2GKC6RLQ4",
-      "title": "松山千春「やっぱり勝昭は素晴らしい親方だった。しかしながらあいつ…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_KHH4OGO2IJDHBGGNX2GKC6RLQ4",
+      "id": "dmenu-docomo-sankei-_sports_sumo_LXGUN5WYE5KI7BDOLBNJE72ZSA",
+      "title": "大の里、琴桜と20番　「腰が落ちていた」と下半身の安定に手応え　二所ノ関一門連合稽古",
+      "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_LXGUN5WYE5KI7BDOLBNJE72ZSA",
       "publishedAt": "2026-09-07",
-      "publishedAtRaw": "SANSPO　9月7日 7時00分",
+      "publishedAtRaw": "産経ニュース　9月7日 14時35分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_LZYMUG2YRRHPPNCEQAKYVZ3AQQ",
-      "title": "松山千春「最高に面白い横綱でしたけど、かわいそうだったのは…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_LZYMUG2YRRHPPNCEQAKYVZ3AQQ",
+      "id": "dmenu-docomo-f-bt-tp1-260907-202609070000554",
+      "title": "横綱大の里、大関琴桜に16勝４敗「久々の東京で、久々に優勝したい」２年連続Ｖの秋場所へ調整",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260907-202609070000554",
       "publishedAt": "2026-09-07",
-      "publishedAtRaw": "SANSPO　9月7日 6時00分",
+      "publishedAtRaw": "日刊スポーツ　9月7日 13時44分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_UVEFL6CGDRGZLGTJPGDRUL6JD4",
-      "title": "松山千春「八角は人柄もよかったということもあって理事長になってな」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_UVEFL6CGDRGZLGTJPGDRUL6JD4",
+      "id": "dmenu-docomo-hochi-20260907-OHT1T51083",
+      "title": "横綱・大の里　大関・琴桜に１６勝４敗「東京で久々に優勝したい」…二所ノ関一門連合稽古",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260907-OHT1T51083",
       "publishedAt": "2026-09-07",
-      "publishedAtRaw": "SANSPO　9月7日 5時00分",
+      "publishedAtRaw": "スポーツ報知　9月7日 13時37分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
