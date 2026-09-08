@@ -48,7 +48,7 @@ describe('Cloudflare banzuke redirect rules', () => {
     expect(evaluateRedirect('/compare')).toEqual({
       source: '/compare',
       destination: '/compare/',
-      status: 301,
+      status: 200,
     });
     expect(evaluateRedirect('/compare/')).toEqual({
       source: '/compare/',
@@ -61,7 +61,7 @@ describe('Cloudflare banzuke redirect rules', () => {
     expect(evaluateRedirect('/rikishi/1')).toEqual({
       source: '/rikishi/:id',
       destination: '/rikishi/1/',
-      status: 301,
+      status: 200,
     });
     expect(evaluateRedirect('/rikishi/1/')).toEqual({
       source: '/rikishi/*',
@@ -74,7 +74,7 @@ describe('Cloudflare banzuke redirect rules', () => {
     expect(evaluateRedirect(`/${kind}`)).toEqual({
       source: `/${kind}`,
       destination: `/${kind}/`,
-      status: 301,
+      status: 200,
     });
     expect(evaluateRedirect(`/${kind}/`)).toEqual({
       source: `/${kind}/`,
@@ -84,7 +84,7 @@ describe('Cloudflare banzuke redirect rules', () => {
     expect(evaluateRedirect(`/${kind}/1986`)).toEqual({
       source: `/${kind}/:id`,
       destination: `/${kind}/1986/`,
-      status: 301,
+      status: 200,
     });
     expect(evaluateRedirect(`/${kind}/1986/`)).toEqual({
       source: `/${kind}/*`,
@@ -99,7 +99,7 @@ describe('Cloudflare banzuke redirect rules', () => {
     expect(evaluateRedirect(`/${monthKey}-banzuke`)).toEqual({
       source: `/${monthKey}-banzuke`,
       destination: canonicalPath,
-      status: 301,
+      status: 200,
     });
     expect(evaluateRedirect(canonicalPath)).toEqual({
       source: canonicalPath,
@@ -115,7 +115,7 @@ describe('Cloudflare banzuke redirect rules', () => {
       `/${monthKey}-banduke/`,
       `/${monthKey}-o-sumo`,
       `/${monthKey}-o-sumo/`,
-    ].map((path) => evaluateRedirect(path)?.status)).toEqual([301, 301, 301, 301]);
+    ].map((path) => evaluateRedirect(path)?.status)).toEqual([200, 200, 200, 200]);
   });
 
   it.each(['/garbage-banduke', '/999999-banduke', '/999999-banzuke'])('keeps unsupported route %s unmatched', (pathname) => {
@@ -133,7 +133,7 @@ describe('Cloudflare banzuke redirect rules', () => {
     expect(evaluateRedirect('/about')).toEqual({
       source: '/about',
       destination: '/about/',
-      status: 301,
+      status: 200,
     });
     expect(evaluateRedirect('/about/')).toEqual({
       source: '/about/',
@@ -142,10 +142,13 @@ describe('Cloudflare banzuke redirect rules', () => {
     });
   });
 
-  it('rewrites every SPA fallback to the root document', () => {
-    const spaFallbacks = redirectRules().filter((rule) => rule.status === 200);
+  it('uses 200 rewrites throughout to avoid Googlebot indexing 301 chains', () => {
+    const rules = redirectRules();
 
-    expect(spaFallbacks).toHaveLength(17);
-    expect(spaFallbacks.every((rule) => rule.destination === '/')).toBe(true);
+    expect(rules).toHaveLength(50);
+    expect(rules.every((rule) => rule.status === 200)).toBe(true);
+
+    const rootFallbacks = rules.filter((rule) => rule.destination === '/');
+    expect(rootFallbacks.length).toBeGreaterThan(0);
   });
 });

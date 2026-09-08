@@ -11,17 +11,17 @@ describe('PWA smoke config', () => {
     expect(html).toContain('<meta name="robots" content="noindex">');
   });
 
-  it('canonicalizes the analytics route before serving the SPA fallback', () => {
+  it('rewrites the analytics route to its trailing-slash form (200, not 301)', () => {
     const redirects = readFileSync(join(process.cwd(), 'public/_redirects'), 'utf-8');
 
-    expect(redirects).toContain('/analytics /analytics/ 301');
+    expect(redirects).toContain('/analytics /analytics/ 200');
     expect(redirects).toContain('/analytics/ / 200');
   });
 
-  it('canonicalizes the kimarite route before serving the SPA fallback', () => {
+  it('rewrites the kimarite route to its trailing-slash form (200, not 301)', () => {
     const redirects = readFileSync(join(process.cwd(), 'public/_redirects'), 'utf-8');
 
-    expect(redirects).toContain('/kimarite /kimarite/ 301');
+    expect(redirects).toContain('/kimarite /kimarite/ 200');
     expect(redirects).toContain('/kimarite/ / 200');
   });
 
