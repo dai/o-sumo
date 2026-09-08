@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-08T00:54:03.514267+00:00",
+  "updatedAt": "2026-09-08T08:27:10.084923+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,24 @@
     }
   ],
   "items": [
+    {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_TRJIVPSTYFKPZLVIMX47MSSM2Y",
+      "title": "安青錦に化粧まわし「横書きは珍しい」母国ウクライナの国旗を基調に",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_TRJIVPSTYFKPZLVIMX47MSSM2Y",
+      "publishedAt": "2026-09-08",
+      "publishedAtRaw": "SANSPO　9月8日 17時17分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260908-OHT1T51232",
+      "title": "大関・安青錦「一番上の番付を狙えるように」　総合コンサル会社からの化粧まわし贈呈式で決意表明",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260908-OHT1T51232",
+      "publishedAt": "2026-09-08",
+      "publishedAtRaw": "スポーツ報知　9月8日 17時10分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
     {
       "id": "dmenu-docomo-hochi-20260907-OHT1T51243",
       "title": "元遠藤の北陣親方「もっと教えてあげたいという気持ちになります」…昨年１１月に引退、指導への熱意語る",
@@ -39,24 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260908-0026",
       "publishedAt": "2026-09-08",
       "publishedAtRaw": "スポニチアネックス　9月8日 5時25分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260908-0025",
-      "title": "大の里「久しぶりに東京で優勝したい」復活V手応え20番　琴桜圧倒16勝4敗　秋場所13日初日",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260908-0025",
-      "publishedAt": "2026-09-08",
-      "publishedAtRaw": "スポニチアネックス　9月8日 5時25分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20260908009",
-      "title": "大の里　三番稽古で琴桜を圧倒１６勝４敗　１年ぶり復活Ｖへ順調　下半身がっちり、左差しに納得「久々の東京で優勝したい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260908009",
-      "publishedAt": "2026-09-08",
-      "publishedAtRaw": "デイリースポーツ　9月8日 5時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
