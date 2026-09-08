@@ -5,13 +5,13 @@ import enCommon from '../../src/locales/en/common.json';
 describe('global release notice', () => {
   it('announces the September basho banzuke update in Japanese', () => {
     expect(jaCommon.global.officialDirectoryReleaseNotice).toBe(
-      '2026年8月31日: 令和八年九月場所番付を更新しました。',
+      '平成八年九月場所の準備が整いました、謹んで開幕を待機中。',
     );
   });
 
   it('announces the September basho banzuke update in English', () => {
     expect(enCommon.global.officialDirectoryReleaseNotice).toBe(
-      'August 31, 2026: Updated banzuke for the September 2026 tournament.',
+      'The Heisei 8 September basho is ready; we respectfully await its opening.',
     );
   });
 });

@@ -1,6 +1,6 @@
 {
   "global": {
-    "officialDirectoryReleaseNotice": "August 31, 2026: Updated banzuke for the September 2026 tournament.",
+    "officialDirectoryReleaseNotice": "The Heisei 8 September basho is ready; we respectfully await its opening.",
     "homeLink": "Home",
     "backToHome": "Back to Home",
     "siteNavigation": "Site navigation",
@@ -60,6 +60,14 @@
     "heroResult": "Results",
     "quickNavToday": "Today's Bouts",
     "quickNavTodaySub": "Live & Results",
+    "quickNavLiveBadge": "Live",
+    "quickNavOpeningBout": "Opening-day bouts",
+    "quickNavOpeningBoutSub": "{{date}} · Awaiting official torikumi",
+    "quickNavScheduleList": "Full bout schedule",
+    "quickNavNextBoutSchedule": "Next bout schedule",
+    "quickNavFinalResults": "Final results",
+    "quickNavPastSchedule": "Past bout schedule",
+    "quickNavPastScheduleSub": "Archive through {{date}}",
     "quickNavBanzuke": "Standings",
     "quickNavBanzukeSub": "Banzuke & Scores",
     "quickNavTomorrow": "Tomorrow's Card",
