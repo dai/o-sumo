@@ -23,6 +23,7 @@ import Home, {
   buildLiveTorikumiTarget,
   homeContainerClassName,
   getHomeHeroActions,
+  getHomeQuickNavItems,
   nearestTorikumiAnchor,
 } from './page';
 
@@ -119,6 +120,29 @@ describe('Home page', () => {
     );
     expect(getHomeHeroActions({ kind: 'final', startDate: '2026-07-12', endDate: '2026-07-26', day: null }, paths)[0]).toEqual(
       { to: '/results/', labelKey: 'home.finalResultsAction', primary: true },
+    );
+  });
+
+  it('uses state-specific quick navigation labels and dates', () => {
+    const paths = { banzuke: '/banzuke/', schedule: '/schedule/', result: '/results/', live: '/today/' };
+
+    expect(getHomeQuickNavItems({ kind: 'upcoming', startDate: '2026-09-13', endDate: '2026-09-27', day: null }, paths, 'ja')).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ to: '/results/', labelKey: 'home.quickNavOpeningBout', date: '9月13日' }),
+        expect.objectContaining({ to: '/schedule/', labelKey: 'home.quickNavScheduleList' }),
+      ]),
+    );
+    expect(getHomeQuickNavItems({ kind: 'live', startDate: '2026-09-13', endDate: '2026-09-27', day: 3 }, paths, 'ja')).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ to: '/today/', labelKey: 'home.quickNavToday', subKey: 'home.quickNavTodaySub' }),
+        expect.objectContaining({ to: '/schedule/', labelKey: 'home.quickNavNextBoutSchedule' }),
+      ]),
+    );
+    expect(getHomeQuickNavItems({ kind: 'final', startDate: '2026-09-13', endDate: '2026-09-27', day: null }, paths, 'ja')).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ to: '/results/', labelKey: 'home.quickNavFinalResults' }),
+        expect.objectContaining({ to: '/schedule/', labelKey: 'home.quickNavPastSchedule', date: '9月27日' }),
+      ]),
     );
   });
 
@@ -330,7 +354,7 @@ describe('Home page', () => {
     expect(within(analyticsCard!).getByRole('link', { name: 'アナリティクスを見る' })).toHaveAttribute('href', '/analytics/');
   });
 
-  it('renders the smart hub 4-card quick navigation with today, banzuke, tomorrow, and my-rikishi', () => {
+  it('renders the smart hub 4-card quick navigation with state-specific actions', () => {
     render(
       <MemoryRouter>
         <Home />
@@ -339,9 +363,9 @@ describe('Home page', () => {
 
     const quickNav = screen.getByLabelText('今場所の主要な導線');
     expect(quickNav).toBeInTheDocument();
-    expect(within(quickNav).getByRole('link', { name: /本日の取組/ })).toBeInTheDocument();
+    expect(within(quickNav).getByRole('link', { name: /初日の取組/ })).toBeInTheDocument();
     expect(within(quickNav).getByRole('link', { name: /星取表/ })).toHaveAttribute('href', '/202609-banzuke/');
-    expect(within(quickNav).getByRole('link', { name: /明日の割/ })).toHaveAttribute('href', '/202609-yotei/');
+    expect(within(quickNav).getByRole('link', { name: /取組予定一覧/ })).toHaveAttribute('href', '/202609-yotei/');
     expect(within(quickNav).getByRole('link', { name: /マイ力士/ })).toHaveAttribute('href', '/my-rikishi/');
   });
 

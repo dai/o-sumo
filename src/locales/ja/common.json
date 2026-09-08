@@ -1,6 +1,6 @@
 {
   "global": {
-    "officialDirectoryReleaseNotice": "2026年8月31日: 令和八年九月場所番付を更新しました。",
+    "officialDirectoryReleaseNotice": "平成八年九月場所の準備が整いました、謹んで開幕を待機中。",
     "homeLink": "ホーム",
     "backToHome": "ホームに戻る",
     "siteNavigation": "サイトナビゲーション",
@@ -60,6 +60,14 @@
     "heroResult": "結果",
     "quickNavToday": "本日の取組",
     "quickNavTodaySub": "速報・進行",
+    "quickNavLiveBadge": "速報",
+    "quickNavOpeningBout": "初日の取組",
+    "quickNavOpeningBoutSub": "{{date}}・公式取組発表待ち",
+    "quickNavScheduleList": "取組予定一覧",
+    "quickNavNextBoutSchedule": "明日の取組予定",
+    "quickNavFinalResults": "確定結果",
+    "quickNavPastSchedule": "過去の取組予定",
+    "quickNavPastScheduleSub": "{{date}}までの開催記録",
     "quickNavBanzuke": "星取表",
     "quickNavBanzukeSub": "番付・成績",
     "quickNavTomorrow": "明日の割",

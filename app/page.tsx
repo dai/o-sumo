@@ -57,6 +57,15 @@ type HomeHeroAction = {
   primary: boolean;
 };
 
+export type HomeQuickNavItem = {
+  to: string;
+  labelKey: string;
+  subKey: string;
+  date?: string;
+  primary: boolean;
+  badgeKey?: string;
+};
+
 /**
  * Keeps the home hero aligned with the published basho status. The first
  * action is the user’s most time-relevant task; subsequent actions remain
@@ -80,6 +89,85 @@ export function getHomeHeroActions(status: BashoStatus, paths: HomeHeroPaths): H
   return [
     { to: paths.result, labelKey: 'home.finalResultsAction', primary: true },
     { to: paths.banzuke, labelKey: 'home.heroBanzuke', primary: false },
+  ];
+}
+
+function formatHomeDate(isoDate: string | null, language: string): string | undefined {
+  if (!isoDate) return undefined;
+  return new Intl.DateTimeFormat(language === 'ja' ? 'ja-JP' : 'en-US', {
+    timeZone: 'UTC',
+    month: 'long',
+    day: 'numeric',
+  }).format(new Date(`${isoDate}T00:00:00Z`));
+}
+
+export function getHomeQuickNavItems(
+  status: BashoStatus,
+  paths: HomeHeroPaths,
+  language = 'ja',
+): HomeQuickNavItem[] {
+  const stateItems: HomeQuickNavItem[] = status.kind === 'upcoming'
+    ? [
+        {
+          to: paths.result,
+          labelKey: 'home.quickNavOpeningBout',
+          subKey: 'home.quickNavOpeningBoutSub',
+          date: formatHomeDate(status.startDate, language),
+          primary: true,
+        },
+        {
+          to: paths.schedule,
+          labelKey: 'home.quickNavScheduleList',
+          subKey: 'home.quickNavTomorrowSub',
+          primary: false,
+        },
+      ]
+    : status.kind === 'live'
+      ? [
+          {
+            to: paths.live,
+            labelKey: 'home.quickNavToday',
+            subKey: 'home.quickNavTodaySub',
+            primary: true,
+            badgeKey: 'home.quickNavLiveBadge',
+          },
+          {
+            to: paths.schedule,
+            labelKey: 'home.quickNavNextBoutSchedule',
+            subKey: 'home.quickNavTomorrowSub',
+            primary: false,
+          },
+        ]
+      : [
+          {
+            to: paths.result,
+            labelKey: 'home.quickNavFinalResults',
+            subKey: 'home.finalResultsDescription',
+            primary: true,
+          },
+          {
+            to: paths.schedule,
+            labelKey: 'home.quickNavPastSchedule',
+            subKey: 'home.quickNavPastScheduleSub',
+            date: formatHomeDate(status.endDate, language),
+            primary: false,
+          },
+        ];
+
+  return [
+    ...stateItems,
+    {
+      to: paths.banzuke,
+      labelKey: 'home.quickNavBanzuke',
+      subKey: 'home.quickNavBanzukeSub',
+      primary: false,
+    },
+    {
+      to: '/my-rikishi/',
+      labelKey: 'home.quickNavMyRikishi',
+      subKey: 'home.quickNavMyRikishiSub',
+      primary: false,
+    },
   ];
 }
 
@@ -214,33 +302,16 @@ export default function Home() {
   const featuredTorikumiTarget = bashoStatus.kind === 'final'
     ? { href: `${CURRENT_RESULT_PATH}/`, description: t('home.finalResultsDescription') }
     : liveTorikumiTarget;
-  const quickNavItems = [
+  const quickNavItems = getHomeQuickNavItems(
+    bashoStatus,
     {
-      to: featuredTorikumiTarget.href,
-      label: t('home.quickNavToday'),
-      sub: bashoStatus.kind === 'live' ? t('home.quickNavTodaySub') : t('home.heroResult'),
-      primary: true,
-      badge: bashoStatus.kind === 'live' ? '速報' : undefined,
+      banzuke: currentBanzukePath,
+      schedule: `${CURRENT_SCHEDULE_PATH}/`,
+      result: `${CURRENT_RESULT_PATH}/`,
+      live: featuredTorikumiTarget.href,
     },
-    {
-      to: currentBanzukePath,
-      label: t('home.quickNavBanzuke'),
-      sub: t('home.quickNavBanzukeSub'),
-      primary: false,
-    },
-    {
-      to: `${CURRENT_SCHEDULE_PATH}/`,
-      label: t('home.quickNavTomorrow'),
-      sub: t('home.quickNavTomorrowSub'),
-      primary: false,
-    },
-    {
-      to: '/my-rikishi/',
-      label: t('home.quickNavMyRikishi'),
-      sub: t('home.quickNavMyRikishiSub'),
-      primary: false,
-    },
-  ];
+    i18n.language,
+  );
 
   return (
     <div className={homeContainerClassName()}>
@@ -285,10 +356,10 @@ export default function Home() {
                   className={`quick-nav-card${item.primary ? ' primary' : ''}`}
                 >
                   <span className="quick-nav-card__label">
-                    {item.label}
-                    {item.badge ? <span className="quick-nav-card__badge">{item.badge}</span> : null}
+                    {t(item.labelKey, item.date ? { date: item.date } : undefined)}
+                    {item.badgeKey ? <span className="quick-nav-card__badge">{t(item.badgeKey)}</span> : null}
                   </span>
-                  <span className="quick-nav-card__sub">{item.sub}</span>
+                  <span className="quick-nav-card__sub">{t(item.subKey, item.date ? { date: item.date } : undefined)}</span>
                 </Link>
               ))}
             </nav>
