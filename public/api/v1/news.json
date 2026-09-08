@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-07T10:21:06.744318+00:00",
+  "updatedAt": "2026-09-08T00:54:03.514267+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-chuspo-1308023",
-      "title": "【大相撲】大の里、「悪くなかったのかなと」おっつけだけじゃなく左差しの攻めにも手応え十分　2年連続Vの秋場所へ着々",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1308023",
-      "publishedAt": "2026-09-07",
-      "publishedAtRaw": "中日スポーツ　9月7日 18時51分",
+      "id": "dmenu-docomo-hochi-20260907-OHT1T51243",
+      "title": "元遠藤の北陣親方「もっと教えてあげたいという気持ちになります」…昨年１１月に引退、指導への熱意語る",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260907-OHT1T51243",
+      "publishedAt": "2026-09-08",
+      "publishedAtRaw": "スポーツ報知　9月8日 8時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260907099",
-      "title": "大相撲“鉄人”玉鷲が連合稽古で存在感「また少しずつ頑張ります」幕内復帰へ懸命に汗",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260907099",
-      "publishedAt": "2026-09-07",
-      "publishedAtRaw": "デイリースポーツ　9月7日 18時29分",
+      "id": "dmenu-docomo-hochi-20260907-OHT1T51242",
+      "title": "大の里が秋場所に向け貫禄たっぷり　大関・琴桜を圧倒し「１５日間戦える体はできつつある」と自信",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260907-OHT1T51242",
+      "publishedAt": "2026-09-08",
+      "publishedAtRaw": "スポーツ報知　9月8日 6時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-chuspo-1307998",
-      "title": "【大相撲】琴桜、「勝ちにつながる相撲を取れた」対大の里4−16も収穫強調　名古屋でのかど番脱出から逆襲誓う",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1307998",
-      "publishedAt": "2026-09-07",
-      "publishedAtRaw": "中日スポーツ　9月7日 17時51分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260908-0026",
+      "title": "琴桜　大の里に4勝16敗も収穫「つながる相撲は取れたのでは。内容は比較的良かった」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260908-0026",
+      "publishedAt": "2026-09-08",
+      "publishedAtRaw": "スポニチアネックス　9月8日 5時25分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260907093",
-      "title": "琴桜は大の里に４勝１６敗も内容に手応え　師匠も評価「伸び悩みを断ち切るためには」",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260907093",
-      "publishedAt": "2026-09-07",
-      "publishedAtRaw": "デイリースポーツ　9月7日 17時25分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260908-0025",
+      "title": "大の里「久しぶりに東京で優勝したい」復活V手応え20番　琴桜圧倒16勝4敗　秋場所13日初日",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260908-0025",
+      "publishedAt": "2026-09-08",
+      "publishedAtRaw": "スポニチアネックス　9月8日 5時25分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_M4P7VGD67NNQXEBVSI7PDO66EU",
-      "title": "大の里が「何かが起きる」と自らを鼓舞　連合稽古で大関琴桜に16勝4敗　1年ぶりの賜杯奪還へ復調気配",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_M4P7VGD67NNQXEBVSI7PDO66EU",
-      "publishedAt": "2026-09-07",
-      "publishedAtRaw": "SANSPO　9月7日 17時21分",
+      "id": "dmenu-docomo-20260908009",
+      "title": "大の里　三番稽古で琴桜を圧倒１６勝４敗　１年ぶり復活Ｖへ順調　下半身がっちり、左差しに納得「久々の東京で優勝したい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260908009",
+      "publishedAt": "2026-09-08",
+      "publishedAtRaw": "デイリースポーツ　9月8日 5時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
