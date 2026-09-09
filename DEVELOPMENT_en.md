@@ -47,6 +47,16 @@ npm run preview
 python scripts/update_sumo_data.py
 ```
 
+## Previewing Daily Highlights states
+
+In the development server, append one of these query parameters to the home URL:
+
+- `?highlightsPreview=upcoming` before official bouts are published
+- `?highlightsPreview=live` during the basho
+- `?highlightsPreview=final` after results are published
+
+For a Cloudflare Preview deployment, set the build environment variable `VITE_ENABLE_HIGHLIGHTS_PREVIEW=true`. Production builds ignore this query parameter.
+
 Common data-update variants:
 
 ```bash
@@ -117,6 +127,8 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - Schedule: every 2 hours from JST 09:05 through 19:05
 - Scope: news feed (`python scripts/update_news_feed.py`)
 - If fetched items and source states are unchanged, `news.json` is not rewritten and no PR diff is produced
+- One PR per day: the workflow opens a PR on the JST-date-keyed branch `automation/news-updates-<YYYY-MM-DD>`; multiple same-day runs accumulate commits on the same PR
+- Auto-merge is enabled only on the JST 19:xx run via `gh pr merge --auto --squash --delete-branch`; the branch is removed after merge
 
 ## Operations After The July 2026 Archive
 

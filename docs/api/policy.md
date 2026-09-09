@@ -10,8 +10,9 @@ o-sumo API は個人運用のベストエフォート提供です。商用 SLA �
 
 - 日次更新（取組予定のみ）: `daily-data-update.yml` は九月場所の番付公式公開まで `workflow_dispatch` のみ
 - 高頻度更新（取組結果のみ）: `realtime-torikumi-direct-update.yml` は九月場所の番付公式公開まで `workflow_dispatch` のみ
-- ニュース更新: `news-feed-update.yml` を JST 09:00-19:00 に2時間おきで実行
-- 変更がある場合は `automation/data-updates` PR を作成または更新する
+- ニュース更新: `news-feed-update.yml` を JST 09:05-19:05 に2時間おきで実行
+- 変更がある場合は JST 日付ベースの `automation/news-updates-<YYYY-MM-DD>` ブランチの PR を作成し、同日内の複数 run は同一PRに commit を追加する（1日1PR）
+- auto-merge は JST 19時台の run のみ有効化し、日の最終更新で PR をマージする。マージ後はブランチを自動削除
 - ニュースは取得結果に差分がない場合、`updatedAt` だけでは `news.json` を書き換えない
 
 七月場所は確定済みです。九月場所の番付が公式公開されるまでは、`banzuke.json` と `torikumi.json` の current data を七月場所 (`202607`) のまま維持します。次のPRで公式データを検証してから、scheduleの復元、終了告知の解除、現行データの切替を行います。

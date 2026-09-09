@@ -79,34 +79,44 @@ jobs:
         run: |
           python scripts/ci/validate_news.py
 
-      - name: Create or update data update PR
+      - name: Compute JST date for daily branch
+        id: compute-date
+        shell: bash
+        run: |
+          echo "date=$(TZ=Asia/Tokyo date +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+          echo "hour=$(TZ=Asia/Tokyo date +%H)" >> "$GITHUB_OUTPUT"
+
+      - name: Create or update daily data update PR
         id: create-pr
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GH_PAT || github.token }}
-          branch: automation/news-updates
-          branch-suffix: timestamp
+          branch: automation/news-updates-${{ steps.compute-date.outputs.date }}
           base: main
-          delete-branch: false
+          delete-branch: true
           commit-message: 'chore: news feed update'
-          title: 'chore: automated news feed updates'
+          title: 'chore: automated news feed updates for ${{ steps.compute-date.outputs.date }}'
           body: |
             ## Summary
             - Automated data update from `${{ github.workflow }}`
+            - JST date: `${{ steps.compute-date.outputs.date }}`
+            - JST hour: `${{ steps.compute-date.outputs.hour }}` (auto-merge window: 19)
             - Event: `${{ github.event_name }}`
             - Schedule: `${{ github.event.schedule || 'manual' }}`
             - Scope: `news`
+            - Multiple same-day runs accumulate commits on this PR; the JST 19:xx run enables auto-merge.
           labels: |
             automated
             data-update
           add-paths: |
             public/api/v1/news.json
 
-      - name: Enable auto-merge
-        if: steps.create-pr.outputs.pull-request-operation == 'created'
+      - name: Enable auto-merge on the final daily run
+        if: steps.create-pr.outputs.pull-request-number != ''
         env:
           GH_TOKEN: ${{ secrets.GH_PAT || github.token }}
           PR_NUMBER: ${{ steps.create-pr.outputs.pull-request-number }}
+          JST_HOUR: ${{ steps.compute-date.outputs.hour }}
         shell: bash
         run: |
           set -euo pipefail
@@ -114,8 +124,12 @@ jobs:
             echo "pull_request_number is empty; skipping auto-merge"
             exit 0
           fi
-          echo "Enabling auto-merge for PR #${PR_NUMBER} (squash)"
-          gh pr merge "${PR_NUMBER}" --auto --squash --delete-branch=false
+          if [ "${JST_HOUR}" != "19" ]; then
+            echo "JST hour=${JST_HOUR} is outside the final-run window; skipping auto-merge."
+            exit 0
+          fi
+          echo "Enabling auto-merge for PR #${PR_NUMBER} (squash, JST final run)"
+          gh pr merge "${PR_NUMBER}" --auto --squash --delete-branch
 
       - name: Write run summary
         if: always()
@@ -131,6 +145,8 @@ jobs:
             echo "| Create PR | ${{ steps.create-pr.outcome }} |"
             echo "| PR Number | ${{ steps.create-pr.outputs.pull-request-number }} |"
             echo "| PR Operation | ${{ steps.create-pr.outputs.pull-request-operation }} |"
+            echo "| JST date | ${{ steps.compute-date.outputs.date }} |"
+            echo "| JST hour | ${{ steps.compute-date.outputs.hour }} |"
             echo ""
             echo "- event: \`${{ github.event_name }}\`"
             echo "- schedule: \`${{ github.event.schedule || 'manual' }}\`"

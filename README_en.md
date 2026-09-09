@@ -301,7 +301,8 @@ Workflows:
   - schedule: every 2 hours from JST 09:05 through 19:05
   - updates Japan Sumo Association and dmenu Sports news (`python scripts/update_news_feed.py`)
   - skips rewriting `news.json` when fetched items and source states are unchanged
-  - newly created PRs are auto-merged with `gh pr merge --auto --squash` once the `test` workflow passes
+  - **One PR per day**: the PR is opened on the JST-date-keyed branch `automation/news-updates-<YYYY-MM-DD>`; multiple same-day runs accumulate commits on the same PR
+  - **Auto-merge**: enabled only on the JST 19:xx run via `gh pr merge --auto --squash --delete-branch`; the branch is removed after merge
 
 ### Discord notifications (optional)
 

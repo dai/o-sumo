@@ -300,7 +300,8 @@ GitHub Actions で取組予定、取組結果、ニュース更新を分けて�
   - 実行時刻: JST 09:05-19:05、2時間おき
   - 実行内容: 日本相撲協会お知らせ + dmenu スポーツを更新（`python scripts/update_news_feed.py`）
   - 取得結果が変わらない場合は `news.json` を書き換えず、PR 差分を作らない
-  - PR 作成時は `gh pr merge --auto --squash` でテスト通過後に自動マージ
+  - **1日1PR**: JST 日付ベースの `automation/news-updates-<YYYY-MM-DD>` ブランチの PR を作成し、同日内の複数 run は同一 PR に commit を追加する
+  - **auto-merge**: JST 19時台の run のみ `gh pr merge --auto --squash --delete-branch` を呼び出し、日の最終更新で PR をマージ。ブランチはマージ後に自動削除される
 
 ### Discord 通知（任意）
 

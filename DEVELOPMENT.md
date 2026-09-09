@@ -47,6 +47,16 @@ npm run preview
 python scripts/update_sumo_data.py
 ```
 
+## 今日のみどころの状態プレビュー
+
+開発サーバーでは、ホームURLに次のクエリを付けると時限表示を再現できます。
+
+- `?highlightsPreview=upcoming` 公式取組発表前
+- `?highlightsPreview=live` 開催中
+- `?highlightsPreview=final` 結果公開後
+
+Cloudflare Preview環境で確認する場合は、ビルド環境変数 `VITE_ENABLE_HIGHLIGHTS_PREVIEW=true` を設定します。本番ビルドではこのクエリは無視されます。
+
 データ更新の主なバリエーション:
 
 ```bash
@@ -117,6 +127,8 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - 実行時刻: JST 09:05-19:05、2時間おき
 - 更新対象: ニュースフィード（`python scripts/update_news_feed.py`）
 - 取得結果が変わらない場合は `news.json` を書き換えず、PR 差分を作らない
+- 1日1PR: `automation/news-updates-<JST YYYY-MM-DD>` ブランチの PR を開き、同日内の複数 run は同一PRに commit を追加する
+- auto-merge は JST 19時台の run のみ有効化（`gh pr merge --auto --squash --delete-branch`）。マージ後はブランチ自動削除
 
 ### テスト
 
