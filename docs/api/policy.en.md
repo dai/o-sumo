@@ -12,8 +12,9 @@ Current update flows:
 
 - Daily update (torikumi schedule only): `daily-data-update.yml` is manual-only (`workflow_dispatch`) until the September banzuke is officially published
 - Realtime update (torikumi results only): `realtime-torikumi-direct-update.yml` is manual-only (`workflow_dispatch`) until the September banzuke is officially published
-- News update: run `news-feed-update.yml` every 2 hours from JST 09:00 through 19:00
-- When files change, the workflows create or update the shared `automation/data-updates` PR
+- News update: run `news-feed-update.yml` every 2 hours from JST 09:05 through 19:05
+- When files change, the workflow creates a PR on the JST-date-keyed branch `automation/news-updates-<YYYY-MM-DD>`. Multiple same-day runs accumulate commits on the same PR (one PR per day).
+- Auto-merge is enabled only on the JST 19:xx run (the final run of the day); the branch is deleted after merge
 - News polling does not rewrite `news.json` when only `updatedAt` would change
 
 The July basho is final. Keep current `banzuke.json` and `torikumi.json` data on July (`202607`) until the September banzuke is officially published. The next PR validates official data before restoring schedules, removing the closing notice, and switching current data.
