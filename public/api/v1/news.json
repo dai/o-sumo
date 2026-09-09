@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-09T00:53:15.238912+00:00",
+  "updatedAt": "2026-09-09T10:20:06.765679+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260908-OHT1T51382",
-      "title": "安青錦　秋場所「優勝」で“地元”パレード、今度こそ！…６日の名古屋場所Ｖパレードは大雨で無念の中止に",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260908-OHT1T51382",
+      "id": "dmenu-docomo-hochi-20260909-OHT1T51265",
+      "title": "大関・安青錦、三段目力士と１５番　２場所連続Ｖへ「しっかり初日までに感覚を戻せたら」…１３日初日・秋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260909-OHT1T51265",
       "publishedAt": "2026-09-09",
-      "publishedAtRaw": "スポーツ報知　9月9日 5時30分",
+      "publishedAtRaw": "スポーツ報知　9月9日 18時08分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260909-0016",
-      "title": "史上14組目の兄弟幕内・朝紅龍＆朝翠龍　若貴以来の兄弟同時三賞へ意欲",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260909-0016",
+      "id": "dmenu-docomo-f-bt-tp1-260909-202609090001101",
+      "title": "名古屋場所Ｖの安青錦“ぶっつけ本番”で秋場所へ　関取衆と相撲取らず…部屋の若い衆と稽古",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260909-202609090001101",
       "publishedAt": "2026-09-09",
-      "publishedAtRaw": "スポニチアネックス　9月9日 5時10分",
+      "publishedAtRaw": "日刊スポーツ　9月9日 18時07分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260909-0015",
-      "title": "安青錦　化粧まわし横綱用三つぞろいも“おねだり”「またお世話になると思う」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260909-0015",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_AME5OMPYCROP5DFCFALYZVOZPI",
+      "title": "大関安青錦、元横綱から知を吸収「いいこともよくないところも教えていただいた」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_AME5OMPYCROP5DFCFALYZVOZPI",
       "publishedAt": "2026-09-09",
-      "publishedAtRaw": "スポニチアネックス　9月9日 5時10分",
+      "publishedAtRaw": "SANSPO　9月9日 17時14分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_LTIEDEZ2HFIBLBQASWT2YQCVGI",
-      "title": "安青錦「また機会をつくれば」江東区の優勝パレード中止に　ベイカレントから新しい化粧まわし贈呈",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_LTIEDEZ2HFIBLBQASWT2YQCVGI",
+      "id": "dmenu-docomo-sponichi-spngoo-20260909-0298",
+      "title": "大関・安青錦、幕下以下の力士と15番「いい感じで臨めるように」　関取衆との稽古「今のところ予定ない」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260909-0298",
       "publishedAt": "2026-09-09",
-      "publishedAtRaw": "SANSPO　9月9日 5時00分",
+      "publishedAtRaw": "スポニチアネックス　9月9日 17時13分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260908-0305",
-      "title": "兄弟同時三賞へ、朝紅龍「2桁勝ちたい」　新入幕の朝翠龍「どれくらい通用するか楽しみ」　秋場所へ調整",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260908-0305",
-      "publishedAt": "2026-09-08",
-      "publishedAtRaw": "スポニチアネックス　9月8日 19時28分",
+      "id": "dmenu-docomo-f-bt-tp1-260909-202609090000986",
+      "title": "藤ノ川「ボコボコにされた」霧島に本場所初白星へ、時津風一門連合稽古で19番と精力的",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260909-202609090000986",
+      "publishedAt": "2026-09-09",
+      "publishedAtRaw": "日刊スポーツ　9月9日 16時55分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
