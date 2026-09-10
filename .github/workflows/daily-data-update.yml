@@ -23,7 +23,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GH_PAT || github.token }}
+          token: ${{ secrets.GH_PAT != '' && secrets.GH_PAT || github.token }}
           fetch-depth: 0
 
       - name: Setup Python
@@ -63,7 +63,7 @@ jobs:
         id: create-pr
         uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.GH_PAT || github.token }}
+          token: ${{ secrets.GH_PAT != '' && secrets.GH_PAT || github.token }}
           branch: automation/schedule-updates
           branch-suffix: timestamp
           base: main
@@ -87,7 +87,7 @@ jobs:
         id: auto-merge
         if: steps.create-pr.outputs.pull-request-operation == 'created'
         env:
-          GH_TOKEN: ${{ secrets.GH_PAT || github.token }}
+          GH_TOKEN: ${{ secrets.GH_PAT != '' && secrets.GH_PAT || github.token }}
           PR_NUMBER: ${{ steps.create-pr.outputs.pull-request-number }}
         shell: bash
         run: |
@@ -103,7 +103,7 @@ jobs:
         id: pr-state
         if: always() && steps.create-pr.outputs.pull-request-number != ''
         env:
-          GH_TOKEN: ${{ secrets.GH_PAT || github.token }}
+          GH_TOKEN: ${{ secrets.GH_PAT != '' && secrets.GH_PAT || github.token }}
           PR_NUMBER: ${{ steps.create-pr.outputs.pull-request-number }}
         shell: bash
         run: |

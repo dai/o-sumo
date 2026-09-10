@@ -24,7 +24,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GH_PAT || github.token }}
+          token: ${{ secrets.GH_PAT != '' && secrets.GH_PAT || github.token }}
           fetch-depth: 0
 
       - name: Setup Python
@@ -90,7 +90,7 @@ jobs:
         id: create-pr
         uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.GH_PAT || github.token }}
+          token: ${{ secrets.GH_PAT != '' && secrets.GH_PAT || github.token }}
           branch: automation/news-updates-${{ steps.compute-date.outputs.date }}
           base: main
           delete-branch: true
@@ -114,7 +114,7 @@ jobs:
       - name: Enable auto-merge on the final daily run
         if: steps.create-pr.outputs.pull-request-number != ''
         env:
-          GH_TOKEN: ${{ secrets.GH_PAT || github.token }}
+          GH_TOKEN: ${{ secrets.GH_PAT != '' && secrets.GH_PAT || github.token }}
           PR_NUMBER: ${{ steps.create-pr.outputs.pull-request-number }}
           JST_HOUR: ${{ steps.compute-date.outputs.hour }}
         shell: bash
