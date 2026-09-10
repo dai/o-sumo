@@ -33,6 +33,33 @@ const DATE_ONLY = /^(\d{4})-(\d{2})-(\d{2})$/
 const FRONTMATTER_KEYS = new Set(['title', 'description', 'publishedAt', 'draft'])
 const markdown = new MarkdownIt({ html: false })
 
+const TWITTER_EMBED_RE =
+  /<blockquote\s+class="twitter-tweet"[^>]*>[\s\S]*?<\/blockquote>(?:\s*<script\b[^>]*\bsrc="https:\/\/platform\.(?:twitter|x)\.com\/widgets\.js"[^>]*><\/script>)?/gi
+
+function extractTrustedTwitterEmbeds(markdownSource: string): { markdownSource: string; embeds: string[] } {
+  const embeds: string[] = []
+  const next = markdownSource.replace(TWITTER_EMBED_RE, (match) => {
+    const lowered = match.toLowerCase()
+    if (lowered.includes('<script') && !/src="https:\/\/platform\.(?:twitter|x)\.com\/widgets\.js"/.test(match)) {
+      return match
+    }
+    const token = `TWITTEREMBEDPLACEHOLDER${embeds.length}`
+    embeds.push(match.trim())
+    return `\n\n${token}\n\n`
+  })
+  return { markdownSource: next, embeds }
+}
+
+function reinjectTrustedTwitterEmbeds(html: string, embeds: string[]): string {
+  return embeds.reduce((current, embed, index) => {
+    const token = `TWITTEREMBEDPLACEHOLDER${index}`
+    return current
+      .replace(`<p>${token}</p>`, embed)
+      .replace(token, embed)
+  }, html)
+}
+
+
 function dateFromParts(value: string, label: string): string {
   const match = DATE_ONLY.exec(value)
   if (!match) throw new Error(`Invalid ${label} date: ${value}`)
@@ -96,7 +123,10 @@ function validatePost(filePath: string, options: BlogFeedOptions): BlogPost {
     author: 'dai',
     draft: parsed.data.draft,
     body: parsed.content.trim(),
-    bodyHtml: markdown.render(parsed.content),
+    bodyHtml: (() => {
+      const extracted = extractTrustedTwitterEmbeds(parsed.content)
+      return reinjectTrustedTwitterEmbeds(markdown.render(extracted.markdownSource), extracted.embeds)
+    })(),
   }
 }
 

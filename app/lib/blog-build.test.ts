@@ -140,6 +140,23 @@ describe('standalone blog build', () => {
     expect(feed).toContain('<description>説明 &amp; &lt;危険&gt;</description>')
   })
 
+
+  it('allows trusted X embed HTML while still escaping arbitrary scripts', () => {
+    const site = fixture()
+    writePost(
+      site.posts,
+      '2026-09-01-embed.md',
+      'title: "埋め込み"\ndescription: "埋め込み確認"\npublishedAt: 2026-09-01\ndraft: false',
+      '<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">hello</p>&mdash; Test <a href="https://x.com/sumokyokai/status/2097541310064590949">link</a></blockquote> <script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>\n\n<script>alert(1)</script>',
+    )
+    build(site)
+    const article = readFileSync(join(site.output, 'posts/embed/index.html'), 'utf8')
+    expect(article).toContain('<blockquote class="twitter-tweet" data-lang="ja">')
+    expect(article).toContain('src="https://platform.x.com/widgets.js"')
+    expect(article).toContain('&lt;script&gt;alert(1)&lt;/script&gt;')
+    expect(article).not.toContain('<script>alert(1)</script>')
+  })
+
   it('limits RSS to the newest twenty public posts in feed order', () => {
     const site = fixture()
     for (let day = 1; day <= 21; day += 1) {

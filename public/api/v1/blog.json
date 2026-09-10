@@ -1,6 +1,14 @@
 {
-  "updatedAt": "2026-09-02",
+  "updatedAt": "2026-09-10",
   "items": [
+    {
+      "slug": "tokitsukaze-ichimon-keiko",
+      "title": "時津風一門の合同稽古",
+      "description": "9/9に開催された時津風一門の合同稽古",
+      "url": "https://blog.osada.us/posts/tokitsukaze-ichimon-keiko/",
+      "publishedAt": "2026-09-10",
+      "author": "dai"
+    },
     {
       "slug": "day2",
       "title": "二日目",
