@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-09T10:20:06.765679+00:00",
+  "updatedAt": "2026-09-10T10:20:00.000220+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,56 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260909-OHT1T51265",
-      "title": "大関・安青錦、三段目力士と１５番　２場所連続Ｖへ「しっかり初日までに感覚を戻せたら」…１３日初日・秋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260909-OHT1T51265",
-      "publishedAt": "2026-09-09",
-      "publishedAtRaw": "スポーツ報知　9月9日 18時08分",
+      "id": "sumo-association-762",
+      "title": "令和9年「大相撲カレンダー」販売のご案内",
+      "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=762",
+      "publishedAt": "2026-09-10",
+      "publishedAtRaw": "令和8年9月10日",
+      "sourceId": "sumo-association",
+      "sourceLabel": "日本相撲協会"
+    },
+    {
+      "id": "dmenu-docomo-nikkangendai-1246728",
+      "title": "綱とり霧島、大関とり熱海富士に共通する「武器」 正反対例は昇進後Vがない横綱・豊昇龍",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1246728",
+      "publishedAt": "2026-09-10",
+      "publishedAtRaw": "日刊ゲンダイDIGITAL　9月10日 18時05分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260909-202609090001101",
-      "title": "名古屋場所Ｖの安青錦“ぶっつけ本番”で秋場所へ　関取衆と相撲取らず…部屋の若い衆と稽古",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260909-202609090001101",
-      "publishedAt": "2026-09-09",
-      "publishedAtRaw": "日刊スポーツ　9月9日 18時07分",
+      "id": "dmenu-docomo-hochi-20260910-OHT1T51188",
+      "title": "綱取りの大関・霧島、出稽古を呼びかけ「最後みんなでやろう」小結・大栄翔らと気迫の２４番…１３日秋場所初日",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260910-OHT1T51188",
+      "publishedAt": "2026-09-10",
+      "publishedAtRaw": "スポーツ報知　9月10日 16時14分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_AME5OMPYCROP5DFCFALYZVOZPI",
-      "title": "大関安青錦、元横綱から知を吸収「いいこともよくないところも教えていただいた」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_AME5OMPYCROP5DFCFALYZVOZPI",
-      "publishedAt": "2026-09-09",
-      "publishedAtRaw": "SANSPO　9月9日 17時14分",
+      "id": "dmenu-docomo-kyodo_nor-2026091001001102",
+      "title": "横綱豊昇龍、秋場所出場厳しく　7月に右膝手術、調整が大幅遅れ",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026091001001102",
+      "publishedAt": "2026-09-10",
+      "publishedAtRaw": "共同通信　9月10日 15時45分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260909-0298",
-      "title": "大関・安青錦、幕下以下の力士と15番「いい感じで臨めるように」　関取衆との稽古「今のところ予定ない」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260909-0298",
-      "publishedAt": "2026-09-09",
-      "publishedAtRaw": "スポニチアネックス　9月9日 17時13分",
+      "id": "dmenu-docomo-hochi-20260910-OHT1T51143",
+      "title": "史上１４組目の兄弟幕内　朝紅龍が弟の新入幕・朝翠龍と共闘誓う「亡き母が見守ってくれ心強い」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260910-OHT1T51143",
+      "publishedAt": "2026-09-10",
+      "publishedAtRaw": "スポーツ報知　9月10日 14時48分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260909-202609090000986",
-      "title": "藤ノ川「ボコボコにされた」霧島に本場所初白星へ、時津風一門連合稽古で19番と精力的",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260909-202609090000986",
-      "publishedAt": "2026-09-09",
-      "publishedAtRaw": "日刊スポーツ　9月9日 16時55分",
+      "id": "dmenu-docomo-hochi-20260910-OHT1T51125",
+      "title": "左太もも手術で名古屋場所全休の若隆景は秋場所も休場　師匠・荒汐親方が明かす",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260910-OHT1T51125",
+      "publishedAt": "2026-09-10",
+      "publishedAtRaw": "スポーツ報知　9月10日 14時02分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
@@ -75,15 +84,6 @@
       "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=759",
       "publishedAt": "2026-08-07",
       "publishedAtRaw": "令和8年8月7日",
-      "sourceId": "sumo-association",
-      "sourceLabel": "日本相撲協会"
-    },
-    {
-      "id": "sumo-association-757",
-      "title": "本場所入場料金の改定について",
-      "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=757",
-      "publishedAt": "2026-07-30",
-      "publishedAtRaw": "令和8年7月30日",
       "sourceId": "sumo-association",
       "sourceLabel": "日本相撲協会"
     }
