@@ -10,13 +10,13 @@ assert SPEC.loader is not None
 SPEC.loader.exec_module(MODULE)
 
 
-def match(east=1, west=2, *, kimarite="", winner=None, is_playoff=False):
+def match(east=1, west=2, *, kimarite="", winner=None, is_playoff=False, bout_no=None):
     value = {
         "eastProfileUrl": f"https://www.sumo.or.jp/ResultRikishiData/profile/{east}/",
         "westProfileUrl": f"https://www.sumo.or.jp/ResultRikishiData/profile/{west}/",
         "kimarite": kimarite,
         "winner": winner,
-        "boutNo": east,
+        "boutNo": bout_no if bout_no is not None else east,
     }
     if is_playoff:
         value["isPlayoff"] = True
@@ -27,8 +27,8 @@ def payload(makuuchi=None, juryo=None, *, absentees=None):
     pending = {"status": "pending", "data": {"makuuchi": {"matches": []}, "juryo": {"matches": []}}}
     days = [pending for _ in range(14)]
     days.insert(0, {"day": 1, "status": "published", "data": {
-        "makuuchi": {"matches": makuuchi if makuuchi is not None else [match(1, 2)], "absentees": absentees or []},
-        "juryo": {"matches": juryo if juryo is not None else [match(3, 4)], "absentees": []},
+        "makuuchi": {"matches": makuuchi if makuuchi is not None else [match(1, 2, bout_no=1)], "absentees": absentees or []},
+        "juryo": {"matches": juryo if juryo is not None else [match(3, 4, bout_no=1)], "absentees": []},
     }})
     return {"bashoId": 637, "updatedAt": "x", "resultUpdatedAt": "x", "scheduleUpdatedAt": "x",
             "resultDays": [pending for _ in range(15)], "scheduleDays": days}
@@ -97,6 +97,13 @@ class ValidateTorikumiTest(unittest.TestCase):
         cross = set_published_day(payload(makuuchi=[match(1, 2)], juryo=[match(2, 3, is_playoff=True)]), 15)
         self.assertEqual(self.run_payload(duplicate_no), 1)
         self.assertEqual(self.run_payload(cross), 1)
+
+    def test_allows_same_bout_number_across_different_divisions(self):
+        value = payload(
+            makuuchi=[match(1, 2, bout_no=1), match(5, 6, bout_no=2)],
+            juryo=[match(3, 4, bout_no=1), match(7, 8, bout_no=2)],
+        )
+        self.assertEqual(self.run_payload(value), 0)
 
 
 if __name__ == "__main__":

@@ -9,6 +9,8 @@ import { analyzeAikuchi, type AikuchiAnalysis } from './rikishi-compare-data';
 import { divisionAnchorId } from './rikishi-display';
 import type { BashoStatus } from './basho-status';
 import { getDayPath, type TorikumiPageMode } from './torikumi-routes';
+import { getCalendarDayDiffJst, getRelativeMusubiTitle } from './relative-date';
+import { fetchRikishiMatchups, findOrderedMatchup } from './rikishi-profile';
 
 export interface FeaturedMatchup {
   id: string;
@@ -23,6 +25,24 @@ export interface FeaturedMatchup {
 }
 
 export type MatchupWinsMap = Map<string, [number, number]>;
+
+export function buildMatchupWinsMap(
+  response: Awaited<ReturnType<typeof fetchRikishiMatchups>>,
+  ids: Array<[number, number]>,
+): MatchupWinsMap {
+  const map: MatchupWinsMap = new Map();
+  for (const [firstId, secondId] of ids) {
+    const wins = findOrderedMatchup(response, firstId, secondId);
+    const knownPair = response.matchups.some((item) => (
+      (item.rikishi1Id === firstId && item.rikishi2Id === secondId)
+      || (item.rikishi1Id === secondId && item.rikishi2Id === firstId)
+    ));
+    if (knownPair) {
+      map.set(`${firstId},${secondId}`, wins);
+    }
+  }
+  return map;
+}
 
 export interface EnrichedFeaturedMatchup {
   id: string;
@@ -75,6 +95,12 @@ export interface DailyHighlightsResult {
 export interface DailyHighlightsTarget {
   day: TorikumiArchiveDay;
   mode: TorikumiPageMode;
+  dayDiff?: number | null;
+}
+
+export interface DailyHighlightsResolvedTargets {
+  today: DailyHighlightsTarget | null;
+  tomorrow: DailyHighlightsTarget | null;
 }
 
 // -------------------------------------------------------------
@@ -152,37 +178,81 @@ function sortedDays(days: TorikumiArchiveDay[] | undefined): TorikumiArchiveDay[
   return [...(days ?? [])].sort((left, right) => left.day - right.day);
 }
 
-export function resolveDailyHighlightsTarget({
+export function resolveDailyHighlightsTargets({
   archive,
   bashoStatus,
+  now = new Date(),
 }: {
   archive: TorikumiDataSet;
   bashoStatus: BashoStatus;
-}): DailyHighlightsTarget | null {
+  now?: Date;
+}): DailyHighlightsResolvedTargets {
   const scheduleDays = sortedDays(archive.scheduleDays);
   const resultDays = sortedDays(archive.resultDays);
 
   if (bashoStatus.kind === 'upcoming') {
     const day = scheduleDays[0];
-    return day ? { day, mode: 'schedule' } : null;
+    if (!day) return { today: null, tomorrow: null };
+    const dayDiff = day.isoDate ? getCalendarDayDiffJst(day.isoDate, now) : null;
+    return {
+      today: { day, mode: 'schedule', dayDiff },
+      tomorrow: null,
+    };
   }
 
   if (bashoStatus.kind === 'live') {
-    if (bashoStatus.day === null) return null;
+    if (bashoStatus.day === null) return { today: null, tomorrow: null };
 
+    let todayTarget: DailyHighlightsTarget | null = null;
     const resultDay = resultDays.find((day) => (
       day.day === bashoStatus.day && day.status === 'published' && hasMatches(day)
     ));
-    if (resultDay) return { day: resultDay, mode: 'result' };
+    if (resultDay) {
+      const dayDiff = resultDay.isoDate ? getCalendarDayDiffJst(resultDay.isoDate, now) : 0;
+      todayTarget = { day: resultDay, mode: 'result', dayDiff };
+    } else {
+      const scheduleDay = scheduleDays.find((day) => day.day === bashoStatus.day);
+      if (scheduleDay) {
+        const dayDiff = scheduleDay.isoDate ? getCalendarDayDiffJst(scheduleDay.isoDate, now) : 0;
+        todayTarget = { day: scheduleDay, mode: 'schedule', dayDiff };
+      }
+    }
 
-    const scheduleDay = scheduleDays.find((day) => day.day === bashoStatus.day);
-    return scheduleDay ? { day: scheduleDay, mode: 'schedule' } : null;
+    let tomorrowTarget: DailyHighlightsTarget | null = null;
+    const tomorrowScheduleDay = scheduleDays.find((day) => (
+      day.day === (bashoStatus.day! + 1) && (day.status === 'published' || hasMatches(day))
+    ));
+    if (tomorrowScheduleDay && hasMatches(tomorrowScheduleDay)) {
+      const dayDiff = tomorrowScheduleDay.isoDate ? getCalendarDayDiffJst(tomorrowScheduleDay.isoDate, now) : 1;
+      tomorrowTarget = { day: tomorrowScheduleDay, mode: 'schedule', dayDiff };
+    }
+
+    return {
+      today: todayTarget,
+      tomorrow: tomorrowTarget,
+    };
   }
 
   const publishedResultDays = resultDays
     .filter((day) => day.status === 'published' && hasMatches(day));
   const finalDay = publishedResultDays[publishedResultDays.length - 1];
-  return finalDay ? { day: finalDay, mode: 'result' } : null;
+  return {
+    today: finalDay ? { day: finalDay, mode: 'result', dayDiff: null } : null,
+    tomorrow: null,
+  };
+}
+
+export function resolveDailyHighlightsTarget({
+  archive,
+  bashoStatus,
+  now = new Date(),
+}: {
+  archive: TorikumiDataSet;
+  bashoStatus: BashoStatus;
+  now?: Date;
+}): DailyHighlightsTarget | null {
+  const targets = resolveDailyHighlightsTargets({ archive, bashoStatus, now });
+  return targets.today;
 }
 
 function rikishiIdFromProfileUrl(profileUrl: string): number | null {
@@ -205,6 +275,9 @@ function fallbackFeaturedMatchup(
   const westId = rikishiIdFromProfileUrl(match.westProfileUrl);
   if (eastId === null || westId === null) return null;
 
+  const titleJa = getRelativeMusubiTitle(target.dayDiff ?? null, false);
+  const titleEn = getRelativeMusubiTitle(target.dayDiff ?? null, true);
+
   return {
     match,
     featured: {
@@ -213,8 +286,8 @@ function fallbackFeaturedMatchup(
       westId,
       tagJa: '結びの一番',
       tagEn: 'Final Bout of the Day',
-      titleJa: '本日の結びの一番',
-      titleEn: 'Final Bout of the Day',
+      titleJa,
+      titleEn,
       descriptionJa: '土俵を締めくくる結びの一番。両力士のプロフィールと合口に注目です。',
       descriptionEn: 'The concluding bout of the day; rikishi profiles and head-to-head history will appear once published.',
     },

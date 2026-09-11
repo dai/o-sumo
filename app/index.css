@@ -300,6 +300,39 @@
   color: var(--color-muted);
 }
 
+.daily-highlights-tabs {
+  display: inline-flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.25rem;
+  background: var(--surface-container-high, rgba(0, 0, 0, 0.04));
+  border: 1px solid var(--color-outline-variant);
+  border-radius: 9999px;
+}
+
+.daily-highlights-tab {
+  padding: 0.4rem 1rem;
+  border: none;
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--color-muted);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.daily-highlights-tab:hover {
+  color: var(--color-primary);
+}
+
+.daily-highlights-tab.active {
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(186, 26, 26, 0.25);
+}
+
 .daily-highlights-section__sample-badge {
   padding: 0.2rem 0.65rem;
   background: #fef08a;

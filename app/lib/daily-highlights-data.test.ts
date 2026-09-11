@@ -3,6 +3,7 @@ import {
   enrichFeaturedMatchup,
   getDailyHighlights,
   resolveDailyHighlightsTarget,
+  resolveDailyHighlightsTargets,
   type FeaturedMatchup,
 } from './daily-highlights-data';
 import { torikumiArchive, type TorikumiDataSet, type TorikumiArchiveDay } from './torikumi-data';
@@ -23,7 +24,7 @@ describe('daily-highlights-data', () => {
       },
     });
 
-    expect(target).toEqual({
+    expect(target).toMatchObject({
       day: torikumiArchive.scheduleDays[0],
       mode: 'schedule',
     });
@@ -42,7 +43,7 @@ describe('daily-highlights-data', () => {
       },
     });
 
-    expect(target).toEqual({ day: resultDay, mode: 'result' });
+    expect(target).toMatchObject({ day: resultDay, mode: 'result' });
   });
 
   it('falls back to the same live schedule day when its result is unpublished', () => {
@@ -60,7 +61,7 @@ describe('daily-highlights-data', () => {
         endDate: archive.scheduleDays[archive.scheduleDays.length - 1]?.isoDate ?? null,
         day: scheduleDay.day,
       },
-    })).toEqual({ day: scheduleDay, mode: 'schedule' });
+    })).toMatchObject({ day: scheduleDay, mode: 'schedule' });
   });
 
   it('resolves final highlights from the latest published result with matches', () => {
@@ -77,7 +78,7 @@ describe('daily-highlights-data', () => {
       },
     });
 
-    expect(target).toEqual({ day: finalDay, mode: 'result' });
+    expect(target).toMatchObject({ day: finalDay, mode: 'result' });
 
     const highlights = getDailyHighlights({ monthKey: '202607', target: target! });
     expect(highlights).not.toBeNull();
@@ -148,7 +149,7 @@ describe('getDailyHighlights pending state', () => {
       bashoStatus: { kind: 'live', startDate: '2026-09-13', endDate: '2026-09-27', day: 1 },
     });
 
-    expect(target).toEqual({ day: scheduleDay, mode: 'schedule' });
+    expect(target).toMatchObject({ day: scheduleDay, mode: 'schedule' });
     expect(getDailyHighlights({ monthKey: '202609', target: target! })).toBeNull();
   });
 
@@ -159,12 +160,94 @@ describe('getDailyHighlights pending state', () => {
       archive: julyArchive,
       bashoStatus: { kind: 'final', startDate: null, endDate: null, day: null },
     });
-    expect(target).toEqual({ day: finalDay, mode: 'result' });
+    expect(target).toMatchObject({ day: finalDay, mode: 'result' });
 
     const highlights = getDailyHighlights({ monthKey: '202607', target: target! });
     expect(highlights?.matchups[0]).not.toMatchObject({
       descriptionJa: expect.stringContaining('先場所優勝の豊昇龍'),
     });
+  });
+
+  it('resolves relative musubi title dynamically based on dayDiff', () => {
+    const sept11 = new Date('2026-09-11T06:00:00Z');
+    const target2DaysBefore = resolveDailyHighlightsTarget({
+      archive: torikumiArchive,
+      bashoStatus: {
+        kind: 'upcoming',
+        startDate: torikumiArchive.scheduleDays[0].isoDate,
+        endDate: '2026-09-27',
+        day: null,
+      },
+      now: sept11,
+    });
+    expect(target2DaysBefore?.dayDiff).toBe(2);
+    const highlights2DaysBefore = getDailyHighlights({
+      monthKey: '202609',
+      target: target2DaysBefore!,
+    });
+    expect(highlights2DaysBefore?.matchups[0].titleJa).toBe('明後日の結びの一番');
+    expect(highlights2DaysBefore?.matchups[0].titleEn).toBe("Day After Tomorrow's Final Bout");
+
+    const sept12 = new Date('2026-09-12T01:00:00Z');
+    const target1DayBefore = resolveDailyHighlightsTarget({
+      archive: torikumiArchive,
+      bashoStatus: {
+        kind: 'upcoming',
+        startDate: torikumiArchive.scheduleDays[0].isoDate,
+        endDate: '2026-09-27',
+        day: null,
+      },
+      now: sept12,
+    });
+    expect(target1DayBefore?.dayDiff).toBe(1);
+    const highlights1DayBefore = getDailyHighlights({
+      monthKey: '202609',
+      target: target1DayBefore!,
+    });
+    expect(highlights1DayBefore?.matchups[0].titleJa).toBe('明日の結びの一番');
+    expect(highlights1DayBefore?.matchups[0].titleEn).toBe("Tomorrow's Final Bout");
+  });
+
+  it('resolves both today and tomorrow targets in live mode when tomorrow schedule has matches', () => {
+    const scheduleDay1 = torikumiArchive.scheduleDays[0];
+    const scheduleDay2 = {
+      ...torikumiArchive.scheduleDays[1],
+      status: 'published' as const,
+      data: {
+        ...torikumiArchive.scheduleDays[1].data,
+        makuuchi: {
+          ...torikumiArchive.scheduleDays[1].data.makuuchi,
+          matches: scheduleDay1.data.makuuchi.matches,
+        },
+      },
+    };
+    const liveArchive: TorikumiDataSet = {
+      ...torikumiArchive,
+      scheduleDays: [scheduleDay1, scheduleDay2, ...torikumiArchive.scheduleDays.slice(2)],
+      resultDays: [
+        {
+          ...scheduleDay1,
+          status: 'published',
+        },
+      ],
+    };
+
+    const targets = resolveDailyHighlightsTargets({
+      archive: liveArchive,
+      bashoStatus: {
+        kind: 'live',
+        startDate: '2026-09-13',
+        endDate: '2026-09-27',
+        day: 1,
+      },
+      now: new Date('2026-09-13T06:00:00Z'),
+    });
+
+    expect(targets.today).not.toBeNull();
+    expect(targets.today?.day.day).toBe(1);
+    expect(targets.tomorrow).not.toBeNull();
+    expect(targets.tomorrow?.day.day).toBe(2);
+    expect(targets.tomorrow?.mode).toBe('schedule');
   });
 });
 

@@ -679,3 +679,184 @@
   color: var(--color-muted);
   user-select: none;
 }
+
+/* Matchup popup in Torikumi schedule */
+.torikumi-matchup-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.torikumi-matchup-trigger {
+  width: 100%;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.35rem 0.25rem;
+  background: transparent;
+  border: 1px dashed transparent;
+  border-radius: 4px;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.torikumi-matchup-trigger:hover,
+.torikumi-matchup-trigger.is-active {
+  background: var(--surface-container-high, rgba(0, 0, 0, 0.05));
+  border-color: var(--color-outline-variant, #ccc);
+  color: var(--color-primary);
+}
+
+.torikumi-matchup-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: var(--color-primary-container, #fee2e2);
+  color: var(--color-primary, #b91c1c);
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.torikumi-matchup-popover {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(280px, 85vw);
+  background: var(--surface-container-lowest, #fff);
+  border: 1px solid var(--color-outline-variant, #e5e7eb);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  padding: 0.75rem 0.85rem;
+  z-index: 100;
+  text-align: center;
+  animation: popupFadeIn 0.15s ease-out;
+}
+
+.torikumi-matchup-popover::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  background: var(--surface-container-lowest, #fff);
+  border-top: 1px solid var(--color-outline-variant, #e5e7eb);
+  border-left: 1px solid var(--color-outline-variant, #e5e7eb);
+}
+
+@keyframes popupFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -4px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.torikumi-matchup-popover__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--color-outline-variant, #f3f4f6);
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.torikumi-matchup-popover__title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.torikumi-matchup-popover__vs {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  font-weight: 800;
+}
+
+.torikumi-matchup-popover__close {
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--color-muted);
+  cursor: pointer;
+  padding: 0 0.2rem;
+}
+
+.torikumi-matchup-popover__body {
+  padding: 0.4rem 0 0.6rem;
+}
+
+.torikumi-matchup-popover__first-meeting,
+.torikumi-matchup-popover__loading {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-secondary-dim);
+}
+
+.torikumi-matchup-popover__score-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.torikumi-matchup-popover__name {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.torikumi-matchup-popover__score {
+  font-size: 1.1rem;
+  color: var(--color-primary);
+}
+
+.torikumi-matchup-popover__lead {
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+.torikumi-matchup-popover__footer {
+  border-top: 1px solid var(--color-outline-variant, #f3f4f6);
+  padding-top: 0.5rem;
+}
+
+.torikumi-matchup-popover__cta {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+  padding: 0.35rem 0.5rem;
+  border-radius: 4px;
+  background: var(--color-primary-container, #fee2e2);
+  transition: background 0.15s ease;
+}
+
+.torikumi-matchup-popover__cta:hover {
+  background: color-mix(in srgb, var(--color-primary) 20%, transparent);
+}

@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { render, screen, waitFor, within } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import DailyHighlightsSection from './DailyHighlightsSection';
 import { i18n } from '../lib/i18n';
@@ -50,6 +50,7 @@ function renderHighlights(
   monthKey: string,
   kind: 'upcoming' | 'live' | 'final',
   day: number | null,
+  now?: Date,
 ) {
   const scheduleDays = archive.scheduleDays ?? [];
   return render(
@@ -63,6 +64,7 @@ function renderHighlights(
           endDate: scheduleDays[scheduleDays.length - 1]?.isoDate ?? null,
           day,
         }}
+        now={now}
       />
     </MemoryRouter>,
   );
@@ -114,7 +116,7 @@ describe('DailyHighlightsSection', () => {
     stubMatchupsFetch({ updatedAt: '2026-08-26T00:00:00+09:00', matchups: [] });
 
     try {
-      renderHighlights(pendingArchive(), '202609', 'upcoming', null);
+      renderHighlights(pendingArchive(), '202609', 'upcoming', null, new Date('2026-09-13T06:00:00Z'));
 
       const section = await screen.findByRole('region', { name: '今日のみどころ' });
       expect(within(section).getByText('今日のみどころ')).toBeInTheDocument();
@@ -135,7 +137,7 @@ describe('DailyHighlightsSection', () => {
     await i18n.changeLanguage('en');
 
     try {
-      renderHighlights(pendingArchive(), '202609', 'upcoming', null);
+      renderHighlights(pendingArchive(), '202609', 'upcoming', null, new Date('2026-09-13T06:00:00Z'));
 
       const section = await screen.findByRole('region', { name: "Today's Highlights" });
       expect(within(section).getByText("Today's Highlights")).toBeInTheDocument();
@@ -172,7 +174,7 @@ describe('DailyHighlightsSection', () => {
     stubMatchupsFetch({ updatedAt: '2026-08-26T00:00:00+09:00', matchups: [] });
 
     try {
-      renderHighlights(pendingArchive(), '202609', 'upcoming', null);
+      renderHighlights(pendingArchive(), '202609', 'upcoming', null, new Date('2026-09-13T06:00:00Z'));
 
       const section = await screen.findByRole('region', { name: '今日のみどころ' });
       expect(within(section).queryAllByRole('article')).toHaveLength(0);
@@ -186,11 +188,88 @@ describe('DailyHighlightsSection', () => {
     stubMatchupsFetch({ updatedAt: '2026-08-26T00:00:00+09:00', matchups: [] });
 
     try {
-      renderHighlights(pendingArchive(), '202609', 'upcoming', null);
+      renderHighlights(pendingArchive(), '202609', 'upcoming', null, new Date('2026-09-13T06:00:00Z'));
 
       const section = await screen.findByRole('region', { name: '今日のみどころ' });
       expect(within(section).queryAllByRole('article')).toHaveLength(0);
       expect(within(section).queryByRole('button', { name: /ほかの注目取組/ })).not.toBeInTheDocument();
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it('renders "明後日のみどころ" when 2 days before basho opening (e.g. Sept 11)', async () => {
+    stubMatchupsFetch({ updatedAt: '2026-09-11T00:00:00+09:00', matchups: [] });
+
+    try {
+      renderHighlights(torikumiArchive, '202609', 'upcoming', null, new Date('2026-09-11T06:00:00Z'));
+
+      const section = await screen.findByRole('region', { name: '明後日のみどころ' });
+      expect(within(section).getByText('明後日のみどころ')).toBeInTheDocument();
+      expect(within(section).getByText('明後日の結びの一番')).toBeInTheDocument();
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it('renders "明日のみどころ" when 1 day before basho opening (e.g. Sept 12)', async () => {
+    stubMatchupsFetch({ updatedAt: '2026-09-12T00:00:00+09:00', matchups: [] });
+
+    try {
+      renderHighlights(torikumiArchive, '202609', 'upcoming', null, new Date('2026-09-12T01:00:00Z'));
+
+      const section = await screen.findByRole('region', { name: '明日のみどころ' });
+      expect(within(section).getByText('明日のみどころ')).toBeInTheDocument();
+      expect(within(section).getByText('明日の結びの一番')).toBeInTheDocument();
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it('renders tabs for today and tomorrow during live basho when tomorrow schedule is published', async () => {
+    stubMatchupsFetch({ updatedAt: '2026-09-13T00:00:00+09:00', matchups: [] });
+    const scheduleDay1 = torikumiArchive.scheduleDays[0];
+    const scheduleDay2 = {
+      ...torikumiArchive.scheduleDays[1],
+      status: 'published' as const,
+      data: {
+        ...torikumiArchive.scheduleDays[1].data,
+        makuuchi: {
+          ...torikumiArchive.scheduleDays[1].data.makuuchi,
+          matches: scheduleDay1.data.makuuchi.matches,
+        },
+      },
+    };
+    const liveArchive: TorikumiDataSet = {
+      ...torikumiArchive,
+      scheduleDays: [scheduleDay1, scheduleDay2, ...torikumiArchive.scheduleDays.slice(2)],
+      resultDays: [
+        {
+          ...scheduleDay1,
+          status: 'published',
+        },
+      ],
+    };
+
+    try {
+      renderHighlights(liveArchive, '202609', 'live', 1, new Date('2026-09-13T06:00:00Z'));
+
+      const section = await screen.findByRole('region', { name: '今日のみどころ' });
+      const tablist = within(section).getByRole('tablist', { name: '取組日程の切り替え' });
+      expect(tablist).toBeInTheDocument();
+
+      const todayTab = within(tablist).getByRole('tab', { name: '今日の取組' });
+      const tomorrowTab = within(tablist).getByRole('tab', { name: '明日の取組' });
+      expect(todayTab).toHaveAttribute('aria-selected', 'true');
+      expect(tomorrowTab).toHaveAttribute('aria-selected', 'false');
+
+      // Click tomorrow tab
+      fireEvent.click(tomorrowTab);
+      await waitFor(() => {
+        expect(todayTab).toHaveAttribute('aria-selected', 'false');
+        expect(tomorrowTab).toHaveAttribute('aria-selected', 'true');
+        expect(within(section).getByText('明日のみどころ')).toBeInTheDocument();
+      });
     } finally {
       vi.unstubAllGlobals();
     }
