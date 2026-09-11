@@ -290,9 +290,10 @@ function renderArchivesMarkdown(): string {
     description: '大相撲の過去の場所ごとの番付、取組結果、取組予定を閲覧できます。',
     canonical: `${SITE}/archives/`,
     body: [
-      'サポートされている月: 2026年3月場所 / 5月場所 / 7月場所',
+      'サポートされている月: 2026年3月場所 / 5月場所 / 7月場所 / 9月場所',
       '',
-      '- [2026年7月場所（現在）](https://osada.us/202607-torikumi/)',
+      '- [2026年9月場所（現在）](https://osada.us/202609-torikumi/)',
+      '- [2026年7月場所](https://osada.us/202607-torikumi/)',
       '- [2026年5月場所](https://osada.us/202605-torikumi/)',
       '- [2026年3月場所](https://osada.us/202603-torikumi/)',
     ].join('\n'),
@@ -309,9 +310,9 @@ function renderHomeMarkdown(): string {
       '',
       '### 主要ページ',
       '',
-      '- [番付（直近の場所）](https://osada.us/202607-banzuke/)',
-      '- [取組予定](https://osada.us/202607-yotei/)',
-      '- [取組結果](https://osada.us/202607-torikumi/)',
+      '- [番付（直近の場所）](https://osada.us/202609-banzuke/)',
+      '- [取組予定](https://osada.us/202609-yotei/)',
+      '- [取組結果](https://osada.us/202609-torikumi/)',
       '- [力士一覧](https://osada.us/rikishi/)',
       '- [決まり手](https://osada.us/kimarite/)',
       '- [分析](https://osada.us/analytics/)',
@@ -399,7 +400,7 @@ export function buildMarkdownPages(publicDir: string, outRoot: string): Markdown
   });
 
   // Iterate over the supported basho set.
-  for (const monthKey of ['202603', '202605', '202607']) {
+  for (const monthKey of ['202603', '202605', '202607', '202609']) {
     routes.push({
       outDir: `${monthKey}-banzuke/`,
       content: renderBanzukeMarkdown(publicDir, monthKey, monthKey),
@@ -430,7 +431,7 @@ export const MARKDOWN_ROUTES: ReadonlyArray<string> = [
   'kimarite/',
   'analytics/',
   'about/',
-  ...['202603', '202605', '202607'].flatMap((monthKey) => [
+  ...['202603', '202605', '202607', '202609'].flatMap((monthKey) => [
     `${monthKey}-banzuke/`,
     `${monthKey}-torikumi/`,
     `${monthKey}-yotei/`,
