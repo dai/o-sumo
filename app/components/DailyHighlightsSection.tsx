@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { generatedRikishiAvatarDataUrl } from '../lib/rikishi-avatar';
 import {
+  buildMatchupWinsMap,
   getDailyHighlights,
   resolveDailyHighlightsTargets,
   type DailyHighlightsResult,
@@ -11,7 +12,7 @@ import {
 } from '../lib/daily-highlights-data';
 import type { TorikumiDataSet, TorikumiArchiveDay } from '../lib/torikumi-data';
 import type { BashoStatus } from '../lib/basho-status';
-import { fetchRikishiMatchups, findOrderedMatchup } from '../lib/rikishi-profile';
+import { fetchRikishiMatchups } from '../lib/rikishi-profile';
 import { getRelativeHighlightsTitle, getRelativeMonomosuText } from '../lib/relative-date';
 import DailyMonomosuBox from './DailyMonomosuBox';
 
@@ -158,27 +159,6 @@ function FeaturedMatchupCard({
       </div>
     </article>
   );
-}
-
-function buildMatchupWinsMap(
-  response: Awaited<ReturnType<typeof fetchRikishiMatchups>>,
-  ids: Array<[number, number]>,
-): MatchupWinsMap {
-  const map: MatchupWinsMap = new Map();
-  for (const [firstId, secondId] of ids) {
-    const wins = findOrderedMatchup(response, firstId, secondId);
-    const knownPair = response.matchups.some((item) => (
-      (item.rikishi1Id === firstId && item.rikishi2Id === secondId)
-      || (item.rikishi1Id === secondId && item.rikishi2Id === firstId)
-    ));
-    // Only seed the cache when the JSON explicitly listed the pair. A
-    // `0-0` lookup for an unlisted pair must NOT surface as a misleading
-    // "first meeting" record.
-    if (knownPair) {
-      map.set(`${firstId},${secondId}`, wins);
-    }
-  }
-  return map;
 }
 
 function extractPairIds(target: { day: TorikumiArchiveDay }): Array<[number, number]> {

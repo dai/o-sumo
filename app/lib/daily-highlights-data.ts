@@ -10,6 +10,7 @@ import { divisionAnchorId } from './rikishi-display';
 import type { BashoStatus } from './basho-status';
 import { getDayPath, type TorikumiPageMode } from './torikumi-routes';
 import { getCalendarDayDiffJst, getRelativeMusubiTitle } from './relative-date';
+import { fetchRikishiMatchups, findOrderedMatchup } from './rikishi-profile';
 
 export interface FeaturedMatchup {
   id: string;
@@ -24,6 +25,24 @@ export interface FeaturedMatchup {
 }
 
 export type MatchupWinsMap = Map<string, [number, number]>;
+
+export function buildMatchupWinsMap(
+  response: Awaited<ReturnType<typeof fetchRikishiMatchups>>,
+  ids: Array<[number, number]>,
+): MatchupWinsMap {
+  const map: MatchupWinsMap = new Map();
+  for (const [firstId, secondId] of ids) {
+    const wins = findOrderedMatchup(response, firstId, secondId);
+    const knownPair = response.matchups.some((item) => (
+      (item.rikishi1Id === firstId && item.rikishi2Id === secondId)
+      || (item.rikishi1Id === secondId && item.rikishi2Id === firstId)
+    ));
+    if (knownPair) {
+      map.set(`${firstId},${secondId}`, wins);
+    }
+  }
+  return map;
+}
 
 export interface EnrichedFeaturedMatchup {
   id: string;

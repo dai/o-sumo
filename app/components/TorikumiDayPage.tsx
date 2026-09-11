@@ -5,7 +5,9 @@ import { canonicalShikona, divisionAnchorId } from '../lib/rikishi-display';
 import SortToggle from './SortToggle';
 import { type SortOrder, sortMatches } from '../lib/sorting';
 import { type TorikumiArchiveDay, type TorikumiDivisionDay, type TorikumiMatch } from '../lib/torikumi-data';
-import { banzukeRikishiPath, extractRikishiIdFromProfileUrl } from '../lib/rikishi-profile';
+import { banzukeRikishiPath, extractRikishiIdFromProfileUrl, fetchRikishiMatchups } from '../lib/rikishi-profile';
+import { buildMatchupWinsMap, type MatchupWinsMap } from '../lib/daily-highlights-data';
+import MatchupPopup from './MatchupPopup';
 import {
   getArchiveRouteConfigByMonthKey,
   getArchiveRouteConfigForDateKey,
@@ -256,6 +258,7 @@ function TorikumiTable({
   absenteeIds,
   myRikishiOnly,
   isSaved,
+  matchupWinsMap,
 }: {
   title: string;
   dayData: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay };
@@ -267,6 +270,7 @@ function TorikumiTable({
   absenteeIds: Set<number>;
   myRikishiOnly: boolean;
   isSaved: (id: number) => boolean;
+  matchupWinsMap?: MatchupWinsMap;
 }) {
   if (mode === 'result') {
     let sections = getUnifiedResultSections(dayData);
@@ -352,9 +356,17 @@ function TorikumiTable({
                         <div className="english">{match.eastEnglish}</div>
                       </div>
                       <div className={`cell kimarite kimarite-value ${match.winner && match.kimarite === '不戦' ? `winner-${match.winner}` : ''}`}>
-                        {match.winner
-                          ? winnerLabel(match)
-                          : t('torikumi.day.matchScheduled')}
+                        {match.winner ? (
+                          winnerLabel(match)
+                        ) : (
+                          <MatchupPopup
+                            eastId={extractRikishiIdFromProfileUrl(match.eastProfileUrl)}
+                            westId={extractRikishiIdFromProfileUrl(match.westProfileUrl)}
+                            eastName={displayName(match.eastName, match.eastProfileUrl)}
+                            westName={displayName(match.westName, match.westProfileUrl)}
+                            matchupWinsMap={matchupWinsMap ?? new Map()}
+                          />
+                        )}
                       </div>
                       <div className={`cell west rikishi-card ${match.winner === 'west' ? 'winner' : ''}`}>
                         <RikishiMatchName name={match.westName} profileUrl={match.westProfileUrl} banzukePath={banzukePath} record={recordMap.get(match.westProfileUrl)} />
@@ -487,6 +499,37 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
   const updatedAt = visibleDay.source === 'schedule' ? archive.scheduleUpdatedAt : mode === 'result' ? archive.resultUpdatedAt : archive.scheduleUpdatedAt;
   const recordMap = React.useMemo(() => createRecordMap(monthKey), [monthKey]);
 
+  const [matchupWinsMap, setMatchupWinsMap] = React.useState<MatchupWinsMap>(() => new Map());
+
+  React.useEffect(() => {
+    if (mode !== 'schedule') return;
+
+    const pairs: Array<[number, number]> = [];
+    for (const division of [visibleDayData.makuuchi, visibleDayData.juryo]) {
+      for (const match of division.matches) {
+        const eastId = extractRikishiIdFromProfileUrl(match.eastProfileUrl);
+        const westId = extractRikishiIdFromProfileUrl(match.westProfileUrl);
+        if (eastId !== null && westId !== null) {
+          pairs.push([eastId, westId]);
+        }
+      }
+    }
+
+    if (pairs.length === 0) return;
+
+    let cancelled = false;
+    fetchRikishiMatchups().then((matchupData) => {
+      if (cancelled) return;
+      setMatchupWinsMap(buildMatchupWinsMap(matchupData, pairs));
+    }).catch((err) => {
+      console.error('Failed to load rikishi matchups:', err);
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [mode, visibleDayData]);
+
   return (
     <div className="torikumi-page">
       <header className="torikumi-header">
@@ -572,6 +615,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
           absenteeIds={absenteeIds}
           myRikishiOnly={myRikishiOnly}
           isSaved={isSaved}
+          matchupWinsMap={matchupWinsMap}
         />
       </main>
 
