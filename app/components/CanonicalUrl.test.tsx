@@ -65,7 +65,7 @@ describe('CanonicalUrl', () => {
     });
   });
 
-  it('keeps canonical and og:url on the home fallback for unsupported routes', async () => {
+  it('sets canonical and og:url to 404 for unsupported routes', async () => {
     render(
       <MemoryRouter initialEntries={['/209912-banzuke/']}>
         <CanonicalUrl />
@@ -75,10 +75,10 @@ describe('CanonicalUrl', () => {
 
     await waitFor(() => {
       expect(document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.href).toBe(
-        'https://osada.us/',
+        'https://osada.us/404',
       );
       expect(document.head.querySelector<HTMLMetaElement>('meta[property="og:url"]')?.content).toBe(
-        'https://osada.us/',
+        'https://osada.us/404',
       );
     });
   });

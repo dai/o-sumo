@@ -20,6 +20,16 @@ function homeMeta(): PageMeta {
   return pageMeta('/', HOME_META.title, HOME_META.description);
 }
 
+function notFoundMeta(): PageMeta {
+  return {
+    title: '404 ページが見つかりません | o-sumo',
+    description: 'お探しのページは見つかりませんでした。o-sumoの最新取組表や番付一覧をご確認ください。',
+    canonicalUrl: `${SITE_ORIGIN}/404`,
+    imageUrl: IMAGE_URL,
+    type: 'website',
+  };
+}
+
 function bashoLabel(year: string, month: string): string {
   return `${year}年${Number(month)}月場所`;
 }
@@ -73,7 +83,7 @@ export function resolvePageMeta(pathname: string): PageMeta {
   const banzukeMatch = canonicalPath.match(/^\/(\d{4})(\d{2})-banzuke\/$/);
   if (banzukeMatch) {
     const [, year, month] = banzukeMatch;
-    if (!getArchiveRouteConfigByMonthKey(`${year}${month}`)) return homeMeta();
+    if (!getArchiveRouteConfigByMonthKey(`${year}${month}`)) return notFoundMeta();
     const basho = bashoLabel(year, month);
     return pageMeta(canonicalPath, `${basho} 番付 | o-sumo`, `${basho}の番付を確認できます。`);
   }
@@ -81,7 +91,7 @@ export function resolvePageMeta(pathname: string): PageMeta {
   const hubMatch = canonicalPath.match(/^\/(\d{4})(\d{2})-(torikumi|yotei)\/$/);
   if (hubMatch) {
     const [, year, month, mode] = hubMatch;
-    if (!getArchiveRouteConfigByMonthKey(`${year}${month}`)) return homeMeta();
+    if (!getArchiveRouteConfigByMonthKey(`${year}${month}`)) return notFoundMeta();
     const basho = bashoLabel(year, month);
     const isResult = mode === 'torikumi';
     return pageMeta(
@@ -97,7 +107,7 @@ export function resolvePageMeta(pathname: string): PageMeta {
     const basho = bashoLabel(year, month);
     const isResult = mode === 'torikumi';
     const archiveDay = findArchiveDay(`${year}${month}${day}`, isResult ? 'result' : 'schedule');
-    if (!archiveDay) return homeMeta();
+    if (!archiveDay) return notFoundMeta();
     const dayLabel = archiveDay.label;
     return pageMeta(
       canonicalPath,
@@ -119,5 +129,6 @@ export function resolvePageMeta(pathname: string): PageMeta {
     );
   }
 
-  return homeMeta();
+  return notFoundMeta();
 }
+
