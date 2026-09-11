@@ -95,6 +95,9 @@ function createLiveTargetFixture(): { archive: TorikumiDataSet; data: TorikumiDa
 }
 
 beforeEach(async () => {
+  // Keep relative dates stable: the published opening bouts are two days away.
+  vi.useFakeTimers({ toFake: ['Date'] });
+  vi.setSystemTime(new Date('2026-09-11T12:00:00+09:00'));
   await act(() => i18n.changeLanguage('ja'));
 });
 
