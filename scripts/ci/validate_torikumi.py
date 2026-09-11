@@ -55,7 +55,6 @@ def validate_published_schedules(data: dict) -> None:
         participant_divisions: dict[int, str] = {}
         appearances: Counter[int] = Counter()
         ordinary_bouts: set[tuple[int, int]] = set()
-        bout_numbers: set[int] = set()
         permitted_absentee_overlap: set[int] = set()
         absentee_ids: set[int] = set()
         for division in ("makuuchi", "juryo"):
@@ -68,6 +67,7 @@ def validate_published_schedules(data: dict) -> None:
             absentees = division_data.get("absentees", [])
             if not isinstance(absentees, list):
                 raise ValueError(f"day={day} division={division} absentees must be an array")
+            bout_numbers: set[int] = set()
             for bout in matches:
                 if not isinstance(bout, dict):
                     raise ValueError(f"day={day} division={division} match must be an object")
@@ -84,7 +84,7 @@ def validate_published_schedules(data: dict) -> None:
                 if isinstance(bout_no, bool) or not isinstance(bout_no, int) or bout_no <= 0:
                     raise ValueError(f"day={day} boutNo must be a positive integer")
                 if bout_no in bout_numbers:
-                    raise ValueError(f"day={day} duplicate boutNo {bout_no}")
+                    raise ValueError(f"day={day} division={division} duplicate boutNo {bout_no}")
                 bout_numbers.add(bout_no)
                 if not is_playoff and pair in ordinary_bouts:
                     raise ValueError(f"day={day} duplicate ordinary bout {pair}")

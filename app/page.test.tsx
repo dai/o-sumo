@@ -385,7 +385,7 @@ describe('Home page', () => {
     await act(() => i18n.changeLanguage('ja'));
   });
 
-  it('renders the upcoming highlights section with awaiting-official-bouts notice', () => {
+  it('renders the upcoming highlights section with published official bout links and monomosu', () => {
     render(
       <MemoryRouter>
         <Home />
@@ -395,8 +395,17 @@ describe('Home page', () => {
     const highlightsSection = document.querySelector<HTMLElement>('.daily-highlights-section');
     expect(highlightsSection).not.toBeNull();
     expect(within(highlightsSection!).getByRole('heading', { level: 2, name: '今日のみどころ' })).toBeInTheDocument();
-    expect(within(highlightsSection!).getByText('公式取組発表待ち')).toBeInTheDocument();
-    expect(within(highlightsSection!).getByText('公式取組の発表後に、注目取組・合口・比較への導線を掲載します。')).toBeInTheDocument();
+    expect(within(highlightsSection!).getByText('初日')).toBeInTheDocument();
+
+    // Monomosu Box
+    const monomosuBox = highlightsSection!.querySelector<HTMLElement>('.monomosu-box');
+    expect(monomosuBox).not.toBeNull();
+    expect(within(monomosuBox!).getByText('物申す')).toBeInTheDocument();
+    expect(within(monomosuBox!).getByRole('button', { name: /座布団を投げる/ })).toBeInTheDocument();
+
+    const compareLinks = within(highlightsSection!).getAllByRole('link', { name: /詳しく比較する/ });
+    expect(compareLinks.length).toBeGreaterThanOrEqual(1);
+    expect(within(highlightsSection!).getAllByRole('link', { name: /取組を見る/ }).length).toBeGreaterThanOrEqual(1);
   });
 
   it('translates the daily highlights section when English is selected in upcoming mode', async () => {
@@ -411,8 +420,9 @@ describe('Home page', () => {
     const highlightsSection = document.querySelector<HTMLElement>('.daily-highlights-section');
     expect(highlightsSection).not.toBeNull();
     expect(within(highlightsSection!).getByRole('heading', { level: 2, name: "Today's Highlights" })).toBeInTheDocument();
-    expect(within(highlightsSection!).getByText('Awaiting Official Bouts')).toBeInTheDocument();
-    expect(within(highlightsSection!).getByText('Featured bouts, aikuchi, and comparison links will appear after the official torikumi is published.')).toBeInTheDocument();
+    expect(within(highlightsSection!).getByText('Day 1')).toBeInTheDocument();
+    expect(within(highlightsSection!).getByText('VOICE')).toBeInTheDocument();
+    expect(within(highlightsSection!).getAllByRole('link', { name: /Compare Rikishi/ }).length).toBeGreaterThanOrEqual(1);
 
     await act(() => i18n.changeLanguage('ja'));
   });
