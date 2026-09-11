@@ -1,5 +1,4 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import MatchupPopup from './MatchupPopup';
 
@@ -25,7 +24,7 @@ describe('MatchupPopup', () => {
     const map = new Map<string, [number, number]>();
     map.set('4001,4002', [3, 1]);
 
-    const { container } = render(
+    render(
       <MemoryRouter>
         <MatchupPopup
           eastId={4001}
