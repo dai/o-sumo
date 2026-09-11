@@ -314,6 +314,7 @@ p {
   gap: 0.75rem;
   flex-wrap: wrap;
   margin-bottom: 0.2rem;
+  width: 100%;
 }
 
 .site-header-top-row .site-header-nav {
@@ -330,6 +331,7 @@ p {
   letter-spacing: 0.02em;
   color: var(--site-header-text);
   line-height: 1.25;
+  text-align: center;
 }
 
 .site-header-top-row .page-subtitle {
@@ -338,13 +340,17 @@ p {
   font-weight: 400;
   font-family: var(--font-serif);
   color: var(--site-header-text-muted);
+  text-align: center;
 }
 
 .site-header-heading-group {
   display: inline-flex;
-  align-items: baseline;
+  align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   flex-wrap: wrap;
+  text-align: center;
+  width: 100%;
 }
 
 /* 4-Row Header Layout (Row 1: Logo + Heading, Row 2: Description, Row 3: Links, Row 4: Meta + Notes) */
@@ -516,8 +522,7 @@ p {
   text-decoration: underline;
 }
 
-@media (max-width: 640px) {
-  .home-header,
+@media (max-width: 860px) {
   .page-header,
   .torikumi-header,
   .rikishi-header,
@@ -531,6 +536,12 @@ p {
   .site-header-nav {
     top: 0.5rem;
     left: 0.65rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-header {
+    padding-top: 2.8rem;
   }
 }
 

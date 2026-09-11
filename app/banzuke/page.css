@@ -188,19 +188,26 @@
 /* Responsive */
 @media (max-width: 768px) {
   .page-header {
-    padding: 0.65rem 0.85rem;
+    padding-top: 2.8rem;
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+    padding-bottom: 0.65rem;
+    text-align: center;
   }
 
   .page-title {
     font-size: 1.5rem;
+    text-align: center;
   }
 
   .page-subtitle {
     font-size: 0.95rem;
+    text-align: center;
   }
 
   .page-description {
     font-size: 0.78rem;
+    text-align: center;
   }
 
   .page-main {
@@ -231,7 +238,11 @@
 
 @media (max-width: 480px) {
   .page-header {
-    padding: 0.55rem 0.75rem;
+    padding-top: 2.8rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-bottom: 0.55rem;
+    text-align: center;
   }
 
   .page-title {
