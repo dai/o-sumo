@@ -4,20 +4,22 @@ import { useTranslation } from 'react-i18next';
 import { generatedRikishiAvatarDataUrl } from '../lib/rikishi-avatar';
 import {
   getDailyHighlights,
-  resolveDailyHighlightsTarget,
+  resolveDailyHighlightsTargets,
   type DailyHighlightsResult,
   type EnrichedFeaturedMatchup,
   type MatchupWinsMap,
 } from '../lib/daily-highlights-data';
-import type { TorikumiDataSet } from '../lib/torikumi-data';
+import type { TorikumiDataSet, TorikumiArchiveDay } from '../lib/torikumi-data';
 import type { BashoStatus } from '../lib/basho-status';
 import { fetchRikishiMatchups, findOrderedMatchup } from '../lib/rikishi-profile';
+import { getRelativeHighlightsTitle, getRelativeMonomosuText } from '../lib/relative-date';
 import DailyMonomosuBox from './DailyMonomosuBox';
 
 export interface DailyHighlightsSectionProps {
   monthKey: string;
   archive: TorikumiDataSet;
   bashoStatus: BashoStatus;
+  now?: Date;
 }
 
 function FeaturedMatchupCard({
@@ -179,7 +181,7 @@ function buildMatchupWinsMap(
   return map;
 }
 
-function extractPairIds(target: NonNullable<ReturnType<typeof resolveDailyHighlightsTarget>>): Array<[number, number]> {
+function extractPairIds(target: { day: TorikumiArchiveDay }): Array<[number, number]> {
   const pairs: Array<[number, number]> = [];
   for (const match of [
     ...target.day.data.makuuchi.matches,
@@ -201,24 +203,34 @@ export default function DailyHighlightsSection({
   monthKey,
   archive,
   bashoStatus,
+  now,
 }: DailyHighlightsSectionProps) {
   const { t, i18n } = useTranslation('common');
   const isEn = i18n.language === 'en';
 
-  const target = React.useMemo(() => resolveDailyHighlightsTarget({
+  const targets = React.useMemo(() => resolveDailyHighlightsTargets({
     archive,
     bashoStatus,
-  }), [archive, bashoStatus]);
+    now,
+  }), [archive, bashoStatus, now]);
+
+  const [activeTab, setActiveTab] = React.useState<'today' | 'tomorrow'>('today');
+
+  const hasTomorrow = Boolean(targets.tomorrow);
+  const currentTab = hasTomorrow ? activeTab : 'today';
+  const activeTarget = currentTab === 'tomorrow' && targets.tomorrow
+    ? targets.tomorrow
+    : targets.today;
 
   const [matchupWinsMap, setMatchupWinsMap] = React.useState<MatchupWinsMap>(() => new Map());
 
   React.useEffect(() => {
-    if (!target) {
+    if (!activeTarget) {
       setMatchupWinsMap(new Map());
       return undefined;
     }
     let active = true;
-    const ids = extractPairIds(target);
+    const ids = extractPairIds(activeTarget);
     fetchRikishiMatchups()
       .then((response) => {
         if (!active) return;
@@ -231,52 +243,28 @@ export default function DailyHighlightsSection({
     return () => {
       active = false;
     };
-  }, [target]);
+  }, [activeTarget]);
 
   const highlightsResult: DailyHighlightsResult | null = React.useMemo(() => {
-    if (!target) return null;
+    if (!activeTarget) return null;
     return getDailyHighlights({
       monthKey,
-      target,
+      target: activeTarget,
       matchupWinsMap: matchupWinsMap.size > 0 ? matchupWinsMap : undefined,
     });
-  }, [monthKey, target, matchupWinsMap]);
+  }, [monthKey, activeTarget, matchupWinsMap]);
 
-  if (!target) return null;
+  if (!activeTarget) return null;
 
-  const sectionTitle = bashoStatus.kind === 'final'
-    ? t('highlights.finalTitle')
-    : t('highlights.sectionTitle');
-
-  const sectionSubtitle = bashoStatus.kind === 'final'
+  const isFinal = bashoStatus.kind === 'final';
+  const sectionTitle = getRelativeHighlightsTitle(activeTarget.dayDiff ?? null, isFinal, t);
+  const sectionSubtitle = isFinal
     ? t('highlights.finalSubtitle')
     : t('highlights.sectionSubtitle');
 
   const dateBadge = isEn
-    ? `Day ${target.day.day}`
-    : target.day.label || `第${target.day.day}日目`;
-
-  if (highlightsResult === null) {
-    return (
-      <section className="daily-highlights-section" aria-labelledby="daily-highlights-title">
-        <div className="daily-highlights-section__header">
-          <div className="daily-highlights-section__title-wrap">
-            <h2 id="daily-highlights-title" className="daily-highlights-section__title">
-              {sectionTitle}
-            </h2>
-            <span className="daily-highlights-section__badge">{dateBadge}</span>
-            <span className="daily-highlights-section__pending-badge">
-              {t('highlights.pendingBadge')}
-            </span>
-          </div>
-          <p className="daily-highlights-section__subtitle">{sectionSubtitle}</p>
-        </div>
-        <p className="daily-highlights-section__pending-body">
-          {t('highlights.pendingBody')}
-        </p>
-      </section>
-    );
-  }
+    ? `Day ${activeTarget.day.day}`
+    : activeTarget.day.label || `第${activeTarget.day.day}日目`;
 
   return (
     <section className="daily-highlights-section" aria-labelledby="daily-highlights-title">
@@ -286,25 +274,70 @@ export default function DailyHighlightsSection({
             {sectionTitle}
           </h2>
           <span className="daily-highlights-section__badge">
-            {isEn ? highlightsResult.dateTextEn : highlightsResult.dateTextJa}
+            {highlightsResult
+              ? (isEn ? highlightsResult.dateTextEn : highlightsResult.dateTextJa)
+              : dateBadge}
           </span>
+          {highlightsResult === null && (
+            <span className="daily-highlights-section__pending-badge">
+              {t('highlights.pendingBadge')}
+            </span>
+          )}
         </div>
         <p className="daily-highlights-section__subtitle">{sectionSubtitle}</p>
+        {hasTomorrow && (
+          <div className="daily-highlights-tabs" role="tablist" aria-label={t('highlights.tabListLabel')}>
+            <button
+              type="button"
+              role="tab"
+              id="highlights-tab-today"
+              aria-selected={currentTab === 'today'}
+              aria-controls="daily-highlights-tabpanel"
+              className={`daily-highlights-tab${currentTab === 'today' ? ' active' : ''}`}
+              onClick={() => setActiveTab('today')}
+            >
+              {t('highlights.tabToday')}
+            </button>
+            <button
+              type="button"
+              role="tab"
+              id="highlights-tab-tomorrow"
+              aria-selected={currentTab === 'tomorrow'}
+              aria-controls="daily-highlights-tabpanel"
+              className={`daily-highlights-tab${currentTab === 'tomorrow' ? ' active' : ''}`}
+              onClick={() => setActiveTab('tomorrow')}
+            >
+              {t('highlights.tabTomorrow')}
+            </button>
+          </div>
+        )}
       </div>
 
-      <DailyMonomosuBox
-        monthKey={highlightsResult.monthKey}
-        day={highlightsResult.day}
-        shareTitle={isEn ? highlightsResult.dateTextEn : highlightsResult.dateTextJa}
-        customComment={bashoStatus.kind === 'final'
-          ? t('highlights.monomosuFinalText')
-          : t('highlights.monomosuLiveText')}
-      />
+      <div
+        id="daily-highlights-tabpanel"
+        role={hasTomorrow ? 'tabpanel' : undefined}
+        aria-labelledby={hasTomorrow ? (currentTab === 'tomorrow' ? 'highlights-tab-tomorrow' : 'highlights-tab-today') : undefined}
+      >
+        {highlightsResult === null ? (
+          <p className="daily-highlights-section__pending-body">
+            {t('highlights.pendingBody')}
+          </p>
+        ) : (
+          <>
+            <DailyMonomosuBox
+              monthKey={highlightsResult.monthKey}
+              day={highlightsResult.day}
+              shareTitle={isEn ? highlightsResult.dateTextEn : highlightsResult.dateTextJa}
+              customComment={getRelativeMonomosuText(activeTarget.dayDiff ?? null, isFinal, t)}
+            />
 
-      <div className="daily-highlights-grid">
-        {highlightsResult.matchups.map((matchup) => (
-          <FeaturedMatchupCard key={matchup.id} matchup={matchup} />
-        ))}
+            <div className="daily-highlights-grid">
+              {highlightsResult.matchups.map((matchup) => (
+                <FeaturedMatchupCard key={matchup.id} matchup={matchup} />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </section>
   );

@@ -128,8 +128,24 @@ describe('Home page', () => {
 
     expect(getHomeQuickNavItems({ kind: 'upcoming', startDate: '2026-09-13', endDate: '2026-09-27', day: null }, paths, 'ja')).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ to: '/results/', labelKey: 'home.quickNavOpeningBout', date: '9月13日' }),
+        expect.objectContaining({ to: '/results/', labelKey: 'home.quickNavOpeningBout', subKey: 'home.quickNavOpeningBoutSub', date: '9月13日' }),
         expect.objectContaining({ to: '/schedule/', labelKey: 'home.quickNavScheduleList' }),
+      ]),
+    );
+    expect(getHomeQuickNavItems(
+      { kind: 'upcoming', startDate: '2026-09-13', endDate: '2026-09-27', day: null },
+      paths,
+      'ja',
+      { isOpeningBoutPublished: true, dayDiff: 2 },
+    )).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          to: '/schedule/',
+          labelKey: 'home.quickNavOpeningBout',
+          subKey: 'home.quickNavOpeningBoutPublishedSub',
+          date: '9月13日',
+          relative: '明後日',
+        }),
       ]),
     );
     expect(getHomeQuickNavItems({ kind: 'live', startDate: '2026-09-13', endDate: '2026-09-27', day: 3 }, paths, 'ja')).toEqual(
@@ -394,7 +410,7 @@ describe('Home page', () => {
 
     const highlightsSection = document.querySelector<HTMLElement>('.daily-highlights-section');
     expect(highlightsSection).not.toBeNull();
-    expect(within(highlightsSection!).getByRole('heading', { level: 2, name: '今日のみどころ' })).toBeInTheDocument();
+    expect(within(highlightsSection!).getByRole('heading', { level: 2, name: '明後日のみどころ' })).toBeInTheDocument();
     expect(within(highlightsSection!).getByText('初日')).toBeInTheDocument();
 
     // Monomosu Box
@@ -419,7 +435,7 @@ describe('Home page', () => {
 
     const highlightsSection = document.querySelector<HTMLElement>('.daily-highlights-section');
     expect(highlightsSection).not.toBeNull();
-    expect(within(highlightsSection!).getByRole('heading', { level: 2, name: "Today's Highlights" })).toBeInTheDocument();
+    expect(within(highlightsSection!).getByRole('heading', { level: 2, name: "Day After Tomorrow's Highlights" })).toBeInTheDocument();
     expect(within(highlightsSection!).getByText('Day 1')).toBeInTheDocument();
     expect(within(highlightsSection!).getByText('VOICE')).toBeInTheDocument();
     expect(within(highlightsSection!).getAllByRole('link', { name: /Compare Rikishi/ }).length).toBeGreaterThanOrEqual(1);

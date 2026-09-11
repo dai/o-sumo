@@ -21,6 +21,7 @@ import KimariteCard from './components/KimariteCard';
 import DailyHighlightsSection from './components/DailyHighlightsSection';
 import BlogUpdatesSection from './components/BlogUpdatesSection';
 import { divisionAnchorId } from './lib/rikishi-display';
+import { getCalendarDayDiffJst, getRelativeDateLabel } from './lib/relative-date';
 import './index.css';
 
 const LIVE_START_MINUTES = 13 * 60;
@@ -62,6 +63,7 @@ export type HomeQuickNavItem = {
   labelKey: string;
   subKey: string;
   date?: string;
+  relative?: string;
   primary: boolean;
   badgeKey?: string;
 };
@@ -105,14 +107,30 @@ export function getHomeQuickNavItems(
   status: BashoStatus,
   paths: HomeHeroPaths,
   language = 'ja',
+  options?: {
+    isOpeningBoutPublished?: boolean;
+    dayDiff?: number | null;
+    openingBoutPath?: string;
+  },
 ): HomeQuickNavItem[] {
+  const isPublished = Boolean(options?.isOpeningBoutPublished);
+  const relativeLabel = typeof options?.dayDiff === 'number'
+    ? getRelativeDateLabel(options.dayDiff, language === 'en')
+    : '';
+  const openingBoutTo = isPublished
+    ? (options?.openingBoutPath ?? paths.schedule)
+    : paths.result;
+
   const stateItems: HomeQuickNavItem[] = status.kind === 'upcoming'
     ? [
         {
-          to: paths.result,
+          to: openingBoutTo,
           labelKey: 'home.quickNavOpeningBout',
-          subKey: 'home.quickNavOpeningBoutSub',
+          subKey: isPublished && relativeLabel
+            ? 'home.quickNavOpeningBoutPublishedSub'
+            : 'home.quickNavOpeningBoutSub',
           date: formatHomeDate(status.startDate, language),
+          relative: relativeLabel,
           primary: true,
         },
         {
@@ -302,6 +320,15 @@ export default function Home() {
   const featuredTorikumiTarget = bashoStatus.kind === 'final'
     ? { href: `${CURRENT_RESULT_PATH}/`, description: t('home.finalResultsDescription') }
     : liveTorikumiTarget;
+  const openingDay = torikumiArchive.scheduleDays?.[0];
+  const isOpeningBoutPublished = Boolean(
+    openingDay && hasAnyMatches(openingDay.data),
+  );
+  const dayDiff = openingDay?.isoDate
+    ? getCalendarDayDiffJst(openingDay.isoDate)
+    : null;
+  const openingBoutPath = openingDay ? getDayPath(openingDay, 'schedule') : undefined;
+
   const quickNavItems = getHomeQuickNavItems(
     bashoStatus,
     {
@@ -311,6 +338,11 @@ export default function Home() {
       live: featuredTorikumiTarget.href,
     },
     i18n.language,
+    {
+      isOpeningBoutPublished,
+      dayDiff,
+      openingBoutPath,
+    },
   );
 
   return (
@@ -351,15 +383,15 @@ export default function Home() {
             <nav className="home-quick-nav hero-actions" aria-label={t('home.heroActionsLabel')}>
               {quickNavItems.map((item) => (
                 <Link
-                  key={item.to}
+                  key={`${item.to}-${item.labelKey}`}
                   to={item.to}
                   className={`quick-nav-card${item.primary ? ' primary' : ''}`}
                 >
                   <span className="quick-nav-card__label">
-                    {t(item.labelKey, item.date ? { date: item.date } : undefined)}
+                    {t(item.labelKey, { date: item.date, relative: item.relative })}
                     {item.badgeKey ? <span className="quick-nav-card__badge">{t(item.badgeKey)}</span> : null}
                   </span>
-                  <span className="quick-nav-card__sub">{t(item.subKey, item.date ? { date: item.date } : undefined)}</span>
+                  <span className="quick-nav-card__sub">{t(item.subKey, { date: item.date, relative: item.relative })}</span>
                 </Link>
               ))}
             </nav>
