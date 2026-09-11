@@ -9,7 +9,7 @@ function LocationProbe() {
 }
 
 describe('TopLevelSlugPage', () => {
-  it('falls back to the home page for an unsupported slug', () => {
+  it('renders the 404 page for an unsupported slug', () => {
     render(
       <MemoryRouter initialEntries={['/not-a-supported-slug/']}>
         <Routes>
@@ -19,6 +19,6 @@ describe('TopLevelSlugPage', () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByRole('status')).toHaveTextContent('/');
+    expect(screen.getByText('ページが見つかりません')).toBeInTheDocument();
   });
 });

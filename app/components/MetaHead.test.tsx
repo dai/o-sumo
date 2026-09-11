@@ -146,7 +146,7 @@ describe('MetaHead', () => {
   it.each([
     ['/gyoji/1987/', 'https://osada.us/gyoji/1987/', '行司プロフィール | o-sumo'],
     ['/gyoji/', 'https://osada.us/gyoji/', '行司名鑑 | o-sumo'],
-    ['/gyoji/not-a-number/', 'https://osada.us/', 'o-sumo | 大相撲 番付・星取表'],
+    ['/gyoji/not-a-number/', 'https://osada.us/404', '404 ページが見つかりません | o-sumo'],
   ])('never combines a new route URL with stale profile metadata while navigating to %s', async (destination, expectedUrl, expectedTitle) => {
     const user = userEvent.setup();
 

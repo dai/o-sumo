@@ -145,7 +145,7 @@ describe('Cloudflare banzuke redirect rules', () => {
   it('uses 200 rewrites throughout to avoid Googlebot indexing 301 chains', () => {
     const rules = redirectRules();
 
-    expect(rules).toHaveLength(50);
+    expect(rules).toHaveLength(48);
     expect(rules.every((rule) => rule.status === 200)).toBe(true);
 
     const rootFallbacks = rules.filter((rule) => rule.destination === '/');

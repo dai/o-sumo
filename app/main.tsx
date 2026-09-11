@@ -30,6 +30,7 @@ const CompareRikishiPage = React.lazy(() => import('./rikishi/CompareRikishiPage
 const KimaritePage = React.lazy(() => import('./kimarite/page'))
 const AnalyticsDashboardPage = React.lazy(() => import('./analytics/page'))
 const AboutPage = React.lazy(() => import('./about/page'))
+const NotFoundPage = React.lazy(() => import('./NotFoundPage'))
 const OfficialListPage = React.lazy(async () => {
   const module = await import('./officials/page')
   return { default: module.OfficialListPage }
@@ -119,6 +120,7 @@ function AppShell() {
               ])}
               <Route path="/:slug" element={<TopLevelSlugPage />} />
               <Route path="/:slug/" element={<TopLevelSlugPage />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Suspense>
         </div>
