@@ -1059,10 +1059,12 @@
   align-items: center;
   justify-content: center;
   min-height: 48px;
+  padding: 0.75rem 1rem;
   font-size: 0.95rem;
   font-weight: 700;
-  color: var(--color-on-primary, #fff);
-  background: var(--color-primary, #b91c1c);
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  background: var(--color-primary, #1d3a5f);
   border-radius: 8px;
   text-decoration: none;
   transition: opacity 0.15s ease;
@@ -1070,6 +1072,17 @@
 
 .torikumi-matchup-sheet__cta:hover,
 .torikumi-matchup-sheet__cta:active {
-  opacity: 0.9;
+  opacity: 0.92;
+  color: #ffffff;
   text-decoration: none;
+}
+
+[data-theme='dark'] .torikumi-matchup-sheet__cta {
+  color: #0f131d;
+  background: var(--color-primary, #c1c6d9);
+}
+
+[data-theme='dark'] .torikumi-matchup-sheet__cta:hover,
+[data-theme='dark'] .torikumi-matchup-sheet__cta:active {
+  color: #0f131d;
 }
