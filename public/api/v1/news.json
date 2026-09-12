@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-11T10:20:01.409772+00:00",
+  "updatedAt": "2026-09-12T10:16:40.702657+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-f-bt-tp1-260911-202609110000960",
-      "title": "33年ぶり同時昇進あるか…霧島が横綱、熱海富士が大関昇進挑む　審判部長「簡単なことじゃない」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260911-202609110000960",
-      "publishedAt": "2026-09-11",
-      "publishedAtRaw": "日刊スポーツ　9月11日 18時28分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_PZ7OCJYKOVDLVDC44WLHIK6U5A",
+      "title": "豊ノ島氏「現役のとき…」大島親方「みんなに嫌われるぐらい強かった」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_PZ7OCJYKOVDLVDC44WLHIK6U5A",
+      "publishedAt": "2026-09-12",
+      "publishedAtRaw": "SANSPO　9月12日 19時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_W6UUWM3S7ZJCBLFKBAZNY5LLQQ",
-      "title": "豊昇龍が休場、初日からは横綱昇進後初　不眠症に食欲不振で体重10キロ減、師匠「出られる状態ではない」／秋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_W6UUWM3S7ZJCBLFKBAZNY5LLQQ",
-      "publishedAt": "2026-09-11",
-      "publishedAtRaw": "SANSPO　9月11日 17時35分",
+      "id": "dmenu-docomo-kyodo_nor-2026091201000705",
+      "title": "安青錦「自分らしい相撲を」　大関に復帰して臨む秋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026091201000705",
+      "publishedAt": "2026-09-12",
+      "publishedAtRaw": "共同通信　9月12日 17時34分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sankei-_sports_sumo_Y3OQ4LLJRRMMBKXSUHNX4NC33Y",
-      "title": "綱取り霧島「負けない気持ちが一番大事」　浅香山部長「ただ優勝するだけではだめ」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_Y3OQ4LLJRRMMBKXSUHNX4NC33Y",
-      "publishedAt": "2026-09-11",
-      "publishedAtRaw": "産経ニュース　9月11日 16時12分",
+      "id": "dmenu-docomo-hochi-20260912-OHT1T51196",
+      "title": "第３９代木村庄之助、最後の本場所も平常心「自分にとっては最後ですけど、力士にとっては…」…１３日初日・秋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260912-OHT1T51196",
+      "publishedAt": "2026-09-12",
+      "publishedAtRaw": "スポーツ報知　9月12日 16時25分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-jiji-2026091100812",
-      "title": "日本相撲協会、国技館で募金活動＝熊本地震の被災者へ―大相撲秋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026091100812",
-      "publishedAt": "2026-09-11",
-      "publishedAtRaw": "時事通信　9月11日 15時59分",
+      "id": "dmenu-docomo-jiji-202609120093063896",
+      "title": "秋場所、１３日初日",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-202609120093063896",
+      "publishedAt": "2026-09-12",
+      "publishedAtRaw": "時事通信　9月12日 14時43分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260911-OHT1T51125",
-      "title": "国技館内に初日から「令和８年熊本地震」の募金箱を設置　「義ノ富士あたりがいい相撲を取って勇気づけられたら」と出羽海事業部長",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260911-OHT1T51125",
-      "publishedAt": "2026-09-11",
-      "publishedAtRaw": "スポーツ報知　9月11日 14時39分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260912-0161",
+      "title": "熱海富士　大関獲りどころか「大関超え」　秋場所懸賞本数で3大関を上回る",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260912-0161",
+      "publishedAt": "2026-09-12",
+      "publishedAtRaw": "スポニチアネックス　9月12日 13時01分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
