@@ -772,3 +772,14 @@ verdict: **PASS with minor follow-ups**。P0 = 0、P1 × 6、P2 × 5。9/12 manu
 - フォールバック: 未指定・不正・取得不能時はページ種別の汎用メタデータを返す。
 - キャッシュ契約: 書き換えHTMLは `Vary: Accept` と60秒キャッシュを付与し、変換後に無効となるvalidator・encoding・rangeヘッダーを除去する。
 - 検証: focused 4 files / 22 tests、全Vitest 64 files / 429 tests、typecheck、Vite build、Wranglerの日本語生HTML・Markdown・レスポンスヘッダーを確認済み。
+# Topページのアナリティクス文面（2026-09-13）
+
+- [x] 現在のブランチに origin/main を pull する。
+- [x] ラベル直下に利用開始の注記を追加し、説明文を指定文面に短縮する。英語も対応する。
+- [x] Topページの既存テスト、型チェック、差分を確認する。
+
+## Review
+
+- origin/main を現在の css-20290912 ブランチにマージして取り込み済み。
+- 日本語の指定4行を反映。注記はラベルの直下に改行して表示し、英語も対応。
+- `npm test -- app/page.test.tsx`: 21件成功（DailyHighlightsSection の act 警告あり）。`npm run typecheck`、`git diff --check`: 成功。

@@ -411,7 +411,11 @@ export default function Home() {
         <div className="home-feature-grid">
           <section className="analytics-feature-card" aria-labelledby="analytics-feature-title">
             <div className="analytics-feature-copy">
-              <p className="analytics-feature-label">{t('home.analyticsFeatureLabel')}</p>
+              <p className="analytics-feature-label">
+                {t('home.analyticsFeatureLabel')}
+                <br />
+                <span>{t('home.analyticsFeatureAvailability')}</span>
+              </p>
               <h2 id="analytics-feature-title" className="analytics-feature-title">{t('home.analyticsFeatureTitle')}</h2>
               <p className="analytics-feature-description">
                 {t('home.analyticsFeatureDescription')}
