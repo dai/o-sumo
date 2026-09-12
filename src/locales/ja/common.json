@@ -114,8 +114,9 @@
     "newsSubsectionSumoNewsSeeAll": "dmenu で見る",
     "footerDataCredit": "データ出典: 公益財団法人日本相撲協会 / API: dai/o-sumo",
     "analyticsFeatureLabel": "大相撲アナリティクス",
+    "analyticsFeatureAvailability": "(中日からお使いいただけます)",
     "analyticsFeatureTitle": "場所分析・三賞・決まり手傾向",
-    "analyticsFeatureDescription": "勝ち星、無敗力士、三賞候補、決まり手傾向から、七月場所の流れを深く読み解きます。",
+    "analyticsFeatureDescription": "勝ち星、無敗力士、三賞候補、決まり手傾向",
     "analyticsFeatureAction": "アナリティクスを見る",
     "heroGyoji": "行司名鑑",
     "heroYobidashi": "呼出名鑑"
