@@ -142,10 +142,27 @@ describe('Cloudflare banzuke redirect rules', () => {
     });
   });
 
+  it.each(['yotei', 'torikumi'])('serves monthly and daily %s routes through the SPA', (kind) => {
+    for (const slug of ['202609', '20260913']) {
+      const canonicalPath = `/${slug}-${kind}/`;
+
+      expect(evaluateRedirect(`/${slug}-${kind}`)).toEqual({
+        source: `/:slug-${kind}`,
+        destination: canonicalPath,
+        status: 200,
+      });
+      expect(evaluateRedirect(canonicalPath)).toEqual({
+        source: `/:slug-${kind}/`,
+        destination: '/',
+        status: 200,
+      });
+    }
+  });
+
   it('uses 200 rewrites throughout to avoid Googlebot indexing 301 chains', () => {
     const rules = redirectRules();
 
-    expect(rules).toHaveLength(48);
+    expect(rules).toHaveLength(50);
     expect(rules.every((rule) => rule.status === 200)).toBe(true);
 
     const rootFallbacks = rules.filter((rule) => rule.destination === '/');

@@ -5,7 +5,9 @@
 # Legacy URLs (e.g. /202603-banduke, /202603-o-sumo) likewise rewrite to
 # the canonical banzuke page.
 /:slug-torikumi /:slug-torikumi/ 200
+/:slug-torikumi/ / 200
 /:slug-yotei /:slug-yotei/ 200
+/:slug-yotei/ / 200
 /archives /archives/ 200
 /archives/ / 200
 /analytics /analytics/ 200
