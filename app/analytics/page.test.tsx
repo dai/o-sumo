@@ -1,11 +1,24 @@
 import { act, render, screen, within } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import { i18n } from '../lib/i18n';
-import { torikumiArchive } from '../lib/torikumi-data';
+import { JULY2026_TORIKUMI_DATA } from '../lib/july2026-data';
 import AnalyticsDashboardPage, { buildDashboardMetrics, topKimarite, topRikishiByWins } from './page';
 
+const FINAL_TIME = new Date('2026-09-30T12:00:00+09:00'); // after September basho ends
+const UPCOMING_TIME = new Date('2026-08-15T12:00:00+09:00'); // before September basho starts
+const LIVE_TIME = new Date('2026-09-15T12:00:00+09:00'); // during September basho
+
 describe('AnalyticsDashboardPage', () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+    vi.setSystemTime(FINAL_TIME);
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   it('renders the analytics dashboard headline and action links', () => {
     render(
       <MemoryRouter>
@@ -30,7 +43,7 @@ describe('AnalyticsDashboardPage', () => {
     expect(within(breadcrumb).getByText('大相撲アナリティクス')).toBeInTheDocument();
   });
 
-  it('renders the finalized July 2026 champions and special prizes', () => {
+  it('renders the finalized champions and special prizes', () => {
     render(
       <MemoryRouter>
         <AnalyticsDashboardPage />
@@ -73,7 +86,7 @@ describe('AnalyticsDashboardPage', () => {
 
   it('summarizes top kimarite trends', () => {
     const counts = new Map<string, number>();
-    for (const day of torikumiArchive.resultDays ?? []) {
+    for (const day of JULY2026_TORIKUMI_DATA.resultDays ?? []) {
       for (const match of day.data.makuuchi.matches) {
         if (match.kimarite) counts.set(match.kimarite, (counts.get(match.kimarite) ?? 0) + 1);
       }
@@ -83,7 +96,7 @@ describe('AnalyticsDashboardPage', () => {
       .sort((left, right) => right.count - left.count || left.name.localeCompare(right.name, 'ja'))
       .slice(0, 3);
 
-    expect(topKimarite(3)).toEqual(expected);
+    expect(topKimarite(JULY2026_TORIKUMI_DATA, 3)).toEqual(expected);
   });
 
   it('renders the dashboard copy in English when English is selected', async () => {
@@ -101,5 +114,31 @@ describe('AnalyticsDashboardPage', () => {
     expect(screen.getByRole('heading', { level: 2, name: 'September 2026 Basho Results' })).toBeInTheDocument();
 
     await act(() => i18n.changeLanguage('ja'));
+  });
+
+  it('hides the dashboard during an upcoming basho', () => {
+    vi.setSystemTime(UPCOMING_TIME);
+
+    render(
+      <MemoryRouter>
+        <AnalyticsDashboardPage />
+      </MemoryRouter>,
+    );
+
+    expect(screen.queryByRole('heading', { level: 2, name: '幕内最高優勝 安青錦 12勝3敗' })).not.toBeInTheDocument();
+    expect(screen.getByText('千秋楽以降に分析を公開します。')).toBeInTheDocument();
+  });
+
+  it('hides the dashboard during a live basho', () => {
+    vi.setSystemTime(LIVE_TIME);
+
+    render(
+      <MemoryRouter>
+        <AnalyticsDashboardPage />
+      </MemoryRouter>,
+    );
+
+    expect(screen.queryByRole('heading', { level: 2, name: '幕内最高優勝 安青錦 12勝3敗' })).not.toBeInTheDocument();
+    expect(screen.getByText('千秋楽以降に分析を公開します。')).toBeInTheDocument();
   });
 });

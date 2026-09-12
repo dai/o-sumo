@@ -115,7 +115,7 @@
     "footerDataCredit": "データ出典: 公益財団法人日本相撲協会 / API: dai/o-sumo",
     "analyticsFeatureLabel": "大相撲アナリティクス",
     "analyticsFeatureTitle": "場所分析・三賞・決まり手傾向",
-    "analyticsFeatureDescription": "勝ち星、無敗力士、三賞候補、決まり手傾向から、今場所の流れを深く読み解きます。",
+    "analyticsFeatureDescription": "勝ち星、無敗力士、三賞候補、決まり手傾向から、七月場所の流れを深く読み解きます。",
     "analyticsFeatureAction": "アナリティクスを見る",
     "heroGyoji": "行司名鑑",
     "heroYobidashi": "呼出名鑑"
@@ -124,7 +124,7 @@
     "sectionTitle": "今日のみどころ",
     "sectionTitleTomorrow": "明日のみどころ",
     "sectionTitleDayAfterTomorrow": "明後日のみどころ",
-    "sectionSubtitle": "公式取組データから当日の注目取組を自動で掲載します",
+    "sectionSubtitle": "公式取組データから当日の注目取組を掲載します",
     "finalTitle": "千秋楽を振り返る",
     "finalSubtitle": "千秋楽の結びと対戦の合口を振り返ります",
     "tabListLabel": "取組日程の切り替え",
@@ -175,6 +175,7 @@
     "resultAction": "取組結果を見る",
       "scheduleAction": "取組予定を見る",
       "pastScheduleAction": "過去の予定を見る",
+      "noticeNotFinal": "千秋楽以降に分析を公開します。",
     "metrics": {
       "label": "主要指標",
       "makuuchi": {

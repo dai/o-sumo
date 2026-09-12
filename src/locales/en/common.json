@@ -115,7 +115,7 @@
     "footerDataCredit": "Data sources: Japan Sumo Association / API: dai/o-sumo",
     "analyticsFeatureLabel": "Grand Sumo Analytics",
     "analyticsFeatureTitle": "Basho Analytics & Kimarite Trends",
-    "analyticsFeatureDescription": "Discover tournament flow through win leaders, special prizes, and kimarite patterns.",
+    "analyticsFeatureDescription": "Discover the July basho's flow through win leaders, special prizes, and kimarite patterns.",
     "analyticsFeatureAction": "View Analytics",
     "heroGyoji": "Gyoji Directory",
     "heroYobidashi": "Yobidashi Directory"
@@ -124,7 +124,7 @@
     "sectionTitle": "Today's Highlights",
     "sectionTitleTomorrow": "Tomorrow's Highlights",
     "sectionTitleDayAfterTomorrow": "Day After Tomorrow's Highlights",
-    "sectionSubtitle": "Featured bouts generated from the official torikumi data once it's published",
+    "sectionSubtitle": "Featured bouts from the official torikumi data once it's published",
     "finalTitle": "Final Day Recap",
     "finalSubtitle": "Revisit the final bout and the rikishi's head-to-head record",
     "tabListLabel": "Switch bout schedule",
@@ -175,6 +175,7 @@
     "resultAction": "View results",
     "scheduleAction": "View schedule",
     "pastScheduleAction": "View past schedule",
+    "noticeNotFinal": "Analytics will be available after senshuraku.",
     "metrics": {
       "label": "Key metrics",
       "makuuchi": {
