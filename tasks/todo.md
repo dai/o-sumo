@@ -1,3 +1,35 @@
+# /analytics 動的化 + 今日のみどころ文言修正 (2026-09-13)
+
+## Plan
+
+- [x] `app/analytics/page.tsx` を current basho 由来に戻す。`bashoStatus = getBashoStatus(torikumiArchive)` で判定し、`final` 以外はプレースホルダ。`topKimarite(archive, limit=6)` のデフォルトを `torikumiArchive` へ、`allMakuuchiRikishi` を `makuuchiData` へ復元
+- [x] `app/analytics/page.test.tsx` の href・heading・kimarite フィクスチャを current（Sept 202609）に戻し、`upcoming`/`live` 非表示の新規テスト 2 件を追加
+- [x] `analytics.noticeNotFinal` を ja=en 双方に追加
+- [x] `highlights.sectionSubtitle` から ja「自動で」、en「generated 」をトル
+- [x] `npm test` / `npm run typecheck` 緑
+
+## Review
+
+- 編集: `app/analytics/page.tsx` (8 edits) + `app/analytics/page.test.tsx` (5 edits) + `src/locales/{ja,en}/common.json` (2 + 2 = 4 edits) の合計 17 edits。`JULY2026_*` import と `ANALYTICS_BASHO_ID` / `ANALYTICS_RESULT_PATH` / `ANALYTICS_SCHEDULE_PATH` 定数を撤去し、`CURRENT_RESULT_PATH` / `CURRENT_SCHEDULE_PATH` (archive-basho-data) と `torikumiArchive` / `torikumiMonthKey` (torikumi-data) と `makuuchiData` (sumo-data) の import に戻した。`bashoStatus = getBashoStatus(torikumiArchive)` から `isFinal = bashoStatus.kind === 'final'` を導出し、metricNote の `bashoStatus.kind === 'final'` も `isFinal` 参照に置換。`<main>` 配下を `{isFinal ? (<> champions/metrics/leaders/kimarite </>) : (<section analytics-pending-panel> notice </section>)}` の三項でラップ
+- 検証: `npm run typecheck` exit 0、`npm test -- --run` 70 files / 493 tests pass (前 491 → +2 テスト: upcoming / live 非表示)。`vi.useFakeTimers` + `vi.setSystemTime` を describe 直下の beforeEach / afterEach に追加し、デフォルトで 2026-09-30 (final) に固定、`UPCOMING_TIME` (2026-08-15) と `LIVE_TIME` (2026-09-15) で 2 テストが非表示動作を検証
+- locale: ja に `analytics.noticeNotFinal = "千秋楽以降に分析を公開します。"`、en に `analytics.noticeNotFinal = "Analytics will be available after senshuraku."` を追加。`highlights.sectionSubtitle` は ja「自動で」と en「generated 」をトル。ja の `analytics` ブロックは既存のインデント不揃い（scheduleAction / pastScheduleAction が 6 スペース）を維持し new key も同じ 6 スペースで挿入
+- 既知の制限: `JULY_2026_BASHO_RESULTS` の優勝者テーブルは当面そのまま。九月場所が final (2026-09-27 後) になったとき手動で切り替えるか、`torikumiArchive.resultDays` から自動派生するリファクタが必要
+
+# /analytics を九月→七月場所に切替 (2026-09-12)
+
+## Plan
+
+- [x] `app/analytics/page.tsx` を七月 2026 (`JULY2026_TORIKUMI_DATA` / `JULY2026_MAKUUCHI_DATA`) に切替。`bashoLabel` を令和八年七月場所固定、結果/予定リンクを `/202607-torikumi/`・`/202607-yotei/` に
+- [x] `app/analytics/page.test.tsx` のリンクpath・heading・topKimariteフィクスチャを七月同期
+- [x] `home.analyticsFeatureDescription` を ja=en とも七月場所に同期
+- [x] `npm test app/analytics` / `npm run typecheck` 緑
+
+## Review
+
+- 編集: `app/analytics/page.tsx` (6 edits) + `app/analytics/page.test.tsx` (5 edits) + `src/locales/{ja,en}/common.json` (1 edit each) の合計 13 edits。`makuuchiData` / `CURRENT_RESULT_PATH` / `CURRENT_SCHEDULE_PATH` / `torikumiArchive` / `torikumiMonthKey` の import を撤去し、ページ冒頭で `ANALYTICS_BASHO_ID = '202607'` と `ANALYTICS_RESULT_PATH` / `ANALYTICS_SCHEDULE_PATH` 定数を導出。`topKimarite` のシグネチャを `(archive: TorikumiDataSet = JULY2026_TORIKUMI_DATA, limit = 6)` に拡張（テストは `topKimarite(JULY2026_TORIKUMI_DATA, 3)` 呼出に更新）。`bashoStatus = getBashoStatus(JULY2026_TORIKUMI_DATA)` は scheduleDays の終日 7/26 < today 9/12 から `final` を返す
+- 環境整備: `npm install --no-audit --no-fund` で 513 packages 補充。先に `node_modules\.bin\{vitest,tsc}.cmd` と `node_modules\vite\client.d.ts` が不在で typecheck / vitest が起動失敗していたのを修復
+- 検証: `npm run typecheck` exit 0、`npm test -- app/analytics` 7/7 tests pass (213ms)。ホーム / archives / 他の analytics 以外ページは import 経路を残しているため無変更
+
 # o-sumo 読みもの（blog.osada.us）実装（2026-09-01）
 
 ## Plan
