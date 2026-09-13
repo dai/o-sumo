@@ -1108,7 +1108,10 @@ def build_torikumi_dataset(
             errors = [k for k, value in division_values if value is TORIKUMI_FETCH_ERROR]
             published = [k for k, value in division_values if isinstance(value, dict) and bool(value.get("matches"))]
             missing = [k for k, value in division_values if value is None or (isinstance(value, dict) and not value.get("matches"))]
-            if errors or (published and missing):
+            # Future schedules are published separately for each division.
+            # Only a successful empty response is unpublished; fetch/parse
+            # errors must still stop publication, even for future days.
+            if errors or (published and missing and not expected_unpublished):
                 failed = errors + missing
                 failure_text = ", ".join(f"day={day} division={DIVISION_LABEL[k]}" for k in failed)
                 raise RuntimeError(f"incomplete official schedule fetch: {failure_text}")
@@ -1176,28 +1179,32 @@ def build_torikumi_dataset(
         }
         result_active_ids = collect_active_ids_from_day(result_day_data)
         schedule_active_ids = collect_active_ids_from_day(schedule_day_data)
+        # Cross-division bouts may still be unpublished. Until both divisions
+        # have matches, roster-minus-participants cannot identify absentees.
+        result_complete = all(division.get("matches") for division in result_day_data.values())
+        schedule_complete = all(division.get("matches") for division in schedule_day_data.values())
 
         # Synchronize dayHead across both divisions using the calculated actual_date.
         canonical_day_head = build_day_head(day, actual_date)
         result_makuuchi = {
             **result_makuuchi,
             "dayHead": canonical_day_head,
-            "absentees": derive_absentees(result_makuuchi, rosters["makuuchi"], result_active_ids),
+            "absentees": derive_absentees(result_makuuchi, rosters["makuuchi"], result_active_ids) if result_complete else [],
         }
         result_juryo = {
             **result_juryo,
             "dayHead": canonical_day_head,
-            "absentees": derive_absentees(result_juryo, rosters["juryo"], result_active_ids),
+            "absentees": derive_absentees(result_juryo, rosters["juryo"], result_active_ids) if result_complete else [],
         }
         schedule_makuuchi = {
             **schedule_makuuchi,
             "dayHead": canonical_day_head,
-            "absentees": derive_absentees(schedule_makuuchi, rosters["makuuchi"], schedule_active_ids),
+            "absentees": derive_absentees(schedule_makuuchi, rosters["makuuchi"], schedule_active_ids) if schedule_complete else [],
         }
         schedule_juryo = {
             **schedule_juryo,
             "dayHead": canonical_day_head,
-            "absentees": derive_absentees(schedule_juryo, rosters["juryo"], schedule_active_ids),
+            "absentees": derive_absentees(schedule_juryo, rosters["juryo"], schedule_active_ids) if schedule_complete else [],
         }
 
         result_day_data = {

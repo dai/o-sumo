@@ -49,9 +49,17 @@ class ValidateTorikumiTest(unittest.TestCase):
     def test_accepts_complete_published_schedule_and_cross_division_participant(self):
         self.assertEqual(self.run_payload(payload(makuuchi=[match(10, 30)], juryo=[match(31, 32)])), 0)
 
-    def test_rejects_empty_division_invalid_ids_duplicate_bouts_and_participants(self):
+    def test_accepts_each_partial_published_schedule(self):
+        self.assertEqual(self.run_payload(payload(makuuchi=[])), 0)
+        self.assertEqual(self.run_payload(payload(juryo=[])), 0)
+
+    def test_rejects_absentee_inference_for_partial_schedule(self):
+        self.assertEqual(self.run_payload(payload(juryo=[], absentees=[{"id": 99}])), 1)
+        self.assertEqual(self.run_payload(payload(makuuchi=[], absentees=[{"id": 99}])), 1)
+
+    def test_rejects_empty_day_invalid_ids_duplicate_bouts_and_participants(self):
         invalid_cases = [
-            payload(makuuchi=[]),
+            payload(makuuchi=[], juryo=[]),
             payload(makuuchi=[match(0, 2)]),
             payload(makuuchi=[match(1, 2)], juryo=[match(2, 1)]),
             payload(makuuchi=[match(1, 2), match(1, 5)]),
