@@ -783,3 +783,17 @@ verdict: **PASS with minor follow-ups**。P0 = 0、P1 × 6、P2 × 5。9/12 manu
 - origin/main を現在の css-20290912 ブランチにマージして取り込み済み。
 - 日本語の指定4行を反映。注記はラベルの直下に改行して表示し、英語も対応。
 - `npm test -- app/page.test.tsx`: 21件成功（DailyHighlightsSection の act 警告あり）。`npm run typecheck`、`git diff --check`: 成功。
+
+# 恒久版OGPへの差し替え（2026-09-13）
+
+- [x] 承認済みの恒久版1280x640画像を公開ファイルに反映する。
+- [x] HTML・SPA・配信検証の画像URLを ?v=20260913 に揃え、寸法を1280x640に修正する。
+- [x] 関連テスト、型チェック、ビルド成果物を確認する。
+
+## Review
+
+- 8月31日作成済みの恒久版を使用。読みもの・年月日・場所名を含まない画像であることを目視確認。
+- 画像URLを ?v=20260913 に更新し、HTML・SPA・配信検証の期待値を一致させた。寸法は1280x640。
+- MetaHead/page-meta 29テスト、delivery-verification 21テスト、typecheck、build、git diff --check が成功。
+- ローカル配信のクエリ付き画像URLは200 image/jpeg、元画像とSHA256一致。Twitterbot向けHTMLのOG/Twitter両URLも確認済み。独立レビューで指摘なし。
+- Xによるページ情報の再取得タイミングと、投稿済みカードの即時更新は保証できない。

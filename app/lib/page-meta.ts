@@ -9,7 +9,7 @@ export type PageMeta = {
   type: 'website';
 };
 
-const IMAGE_URL = `${SITE_ORIGIN}/og-default.jpg`;
+const IMAGE_URL = `${SITE_ORIGIN}/og-default.jpg?v=20260913`;
 
 const HOME_META = {
   title: 'o-sumo | 大相撲 番付・星取表',
