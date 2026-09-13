@@ -2,8 +2,8 @@
   "bashoId": 637,
   "bashoName": "九月場所",
   "year": "令和八年",
-  "updatedAt": "2026-09-13T14:49:23+09:00",
-  "resultUpdatedAt": "2026-09-13T14:49:23+09:00",
+  "updatedAt": "2026-09-13T14:58:55+09:00",
+  "resultUpdatedAt": "2026-09-13T14:58:55+09:00",
   "scheduleUpdatedAt": "2026-09-11T14:16:54+09:00",
   "today": {
     "makuuchi": {
@@ -434,8 +434,8 @@
           "westEnglish": "",
           "westRank": "十両十枚目",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4142/",
-          "kimarite": "",
-          "winner": null
+          "kimarite": "寄り倒し",
+          "winner": "east"
         },
         {
           "division": "十両",
@@ -450,8 +450,8 @@
           "westEnglish": "",
           "westRank": "十両九枚目",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/",
-          "kimarite": "",
-          "winner": null
+          "kimarite": "突き出し",
+          "winner": "east"
         },
         {
           "division": "十両",
@@ -1603,8 +1603,8 @@
               "westEnglish": "",
               "westRank": "十両十枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4142/",
-              "kimarite": "",
-              "winner": null
+              "kimarite": "寄り倒し",
+              "winner": "east"
             },
             {
               "division": "十両",
@@ -1619,8 +1619,8 @@
               "westEnglish": "",
               "westRank": "十両九枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/",
-              "kimarite": "",
-              "winner": null
+              "kimarite": "突き出し",
+              "winner": "east"
             },
             {
               "division": "十両",
