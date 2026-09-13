@@ -1,7 +1,7 @@
 {
   "bashoName": "九月場所",
   "year": "令和八年",
-  "updatedAt": "2026-09-13T17:20:56+09:00",
+  "updatedAt": "2026-09-13T17:41:22+09:00",
   "makuuchi": [
     {
       "title": "横綱",
@@ -64,11 +64,11 @@
           "yomi": "あおにしき",
           "rank": "大関",
           "side": "east",
-          "wins": 0,
+          "wins": 1,
           "losses": 0,
           "draws": 0,
           "results": [
-            null
+            "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/",
           "memo": ""
@@ -81,11 +81,11 @@
           "yomi": "ことざくら",
           "rank": "大関",
           "side": "west",
-          "wins": 0,
+          "wins": 1,
           "losses": 0,
           "draws": 0,
           "results": [
-            null
+            "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/",
           "memo": ""
@@ -101,11 +101,11 @@
           "yomi": "あたみふじ",
           "rank": "関脇",
           "side": "east",
-          "wins": 0,
+          "wins": 1,
           "losses": 0,
           "draws": 0,
           "results": [
-            null
+            "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/",
           "memo": ""
@@ -118,11 +118,11 @@
           "yomi": "ふじのかわ",
           "rank": "関脇",
           "side": "west",
-          "wins": 0,
+          "wins": 1,
           "losses": 0,
           "draws": 0,
           "results": [
-            null
+            "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/",
           "memo": ""
@@ -193,10 +193,10 @@
           "rank": "前頭1",
           "side": "west",
           "wins": 0,
-          "losses": 0,
+          "losses": 1,
           "draws": 0,
           "results": [
-            null
+            "loss"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/",
           "memo": ""
@@ -213,10 +213,10 @@
           "rank": "前頭2",
           "side": "east",
           "wins": 0,
-          "losses": 0,
+          "losses": 1,
           "draws": 0,
           "results": [
-            null
+            "loss"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/",
           "memo": ""
@@ -230,10 +230,10 @@
           "rank": "前頭2",
           "side": "west",
           "wins": 0,
-          "losses": 0,
+          "losses": 1,
           "draws": 0,
           "results": [
-            null
+            "loss"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/",
           "memo": ""
@@ -250,10 +250,10 @@
           "rank": "前頭3",
           "side": "east",
           "wins": 0,
-          "losses": 0,
+          "losses": 1,
           "draws": 0,
           "results": [
-            null
+            "loss"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/",
           "memo": ""
