@@ -819,3 +819,16 @@ verdict: **PASS with minor follow-ups**。P0 = 0、P1 × 6、P2 × 5。9/12 manu
 - Python parser / validator / workflow summary / workflow config: 96 tests passed。git diff --check成功。
 - 隔離した一時ディレクトリで公式APIを使用してDaily相当の生成を実行。二日目はpublished、幕内20番・十両0番、両部門absentees=[]、validator成功。既存結果と結果更新日時は不変。再実行はJSONがバイト単位で一致。
 - 通信・解析異常、当日や過去日の未公開、重複取組・参加者などの検知を維持。
+
+# PR #594 の競合解消（2026-09-13）
+
+- [x] PRとmainの取組データ差分・更新日時を確認する。
+- [x] mainの結果を保持し、PRの予定を既存scope合成処理で統合してJSON/TSを再生成する。
+- [x] validator・Python回帰・型チェック・ビルドで検証する。
+
+## Review
+
+- PRの予定更新17:20:11とmainの結果更新17:20:56が同じ生成ファイルで競合。
+- resultDays/today/resultUpdatedAtはmainと完全一致、scheduleDays/tomorrow/scheduleUpdatedAtはPRと完全一致をassertで確認。
+- 二日目の幕内20番・十両14番を保持。validator、Python96テスト成功。
+- 型チェック・ビルド・git diff --check成功。反映直前のmainとPR headに追加変更がないことを確認。
