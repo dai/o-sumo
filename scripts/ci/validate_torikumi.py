@@ -57,13 +57,16 @@ def validate_published_schedules(data: dict) -> None:
         ordinary_bouts: set[tuple[int, int]] = set()
         permitted_absentee_overlap: set[int] = set()
         absentee_ids: set[int] = set()
+        unpublished_divisions: list[str] = []
         for division in ("makuuchi", "juryo"):
             division_data = day_data.get(division)
             if not isinstance(division_data, dict):
                 raise ValueError(f"day={day} division={division} must be an object")
             matches = division_data.get("matches")
-            if not isinstance(matches, list) or not matches:
-                raise ValueError(f"day={day} division={division} must have matches")
+            if not isinstance(matches, list):
+                raise ValueError(f"day={day} division={division} matches must be an array")
+            if not matches:
+                unpublished_divisions.append(division)
             absentees = division_data.get("absentees", [])
             if not isinstance(absentees, list):
                 raise ValueError(f"day={day} division={division} absentees must be an array")
@@ -111,6 +114,10 @@ def validate_published_schedules(data: dict) -> None:
                 if absentee_id in absentee_ids:
                     raise ValueError(f"day={day} duplicate absentee")
                 absentee_ids.add(absentee_id)
+        if len(unpublished_divisions) == 2:
+            raise ValueError(f"day={day} published schedule must have matches")
+        if unpublished_divisions and absentee_ids:
+            raise ValueError(f"day={day} partial schedule must not infer absentees")
         precise_fusen_losers = {
             rikishi_id for rikishi_id in permitted_absentee_overlap
             if appearances[rikishi_id] == 1
