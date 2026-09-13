@@ -138,15 +138,15 @@ describe('delivery verification result validation', () => {
       'og:title': ['力士プロフィール | o-sumo'],
       'og:description': ['力士プロフィール'],
       'og:url': ['https://osada.us/rikishi/3842/'],
-      'og:image': ['https://osada.us/og-default.jpg'],
+      'og:image': ['https://osada.us/og-default.jpg?v=20260913'],
       'og:type': ['website'],
       'og:site_name': ['o-sumo'],
-      'og:image:width': ['1629'],
-      'og:image:height': ['1007'],
+      'og:image:width': ['1280'],
+      'og:image:height': ['640'],
       'twitter:card': ['summary_large_image'],
       'twitter:title': ['力士プロフィール | o-sumo'],
       'twitter:description': ['力士プロフィール'],
-      'twitter:image': ['https://osada.us/og-default.jpg'],
+      'twitter:image': ['https://osada.us/og-default.jpg?v=20260913'],
     });
 
     expect(result.status).toBe('OK');
@@ -163,8 +163,8 @@ describe('delivery verification result validation', () => {
       'og:image': ['https://osada.us/other.jpg'],
       'og:type': ['website'],
       'og:site_name': ['o-sumo'],
-      'og:image:width': ['1629'],
-      'og:image:height': ['1007'],
+      'og:image:width': ['1280'],
+      'og:image:height': ['640'],
       'twitter:card': ['summary_large_image'],
       'twitter:title': ['home'],
       'twitter:description': ['home'],
@@ -175,8 +175,8 @@ describe('delivery verification result validation', () => {
     expect(result.issues).toEqual(expect.arrayContaining([
       'canonical must appear exactly once (found 2)',
       'canonical must equal og:url',
-      'og:image must be https://osada.us/og-default.jpg',
-      'twitter:image must be https://osada.us/og-default.jpg',
+      'og:image must be https://osada.us/og-default.jpg?v=20260913',
+      'twitter:image must be https://osada.us/og-default.jpg?v=20260913',
     ]));
   });
 
@@ -187,15 +187,15 @@ describe('delivery verification result validation', () => {
       'og:title': ['archive'],
       'og:description': ['archive'],
       'og:url': ['https://osada.us/'],
-      'og:image': ['https://osada.us/og-default.jpg'],
+      'og:image': ['https://osada.us/og-default.jpg?v=20260913'],
       'og:type': ['website'],
       'og:site_name': ['o-sumo'],
-      'og:image:width': ['1629'],
-      'og:image:height': ['1007'],
+      'og:image:width': ['1280'],
+      'og:image:height': ['640'],
       'twitter:card': ['summary_large_image'],
       'twitter:title': ['archive'],
       'twitter:description': ['archive'],
-      'twitter:image': ['https://osada.us/og-default.jpg'],
+      'twitter:image': ['https://osada.us/og-default.jpg?v=20260913'],
     }, 'https://osada.us/archives/');
 
     expect(result.issues).toContain('canonical must equal https://osada.us/archives/');
@@ -208,15 +208,15 @@ describe('delivery verification result validation', () => {
       'og:title': ['generic'],
       'og:description': ['generic'],
       'og:url': ['https://osada.us/202607-banzuke/'],
-      'og:image': ['https://osada.us/og-default.jpg'],
+      'og:image': ['https://osada.us/og-default.jpg?v=20260913'],
       'og:type': ['website'],
       'og:site_name': ['o-sumo'],
-      'og:image:width': ['1629'],
-      'og:image:height': ['1007'],
+      'og:image:width': ['1280'],
+      'og:image:height': ['640'],
       'twitter:card': ['summary_large_image'],
       'twitter:title': ['generic'],
       'twitter:description': ['generic'],
-      'twitter:image': ['https://osada.us/og-default.jpg'],
+      'twitter:image': ['https://osada.us/og-default.jpg?v=20260913'],
     }, {
       canonicalUrl: 'https://osada.us/202607-banzuke/',
       title: '2026年7月場所 番付 | o-sumo',

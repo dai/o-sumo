@@ -30,7 +30,7 @@ describe('resolvePageMeta', () => {
       title,
       description,
       canonicalUrl: `https://osada.us${canonicalPath}`,
-      imageUrl: 'https://osada.us/og-default.jpg',
+      imageUrl: 'https://osada.us/og-default.jpg?v=20260913',
       type: 'website',
     });
   });

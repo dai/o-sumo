@@ -2,7 +2,7 @@ import { chromium } from 'playwright';
 import { fileURLToPath } from 'node:url';
 
 const SITE_ORIGIN = 'https://osada.us';
-const DEFAULT_IMAGE_URL = `${SITE_ORIGIN}/og-default.jpg`;
+const DEFAULT_IMAGE_URL = `${SITE_ORIGIN}/og-default.jpg?v=20260913`;
 const HEAD_FIELDS = [
   'canonical',
   'description',
