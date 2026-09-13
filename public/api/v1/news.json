@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-13T08:23:51.446832+00:00",
+  "updatedAt": "2026-09-13T10:22:25.859753+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260913-OHT1T51209",
-      "title": "新入幕の朝翠龍が白星発進　兄・朝紅龍も勝ち「うれしい。切磋琢磨していきたい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260913-OHT1T51209",
+      "id": "dmenu-docomo-tokyosports-402974",
+      "title": "【大相撲】安青錦　２場所連続Ｖへ上々発進「半年以上ぶりに国技館で相撲を取れて良かった」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-402974",
       "publishedAt": "2026-09-13",
-      "publishedAtRaw": "スポーツ報知　9月13日 17時02分",
+      "publishedAtRaw": "東スポWEB　9月13日 19時10分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260913-OHT1T51203",
-      "title": "新入幕の朝翠龍が初白星　兄の朝紅龍に力水をつけてもらい、取組後は兄に力水で、兄弟そろって勝利　「夢のような感じでした」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260913-OHT1T51203",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_KVLYG4PV5JD3FN6POQMRDBIFXY",
+      "title": "琴風氏「そんな年になったんだ。早いねぇ」／秋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_KVLYG4PV5JD3FN6POQMRDBIFXY",
       "publishedAt": "2026-09-13",
-      "publishedAtRaw": "スポーツ報知　9月13日 16時38分",
+      "publishedAtRaw": "SANSPO　9月13日 19時08分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260913081",
-      "title": "大相撲　元横綱大乃国の芝田山親方が豊昇龍にエール「目標はまず二桁からでいいんじゃないか」猛稽古での奮起求める",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260913081",
+      "id": "dmenu-docomo-sponichi-spngoo-20260913-0309",
+      "title": "安青錦　231日ぶり両国国技館で勝ち名乗り　左足の故障で関取衆と稽古できず",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260913-0309",
       "publishedAt": "2026-09-13",
-      "publishedAtRaw": "デイリースポーツ　9月13日 16時28分",
+      "publishedAtRaw": "スポニチアネックス　9月13日 19時01分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260913-OHT1T51183",
-      "title": "４１歳・玉鷲、黒星発進　関取最重量２０２キロの一意に屈し「相手は柔らかい。力全部、吸い込む感じ」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260913-OHT1T51183",
+      "id": "dmenu-docomo-f-bt-tp1-260913-202609130001261",
+      "title": "熱海富士、大関とりへ好発進　八角理事長「前に出ようとする気持ちが強い」心技体充実を称賛",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260913-202609130001261",
       "publishedAt": "2026-09-13",
-      "publishedAtRaw": "スポーツ報知　9月13日 16時05分",
+      "publishedAtRaw": "日刊スポーツ　9月13日 19時01分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260913-OHT1T51175",
-      "title": "新弟子検査で元十両・砂浜の息子、砂田昌宏ライダーら合格",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260913-OHT1T51175",
+      "id": "dmenu-docomo-tokyosports-402973",
+      "title": "【大相撲】大の里が辛勝発進　舞の海氏「相撲の取り方、勝ち方を忘れてしまったんじゃないか」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-402973",
       "publishedAt": "2026-09-13",
-      "publishedAtRaw": "スポーツ報知　9月13日 15時59分",
+      "publishedAtRaw": "東スポWEB　9月13日 19時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
