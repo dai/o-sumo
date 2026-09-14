@@ -274,4 +274,46 @@ describe('DailyHighlightsSection', () => {
       vi.unstubAllGlobals();
     }
   });
+
+  it('renders the today/tomorrow tabs even when the next basho day schedule is still pending', async () => {
+    stubMatchupsFetch({ updatedAt: '2026-09-13T00:00:00+09:00', matchups: [] });
+    const scheduleDay1 = torikumiArchive.scheduleDays[0];
+    const scheduleDay2 = {
+      ...torikumiArchive.scheduleDays[1],
+      status: 'published' as const,
+      data: {
+        ...torikumiArchive.scheduleDays[1].data,
+        makuuchi: {
+          ...torikumiArchive.scheduleDays[1].data.makuuchi,
+          matches: scheduleDay1.data.makuuchi.matches,
+        },
+      },
+    };
+    const liveArchive: TorikumiDataSet = {
+      ...torikumiArchive,
+      scheduleDays: [scheduleDay1, scheduleDay2, ...torikumiArchive.scheduleDays.slice(2)],
+      resultDays: [
+        {
+          ...scheduleDay1,
+          status: 'published',
+        },
+      ],
+    };
+
+    try {
+      renderHighlights(liveArchive, '202609', 'live', 2, new Date('2026-09-14T06:00:00Z'));
+
+      const section = await screen.findByRole('region', { name: '今日のみどころ' });
+      const tablist = within(section).getByRole('tablist', { name: '取組日程の切り替え' });
+      const tomorrowTab = within(tablist).getByRole('tab', { name: '明日の取組' });
+
+      fireEvent.click(tomorrowTab);
+      await waitFor(() => {
+        expect(within(section).getByText('明日のみどころ')).toBeInTheDocument();
+        expect(within(section).getByText('公式取組発表待ち')).toBeInTheDocument();
+      });
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
 });

@@ -249,6 +249,86 @@ describe('getDailyHighlights pending state', () => {
     expect(targets.tomorrow?.day.day).toBe(2);
     expect(targets.tomorrow?.mode).toBe('schedule');
   });
+
+  it('still resolves the tomorrow slot in live mode when the next basho day is only pending', () => {
+    const scheduleDay1 = torikumiArchive.scheduleDays[0];
+    const scheduleDay2 = {
+      ...torikumiArchive.scheduleDays[1],
+      status: 'published' as const,
+      data: {
+        ...torikumiArchive.scheduleDays[1].data,
+        makuuchi: {
+          ...torikumiArchive.scheduleDays[1].data.makuuchi,
+          matches: scheduleDay1.data.makuuchi.matches,
+        },
+      },
+    };
+    const liveArchive: TorikumiDataSet = {
+      ...torikumiArchive,
+      scheduleDays: [scheduleDay1, scheduleDay2, ...torikumiArchive.scheduleDays.slice(2)],
+      resultDays: [
+        {
+          ...scheduleDay1,
+          status: 'published',
+        },
+      ],
+    };
+
+    const targets = resolveDailyHighlightsTargets({
+      archive: liveArchive,
+      bashoStatus: {
+        kind: 'live',
+        startDate: '2026-09-13',
+        endDate: '2026-09-27',
+        day: 2,
+      },
+      now: new Date('2026-09-14T06:00:00Z'),
+    });
+
+    expect(targets.today?.day.day).toBe(2);
+    expect(targets.tomorrow).not.toBeNull();
+    expect(targets.tomorrow?.day.day).toBe(3);
+    expect(targets.tomorrow?.mode).toBe('schedule');
+    expect(targets.tomorrow?.dayDiff).toBe(1);
+  });
+
+  it('keeps tomorrow null in live mode when the next basho day is missing from scheduleDays', () => {
+    const scheduleDay1 = torikumiArchive.scheduleDays[0];
+    const scheduleDay2 = {
+      ...torikumiArchive.scheduleDays[1],
+      status: 'published' as const,
+      data: {
+        ...torikumiArchive.scheduleDays[1].data,
+        makuuchi: {
+          ...torikumiArchive.scheduleDays[1].data.makuuchi,
+          matches: scheduleDay1.data.makuuchi.matches,
+        },
+      },
+    };
+    const liveArchive: TorikumiDataSet = {
+      ...torikumiArchive,
+      scheduleDays: [scheduleDay1, scheduleDay2],
+      resultDays: [
+        {
+          ...scheduleDay1,
+          status: 'published',
+        },
+      ],
+    };
+
+    const targets = resolveDailyHighlightsTargets({
+      archive: liveArchive,
+      bashoStatus: {
+        kind: 'live',
+        startDate: '2026-09-13',
+        endDate: '2026-09-27',
+        day: 2,
+      },
+      now: new Date('2026-09-14T06:00:00Z'),
+    });
+
+    expect(targets.tomorrow).toBeNull();
+  });
 });
 
 describe('enrichFeaturedMatchup aikuchi handling', () => {
