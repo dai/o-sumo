@@ -208,3 +208,7 @@ PR #479 で満点に到達した AI Agent Readiness 7 項目を維持しつつ�
 
 - **Lesson #4**（WebMCP API 名前空間）— PR 1 で `NavigatorModelContext` / `registerWebMcpTools` の JSDoc を 4 段階検出順序として明文化済み。
 - **Lesson #5**（RFC 9728 §3.2）— PR 1 で `oauth-authorization-server` を「`agent_auth` 拡張付き metadata-only discovery surface として残置」と `docs/agent-ready.md` に明記済み。
+
+## 2026-09-13 OGP画像の意図と配信履歴を照合する
+- 古いOGP表示の報告では、現在の配信画像だけからキャッシュ原因に絞らない。ユーザーが以前作成した正しい画像、Gitの画像履歴、公開画像の内容を照合する。
+- 画像URLのバージョン変更を提案する前に、その画像自体がユーザーの指定（読みもの・年月日・場所名なし）を満たすことを目視で確認する。
