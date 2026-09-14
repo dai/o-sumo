@@ -7,6 +7,7 @@ export type PageMeta = {
   canonicalUrl: string;
   imageUrl: string;
   type: 'website';
+  isNotFound?: boolean;
 };
 
 const IMAGE_URL = `${SITE_ORIGIN}/og-default.jpg?v=20260913`;
@@ -27,6 +28,7 @@ function notFoundMeta(): PageMeta {
     canonicalUrl: `${SITE_ORIGIN}/404`,
     imageUrl: IMAGE_URL,
     type: 'website',
+    isNotFound: true,
   };
 }
 

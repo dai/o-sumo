@@ -26,13 +26,17 @@ describe('resolvePageMeta', () => {
     ['/gyoji/not-a-number/', '404 ページが見つかりません | o-sumo', 'お探しのページは見つかりませんでした。o-sumoの最新取組表や番付一覧をご確認ください。', '/404'],
     ['/unknown/', '404 ページが見つかりません | o-sumo', 'お探しのページは見つかりませんでした。o-sumoの最新取組表や番付一覧をご確認ください。', '/404'],
   ])('resolves Japanese metadata for %s', (pathname, title, description, canonicalPath = pathname) => {
-    expect(resolvePageMeta(pathname)).toEqual({
+    const expected: Record<string, unknown> = {
       title,
       description,
       canonicalUrl: `https://osada.us${canonicalPath}`,
       imageUrl: 'https://osada.us/og-default.jpg?v=20260913',
       type: 'website',
-    });
+    };
+    if (canonicalPath === '/404') {
+      expected.isNotFound = true;
+    }
+    expect(resolvePageMeta(pathname)).toEqual(expected);
   });
 
   it('normalizes a non-canonical route before creating its canonical URL', () => {
