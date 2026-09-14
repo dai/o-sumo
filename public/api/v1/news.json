@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-13T10:22:25.859753+00:00",
+  "updatedAt": "2026-09-14T00:58:25.202359+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-tokyosports-402974",
-      "title": "【大相撲】安青錦　２場所連続Ｖへ上々発進「半年以上ぶりに国技館で相撲を取れて良かった」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-402974",
-      "publishedAt": "2026-09-13",
-      "publishedAtRaw": "東スポWEB　9月13日 19時10分",
+      "id": "dmenu-docomo-abematimes-10272816",
+      "title": "「土俵が…」合計“500キロ”に迫る超重量対決 あまりのド迫力に「土俵の悲鳴が聞こえそう」ユニークな反応も",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10272816",
+      "publishedAt": "2026-09-14",
+      "publishedAtRaw": "ABEMA TIMES　9月14日 9時26分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_KVLYG4PV5JD3FN6POQMRDBIFXY",
-      "title": "琴風氏「そんな年になったんだ。早いねぇ」／秋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_KVLYG4PV5JD3FN6POQMRDBIFXY",
-      "publishedAt": "2026-09-13",
-      "publishedAtRaw": "SANSPO　9月13日 19時08分",
+      "id": "dmenu-docomo-abematimes-10272806",
+      "title": "「筋肉やば」鋼のような筋肉美で“無敗”の力士、ついに初黒星「三段目の取組じゃない」好取組に初日からファン大興奮",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10272806",
+      "publishedAt": "2026-09-14",
+      "publishedAtRaw": "ABEMA TIMES　9月14日 8時44分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260913-0309",
-      "title": "安青錦　231日ぶり両国国技館で勝ち名乗り　左足の故障で関取衆と稽古できず",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260913-0309",
-      "publishedAt": "2026-09-13",
-      "publishedAtRaw": "スポニチアネックス　9月13日 19時01分",
+      "id": "dmenu-docomo-abematimes-10272804",
+      "title": "「俳優さんかしら」「ディカプリオに似てる」序ノ口に登場した“脚長”イケメン力士にファン熱視線",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10272804",
+      "publishedAt": "2026-09-14",
+      "publishedAtRaw": "ABEMA TIMES　9月14日 8時08分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260913-202609130001261",
-      "title": "熱海富士、大関とりへ好発進　八角理事長「前に出ようとする気持ちが強い」心技体充実を称賛",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260913-202609130001261",
-      "publishedAt": "2026-09-13",
-      "publishedAtRaw": "日刊スポーツ　9月13日 19時01分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_O6W3RDDK55GWBO25432ZT5ZUZU",
+      "title": "琴風氏「白鵬が上がってきたころ、こんな体でした。下半身も柔らかそう」／秋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_O6W3RDDK55GWBO25432ZT5ZUZU",
+      "publishedAt": "2026-09-14",
+      "publishedAtRaw": "SANSPO　9月14日 8時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-402973",
-      "title": "【大相撲】大の里が辛勝発進　舞の海氏「相撲の取り方、勝ち方を忘れてしまったんじゃないか」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-402973",
-      "publishedAt": "2026-09-13",
-      "publishedAtRaw": "東スポWEB　9月13日 19時00分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_YPNMDLVXAZDJTFOWLO3SI3MZCI",
+      "title": "元貴景勝「自分も中学卒業でなかなか行く勇気はなかったので素晴らしい」／秋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_YPNMDLVXAZDJTFOWLO3SI3MZCI",
+      "publishedAt": "2026-09-14",
+      "publishedAtRaw": "SANSPO　9月14日 7時30分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
