@@ -218,11 +218,16 @@ export function resolveDailyHighlightsTargets({
       }
     }
 
+    // Surface the next basho day's slot as soon as it exists in the published
+    // scheduleDays array, even before JSA publishes the day's matchups. This
+    // keeps the "本日 / 明日" tablist visible during live basho days so the
+    // UI does not collapse back to a single tab while we are still waiting on
+    // tomorrow's torikumi. When the slot is empty, the section renders the
+    // existing "awaiting official bouts" placeholder rather than fabricated
+    // matchups.
     let tomorrowTarget: DailyHighlightsTarget | null = null;
-    const tomorrowScheduleDay = scheduleDays.find((day) => (
-      day.day === (bashoStatus.day! + 1) && (day.status === 'published' || hasMatches(day))
-    ));
-    if (tomorrowScheduleDay && hasMatches(tomorrowScheduleDay)) {
+    const tomorrowScheduleDay = scheduleDays.find((day) => day.day === bashoStatus.day! + 1);
+    if (tomorrowScheduleDay) {
       const dayDiff = tomorrowScheduleDay.isoDate ? getCalendarDayDiffJst(tomorrowScheduleDay.isoDate, now) : 1;
       tomorrowTarget = { day: tomorrowScheduleDay, mode: 'schedule', dayDiff };
     }
