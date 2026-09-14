@@ -304,18 +304,18 @@ export default function DailyHighlightsSection({
           </p>
         ) : (
           <>
+            <div className="daily-highlights-grid">
+              {highlightsResult.matchups.map((matchup) => (
+                <FeaturedMatchupCard key={matchup.id} matchup={matchup} />
+              ))}
+            </div>
+
             <DailyMonomosuBox
               monthKey={highlightsResult.monthKey}
               day={highlightsResult.day}
               shareTitle={isEn ? highlightsResult.dateTextEn : highlightsResult.dateTextJa}
               customComment={getRelativeMonomosuText(activeTarget.dayDiff ?? null, isFinal, t)}
             />
-
-            <div className="daily-highlights-grid">
-              {highlightsResult.matchups.map((matchup) => (
-                <FeaturedMatchupCard key={matchup.id} matchup={matchup} />
-              ))}
-            </div>
           </>
         )}
       </div>

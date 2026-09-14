@@ -1,3 +1,25 @@
+# トップの物申す/結びの一番順序入れ替え + 明日の取組タブ根本調査 (2026-09-14)
+
+## Plan
+
+- [x] `origin/main` (`b37e2dd`) から `codex/home-section-swap-and-tab-investigation` を作成
+- [ ] `app/components/DailyHighlightsSection.tsx` のタブパネル内 (`<>` fragment、lines 307-318) で `<DailyMonomosuBox>` と `.daily-highlights-grid` の記述順を逆にする
+- [ ] 明日の取組タブ根本調査: `automation/schedule-updates-1788689635` を fetch して三日目に matches があるか確認
+- [ ] 調査結果に応じて追加アクション (PR 修正 / ワークフロー手動実行 / コード修正 / 何もしない) を判断
+- [ ] UX 改善 (任意、調査結果次第): `pendingBodyTomorrow` / `pendingBodyDayAfterTomorrow` を locale に追加
+- [ ] コミット: `chore(home): swap 物申す and 結びの一番 inside the daily highlights tabpanel`
+- [ ] 検証: `npm run typecheck` → `npm test -- app/components/DailyHighlightsSection.test.tsx` → `npm test -- app/page.test.tsx` → `npm test`
+
+## Review
+
+(実装後に記入)
+
+## 学び
+
+(修正を受けた後に記入)
+
+---
+
 # /analytics 動的化 + 今日のみどころ文言修正 (2026-09-13)
 
 ## Plan
