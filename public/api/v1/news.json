@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-14T04:25:39.704335+00:00",
+  "updatedAt": "2026-09-14T06:44:06.295037+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-f-bt-tp1-260914-202609140000656",
+      "title": "“イケメン力士”大森が白星発進「朝起きたらバナナ」目標は体重５キロ増…得意料理も明かす",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260914-202609140000656",
+      "publishedAt": "2026-09-14",
+      "publishedAtRaw": "日刊スポーツ　9月14日 15時23分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-20260914083",
+      "title": "大相撲　“史上最強の新弟子”旭富士が敗れる、初の大銀杏披露も十両力士相手に無念",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260914083",
+      "publishedAt": "2026-09-14",
+      "publishedAtRaw": "デイリースポーツ　9月14日 14時59分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-20260914080",
+      "title": "大相撲　男前で注目の大森が白星発進「立ち合いがうまくいった」元遠藤の北陣親方の教え生かす",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260914080",
+      "publishedAt": "2026-09-14",
+      "publishedAtRaw": "デイリースポーツ　9月14日 14時44分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260914-OHT1T51051",
+      "title": "【２日目の見所】八角理事長が新三役・藤ノ川を絶賛　「稽古をしっかりやっている感じがする」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260914-OHT1T51051",
+      "publishedAt": "2026-09-14",
+      "publishedAtRaw": "スポーツ報知　9月14日 14時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-hochi-20260914-OHT1T51064",
       "title": "三段目陥落の矢後が黒星発進　諒兎馬に寄り切られ「対応する技術が無かった」",
       "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260914-OHT1T51064",
       "publishedAt": "2026-09-14",
       "publishedAtRaw": "スポーツ報知　9月14日 13時06分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260914-OHT1T51063",
-      "title": "序二段・豪鬼神は黒星発進　８月は地元の秋田・横手市で巡業に参加「『もっと頑張れよ』と声をかけてもらったので、集中していきたい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260914-OHT1T51063",
-      "publishedAt": "2026-09-14",
-      "publishedAtRaw": "スポーツ報知　9月14日 13時05分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20260914-OHT1T51059",
-      "title": "昭和以降２人目の５０歳力士・翔傑が白星発進　初土俵から３１年無休「土俵に上がって相撲を取るのが最大の務めなので」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260914-OHT1T51059",
-      "publishedAt": "2026-09-14",
-      "publishedAtRaw": "スポーツ報知　9月14日 12時49分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-f-bt-tp1-260914-202609140000371",
-      "title": "石原伸晃氏が明かす２人の注目力士「大乃国みたいな感じ」「人気の出るタイプ」秋場所初日を観戦",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260914-202609140000371",
-      "publishedAt": "2026-09-14",
-      "publishedAtRaw": "日刊スポーツ　9月14日 12時22分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20260914-0167",
-      "title": "デビューから31年無休の「鉄人」翔傑が50歳初戦を勝利で飾る　30歳下に豪快な極め倒し",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260914-0167",
-      "publishedAt": "2026-09-14",
-      "publishedAtRaw": "スポニチアネックス　9月14日 12時21分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
