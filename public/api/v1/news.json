@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-14T00:58:25.202359+00:00",
+  "updatedAt": "2026-09-14T02:31:12.565365+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,33 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_WCNBMNULPRHJXLNOFWJN6GZY4I",
+      "title": "元貴景勝「実力がないとできない。改めて大関の強さというものを感じた」／秋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_WCNBMNULPRHJXLNOFWJN6GZY4I",
+      "publishedAt": "2026-09-14",
+      "publishedAtRaw": "SANSPO　9月14日 11時10分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20260914-OHT1T51039",
+      "title": "山口改め千代心海、序ノ口デビューで３０歳差対決を制す「やっと大相撲の世界に。うれしかった」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260914-OHT1T51039",
+      "publishedAt": "2026-09-14",
+      "publishedAtRaw": "スポーツ報知　9月14日 10時57分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-f-bt-tp0-260914-202609140000201",
+      "title": "【WWE】中邑真輔、高橋ヒロムこと狂奇、MFTのキング・ハクから日本語で「わかるだろうな」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp0-260914-202609140000201",
+      "publishedAt": "2026-09-14",
+      "publishedAtRaw": "日刊スポーツ　9月14日 10時04分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "dmenu-docomo-abematimes-10272816",
       "title": "「土俵が…」合計“500キロ”に迫る超重量対決 あまりのド迫力に「土俵の悲鳴が聞こえそう」ユニークな反応も",
       "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10272816",
@@ -30,33 +57,6 @@
       "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10272806",
       "publishedAt": "2026-09-14",
       "publishedAtRaw": "ABEMA TIMES　9月14日 8時44分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-abematimes-10272804",
-      "title": "「俳優さんかしら」「ディカプリオに似てる」序ノ口に登場した“脚長”イケメン力士にファン熱視線",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10272804",
-      "publishedAt": "2026-09-14",
-      "publishedAtRaw": "ABEMA TIMES　9月14日 8時08分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_O6W3RDDK55GWBO25432ZT5ZUZU",
-      "title": "琴風氏「白鵬が上がってきたころ、こんな体でした。下半身も柔らかそう」／秋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_O6W3RDDK55GWBO25432ZT5ZUZU",
-      "publishedAt": "2026-09-14",
-      "publishedAtRaw": "SANSPO　9月14日 8時00分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_YPNMDLVXAZDJTFOWLO3SI3MZCI",
-      "title": "元貴景勝「自分も中学卒業でなかなか行く勇気はなかったので素晴らしい」／秋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_YPNMDLVXAZDJTFOWLO3SI3MZCI",
-      "publishedAt": "2026-09-14",
-      "publishedAtRaw": "SANSPO　9月14日 7時30分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
