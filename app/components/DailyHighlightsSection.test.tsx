@@ -289,9 +289,26 @@ describe('DailyHighlightsSection', () => {
         },
       },
     };
+    // Force day 3 (tomorrow) back into the pending state regardless of what
+    // the live torikumi fixture currently ships. The recent daily-data-update
+    // PRs may have already published day 3, which would let the highlight
+    // resolver find a featured bout and skip the "awaiting official bouts"
+    // notice — defeating the test's intent.
+    const scheduleDay3 = {
+      ...torikumiArchive.scheduleDays[2],
+      status: 'pending' as const,
+      statusMessage: '取組予定未更新',
+      data: {
+        ...torikumiArchive.scheduleDays[2].data,
+        makuuchi: {
+          ...torikumiArchive.scheduleDays[2].data.makuuchi,
+          matches: [],
+        },
+      },
+    };
     const liveArchive: TorikumiDataSet = {
       ...torikumiArchive,
-      scheduleDays: [scheduleDay1, scheduleDay2, ...torikumiArchive.scheduleDays.slice(2)],
+      scheduleDays: [scheduleDay1, scheduleDay2, scheduleDay3, ...torikumiArchive.scheduleDays.slice(3)],
       resultDays: [
         {
           ...scheduleDay1,
@@ -312,6 +329,63 @@ describe('DailyHighlightsSection', () => {
         expect(within(section).getByText('明日のみどころ')).toBeInTheDocument();
         expect(within(section).getByText('公式取組発表待ち')).toBeInTheDocument();
       });
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it('renders the today/tomorrow tabs and the featured bout when the next basho day schedule is already published', async () => {
+    stubMatchupsFetch({ updatedAt: '2026-09-13T00:00:00+09:00', matchups: [] });
+    const scheduleDay1 = torikumiArchive.scheduleDays[0];
+    const scheduleDay2 = {
+      ...torikumiArchive.scheduleDays[1],
+      status: 'published' as const,
+      data: {
+        ...torikumiArchive.scheduleDays[1].data,
+        makuuchi: {
+          ...torikumiArchive.scheduleDays[1].data.makuuchi,
+          matches: scheduleDay1.data.makuuchi.matches,
+        },
+      },
+    };
+    const scheduleDay3 = {
+      ...torikumiArchive.scheduleDays[2],
+      status: 'published' as const,
+      data: {
+        ...torikumiArchive.scheduleDays[2].data,
+        makuuchi: {
+          ...torikumiArchive.scheduleDays[2].data.makuuchi,
+          matches: scheduleDay1.data.makuuchi.matches,
+        },
+      },
+    };
+    const liveArchive: TorikumiDataSet = {
+      ...torikumiArchive,
+      scheduleDays: [scheduleDay1, scheduleDay2, scheduleDay3, ...torikumiArchive.scheduleDays.slice(3)],
+      resultDays: [
+        {
+          ...scheduleDay1,
+          status: 'published',
+        },
+      ],
+    };
+
+    try {
+      renderHighlights(liveArchive, '202609', 'live', 2, new Date('2026-09-14T06:00:00Z'));
+
+      const section = await screen.findByRole('region', { name: '今日のみどころ' });
+      const tablist = within(section).getByRole('tablist', { name: '取組日程の切り替え' });
+      const tomorrowTab = within(tablist).getByRole('tab', { name: '明日の取組' });
+
+      fireEvent.click(tomorrowTab);
+      await waitFor(() => {
+        expect(tomorrowTab).toHaveAttribute('aria-selected', 'true');
+        expect(within(section).getByText('明日のみどころ')).toBeInTheDocument();
+      });
+      // The featured bout resolver should surface a real matchup, not the
+      // pending placeholder, when the next day has a published schedule.
+      expect(within(section).queryByText('公式取組発表待ち')).not.toBeInTheDocument();
+      expect(within(section).getAllByRole('article').length).toBeGreaterThan(0);
     } finally {
       vi.unstubAllGlobals();
     }
