@@ -832,3 +832,17 @@ verdict: **PASS with minor follow-ups**。P0 = 0、P1 × 6、P2 × 5。9/12 manu
 - resultDays/today/resultUpdatedAtはmainと完全一致、scheduleDays/tomorrow/scheduleUpdatedAtはPRと完全一致をassertで確認。
 - 二日目の幕内20番・十両14番を保持。validator、Python96テスト成功。
 - 型チェック・ビルド・git diff --check成功。反映直前のmainとPR headに追加変更がないことを確認。
+
+# 手動 Daily 更新の失敗調査（2026-09-13）
+
+- [x] 失敗した二つの実行を特定し、ログを確認する。
+- [x] 予定の完全性チェック、Realtime の対象範囲、公式APIと main の二日目データを照合する。
+- [x] 原因と更新への影響を報告する。
+
+## Review
+
+- Daily runs 34728655822 / 34728675608 は二日目の十両が未公開のため、Generate schedule data で各2回失敗。
+- 公式APIの読み取り確認でも幕内20番、十両未公開。require_complete_schedule が片部門公開をエラーにする。
+- Realtime run 34728685773 は scope=result、payload unchanged で成功。二日目予定の更新成功を意味しない。
+- GitHub main の scheduleDays day=2 は pending、幕内/十両とも0番。コード変更・再実行・公開操作は行っていない。
+
