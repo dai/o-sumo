@@ -11,6 +11,7 @@ import {
   type ShareCollection,
 } from '../app/lib/share-meta-response';
 import type { ShareMetaOverride } from '../app/lib/share-meta';
+import { resolvePageMeta } from '../app/lib/page-meta';
 
 async function loadSharePayload(context: any, requestUrl: URL, collection: ShareCollection) {
   const assetUrl = new URL(`/api/v1/${collection}.json`, requestUrl);
@@ -23,18 +24,57 @@ async function loadSharePayload(context: any, requestUrl: URL, collection: Share
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const HTMLRewriter: any;
 
-function rewriteSocialMetadata(response: Response, metadata: ShareMetaOverride) {
+function escapeHtmlAttribute(value: string): string {
+  return value.replace(/[&<>"']/g, (char) => {
+    switch (char) {
+      case '&':
+        return '&amp;';
+      case '<':
+        return '&lt;';
+      case '>':
+        return '&gt;';
+      case '"':
+        return '&quot;';
+      case "'":
+        return '&#39;';
+      default:
+        return char;
+    }
+  });
+}
+
+interface PageMetadataForRewrite {
+  title: string;
+  description: string;
+  canonicalUrl: string;
+}
+
+export function rewritePageMetadata(response: Response, metadata: PageMetadataForRewrite) {
+  const canonicalHref = escapeHtmlAttribute(metadata.canonicalUrl);
   const rewriter = new HTMLRewriter()
     .on('title', { element: (element: any) => element.setInnerContent(metadata.title) })
     .on('meta[name="description"]', { element: (element: any) => element.setAttribute('content', metadata.description) })
     .on('meta[property="og:title"]', { element: (element: any) => element.setAttribute('content', metadata.title) })
     .on('meta[property="og:description"]', { element: (element: any) => element.setAttribute('content', metadata.description) })
-    .on('meta[property="og:url"]', { element: (element: any) => element.setAttribute('content', metadata.socialUrl) })
+    .on('meta[property="og:url"]', { element: (element: any) => element.setAttribute('content', metadata.canonicalUrl) })
     .on('meta[name="twitter:title"]', { element: (element: any) => element.setAttribute('content', metadata.title) })
-    .on('meta[name="twitter:description"]', { element: (element: any) => element.setAttribute('content', metadata.description) });
+    .on('meta[name="twitter:description"]', { element: (element: any) => element.setAttribute('content', metadata.description) })
+    .on('link[rel="canonical"]', { element: (element: any) => element.setAttribute('href', metadata.canonicalUrl) })
+    .on('head', {
+      element: (element: any) =>
+        element.append(`<link rel="canonical" href="${canonicalHref}" data-o-sumo-seo="canonical" />`, { html: true }),
+    });
   const transformed = rewriter.transform(response);
   const headers = prepareShareMetadataHeaders(transformed.headers);
   return new Response(transformed.body, { status: transformed.status, statusText: transformed.statusText, headers });
+}
+
+function shareOverrideToMetadata(metadata: ShareMetaOverride): PageMetadataForRewrite {
+  return {
+    title: metadata.title,
+    description: metadata.description,
+    canonicalUrl: metadata.socialUrl,
+  };
 }
 
 export const HOME_LINK_HEADERS = [
@@ -81,9 +121,31 @@ export const onRequest = async (context: any): Promise<Response> => {
   const collection = shareCollectionForPath(requestUrl.pathname);
   if (!collection) {
     const response = await context.next();
+    let headers: Headers | null = null;
     if (isHomePage && !response.headers.has('Link')) {
-      const headers = new Headers(response.headers);
+      headers = new Headers(response.headers);
       ensureHomeLinkHeaders(headers);
+    }
+
+    if (!isHomePage) {
+      const pageMeta = resolvePageMeta(requestUrl.pathname);
+      if (!pageMeta.isNotFound) {
+        const responseForRewrite = headers
+          ? new Response(response.body, {
+              status: response.status,
+              statusText: response.statusText,
+              headers,
+            })
+          : response;
+        return rewritePageMetadata(responseForRewrite, {
+          title: pageMeta.title,
+          description: pageMeta.description,
+          canonicalUrl: pageMeta.canonicalUrl,
+        });
+      }
+    }
+
+    if (headers) {
       return new Response(response.body, {
         status: response.status,
         statusText: response.statusText,
@@ -96,14 +158,14 @@ export const onRequest = async (context: any): Promise<Response> => {
   const response = await context.next();
   try {
     const payload = await loadSharePayload(context, requestUrl, collection);
-    return rewriteSocialMetadata(
+    return rewritePageMetadata(
       response,
-      resolveShareMetadataForPayload(requestUrl, collection, payload),
+      shareOverrideToMetadata(resolveShareMetadataForPayload(requestUrl, collection, payload)),
     );
   } catch {
-    return rewriteSocialMetadata(
+    return rewritePageMetadata(
       response,
-      resolveShareMetadataForPayload(requestUrl, collection, null),
+      shareOverrideToMetadata(resolveShareMetadataForPayload(requestUrl, collection, null)),
     );
   }
 };
