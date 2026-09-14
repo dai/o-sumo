@@ -360,3 +360,145 @@ describe('onRequest SEO routing for sitemap-targeted HTML routes', () => {
     }
   });
 });
+
+describe('onRequest SEO noscript injection', () => {
+  function makeHtmlResponse(body = '<!DOCTYPE html><html><body></body></html>'): Response {
+    return new Response(body, {
+      status: 200,
+      headers: { 'Content-Type': 'text/html; charset=utf-8' },
+    });
+  }
+
+  function makeContext(request: Request, mockNext: ReturnType<typeof vi.fn>): // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  any {
+    return {
+      request,
+      env: {
+        ASSETS: {
+          fetch: vi.fn().mockImplementation(async (_url: URL) => {
+            // Stub the per-month banzuke.json (and anything else) as empty so
+            // the noscript builder takes its fixture-driven code paths.
+            return new Response('null', { status: 200, headers: { 'Content-Type': 'application/json' } });
+          }),
+        },
+      },
+      next: mockNext,
+    };
+  }
+
+  it('registers a body handler that appends <noscript> for /kimarite/', async () => {
+    const spy = installHtmlRewriterSpy();
+    try {
+      const request = new Request('https://osada.us/kimarite/', { headers: { Accept: 'text/html' } });
+      const mockNext = vi.fn().mockResolvedValue(makeHtmlResponse());
+      await onRequest(makeContext(request, mockNext));
+
+      expect(spy.rewriters).toHaveLength(1);
+      const bodyRegistrations = spy.rewriters[0].registrations.filter((r) => r.selector === 'body');
+      expect(bodyRegistrations).toHaveLength(1);
+      let appended = '';
+      const fakeBody = {
+        setInnerContent: () => {},
+        setAttribute: () => {},
+        append: (content: string, options?: { html?: boolean }) => {
+          if (options?.html) appended = content;
+        },
+      };
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (bodyRegistrations[0].handlers.element as any)(fakeBody);
+      expect(appended).toContain('<noscript');
+      expect(appended).toContain('決まり手一覧');
+      expect(appended).toContain('寄り切り');
+    } finally {
+      spy.restore();
+    }
+  });
+
+  it('does not register a body handler for the homepage', async () => {
+    const spy = installHtmlRewriterSpy();
+    try {
+      const request = new Request('https://osada.us/', { headers: { Accept: 'text/html' } });
+      const mockNext = vi.fn().mockResolvedValue(makeHtmlResponse());
+      await onRequest(makeContext(request, mockNext));
+
+      expect(spy.rewriters).toHaveLength(0);
+    } finally {
+      spy.restore();
+    }
+  });
+
+  it('does not register a body handler for notFound routes', async () => {
+    const spy = installHtmlRewriterSpy();
+    try {
+      const request = new Request('https://osada.us/this-route-does-not-exist/', { headers: { Accept: 'text/html' } });
+      const mockNext = vi.fn().mockResolvedValue(makeHtmlResponse());
+      await onRequest(makeContext(request, mockNext));
+
+      expect(spy.rewriters).toHaveLength(0);
+    } finally {
+      spy.restore();
+    }
+  });
+
+  it('injects a body noscript on /archives/ listing all archived months', async () => {
+    const spy = installHtmlRewriterSpy();
+    try {
+      const request = new Request('https://osada.us/archives/', { headers: { Accept: 'text/html' } });
+      const mockNext = vi.fn().mockResolvedValue(makeHtmlResponse());
+      await onRequest(makeContext(request, mockNext));
+
+      expect(spy.rewriters).toHaveLength(1);
+      const bodyReg = spy.rewriters[0].registrations.find((r) => r.selector === 'body');
+      let appended = '';
+      const fakeBody = {
+        setInnerContent: () => {},
+        setAttribute: () => {},
+        append: (content: string, options?: { html?: boolean }) => {
+          if (options?.html) appended = content;
+        },
+      };
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (bodyReg!.handlers.element as any)(fakeBody);
+      expect(appended).toContain('2026年9月場所');
+      expect(appended).toContain('2026年7月場所');
+      expect(appended).toContain('/202609-banzuke/');
+    } finally {
+      spy.restore();
+    }
+  });
+
+  it('injects a profile noscript on /rikishi/{id}/ using the share payload', async () => {
+    const spy = installHtmlRewriterSpy();
+    try {
+      const payload = { rikishi: [{ id: 4227, name: '大の里', yomi: 'おおのさと', currentRank: '横綱' }] };
+      const request = new Request('https://osada.us/rikishi/4227/', { headers: { Accept: 'text/html' } });
+      const mockFetch = vi.fn().mockResolvedValue(new Response(JSON.stringify(payload), { status: 200 }));
+      const mockNext = vi.fn().mockResolvedValue(makeHtmlResponse());
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const context: any = {
+        request,
+        env: { ASSETS: { fetch: mockFetch } },
+        next: mockNext,
+      };
+      await onRequest(context);
+
+      expect(spy.rewriters).toHaveLength(1);
+      const bodyReg = spy.rewriters[0].registrations.find((r) => r.selector === 'body');
+      let appended = '';
+      const fakeBody = {
+        setInnerContent: () => {},
+        setAttribute: () => {},
+        append: (content: string, options?: { html?: boolean }) => {
+          if (options?.html) appended = content;
+        },
+      };
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (bodyReg!.handlers.element as any)(fakeBody);
+      expect(appended).toContain('<noscript');
+      expect(appended).toContain('大の里');
+      expect(appended).toContain('力士プロフィール');
+    } finally {
+      spy.restore();
+    }
+  });
+});

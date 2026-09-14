@@ -12,6 +12,7 @@ import {
 } from '../app/lib/share-meta-response';
 import type { ShareMetaOverride } from '../app/lib/share-meta';
 import { resolvePageMeta } from '../app/lib/page-meta';
+import { buildSeoNoscriptHtml, type SeoNoscriptContext } from '../app/lib/seo-noscript';
 
 async function loadSharePayload(context: any, requestUrl: URL, collection: ShareCollection) {
   const assetUrl = new URL(`/api/v1/${collection}.json`, requestUrl);
@@ -50,6 +51,14 @@ interface PageMetadataForRewrite {
 }
 
 export function rewritePageMetadata(response: Response, metadata: PageMetadataForRewrite) {
+  return rewritePageMetadataWithNoscript(response, metadata, null);
+}
+
+export function rewritePageMetadataWithNoscript(
+  response: Response,
+  metadata: PageMetadataForRewrite,
+  noscriptHtml: string | null,
+) {
   const canonicalHref = escapeHtmlAttribute(metadata.canonicalUrl);
   const rewriter = new HTMLRewriter()
     .on('title', { element: (element: any) => element.setInnerContent(metadata.title) })
@@ -64,6 +73,11 @@ export function rewritePageMetadata(response: Response, metadata: PageMetadataFo
       element: (element: any) =>
         element.append(`<link rel="canonical" href="${canonicalHref}" data-o-sumo-seo="canonical" />`, { html: true }),
     });
+  if (noscriptHtml) {
+    rewriter.on('body', {
+      element: (element: any) => element.append(noscriptHtml, { html: true }),
+    });
+  }
   const transformed = rewriter.transform(response);
   const headers = prepareShareMetadataHeaders(transformed.headers);
   return new Response(transformed.body, { status: transformed.status, statusText: transformed.statusText, headers });
@@ -118,6 +132,14 @@ export const onRequest = async (context: any): Promise<Response> => {
     }
   }
 
+  const noscriptContext: SeoNoscriptContext = {
+    fetchJson: async (path: string) => {
+      const r = await context.env.ASSETS.fetch(new URL(path, requestUrl));
+      if (!r.ok) return null;
+      return r.json();
+    },
+  };
+
   const collection = shareCollectionForPath(requestUrl.pathname);
   if (!collection) {
     const response = await context.next();
@@ -130,6 +152,7 @@ export const onRequest = async (context: any): Promise<Response> => {
     if (!isHomePage) {
       const pageMeta = resolvePageMeta(requestUrl.pathname);
       if (!pageMeta.isNotFound) {
+        const noscriptHtml = await buildSeoNoscriptHtml(requestUrl.pathname, pageMeta.title, noscriptContext);
         const responseForRewrite = headers
           ? new Response(response.body, {
               status: response.status,
@@ -137,11 +160,15 @@ export const onRequest = async (context: any): Promise<Response> => {
               headers,
             })
           : response;
-        return rewritePageMetadata(responseForRewrite, {
-          title: pageMeta.title,
-          description: pageMeta.description,
-          canonicalUrl: pageMeta.canonicalUrl,
-        });
+        return rewritePageMetadataWithNoscript(
+          responseForRewrite,
+          {
+            title: pageMeta.title,
+            description: pageMeta.description,
+            canonicalUrl: pageMeta.canonicalUrl,
+          },
+          noscriptHtml,
+        );
       }
     }
 
@@ -156,16 +183,32 @@ export const onRequest = async (context: any): Promise<Response> => {
   }
 
   const response = await context.next();
+  let override: ShareMetaOverride;
+  let payload: unknown = null;
   try {
-    const payload = await loadSharePayload(context, requestUrl, collection);
-    return rewritePageMetadata(
-      response,
-      shareOverrideToMetadata(resolveShareMetadataForPayload(requestUrl, collection, payload)),
-    );
+    payload = await loadSharePayload(context, requestUrl, collection);
+    override = resolveShareMetadataForPayload(requestUrl, collection, payload);
   } catch {
-    return rewritePageMetadata(
-      response,
-      shareOverrideToMetadata(resolveShareMetadataForPayload(requestUrl, collection, null)),
-    );
+    override = resolveShareMetadataForPayload(requestUrl, collection, null);
   }
+  const profileMatch = requestUrl.pathname.match(/^\/(rikishi|gyoji|yobidashi)\/[1-9]\d*\/?$/);
+  const noscriptContextForProfile: SeoNoscriptContext = profileMatch
+    ? {
+        fetchJson: async (path: string) => {
+          // Reuse the share payload we already fetched for this profile route
+          // to avoid a duplicate `/api/v1/*.json` request on every bot hit.
+          const expected = `/api/v1/${collection}.json`;
+          if (path === expected) return payload;
+          const r = await context.env.ASSETS.fetch(new URL(path, requestUrl));
+          if (!r.ok) return null;
+          return r.json();
+        },
+      }
+    : noscriptContext;
+  const noscriptHtml = await buildSeoNoscriptHtml(requestUrl.pathname, override.title, noscriptContextForProfile);
+  return rewritePageMetadataWithNoscript(
+    response,
+    shareOverrideToMetadata(override),
+    noscriptHtml,
+  );
 };
