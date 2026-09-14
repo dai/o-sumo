@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-14T04:25:39.704335+00:00",
+  "updatedAt": "2026-09-14T10:21:02.263745+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260914-OHT1T51064",
-      "title": "三段目陥落の矢後が黒星発進　諒兎馬に寄り切られ「対応する技術が無かった」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260914-OHT1T51064",
+      "id": "dmenu-docomo-hochi-20260914-OHT1T51218",
+      "title": "幕下・碇潟が白星発進　新関脇の兄・藤ノ川に刺激を受け「自分も上でやりたい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260914-OHT1T51218",
       "publishedAt": "2026-09-14",
-      "publishedAtRaw": "スポーツ報知　9月14日 13時06分",
+      "publishedAtRaw": "スポーツ報知　9月14日 18時58分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260914-OHT1T51063",
-      "title": "序二段・豪鬼神は黒星発進　８月は地元の秋田・横手市で巡業に参加「『もっと頑張れよ』と声をかけてもらったので、集中していきたい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260914-OHT1T51063",
+      "id": "dmenu-docomo-hochi-20260914-OHT1T51169",
+      "title": "大の里が２連勝　琴勝峰に勝利　前日は危ない相撲も、白星重ねる",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260914-OHT1T51169",
       "publishedAt": "2026-09-14",
-      "publishedAtRaw": "スポーツ報知　9月14日 13時05分",
+      "publishedAtRaw": "スポーツ報知　9月14日 17時55分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260914-OHT1T51059",
-      "title": "昭和以降２人目の５０歳力士・翔傑が白星発進　初土俵から３１年無休「土俵に上がって相撲を取るのが最大の務めなので」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260914-OHT1T51059",
+      "id": "dmenu-docomo-tokyosports-403087",
+      "title": "【大相撲】朝乃山が関取復帰後初の連勝発進「しっかり踏み込めているので流れができている」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403087",
       "publishedAt": "2026-09-14",
-      "publishedAtRaw": "スポーツ報知　9月14日 12時49分",
+      "publishedAtRaw": "東スポWEB　9月14日 17時32分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260914-202609140000371",
-      "title": "石原伸晃氏が明かす２人の注目力士「大乃国みたいな感じ」「人気の出るタイプ」秋場所初日を観戦",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260914-202609140000371",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_5YXG5TF5QJJY3HKC7F3IL4PCUQ",
+      "title": "ベテラン記者コラム　秋場所休場の豊昇龍、復帰場所の選択は慎重に　出場時は進退待ったなし",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_5YXG5TF5QJJY3HKC7F3IL4PCUQ",
       "publishedAt": "2026-09-14",
-      "publishedAtRaw": "日刊スポーツ　9月14日 12時22分",
+      "publishedAtRaw": "SANSPO　9月14日 17時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260914-0167",
-      "title": "デビューから31年無休の「鉄人」翔傑が50歳初戦を勝利で飾る　30歳下に豪快な極め倒し",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260914-0167",
+      "id": "dmenu-docomo-hochi-20260914-OHT1T51146",
+      "title": "ＡＢＥＭＡ、大相撲中継のＯＰ映像をリニューアル！　 ＡＫ―６９による新曲『ＩＫＩＺＡＭＡ』を起用",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260914-OHT1T51146",
       "publishedAt": "2026-09-14",
-      "publishedAtRaw": "スポニチアネックス　9月14日 12時21分",
+      "publishedAtRaw": "スポーツ報知　9月14日 16時38分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
