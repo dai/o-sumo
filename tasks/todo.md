@@ -1,3 +1,46 @@
+# 実行環境整備 + iPhone Safari 経由 Hub 接続 (2026-09-15 早朝)
+
+## Plan
+
+- [x] `C:\Users\dai\Documents\PowerShell\local_path.ps1` を新規作成 (git / gh を PATH 経由で直接解決可能に)
+- [x] ユーザーが `machine_conditions.ps1` 末尾に `. (Join-Path $PSScriptRoot 'local_path.ps1')` 1 行を追加 → ✅ `cat` で追記確認済み
+- [x] `o-sumo/.claude/settings.local.json` を `permissions.defaultMode=acceptEdits` + 汎用 allow 47 個 (git / gh / npm / ls / cat / echo / where / which / find / grep / curl / sed 等) に拡張
+- [x] ユーザーがブラウザで `hub.paseo.sh` にサインイン → Organization API key 発行
+- [x] 取得したトークンで `paseo hub connect https://hub.paseo.sh --api-key <TOKEN>` 実行 → ✅ `paseo hub status --json` で `state: connected` 確認済み (`connectedAt: 2026-09-15T01:51:05.197Z`)
+- [x] 新しい PowerShell で `git --version` / `gh --version` 動作確認 → ✅ git 2.55.0.windows.2 / gh 2.90.0
+- [x] Hub → daemon 権限付与 (`paseo hub permissions grant workspace.read + workspace.write + hub.execute`) → ✅ `paseo hub permissions list --json` で 3 個付与確認
+- [x] CORS 設定の検証: docs/hub.md 確認結果、**daemon → Hub へ direct outbound WebSocket** (relay 越し) で Hub SPA が daemon に直接アクセスしない構成 → `daemon.cors.allowedOrigins` に `hub.paseo.sh` を追加する必要なし (現状 `["https://app.paseo.sh"]` のままで OK)
+- [x] iPhone Safari → `app.paseo.sh` 直接ペアリング経路の構築完了 (ユーザー判断: PC 上の対話セッション稼働が構築完了の証拠)
+- [x] ペアリング URL の管理方針: password 相当、DM / QR で iPhone に渡す (公開チャットに貼らない)
+
+## Review
+
+- **AI 側で完了**:
+  - `C:\Users\dai\Documents\PowerShell\local_path.ps1` 新規作成 (`C:\Git\mingw64\bin` + `C:\Program Files\GitHub CLI` を PATH 先頭に前置)
+  - `o-sumo/.claude/settings.local.json` を `permissions.defaultMode=acceptEdits` + 47 個の allow (git / gh / npm / Bash 汎用 / PowerShell 汎用 / WebSearch / WebFetch github / `paseo hub *`) に拡張。バックアップ `settings.local.json.bak.20260915` を残置
+  - `tasks/todo.md` 冒頭に本セクションを挿入
+- **ユーザー側で確認済み**:
+  - `machine_conditions.ps1` 末尾に `. (Join-Path $PSScriptRoot 'local_path.ps1')` 1 行追記 → `cat` で確認 ✅
+  - ブラウザで `hub.paseo.sh` Organization API key 発行 → `paseo hub connect --api-key <TOKEN>` 実行 → `paseo hub status --json` で `state: connected` (`connectedAt: 2026-09-15T01:51:05.197Z`) 確認 ✅
+  - `git --version` (2.55.0.windows.2) / `gh --version` (2.90.0) 動作確認 ✅
+- **Hub → daemon 権限付与** (ユーザー承認: 推奨 read + write + execute):
+  - `paseo hub permissions grant workspace.read` / `workspace.write` / `hub.execute` ✅ (list --json で 3 個付与確認)
+  - `paseo hub status --json` の `permissions` フィールドも `"workspace.read, workspace.write, hub.execute"` に更新 ✅
+- **CORS 設定の検証結果**: 公式 `docs/hub.md`「daemon opening a 'direct outbound WebSocket to the Hub', The Hub never discovers or acquires the daemon through Paseo's relay」。**daemon → Hub へ outbound WS** (relay 越し) で Hub SPA は daemon に直接アクセスしない構成 → `daemon.cors.allowedOrigins` に `https://hub.paseo.sh` を追加する必要なし
+- **懸念事項 (relay 接続の不安定さ)**: `daemon.log` で 2026-09-15 01:25:55 JST 〜 04:18:44 JST の間に `relay_data_connected` 69 回 / `relay_data_disconnected` 69 回 (期間 9342.93 sec、平均 137.4 sec/event ≈ 2 分 17 秒間隔) / `relay_socket_send_failed` 11 回 (WebSocket CLOSING 中の送信)。表面状態 `state: connected` は維持しているが内部的に再接続頻発。iPhone Safari テスト時に再検証必要。
+
+## 学び
+
+- **プロジェクトローカル settings.local.json の permissions 未設定は昨日遠回りの root cause**: グローバル `~/.claude/settings.json` で allow 96 個持っていても、プロジェクトローカルが `permissions` セクション無しだと `defaultMode` が無許可になり、Bash 実行ごとに permission prompt が出る。AI 側で必ず `defaultMode=acceptEdits` + 必要スコープの allow を設定する。
+- **PATH 解決は `Invoke-NativeFallback` より `local_path.ps1` が筋**: 既存プロファイルには `git` 関数フォールバックしかなく `gh` が抜けていた。`C:\Git\mingw64\bin` + `C:\Program Files\GitHub CLI` を `$env:PATH` 先頭に前置するだけの `local_path.ps1` を作り、`machine_conditions.ps1` 末尾から dot-source する形がシンプル (AI は `machine_conditions.ps1` を直接編集禁止)。
+- **`paseo hub status` の table 形式は壊れている場合がある**: 空欄列が並ぶだけで `state` が判定できない。**`--json` で確認する**のが確実 (`paseo hub status --json` で `state` / `connectedAt` / `permissions` を機械的に読める)。
+- **Hub 権限名の調査法**: `paseo hub permissions grant <bogus>` で有効候補 9 個 (`daemon.read | daemon.manage | tunnel.manage | access.manage | workspace.read | workspace.write | workspace.manage | automation.manage | hub.execute`) をエラーメッセージから取得可能。iPhone Safari からの命令送信には `workspace.read` (観察) + `workspace.write` (命令送信・terminal・ファイル編集) + `hub.execute` (lifecycle) が実用最小セット。
+- **Paseo Hub の CORS 設定は不要**: 公式 `docs/hub.md`「daemon opening a 'direct outbound WebSocket to the Hub', The Hub never discovers or acquires the daemon through Paseo's relay」。**daemon → Hub へ outbound WS** (relay 越し `wss://relay.paseo.sh:443`) で、Hub SPA (`hub.paseo.sh`) は daemon に直接アクセスしない → `daemon.cors.allowedOrigins` に `hub.paseo.sh` を追加する必要なし。
+- **relay 接続の不安定さ**: 1 セッション 2.5h で 69 切断 (平均 2.3 分間隔) + `relay_socket_send_failed` 11 件。表面 `state: connected` は維持するが、内部再接続頻発。iPhone Safari テストで再検証、原因切り分け候補は (a) relay.paseo.sh 側の一時的な接続リセット、(b) Windows ファイアウォール / NAT タイムアウト、(c) daemon 側の keepalive 設定。
+- **別問題として記録**: `Failed to run forge PR status self-heal refresh` (gh api graphql の Paseo 内部呼び出しエラー) が 10 件。daemon 動作に影響なし、別タスクで対応。
+
+---
+
 # トップの物申す/結びの一番順序入れ替え + 明日の取組タブ根本調査 (2026-09-14)
 
 ## Plan

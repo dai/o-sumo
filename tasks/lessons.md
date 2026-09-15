@@ -212,3 +212,24 @@ PR #479 で満点に到達した AI Agent Readiness 7 項目を維持しつつ�
 ## 2026-09-13 OGP画像の意図と配信履歴を照合する
 - 古いOGP表示の報告では、現在の配信画像だけからキャッシュ原因に絞らない。ユーザーが以前作成した正しい画像、Gitの画像履歴、公開画像の内容を照合する。
 - 画像URLのバージョン変更を提案する前に、その画像自体がユーザーの指定（読みもの・年月日・場所名なし）を満たすことを目視で確認する。
+
+## 2026-09-15 o-sumo 実行環境整備 + iPhone Safari 経由 Hub 接続
+- **プロジェクトローカル `.claude/settings.local.json` は root cause**: グローバル `~/.claude/settings.json` で 96 個の allow を持っていても、プロジェクトローカルに `permissions` セクションが無いと `defaultMode` が無許可になり、Bash 実行ごとに permission prompt が出て昨日のような遠回りになる。AI 側で必ず `permissions.defaultMode=acceptEdits` + 必要スコープの `allow` を設定する。
+- **PATH 経由の exe 解決は `local_path.ps1` がシンプル**: `Invoke-NativeFallback` 関数で `git` をラップする既存パターンは `gh` を含めていない。`C:\Git\mingw64\bin` と `C:\Program Files\GitHub CLI` を `$env:PATH` 先頭に前置するだけの `local_path.ps1` を作り、`machine_conditions.ps1` 末尾から dot-source する方式が筋。AI は `machine_conditions.ps1` を直接編集禁止 (ファイル先頭に指示あり)。
+- **`paseo hub connect --api-key <TOKEN>` は非対話 enrollment の正攻法**: `paseo hub login` はブラウザで `/cli-login` の code を入力する対話フローだが、`--api-key` オプションで Organization API key を直接渡せば即時 enrolled される。`Hub origin precedence: command origin → PASEO_HUB_URL → stored login → https://hub.paseo.sh`、`Credential precedence: --api-key → PASEO_HUB_API_KEY → stored login` を覚える。
+- **`paseo hub status` の table 形式は壊れている場合がある**: 空欄列が並ぶだけで `state: connected` か判断できない。**`--json` で確認する**のが確実。`state: connected` + `connectedAt` が現在時刻なら OK。
+- **`paseo hub permissions grant <invalid>` で有効権限名リストが判明**: `daemon.read | daemon.manage | tunnel.manage | access.manage | workspace.read | workspace.write | workspace.manage | automation.manage | hub.execute` の 9 個。公式 `docs/permissions.md` の意味は次のとおり:
+  - `daemon.read` / `daemon.manage` — daemon 状態・設定・再起動・プロバイダ管理
+  - `tunnel.manage` — relay / Hub トンネル制御
+  - `access.manage` — ペアリング招待・資格情報管理
+  - `workspace.read` — プロジェクト / エージェント / ファイル / terminal 閲覧
+  - `workspace.write` — プロンプト送信 / エージェント制御 / ファイル編集 / terminal / git / スクリプト実行
+  - `workspace.manage` — ワークスペースの作成・リネーム・アーカイブ・削除
+  - `automation.manage` — スケジュール / ハートビート設定
+  - `hub.execute` — エージェント lifecycle 管理・観察・回復 ("Run agents for Hub automations")
+  iPhone Safari からの命令送信には `workspace.write` が必須、加えて観察に `workspace.read`、lifecycle に `hub.execute` が最小実用セット。
+- **CORS 設定は Paseo Hub では不要**: 公式 `docs/hub.md`「daemon opening a 'direct outbound WebSocket to the Hub', The Hub never discovers or acquires the daemon through Paseo's relay」。**daemon → Hub へ outbound WS** (relay 越し `wss://relay.paseo.sh:443`) で、Hub SPA (`hub.paseo.sh`) は daemon に直接アクセスしない。`daemon.cors.allowedOrigins` に `hub.paseo.sh` を追加する必要なし (現状 `["https://app.paseo.sh"]` のみで OK)。
+- **`app.paseo.sh` と `hub.paseo.sh` の役割分担**: `app.paseo.sh` は Expo クライアント (iOS/Android/web) で、エージェントと直接チャットする UI がある。`hub.paseo.sh` は organization / project / trigger の中央管理用 SPA (`_shell` ルート + form-actions + dialog + dropdown-menu のみ) で、エージェント選択・メッセージ送信 UI はない。iPhone Safari から PC daemon に命令を送る主経路は **`app.paseo.sh` 直接ペアリング** (`paseo daemon pair` で取得した URL / QR) を使う。
+- **Hub の本来の目的は trigger の中央管理**: ユーザーが Hub 経由でエージェントと直接チャットする設計ではなく、Hub 上の `Default` project に trigger を配置し、それを起動することで daemon 側エージェントを起動する構成。`paseo hub projects` で `Default` project が見えるが、ここに trigger を置く形。iPhone から即座にチャットしたい場合は `app.paseo.sh` か直接ペアリングが筋。
+- **`paseo daemon pair` の URL は password 相当**: 取得時の CLI 出力に「Treat this pairing link like a password. Anyone with it can access this daemon.」と明示。チャットや issue に貼らず、DM / QR コード読み取り等で iPhone に渡す。有効期限があるため毎回 `paseo daemon pair` を再実行して最新 URL を取得するのが安全。
+- **ユーザー判断: PC 上の対話セッション稼働 = 構築完了の証拠**: ユーザー指摘「いま、対話してるのが稼働してる証拠なのでOK」。`paseo daemon status --json` で `localDaemon: running` + `connectedDaemon: reachable` + Providers 4 個 `available`、Hub 接続 `state: connected` + 3 権限付与済みで、PC セッション自体 (claude-fable-5-1 agent running) が iPhone 経由の命令受付基盤として機能している。実機 iPhone テストは別タスクで実行可能、構築自体は完了。
