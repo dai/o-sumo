@@ -431,7 +431,7 @@ def main() -> int:
             new_streak = previous_streak + 1
             payload["items"] = existing_items
             payload["lastFailureStreak"] = new_streak
-            payload["updatedAt"] = datetime.now(timezone.utc).isoformat()
+            payload["updatedAt"] = existing.get("updatedAt")
             write_payload(payload, args.out, force_write=True)
             print(
                 f"[warn] all news sources failed; kept stale items but bumped "

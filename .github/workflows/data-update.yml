@@ -1,0 +1,63 @@
+name: Serialized data publication
+on:
+  workflow_call:
+    inputs:
+      scope: {required: true, type: string}
+      event_schedule: {required: false, default: '', type: string}
+    secrets:
+      GH_PAT: {required: true}
+      DISCORD_WEBHOOK_URL: {required: false}
+permissions: {contents: write, checks: read, actions: read}
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    concurrency: {group: osumo-data-writer, cancel-in-progress: false}
+    outputs:
+      commit_sha: ${{ steps.update.outputs.commit_sha }}
+      pushed: ${{ steps.update.outputs.pushed }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          token: ${{ secrets.GH_PAT }}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - id: update
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          UPDATE_SCOPE: ${{ inputs.scope }}
+          EVENT_SCHEDULE: ${{ inputs.event_schedule }}
+        run: python -m scripts.ci.run_data_update --scope "$UPDATE_SCOPE" --event-schedule "$EVENT_SCHEDULE"
+      - name: Notify failure
+        if: failure()
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: bash scripts/ci/notify_discord.sh failure 'Serialized data publication failed' "$RUN_URL" || echo '::warning::notify_discord failed'
+  delivery:
+    if: needs.publish.outputs.pushed == 'true'
+    needs: publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.publish.outputs.commit_sha }}
+          fetch-depth: 1
+          token: ${{ secrets.GH_PAT }}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: Verify delivery
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          PUBLISHED_SHA: ${{ needs.publish.outputs.commit_sha }}
+        run: python -m scripts.ci.check_data_delivery --repo "$GITHUB_REPOSITORY" --sha "$PUBLISHED_SHA" --timeout-seconds 600
+      - name: Notify failure
+        if: failure()
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: bash scripts/ci/notify_discord.sh failure 'Serialized data delivery verification failed' "$RUN_URL" || echo '::warning::notify_discord failed'

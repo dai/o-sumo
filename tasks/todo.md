@@ -868,3 +868,25 @@ verdict: **PASS with minor follow-ups**。P0 = 0、P1 × 6、P2 × 5。9/12 manu
 - Realtime run 34728685773 は scope=result、payload unchanged で成功。二日目予定の更新成功を意味しない。
 - GitHub main の scheduleDays day=2 は pending、幕内/十両とも0番。コード変更・再実行・公開操作は行っていない。
 
+
+# Actionsデータ公開の統一（2026-09-15）
+
+- [x] 取得・検証・直接pushを共通化し、最新mainで再生成する競合回復を実装する。
+- [x] ニュース専用状態ブランチ、連続失敗・冪等性・19時枠の遅延対応を実装する。
+- [x] 三つの定期workflowを共通直列制御へ接続し、News取得テストをCIへ追加する。
+- [x] 旧実行/自動PRの安全な移行と、正確なSHAのPages/CI確認を実装する。
+- [x] 一時Gitリポジトリ・失敗系テスト、全CI相当検証、実装PRの準備を完了する。
+
+## 判断
+
+- 旧運用が稼働している間は本番の状態ブランチ作成や自動PRクローズを実施しない。移行コードをPRに含め、mainへの反映後に新しい共通ロック内で切り替える。
+- 最新main上で再生成する公開処理は使い捨てworktreeで行い、ユーザーのチェックアウトをreset/rebaseしない。
+- Newsの19:05定期枠を独立したcron式に分け、実際の開始時刻ではなく枠で最終回と識別する。
+
+## Review
+
+- `scripts.ci` のデータ公開回帰テスト77件、News更新テスト11件、workflow設定テスト、既存のPythonテストを通過。
+- `npm run typecheck`、`npm run build`、全workflowのPyYAML構文検証を通過。
+- Daily/Realtime/Newsを共通の `osumo-data-writer` 排他制御へ接続し、公開処理は最新mainから最大3回再生成して通常pushする。
+- News状態は `automation/news-state` に保存し、状態更新コミットには `[CF-Pages-Skip]` を付ける。全取得失敗時は既存の取得時刻を保持し、連続失敗を日付またぎで継続する。
+- 公開後のCloudflare Pagesとmain push CIは、反映したSHAを指定してロック外で最大10分確認する。
