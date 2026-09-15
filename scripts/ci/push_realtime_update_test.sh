@@ -22,7 +22,6 @@ git config user.email test@example.com
 mkdir -p public/api/v1 app/lib scripts/ci
 printf '%s\n' '{"schedule":"fresh","result":"old"}' > public/api/v1/torikumi.json
 cp public/api/v1/torikumi.json app/lib/torikumi-data.ts
-printf '%s\n' public/api/v1/torikumi.json app/lib/torikumi-data.ts > scripts/ci/torikumi_paths.txt
 printf '%s\n' 'raise SystemExit(0)' > scripts/ci/validate_torikumi.py
 git add . && git commit -m base >/dev/null && git branch -M main && git push origin main >/dev/null
 

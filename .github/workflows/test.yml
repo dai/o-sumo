@@ -1,5 +1,7 @@
 name: Test
 
+# Runs unit, type, blog, and build checks on PRs and protected branch pushes.
+# `automation/data-updates` keeps the bot's auto-generated update branch green.
 on:
   pull_request_target:
   push:
@@ -8,19 +10,29 @@ on:
       - codex/**
       - automation/data-updates
 
+# Tests only need to read source. No write, no PR comment, no deploy surface.
+permissions:
+  contents: read
+
 jobs:
   test:
+    # SECURITY: For pull_request_target, only run when the PR originates from
+    # the same repository. A fork PR (`head.repo.full_name != repository`)
+    # could otherwise exfiltrate `secrets.GITHUB_TOKEN` via `actions/checkout`.
+    # Do NOT relax this guard without re-reading
+    # https://securitylab.github.com/research/github-actions-preventing-pwn-requests/.
     if: github.event_name != 'pull_request_target' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.sha }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 20
 
@@ -44,6 +56,8 @@ jobs:
       - name: Generate standalone blog
         run: npm run blog:generate
 
+      # fail-fast: a stale tracked blog.json means the PR author skipped
+      # `npm run blog:generate` locally. Block until regenerated.
       - name: Verify tracked blog feed is current
         run: git diff --exit-code -- public/api/v1/blog.json
 

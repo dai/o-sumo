@@ -1,4 +1,0 @@
-app/lib/sumo-data.ts
-app/lib/torikumi-data.ts
-public/api/v1/banzuke.json
-public/api/v1/torikumi.json

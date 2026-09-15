@@ -34,9 +34,6 @@ bash scripts/ci/notify_discord.sh failure "Workflow failed" "Run URL: ..."
 
 ワークフローからは `if: failure()` で呼び出す。未設定でも wf は落ちない。
 
-### `torikumi_paths.txt`
-realtime 系の更新で生成・コミット対象とするファイル一覧。`git add` / GitHub Actions の `add-paths` などから `xargs` 経由で読み込む想定。
-
 ## 九月場所 workflow 運用
 
 - Daily は JST 13/15/17/19時に予定を生成し、PR と auto-merge request を作る。Realtime は JST 13:00-18:50 の10分間隔で結果を検証し `main` へ直接 push する。共通 concurrency は pending run を置換し得るが、反映 SLA や未 merge PR との排他は提供しない。
