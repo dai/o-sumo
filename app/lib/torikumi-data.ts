@@ -62,8 +62,8 @@ export const torikumiData: TorikumiDataSet = {
   "bashoId": 637,
   "bashoName": "九月場所",
   "year": "令和八年",
-  "updatedAt": "2026-09-14T19:17:15+09:00",
-  "resultUpdatedAt": "2026-09-14T17:58:12+09:00",
+  "updatedAt": "2026-09-15T13:20:12+09:00",
+  "resultUpdatedAt": "2026-09-15T13:20:12+09:00",
   "scheduleUpdatedAt": "2026-09-14T19:17:15+09:00",
   "today": {
     "makuuchi": {
@@ -2419,7 +2419,23 @@ export const torikumiData: TorikumiDataSet = {
           "dayHead": "三日目： 令和8年9月15日(火)",
           "division": "幕内",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3842,
+              "name": "豊昇龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            }
+          ]
         },
         "juryo": {
           "day": 3,
