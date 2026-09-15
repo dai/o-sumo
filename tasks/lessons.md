@@ -212,3 +212,45 @@ PR #479 で満点に到達した AI Agent Readiness 7 項目を維持しつつ�
 ## 2026-09-13 OGP画像の意図と配信履歴を照合する
 - 古いOGP表示の報告では、現在の配信画像だけからキャッシュ原因に絞らない。ユーザーが以前作成した正しい画像、Gitの画像履歴、公開画像の内容を照合する。
 - 画像URLのバージョン変更を提案する前に、その画像自体がユーザーの指定（読みもの・年月日・場所名なし）を満たすことを目視で確認する。
+
+## 2026-09-15 GitHub Actions 安全再設計（PR #619）
+
+### ユーザー指示が明確なときは探索サイクルを即終了する
+
+「ローカルを最新化しておいて」「5つの全ワークフローを安全再設計」のように指示が具体的なら、Plan モードの5フェーズ（探索→設計→レビュー→最終プラン→承認）を省略する。各フェーズで AskUserQuestion を連発すると「3時間かかって壊れた」と言われる。
+
+**Why**: Plan モードは本来「曖昧な要件を具体化する」仕組みだが、要件が明確なタスクでは逆に overhead になる。ユーザーが「ボツ」と明示したときは、探索結果を破棄して指示の最小解釈で即実装に入る。
+
+**How to apply**: 指示が具体的（対象ファイル名・対象スコープ・「安全再設計」のような動詞）なら、最初の Explore エージェントは最大2個、Plan エージェントは省略可能。`tasks/todo.md` にチェックリストを書いて進捗を可視化するだけで、5フェーズ formalism を満たせる。
+
+### ブランチ状態（ahead/behind）は rebase / merge 提案より先に確認する
+
+`fix/data-publish-allowed-paths` で作業中に main との関係を `git log main..HEAD` / `git log HEAD..main` で確認したら 50 コミット ahead だった。`git rebase origin/main` を進めようとすると reflog に abort が残り、ユーザーから「壊れた」と言われる。
+
+**Why**: 「ローカルを最新化」の意味が「pull して追従」なのか「main にマージ」なのかは、ahead/behind 数で完全に分岐する。ahead なら rebase は逆方向に進む。
+
+**How to apply**: `git status` と `git log --oneline main..HEAD` を最初に確認。ahead が大きい（10+ コミット）なら「cherry-pick 戦略」「main へのマージ方針」を AskUserQuestion で確定する。
+
+### GitHub Actions は tag ではなく SHA でピン留めする
+
+`actions/checkout@v4` は mutable ref で、悪意ある/誤った re-tag があれば CI が任意のコードを実行する。`@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0` のように SHA + バージョンコメントに固定する。
+
+**Why**: GitHub のタグは force push で書き換え可能（実際は禁止運用だが技術的には可能）。SHA は commit object への immutable ref。Dependabot で更新運用の自動化が必要だが、最初の SHA 固定で「現状は安全」を保証できる。
+
+**How to apply**: `git ls-remote --tags https://github.com/<owner>/<repo>.git | grep -E 'refs/tags/v?<maj>.<min>.<patch>$' | tail -1` で最新タグの SHA を取得。`uses: <owner>/<repo>@<sha> # <tag>` 形式で記述。
+
+### 単一情報源（SoT）の二重管理は silent failure の温床
+
+`scripts/ci/run_data_update.py:18` の `TORIKUMI` タプルと `scripts/ci/torikumi_paths.txt` が同じ 4 ファイルを別管理していた。ジェネレータが新ファイルを書くと片方だけ更新され、`data_publish.py:91` の `PublishError: Generated changes outside allowed_paths` で CI が落ちる（PR #618 で実例）。
+
+**Why**: 二箇所で同じ情報を更新するのは「片方忘れる」が必ず起きる。CI 設定の SoT を 1 箇所に絞ると、新規ファイル追加時に修正箇所が明確になる。
+
+**How to apply**: CI の許可パスリスト・cron 定義・トリガー条件など「同じ情報を複数ファイルに書く」設計を見つけたら、片方を single source of truth にする。テストで SoT と派生ファイルの一致を検証する。`push_realtime_update_test.sh:25` のように「作るが読まない」dead code ファイルは積極的に削除する。
+
+### ファイル参照は grep だけでなく「実際に read されているか」を確認する
+
+`scripts/ci/push_realtime_update_test.sh:25` で `torikumi_paths.txt` を作成していたが、後続のテストフロー（line 26-52）はそのファイルを**読まなかった**。grep では「参照箇所あり」になるが、実際に dead code。
+
+**Why**: grep は「文字列の出現」を見つけるが、「読み書きの用途」は見つけない。生成だけのファイルは削除しても影響しない。
+
+**How to apply**: ファイルを削除する前に、(1) テスト・CI・本番スクリプトの grep、(2) 各参照箇所のコンテキスト確認（read か write か）、(3) 削除後のテスト再実行、の3ステップを踏む。
