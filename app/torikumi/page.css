@@ -1086,3 +1086,30 @@
 [data-theme='dark'] .torikumi-matchup-sheet__cta:active {
   color: #0f131d;
 }
+
+.torikumi-disclaimer-banner {
+  display: block;
+  padding: 0.6rem 1rem;
+  margin: 0.5rem 0;
+  border-radius: 6px;
+  background: var(--surface-container-low, #f9fafb);
+  color: var(--color-secondary);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  border-left: 3px solid var(--color-primary, #1d3a5f);
+}
+
+.torikumi-disclaimer-banner--top {
+  margin-top: 0;
+}
+
+.torikumi-disclaimer-banner--below-table {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+[data-theme='dark'] .torikumi-disclaimer-banner {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-light-text);
+  border-left-color: var(--color-primary, #c1c6d9);
+}

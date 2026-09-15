@@ -12,6 +12,7 @@ import {
 import HomeLink from '../components/HomeLink';
 import { getBashoStatus } from '../lib/basho-status';
 import AbsenteesNotice, { type AbsenteeEntry } from '../components/AbsenteesNotice';
+import TorikumiDisclaimerBanner from '../components/TorikumiDisclaimerBanner';
 import PageBreadcrumb from '../components/PageBreadcrumb';
 import './page.css';
 import { formatUpdatedAt } from '../lib/updated-at';
@@ -85,6 +86,7 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
       </header>
 
       <main className="torikumi-main">
+        <TorikumiDisclaimerBanner mode={mode} variant="top" />
         <PageBreadcrumb
           ariaLabel={t('rikishi.breadcrumbLabel')}
           items={[

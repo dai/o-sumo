@@ -299,7 +299,8 @@
   "torikumi": {
     "shared": {
       "absenteesLabel": "休場者:",
-      "absentees": "休場者: {{names}}"
+      "absentees": "休場者: {{names}}",
+      "disclaimer": "結果速報情報は日本相撲協会から発表された公式情報であり、遅延することがあります。"
     },
     "hub": {
       "resultListTitle": "結果一覧",
@@ -316,7 +317,6 @@
       "dayArchiveHeading": "{{mode}}の日別アーカイブ",
       "sortLabel": "{{mode}}一覧の並び順",
       "statusPublished": "公開中",
-      "disclaimer": "結果速報情報は日本相撲協会から発表された公式情報であり、遅延することがあります。",
       "statusAwaitingJsa": "ただいま協会の発表待ちです",
       "footerHome": "ホーム",
       "footerBanzuke": "番付一覧",
@@ -337,7 +337,6 @@
       "noMyRikishiMatches": "本日の取組にマイ力士の出場はありません。",
       "resultNotUpdated": "{{division}}の取組結果はまだ更新されていません。",
       "scheduleNotUpdated": "{{division}}の取組予定はまだ更新されていません。",
-      "disclaimer": "結果速報情報は日本相撲協会から発表された公式情報であり、遅延することがあります。",
       "statusAwaitingJsa": "ただいま協会の発表待ちです。公式発表後に反映されます。",
       "dayHead": "{{day}}日",
       "updateDate": "更新日: {{date}}",

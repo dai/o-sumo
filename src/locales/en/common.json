@@ -299,7 +299,8 @@
   "torikumi": {
     "shared": {
       "absenteesLabel": "Absentees:",
-      "absentees": "Absentees: {{names}}"
+      "absentees": "Absentees: {{names}}",
+      "disclaimer": "Result updates reflect official information published by the Japan Sumo Association and may be delayed."
     },
     "hub": {
       "resultListTitle": "Results",
@@ -316,7 +317,6 @@
       "dayArchiveHeading": "Daily {{mode}} Archive",
       "sortLabel": "{{mode}} list order",
       "statusPublished": "Published",
-      "disclaimer": "Result updates reflect official information published by the Japan Sumo Association and may be delayed.",
       "statusAwaitingJsa": "Awaiting the Association's announcement",
       "footerHome": "Home",
       "footerBanzuke": "Banzuke",
@@ -337,7 +337,6 @@
       "noMyRikishiMatches": "No My Rikishi bouts scheduled for today.",
       "resultNotUpdated": "Results for {{division}} have not yet been updated.",
       "scheduleNotUpdated": "{{division}} schedule has not been published yet.",
-      "disclaimer": "Result updates reflect official information published by the Japan Sumo Association and may be delayed.",
       "statusAwaitingJsa": "Awaiting the Association's announcement. The page will update once the official torikumi is released.",
       "dayHead": "Day {{day}}",
       "updateDate": "Updated: {{date}}",

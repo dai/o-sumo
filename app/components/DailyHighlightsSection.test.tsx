@@ -327,8 +327,13 @@ describe('DailyHighlightsSection', () => {
       fireEvent.click(tomorrowTab);
       await waitFor(() => {
         expect(within(section).getByText('明日のみどころ')).toBeInTheDocument();
-        expect(within(section).getByText('公式取組発表待ち')).toBeInTheDocument();
       });
+      // When the active target is the JST-tomorrow day and the current JST hour
+      // has already passed 15:00, the pending badge swaps from the generic
+      // "公式取組発表待ち" to the JSA-awaiting notice. Match that with a
+      // pattern so the assertion stays decoupled from the exact wording.
+      expect(within(section).queryByText('公式取組発表待ち')).not.toBeInTheDocument();
+      expect(within(section).getByText(/発表待ち/)).toBeInTheDocument();
     } finally {
       vi.unstubAllGlobals();
     }

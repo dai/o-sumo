@@ -14,6 +14,7 @@ import type { TorikumiDataSet, TorikumiArchiveDay } from '../lib/torikumi-data';
 import type { BashoStatus } from '../lib/basho-status';
 import { fetchRikishiMatchups } from '../lib/rikishi-profile';
 import { getRelativeHighlightsTitle, getRelativeMonomosuText } from '../lib/relative-date';
+import { getJstTomorrowIsoDate, isAfterFirstUpdateWindow } from '../lib/torikumi-routes';
 import DailyMonomosuBox from './DailyMonomosuBox';
 
 export interface DailyHighlightsSectionProps {
@@ -187,6 +188,7 @@ export default function DailyHighlightsSection({
 }: DailyHighlightsSectionProps) {
   const { t, i18n } = useTranslation('common');
   const isEn = i18n.language === 'en';
+  const effectiveNow = now ?? new Date();
 
   const targets = React.useMemo(() => resolveDailyHighlightsTargets({
     archive,
@@ -260,7 +262,9 @@ export default function DailyHighlightsSection({
           </span>
           {highlightsResult === null && (
             <span className="daily-highlights-section__pending-badge">
-              {t('highlights.pendingBadge')}
+              {activeTarget.day.isoDate === getJstTomorrowIsoDate(effectiveNow) && isAfterFirstUpdateWindow(effectiveNow)
+                ? t('torikumi.day.statusAwaitingJsa')
+                : t('highlights.pendingBadge')}
             </span>
           )}
         </div>

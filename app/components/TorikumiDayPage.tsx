@@ -18,6 +18,7 @@ import {
 } from '../lib/torikumi-routes';
 import HomeLink from './HomeLink';
 import AbsenteesNotice from './AbsenteesNotice';
+import TorikumiDisclaimerBanner from './TorikumiDisclaimerBanner';
 import PageBreadcrumb from './PageBreadcrumb';
 import '../torikumi/page.css';
 import { formatUpdatedAt } from '../lib/updated-at';
@@ -553,6 +554,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
       </header>
 
       <main className="torikumi-main">
+        <TorikumiDisclaimerBanner mode={mode} variant="top" />
         <div className="torikumi-top-toolbar">
           <PageBreadcrumb
             ariaLabel={t('rikishi.breadcrumbLabel')}
@@ -617,6 +619,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
           isSaved={isSaved}
           matchupWinsMap={matchupWinsMap}
         />
+        <TorikumiDisclaimerBanner mode={mode} variant="below-table" />
       </main>
 
       <footer className="torikumi-footer">

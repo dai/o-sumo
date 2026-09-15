@@ -8,6 +8,7 @@ import { MARCH2026_TORIKUMI_DATA } from './march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from './may2026-data';
 import { JULY2026_TORIKUMI_DATA } from './july2026-data';
 import { updatedAtDateKey } from './updated-at';
+import { getJstIsoDate } from './relative-date';
 import {
   CURRENT_BANZUKE_PATH,
   CURRENT_RESULT_PATH,
@@ -201,8 +202,36 @@ export function getArchiveUpdatedAt(mode: TorikumiPageMode): string {
 
 export function getArchiveUpdateMessage(mode: TorikumiPageMode): string {
   return mode === 'result'
-    ? '場所期間中はJST 14:00, 14:30, 15:00, 15:30, 16:00, 16:30に更新し、17:00-18:00は10分ごとに更新'
-    : '取組予定はJST 15:30と20:00に更新';
+    ? '場所期間中はJST 13:00から18:50まで10分ごとに更新'
+    : '取組予定はJST 13:00, 15:00, 17:00, 19:00に更新';
+}
+
+/**
+ * Returns the JST calendar date for the day after `now`, formatted as YYYY-MM-DD.
+ * DST-free via Intl.DateTimeFormat with timeZone: 'Asia/Tokyo'.
+ */
+export function getJstTomorrowIsoDate(now: Date = new Date()): string {
+  const today = getJstIsoDate(now);
+  const [yearStr, monthStr, dayStr] = today.split('-');
+  const year = Number(yearStr);
+  const month = Number(monthStr);
+  const day = Number(dayStr);
+  const tomorrowUtc = Date.UTC(year, month - 1, day + 1);
+  return getJstIsoDate(new Date(tomorrowUtc));
+}
+
+/**
+ * Returns true when the current JST hour is at or after 15:00, the day's
+ * first torikumi schedule publication point.
+ */
+export function isAfterFirstUpdateWindow(now: Date = new Date()): boolean {
+  const hourPart = new Intl.DateTimeFormat('en-GB', {
+    hour: '2-digit',
+    hour12: false,
+    timeZone: 'Asia/Tokyo',
+  }).formatToParts(now).find((part) => part.type === 'hour');
+  const hour = Number(hourPart?.value ?? '0');
+  return hour >= 15;
 }
 
 export const legacyBanzukePath = `/${torikumiMonthKey}-o-sumo`;
