@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-14T10:21:02.263745+00:00",
+  "updatedAt": "2026-09-15T00:54:06.566284+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260914-OHT1T51218",
-      "title": "幕下・碇潟が白星発進　新関脇の兄・藤ノ川に刺激を受け「自分も上でやりたい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260914-OHT1T51218",
-      "publishedAt": "2026-09-14",
-      "publishedAtRaw": "スポーツ報知　9月14日 18時58分",
+      "id": "dmenu-docomo-abematimes-10273013",
+      "title": "走る、走る、行司が土俵を全力ダッシュ！ 力士の速すぎる攻めに“あわや”の瞬間 館内どよめきも見事回避「ナイス行司w」",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273013",
+      "publishedAt": "2026-09-15",
+      "publishedAtRaw": "ABEMA TIMES　9月15日 9時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260914-OHT1T51169",
-      "title": "大の里が２連勝　琴勝峰に勝利　前日は危ない相撲も、白星重ねる",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260914-OHT1T51169",
-      "publishedAt": "2026-09-14",
-      "publishedAtRaw": "スポーツ報知　9月14日 17時55分",
+      "id": "dmenu-docomo-abematimes-10272996",
+      "title": "「相撲が若い」50歳力士、強烈な極め倒しで20歳力士を吹っ飛ばす “30歳差”もなんの 圧勝ぶりにファン驚嘆",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10272996",
+      "publishedAt": "2026-09-15",
+      "publishedAtRaw": "ABEMA TIMES　9月15日 7時46分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-403087",
-      "title": "【大相撲】朝乃山が関取復帰後初の連勝発進「しっかり踏み込めているので流れができている」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403087",
-      "publishedAt": "2026-09-14",
-      "publishedAtRaw": "東スポWEB　9月14日 17時32分",
+      "id": "dmenu-docomo-tokyosports-403143",
+      "title": "【大相撲】熱海富士〝大関取り＆初優勝〟の可能性　秀ノ山親方は「圧力は大の里以上」と評価",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403143",
+      "publishedAt": "2026-09-15",
+      "publishedAtRaw": "東スポWEB　9月15日 6時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_5YXG5TF5QJJY3HKC7F3IL4PCUQ",
-      "title": "ベテラン記者コラム　秋場所休場の豊昇龍、復帰場所の選択は慎重に　出場時は進退待ったなし",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_5YXG5TF5QJJY3HKC7F3IL4PCUQ",
-      "publishedAt": "2026-09-14",
-      "publishedAtRaw": "SANSPO　9月14日 17時00分",
+      "id": "dmenu-docomo-f-bt-tp1-260915-202609140001599",
+      "title": "朝、朝、朝、朝！高砂幕内４人衆がそろって連勝、朝乃山「なかなかない」３日目の対戦相手は？",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260915-202609140001599",
+      "publishedAt": "2026-09-15",
+      "publishedAtRaw": "日刊スポーツ　9月15日 6時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260914-OHT1T51146",
-      "title": "ＡＢＥＭＡ、大相撲中継のＯＰ映像をリニューアル！　 ＡＫ―６９による新曲『ＩＫＩＺＡＭＡ』を起用",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260914-OHT1T51146",
-      "publishedAt": "2026-09-14",
-      "publishedAtRaw": "スポーツ報知　9月14日 16時38分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_F3SC5M4SAFAV7MH5WHI2UBJRMA",
+      "title": "境川親方「ここでだけ、いい相撲なんか取れっこないですから」／秋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_F3SC5M4SAFAV7MH5WHI2UBJRMA",
+      "publishedAt": "2026-09-15",
+      "publishedAtRaw": "SANSPO　9月15日 6時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
