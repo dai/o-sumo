@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-15T00:54:06.566284+00:00",
+  "updatedAt": "2026-09-15T02:28:27.954234+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-abematimes-10273013",
-      "title": "走る、走る、行司が土俵を全力ダッシュ！ 力士の速すぎる攻めに“あわや”の瞬間 館内どよめきも見事回避「ナイス行司w」",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273013",
+      "id": "dmenu-docomo-f-bt-tp1-260915-202609150000253",
+      "title": "体重58キロの新弟子・新道が初土俵　高校相撲経験者に完敗も「強いことで有名になりたい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260915-202609150000253",
       "publishedAt": "2026-09-15",
-      "publishedAtRaw": "ABEMA TIMES　9月15日 9時00分",
+      "publishedAtRaw": "日刊スポーツ　9月15日 11時09分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-abematimes-10272996",
-      "title": "「相撲が若い」50歳力士、強烈な極め倒しで20歳力士を吹っ飛ばす “30歳差”もなんの 圧勝ぶりにファン驚嘆",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10272996",
+      "id": "dmenu-docomo-hochi-20260915-OHT1T51067",
+      "title": "異例の体重５０キロ台　現役最軽量力士・新道が前相撲デビュー「軽いのはうれしいことじゃない。強いことで有名になりたい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260915-OHT1T51067",
       "publishedAt": "2026-09-15",
-      "publishedAtRaw": "ABEMA TIMES　9月15日 7時46分",
+      "publishedAtRaw": "スポーツ報知　9月15日 11時07分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-403143",
-      "title": "【大相撲】熱海富士〝大関取り＆初優勝〟の可能性　秀ノ山親方は「圧力は大の里以上」と評価",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403143",
+      "id": "dmenu-docomo-20260915048",
+      "title": "大相撲　父はハワイ出身の元十両、砂武蔵が前相撲白星デビュー「頑張ります」",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260915048",
       "publishedAt": "2026-09-15",
-      "publishedAtRaw": "東スポWEB　9月15日 6時00分",
+      "publishedAtRaw": "デイリースポーツ　9月15日 10時49分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260915-202609140001599",
-      "title": "朝、朝、朝、朝！高砂幕内４人衆がそろって連勝、朝乃山「なかなかない」３日目の対戦相手は？",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260915-202609140001599",
+      "id": "dmenu-docomo-sponichi-spngoo-20260915-0114",
+      "title": "今年も「落語大相撲圓雀場所」開催　角界から押尾川親方、世話人錦風も出演",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260915-0114",
       "publishedAt": "2026-09-15",
-      "publishedAtRaw": "日刊スポーツ　9月15日 6時00分",
+      "publishedAtRaw": "スポニチアネックス　9月15日 10時26分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_F3SC5M4SAFAV7MH5WHI2UBJRMA",
-      "title": "境川親方「ここでだけ、いい相撲なんか取れっこないですから」／秋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_F3SC5M4SAFAV7MH5WHI2UBJRMA",
+      "id": "dmenu-docomo-abematimes-10273022",
+      "title": "「あぶなっ」力士の顔の上に力士が…あわやのアクシデント発生 「無事で何より」ファンも“ヒヤリ”",
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273022",
       "publishedAt": "2026-09-15",
-      "publishedAtRaw": "SANSPO　9月15日 6時00分",
+      "publishedAtRaw": "ABEMA TIMES　9月15日 10時14分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
@@ -87,5 +87,6 @@
       "sourceId": "sumo-association",
       "sourceLabel": "日本相撲協会"
     }
-  ]
+  ],
+  "lastFailureStreak": 0
 }
