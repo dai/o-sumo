@@ -359,6 +359,7 @@ def build_payload(limit: int) -> dict:
         "updatedAt": datetime.now(timezone.utc).isoformat(),
         "sources": sources,
         "items": items,
+        "lastFailureStreak": 0,
     }
 
 
@@ -371,9 +372,11 @@ def has_news_content_changed(payload: dict, existing: dict) -> bool:
     return {
         "sources": payload.get("sources", []),
         "items": payload.get("items", []),
+        "lastFailureStreak": payload.get("lastFailureStreak", 0),
     } != {
         "sources": existing.get("sources", []),
         "items": existing.get("items", []),
+        "lastFailureStreak": existing.get("lastFailureStreak", 0),
     }
 
 
@@ -415,8 +418,24 @@ def main() -> int:
         for source in payload.get("sources", []):
             print(f"  - {source.get('id')}: ok={source.get('ok', False)}", file=sys.stderr)
         if args.allow_stale_on_failure and args.out.exists():
+            try:
+                existing = json.loads(args.out.read_text(encoding="utf-8"))
+            except (json.JSONDecodeError, OSError):
+                existing = {}
+            existing_items = existing.get("items", []) if isinstance(existing, dict) else []
+            previous_streak = (
+                existing.get("lastFailureStreak", 0)
+                if isinstance(existing, dict) and isinstance(existing.get("lastFailureStreak", 0), int)
+                else 0
+            )
+            new_streak = previous_streak + 1
+            payload["items"] = existing_items
+            payload["lastFailureStreak"] = new_streak
+            payload["updatedAt"] = datetime.now(timezone.utc).isoformat()
+            write_payload(payload, args.out, force_write=True)
             print(
-                f"[warn] all news sources failed; keeping stale {args.out}",
+                f"[warn] all news sources failed; kept stale items but bumped "
+                f"lastFailureStreak {previous_streak} -> {new_streak} on {args.out}",
                 file=sys.stderr,
             )
             return 0

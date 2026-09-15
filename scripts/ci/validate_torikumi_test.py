@@ -1,4 +1,5 @@
 import importlib.util
+from datetime import datetime, timedelta, timezone
 import json
 import pathlib
 import tempfile
@@ -8,6 +9,10 @@ SPEC = importlib.util.spec_from_file_location("validate_torikumi", pathlib.Path(
 MODULE = importlib.util.module_from_spec(SPEC)
 assert SPEC.loader is not None
 SPEC.loader.exec_module(MODULE)
+
+FRESH_TIMESTAMP = datetime.now(timezone.utc).isoformat()
+STALE_TIMESTAMP = (datetime.now(timezone.utc) - timedelta(days=MODULE.DEFAULT_MAX_AGE_DAYS + 5)).isoformat()
+OLD_TIMESTAMP = (datetime.now(timezone.utc) - timedelta(days=MODULE.DEFAULT_WARN_AGE_DAYS + 5)).isoformat()
 
 
 def match(east=1, west=2, *, kimarite="", winner=None, is_playoff=False, bout_no=None):
@@ -23,14 +28,15 @@ def match(east=1, west=2, *, kimarite="", winner=None, is_playoff=False, bout_no
     return value
 
 
-def payload(makuuchi=None, juryo=None, *, absentees=None):
+def payload(makuuchi=None, juryo=None, *, absentees=None, updated_at=None):
     pending = {"status": "pending", "data": {"makuuchi": {"matches": []}, "juryo": {"matches": []}}}
     days = [pending for _ in range(14)]
     days.insert(0, {"day": 1, "status": "published", "data": {
         "makuuchi": {"matches": makuuchi if makuuchi is not None else [match(1, 2, bout_no=1)], "absentees": absentees or []},
         "juryo": {"matches": juryo if juryo is not None else [match(3, 4, bout_no=1)], "absentees": []},
     }})
-    return {"bashoId": 637, "updatedAt": "x", "resultUpdatedAt": "x", "scheduleUpdatedAt": "x",
+    timestamp = updated_at if updated_at is not None else FRESH_TIMESTAMP
+    return {"bashoId": 637, "updatedAt": timestamp, "resultUpdatedAt": timestamp, "scheduleUpdatedAt": timestamp,
             "resultDays": [pending for _ in range(15)], "scheduleDays": days}
 
 
@@ -112,6 +118,28 @@ class ValidateTorikumiTest(unittest.TestCase):
             juryo=[match(3, 4, bout_no=1), match(7, 8, bout_no=2)],
         )
         self.assertEqual(self.run_payload(value), 0)
+
+    def test_rejects_invalid_iso_timestamp(self):
+        self.assertEqual(self.run_payload(payload(updated_at="not-a-date")), 1)
+
+    def test_rejects_stale_updated_at(self):
+        self.assertEqual(self.run_payload(payload(updated_at=STALE_TIMESTAMP)), 1)
+
+    def test_allows_warning_age_within_max(self):
+        # Warning band (older than warn, newer than max) should still pass.
+        self.assertEqual(self.run_payload(payload(updated_at=OLD_TIMESTAMP)), 0)
+
+    def test_env_overrides_lower_max_age_threshold(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = pathlib.Path(folder) / "torikumi.json"
+            path.write_text(json.dumps(payload(updated_at=OLD_TIMESTAMP)), encoding="utf-8")
+            self.assertEqual(MODULE.main(str(path)), 0)
+            import os
+            os.environ["TORIKUMI_MAX_AGE_DAYS"] = "10"
+            try:
+                self.assertEqual(MODULE.main(str(path)), 1)
+            finally:
+                os.environ.pop("TORIKUMI_MAX_AGE_DAYS", None)
 
 
 if __name__ == "__main__":
