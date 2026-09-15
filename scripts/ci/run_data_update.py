@@ -15,7 +15,12 @@ except ImportError:
     from news_state import initialize, record_attempt, select_publication, publication_payload, publication_date, mark_published, validate_state
 
 ROOT = Path(__file__).parents[2]
-TORIKUMI = ("app/lib/torikumi-data.ts", "public/api/v1/torikumi.json")
+TORIKUMI = (
+    "app/lib/torikumi-data.ts",
+    "public/api/v1/torikumi.json",
+    "app/lib/sumo-data.ts",
+    "public/api/v1/banzuke.json",
+)
 
 def run(cwd: Path, *args: str) -> None:
     subprocess.run(list(args), cwd=cwd, check=True)
