@@ -24,7 +24,8 @@ title="${2:-GitHub Actions notification}"
 detail="${3:-}"
 
 if [ -z "${DISCORD_WEBHOOK_URL:-}" ]; then
-  echo "DISCORD_WEBHOOK_URL is not set; skipping Discord notification."
+  echo "::notice::DISCORD_WEBHOOK_URL is not set; Discord alerts are DISABLED for this run. Failure notifications will only appear in the GitHub Actions log."
+  echo "DISCORD_ALERTS_DISABLED_REASON=missing-DISCORD_WEBHOOK_URL-secret"
   exit 0
 fi
 

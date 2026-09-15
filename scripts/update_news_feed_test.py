@@ -160,5 +160,108 @@ class SourceFailureGuardTest(unittest.TestCase):
         self.assertFalse(MODULE.all_news_sources_failed(payload))
 
 
+class LastFailureStreakTest(unittest.TestCase):
+    def test_build_payload_resets_streak_to_zero_on_success(self) -> None:
+        def working_scraper(limit: int) -> list[dict]:
+            return [
+                {
+                    "id": "working-1",
+                    "title": "t",
+                    "url": "https://example.com/news/1",
+                    "publishedAt": "2026-07-08",
+                    "sourceId": "working",
+                }
+            ]
+
+        sources = [
+            {"id": "ok", "label": "ok", "limit": 1, "scraper": working_scraper},
+        ]
+
+        with mock.patch.object(MODULE, "SOURCE_DEFINITIONS", sources):
+            payload = MODULE.build_payload(limit=4)
+
+        self.assertEqual(payload["lastFailureStreak"], 0)
+
+    def test_build_payload_marks_streak_zero_even_when_sources_failed(self) -> None:
+        def failing_scraper(limit: int) -> list[dict]:
+            raise RuntimeError("boom")
+
+        sources = [
+            {"id": "failing", "label": "fail", "limit": 1, "scraper": failing_scraper},
+        ]
+
+        with mock.patch.object(MODULE, "SOURCE_DEFINITIONS", sources):
+            payload = MODULE.build_payload(limit=4)
+
+        # build_payload itself does not increment; the main() all-fail branch does.
+        self.assertEqual(payload["lastFailureStreak"], 0)
+
+    def test_has_news_content_changed_detects_streak_change(self) -> None:
+        existing = make_payload("2026-07-08T00:00:00+00:00")
+        existing["lastFailureStreak"] = 2
+        candidate = make_payload("2026-07-08T00:00:00+00:00")
+        candidate["lastFailureStreak"] = 0
+
+        self.assertTrue(MODULE.has_news_content_changed(candidate, existing))
+
+    def test_main_all_fail_increments_streak_and_preserves_items(self) -> None:
+        def failing_scraper(limit: int) -> list[dict]:
+            raise RuntimeError("source unavailable")
+
+        existing = make_payload("2026-07-08T00:00:00+00:00")
+        existing["lastFailureStreak"] = 2
+
+        sources = [
+            {"id": "failing-a", "label": "a", "limit": 1, "scraper": failing_scraper},
+            {"id": "failing-b", "label": "b", "limit": 1, "scraper": failing_scraper},
+        ]
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output = pathlib.Path(temp_dir) / "news.json"
+            output.write_text(json.dumps(existing, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+            with mock.patch.object(MODULE, "SOURCE_DEFINITIONS", sources):
+                with mock.patch.object(
+                    MODULE.argparse.ArgumentParser,
+                    "parse_args",
+                    return_value=mock.MagicMock(
+                        limit=4,
+                        out=output,
+                        allow_stale_on_failure=True,
+                        force_write=False,
+                    ),
+                ):
+                    self.assertEqual(MODULE.main(), 0)
+
+            result = json.loads(output.read_text(encoding="utf-8"))
+            self.assertEqual(result["lastFailureStreak"], 3)
+            self.assertEqual(result["items"], existing["items"])
+            self.assertEqual([s["ok"] for s in result["sources"]], [False, False])
+
+    def test_main_all_fail_without_existing_file_returns_one(self) -> None:
+        def failing_scraper(limit: int) -> list[dict]:
+            raise RuntimeError("source unavailable")
+
+        sources = [
+            {"id": "failing-a", "label": "a", "limit": 1, "scraper": failing_scraper},
+        ]
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output = pathlib.Path(temp_dir) / "news.json"
+
+            with mock.patch.object(MODULE, "SOURCE_DEFINITIONS", sources):
+                with mock.patch.object(
+                    MODULE.argparse.ArgumentParser,
+                    "parse_args",
+                    return_value=mock.MagicMock(
+                        limit=4,
+                        out=output,
+                        allow_stale_on_failure=True,
+                        force_write=False,
+                    ),
+                ):
+                    self.assertEqual(MODULE.main(), 1)
+
+
 if __name__ == "__main__":
     unittest.main()

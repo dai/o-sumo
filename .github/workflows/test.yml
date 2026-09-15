@@ -38,7 +38,7 @@ jobs:
 
       - name: Test data parsers and workflow operations
         run: |
-          python -m unittest scripts.update_sumo_data_parser_test scripts.ci.validate_torikumi_test scripts.ci.workflow_summary_test scripts.ci.workflow_config_test
+          python -m unittest scripts.update_sumo_data_parser_test scripts.ci.validate_torikumi_test scripts.ci.validate_news_test scripts.ci.workflow_summary_test scripts.ci.workflow_config_test
           bash scripts/ci/push_realtime_update_test.sh
 
       - name: Generate standalone blog

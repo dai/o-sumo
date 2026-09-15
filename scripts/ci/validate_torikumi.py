@@ -10,7 +10,9 @@ Usage:
 from __future__ import annotations
 
 from collections import Counter
+from datetime import datetime, timezone
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -26,6 +28,8 @@ REQUIRED_KEYS = (
 EXPECTED_DAY_COUNT = 15
 DEFAULT_PATH = "public/api/v1/torikumi.json"
 PROFILE_ID_RE = re.compile(r"/profile/(\d+)/")
+DEFAULT_MAX_AGE_DAYS = 60
+DEFAULT_WARN_AGE_DAYS = 14
 
 
 def profile_id(match: dict, side: str) -> int:
@@ -127,6 +131,62 @@ def validate_published_schedules(data: dict) -> None:
             raise ValueError(f"day={day} participant/absentee overlap: {sorted(illegal_overlap)}")
 
 
+def _env_int(name: str, default: int) -> int:
+    raw = os.environ.get(name)
+    if raw is None or raw == "":
+        return default
+    try:
+        return int(raw)
+    except ValueError:
+        print(
+            f"::warning::{name}={raw!r} is not an integer; falling back to {default}",
+            file=sys.stderr,
+        )
+        return default
+
+
+def _parse_iso_timestamp(value: str) -> datetime | None:
+    """Return a timezone-aware datetime parsed from an ISO 8601 string.
+
+    Returns None when the value is malformed. Both offset-bearing forms
+    (``+09:00``) and the trailing ``Z`` form are accepted.
+    """
+    if not isinstance(value, str) or not value:
+        return None
+    candidate = value
+    if candidate.endswith("Z"):
+        candidate = candidate[:-1] + "+00:00"
+    try:
+        parsed = datetime.fromisoformat(candidate)
+    except ValueError:
+        return None
+    if parsed.tzinfo is None:
+        # Treat naive timestamps as UTC so we can still compare against now().
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed
+
+
+def _check_updated_at_freshness(value: str, *, max_age_days: int, warn_age_days: int) -> str:
+    """Return one of ``"ok"``, ``"warning"``, ``"stale"``, or ``"invalid"``.
+
+    - ``"invalid"``: the value is not a parseable ISO 8601 timestamp.
+    - ``"stale"``: age in days exceeds ``max_age_days`` (caller should fail).
+    - ``"warning"``: age exceeds ``warn_age_days`` but not ``max_age_days``
+      (caller should emit ``::warning::``).
+    - ``"ok"``: within ``warn_age_days``.
+    """
+    parsed = _parse_iso_timestamp(value)
+    if parsed is None:
+        return "invalid"
+    now = datetime.now(timezone.utc)
+    age = now - parsed
+    if age.days >= max_age_days:
+        return "stale"
+    if age.days >= warn_age_days:
+        return "warning"
+    return "ok"
+
+
 def main(path: str = DEFAULT_PATH) -> int:
     payload_path = Path(path)
     if not payload_path.exists():
@@ -151,6 +211,33 @@ def main(path: str = DEFAULT_PATH) -> int:
     if not (data["updatedAt"] and data["resultUpdatedAt"] and data["scheduleUpdatedAt"]):
         print("torikumi timestamps must be non-empty", file=sys.stderr)
         return 1
+
+    freshness = _check_updated_at_freshness(
+        data["updatedAt"],
+        max_age_days=_env_int("TORIKUMI_MAX_AGE_DAYS", DEFAULT_MAX_AGE_DAYS),
+        warn_age_days=_env_int("TORIKUMI_WARN_AGE_DAYS", DEFAULT_WARN_AGE_DAYS),
+    )
+    if freshness == "invalid":
+        print(
+            f"torikumi.updatedAt is not a valid ISO 8601 timestamp: {data['updatedAt']!r}",
+            file=sys.stderr,
+        )
+        return 1
+    if freshness == "stale":
+        max_age = _env_int("TORIKUMI_MAX_AGE_DAYS", DEFAULT_MAX_AGE_DAYS)
+        print(
+            f"torikumi.updatedAt is older than {max_age} days ({data['updatedAt']!r}); "
+            "generator or schedule has been silent for too long",
+            file=sys.stderr,
+        )
+        return 1
+    if freshness == "warning":
+        warn_age = _env_int("TORIKUMI_WARN_AGE_DAYS", DEFAULT_WARN_AGE_DAYS)
+        print(
+            f"::warning::torikumi.updatedAt is older than {warn_age} days "
+            f"({data['updatedAt']!r}); consider verifying upstream data freshness",
+            file=sys.stderr,
+        )
 
     if not isinstance(data["bashoId"], int) or data["bashoId"] <= 0:
         print("torikumi bashoId must be a positive integer", file=sys.stderr)

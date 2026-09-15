@@ -59,8 +59,23 @@ jobs:
           print(f"scheduleUpdatedAt={torikumi.get('scheduleUpdatedAt', '')}")
           PY
 
+      - name: Check for schedule changes
+        id: diff-check
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add app/lib/torikumi-data.ts public/api/v1/torikumi.json
+          if git diff --cached --quiet; then
+            echo "::notice::No daily schedule changes to commit (generator ran but produced no diff)."
+            echo "pr_created=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git restore --staged app/lib/torikumi-data.ts public/api/v1/torikumi.json
+          echo "pr_created=true" >> "$GITHUB_OUTPUT"
+
       - name: Create or update data update PR
         id: create-pr
+        if: steps.diff-check.outputs.pr_created != 'false'
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GH_PAT != '' && secrets.GH_PAT || github.token }}
@@ -112,8 +127,12 @@ jobs:
 
       - name: Write run summary
         if: always()
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         shell: bash
         run: |
+          DISCORD_STATUS="disabled"
+          [ -n "${DISCORD_WEBHOOK_URL:-}" ] && DISCORD_STATUS="enabled"
           {
             echo "## Daily Sumo Data Update"
             echo ""
@@ -121,6 +140,7 @@ jobs:
             echo "| --- | --- |"
             echo "| Generate | ${{ steps.generate.outcome }} |"
             echo "| Validate | ${{ steps.validate.outcome }} |"
+            echo "| Diff check | ${{ steps.diff-check.outputs.pr_created == 'true' && 'changes detected' || (steps.diff-check.outcome == 'success' && 'no changes' || steps.diff-check.outcome) }} |"
             echo "| Create PR | ${{ steps.create-pr.outcome }} |"
             echo "| PR Number | ${{ steps.create-pr.outputs.pull-request-number }} |"
             echo "| PR Operation | ${{ steps.create-pr.outputs.pull-request-operation }} |"
@@ -143,6 +163,7 @@ jobs:
             echo "- jst_now: \`$(TZ=Asia/Tokyo date +'%Y-%m-%dT%H:%M:%S%z')\`"
             echo "- run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             echo "- pr: ${{ steps.pr-state.outputs.pr_url || 'unknown; inspect run link' }}"
+            echo "- discord alerts: \`${DISCORD_STATUS}\`"
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Notify Discord on failure

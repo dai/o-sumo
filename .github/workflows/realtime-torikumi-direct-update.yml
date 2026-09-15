@@ -68,8 +68,12 @@ jobs:
 
       - name: Write run summary
         if: always()
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         shell: bash
         run: |
+          DISCORD_STATUS="disabled"
+          [ -n "${DISCORD_WEBHOOK_URL:-}" ] && DISCORD_STATUS="enabled"
           {
             echo "## Realtime Torikumi Direct Update"
             echo ""
@@ -95,6 +99,7 @@ jobs:
             echo "- schedule: \`${{ github.event.schedule || 'manual' }}\`"
             echo "- jst_now: \`$(TZ=Asia/Tokyo date +'%Y-%m-%dT%H:%M:%S%z')\`"
             echo "- run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            echo "- discord alerts: \`${DISCORD_STATUS}\`"
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Notify Discord on failure
