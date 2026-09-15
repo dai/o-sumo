@@ -1,5 +1,10 @@
 from pathlib import Path
 import importlib.util
+from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
+
+
+JST_TEST = ZoneInfo("Asia/Tokyo")
 
 
 def _load_update_module():
@@ -20,6 +25,7 @@ parse_torikumi_match = _module.parse_torikumi_match
 has_substantive_torikumi_diff = _module.has_substantive_torikumi_diff
 preserve_torikumi_timestamps_if_unchanged = _module.preserve_torikumi_timestamps_if_unchanged
 apply_result_days_to_rank_groups = _module.apply_result_days_to_rank_groups
+build_archive_day = _module.build_archive_day
 
 
 def _division(matches: int) -> dict:
@@ -370,6 +376,74 @@ def test_apply_result_days_to_rank_groups_keeps_unsettled_and_unknown_marks_null
     assert (by_id[1005]["wins"], by_id[1005]["losses"], by_id[1005]["draws"]) == (0, 0, 1)
 
 
+def test_build_archive_day_pending_schedule_sets_jsa_awaiting_message_on_first_run_of_day() -> None:
+    """When --first-run-of-day is set and the pending schedule day is the
+    JST-tomorrow, swap the generic '取組予定未更新' for the JSA awaiting notice.
+    A non-tomorrow day, a published day, and a result-scope pending day all
+    keep their legacy wording so 補完 runs do not flip text underneath users."""
+    fixed_now = datetime(2026, 9, 14, 15, 30, tzinfo=JST_TEST)
+    tomorrow_iso = (fixed_now.date() + timedelta(days=1)).isoformat()
+    day_head = f"9月{int(tomorrow_iso[-2:])}日"
+
+    def make_day() -> dict:
+        return {
+            "makuuchi": {
+                "day": 1,
+                "dayName": "初日",
+                "dayHead": day_head,
+                "matches": [],
+                "absentees": [],
+            },
+            "juryo": {
+                "day": 1,
+                "dayName": "初日",
+                "dayHead": day_head,
+                "matches": [],
+                "absentees": [],
+            },
+        }
+
+    tomorrow_pending = build_archive_day(
+        make_day(),
+        "2026",
+        "schedule",
+        "pending",
+        is_first_run_of_day=True,
+        now=fixed_now,
+    )
+    assert tomorrow_pending["statusMessage"] == "ただいま協会の発表待ちです"
+
+    legacy_pending = build_archive_day(
+        make_day(),
+        "2026",
+        "schedule",
+        "pending",
+        is_first_run_of_day=False,
+        now=fixed_now,
+    )
+    assert legacy_pending["statusMessage"] == "取組予定未更新"
+
+    result_pending = build_archive_day(
+        make_day(),
+        "2026",
+        "result",
+        "pending",
+        is_first_run_of_day=True,
+        now=fixed_now,
+    )
+    assert result_pending["statusMessage"] == "結果未更新"
+
+    published = build_archive_day(
+        make_day(),
+        "2026",
+        "schedule",
+        "published",
+        is_first_run_of_day=True,
+        now=fixed_now,
+    )
+    assert published["statusMessage"] is None
+
+
 def main() -> None:
     test_pick_existing_division_day_respects_source_key()
     test_determine_archive_statuses_limits_publication_window()
@@ -382,6 +456,7 @@ def main() -> None:
     test_has_substantive_torikumi_diff_ignores_timestamp_only_change()
     test_preserve_torikumi_timestamps_if_unchanged_restores_existing_values()
     test_apply_result_days_to_rank_groups_keeps_unsettled_and_unknown_marks_null()
+    test_build_archive_day_pending_schedule_sets_jsa_awaiting_message_on_first_run_of_day()
     print("ok: update_sumo_data torikumi logic tests passed")
 
 

@@ -203,6 +203,23 @@ def current_timestamp_iso() -> str:
     return datetime.now(JST).replace(microsecond=0).isoformat()
 
 
+# JST 15:00 is the daily "first publication" trigger used by both
+# `daily-data-update.yml` and the new `schedule-update-main.yml`. When a run
+# hits this hour we mark it with --first-run-of-day so `build_archive_day`
+# can swap the JST-tomorrow pending day's status message to the JSA-awaiting
+# notice. Keeping the hour in one place lets future schedule changes stay in
+# sync with the helper that checks `current_jst_hour`.
+FIRST_RUN_HOUR_JST = 15
+
+
+def current_jst_hour(now: datetime | None = None) -> int:
+    return (now or datetime.now(JST)).hour
+
+
+def is_first_run_of_day(args: argparse.Namespace) -> bool:
+    return getattr(args, "first_run_of_day", False)
+
+
 def write_text_lf(path: Path, content: str) -> None:
     with path.open("w", encoding="utf-8", newline="\n") as handle:
         handle.write(content)
@@ -396,7 +413,15 @@ def make_schedule_daily_data(day_data: dict) -> dict:
     }
 
 
-def build_archive_day(day_data: dict, gregorian_year: str, mode: str, status: str) -> dict:
+def build_archive_day(
+    day_data: dict,
+    gregorian_year: str,
+    mode: str,
+    status: str,
+    *,
+    is_first_run_of_day: bool = False,
+    now: datetime | None = None,
+) -> dict:
     iso_date = extract_iso_date(day_data["makuuchi"]["dayHead"], gregorian_year)
     normalized = day_data if mode == "result" else make_schedule_daily_data(day_data)
     if status != "published":
@@ -414,6 +439,20 @@ def build_archive_day(day_data: dict, gregorian_year: str, mode: str, status: st
                 "absentees": list(normalized["juryo"].get("absentees", [])),
             },
         }
+    reference_now = now or datetime.now(JST)
+    jst_tomorrow_iso = (reference_now.date() + timedelta(days=1)).isoformat()
+    status_message: str | None = None
+    if status != "published":
+        if (
+            mode == "schedule"
+            and is_first_run_of_day
+            and iso_date == jst_tomorrow_iso
+        ):
+            status_message = "ただいま協会の発表待ちです"
+        elif mode == "result":
+            status_message = "結果未更新"
+        else:
+            status_message = "取組予定未更新"
     return {
         "day": int(day_data["makuuchi"]["day"]),
         "isoDate": iso_date,
@@ -421,7 +460,7 @@ def build_archive_day(day_data: dict, gregorian_year: str, mode: str, status: st
         "label": DAY_LABEL.get(int(day_data["makuuchi"]["day"]), f"{day_data['makuuchi']['day']}日目"),
         "dayHead": day_data["makuuchi"]["dayHead"],
         "status": status,
-        "statusMessage": None if status == "published" else ("結果未更新" if mode == "result" else "取組予定未更新"),
+        "statusMessage": status_message,
         "data": normalized,
     }
 
@@ -1071,6 +1110,7 @@ def build_torikumi_dataset(
     official_start_date: date | None = None,
     strict_fetch: bool = False,
     require_complete_schedule: bool = False,
+    is_first_run_of_day: bool = False,
 ) -> dict:
     rosters = {
         "makuuchi": load_division_rikishi(1),
@@ -1217,8 +1257,8 @@ def build_torikumi_dataset(
         }
         result_status, schedule_status = determine_archive_statuses(day, effective_today_day, result_day_data, schedule_day_data)
 
-        result_days.append(build_archive_day(result_day_data, gregorian_year, "result", result_status))
-        schedule_days.append(build_archive_day(schedule_day_data, gregorian_year, "schedule", schedule_status))
+        result_days.append(build_archive_day(result_day_data, gregorian_year, "result", result_status, is_first_run_of_day=is_first_run_of_day))
+        schedule_days.append(build_archive_day(schedule_day_data, gregorian_year, "schedule", schedule_status, is_first_run_of_day=is_first_run_of_day))
 
     latest_result_day = max(
         (safe_int(day.get("day", 0), 0) for day in result_days if str(day.get("status", "")) == "published"),
@@ -2218,6 +2258,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Fail when expected torikumi day fetches return no data.",
     )
+    parser.add_argument(
+        "--first-run-of-day",
+        action="store_true",
+        help="Mark this run as the day's first schedule publication (JST 15:00).",
+    )
     return parser.parse_args()
 
 
@@ -2330,6 +2375,7 @@ def main() -> None:
             official_start_date=official_start_date,
             strict_fetch=args.strict_torikumi_fetch,
             require_complete_schedule=requires_complete_schedule(args.torikumi_scope),
+            is_first_run_of_day=is_first_run_of_day(args),
         )
         torikumi_dataset["bashoId"] = basho_id
         torikumi_dataset = apply_torikumi_scope(

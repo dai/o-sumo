@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: osumo-torikumi-update
+  group: osumo-torikumi-realtime
   cancel-in-progress: false
 
 permissions:

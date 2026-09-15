@@ -1,19 +1,26 @@
-name: Daily Sumo Data Update
+name: Torikumi Schedule Main Update (JST 15:00)
 
 on:
   schedule:
-    - cron: '0 4,6,8,10 * * *'
+    - cron: '0 6 * * *'  # JST 15:00 daily
   workflow_dispatch:
+    inputs:
+      first_run:
+        description: 'Mark as first run of day (default true since this workflow is the 15:00 main run)'
+        type: boolean
+        default: true
 
 concurrency:
-  group: osumo-torikumi-schedule
+  group: osumo-torikumi-schedule-main
   cancel-in-progress: false
 
 permissions:
   contents: write
   pull-requests: write
 
-# Discord 通知 (任意): secrets.DISCORD_WEBHOOK_URL が無いと wf はそのまま動く。
+# Dedicated 15:00 main update. Uses a fixed branch so a stuck run cannot
+# pile up timestamp-suffixed PRs; the daily-data-update.yml workflow still
+# fires at the same hour as a backup with its own concurrency group.
 
 jobs:
   update-data:
@@ -31,19 +38,14 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Compute JST hour
-        id: compute-jst-hour
-        shell: bash
-        run: echo "hour=$(TZ=Asia/Tokyo date +%H)" >> "$GITHUB_OUTPUT"
-
-      - name: Generate schedule data
+      - name: Generate schedule data (first run of day)
         id: generate
         shell: bash
         env:
-          JST_HOUR: ${{ steps.compute-jst-hour.outputs.hour }}
+          FIRST_RUN: ${{ github.event.inputs.first_run || 'true' }}
         run: |
           EXTRA_FLAGS=""
-          if [ "${JST_HOUR}" = "15" ]; then
+          if [ "${FIRST_RUN}" = "true" ]; then
             EXTRA_FLAGS="--first-run-of-day"
           fi
           bash scripts/ci/run_torikumi_generator.sh \
@@ -71,23 +73,23 @@ jobs:
           print(f"scheduleUpdatedAt={torikumi.get('scheduleUpdatedAt', '')}")
           PY
 
-      - name: Create or update data update PR
+      - name: Create or update data update PR (fixed branch)
         id: create-pr
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GH_PAT != '' && secrets.GH_PAT || github.token }}
-          branch: automation/schedule-updates
-          branch-suffix: timestamp
+          branch: automation/schedule-updates-main
           base: main
           delete-branch: false
-          commit-message: 'chore: daily sumo schedule update'
-          title: 'chore: automated torikumi schedule updates'
+          commit-message: 'chore: daily sumo schedule update (JST 15:00 first run)'
+          title: 'chore: automated torikumi schedule updates (JST 15:00 first run)'
           body: |
             ## Summary
             - Automated data update from `${{ github.workflow }}`
             - Event: `${{ github.event_name }}`
             - Schedule: `${{ github.event.schedule || 'manual' }}`
             - Scope: `schedule`
+            - First run of day: `${{ github.event.inputs.first_run || 'true' }}`
           labels: |
             automated
             data-update
@@ -127,7 +129,7 @@ jobs:
         shell: bash
         run: |
           {
-            echo "## Daily Sumo Data Update"
+            echo "## Torikumi Schedule Main Update (JST 15:00)"
             echo ""
             echo "| Step | Result |"
             echo "| --- | --- |"
@@ -162,7 +164,7 @@ jobs:
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           STATUS: failure
-          TITLE: 'Daily Sumo Data Update failed'
+          TITLE: 'Torikumi Schedule Main Update (JST 15:00) failed'
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         shell: bash
         run: |
