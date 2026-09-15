@@ -236,6 +236,7 @@ class LastFailureStreakTest(unittest.TestCase):
             result = json.loads(output.read_text(encoding="utf-8"))
             self.assertEqual(result["lastFailureStreak"], 3)
             self.assertEqual(result["items"], existing["items"])
+            self.assertEqual(result["updatedAt"], existing["updatedAt"])
             self.assertEqual([s["ok"] for s in result["sources"]], [False, False])
 
     def test_main_all_fail_without_existing_file_returns_one(self) -> None:

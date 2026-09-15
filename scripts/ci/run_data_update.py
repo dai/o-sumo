@@ -1,0 +1,87 @@
+"""Generate, validate, and publish one data scope from a fresh main checkout."""
+from __future__ import annotations
+import argparse
+import json
+from pathlib import Path
+import subprocess
+import sys
+import os
+from datetime import datetime, timezone
+try:
+    from .data_publish import publish
+    from .news_state import initialize, record_attempt, select_publication, publication_payload, publication_date, mark_published, validate_state
+except ImportError:
+    from data_publish import publish
+    from news_state import initialize, record_attempt, select_publication, publication_payload, publication_date, mark_published, validate_state
+
+ROOT = Path(__file__).parents[2]
+TORIKUMI = ("app/lib/torikumi-data.ts", "public/api/v1/torikumi.json")
+
+def run(cwd: Path, *args: str) -> None:
+    subprocess.run(list(args), cwd=cwd, check=True)
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--scope", choices=("schedule", "result", "news"), required=True)
+    parser.add_argument("--event-schedule", default="")
+    args = parser.parse_args()
+    if args.scope == "news":
+        state_path = "automation/news-state.json"
+        candidate_path_name = ".news-candidate.json"
+        run_id = os.environ.get("GITHUB_RUN_ID", "1")
+        attempted_at = datetime.now(timezone.utc)
+        def acquire(path: Path) -> dict | None:
+            candidate_path = path / candidate_path_name
+            try:
+                run(path, sys.executable, "scripts/update_news_feed.py", "--force-write", "--out", candidate_path_name)
+                return json.loads(candidate_path.read_text(encoding="utf-8"))
+            except (subprocess.CalledProcessError, json.JSONDecodeError, OSError):
+                return None
+        def state_generate(path: Path) -> None:
+            candidate = acquire(path)
+            if (path / state_path).exists():
+                state = json.loads((path / state_path).read_text(encoding="utf-8"))
+            else:
+                baseline = json.loads((path / "public/api/v1/news.json").read_text(encoding="utf-8"))
+                state = initialize(baseline, attempted_at)
+            state = record_attempt(state, candidate, run_id, attempted_at)
+            (path / state_path).parent.mkdir(parents=True, exist_ok=True)
+            (path / state_path).write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            (path / candidate_path_name).unlink(missing_ok=True)
+        def state_validate(path: Path) -> None:
+            run(path, sys.executable, "-c", "from scripts.ci.news_state import validate_state; import json; validate_state(json.load(open('automation/news-state.json', encoding='utf-8')))")
+        state_result = publish(ROOT, generate=state_generate, validate=state_validate, allowed_paths=(state_path,), message="[CF-Pages-Skip] chore: update durable news state", branch="automation/news-state", max_attempts=3, bootstrap=True)
+        subprocess.run(["git", "fetch", "--no-tags", "origin", "automation/news-state"], cwd=ROOT, check=True, capture_output=True)
+        allowed = ("public/api/v1/news.json",)
+        state_for_publication = json.loads(subprocess.check_output(["git", "show", "origin/automation/news-state:automation/news-state.json"], cwd=ROOT, text=True, encoding="utf-8"))
+        should_publish = select_publication(state_for_publication, os.environ.get("GITHUB_EVENT_NAME", "schedule"), args.event_schedule, attempted_at)
+        def generate(path: Path) -> None:
+            state = json.loads(subprocess.check_output(["git", "show", "origin/automation/news-state:automation/news-state.json"], cwd=path, text=True, encoding="utf-8"))
+            if should_publish:
+                path.joinpath("public/api/v1/news.json").write_text(json.dumps(publication_payload(state), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        def validate(path: Path) -> None:
+            run(path, sys.executable, "scripts/ci/validate_news.py")
+        message = "chore: publish news feed"
+    else:
+        allowed = TORIKUMI
+        def generate(path: Path) -> None:
+            run(path, "bash", "scripts/ci/run_torikumi_generator.sh", "--torikumi-only", "--torikumi-scope", args.scope, "--skip-rikishi-fetch", "--strict-torikumi-fetch")
+        def validate(path: Path) -> None:
+            run(path, sys.executable, "scripts/ci/validate_torikumi.py")
+        message = f"chore: publish torikumi {args.scope}"
+    result = publish(ROOT, generate=generate, validate=validate, allowed_paths=allowed, message=message, branch="main", max_attempts=3)
+    if args.scope == "news" and should_publish:
+        target_date = publication_date(state_for_publication)
+        def mark_generate(path: Path) -> None:
+            current = json.loads((path / "automation/news-state.json").read_text(encoding="utf-8"))
+            marked = mark_published(current, target_date, result.commit_sha)
+            (path / "automation/news-state.json").write_text(json.dumps(marked, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        def mark_validate(path: Path) -> None:
+            validate_state(json.loads((path / "automation/news-state.json").read_text(encoding="utf-8")))
+        publish(ROOT, generate=mark_generate, validate=mark_validate, allowed_paths=(state_path,), message="[CF-Pages-Skip] chore: mark news publication", branch="automation/news-state", max_attempts=3)
+    print(json.dumps({"changed": result.changed, "commit_sha": result.commit_sha, "attempts": result.attempts}))
+    if "GITHUB_OUTPUT" in __import__("os").environ:
+        with open(__import__("os").environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
+            f.write(f"commit_sha={result.commit_sha}\npushed={'true' if result.changed else 'false'}\n")
+    return 0
+if __name__ == "__main__": raise SystemExit(main())
