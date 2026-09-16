@@ -14,6 +14,84 @@ import type { ShareMetaOverride } from '../app/lib/share-meta';
 import { resolvePageMeta } from '../app/lib/page-meta';
 import { buildSeoNoscriptHtml, type SeoNoscriptContext } from '../app/lib/seo-noscript';
 
+/**
+ * Trailing-slash enforcement for SPA routes.
+ *
+ * Cloudflare Pages Functions don't support internal URL rewrites from
+ * middleware (the `_redirects` 200 rules don't behave as documented), so we
+ * normalize SPA paths to a trailing slash via a 308 Permanent Redirect here.
+ * 308 preserves the request method and signals the canonical URL to both
+ * crawlers (Googlebot records the redirect target as the canonical) and
+ * browsers.
+ */
+const NON_SPA_PREFIXES = [
+  '/api/',
+  '/.well-known/',
+  '/assets/',
+  '/images/',
+  '/fonts/',
+  '/icons/',
+];
+
+const SPA_TRAILING_SLASH_PATTERN = /\.[a-z0-9]{1,8}$/i;
+
+const SPA_ROUTE_PATTERNS: RegExp[] = [
+  /^\/archives\/?$/,
+  /^\/analytics\/?$/,
+  /^\/about\/?$/,
+  /^\/kimarite\/?$/,
+  /^\/compare\/?$/,
+  /^\/my-rikishi\/?$/,
+  /^\/rikishi\/?$/,
+  /^\/rikishi\/[1-9]\d*\/?$/,
+  /^\/gyoji\/?$/,
+  /^\/gyoji\/[1-9]\d*\/?$/,
+  /^\/yobidashi\/?$/,
+  /^\/yobidashi\/[1-9]\d*\/?$/,
+  /^\/\d{6}-(?:banzuke|torikumi|yotei|banduke|o-sumo)\/?$/,
+  /^\/\d{8}-(?:torikumi|yotei)\/?$/,
+];
+
+function needsTrailingSlash(pathname: string): boolean {
+  if (pathname === '/' || pathname.endsWith('/')) return false;
+  if (NON_SPA_PREFIXES.some((prefix) => pathname.startsWith(prefix))) return false;
+  if (SPA_TRAILING_SLASH_PATTERN.test(pathname)) return false;
+  return SPA_ROUTE_PATTERNS.some((pattern) => pattern.test(pathname));
+}
+
+async function rikishiIdProfileExists(context: any, id: string, requestUrl: URL): Promise<boolean> {
+  try {
+    const profileUrl = new URL(`/api/v1/rikishi/${id}.json`, requestUrl);
+    const response = await context.env.ASSETS.fetch(profileUrl, { method: 'HEAD' });
+    return response.ok;
+  } catch {
+    return false;
+  }
+}
+
+async function buildNotFoundResponse(context: any, requestUrl: URL): Promise<Response> {
+  try {
+    const asset = await context.env.ASSETS.fetch(new URL('/404.html', requestUrl));
+    if (asset.ok) {
+      return new Response(asset.body, {
+        status: 404,
+        statusText: 'Not Found',
+        headers: {
+          'Content-Type': 'text/html; charset=utf-8',
+          'Cache-Control': 'public, max-age=300, must-revalidate',
+        },
+      });
+    }
+  } catch {
+    // fall through to plain-text response below
+  }
+  return new Response('Not Found', {
+    status: 404,
+    statusText: 'Not Found',
+    headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+  });
+}
+
 async function loadSharePayload(context: any, requestUrl: URL, collection: ShareCollection) {
   const assetUrl = new URL(`/api/v1/${collection}.json`, requestUrl);
   const response = await context.env.ASSETS.fetch(assetUrl);
@@ -110,6 +188,35 @@ function ensureHomeLinkHeaders(headers: Headers) {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const onRequest = async (context: any): Promise<Response> => {
   const requestUrl = new URL(context.request.url);
+  const pathname = requestUrl.pathname;
+
+  // Trailing-slash enforcement: rewrite SPA paths to their canonical form.
+  // See the `needsTrailingSlash` helper above for the full rationale.
+  if (needsTrailingSlash(pathname)) {
+    const redirectUrl = new URL(pathname + '/' + requestUrl.search, requestUrl);
+    return new Response(null, {
+      status: 308,
+      headers: {
+        Location: redirectUrl.href,
+        'Cache-Control': 'public, max-age=3600',
+      },
+    });
+  }
+
+  // Invalid rikushi ID → 404.
+  // For numeric rikushi IDs, verify the profile JSON exists before
+  // continuing. This eliminates the soft-404 (200 with generic meta) that
+  // previously applied to unknown IDs, which caused Googlebot to index
+  // duplicate generic pages.
+  const rikishiIdMatch = pathname.match(/^\/rikishi\/([1-9]\d*)\/?$/);
+  if (rikishiIdMatch) {
+    const id = rikishiIdMatch[1];
+    const exists = await rikishiIdProfileExists(context, id, requestUrl);
+    if (!exists) {
+      return buildNotFoundResponse(context, requestUrl);
+    }
+  }
+
   const isHomePage = requestUrl.pathname === '/' || requestUrl.pathname === '';
   const accept: string = context.request.headers.get('Accept') ?? '';
 

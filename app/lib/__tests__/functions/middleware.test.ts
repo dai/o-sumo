@@ -502,3 +502,266 @@ describe('onRequest SEO noscript injection', () => {
     }
   });
 });
+
+describe('onRequest trailing-slash enforcement', () => {
+  function makeHtmlResponse(body = '<!DOCTYPE html><html><body></body></html>'): Response {
+    return new Response(body, {
+      status: 200,
+      headers: { 'Content-Type': 'text/html; charset=utf-8' },
+    });
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function makeContext(
+    request: Request,
+    mockNext: ReturnType<typeof vi.fn>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    fetchImpl?: any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ): any {
+    return {
+      request,
+      env: {
+        ASSETS: {
+          fetch:
+            fetchImpl ?? vi.fn().mockResolvedValue(new Response('null', { status: 200 })),
+        },
+      },
+      next: mockNext,
+    };
+  }
+
+  it.each([
+    '/archives',
+    '/analytics',
+    '/about',
+    '/kimarite',
+    '/compare',
+    '/my-rikishi',
+    '/rikishi',
+    '/rikishi/2565',
+    '/gyoji',
+    '/gyoji/4227',
+    '/yobidashi',
+    '/yobidashi/4227',
+    '/202609-banzuke',
+    '/202609-torikumi',
+    '/20260913-torikumi',
+  ])('returns 308 redirect for SPA path %s without trailing slash', async (pathname) => {
+    const request = new Request(`https://osada.us${pathname}`, {
+      headers: { Accept: 'text/html' },
+    });
+    const mockNext = vi.fn();
+    const response = await onRequest(makeContext(request, mockNext));
+
+    expect(response.status).toBe(308);
+    expect(response.headers.get('Location')).toBe(`https://osada.us${pathname}/`);
+    expect(response.headers.get('Cache-Control')).toBe('public, max-age=3600');
+    expect(mockNext).not.toHaveBeenCalled();
+  });
+
+  it('preserves query string in the redirect Location', async () => {
+    const request = new Request('https://osada.us/archives?page=2&sort=date', {
+      headers: { Accept: 'text/html' },
+    });
+    const mockNext = vi.fn();
+    const response = await onRequest(makeContext(request, mockNext));
+
+    expect(response.status).toBe(308);
+    expect(response.headers.get('Location')).toBe('https://osada.us/archives/?page=2&sort=date');
+  });
+
+  it('does not redirect when the trailing slash is already present', async () => {
+    const request = new Request('https://osada.us/archives/', {
+      headers: { Accept: 'text/html' },
+    });
+    const mockNext = vi.fn().mockResolvedValue(makeHtmlResponse());
+    const response = await onRequest(makeContext(request, mockNext));
+
+    expect(response.status).toBe(200);
+    expect(mockNext).toHaveBeenCalled();
+  });
+
+  it('does not redirect for the homepage', async () => {
+    const request = new Request('https://osada.us/', {
+      headers: { Accept: 'text/html' },
+    });
+    const mockNext = vi.fn().mockResolvedValue(makeHtmlResponse());
+    const response = await onRequest(makeContext(request, mockNext));
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get('Location')).toBeNull();
+  });
+
+  it('does not redirect for static files (e.g. /index.html)', async () => {
+    const request = new Request('https://osada.us/index.html', {
+      headers: { Accept: 'text/html' },
+    });
+    const mockNext = vi.fn().mockResolvedValue(makeHtmlResponse());
+    await onRequest(makeContext(request, mockNext));
+
+    expect(mockNext).toHaveBeenCalled();
+  });
+
+  it('does not redirect for /api/* paths', async () => {
+    const request = new Request('https://osada.us/api/v1/rikishi/2565.json', {
+      headers: { Accept: 'application/json' },
+    });
+    const mockNext = vi
+      .fn()
+      .mockResolvedValue(
+        new Response('{}', { status: 200, headers: { 'Content-Type': 'application/json' } }),
+      );
+    const response = await onRequest(makeContext(request, mockNext));
+
+    expect(response.status).not.toBe(308);
+  });
+
+  it('does not redirect for /sitemap.xml', async () => {
+    const request = new Request('https://osada.us/sitemap.xml', {
+      headers: { Accept: 'application/xml' },
+    });
+    const mockNext = vi
+      .fn()
+      .mockResolvedValue(
+        new Response('<urlset/>', { status: 200, headers: { 'Content-Type': 'application/xml' } }),
+      );
+    const response = await onRequest(makeContext(request, mockNext));
+
+    expect(response.status).not.toBe(308);
+  });
+});
+
+describe('onRequest invalid rikushi ID handling', () => {
+  function makeHtmlResponse(body = '<!DOCTYPE html><html><body></body></html>'): Response {
+    return new Response(body, {
+      status: 200,
+      headers: { 'Content-Type': 'text/html; charset=utf-8' },
+    });
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function makeContext(request: Request, mockNext: ReturnType<typeof vi.fn>, fetchImpl: any): any {
+    return {
+      request,
+      env: { ASSETS: { fetch: fetchImpl } },
+      next: mockNext,
+    };
+  }
+
+  it('returns 404 with the custom noindex 404 page for unknown numeric IDs', async () => {
+    const notFoundHtml =
+      '<!DOCTYPE html><html><head><title>404</title><meta name="robots" content="noindex"></head><body>not found</body></html>';
+    const request = new Request('https://osada.us/rikishi/9999999/', {
+      headers: { Accept: 'text/html' },
+    });
+    const mockFetch = vi
+      .fn()
+      .mockImplementation(async (url: URL, init?: RequestInit) => {
+        if (url.pathname === '/404.html') {
+          return new Response(notFoundHtml, {
+            status: 200,
+            headers: { 'Content-Type': 'text/html; charset=utf-8' },
+          });
+        }
+        if (init?.method === 'HEAD' && url.pathname === '/api/v1/rikishi/9999999.json') {
+          return new Response(null, { status: 404 });
+        }
+        return new Response('null', { status: 404 });
+      });
+    const mockNext = vi.fn();
+    const response = await onRequest(makeContext(request, mockNext, mockFetch));
+
+    expect(response.status).toBe(404);
+    expect(response.headers.get('Content-Type')).toBe('text/html; charset=utf-8');
+    expect(mockNext).not.toHaveBeenCalled();
+    const text = await response.text();
+    expect(text).toContain('404');
+  });
+
+  it('marks the 404 response as cacheable for 5 minutes', async () => {
+    const notFoundHtml = '<!DOCTYPE html><html><body>404</body></html>';
+    const request = new Request('https://osada.us/rikishi/9999999/', {
+      headers: { Accept: 'text/html' },
+    });
+    const mockFetch = vi
+      .fn()
+      .mockImplementation(async (url: URL, _init?: RequestInit) => {
+        if (url.pathname === '/404.html') {
+          return new Response(notFoundHtml, {
+            status: 200,
+            headers: { 'Content-Type': 'text/html; charset=utf-8' },
+          });
+        }
+        return new Response(null, { status: 404 });
+      });
+    const mockNext = vi.fn();
+    const response = await onRequest(makeContext(request, mockNext, mockFetch));
+
+    expect(response.status).toBe(404);
+    expect(response.headers.get('Cache-Control')).toBe('public, max-age=300, must-revalidate');
+  });
+
+  it('issues a HEAD request to /api/v1/rikishi/{id}.json to verify existence', async () => {
+    const request = new Request('https://osada.us/rikishi/4227/', {
+      headers: { Accept: 'text/html' },
+    });
+    const headCalls: Array<{ pathname: string; method: string | undefined }> = [];
+    const mockFetch = vi
+      .fn()
+      .mockImplementation(async (url: URL, init?: RequestInit) => {
+        if (init?.method === 'HEAD') {
+          headCalls.push({ pathname: url.pathname, method: init.method });
+          return new Response(null, { status: 200 });
+        }
+        if (url.pathname === '/api/v1/rikishi.json') {
+          return new Response(
+            JSON.stringify({ rikishi: [{ id: 4227, name: '大の里' }] }),
+            { status: 200, headers: { 'Content-Type': 'application/json' } },
+          );
+        }
+        return new Response('null', { status: 200 });
+      });
+    const mockNext = vi.fn().mockResolvedValue(makeHtmlResponse());
+    const response = await onRequest(makeContext(request, mockNext, mockFetch));
+
+    expect(response.status).toBe(200);
+    expect(headCalls).toEqual([
+      { pathname: '/api/v1/rikishi/4227.json', method: 'HEAD' },
+    ]);
+  });
+
+  it('does not perform the HEAD check for non-numeric rikushi IDs', async () => {
+    const request = new Request('https://osada.us/rikishi/not-a-number/', {
+      headers: { Accept: 'text/html' },
+    });
+    const mockFetch = vi.fn().mockResolvedValue(new Response('null', { status: 200 }));
+    const mockNext = vi.fn().mockResolvedValue(makeHtmlResponse());
+    const response = await onRequest(makeContext(request, mockNext, mockFetch));
+
+    expect(response.status).toBe(200);
+    const headCalls = mockFetch.mock.calls.filter(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (call: any[]) => (call[1] as RequestInit | undefined)?.method === 'HEAD',
+    );
+    expect(headCalls).toHaveLength(0);
+  });
+
+  it('does not perform the HEAD check for gyoji or yobidashi IDs', async () => {
+    // The 404 enforcement is intentionally limited to /rikushi/{id}/ per the
+    // design — gyoji and yobidashi paths should not trigger an ASSETS.fetch.
+    const request = new Request('https://osada.us/gyoji/9999999/', {
+      headers: { Accept: 'text/html' },
+    });
+    const mockFetch = vi.fn().mockResolvedValue(new Response('null', { status: 200 }));
+    const mockNext = vi.fn().mockResolvedValue(makeHtmlResponse());
+    const response = await onRequest(makeContext(request, mockNext, mockFetch));
+
+    expect(response.status).toBe(200);
+    const headCalls = mockFetch.mock.calls.filter(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (call: any[]) => (call[1] as RequestInit | undefined)?.method === 'HEAD',
+    );
+    expect(headCalls).toHaveLength(0);
+  });
+});
