@@ -3,9 +3,9 @@ on:
   schedule:
     - cron: '*/10 4-9 * * *'
   workflow_dispatch:
-# Wrapper only triggers the reusable workflow; the reusable uses its own
-# write token (GH_PAT) and does not inherit permissions from the caller.
-permissions: {contents: read}
+# The caller must grant the permissions requested by the reusable workflow,
+# even when its steps authenticate with GH_PAT.
+permissions: {contents: write, checks: read, actions: read}
 jobs:
   update:
     if: github.ref == 'refs/heads/main'

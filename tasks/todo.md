@@ -59,3 +59,18 @@
 ### ロールバック
 - 各変更は独立して `git revert <commit>` で取り消し可能
 - `torikumi_paths.txt` 復元: `git checkout HEAD~ -- scripts/ci/torikumi_paths.txt`
+
+# Actions failure repair (2026-09-16)
+
+- [x] Identify failed runs and trace the news acquisition timestamp error.
+- [x] Reproduce elapsed acquisition and retry failures in orchestration tests.
+- [x] Record completion time after each acquisition and evaluate publication with current time.
+- [x] Investigate startup failures independently and repair confirmed workflow defects.
+- [x] Run relevant regression tests and review the final diff.
+
+## Review
+
+- News run 35041882677 fetched successfully but rejected the candidate against a timestamp taken before acquisition. Completion time is now sampled after every acquisition; publication selection also uses current time.
+- Daily run 34957084132 and realtime run 34955150310 were rejected before jobs started because their caller permissions did not allow the reusable workflow permissions. Both callers now match the existing reusable contract.
+- Regression tests failed before their corresponding fixes. The full CI Python command passed 161 tests after the fixes. Actionlint passed for all three callers, the reusable workflow, and the Test workflow (shellcheck and pyflakes disabled).
+- Independent review found no additional issues. Production workflow dispatch and real notifications were not performed.
