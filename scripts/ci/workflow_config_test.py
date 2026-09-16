@@ -24,6 +24,16 @@ def jst_slots(cron):
 
 
 class WorkflowConfigTest(unittest.TestCase):
+    def test_callers_grant_reusable_workflow_permissions(self):
+        required = load("data-update.yml")["permissions"]
+        levels = {"none": 0, "read": 1, "write": 2}
+        for name in ("daily-data-update.yml", "realtime-torikumi-direct-update.yml", "news-feed-update.yml"):
+            caller = load(name)
+            granted = caller["jobs"]["update"].get("permissions", caller.get("permissions", {}))
+            for scope, level in required.items():
+                with self.subTest(workflow=name, scope=scope):
+                    self.assertGreaterEqual(levels[granted.get(scope, "none")], levels[level])
+
     def test_daily_schedule_maps_to_four_expected_jst_slots(self):
         workflow = load("daily-data-update.yml")
         self.assertIn("workflow_dispatch", workflow["on"])
