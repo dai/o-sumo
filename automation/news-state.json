@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-16T02:29:25.400948+00:00",
+    "updatedAt": "2026-09-16T04:24:26.673827+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
+        "id": "dmenu-docomo-f-bt-tp1-260916-202609160000465",
+        "title": "英国出身力士が36年ぶり白星「うれしいです」17歳栄誠　日本食＆通勤ラッシュも問題なし",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260916-202609160000465",
+        "publishedAt": "2026-09-16",
+        "publishedAtRaw": "日刊スポーツ　9月16日 12時33分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-f-bt-tp1-260916-202609160000427",
+        "title": "翔傑が50歳初黒星…29歳下に投げられ背中に土　31年皆勤で通算652勝652敗",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260916-202609160000427",
+        "publishedAt": "2026-09-16",
+        "publishedAtRaw": "日刊スポーツ　9月16日 12時27分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-hochi-20260916-OHT1T51087",
+        "title": "錦戸部屋唯一の所属力士・二川が初白星「稽古場に１人は少し寂しさもある」　場所前は師匠の錦戸親方ら３親方の指導を受けて基礎を徹底",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260916-OHT1T51087",
+        "publishedAt": "2026-09-16",
+        "publishedAtRaw": "スポーツ報知　9月16日 12時15分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-f-bt-tp1-260916-202609160000384",
+        "title": "体重58キロが110キロを投げた！初白星の15歳新道「気持ち良い」名物お好み焼きで増量中",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260916-202609160000384",
+        "publishedAt": "2026-09-16",
+        "publishedAtRaw": "日刊スポーツ　9月16日 11時52分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
         "id": "dmenu-docomo-hochi-20260916-OHT1T51060",
         "title": "英国出身力士が３６年ぶり勝利！栄誠が圧倒し「１つ勝ってうれしい」…９０年初場所の英ノ国以来",
         "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260916-OHT1T51060",
         "publishedAt": "2026-09-16",
         "publishedAtRaw": "スポーツ報知　9月16日 10時59分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-hochi-20260916-OHT1T51059",
-        "title": "異例の体重５０キロ台　現役最軽量力士・新道が前相撲で初白星「勝ててうれしい」　足取りは不発も、豪快な投げを決める",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260916-OHT1T51059",
-        "publishedAt": "2026-09-16",
-        "publishedAtRaw": "スポーツ報知　9月16日 10時54分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-abematimes-10273231",
-        "title": "豊昇龍に対する批判に元大乃国が苦言「本当そう思う」 共感呼んだ“金言”と手本にすべき“昭和の大横綱”",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273231",
-        "publishedAt": "2026-09-16",
-        "publishedAtRaw": "ABEMA TIMES　9月16日 10時34分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-abematimes-10273228",
-        "title": "「えっ、なにいまの」アクロバティックな“豪快決着”に「バックドロップ行くのかと」館内どよめき",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273228",
-        "publishedAt": "2026-09-16",
-        "publishedAtRaw": "ABEMA TIMES　9月16日 9時34分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_BPYYW5XRMBGZ5GU444R2Q4SOIU",
-        "title": "舞の海氏「何か相撲だけではなく心までかき乱されたような負け方」／秋場所",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_BPYYW5XRMBGZ5GU444R2Q4SOIU",
-        "publishedAt": "2026-09-16",
-        "publishedAtRaw": "SANSPO　9月16日 8時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,16 +92,20 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-16T02:29:25.410449+00:00",
-  "lastSuccessAt": "2026-09-16T02:29:25.400948+00:00",
+  "lastAttemptAt": "2026-09-16T04:24:26.682730+00:00",
+  "lastSuccessAt": "2026-09-16T04:24:26.673827+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
       "attemptedAt": "2026-09-16T02:29:25.410449+00:00",
       "outcome": "success"
+    },
+    "35055461729": {
+      "attemptedAt": "2026-09-16T04:24:26.682730+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35048162526",
+  "lastRunId": "35055461729",
   "lastPublishedDate": null,
   "lastPublishedSha": null,
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
