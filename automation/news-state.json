@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "latestGood": {
+    "updatedAt": "2026-09-16T02:29:25.400948+00:00",
+    "sources": [
+      {
+        "id": "sumo-association",
+        "label": "日本相撲協会",
+        "ok": true,
+        "count": 3
+      },
+      {
+        "id": "dmenu-docomo",
+        "label": "dmenuスポーツ",
+        "ok": true,
+        "count": 5
+      }
+    ],
+    "items": [
+      {
+        "id": "dmenu-docomo-hochi-20260916-OHT1T51060",
+        "title": "英国出身力士が３６年ぶり勝利！栄誠が圧倒し「１つ勝ってうれしい」…９０年初場所の英ノ国以来",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260916-OHT1T51060",
+        "publishedAt": "2026-09-16",
+        "publishedAtRaw": "スポーツ報知　9月16日 10時59分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-hochi-20260916-OHT1T51059",
+        "title": "異例の体重５０キロ台　現役最軽量力士・新道が前相撲で初白星「勝ててうれしい」　足取りは不発も、豪快な投げを決める",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260916-OHT1T51059",
+        "publishedAt": "2026-09-16",
+        "publishedAtRaw": "スポーツ報知　9月16日 10時54分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-abematimes-10273231",
+        "title": "豊昇龍に対する批判に元大乃国が苦言「本当そう思う」 共感呼んだ“金言”と手本にすべき“昭和の大横綱”",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273231",
+        "publishedAt": "2026-09-16",
+        "publishedAtRaw": "ABEMA TIMES　9月16日 10時34分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-abematimes-10273228",
+        "title": "「えっ、なにいまの」アクロバティックな“豪快決着”に「バックドロップ行くのかと」館内どよめき",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273228",
+        "publishedAt": "2026-09-16",
+        "publishedAtRaw": "ABEMA TIMES　9月16日 9時34分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-sanspo-_sports_sumo_BPYYW5XRMBGZ5GU444R2Q4SOIU",
+        "title": "舞の海氏「何か相撲だけではなく心までかき乱されたような負け方」／秋場所",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_BPYYW5XRMBGZ5GU444R2Q4SOIU",
+        "publishedAt": "2026-09-16",
+        "publishedAtRaw": "SANSPO　9月16日 8時00分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "sumo-association-762",
+        "title": "令和9年「大相撲カレンダー」販売のご案内",
+        "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=762",
+        "publishedAt": "2026-09-10",
+        "publishedAtRaw": "令和8年9月10日",
+        "sourceId": "sumo-association",
+        "sourceLabel": "日本相撲協会"
+      },
+      {
+        "id": "sumo-association-761",
+        "title": "大相撲九月場所「土俵祭」のご案内",
+        "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=761",
+        "publishedAt": "2026-09-03",
+        "publishedAtRaw": "令和8年9月3日",
+        "sourceId": "sumo-association",
+        "sourceLabel": "日本相撲協会"
+      },
+      {
+        "id": "sumo-association-759",
+        "title": "お知らせ",
+        "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=759",
+        "publishedAt": "2026-08-07",
+        "publishedAtRaw": "令和8年8月7日",
+        "sourceId": "sumo-association",
+        "sourceLabel": "日本相撲協会"
+      }
+    ],
+    "lastFailureStreak": 0
+  },
+  "lastAttemptAt": "2026-09-16T02:29:25.410449+00:00",
+  "lastSuccessAt": "2026-09-16T02:29:25.400948+00:00",
+  "consecutiveFailures": 0,
+  "processedRuns": {
+    "35048162526": {
+      "attemptedAt": "2026-09-16T02:29:25.410449+00:00",
+      "outcome": "success"
+    }
+  },
+  "lastRunId": "35048162526",
+  "lastPublishedDate": null,
+  "lastPublishedSha": null,
+  "initializedAt": "2026-09-16T02:29:25.410449+00:00"
+}
