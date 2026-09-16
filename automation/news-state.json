@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-16T04:24:26.673827+00:00",
+    "updatedAt": "2026-09-16T06:35:09.959011+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -17,6 +17,24 @@
       }
     ],
     "items": [
+      {
+        "id": "dmenu-docomo-20260916066",
+        "title": "没後１０年の千代の富士さん、弟子だった元千代鳳が稽古場の指導を回想「テンションが上がる」",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260916066",
+        "publishedAt": "2026-09-16",
+        "publishedAtRaw": "デイリースポーツ　9月16日 14時34分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-sponichi-spngoo-20260916-0186",
+        "title": "英国出身力士が36年ぶり勝利　栄誠「勝ててうれしいです」通勤ラッシュ乗り継ぎ場所入り",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260916-0186",
+        "publishedAt": "2026-09-16",
+        "publishedAtRaw": "スポニチアネックス　9月16日 13時44分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
       {
         "id": "dmenu-docomo-f-bt-tp1-260916-202609160000465",
         "title": "英国出身力士が36年ぶり白星「うれしいです」17歳栄誠　日本食＆通勤ラッシュも問題なし",
@@ -41,24 +59,6 @@
         "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260916-OHT1T51087",
         "publishedAt": "2026-09-16",
         "publishedAtRaw": "スポーツ報知　9月16日 12時15分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-f-bt-tp1-260916-202609160000384",
-        "title": "体重58キロが110キロを投げた！初白星の15歳新道「気持ち良い」名物お好み焼きで増量中",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260916-202609160000384",
-        "publishedAt": "2026-09-16",
-        "publishedAtRaw": "日刊スポーツ　9月16日 11時52分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-hochi-20260916-OHT1T51060",
-        "title": "英国出身力士が３６年ぶり勝利！栄誠が圧倒し「１つ勝ってうれしい」…９０年初場所の英ノ国以来",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260916-OHT1T51060",
-        "publishedAt": "2026-09-16",
-        "publishedAtRaw": "スポーツ報知　9月16日 10時59分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-16T04:24:26.682730+00:00",
-  "lastSuccessAt": "2026-09-16T04:24:26.673827+00:00",
+  "lastAttemptAt": "2026-09-16T06:35:09.969453+00:00",
+  "lastSuccessAt": "2026-09-16T06:35:09.959011+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -103,9 +103,13 @@
     "35055461729": {
       "attemptedAt": "2026-09-16T04:24:26.682730+00:00",
       "outcome": "success"
+    },
+    "35064375113": {
+      "attemptedAt": "2026-09-16T06:35:09.969453+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35055461729",
+  "lastRunId": "35064375113",
   "lastPublishedDate": null,
   "lastPublishedSha": null,
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
