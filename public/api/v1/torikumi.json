@@ -2,8 +2,8 @@
   "bashoId": 637,
   "bashoName": "九月場所",
   "year": "令和八年",
-  "updatedAt": "2026-09-15T17:56:30+09:00",
-  "resultUpdatedAt": "2026-09-15T17:56:30+09:00",
+  "updatedAt": "2026-09-16T13:20:05+09:00",
+  "resultUpdatedAt": "2026-09-16T13:20:05+09:00",
   "scheduleUpdatedAt": "2026-09-15T17:22:48+09:00",
   "today": {
     "makuuchi": {
@@ -2948,7 +2948,23 @@
           "dayHead": "四日目： 令和8年9月16日(水)",
           "division": "幕内",
           "matches": [],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3761,
+              "name": "若隆景",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/"
+            },
+            {
+              "id": 3842,
+              "name": "豊昇龍",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/"
+            },
+            {
+              "id": 4121,
+              "name": "若ノ勝",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/"
+            }
+          ]
         },
         "juryo": {
           "day": 4,
