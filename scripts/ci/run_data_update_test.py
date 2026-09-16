@@ -13,10 +13,10 @@ from scripts.ci.news_state import initialize, validate_state
 
 
 class NewsOrchestrationTest(unittest.TestCase):
-    def exercise(self, *, retries=1, failed=False, existing=False):
+    def exercise(self, *, retries=1, failed=False, existing=False, event_schedule="5 10 * * *", stale_public=False):
         start = datetime(2026, 9, 16, 10, 5, tzinfo=timezone.utc)
         clock = [start]
-        baseline = {"updatedAt": (start - timedelta(hours=2)).isoformat(),
+        baseline = {"updatedAt": (start - timedelta(hours=26 if stale_public else 2)).isoformat(),
                     "sources": [{"id": "test", "ok": True}], "items": []}
         states = []
         published = []
@@ -37,6 +37,8 @@ class NewsOrchestrationTest(unittest.TestCase):
                     candidate = {**baseline, "updatedAt": clock[0].isoformat()}
                     (path / ".news-candidate.json").write_text(json.dumps(candidate), encoding="utf-8")
                     clock[0] += timedelta(seconds=1)
+                elif "validate_news.py" in args:
+                    raise AssertionError("stale public payload was validated during a non-final poll")
                 else:
                     validate_state(json.loads(state_path.read_text(encoding="utf-8")))
 
@@ -69,14 +71,18 @@ class NewsOrchestrationTest(unittest.TestCase):
                  patch.object(M.subprocess, "run"), \
                  patch.object(M.subprocess, "check_output", side_effect=lambda *a, **k: state_path.read_text(encoding="utf-8")), \
                  patch.dict(M.os.environ, {"GITHUB_RUN_ID": "100", "GITHUB_EVENT_NAME": "schedule"}, clear=True), \
-                 patch.object(M.sys, "argv", ["run_data_update", "--scope", "news", "--event-schedule", "5 10 * * *"]):
+                 patch.object(M.sys, "argv", ["run_data_update", "--scope", "news", "--event-schedule", event_schedule]):
                 mocked_datetime.now.side_effect = lambda tz: clock[0]
                 self.assertEqual(M.main(), 0)
             self.assertEqual(states[-1]["consecutiveFailures"], int(failed))
-            self.assertEqual(published[-1]["updatedAt"], states[-1]["lastSuccessAt"])
-            if not failed:
+            if event_schedule == "5 10 * * *":
+                self.assertEqual(published[-1]["updatedAt"], states[-1]["lastSuccessAt"])
+            else:
+                self.assertEqual(published[-1]["updatedAt"], baseline["updatedAt"])
+            if not failed and event_schedule == "5 10 * * *":
                 self.assertGreater(published[-1]["updatedAt"], baseline["updatedAt"])
-            self.assertEqual(json.loads(state_path.read_text(encoding="utf-8"))["lastPublishedSha"], "a" * 40)
+            expected_sha = "a" * 40 if event_schedule == "5 10 * * *" else None
+            self.assertEqual(json.loads(state_path.read_text(encoding="utf-8"))["lastPublishedSha"], expected_sha)
 
     def test_slow_acquisition_bootstraps_and_publishes_at_final_slot(self):
         self.exercise()
@@ -86,6 +92,9 @@ class NewsOrchestrationTest(unittest.TestCase):
 
     def test_failed_acquisition_records_completion_and_keeps_latest_good(self):
         self.exercise(failed=True, existing=True)
+
+    def test_non_final_poll_keeps_stale_public_payload_without_validating_it(self):
+        self.exercise(event_schedule="5 0,2,4,6,8 * * *", stale_public=True)
 
 
 if __name__ == "__main__":
