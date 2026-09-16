@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-15T02:28:27.954234+00:00",
+  "updatedAt": "2026-09-16T10:22:35.943009+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-f-bt-tp1-260915-202609150000253",
-      "title": "体重58キロの新弟子・新道が初土俵　高校相撲経験者に完敗も「強いことで有名になりたい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260915-202609150000253",
-      "publishedAt": "2026-09-15",
-      "publishedAtRaw": "日刊スポーツ　9月15日 11時09分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_SEKRCKGCQFFBNBQA37CDITGPUE",
+      "title": "琴風氏「ちょっと意外な展開」NHK佐藤洋之アナ「大関に失礼かも」／秋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_SEKRCKGCQFFBNBQA37CDITGPUE",
+      "publishedAt": "2026-09-16",
+      "publishedAtRaw": "SANSPO　9月16日 19時07分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260915-OHT1T51067",
-      "title": "異例の体重５０キロ台　現役最軽量力士・新道が前相撲デビュー「軽いのはうれしいことじゃない。強いことで有名になりたい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260915-OHT1T51067",
-      "publishedAt": "2026-09-15",
-      "publishedAtRaw": "スポーツ報知　9月15日 11時07分",
+      "id": "dmenu-docomo-f-bt-tp1-260916-202609160001311",
+      "title": "大関安青錦が初黒星「相手の相撲が早かった」伯乃富士の攻めに後手「結果を受け入れる」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260916-202609160001311",
+      "publishedAt": "2026-09-16",
+      "publishedAtRaw": "日刊スポーツ　9月16日 18時44分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260915048",
-      "title": "大相撲　父はハワイ出身の元十両、砂武蔵が前相撲白星デビュー「頑張ります」",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260915048",
-      "publishedAt": "2026-09-15",
-      "publishedAtRaw": "デイリースポーツ　9月15日 10時49分",
+      "id": "dmenu-docomo-f-bt-tp1-260916-202609160001277",
+      "title": "36歳高安が横綱大の里から金星「強い人に勝つのは達成感」歴代９位年長記録　現役２位通算７個",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260916-202609160001277",
+      "publishedAt": "2026-09-16",
+      "publishedAtRaw": "日刊スポーツ　9月16日 18時39分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260915-0114",
-      "title": "今年も「落語大相撲圓雀場所」開催　角界から押尾川親方、世話人錦風も出演",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260915-0114",
-      "publishedAt": "2026-09-15",
-      "publishedAtRaw": "スポニチアネックス　9月15日 10時26分",
+      "id": "dmenu-docomo-tokyosports-403364",
+      "title": "【大相撲】大の里が引く悪癖…ジャンプしながら土俵下へ転落　横綱８場所で１４個目の金星配給",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403364",
+      "publishedAt": "2026-09-16",
+      "publishedAtRaw": "東スポWEB　9月16日 18時28分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-abematimes-10273022",
-      "title": "「あぶなっ」力士の顔の上に力士が…あわやのアクシデント発生 「無事で何より」ファンも“ヒヤリ”",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273022",
-      "publishedAt": "2026-09-15",
-      "publishedAtRaw": "ABEMA TIMES　9月15日 10時14分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260916-0306",
+      "title": "館内騒然！横綱・大の里が高安に敗れる波乱　ジャンプして土俵下転落…「また明日」　高安は7個目金星",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260916-0306",
+      "publishedAt": "2026-09-16",
+      "publishedAtRaw": "スポニチアネックス　9月16日 18時27分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
