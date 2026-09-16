@@ -67,7 +67,11 @@ def main() -> int:
             if should_publish:
                 path.joinpath("public/api/v1/news.json").write_text(json.dumps(publication_payload(state), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         def validate(path: Path) -> None:
-            run(path, sys.executable, "scripts/ci/validate_news.py")
+            # Ordinary feed polls intentionally keep the last public payload;
+            # do not reject that payload merely because it has crossed the
+            # stale-data threshold between final publication slots.
+            if should_publish:
+                run(path, sys.executable, "scripts/ci/validate_news.py")
         message = "chore: publish news feed"
     else:
         allowed = TORIKUMI
