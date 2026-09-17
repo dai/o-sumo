@@ -46,85 +46,6 @@
   width: 100%;
 }
 
-/* Home blog updates */
-.blog-updates-section {
-  margin-bottom: 3rem;
-  padding: 2rem;
-  color: var(--color-text);
-  background: var(--surface-container-low);
-}
-
-.blog-updates-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.blog-updates-title {
-  margin: 0;
-  color: var(--color-primary);
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-wrap: balance;
-}
-
-.blog-updates-all-link {
-  color: var(--color-tertiary);
-  font-weight: 700;
-  text-decoration: underline;
-  text-underline-offset: 0.25em;
-}
-
-.blog-updates-list {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.blog-updates-item {
-  display: grid;
-  gap: 0.45rem;
-  min-width: 0;
-  padding: 1rem 1.25rem;
-  border-top: 1px solid var(--color-secondary-light);
-}
-
-.blog-updates-item:nth-child(3n + 1) {
-  padding-left: 0;
-}
-
-.blog-updates-date {
-  color: var(--color-muted);
-  font-size: 0.8rem;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.04em;
-}
-
-.blog-updates-item-link {
-  color: inherit;
-  font-family: var(--font-serif);
-  font-size: 1.1rem;
-  font-weight: 600;
-  line-height: 1.5;
-  overflow-wrap: anywhere;
-  text-decoration: none;
-}
-
-.blog-updates-item-link:hover,
-.blog-updates-item-link:focus-visible,
-.blog-updates-all-link:hover,
-.blog-updates-all-link:focus-visible {
-  color: var(--surface);
-  background: var(--color-primary);
-}
-
 /* Hero section - surface hierarchy, no border */
 .hero-section {
   background: linear-gradient(180deg, var(--surface-container-low) 0%, var(--surface) 100%);
@@ -399,11 +320,88 @@
 }
 
 .monomosu-title {
-  font-size: 0.72rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #b45309;
+  margin: 0 0 0.75rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.4;
+  text-wrap: balance;
+  border-bottom: 2px solid var(--color-tertiary);
+  padding-bottom: 0.5rem;
+}
+
+.greeting-section {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-secondary-light);
+}
+.greeting-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+.greeting-title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+  font-weight: 600;
+  color: var(--color-primary);
+  line-height: 1.3;
+}
+.greeting-all-link {
+  font-size: 0.85rem;
+  color: var(--color-tertiary);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.greeting-all-link:hover,
+.greeting-all-link:focus-visible {
+  color: var(--color-primary);
+}
+.greeting-card {
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--color-secondary-light);
+}
+.greeting-card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+.greeting-editor {
+  font-weight: 600;
+}
+.greeting-date {
+  font-variant-numeric: tabular-nums;
+}
+.greeting-card-title {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.greeting-card-link {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--color-tertiary);
+  text-underline-offset: 0.2em;
+}
+.greeting-card-link:hover,
+.greeting-card-link:focus-visible {
+  color: var(--color-tertiary);
+}
+.greeting-card-description {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  line-height: 1.55;
 }
 
 .monomosu-text {
@@ -1464,18 +1462,6 @@
     padding: 1.5rem 1rem;
   }
 
-  .blog-updates-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .blog-updates-item:nth-child(3n + 1) {
-    padding-left: 1.25rem;
-  }
-
-  .blog-updates-item:nth-child(2n + 1) {
-    padding-left: 0;
-  }
-
   .hero-section {
     padding: 2rem 1.5rem;
   }
@@ -1545,26 +1531,6 @@
   .hero-section::before {
     width: 180px;
     height: 180px;
-  }
-
-  .blog-updates-section {
-    padding: 1.5rem 1.25rem;
-  }
-
-  .blog-updates-header {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 0.35rem;
-  }
-
-  .blog-updates-list {
-    grid-template-columns: 1fr;
-  }
-
-  .blog-updates-item,
-  .blog-updates-item:nth-child(3n + 1),
-  .blog-updates-item:nth-child(2n + 1) {
-    padding: 0.9rem 0;
   }
 
   .feature-card h3 {
@@ -2570,7 +2536,6 @@
 }
 
 .home-editorial .news-section,
-.home-editorial .blog-updates-section,
 .home-editorial .kimarite-home-section,
 .home-editorial .past-basho-section {
   margin-bottom: clamp(3.5rem, 7vw, 6rem);
@@ -2582,7 +2547,6 @@
 }
 
 .home-editorial .news-section-title,
-.home-editorial .blog-updates-title,
 .home-editorial .news-subsection-title,
 .home-editorial .kimarite-home-title,
 .home-editorial .past-basho-heading {
@@ -2590,7 +2554,6 @@
 }
 
 .home-editorial .news-section-title,
-.home-editorial .blog-updates-title,
 .home-editorial .kimarite-home-title,
 .home-editorial .past-basho-heading {
   font-size: clamp(1.75rem, 4vw, 2.75rem);
@@ -2608,10 +2571,6 @@
   margin-bottom: 0.35rem;
 }
 
-.home-editorial .blog-updates-item {
-  border: none;
-}
-
 .home-editorial .news-item-link {
   color: var(--home-ink);
   padding: 0.85rem 1.15rem;
@@ -2621,7 +2580,6 @@
     color 160ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.home-editorial .blog-updates-item-link,
 .home-editorial .kimarite-home-link {
   color: var(--home-ink);
 }
@@ -2632,16 +2590,7 @@
   background: var(--home-ink);
 }
 
-.home-editorial .blog-updates-item-link:hover,
-.home-editorial .blog-updates-item-link:focus-visible,
-.home-editorial .blog-updates-all-link:hover,
-.home-editorial .blog-updates-all-link:focus-visible {
-  color: var(--home-paper);
-  background: var(--home-ink);
-}
-
 .home-editorial .news-subsection-see-all,
-.home-editorial .blog-updates-all-link,
 .home-editorial .kimarite-home-see-all,
 .home-editorial .kimarite-home-romaji,
 .home-editorial .home-footer a {
@@ -2812,7 +2761,6 @@
   }
 
   .home-editorial .news-section,
-  .home-editorial .blog-updates-section,
   .home-editorial .kimarite-home-section,
   .home-editorial .past-basho-section {
     padding-top: 1.75rem;
