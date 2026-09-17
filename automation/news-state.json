@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-16T10:22:35.943009+00:00",
+    "updatedAt": "2026-09-17T00:54:14.534533+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_SEKRCKGCQFFBNBQA37CDITGPUE",
-        "title": "琴風氏「ちょっと意外な展開」NHK佐藤洋之アナ「大関に失礼かも」／秋場所",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_SEKRCKGCQFFBNBQA37CDITGPUE",
-        "publishedAt": "2026-09-16",
-        "publishedAtRaw": "SANSPO　9月16日 19時07分",
+        "id": "dmenu-docomo-abematimes-10273451",
+        "title": "「ほっそ」体重50kg台の“異例”新人力士が初白星 「細いのに勢いある」「やるじゃん」15歳新道“3秒決着”で熱視線",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273451",
+        "publishedAt": "2026-09-17",
+        "publishedAtRaw": "ABEMA TIMES　9月17日 9時33分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260916-202609160001311",
-        "title": "大関安青錦が初黒星「相手の相撲が早かった」伯乃富士の攻めに後手「結果を受け入れる」",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260916-202609160001311",
-        "publishedAt": "2026-09-16",
-        "publishedAtRaw": "日刊スポーツ　9月16日 18時44分",
+        "id": "dmenu-docomo-abematimes-10273449",
+        "title": "「髷ですかね？」「あ、ここだ！」物言いで中継混乱も実は…「なるほど」「よく残した」カメラが捉えた“土俵際の大熱戦”",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273449",
+        "publishedAt": "2026-09-17",
+        "publishedAtRaw": "ABEMA TIMES　9月17日 9時05分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260916-202609160001277",
-        "title": "36歳高安が横綱大の里から金星「強い人に勝つのは達成感」歴代９位年長記録　現役２位通算７個",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260916-202609160001277",
-        "publishedAt": "2026-09-16",
-        "publishedAtRaw": "日刊スポーツ　9月16日 18時39分",
+        "id": "dmenu-docomo-abematimes-10273440",
+        "title": "「映画俳優みたい」36年ぶり英国出身力士初勝利で注目！17歳新鋭に「イケメンやね」恵まれた体格と端正な顔立ちに熱視線",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273440",
+        "publishedAt": "2026-09-17",
+        "publishedAtRaw": "ABEMA TIMES　9月17日 7時37分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-tokyosports-403364",
-        "title": "【大相撲】大の里が引く悪癖…ジャンプしながら土俵下へ転落　横綱８場所で１４個目の金星配給",
-        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403364",
-        "publishedAt": "2026-09-16",
-        "publishedAtRaw": "東スポWEB　9月16日 18時28分",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_4VUJACPLDNHDPPO6LASBMRCKWU",
+        "title": "琴風氏「グッとくるようなこと伝えてやって」桐山親方「承知しました」／秋場所",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_4VUJACPLDNHDPPO6LASBMRCKWU",
+        "publishedAt": "2026-09-17",
+        "publishedAtRaw": "SANSPO　9月17日 7時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sponichi-spngoo-20260916-0306",
-        "title": "館内騒然！横綱・大の里が高安に敗れる波乱　ジャンプして土俵下転落…「また明日」　高安は7個目金星",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260916-0306",
-        "publishedAt": "2026-09-16",
-        "publishedAtRaw": "スポニチアネックス　9月16日 18時27分",
+        "id": "dmenu-docomo-abematimes-10273395",
+        "title": "「出禁にして」高安、横綱・大の里撃破で金星も一部ファンに“残念な行為”「そもそも危ない」憤る声も",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273395",
+        "publishedAt": "2026-09-17",
+        "publishedAtRaw": "ABEMA TIMES　9月17日 6時15分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-16T10:22:35.952549+00:00",
-  "lastSuccessAt": "2026-09-16T10:22:35.943009+00:00",
+  "lastAttemptAt": "2026-09-17T00:54:14.543959+00:00",
+  "lastSuccessAt": "2026-09-17T00:54:14.534533+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -115,9 +115,13 @@
     "35084621469": {
       "attemptedAt": "2026-09-16T10:22:35.952549+00:00",
       "outcome": "success"
+    },
+    "35168404029": {
+      "attemptedAt": "2026-09-17T00:54:14.543959+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35084621469",
+  "lastRunId": "35168404029",
   "lastPublishedDate": "2026-09-16",
   "lastPublishedSha": "f03e8835dcf8ff14d66a1b877c1c52509905f7d0",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
