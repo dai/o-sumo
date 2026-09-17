@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import DailyMonomosuBox from './DailyMonomosuBox';
+import MonomosuSection from './MonomosuSection';
 
 function setShare(value: ((data: ShareData) => Promise<void>) | undefined) {
   Object.defineProperty(navigator, 'share', {
@@ -17,7 +17,7 @@ function setClipboard(value: Pick<Clipboard, 'writeText'> | undefined) {
   });
 }
 
-describe('DailyMonomosuBox', () => {
+describe('MonomosuSection', () => {
   beforeEach(() => {
     window.localStorage.clear();
     setShare(undefined);
@@ -26,7 +26,7 @@ describe('DailyMonomosuBox', () => {
 
   it('starts the device-only zabuton count at zero and stores it per basho day', async () => {
     const user = userEvent.setup();
-    render(<DailyMonomosuBox monthKey="202609" day={1} shareTitle="九月場所 初日" />);
+    render(<MonomosuSection monthKey="202609" day={1} shareTitle="九月場所 初日" />);
 
     const button = screen.getByRole('button', { name: /この端末で座布団を投げる/ });
     expect(button).toHaveTextContent('この端末の座布団 0枚');
@@ -41,7 +41,7 @@ describe('DailyMonomosuBox', () => {
   it('connects the disclosure, visible textarea label, and writing hint', async () => {
     const user = userEvent.setup();
     setClipboard({ writeText: vi.fn().mockResolvedValue(undefined) });
-    render(<DailyMonomosuBox monthKey="202609" day={1} shareTitle="九月場所 初日" />);
+    render(<MonomosuSection monthKey="202609" day={1} shareTitle="九月場所 初日" />);
 
     const toggle = screen.getByRole('button', { name: 'あなたも物申す' });
     expect(toggle).toHaveAttribute('aria-controls', 'daily-monomosu-drawer');
@@ -69,7 +69,7 @@ describe('DailyMonomosuBox', () => {
     const share = vi.fn().mockResolvedValue(undefined);
     setShare(share);
     const user = userEvent.setup();
-    render(<DailyMonomosuBox monthKey="202609" day={1} shareTitle="九月場所 初日" />);
+    render(<MonomosuSection monthKey="202609" day={1} shareTitle="九月場所 初日" />);
 
     await user.click(screen.getByRole('button', { name: 'あなたも物申す' }));
     await user.type(screen.getByPlaceholderText(/注目ポイント/), '初日の横綱対決に注目');
@@ -88,7 +88,7 @@ describe('DailyMonomosuBox', () => {
     const writeText = vi.fn().mockResolvedValue(undefined);
     setClipboard({ writeText });
     render(
-      <DailyMonomosuBox
+      <MonomosuSection
         monthKey="202607"
         day={15}
         shareTitle="七月場所 千秋楽"
@@ -109,7 +109,7 @@ describe('DailyMonomosuBox', () => {
     const user = userEvent.setup();
     setShare(vi.fn().mockRejectedValue(new Error('share failed')));
     setClipboard({ writeText: vi.fn().mockRejectedValue(new Error('copy failed')) });
-    render(<DailyMonomosuBox monthKey="202609" day={1} shareTitle="九月場所 初日" />);
+    render(<MonomosuSection monthKey="202609" day={1} shareTitle="九月場所 初日" />);
 
     await user.click(screen.getByRole('button', { name: 'あなたも物申す' }));
     await user.click(screen.getByRole('button', { name: '予想を共有' }));
@@ -123,7 +123,7 @@ describe('DailyMonomosuBox', () => {
   it('treats cancellation of the native share sheet as a neutral outcome', async () => {
     setShare(vi.fn().mockRejectedValue(new DOMException('cancelled', 'AbortError')));
     const user = userEvent.setup();
-    render(<DailyMonomosuBox monthKey="202609" day={1} shareTitle="九月場所 初日" />);
+    render(<MonomosuSection monthKey="202609" day={1} shareTitle="九月場所 初日" />);
 
     await user.click(screen.getByRole('button', { name: 'あなたも物申す' }));
     await user.click(screen.getByRole('button', { name: '予想を共有' }));

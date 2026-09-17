@@ -13,8 +13,7 @@ import {
 import type { TorikumiDataSet, TorikumiArchiveDay } from '../lib/torikumi-data';
 import type { BashoStatus } from '../lib/basho-status';
 import { fetchRikishiMatchups } from '../lib/rikishi-profile';
-import { getRelativeHighlightsTitle, getRelativeMonomosuText } from '../lib/relative-date';
-import DailyMonomosuBox from './DailyMonomosuBox';
+import { getRelativeHighlightsTitle } from '../lib/relative-date';
 
 export interface DailyHighlightsSectionProps {
   monthKey: string;
@@ -303,20 +302,11 @@ export default function DailyHighlightsSection({
             {t('highlights.pendingBody')}
           </p>
         ) : (
-          <>
-            <div className="daily-highlights-grid">
-              {highlightsResult.matchups.map((matchup) => (
-                <FeaturedMatchupCard key={matchup.id} matchup={matchup} />
-              ))}
-            </div>
-
-            <DailyMonomosuBox
-              monthKey={highlightsResult.monthKey}
-              day={highlightsResult.day}
-              shareTitle={isEn ? highlightsResult.dateTextEn : highlightsResult.dateTextJa}
-              customComment={getRelativeMonomosuText(activeTarget.dayDiff ?? null, isFinal, t)}
-            />
-          </>
+          <div className="daily-highlights-grid">
+            {highlightsResult.matchups.map((matchup) => (
+              <FeaturedMatchupCard key={matchup.id} matchup={matchup} />
+            ))}
+          </div>
         )}
       </div>
     </section>

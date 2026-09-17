@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-export default function DailyMonomosuBox({
+export default function MonomosuSection({
   monthKey,
   day,
   shareTitle,
@@ -82,7 +82,13 @@ export default function DailyMonomosuBox({
   const commentText = customComment || t('highlights.monomosuDefaultText');
 
   return (
-    <div className="monomosu-box-wrapper">
+    <section
+      className="monomosu-box-wrapper"
+      aria-labelledby="monomosu-section-title"
+    >
+      <h2 id="monomosu-section-title" className="sr-only">
+        {t('highlights.monomosuTitle')}
+      </h2>
       <div className="monomosu-box">
         {/* 縦書き和モダンバッジ */}
         <div className="monomosu-vertical-badge" aria-hidden="true">
@@ -190,6 +196,6 @@ export default function DailyMonomosuBox({
             </>
           ) : null}
       </div>
-    </div>
+    </section>
   );
 }
