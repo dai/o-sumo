@@ -209,6 +209,14 @@ PR #479 で満点に到達した AI Agent Readiness 7 項目を維持しつつ�
 - **Lesson #4**（WebMCP API 名前空間）— PR 1 で `NavigatorModelContext` / `registerWebMcpTools` の JSDoc を 4 段階検出順序として明文化済み。
 - **Lesson #5**（RFC 9728 §3.2）— PR 1 で `oauth-authorization-server` を「`agent_auth` 拡張付き metadata-only discovery surface として残置」と `docs/agent-ready.md` に明記済み。
 
+## 2026-09-17 news_state の stale/future candidate で raise しない
+- ニュース durable state の `record_attempt` は、`acquired > attempted_at or acquired < state["lastSuccessAt"]` を検出したとき `ValueError` を投げず、`candidate = None` にして "failed attempt" として記録する。`consecutiveFailures` をインクリメントし、`latestGood` / `lastSuccessAt` は不変。
+- 旧来の raise 挙動は `state_publish` の `CalledProcessError` 経由で GitHub Actions の publish ジョブ全体を失敗させ、後続トリガの自動再実行を妨げていた (news run 35041882677 の連鎖失敗)。同じ source が新データを送らない限り永続的に失敗し続ける構造。
+- 時計が source 側で戻った／進んだ／遅延配信された candidate は「失敗 attempt」相当として扱い、3 連続失敗で `select_publication` の `consecutiveFailures < 3` ガードが publication を抑制する。これで durable state の不変条件 (`latestGood` の monotonic な `lastSuccessAt`) は維持される。
+- 回帰テスト: `scripts/ci/news_state_test.py:test_stale_or_future_candidate_is_recorded_as_failure` で future-dated と stale candidate の両方をロック。
+- **Why**: monotonic な `updatedAt` を期待するパイプラインで、source が stale データを返し続けた瞬間に raise すると、repair 用の safe path が消える。「成功 candidate がない」状態を永続化するのが正解で、閾値ベースの circuit breaker は別レイヤ (`select_publication`) で持つ。
+- **How to apply**: state-machine で candidate を reject する 2 択 = `raise` or `skip-as-failure`。後者は (a) durable invariants を壊さず、(b) 閾値ベースの circuit breaker に上位で判定させる、という設計原則に適合する。`raise` を採用するのは schema 不一致など repair 不能な corrupt case のみ。
+
 ## 2026-09-13 OGP画像の意図と配信履歴を照合する
 - 古いOGP表示の報告では、現在の配信画像だけからキャッシュ原因に絞らない。ユーザーが以前作成した正しい画像、Gitの画像履歴、公開画像の内容を照合する。
 - 画像URLのバージョン変更を提案する前に、その画像自体がユーザーの指定（読みもの・年月日・場所名なし）を満たすことを目視で確認する。

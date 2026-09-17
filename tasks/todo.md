@@ -129,6 +129,21 @@
 ### 残作業 (別 PR で計画)
 - **PR B**: 来場者コメント機能。`codex-instruction.md` の Cloudflare Workers 無料枠運用制約と整合させるため、giscus (blog.osada.us) / localStorage / Cloudflare KV の選択肢から設計比較が必要
 
+# Actions failure repair (2026-09-17)
+
+- [x] Identify `news_state.py:138` ValueError via `gh run view --log`
+- [x] Apply graceful-skip fix: `raise ValueError` → `candidate = None`
+- [x] Add regression test `test_stale_or_future_candidate_is_recorded_as_failure`
+- [x] Run full Python CI suite (83 tests OK, no regressions)
+- [x] Verify daily `torikumi.json` (run 35199436940) is self-healed (rikushi 3988 absent)
+
+## Review
+
+- Root cause: `record_attempt` raised on stale/future-dated candidate, propagating as CalledProcessError through `state_publish`. News publish (and downstream main publish) never reached git commit.
+- Fix: candidate invalid → counted as "failure" attempt (consecutiveFailures++), durable state preserved, `select_publication` circuit breaker (>=3 failures) handles suppression.
+- Daily torikumi run 35199436940 (validator rejected fusen/absentee overlap for rikushi 3988 in day=5) was a data-driven failure that auto-healed on next upstream refresh — no validator change needed.
+- Discord notification `curl: (6) Could not resolve host` is a secondary noise — `notify_discord.sh` uses `|| echo '::warning::'`, not blocking. Worth a separate investigation later (DNS for `DISCORD_WEBHOOK_URL` host).
+
 # PR B: ホーム構造変更 + Visitor Comments (giscus)
 
 プラン: `C:\Users\dai\.claude\plans\jst-15-18-3-zippy-ripple.md`
