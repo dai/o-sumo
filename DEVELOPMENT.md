@@ -156,9 +156,8 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - `app/components/MyRikishiToggle.tsx`: マイ力士のトグル
 - `app/components/ShareCurrentLink.tsx`: 現URLのクリップボードコピー
 - `app/components/NewsSection.tsx`: ホームのニュース 2 セクション
-- `app/components/BlogUpdatesSection.tsx`: ホームの「読みもの」最新記事リスト (`public/api/v1/blog.json` の最新 9 件)
-- `app/components/GreetingSection.tsx`: ホームの「編集者より」最新記事カード (`blogFeed.items[0]` を強調表示)
-- `app/components/MonomosuSection.tsx`: ホームの「物申す」独立セクション (座布団リアクション + textarea drawer)
+- `app/components/GreetingSection.tsx`: ホームの「編集者より」最新記事カード (`getLatestBlogPost()` 由来 = `blogFeed.items[0]`) を `MonomosuSection` 内にネストする h3 セクション
+- `app/components/MonomosuSection.tsx`: ホームの「物申す」独立セクション (visible h2 + 座布団リアクション + textarea drawer + 内包 `GreetingSection`)
 - `app/components/KimariteCard.tsx`: ホームの「決まり手」カード
 - `app/components/PrimaryNavigation.tsx`: プライマリーナビゲーション
 - `app/components/WebMcpProvider.tsx`: WebMCP ツール登録（`document.modelContext.registerTool` 優先、`navigator.modelContext.registerTool` フォールバック、`AbortController` でクリーンアップ）

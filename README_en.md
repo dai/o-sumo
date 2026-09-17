@@ -382,6 +382,8 @@ GitHub Actions runs the following on pull requests and pushes to `main`, `codex/
 - `app/components/MyRikishiToggle.tsx`: My Rikishi toggle
 - `app/components/ShareCurrentLink.tsx`: copy current URL to clipboard
 - `app/components/NewsSection.tsx`: homepage news section (Japan Sumo Association + Sumo World News split sections)
+- `app/components/GreetingSection.tsx`: homepage "From the Editor" callout (h3, uses `getLatestBlogPost()`, nested inside `MonomosuSection`)
+- `app/components/MonomosuSection.tsx`: standalone "Have Your Say" section on homepage (visible h2 + zabuton reaction + textarea drawer + nested `GreetingSection`)
 - `app/components/KimariteCard.tsx`: homepage kimarite entry card
 - `app/components/WebMcpProvider.tsx`: WebMCP tool registration (prefers `document.modelContext.registerTool`)
 - `app/components/PrimaryNavigation.tsx`: primary navigation

@@ -6,7 +6,7 @@ Status: Approved for implementation on branch `blog-section`.
 
 `blog.osada.us` に、日本語Markdownベースの静的ブログ「o-sumo 読みもの」を新設する。同じ `dai/o-sumo` repository から既存main siteとは別のCloudflare Pages projectを配信する。`osada.us`のホームでは、ヘッダーの直後かつ現在のヒーローより前に最新記事を最大9件表示する。
 
-初回の範囲には検索、タグ、カテゴリ、コメント、関連記事、記事画像、管理画面、日英翻訳を含めない。記事は日本語のみ、公開著者名は常に`dai`とする。ブログ更新のPRにはMarkdownと生成済み`blog.json`を同時に含める。
+初回の範囲には検索、タグ、カテゴリ、関連記事、記事画像、管理画面、日英翻訳を含めない。訪問者コメントは、blog.osada.us記事ページ末尾にgiscus (GitHub Discussions連携) として読み込み専用で表示する (o-sumo本体には表示しない)。記事は日本語のみ、公開著者名は常に`dai`とする。ブログ更新のPRにはMarkdownと生成済み`blog.json`を同時に含める。
 
 ## Content source and validation
 
@@ -70,13 +70,28 @@ interface BlogFeed {
 
 一覧には公開日、タイトル、descriptionを表示する。記事ページにはタイトル、公開日、著者`dai`、本文、`osada.usへ戻る`を表示する。
 
-## Main-site updates section
+## Main-site Greeting section
 
-`BlogUpdatesSection`をホームヘッダー直後かつ現在のヒーローより前に置く。見出しは日本語UIで「読みもの」、英語UIで「Stories」とする。
+`MonomosuSection` の内部に、h3として`GreetingSection`をネストする。`blogFeed.items[0]` (公開記事の最新1件) を editor's note カードとして表示するセクション。見出しは日本語UIで「編集者より」、英語UIで"From the Editor"とする。記事リンクと「すべての記事」は同じタブで`blog.osada.us`へ遷移する。
 
-各項目は公開日と日本語タイトルだけを表示し、タイトルに`lang="ja"`を付ける。記事リンクと「すべての記事」は同じタブで`blog.osada.us`へ遷移する。公開日降順で1件から9件まで表示し、0件の場合はセクション全体を描画しない。
+PR #625 で追加された`BlogUpdatesSection` (ホームの「読みもの」リスト) は撤去する。MonomosuSection の sr-only h2 を visible h2 に格上げし (バステキストを `monomosuBadge` "物申す" / "VOICE" に再利用)、GreetingSection はその h2 の直下 h3 として描画する。見出し階層は `h1 (page title) > h2 物申す / VOICE > h3 編集者より / From the Editor > h4 (記事タイトル)` を維持する。カードがない (公開記事 0 件) 場合は `null` を返却して MonomosuSection 自体は常に出力する。
 
-レイアウトはPCで3列x最大3行、タブレットで2列、モバイルで1列とする。現在の九月場所ヒーローと「今日の見どころ」の内部構造は変更しない。
+記事タイトルとdescriptionのみをカードに表示し、リスト形式は使わない。公開日降順の最新 1 件を切り出すロジックは `blogFeed.items[0]` (build時に降順ソート済契約) を `getLatestBlogPost()` helper で参照する。レイアウトはMonomosuSectionの下、textarea drawerの前に配置する。
+
+## Visitor Comments (giscus)
+
+`blog.osada.us` の記事ページ末尾に giscus (https://giscus.app) クライアントスクリプトを読み込み、訪問者がGitHub Discussions (`dai/o-sumo`) の "Announcements" カテゴリにコメントを投稿できるようにする。o-sumo本体 (`osada.us`) には表示せず、`blog.osada.us` のみがComments widget を読み込む。
+
+- repository: `dai/o-sumo` (Discussions 有効化が前提)
+- category: "Announcements"
+- thread mapping: pathname
+- theme: `preferred_color_scheme` (light/dark 連動)
+- strict: `0` (匿名書き込みを許可しつつ、GitHub アカウント認証を必須化)
+- reactions: `1`、metadata: `0`、input position: `bottom`、lang: `ja`
+
+`app/lib/blog-build.ts` の `renderArticle` 関数で `<div id="giscus-comments"></div>` を return link の前に追加し、`documentHtml` の `</body>` 直前に `<script src="https://giscus.app/client.js">` を静的埋め込みする。`data-repo-id` と `data-category-id` は giscus.app で取得した値を blog-build.ts の定数として運用する。本 PR 時点で実 ID を採用済 (`GISCUS_REPO_ID = 'R_kgDORaEFlg'`, `GISCUS_CATEGORY_ID = 'DIC_kwDORaEFls4DFyWu'`)。将来カテゴリを作り直した場合は同定数を差し替える。
+
+スパム対策は GitHub Discussions のネイティブ moderation (ピン留め / lock / 削除) に委譲する。Paid プラン移行や高頻度ポーリング (`codex-instruction.md` 絶対制約 #2, #3) とは独立した静的埋め込み実装とし、`functions/` および Cloudflare Workers には一切触らない。
 
 ## Initial article
 

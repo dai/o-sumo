@@ -128,3 +128,33 @@
 
 ### 残作業 (別 PR で計画)
 - **PR B**: 来場者コメント機能。`codex-instruction.md` の Cloudflare Workers 無料枠運用制約と整合させるため、giscus (blog.osada.us) / localStorage / Cloudflare KV の選択肢から設計比較が必要
+
+# PR B: ホーム構造変更 + Visitor Comments (giscus)
+
+プラン: `C:\Users\dai\.claude\plans\jst-15-18-3-zippy-ripple.md`
+
+## Phase A: ホーム構造変更
+
+- [x] `MonomosuSection` を sr-only h2 → visible h2 に昇格
+- [x] `GreetingSection` を `MonomosuSection` 内にネスト (h3)
+- [x] `BlogUpdatesSection` 完全削除 (component + test + dead CSS)
+- [x] `app/page.tsx` から `BlogUpdatesSection` / `GreetingSection` import 削除
+- [x] `getLatestBlogPost()` helper を `app/lib/blog-data.ts` に追加
+- [x] i18n キー削除 (`blogUpdatesTitle`, `blogUpdatesAll`, `monomosuTitle`)
+- [x] `.greeting-*` CSS を Digital Washi 整合で追加
+- [x] `.blog-updates-*` dead CSS 5 ブロック削除
+- [x] `.monomosu-title` をバッジ風 → visible h2 風に書き換え
+
+## Phase B: giscus (cherry-pick 済)
+
+- [x] `b74385f` feat(blog): wire giscus comments on blog.osada.us post pages
+- [x] `5e10f1b` feat(blog): replace giscus placeholder IDs with real values
+- [x] `24418ce` docs(blog): sync giscus 'Announcements' category
+
+## Phase C: 検証
+
+- [ ] TypeScript typecheck 通過
+- [ ] vitest 通過
+- [ ] blog.json diff なし
+- [ ] npm run build 通過
+- [ ] 新 PR 作成

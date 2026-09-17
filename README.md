@@ -395,6 +395,8 @@ GitHub Actions では PR と `main` / `codex/**` / `automation/data-updates` へ
 - `app/components/MyRikishiToggle.tsx`: マイ力士登録トグル
 - `app/components/ShareCurrentLink.tsx`: 現在の URL をクリップボードへコピー
 - `app/components/NewsSection.tsx`: ホームのニュースセクション（相撲協会 + 相撲界ニュースの 2 セクション）
+- `app/components/GreetingSection.tsx`: ホームの「編集者より」最新記事カード (h3、`getLatestBlogPost()` 利用、`MonomosuSection` 内にネスト)
+- `app/components/MonomosuSection.tsx`: ホームの「物申す」独立セクション (visible h2 + 座布団リアクション + textarea drawer + 内包 `GreetingSection`)
 - `app/components/KimariteCard.tsx`: ホームの「決まり手」カード
 - `app/components/WebMcpProvider.tsx`: WebMCP ツール登録（`document.modelContext.registerTool` 優先）
 - `app/components/PrimaryNavigation.tsx`: プライマリーナビゲーション
