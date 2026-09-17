@@ -151,9 +151,9 @@
 - [x] Verify validator is correct (`precise_fusen_losers` rule is stricter than `derive_absentees`'s `(fusen_loser_ids & roster)`)
 - [x] Plan: extend `derive_absentees` signature with `cross_day_active_ids` and exclude active fusen losers
 - [x] Apply `derive_absentees` signature extension + schedule-mode call site update
-- [ ] Add regression tests in `update_sumo_data_torikumi_logic_test.py`
-- [ ] Verify all Python CI tests pass (incl. existing `derive_absentees` tests)
-- [ ] Push branch + open PR via `gh pr create --fill`
+- [x] Add regression tests in `update_sumo_data_torikumi_logic_test.py`
+- [x] Verify all Python CI tests pass (incl. existing `derive_absentees` tests)
+- [x] Push branch + open PR via `gh pr create --fill`
 
 ## Review
 
