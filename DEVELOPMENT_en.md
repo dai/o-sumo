@@ -118,7 +118,7 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - If files change, it opens a PR and requests auto-merge after checks
 
 - Workflow: `.github/workflows/realtime-torikumi-direct-update.yml`
-- Trigger: every 10 minutes from JST 13:00 through 18:50 plus `workflow_dispatch`
+- Trigger: every 3 minutes from JST 15:00 through 18:57 (attempt frequency; GitHub Actions may coalesce runs) plus `workflow_dispatch`
 - Scope: torikumi results only (`--torikumi-only --torikumi-scope result --skip-rikishi-fetch`)
 - If files change, it validates and pushes directly to `main`; rebase conflicts fail closed for a fresh manual rerun
 - Always logs `github.event.schedule`, current JST time, `resultUpdatedAt`, and `scheduleUpdatedAt`
