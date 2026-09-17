@@ -98,7 +98,7 @@ describe('DailyHighlightsSection', () => {
       expect(within(section).getByText('千秋楽')).toBeInTheDocument();
       expect(within(section).queryByText(/開発中|表示例|九月場所|初日から/)).not.toBeInTheDocument();
       expect(within(section).queryByText(/公式取組発表待ち|Awaiting Official Bouts/)).not.toBeInTheDocument();
-      expect(within(section).getByText('千秋楽の結びを合口とともに振り返ります。')).toBeInTheDocument();
+      expect(within(section).queryByText('千秋楽の結びを合口とともに振り返ります。')).not.toBeInTheDocument();
       expect(within(section).getByRole('link', { name: /取組を見る/ })).toHaveAttribute(
         'href',
         '/20260726-torikumi/#bout-makuuchi-21',

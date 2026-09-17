@@ -156,6 +156,9 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - `app/components/MyRikishiToggle.tsx`: マイ力士のトグル
 - `app/components/ShareCurrentLink.tsx`: 現URLのクリップボードコピー
 - `app/components/NewsSection.tsx`: ホームのニュース 2 セクション
+- `app/components/BlogUpdatesSection.tsx`: ホームの「読みもの」最新記事リスト (`public/api/v1/blog.json` の最新 9 件)
+- `app/components/GreetingSection.tsx`: ホームの「編集者より」最新記事カード (`blogFeed.items[0]` を強調表示)
+- `app/components/MonomosuSection.tsx`: ホームの「物申す」独立セクション (座布団リアクション + textarea drawer)
 - `app/components/KimariteCard.tsx`: ホームの「決まり手」カード
 - `app/components/PrimaryNavigation.tsx`: プライマリーナビゲーション
 - `app/components/WebMcpProvider.tsx`: WebMCP ツール登録（`document.modelContext.registerTool` 優先、`navigator.modelContext.registerTool` フォールバック、`AbortController` でクリーンアップ）
@@ -172,6 +175,7 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - `app/lib/agent-skills.ts`: Agent Skills Index メタデータ
 - `app/lib/official-profile.ts`: 行司・呼出の型、API取得、数値IDパス
 - `app/lib/news-data.ts`: ニュースフィード静的データ
+- `app/lib/blog-data.ts`: ブログ feed (`public/api/v1/blog.json` から import)
 - `app/lib/kimarite-data.ts`: 決まり手 82 手のマスタ
 - `scripts/update_sumo_data.py`: データ生成スクリプト
 - `scripts/update_official_profiles.py`: 行司・呼出データ生成スクリプト

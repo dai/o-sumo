@@ -20,8 +20,10 @@ import { formatBashoTitle, getFinalBashoName } from './lib/basho-meta';
 import KimariteCard from './components/KimariteCard';
 import DailyHighlightsSection from './components/DailyHighlightsSection';
 import BlogUpdatesSection from './components/BlogUpdatesSection';
+import MonomosuSection from './components/MonomosuSection';
+import GreetingSection from './components/GreetingSection';
 import { divisionAnchorId } from './lib/rikishi-display';
-import { getCalendarDayDiffJst, getRelativeDateLabel } from './lib/relative-date';
+import { getCalendarDayDiffJst, getRelativeDateLabel, getRelativeMonomosuText } from './lib/relative-date';
 import './index.css';
 
 const LIVE_START_MINUTES = 13 * 60;
@@ -329,6 +331,16 @@ export default function Home() {
     : null;
   const openingBoutPath = openingDay ? getDayPath(openingDay, 'schedule') : undefined;
 
+  // MonomosuSection (独立セクション) 用の派生値。DailyHighlightsSection から分離したため
+  // bashoStatus 全体を再評価する必要がある。
+  const featuredBoutDay = bashoStatus.day ?? 1;
+  const featuredShareTitle = currentBashoTitle;
+  const featuredCustomComment = getRelativeMonomosuText(
+    dayDiff,
+    bashoStatus.kind === 'final',
+    t,
+  );
+
   const quickNavItems = getHomeQuickNavItems(
     bashoStatus,
     {
@@ -407,6 +419,15 @@ export default function Home() {
 
         {/* Secondary updates moved below the hero */}
         <BlogUpdatesSection />
+
+        <GreetingSection />
+
+        <MonomosuSection
+          monthKey={torikumiMonthKey}
+          day={featuredBoutDay}
+          shareTitle={featuredShareTitle}
+          customComment={featuredCustomComment}
+        />
 
         <div className="home-feature-grid">
           <section className="analytics-feature-card" aria-labelledby="analytics-feature-title">

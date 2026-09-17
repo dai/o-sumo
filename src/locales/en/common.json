@@ -168,6 +168,12 @@
     "defaultMusubiTitle": "Final Bout of the Day",
     "defaultMusubiDesc": "The concluding matchup of the day. A high-stakes clash between top-tier rikishi."
   },
+  "greeting": {
+    "title": "From the Editor",
+    "viewAll": "View all stories",
+    "editorLabel": "Editor: {{author}}",
+    "publishedOn": "Published on {{date}}"
+  },
   "analytics": {
     "eyebrow": "{{basho}} Analytics",
     "title": "Grand Sumo Analytics",

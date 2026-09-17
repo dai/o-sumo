@@ -416,8 +416,8 @@ describe('Home page', () => {
     expect(within(highlightsSection!).getByRole('heading', { level: 2, name: '明後日のみどころ' })).toBeInTheDocument();
     expect(within(highlightsSection!).getByText('初日')).toBeInTheDocument();
 
-    // Monomosu Box
-    const monomosuBox = highlightsSection!.querySelector<HTMLElement>('.monomosu-box');
+    // Monomosu Box (now a sibling section, not inside DailyHighlightsSection)
+    const monomosuBox = document.querySelector<HTMLElement>('.monomosu-box');
     expect(monomosuBox).not.toBeNull();
     expect(within(monomosuBox!).getByText('物申す')).toBeInTheDocument();
     expect(within(monomosuBox!).getByRole('button', { name: /座布団を投げる/ })).toBeInTheDocument();
@@ -440,7 +440,7 @@ describe('Home page', () => {
     expect(highlightsSection).not.toBeNull();
     expect(within(highlightsSection!).getByRole('heading', { level: 2, name: "Day After Tomorrow's Highlights" })).toBeInTheDocument();
     expect(within(highlightsSection!).getByText('Day 1')).toBeInTheDocument();
-    expect(within(highlightsSection!).getByText('VOICE')).toBeInTheDocument();
+    expect(screen.getByText('VOICE')).toBeInTheDocument();
     expect(within(highlightsSection!).getAllByRole('link', { name: /Compare Rikishi/ }).length).toBeGreaterThanOrEqual(1);
 
     await act(() => i18n.changeLanguage('ja'));
