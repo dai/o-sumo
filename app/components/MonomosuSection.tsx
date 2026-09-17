@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import GreetingSection from './GreetingSection';
 
 export default function MonomosuSection({
   monthKey,
@@ -86,18 +87,12 @@ export default function MonomosuSection({
       className="monomosu-box-wrapper"
       aria-labelledby="monomosu-section-title"
     >
-      <h2 id="monomosu-section-title" className="sr-only">
-        {t('highlights.monomosuTitle')}
+      <h2 id="monomosu-section-title" className="monomosu-title">
+        {t('highlights.monomosuBadge')}
       </h2>
       <div className="monomosu-box">
-        {/* 縦書き和モダンバッジ */}
-        <div className="monomosu-vertical-badge" aria-hidden="true">
-          <span>{t('highlights.monomosuBadge')}</span>
-        </div>
-
         {/* 1行コメントメインエリア */}
         <div className="monomosu-content">
-          <span className="monomosu-title">{t('highlights.monomosuTitle')}</span>
           <p className="monomosu-text">{commentText}</p>
         </div>
 
@@ -136,6 +131,9 @@ export default function MonomosuSection({
           {t('highlights.zabutonStatus', { count: zabutonAnnouncement })}
         </span>
       ) : null}
+
+      {/* 編集者からの最新記事 (h3 ネスト) */}
+      <GreetingSection />
 
       {/* インライン展開フォーム */}
       <div

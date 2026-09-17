@@ -1,7 +1,34 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import MonomosuSection from './MonomosuSection';
+
+// The MonomosuSection now nests the GreetingSection, which calls
+// `getLatestBlogPost()` from blog-data. Stub it so the test stays hermetic
+// regardless of what the committed `public/api/v1/blog.json` currently holds.
+vi.mock('../lib/blog-data', () => ({
+  blogFeed: {
+    updatedAt: '2026-09-01T00:00:00+09:00',
+    items: [
+      {
+        slug: '2026-09-01-osumo-yomimono-start',
+        title: '読みもの開始のお知らせ',
+        description: '編集者からの最初の挨拶です。',
+        url: 'https://blog.osada.us/posts/2026-09-01-osumo-yomimono-start/',
+        publishedAt: '2026-09-01',
+        author: 'dai',
+      },
+    ],
+  },
+  getLatestBlogPost: () => ({
+    slug: '2026-09-01-osumo-yomimono-start',
+    title: '読みもの開始のお知らせ',
+    description: '編集者からの最初の挨拶です。',
+    url: 'https://blog.osada.us/posts/2026-09-01-osumo-yomimono-start/',
+    publishedAt: '2026-09-01',
+    author: 'dai',
+  }),
+}));
 
 function setShare(value: ((data: ShareData) => Promise<void>) | undefined) {
   Object.defineProperty(navigator, 'share', {
@@ -130,5 +157,16 @@ describe('MonomosuSection', () => {
 
     expect(screen.queryByRole('status')).not.toBeInTheDocument();
     expect(screen.queryByLabelText('この内容をコピーしてください')).not.toBeInTheDocument();
+  });
+
+  it('renders the visible h2 with the badge text and nests the editor greeting h3', () => {
+    render(<MonomosuSection monthKey="202609" day={1} shareTitle="九月場所 初日" />);
+
+    const monomosuSection = document.querySelector<HTMLElement>('.monomosu-box-wrapper');
+    expect(monomosuSection).not.toBeNull();
+    expect(monomosuSection).toHaveAttribute('aria-labelledby', 'monomosu-section-title');
+    expect(within(monomosuSection!).getByRole('heading', { level: 2, name: '物申す' })).toBeInTheDocument();
+    expect(within(monomosuSection!).getByRole('heading', { level: 3, name: '編集者より' })).toBeInTheDocument();
+    expect(within(monomosuSection!).getByRole('heading', { level: 4, name: '読みもの開始のお知らせ' })).toBeInTheDocument();
   });
 });

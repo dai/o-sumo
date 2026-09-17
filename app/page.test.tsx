@@ -38,6 +38,33 @@ vi.mock('./lib/news-data', () => ({
   },
 }));
 
+// The MonomosuSection now nests the GreetingSection, which reads the blog feed
+// from the committed `public/api/v1/blog.json`. Stub it so the test stays
+// hermetic regardless of what the CI has most recently written.
+vi.mock('./lib/blog-data', () => ({
+  blogFeed: {
+    updatedAt: '2026-09-01T00:00:00+09:00',
+    items: [
+      {
+        slug: '2026-09-01-osumo-yomimono-start',
+        title: '読みもの開始のお知らせ',
+        description: '編集者からの最初の挨拶です。',
+        url: 'https://blog.osada.us/posts/2026-09-01-osumo-yomimono-start/',
+        publishedAt: '2026-09-01',
+        author: 'dai',
+      },
+    ],
+  },
+  getLatestBlogPost: () => ({
+    slug: '2026-09-01-osumo-yomimono-start',
+    title: '読みもの開始のお知らせ',
+    description: '編集者からの最初の挨拶です。',
+    url: 'https://blog.osada.us/posts/2026-09-01-osumo-yomimono-start/',
+    publishedAt: '2026-09-01',
+    author: 'dai',
+  }),
+}));
+
 function withDayNumber(data: TorikumiDailyData, day: number): TorikumiDailyData {
   return {
     ...data,
@@ -186,24 +213,30 @@ describe('Home page', () => {
     expect(hero).toContainElement(highlights!);
   });
 
-  it('places blog updates below the hero while keeping daily highlights in the hero', () => {
+  it('places the monomosu section below the hero with the visible h2 and nested editor greeting', () => {
     render(
       <MemoryRouter>
         <Home />
       </MemoryRouter>,
     );
 
-    const header = document.querySelector<HTMLElement>('.home-header');
-    const blogUpdates = document.querySelector<HTMLElement>('.blog-updates-section');
     const hero = document.querySelector<HTMLElement>('.hero-section');
-    const highlights = document.querySelector<HTMLElement>('.daily-highlights-section');
-
-    expect(header).not.toBeNull();
-    expect(blogUpdates).not.toBeNull();
+    const monomosuSection = document.querySelector<HTMLElement>('.monomosu-box-wrapper');
     expect(hero).not.toBeNull();
-    expect(highlights).not.toBeNull();
-    expect(hero!.compareDocumentPosition(blogUpdates!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-    expect(hero).toContainElement(highlights!);
+    expect(monomosuSection).not.toBeNull();
+    expect(hero!.compareDocumentPosition(monomosuSection!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(within(monomosuSection!).getByRole('heading', { level: 2, name: '物申す' })).toBeInTheDocument();
+    expect(within(monomosuSection!).getByRole('heading', { level: 3, name: '編集者より' })).toBeInTheDocument();
+  });
+
+  it('does not render the legacy blog-updates section anywhere on the home page', () => {
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+
+    expect(document.querySelector('.blog-updates-section')).toBeNull();
   });
 
   it('shows the main navigation links and footer-only contact links', () => {
@@ -419,7 +452,6 @@ describe('Home page', () => {
     // Monomosu Box (now a sibling section, not inside DailyHighlightsSection)
     const monomosuBox = document.querySelector<HTMLElement>('.monomosu-box');
     expect(monomosuBox).not.toBeNull();
-    expect(within(monomosuBox!).getByText('物申す')).toBeInTheDocument();
     expect(within(monomosuBox!).getByRole('button', { name: /座布団を投げる/ })).toBeInTheDocument();
 
     const compareLinks = within(highlightsSection!).getAllByRole('link', { name: /詳しく比較する/ });
@@ -440,7 +472,7 @@ describe('Home page', () => {
     expect(highlightsSection).not.toBeNull();
     expect(within(highlightsSection!).getByRole('heading', { level: 2, name: "Day After Tomorrow's Highlights" })).toBeInTheDocument();
     expect(within(highlightsSection!).getByText('Day 1')).toBeInTheDocument();
-    expect(screen.getByText('VOICE')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: 'VOICE' })).toBeInTheDocument();
     expect(within(highlightsSection!).getAllByRole('link', { name: /Compare Rikishi/ }).length).toBeGreaterThanOrEqual(1);
 
     await act(() => i18n.changeLanguage('ja'));
