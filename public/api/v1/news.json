@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-16T10:22:35.943009+00:00",
+  "updatedAt": "2026-09-17T10:22:33.554747+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_SEKRCKGCQFFBNBQA37CDITGPUE",
-      "title": "琴風氏「ちょっと意外な展開」NHK佐藤洋之アナ「大関に失礼かも」／秋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_SEKRCKGCQFFBNBQA37CDITGPUE",
-      "publishedAt": "2026-09-16",
-      "publishedAtRaw": "SANSPO　9月16日 19時07分",
+      "id": "dmenu-docomo-f-bt-tp1-260917-202609170001348",
+      "title": "横綱大の里「昨日ああいう負け方をしたので」金星献上の反省生かす　過去６戦全敗の義ノ富士撃破",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260917-202609170001348",
+      "publishedAt": "2026-09-17",
+      "publishedAtRaw": "日刊スポーツ　9月17日 19時06分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260916-202609160001311",
-      "title": "大関安青錦が初黒星「相手の相撲が早かった」伯乃富士の攻めに後手「結果を受け入れる」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260916-202609160001311",
-      "publishedAt": "2026-09-16",
-      "publishedAtRaw": "日刊スポーツ　9月16日 18時44分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_CY73GXL5UZHZ5B4AWEFHBLXZ6E",
+      "title": "舞の海氏「私のこの心配が外れてほしいなと思ってるんですけど…」／秋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_CY73GXL5UZHZ5B4AWEFHBLXZ6E",
+      "publishedAt": "2026-09-17",
+      "publishedAtRaw": "SANSPO　9月17日 18時38分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260916-202609160001277",
-      "title": "36歳高安が横綱大の里から金星「強い人に勝つのは達成感」歴代９位年長記録　現役２位通算７個",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260916-202609160001277",
-      "publishedAt": "2026-09-16",
-      "publishedAtRaw": "日刊スポーツ　9月16日 18時39分",
+      "id": "dmenu-docomo-hochi-20260917-OHT1T51281",
+      "title": "平幕・美ノ海が全勝の大関・琴桜止める　「しっかり前に出て相撲取れた」自力で首位に並ぶ",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260917-OHT1T51281",
+      "publishedAt": "2026-09-17",
+      "publishedAtRaw": "スポーツ報知　9月17日 18時18分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-403364",
-      "title": "【大相撲】大の里が引く悪癖…ジャンプしながら土俵下へ転落　横綱８場所で１４個目の金星配給",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403364",
-      "publishedAt": "2026-09-16",
-      "publishedAtRaw": "東スポWEB　9月16日 18時28分",
+      "id": "dmenu-docomo-20260917099",
+      "title": "大相撲　５日目にして早くも全勝力士が消滅　琴桜が敗戦　５連勝ならず　大の里、霧島、熱海富士は１敗キープ　安青錦は痛恨の２連敗",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260917099",
+      "publishedAt": "2026-09-17",
+      "publishedAtRaw": "デイリースポーツ　9月17日 17時49分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260916-0306",
-      "title": "館内騒然！横綱・大の里が高安に敗れる波乱　ジャンプして土俵下転落…「また明日」　高安は7個目金星",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260916-0306",
-      "publishedAt": "2026-09-16",
-      "publishedAtRaw": "スポニチアネックス　9月16日 18時27分",
+      "id": "dmenu-docomo-hochi-20260917-OHT1T51222",
+      "title": "幕内・輝が２０年初場所以来の無傷の５連勝　好調の要因は「稽古をしっかりやれたこと」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260917-OHT1T51222",
+      "publishedAt": "2026-09-17",
+      "publishedAtRaw": "スポーツ報知　9月17日 17時14分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
