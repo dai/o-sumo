@@ -1,7 +1,7 @@
 name: Realtime Torikumi Direct Update
 on:
   schedule:
-    - cron: '*/10 4-9 * * *'
+    - cron: '*/3 6-9 * * *'
   workflow_dispatch:
 # The caller must grant the permissions requested by the reusable workflow,
 # even when its steps authenticate with GH_PAT.
