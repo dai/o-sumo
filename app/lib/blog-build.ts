@@ -10,10 +10,10 @@ const DEFAULT_IMAGE_URL = `${BLOG_ORIGIN}/og-default.jpg`
 // To enable the comment widget: generate `data-repo-id` and `data-category-id`
 // on giscus.app for the `dai/o-sumo` repository under the
 // "Editor Commentary" Discussion category, then replace the placeholders below.
-const GISCUS_REPO_ID = 'REPLACE_WITH_REPOSITORY_ID'
-const GISCUS_CATEGORY = 'Editor Commentary'
-const GISCUS_CATEGORY_ID = 'REPLACE_WITH_CATEGORY_ID'
-const GISCUS_SCRIPT = `<script src="https://giscus.app/client.js" data-repo="dai/o-sumo" data-repo-id="${GISCUS_REPO_ID}" data-category="${GISCUS_CATEGORY}" data-category-id="${GISCUS_CATEGORY_ID}" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="ja" crossorigin="anonymous" async></script>`
+const GISCUS_REPO_ID = 'R_kgDORaEFlg'
+const GISCUS_CATEGORY = 'Announcements'
+const GISCUS_CATEGORY_ID = 'DIC_kwDORaEFls4DFyWu'
+const GISCUS_SCRIPT = `<script src="https://giscus.app/client.js" data-repo="dai/o-sumo" data-repo-id="${GISCUS_REPO_ID}" data-category="${GISCUS_CATEGORY}" data-category-id="${GISCUS_CATEGORY_ID}" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="ja" crossorigin="anonymous" async></script>`
 
 export interface BlogBuildOptions extends BlogFeedOptions {
   postsDirectory: string
