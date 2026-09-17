@@ -6,6 +6,15 @@ const BLOG_ORIGIN = 'https://blog.osada.us'
 const BLOG_TITLE = 'o-sumo 読みもの'
 const DEFAULT_IMAGE_URL = `${BLOG_ORIGIN}/og-default.jpg`
 
+// giscus (https://giscus.app) configuration for visitor comments on blog posts.
+// To enable the comment widget: generate `data-repo-id` and `data-category-id`
+// on giscus.app for the `dai/o-sumo` repository under the
+// "Editor Commentary" Discussion category, then replace the placeholders below.
+const GISCUS_REPO_ID = 'REPLACE_WITH_REPOSITORY_ID'
+const GISCUS_CATEGORY = 'Editor Commentary'
+const GISCUS_CATEGORY_ID = 'REPLACE_WITH_CATEGORY_ID'
+const GISCUS_SCRIPT = `<script src="https://giscus.app/client.js" data-repo="dai/o-sumo" data-repo-id="${GISCUS_REPO_ID}" data-category="${GISCUS_CATEGORY}" data-category-id="${GISCUS_CATEGORY_ID}" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="ja" crossorigin="anonymous" async></script>`
+
 export interface BlogBuildOptions extends BlogFeedOptions {
   postsDirectory: string
   outputDirectory: string
@@ -54,6 +63,7 @@ function documentHtml(title: string, description: string, canonical: string, sty
 <body>
   <header class="site-header"><div class="shell"><a class="site-title" href="/">${BLOG_TITLE}</a></div></header>
   <main class="shell">${content}</main>
+  ${GISCUS_SCRIPT}
 </body>
 </html>
 `
@@ -72,6 +82,7 @@ function renderArticle(post: BlogPost): string {
     <article class="post">
       <header><time datetime="${post.publishedAt}">${post.publishedAt}</time><h1>${escapeHtml(post.title)}</h1><p class="author">dai</p></header>
       <div class="post-body">${post.bodyHtml}</div>
+      <div id="giscus-comments" class="giscus-comments"></div>
       <p class="return-link"><a href="https://osada.us/">osada.usへ戻る</a></p>
     </article>`, 'article')
 }
