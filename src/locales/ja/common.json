@@ -168,6 +168,12 @@
     "defaultMusubiTitle": "本日の結びの一番",
     "defaultMusubiDesc": "本日の土俵を締めくくる大一番。両力士の気迫あふれる熱戦に注目です。"
   },
+  "greeting": {
+    "title": "編集者より",
+    "viewAll": "すべての記事を見る",
+    "editorLabel": "編集: {{author}}",
+    "publishedOn": "{{date}} 公開"
+  },
   "analytics": {
     "eyebrow": "{{basho}}分析",
     "title": "大相撲アナリティクス",
