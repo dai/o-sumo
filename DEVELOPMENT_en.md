@@ -165,9 +165,8 @@ The current APIs are now September while July snapshots remain immutable archive
 - `app/components/MyRikishiToggle.tsx`: My Rikishi toggle
 - `app/components/ShareCurrentLink.tsx`: copy current URL to clipboard
 - `app/components/NewsSection.tsx`: homepage news section (split into Japan Sumo Association + Sumo World News)
-- `app/components/BlogUpdatesSection.tsx`: homepage "Stories" list (latest 9 items from `public/api/v1/blog.json`)
-- `app/components/GreetingSection.tsx`: homepage "From the Editor" callout (featured card from `blogFeed.items[0]`)
-- `app/components/MonomosuSection.tsx`: standalone "Have Your Say" section on homepage (zabuton reaction + textarea drawer)
+- `app/components/GreetingSection.tsx`: homepage "From the Editor" callout (featured card via `getLatestBlogPost()` = `blogFeed.items[0]`), nested inside `MonomosuSection` as h3
+- `app/components/MonomosuSection.tsx`: standalone "Have Your Say" section on homepage (visible h2 + zabuton reaction + textarea drawer + nested `GreetingSection`)
 - `app/components/KimariteCard.tsx`: homepage kimarite entry card
 - `app/components/PrimaryNavigation.tsx`: primary navigation
 - `app/components/WebMcpProvider.tsx`: WebMCP tool registration (prefers `document.modelContext.registerTool`, falls back to `navigator.modelContext.registerTool`, cleans up via `AbortController`)
