@@ -83,13 +83,13 @@ PR #625 で追加された`BlogUpdatesSection` (ホームの「読みもの」�
 `blog.osada.us` の記事ページ末尾に giscus (https://giscus.app) クライアントスクリプトを読み込み、訪問者がGitHub Discussions (`dai/o-sumo`) の "Editor Commentary" カテゴリにコメントを投稿できるようにする。o-sumo本体 (`osada.us`) には表示せず、`blog.osada.us` のみがComments widget を読み込む。
 
 - repository: `dai/o-sumo` (Discussions 有効化が前提)
-- category: "Editor Commentary"
+- category: "Announcements"
 - thread mapping: pathname
 - theme: `preferred_color_scheme` (light/dark 連動)
 - strict: `0` (匿名書き込みを許可しつつ、GitHub アカウント認証を必須化)
-- reactions: `1`、metadata: `0`、input position: `top`、lang: `ja`
+- reactions: `1`、metadata: `0`、input position: `bottom`、lang: `ja`
 
-`app/lib/blog-build.ts` の `renderArticle` 関数で `<div id="giscus-comments"></div>` を return link の前に追加し、`documentHtml` の `</body>` 直前に `<script src="https://giscus.app/client.js">` を静的埋め込みする。`data-repo-id` と `data-category-id` は giscus.app で取得した値を blog-build.ts の定数 (`GISCUS_REPO_ID`, `GISCUS_CATEGORY_ID`) として運用する。プレースホルダ (`REPLACE_WITH_REPOSITORY_ID` / `REPLACE_WITH_CATEGORY_ID`) のままだとコメント欄が loading 状態で停止するので、運用開始前に必ず置換する。
+`app/lib/blog-build.ts` の `renderArticle` 関数で `<div id="giscus-comments"></div>` を return link の前に追加し、`documentHtml` の `</body>` 直前に `<script src="https://giscus.app/client.js">` を静的埋め込みする。`data-repo-id` と `data-category-id` は giscus.app で取得した値を blog-build.ts の定数として運用する。本 PR 時点で実 ID を採用済 (`GISCUS_REPO_ID = 'R_kgDORaEFlg'`, `GISCUS_CATEGORY_ID = 'DIC_kwDORaEFls4DFyWu'`)。将来カテゴリを作り直した場合は同定数を差し替える。
 
 スパム対策は GitHub Discussions のネイティブ moderation (ピン留め / lock / 削除) に委譲する。Paid プラン移行や高頻度ポーリング (`codex-instruction.md` 絶対制約 #2, #3) とは独立した静的埋め込み実装とし、`functions/` および Cloudflare Workers には一切触らない。
 
