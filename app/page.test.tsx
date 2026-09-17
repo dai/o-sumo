@@ -186,24 +186,26 @@ describe('Home page', () => {
     expect(hero).toContainElement(highlights!);
   });
 
-  it('places blog updates below the hero while keeping daily highlights in the hero', () => {
+  it('places the Monomosu section after the hero and nests the Greeting section inside it', () => {
     render(
       <MemoryRouter>
         <Home />
       </MemoryRouter>,
     );
 
-    const header = document.querySelector<HTMLElement>('.home-header');
-    const blogUpdates = document.querySelector<HTMLElement>('.blog-updates-section');
+    const monomosuSection = document.querySelector<HTMLElement>('.monomosu-box-wrapper');
+    const greetingSection = document.querySelector<HTMLElement>('.greeting-section');
     const hero = document.querySelector<HTMLElement>('.hero-section');
     const highlights = document.querySelector<HTMLElement>('.daily-highlights-section');
 
-    expect(header).not.toBeNull();
-    expect(blogUpdates).not.toBeNull();
+    expect(monomosuSection).not.toBeNull();
+    expect(greetingSection).not.toBeNull();
     expect(hero).not.toBeNull();
     expect(highlights).not.toBeNull();
-    expect(hero!.compareDocumentPosition(blogUpdates!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(hero!.compareDocumentPosition(monomosuSection!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(hero).toContainElement(highlights!);
+    // GreetingSection is nested inside MonomosuSection as an h3 sub-section
+    expect(monomosuSection).toContainElement(greetingSection!);
   });
 
   it('shows the main navigation links and footer-only contact links', () => {
@@ -416,11 +418,11 @@ describe('Home page', () => {
     expect(within(highlightsSection!).getByRole('heading', { level: 2, name: '明後日のみどころ' })).toBeInTheDocument();
     expect(within(highlightsSection!).getByText('初日')).toBeInTheDocument();
 
-    // Monomosu Box (now a sibling section, not inside DailyHighlightsSection)
-    const monomosuBox = document.querySelector<HTMLElement>('.monomosu-box');
-    expect(monomosuBox).not.toBeNull();
-    expect(within(monomosuBox!).getByText('物申す')).toBeInTheDocument();
-    expect(within(monomosuBox!).getByRole('button', { name: /座布団を投げる/ })).toBeInTheDocument();
+    // Monomosu section (independent sibling, hosts the visible "物申す" h2)
+    const monomosuSection = document.querySelector<HTMLElement>('.monomosu-box-wrapper');
+    expect(monomosuSection).not.toBeNull();
+    expect(screen.getByRole('heading', { level: 2, name: '物申す' })).toBeInTheDocument();
+    expect(within(monomosuSection!).getByRole('button', { name: /座布団を投げる/ })).toBeInTheDocument();
 
     const compareLinks = within(highlightsSection!).getAllByRole('link', { name: /詳しく比較する/ });
     expect(compareLinks.length).toBeGreaterThanOrEqual(1);
@@ -440,7 +442,7 @@ describe('Home page', () => {
     expect(highlightsSection).not.toBeNull();
     expect(within(highlightsSection!).getByRole('heading', { level: 2, name: "Day After Tomorrow's Highlights" })).toBeInTheDocument();
     expect(within(highlightsSection!).getByText('Day 1')).toBeInTheDocument();
-    expect(screen.getByText('VOICE')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: 'VOICE' })).toBeInTheDocument();
     expect(within(highlightsSection!).getAllByRole('link', { name: /Compare Rikishi/ }).length).toBeGreaterThanOrEqual(1);
 
     await act(() => i18n.changeLanguage('ja'));

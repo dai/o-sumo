@@ -19,9 +19,7 @@ import NewsSection from './components/NewsSection';
 import { formatBashoTitle, getFinalBashoName } from './lib/basho-meta';
 import KimariteCard from './components/KimariteCard';
 import DailyHighlightsSection from './components/DailyHighlightsSection';
-import BlogUpdatesSection from './components/BlogUpdatesSection';
 import MonomosuSection from './components/MonomosuSection';
-import GreetingSection from './components/GreetingSection';
 import { divisionAnchorId } from './lib/rikishi-display';
 import { getCalendarDayDiffJst, getRelativeDateLabel, getRelativeMonomosuText } from './lib/relative-date';
 import './index.css';
@@ -416,11 +414,6 @@ export default function Home() {
             bashoStatus={bashoStatus}
           />
         </section>
-
-        {/* Secondary updates moved below the hero */}
-        <BlogUpdatesSection />
-
-        <GreetingSection />
 
         <MonomosuSection
           monthKey={torikumiMonthKey}

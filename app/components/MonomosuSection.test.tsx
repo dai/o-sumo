@@ -1,7 +1,18 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import MonomosuSection from './MonomosuSection';
+
+vi.mock('../lib/blog-data', () => ({
+  getLatestBlogPost: () => ({
+    slug: 'osumo-yomimono-start',
+    title: 'o-sumo 読みものを始めます',
+    description: 'o-sumo に、読みものを新設します。',
+    url: 'https://blog.osada.us/posts/osumo-yomimono-start/',
+    publishedAt: '2026-09-01',
+    author: 'dai',
+  }),
+}));
 
 function setShare(value: ((data: ShareData) => Promise<void>) | undefined) {
   Object.defineProperty(navigator, 'share', {
@@ -130,5 +141,17 @@ describe('MonomosuSection', () => {
 
     expect(screen.queryByRole('status')).not.toBeInTheDocument();
     expect(screen.queryByLabelText('この内容をコピーしてください')).not.toBeInTheDocument();
+  });
+
+  it('renders a visible h2 using the badge text and nests the Greeting section as an h3', () => {
+    render(<MonomosuSection monthKey="202609" day={1} shareTitle="九月場所 初日" />);
+
+    // Visible h2 promoted from the previous sr-only heading
+    const monomosuSection = screen.getByRole('region', { name: '物申す' });
+    expect(within(monomosuSection).getByRole('heading', { level: 2, name: '物申す' })).toBeInTheDocument();
+
+    // GreetingSection nested inside as h3 "編集者より"
+    const greetingHeading = within(monomosuSection).getByRole('heading', { level: 3, name: '編集者より' });
+    expect(greetingHeading).toBeInTheDocument();
   });
 });
