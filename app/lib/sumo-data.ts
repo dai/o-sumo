@@ -28,7 +28,7 @@ export const makuuchiData: RankGroup[] = [
         "yomi": "おおのさと",
         "rank": "横綱",
         "side": "east",
-        "wins": 3,
+        "wins": 4,
         "losses": 1,
         "draws": 0,
         "results": [
@@ -36,7 +36,7 @@ export const makuuchiData: RankGroup[] = [
           "win",
           "win",
           "loss",
-          null
+          "win"
         ],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/",
         "memo": ""
@@ -114,14 +114,14 @@ export const makuuchiData: RankGroup[] = [
         "rank": "大関",
         "side": "west",
         "wins": 4,
-        "losses": 0,
+        "losses": 1,
         "draws": 0,
         "results": [
           "win",
           "win",
           "win",
           "win",
-          null
+          "loss"
         ],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/",
         "memo": ""
@@ -294,14 +294,14 @@ export const makuuchiData: RankGroup[] = [
         "rank": "前頭2",
         "side": "west",
         "wins": 0,
-        "losses": 4,
+        "losses": 5,
         "draws": 0,
         "results": [
           "loss",
           "loss",
           "loss",
           "loss",
-          null
+          "loss"
         ],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/",
         "memo": ""
@@ -338,7 +338,7 @@ export const makuuchiData: RankGroup[] = [
         "yomi": "ちゅらのうみ",
         "rank": "前頭3",
         "side": "west",
-        "wins": 3,
+        "wins": 4,
         "losses": 1,
         "draws": 0,
         "results": [
@@ -346,7 +346,7 @@ export const makuuchiData: RankGroup[] = [
           "loss",
           "win",
           "win",
-          null
+          "win"
         ],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/",
         "memo": ""
