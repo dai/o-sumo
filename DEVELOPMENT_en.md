@@ -165,6 +165,9 @@ The current APIs are now September while July snapshots remain immutable archive
 - `app/components/MyRikishiToggle.tsx`: My Rikishi toggle
 - `app/components/ShareCurrentLink.tsx`: copy current URL to clipboard
 - `app/components/NewsSection.tsx`: homepage news section (split into Japan Sumo Association + Sumo World News)
+- `app/components/BlogUpdatesSection.tsx`: homepage "Stories" list (latest 9 items from `public/api/v1/blog.json`)
+- `app/components/GreetingSection.tsx`: homepage "From the Editor" callout (featured card from `blogFeed.items[0]`)
+- `app/components/MonomosuSection.tsx`: standalone "Have Your Say" section on homepage (zabuton reaction + textarea drawer)
 - `app/components/KimariteCard.tsx`: homepage kimarite entry card
 - `app/components/PrimaryNavigation.tsx`: primary navigation
 - `app/components/WebMcpProvider.tsx`: WebMCP tool registration (prefers `document.modelContext.registerTool`, falls back to `navigator.modelContext.registerTool`, cleans up via `AbortController`)
@@ -181,6 +184,7 @@ The current APIs are now September while July snapshots remain immutable archive
 - `app/lib/agent-skills.ts`: Agent Skills Index metadata
 - `app/lib/official-profile.ts`: gyoji/yobidashi types, API fetching, and numeric-ID paths
 - `app/lib/news-data.ts`: static news feed data
+- `app/lib/blog-data.ts`: blog feed (import from `public/api/v1/blog.json`)
 - `app/lib/kimarite-data.ts`: master list of all 82 winning techniques
 - `scripts/update_sumo_data.py`: data generation script
 - `scripts/update_official_profiles.py`: gyoji and yobidashi data generator
