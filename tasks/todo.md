@@ -74,3 +74,57 @@
 - Daily run 34957084132 and realtime run 34955150310 were rejected before jobs started because their caller permissions did not allow the reusable workflow permissions. Both callers now match the existing reusable contract.
 - Regression tests failed before their corresponding fixes. The full CI Python command passed 161 tests after the fixes. Actionlint passed for all three callers, the reusable workflow, and the Test workflow (shellcheck and pyflakes disabled).
 - Independent review found no additional issues. Production workflow dispatch and real notifications were not performed.
+
+# 物申す分離 + GreetingSection (PR #625)
+
+プラン: `C:\Users\dai\.claude\plans\jst-15-18-3-zippy-ripple.md`
+
+## Phase A: Rename refactor (MonomosuSection extraction)
+- [x] `DailyMonomosuBox.tsx` → `MonomosuSection.tsx` rename (git mv + content)
+- [x] `DailyMonomosuBox.test.tsx` → `MonomosuSection.test.tsx` rename + describe/import/JSX 更新
+- [x] `MonomosuSection` を `<section aria-labelledby>` + sr-only h2 に格上げ (ランドマーク化)
+- [x] `DailyHighlightsSection.tsx` から nested MonomosuBox 削除 + `getRelativeMonomosuText` import 削除
+- [x] `DailyHighlightsSection.test.tsx` から nested 期待値削除 (`.not.toBeInTheDocument()`)
+
+## Phase B: GreetingSection 新規作成
+- [x] `app/components/GreetingSection.tsx` 新規 (~50 行、card-header は `<div>` で重複 banner role 回避)
+- [x] `blogFeed.items[0]` (最新記事) を editor's note として表示
+- [x] `greeting.*` i18n 名前空間を ja/en に追加 (`title`, `viewAll`, `editorLabel`, `publishedOn`)
+
+## Phase C: Home page 配線 + テスト更新
+- [x] `app/page.tsx` に `<GreetingSection />` + `<MonomosuSection>` を `<BlogUpdatesSection>` の下に兄弟として配置
+- [x] `featuredBoutDay` / `featuredShareTitle` / `featuredCustomComment` を `bashoStatus` から派生
+- [x] `app/page.test.tsx` を新 DOM 構造に合わせて更新 (querySelector + screen.getByText)
+- [x] `app/lib/relative-date.ts` の `getRelativeMonomosuText` を page.tsx 側に import
+
+## Phase D: コミット + プッシュ + PR
+- [x] 4 コミット作成 (refactor / feat / feat / docs)
+- [x] `chore/realtime-3min-polling` ブランチへ push (remote tracking 設定)
+- [x] PR #625 作成 (https://github.com/dai/o-sumo/pull/625)
+
+## レビュー
+
+### 完了内容
+- **PR #625**: `feat(home): extract MonomosuSection and add GreetingSection`
+- コミット 4 件: `84edd05` → `59b44af` → `c35a6ad` → `d05303a`
+- 変更: 13 files, +115 / -37
+
+### 検証結果
+| 項目 | 結果 |
+|---|---|
+| TypeScript typecheck | clean |
+| vitest | 71 files / 563 tests pass |
+| npm run build | clean (3.72s) |
+| Python unittest (workflow_config) | 4/4 pass |
+| blog.json diff | no changes |
+| CI test workflow | SUCCESS (GitHub Actions run 35183277454) |
+| CI Cloudflare Pages preview | SUCCESS (o-sumo + o-sumo-blog) |
+
+### 設計上の決定
+- バックエンド・インフラ変更なし (`functions/` / `wrangler.toml` 触らず)
+- pending (データなし) 状態でも Box は常に表示
+- localStorage + 既存 `navigator.share` / clipboard パターンのみ利用
+- `<header>` (GreetingSection の card-header) を `<div>` に変更して重複 banner role を回避 (testing-library getByRole('banner') の strict mode 衝突)
+
+### 残作業 (別 PR で計画)
+- **PR B**: 来場者コメント機能。`codex-instruction.md` の Cloudflare Workers 無料枠運用制約と整合させるため、giscus (blog.osada.us) / localStorage / Cloudflare KV の選択肢から設計比較が必要
