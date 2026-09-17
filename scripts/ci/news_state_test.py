@@ -111,8 +111,22 @@ class NewsStateTest(unittest.TestCase):
                 M.initialize(candidate, BASE)
         with self.assertRaises(ValueError):
             M.initialize(payload(BASE + timedelta(seconds=1)), BASE)
-        with self.assertRaises(ValueError):
-            M.record_attempt(self.state, payload(BASE + timedelta(hours=1)), "1", BASE)
+
+    def test_stale_or_future_candidate_is_recorded_as_failure(self):
+        # Future-dated candidate (source returned an impossible clock):
+        # treat as a failed attempt so the durable state stays consistent
+        # without raising. The consecutiveFailures guard still eventually
+        # suppresses publication via `select_publication`.
+        state = M.record_attempt(self.state, payload(BASE + timedelta(hours=1)), "1", BASE)
+        self.assertEqual(state["consecutiveFailures"], 1)
+        self.assertEqual(state["latestGood"], self.main)
+        self.assertEqual(state["lastSuccessAt"], self.main["updatedAt"])
+        self.assertEqual(state["processedRuns"]["1"]["outcome"], "failure")
+
+        # Stale candidate (no new acquisition since the recorded success).
+        state = M.record_attempt(self.state, payload(BASE - timedelta(hours=1)), "1", BASE + timedelta(hours=2))
+        self.assertEqual(state["consecutiveFailures"], 1)
+        self.assertEqual(state["latestGood"], self.main)
 
 
 if __name__ == "__main__":

@@ -135,8 +135,12 @@ def record_attempt(state, candidate, run_id, attempted_at):
         validate_payload(candidate, require_success=False)
         acquired = timestamp(candidate["updatedAt"])
         if acquired > attempted_at or acquired < timestamp(state["lastSuccessAt"]):
-            raise ValueError("candidate acquisition is future or older than latest good")
-        if not any(source["ok"] for source in candidate["sources"]):
+            # A stale or future-dated candidate cannot replace the recorded
+            # latestGood; count it as a failed attempt so the durable state
+            # remains consistent and `select_publication` decides whether to
+            # publish using the existing `consecutiveFailures` guard.
+            candidate = None
+        elif not any(source["ok"] for source in candidate["sources"]):
             candidate = None
     outcome = "success" if candidate is not None else "failure"
     result["processedRuns"][run_id] = {"attemptedAt": attempted_at.isoformat(), "outcome": outcome}

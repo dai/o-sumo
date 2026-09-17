@@ -129,6 +129,39 @@
 ### 残作業 (別 PR で計画)
 - **PR B**: 来場者コメント機能。`codex-instruction.md` の Cloudflare Workers 無料枠運用制約と整合させるため、giscus (blog.osada.us) / localStorage / Cloudflare KV の選択肢から設計比較が必要
 
+# Actions failure repair (2026-09-17)
+
+- [x] Identify `news_state.py:138` ValueError via `gh run view --log`
+- [x] Apply graceful-skip fix: `raise ValueError` → `candidate = None`
+- [x] Add regression test `test_stale_or_future_candidate_is_recorded_as_failure`
+- [x] Run full Python CI suite (83 tests OK, no regressions)
+- [x] Verify daily `torikumi.json` (run 35199436940) is self-healed (rikushi 3988 absent)
+
+## Review
+
+- Root cause: `record_attempt` raised on stale/future-dated candidate, propagating as CalledProcessError through `state_publish`. News publish (and downstream main publish) never reached git commit.
+- Fix: candidate invalid → counted as "failure" attempt (consecutiveFailures++), durable state preserved, `select_publication` circuit breaker (>=3 failures) handles suppression.
+- Daily torikumi run 35199436940 (validator rejected fusen/absentee overlap for rikushi 3988 in day=5) was a data-driven failure that auto-healed on next upstream refresh — no validator change needed.
+- Discord notification `curl: (6) Could not resolve host` is a secondary noise — `notify_discord.sh` uses `|| echo '::warning::'`, not blocking. Worth a separate investigation later (DNS for `DISCORD_WEBHOOK_URL` host).
+
+# Rikushi 3988 absentees overlap (2026-09-17)
+
+- [x] Identify `validate_torikumi.py:129` rejecting day=5 participant/absentee overlap [3988] via `gh run view --log`
+- [x] Confirm root cause via `Select-String` + line-range read on `public/api/v1/torikumi.json` (3988 in both scheduleDays juryo absentees and resultDays juryo bouts)
+- [x] Verify validator is correct (`precise_fusen_losers` rule is stricter than `derive_absentees`'s `(fusen_loser_ids & roster)`)
+- [x] Plan: extend `derive_absentees` signature with `cross_day_active_ids` and exclude active fusen losers
+- [x] Apply `derive_absentees` signature extension + schedule-mode call site update
+- [x] Add regression tests in `update_sumo_data_torikumi_logic_test.py`
+- [x] Verify all Python CI tests pass (incl. existing `derive_absentees` tests)
+- [x] Push branch + open PR via `gh pr create --fill`
+
+## Review
+
+- Root cause: `derive_absentees` was per-collection (`day_active_ids` only); no view of resultDays appearances.
+- Validator's `precise_fusen_losers` (appearances==1) is stricter than generator's `(fusen_loser_ids & roster)` (all fusen losers). 3988 — a fusen loser who also appeared in resultDays — ends up in generator's absentee list but is rejected by validator.
+- Fix: signature extension with `cross_day_active_ids` + targeted subtraction of the cross-day subset from `fusen_loser_ids` (not the full active_ids, to preserve the existing in-division fusen-loser semantics in resultDays).
+- Plan agent's initial recommendation (案 a, inline `day_active_ids` union) was rejected: it does not address the `(fusen_loser_ids & roster)` re-addition. Option (b') addresses both the active merge and the fusen-loser exclusion.
+
 # PR B: ホーム構造変更 + Visitor Comments (giscus)
 
 プラン: `C:\Users\dai\.claude\plans\jst-15-18-3-zippy-ripple.md`

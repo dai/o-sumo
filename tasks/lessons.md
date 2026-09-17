@@ -209,6 +209,22 @@ PR #479 で満点に到達した AI Agent Readiness 7 項目を維持しつつ�
 - **Lesson #4**（WebMCP API 名前空間）— PR 1 で `NavigatorModelContext` / `registerWebMcpTools` の JSDoc を 4 段階検出順序として明文化済み。
 - **Lesson #5**（RFC 9728 §3.2）— PR 1 で `oauth-authorization-server` を「`agent_auth` 拡張付き metadata-only discovery surface として残置」と `docs/agent-ready.md` に明記済み。
 
+## 2026-09-17 news_state の stale/future candidate で raise しない
+- ニュース durable state の `record_attempt` は、`acquired > attempted_at or acquired < state["lastSuccessAt"]` を検出したとき `ValueError` を投げず、`candidate = None` にして "failed attempt" として記録する。`consecutiveFailures` をインクリメントし、`latestGood` / `lastSuccessAt` は不変。
+- 旧来の raise 挙動は `state_publish` の `CalledProcessError` 経由で GitHub Actions の publish ジョブ全体を失敗させ、後続トリガの自動再実行を妨げていた (news run 35041882677 の連鎖失敗)。同じ source が新データを送らない限り永続的に失敗し続ける構造。
+- 時計が source 側で戻った／進んだ／遅延配信された candidate は「失敗 attempt」相当として扱い、3 連続失敗で `select_publication` の `consecutiveFailures < 3` ガードが publication を抑制する。これで durable state の不変条件 (`latestGood` の monotonic な `lastSuccessAt`) は維持される。
+- 回帰テスト: `scripts/ci/news_state_test.py:test_stale_or_future_candidate_is_recorded_as_failure` で future-dated と stale candidate の両方をロック。
+- **Why**: monotonic な `updatedAt` を期待するパイプラインで、source が stale データを返し続けた瞬間に raise すると、repair 用の safe path が消える。「成功 candidate がない」状態を永続化するのが正解で、閾値ベースの circuit breaker は別レイヤ (`select_publication`) で持つ。
+- **How to apply**: state-machine で candidate を reject する 2 択 = `raise` or `skip-as-failure`。後者は (a) durable invariants を壊さず、(b) 閾値ベースの circuit breaker に上位で判定させる、という設計原則に適合する。`raise` を採用するのは schema 不一致など repair 不能な corrupt case のみ。
+
+## 2026-09-17 schedule absentees と resultDays 出場者の reconciliation
+- `scripts/update_sumo_data.py:derive_absentees` は従来 `day_active_ids` (同一 collection 内の active set) のみを受け取っていた。schedule absentees を計算するときに、resultDays の同じ日の出場者が見えないため、JSA upstream が「schedule absentees リスト」と「resultDays 結果」を別 snapshot で配信するケース (day=5 rikushi 3988) で validator `precise_fusen_losers` (appearances==1) と不整合を起こしていた。
+- 単純な fix として `day_active_ids |= result_active_ids` だけ行うと、`(fusen_loser_ids & set(roster.keys()))` の項が依然として active な fusen_loser を absentees に再追加するため、validator 拒否は解消しない。閾値ベースの validator (appearances==1) と generator の `(fusen_loser_ids & roster)` 判定基準が微妙にずれているので、union 案は generator 側のfus en_loser 再追加ロジックを止めない。
+- fix: `cross_day_active_ids: set[int] | None = None` を signature に追加し、(a) `active_ids |= cross_day_active_ids` で cross-day 出場者を active 集合へマージ、(b) `fusen_loser_ids -= cross_day_active_ids` で **cross-day subset のみ** を fusen_loser から除外 (full active_ids ではなく surgical な subset)。resultDays call sites は `cross_day_active_ids=None` のままなので既存セマンティクス (in-division fusen_loser は absentees に残る) が完全に保持される。
+- 回帰テスト: `scripts/update_sumo_data_torikumi_logic_test.py:test_derive_absentees_excludes_cross_day_active_fusen_loser` (cross_day active で除外される) と `test_derive_absentees_keeps_inactive_fusen_loser` (cross_day inactive なら除外されない boundary)。
+- **Why**: generator と validator の判定基準が微妙にずれている場合、表面的な union 案 (案 a) は active 集合を増やすだけで、generator 内部の「fusen_loser を absentees に再追加する」ロジックを止めない。signature 拡張 + targeted subtraction で surgical に除く必要がある。
+- **How to apply**: 「state machine の単調増加ロジック」と「validator の閾値ロジック」の判定基準が一致しているか、テスト前に必ず照合する。一致しない場合は generator 側で「active なら absentees ではない」と明示的に除外するロジックを追加する。surgical な subset (`cross_day_active_ids` のみ) を subtract する方が、full active_ids を subtract するより「同じ collection 内の fusen_loser は absentees に残る」既存セマンティクスを壊さず安全。
+
 ## 2026-09-13 OGP画像の意図と配信履歴を照合する
 - 古いOGP表示の報告では、現在の配信画像だけからキャッシュ原因に絞らない。ユーザーが以前作成した正しい画像、Gitの画像履歴、公開画像の内容を照合する。
 - 画像URLのバージョン変更を提案する前に、その画像自体がユーザーの指定（読みもの・年月日・場所名なし）を満たすことを目視で確認する。
