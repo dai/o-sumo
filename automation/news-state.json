@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-17T02:29:12.167054+00:00",
+    "updatedAt": "2026-09-17T04:24:34.650490+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
+        "id": "dmenu-docomo-f-bt-tp1-260917-202609170000478",
+        "title": "北陣親方がしこ名“遠藤”の理由を告白「寝癖のまま国技館に行ったら…」本名ゆえの悩みも明かす",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260917-202609170000478",
+        "publishedAt": "2026-09-17",
+        "publishedAtRaw": "日刊スポーツ　9月17日 13時06分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-hochi-20260917-OHT1T51101",
+        "title": "現役最軽量力士・新道、前相撲を１勝２敗で終える　来場所へ「体重を増やして動けるようになりたい」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260917-OHT1T51101",
+        "publishedAt": "2026-09-17",
+        "publishedAtRaw": "スポーツ報知　9月17日 13時06分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-hochi-20260917-OHT1T51086",
+        "title": "休場の十両・生田目はおたふくかぜ　「流行性耳下腺炎　９月１７日までの休場を要する」診断書を提出",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260917-OHT1T51086",
+        "publishedAt": "2026-09-17",
+        "publishedAtRaw": "スポーツ報知　9月17日 12時15分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
         "id": "dmenu-docomo-kyodo_nor-2026091701000586",
-        "title": "十両の生田目が休場　大相撲秋場所5日目",
+        "title": "十両の生田目、秋場所5日目休場　6日目から再出場の意向",
         "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026091701000586",
         "publishedAt": "2026-09-17",
-        "publishedAtRaw": "共同通信　9月17日 10時55分",
+        "publishedAtRaw": "共同通信　9月17日 12時08分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260917-202609170000253",
-        "title": "ハワイ育ちの砂武蔵が前相撲２勝目　武蔵川親方から日本語と英語で指導を受けている",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260917-202609170000253",
+        "id": "dmenu-docomo-sponichi-spngoo-20260917-0150",
+        "title": "十両・生田目が「流行性耳下腺炎」で休場　7場所ぶりに関取復帰　休場は昨年の九州場所以来7度目",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260917-0150",
         "publishedAt": "2026-09-17",
-        "publishedAtRaw": "日刊スポーツ　9月17日 10時46分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-abematimes-10273461",
-        "title": "高安「のこった」 驚異の瞬間に「あの足」「見事」「ダンサブル」横綱撃破でSNS反響続々",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273461",
-        "publishedAt": "2026-09-17",
-        "publishedAtRaw": "ABEMA TIMES　9月17日 10時46分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-hochi-20260917-OHT1T51065",
-        "title": "イングランド出身・栄誠、森麗との初対戦に感慨「楽しみな気持ちでした」　初の連勝で白星先行",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260917-OHT1T51065",
-        "publishedAt": "2026-09-17",
-        "publishedAtRaw": "スポーツ報知　9月17日 10時29分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-abematimes-10273455",
-        "title": "「この可愛い力士は誰？」「だいぶ満喫してるw」カメラが捉えた熱烈ファンの応援風景が話題 ツッコミと共感の声相次ぐ",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273455",
-        "publishedAt": "2026-09-17",
-        "publishedAtRaw": "ABEMA TIMES　9月17日 10時00分",
+        "publishedAtRaw": "スポニチアネックス　9月17日 11時42分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-17T02:29:12.176222+00:00",
-  "lastSuccessAt": "2026-09-17T02:29:12.167054+00:00",
+  "lastAttemptAt": "2026-09-17T04:24:34.661440+00:00",
+  "lastSuccessAt": "2026-09-17T04:24:34.650490+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -123,9 +123,13 @@
     "35174581955": {
       "attemptedAt": "2026-09-17T02:29:12.176222+00:00",
       "outcome": "success"
+    },
+    "35181801294": {
+      "attemptedAt": "2026-09-17T04:24:34.661440+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35174581955",
+  "lastRunId": "35181801294",
   "lastPublishedDate": "2026-09-16",
   "lastPublishedSha": "f03e8835dcf8ff14d66a1b877c1c52509905f7d0",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
