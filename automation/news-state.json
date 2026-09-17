@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-17T08:28:51.616016+00:00",
+    "updatedAt": "2026-09-17T10:22:33.554747+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
+        "id": "dmenu-docomo-f-bt-tp1-260917-202609170001348",
+        "title": "横綱大の里「昨日ああいう負け方をしたので」金星献上の反省生かす　過去６戦全敗の義ノ富士撃破",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260917-202609170001348",
+        "publishedAt": "2026-09-17",
+        "publishedAtRaw": "日刊スポーツ　9月17日 19時06分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-sanspo-_sports_sumo_CY73GXL5UZHZ5B4AWEFHBLXZ6E",
+        "title": "舞の海氏「私のこの心配が外れてほしいなと思ってるんですけど…」／秋場所",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_CY73GXL5UZHZ5B4AWEFHBLXZ6E",
+        "publishedAt": "2026-09-17",
+        "publishedAtRaw": "SANSPO　9月17日 18時38分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-hochi-20260917-OHT1T51281",
+        "title": "平幕・美ノ海が全勝の大関・琴桜止める　「しっかり前に出て相撲取れた」自力で首位に並ぶ",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260917-OHT1T51281",
+        "publishedAt": "2026-09-17",
+        "publishedAtRaw": "スポーツ報知　9月17日 18時18分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-20260917099",
+        "title": "大相撲　５日目にして早くも全勝力士が消滅　琴桜が敗戦　５連勝ならず　大の里、霧島、熱海富士は１敗キープ　安青錦は痛恨の２連敗",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260917099",
+        "publishedAt": "2026-09-17",
+        "publishedAtRaw": "デイリースポーツ　9月17日 17時49分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
         "id": "dmenu-docomo-hochi-20260917-OHT1T51222",
         "title": "幕内・輝が２０年初場所以来の無傷の５連勝　好調の要因は「稽古をしっかりやれたこと」",
         "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260917-OHT1T51222",
         "publishedAt": "2026-09-17",
         "publishedAtRaw": "スポーツ報知　9月17日 17時14分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-chuspo-1312608",
-        "title": "元大関貴景勝「他の力士より頭一つ分下げてとれるのが強み」宇良が外掛けで4勝目「30越えても稽古量豊富だと思います」【大相撲秋場所】",
-        "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1312608",
-        "publishedAt": "2026-09-17",
-        "publishedAtRaw": "中日スポーツ　9月17日 17時07分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-chuspo-1312607",
-        "title": "一山本が初日から5連敗　「思い切って全然違うことやってみるのもいい」湊川親方が助言【大相撲秋場所】",
-        "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1312607",
-        "publishedAt": "2026-09-17",
-        "publishedAtRaw": "中日スポーツ　9月17日 17時07分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-thedigestweb-120226",
-        "title": "「まじで？」「こんなに多いのか...」横綱・大の里を破った高安、手にした懸賞金の束にネット驚嘆！「めっちゃ分厚い」",
-        "url": "https://topics.smt.docomo.ne.jp/article/thedigestweb/sports/thedigestweb-120226",
-        "publishedAt": "2026-09-17",
-        "publishedAtRaw": "THE DIGEST　9月17日 16時31分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-hochi-20260917-OHT1T51203",
-        "title": "新十両の時不動が４勝目　かつての兄弟子・玉正鳳との対戦には「熱くなるものがあった」　取組後は「ラヴ上等」鑑賞でリラックス",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260917-OHT1T51203",
-        "publishedAt": "2026-09-17",
-        "publishedAtRaw": "スポーツ報知　9月17日 16時22分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-17T08:28:51.624400+00:00",
-  "lastSuccessAt": "2026-09-17T08:28:51.616016+00:00",
+  "lastAttemptAt": "2026-09-17T10:22:33.564783+00:00",
+  "lastSuccessAt": "2026-09-17T10:22:33.554747+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -135,9 +135,13 @@
     "35199868625": {
       "attemptedAt": "2026-09-17T08:28:51.624400+00:00",
       "outcome": "success"
+    },
+    "35210130967": {
+      "attemptedAt": "2026-09-17T10:22:33.564783+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35199868625",
+  "lastRunId": "35210130967",
   "lastPublishedDate": "2026-09-16",
   "lastPublishedSha": "f03e8835dcf8ff14d66a1b877c1c52509905f7d0",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
