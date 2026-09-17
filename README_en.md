@@ -107,6 +107,7 @@ Skill publishing:
 - Homepage **Kimarite** card links to the `/kimarite` index page that lists all 82 winning techniques, grouped by category with bilingual Japanese/English commentary
 - News JSON is regenerated automatically by the `news-feed-update` GitHub Actions workflow via the Python scraper (`/api/v1/news.json`)
 - Stories are managed as Japanese Markdown posts in `blog/posts/*.md`. Run `npm run blog:build` to generate the standalone `blog.osada.us` output in `dist-blog/` and refresh `/api/v1/blog.json` for homepage integration
+- Visitor comments powered by giscus (GitHub Discussions) appear at the bottom of each Stories post page. o-sumo itself (`osada.us`) does not load giscus and `functions/` is untouched, preserving the Free-tier constraint
 - Four WebMCP tools (`search_rikishi`, `list_basho`, `get_banzuke_for_month`, `get_torikumi_for_day`) are exposed for AI agents running in supported browsers (prefers `document.modelContext.registerTool` from the W3C Draft, falls back to `navigator.modelContext.registerTool`)
 
 ## Tech Stack
@@ -398,7 +399,7 @@ GitHub Actions runs the following on pull requests and pushes to `main`, `codex/
 - `app/lib/july2026-data.ts`: immutable July 2026 (Nagoya) basho snapshot
 - `app/lib/july2026-banzuke-data.ts`: immutable July 2026 banzuke snapshot
 - `app/lib/archive-basho-data.ts`: aggregated past + current basho data
-- `app/lib/blog-build.ts`: static HTML, RSS, and sitemap generation for Stories
+- `app/lib/blog-build.ts`: static HTML, RSS, sitemap, and giscus comment generation for Stories
 - `app/lib/agent-skills.ts`: Agent Skills Index metadata
 - `scripts/update_sumo_data.py`: data generation script for banzuke, torikumi, and rikishi profiles
 - `scripts/update_news_feed.py`: news feed generation script

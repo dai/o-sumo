@@ -105,6 +105,7 @@ Skill 公開:
 - ホームの **決まり手** カードから全 82 手の索引ページ `/kimarite` へ遷移し、カテゴリ別の目次と並んで技の和英解説を閲覧可能
 - ニュース JSON は GitHub Actions の `news-feed-update` ワークフローから Python スクレイパで自動生成（`/api/v1/news.json`）
 - 「読みもの」は `blog/posts/*.md` で管理する日本語の静的ブログです。`blog.osada.us` 用の配信物は `npm run blog:build` で `dist-blog/` に生成し、トップページ連携用の `/api/v1/blog.json` も同時に更新します
+- 「読みもの」の記事ページ末尾に giscus (GitHub Discussions 連携) で訪問者コメント欄を表示します。o-sumo 本体 (`osada.us`) には表示せず、`functions/` 配下は無変更で Free tier 制約を維持します
 - AI エージェント対応ブラウザー向けに WebMCP 4 ツール (`search_rikishi` / `list_basho` / `get_banzuke_for_month` / `get_torikumi_for_day`) を公開 (`document.modelContext.registerTool` を優先、`navigator.modelContext.registerTool` にフォールバック)
 
 ## 技術スタック
@@ -411,7 +412,7 @@ GitHub Actions では PR と `main` / `codex/**` / `automation/data-updates` へ
 - `app/lib/july2026-data.ts`: 七月場所（名古屋）不変スナップショット
 - `app/lib/july2026-banzuke-data.ts`: 七月場所番付不変スナップショット
 - `app/lib/archive-basho-data.ts`: 過去場所・現行場所の集約データ
-- `app/lib/blog-build.ts`: 読みものの静的HTML・RSS・sitemap生成
+- `app/lib/blog-build.ts`: 読みものの静的HTML・RSS・sitemap・giscus コメント生成
 - `app/lib/agent-skills.ts`: Agent Skills Index メタデータ
 - `scripts/update_sumo_data.py`: 番付・取組・力士プロファイル生成スクリプト
 - `scripts/update_news_feed.py`: ニュースフィード生成スクリプト
