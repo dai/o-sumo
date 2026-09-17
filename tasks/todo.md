@@ -127,4 +127,48 @@
 - `<header>` (GreetingSection の card-header) を `<div>` に変更して重複 banner role を回避 (testing-library getByRole('banner') の strict mode 衝突)
 
 ### 残作業 (別 PR で計画)
-- **PR B**: 来場者コメント機能。`codex-instruction.md` の Cloudflare Workers 無料枠運用制約と整合させるため、giscus (blog.osada.us) / localStorage / Cloudflare KV の選択肢から設計比較が必要
+- **PR B**: 来場者コメント機能。`codex-instruction.md` の Cloudflare Workers 無料枠運用制約と整合させるため、giscus (blog.osada.us) / localStorage / Cloudflare KV の選択肢から設計比較が必要 → **本 PR B で実装予定**。2026-09-17 ユーザー確定: giscus on blog.osada.us 採用 + BlogUpdatesSection 削除 / MonomosuSection h2 昇格 / GreetingSection ネスト + Blog Spec 改訂
+
+---
+
+# PR B: ホーム構造変更 + Visitor Comments + Blog Spec 改訂
+
+プラン: `C:\Users\dai\.claude\plans\jst-15-18-3-zippy-ripple.md` (PR B セクション)
+詳細設計: `C:\Users\dai\.claude\plans\jst-15-18-3-zippy-ripple-agent-a43b3f8749d3b938b.md`
+
+## Phase A: 構造変更
+- [ ] A-1: `app/components/BlogUpdatesSection.tsx` + `BlogUpdatesSection.test.tsx` 削除
+- [ ] A-2: `app/components/MonomosuSection.tsx` sr-only h2 → visible h2 + `.monomosu-vertical-badge` と inner title span 削除 + GreetingSection ネスト
+- [ ] A-3: `app/components/GreetingSection.tsx` h2 → h3 + `getLatestBlogPost()` 利用
+- [ ] A-4: `app/page.tsx` から BlogUpdatesSection / GreetingSection import 削除
+- [ ] A-5: `app/lib/blog-data.ts` に `getLatestBlogPost()` helper 追加
+- [ ] A-6: `app/page.test.tsx` line 189-207 削除・置換、line 422, 443 を `getByRole('heading', { level: 2 })` に更新
+- [ ] A-7: `app/components/MonomosuSection.test.tsx` に h2 visible 化 + GreetingSection ネスト test 追加
+
+## Phase B: CSS 整理
+- [ ] B-1: `app/index.css` の `.blog-updates-*` 5 ブロック削除 (line 50-126, 1467-1566, 2573-2644, 2815)
+- [ ] B-2: `app/index.css` に `.greeting-*` CSS 追加 (現状ゼロ CSS 解消、Digital Washi + No-Line Rule 整合)
+
+## Phase C: i18n
+- [ ] C-1: `src/locales/{ja,en}/common.json` から `home.blogUpdatesTitle` / `home.blogUpdatesAll` 削除
+- [ ] C-2: `src/locales/{ja,en}/common.json` から `highlights.monomosuTitle` 削除、`highlights.monomosuBadge` を h2 テキストに再利用
+
+## Phase D: Visitor Comments (giscus)
+- [ ] D-1: `scripts/build_blog.ts` に giscus snippet 埋め込み
+- [ ] D-2: giscus スクリプトの Vitest jsdom 動作確認
+
+## Phase E: Blog Spec 改訂
+- [ ] E-1: `docs/superpowers/specs/2026-09-01-osumo-blog-design.md` L9 コメント除外解除
+- [ ] E-2: 同 L73-79 BlogUpdatesSection 章 → Main-site Greeting section (MonomosuSection 内 h3) 章に書き換え
+- [ ] E-3: giscus 章追加 (L80 前後)
+
+## Phase F: dev docs
+- [ ] F-1: `DEVELOPMENT.md` line 159-161 Main Files セクション更新 (BlogUpdatesSection.tsx 削除、GreetingSection / MonomosuSection エントリ書き換え)
+- [ ] F-2: `DEVELOPMENT_en.md` line 168-170 同上 (英語)
+
+## Phase G: コミット + プッシュ + PR
+- [ ] G-1: 6 commits 作成 (refactor / refactor / chore / style / feat / docs)
+- [ ] G-2: `feat/home-pr-b-monomosu-refactor` ブランチ push
+- [ ] G-3: PR 作成 (https://github.com/dai/o-sumo/pull/???)
+
+## レビュー (実装後に追記)
