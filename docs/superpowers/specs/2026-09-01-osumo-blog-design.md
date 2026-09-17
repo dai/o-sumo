@@ -80,7 +80,7 @@ PR #625 で追加された`BlogUpdatesSection` (ホームの「読みもの」�
 
 ## Visitor Comments (giscus)
 
-`blog.osada.us` の記事ページ末尾に giscus (https://giscus.app) クライアントスクリプトを読み込み、訪問者がGitHub Discussions (`dai/o-sumo`) の "Editor Commentary" カテゴリにコメントを投稿できるようにする。o-sumo本体 (`osada.us`) には表示せず、`blog.osada.us` のみがComments widget を読み込む。
+`blog.osada.us` の記事ページ末尾に giscus (https://giscus.app) クライアントスクリプトを読み込み、訪問者がGitHub Discussions (`dai/o-sumo`) の "Announcements" カテゴリにコメントを投稿できるようにする。o-sumo本体 (`osada.us`) には表示せず、`blog.osada.us` のみがComments widget を読み込む。
 
 - repository: `dai/o-sumo` (Discussions 有効化が前提)
 - category: "Announcements"

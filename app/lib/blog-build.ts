@@ -7,9 +7,10 @@ const BLOG_TITLE = 'o-sumo 読みもの'
 const DEFAULT_IMAGE_URL = `${BLOG_ORIGIN}/og-default.jpg`
 
 // giscus (https://giscus.app) configuration for visitor comments on blog posts.
-// To enable the comment widget: generate `data-repo-id` and `data-category-id`
-// on giscus.app for the `dai/o-sumo` repository under the
-// "Editor Commentary" Discussion category, then replace the placeholders below.
+// The data-repo-id and data-category-id below were obtained from giscus.app
+// for the `dai/o-sumo` repository under the "Announcements" Discussion
+// category; if the category is recreated, regenerate both IDs and update
+// the three constants below.
 const GISCUS_REPO_ID = 'R_kgDORaEFlg'
 const GISCUS_CATEGORY = 'Announcements'
 const GISCUS_CATEGORY_ID = 'DIC_kwDORaEFls4DFyWu'
