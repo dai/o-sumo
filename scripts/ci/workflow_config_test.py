@@ -42,11 +42,11 @@ class WorkflowConfigTest(unittest.TestCase):
         reusable = load("data-update.yml")
         self.assertEqual(reusable["jobs"]["publish"]["concurrency"], {"group": "osumo-data-writer", "cancel-in-progress": "false"})
 
-    def test_realtime_schedule_maps_to_36_expected_jst_slots(self):
+    def test_realtime_schedule_maps_to_80_expected_jst_slots(self):
         workflow = load("realtime-torikumi-direct-update.yml")
         self.assertIn("workflow_dispatch", workflow["on"])
         slots = jst_slots(workflow["on"]["schedule"][0]["cron"])
-        expected = [(hour, minute) for hour in range(13, 19) for minute in range(0, 60, 10)]
+        expected = [(hour, minute) for hour in range(15, 19) for minute in range(0, 60, 3)]
         self.assertEqual(slots, expected)
         reusable = load("data-update.yml")
         self.assertEqual(reusable["jobs"]["publish"]["concurrency"], {"group": "osumo-data-writer", "cancel-in-progress": "false"})
