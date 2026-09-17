@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-17T06:35:55.583624+00:00",
+    "updatedAt": "2026-09-17T08:28:51.616016+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-20260917078",
-        "title": "“史上最強の新弟子”旭富士が白星先行　先場所十両力士を堂々裏返しにする【大相撲】",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260917078",
+        "id": "dmenu-docomo-hochi-20260917-OHT1T51222",
+        "title": "幕内・輝が２０年初場所以来の無傷の５連勝　好調の要因は「稽古をしっかりやれたこと」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260917-OHT1T51222",
         "publishedAt": "2026-09-17",
-        "publishedAtRaw": "デイリースポーツ　9月17日 15時24分",
+        "publishedAtRaw": "スポーツ報知　9月17日 17時14分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260917-OHT1T51152",
-        "title": "横綱のしこ名を継ぐ旭富士が２勝目　史上最速タイの十両昇進へ白星先行",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260917-OHT1T51152",
+        "id": "dmenu-docomo-chuspo-1312608",
+        "title": "元大関貴景勝「他の力士より頭一つ分下げてとれるのが強み」宇良が外掛けで4勝目「30越えても稽古量豊富だと思います」【大相撲秋場所】",
+        "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1312608",
         "publishedAt": "2026-09-17",
-        "publishedAtRaw": "スポーツ報知　9月17日 15時07分",
+        "publishedAtRaw": "中日スポーツ　9月17日 17時07分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260917-OHT1T51150",
-        "title": "イケメン力士・幕下の大森が２勝目　光星竜の突っ張り耐えて寄り倒し　前日黒星も「『こうなったら負ける』と復習になった」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260917-OHT1T51150",
+        "id": "dmenu-docomo-chuspo-1312607",
+        "title": "一山本が初日から5連敗　「思い切って全然違うことやってみるのもいい」湊川親方が助言【大相撲秋場所】",
+        "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1312607",
         "publishedAt": "2026-09-17",
-        "publishedAtRaw": "スポーツ報知　9月17日 15時04分",
+        "publishedAtRaw": "中日スポーツ　9月17日 17時07分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-20260917075",
-        "title": "元遠藤の北陣親方、注目の大森らと相撲を取りたい「段階は踏みつつやっています」手術した両膝の回復は順調【大相撲】",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260917075",
+        "id": "dmenu-docomo-thedigestweb-120226",
+        "title": "「まじで？」「こんなに多いのか...」横綱・大の里を破った高安、手にした懸賞金の束にネット驚嘆！「めっちゃ分厚い」",
+        "url": "https://topics.smt.docomo.ne.jp/article/thedigestweb/sports/thedigestweb-120226",
         "publishedAt": "2026-09-17",
-        "publishedAtRaw": "デイリースポーツ　9月17日 14時44分",
+        "publishedAtRaw": "THE DIGEST　9月17日 16時31分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-20260917070",
-        "title": "元遠藤の北陣親方　化粧まわし１場所１３本使用、現役時代の人気ぶりが明らかに【大相撲】",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260917070",
+        "id": "dmenu-docomo-hochi-20260917-OHT1T51203",
+        "title": "新十両の時不動が４勝目　かつての兄弟子・玉正鳳との対戦には「熱くなるものがあった」　取組後は「ラヴ上等」鑑賞でリラックス",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260917-OHT1T51203",
         "publishedAt": "2026-09-17",
-        "publishedAtRaw": "デイリースポーツ　9月17日 14時07分",
+        "publishedAtRaw": "スポーツ報知　9月17日 16時22分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-17T06:35:55.593065+00:00",
-  "lastSuccessAt": "2026-09-17T06:35:55.583624+00:00",
+  "lastAttemptAt": "2026-09-17T08:28:51.624400+00:00",
+  "lastSuccessAt": "2026-09-17T08:28:51.616016+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -131,9 +131,13 @@
     "35190523628": {
       "attemptedAt": "2026-09-17T06:35:55.593065+00:00",
       "outcome": "success"
+    },
+    "35199868625": {
+      "attemptedAt": "2026-09-17T08:28:51.624400+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35190523628",
+  "lastRunId": "35199868625",
   "lastPublishedDate": "2026-09-16",
   "lastPublishedSha": "f03e8835dcf8ff14d66a1b877c1c52509905f7d0",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
