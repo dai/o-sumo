@@ -249,6 +249,60 @@ def test_derive_absentees_includes_fusen_loser_who_remains_in_match() -> None:
     assert [entry["id"] for entry in absentees] == [3842]
 
 
+def test_derive_absentees_excludes_cross_day_active_fusen_loser() -> None:
+    """JSA upstream sometimes publishes the schedule absentees list before the
+    bout result lands. A fusen loser from the schedule day who also appeared
+    in resultDays (cross_day_active_ids) must NOT be reported as an absentee —
+    the validator's `precise_fusen_losers` rule permits only `appearances == 1`
+    fusen losers, and we must keep the generator and validator aligned.
+    Regression: day=5 scheduleDays juryo absentees listed rikushi 3988 (生田目)
+    even though they fought in resultDays, failing
+    `validate_torikumi.py:participant/absentee overlap`.
+    """
+    roster = {
+        3988: {"id": 3988, "name": "生田目", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3988/"},
+        4500: {"id": 4500, "name": "他", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4500/"},
+    }
+    schedule_day = _division(1)
+    schedule_day["matches"] = [{
+        **schedule_day["matches"][0],
+        "eastProfileUrl": roster[3988]["profileUrl"],
+        "westProfileUrl": roster[4500]["profileUrl"],
+        "kimarite": "不戦",
+        "winner": "west",
+    }]
+    cross_day_active_ids = {3988}
+
+    absentees = derive_absentees(schedule_day, roster, None, cross_day_active_ids)
+
+    assert [entry["id"] for entry in absentees] == []
+
+
+def test_derive_absentees_keeps_inactive_fusen_loser() -> None:
+    """Boundary: when the fusen loser does NOT appear in cross_day_active_ids
+    (they did not actually fight elsewhere on the same day), the original
+    fusen-loser rule applies and they remain an absentee. This guards against
+    accidentally silently removing all fusen losers from the absentee list,
+    which would erase the genuine absence case.
+    """
+    roster = {
+        3988: {"id": 3988, "name": "生田目", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3988/"},
+        4500: {"id": 4500, "name": "他", "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4500/"},
+    }
+    schedule_day = _division(1)
+    schedule_day["matches"] = [{
+        **schedule_day["matches"][0],
+        "eastProfileUrl": roster[3988]["profileUrl"],
+        "westProfileUrl": roster[4500]["profileUrl"],
+        "kimarite": "不戦",
+        "winner": "west",
+    }]
+
+    absentees = derive_absentees(schedule_day, roster, None, set())
+
+    assert [entry["id"] for entry in absentees] == [3988]
+
+
 def test_parse_torikumi_match_accepts_plain_text_shikona() -> None:
     raw = {
         "judge": 1,
@@ -378,6 +432,8 @@ def main() -> None:
     test_derive_absentees_excludes_cross_division_special_bout_rikishi()
     test_derive_absentees_excludes_only_same_division_active_rikishi()
     test_derive_absentees_includes_fusen_loser_who_remains_in_match()
+    test_derive_absentees_excludes_cross_day_active_fusen_loser()
+    test_derive_absentees_keeps_inactive_fusen_loser()
     test_parse_torikumi_match_accepts_plain_text_shikona()
     test_has_substantive_torikumi_diff_ignores_timestamp_only_change()
     test_preserve_torikumi_timestamps_if_unchanged_restores_existing_values()

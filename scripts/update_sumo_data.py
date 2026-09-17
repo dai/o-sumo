@@ -984,6 +984,7 @@ def derive_absentees(
     division_day: dict,
     roster: dict[int, dict],
     day_active_ids: set[int] | None = None,
+    cross_day_active_ids: set[int] | None = None,
 ) -> list[dict]:
     existing = division_day.get("absentees")
     if not list(division_day.get("matches", [])):
@@ -999,6 +1000,15 @@ def derive_absentees(
     active_ids = collect_active_ids_from_division_day(division_day)
     if day_active_ids:
         active_ids |= day_active_ids
+    if cross_day_active_ids:
+        # JSA upstream sometimes publishes the schedule absentees list before
+        # the bout result lands, leaving a stale fusen-loser entry behind.
+        # Cross-day active ids (e.g. resultDays participants) prove the
+        # schedule fusen loser actually fought elsewhere in the same day, so
+        # they must NOT be reported as absentees. The validator's
+        # `precise_fusen_losers` rule permits only `appearances == 1` fusen
+        # losers, so the generator must align with that definition.
+        active_ids |= cross_day_active_ids
     if not active_ids:
         return []
 
@@ -1009,6 +1019,15 @@ def derive_absentees(
     # The official result keeps both rikishi in a fusen bout. Treat its loser
     # as absent even though their profile id therefore appears in active_ids.
     fusen_loser_ids = collect_fusen_loser_ids(division_day)
+    if cross_day_active_ids:
+        # See comment above on cross-day active ids: a fusen loser who also
+        # appeared in resultDays is no longer "absent", so strip them from
+        # the fusen-loser set before re-adding them to absentees. We only
+        # subtract the cross-day subset (not the full active_ids) so that
+        # in-division fusen losers in the same bout stay in absentees —
+        # "fought" and "absent" co-exist in the official schema for a
+        # single fusen bout, and that semantics must be preserved.
+        fusen_loser_ids -= cross_day_active_ids
     absent_ids = sorted((set(roster.keys()) - active_ids) | (fusen_loser_ids & set(roster.keys())))
     return [roster[rikishi_id] for rikishi_id in absent_ids]
 
@@ -1199,12 +1218,16 @@ def build_torikumi_dataset(
         schedule_makuuchi = {
             **schedule_makuuchi,
             "dayHead": canonical_day_head,
-            "absentees": derive_absentees(schedule_makuuchi, rosters["makuuchi"], schedule_active_ids) if schedule_complete else [],
+            "absentees": derive_absentees(
+                schedule_makuuchi, rosters["makuuchi"], schedule_active_ids, result_active_ids,
+            ) if schedule_complete else [],
         }
         schedule_juryo = {
             **schedule_juryo,
             "dayHead": canonical_day_head,
-            "absentees": derive_absentees(schedule_juryo, rosters["juryo"], schedule_active_ids) if schedule_complete else [],
+            "absentees": derive_absentees(
+                schedule_juryo, rosters["juryo"], schedule_active_ids, result_active_ids,
+            ) if schedule_complete else [],
         }
 
         result_day_data = {
