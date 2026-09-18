@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-17T10:22:33.554747+00:00",
+  "updatedAt": "2026-09-18T10:21:25.452666+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-f-bt-tp1-260917-202609170001348",
-      "title": "横綱大の里「昨日ああいう負け方をしたので」金星献上の反省生かす　過去６戦全敗の義ノ富士撃破",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260917-202609170001348",
-      "publishedAt": "2026-09-17",
-      "publishedAtRaw": "日刊スポーツ　9月17日 19時06分",
+      "id": "dmenu-docomo-tokyosports-403616",
+      "title": "【大相撲】大の里　立ち合いで平幕豪ノ山に圧倒されるも１敗死守「内容は全然なので…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403616",
+      "publishedAt": "2026-09-18",
+      "publishedAtRaw": "東スポWEB　9月18日 19時10分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_CY73GXL5UZHZ5B4AWEFHBLXZ6E",
-      "title": "舞の海氏「私のこの心配が外れてほしいなと思ってるんですけど…」／秋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_CY73GXL5UZHZ5B4AWEFHBLXZ6E",
-      "publishedAt": "2026-09-17",
-      "publishedAtRaw": "SANSPO　9月17日 18時38分",
+      "id": "dmenu-docomo-f-bt-tp1-260918-202609180001413",
+      "title": "「本当に大きな１敗」綱とり霧島２敗目に九重審判長が言及「あの形で負けるのはショックと思う」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260918-202609180001413",
+      "publishedAt": "2026-09-18",
+      "publishedAtRaw": "日刊スポーツ　9月18日 19時03分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260917-OHT1T51281",
-      "title": "平幕・美ノ海が全勝の大関・琴桜止める　「しっかり前に出て相撲取れた」自力で首位に並ぶ",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260917-OHT1T51281",
-      "publishedAt": "2026-09-17",
-      "publishedAtRaw": "スポーツ報知　9月17日 18時18分",
+      "id": "dmenu-docomo-hochi-20260918-OHT1T51254",
+      "title": "霧島、綱取りに暗雲の２敗目　九重審判長が首ひねる「まずは勝ち越しを目指した方が。（綱取り）そこではないでしょう」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260918-OHT1T51254",
+      "publishedAt": "2026-09-18",
+      "publishedAtRaw": "スポーツ報知　9月18日 19時03分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260917099",
-      "title": "大相撲　５日目にして早くも全勝力士が消滅　琴桜が敗戦　５連勝ならず　大の里、霧島、熱海富士は１敗キープ　安青錦は痛恨の２連敗",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260917099",
-      "publishedAt": "2026-09-17",
-      "publishedAtRaw": "デイリースポーツ　9月17日 17時49分",
+      "id": "dmenu-docomo-tokyosports-403614",
+      "title": "【大相撲】安青錦が悪夢の３連敗　熱海富士戦へ切り替え「終わったことを考えても仕方ない」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403614",
+      "publishedAt": "2026-09-18",
+      "publishedAtRaw": "東スポWEB　9月18日 19時01分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260917-OHT1T51222",
-      "title": "幕内・輝が２０年初場所以来の無傷の５連勝　好調の要因は「稽古をしっかりやれたこと」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260917-OHT1T51222",
-      "publishedAt": "2026-09-17",
-      "publishedAtRaw": "スポーツ報知　9月17日 17時14分",
+      "id": "dmenu-docomo-f-bt-tp1-260918-202609180001406",
+      "title": "新関脇藤ノ川、安青錦との技術戦に勝つ　館内大歓声「安易に肩すかしとかいかず辛抱できた」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260918-202609180001406",
+      "publishedAt": "2026-09-18",
+      "publishedAtRaw": "日刊スポーツ　9月18日 18時56分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
