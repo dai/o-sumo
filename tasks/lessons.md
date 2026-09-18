@@ -225,6 +225,31 @@ PR #479 で満点に到達した AI Agent Readiness 7 項目を維持しつつ�
 - **Why**: generator と validator の判定基準が微妙にずれている場合、表面的な union 案 (案 a) は active 集合を増やすだけで、generator 内部の「fusen_loser を absentees に再追加する」ロジックを止めない。signature 拡張 + targeted subtraction で surgical に除く必要がある。
 - **How to apply**: 「state machine の単調増加ロジック」と「validator の閾値ロジック」の判定基準が一致しているか、テスト前に必ず照合する。一致しない場合は generator 側で「active なら absentees ではない」と明示的に除外するロジックを追加する。surgical な subset (`cross_day_active_ids` のみ) を subtract する方が、full active_ids を subtract するより「同じ collection 内の fusen_loser は absentees に残る」既存セマンティクスを壊さず安全。
 
+## 2026-09-17 PR clean 化 force-push / tree 汚染 / base SHA ずれ (PR #628)
+
+PR を clean な状態にして squash merge する過程で 3 つの operational pitfall に遭遇した。`tasks/todo.md` の Review 節 (Actions failure repair) に詳細ログあり。
+
+### force-push syntax: `origin <src>:<dst>` を明示する
+ローカル branch を削除した状態 (detached HEAD からの再生成など) で force-push しようとすると、`git push --force-with-lease origin <branch>` は "Everything up-to-date" で誤って成功扱いされる。`origin <src>:<dst>` の refspec を明示し、`git push --force-with-lease origin fix/news-state-graceful-skip:fix/news-state-graceful-skip` のように書く。
+
+**Why**: `<branch>` がローカルに存在しないと refspec 解決に失敗し、リモート ref との差分判定ができずに「最新」と判定される。`--force-with-lease` の safety 機構 (上流 ref との比較) も効かない。
+
+**How to apply**: detached HEAD (`git checkout <sha>` / `git switch --detach`) から force-push するときは常に `origin <src>:<dst>` の refspec 形式を使う。`<src>` には branch 名 (リモート側に同名 branch がある場合) または SHA を入れる。通常の working branch からの force-push でも `<src>:<dst>` を明示する癖をつけると事故が減る。
+
+### PR tree に無関係 file が混入する (dirty working tree + cherry-pick)
+cherry-pick や rebase 実行時に working tree が dirty だと、競合解決の `git add` で無関係な file も staged に入り、PR head の tree にそのまま残る (PR #628 の事例: news_state.py / news_state_test.py / tasks/lessons.md / tasks/todo.md の 4 files だけのつもりが、`app/lib/sumo-data.ts` / `app/lib/torikumi-data.ts` / `public/api/v1/banzuke.json` / `public/api/v1/torikumi.json` の data ファイル 4 つも混入)。
+
+**Why**: cherry-pick は `--no-commit` で working tree 上の競合を解決させるため、`git add` する時点で dirty だった他 file も一緒に index 入りする。`git commit` 時の tree は index 全体を snapshot するため、cherry-pick 対象とは無関係な file がそのまま commit に含まれる。
+
+**How to apply**: cherry-pick / rebase 開始前に必ず `git status` で clean 確認 (必要なら `git stash`)。`git push` 直前に `git diff --name-only HEAD~1 HEAD` で意図した file のみが含まれることを必ず確認。PR 作成時に意図しない file が混入していたら、PR を閉じる前に detached HEAD で clean な commit を作り直して force-push する (前項参照)。
+
+### PR base ref と actual parent commit はズレ得る
+PR head の parent commit (`git log --format=%P -1 HEAD`) と GitHub が表示する base ref (`gh pr view --json baseRefName`) は、cherry-pick 時点と push 時点の main HEAD がズレると別 SHA になる (PR #628: actual parent `0c1dc88` (PR #627 refactor)、GitHub base `df6d856`)。
+
+**Why**: GitHub の base ref は PR open / push 時点の commit を記録し、後で main に新 commit が積まれても自動更新されない。conflict 検出は PR 作成時の tree で行うため、cherry-pick 中の main HEAD ズレが merge 時に surface する。
+
+**How to apply**: clean な PR を再生成するときは、GitHub base と同じ SHA を detached HEAD で checkout → 必要 file のみ checkout (`git checkout df6d856 -- <files>`) → commit → push の手順で再生成する。`git merge-base HEAD origin/main` が PR の GitHub base ref と一致するか PR 作成前に照合する習慣をつけると、conflict 発生を事前に予測できる。
+
 ## 2026-09-13 OGP画像の意図と配信履歴を照合する
 - 古いOGP表示の報告では、現在の配信画像だけからキャッシュ原因に絞らない。ユーザーが以前作成した正しい画像、Gitの画像履歴、公開画像の内容を照合する。
 - 画像URLのバージョン変更を提案する前に、その画像自体がユーザーの指定（読みもの・年月日・場所名なし）を満たすことを目視で確認する。
