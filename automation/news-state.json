@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-18T06:34:03.416850+00:00",
+    "updatedAt": "2026-09-18T08:27:18.820914+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-hochi-20260918-OHT1T51146",
-        "title": "元幕内・天空海、初白星「相手が見えていた」　８月に両膝を手術したことも明かす",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260918-OHT1T51146",
+        "id": "dmenu-docomo-f-bt-tp1-260918-202609180001120",
+        "title": "なぜ「おたふくかぜ」で休場１日？十両生田目の復帰理由を師匠が説明「まさか。予想しなかった」",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260918-202609180001120",
         "publishedAt": "2026-09-18",
-        "publishedAtRaw": "スポーツ報知　9月18日 15時17分",
+        "publishedAtRaw": "日刊スポーツ　9月18日 17時11分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-20260918074",
-        "title": "“史上最強の新弟子”旭富士と同期、天昇山が史上最速新十両へ無傷３連勝【大相撲】",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260918074",
+        "id": "dmenu-docomo-sponichi-spngoo-20260918-0276",
+        "title": "大関経験者の朝乃山も1敗を守る　平戸海を突き落としで破る",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260918-0276",
         "publishedAt": "2026-09-18",
-        "publishedAtRaw": "デイリースポーツ　9月18日 15時13分",
+        "publishedAtRaw": "スポニチアネックス　9月18日 17時02分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-20260918068",
-        "title": "弓取り動画４５０万回再生で大バズリの天空海、初白星に気合「ここからですね」場所前に両膝手術も奮起【大相撲】",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260918068",
+        "id": "dmenu-docomo-f-bt-tp1-260918-202609180001090",
+        "title": "佐田の海が歴代単独10位の通算1614回出場　大青山に勝って花を添えた",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260918-202609180001090",
         "publishedAt": "2026-09-18",
-        "publishedAtRaw": "デイリースポーツ　9月18日 14時41分",
+        "publishedAtRaw": "日刊スポーツ　9月18日 16時45分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-ans-728172",
-        "title": "大相撲で「超絶かわいいーー！」化粧まわし登場　視線集中「ビックリした」「目立ちますね」",
-        "url": "https://topics.smt.docomo.ne.jp/article/ans/sports/ans-728172",
+        "id": "dmenu-docomo-sponichi-spngoo-20260918-0260",
+        "title": "新入幕の寿之富士は2日目から5連勝！　千代翔馬を寄り倒してトップを守る",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260918-0260",
         "publishedAt": "2026-09-18",
-        "publishedAtRaw": "THE ANSWER　9月18日 14時33分",
+        "publishedAtRaw": "スポニチアネックス　9月18日 16時24分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260918-202609180000527",
-        "title": "雷親方の長男垣添が19歳誕生日に３連勝「そういえば誕生日だったんですね」とおどける",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260918-202609180000527",
+        "id": "dmenu-docomo-hochi-20260918-OHT1T51178",
+        "title": "おたふくかぜから復帰の十両・生田目が３勝目　前日休養で「体調戻った」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260918-OHT1T51178",
         "publishedAt": "2026-09-18",
-        "publishedAtRaw": "日刊スポーツ　9月18日 13時12分",
+        "publishedAtRaw": "スポーツ報知　9月18日 16時15分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-18T06:34:03.426381+00:00",
-  "lastSuccessAt": "2026-09-18T06:34:03.416850+00:00",
+  "lastAttemptAt": "2026-09-18T08:27:18.830641+00:00",
+  "lastSuccessAt": "2026-09-18T08:27:18.820914+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -155,9 +155,13 @@
     "35315423632": {
       "attemptedAt": "2026-09-18T06:34:03.426381+00:00",
       "outcome": "success"
+    },
+    "35324435394": {
+      "attemptedAt": "2026-09-18T08:27:18.830641+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35315423632",
+  "lastRunId": "35324435394",
   "lastPublishedDate": "2026-09-17",
   "lastPublishedSha": "1b80c06c4937c61dda87795de44c55866388585f",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
