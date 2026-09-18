@@ -49,3 +49,6 @@ output/playwright/
 .agents/
 .claude/skills/
 .codex/
+
+# Local scratch / CI logs
+.tmp/

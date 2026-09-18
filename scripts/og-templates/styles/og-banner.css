@@ -1,0 +1,190 @@
+/* Yūgen (幽玄) ベース OGP/Twitter バナー用 CSS
+ * scripts/og-templates/styles/og-banner.css
+ *
+ * CSS variables are duplicated from app/globals.css (Yūgen tone) so the
+ * templates can be opened standalone via file:// in Playwright without
+ * pulling the full app bundle. Keep in sync with the production tokens.
+ */
+
+:root {
+  /* Yūgen palette — see app/globals.css */
+  --tone-yugen-base: #1f1a16;
+  --tone-yugen-surface: #2a241e;
+  --tone-yugen-elevated: #3a3128;
+  --tone-yugen-bright: #4d4136;
+  --tone-yugen-muted: #8b7d6b;
+  --tone-yugen-text: #f1ead9;
+  --tone-yugen-text-muted: #c9bfa9;
+  --tone-yugen-amber: #d9a55d;
+  --tone-yugen-amber-dim: #a87938;
+  --tone-yugen-slate: #5c7a8a;
+  --tone-yugen-vermilion: #b53a2c;
+  --tone-yugen-vermilion-dim: #7e2418;
+
+  /* Typography */
+  --font-serif: 'Source Serif 4', 'Shippori Mincho', 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-serif);
+  background: var(--tone-yugen-base);
+  color: var(--tone-yugen-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.og-banner {
+  position: relative;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(160deg, var(--tone-yugen-base) 0%, var(--tone-yugen-surface) 100%),
+    var(--tone-yugen-base);
+  overflow: hidden;
+}
+
+.og-banner::before {
+  /* Asanoha watermark — subtle, ~5% opacity */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23d9a55d' stroke-opacity='0.05' stroke-width='1'%3E%3Cpath d='M40 0L80 23.094L80 69.282L40 92.376L0 69.282L0 23.094z'/%3E%3Cpath d='M40 18L66 32L66 60L40 74L14 60L14 32z'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  pointer-events: none;
+}
+
+.og-banner::after {
+  /* Top-right amber glow accent */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 88% 8%, rgba(217, 165, 93, 0.18) 0%, transparent 38%);
+  pointer-events: none;
+}
+
+.og-banner__inner {
+  position: relative;
+  display: grid;
+  align-content: center;
+  gap: 1.5rem;
+  padding: 5% 7%;
+  z-index: 1;
+}
+
+.og-banner__mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.og-banner__mark-glyph {
+  width: 56px;
+  height: 56px;
+  background:
+    radial-gradient(circle at center, var(--tone-yugen-amber) 0%, var(--tone-yugen-amber-dim) 70%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--tone-yugen-base);
+  letter-spacing: 0.02em;
+}
+
+.og-banner__mark-text {
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: var(--tone-yugen-text);
+  text-transform: uppercase;
+}
+
+.og-banner__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 5.5vw, 4.6rem);
+  font-weight: 800;
+  line-height: 1.18;
+  color: var(--tone-yugen-text);
+  letter-spacing: 0.02em;
+  text-wrap: balance;
+}
+
+.og-banner__title strong {
+  color: var(--tone-yugen-amber);
+  font-weight: 800;
+}
+
+.og-banner__subtitle {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 1.6vw, 1.5rem);
+  color: var(--tone-yugen-text-muted);
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+
+.og-banner__rule {
+  width: 96px;
+  height: 2px;
+  background: var(--tone-yugen-amber);
+  opacity: 0.85;
+}
+
+.og-banner__meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: var(--tone-yugen-text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.og-banner__meta-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--tone-yugen-amber);
+}
+
+.og-banner__url {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  color: var(--tone-yugen-amber);
+  font-weight: 600;
+}
+
+/* Layout modifiers — used by individual templates */
+
+.og-banner--center .og-banner__inner {
+  align-content: center;
+  text-align: center;
+  justify-items: center;
+}
+
+.og-banner--left .og-banner__inner {
+  text-align: left;
+  justify-items: start;
+}
+
+.og-banner--compact .og-banner__title {
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+}
+
+.og-banner--wide .og-banner__title {
+  font-size: clamp(2.6rem, 4vw, 3.8rem);
+}

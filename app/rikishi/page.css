@@ -1497,3 +1497,316 @@
     padding: 1rem;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────
+   Yūgen (幽玄) Tone — third-tone additions for Compare / Profile
+   See app/globals.css for the source --tone-yugen-* tokens.
+   ───────────────────────────────────────────────────────────── */
+
+.standoff-meter {
+  padding: 1.5rem 1.75rem;
+  background:
+    radial-gradient(circle at center, var(--tone-yugen-base) 0%, var(--tone-yugen-surface) 70%),
+    var(--tone-yugen-pattern-asanoha);
+  background-blend-mode: normal, overlay;
+  color: var(--tone-yugen-text);
+  border: 1px solid var(--tone-yugen-muted);
+  box-shadow: var(--tone-yugen-shadow-deep);
+}
+
+.standoff-meter__title {
+  margin: 0 0 0.25rem;
+  font-family: var(--tone-yugen-display);
+  font-size: 1.3rem;
+  letter-spacing: var(--tone-yugen-tracking-display);
+  color: var(--tone-yugen-amber);
+}
+
+.standoff-meter__subtitle {
+  margin: 0 0 1rem;
+  color: var(--tone-yugen-text-muted);
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+}
+
+.standoff-meter__arena {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.standoff-meter__side {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.standoff-meter__side--a {
+  flex-direction: row;
+}
+
+.standoff-meter__side--b {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.standoff-meter__name {
+  font-family: var(--tone-yugen-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: var(--tone-yugen-tracking-display);
+  color: var(--tone-yugen-amber);
+}
+
+.standoff-meter__bouts {
+  display: flex;
+  gap: 0.4rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.standoff-meter__bout {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-family: var(--tone-yugen-display);
+  font-weight: 800;
+  font-size: 1.05rem;
+  background: var(--tone-yugen-base);
+  border: 1px solid var(--tone-yugen-muted);
+}
+
+.standoff-meter__bout--win {
+  color: var(--tone-yugen-amber);
+  border-color: var(--tone-yugen-amber);
+}
+
+.standoff-meter__bout--loss {
+  color: var(--tone-yugen-vermilion);
+}
+
+.standoff-meter__bout--draw {
+  color: var(--tone-yugen-muted);
+}
+
+.standoff-meter__empty {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: var(--tone-yugen-muted);
+  background: var(--tone-yugen-surface);
+  border: 1px dashed var(--tone-yugen-muted);
+}
+
+.standoff-meter__gap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background: var(--tone-yugen-base);
+  border-block: 2px solid var(--tone-yugen-amber);
+}
+
+.standoff-meter__shikiri {
+  writing-mode: vertical-rl;
+  font-family: var(--tone-yugen-display);
+  letter-spacing: var(--tone-yugen-tracking-meta);
+  color: var(--tone-yugen-amber);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 720px) {
+  .standoff-meter__arena {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .standoff-meter__side--a,
+  .standoff-meter__side--b {
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .standoff-meter__gap {
+    flex-direction: row;
+  }
+
+  .standoff-meter__shikiri {
+    writing-mode: horizontal-tb;
+  }
+}
+
+/* Kimarite radar — profile page */
+.kimarite-radar {
+  padding: 1.25rem 1.5rem;
+  margin-block: 1.5rem;
+  background: var(--surface-container-low);
+  border: 1px solid var(--tone-yugen-muted);
+}
+
+.kimarite-radar__title {
+  margin: 0 0 0.25rem;
+  font-family: var(--tone-yugen-display);
+  font-size: 1.15rem;
+  color: var(--tone-yugen-amber);
+  letter-spacing: var(--tone-yugen-tracking-display);
+}
+
+.kimarite-radar__subtitle {
+  margin: 0 0 0.75rem;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
+.kimarite-radar__list {
+  display: grid;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.kimarite-radar__row {
+  display: grid;
+  grid-template-columns: 6rem 1fr 4rem;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.kimarite-radar__name {
+  font-weight: 700;
+  color: var(--color-primary);
+  font-family: var(--font-serif);
+}
+
+.kimarite-radar__bar {
+  height: 12px;
+  background: var(--tone-yugen-base);
+  border: 1px solid var(--tone-yugen-muted);
+}
+
+.kimarite-radar__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--tone-yugen-amber-dim), var(--tone-yugen-amber));
+  transition: width 0.4s ease;
+}
+
+.kimarite-radar__count {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 560px) {
+  .kimarite-radar__row {
+    grid-template-columns: 5rem 1fr 3rem;
+  }
+}
+
+/* Bout trail — profile page */
+.bout-trail {
+  margin-top: 1rem;
+  padding: 1rem 1.25rem;
+  background: var(--tone-yugen-base);
+  color: var(--tone-yugen-text);
+  border: 1px solid var(--tone-yugen-muted);
+}
+
+.bout-trail__title {
+  margin: 0 0 0.6rem;
+  font-family: var(--tone-yugen-display);
+  font-size: 0.95rem;
+  letter-spacing: var(--tone-yugen-tracking-meta);
+  color: var(--tone-yugen-amber);
+  text-transform: uppercase;
+}
+
+.bout-trail__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.bout-trail__cell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  font-family: var(--tone-yugen-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  background: var(--tone-yugen-surface);
+}
+
+.bout-trail__cell--win {
+  color: var(--tone-yugen-amber);
+}
+
+.bout-trail__cell--loss {
+  color: var(--tone-yugen-vermilion);
+}
+
+.bout-trail__cell--draw {
+  color: var(--tone-yugen-muted);
+}
+
+/* Aikuchi accent — Yūgen overlay applied when aikuchi has a clear leader */
+.compare-aikuchi.is-lead {
+  background:
+    linear-gradient(180deg, var(--tone-yugen-elevated) 0%, var(--tone-yugen-surface) 100%),
+    var(--tone-yugen-pattern-asanoha);
+  background-blend-mode: normal, overlay;
+  border: 2px solid var(--tone-yugen-amber);
+  box-shadow: var(--tone-yugen-shadow-glow);
+}
+
+.compare-aikuchi.is-even {
+  border: 1px solid var(--tone-yugen-muted);
+}
+
+.compare-stat-bar-fill--left {
+  background: var(--tone-yugen-slate);
+}
+
+.compare-stat-bar-fill--right {
+  background: var(--tone-yugen-vermilion);
+}
+
+.compare-vs-card__side--east .compare-vs-card__avatar {
+  border: 2px solid var(--tone-yugen-slate);
+}
+
+.compare-vs-card__side--west .compare-vs-card__avatar {
+  border: 2px solid var(--tone-yugen-amber);
+}
+
+.rikishi-profile-hero.is-no-photo .rikishi-profile-photo-placeholder {
+  background:
+    var(--tone-yugen-pattern-kozumi),
+    var(--tone-yugen-elevated);
+  color: var(--tone-yugen-amber);
+  font-family: var(--tone-yugen-display);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .standoff-meter__arena,
+  .standoff-meter__gap,
+  .kimarite-radar__fill,
+  .bout-trail__cell {
+    transition: none !important;
+  }
+}

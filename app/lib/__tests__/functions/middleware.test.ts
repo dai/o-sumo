@@ -114,6 +114,10 @@ describe('rewritePageMetadata (SEO rewriter)', () => {
         title: '大相撲 テスト',
         description: 'テスト用の説明',
         canonicalUrl: 'https://osada.us/kimarite/',
+        imageUrl: 'https://osada.us/images/og-default.jpg?v=20260913',
+        imageWidth: 1200,
+        imageHeight: 630,
+        imageAlt: 'テスト用OGP画像',
       });
 
       expect(spy.rewriters).toHaveLength(1);
@@ -145,6 +149,10 @@ describe('rewritePageMetadata (SEO rewriter)', () => {
         title: 't',
         description: 'd',
         canonicalUrl: 'https://osada.us/archives/',
+        imageUrl: 'https://osada.us/images/og-default.jpg?v=20260913',
+        imageWidth: 1200,
+        imageHeight: 630,
+        imageAlt: 'テスト用OGP画像',
       });
 
       const titleRegistration = spy.rewriters[0].registrations.find((r) => r.selector === 'title');
@@ -166,6 +174,10 @@ describe('rewritePageMetadata (SEO rewriter)', () => {
         title: 't',
         description: 'd',
         canonicalUrl: 'https://osada.us/&"<path>/',
+        imageUrl: 'https://osada.us/images/og-default.jpg?v=20260913',
+        imageWidth: 1200,
+        imageHeight: 630,
+        imageAlt: 'テスト用OGP画像',
       });
 
       const headRegistration = spy.rewriters[0].registrations.find((r) => r.selector === 'head');
