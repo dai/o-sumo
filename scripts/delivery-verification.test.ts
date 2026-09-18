@@ -138,19 +138,56 @@ describe('delivery verification result validation', () => {
       'og:title': ['力士プロフィール | o-sumo'],
       'og:description': ['力士プロフィール'],
       'og:url': ['https://osada.us/rikishi/3842/'],
-      'og:image': ['https://osada.us/og-default.jpg?v=20260913'],
+      'og:image': ['https://osada.us/images/og-rikishi-default.jpg?v=20260913'],
+      'og:image:secure_url': ['https://osada.us/images/og-rikishi-default.jpg?v=20260913'],
       'og:type': ['website'],
       'og:site_name': ['o-sumo'],
-      'og:image:width': ['1280'],
-      'og:image:height': ['640'],
+      'og:locale': ['ja_JP'],
+      'og:image:width': ['1200'],
+      'og:image:height': ['630'],
+      'og:image:alt': ['o-sumo 力士プロフィールページのOGP画像'],
       'twitter:card': ['summary_large_image'],
       'twitter:title': ['力士プロフィール | o-sumo'],
       'twitter:description': ['力士プロフィール'],
-      'twitter:image': ['https://osada.us/og-default.jpg?v=20260913'],
+      'twitter:image': ['https://osada.us/images/og-rikishi-default.jpg?v=20260913'],
+      'twitter:image:alt': ['o-sumo 力士プロフィールページのOGP画像'],
     });
 
     expect(result.status).toBe('OK');
     expect(result.issues).toEqual([]);
+  });
+
+  it('accepts the four-image OGP set across the site', () => {
+    const candidates = [
+      'https://osada.us/images/og-default.jpg?v=20260913',
+      'https://osada.us/images/og-default-twitter.png?v=20260913',
+      'https://osada.us/images/og-rikishi-default.jpg?v=20260913',
+      'https://osada.us/images/og-compare-default.jpg?v=20260913',
+    ];
+    for (const url of candidates) {
+      const result = assessHeadMetadata({
+        canonical: ['https://osada.us/test/'],
+        description: ['test'],
+        'og:title': ['test'],
+        'og:description': ['test'],
+        'og:url': ['https://osada.us/test/'],
+        'og:image': [url],
+        'og:image:secure_url': [url],
+        'og:type': ['website'],
+        'og:site_name': ['o-sumo'],
+        'og:locale': ['ja_JP'],
+        'og:image:width': ['1200'],
+        'og:image:height': ['630'],
+        'og:image:alt': ['test'],
+        'twitter:card': ['summary_large_image'],
+        'twitter:title': ['test'],
+        'twitter:description': ['test'],
+        'twitter:image': [url],
+        'twitter:image:alt': ['test'],
+      });
+      expect(result.status).toBe('OK');
+      expect(result.issues).toEqual([]);
+    }
   });
 
   it('reports duplicate, mismatched, and wrong-image rendered metadata', () => {
@@ -175,8 +212,9 @@ describe('delivery verification result validation', () => {
     expect(result.issues).toEqual(expect.arrayContaining([
       'canonical must appear exactly once (found 2)',
       'canonical must equal og:url',
-      'og:image must be https://osada.us/og-default.jpg?v=20260913',
-      'twitter:image must be https://osada.us/og-default.jpg?v=20260913',
+      expect.stringMatching(/^og:image must be one of the accepted OGP images/),
+      expect.stringMatching(/^twitter:image must be one of the accepted OGP images/),
+      expect.stringMatching(/^og:image dimensions 1280x640 are not in the accepted set/),
     ]));
   });
 
@@ -187,15 +225,15 @@ describe('delivery verification result validation', () => {
       'og:title': ['archive'],
       'og:description': ['archive'],
       'og:url': ['https://osada.us/'],
-      'og:image': ['https://osada.us/og-default.jpg?v=20260913'],
+      'og:image': ['https://osada.us/images/og-default.jpg?v=20260913'],
       'og:type': ['website'],
       'og:site_name': ['o-sumo'],
-      'og:image:width': ['1280'],
-      'og:image:height': ['640'],
+      'og:image:width': ['1200'],
+      'og:image:height': ['630'],
       'twitter:card': ['summary_large_image'],
       'twitter:title': ['archive'],
       'twitter:description': ['archive'],
-      'twitter:image': ['https://osada.us/og-default.jpg?v=20260913'],
+      'twitter:image': ['https://osada.us/images/og-default.jpg?v=20260913'],
     }, 'https://osada.us/archives/');
 
     expect(result.issues).toContain('canonical must equal https://osada.us/archives/');
@@ -208,15 +246,15 @@ describe('delivery verification result validation', () => {
       'og:title': ['generic'],
       'og:description': ['generic'],
       'og:url': ['https://osada.us/202607-banzuke/'],
-      'og:image': ['https://osada.us/og-default.jpg?v=20260913'],
+      'og:image': ['https://osada.us/images/og-default.jpg?v=20260913'],
       'og:type': ['website'],
       'og:site_name': ['o-sumo'],
-      'og:image:width': ['1280'],
-      'og:image:height': ['640'],
+      'og:image:width': ['1200'],
+      'og:image:height': ['630'],
       'twitter:card': ['summary_large_image'],
       'twitter:title': ['generic'],
       'twitter:description': ['generic'],
-      'twitter:image': ['https://osada.us/og-default.jpg?v=20260913'],
+      'twitter:image': ['https://osada.us/images/og-default.jpg?v=20260913'],
     }, {
       canonicalUrl: 'https://osada.us/202607-banzuke/',
       title: '2026年7月場所 番付 | o-sumo',

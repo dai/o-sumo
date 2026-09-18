@@ -19,15 +19,19 @@ const META_FIELDS = [
   { attribute: 'property', key: 'og:title', content: (meta) => meta.title },
   { attribute: 'property', key: 'og:description', content: (meta) => meta.description },
   { attribute: 'property', key: 'og:url', content: (_meta, socialUrl) => socialUrl },
-  { attribute: 'property', key: 'og:image', content: (meta) => meta.imageUrl },
+  { attribute: 'property', key: 'og:image', content: (meta) => meta.image.primary },
+  { attribute: 'property', key: 'og:image:secure_url', content: (meta) => meta.image.primary },
+  { attribute: 'property', key: 'og:image:width', content: (meta) => String(meta.image.width) },
+  { attribute: 'property', key: 'og:image:height', content: (meta) => String(meta.image.height) },
+  { attribute: 'property', key: 'og:image:alt', content: (meta) => meta.image.alt },
   { attribute: 'property', key: 'og:type', content: (meta) => meta.type },
   { attribute: 'property', key: 'og:site_name', content: () => 'o-sumo' },
-  { attribute: 'property', key: 'og:image:width', content: () => '1280' },
-  { attribute: 'property', key: 'og:image:height', content: () => '640' },
+  { attribute: 'property', key: 'og:locale', content: () => 'ja_JP' },
   { attribute: 'name', key: 'twitter:card', content: () => 'summary_large_image' },
   { attribute: 'name', key: 'twitter:title', content: (meta) => meta.title },
   { attribute: 'name', key: 'twitter:description', content: (meta) => meta.description },
-  { attribute: 'name', key: 'twitter:image', content: (meta) => meta.imageUrl },
+  { attribute: 'name', key: 'twitter:image', content: (meta) => meta.image.primary },
+  { attribute: 'name', key: 'twitter:image:alt', content: (meta) => meta.image.alt },
 ] as const satisfies readonly MetaFieldDefinition[];
 
 function reconcileMeta(attribute: MetaAttribute, value: string, content: string) {

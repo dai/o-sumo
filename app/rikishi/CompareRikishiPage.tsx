@@ -28,6 +28,7 @@ import {
   FEATURED_MATCHUP_PRESETS,
 } from '../lib/rikishi-compare-data';
 import { generatedRikishiAvatarDataUrl } from '../lib/rikishi-avatar';
+import { StandoffMeter } from './StandoffMeter';
 import './page.css';
 
 const MAX_COMPARE_RIKISHI = 2;
@@ -850,6 +851,14 @@ export default function CompareRikishiPage() {
                   profiles={currentComparison.profiles}
                   matchup={currentComparison.matchup}
                 />
+
+                {/* 2.5 立ち合いメーター — Yūgen トーンで直近の白星の流れを対比 */}
+                {currentComparison.profiles[0]?.name && currentComparison.profiles[1]?.name ? (
+                  <StandoffMeter
+                    nameA={currentComparison.profiles[0].name}
+                    nameB={currentComparison.profiles[1].name}
+                  />
+                ) : null}
 
                 {/* 3. 体格・スタッツ比較バー */}
                 <StatComparisonBars profiles={currentComparison.profiles} />

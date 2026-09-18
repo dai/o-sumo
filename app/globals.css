@@ -195,6 +195,48 @@
   );
   --site-header-text: #f5efde;
   --site-header-text-muted: #eadfbe;
+
+  /* ─────────────────────────────────────────────────────────────
+     Yūgen (幽玄) — 立ち合いの「間」を視覚化する第三のトーン
+     Washi と Ronin の中間。和紙でも電脳でもない「気配」のトーン。
+     テーマ直交（テーマと独立して常に有効）。
+     ───────────────────────────────────────────────────────────── */
+
+  /* Surface 階調 — 漆黒と白砂の中間「墨茶 → 砂利茶 → 利休鼠」 */
+  --tone-yugen-base:        #1f1a16;
+  --tone-yugen-surface:     #2a241e;
+  --tone-yugen-elevated:    #3a3128;
+  --tone-yugen-bright:      #4d4136;
+  --tone-yugen-muted:       #8b7d6b;
+  --tone-yugen-text:        #f1ead9;
+  --tone-yugen-text-muted:  #c9bfa9;
+
+  /* アクセント — 琥珀金 × 灰青 × 朱漆 */
+  --tone-yugen-amber:       #d9a55d;
+  --tone-yugen-amber-dim:   #a87938;
+  --tone-yugen-slate:       #5c7a8a;
+  --tone-yugen-slate-dim:   #3f5965;
+  --tone-yugen-vermilion:   #b53a2c;
+  --tone-yugen-vermilion-dim:#7e2418;
+
+  /* ステータス */
+  --tone-yugen-leader:      var(--tone-yugen-amber);
+  --tone-yugen-even:        var(--tone-yugen-muted);
+  --tone-yugen-loser:       var(--tone-yugen-slate-dim);
+
+  /* 装飾パターン (麻の葉 + 砂紋) — SVG data URL で重ね刷り */
+  --tone-yugen-pattern-asanoha: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23d9a55d' stroke-opacity='0.05' stroke-width='1'%3E%3Cpath d='M40 0L80 23.094L80 69.282L40 92.376L0 69.282L0 23.094z'/%3E%3Cpath d='M40 18L66 32L66 60L40 74L14 60L14 32z'/%3E%3C/g%3E%3C/svg%3E");
+  --tone-yugen-pattern-kozumi:  url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23f1ead9' stroke-opacity='0.04' stroke-width='1'%3E%3Ccircle cx='60' cy='60' r='42'/%3E%3Ccircle cx='60' cy='60' r='30'/%3E%3Ccircle cx='60' cy='60' r='18'/%3E%3C/g%3E%3C/svg%3E");
+
+  /* 影 */
+  --tone-yugen-shadow-soft:  0 12px 28px rgba(26, 18, 12, 0.32);
+  --tone-yugen-shadow-deep:  0 24px 48px rgba(26, 18, 12, 0.48);
+  --tone-yugen-shadow-glow:  0 0 0 1px rgba(217, 165, 93, 0.45), 0 0 14px rgba(217, 165, 93, 0.18);
+
+  /* Typography */
+  --tone-yugen-display: 'Source Serif 4', 'Shippori Mincho', serif;
+  --tone-yugen-tracking-display: 0.04em;
+  --tone-yugen-tracking-meta: 0.18em;
 }
 /* The "No-Line" Rule: 0px radius globally */
 *, *::before, *::after {

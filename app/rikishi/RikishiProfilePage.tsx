@@ -18,6 +18,8 @@ import { isLocalRikishiImagePath } from '../lib/rikishi-avatar';
 import { toRomaji } from '../lib/romaji';
 import { formatUpdatedAt } from '../lib/updated-at';
 import { SITE_ORIGIN } from '../lib/site-url';
+import { BoutTrail } from './BoutTrail';
+import { KimariteRadar } from './KimariteRadar';
 import './page.css';
 
 const SAME_RANK_LIMIT = 8;
@@ -213,8 +215,11 @@ export default function RikishiProfilePage() {
                     <dd>{t('rikishi.careerBoutsValue', { count: career.bouts })}</dd>
                   </div>
                 </dl>
+                <BoutTrail shikona={profile.name} limit={15} />
               </section>
             ) : null}
+
+            <KimariteRadar shikona={profile.name} limit={4} />
 
             <dl className="rikishi-profile-fields">
               <ProfileField label={t('rikishi.name')} value={profile.name} />

@@ -1,11 +1,41 @@
 import { describe, expect, it } from 'vitest';
-import { resolvePageMeta } from './page-meta';
+import { resolvePageMeta, type ImageMeta } from './page-meta';
+
+const IMAGE_VERSION = '20260913';
+
+const DEFAULT_IMAGE: ImageMeta = {
+  primary: `https://osada.us/images/og-default.jpg?v=${IMAGE_VERSION}`,
+  width: 1200,
+  height: 630,
+  alt: 'o-sumo 大相撲情報サイトのOGP画像',
+};
+
+const RIKISHI_IMAGE: ImageMeta = {
+  primary: `https://osada.us/images/og-rikishi-default.jpg?v=${IMAGE_VERSION}`,
+  width: 1200,
+  height: 630,
+  alt: 'o-sumo 力士プロフィールページのOGP画像',
+};
+
+const COMPARE_IMAGE: ImageMeta = {
+  primary: `https://osada.us/images/og-compare-default.jpg?v=${IMAGE_VERSION}`,
+  width: 1200,
+  height: 630,
+  alt: 'o-sumo 力士比較ページのOGP画像',
+};
+
+function imageFor(pathname: string): ImageMeta {
+  if (pathname === '/compare/' || pathname.startsWith('/compare/')) return COMPARE_IMAGE;
+  if (/^\/rikishi\/[1-9]\d*\/?$/.test(pathname)) return RIKISHI_IMAGE;
+  return DEFAULT_IMAGE;
+}
 
 describe('resolvePageMeta', () => {
   it.each([
     ['/', 'o-sumo | 大相撲 番付・星取表', '大相撲の番付・星取表・取組スケジュール・場所結果を網羅したアーカイブ。最新の場所進行中も取組結果をリアルタイムで更新します。'],
     ['/archives/', '大相撲の場所別アーカイブ | o-sumo', '大相撲の過去の場所ごとの番付、取組結果、取組予定を閲覧できます。'],
     ['/rikishi/', '力士一覧 | o-sumo', '大相撲力士のプロフィール、番付、成績を一覧で確認できます。'],
+    ['/compare/', '力士比較 | o-sumo', '幕内・十両力士の合口、体格、得意決まり手、通算成績を比較できます。'],
     ['/gyoji/', '行司名鑑 | o-sumo', '大相撲の現役行司の階級とプロフィールを一覧で紹介します。'],
     ['/yobidashi/', '呼出名鑑 | o-sumo', '大相撲の現役呼出の階級とプロフィールを一覧で紹介します。'],
     ['/kimarite/', '決まり手一覧 | o-sumo', '大相撲の決まり手を分類別にわかりやすく紹介します。'],
@@ -26,11 +56,13 @@ describe('resolvePageMeta', () => {
     ['/gyoji/not-a-number/', '404 ページが見つかりません | o-sumo', 'お探しのページは見つかりませんでした。o-sumoの最新取組表や番付一覧をご確認ください。', '/404'],
     ['/unknown/', '404 ページが見つかりません | o-sumo', 'お探しのページは見つかりませんでした。o-sumoの最新取組表や番付一覧をご確認ください。', '/404'],
   ])('resolves Japanese metadata for %s', (pathname, title, description, canonicalPath = pathname) => {
+    const canonicalForImage = canonicalPath === '/404' ? pathname : canonicalPath;
     const expected: Record<string, unknown> = {
       title,
       description,
       canonicalUrl: `https://osada.us${canonicalPath}`,
-      imageUrl: 'https://osada.us/og-default.jpg?v=20260913',
+      imageUrl: imageFor(canonicalForImage).primary,
+      image: imageFor(canonicalForImage),
       type: 'website',
     };
     if (canonicalPath === '/404') {
@@ -43,5 +75,14 @@ describe('resolvePageMeta', () => {
     expect(resolvePageMeta('/202607-torikumi')).toMatchObject({
       canonicalUrl: 'https://osada.us/202607-torikumi/',
     });
+  });
+
+  it('picks the rikishi OGP image for /rikishi/{id}/ routes', () => {
+    expect(resolvePageMeta('/rikishi/3842/').image).toEqual(RIKISHI_IMAGE);
+  });
+
+  it('picks the compare OGP image for /compare/ routes', () => {
+    expect(resolvePageMeta('/compare/').image).toEqual(COMPARE_IMAGE);
+    expect(resolvePageMeta('/compare/?ids=3842,4227').image).toEqual(COMPARE_IMAGE);
   });
 });

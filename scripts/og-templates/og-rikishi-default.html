@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>o-sumo 力士プロフィール OGP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700;8..60,800&display=swap"
+    />
+    <link rel="stylesheet" href="./styles/og-banner.css" />
+    <style>
+      .og-banner {
+        width: 1200px;
+        height: 630px;
+      }
+      .og-banner__inner {
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 3rem;
+      }
+      .og-banner__illustration {
+        width: 360px;
+        height: 360px;
+        display: grid;
+        place-items: center;
+        background:
+          radial-gradient(circle at center, rgba(217, 165, 93, 0.16) 0%, transparent 60%),
+          var(--tone-yugen-elevated);
+        border: 2px solid var(--tone-yugen-amber-dim);
+        font-family: var(--font-serif);
+        font-size: 7rem;
+        font-weight: 800;
+        color: var(--tone-yugen-amber);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="og-banner og-banner--left">
+      <div class="og-banner__inner">
+        <div style="display: grid; gap: 1.2rem;">
+          <div class="og-banner__mark">
+            <span class="og-banner__mark-glyph">大</span>
+            <span class="og-banner__mark-text">o-sumo</span>
+          </div>
+          <span class="og-banner__rule"></span>
+          <h1 class="og-banner__title">力士<br /><strong>プロフィール</strong></h1>
+          <p class="og-banner__subtitle">番付・通算成績・得意技・所属部屋を網羅</p>
+          <div class="og-banner__meta">
+            <span class="og-banner__meta-dot"></span>
+            <span>osada.us/rikishi/</span>
+          </div>
+        </div>
+        <div class="og-banner__illustration">大</div>
+      </div>
+    </main>
+  </body>
+</html>
