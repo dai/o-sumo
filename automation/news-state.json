@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-18T08:27:18.820914+00:00",
+    "updatedAt": "2026-09-18T10:21:25.452666+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-f-bt-tp1-260918-202609180001120",
-        "title": "なぜ「おたふくかぜ」で休場１日？十両生田目の復帰理由を師匠が説明「まさか。予想しなかった」",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260918-202609180001120",
+        "id": "dmenu-docomo-tokyosports-403616",
+        "title": "【大相撲】大の里　立ち合いで平幕豪ノ山に圧倒されるも１敗死守「内容は全然なので…」",
+        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403616",
         "publishedAt": "2026-09-18",
-        "publishedAtRaw": "日刊スポーツ　9月18日 17時11分",
+        "publishedAtRaw": "東スポWEB　9月18日 19時10分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sponichi-spngoo-20260918-0276",
-        "title": "大関経験者の朝乃山も1敗を守る　平戸海を突き落としで破る",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260918-0276",
+        "id": "dmenu-docomo-f-bt-tp1-260918-202609180001413",
+        "title": "「本当に大きな１敗」綱とり霧島２敗目に九重審判長が言及「あの形で負けるのはショックと思う」",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260918-202609180001413",
         "publishedAt": "2026-09-18",
-        "publishedAtRaw": "スポニチアネックス　9月18日 17時02分",
+        "publishedAtRaw": "日刊スポーツ　9月18日 19時03分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260918-202609180001090",
-        "title": "佐田の海が歴代単独10位の通算1614回出場　大青山に勝って花を添えた",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260918-202609180001090",
+        "id": "dmenu-docomo-hochi-20260918-OHT1T51254",
+        "title": "霧島、綱取りに暗雲の２敗目　九重審判長が首ひねる「まずは勝ち越しを目指した方が。（綱取り）そこではないでしょう」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260918-OHT1T51254",
         "publishedAt": "2026-09-18",
-        "publishedAtRaw": "日刊スポーツ　9月18日 16時45分",
+        "publishedAtRaw": "スポーツ報知　9月18日 19時03分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sponichi-spngoo-20260918-0260",
-        "title": "新入幕の寿之富士は2日目から5連勝！　千代翔馬を寄り倒してトップを守る",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260918-0260",
+        "id": "dmenu-docomo-tokyosports-403614",
+        "title": "【大相撲】安青錦が悪夢の３連敗　熱海富士戦へ切り替え「終わったことを考えても仕方ない」",
+        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403614",
         "publishedAt": "2026-09-18",
-        "publishedAtRaw": "スポニチアネックス　9月18日 16時24分",
+        "publishedAtRaw": "東スポWEB　9月18日 19時01分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260918-OHT1T51178",
-        "title": "おたふくかぜから復帰の十両・生田目が３勝目　前日休養で「体調戻った」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260918-OHT1T51178",
+        "id": "dmenu-docomo-f-bt-tp1-260918-202609180001406",
+        "title": "新関脇藤ノ川、安青錦との技術戦に勝つ　館内大歓声「安易に肩すかしとかいかず辛抱できた」",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260918-202609180001406",
         "publishedAt": "2026-09-18",
-        "publishedAtRaw": "スポーツ報知　9月18日 16時15分",
+        "publishedAtRaw": "日刊スポーツ　9月18日 18時56分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-18T08:27:18.830641+00:00",
-  "lastSuccessAt": "2026-09-18T08:27:18.820914+00:00",
+  "lastAttemptAt": "2026-09-18T10:21:25.462293+00:00",
+  "lastSuccessAt": "2026-09-18T10:21:25.452666+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -159,9 +159,13 @@
     "35324435394": {
       "attemptedAt": "2026-09-18T08:27:18.830641+00:00",
       "outcome": "success"
+    },
+    "35334257984": {
+      "attemptedAt": "2026-09-18T10:21:25.462293+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35324435394",
+  "lastRunId": "35334257984",
   "lastPublishedDate": "2026-09-17",
   "lastPublishedSha": "1b80c06c4937c61dda87795de44c55866388585f",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
