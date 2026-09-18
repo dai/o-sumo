@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-18T04:23:43.018505+00:00",
+    "updatedAt": "2026-09-18T06:34:03.416850+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
+        "id": "dmenu-docomo-hochi-20260918-OHT1T51146",
+        "title": "元幕内・天空海、初白星「相手が見えていた」　８月に両膝を手術したことも明かす",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260918-OHT1T51146",
+        "publishedAt": "2026-09-18",
+        "publishedAtRaw": "スポーツ報知　9月18日 15時17分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-20260918074",
+        "title": "“史上最強の新弟子”旭富士と同期、天昇山が史上最速新十両へ無傷３連勝【大相撲】",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260918074",
+        "publishedAt": "2026-09-18",
+        "publishedAtRaw": "デイリースポーツ　9月18日 15時13分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-20260918068",
+        "title": "弓取り動画４５０万回再生で大バズリの天空海、初白星に気合「ここからですね」場所前に両膝手術も奮起【大相撲】",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260918068",
+        "publishedAt": "2026-09-18",
+        "publishedAtRaw": "デイリースポーツ　9月18日 14時41分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-ans-728172",
+        "title": "大相撲で「超絶かわいいーー！」化粧まわし登場　視線集中「ビックリした」「目立ちますね」",
+        "url": "https://topics.smt.docomo.ne.jp/article/ans/sports/ans-728172",
+        "publishedAt": "2026-09-18",
+        "publishedAtRaw": "THE ANSWER　9月18日 14時33分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
         "id": "dmenu-docomo-f-bt-tp1-260918-202609180000527",
         "title": "雷親方の長男垣添が19歳誕生日に３連勝「そういえば誕生日だったんですね」とおどける",
         "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260918-202609180000527",
         "publishedAt": "2026-09-18",
         "publishedAtRaw": "日刊スポーツ　9月18日 13時12分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-abematimes-10273759",
-        "title": "角界随一の“美四股”に土俵下のカリスマモデルも“うっとり” 素のリアクションを捉えた決定的瞬間",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273759",
-        "publishedAt": "2026-09-18",
-        "publishedAtRaw": "ABEMA TIMES　9月18日 10時48分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-abematimes-10273753",
-        "title": "「今何が起きた？」「何もしてないのに」181キロの巨漢力士にまさかの“秒”決着 “100キロ差”対決で小兵が魅せた",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273753",
-        "publishedAt": "2026-09-18",
-        "publishedAtRaw": "ABEMA TIMES　9月18日 10時14分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-abematimes-10273744",
-        "title": "「あ、見っけ」横綱越しに“チラリ”美しい著名人 「また同じ場所に」「お綺麗です」横綱土俵入りでカメラが捉えた貴重な瞬間",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273744",
-        "publishedAt": "2026-09-18",
-        "publishedAtRaw": "ABEMA TIMES　9月18日 9時35分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-abematimes-10273729",
-        "title": "“57キロ”力士が一撃で「吹っ飛んだ」驚きの光景 「まぁそうなる」「最軽量頑張れ」励ましの声",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273729",
-        "publishedAt": "2026-09-18",
-        "publishedAtRaw": "ABEMA TIMES　9月18日 8時30分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-18T04:23:43.026967+00:00",
-  "lastSuccessAt": "2026-09-18T04:23:43.018505+00:00",
+  "lastAttemptAt": "2026-09-18T06:34:03.426381+00:00",
+  "lastSuccessAt": "2026-09-18T06:34:03.416850+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -151,9 +151,13 @@
     "35306782370": {
       "attemptedAt": "2026-09-18T04:23:43.026967+00:00",
       "outcome": "success"
+    },
+    "35315423632": {
+      "attemptedAt": "2026-09-18T06:34:03.426381+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35306782370",
+  "lastRunId": "35315423632",
   "lastPublishedDate": "2026-09-17",
   "lastPublishedSha": "1b80c06c4937c61dda87795de44c55866388585f",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
