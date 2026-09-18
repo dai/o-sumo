@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-18T02:30:15.383521+00:00",
+    "updatedAt": "2026-09-18T04:23:43.018505+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -17,6 +17,15 @@
       }
     ],
     "items": [
+      {
+        "id": "dmenu-docomo-f-bt-tp1-260918-202609180000527",
+        "title": "雷親方の長男垣添が19歳誕生日に３連勝「そういえば誕生日だったんですね」とおどける",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260918-202609180000527",
+        "publishedAt": "2026-09-18",
+        "publishedAtRaw": "日刊スポーツ　9月18日 13時12分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
       {
         "id": "dmenu-docomo-abematimes-10273759",
         "title": "角界随一の“美四股”に土俵下のカリスマモデルも“うっとり” 素のリアクションを捉えた決定的瞬間",
@@ -54,15 +63,6 @@
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_MCNRLCATDFA2XBLBCOIMTTZU5Y",
-        "title": "舞の海氏「つまらなそうにしてる人は一人も…白けてるムードではない」／秋場所",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_MCNRLCATDFA2XBLBCOIMTTZU5Y",
-        "publishedAt": "2026-09-18",
-        "publishedAtRaw": "SANSPO　9月18日 8時00分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
         "id": "sumo-association-762",
         "title": "令和9年「大相撲カレンダー」販売のご案内",
         "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=762",
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-18T02:30:15.393858+00:00",
-  "lastSuccessAt": "2026-09-18T02:30:15.383521+00:00",
+  "lastAttemptAt": "2026-09-18T04:23:43.026967+00:00",
+  "lastSuccessAt": "2026-09-18T04:23:43.018505+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -147,9 +147,13 @@
     "35299567277": {
       "attemptedAt": "2026-09-18T02:30:15.393858+00:00",
       "outcome": "success"
+    },
+    "35306782370": {
+      "attemptedAt": "2026-09-18T04:23:43.026967+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35299567277",
+  "lastRunId": "35306782370",
   "lastPublishedDate": "2026-09-17",
   "lastPublishedSha": "1b80c06c4937c61dda87795de44c55866388585f",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
