@@ -144,6 +144,11 @@
 - Daily torikumi run 35199436940 (validator rejected fusen/absentee overlap for rikushi 3988 in day=5) was a data-driven failure that auto-healed on next upstream refresh — no validator change needed.
 - Discord notification `curl: (6) Could not resolve host` is a secondary noise — `notify_discord.sh` uses `|| echo '::warning::'`, not blocking. Worth a separate investigation later (DNS for `DISCORD_WEBHOOK_URL` host).
 
+- PR #628 (`fix(ci): treat stale or future-dated news candidates as failed attempts`) を 2026-09-17 に squash merge (CI: Cloudflare Pages x 2 + test 緑)。origin/main HEAD `a964d477`、local main merge commit `e0ec985` (Co-Authored-By 付与)、branch `fix/news-state-graceful-skip` 削除済。
+- 修正点: PR #628 head (82956bf) の tree には本来 4 files (news_state.py / news_state_test.py / tasks/lessons.md / tasks/todo.md) のはずが、`app/lib/sumo-data.ts` / `app/lib/torikumi-data.ts` / `public/api/v1/banzuke.json` / `public/api/v1/torikumi.json` の data ファイル 4 つも混入していた (過去の cherry-pick 時に working tree dirty だった)。`gh pr merge 628 --squash` が main HEAD (5fc7951) と conflict (両 branch が tasks/lessons.md / tasks/todo.md に同一 news_state section を追加) したため、PR branch を df6d856 + news_state.py + news_state_test.py のみの clean な commit (`e0ffbc7`) に作り直して force-push してから merge。
+- **force-push syntax 教訓**: `git push --force-with-lease origin <branch>` だけだとローカル branch 不在で "Everything up-to-date" 誤判定される。`origin <src>:<dst>` 形式で `git push --force-with-lease origin fix/news-state-graceful-skip:fix/news-state-graceful-skip` のように明示する必要あり。
+- 副次発見: PR #628 head (82956bf) の親は実は `0c1dc88` (PR #627 refactor) で、PR の GitHub base `df6d856` とは別 commit — cherry-pick 時点の main HEAD で base 表記されたため。clean な PR 作成時は df6d856 を detached HEAD checkout → 必要 files のみ checkout で対応。
+
 # Rikushi 3988 absentees overlap (2026-09-17)
 
 - [x] Identify `validate_torikumi.py:129` rejecting day=5 participant/absentee overlap [3988] via `gh run view --log`
