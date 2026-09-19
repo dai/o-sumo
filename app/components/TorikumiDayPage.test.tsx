@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { afterEach, vi } from 'vitest';
@@ -6,7 +6,7 @@ import TorikumiDayPage from './TorikumiDayPage';
 import { MARCH2026_TORIKUMI_DATA } from '../lib/march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from '../lib/may2026-data';
 import { JULY2026_TORIKUMI_DATA } from '../lib/july2026-data';
-import { torikumiArchive, type TorikumiArchiveDay } from '../lib/torikumi-data';
+import { torikumiArchive, type TorikumiArchiveDay, type TorikumiDataSet } from '../lib/torikumi-data';
 import { getBanzukePathForDateKey, getHubPathForDateKey } from '../lib/torikumi-routes';
 import * as torikumiRoutes from '../lib/torikumi-routes';
 import { formatUpdatedAt } from '../lib/updated-at';
@@ -453,6 +453,68 @@ describe('TorikumiDayPage', () => {
     expect(myMatchRow).toHaveTextContent('竜電');
 
     localStorage.clear();
+  });
+
+  it('renders the manual refresh button inside the day page', () => {
+    const firstResultDay = torikumiArchive.resultDays[0];
+    renderPage(firstResultDay, 'result');
+
+    expect(screen.getByRole('button', { name: '最新に更新' })).toBeInTheDocument();
+  });
+
+  it('dispatches the torikumi-updated event when refreshed data differs', async () => {
+    const firstResultDay = torikumiArchive.resultDays[0];
+    const refreshed: TorikumiDataSet = {
+      ...torikumiArchive,
+      resultUpdatedAt: '2099-12-31T23:59:59+09:00',
+    };
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => refreshed,
+    }));
+
+    const listener = vi.fn();
+    window.addEventListener('o-sumo:torikumi-updated', listener);
+
+    try {
+      const user = userEvent.setup();
+      renderPage(firstResultDay, 'result');
+      await user.click(screen.getByRole('button', { name: '最新に更新' }));
+
+      await waitFor(() => {
+        expect(listener).toHaveBeenCalled();
+      });
+    } finally {
+      window.removeEventListener('o-sumo:torikumi-updated', listener);
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it('stays in the up-to-date state when refreshed data matches the dataset', async () => {
+    const firstResultDay = torikumiArchive.resultDays[0];
+    const unchanged: TorikumiDataSet = { ...torikumiArchive };
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => unchanged,
+    }));
+
+    const listener = vi.fn();
+    window.addEventListener('o-sumo:torikumi-updated', listener);
+
+    try {
+      const user = userEvent.setup();
+      renderPage(firstResultDay, 'result');
+      await user.click(screen.getByRole('button', { name: '最新に更新' }));
+
+      await waitFor(() => {
+        expect(screen.getByRole('button', { name: '最新です' })).toBeInTheDocument();
+      }, { timeout: 1500 });
+
+      expect(listener).not.toHaveBeenCalled();
+    } finally {
+      window.removeEventListener('o-sumo:torikumi-updated', listener);
+      vi.unstubAllGlobals();
+    }
   });
 });
 
