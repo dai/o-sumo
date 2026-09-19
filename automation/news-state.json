@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-18T10:21:25.452666+00:00",
+    "updatedAt": "2026-09-19T00:52:02.412152+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-tokyosports-403616",
-        "title": "【大相撲】大の里　立ち合いで平幕豪ノ山に圧倒されるも１敗死守「内容は全然なので…」",
-        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403616",
-        "publishedAt": "2026-09-18",
-        "publishedAtRaw": "東スポWEB　9月18日 19時10分",
+        "id": "dmenu-docomo-abematimes-10273958",
+        "title": "「反則級にかわいいw」十両力士の“クセつよ”化粧まわしが出現 ファンざわめき",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273958",
+        "publishedAt": "2026-09-19",
+        "publishedAtRaw": "ABEMA TIMES　9月19日 9時08分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260918-202609180001413",
-        "title": "「本当に大きな１敗」綱とり霧島２敗目に九重審判長が言及「あの形で負けるのはショックと思う」",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260918-202609180001413",
-        "publishedAt": "2026-09-18",
-        "publishedAtRaw": "日刊スポーツ　9月18日 19時03分",
+        "id": "dmenu-docomo-abematimes-10273956",
+        "title": "死力を尽くした力士がフラフラ、グラグラに… 会心の白星に「師匠の前で」高砂親方もニッコリ",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273956",
+        "publishedAt": "2026-09-19",
+        "publishedAtRaw": "ABEMA TIMES　9月19日 8時57分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260918-OHT1T51254",
-        "title": "霧島、綱取りに暗雲の２敗目　九重審判長が首ひねる「まずは勝ち越しを目指した方が。（綱取り）そこではないでしょう」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260918-OHT1T51254",
-        "publishedAt": "2026-09-18",
-        "publishedAtRaw": "スポーツ報知　9月18日 19時03分",
+        "id": "dmenu-docomo-abematimes-10273953",
+        "title": "「マジかよ涙」安青錦、取組中の“異変”に心配の声 関脇・藤ノ川の猛攻に屈す 土俵下の姿に「これ以上は…」",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273953",
+        "publishedAt": "2026-09-19",
+        "publishedAtRaw": "ABEMA TIMES　9月19日 8時09分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-tokyosports-403614",
-        "title": "【大相撲】安青錦が悪夢の３連敗　熱海富士戦へ切り替え「終わったことを考えても仕方ない」",
-        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403614",
-        "publishedAt": "2026-09-18",
-        "publishedAtRaw": "東スポWEB　9月18日 19時01分",
+        "id": "dmenu-docomo-nikkangendai-1249026",
+        "title": "大関復帰の安青錦に何が起きている？ 3連勝のち3連敗のウラに与えてしまった「自身攻略のヒント」",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1249026",
+        "publishedAt": "2026-09-19",
+        "publishedAtRaw": "日刊ゲンダイDIGITAL　9月19日 8時05分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260918-202609180001406",
-        "title": "新関脇藤ノ川、安青錦との技術戦に勝つ　館内大歓声「安易に肩すかしとかいかず辛抱できた」",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260918-202609180001406",
-        "publishedAt": "2026-09-18",
-        "publishedAtRaw": "日刊スポーツ　9月18日 18時56分",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_4MIEMIPUQZERDGKAF3IP4YQ474",
+        "title": "琴風氏「あまりこういうことはやらん方がいい。大けがしますよ」／秋場所",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_4MIEMIPUQZERDGKAF3IP4YQ474",
+        "publishedAt": "2026-09-19",
+        "publishedAtRaw": "SANSPO　9月19日 8時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-18T10:21:25.462293+00:00",
-  "lastSuccessAt": "2026-09-18T10:21:25.452666+00:00",
+  "lastAttemptAt": "2026-09-19T00:52:02.421749+00:00",
+  "lastSuccessAt": "2026-09-19T00:52:02.412152+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -163,9 +163,13 @@
     "35334257984": {
       "attemptedAt": "2026-09-18T10:21:25.462293+00:00",
       "outcome": "success"
+    },
+    "35410777901": {
+      "attemptedAt": "2026-09-19T00:52:02.421749+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35334257984",
+  "lastRunId": "35410777901",
   "lastPublishedDate": "2026-09-18",
   "lastPublishedSha": "71ed7cb1319f5d3b88fe7cb4f79ace8e9fc08821",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
