@@ -268,3 +268,39 @@
 - **手動スモーク (任意)**: `npm run dev` → `http://localhost:3001/202609-torikumi/` でボタン押下 → スクロール保持確認。Cloudflare Pages プレビューでも確認可。
 - **CDN 60 秒キャッシュ**: 現状維持 (ユーザー了解済み「10 分以内の反映を保証しない」)。
 - **`useScrollRestore` のテスト改善余地**: 同一 ID を capture 後の挙動は現状仕様にないが、必要なら将来追加。
+
+## PR #637 — fix(torikumi): only animate refresh button spinner during loading
+
+### 背景 (実装後の補足)
+- PR #634 (`feat(torikumi): manual refresh button with scroll position restore`) で `.torikumi-refresh-btn__spinner` に `animation: torikumi-refresh-spin .8s linear infinite` を**無条件**で付けた。
+- PR #636 (`fix(torikumi): use Promise.race timeout fallback for SW-bound fetch`) で 8 秒 timeout (`Promise.race`) を入れたが、CSS animation 側は更新しなかった。
+- 結果: status が `loading` → `error` (3 秒) → `idle` に遷移しても spinner が回り続け、UX 的に「永遠にクルクル」する状態になっていた。
+- ユーザー報告: 「更新ボタンを押すと赤くなって、クルクル回りっぱなし」(DevTools は PC じゃないので利用できないとの由)。
+- 修正: animation を `.torikumi-refresh-btn[aria-busy="true"] .torikumi-refresh-btn__spinner` 配下に移動し、loading 中のみ回転するようにした。`prefers-reduced-motion` override も同条件に揃えた。
+
+### 完了内容
+- **ブランチ**: `fix/torikumi-refresh-spinner-css` を origin/main (`698d482`) から新規作成
+- **1 commit**: `daa2d77` のみ
+  - `app/torikumi/page.css` +7/-1 (animation ルールを `[aria-busy="true"]` 条件付きに移動 + reduced-motion override を同条件化)
+- **PR**: https://github.com/dai/o-sumo/pull/637 (squash merge, branch 削除)
+- **merge commit**: `6379e91` at 2026-09-19T06:44:22Z
+
+### 検証結果
+| 項目 | 結果 |
+|---|---|
+| TypeScript typecheck | エラーなし |
+| vitest ManualRefreshButton (回帰) | 10/10 緑 |
+| npm run build | ✓ 新 CSS chunk hash `page-S6H_4AZg.css` (旧 `page-gOfoF41D.css`) |
+| ビルド後の CSS 検証 (minified) | `.torikumi-refresh-btn__spinner{...}` 本文に `animation:` なし ✓ / `.torikumi-refresh-btn[aria-busy=true] .torikumi-refresh-btn__spinner{animation:torikumi-refresh-spin .8s linear infinite}` ✓ / `@media(prefers-reduced-motion:reduce){.torikumi-refresh-btn[aria-busy=true] .torikumi-refresh-btn__spinner{animation:none;border-top-color:currentColor}}` ✓ |
+| gh pr checks #637 (Test workflow) | ✓ 2m11s 緑 |
+| gh pr checks #637 (Cloudflare Pages: o-sumo) | ✓ 緑 |
+| gh pr checks #637 (Cloudflare Pages: o-sumo-blog) | ✓ 緑 |
+
+### 設計上の決定 (実装後の補足)
+- **最小差分**: CSS 1 ファイルのみ、JS / TS / テストには手を入れず。既存の React state 機械 + ARIA 属性設計は正しいので、CSS 側だけで完結する修正に留めた。
+- **`prefers-reduced-motion` も同条件**: 条件分岐の二重化を避けるため、override も同じ `[aria-busy="true"]` セレクタを使用。
+- **`auto mode` self-approval 制約**: PR #637 を merge しようとした際、auto mode classifier が「エージェント自身の PR は人間レビュー承認が transcript 上で確認できない」と拒否。これは正しい防御動作。`AskUserQuestion` でユーザから明示的承認を取得して解除。
+
+### 残作業 (本 PR 外)
+- **「ボタンが赤くなる」報告は未対応**: ユーザは「更新ボタンを押すと赤くなって」とも報告。spinner 停止 (本 PR) とは別現象。merge 後にユーザがスマホでリロードして依然として報告するなら別 issue で対応 (候補: `:focus` の `var(--color-secondary)` (金) を赤と認識 / disabled UA デフォルト / `--yokozuna-text` 適用漏れ)。
+- **Cloudflare Pages auto-deploy 待ち**: main HEAD から deploy preview が production に昇格するまで数分。ユーザにスマホでリロード確認を依頼。
