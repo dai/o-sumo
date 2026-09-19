@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "latestGood": {
+    "updatedAt": "2026-09-18T00:53:34.541981+00:00",
+    "sources": [
+      {
+        "id": "sumo-association",
+        "label": "日本相撲協会",
+        "ok": true,
+        "count": 3
+      },
+      {
+        "id": "dmenu-docomo",
+        "label": "dmenuスポーツ",
+        "ok": true,
+        "count": 5
+      }
+    ],
+    "items": [
+      {
+        "id": "dmenu-docomo-abematimes-10273744",
+        "title": "「あ、見っけ」横綱越しに“チラリ”美しい著名人 「また同じ場所に」「お綺麗です」横綱土俵入りでカメラが捉えた貴重な瞬間",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273744",
+        "publishedAt": "2026-09-18",
+        "publishedAtRaw": "ABEMA TIMES　9月18日 9時35分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-abematimes-10273729",
+        "title": "“57キロ”力士が一撃で「吹っ飛んだ」驚きの光景 「まぁそうなる」「最軽量頑張れ」励ましの声",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273729",
+        "publishedAt": "2026-09-18",
+        "publishedAtRaw": "ABEMA TIMES　9月18日 8時30分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-sanspo-_sports_sumo_MCNRLCATDFA2XBLBCOIMTTZU5Y",
+        "title": "舞の海氏「つまらなそうにしてる人は一人も…白けてるムードではない」／秋場所",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_MCNRLCATDFA2XBLBCOIMTTZU5Y",
+        "publishedAt": "2026-09-18",
+        "publishedAtRaw": "SANSPO　9月18日 8時00分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-abematimes-10273722",
+        "title": "わずか“3歩”の電車道「3コマ漫画みたい」 “イケメンvs妖精”、注目の序ノ口対決で驚きの優しい結末",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273722",
+        "publishedAt": "2026-09-18",
+        "publishedAtRaw": "ABEMA TIMES　9月18日 7時57分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-abematimes-10273715",
+        "title": "「すごい回転した」強烈な投げに力士が大回転 「ブレイキン」「氷の上みたいに」驚きの声",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273715",
+        "publishedAt": "2026-09-18",
+        "publishedAtRaw": "ABEMA TIMES　9月18日 7時35分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "sumo-association-762",
+        "title": "令和9年「大相撲カレンダー」販売のご案内",
+        "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=762",
+        "publishedAt": "2026-09-10",
+        "publishedAtRaw": "令和8年9月10日",
+        "sourceId": "sumo-association",
+        "sourceLabel": "日本相撲協会"
+      },
+      {
+        "id": "sumo-association-761",
+        "title": "大相撲九月場所「土俵祭」のご案内",
+        "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=761",
+        "publishedAt": "2026-09-03",
+        "publishedAtRaw": "令和8年9月3日",
+        "sourceId": "sumo-association",
+        "sourceLabel": "日本相撲協会"
+      },
+      {
+        "id": "sumo-association-759",
+        "title": "お知らせ",
+        "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=759",
+        "publishedAt": "2026-08-07",
+        "publishedAtRaw": "令和8年8月7日",
+        "sourceId": "sumo-association",
+        "sourceLabel": "日本相撲協会"
+      }
+    ],
+    "lastFailureStreak": 0
+  },
+  "lastAttemptAt": "2026-09-18T00:53:34.549870+00:00",
+  "lastSuccessAt": "2026-09-18T00:53:34.541981+00:00",
+  "consecutiveFailures": 0,
+  "processedRuns": {
+    "35048162526": {
+      "attemptedAt": "2026-09-16T02:29:25.410449+00:00",
+      "outcome": "success"
+    },
+    "35055461729": {
+      "attemptedAt": "2026-09-16T04:24:26.682730+00:00",
+      "outcome": "success"
+    },
+    "35064375113": {
+      "attemptedAt": "2026-09-16T06:35:09.969453+00:00",
+      "outcome": "success"
+    },
+    "35073963589": {
+      "attemptedAt": "2026-09-16T08:28:37.322506+00:00",
+      "outcome": "success"
+    },
+    "35084621469": {
+      "attemptedAt": "2026-09-16T10:22:35.952549+00:00",
+      "outcome": "success"
+    },
+    "35168404029": {
+      "attemptedAt": "2026-09-17T00:54:14.543959+00:00",
+      "outcome": "success"
+    },
+    "35174581955": {
+      "attemptedAt": "2026-09-17T02:29:12.176222+00:00",
+      "outcome": "success"
+    },
+    "35181801294": {
+      "attemptedAt": "2026-09-17T04:24:34.661440+00:00",
+      "outcome": "success"
+    },
+    "35190523628": {
+      "attemptedAt": "2026-09-17T06:35:55.593065+00:00",
+      "outcome": "success"
+    },
+    "35199868625": {
+      "attemptedAt": "2026-09-17T08:28:51.624400+00:00",
+      "outcome": "success"
+    },
+    "35210130967": {
+      "attemptedAt": "2026-09-17T10:22:33.564783+00:00",
+      "outcome": "success"
+    },
+    "35293062243": {
+      "attemptedAt": "2026-09-18T00:53:34.549870+00:00",
+      "outcome": "success"
+    }
+  },
+  "lastRunId": "35293062243",
+  "lastPublishedDate": "2026-09-17",
+  "lastPublishedSha": "1b80c06c4937c61dda87795de44c55866388585f",
+  "initializedAt": "2026-09-16T02:29:25.410449+00:00"
+}

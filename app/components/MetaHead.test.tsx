@@ -28,14 +28,18 @@ const managedMetaSelectors = [
   'meta[property="og:description"]',
   'meta[property="og:url"]',
   'meta[property="og:image"]',
+  'meta[property="og:image:secure_url"]',
   'meta[property="og:type"]',
   'meta[property="og:site_name"]',
+  'meta[property="og:locale"]',
   'meta[property="og:image:width"]',
   'meta[property="og:image:height"]',
+  'meta[property="og:image:alt"]',
   'meta[name="twitter:card"]',
   'meta[name="twitter:title"]',
   'meta[name="twitter:description"]',
   'meta[name="twitter:image"]',
+  'meta[name="twitter:image:alt"]',
 ];
 
 afterEach(() => {
@@ -77,17 +81,21 @@ describe('MetaHead', () => {
       expect(document.title).toBe('2026年7月場所 取組・星取表 | o-sumo');
       expect(contentOf('meta[name="description"]')).toBe('2026年7月場所の取組結果と星取表を確認できます。');
       expect(contentOf('meta[property="og:url"]')).toBe('https://osada.us/202607-torikumi/');
-      expect(contentOf('meta[property="og:image"]')).toBe('https://osada.us/og-default.jpg?v=20260913');
+      expect(contentOf('meta[property="og:image"]')).toBe('https://osada.us/images/og-default.jpg?v=20260913');
+      expect(contentOf('meta[property="og:image:secure_url"]')).toBe('https://osada.us/images/og-default.jpg?v=20260913');
       expect(contentOf('meta[property="og:site_name"]')).toBe('o-sumo');
-      expect(contentOf('meta[property="og:image:width"]')).toBe('1280');
-      expect(contentOf('meta[property="og:image:height"]')).toBe('640');
+      expect(contentOf('meta[property="og:locale"]')).toBe('ja_JP');
+      expect(contentOf('meta[property="og:image:width"]')).toBe('1200');
+      expect(contentOf('meta[property="og:image:height"]')).toBe('630');
+      expect(contentOf('meta[property="og:image:alt"]')).toBe('o-sumo 大相撲情報サイトのOGP画像');
       expect(contentOf('meta[name="twitter:card"]')).toBe('summary_large_image');
       expect(contentOf('meta[property="og:title"]')).toBe('2026年7月場所 取組・星取表 | o-sumo');
       expect(contentOf('meta[property="og:description"]')).toBe('2026年7月場所の取組結果と星取表を確認できます。');
       expect(contentOf('meta[property="og:type"]')).toBe('website');
       expect(contentOf('meta[name="twitter:title"]')).toBe('2026年7月場所 取組・星取表 | o-sumo');
       expect(contentOf('meta[name="twitter:description"]')).toBe('2026年7月場所の取組結果と星取表を確認できます。');
-      expect(contentOf('meta[name="twitter:image"]')).toBe('https://osada.us/og-default.jpg?v=20260913');
+      expect(contentOf('meta[name="twitter:image"]')).toBe('https://osada.us/images/og-default.jpg?v=20260913');
+      expect(contentOf('meta[name="twitter:image:alt"]')).toBe('o-sumo 大相撲情報サイトのOGP画像');
       for (const selector of managedMetaSelectors) {
         expect(document.head.querySelectorAll(selector)).toHaveLength(1);
       }

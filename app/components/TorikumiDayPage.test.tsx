@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { afterEach, vi } from 'vitest';
@@ -6,7 +6,7 @@ import TorikumiDayPage from './TorikumiDayPage';
 import { MARCH2026_TORIKUMI_DATA } from '../lib/march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from '../lib/may2026-data';
 import { JULY2026_TORIKUMI_DATA } from '../lib/july2026-data';
-import { torikumiArchive, type TorikumiArchiveDay } from '../lib/torikumi-data';
+import { torikumiArchive, type TorikumiArchiveDay, type TorikumiDataSet } from '../lib/torikumi-data';
 import { getBanzukePathForDateKey, getHubPathForDateKey } from '../lib/torikumi-routes';
 import * as torikumiRoutes from '../lib/torikumi-routes';
 import { formatUpdatedAt } from '../lib/updated-at';
@@ -454,5 +454,116 @@ describe('TorikumiDayPage', () => {
 
     localStorage.clear();
   });
+
+  it('renders the manual refresh button inside the day page', () => {
+    const firstResultDay = torikumiArchive.resultDays[0];
+    renderPage(firstResultDay, 'result');
+
+    expect(screen.getByRole('button', { name: '最新に更新' })).toBeInTheDocument();
+  });
+
+  it('dispatches the torikumi-updated event when refreshed data differs', async () => {
+    const firstResultDay = torikumiArchive.resultDays[0];
+    const refreshed: TorikumiDataSet = {
+      ...torikumiArchive,
+      resultUpdatedAt: '2099-12-31T23:59:59+09:00',
+    };
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => refreshed,
+    }));
+
+    const listener = vi.fn();
+    window.addEventListener('o-sumo:torikumi-updated', listener);
+
+    try {
+      const user = userEvent.setup();
+      renderPage(firstResultDay, 'result');
+      await user.click(screen.getByRole('button', { name: '最新に更新' }));
+
+      await waitFor(() => {
+        expect(listener).toHaveBeenCalled();
+      });
+    } finally {
+      window.removeEventListener('o-sumo:torikumi-updated', listener);
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it('stays in the up-to-date state when refreshed data matches the dataset', async () => {
+    const firstResultDay = torikumiArchive.resultDays[0];
+    const unchanged: TorikumiDataSet = { ...torikumiArchive };
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => unchanged,
+    }));
+
+    const listener = vi.fn();
+    window.addEventListener('o-sumo:torikumi-updated', listener);
+
+    try {
+      const user = userEvent.setup();
+      renderPage(firstResultDay, 'result');
+      await user.click(screen.getByRole('button', { name: '最新に更新' }));
+
+      await waitFor(() => {
+        expect(screen.getByRole('button', { name: '最新です' })).toBeInTheDocument();
+      }, { timeout: 1500 });
+
+      expect(listener).not.toHaveBeenCalled();
+    } finally {
+      window.removeEventListener('o-sumo:torikumi-updated', listener);
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it('surfaces an error state when the fetch rejects (AbortController or network failure)', async () => {
+    const firstResultDay = torikumiArchive.resultDays[0];
+    vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new DOMException('The operation was aborted', 'AbortError')));
+
+    try {
+      const user = userEvent.setup();
+      renderPage(firstResultDay, 'result');
+      await user.click(screen.getByRole('button', { name: '最新に更新' }));
+
+      await waitFor(() => {
+        expect(screen.getByRole('button', { name: '更新に失敗しました' })).toBeInTheDocument();
+      });
+
+      // error 状態から 3 秒以内に idle (最新に更新) へ復帰する。
+      await waitFor(() => {
+        expect(screen.getByRole('button', { name: '最新に更新' })).toBeInTheDocument();
+      }, { timeout: 4000 });
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it('surfaces an error state when SW ignores AbortSignal and fetch hangs', async () => {
+    // Workbox の NetworkFirst が SW 内で `request.signal` を尊重せず fetch が永遠に pending
+    // するシナリオを再現。Promise.race の timeout (8 秒) が発火して error 状態に遷移する。
+    // fake timer だと microtask scheduling の都合で fetchPromise (永久 pending) と
+    // timeoutPromise の race を同期化できないため、real timer で 8 秒 + 3 秒を待つ。
+    const firstResultDay = torikumiArchive.resultDays[0];
+    vi.stubGlobal('fetch', vi.fn().mockImplementation(() => new Promise(() => {})));
+
+    try {
+      const user = userEvent.setup();
+      renderPage(firstResultDay, 'result');
+      await user.click(screen.getByRole('button', { name: '最新に更新' }));
+
+      // Promise.race の 8 秒 timeout が発火するのを real timer で待つ。
+      await waitFor(() => {
+        expect(screen.getByRole('button', { name: '更新に失敗しました' })).toBeInTheDocument();
+      }, { timeout: 10000 });
+
+      // error 状態から 3 秒以内に idle (最新に更新) へ復帰する。
+      await waitFor(() => {
+        expect(screen.getByRole('button', { name: '最新に更新' })).toBeInTheDocument();
+      }, { timeout: 5000 });
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  }, 15000);
 });
 

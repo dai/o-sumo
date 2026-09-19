@@ -117,7 +117,10 @@
     "analyticsFeatureDescription": "勝ち星、無敗力士、三賞候補、決まり手傾向",
     "analyticsFeatureAction": "アナリティクスを見る",
     "heroGyoji": "行司名鑑",
-    "heroYobidashi": "呼出名鑑"
+    "heroYobidashi": "呼出名鑑",
+    "bannerShareTitle": "o-sumo — 大相撲の番付・星取・取組を、ひとつに。",
+    "bannerShareDescription": "最新番付、リアルタイム星取、力士名鑑、データ分析を網羅した非公式ファンサイト。",
+    "ogImageAlt": "o-sumo 大相撲情報サイトのOGP画像"
   },
   "highlights": {
     "sectionTitle": "今日のみどころ",
@@ -359,7 +362,10 @@
       "footerHome": "ホーム",
       "footerDaisuke": "Daisuke on X",
       "footerGithub": "GitHub",
-      "divisionMatchCount": "{{division}} ({{count}}番)"
+      "divisionMatchCount": "{{division}} ({{count}}番)",
+      "manualRefresh": "最新に更新",
+      "refreshFailed": "更新に失敗しました",
+      "upToDate": "最新です"
     }
   },
   "comparison": {
@@ -368,6 +374,9 @@
     "description": "幕内・十両力士の合口（直接対戦成績）、体格差、得意決まり手、通算成績を徹底比較できます。",
     "shareMetaTitle": "#{{first}} と #{{second}} の合口は？徹底比較 | o-sumo",
     "shareMetaDescription": "大相撲力士{{first}}と{{second}}の合口、体格、得意決まり手、通算成績を比較できます。",
+    "ogImageAlt": "o-sumo 力士比較ページのOGP画像",
+    "shareBannerTitle": "#{{first}} vs #{{second}} — 合口・体格・技を徹底比較",
+    "shareBannerHashtags": "#大相撲 #sumo #osumo",
     "selectTitle": "比較する力士を選ぶ",
     "selectDescription": "力士{{max}}人を選択すると合口・体格・技の比較が展開します",
     "searchLabel": "比較対象を探す",
@@ -412,6 +421,10 @@
     "kimariteSubtitle": "主な勝ち技の傾向比較",
     "kimariteNone": "集計データなし",
     "currentBashoRecord": "今場所成績",
+    "standoffTitle": "立ち合いメーター",
+    "standoffSubtitle": "直近の白星の流れを「間」を挟んで対比",
+    "standoffShikiri": "仕切り",
+    "standoffAriaLabel": "{{nameA}} 直近 {{countA}} 番 {{winsA}} 勝、{{nameB}} 直近 {{countB}} 番 {{winsB}} 勝",
     "heya": "所属部屋",
     "age": "生年月日・年齢",
     "careerWinRate": "通算勝率"
@@ -466,6 +479,13 @@
     "detailTitle": "力士プロフィール",
     "profileMetaTitle": "{{name}} | 力士プロフィール | o-sumo",
     "profileMetaDescription": "{{name}}の大相撲力士プロフィール。番付、成績、出身地などを紹介します。",
+    "ogImageAlt": "o-sumo 力士プロフィールページのOGP画像",
+    "profileShareBannerTitle": "{{name}} — 力士プロフィール",
+    "kimariteRadarTitle": "得意技レーダー",
+    "kimariteRadarSubtitle": "最も多い勝ち技を上位から表示",
+    "kimariteCount": "{{count}} 勝",
+    "boutTrailTitle": "直近の白星の流れ",
+    "boutTrailLabel": "直近 {{count}} 番の白星の流れ",
     "detailDescription": "力士IDに対応するプロフィールを表示します。",
     "updatedAt": "更新日: {{date}}",
     "loading": "読み込み中です。",

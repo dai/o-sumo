@@ -11,7 +11,7 @@ import {
   type ShareCollection,
 } from '../app/lib/share-meta-response';
 import type { ShareMetaOverride } from '../app/lib/share-meta';
-import { resolvePageMeta } from '../app/lib/page-meta';
+import { resolvePageMeta, type ImageMeta } from '../app/lib/page-meta';
 import { buildSeoNoscriptHtml, type SeoNoscriptContext } from '../app/lib/seo-noscript';
 
 /**
@@ -126,6 +126,10 @@ interface PageMetadataForRewrite {
   title: string;
   description: string;
   canonicalUrl: string;
+  imageUrl: string;
+  imageWidth: number;
+  imageHeight: number;
+  imageAlt: string;
 }
 
 export function rewritePageMetadata(response: Response, metadata: PageMetadataForRewrite) {
@@ -138,14 +142,24 @@ export function rewritePageMetadataWithNoscript(
   noscriptHtml: string | null,
 ) {
   const canonicalHref = escapeHtmlAttribute(metadata.canonicalUrl);
+  const imageAlt = escapeHtmlAttribute(metadata.imageAlt);
+  const imageWidth = String(metadata.imageWidth);
+  const imageHeight = String(metadata.imageHeight);
   const rewriter = new HTMLRewriter()
     .on('title', { element: (element: any) => element.setInnerContent(metadata.title) })
     .on('meta[name="description"]', { element: (element: any) => element.setAttribute('content', metadata.description) })
     .on('meta[property="og:title"]', { element: (element: any) => element.setAttribute('content', metadata.title) })
     .on('meta[property="og:description"]', { element: (element: any) => element.setAttribute('content', metadata.description) })
     .on('meta[property="og:url"]', { element: (element: any) => element.setAttribute('content', metadata.canonicalUrl) })
+    .on('meta[property="og:image"]', { element: (element: any) => element.setAttribute('content', metadata.imageUrl) })
+    .on('meta[property="og:image:secure_url"]', { element: (element: any) => element.setAttribute('content', metadata.imageUrl) })
+    .on('meta[property="og:image:width"]', { element: (element: any) => element.setAttribute('content', imageWidth) })
+    .on('meta[property="og:image:height"]', { element: (element: any) => element.setAttribute('content', imageHeight) })
+    .on('meta[property="og:image:alt"]', { element: (element: any) => element.setAttribute('content', imageAlt) })
     .on('meta[name="twitter:title"]', { element: (element: any) => element.setAttribute('content', metadata.title) })
     .on('meta[name="twitter:description"]', { element: (element: any) => element.setAttribute('content', metadata.description) })
+    .on('meta[name="twitter:image"]', { element: (element: any) => element.setAttribute('content', metadata.imageUrl) })
+    .on('meta[name="twitter:image:alt"]', { element: (element: any) => element.setAttribute('content', imageAlt) })
     .on('link[rel="canonical"]', { element: (element: any) => element.setAttribute('href', metadata.canonicalUrl) })
     .on('head', {
       element: (element: any) =>
@@ -161,11 +175,15 @@ export function rewritePageMetadataWithNoscript(
   return new Response(transformed.body, { status: transformed.status, statusText: transformed.statusText, headers });
 }
 
-function shareOverrideToMetadata(metadata: ShareMetaOverride): PageMetadataForRewrite {
+function shareOverrideToMetadata(metadata: ShareMetaOverride, image: ImageMeta): PageMetadataForRewrite {
   return {
     title: metadata.title,
     description: metadata.description,
     canonicalUrl: metadata.socialUrl,
+    imageUrl: image.primary,
+    imageWidth: image.width,
+    imageHeight: image.height,
+    imageAlt: image.alt,
   };
 }
 
@@ -273,6 +291,10 @@ export const onRequest = async (context: any): Promise<Response> => {
             title: pageMeta.title,
             description: pageMeta.description,
             canonicalUrl: pageMeta.canonicalUrl,
+            imageUrl: pageMeta.image.primary,
+            imageWidth: pageMeta.image.width,
+            imageHeight: pageMeta.image.height,
+            imageAlt: pageMeta.image.alt,
           },
           noscriptHtml,
         );
@@ -313,9 +335,10 @@ export const onRequest = async (context: any): Promise<Response> => {
       }
     : noscriptContext;
   const noscriptHtml = await buildSeoNoscriptHtml(requestUrl.pathname, override.title, noscriptContextForProfile);
+  const pageMeta = resolvePageMeta(requestUrl.pathname);
   return rewritePageMetadataWithNoscript(
     response,
-    shareOverrideToMetadata(override),
+    shareOverrideToMetadata(override, pageMeta.image),
     noscriptHtml,
   );
 };

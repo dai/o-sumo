@@ -144,6 +144,11 @@
 - Daily torikumi run 35199436940 (validator rejected fusen/absentee overlap for rikushi 3988 in day=5) was a data-driven failure that auto-healed on next upstream refresh — no validator change needed.
 - Discord notification `curl: (6) Could not resolve host` is a secondary noise — `notify_discord.sh` uses `|| echo '::warning::'`, not blocking. Worth a separate investigation later (DNS for `DISCORD_WEBHOOK_URL` host).
 
+- PR #628 (`fix(ci): treat stale or future-dated news candidates as failed attempts`) を 2026-09-17 に squash merge (CI: Cloudflare Pages x 2 + test 緑)。origin/main HEAD `a964d477`、local main merge commit `e0ec985` (Co-Authored-By 付与)、branch `fix/news-state-graceful-skip` 削除済。
+- 修正点: PR #628 head (82956bf) の tree には本来 4 files (news_state.py / news_state_test.py / tasks/lessons.md / tasks/todo.md) のはずが、`app/lib/sumo-data.ts` / `app/lib/torikumi-data.ts` / `public/api/v1/banzuke.json` / `public/api/v1/torikumi.json` の data ファイル 4 つも混入していた (過去の cherry-pick 時に working tree dirty だった)。`gh pr merge 628 --squash` が main HEAD (5fc7951) と conflict (両 branch が tasks/lessons.md / tasks/todo.md に同一 news_state section を追加) したため、PR branch を df6d856 + news_state.py + news_state_test.py のみの clean な commit (`e0ffbc7`) に作り直して force-push してから merge。
+- **force-push syntax 教訓**: `git push --force-with-lease origin <branch>` だけだとローカル branch 不在で "Everything up-to-date" 誤判定される。`origin <src>:<dst>` 形式で `git push --force-with-lease origin fix/news-state-graceful-skip:fix/news-state-graceful-skip` のように明示する必要あり。
+- 副次発見: PR #628 head (82956bf) の親は実は `0c1dc88` (PR #627 refactor) で、PR の GitHub base `df6d856` とは別 commit — cherry-pick 時点の main HEAD で base 表記されたため。clean な PR 作成時は df6d856 を detached HEAD checkout → 必要 files のみ checkout で対応。
+
 # Rikushi 3988 absentees overlap (2026-09-17)
 
 - [x] Identify `validate_torikumi.py:129` rejecting day=5 participant/absentee overlap [3988] via `gh run view --log`
@@ -191,3 +196,75 @@
 - [ ] blog.json diff なし
 - [ ] npm run build 通過
 - [ ] 新 PR 作成
+
+# Torikumi Manual Refresh (2026-09-18)
+
+プラン: `C:\Users\dai\.claude\plans\cozy-wondering-volcano.md`
+設計: `tasks\plans\2026-09-18-torikumi-ux-design.md`
+
+## ブランチ
+- [x] `feat/torikumi-manual-refresh` を origin/main から新規作成 + push
+
+## Commit 1: refactor
+- [x] `app/lib/scroll-to-hash.ts` 新規作成 (`scrollToAnchorWithRetry` を抽出)
+- [x] `app/components/ScrollToHash.tsx` の rAF リトライを `scrollToAnchorWithRetry` 呼び出しに置換
+- [x] `app/components/ScrollToHash.test.tsx` の既存テストがパス (2/2)
+- [x] `npx tsc --noEmit` 通過
+
+## Commit 2: hook
+- [x] `app/lib/use-scroll-restore.ts` 新規作成 (capture/restore/clear + suppress flag)
+- [x] `app/lib/use-scroll-restore.test.ts` 新規作成 (pure helpers + hook + suppress flag lifecycle)
+- [x] `npm test -- --run app/lib/use-scroll-restore.test.ts` パス (12/12)
+- [x] `npx tsc --noEmit` 通過
+
+## Commit 3: ボタン + i18n
+- [x] `app/components/ManualRefreshButton.tsx` 新規作成 (状態機械 + ARIA)
+- [x] `app/components/ManualRefreshButton.test.tsx` 新規作成 (idle/loading/upToDate/error 分岐)
+- [x] `src/locales/ja/common.json` の `torikumi` 配下に `manualRefresh` / `refreshFailed` / `upToDate` 追加
+- [x] `src/locales/en/common.json` の `torikumi` 配下に 3 キー追加
+- [x] `npm test -- --run app/components/ManualRefreshButton.test.tsx` パス
+
+## Commit 4: 組み込み
+- [x] `app/components/ScrollToHash.tsx` に suppress-flag guard を追加
+- [x] `app/components/TorikumiDayPage.tsx` に `liveData` state, `handleRefresh`, `useScrollRestore`, `<ManualRefreshButton>` を追加
+- [x] `app/torikumi/page.css` に `.torikumi-refresh-*` ブロックを追記
+- [x] `app/components/TorikumiDayPage.test.tsx` に回帰テスト追加
+- [x] `npm test -- --run app/components/TorikumiDayPage.test.tsx` パス
+
+## 検証
+- [x] `npm run typecheck` 通過
+- [x] `npm test -- --run` 全スイートパス (既存 68 + 新規 4 ファイル)
+- [x] `npm run build` 通過
+- [x] 手動スモーク (`http://localhost:3001/202609-torikumi/` でボタン押下とスクロール保持確認)
+- [x] 4 コミット + push + `feat/torikumi-manual-refresh` PR 作成
+
+## レビュー (実装後記入)
+
+### 完了内容
+- **ブランチ**: `feat/torikumi-manual-refresh` を origin/main から作成
+- **4 コミット** (新規は 2 つ、既存 2 つは前フェーズで push 済み):
+  - `4180899` `refactor(torikumi): extract scrollToAnchorWithRetry`
+  - `231b26a` `feat(torikumi): add useScrollRestore hook`
+  - `41ac4b8` `feat(torikumi): add ManualRefreshButton with i18n labels`
+  - `db43104` `feat(torikumi): wire manual refresh + scroll restore in TorikumiDayPage`
+- **PR**: `feat/torikumi-manual-refresh` を main に向けて作成 (URL は push 後の出力参照)
+
+### 検証結果
+| 項目 | 結果 |
+|---|---|
+| TypeScript typecheck | エラーなし |
+| vitest (Commit 4 影響 4 ファイル) | 45/45 緑 |
+| vitest (全スイート 72 ファイル / 587 tests) | 587/587 緑 (リグレッションなし) |
+| npm run build | ✓ built in 2.38s, PWA 121 entries precached |
+
+### 設計上の決定 (実装後の補足)
+- **ManualRefreshButton**: `aria-label` を外して visible text を accessible name に使用 (state 遷移時に `getByRole` が破綻しないため)。代わりに `aria-live="polite"` で status 変更を screen reader に通知。
+- **型 guard `isTorikumiDataSet`**: `app/lib/torikumi-data-validate.ts` に新規。`app/lib/rikishi-profile.ts:203` の `isRikishiMatchupsResponse` パターンを踏襲 (function-as-type-guard)。
+- **`stripTrailingSlash` export**: 元は `torikumi-routes.ts` 内部 private だったが、`sessionStorage` キー用に `TorikumiDayPage` から参照するため export 化 (1 文字追加で済む軽微な API 拡張)。
+- **scroll suppression window**: 1 秒 TTL の `window.__osumoScrollSuppressUntil` フラグで、`ScrollToHash` の `scrollTo(0, 0)` をガード。`use-scroll-restore.ts` で `Window` 型拡張 (`declare global`) を宣言。
+- **CSS レシピ**: 既存の `.mokufuda-chip` (lines 77-146) を踏襲した Digital Washi — 0 px radius、primary/secondary 色、dark theme override、`prefers-reduced-motion` 対応 spinner。
+
+### 残作業 (本 PR 外)
+- **手動スモーク (任意)**: `npm run dev` → `http://localhost:3001/202609-torikumi/` でボタン押下 → スクロール保持確認。Cloudflare Pages プレビューでも確認可。
+- **CDN 60 秒キャッシュ**: 現状維持 (ユーザー了解済み「10 分以内の反映を保証しない」)。
+- **`useScrollRestore` のテスト改善余地**: 同一 ID を capture 後の挙動は現状仕様にないが、必要なら将来追加。

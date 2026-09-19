@@ -2,7 +2,17 @@ import { chromium } from 'playwright';
 import { fileURLToPath } from 'node:url';
 
 const SITE_ORIGIN = 'https://osada.us';
-const DEFAULT_IMAGE_URL = `${SITE_ORIGIN}/og-default.jpg?v=20260913`;
+const IMAGE_VERSION = '20260913';
+const ACCEPTED_IMAGE_URLS = new Set([
+  `${SITE_ORIGIN}/images/og-default.jpg?v=${IMAGE_VERSION}`,
+  `${SITE_ORIGIN}/images/og-default-twitter.png?v=${IMAGE_VERSION}`,
+  `${SITE_ORIGIN}/images/og-rikishi-default.jpg?v=${IMAGE_VERSION}`,
+  `${SITE_ORIGIN}/images/og-compare-default.jpg?v=${IMAGE_VERSION}`,
+  // Legacy fallback for the prerelease 1280×640 jpg still served by some
+  // intermediaries. Remove once the CDN edge catches up.
+  `${SITE_ORIGIN}/og-default.jpg?v=${IMAGE_VERSION}`,
+]);
+const ACCEPTED_IMAGE_DIMENSIONS = new Set(['1200x630', '1280x640', '1500x500']);
 const HEAD_FIELDS = [
   'canonical',
   'description',
@@ -10,14 +20,18 @@ const HEAD_FIELDS = [
   'og:description',
   'og:url',
   'og:image',
+  'og:image:secure_url',
   'og:type',
   'og:site_name',
+  'og:locale',
   'og:image:width',
   'og:image:height',
+  'og:image:alt',
   'twitter:card',
   'twitter:title',
   'twitter:description',
   'twitter:image',
+  'twitter:image:alt',
 ];
 
 const REPRESENTATIVE_PAGES = [
@@ -234,10 +248,18 @@ export function assessHeadMetadata(metadata, expected = {}) {
   if (expectations.canonicalUrl && canonical.length === 1 && canonical[0] !== expectations.canonicalUrl) {
     issues.push(`canonical must equal ${expectations.canonicalUrl}`);
   }
-  for (const imageField of ['og:image', 'twitter:image']) {
+  for (const imageField of ['og:image', 'og:image:secure_url', 'twitter:image']) {
     const values = metadata[imageField] ?? [];
-    if (values.length === 1 && values[0] !== DEFAULT_IMAGE_URL) {
-      issues.push(`${imageField} must be ${DEFAULT_IMAGE_URL}`);
+    if (values.length === 1 && !ACCEPTED_IMAGE_URLS.has(values[0])) {
+      issues.push(`${imageField} must be one of the accepted OGP images (got ${values[0]})`);
+    }
+  }
+  const width = metadata['og:image:width'] ?? [];
+  const height = metadata['og:image:height'] ?? [];
+  if (width.length === 1 && height.length === 1) {
+    const dimension = `${width[0]}x${height[0]}`;
+    if (!ACCEPTED_IMAGE_DIMENSIONS.has(dimension)) {
+      issues.push(`og:image dimensions ${dimension} are not in the accepted set`);
     }
   }
   if (expectations.title) {

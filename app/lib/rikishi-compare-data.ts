@@ -166,3 +166,42 @@ export function calculateCareerWinRate(profile: RikishiProfile): { rate: string;
     total: wins + losses + (profile.careerStats.draws ?? 0),
   };
 }
+
+export interface RecentBoutResult {
+  outcome: 'win' | 'loss' | 'draw';
+  glyph: '○' | '●' | '−';
+  kimarite?: string;
+}
+
+/**
+ * Walk through the most recent published tournament results and return the
+ * last `limit` bouts the given rikishi participated in (most-recent first).
+ * Iterates July 2026 → May 2026 → March 2026, which is the natural
+ * publication order used elsewhere on the site.
+ */
+export function getRecentBouts(shikona: string, limit = 5): RecentBoutResult[] {
+  if (!shikona || limit <= 0) return [];
+  const results: RecentBoutResult[] = [];
+  const datasets = [JULY2026_TORIKUMI_DATA, MAY2026_TORIKUMI_DATA, MARCH2026_TORIKUMI_DATA];
+
+  for (const archive of datasets) {
+    const days = [...(archive.resultDays ?? [])].reverse();
+    for (const day of days) {
+      for (const divisionDay of [day.data.makuuchi, day.data.juryo]) {
+        for (const match of divisionDay.matches) {
+          if (match.eastName !== shikona && match.westName !== shikona) continue;
+          if (match.winner === shikona) {
+            results.push({ outcome: 'win', glyph: '○', kimarite: match.kimarite });
+          } else if (match.winner === null || match.winner === undefined) {
+            results.push({ outcome: 'draw', glyph: '−' });
+          } else {
+            results.push({ outcome: 'loss', glyph: '●' });
+          }
+          if (results.length >= limit) return results;
+        }
+      }
+    }
+  }
+
+  return results;
+}
