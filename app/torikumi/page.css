@@ -1,3 +1,4 @@
+/* Pull full torikumi page styles from main, then override refresh to viewport-fixed mount. */
 @import url('https://cdn.jsdelivr.net/gh/dai/o-sumo@main/app/torikumi/page.css');
 
 /* Manual refresh button — fixed to viewport so it follows scroll on day pages */
@@ -13,91 +14,9 @@
 }
 
 .torikumi-refresh-btn {
-  position: static;
+  position: static !important;
+  right: auto !important;
+  bottom: auto !important;
   pointer-events: auto;
-  border: none;
-  border-radius: 0;
-  background: var(--color-primary);
-  color: var(--surface);
-  padding: 0.6rem 1rem;
-  font-weight: 600;
-  font-family: var(--font-serif);
-  cursor: pointer;
-  transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  letter-spacing: 0.02em;
-  box-shadow: var(--shadow-soft);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .torikumi-refresh-btn {
-    transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
-  }
-}
-
-/* Hover と focus-visible は別チャネルで扱う。
-   モバイル Safari (15+) ではボタンタップで :focus-visible が発火するため、
-   背景変更を hover と focus-visible で共有するとタップ中にボタン全面が
-   var(--color-secondary) (orange) になり、エラー色に見える UX バグになる。
-   hover は background 変化、focus-visible は outline リングのみに分離する。 */
-.torikumi-refresh-btn:hover {
-  background: var(--color-secondary);
-  color: var(--yokozuna-text, var(--surface));
-}
-
-.torikumi-refresh-btn:focus-visible {
-  outline: 2px solid var(--color-secondary);
-  outline-offset: 2px;
-}
-
-.torikumi-refresh-btn[aria-busy="true"] {
-  opacity: 0.7;
-  cursor: progress;
-}
-
-.torikumi-refresh-btn__spinner {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  border: 2px solid currentColor;
-  border-top-color: transparent;
-  border-radius: 50%;
-}
-
-/* Spinner は loading 中 (aria-busy="true") のみアニメーションさせる。
-   以前は spinner 要素に無条件で animation を付けていたため、idle / upToDate / error
-   状態でも「クルクル回り続ける」ように見える UX バグになっていた。 */
-.torikumi-refresh-btn[aria-busy="true"] .torikumi-refresh-btn__spinner {
-  animation: torikumi-refresh-spin 0.8s linear infinite;
-}
-
-@keyframes torikumi-refresh-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .torikumi-refresh-btn[aria-busy="true"] .torikumi-refresh-btn__spinner {
-    animation: none;
-    border-top-color: currentColor;
-  }
-}
-
-[data-theme='dark'] .torikumi-refresh-btn {
-  background: var(--color-primary, #c1c6d9);
-  color: #0f131d;
-}
-
-/* Dark テーマでも hover と focus-visible を分離 (上記 light 版コメント参照)。 */
-[data-theme='dark'] .torikumi-refresh-btn:hover {
-  background: var(--color-secondary, #fed65b);
-  color: #0f131d;
-}
-
-[data-theme='dark'] .torikumi-refresh-btn:focus-visible {
-  outline: 2px solid var(--color-secondary, #fed65b);
-  outline-offset: 2px;
+  max-width: none;
 }
