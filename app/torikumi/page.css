@@ -1107,12 +1107,30 @@
   font-family: var(--font-serif);
   cursor: pointer;
   z-index: 100;
-  transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
+  transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease,
+    transform 240ms ease, opacity 240ms ease;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   letter-spacing: 0.02em;
   box-shadow: var(--shadow-soft);
+}
+
+.torikumi-refresh-btn--hidden {
+  transform: translateY(calc(100% + 1.5rem));
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .torikumi-refresh-btn {
+    transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
+  }
+  .torikumi-refresh-btn--hidden {
+    transform: none;
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
 .torikumi-refresh-btn:hover,

@@ -488,22 +488,33 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
   useScrollRestore(strippedPathname);
   const handleRefresh = React.useCallback(async (): Promise<{ updated: boolean }> => {
     captureScrollPosition(strippedPathname);
-    const response = await fetch('/api/v1/torikumi.json', { cache: 'no-store' });
-    if (!response.ok) {
-      throw new Error(`Torikumi refresh failed: ${response.status}`);
+    // CDN ミスや回線遅延で fetch がハングしても、ボタンが loading のまま固まらないよう
+    // 8 秒経ったら AbortController で打ち切る (catch で error 状態 → 3 秒で idle に復帰)。
+    const abortController = new AbortController();
+    const timeoutId = window.setTimeout(() => abortController.abort(), 8000);
+    try {
+      const response = await fetch('/api/v1/torikumi.json', {
+        cache: 'no-store',
+        signal: abortController.signal,
+      });
+      if (!response.ok) {
+        throw new Error(`Torikumi refresh failed: ${response.status}`);
+      }
+      const payload: unknown = await response.json();
+      if (!isTorikumiDataSet(payload)) {
+        throw new Error('Torikumi dataset shape mismatch');
+      }
+      const updated = mode === 'result'
+        ? payload.resultUpdatedAt !== archive.resultUpdatedAt
+        : payload.scheduleUpdatedAt !== archive.scheduleUpdatedAt;
+      if (updated) {
+        setLiveData(payload);
+        window.dispatchEvent(new CustomEvent(SCROLL_RESTORE_EVENT));
+      }
+      return { updated };
+    } finally {
+      window.clearTimeout(timeoutId);
     }
-    const payload: unknown = await response.json();
-    if (!isTorikumiDataSet(payload)) {
-      throw new Error('Torikumi dataset shape mismatch');
-    }
-    const updated = mode === 'result'
-      ? payload.resultUpdatedAt !== archive.resultUpdatedAt
-      : payload.scheduleUpdatedAt !== archive.scheduleUpdatedAt;
-    if (updated) {
-      setLiveData(payload);
-      window.dispatchEvent(new CustomEvent(SCROLL_RESTORE_EVENT));
-    }
-    return { updated };
   }, [strippedPathname, archive, mode]);
   const bashoTitle = formatBashoTitle({ year: archive.year, bashoName: archive.bashoName, monthKey }, i18n.language);
   const prevDay = getAdjacentDay(day, mode, 'prev');
