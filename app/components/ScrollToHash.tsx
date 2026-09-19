@@ -6,6 +6,8 @@ export default function ScrollToHash() {
   const { hash, pathname } = useLocation();
 
   React.useEffect(() => {
+    // Suppress scroll resets while use-scroll-restore is restoring position.
+    if (Date.now() <= (window.__osumoScrollSuppressUntil ?? 0)) return;
     if (!hash) {
       window.scrollTo(0, 0);
       return;

@@ -36,7 +36,7 @@ export interface ArchiveHubRouteDefinition {
   page: 'banzuke' | TorikumiPageMode;
 }
 
-function stripTrailingSlash(path: string): string {
+export function stripTrailingSlash(path: string): string {
   if (path === '/') {
     return path;
   }

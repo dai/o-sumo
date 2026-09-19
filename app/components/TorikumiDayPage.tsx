@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { canonicalShikona, divisionAnchorId } from '../lib/rikishi-display';
 import SortToggle from './SortToggle';
 import { type SortOrder, sortMatches } from '../lib/sorting';
-import { type TorikumiArchiveDay, type TorikumiDivisionDay, type TorikumiMatch } from '../lib/torikumi-data';
+import { type TorikumiArchiveDay, type TorikumiDataSet, type TorikumiDivisionDay, type TorikumiMatch } from '../lib/torikumi-data';
 import { banzukeRikishiPath, extractRikishiIdFromProfileUrl, fetchRikishiMatchups } from '../lib/rikishi-profile';
 import { buildMatchupWinsMap, type MatchupWinsMap } from '../lib/daily-highlights-data';
 import MatchupPopup from './MatchupPopup';
@@ -14,6 +14,7 @@ import {
   getAdjacentDay,
   getDayPath,
   isElapsedArchiveDay,
+  stripTrailingSlash,
   type TorikumiPageMode,
 } from '../lib/torikumi-routes';
 import HomeLink from './HomeLink';
@@ -24,6 +25,9 @@ import { formatUpdatedAt } from '../lib/updated-at';
 import { getBanzukeDataByMonthKey, CURRENT_BASHO_ID } from '../lib/archive-basho-data';
 import { useMyRikishi } from '../lib/my-rikishi';
 import { formatBashoTitle } from '../lib/basho-meta';
+import ManualRefreshButton from './ManualRefreshButton';
+import { captureScrollPosition, SCROLL_RESTORE_EVENT, useScrollRestore } from '../lib/use-scroll-restore';
+import { isTorikumiDataSet } from '../lib/torikumi-data-validate';
 
 const BOTTOM_TO_TOP_DIVISIONS: Array<'幕内' | '十両'> = ['十両', '幕内'];
 
@@ -476,7 +480,31 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
   const [myRikishiOnly, setMyRikishiOnly] = React.useState(false);
   const { isSaved } = useMyRikishi();
   const { t, i18n } = useTranslation('common');
-  const { monthKey, archive, resultPath, schedulePath, banzukePath } = getArchiveForPath(day.pathDate);
+  const { monthKey, archive: initialArchive, resultPath, schedulePath, banzukePath } = getArchiveForPath(day.pathDate);
+  const [liveData, setLiveData] = React.useState<TorikumiDataSet | null>(null);
+  const archive = liveData ?? initialArchive;
+  const { pathname } = useLocation();
+  const strippedPathname = stripTrailingSlash(pathname);
+  useScrollRestore(strippedPathname);
+  const handleRefresh = React.useCallback(async (): Promise<{ updated: boolean }> => {
+    captureScrollPosition(strippedPathname);
+    const response = await fetch('/api/v1/torikumi.json', { cache: 'no-store' });
+    if (!response.ok) {
+      throw new Error(`Torikumi refresh failed: ${response.status}`);
+    }
+    const payload: unknown = await response.json();
+    if (!isTorikumiDataSet(payload)) {
+      throw new Error('Torikumi dataset shape mismatch');
+    }
+    const updated = mode === 'result'
+      ? payload.resultUpdatedAt !== archive.resultUpdatedAt
+      : payload.scheduleUpdatedAt !== archive.scheduleUpdatedAt;
+    if (updated) {
+      setLiveData(payload);
+      window.dispatchEvent(new CustomEvent(SCROLL_RESTORE_EVENT));
+    }
+    return { updated };
+  }, [strippedPathname, archive, mode]);
   const bashoTitle = formatBashoTitle({ year: archive.year, bashoName: archive.bashoName, monthKey }, i18n.language);
   const prevDay = getAdjacentDay(day, mode, 'prev');
   const nextDay = getAdjacentDay(day, mode, 'next');
@@ -617,6 +645,10 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
           isSaved={isSaved}
           matchupWinsMap={matchupWinsMap}
         />
+
+        <div className="torikumi-refresh-mount">
+          <ManualRefreshButton onRefresh={handleRefresh} />
+        </div>
       </main>
 
       <footer className="torikumi-footer">
