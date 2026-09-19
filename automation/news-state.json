@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-19T02:27:32.832182+00:00",
+    "updatedAt": "2026-09-19T04:22:36.460396+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -17,6 +17,15 @@
       }
     ],
     "items": [
+      {
+        "id": "dmenu-docomo-hochi-20260918-OHT1T51223",
+        "title": "１７歳の“イケメン力士”ＶＳ３９歳の“土俵の妖精”　注目の異色対決はわずか「３歩」で決着！？　「３コマ漫画みたい」「何この優しい相撲」と反響",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260918-OHT1T51223",
+        "publishedAt": "2026-09-19",
+        "publishedAtRaw": "スポーツ報知　9月19日 12時00分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
       {
         "id": "dmenu-docomo-hochi-20260919-OHT1T51048",
         "title": "【７日目の見所】熱海富士にとっては特別な一番　 安青錦には絶対に負けないと気合満点",
@@ -54,15 +63,6 @@
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-nikkangendai-1249026",
-        "title": "大関復帰の安青錦に何が起きている？ 3連勝のち3連敗のウラに与えてしまった「自身攻略のヒント」",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1249026",
-        "publishedAt": "2026-09-19",
-        "publishedAtRaw": "日刊ゲンダイDIGITAL　9月19日 8時05分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
         "id": "sumo-association-762",
         "title": "令和9年「大相撲カレンダー」販売のご案内",
         "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=762",
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-19T02:27:32.841010+00:00",
-  "lastSuccessAt": "2026-09-19T02:27:32.832182+00:00",
+  "lastAttemptAt": "2026-09-19T04:22:36.469588+00:00",
+  "lastSuccessAt": "2026-09-19T04:22:36.460396+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -171,9 +171,13 @@
     "35415695084": {
       "attemptedAt": "2026-09-19T02:27:32.841010+00:00",
       "outcome": "success"
+    },
+    "35421105910": {
+      "attemptedAt": "2026-09-19T04:22:36.469588+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35415695084",
+  "lastRunId": "35421105910",
   "lastPublishedDate": "2026-09-18",
   "lastPublishedSha": "71ed7cb1319f5d3b88fe7cb4f79ace8e9fc08821",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
