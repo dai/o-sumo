@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-19T08:24:19.634020+00:00",
+    "updatedAt": "2026-09-19T10:19:01.259972+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-f-bt-tp1-260919-202609190001023",
-        "title": "国仲涼子「素敵です。親方」千代の富士撃破の元安芸乃島を絶賛　普段厳しい高田川親方も満面笑み",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260919-202609190001023",
+        "id": "dmenu-docomo-tokyosports-403723",
+        "title": "【大相撲】琴桜〝満身創痍〟も１敗で首位キープ　師匠・佐渡ヶ嶽親方「足首に水が溜まっていた」",
+        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403723",
         "publishedAt": "2026-09-19",
-        "publishedAtRaw": "日刊スポーツ　9月19日 16時54分",
+        "publishedAtRaw": "東スポWEB　9月19日 19時10分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-thedigestweb-120297",
-        "title": "「プルプルの美肌でした」イケメン力士の“お姫様だっこ”に大相撲好きの美女アナが感激！「幸せすぎるひととき」",
-        "url": "https://topics.smt.docomo.ne.jp/article/thedigestweb/sports/thedigestweb-120297",
+        "id": "dmenu-docomo-f-bt-tp1-260919-202609190001454",
+        "title": "安青錦４日ぶり白星、先場所敗れた熱海富士を撃破「胸を張って…」連敗後の師匠の言葉を明かす",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260919-202609190001454",
         "publishedAt": "2026-09-19",
-        "publishedAtRaw": "THE DIGEST　9月19日 16時10分",
+        "publishedAtRaw": "日刊スポーツ　9月19日 19時07分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260919-OHT1T51182",
-        "title": "幕下・行徳が押し出しで３勝目　５場所連続の勝ち越しに王手も「気にせず。勝った相撲も反省点はある」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260919-OHT1T51182",
+        "id": "dmenu-docomo-20260919-567-GYT1T00294",
+        "title": "大の里と琴桜が６勝目、霧島は豪ノ山を仕留め５勝…大相撲秋場所７日目",
+        "url": "https://topics.smt.docomo.ne.jp/article/yomiuri/sports/20260919-567-GYT1T00294",
         "publishedAt": "2026-09-19",
-        "publishedAtRaw": "スポーツ報知　9月19日 15時17分",
+        "publishedAtRaw": "読売新聞　9月19日 19時02分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-20260919074",
-        "title": "大関琴桜が小４時に関取になる、と確信させた外食の注文とは　元琴勇輝が回想、父親の佐渡ケ嶽親方は焼肉店の注文を述懐【大相撲】",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260919074",
+        "id": "dmenu-docomo-f-bt-tp1-260919-202609190001358",
+        "title": "横綱大の里が３連勝、大関琴桜と２人でトップ「良い相撲が取れた」美ノ海を押し出し",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260919-202609190001358",
         "publishedAt": "2026-09-19",
-        "publishedAtRaw": "デイリースポーツ　9月19日 15時09分",
+        "publishedAtRaw": "日刊スポーツ　9月19日 18時51分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-20260919073",
-        "title": "“史上最強の新弟子”旭富士が勝ち越し王手！最速タイの新十両記録へ前進【大相撲】",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260919073",
+        "id": "dmenu-docomo-f-bt-tp1-260919-202609190001361",
+        "title": "藤ノ川、初場所以来の３連勝「前に出られたのはよかった」最後まで攻めの姿勢を貫く",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260919-202609190001361",
         "publishedAt": "2026-09-19",
-        "publishedAtRaw": "デイリースポーツ　9月19日 15時02分",
+        "publishedAtRaw": "日刊スポーツ　9月19日 18時50分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-19T08:24:19.643642+00:00",
-  "lastSuccessAt": "2026-09-19T08:24:19.634020+00:00",
+  "lastAttemptAt": "2026-09-19T10:19:01.269321+00:00",
+  "lastSuccessAt": "2026-09-19T10:19:01.259972+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -183,9 +183,13 @@
     "35431898728": {
       "attemptedAt": "2026-09-19T08:24:19.643642+00:00",
       "outcome": "success"
+    },
+    "35437054062": {
+      "attemptedAt": "2026-09-19T10:19:01.269321+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35431898728",
+  "lastRunId": "35437054062",
   "lastPublishedDate": "2026-09-18",
   "lastPublishedSha": "71ed7cb1319f5d3b88fe7cb4f79ace8e9fc08821",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
