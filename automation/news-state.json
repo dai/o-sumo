@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-19T06:31:21.788911+00:00",
+    "updatedAt": "2026-09-19T08:24:19.634020+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,8 +18,26 @@
     ],
     "items": [
       {
+        "id": "dmenu-docomo-f-bt-tp1-260919-202609190001023",
+        "title": "国仲涼子「素敵です。親方」千代の富士撃破の元安芸乃島を絶賛　普段厳しい高田川親方も満面笑み",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260919-202609190001023",
+        "publishedAt": "2026-09-19",
+        "publishedAtRaw": "日刊スポーツ　9月19日 16時54分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-thedigestweb-120297",
+        "title": "「プルプルの美肌でした」イケメン力士の“お姫様だっこ”に大相撲好きの美女アナが感激！「幸せすぎるひととき」",
+        "url": "https://topics.smt.docomo.ne.jp/article/thedigestweb/sports/thedigestweb-120297",
+        "publishedAt": "2026-09-19",
+        "publishedAtRaw": "THE DIGEST　9月19日 16時10分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
         "id": "dmenu-docomo-hochi-20260919-OHT1T51182",
-        "title": "幕下・行徳が押し出しで３勝目　５場所連続の勝ち越しに王手も「気にせず。勝った相撲も反省点もある」",
+        "title": "幕下・行徳が押し出しで３勝目　５場所連続の勝ち越しに王手も「気にせず。勝った相撲も反省点はある」",
         "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260919-OHT1T51182",
         "publishedAt": "2026-09-19",
         "publishedAtRaw": "スポーツ報知　9月19日 15時17分",
@@ -41,24 +59,6 @@
         "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260919073",
         "publishedAt": "2026-09-19",
         "publishedAtRaw": "デイリースポーツ　9月19日 15時02分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-abematimes-10274000",
-        "title": "「ひっくり返した！」60キロ力士、160キロ巨漢を“一撃”でゴロン 華麗な決まり手に館内どよめき",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274000",
-        "publishedAt": "2026-09-19",
-        "publishedAtRaw": "ABEMA TIMES　9月19日 14時53分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-20260919065",
-        "title": "４０歳になった北磻磨が幕下勝ち越し王手「若々しい相撲を取る」稀勢の里の同級生、関取復帰諦めん【大相撲】",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260919065",
-        "publishedAt": "2026-09-19",
-        "publishedAtRaw": "デイリースポーツ　9月19日 14時17分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-19T06:31:21.798272+00:00",
-  "lastSuccessAt": "2026-09-19T06:31:21.788911+00:00",
+  "lastAttemptAt": "2026-09-19T08:24:19.643642+00:00",
+  "lastSuccessAt": "2026-09-19T08:24:19.634020+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -179,9 +179,13 @@
     "35426815017": {
       "attemptedAt": "2026-09-19T06:31:21.798272+00:00",
       "outcome": "success"
+    },
+    "35431898728": {
+      "attemptedAt": "2026-09-19T08:24:19.643642+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35426815017",
+  "lastRunId": "35431898728",
   "lastPublishedDate": "2026-09-18",
   "lastPublishedSha": "71ed7cb1319f5d3b88fe7cb4f79ace8e9fc08821",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
