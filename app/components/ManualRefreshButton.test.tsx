@@ -137,6 +137,38 @@ describe('ManualRefreshButton', () => {
     }).not.toThrow();
   });
 
+  it('toggles the scroll-hidden class on scroll direction past a 240px threshold', async () => {
+    const rafStub = vi.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => {
+      cb(performance.now());
+      return 1;
+    });
+    const cancelStub = vi.spyOn(window, 'cancelAnimationFrame').mockImplementation(() => undefined);
+    Object.defineProperty(window, 'scrollY', { configurable: true, value: 0, writable: true });
+
+    render(<ManualRefreshButton onRefresh={vi.fn().mockResolvedValue({ updated: true })} />);
+    const button = screen.getByRole('button', { name: '最新に更新' });
+
+    // マウント直後はスクロール前なので必ず可視状態。
+    expect(button).not.toHaveClass('torikumi-refresh-btn--hidden');
+
+    // 下スクロールで 240px を超えると隠れる。
+    await act(async () => {
+      Object.defineProperty(window, 'scrollY', { configurable: true, value: 300, writable: true });
+      window.dispatchEvent(new Event('scroll'));
+    });
+    expect(button).toHaveClass('torikumi-refresh-btn--hidden');
+
+    // 上スクロールで再表示される。
+    await act(async () => {
+      Object.defineProperty(window, 'scrollY', { configurable: true, value: 120, writable: true });
+      window.dispatchEvent(new Event('scroll'));
+    });
+    expect(button).not.toHaveClass('torikumi-refresh-btn--hidden');
+
+    rafStub.mockRestore();
+    cancelStub.mockRestore();
+  });
+
   it('honors a disabled prop passed by the parent', () => {
     render(
       <ManualRefreshButton
