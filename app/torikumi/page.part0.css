@@ -200,13 +200,13 @@
   color: var(--color-primary);
   padding: 0.4rem 0.75rem;
   font-size: 0.84rem;
-  font-weight: 600;
   cursor: pointer;
   border-radius: 0;
   transition: all 150ms ease;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
+  font-weight: 600;
 }
 
 .my-rikishi-filter-btn:hover {
@@ -395,22 +395,3 @@
   padding: 1.25rem;
   transition: all 0.2s ease;
 }
-
-.archive-card:hover {
-  background: var(--surface-container-low);
-  box-shadow: var(--shadow-soft);
-  text-decoration: none;
-}
-
-.archive-card.elapsed {
-  background: var(--surface-container-low);
-}
-
-.archive-card.elapsed h3,
-.archive-card.elapsed p,
-.archive-card.elapsed .archive-card-date,
-.archive-card.elapsed .archive-status {
-  opacity: 0.6;
-}
-
-.archive-card-date {
