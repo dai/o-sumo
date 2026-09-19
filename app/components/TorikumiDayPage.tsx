@@ -490,9 +490,13 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
     captureScrollPosition(strippedPathname);
     // CDN ミスや回線遅延で fetch がハングしても、ボタンが loading のまま固まらないよう
     // 8 秒経ったら AbortController で打ち切る (catch で error 状態 → 3 秒で idle に復帰)。
+    // Workbox `NetworkFirst` (vite.config.ts) は SW 内で `request.signal` を尊重しない場合が
+    // あるため、AbortController だけに依存せず `Promise.race` で 8 秒の reject も同時に走らせ、
+    // どちらが先に起きても error 状態に遷移するように二重化する。
+    const REFRESH_TIMEOUT_MS = 8000;
     const abortController = new AbortController();
-    const timeoutId = window.setTimeout(() => abortController.abort(), 8000);
-    try {
+    let timeoutId = 0;
+    const fetchPromise = (async (): Promise<TorikumiDataSet> => {
       const response = await fetch('/api/v1/torikumi.json', {
         cache: 'no-store',
         signal: abortController.signal,
@@ -504,6 +508,16 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
       if (!isTorikumiDataSet(payload)) {
         throw new Error('Torikumi dataset shape mismatch');
       }
+      return payload;
+    })();
+    const timeoutPromise = new Promise<never>((_, reject) => {
+      timeoutId = window.setTimeout(
+        () => reject(new Error(`Torikumi refresh timed out after ${REFRESH_TIMEOUT_MS}ms`)),
+        REFRESH_TIMEOUT_MS,
+      );
+    });
+    try {
+      const payload = await Promise.race([fetchPromise, timeoutPromise]);
       const updated = mode === 'result'
         ? payload.resultUpdatedAt !== archive.resultUpdatedAt
         : payload.scheduleUpdatedAt !== archive.scheduleUpdatedAt;
@@ -514,6 +528,8 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
       return { updated };
     } finally {
       window.clearTimeout(timeoutId);
+      // fetchPromise が走り続ける場合に備え、abort も明示的に呼ぶ (二重発火しても安全)。
+      abortController.abort();
     }
   }, [strippedPathname, archive, mode]);
   const bashoTitle = formatBashoTitle({ year: archive.year, bashoName: archive.bashoName, monthKey }, i18n.language);
