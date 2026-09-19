@@ -31,6 +31,7 @@ export default function ManualRefreshButton({
   const { t } = useTranslation('common');
   const [status, setStatus] = React.useState<ManualRefreshStatus>('idle');
   const mountedRef = React.useRef(true);
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   React.useEffect(() => {
     return () => {
@@ -65,6 +66,20 @@ export default function ManualRefreshButton({
       window.removeEventListener('scroll', onScroll);
     };
   }, []);
+
+  // iOS Safari 15+ はタップで :focus-visible を発火するため、リフレッシュ
+  // 完了後に focus を外して outline リング (focus-visible の唯一の視覚
+  // 表現) も自動で消す。useEffect で status 遷移後に blur() することで、
+  // loading 中の disabled 状態で blur が効かない問題を回避する
+  // (handleClick 末尾に inline で書くと status='loading' の間 button が
+  // disabled になり、jsdom / 実機 Safari の両方で blur() が no-op になる)。
+  const prevStatusRef = React.useRef<ManualRefreshStatus>('idle');
+  React.useEffect(() => {
+    if (prevStatusRef.current === 'loading' && status !== 'loading') {
+      buttonRef.current?.blur();
+    }
+    prevStatusRef.current = status;
+  }, [status]);
 
   const handleClick = React.useCallback(async () => {
     if (status === 'loading') return;
@@ -105,6 +120,7 @@ export default function ManualRefreshButton({
 
   return (
     <button
+      ref={buttonRef}
       type="button"
       className={classNames.join(' ')}
       onClick={handleClick}

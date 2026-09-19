@@ -179,4 +179,43 @@ describe('ManualRefreshButton', () => {
 
     expect(screen.getByRole('button', { name: '最新に更新' })).toBeDisabled();
   });
+
+  it('removes focus from the button after refresh reports an update', async () => {
+    const user = userEvent.setup();
+    const onRefresh = vi.fn().mockResolvedValue({ updated: true });
+
+    render(<ManualRefreshButton onRefresh={onRefresh} />);
+    const button = screen.getByRole('button', { name: '最新に更新' });
+    await user.click(button);
+
+    await waitFor(() => {
+      expect(button).not.toHaveFocus();
+    });
+  });
+
+  it('removes focus from the button after refresh reports no change', async () => {
+    const user = userEvent.setup();
+    const onRefresh = vi.fn().mockResolvedValue({ updated: false });
+
+    render(<ManualRefreshButton onRefresh={onRefresh} />);
+    const button = screen.getByRole('button', { name: '最新に更新' });
+    await user.click(button);
+
+    await waitFor(() => {
+      expect(button).not.toHaveFocus();
+    });
+  });
+
+  it('removes focus from the button after refresh throws', async () => {
+    const user = userEvent.setup();
+    const onRefresh = vi.fn().mockRejectedValue(new Error('network'));
+
+    render(<ManualRefreshButton onRefresh={onRefresh} />);
+    const button = screen.getByRole('button', { name: '最新に更新' });
+    await user.click(button);
+
+    await waitFor(() => {
+      expect(button).not.toHaveFocus();
+    });
+  });
 });

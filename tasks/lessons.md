@@ -317,3 +317,11 @@ PR head の parent commit (`git log --format=%P -1 HEAD`) と GitHub が表示�
 2. `prefers-reduced-motion` の override も同条件で更新する (条件分岐を二重にしない)
 3. `aria-busy` / `disabled` / `data-state` などの状態属性を loading インジケータの唯一のスイッチとして扱う
 4. CSS animation の単体テスト (jsdom 不可) の代わりに、minify 後の chunk を `grep -oE` でルール本文を取り出して「無条件 animation がないこと / 条件付き animation があること」を検証する
+
+## 2026-09-19 hover と focus-visible は同じ background を共有せず outline リングに分離する
+
+- `.btn:hover, .btn:focus-visible { background: var(--color-secondary); }` のように background 変更を 1 ルールにまとめると、iOS Safari 15+ で `:focus-visible` がタップ時に発火し、ボタン全面が `--color-secondary` (sumō orange `#c2410c`) に変わる。エラー色に見える UX バグになる (PR #639 の事例: torikumi 更新ボタンがタップ中に橙色になり、クルクル回るアニメーションと重なり「エラー状態」と誤認される)。
+- 修正: `:hover` は background 変更 (デスクトップ UX)、`:focus-visible` は `outline: 2px solid var(--color-secondary); outline-offset: 2px;` のリング表示のみに分離する。background 変更を共有しない。
+- `:focus-visible` (W3C Selectors 4) は `:focus` と異なり、キーボード操作や「最後の入力がキーボードだった」状態で発火する。モダンブラウザ (iOS Safari 15+ 含む) では pointer (tap) でも発火するため、hover と focus を「同じ視覚表現」にすると意図しない場面で UX が破綻する。
+- **Why**: `--color-secondary` のような accent 色は hover の "feedback" 用途と focus の "位置表示" 用途で意味が違う。前者は「ユーザーが触った」合図、後者は「いま focus している」合図。背景塗りつぶしは focus には強すぎて、エラーやアクティブ状態と誤認される。`--color-secondary` が light mode で `#c2410c` (sumō orange) と非常に強く見える色のため、誤認リスクが特に高い。
+- **How to apply**: ボタン系要素は (1) `:hover` → background 変化 (デスクトップのみ)、(2) `:focus-visible` → outline リング (background 変化なし、`outline-offset` 最低 2px)、(3) `:active` → 微小な transform/inset shadow (押下フィードバック)、(4) `[aria-busy="true"]` → opacity 低下、を 4 チャネルに分離して CSS を書く。`outline-offset` を 0 にするとリングがボタン枠に被ってギザギザに見える。light / dark 両 theme で同じ分離を忘れずに適用する。
