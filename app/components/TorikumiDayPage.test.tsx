@@ -516,5 +516,27 @@ describe('TorikumiDayPage', () => {
       vi.unstubAllGlobals();
     }
   });
+
+  it('surfaces an error state when the fetch rejects (AbortController or network failure)', async () => {
+    const firstResultDay = torikumiArchive.resultDays[0];
+    vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new DOMException('The operation was aborted', 'AbortError')));
+
+    try {
+      const user = userEvent.setup();
+      renderPage(firstResultDay, 'result');
+      await user.click(screen.getByRole('button', { name: '最新に更新' }));
+
+      await waitFor(() => {
+        expect(screen.getByRole('button', { name: '更新に失敗しました' })).toBeInTheDocument();
+      });
+
+      // error 状態から 3 秒以内に idle (最新に更新) へ復帰する。
+      await waitFor(() => {
+        expect(screen.getByRole('button', { name: '最新に更新' })).toBeInTheDocument();
+      }, { timeout: 4000 });
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
 });
 
