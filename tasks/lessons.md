@@ -303,3 +303,17 @@ PR head の parent commit (`git log --format=%P -1 HEAD`) と GitHub が表示�
 - 確認の仕方は `AskUserQuestion` で、語句の意味・スコープ・優先度を 2-3 問に絞る。`top page の只今の速報` のような曖昧語が来たら、`既存ライブリンクか / ニュースか / 別の何かか` の選択肢を提示して明示させる。
 
 **Why**: 同じ失敗で PR を 1 回分まるごと組み直しになると、設計ドキュメントの信頼性も commit 履歴もノイズになる。曖昧語 → 実装対応の橋渡しは、確認 1 回で防げる。
+
+## 2026-09-19 CSS animation は状態機械と同期させる
+
+`.torikumi-refresh-btn__spinner` に無条件で `animation: torikumi-refresh-spin .8s linear infinite` を付けていた。React の status state は `loading` → `error` (3 秒後) → `idle` に遷移するが、`.torikumi-refresh-btn__spinner` の CSS animation は独立して動き続けたため「永遠に回り続ける」ように見えていた。PR #636 で `Promise.race` の 8 秒 timeout を入れたが、CSS 側を更新しなかったため UX 的に spinner が止まらない問題は残った。
+
+修正: animation を `.torikumi-refresh-btn[aria-busy="true"] .torikumi-refresh-btn__spinner` 配下に移動し、`prefers-reduced-motion` override も同条件に揃えた。
+
+**Why**: CSS animation は JS の state 遷移と独立。React が `aria-busy` 属性を外しても、CSS セレクタが条件を絞っていなければ animation は止まらない。CSS は「状態」を持たないため、状態機械との同期は属性セレクタ (`[aria-busy="true"]`, `[data-state="loading"]`, `:disabled`) で明示的に結ぶ必要がある。
+
+**How to apply**:
+1. 連続的に動く animation (`infinite`, ステップ系 keyframes) を要素に付けるとき、親または自身の状態属性セレクタで囲う: `button[aria-busy="true"] .spinner { animation: ... }`
+2. `prefers-reduced-motion` の override も同条件で更新する (条件分岐を二重にしない)
+3. `aria-busy` / `disabled` / `data-state` などの状態属性を loading インジケータの唯一のスイッチとして扱う
+4. CSS animation の単体テスト (jsdom 不可) の代わりに、minify 後の chunk を `grep -oE` でルール本文を取り出して「無条件 animation がないこと / 条件付き animation があること」を検証する
