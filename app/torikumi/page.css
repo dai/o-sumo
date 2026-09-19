@@ -1152,6 +1152,12 @@
   border: 2px solid currentColor;
   border-top-color: transparent;
   border-radius: 50%;
+}
+
+/* Spinner は loading 中 (aria-busy="true") のみアニメーションさせる。
+   以前は spinner 要素に無条件で animation を付けていたため、idle / upToDate / error
+   状態でも「クルクル回り続ける」ように見える UX バグになっていた。 */
+.torikumi-refresh-btn[aria-busy="true"] .torikumi-refresh-btn__spinner {
   animation: torikumi-refresh-spin 0.8s linear infinite;
 }
 
@@ -1162,7 +1168,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .torikumi-refresh-btn__spinner {
+  .torikumi-refresh-btn[aria-busy="true"] .torikumi-refresh-btn__spinner {
     animation: none;
     border-top-color: currentColor;
   }
