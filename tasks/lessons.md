@@ -98,6 +98,12 @@ Cloudflare Agent Skills Discovery RFC v0.2.0 は `digest: "sha256:{64-hex}"` 形
 
 **Why**: MCP Server Card (SEP-1649) は `serverInfo.version` を必須フィールドとして要求する。リリース毎に手動更新するのは忘れる。
 
+## 2026-09-19 vitest の `useFakeTimers` + `userEvent.click` は 20 秒 timeout する
+
+- 症状: `vi.useFakeTimers()` を `beforeEach` で有効にした状態で `userEvent.click(...)` を `await` すると、test 全体が 20 秒 timeout で失敗する。`render` のみ / `screen.getBy*` アクセスは正常動作する。
+- **Why**: `vi.useFakeTimers()` は `setTimeout` / `setInterval` / `requestAnimationFrame` / `Date` をすべて fake する。`@testing-library/user-event` の内部 delay (advanceTimers / microtask scheduling) や `react-router-dom` の `useNavigate` 内部 effect が fake timers で進まず、`await` が永久に resolve されない。
+- **How to apply**: `Date.now` / `new Date()` の現在時刻だけ固定したい場合は `vi.useFakeTimers({ toFake: ['Date'] })` を使う。`setTimeout` / `rAF` は実 timer のままにして userEvent や routing effect を正常に動作させる。代替案として `userEvent.setup({ delay: null })` もあるが、`toFake` の方が staff engineer として意図が明確 (Date の時刻のみ固定し、async scheduling には触らない)。
+
 **How to apply**: `vite.config.ts` に `mcpServerCardPlugin()` を追加し、`closeBundle` で `app/lib/mcp-server-card.ts:readPackageVersion()` から version を取得してカードを上書きする。テンプレート `public/.well-known/mcp/server-card.json` には version 固定値を入れないか、`<package.json>` プレースホルダにしておく。
 
 ## 2026-07-08 時刻依存 UI テストの固定化

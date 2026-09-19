@@ -347,6 +347,6 @@
 - [x] `npm run typecheck` 通過 (エラーなし)
 - [x] `npm test -- --run` 全スイートパス (3/3 LiveTorikumiCardLink 緑 + 既存 595 = 598 tests pass、72 files + 1 file = 73 files)
 - [x] `npm run build` 通過 (built in 2.26s, PWA 121 entries、chunk size warning は既存 historical-archive-data 927 kB / index 687 kB で本変更と無関係)
-- [ ] 1 commit + push + PR + CI 緑 + merge
-- [ ] local main 再同期 (`git reset --hard origin/main`)
-- [ ] Production chunk hash 検証
+- [x] commit (`d593c4c`) + push + PR (#641) 作成完了、CI 全 3 緑 (o-sumo pass / o-sumo-blog pass / test pass 2m11s)、squash merge (`174525ddb3b5077934c252df364d5b2b03ce02fa`) 完了 (mergedAt: 2026-09-19T12:08:36Z)、branch 削除済み
+- [x] local main 再同期 (本タスク補足記録 commit + `git pull --ff-only` で b2cbf3e → 174525d へ fast-forward、`git push origin main` で完了)
+- [x] Production chunk hash 検証 (旧 `/assets/index-C8kt7H9M.js` → 新 `/assets/index-g8x2j4J2.js`、Cloudflare Pages auto-deploy で production に降下済み)
