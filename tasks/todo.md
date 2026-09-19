@@ -329,3 +329,24 @@
 3. 「最新に更新」ボタンをタップ
 4. 期待動作: ボタン背景は青のまま、ボタン周りに orange outline リングが一瞬表示される
 5. 別所タップで focus 解除 → 完全な idle (青に戻る)
+
+# LiveTorikumiCardLink: クリック時の現在取組への遷移 (2026-09-19)
+
+プラン: `C:\Users\dai\.claude\plans\cozy-wondering-volcano.md`
+
+## ブランチ
+- [x] `fix/live-torikumi-card-click-realtime-anchor` を origin/main (`b2cbf3e`) から新規作成
+
+## 実装
+- [x] `app/components/LiveTorikumiCardLink.tsx` 新規作成 (`'use client'`、`useNavigate`、`buildLiveTorikumiTarget(archive, data)` default で click-time JST 再計算、modifier key ガード、`<a href onClick>`)
+- [x] `app/components/LiveTorikumiCardLink.test.tsx` 新規作成 (3 tests: render anchor / click re-derive anchor / modifier key bypass、LocationProbe idiom 踏襲、`vi.useFakeTimers({ toFake: ['Date'] })` で userEvent 内部 timer を実動作させる)
+- [x] `app/page.tsx` line 16 直後に `import LiveTorikumiCardLink` 追加
+- [x] `app/page.tsx` line 393-407 を conditional branch に変更 (live card のみ `<LiveTorikumiCardLink>` に置換、`item.labelKey === 'home.quickNavToday' && item.badgeKey === 'home.quickNavLiveBadge'` で識別)
+
+## 検証
+- [x] `npm run typecheck` 通過 (エラーなし)
+- [x] `npm test -- --run` 全スイートパス (3/3 LiveTorikumiCardLink 緑 + 既存 595 = 598 tests pass、72 files + 1 file = 73 files)
+- [x] `npm run build` 通過 (built in 2.26s, PWA 121 entries、chunk size warning は既存 historical-archive-data 927 kB / index 687 kB で本変更と無関係)
+- [ ] 1 commit + push + PR + CI 緑 + merge
+- [ ] local main 再同期 (`git reset --hard origin/main`)
+- [ ] Production chunk hash 検証

@@ -14,6 +14,7 @@ import {
 
 import { PAST_BASHO } from './lib/archives-data';
 import HomeLink from './components/HomeLink';
+import LiveTorikumiCardLink from './components/LiveTorikumiCardLink';
 import { getBashoStatus, type BashoStatus } from './lib/basho-status';
 import NewsSection from './components/NewsSection';
 import { formatBashoTitle, getFinalBashoName } from './lib/basho-meta';
@@ -391,19 +392,41 @@ export default function Home() {
 
             {/* Smart Hub 4 Quick Navs */}
             <nav className="home-quick-nav hero-actions" aria-label={t('home.heroActionsLabel')}>
-              {quickNavItems.map((item) => (
-                <Link
-                  key={`${item.to}-${item.labelKey}`}
-                  to={item.to}
-                  className={`quick-nav-card${item.primary ? ' primary' : ''}`}
-                >
-                  <span className="quick-nav-card__label">
-                    {t(item.labelKey, { date: item.date, relative: item.relative })}
-                    {item.badgeKey ? <span className="quick-nav-card__badge">{t(item.badgeKey)}</span> : null}
-                  </span>
-                  <span className="quick-nav-card__sub">{t(item.subKey, { date: item.date, relative: item.relative })}</span>
-                </Link>
-              ))}
+              {quickNavItems.map((item) => {
+                const isLiveCard =
+                  item.labelKey === 'home.quickNavToday' && item.badgeKey === 'home.quickNavLiveBadge';
+                if (isLiveCard) {
+                  return (
+                    <LiveTorikumiCardLink
+                      key={`${item.to}-${item.labelKey}`}
+                      to={item.to}
+                      primary={item.primary}
+                      archive={torikumiArchive}
+                      data={torikumiData}
+                      label={(
+                        <>
+                          {t(item.labelKey, { date: item.date, relative: item.relative })}
+                          {item.badgeKey ? <span className="quick-nav-card__badge">{t(item.badgeKey)}</span> : null}
+                        </>
+                      )}
+                      sub={t(item.subKey, { date: item.date, relative: item.relative })}
+                    />
+                  );
+                }
+                return (
+                  <Link
+                    key={`${item.to}-${item.labelKey}`}
+                    to={item.to}
+                    className={`quick-nav-card${item.primary ? ' primary' : ''}`}
+                  >
+                    <span className="quick-nav-card__label">
+                      {t(item.labelKey, { date: item.date, relative: item.relative })}
+                      {item.badgeKey ? <span className="quick-nav-card__badge">{t(item.badgeKey)}</span> : null}
+                    </span>
+                    <span className="quick-nav-card__sub">{t(item.subKey, { date: item.date, relative: item.relative })}</span>
+                  </Link>
+                );
+              })}
             </nav>
           </div>
 
