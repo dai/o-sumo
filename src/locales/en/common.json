@@ -362,7 +362,10 @@
       "footerHome": "Home",
       "footerDaisuke": "Daisuke on X",
       "footerGithub": "GitHub",
-      "divisionMatchCount": "{{division}} ({{count}} matches)"
+      "divisionMatchCount": "{{division}} ({{count}} matches)",
+      "manualRefresh": "Refresh",
+      "refreshFailed": "Failed to refresh",
+      "upToDate": "Up to date"
     }
   },
   "comparison": {
