@@ -1,0 +1,36 @@
+
+/* Spinner は loading 中 (aria-busy="true") のみアニメーションさせる。
+   以前は spinner 要素に無条件で animation を付けていたため、idle / upToDate / error
+   状態でも「クルクル回り続ける」ように見える UX バグになっていた。 */
+.torikumi-refresh-btn[aria-busy="true"] .torikumi-refresh-btn__spinner {
+  animation: torikumi-refresh-spin 0.8s linear infinite;
+}
+
+@keyframes torikumi-refresh-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .torikumi-refresh-btn[aria-busy="true"] .torikumi-refresh-btn__spinner {
+    animation: none;
+    border-top-color: currentColor;
+  }
+}
+
+[data-theme='dark'] .torikumi-refresh-btn {
+  background: var(--color-primary, #c1c6d9);
+  color: #0f131d;
+}
+
+/* Dark テーマでも hover と focus-visible を分離 (上記 light 版コメント参照)。 */
+[data-theme='dark'] .torikumi-refresh-btn:hover {
+  background: var(--color-secondary, #fed65b);
+  color: #0f131d;
+}
+
+[data-theme='dark'] .torikumi-refresh-btn:focus-visible {
+  outline: 2px solid var(--color-secondary, #fed65b);
+  outline-offset: 2px;
+}
