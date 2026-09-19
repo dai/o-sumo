@@ -538,5 +538,32 @@ describe('TorikumiDayPage', () => {
       vi.unstubAllGlobals();
     }
   });
+
+  it('surfaces an error state when SW ignores AbortSignal and fetch hangs', async () => {
+    // Workbox の NetworkFirst が SW 内で `request.signal` を尊重せず fetch が永遠に pending
+    // するシナリオを再現。Promise.race の timeout (8 秒) が発火して error 状態に遷移する。
+    // fake timer だと microtask scheduling の都合で fetchPromise (永久 pending) と
+    // timeoutPromise の race を同期化できないため、real timer で 8 秒 + 3 秒を待つ。
+    const firstResultDay = torikumiArchive.resultDays[0];
+    vi.stubGlobal('fetch', vi.fn().mockImplementation(() => new Promise(() => {})));
+
+    try {
+      const user = userEvent.setup();
+      renderPage(firstResultDay, 'result');
+      await user.click(screen.getByRole('button', { name: '最新に更新' }));
+
+      // Promise.race の 8 秒 timeout が発火するのを real timer で待つ。
+      await waitFor(() => {
+        expect(screen.getByRole('button', { name: '更新に失敗しました' })).toBeInTheDocument();
+      }, { timeout: 10000 });
+
+      // error 状態から 3 秒以内に idle (最新に更新) へ復帰する。
+      await waitFor(() => {
+        expect(screen.getByRole('button', { name: '最新に更新' })).toBeInTheDocument();
+      }, { timeout: 5000 });
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  }, 15000);
 });
 
