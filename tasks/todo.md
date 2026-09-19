@@ -285,6 +285,19 @@
 - **PR**: https://github.com/dai/o-sumo/pull/637 (squash merge, branch 削除)
 - **merge commit**: `6379e91` at 2026-09-19T06:44:22Z
 
+# Torikumi Refresh Button Focus Fix (2026-09-19)
+
+- [x] PR #637 (`6379e91`): `.torikumi-refresh-btn[aria-busy="true"]` で spinner animation を限定、iOS Safari で常に回転して見える問題を解消
+- [x] PR #638 (`ed82a6a`): PR #637 の教訓 (CSS animation state sync) を `tasks/lessons.md` / `tasks/todo.md` に記録
+- [x] PR #639 (`0717d71`): `.torikumi-refresh-btn:focus-visible` を `:hover` から分離、outline リングのみに変更 (iOS Safari 15+ のタップ時 focus-visible 発火でボタンがエラー色 orange になる問題を解消)
+
+## レビュー
+
+### 完了内容
+- **PR #637**: CSS animation を `aria-busy="true"` の子要素 `.torikumi-refresh-btn__spinner` に限定し、`@media (prefers-reduced-motion: reduce)` で spinner animation をさらに無効化。コミット `6379e91`。
+- **PR #638**: PR #637 の教訓 (CSS animation state sync) を `tasks/lessons.md` / `tasks/todo.md` に記録。コミット `ed82a6a`、Co-Authored-By Claude Fable 5.1。
+- **PR #639**: `.torikumi-refresh-btn:focus-visible{outline:2px solid var(--color-secondary);outline-offset:2px}` を light / dark 両 theme で追加。`:hover` は background 変更を維持。コミット `0717d71`、Co-Authored-By Claude Fable 5.1。
+
 ### 検証結果
 | 項目 | 結果 |
 |---|---|
@@ -295,6 +308,11 @@
 | gh pr checks #637 (Test workflow) | ✓ 2m11s 緑 |
 | gh pr checks #637 (Cloudflare Pages: o-sumo) | ✓ 緑 |
 | gh pr checks #637 (Cloudflare Pages: o-sumo-blog) | ✓ 緑 |
+| PR #639 CI | test + Cloudflare Pages (o-sumo, o-sumo-blog) 3/3 SUCCESS (run 35429325368) |
+| Production deploy (`1e44e744-a9cc-4a52-beed-26fa42060610`) | 2026-09-19T07:26:54Z 完了、success (マージから 33 秒) |
+| Production CSS chunk `https://osada.us/assets/page-BgCLC_6p.css` | HTTP 200, 20162 bytes (local dist `dist/assets/page-BgCLC_6p.css` と byte 一致) |
+| Production `:focus-visible` rule | `outline: 2px solid var(--color-secondary); outline-offset: 2px;` のみ、background 変更なし (light/dark 両方) |
+| Production `:hover` rule | `background: var(--color-secondary);` 維持 (light/dark 両方) — デスクトップ UX は変わらず |
 
 ### 設計上の決定 (実装後の補足)
 - **最小差分**: CSS 1 ファイルのみ、JS / TS / テストには手を入れず。既存の React state 機械 + ARIA 属性設計は正しいので、CSS 側だけで完結する修正に留めた。
@@ -304,3 +322,10 @@
 ### 残作業 (本 PR 外)
 - **「ボタンが赤くなる」報告は未対応**: ユーザは「更新ボタンを押すと赤くなって」とも報告。spinner 停止 (本 PR) とは別現象。merge 後にユーザがスマホでリロードして依然として報告するなら別 issue で対応 (候補: `:focus` の `var(--color-secondary)` (金) を赤と認識 / disabled UA デフォルト / `--yokozuna-text` 適用漏れ)。
 - **Cloudflare Pages auto-deploy 待ち**: main HEAD から deploy preview が production に昇格するまで数分。ユーザにスマホでリロード確認を依頼。
+
+### モバイル確認手順
+1. 既存タブを完全に閉じる (Service Worker キャッシュ強制クリア)
+2. 新タブで `https://osada.us/202609-torikumi/` を開く
+3. 「最新に更新」ボタンをタップ
+4. 期待動作: ボタン背景は青のまま、ボタン周りに orange outline リングが一瞬表示される
+5. 別所タップで focus 解除 → 完全な idle (青に戻る)
