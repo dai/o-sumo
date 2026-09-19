@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-19T04:22:36.460396+00:00",
+    "updatedAt": "2026-09-19T06:31:21.788911+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-hochi-20260918-OHT1T51223",
-        "title": "１７歳の“イケメン力士”ＶＳ３９歳の“土俵の妖精”　注目の異色対決はわずか「３歩」で決着！？　「３コマ漫画みたい」「何この優しい相撲」と反響",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260918-OHT1T51223",
+        "id": "dmenu-docomo-hochi-20260919-OHT1T51182",
+        "title": "幕下・行徳が押し出しで３勝目　５場所連続の勝ち越しに王手も「気にせず。勝った相撲も反省点もある」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260919-OHT1T51182",
         "publishedAt": "2026-09-19",
-        "publishedAtRaw": "スポーツ報知　9月19日 12時00分",
+        "publishedAtRaw": "スポーツ報知　9月19日 15時17分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260919-OHT1T51048",
-        "title": "【７日目の見所】熱海富士にとっては特別な一番　 安青錦には絶対に負けないと気合満点",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260919-OHT1T51048",
+        "id": "dmenu-docomo-20260919074",
+        "title": "大関琴桜が小４時に関取になる、と確信させた外食の注文とは　元琴勇輝が回想、父親の佐渡ケ嶽親方は焼肉店の注文を述懐【大相撲】",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260919074",
         "publishedAt": "2026-09-19",
-        "publishedAtRaw": "スポーツ報知　9月19日 10時35分",
+        "publishedAtRaw": "デイリースポーツ　9月19日 15時09分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-abematimes-10273958",
-        "title": "「反則級にかわいいw」十両力士の“クセつよ”化粧まわしが出現 ファンざわめき",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273958",
+        "id": "dmenu-docomo-20260919073",
+        "title": "“史上最強の新弟子”旭富士が勝ち越し王手！最速タイの新十両記録へ前進【大相撲】",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260919073",
         "publishedAt": "2026-09-19",
-        "publishedAtRaw": "ABEMA TIMES　9月19日 9時08分",
+        "publishedAtRaw": "デイリースポーツ　9月19日 15時02分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-abematimes-10273956",
-        "title": "死力を尽くした力士がフラフラ、グラグラに… 会心の白星に「師匠の前で」高砂親方もニッコリ",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273956",
+        "id": "dmenu-docomo-abematimes-10274000",
+        "title": "「ひっくり返した！」60キロ力士、160キロ巨漢を“一撃”でゴロン 華麗な決まり手に館内どよめき",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274000",
         "publishedAt": "2026-09-19",
-        "publishedAtRaw": "ABEMA TIMES　9月19日 8時57分",
+        "publishedAtRaw": "ABEMA TIMES　9月19日 14時53分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-abematimes-10273953",
-        "title": "「マジかよ涙」安青錦、取組中の“異変”に心配の声 関脇・藤ノ川の猛攻に屈す 土俵下の姿に「これ以上は…」",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10273953",
+        "id": "dmenu-docomo-20260919065",
+        "title": "４０歳になった北磻磨が幕下勝ち越し王手「若々しい相撲を取る」稀勢の里の同級生、関取復帰諦めん【大相撲】",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260919065",
         "publishedAt": "2026-09-19",
-        "publishedAtRaw": "ABEMA TIMES　9月19日 8時09分",
+        "publishedAtRaw": "デイリースポーツ　9月19日 14時17分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-19T04:22:36.469588+00:00",
-  "lastSuccessAt": "2026-09-19T04:22:36.460396+00:00",
+  "lastAttemptAt": "2026-09-19T06:31:21.798272+00:00",
+  "lastSuccessAt": "2026-09-19T06:31:21.788911+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -175,9 +175,13 @@
     "35421105910": {
       "attemptedAt": "2026-09-19T04:22:36.469588+00:00",
       "outcome": "success"
+    },
+    "35426815017": {
+      "attemptedAt": "2026-09-19T06:31:21.798272+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35421105910",
+  "lastRunId": "35426815017",
   "lastPublishedDate": "2026-09-18",
   "lastPublishedSha": "71ed7cb1319f5d3b88fe7cb4f79ace8e9fc08821",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
