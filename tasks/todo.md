@@ -350,3 +350,76 @@
 - [x] commit (`d593c4c`) + push + PR (#641) 作成完了、CI 全 3 緑 (o-sumo pass / o-sumo-blog pass / test pass 2m11s)、squash merge (`174525ddb3b5077934c252df364d5b2b03ce02fa`) 完了 (mergedAt: 2026-09-19T12:08:36Z)、branch 削除済み
 - [x] local main 再同期 (本タスク補足記録 commit + `git pull --ff-only` で b2cbf3e → 174525d へ fast-forward、`git push origin main` で完了)
 - [x] Production chunk hash 検証 (旧 `/assets/index-C8kt7H9M.js` → 新 `/assets/index-g8x2j4J2.js`、Cloudflare Pages auto-deploy で production に降下済み)
+
+# Analytics Live Dashboard Phase 1 (PR #644 実装)
+
+プラン: `C:\Users\dai\.claude\plans\github-pr-644-docs-lexical-kurzweil.md`
+spec: PR #644 (`docs: analytics live dashboard design (Phase 1–2)`、docs-only)
+
+## Phase 0: 準備
+- [x] spec PR #644 を main に squash merge (`1bbca32`、2026-09-20T12:58:10Z、clean な 1-file squash)
+- [x] local main を fast-forward (`f4d842b → 1bbca32`、間に chore コミット 2 件 `e6ea79a` / `8274584` が data file 更新 — 想定動作)
+- [x] `feat/analytics-live-dashboard-phase1` ブランチを main から派生
+
+## Phase 1: page.tsx 三項分岐分解
+- [ ] `app/analytics/page.tsx` line 163–242 の `{isFinal ? (<>...</>) : (<pending notice>)}` を分解
+- [ ] awards table を `{isFinal && <section>...</section>}` に変換 (final のみ render)
+- [ ] metric / leaders / kimarite の 3 セクションを無条件 render に
+- [ ] `<section class="analytics-pending-panel">` と "千秋楽以降に分析を公開します。" テキストを削除 (dead code 化)
+- [ ] `isFinal` 変数は `metricNote()` 内 `maxWins.finalNote` vs `note` 切替で残置
+- [ ] `buildDashboardMetrics()` / `topRikishiByWins()` / `topKimarite()` 呼び出し位置 (line 104–106) はそのまま
+
+## Phase 2: page.test.tsx テスト書き換え
+- [ ] line 119–143 の 2 テストを「mid-basho で 3 ブロック可視 / awards 不可視」に反転
+- [ ] line 46–62 (final awards) と line 64–100 (pure helpers) と line 102–117 (English copy) はそのまま
+- [ ] `analytics.noticeNotFinal` i18n key と `.analytics-pending-panel` CSS class は dead 状態で残置 (Phase 2 再利用)
+
+## Phase 3: 検証
+- [ ] `npm run typecheck` 通過
+- [ ] `npm test -- --run app/analytics/page.test.tsx` 全件 GREEN
+- [ ] `npm test` 全スイート (リグレッションなし)
+- [ ] `npm run build` 通過
+- [ ] 1 commit + push + `gh pr create`
+- [ ] CI 3 checks (test + Cloudflare Pages x 2) 緑確認
+- [ ] `npm run dev` で `/analytics/` を 3 状態 (upcoming / live / final) で目視確認
+
+## レビュー (実装後記入)
+
+### 完了内容
+
+- **ブランチ**: `feat/analytics-live-dashboard-phase1` を `origin/main` (`1bbca32`) から派生
+- **コミット 2 件**:
+  1. `feat(analytics): ungate dashboard during live and upcoming basho (Phase 1)` (page.tsx + page.test.tsx)
+  2. `docs(tasks): log analytics live dashboard Phase 1 implementation` (tasks/todo.md)
+- **変更**: 2 files (実装) + 1 file (docs), +130 / -82 合計 (page.tsx のみ -56 純減、page.test.tsx +12/-6、tasks/todo.md +48)
+
+### 検証結果
+
+| 項目 | 結果 |
+|---|---|
+| TypeScript typecheck | clean (no errors) |
+| analytics テスト (`page.test.tsx`) | 9/9 passed (197ms) |
+| vitest 全スイート | 73 files / 596 tests passed (70.06s、リグレッションなし) |
+| `npm run build` | ✓ built in 1.90s, PWA 121 entries precached (新 chunk hash `page-DEJA2pGE.js` 6.36 kB / gzip 2.09 kB) |
+| CI (test + Cloudflare Pages x 2) | (PR push 後に確認) |
+
+### 設計上の決定 (実装後の補足)
+
+- **metrics テスト assertion の修正**: spec では「3 つの live ブロック」を期待していたが、`analytics-metric-grid` は `<section aria-label="主要指標">` で実装されており `<h2>` 見出しを持たない (region landmark として aria-label で識別)。`getByRole('heading', { level: 2, name: '主要指標' })` が NotFound になったため `getByRole('region', { name: '主要指標' })` に修正。`page.test.tsx` の 2 テスト両方を `replace_all: true` で 1 回の Edit で置換。
+- **fragment 除去による indent reflow**: 旧コードの `<>...</>` フラグメント配下にあった metrics / leaders / kimarite の 3 セクションは、indentation level が 1 段浅くなった (10 spaces → 12 spaces → 10 spaces に調整)。意味的変更なし、diff 146 行のうち大半は indent 整列。
+- **JULY_2026_BASHO_RESULTS 据置**: Phase 2 で動的ソースに置換予定だが、Phase 1 では最終場所の表彰は 7 行ハードコードを維持。PR 本文で「Phase 2 follow-up」を明示。
+- **CSS 変更なし**: `.analytics-metric-grid` / `.analytics-leader-list` / `.analytics-technique-list` は既に mid-basho レイアウトに対応済み。`.analytics-pending-panel` class は dead state で残置。
+- **i18n 変更なし**: 既存 `analytics.metrics.*` / `analytics.leaders.*` / `analytics.kimarite.*` の文言は mid-basho でも意味が成立 ("現在トップライン" / "公開済み取組結果")。`analytics.noticeNotFinal` key は Phase 2 再利用のため残置。
+- **isFinal 残置**: `metricNote()` 内で `maxWins.finalNote` (final) vs `maxWins.note` (mid-basho) の切替に `isFinal` を使うため、変数は維持。
+
+### 残作業 (本 PR 外)
+
+- **Phase 2 follow-up PR**: `fetch('/api/v1/banzuke.json')` / `fetch('/api/v1/torikumi.json')` への切替 (`cache: 'no-store'`、`Promise.race` timeout 8 秒)、jūryō panels (summary / leaders / kimarite)、per-basho 結果データソース (`getBashoResultsByMonthKey(monthKey)` lookup) を `JULY_2026_BASHO_RESULTS` ハードコードの代替に導入、soft-fail UI (`analytics.softFail.*` i18n 新規)、agent markdown view に 1 行追記。
+- **upcoming 時の stale データ対策**: 9月場所が final 判定になると自動的に正しいデータに切り替わるが、upcoming 状態 (例: 11月場所開始前の 10月) で前場所の勝敗集計が見える問題は spec の "Stop hiding metrics / leaders / kimarite" を文字通り実装した結果として発生。Phase 2 で JSON fetch に切替えた際に `bashoStatus.kind === 'upcoming'` 判定で表示を抑制するか別 notice を出すかは別 issue で決定。
+- **9月場所後の切替**: `JULY_2026_BASHO_RESULTS` が 9月場所終了後も表彰テーブルに出続ける (final になったとき 9月場所の優勝ではなく 7月場所の優勝が表示される)。9月場所 final 直前 (10月初週) に別 PR で 9月場所の per-basho 結果データソースを先行投入するのが安全。
+
+### リスク mitigation 結果
+1. **upcoming で stale September データ表示**: PR 本文で明示。Phase 2 で対処予定。
+2. **a11y id 重複**: 4 セクション (`results-heading` / `metrics aria-label` / `leaders-heading` / `kimarite-heading`) はそれぞれ別の id / aria-label を使用。`results-heading` が non-final 時に render されないため id 重複は発生しない。axe DevTools / Lighthouse の a11y 監査を PR レビュー時に追加推奨。
+3. **CSS class 残置**: `.analytics-pending-panel` は dead state で残置 (Phase 2 再利用)。`tasks/lessons.md` への追記は Phase 2 着手時に実施 (現時点で lessons.md を更新すると Phase 2 着手前の記憶違いになるリスクあり)。
+4. **vi.useFakeTimers leak**: 既存 `afterEach(() => vi.useRealTimers())` (`page.test.tsx` line 20) は維持。フルスイート 596 tests がリグレッションなく通過したことで検証済み。

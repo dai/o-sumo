@@ -160,86 +160,80 @@ export default function AnalyticsDashboardPage() {
             { label: t('analytics.crumb') },
           ]}
         />
-        {isFinal ? (
-          <>
-            <section className="analytics-dashboard-panel analytics-results-panel" aria-labelledby="results-heading">
-              <div className="analytics-panel-header">
-                <h2 id="results-heading">{t('analytics.results.heading', { basho: bashoLabel })}</h2>
-                <p>{t('analytics.results.description')}</p>
-              </div>
-              <table className="analytics-results-table">
-                <thead>
-                  <tr>
-                    <th scope="col">{t('analytics.results.tableHeading')}</th>
-                    <th scope="col">{t('analytics.results.tableRikishi')}</th>
-                    <th scope="col">{t('analytics.results.tableRecord')}</th>
+        {isFinal && (
+          <section className="analytics-dashboard-panel analytics-results-panel" aria-labelledby="results-heading">
+            <div className="analytics-panel-header">
+              <h2 id="results-heading">{t('analytics.results.heading', { basho: bashoLabel })}</h2>
+              <p>{t('analytics.results.description')}</p>
+            </div>
+            <table className="analytics-results-table">
+              <thead>
+                <tr>
+                  <th scope="col">{t('analytics.results.tableHeading')}</th>
+                  <th scope="col">{t('analytics.results.tableRikishi')}</th>
+                  <th scope="col">{t('analytics.results.tableRecord')}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {JULY_2026_BASHO_RESULTS.map((row) => (
+                  <tr key={row.id}>
+                    <th scope="row">{t(`analytics.results.category.${row.category}`)}</th>
+                    <td>{row.rikishi}</td>
+                    <td>{row.record}</td>
                   </tr>
-                </thead>
-                <tbody>
-                  {JULY_2026_BASHO_RESULTS.map((row) => (
-                    <tr key={row.id}>
-                      <th scope="row">{t(`analytics.results.category.${row.category}`)}</th>
-                      <td>{row.rikishi}</td>
-                      <td>{row.record}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </section>
-
-            <section className="analytics-metric-grid" aria-label={t('analytics.metrics.label')}>
-              {metrics.map((metric) => (
-                <article key={metric.key} className="analytics-metric-card">
-                  <p className="analytics-metric-label">{t(`analytics.metrics.${metric.key}.label`)}</p>
-                  <p className="analytics-metric-value">
-                    {metric.key === 'maxWins' ? t('analytics.metrics.maxWins.value', { count: metric.value }) : metric.value}
-                  </p>
-                  <p className="analytics-metric-note">{metricNote(metric)}</p>
-                </article>
-              ))}
-            </section>
-
-            <section className="analytics-dashboard-panel" aria-labelledby="leaders-heading">
-              <div className="analytics-panel-header">
-                <h2 id="leaders-heading">{t('analytics.leaders.title')}</h2>
-                <p>{t('analytics.leaders.description')}</p>
-              </div>
-              <ol className="analytics-leader-list">
-                {leaders.map((wrestler) => (
-                  <li key={wrestler.id} className="analytics-leader-row">
-                    <span className="analytics-leader-name">{wrestler.name}</span>
-                    <span className="analytics-leader-rank">{wrestler.rank}</span>
-                    <strong className="analytics-leader-record">
-                      {t('analytics.leaders.record', { wins: wrestler.wins ?? 0, losses: wrestler.losses ?? 0 })}
-                    </strong>
-                  </li>
                 ))}
-              </ol>
-            </section>
-
-            <section className="analytics-dashboard-panel" aria-labelledby="kimarite-heading">
-              <div className="analytics-panel-header">
-                <h2 id="kimarite-heading">{t('analytics.kimarite.title')}</h2>
-                <p>{t('analytics.kimarite.description')}</p>
-              </div>
-              <div className="analytics-technique-list">
-                {techniques.map((technique) => (
-                  <div key={technique.name} className="analytics-technique-row">
-                    <span>{technique.name}</span>
-                    <div className="analytics-technique-track" aria-hidden="true">
-                      <span style={{ width: `${(technique.count / maxTechniqueCount) * 100}%` }} />
-                    </div>
-                    <strong>{technique.count}</strong>
-                  </div>
-                ))}
-              </div>
-            </section>
-          </>
-        ) : (
-          <section className="analytics-dashboard-panel analytics-pending-panel" aria-labelledby="pending-heading">
-            <h2 id="pending-heading">{t('analytics.noticeNotFinal')}</h2>
+              </tbody>
+            </table>
           </section>
         )}
+
+        <section className="analytics-metric-grid" aria-label={t('analytics.metrics.label')}>
+          {metrics.map((metric) => (
+            <article key={metric.key} className="analytics-metric-card">
+              <p className="analytics-metric-label">{t(`analytics.metrics.${metric.key}.label`)}</p>
+              <p className="analytics-metric-value">
+                {metric.key === 'maxWins' ? t('analytics.metrics.maxWins.value', { count: metric.value }) : metric.value}
+              </p>
+              <p className="analytics-metric-note">{metricNote(metric)}</p>
+            </article>
+          ))}
+        </section>
+
+        <section className="analytics-dashboard-panel" aria-labelledby="leaders-heading">
+          <div className="analytics-panel-header">
+            <h2 id="leaders-heading">{t('analytics.leaders.title')}</h2>
+            <p>{t('analytics.leaders.description')}</p>
+          </div>
+          <ol className="analytics-leader-list">
+            {leaders.map((wrestler) => (
+              <li key={wrestler.id} className="analytics-leader-row">
+                <span className="analytics-leader-name">{wrestler.name}</span>
+                <span className="analytics-leader-rank">{wrestler.rank}</span>
+                <strong className="analytics-leader-record">
+                  {t('analytics.leaders.record', { wins: wrestler.wins ?? 0, losses: wrestler.losses ?? 0 })}
+                </strong>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="analytics-dashboard-panel" aria-labelledby="kimarite-heading">
+          <div className="analytics-panel-header">
+            <h2 id="kimarite-heading">{t('analytics.kimarite.title')}</h2>
+            <p>{t('analytics.kimarite.description')}</p>
+          </div>
+          <div className="analytics-technique-list">
+            {techniques.map((technique) => (
+              <div key={technique.name} className="analytics-technique-row">
+                <span>{technique.name}</span>
+                <div className="analytics-technique-track" aria-hidden="true">
+                  <span style={{ width: `${(technique.count / maxTechniqueCount) * 100}%` }} />
+                </div>
+                <strong>{technique.count}</strong>
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
     </div>
   );

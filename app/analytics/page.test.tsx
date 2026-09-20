@@ -116,7 +116,7 @@ describe('AnalyticsDashboardPage', () => {
     await act(() => i18n.changeLanguage('ja'));
   });
 
-  it('hides the dashboard during an upcoming basho', () => {
+  it('renders the dashboard during an upcoming basho (no awards yet)', () => {
     vi.setSystemTime(UPCOMING_TIME);
 
     render(
@@ -125,11 +125,14 @@ describe('AnalyticsDashboardPage', () => {
       </MemoryRouter>,
     );
 
-    expect(screen.queryByRole('heading', { level: 2, name: '幕内最高優勝 安青錦 12勝3敗' })).not.toBeInTheDocument();
-    expect(screen.getByText('千秋楽以降に分析を公開します。')).toBeInTheDocument();
+    expect(screen.getByRole('region', { name: '主要指標' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: '勝ち星リーダー' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: '決まり手トレンド' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { level: 2, name: /九月場所 結果/ })).not.toBeInTheDocument();
+    expect(screen.queryByText('千秋楽以降に分析を公開します。')).not.toBeInTheDocument();
   });
 
-  it('hides the dashboard during a live basho', () => {
+  it('renders the dashboard during a live basho (no awards yet)', () => {
     vi.setSystemTime(LIVE_TIME);
 
     render(
@@ -138,7 +141,10 @@ describe('AnalyticsDashboardPage', () => {
       </MemoryRouter>,
     );
 
-    expect(screen.queryByRole('heading', { level: 2, name: '幕内最高優勝 安青錦 12勝3敗' })).not.toBeInTheDocument();
-    expect(screen.getByText('千秋楽以降に分析を公開します。')).toBeInTheDocument();
+    expect(screen.getByRole('region', { name: '主要指標' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: '勝ち星リーダー' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: '決まり手トレンド' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { level: 2, name: /九月場所 結果/ })).not.toBeInTheDocument();
+    expect(screen.queryByText('千秋楽以降に分析を公開します。')).not.toBeInTheDocument();
   });
 });
