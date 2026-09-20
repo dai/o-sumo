@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-20T08:25:23.585451+00:00",
+    "updatedAt": "2026-09-20T10:19:13.698089+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-ans-729035",
-        "title": "体重差なんと120kg…アジア大会で並んだ“最小”体操女子と超大物に騒然「お友達なのですね！」",
-        "url": "https://topics.smt.docomo.ne.jp/article/ans/sports/ans-729035",
+        "id": "dmenu-docomo-tokyosports-403819",
+        "title": "【大相撲】炎鵬　星を五分に戻して後半へ「ひるんだら負けると思った。気合入りました」",
+        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403819",
         "publishedAt": "2026-09-20",
-        "publishedAtRaw": "THE ANSWER　9月20日 16時39分",
+        "publishedAtRaw": "東スポWEB　9月20日 18時50分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-abematimes-10274117",
-        "title": "「スゴい衣装」大相撲客席に“主張が強め”な女性著名人が鎮座 「めっちゃ赤いやん」存在感ダダ漏れでファン騒然",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274117",
+        "id": "dmenu-docomo-abematimes-10274135",
+        "title": "「絶対お相撲さんになる」中村親方、35年前の“奇跡”の2ショット写真 元横綱・若乃花との知られざる絆に「胸熱」「泣ける」",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274135",
         "publishedAt": "2026-09-20",
-        "publishedAtRaw": "ABEMA TIMES　9月20日 16時37分",
+        "publishedAtRaw": "ABEMA TIMES　9月20日 18時49分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260920-202609200000712",
-        "title": "秋場所８日目で333日連続満員御礼　最長記録の666日連続まであと半分、４年後に到達なるか",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260920-202609200000712",
+        "id": "dmenu-docomo-f-bt-tp1-260920-202609200001234",
+        "title": "新関脇の藤ノ川が激しい相撲で２敗守る、元関脇嘉風の中村親方が高校時代の努力を披露",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260920-202609200001234",
         "publishedAt": "2026-09-20",
-        "publishedAtRaw": "日刊スポーツ　9月20日 16時15分",
+        "publishedAtRaw": "日刊スポーツ　9月20日 18時47分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260920-202609200000787",
-        "title": "輝が無傷で勝ち越し…十両で唯一全勝キープ「どれだけ集中してやれるか」嘉陽、北の若は初黒星",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260920-202609200000787",
+        "id": "dmenu-docomo-tokyosports-403834",
+        "title": "【大相撲】霧島　平幕に３敗で綱取り絶望的…浅香山審判部長「厳しく見られても仕方がない」",
+        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403834",
         "publishedAt": "2026-09-20",
-        "publishedAtRaw": "日刊スポーツ　9月20日 15時58分",
+        "publishedAtRaw": "東スポWEB　9月20日 18時36分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260920-OHT1T51217",
-        "title": "幕下８枚目の天昇山が同１４枚目の長内との全勝対決制す　極め倒しに「変な相撲になった」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260920-OHT1T51217",
+        "id": "dmenu-docomo-hochi-20260920-OHT1T51330",
+        "title": "新小結・伯乃富士が“憧れ”の大関・琴桜を撃破し２勝目「気持ちを強く持ち、自分を信じた」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260920-OHT1T51330",
         "publishedAt": "2026-09-20",
-        "publishedAtRaw": "スポーツ報知　9月20日 15時46分",
+        "publishedAtRaw": "スポーツ報知　9月20日 18時30分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-20T08:25:23.595229+00:00",
-  "lastSuccessAt": "2026-09-20T08:25:23.585451+00:00",
+  "lastAttemptAt": "2026-09-20T10:19:13.706214+00:00",
+  "lastSuccessAt": "2026-09-20T10:19:13.698089+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -207,9 +207,13 @@
     "35499500309": {
       "attemptedAt": "2026-09-20T08:25:23.595229+00:00",
       "outcome": "success"
+    },
+    "35504719373": {
+      "attemptedAt": "2026-09-20T10:19:13.706214+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35499500309",
+  "lastRunId": "35504719373",
   "lastPublishedDate": "2026-09-19",
   "lastPublishedSha": "b2cbf3ea463ae0ddd2489e163a0b5d236f317959",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
