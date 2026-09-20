@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-20T00:59:35.637293+00:00",
+    "updatedAt": "2026-09-20T02:29:10.832140+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -17,6 +17,24 @@
       }
     ],
     "items": [
+      {
+        "id": "dmenu-docomo-abematimes-10274070",
+        "title": "「キレイなお相撲さん」巨漢撃破の“小顔”力士に「めっちゃ可愛い」「モデル顔」ファン注目",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274070",
+        "publishedAt": "2026-09-20",
+        "publishedAtRaw": "ABEMA TIMES　9月20日 10時34分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-hochi-20260920-OHT1T51071",
+        "title": "【８日目の見所】熱海富士は気持ちの切り替えが大事　琴栄峰の素早い動きを警戒すると前に出る圧力が鈍る",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260920-OHT1T51071",
+        "publishedAt": "2026-09-20",
+        "publishedAtRaw": "スポーツ報知　9月20日 10時19分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
       {
         "id": "dmenu-docomo-ans-728822",
         "title": "「中継に美人が出てると思ったら…」NHK大相撲で視聴者話題　親方をデレデレにさせた女性の正体",
@@ -41,24 +59,6 @@
         "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274051",
         "publishedAt": "2026-09-20",
         "publishedAtRaw": "ABEMA TIMES　9月20日 7時27分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-abematimes-10274050",
-        "title": "安青錦が“鬼の形相” 熱海富士を撃破で「青鬼だ」「こんなの見たことない」驚きと興奮 “鬼気迫る”表情に反響相次ぐ",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274050",
-        "publishedAt": "2026-09-20",
-        "publishedAtRaw": "ABEMA TIMES　9月20日 7時03分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-ans-728654",
-        "title": "「え、鎮座してる」　引退から半年…元人気力士の現在にファン驚き　花道奥で「えげつない存在感」",
-        "url": "https://topics.smt.docomo.ne.jp/article/ans/sports/ans-728654",
-        "publishedAt": "2026-09-20",
-        "publishedAtRaw": "THE ANSWER　9月20日 6時33分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-20T00:59:35.646703+00:00",
-  "lastSuccessAt": "2026-09-20T00:59:35.637293+00:00",
+  "lastAttemptAt": "2026-09-20T02:29:10.840880+00:00",
+  "lastSuccessAt": "2026-09-20T02:29:10.832140+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -191,9 +191,13 @@
     "35480197928": {
       "attemptedAt": "2026-09-20T00:59:35.646703+00:00",
       "outcome": "success"
+    },
+    "35484095623": {
+      "attemptedAt": "2026-09-20T02:29:10.840880+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35480197928",
+  "lastRunId": "35484095623",
   "lastPublishedDate": "2026-09-19",
   "lastPublishedSha": "b2cbf3ea463ae0ddd2489e163a0b5d236f317959",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
