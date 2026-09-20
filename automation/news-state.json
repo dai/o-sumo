@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-20T06:31:52.221834+00:00",
+    "updatedAt": "2026-09-20T08:25:23.585451+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-20260920074",
-        "title": "“史上最強の新弟子”同期も怪物だった、天昇山が無傷４連勝で歴代最速新十両に前進【大相撲】",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260920074",
+        "id": "dmenu-docomo-ans-729035",
+        "title": "体重差なんと120kg…アジア大会で並んだ“最小”体操女子と超大物に騒然「お友達なのですね！」",
+        "url": "https://topics.smt.docomo.ne.jp/article/ans/sports/ans-729035",
         "publishedAt": "2026-09-20",
-        "publishedAtRaw": "デイリースポーツ　9月20日 15時08分",
+        "publishedAtRaw": "THE ANSWER　9月20日 16時39分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_YDUHKZDFNNBZXGMKIOER3LDCVI",
-        "title": "幕下注目の一番…十両経験者の三田が大森を退けて3勝目「慌てず対処できた」／秋場所",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_YDUHKZDFNNBZXGMKIOER3LDCVI",
+        "id": "dmenu-docomo-abematimes-10274117",
+        "title": "「スゴい衣装」大相撲客席に“主張が強め”な女性著名人が鎮座 「めっちゃ赤いやん」存在感ダダ漏れでファン騒然",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274117",
         "publishedAt": "2026-09-20",
-        "publishedAtRaw": "SANSPO　9月20日 14時56分",
+        "publishedAtRaw": "ABEMA TIMES　9月20日 16時37分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260920-OHT1T51187",
-        "title": "幕下・大森が２敗目　注目のイケメン対決で三田に敗れる「詰めが甘かった」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260920-OHT1T51187",
+        "id": "dmenu-docomo-f-bt-tp1-260920-202609200000712",
+        "title": "秋場所８日目で333日連続満員御礼　最長記録の666日連続まであと半分、４年後に到達なるか",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260920-202609200000712",
         "publishedAt": "2026-09-20",
-        "publishedAtRaw": "スポーツ報知　9月20日 14時50分",
+        "publishedAtRaw": "日刊スポーツ　9月20日 16時15分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sponichi-spngoo-20260920-0250",
-        "title": "現役最軽量57キロの15歳・新道らに大きな声援　秋場所新序出世披露",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260920-0250",
+        "id": "dmenu-docomo-f-bt-tp1-260920-202609200000787",
+        "title": "輝が無傷で勝ち越し…十両で唯一全勝キープ「どれだけ集中してやれるか」嘉陽、北の若は初黒星",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260920-202609200000787",
         "publishedAt": "2026-09-20",
-        "publishedAtRaw": "スポニチアネックス　9月20日 14時47分",
+        "publishedAtRaw": "日刊スポーツ　9月20日 15時58分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260920-202609200000660",
-        "title": "大森が“イケメン対決”で敗れる「詰めが甘かった」　大歓声には「ありがたいっす」と感謝",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260920-202609200000660",
+        "id": "dmenu-docomo-hochi-20260920-OHT1T51217",
+        "title": "幕下８枚目の天昇山が同１４枚目の長内との全勝対決制す　極め倒しに「変な相撲になった」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260920-OHT1T51217",
         "publishedAt": "2026-09-20",
-        "publishedAtRaw": "日刊スポーツ　9月20日 14時46分",
+        "publishedAtRaw": "スポーツ報知　9月20日 15時46分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-20T06:31:52.232286+00:00",
-  "lastSuccessAt": "2026-09-20T06:31:52.221834+00:00",
+  "lastAttemptAt": "2026-09-20T08:25:23.595229+00:00",
+  "lastSuccessAt": "2026-09-20T08:25:23.585451+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -203,9 +203,13 @@
     "35494436104": {
       "attemptedAt": "2026-09-20T06:31:52.232286+00:00",
       "outcome": "success"
+    },
+    "35499500309": {
+      "attemptedAt": "2026-09-20T08:25:23.595229+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35494436104",
+  "lastRunId": "35499500309",
   "lastPublishedDate": "2026-09-19",
   "lastPublishedSha": "b2cbf3ea463ae0ddd2489e163a0b5d236f317959",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
