@@ -1,7 +1,7 @@
 {
   "bashoName": "九月場所",
   "year": "令和八年",
-  "updatedAt": "2026-09-20T17:42:53+09:00",
+  "updatedAt": "2026-09-20T17:51:40+09:00",
   "makuuchi": [
     {
       "title": "横綱",
@@ -110,7 +110,7 @@
           "rank": "大関",
           "side": "west",
           "wins": 6,
-          "losses": 1,
+          "losses": 2,
           "draws": 0,
           "results": [
             "win",
@@ -120,7 +120,7 @@
             "loss",
             "win",
             "win",
-            null
+            "loss"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/",
           "memo": ""
@@ -187,7 +187,7 @@
           "yomi": "はくのふじ",
           "rank": "小結",
           "side": "east",
-          "wins": 1,
+          "wins": 2,
           "losses": 6,
           "draws": 0,
           "results": [
@@ -198,7 +198,7 @@
             "loss",
             "loss",
             "loss",
-            null
+            "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/",
           "memo": ""
