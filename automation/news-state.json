@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-21T06:45:41.355376+00:00",
+    "updatedAt": "2026-09-21T08:32:09.862395+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-20260921069",
-        "title": "旭富士が西幕下筆頭で勝ち越し！史上最速タイ新十両に大きく前進【大相撲】",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260921069",
+        "id": "dmenu-docomo-20260921080",
+        "title": "４１歳鉄人の脅威の粘り腰に館内大歓声　玉鷲が土俵際大逆転で４連勝、白星先行　実況アナも「十両の相撲の後の拍手ではなかった」と驚嘆",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260921080",
         "publishedAt": "2026-09-21",
-        "publishedAtRaw": "デイリースポーツ　9月21日 15時09分",
+        "publishedAtRaw": "デイリースポーツ　9月21日 16時27分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260921-202609210000477",
-        "title": "湊川親方、綱とりで救われた中村親方の解説「絶望的」の言葉を和らげた気遣いが今の原点に",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260921-202609210000477",
+        "id": "dmenu-docomo-abematimes-10274269",
+        "title": "「え、仲良く映ってる」台風迫る国技館に“まさか”の2ショット “ひと目”でわかる存在感に「どんだけ好きなの」反響続々",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274269",
         "publishedAt": "2026-09-21",
-        "publishedAtRaw": "日刊スポーツ　9月21日 14時57分",
+        "publishedAtRaw": "ABEMA TIMES　9月21日 16時23分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-20260921066",
-        "title": "天昇山が史上最速タイ新十両へ無傷５連勝、快記録へあと２勝【大相撲】",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260921066",
+        "id": "dmenu-docomo-hochi-20260921-OHT1T51162",
+        "title": "十両・炎鵬が白熊に敗れ５敗目　「自分を信じ切れていない」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260921-OHT1T51162",
         "publishedAt": "2026-09-21",
-        "publishedAtRaw": "デイリースポーツ　9月21日 14時36分",
+        "publishedAtRaw": "スポーツ報知　9月21日 16時16分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260921-OHT1T51116",
-        "title": "【９日目の見所】大の里がＶロードに突入か。悪い癖を封印して前に出る相撲で１敗をキープ　もう誰も止められないか",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260921-OHT1T51116",
+        "id": "dmenu-docomo-f-bt-tp1-260921-202609210000592",
+        "title": "幕下天昇山が無傷５連勝、旭富士と最速タイの所要６場所で新十両へ「一日一日頑張っていきたい」",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260921-202609210000592",
         "publishedAt": "2026-09-21",
-        "publishedAtRaw": "スポーツ報知　9月21日 14時21分",
+        "publishedAtRaw": "日刊スポーツ　9月21日 16時02分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-abematimes-10274231",
-        "title": "82キロ“細マッチョ”力士、165キロの巨漢相手に”華麗な一撃”大逆転劇「柔道みたいだった」「なんて技だ」人もまばらな館内が沸騰",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274231",
+        "id": "dmenu-docomo-hochi-20260921-OHT1T51154",
+        "title": "十両・輝が無傷の９連勝　 地元・石川で発生した奥能登豪雨から２年「復興に向けて頑張っているので、僕もやらないと」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260921-OHT1T51154",
         "publishedAt": "2026-09-21",
-        "publishedAtRaw": "ABEMA TIMES　9月21日 13時49分",
+        "publishedAtRaw": "スポーツ報知　9月21日 15時56分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-21T06:45:41.365226+00:00",
-  "lastSuccessAt": "2026-09-21T06:45:41.355376+00:00",
+  "lastAttemptAt": "2026-09-21T08:32:09.872206+00:00",
+  "lastSuccessAt": "2026-09-21T08:32:09.862395+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -227,9 +227,13 @@
     "35569849325": {
       "attemptedAt": "2026-09-21T06:45:41.365226+00:00",
       "outcome": "success"
+    },
+    "35578387758": {
+      "attemptedAt": "2026-09-21T08:32:09.872206+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35569849325",
+  "lastRunId": "35578387758",
   "lastPublishedDate": "2026-09-20",
   "lastPublishedSha": "82745843af95bd3e1992f06207c8a9a475e07403",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
