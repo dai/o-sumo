@@ -62,8 +62,8 @@ export const torikumiData: TorikumiDataSet = {
   "bashoId": 637,
   "bashoName": "九月場所",
   "year": "令和八年",
-  "updatedAt": "2026-09-21T17:52:24+09:00",
-  "resultUpdatedAt": "2026-09-21T17:52:24+09:00",
+  "updatedAt": "2026-09-21T18:03:20+09:00",
+  "resultUpdatedAt": "2026-09-21T18:03:20+09:00",
   "scheduleUpdatedAt": "2026-09-21T17:25:43+09:00",
   "today": {
     "makuuchi": {
@@ -389,8 +389,8 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "前頭四枚目",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/",
-          "kimarite": "",
-          "winner": null
+          "kimarite": "引き落とし",
+          "winner": "east"
         }
       ],
       "absentees": [
@@ -6276,8 +6276,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "",
               "westRank": "前頭四枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/",
-              "kimarite": "",
-              "winner": null
+              "kimarite": "引き落とし",
+              "winner": "east"
             }
           ],
           "absentees": [
