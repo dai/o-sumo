@@ -274,31 +274,29 @@ export const onRequest = async (context: any): Promise<Response> => {
       ensureHomeLinkHeaders(headers);
     }
 
-    if (!isHomePage) {
-      const pageMeta = resolvePageMeta(requestUrl.pathname);
-      if (!pageMeta.isNotFound) {
-        const noscriptHtml = await buildSeoNoscriptHtml(requestUrl.pathname, pageMeta.title, noscriptContext);
-        const responseForRewrite = headers
-          ? new Response(response.body, {
-              status: response.status,
-              statusText: response.statusText,
-              headers,
-            })
-          : response;
-        return rewritePageMetadataWithNoscript(
-          responseForRewrite,
-          {
-            title: pageMeta.title,
-            description: pageMeta.description,
-            canonicalUrl: pageMeta.canonicalUrl,
-            imageUrl: pageMeta.image.primary,
-            imageWidth: pageMeta.image.width,
-            imageHeight: pageMeta.image.height,
-            imageAlt: pageMeta.image.alt,
-          },
-          noscriptHtml,
-        );
-      }
+    const pageMeta = resolvePageMeta(requestUrl.pathname);
+    if (!pageMeta.isNotFound) {
+      const noscriptHtml = await buildSeoNoscriptHtml(requestUrl.pathname, pageMeta.title, noscriptContext);
+      const responseForRewrite = headers
+        ? new Response(response.body, {
+            status: response.status,
+            statusText: response.statusText,
+            headers,
+          })
+        : response;
+      return rewritePageMetadataWithNoscript(
+        responseForRewrite,
+        {
+          title: pageMeta.title,
+          description: pageMeta.description,
+          canonicalUrl: pageMeta.canonicalUrl,
+          imageUrl: pageMeta.image.primary,
+          imageWidth: pageMeta.image.width,
+          imageHeight: pageMeta.image.height,
+          imageAlt: pageMeta.image.alt,
+        },
+        noscriptHtml,
+      );
     }
 
     if (headers) {

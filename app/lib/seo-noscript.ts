@@ -16,6 +16,7 @@ import {
   getAllArchiveRouteConfigs,
   getArchiveRouteConfigByMonthKey,
   getArchiveRouteConfigForDateKey,
+  getArchiveRouteConfigForPathname,
 } from './torikumi-routes';
 
 export interface SeoNoscriptContext {
@@ -418,13 +419,28 @@ function renderProfile(title: string, profile: ProfileForNoscript, kindLabel: '�
   return `<h1>${escapeHtml(profile.name)} | ${escapeHtml(kindLabel)}プロフィール | o-sumo</h1>${rankLine}${yomiLine}<p>${escapeHtml(title)}</p>`;
 }
 
+function renderHome(title: string): string {
+  const current = getArchiveRouteConfigForPathname('/');
+  const items = [
+    `<li><a href="${escapeHtml(current.banzukePath)}">番付</a></li>`,
+    `<li><a href="${escapeHtml(current.schedulePath)}">取組予定</a></li>`,
+    `<li><a href="${escapeHtml(current.resultPath)}">取組・星取表</a></li>`,
+    `<li><a href="/archives/">場所別アーカイブ</a></li>`,
+    `<li><a href="/rikishi/">力士一覧</a></li>`,
+    `<li><a href="/kimarite/">決まり手一覧</a></li>`,
+  ];
+  return `<h1>${escapeHtml(title)}</h1><ul>${items.join('')}</ul>`;
+}
+
 export async function buildSeoNoscriptHtml(
   pathname: string,
   title: string,
   ctx: SeoNoscriptContext,
 ): Promise<string | null> {
-  // Home and unknown routes get no noscript.
-  if (pathname === '/' || pathname === '') return null;
+  // Home: crawlable links to the current basho hubs (resolved, not hardcoded).
+  if (pathname === '/' || pathname === '') {
+    return wrapNoscript(renderHome(title));
+  }
 
   // /kimarite/
   if (pathname === '/kimarite/') {

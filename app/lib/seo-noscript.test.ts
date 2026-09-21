@@ -41,9 +41,21 @@ const baseOfficials = {
 };
 
 describe('buildSeoNoscriptHtml', () => {
-  it('returns null for the homepage', async () => {
+  it('renders current basho and hub links for the homepage', async () => {
     const ctx = makeContext({});
-    expect(await buildSeoNoscriptHtml('/', 'o-sumo | 大相撲 番付・星取表', ctx)).toBeNull();
+    const html = await buildSeoNoscriptHtml('/', 'o-sumo | 大相撲 番付・星取表', ctx);
+    expect(html).not.toBeNull();
+    expect(html).toContain('<h1>o-sumo | 大相撲 番付・星取表</h1>');
+    expect(html).toContain('/archives/');
+    expect(html).toContain('/rikishi/');
+    expect(html).toContain('/kimarite/');
+    expect(html).toContain('番付');
+    expect(html).toContain('取組予定');
+    expect(html).toContain('取組・星取表');
+    expect(html).toContain('/202609-banzuke/');
+    expect(html).toContain('/202609-yotei/');
+    expect(html).toContain('/202609-torikumi/');
+    expect(html).not.toMatch(/href="\/202609-(banzuke|yotei|torikumi)"(?!\/)/);
   });
 
   it('renders a kimarite list for /kimarite/', async () => {
