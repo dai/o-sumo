@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-20T10:19:13.698089+00:00",
+    "updatedAt": "2026-09-21T00:58:36.066015+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-tokyosports-403819",
-        "title": "【大相撲】炎鵬　星を五分に戻して後半へ「ひるんだら負けると思った。気合入りました」",
-        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403819",
-        "publishedAt": "2026-09-20",
-        "publishedAtRaw": "東スポWEB　9月20日 18時50分",
+        "id": "dmenu-docomo-abematimes-10274179",
+        "title": "「ちゃんと礼をして」呼出が力士に“ビシッと”指導 花道での一コマに「嬉しすぎて礼を忘れる」「初々しい」ファンほっこり",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274179",
+        "publishedAt": "2026-09-21",
+        "publishedAtRaw": "ABEMA TIMES　9月21日 9時43分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-abematimes-10274135",
-        "title": "「絶対お相撲さんになる」中村親方、35年前の“奇跡”の2ショット写真 元横綱・若乃花との知られざる絆に「胸熱」「泣ける」",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274135",
-        "publishedAt": "2026-09-20",
-        "publishedAtRaw": "ABEMA TIMES　9月20日 18時49分",
+        "id": "dmenu-docomo-abematimes-10274177",
+        "title": "「え、これ相撲の技？」とファン騒然の一番に反響広がる 元レスリング王者の力士が魅せた 発生割合0.1％の“衝撃珍手”",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274177",
+        "publishedAt": "2026-09-21",
+        "publishedAtRaw": "ABEMA TIMES　9月21日 9時07分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260920-202609200001234",
-        "title": "新関脇の藤ノ川が激しい相撲で２敗守る、元関脇嘉風の中村親方が高校時代の努力を披露",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260920-202609200001234",
-        "publishedAt": "2026-09-20",
-        "publishedAtRaw": "日刊スポーツ　9月20日 18時47分",
+        "id": "dmenu-docomo-abematimes-10274175",
+        "title": "「すごい懸賞だな、しかし…」元若乃花、大の里が手にした懸賞の山にドン引き「ワイの年収以上の懸賞金」驚嘆の声も",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274175",
+        "publishedAt": "2026-09-21",
+        "publishedAtRaw": "ABEMA TIMES　9月21日 8時21分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-tokyosports-403834",
-        "title": "【大相撲】霧島　平幕に３敗で綱取り絶望的…浅香山審判部長「厳しく見られても仕方がない」",
-        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403834",
-        "publishedAt": "2026-09-20",
-        "publishedAtRaw": "東スポWEB　9月20日 18時36分",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_AZ5TP463NBDCJM5RREARI2JOO4",
+        "title": "花田虎上氏「うれしいですよ。まして強くなってダブル解説できるなんて」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_AZ5TP463NBDCJM5RREARI2JOO4",
+        "publishedAt": "2026-09-21",
+        "publishedAtRaw": "SANSPO　9月21日 8時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260920-OHT1T51330",
-        "title": "新小結・伯乃富士が“憧れ”の大関・琴桜を撃破し２勝目「気持ちを強く持ち、自分を信じた」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260920-OHT1T51330",
-        "publishedAt": "2026-09-20",
-        "publishedAtRaw": "スポーツ報知　9月20日 18時30分",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_UL5T6T4C6ZCZTJ674NQJPM2RQA",
+        "title": "元貴景勝「元気をもらいますしここから横綱、大関戦、本当に楽しみ」／秋場所",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_UL5T6T4C6ZCZTJ674NQJPM2RQA",
+        "publishedAt": "2026-09-21",
+        "publishedAtRaw": "SANSPO　9月21日 7時30分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-20T10:19:13.706214+00:00",
-  "lastSuccessAt": "2026-09-20T10:19:13.698089+00:00",
+  "lastAttemptAt": "2026-09-21T00:58:36.075302+00:00",
+  "lastSuccessAt": "2026-09-21T00:58:36.066015+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -211,9 +211,13 @@
     "35504719373": {
       "attemptedAt": "2026-09-20T10:19:13.706214+00:00",
       "outcome": "success"
+    },
+    "35549370964": {
+      "attemptedAt": "2026-09-21T00:58:36.075302+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35504719373",
+  "lastRunId": "35549370964",
   "lastPublishedDate": "2026-09-20",
   "lastPublishedSha": "82745843af95bd3e1992f06207c8a9a475e07403",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
