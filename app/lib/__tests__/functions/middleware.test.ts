@@ -266,7 +266,7 @@ describe('onRequest SEO routing for sitemap-targeted HTML routes', () => {
     }
   });
 
-  it('skips rewritePageMetadata for the homepage', async () => {
+  it('applies rewritePageMetadata for the homepage', async () => {
     const spy = installHtmlRewriterSpy();
     try {
       const request = new Request('https://osada.us/', { headers: { Accept: 'text/html' } });
@@ -275,8 +275,20 @@ describe('onRequest SEO routing for sitemap-targeted HTML routes', () => {
 
       expect(mockNext).toHaveBeenCalled();
       expect(response.status).toBe(200);
-      // No rewriter calls for the homepage.
-      expect(spy.rewriters).toHaveLength(0);
+      expect(spy.rewriters).toHaveLength(1);
+      const titleRegistration = spy.rewriters[0].registrations.find((r) => r.selector === 'title');
+      expect(titleRegistration?.handlers.element).toBeDefined();
+      let capturedTitle = '';
+      const fakeTitleElement = {
+        setInnerContent: (content: string) => {
+          capturedTitle = content;
+        },
+        setAttribute: () => {},
+        append: () => {},
+      };
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (titleRegistration!.handlers.element as any)(fakeTitleElement);
+      expect(capturedTitle).toBe('o-sumo | 大相撲 番付・星取表');
     } finally {
       spy.restore();
     }
@@ -426,14 +438,37 @@ describe('onRequest SEO noscript injection', () => {
     }
   });
 
-  it('does not register a body handler for the homepage', async () => {
+  it('registers a body handler that appends <noscript> hub links for the homepage', async () => {
     const spy = installHtmlRewriterSpy();
     try {
       const request = new Request('https://osada.us/', { headers: { Accept: 'text/html' } });
       const mockNext = vi.fn().mockResolvedValue(makeHtmlResponse());
       await onRequest(makeContext(request, mockNext));
 
-      expect(spy.rewriters).toHaveLength(0);
+      expect(spy.rewriters).toHaveLength(1);
+      const bodyRegistrations = spy.rewriters[0].registrations.filter((r) => r.selector === 'body');
+      expect(bodyRegistrations).toHaveLength(1);
+      let appended = '';
+      const fakeBody = {
+        setInnerContent: () => {},
+        setAttribute: () => {},
+        append: (content: string, options?: { html?: boolean }) => {
+          if (options?.html) appended = content;
+        },
+      };
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (bodyRegistrations[0].handlers.element as any)(fakeBody);
+      expect(appended).toContain('<noscript');
+      expect(appended).toContain('o-sumo | 大相撲 番付・星取表');
+      expect(appended).toContain('番付');
+      expect(appended).toContain('取組予定');
+      expect(appended).toContain('取組・星取表');
+      expect(appended).toContain('/archives/');
+      expect(appended).toContain('/rikishi/');
+      expect(appended).toContain('/kimarite/');
+      expect(appended).toContain('/202609-banzuke/');
+      expect(appended).toContain('/202609-yotei/');
+      expect(appended).toContain('/202609-torikumi/');
     } finally {
       spy.restore();
     }
