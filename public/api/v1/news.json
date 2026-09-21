@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-20T10:19:13.698089+00:00",
+  "updatedAt": "2026-09-21T10:23:18.978251+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-tokyosports-403819",
-      "title": "【大相撲】炎鵬　星を五分に戻して後半へ「ひるんだら負けると思った。気合入りました」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403819",
-      "publishedAt": "2026-09-20",
-      "publishedAtRaw": "東スポWEB　9月20日 18時50分",
+      "id": "dmenu-docomo-hochi-20260921-OHT1T51244",
+      "title": "横綱初挑戦の藤凌駕、大の里に引き落とされて６敗目　「相手の動きが速かった。対応していかないと、この先はない」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260921-OHT1T51244",
+      "publishedAt": "2026-09-21",
+      "publishedAtRaw": "スポーツ報知　9月21日 19時01分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-abematimes-10274135",
-      "title": "「絶対お相撲さんになる」中村親方、35年前の“奇跡”の2ショット写真 元横綱・若乃花との知られざる絆に「胸熱」「泣ける」",
-      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274135",
-      "publishedAt": "2026-09-20",
-      "publishedAtRaw": "ABEMA TIMES　9月20日 18時49分",
+      "id": "dmenu-docomo-f-bt-tp1-260921-202609210001209",
+      "title": "藤凌駕、初の結びで横綱大の里に黒星「もったいない一番。もっと相撲をとりたかった」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260921-202609210001209",
+      "publishedAt": "2026-09-21",
+      "publishedAtRaw": "日刊スポーツ　9月21日 18時51分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260920-202609200001234",
-      "title": "新関脇の藤ノ川が激しい相撲で２敗守る、元関脇嘉風の中村親方が高校時代の努力を披露",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260920-202609200001234",
-      "publishedAt": "2026-09-20",
-      "publishedAtRaw": "日刊スポーツ　9月20日 18時47分",
+      "id": "dmenu-docomo-f-bt-tp1-260921-202609210001165",
+      "title": "土俵際で逆転の上手投げ！　小兵の藤ノ川、巨体の琴桜を破り２敗守る「思い切りがいい」舞の海氏",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260921-202609210001165",
+      "publishedAt": "2026-09-21",
+      "publishedAtRaw": "日刊スポーツ　9月21日 18時49分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-403834",
-      "title": "【大相撲】霧島　平幕に３敗で綱取り絶望的…浅香山審判部長「厳しく見られても仕方がない」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403834",
-      "publishedAt": "2026-09-20",
-      "publishedAtRaw": "東スポWEB　9月20日 18時36分",
+      "id": "dmenu-docomo-tokyosports-403925",
+      "title": "【大相撲】霧島が４敗目…綱取りは完全消滅　九重審判長「つんのめるような相撲。悪い霧島」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403925",
+      "publishedAt": "2026-09-21",
+      "publishedAtRaw": "東スポWEB　9月21日 18時47分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260920-OHT1T51330",
-      "title": "新小結・伯乃富士が“憧れ”の大関・琴桜を撃破し２勝目「気持ちを強く持ち、自分を信じた」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260920-OHT1T51330",
-      "publishedAt": "2026-09-20",
-      "publishedAtRaw": "スポーツ報知　9月20日 18時30分",
+      "id": "dmenu-docomo-tokyosports-403924",
+      "title": "【大相撲】横綱大の里　単独トップでの勝ち越しに手応え「先場所より良くなっている」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403924",
+      "publishedAt": "2026-09-21",
+      "publishedAtRaw": "東スポWEB　9月21日 18時43分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
