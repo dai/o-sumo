@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-21T02:32:59.176687+00:00",
+    "updatedAt": "2026-09-21T04:26:54.859622+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,6 +18,33 @@
     ],
     "items": [
       {
+        "id": "dmenu-docomo-f-bt-tp1-260921-202609210000285",
+        "title": "国技館に響く「垣添ー！」の声…12連勝でファン急増　実は研究熱心、琴光喜＆朝青龍動画で勉強",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260921-202609210000285",
+        "publishedAt": "2026-09-21",
+        "publishedAtRaw": "日刊スポーツ　9月21日 12時27分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-hochi-20260921-OHT1T51069",
+        "title": "序二段・冨蘭志寿、台風２５号接近で部屋を普段より１時間早く出発「止まったらやばいなと思って」　電車遅延で取組順変更の過去の経験生かす",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260921-OHT1T51069",
+        "publishedAt": "2026-09-21",
+        "publishedAtRaw": "スポーツ報知　9月21日 12時21分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-abematimes-10274192",
+        "title": "「進撃の巨人みたい」「感覚バグる」大相撲で衝撃の“身長差”対決 ファン困惑",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274192",
+        "publishedAt": "2026-09-21",
+        "publishedAtRaw": "ABEMA TIMES　9月21日 11時32分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
         "id": "dmenu-docomo-abematimes-10274189",
         "title": "“細マッチョ”なイケメン力士、“ゴリマッチョ”な男前力士に完勝！ 劇的結末に館内騒然",
         "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274189",
@@ -32,33 +59,6 @@
         "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260921-OHT1T51055",
         "publishedAt": "2026-09-21",
         "publishedAtRaw": "スポーツ報知　9月21日 10時59分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-abematimes-10274180",
-        "title": "「何気に映ってるやん」大相撲、行司の背後に着物姿の美人女優が降臨 「お美しい」「早い時間から」驚きの声",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274180",
-        "publishedAt": "2026-09-21",
-        "publishedAtRaw": "ABEMA TIMES　9月21日 10時05分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-abematimes-10274179",
-        "title": "「ちゃんと礼をして」呼出が力士に“ビシッと”指導 花道での一コマに「嬉しすぎて礼を忘れる」「初々しい」ファンほっこり",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274179",
-        "publishedAt": "2026-09-21",
-        "publishedAtRaw": "ABEMA TIMES　9月21日 9時43分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-abematimes-10274177",
-        "title": "「え、これ相撲の技？」とファン騒然の一番に反響広がる 元レスリング王者の力士が魅せた 発生割合0.1％の“衝撃珍手”",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274177",
-        "publishedAt": "2026-09-21",
-        "publishedAtRaw": "ABEMA TIMES　9月21日 9時07分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-21T02:32:59.186334+00:00",
-  "lastSuccessAt": "2026-09-21T02:32:59.176687+00:00",
+  "lastAttemptAt": "2026-09-21T04:26:54.867980+00:00",
+  "lastSuccessAt": "2026-09-21T04:26:54.859622+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -219,9 +219,13 @@
     "35554530392": {
       "attemptedAt": "2026-09-21T02:32:59.186334+00:00",
       "outcome": "success"
+    },
+    "35560999924": {
+      "attemptedAt": "2026-09-21T04:26:54.867980+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35554530392",
+  "lastRunId": "35560999924",
   "lastPublishedDate": "2026-09-20",
   "lastPublishedSha": "82745843af95bd3e1992f06207c8a9a475e07403",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
