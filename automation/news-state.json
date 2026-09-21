@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-21T04:26:54.859622+00:00",
+    "updatedAt": "2026-09-21T06:45:41.355376+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-f-bt-tp1-260921-202609210000285",
-        "title": "国技館に響く「垣添ー！」の声…12連勝でファン急増　実は研究熱心、琴光喜＆朝青龍動画で勉強",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260921-202609210000285",
+        "id": "dmenu-docomo-20260921069",
+        "title": "旭富士が西幕下筆頭で勝ち越し！史上最速タイ新十両に大きく前進【大相撲】",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260921069",
         "publishedAt": "2026-09-21",
-        "publishedAtRaw": "日刊スポーツ　9月21日 12時27分",
+        "publishedAtRaw": "デイリースポーツ　9月21日 15時09分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260921-OHT1T51069",
-        "title": "序二段・冨蘭志寿、台風２５号接近で部屋を普段より１時間早く出発「止まったらやばいなと思って」　電車遅延で取組順変更の過去の経験生かす",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260921-OHT1T51069",
+        "id": "dmenu-docomo-f-bt-tp1-260921-202609210000477",
+        "title": "湊川親方、綱とりで救われた中村親方の解説「絶望的」の言葉を和らげた気遣いが今の原点に",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260921-202609210000477",
         "publishedAt": "2026-09-21",
-        "publishedAtRaw": "スポーツ報知　9月21日 12時21分",
+        "publishedAtRaw": "日刊スポーツ　9月21日 14時57分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-abematimes-10274192",
-        "title": "「進撃の巨人みたい」「感覚バグる」大相撲で衝撃の“身長差”対決 ファン困惑",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274192",
+        "id": "dmenu-docomo-20260921066",
+        "title": "天昇山が史上最速タイ新十両へ無傷５連勝、快記録へあと２勝【大相撲】",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260921066",
         "publishedAt": "2026-09-21",
-        "publishedAtRaw": "ABEMA TIMES　9月21日 11時32分",
+        "publishedAtRaw": "デイリースポーツ　9月21日 14時36分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-abematimes-10274189",
-        "title": "“細マッチョ”なイケメン力士、“ゴリマッチョ”な男前力士に完勝！ 劇的結末に館内騒然",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274189",
+        "id": "dmenu-docomo-hochi-20260921-OHT1T51116",
+        "title": "【９日目の見所】大の里がＶロードに突入か。悪い癖を封印して前に出る相撲で１敗をキープ　もう誰も止められないか",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260921-OHT1T51116",
         "publishedAt": "2026-09-21",
-        "publishedAtRaw": "ABEMA TIMES　9月21日 11時06分",
+        "publishedAtRaw": "スポーツ報知　9月21日 14時21分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260921-OHT1T51055",
-        "title": "栄誠、英国出身力士３６年ぶりの勝ち越し　雨でハプニングも「小川さんのおかげで勝ち越しできました」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260921-OHT1T51055",
+        "id": "dmenu-docomo-abematimes-10274231",
+        "title": "82キロ“細マッチョ”力士、165キロの巨漢相手に”華麗な一撃”大逆転劇「柔道みたいだった」「なんて技だ」人もまばらな館内が沸騰",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274231",
         "publishedAt": "2026-09-21",
-        "publishedAtRaw": "スポーツ報知　9月21日 10時59分",
+        "publishedAtRaw": "ABEMA TIMES　9月21日 13時49分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-21T04:26:54.867980+00:00",
-  "lastSuccessAt": "2026-09-21T04:26:54.859622+00:00",
+  "lastAttemptAt": "2026-09-21T06:45:41.365226+00:00",
+  "lastSuccessAt": "2026-09-21T06:45:41.355376+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -223,9 +223,13 @@
     "35560999924": {
       "attemptedAt": "2026-09-21T04:26:54.867980+00:00",
       "outcome": "success"
+    },
+    "35569849325": {
+      "attemptedAt": "2026-09-21T06:45:41.365226+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35560999924",
+  "lastRunId": "35569849325",
   "lastPublishedDate": "2026-09-20",
   "lastPublishedSha": "82745843af95bd3e1992f06207c8a9a475e07403",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
