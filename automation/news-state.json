@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-21T10:23:18.978251+00:00",
+    "updatedAt": "2026-09-22T00:53:58.345694+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-hochi-20260921-OHT1T51244",
-        "title": "横綱初挑戦の藤凌駕、大の里に引き落とされて６敗目　「相手の動きが速かった。対応していかないと、この先はない」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260921-OHT1T51244",
-        "publishedAt": "2026-09-21",
-        "publishedAtRaw": "スポーツ報知　9月21日 19時01分",
+        "id": "dmenu-docomo-sponichi-spngoo-20260922-0102",
+        "title": "引退力士の受け皿に　東京・浅草で「すもうカステラ店」がオープン",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260922-0102",
+        "publishedAt": "2026-09-22",
+        "publishedAtRaw": "スポニチアネックス　9月22日 8時11分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260921-202609210001209",
-        "title": "藤凌駕、初の結びで横綱大の里に黒星「もったいない一番。もっと相撲をとりたかった」",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260921-202609210001209",
-        "publishedAt": "2026-09-21",
-        "publishedAtRaw": "日刊スポーツ　9月21日 18時51分",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_XQTQAN6ZLJFIXIHHNEEEAS73PU",
+        "title": "舞の海氏「そろそろ横綱が優勝してくれないと困りますよね」／秋場所",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_XQTQAN6ZLJFIXIHHNEEEAS73PU",
+        "publishedAt": "2026-09-22",
+        "publishedAtRaw": "SANSPO　9月22日 8時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260921-202609210001165",
-        "title": "土俵際で逆転の上手投げ！　小兵の藤ノ川、巨体の琴桜を破り２敗守る「思い切りがいい」舞の海氏",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260921-202609210001165",
-        "publishedAt": "2026-09-21",
-        "publishedAtRaw": "日刊スポーツ　9月21日 18時49分",
+        "id": "dmenu-docomo-abematimes-10274272",
+        "title": "発想力が“規格外” 18歳・81キロ小兵力士、“たった3秒”で妙技炸裂 57キロ重たい相手を軽々と撃破「マジすごい」館内どよめきの瞬間",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274272",
+        "publishedAt": "2026-09-22",
+        "publishedAtRaw": "ABEMA TIMES　9月22日 7時18分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-tokyosports-403925",
-        "title": "【大相撲】霧島が４敗目…綱取りは完全消滅　九重審判長「つんのめるような相撲。悪い霧島」",
-        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403925",
-        "publishedAt": "2026-09-21",
-        "publishedAtRaw": "東スポWEB　9月21日 18時47分",
+        "id": "dmenu-docomo-abematimes-10274291",
+        "title": "「いまの何？」力士の快挙に“水を差す”行為 取組直後の出来事に批判相次ぐ",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274291",
+        "publishedAt": "2026-09-22",
+        "publishedAtRaw": "ABEMA TIMES　9月22日 6時43分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-tokyosports-403924",
-        "title": "【大相撲】横綱大の里　単独トップでの勝ち越しに手応え「先場所より良くなっている」",
-        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403924",
-        "publishedAt": "2026-09-21",
-        "publishedAtRaw": "東スポWEB　9月21日 18時43分",
+        "id": "dmenu-docomo-abematimes-10274233",
+        "title": "「いいところなかった」荒磯親方、琴栄峰の“逃げ腰の姿勢”に苦言「辛口だ」あえて投げかけた“厳しい言葉”に「愛を感じる」「正論」反響続々",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274233",
+        "publishedAt": "2026-09-22",
+        "publishedAtRaw": "ABEMA TIMES　9月22日 6時34分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-21T10:23:18.988003+00:00",
-  "lastSuccessAt": "2026-09-21T10:23:18.978251+00:00",
+  "lastAttemptAt": "2026-09-22T00:53:58.355043+00:00",
+  "lastSuccessAt": "2026-09-22T00:53:58.345694+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -235,9 +235,13 @@
     "35588451350": {
       "attemptedAt": "2026-09-21T10:23:18.988003+00:00",
       "outcome": "success"
+    },
+    "35673773104": {
+      "attemptedAt": "2026-09-22T00:53:58.355043+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35588451350",
+  "lastRunId": "35673773104",
   "lastPublishedDate": "2026-09-21",
   "lastPublishedSha": "41aa3bbe6ea90571b59d96a986c3540916331d13",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
