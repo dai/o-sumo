@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-21T10:23:18.978251+00:00",
+  "updatedAt": "2026-09-22T10:23:07.402656+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-hochi-20260921-OHT1T51244",
-      "title": "横綱初挑戦の藤凌駕、大の里に引き落とされて６敗目　「相手の動きが速かった。対応していかないと、この先はない」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260921-OHT1T51244",
-      "publishedAt": "2026-09-21",
-      "publishedAtRaw": "スポーツ報知　9月21日 19時01分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260922-0251",
+      "title": "ともに1メートル95！金峰山、最長身対決を制し1差維持　相手の遅い手つき「気になったけれど…」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260922-0251",
+      "publishedAt": "2026-09-22",
+      "publishedAtRaw": "スポニチアネックス　9月22日 19時08分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260921-202609210001209",
-      "title": "藤凌駕、初の結びで横綱大の里に黒星「もったいない一番。もっと相撲をとりたかった」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260921-202609210001209",
-      "publishedAt": "2026-09-21",
-      "publishedAtRaw": "日刊スポーツ　9月21日 18時51分",
+      "id": "dmenu-docomo-tokyosports-404005",
+      "title": "【大相撲】新関脇・藤ノ川が勝ち越し　11日目は過去２戦全勝・大の里戦…藤島親方「横綱の方がやりづらい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-404005",
+      "publishedAt": "2026-09-22",
+      "publishedAtRaw": "東スポWEB　9月22日 19時05分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260921-202609210001165",
-      "title": "土俵際で逆転の上手投げ！　小兵の藤ノ川、巨体の琴桜を破り２敗守る「思い切りがいい」舞の海氏",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260921-202609210001165",
-      "publishedAt": "2026-09-21",
-      "publishedAtRaw": "日刊スポーツ　9月21日 18時49分",
+      "id": "dmenu-docomo-tokyosports-404003",
+      "title": "【大相撲】大関霧島　綱取り挑戦も…悪夢の３連敗で取材拒否　審判長の尾上親方「攻められて負けている」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-404003",
+      "publishedAt": "2026-09-22",
+      "publishedAtRaw": "東スポWEB　9月22日 18時43分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-403925",
-      "title": "【大相撲】霧島が４敗目…綱取りは完全消滅　九重審判長「つんのめるような相撲。悪い霧島」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403925",
-      "publishedAt": "2026-09-21",
-      "publishedAtRaw": "東スポWEB　9月21日 18時47分",
+      "id": "dmenu-docomo-f-bt-tp1-260922-202609220000882",
+      "title": "大の里、引き一切なしの完勝で単独首位守る　西岩親方「横綱相撲。この相撲を取れれば優勝」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260922-202609220000882",
+      "publishedAt": "2026-09-22",
+      "publishedAtRaw": "日刊スポーツ　9月22日 18時19分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-403924",
-      "title": "【大相撲】横綱大の里　単独トップでの勝ち越しに手応え「先場所より良くなっている」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-403924",
-      "publishedAt": "2026-09-21",
-      "publishedAtRaw": "東スポWEB　9月21日 18時43分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260922-0226",
+      "title": "横綱・大の里　1敗守って単独首位キープ　2敗で熱海富士と藤ノ川の両関脇、平幕の金峰山が追う",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260922-0226",
+      "publishedAt": "2026-09-22",
+      "publishedAtRaw": "スポニチアネックス　9月22日 18時02分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
