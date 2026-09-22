@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-22T08:28:12.804397+00:00",
+    "updatedAt": "2026-09-22T10:23:07.402656+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-sponichi-spngoo-20260922-0210",
-        "title": "人気業師の宇良　鮮やか肩すかしで7勝目　小さな女の子もピンクのうちわを手に「うら〜！」と大喜び",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260922-0210",
+        "id": "dmenu-docomo-sponichi-spngoo-20260922-0251",
+        "title": "ともに1メートル95！金峰山、最長身対決を制し1差維持　相手の遅い手つき「気になったけれど…」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260922-0251",
         "publishedAt": "2026-09-22",
-        "publishedAtRaw": "スポニチアネックス　9月22日 17時14分",
+        "publishedAtRaw": "スポニチアネックス　9月22日 19時08分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-thedigestweb-120423",
-        "title": "41キロ差もなんのその！ 欧山田がわずか２秒で“0.1％”の珍手に国技館騒然「そんな技あるんだ！」「初めて聞いた」",
-        "url": "https://topics.smt.docomo.ne.jp/article/thedigestweb/sports/thedigestweb-120423",
+        "id": "dmenu-docomo-tokyosports-404005",
+        "title": "【大相撲】新関脇・藤ノ川が勝ち越し　11日目は過去２戦全勝・大の里戦…藤島親方「横綱の方がやりづらい」",
+        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-404005",
         "publishedAt": "2026-09-22",
-        "publishedAtRaw": "THE DIGEST　9月22日 15時32分",
+        "publishedAtRaw": "東スポWEB　9月22日 19時05分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260922-OHT1T51108",
-        "title": "幕下・米沢龍が勝ち越し　関取経験者で学生横綱・花の富士との対戦は「めちゃくちゃ怖かった。勝てたことは自信になる」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260922-OHT1T51108",
+        "id": "dmenu-docomo-tokyosports-404003",
+        "title": "【大相撲】大関霧島　綱取り挑戦も…悪夢の３連敗で取材拒否　審判長の尾上親方「攻められて負けている」",
+        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-404003",
         "publishedAt": "2026-09-22",
-        "publishedAtRaw": "スポーツ報知　9月22日 14時44分",
+        "publishedAtRaw": "東スポWEB　9月22日 18時43分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260922-OHT1T51083",
-        "title": "元十両・木竜皇が勝ち越し　先場所途中休場要因の足底筋膜炎も完治「けがなく、自分の相撲を取り切りたい」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260922-OHT1T51083",
+        "id": "dmenu-docomo-f-bt-tp1-260922-202609220000882",
+        "title": "大の里、引き一切なしの完勝で単独首位守る　西岩親方「横綱相撲。この相撲を取れれば優勝」",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260922-202609220000882",
         "publishedAt": "2026-09-22",
-        "publishedAtRaw": "スポーツ報知　9月22日 13時40分",
+        "publishedAtRaw": "日刊スポーツ　9月22日 18時19分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-abematimes-10274382",
-        "title": "「出禁にして」玉鷲、館内沸騰の激勝に“水を差す”愚行 大歓声を切り裂く観客の行為に波紋「周りのこと考えて」「さすがにヒドイ」",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274382",
+        "id": "dmenu-docomo-sponichi-spngoo-20260922-0226",
+        "title": "横綱・大の里　1敗守って単独首位キープ　2敗で熱海富士と藤ノ川の両関脇、平幕の金峰山が追う",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260922-0226",
         "publishedAt": "2026-09-22",
-        "publishedAtRaw": "ABEMA TIMES　9月22日 13時07分",
+        "publishedAtRaw": "スポニチアネックス　9月22日 18時02分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-22T08:28:12.814108+00:00",
-  "lastSuccessAt": "2026-09-22T08:28:12.804397+00:00",
+  "lastAttemptAt": "2026-09-22T10:23:07.412048+00:00",
+  "lastSuccessAt": "2026-09-22T10:23:07.402656+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -255,9 +255,13 @@
     "35704952531": {
       "attemptedAt": "2026-09-22T08:28:12.814108+00:00",
       "outcome": "success"
+    },
+    "35715657301": {
+      "attemptedAt": "2026-09-22T10:23:07.412048+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35704952531",
+  "lastRunId": "35715657301",
   "lastPublishedDate": "2026-09-21",
   "lastPublishedSha": "41aa3bbe6ea90571b59d96a986c3540916331d13",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
