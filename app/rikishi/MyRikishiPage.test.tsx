@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { MY_RIKISHI_STORAGE_KEY } from '../lib/my-rikishi';
-import MyRikishiPage from './MyRikishiPage';
+import MyRikishiPage, { resolveMatchupName } from './MyRikishiPage';
 
 const index = {
   updatedAt: '2026-08-17T10:00:00+09:00',
@@ -51,5 +51,20 @@ describe('MyRikishiPage comparison selection', () => {
     // Card contains rikishi name and dashboard elements
     expect(within(card).getByText('豊昇龍')).toBeInTheDocument();
     expect(within(card).getByText('今場所の成績')).toBeInTheDocument();
+  });
+});
+
+describe('rikishi matchup name resolution', () => {
+  it('replaces kana matchup names with the canonical name from the index', () => {
+    const names = new Map([[3842, '豊昇龍']]);
+    expect(resolveMatchupName(
+      'https://www.sumo.or.jp/ResultRikishiData/profile/3842/',
+      'ほうしょうりゅう',
+      names,
+    )).toBe('豊昇龍');
+  });
+
+  it('keeps the matchup fallback when the profile ID is unavailable', () => {
+    expect(resolveMatchupName('https://example.com/unknown', 'ほうしょうりゅう', new Map())).toBe('ほうしょうりゅう');
   });
 });
