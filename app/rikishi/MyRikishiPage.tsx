@@ -22,10 +22,20 @@ type RikishiBoutInfo = {
   dayLabel?: string;
 };
 
+export function resolveMatchupName(
+  profileUrl: string,
+  fallbackName: string,
+  nameById: ReadonlyMap<number, string>,
+): string {
+  const rikishiId = extractRikishiIdFromProfileUrl(profileUrl);
+  return nameById.get(rikishiId ?? -1) ?? fallbackName;
+}
+
 function findRikishiBout(
   day: TorikumiArchiveDay | undefined,
   rikishiId: number,
   mode: 'result' | 'schedule',
+  nameById: ReadonlyMap<number, string>,
 ): RikishiBoutInfo | null {
   if (!day) return null;
   const divisions = [
@@ -42,7 +52,7 @@ function findRikishiBout(
         const isWinner = match.winner === 'east';
         const isLoser = match.winner === 'west';
         return {
-          opponentName: match.westName,
+          opponentName: resolveMatchupName(match.westProfileUrl, match.westName, nameById),
           winner: match.winner ? (isWinner ? 'win' : isLoser ? 'loss' : 'draw') : 'pending',
           kimarite: match.kimarite,
           boutUrl: `${getDayPath(day, mode)}#${divisionAnchorId(division, match.boutNo)}`,
@@ -54,7 +64,7 @@ function findRikishiBout(
         const isWinner = match.winner === 'west';
         const isLoser = match.winner === 'east';
         return {
-          opponentName: match.eastName,
+          opponentName: resolveMatchupName(match.eastProfileUrl, match.eastName, nameById),
           winner: match.winner ? (isWinner ? 'win' : isLoser ? 'loss' : 'draw') : 'pending',
           kimarite: match.kimarite,
           boutUrl: `${getDayPath(day, mode)}#${divisionAnchorId(division, match.boutNo)}`,
@@ -126,6 +136,11 @@ export default function MyRikishiPage() {
     return ids.map((id) => byId.get(id)).filter((item): item is RikishiIndexItem => Boolean(item));
   }, [ids, rikishi]);
 
+  const nameById = React.useMemo(
+    () => new Map(rikishi.map((item) => [item.id, item.name] as const)),
+    [rikishi],
+  );
+
   React.useEffect(() => {
     setCompareIds((current) => current.filter((id) => ids.includes(id)));
   }, [ids]);
@@ -180,8 +195,8 @@ export default function MyRikishiPage() {
             <div className="rikishi-profile-grid">
               {savedRikishi.map((item) => {
                 const record = banzukeRecordMap.get(item.id);
-                const todayBout = findRikishiBout(latestResultDay, item.id, 'result');
-                const tomorrowBout = findRikishiBout(latestScheduleDay, item.id, 'schedule');
+                const todayBout = findRikishiBout(latestResultDay, item.id, 'result', nameById);
+                const tomorrowBout = findRikishiBout(latestScheduleDay, item.id, 'schedule', nameById);
                 const isKachikoshi = record && record.wins >= 8;
 
                 return (
