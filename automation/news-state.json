@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-22T06:34:44.564774+00:00",
+    "updatedAt": "2026-09-22T08:28:12.804397+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -17,6 +17,24 @@
       }
     ],
     "items": [
+      {
+        "id": "dmenu-docomo-sponichi-spngoo-20260922-0210",
+        "title": "人気業師の宇良　鮮やか肩すかしで7勝目　小さな女の子もピンクのうちわを手に「うら〜！」と大喜び",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260922-0210",
+        "publishedAt": "2026-09-22",
+        "publishedAtRaw": "スポニチアネックス　9月22日 17時14分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-thedigestweb-120423",
+        "title": "41キロ差もなんのその！ 欧山田がわずか２秒で“0.1％”の珍手に国技館騒然「そんな技あるんだ！」「初めて聞いた」",
+        "url": "https://topics.smt.docomo.ne.jp/article/thedigestweb/sports/thedigestweb-120423",
+        "publishedAt": "2026-09-22",
+        "publishedAtRaw": "THE DIGEST　9月22日 15時32分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
       {
         "id": "dmenu-docomo-hochi-20260922-OHT1T51108",
         "title": "幕下・米沢龍が勝ち越し　関取経験者で学生横綱・花の富士との対戦は「めちゃくちゃ怖かった。勝てたことは自信になる」",
@@ -41,24 +59,6 @@
         "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274382",
         "publishedAt": "2026-09-22",
         "publishedAtRaw": "ABEMA TIMES　9月22日 13時07分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-hochi-20260922-OHT1T51062",
-        "title": "【１０日の見所】熱海富士は安定感抜群の相撲内容で大関取りのカウントダウンに入ったか　大の里は６場所ぶりの優勝へ向けての試金石",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260922-OHT1T51062",
-        "publishedAt": "2026-09-22",
-        "publishedAtRaw": "スポーツ報知　9月22日 12時09分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-hochi-20260921-OHT1T51151",
-        "title": "元レスリングアジア王者の欧山田、わずか２秒で勝負を決める！　“発生割合０．１％”の珍手炸裂に「まじかよ」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260921-OHT1T51151",
-        "publishedAt": "2026-09-22",
-        "publishedAtRaw": "スポーツ報知　9月22日 12時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-22T06:34:44.574638+00:00",
-  "lastSuccessAt": "2026-09-22T06:34:44.564774+00:00",
+  "lastAttemptAt": "2026-09-22T08:28:12.814108+00:00",
+  "lastSuccessAt": "2026-09-22T08:28:12.804397+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -251,9 +251,13 @@
     "35695455955": {
       "attemptedAt": "2026-09-22T06:34:44.574638+00:00",
       "outcome": "success"
+    },
+    "35704952531": {
+      "attemptedAt": "2026-09-22T08:28:12.814108+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35695455955",
+  "lastRunId": "35704952531",
   "lastPublishedDate": "2026-09-21",
   "lastPublishedSha": "41aa3bbe6ea90571b59d96a986c3540916331d13",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
