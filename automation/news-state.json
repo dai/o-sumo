@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-22T04:23:56.282085+00:00",
+    "updatedAt": "2026-09-22T06:34:44.564774+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,6 +18,33 @@
     ],
     "items": [
       {
+        "id": "dmenu-docomo-hochi-20260922-OHT1T51108",
+        "title": "幕下・米沢龍が勝ち越し　関取経験者で学生横綱・花の富士との対戦は「めちゃくちゃ怖かった。勝てたことは自信になる」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260922-OHT1T51108",
+        "publishedAt": "2026-09-22",
+        "publishedAtRaw": "スポーツ報知　9月22日 14時44分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-hochi-20260922-OHT1T51083",
+        "title": "元十両・木竜皇が勝ち越し　先場所途中休場要因の足底筋膜炎も完治「けがなく、自分の相撲を取り切りたい」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260922-OHT1T51083",
+        "publishedAt": "2026-09-22",
+        "publishedAtRaw": "スポーツ報知　9月22日 13時40分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-abematimes-10274382",
+        "title": "「出禁にして」玉鷲、館内沸騰の激勝に“水を差す”愚行 大歓声を切り裂く観客の行為に波紋「周りのこと考えて」「さすがにヒドイ」",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274382",
+        "publishedAt": "2026-09-22",
+        "publishedAtRaw": "ABEMA TIMES　9月22日 13時07分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
         "id": "dmenu-docomo-hochi-20260922-OHT1T51062",
         "title": "【１０日の見所】熱海富士は安定感抜群の相撲内容で大関取りのカウントダウンに入ったか　大の里は６場所ぶりの優勝へ向けての試金石",
         "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260922-OHT1T51062",
@@ -32,33 +59,6 @@
         "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260921-OHT1T51151",
         "publishedAt": "2026-09-22",
         "publishedAtRaw": "スポーツ報知　9月22日 12時00分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-sponichi-spngoo-20260922-0102",
-        "title": "引退力士の受け皿に　東京・浅草で「すもうカステラ店」がオープン",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260922-0102",
-        "publishedAt": "2026-09-22",
-        "publishedAtRaw": "スポニチアネックス　9月22日 8時11分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_XQTQAN6ZLJFIXIHHNEEEAS73PU",
-        "title": "舞の海氏「そろそろ横綱が優勝してくれないと困りますよね」／秋場所",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_XQTQAN6ZLJFIXIHHNEEEAS73PU",
-        "publishedAt": "2026-09-22",
-        "publishedAtRaw": "SANSPO　9月22日 8時00分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-abematimes-10274272",
-        "title": "発想力が“規格外” 18歳・81キロ小兵力士、“たった3秒”で妙技炸裂 57キロ重たい相手を軽々と撃破「マジすごい」館内どよめきの瞬間",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274272",
-        "publishedAt": "2026-09-22",
-        "publishedAtRaw": "ABEMA TIMES　9月22日 7時18分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-22T04:23:56.291754+00:00",
-  "lastSuccessAt": "2026-09-22T04:23:56.282085+00:00",
+  "lastAttemptAt": "2026-09-22T06:34:44.574638+00:00",
+  "lastSuccessAt": "2026-09-22T06:34:44.564774+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -247,9 +247,13 @@
     "35686716935": {
       "attemptedAt": "2026-09-22T04:23:56.291754+00:00",
       "outcome": "success"
+    },
+    "35695455955": {
+      "attemptedAt": "2026-09-22T06:34:44.574638+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35686716935",
+  "lastRunId": "35695455955",
   "lastPublishedDate": "2026-09-21",
   "lastPublishedSha": "41aa3bbe6ea90571b59d96a986c3540916331d13",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
