@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-22T02:29:11.662035+00:00",
+    "updatedAt": "2026-09-22T04:23:56.282085+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -17,6 +17,24 @@
       }
     ],
     "items": [
+      {
+        "id": "dmenu-docomo-hochi-20260922-OHT1T51062",
+        "title": "【１０日の見所】熱海富士は安定感抜群の相撲内容で大関取りのカウントダウンに入ったか　大の里は６場所ぶりの優勝へ向けての試金石",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260922-OHT1T51062",
+        "publishedAt": "2026-09-22",
+        "publishedAtRaw": "スポーツ報知　9月22日 12時09分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-hochi-20260921-OHT1T51151",
+        "title": "元レスリングアジア王者の欧山田、わずか２秒で勝負を決める！　“発生割合０．１％”の珍手炸裂に「まじかよ」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260921-OHT1T51151",
+        "publishedAt": "2026-09-22",
+        "publishedAtRaw": "スポーツ報知　9月22日 12時00分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
       {
         "id": "dmenu-docomo-sponichi-spngoo-20260922-0102",
         "title": "引退力士の受け皿に　東京・浅草で「すもうカステラ店」がオープン",
@@ -41,24 +59,6 @@
         "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274272",
         "publishedAt": "2026-09-22",
         "publishedAtRaw": "ABEMA TIMES　9月22日 7時18分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-abematimes-10274291",
-        "title": "「いまの何？」力士の快挙に“水を差す”行為 取組直後の出来事に批判相次ぐ",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274291",
-        "publishedAt": "2026-09-22",
-        "publishedAtRaw": "ABEMA TIMES　9月22日 6時43分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-abematimes-10274233",
-        "title": "「いいところなかった」荒磯親方、琴栄峰の“逃げ腰の姿勢”に苦言「辛口だ」あえて投げかけた“厳しい言葉”に「愛を感じる」「正論」反響続々",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274233",
-        "publishedAt": "2026-09-22",
-        "publishedAtRaw": "ABEMA TIMES　9月22日 6時34分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-22T02:29:11.670322+00:00",
-  "lastSuccessAt": "2026-09-22T02:29:11.662035+00:00",
+  "lastAttemptAt": "2026-09-22T04:23:56.291754+00:00",
+  "lastSuccessAt": "2026-09-22T04:23:56.282085+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -243,9 +243,13 @@
     "35679614410": {
       "attemptedAt": "2026-09-22T02:29:11.670322+00:00",
       "outcome": "success"
+    },
+    "35686716935": {
+      "attemptedAt": "2026-09-22T04:23:56.291754+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35679614410",
+  "lastRunId": "35686716935",
   "lastPublishedDate": "2026-09-21",
   "lastPublishedSha": "41aa3bbe6ea90571b59d96a986c3540916331d13",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
