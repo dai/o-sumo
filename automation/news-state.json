@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-23T08:28:24.532007+00:00",
+    "updatedAt": "2026-09-23T10:22:20.729110+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-sponichi-spngoo-20260923-0320",
-        "title": "朝乃山が金峰山を破り2場所連続の勝ち越し「今場所も1日一番」　金峰山は3敗に後退",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260923-0320",
+        "id": "dmenu-docomo-f-bt-tp1-260923-202609230001216",
+        "title": "横綱大の里が藤ノ川に初勝利、変化は「一切考えなかった」２度金星配給“天敵”を下す　１敗独走",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260923-202609230001216",
         "publishedAt": "2026-09-23",
-        "publishedAtRaw": "スポニチアネックス　9月23日 17時17分",
+        "publishedAtRaw": "日刊スポーツ　9月23日 19時11分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260923-OHT1T51233",
-        "title": "十両・炎鵬が５勝目　新十両・時不動との投げの打ち合いを制し「無事に今日が終わって良かった」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260923-OHT1T51233",
+        "id": "dmenu-docomo-hochi-20260923-OHT1T51334",
+        "title": "大関・安青錦が５連勝で勝ち越し決める　一時は３連敗も師匠の言葉が支えに「『絶対に大丈夫』と言われたことは大きかった」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260923-OHT1T51334",
         "publishedAt": "2026-09-23",
-        "publishedAtRaw": "スポーツ報知　9月23日 16時43分",
+        "publishedAtRaw": "スポーツ報知　9月23日 18時57分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-abematimes-10274618",
-        "title": "「これこそ珍事」大相撲、行司“ひやり”の緊急事態！ 再開の8秒後に2度目の“まわし待った”で館内笑い「2度目は初めて見た」「取組に集中できない」",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274618",
+        "id": "dmenu-docomo-f-bt-tp1-260923-202609230001171",
+        "title": "安青錦、左足引きずりながら勝ち越し　中村親方「それでもこれだけの相撲をとれている」",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260923-202609230001171",
         "publishedAt": "2026-09-23",
-        "publishedAtRaw": "ABEMA TIMES　9月23日 16時09分",
+        "publishedAtRaw": "日刊スポーツ　9月23日 18時44分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-20260923097",
-        "title": "藤ノ川が隆の勝を下した“注文相撲”　父の甲山親方は問題なしの見解「これは駆け引き。小さい力士には必要」【大相撲】",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260923097",
+        "id": "dmenu-docomo-f-bt-tp1-260923-202609230001169",
+        "title": "大の里、過去２戦２敗の藤ノ川を圧倒して独走態勢　元若の里の西岩親方「このまま突っ走りそう」",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260923-202609230001169",
         "publishedAt": "2026-09-23",
-        "publishedAtRaw": "デイリースポーツ　9月23日 15時13分",
+        "publishedAtRaw": "日刊スポーツ　9月23日 18時43分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260923-202609230000608",
-        "title": "幕下の可貴が寄り倒されて土俵下へ落下　頭部強打の可能性あり、相撲診療所へ",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260923-202609230000608",
+        "id": "dmenu-docomo-tokyosports-404124",
+        "title": "【大相撲】朝乃山が２場所連続で勝ち越し「通過点。満足しないように。一番でも多く勝ちたい」",
+        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-404124",
         "publishedAt": "2026-09-23",
-        "publishedAtRaw": "日刊スポーツ　9月23日 15時02分",
+        "publishedAtRaw": "東スポWEB　9月23日 17時36分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-23T08:28:24.540765+00:00",
-  "lastSuccessAt": "2026-09-23T08:28:24.532007+00:00",
+  "lastAttemptAt": "2026-09-23T10:22:20.737103+00:00",
+  "lastSuccessAt": "2026-09-23T10:22:20.729110+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -279,9 +279,13 @@
     "35837291892": {
       "attemptedAt": "2026-09-23T08:28:24.540765+00:00",
       "outcome": "success"
+    },
+    "35848388179": {
+      "attemptedAt": "2026-09-23T10:22:20.737103+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35837291892",
+  "lastRunId": "35848388179",
   "lastPublishedDate": "2026-09-22",
   "lastPublishedSha": "1b943ab3faa6fb200a905fb87fc3e19a1cb5b702",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
