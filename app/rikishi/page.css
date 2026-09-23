@@ -772,6 +772,125 @@
   font-family: var(--font-serif);
 }
 
+/* Shareable matchup card */
+.matchup-share-card {
+  position: relative;
+  overflow: hidden;
+  padding: 1.5rem;
+  color: #fffaf0;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(194, 146, 58, 0.3), transparent 38%),
+    linear-gradient(145deg, #2f1b17 0%, #4a211c 52%, #201312 100%);
+  border: 1px solid #9e7041;
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(42, 19, 15, 0.2);
+}
+
+.matchup-share-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.12;
+  background: repeating-linear-gradient(90deg, transparent 0 19px, #f6e7c5 20px);
+}
+
+.matchup-share-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.matchup-share-card__eyebrow {
+  color: #e8c985;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+
+.matchup-share-card__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 0.5rem 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 5vw, 2rem);
+  text-align: center;
+}
+
+.matchup-share-card__vs {
+  color: #e8c985;
+  font-size: 0.72em;
+}
+
+.matchup-share-card__score {
+  display: grid;
+  grid-template-columns: minmax(3rem, 1fr) auto minmax(3rem, 1fr);
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 28rem;
+  margin: 1rem auto;
+  text-align: center;
+}
+
+.matchup-share-card__score strong {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 10vw, 4rem);
+  line-height: 1;
+}
+
+.matchup-share-card__score span {
+  padding: 0.25rem 0.65rem;
+  color: #4a211c;
+  background: #e8c985;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.matchup-share-card__highlights {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1rem 1.1rem;
+  background: rgba(255, 250, 240, 0.09);
+  border: 1px solid rgba(232, 201, 133, 0.35);
+  border-radius: 8px;
+}
+
+.matchup-share-card__highlights h3 {
+  margin: 0 0 0.5rem;
+  color: #e8c985;
+  font-size: 0.9rem;
+}
+
+.matchup-share-card__highlights ul {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.matchup-share-card__share {
+  display: block;
+  min-height: 44px;
+  margin: 1rem auto 0;
+  padding: 0.65rem 1.25rem;
+  color: #3b2019;
+  background: #f2d899;
+  border: 1px solid #fff0c6;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.matchup-share-card__share:hover {
+  background: #ffeab5;
+}
+
 /* 【Primary】合口スコアボード */
 .compare-aikuchi {
   padding: 1.5rem 1.75rem;

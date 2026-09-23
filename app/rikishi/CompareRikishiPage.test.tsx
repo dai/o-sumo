@@ -173,6 +173,11 @@ describe('CompareRikishiPage', () => {
     expect(within(aikuchiSection).getByText(/豊昇龍 が 2 勝ち越し/)).toBeInTheDocument();
     expect(within(aikuchiSection).getByText('通算 8 番')).toBeInTheDocument();
 
+    const shareCard = screen.getByRole('region', { name: /豊昇龍.*大の里/ });
+    expect(within(shareCard).getByText('この取組の見どころ')).toBeInTheDocument();
+    expect(within(shareCard).getByText('豊昇龍が通算8番で2勝リード')).toBeInTheDocument();
+    expect(within(shareCard).getByText('大の里が体重で34kg上回ります')).toBeInTheDocument();
+
     // 3. Physical Stats Comparison Bars
     expect(screen.getByRole('region', { name: '体格・スタッツ比較' })).toBeInTheDocument();
     expect(screen.getByText('188 cm')).toBeInTheDocument();
@@ -187,6 +192,29 @@ describe('CompareRikishiPage', () => {
     expect(within(table).getByText('初土俵')).toBeInTheDocument();
     expect(within(table).getByText('平成三十年一月場所')).toBeInTheDocument();
     expect(within(table).getByText('令和五年五月場所')).toBeInTheDocument();
+  });
+
+  it('shares the matchup card with score, highlight, hashtags, and the parameterized URL', async () => {
+    setupFetchMock();
+    const share = vi.fn().mockResolvedValue(undefined);
+    vi.stubGlobal('navigator', { ...navigator, share });
+    const user = userEvent.setup();
+    render(
+      <MemoryRouter initialEntries={['/compare/?ids=3842,4227']}>
+        <Routes>
+          <Route path="/compare/" element={<CompareRikishiPage />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    await user.click(await screen.findByRole('button', { name: '取組カードを共有' }));
+
+    expect(share).toHaveBeenCalledWith(expect.objectContaining({
+      title: '#豊昇龍 vs #大の里 この取組の見どころ',
+      text: expect.stringContaining('合口：豊昇龍 5勝 − 3勝 大の里'),
+      url: expect.stringContaining('/compare/?ids=3842,4227'),
+    }));
+    expect(await screen.findByRole('button', { name: '共有しました' })).toBeInTheDocument();
   });
 
   it('selects matchup preset with quick pick chip and clears with clear button', async () => {
