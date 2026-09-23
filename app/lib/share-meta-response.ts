@@ -1,5 +1,5 @@
 import { resolvePageMeta } from './page-meta';
-import { resolveShareMetaOverride, type ShareMetaItem, type ShareMetaOverride } from './share-meta';
+import { resolveShareMetaOverride, type ShareMetaItem, type ShareMetaMatchup, type ShareMetaOverride } from './share-meta';
 import { SITE_ORIGIN } from './site-url';
 
 export type ShareCollection = 'rikishi' | 'gyoji' | 'yobidashi';
@@ -25,6 +25,19 @@ function shareItems(payload: unknown, collection: ShareCollection): ShareMetaIte
   });
 }
 
+function shareMatchups(payload: unknown): ShareMetaMatchup[] {
+  if (!payload || typeof payload !== 'object') return [];
+  const candidate = (payload as Record<string, unknown>).matchups;
+  if (!Array.isArray(candidate)) return [];
+  return candidate.flatMap((item) => {
+    if (!item || typeof item !== 'object') return [];
+    const value = item as Partial<ShareMetaMatchup>;
+    return [value.rikishi1Id, value.rikishi2Id, value.rikishi1Wins, value.rikishi2Wins].every(Number.isInteger)
+      ? [value as ShareMetaMatchup]
+      : [];
+  });
+}
+
 function productionShareUrl(requestUrl: URL): URL {
   return new URL(`${requestUrl.pathname}${requestUrl.search}`, SITE_ORIGIN);
 }
@@ -40,6 +53,7 @@ export function resolveShareMetadataForPayload(
     rikishi: collection === 'rikishi' ? items : [],
     gyoji: collection === 'gyoji' ? items : [],
     yobidashi: collection === 'yobidashi' ? items : [],
+    matchups: collection === 'rikishi' ? shareMatchups(payload) : [],
   });
   if (resolved) return resolved;
 

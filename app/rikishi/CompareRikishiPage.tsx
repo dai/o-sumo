@@ -364,6 +364,117 @@ function AikuchiScoreboard({
   );
 }
 
+function MatchupShareCard({
+  profiles,
+  matchup,
+}: {
+  profiles: [RikishiProfile, RikishiProfile];
+  matchup: [number, number] | null;
+}) {
+  const { t } = useTranslation('common');
+  const { pathname, search } = useLocation();
+  const [profileA, profileB] = profiles;
+  const stats = analyzeAikuchi(matchup?.[0] ?? 0, matchup?.[1] ?? 0);
+  const weightDiff = calculateStatDiff(profileA.weight || 0, profileB.weight || 0);
+  const [shareStatus, setShareStatus] = React.useState<'idle' | 'shared' | 'copied'>('idle');
+
+  const aikuchiHighlight = stats.totalBouts === 0
+    ? t('comparison.matchCardFirstMeeting')
+    : stats.leader === null
+      ? t('comparison.matchCardEven', { total: stats.totalBouts })
+      : t('comparison.matchCardLead', {
+          name: stats.leader === 0 ? profileA.name : profileB.name,
+          diff: stats.diff,
+          total: stats.totalBouts,
+        });
+
+  const weightHighlight = weightDiff.diff > 0
+    ? t('comparison.matchCardWeight', {
+        name: weightDiff.advantage === 0 ? profileA.name : profileB.name,
+        diff: weightDiff.diff,
+      })
+    : t('comparison.matchCardWeightEven');
+
+  const recordA = getRikishiCurrentBashoInfo(profileA.id);
+  const recordB = getRikishiCurrentBashoInfo(profileB.id);
+  const currentBashoHighlight = recordA && recordB
+    ? t('comparison.matchCardCurrentBasho', {
+        first: profileA.name,
+        firstWins: recordA.wins,
+        firstLosses: recordA.losses,
+        second: profileB.name,
+        secondWins: recordB.wins,
+        secondLosses: recordB.losses,
+      })
+    : null;
+
+  const highlights = [aikuchiHighlight, weightHighlight, currentBashoHighlight].filter((value): value is string => Boolean(value));
+  const title = t('comparison.matchCardShareTitle', { first: profileA.name, second: profileB.name });
+  const score = stats.totalBouts > 0
+    ? t('comparison.matchCardShareScore', {
+        first: profileA.name,
+        firstWins: stats.winsA,
+        secondWins: stats.winsB,
+        second: profileB.name,
+      })
+    : t('comparison.matchCardFirstMeeting');
+  const text = `${title}\n${score}\n${t('comparison.matchCardShareHighlight', { highlight: highlights.join(' / ') })}\n${t('comparison.shareBannerHashtags')}`;
+  const url = typeof window === 'undefined'
+    ? `${pathname}${search}`
+    : `${window.location.origin}${pathname}${search}`;
+
+  React.useEffect(() => {
+    setShareStatus('idle');
+  }, [pathname, search]);
+
+  const share = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, text, url });
+        setShareStatus('shared');
+        return;
+      } catch (error) {
+        if (error instanceof DOMException && error.name === 'AbortError') return;
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(`${text}\n${url}`);
+      setShareStatus('copied');
+    } catch {
+      setShareStatus('idle');
+    }
+  };
+
+  return (
+    <section className="matchup-share-card" aria-labelledby="matchup-share-card-title">
+      <div className="matchup-share-card__eyebrow">{t('comparison.matchCardEyebrow')}</div>
+      <h2 id="matchup-share-card-title" className="matchup-share-card__title">
+        <span>#{profileA.name}</span>
+        <span className="matchup-share-card__vs">VS</span>
+        <span>#{profileB.name}</span>
+      </h2>
+      <div className="matchup-share-card__score" aria-label={score}>
+        <strong>{stats.winsA}</strong>
+        <span>{t('comparison.matchCardAikuchi')}</span>
+        <strong>{stats.winsB}</strong>
+      </div>
+      <div className="matchup-share-card__highlights">
+        <h3>{t('comparison.matchCardHighlights')}</h3>
+        <ul>
+          {highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+        </ul>
+      </div>
+      <button type="button" className="matchup-share-card__share" onClick={share}>
+        {shareStatus === 'shared'
+          ? t('comparison.matchCardShared')
+          : shareStatus === 'copied'
+            ? t('comparison.matchCardCopied')
+            : t('comparison.matchCardShare')}
+      </button>
+    </section>
+  );
+}
+
 // -------------------------------------------------------------
 // Component: 体格・スタッツ差 ビジュアル比較バー
 // -------------------------------------------------------------
@@ -721,12 +832,35 @@ export default function CompareRikishiPage() {
 
   const unknown = t('rikishi.unknown');
   const currentComparison = requestKey && comparison?.key === requestKey ? comparison : null;
-  const shareMetaOverride = currentComparison?.profiles ? {
-    pathname,
-    title: t('comparison.shareMetaTitle', { first: currentComparison.profiles[0].name, second: currentComparison.profiles[1].name }),
-    description: t('comparison.shareMetaDescription', { first: currentComparison.profiles[0].name, second: currentComparison.profiles[1].name }),
-    socialUrl: new URL(`${pathname}${search}`, SITE_ORIGIN).toString(),
-  } : null;
+  const shareMetaOverride = currentComparison?.profiles ? (() => {
+    const [first, second] = currentComparison.profiles;
+    const stats = analyzeAikuchi(currentComparison.matchup?.[0] ?? 0, currentComparison.matchup?.[1] ?? 0);
+    const highlight = stats.totalBouts === 0
+      ? t('comparison.matchCardFirstMeeting')
+      : stats.leader === null
+        ? t('comparison.matchCardEven', { total: stats.totalBouts })
+        : t('comparison.matchCardLead', {
+            name: stats.leader === 0 ? first.name : second.name,
+            diff: stats.diff,
+            total: stats.totalBouts,
+          });
+    return {
+      pathname,
+      title: stats.totalBouts > 0
+        ? t('comparison.shareMetaScoreTitle', { first: first.name, second: second.name, firstWins: stats.winsA, secondWins: stats.winsB })
+        : t('comparison.shareMetaFirstTitle', { first: first.name, second: second.name }),
+      description: stats.totalBouts > 0
+        ? t('comparison.shareMetaScoreDescription', {
+            first: first.name,
+            second: second.name,
+            firstWins: stats.winsA,
+            secondWins: stats.winsB,
+            highlight,
+          })
+        : t('comparison.shareMetaFirstDescription', { highlight }),
+      socialUrl: new URL(`${pathname}${search}`, SITE_ORIGIN).toString(),
+    };
+  })() : null;
   usePageMetaOverride(shareMetaOverride);
 
   const tableReady = Boolean(
@@ -845,6 +979,11 @@ export default function CompareRikishiPage() {
               <div className="compare-content-grid">
                 {/* 1. VS Header Card */}
                 <CompareVsCard profiles={currentComparison.profiles} />
+
+                <MatchupShareCard
+                  profiles={currentComparison.profiles}
+                  matchup={currentComparison.matchup}
+                />
 
                 {/* 2. 【Primary】合口（直接対戦成績）スコアボード */}
                 <AikuchiScoreboard

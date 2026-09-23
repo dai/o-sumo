@@ -26,7 +26,10 @@ function mockFetch() {
     const body = url === '/api/v1/rikishi.json' ? index
       : url === '/api/v1/rikishi/3842.json' ? detail(3842, '豊昇龍', 'ほうしょうりゅう')
         : url === '/api/v1/rikishi/4227.json' ? detail(4227, '大の里', 'おおのさと')
-          : url === '/api/v1/rikishi-matchups.json' ? { updatedAt: index.updatedAt, matchups: [] }
+          : url === '/api/v1/rikishi-matchups.json' ? {
+              updatedAt: index.updatedAt,
+              matchups: [{ rikishi1Id: 3842, rikishi2Id: 4227, rikishi1Wins: 5, rikishi2Wins: 3 }],
+            }
             : null;
     return Promise.resolve(body ? new Response(JSON.stringify(body)) : new Response('', { status: 404 }));
   }));
@@ -53,9 +56,9 @@ describe('rikishi share metadata', () => {
     );
 
     await waitFor(() => {
-      expect(document.title).toBe('#豊昇龍 と #大の里 の合口は？徹底比較 | o-sumo');
-      expect(document.head.querySelector<HTMLMetaElement>('meta[property="og:title"]')?.content).toBe('#豊昇龍 と #大の里 の合口は？徹底比較 | o-sumo');
-      expect(document.head.querySelector<HTMLMetaElement>('meta[name="twitter:title"]')?.content).toBe('#豊昇龍 と #大の里 の合口は？徹底比較 | o-sumo');
+      expect(document.title).toBe('#豊昇龍 vs #大の里｜合口 5−3 | o-sumo');
+      expect(document.head.querySelector<HTMLMetaElement>('meta[property="og:title"]')?.content).toBe('#豊昇龍 vs #大の里｜合口 5−3 | o-sumo');
+      expect(document.head.querySelector<HTMLMetaElement>('meta[name="twitter:title"]')?.content).toBe('#豊昇龍 vs #大の里｜合口 5−3 | o-sumo');
       expect(document.head.querySelector<HTMLMetaElement>('meta[property="og:url"]')?.content).toBe('https://osada.us/compare/?ids=3842,4227');
     });
   });
@@ -70,9 +73,9 @@ describe('rikishi share metadata', () => {
     );
 
     await waitFor(() => {
-      expect(document.title).toBe('#豊昇龍 vs #大の里: Head-to-head deep dive | o-sumo');
-      expect(document.head.querySelector<HTMLMetaElement>('meta[property="og:title"]')?.content).toBe('#豊昇龍 vs #大の里: Head-to-head deep dive | o-sumo');
-      expect(document.head.querySelector<HTMLMetaElement>('meta[name="twitter:title"]')?.content).toBe('#豊昇龍 vs #大の里: Head-to-head deep dive | o-sumo');
+      expect(document.title).toBe('#豊昇龍 vs #大の里 | Aikuchi 5-3 | o-sumo');
+      expect(document.head.querySelector<HTMLMetaElement>('meta[property="og:title"]')?.content).toBe('#豊昇龍 vs #大の里 | Aikuchi 5-3 | o-sumo');
+      expect(document.head.querySelector<HTMLMetaElement>('meta[name="twitter:title"]')?.content).toBe('#豊昇龍 vs #大の里 | Aikuchi 5-3 | o-sumo');
     });
   });
 

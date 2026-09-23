@@ -96,7 +96,15 @@ async function loadSharePayload(context: any, requestUrl: URL, collection: Share
   const assetUrl = new URL(`/api/v1/${collection}.json`, requestUrl);
   const response = await context.env.ASSETS.fetch(assetUrl);
   if (!response.ok) return null;
-  return response.json();
+  const payload = await response.json();
+  if (requestUrl.pathname !== '/compare/' || !payload || typeof payload !== 'object') return payload;
+  const matchupResponse = await context.env.ASSETS.fetch(new URL('/api/v1/rikishi-matchups.json', requestUrl));
+  if (!matchupResponse.ok) return payload;
+  const matchupPayload = await matchupResponse.json();
+  const matchups = matchupPayload && typeof matchupPayload === 'object'
+    ? (matchupPayload as Record<string, unknown>).matchups
+    : null;
+  return { ...(payload as Record<string, unknown>), matchups };
 }
 
 // HTMLRewriter is provided as an ambient global in the Cloudflare Pages Functions runtime

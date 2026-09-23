@@ -6,6 +6,9 @@ const data = {
     { id: 3842, name: '豊昇龍' },
     { id: 4227, name: '大の里' },
   ],
+  matchups: [
+    { rikishi1Id: 3842, rikishi2Id: 4227, rikishi1Wins: 5, rikishi2Wins: 3 },
+  ],
   gyoji: [{ id: 1986, name: '木村 庄之助' }],
   yobidashi: [{ id: 1935, name: '克之' }],
 };
@@ -13,8 +16,8 @@ const data = {
 describe('resolveShareMetaOverride', () => {
   it('uses both selected rikishi names for a comparison share URL', () => {
     expect(resolveShareMetaOverride(new URL('https://osada.us/compare/?ids=3842,4227'), data)).toEqual({
-      title: '#豊昇龍 と #大の里 の合口は？徹底比較 | o-sumo',
-      description: '大相撲力士豊昇龍と大の里の合口、体格、得意決まり手、通算成績を比較できます。',
+      title: '#豊昇龍 vs #大の里｜合口 5−3 | o-sumo',
+      description: '合口は豊昇龍 5勝 − 3勝 大の里。見どころ：豊昇龍が2勝リード。体格や得意決まり手も比較できます。',
       socialUrl: 'https://osada.us/compare/?ids=3842,4227',
     });
   });
