@@ -46,6 +46,97 @@ type ComparisonState = {
   matchup: [number, number] | null;
 };
 
+type MatchupCardImageData = {
+  first: string;
+  second: string;
+  firstWins: number;
+  secondWins: number;
+  highlights: string[];
+  eyebrow: string;
+  highlightTitle: string;
+  aikuchiLabel: string;
+};
+
+async function createMatchupCardImage(data: MatchupCardImageData): Promise<File | null> {
+  if (typeof document === 'undefined') return null;
+  await document.fonts?.ready;
+  const canvas = document.createElement('canvas');
+  canvas.width = 1200;
+  canvas.height = 630;
+  const context = canvas.getContext('2d');
+  if (!context) return null;
+
+  const background = context.createLinearGradient(0, 0, canvas.width, canvas.height);
+  background.addColorStop(0, '#241512');
+  background.addColorStop(0.55, '#4a211c');
+  background.addColorStop(1, '#1d1110');
+  context.fillStyle = background;
+  context.fillRect(0, 0, canvas.width, canvas.height);
+
+  context.strokeStyle = 'rgba(242, 216, 153, 0.09)';
+  context.lineWidth = 2;
+  for (let x = 30; x < canvas.width; x += 48) {
+    context.beginPath();
+    context.moveTo(x, 0);
+    context.lineTo(x, canvas.height);
+    context.stroke();
+  }
+
+  context.fillStyle = '#e8c985';
+  context.font = '700 24px serif';
+  context.textAlign = 'center';
+  context.fillText('大  O-SUMO', 600, 58);
+  context.font = '700 26px serif';
+  context.fillText(data.eyebrow, 600, 108);
+
+  context.fillStyle = '#fffaf0';
+  context.font = '800 54px serif';
+  context.fillText(`#${data.first}`, 330, 190);
+  context.fillText(`#${data.second}`, 870, 190);
+  context.fillStyle = '#e8c985';
+  context.font = '900 32px serif';
+  context.fillText('VS', 600, 186);
+
+  context.fillStyle = '#fffaf0';
+  context.font = '900 92px serif';
+  context.fillText(String(data.firstWins), 360, 310);
+  context.fillText(String(data.secondWins), 840, 310);
+  context.fillStyle = '#f2d899';
+  context.beginPath();
+  context.roundRect(530, 247, 140, 64, 32);
+  context.fill();
+  context.fillStyle = '#4a211c';
+  context.font = '900 25px serif';
+  context.fillText(data.aikuchiLabel, 600, 288);
+
+  context.fillStyle = 'rgba(255, 250, 240, 0.09)';
+  context.strokeStyle = 'rgba(232, 201, 133, 0.45)';
+  context.lineWidth = 2;
+  context.beginPath();
+  context.roundRect(90, 350, 1020, 210, 18);
+  context.fill();
+  context.stroke();
+  context.textAlign = 'left';
+  context.fillStyle = '#e8c985';
+  context.font = '800 25px serif';
+  context.fillText(data.highlightTitle, 135, 400);
+  context.fillStyle = '#fffaf0';
+  context.font = '500 24px sans-serif';
+  data.highlights.slice(0, 3).forEach((highlight, index) => {
+    const clipped = highlight.length > 42 ? `${highlight.slice(0, 41)}…` : highlight;
+    context.fillText(`•  ${clipped}`, 145, 447 + index * 43);
+  });
+
+  context.textAlign = 'right';
+  context.fillStyle = 'rgba(255, 250, 240, 0.7)';
+  context.font = '600 19px sans-serif';
+  context.fillText('osada.us/compare/', 1110, 606);
+
+  const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, 'image/png'));
+  if (!blob) return null;
+  return new File([blob], `o-sumo-${data.first}-vs-${data.second}.png`, { type: 'image/png' });
+}
+
 export function normalizeCompareIds(serialized: string | null): number[] {
   if (!serialized) return [];
   return [...new Set(serialized.split(',').map((value) => Number(value)).filter((id) => Number.isInteger(id) && id > 0))]
@@ -430,11 +521,31 @@ function MatchupShareCard({
   const share = async () => {
     if (navigator.share) {
       try {
-        await navigator.share({ title, text, url });
+        const canShare = (navigator as unknown as { canShare?: Navigator['canShare'] }).canShare;
+        const image = canShare ? await createMatchupCardImage({
+          first: profileA.name,
+          second: profileB.name,
+          firstWins: stats.winsA,
+          secondWins: stats.winsB,
+          highlights,
+          eyebrow: t('comparison.matchCardEyebrow'),
+          highlightTitle: t('comparison.matchCardHighlights'),
+          aikuchiLabel: t('comparison.matchCardAikuchi'),
+          }) : null;
+        const files = image ? [image] : [];
+        const canShareImage = files.length > 0 && canShare?.({ files });
+        await navigator.share(canShareImage ? { title, text, url, files } : { title, text, url });
         setShareStatus('shared');
         return;
       } catch (error) {
         if (error instanceof DOMException && error.name === 'AbortError') return;
+        try {
+          await navigator.share({ title, text, url });
+          setShareStatus('shared');
+          return;
+        } catch (fallbackError) {
+          if (fallbackError instanceof DOMException && fallbackError.name === 'AbortError') return;
+        }
       }
     }
     try {
@@ -469,7 +580,7 @@ function MatchupShareCard({
           ? t('comparison.matchCardShared')
           : shareStatus === 'copied'
             ? t('comparison.matchCardCopied')
-            : t('comparison.matchCardShare')}
+            : t('comparison.matchCardShareImage')}
       </button>
     </section>
   );
