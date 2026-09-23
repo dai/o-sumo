@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-23T06:35:44.020189+00:00",
+    "updatedAt": "2026-09-23T08:28:24.532007+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,6 +18,33 @@
     ],
     "items": [
       {
+        "id": "dmenu-docomo-sponichi-spngoo-20260923-0320",
+        "title": "朝乃山が金峰山を破り2場所連続の勝ち越し「今場所も1日一番」　金峰山は3敗に後退",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260923-0320",
+        "publishedAt": "2026-09-23",
+        "publishedAtRaw": "スポニチアネックス　9月23日 17時17分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-hochi-20260923-OHT1T51233",
+        "title": "十両・炎鵬が５勝目　新十両・時不動との投げの打ち合いを制し「無事に今日が終わって良かった」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260923-OHT1T51233",
+        "publishedAt": "2026-09-23",
+        "publishedAtRaw": "スポーツ報知　9月23日 16時43分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-abematimes-10274618",
+        "title": "「これこそ珍事」大相撲、行司“ひやり”の緊急事態！ 再開の8秒後に2度目の“まわし待った”で館内笑い「2度目は初めて見た」「取組に集中できない」",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274618",
+        "publishedAt": "2026-09-23",
+        "publishedAtRaw": "ABEMA TIMES　9月23日 16時09分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
         "id": "dmenu-docomo-20260923097",
         "title": "藤ノ川が隆の勝を下した“注文相撲”　父の甲山親方は問題なしの見解「これは駆け引き。小さい力士には必要」【大相撲】",
         "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260923097",
@@ -32,33 +59,6 @@
         "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260923-202609230000608",
         "publishedAt": "2026-09-23",
         "publishedAtRaw": "日刊スポーツ　9月23日 15時02分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-f-bt-tp1-260923-202609230000617",
-        "title": "天昇山が全勝対決に敗れ初黒星「自分の相撲が取れなかった」場所後の十両昇進は厳しく",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260923-202609230000617",
-        "publishedAt": "2026-09-23",
-        "publishedAtRaw": "日刊スポーツ　9月23日 14時55分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-20260923092",
-        "title": "旭富士は十両明生を破り西幕下筆頭で５勝目　最速新十両に大きく前進【大相撲】",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260923092",
-        "publishedAt": "2026-09-23",
-        "publishedAtRaw": "デイリースポーツ　9月23日 14時54分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-sponichi-spngoo-20260923-0237",
-        "title": "モンゴル出身の現役最長身1メートル97天昇山が初黒星「悔しいです」伊波に浴せ倒しで敗れ連勝5で止まる",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260923-0237",
-        "publishedAt": "2026-09-23",
-        "publishedAtRaw": "スポニチアネックス　9月23日 14時48分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-23T06:35:44.029548+00:00",
-  "lastSuccessAt": "2026-09-23T06:35:44.020189+00:00",
+  "lastAttemptAt": "2026-09-23T08:28:24.540765+00:00",
+  "lastSuccessAt": "2026-09-23T08:28:24.532007+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -275,9 +275,13 @@
     "35827468073": {
       "attemptedAt": "2026-09-23T06:35:44.029548+00:00",
       "outcome": "success"
+    },
+    "35837291892": {
+      "attemptedAt": "2026-09-23T08:28:24.540765+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35827468073",
+  "lastRunId": "35837291892",
   "lastPublishedDate": "2026-09-22",
   "lastPublishedSha": "1b943ab3faa6fb200a905fb87fc3e19a1cb5b702",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
