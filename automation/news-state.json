@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-23T02:29:17.973546+00:00",
+    "updatedAt": "2026-09-23T04:24:53.889639+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -17,6 +17,24 @@
       }
     ],
     "items": [
+      {
+        "id": "dmenu-docomo-f-bt-tp1-260923-202609230000400",
+        "title": "納谷が三段目で６連勝、埼玉栄高の後輩・垣添にプロ初黒星つけた",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260923-202609230000400",
+        "publishedAt": "2026-09-23",
+        "publishedAtRaw": "日刊スポーツ　9月23日 12時57分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-mainichi-20260923k0000m050046000c",
+        "title": "「我慢して良かった」相撲巧者退けた安青錦　大関で唯一気を吐く",
+        "url": "https://topics.smt.docomo.ne.jp/article/mainichi/sports/mainichi-20260923k0000m050046000c",
+        "publishedAt": "2026-09-23",
+        "publishedAtRaw": "毎日新聞　9月23日 11時34分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
       {
         "id": "dmenu-docomo-abematimes-10274582",
         "title": "「なんだその勝ち方」元レスリング王者の力士、土俵際でマジック発動 「おぉぉ！」館内どよめき",
@@ -41,24 +59,6 @@
         "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274580",
         "publishedAt": "2026-09-23",
         "publishedAtRaw": "ABEMA TIMES　9月23日 9時21分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-hochi-20260923-OHT1T51030",
-        "title": "熱海富士、静岡県勢初Ｖへ１０日目で勝ち越し「まだまだ先は長い」　大関昇進目安まで４勝",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260923-OHT1T51030",
-        "publishedAt": "2026-09-23",
-        "publishedAtRaw": "スポーツ報知　9月23日 8時40分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-abematimes-10274577",
-        "title": "「え、ちょん髷の人が鎮座してる」横綱結びの一番、緊張の瞬間に“まさか”の光景「ギャップがすごいw」「最前列に…」ファンほっこり",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274577",
-        "publishedAt": "2026-09-23",
-        "publishedAtRaw": "ABEMA TIMES　9月23日 8時37分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-23T02:29:17.982971+00:00",
-  "lastSuccessAt": "2026-09-23T02:29:17.973546+00:00",
+  "lastAttemptAt": "2026-09-23T04:24:53.898279+00:00",
+  "lastSuccessAt": "2026-09-23T04:24:53.889639+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -267,9 +267,13 @@
     "35810533384": {
       "attemptedAt": "2026-09-23T02:29:17.982971+00:00",
       "outcome": "success"
+    },
+    "35818220338": {
+      "attemptedAt": "2026-09-23T04:24:53.898279+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35810533384",
+  "lastRunId": "35818220338",
   "lastPublishedDate": "2026-09-22",
   "lastPublishedSha": "1b943ab3faa6fb200a905fb87fc3e19a1cb5b702",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
