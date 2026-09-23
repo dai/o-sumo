@@ -431,6 +431,7 @@
     "matchCardShareScore": "合口：{{first}} {{firstWins}}勝 − {{secondWins}}勝 {{second}}",
     "matchCardShareHighlight": "見どころ：{{highlight}}",
     "matchCardShare": "取組カードを共有",
+    "matchCardShareImage": "取組カードを画像で共有",
     "matchCardShared": "共有しました",
     "matchCardCopied": "カード内容をコピーしました",
     "physicalTitle": "体格・スタッツ比較",

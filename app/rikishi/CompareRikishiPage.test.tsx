@@ -207,7 +207,7 @@ describe('CompareRikishiPage', () => {
       </MemoryRouter>,
     );
 
-    await user.click(await screen.findByRole('button', { name: '取組カードを共有' }));
+    await user.click(await screen.findByRole('button', { name: '取組カードを画像で共有' }));
 
     expect(share).toHaveBeenCalledWith(expect.objectContaining({
       title: '#豊昇龍 vs #大の里 この取組の見どころ',
