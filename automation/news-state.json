@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-23T00:52:02.799697+00:00",
+    "updatedAt": "2026-09-23T02:29:17.973546+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -17,6 +17,24 @@
       }
     ],
     "items": [
+      {
+        "id": "dmenu-docomo-abematimes-10274582",
+        "title": "「なんだその勝ち方」元レスリング王者の力士、土俵際でマジック発動 「おぉぉ！」館内どよめき",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274582",
+        "publishedAt": "2026-09-23",
+        "publishedAtRaw": "ABEMA TIMES　9月23日 10時37分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-abematimes-10274581",
+        "title": "「やっと見られた」大相撲、花道に佇む“ただならぬ存在感”の人物 元人気力士の近影に「これは激アツ」反響相次ぐ",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274581",
+        "publishedAt": "2026-09-23",
+        "publishedAtRaw": "ABEMA TIMES　9月23日 10時24分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
       {
         "id": "dmenu-docomo-abematimes-10274580",
         "title": "「行司代打」「大丈夫か」土俵際でアクシデント発生 控え行司が仲間のピンチに“ササッ”と登場で見事な連携プレー「控えが軍配を上げるとこ初めて見た」",
@@ -41,24 +59,6 @@
         "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274577",
         "publishedAt": "2026-09-23",
         "publishedAtRaw": "ABEMA TIMES　9月23日 8時37分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-20260923049",
-        "title": "大相撲　熱海富士の出勤姿が「かわちぃ」「あたみんの帯はいろんな着物に似合いそう」和傘にも風情が　大関昇進の基準まであと４勝＆Ｖ争いへ「全部勝つ」",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260923049",
-        "publishedAt": "2026-09-23",
-        "publishedAtRaw": "デイリースポーツ　9月23日 8時13分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_NIS5XTHXFJEHDFR275XHO67BUI",
-        "title": "藤井康生氏「この体格ですからこういう相撲もたまには見せておかないと」／秋場所",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_NIS5XTHXFJEHDFR275XHO67BUI",
-        "publishedAt": "2026-09-23",
-        "publishedAtRaw": "SANSPO　9月23日 8時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-23T00:52:02.809750+00:00",
-  "lastSuccessAt": "2026-09-23T00:52:02.799697+00:00",
+  "lastAttemptAt": "2026-09-23T02:29:17.982971+00:00",
+  "lastSuccessAt": "2026-09-23T02:29:17.973546+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -263,9 +263,13 @@
     "35803877987": {
       "attemptedAt": "2026-09-23T00:52:02.809750+00:00",
       "outcome": "success"
+    },
+    "35810533384": {
+      "attemptedAt": "2026-09-23T02:29:17.982971+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35803877987",
+  "lastRunId": "35810533384",
   "lastPublishedDate": "2026-09-22",
   "lastPublishedSha": "1b943ab3faa6fb200a905fb87fc3e19a1cb5b702",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
