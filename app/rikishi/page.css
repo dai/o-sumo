@@ -720,12 +720,22 @@
 }
 
 .compare-vs-card__name a {
-  color: var(--color-primary);
+  color: #5f1f1b;
   text-decoration: none;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.16em;
 }
 
 .compare-vs-card__name a:hover {
-  color: var(--color-secondary);
+  color: #8f2d24;
+  text-decoration: underline;
+}
+
+.compare-vs-card__name a:focus-visible {
+  color: #3f1512;
+  outline: 3px solid #d7aa5b;
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 .compare-vs-card__yomi {
