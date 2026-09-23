@@ -1,7 +1,7 @@
 {
   "bashoName": "九月場所",
   "year": "令和八年",
-  "updatedAt": "2026-09-23T15:54:35+09:00",
+  "updatedAt": "2026-09-23T16:16:03+09:00",
   "makuuchi": [
     {
       "title": "横綱",
@@ -835,7 +835,7 @@
           "yomi": "わかもとはる",
           "rank": "前頭11",
           "side": "east",
-          "wins": 6,
+          "wins": 7,
           "losses": 4,
           "draws": 0,
           "results": [
@@ -849,7 +849,7 @@
             "loss",
             "win",
             "win",
-            null
+            "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/",
           "memo": ""
@@ -1007,7 +1007,7 @@
           "rank": "前頭14",
           "side": "east",
           "wins": 4,
-          "losses": 6,
+          "losses": 7,
           "draws": 0,
           "results": [
             "loss",
@@ -1020,7 +1020,7 @@
             "loss",
             "win",
             "loss",
-            null
+            "loss"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/",
           "memo": ""
@@ -1034,7 +1034,7 @@
           "rank": "前頭14",
           "side": "west",
           "wins": 4,
-          "losses": 6,
+          "losses": 7,
           "draws": 0,
           "results": [
             "loss",
@@ -1047,7 +1047,7 @@
             "loss",
             "loss",
             "loss",
-            null
+            "loss"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/",
           "memo": ""
@@ -1210,7 +1210,7 @@
           "yomi": "でわのりゅう",
           "rank": "十両1",
           "side": "east",
-          "wins": 6,
+          "wins": 7,
           "losses": 4,
           "draws": 0,
           "results": [
@@ -1224,7 +1224,7 @@
             "loss",
             "win",
             "win",
-            null
+            "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/",
           "memo": ""
