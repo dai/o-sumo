@@ -431,6 +431,7 @@
     "matchCardShareScore": "Aikuchi: {{first}} {{firstWins}}-{{secondWins}} {{second}}",
     "matchCardShareHighlight": "What to watch: {{highlight}}",
     "matchCardShare": "Share matchup card",
+    "matchCardShareImage": "Share matchup card image",
     "matchCardShared": "Shared",
     "matchCardCopied": "Card text copied",
     "physicalTitle": "Physical & Stats Comparison",
