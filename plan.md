@@ -1,27 +1,71 @@
-# o-sumo 運用ロードマップ（2026年8月）
+# plan: matchup popup の不透明度を 95% へ + 背面ブラー
 
-## 完了: 七月場所の締めとアーカイブ化
+## 背景
 
-- [x] 確定した七月場所（`202607`）の取組・番付を不変TypeScriptスナップショットとして保存
-- [x] 七月を current の公開JSON/API/UI月に保ちつつ、七月・五月・三月を newest-first のアーカイブとして提供
-- [x] 月別ルート、metadata、sitemapがcurrent/archiveの重複URLを作らないことを検証
-- [x] 取組系workflowを `workflow_dispatch` のみにし、ニュース更新だけを定期実行として維持
+`app/torikumi` の「合口マッチアップ」デスクトップ用ポップアップ (`.torikumi-matchup-popover`) は、これまで背景を `var(--surface-container-lowest, #fff)` の完全不透明で描画していた。
 
-## 次のPR: 九月場所の公式番付公開後
+- ホバーで開いたままスクロールすると、ポップアップの「下」に走っている本文・取組カードが視覚的に重なって読みづらい瞬間がある（特にダークモードで `--surface-container-lowest` が薄めの上位色になったとき、下のテキストがうっすら透けて「にじむ」印象になる）。
+- 一方、完全不透明だと「重い」感も否めないため、視覚的な階層の重さを増やさずにごくわずかな透け感で奥行きを足したい。
 
-- [ ] 日本相撲協会の九月場所番付と取組日程が公開されたことを確認する
-- [ ] 生成器を実行して現行番付・取組・公開JSONを新しい場所へ同時に更新する
-- [ ] 新しい場所の型・JSON・15日分の日付・月別ルート・metadata・sitemapを検証する
-- [ ] 七月スナップショットと過去アーカイブの不変性を回帰テストで確認する
+このトレードオフを `color-mix` + `backdrop-filter: blur()` の組み合わせで解消する。
 
-## 開場前の復帰条件
+## 対象コード
 
-- [ ] 公式番付、初日、取組日程、公開JSONの `bashoName` / `year` / 月キーが一致する
-- [ ] 番付、取組、日別ページ、WebMCP、Markdown view、redirect、header、metadata、sitemapを検証する
-- [ ] `daily-data-update.yml` と `realtime-torikumi-direct-update.yml` のscheduleを復元し、終了告知を通常表示へ戻す
-- [ ] `npm run typecheck`、`npm test`、`npm run build`、`git diff --check` を通す
+- ファイル: `app/torikumi/page.css`
+- 対象セレクタ:
+  - `.torikumi-matchup-popover`（ポップアップ本体）
+  - `.torikumi-matchup-popover::before`（吹き出し三角）
 
-## 継続運用
+## 差分
 
-- ニュースworkflowは休止期間中も定期更新を継続し、内容差分がないときは `news.json` を更新しない。
-- 新しい公開API schemaや月別JSON endpointは追加せず、既存の `/api/v1/banzuke.json` と `/api/v1/torikumi.json` の互換性を維持する。
+```diff
+ /* Desktop Popover */
+ .torikumi-matchup-popover {
+   position: absolute;
+   top: calc(100% + 6px);
+   left: 50%;
+   transform: translateX(-50%);
+   width: min(290px, 85vw);
+-  background: var(--surface-container-lowest, #fff);
++  background: color-mix(in srgb, var(--surface-container-lowest, #fff) 95%, transparent);
++  backdrop-filter: blur(8px);
++  -webkit-backdrop-filter: blur(8px);
+   border: 1px solid var(--color-outline-variant, #e5e7eb);
+   ...
+ }
+ ...
+ .torikumi-matchup-popover::before {
+   ...
+-  background: var(--surface-container-lowest, #fff);
++  background: color-mix(in srgb, var(--surface-container-lowest, #fff) 95%, transparent);
+   ...
+ }
+```
+
+要点:
+
+1. **背景を 95% 不透明に** — `color-mix(in srgb, <base> 95%, transparent)` で 5% だけ後ろを透かす。下に何が走っているか「わからない」レベルではないが、完全に塗りつぶすより軽く見える。
+2. **背面を 8px ブラー** — `backdrop-filter: blur(8px)` で後ろのテキストや色を軽く散らして、透けても可読性を維持。Safari 対応のため `-webkit-backdrop-filter` も併記。
+3. **三角も同色に揃える** — `::before` の背景も同じ `color-mix(...)` に変更して、本体との継ぎ目を作らない。
+
+## 検証手順
+
+- `npm ci --no-audit --no-fund`
+- `npm run typecheck`
+- `npm test`
+- `npm run build`
+- 手動: ローカルで `/torikumi/...` を開き、合口マッチアップにホバー → ポップアップ表示中にページを下にスクロールし、下のテキストが「読めない」レベルまで透けていないこと、また完全不透明と比べて明らかに軽く見えることを確認。
+
+## スコープ外
+
+- モバイルのボトムシートモーダル (`.torikumi-matchup-modal-portal`) は全面オーバーレイ＋ `--color-scrim` 背景で本文とは別のレイヤード UI になっているため、今回の対象外。
+- 別のトースト / ツールチップ (`tooltip`, `toast` 等) も対象外。マッチアップポップアップ固有の要望。
+- カラートークン自体 (`--surface-container-lowest`) の値変更は今回行わない。
+
+## 想定コミット
+
+```
+fix(torikumi): make matchup popup 95% opaque with backdrop blur
+
+スクロールや重なった文字の参照読みを避け、またダークモードでも「下の文字が透ける」感をなくための調整。color-mix で 95% 不透明 + backdrop-filter: blur(8px) で微ガラスモーフィズムを付与。矢印 (::before) も同色に揃える。
+```

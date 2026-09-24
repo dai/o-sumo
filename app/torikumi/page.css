@@ -728,7 +728,9 @@
 
 .torikumi-matchup-trigger:hover,
 .torikumi-matchup-trigger.is-active {
-  background: var(--surface-container-high, rgba(0, 0, 0, 0.05));
+  background: color-mix(in srgb, var(--surface-container-high, rgba(0, 0, 0, 0.05)) 95%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-color: var(--color-outline-variant, #ccc);
   color: var(--color-primary);
 }
@@ -774,7 +776,9 @@
   left: 50%;
   transform: translateX(-50%);
   width: min(290px, 85vw);
-  background: var(--surface-container-lowest, #fff);
+  background: color-mix(in srgb, var(--surface-container-lowest, #fff) 95%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--color-outline-variant, #e5e7eb);
   border-radius: 8px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
@@ -797,7 +801,7 @@
   transform: translateX(-50%) rotate(45deg);
   width: 10px;
   height: 10px;
-  background: var(--surface-container-lowest, #fff);
+  background: color-mix(in srgb, var(--surface-container-lowest, #fff) 95%, transparent);
   border-top: 1px solid var(--color-outline-variant, #e5e7eb);
   border-left: 1px solid var(--color-outline-variant, #e5e7eb);
 }
