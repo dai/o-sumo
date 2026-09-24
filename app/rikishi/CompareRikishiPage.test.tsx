@@ -217,6 +217,53 @@ describe('CompareRikishiPage', () => {
     expect(await screen.findByRole('button', { name: '共有しました' })).toBeInTheDocument();
   });
 
+  it('shares the matchup card with attached image file when canShare allows files', async () => {
+    setupFetchMock();
+    const share = vi.fn().mockResolvedValue(undefined);
+    const canShare = vi.fn().mockReturnValue(true);
+    const originalGetContext = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = vi.fn().mockReturnValue({
+      createLinearGradient: vi.fn().mockReturnValue({ addColorStop: vi.fn() }),
+      fillRect: vi.fn(),
+      beginPath: vi.fn(),
+      moveTo: vi.fn(),
+      lineTo: vi.fn(),
+      stroke: vi.fn(),
+      fillText: vi.fn(),
+      roundRect: vi.fn(),
+      fill: vi.fn(),
+    }) as any;
+    const originalToBlob = HTMLCanvasElement.prototype.toBlob;
+    HTMLCanvasElement.prototype.toBlob = vi.fn((callback: (blob: Blob | null) => void) => {
+      callback(new Blob(['fake-png'], { type: 'image/png' }));
+    });
+    vi.stubGlobal('navigator', { ...navigator, share, canShare });
+    try {
+      const user = userEvent.setup();
+      render(
+        <MemoryRouter initialEntries={['/compare/?ids=3842,4227']}>
+          <Routes>
+            <Route path="/compare/" element={<CompareRikishiPage />} />
+          </Routes>
+        </MemoryRouter>,
+      );
+
+      await user.click(await screen.findByRole('button', { name: '取組カードを画像で共有' }));
+
+      expect(share).toHaveBeenCalledWith(expect.objectContaining({
+        title: '#豊昇龍 vs #大の里 この取組の見どころ',
+        text: expect.stringContaining('/compare/?ids=3842,4227'),
+        files: expect.arrayContaining([expect.any(File)]),
+      }));
+      const sharePayload = share.mock.calls[0][0];
+      expect(sharePayload.url).toBeUndefined();
+      expect(await screen.findByRole('button', { name: '共有しました' })).toBeInTheDocument();
+    } finally {
+      HTMLCanvasElement.prototype.getContext = originalGetContext;
+      HTMLCanvasElement.prototype.toBlob = originalToBlob;
+    }
+  });
+
   it('selects matchup preset with quick pick chip and clears with clear button', async () => {
     setupFetchMock();
     const user = userEvent.setup();
