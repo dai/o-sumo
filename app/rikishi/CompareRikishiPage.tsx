@@ -519,6 +519,7 @@ function MatchupShareCard({
   }, [pathname, search]);
 
   const share = async () => {
+    const textWithUrl = `${text}\n${url}`;
     if (navigator.share) {
       try {
         const canShare = (navigator as unknown as { canShare?: Navigator['canShare'] }).canShare;
@@ -534,7 +535,11 @@ function MatchupShareCard({
           }) : null;
         const files = image ? [image] : [];
         const canShareImage = files.length > 0 && canShare?.({ files });
-        await navigator.share(canShareImage ? { title, text, url, files } : { title, text, url });
+        // Note: When sharing files via Web Share API, passing `url` as a separate property
+        // causes social apps (such as X/Twitter) to discard `files` and treat the share as a URL link.
+        // By embedding `url` into `text` and omitting `url` when files are present, apps attach the image
+        // while preserving the link in the post body.
+        await navigator.share(canShareImage ? { title, text: textWithUrl, files } : { title, text, url });
         setShareStatus('shared');
         return;
       } catch (error) {
@@ -549,7 +554,31 @@ function MatchupShareCard({
       }
     }
     try {
-      await navigator.clipboard.writeText(`${text}\n${url}`);
+      await navigator.clipboard.writeText(textWithUrl);
+      try {
+        const image = await createMatchupCardImage({
+          first: profileA.name,
+          second: profileB.name,
+          firstWins: stats.winsA,
+          secondWins: stats.winsB,
+          highlights,
+          eyebrow: t('comparison.matchCardEyebrow'),
+          highlightTitle: t('comparison.matchCardHighlights'),
+          aikuchiLabel: t('comparison.matchCardAikuchi'),
+        });
+        if (image && typeof document !== 'undefined') {
+          const objectUrl = URL.createObjectURL(image);
+          const link = document.createElement('a');
+          link.href = objectUrl;
+          link.download = image.name;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          setTimeout(() => URL.revokeObjectURL(objectUrl), 60_000);
+        }
+      } catch {
+        // Image generation or download failed; clipboard text is already preserved.
+      }
       setShareStatus('copied');
     } catch {
       setShareStatus('idle');
