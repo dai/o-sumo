@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-23T10:22:20.729110+00:00",
+    "updatedAt": "2026-09-24T00:53:17.080771+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-f-bt-tp1-260923-202609230001216",
-        "title": "横綱大の里が藤ノ川に初勝利、変化は「一切考えなかった」２度金星配給“天敵”を下す　１敗独走",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260923-202609230001216",
-        "publishedAt": "2026-09-23",
-        "publishedAtRaw": "日刊スポーツ　9月23日 19時11分",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_RPEKI7EVFRMKTFTNGOTLEM2NHQ",
+        "title": "大相撲コラム　横綱豊昇龍の度重なる休場と、横綱千代の山の生誕100年",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_RPEKI7EVFRMKTFTNGOTLEM2NHQ",
+        "publishedAt": "2026-09-24",
+        "publishedAtRaw": "SANSPO　9月24日 8時42分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260923-OHT1T51334",
-        "title": "大関・安青錦が５連勝で勝ち越し決める　一時は３連敗も師匠の言葉が支えに「『絶対に大丈夫』と言われたことは大きかった」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260923-OHT1T51334",
-        "publishedAt": "2026-09-23",
-        "publishedAtRaw": "スポーツ報知　9月23日 18時57分",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_OQT2M2CPCBHCRMTXWFCQ7Z5JKM",
+        "title": "舞の海氏「心頭滅却すれば火自ずから涼しって聞いたことあるんですけど」／秋場所",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_OQT2M2CPCBHCRMTXWFCQ7Z5JKM",
+        "publishedAt": "2026-09-24",
+        "publishedAtRaw": "SANSPO　9月24日 8時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260923-202609230001171",
-        "title": "安青錦、左足引きずりながら勝ち越し　中村親方「それでもこれだけの相撲をとれている」",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260923-202609230001171",
-        "publishedAt": "2026-09-23",
-        "publishedAtRaw": "日刊スポーツ　9月23日 18時44分",
+        "id": "dmenu-docomo-thedigestweb-120510",
+        "title": "「スゴイ髪型の人いる」大相撲中継を騒がせた最前列の人物　視聴者が二度見した“まさかの正体”【秋場所】",
+        "url": "https://topics.smt.docomo.ne.jp/article/thedigestweb/sports/thedigestweb-120510",
+        "publishedAt": "2026-09-24",
+        "publishedAtRaw": "THE DIGEST　9月24日 8時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260923-202609230001169",
-        "title": "大の里、過去２戦２敗の藤ノ川を圧倒して独走態勢　元若の里の西岩親方「このまま突っ走りそう」",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260923-202609230001169",
-        "publishedAt": "2026-09-23",
-        "publishedAtRaw": "日刊スポーツ　9月23日 18時43分",
+        "id": "dmenu-docomo-abematimes-10274659",
+        "title": "一山本の“謝罪”が引き起こした“奇跡”の光景 「淑女も頭を下げててw」「人柄が出た」「ますます応援したくなる」愛されキャラに反響続々",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274659",
+        "publishedAt": "2026-09-24",
+        "publishedAtRaw": "ABEMA TIMES　9月24日 6時32分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-tokyosports-404124",
-        "title": "【大相撲】朝乃山が２場所連続で勝ち越し「通過点。満足しないように。一番でも多く勝ちたい」",
-        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-404124",
-        "publishedAt": "2026-09-23",
-        "publishedAtRaw": "東スポWEB　9月23日 17時36分",
+        "id": "dmenu-docomo-tokyosports-404200",
+        "title": "【大相撲】安青錦の大逆転Ｖあるか　負傷で稽古不足も８勝目…秀ノ山親方「チャンスはある」",
+        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-404200",
+        "publishedAt": "2026-09-24",
+        "publishedAtRaw": "東スポWEB　9月24日 6時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-23T10:22:20.737103+00:00",
-  "lastSuccessAt": "2026-09-23T10:22:20.729110+00:00",
+  "lastAttemptAt": "2026-09-24T00:53:17.089375+00:00",
+  "lastSuccessAt": "2026-09-24T00:53:17.080771+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -283,9 +283,13 @@
     "35848388179": {
       "attemptedAt": "2026-09-23T10:22:20.737103+00:00",
       "outcome": "success"
+    },
+    "35940435767": {
+      "attemptedAt": "2026-09-24T00:53:17.089375+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35848388179",
+  "lastRunId": "35940435767",
   "lastPublishedDate": "2026-09-23",
   "lastPublishedSha": "40b2f69b7ce3784329e3cbcb5a861c5ac5eeb7f7",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
