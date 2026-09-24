@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-24T06:35:30.150757+00:00",
+    "updatedAt": "2026-09-24T08:29:22.997999+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-20260924082",
-        "title": "男前で注目の大森が勝ち越し決める「ほっとしました」元幕内の実力者を寄り切る【大相撲】",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260924082",
+        "id": "dmenu-docomo-f-bt-tp1-260924-202609240000857",
+        "title": "41歳玉鷲が歴代７位９１４勝「安心してる場合じゃない」若の里に並ぶ　７連勝で勝ち越しも淡々",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260924-202609240000857",
         "publishedAt": "2026-09-24",
-        "publishedAtRaw": "デイリースポーツ　9月24日 15時21分",
+        "publishedAtRaw": "日刊スポーツ　9月24日 17時16分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260924-OHT1T51182",
-        "title": "青森出身の西幕下１４枚目・長内が勝ち越し４勝２敗　「もう１番ある。最低５勝したい」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260924-OHT1T51182",
+        "id": "dmenu-docomo-tokyosports-404257",
+        "title": "【大相撲】〝超絶筋肉力士〟朝紅龍　横川尚隆のオリンピアデビューに「世界一を期待したい」",
+        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-404257",
         "publishedAt": "2026-09-24",
-        "publishedAtRaw": "スポーツ報知　9月24日 15時20分",
+        "publishedAtRaw": "東スポWEB　9月24日 17時14分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sponichi-spngoo-20260924-0259",
-        "title": "幕下・大森が3場所連続で勝ち越し　前まわしを引いて頭をつける新機軸に「磨いていければ」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260924-0259",
+        "id": "dmenu-docomo-jiji-2026092400327",
+        "title": "琴勝峰が休場＝１１日目に脳振とう―大相撲秋場所",
+        "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026092400327",
         "publishedAt": "2026-09-24",
-        "publishedAtRaw": "スポニチアネックス　9月24日 15時19分",
+        "publishedAtRaw": "時事通信　9月24日 17時05分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260924-OHT1T51177",
-        "title": "“イケメン力士”幕下・大森が勝ち越し「とにかく良かった」、元幕内・志摩ノ海を破り４勝２敗に",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260924-OHT1T51177",
+        "id": "dmenu-docomo-encount-1070890",
+        "title": "88kgの19歳小兵が164kg巨漢力士を“腕一本”で豪快に…「すげぇ」「いいもの見た」館内も騒然",
+        "url": "https://topics.smt.docomo.ne.jp/article/encount/sports/encount-1070890",
         "publishedAt": "2026-09-24",
-        "publishedAtRaw": "スポーツ報知　9月24日 15時03分",
+        "publishedAtRaw": "ENCOUNT　9月24日 16時42分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_RP3GSX74AVGAXDAVBICRA2FKV4",
-        "title": "舞の海氏「横綱であり横綱を育てた親方であり、そういう人に向かって…」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_RP3GSX74AVGAXDAVBICRA2FKV4",
+        "id": "dmenu-docomo-hochi-20260924-OHT1T51250",
+        "title": "４１歳・玉鷲が史上最年長再入幕へ前進「安心している場合じゃない」　佐田の海との合計「８０歳対決」を制し勝ち越し",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260924-OHT1T51250",
         "publishedAt": "2026-09-24",
-        "publishedAtRaw": "SANSPO　9月24日 15時00分",
+        "publishedAtRaw": "スポーツ報知　9月24日 16時34分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-24T06:35:30.160167+00:00",
-  "lastSuccessAt": "2026-09-24T06:35:30.150757+00:00",
+  "lastAttemptAt": "2026-09-24T08:29:23.005849+00:00",
+  "lastSuccessAt": "2026-09-24T08:29:22.997999+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -299,9 +299,13 @@
     "35965217230": {
       "attemptedAt": "2026-09-24T06:35:30.160167+00:00",
       "outcome": "success"
+    },
+    "35975516415": {
+      "attemptedAt": "2026-09-24T08:29:23.005849+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35965217230",
+  "lastRunId": "35975516415",
   "lastPublishedDate": "2026-09-23",
   "lastPublishedSha": "40b2f69b7ce3784329e3cbcb5a861c5ac5eeb7f7",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
