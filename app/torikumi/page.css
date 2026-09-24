@@ -728,7 +728,9 @@
 
 .torikumi-matchup-trigger:hover,
 .torikumi-matchup-trigger.is-active {
-  background: var(--surface-container-high, rgba(0, 0, 0, 0.05));
+  background: color-mix(in srgb, var(--surface-container-high, rgba(0, 0, 0, 0.05)) 95%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-color: var(--color-outline-variant, #ccc);
   color: var(--color-primary);
 }
