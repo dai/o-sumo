@@ -489,6 +489,14 @@
 
 .torikumi-row:hover {
   transform: translateX(4px);
+  position: relative;
+  z-index: 10;
+}
+
+/* ポップアップ表示中は該当行を最前面にして後続行の突き抜けを防ぐ */
+.torikumi-row:has(.torikumi-matchup-popover) {
+  position: relative;
+  z-index: 20;
 }
 
 .torikumi-row-absent {
@@ -728,9 +736,7 @@
 
 .torikumi-matchup-trigger:hover,
 .torikumi-matchup-trigger.is-active {
-  background: color-mix(in srgb, var(--surface-container-high, rgba(0, 0, 0, 0.05)) 95%, transparent);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: var(--surface-container-high, rgba(0, 0, 0, 0.05));
   border-color: var(--color-outline-variant, #ccc);
   color: var(--color-primary);
 }
@@ -776,9 +782,7 @@
   left: 50%;
   transform: translateX(-50%);
   width: min(290px, 85vw);
-  background: color-mix(in srgb, var(--surface-container-lowest, #fff) 95%, transparent);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: var(--surface-container-lowest, #fff);
   border: 1px solid var(--color-outline-variant, #e5e7eb);
   border-radius: 8px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
@@ -801,7 +805,7 @@
   transform: translateX(-50%) rotate(45deg);
   width: 10px;
   height: 10px;
-  background: color-mix(in srgb, var(--surface-container-lowest, #fff) 95%, transparent);
+  background: var(--surface-container-lowest, #fff);
   border-top: 1px solid var(--color-outline-variant, #e5e7eb);
   border-left: 1px solid var(--color-outline-variant, #e5e7eb);
 }
