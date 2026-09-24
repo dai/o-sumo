@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-24T04:24:39.363747+00:00",
+    "updatedAt": "2026-09-24T06:35:30.150757+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_NMGR4FFLGVHYFAAVX55CRDICWI",
-        "title": "舞の海氏「朝青龍関は結構、憎まれキャラだったわけですよ。ところが…」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_NMGR4FFLGVHYFAAVX55CRDICWI",
+        "id": "dmenu-docomo-20260924082",
+        "title": "男前で注目の大森が勝ち越し決める「ほっとしました」元幕内の実力者を寄り切る【大相撲】",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260924082",
         "publishedAt": "2026-09-24",
-        "publishedAtRaw": "SANSPO　9月24日 13時00分",
+        "publishedAtRaw": "デイリースポーツ　9月24日 15時21分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260924-202609240000341",
-        "title": "休場の琴勝峰は脳しんとうで入院、再出場せず　佐渡ケ嶽親方「取組の記憶飛んでる」24日にも退院",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260924-202609240000341",
+        "id": "dmenu-docomo-hochi-20260924-OHT1T51182",
+        "title": "青森出身の西幕下１４枚目・長内が勝ち越し４勝２敗　「もう１番ある。最低５勝したい」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260924-OHT1T51182",
         "publishedAt": "2026-09-24",
-        "publishedAtRaw": "日刊スポーツ　9月24日 12時38分",
+        "publishedAtRaw": "スポーツ報知　9月24日 15時20分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260924-OHT1T51111",
-        "title": "休場の琴勝峰は脳しんとう　検査では異常なし　再出場はせず、大事をとって現在は入院中…師匠の佐渡ケ嶽親方が説明",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260924-OHT1T51111",
+        "id": "dmenu-docomo-sponichi-spngoo-20260924-0259",
+        "title": "幕下・大森が3場所連続で勝ち越し　前まわしを引いて頭をつける新機軸に「磨いていければ」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260924-0259",
         "publishedAt": "2026-09-24",
-        "publishedAtRaw": "スポーツ報知　9月24日 12時38分",
+        "publishedAtRaw": "スポニチアネックス　9月24日 15時19分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-chuspo-1315605",
-        "title": "【大相撲速報】琴勝峰が休場　前日、”KO状態”で背中から倒れ…相手も「心配です」　IGアリーナ初代優勝力士で兄弟幕内",
-        "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1315605",
+        "id": "dmenu-docomo-hochi-20260924-OHT1T51177",
+        "title": "“イケメン力士”幕下・大森が勝ち越し「とにかく良かった」、元幕内・志摩ノ海を破り４勝２敗に",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260924-OHT1T51177",
         "publishedAt": "2026-09-24",
-        "publishedAtRaw": "中日スポーツ　9月24日 12時29分",
+        "publishedAtRaw": "スポーツ報知　9月24日 15時03分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-abematimes-10274707",
-        "title": "「取組中に気を失ってた」力士の真剣勝負で予期せぬアクシデント 強烈な張り手に土俵下でしばし動けず「ガクッときて心配」「威力恐るべし」",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274707",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_RP3GSX74AVGAXDAVBICRA2FKV4",
+        "title": "舞の海氏「横綱であり横綱を育てた親方であり、そういう人に向かって…」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_RP3GSX74AVGAXDAVBICRA2FKV4",
         "publishedAt": "2026-09-24",
-        "publishedAtRaw": "ABEMA TIMES　9月24日 12時17分",
+        "publishedAtRaw": "SANSPO　9月24日 15時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-24T04:24:39.373401+00:00",
-  "lastSuccessAt": "2026-09-24T04:24:39.363747+00:00",
+  "lastAttemptAt": "2026-09-24T06:35:30.160167+00:00",
+  "lastSuccessAt": "2026-09-24T06:35:30.150757+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -295,9 +295,13 @@
     "35955512455": {
       "attemptedAt": "2026-09-24T04:24:39.373401+00:00",
       "outcome": "success"
+    },
+    "35965217230": {
+      "attemptedAt": "2026-09-24T06:35:30.160167+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35955512455",
+  "lastRunId": "35965217230",
   "lastPublishedDate": "2026-09-23",
   "lastPublishedSha": "40b2f69b7ce3784329e3cbcb5a861c5ac5eeb7f7",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
