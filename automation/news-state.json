@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-24T00:53:17.080771+00:00",
+    "updatedAt": "2026-09-24T02:29:47.533238+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_RPEKI7EVFRMKTFTNGOTLEM2NHQ",
-        "title": "大相撲コラム　横綱豊昇龍の度重なる休場と、横綱千代の山の生誕100年",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_RPEKI7EVFRMKTFTNGOTLEM2NHQ",
+        "id": "dmenu-docomo-f-bt-tp1-260924-202609240000160",
+        "title": "木瀬親方の57歳誕生日を特大ケーキでお祝い　美ノ海と金峰山が３敗で追う中、弟子から贈り物も",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260924-202609240000160",
         "publishedAt": "2026-09-24",
-        "publishedAtRaw": "SANSPO　9月24日 8時42分",
+        "publishedAtRaw": "日刊スポーツ　9月24日 11時19分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_OQT2M2CPCBHCRMTXWFCQ7Z5JKM",
-        "title": "舞の海氏「心頭滅却すれば火自ずから涼しって聞いたことあるんですけど」／秋場所",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_OQT2M2CPCBHCRMTXWFCQ7Z5JKM",
+        "id": "dmenu-docomo-hochi-20260924-OHT1T51075",
+        "title": "幕内・琴勝峰が休場　１１日目の取組で相手の頭が顎に当たり、土俵に崩れ落ちる",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260924-OHT1T51075",
         "publishedAt": "2026-09-24",
-        "publishedAtRaw": "SANSPO　9月24日 8時00分",
+        "publishedAtRaw": "スポーツ報知　9月24日 11時10分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-thedigestweb-120510",
-        "title": "「スゴイ髪型の人いる」大相撲中継を騒がせた最前列の人物　視聴者が二度見した“まさかの正体”【秋場所】",
-        "url": "https://topics.smt.docomo.ne.jp/article/thedigestweb/sports/thedigestweb-120510",
+        "id": "dmenu-docomo-abematimes-10274687",
+        "title": "「ヨガのポーズみたい」敗れた力士が不思議な姿勢に 珍しい光景に「最後のポーズw」「体幹の良さがうかがえる」反響続々",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274687",
         "publishedAt": "2026-09-24",
-        "publishedAtRaw": "THE DIGEST　9月24日 8時00分",
+        "publishedAtRaw": "ABEMA TIMES　9月24日 11時01分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-abematimes-10274659",
-        "title": "一山本の“謝罪”が引き起こした“奇跡”の光景 「淑女も頭を下げててw」「人柄が出た」「ますます応援したくなる」愛されキャラに反響続々",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274659",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_IH45JHWHV5F6LOUC5XGVDUHSAI",
+        "title": "舞の海氏「『ここまでして勝ちたいんですかね。後味悪いですね』って…」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_IH45JHWHV5F6LOUC5XGVDUHSAI",
         "publishedAt": "2026-09-24",
-        "publishedAtRaw": "ABEMA TIMES　9月24日 6時32分",
+        "publishedAtRaw": "SANSPO　9月24日 11時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-tokyosports-404200",
-        "title": "【大相撲】安青錦の大逆転Ｖあるか　負傷で稽古不足も８勝目…秀ノ山親方「チャンスはある」",
-        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-404200",
+        "id": "dmenu-docomo-kyodo_nor-2026092401000494",
+        "title": "幕内琴勝峰が秋場所12日目休場　大相撲、11日目まで5勝6敗",
+        "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026092401000494",
         "publishedAt": "2026-09-24",
-        "publishedAtRaw": "東スポWEB　9月24日 6時00分",
+        "publishedAtRaw": "共同通信　9月24日 10時41分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-24T00:53:17.089375+00:00",
-  "lastSuccessAt": "2026-09-24T00:53:17.080771+00:00",
+  "lastAttemptAt": "2026-09-24T02:29:47.542562+00:00",
+  "lastSuccessAt": "2026-09-24T02:29:47.533238+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -287,9 +287,13 @@
     "35940435767": {
       "attemptedAt": "2026-09-24T00:53:17.089375+00:00",
       "outcome": "success"
+    },
+    "35947478192": {
+      "attemptedAt": "2026-09-24T02:29:47.542562+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35940435767",
+  "lastRunId": "35947478192",
   "lastPublishedDate": "2026-09-23",
   "lastPublishedSha": "40b2f69b7ce3784329e3cbcb5a861c5ac5eeb7f7",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
