@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-24T10:22:27.633528+00:00",
+    "updatedAt": "2026-09-25T00:53:46.113716+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-f-bt-tp1-260924-202609240001177",
-        "title": "藤ノ川、霧島に初勝利で恩返し「稽古が実を結んだ」３大関総なめで初の賜杯へ望みつなぐ",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260924-202609240001177",
-        "publishedAt": "2026-09-24",
-        "publishedAtRaw": "日刊スポーツ　9月24日 19時04分",
+        "id": "dmenu-docomo-abematimes-10274955",
+        "title": "「大丈夫か？」力士に“異変”…幕内の取組で予期せぬ事態「負けた瞬間に…」「歩くのも辛そう」ファン・実況アナも心配",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274955",
+        "publishedAt": "2026-09-25",
+        "publishedAtRaw": "ABEMA TIMES　9月25日 9時05分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_WE7KZKD3DFHY7KX2JB7C2E2EZ4",
-        "title": "琴風氏「結局は見なきゃ分からんみたいな話になってくるんだけど」／秋場所",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_WE7KZKD3DFHY7KX2JB7C2E2EZ4",
-        "publishedAt": "2026-09-24",
-        "publishedAtRaw": "SANSPO　9月24日 19時04分",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_XJ4Y3D4CPZEWXB4DDXNZGCRPOQ",
+        "title": "琴風氏「この相撲じゃ駄目だね。倉吉から100人も来てる。その応援を…」／秋場所",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_XJ4Y3D4CPZEWXB4DDXNZGCRPOQ",
+        "publishedAt": "2026-09-25",
+        "publishedAtRaw": "SANSPO　9月25日 8時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260924-202609240001182",
-        "title": "横綱大の里、自身２度目13日目Ｖあるぞ「強気な相撲を」３連敗中の難敵熱海富士下し１敗キープ",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260924-202609240001182",
-        "publishedAt": "2026-09-24",
-        "publishedAtRaw": "日刊スポーツ　9月24日 19時01分",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_7DCMDJ2MNJFWXNZ2ULDCHCU6OE",
+        "title": "舞の海氏「やめて解説者になってから面白いなと思ったのは…」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_7DCMDJ2MNJFWXNZ2ULDCHCU6OE",
+        "publishedAt": "2026-09-25",
+        "publishedAtRaw": "SANSPO　9月25日 8時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_DCLX5RDA3VA5BEE7DSUOVVQP5Y",
-        "title": "元朝青龍「下半身硬すぎる。足首が痛いのわかる。すり足相撲目指せ」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_DCLX5RDA3VA5BEE7DSUOVVQP5Y",
-        "publishedAt": "2026-09-24",
-        "publishedAtRaw": "SANSPO　9月24日 18時50分",
+        "id": "dmenu-docomo-abematimes-10274942",
+        "title": "「お？なんだ」「ひさびさみた」館内どよめく一瞬の“妙技” 相手力士、両手を土俵につく「珍しいな」「技で勝った」ファンも注目",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274942",
+        "publishedAt": "2026-09-25",
+        "publishedAtRaw": "ABEMA TIMES　9月25日 7時43分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-chuspo-1315802",
-        "title": "「下半身硬すぎる」「すり足相撲目指せ」元横綱・朝青龍さん、大関・安青錦へSNSでアドバイス　この日、安青錦は寄り切りで勝利",
-        "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1315802",
-        "publishedAt": "2026-09-24",
-        "publishedAtRaw": "中日スポーツ　9月24日 18時45分",
+        "id": "dmenu-docomo-ans-730665",
+        "title": "大相撲中継で映り「取組に集中できんのよ」　溜席に紛れた「スゴイ髪型」の正体",
+        "url": "https://topics.smt.docomo.ne.jp/article/ans/sports/ans-730665",
+        "publishedAt": "2026-09-25",
+        "publishedAtRaw": "THE ANSWER　9月25日 7時33分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-24T10:22:27.644150+00:00",
-  "lastSuccessAt": "2026-09-24T10:22:27.633528+00:00",
+  "lastAttemptAt": "2026-09-25T00:53:46.123053+00:00",
+  "lastSuccessAt": "2026-09-25T00:53:46.113716+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -307,9 +307,13 @@
     "35986821441": {
       "attemptedAt": "2026-09-24T10:22:27.644150+00:00",
       "outcome": "success"
+    },
+    "36079598348": {
+      "attemptedAt": "2026-09-25T00:53:46.123053+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "35986821441",
+  "lastRunId": "36079598348",
   "lastPublishedDate": "2026-09-24",
   "lastPublishedSha": "010f4f8ea1c46294e2d4ef95ad98e46e34658806",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
