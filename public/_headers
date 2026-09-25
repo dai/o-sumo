@@ -2,6 +2,11 @@
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
+# compare OGP 用プリレンダ PNG（不変）
+# scripts/build-compare-ogp-matchups.mjs の実行で再生成され、ファイル名はハッシュで固定。
+/images/matchups/*
+  Cache-Control: public, max-age=31536000, immutable
+
 # PWA関連は中程度（更新検知のため）
 /manifest.webmanifest
   Cache-Control: public, max-age=3600
@@ -134,3 +139,10 @@
 /.well-known/http-message-signatures-directory
   Cache-Control: public, max-age=60
   Content-Type: application/http-message-signatures-directory+json
+
+# compare OGP 動的生成 (KV キャッシュヒット時は CDN キャッシュ)
+# /api/og-compare/{ids} は Cloudflare Pages Function が PNG を返す。
+# Bot クローラが同じ ids を再 fetch するため、CDN 側は 24h キャッシュ。
+# ブラウザ表示は 5 分 (一般的な CDN revalidation 間隔)。
+/api/og-compare/*
+  Cache-Control: public, max-age=300, s-maxage=86400
