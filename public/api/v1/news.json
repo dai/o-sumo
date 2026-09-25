@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-24T10:22:27.633528+00:00",
+  "updatedAt": "2026-09-25T10:22:34.777209+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-f-bt-tp1-260924-202609240001177",
-      "title": "藤ノ川、霧島に初勝利で恩返し「稽古が実を結んだ」３大関総なめで初の賜杯へ望みつなぐ",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260924-202609240001177",
-      "publishedAt": "2026-09-24",
-      "publishedAtRaw": "日刊スポーツ　9月24日 19時04分",
+      "id": "dmenu-docomo-tokyosports-404379",
+      "title": "【大相撲】大の里　霧島に屈して２敗目…後続と１差に接近「やるべきことは変わらない」",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-404379",
+      "publishedAt": "2026-09-25",
+      "publishedAtRaw": "東スポWEB　9月25日 19時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_WE7KZKD3DFHY7KX2JB7C2E2EZ4",
-      "title": "琴風氏「結局は見なきゃ分からんみたいな話になってくるんだけど」／秋場所",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_WE7KZKD3DFHY7KX2JB7C2E2EZ4",
-      "publishedAt": "2026-09-24",
-      "publishedAtRaw": "SANSPO　9月24日 19時04分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_K7ZBPMFILBAN7EDHRK52O3A5DA",
+      "title": "舞の海氏「あした落とすことはまずないんじゃないかなと思いますね」／秋場所",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_K7ZBPMFILBAN7EDHRK52O3A5DA",
+      "publishedAt": "2026-09-25",
+      "publishedAtRaw": "SANSPO　9月25日 18時47分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260924-202609240001182",
-      "title": "横綱大の里、自身２度目13日目Ｖあるぞ「強気な相撲を」３連敗中の難敵熱海富士下し１敗キープ",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260924-202609240001182",
-      "publishedAt": "2026-09-24",
-      "publishedAtRaw": "日刊スポーツ　9月24日 19時01分",
+      "id": "dmenu-docomo-ans-731266",
+      "title": "大相撲で珍事「申し訳なさそう」　謝った力士に館内ざわつく「かわいい」「謝罪で沸くw」",
+      "url": "https://topics.smt.docomo.ne.jp/article/ans/sports/ans-731266",
+      "publishedAt": "2026-09-25",
+      "publishedAtRaw": "THE ANSWER　9月25日 18時33分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_DCLX5RDA3VA5BEE7DSUOVVQP5Y",
-      "title": "元朝青龍「下半身硬すぎる。足首が痛いのわかる。すり足相撲目指せ」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_DCLX5RDA3VA5BEE7DSUOVVQP5Y",
-      "publishedAt": "2026-09-24",
-      "publishedAtRaw": "SANSPO　9月24日 18時50分",
+      "id": "dmenu-docomo-hochi-20260925-OHT1T51262",
+      "title": "大の里　霧島に敗れる波乱、単独トップ守るも２敗に後退　優勝争いは一転、混戦に",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260925-OHT1T51262",
+      "publishedAt": "2026-09-25",
+      "publishedAtRaw": "スポーツ報知　9月25日 17時56分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-chuspo-1315802",
-      "title": "「下半身硬すぎる」「すり足相撲目指せ」元横綱・朝青龍さん、大関・安青錦へSNSでアドバイス　この日、安青錦は寄り切りで勝利",
-      "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1315802",
-      "publishedAt": "2026-09-24",
-      "publishedAtRaw": "中日スポーツ　9月24日 18時45分",
+      "id": "dmenu-docomo-hochi-20260925-OHT1T51216",
+      "title": "東海大柔道部出身・岡田、２場所ぶり幕下復帰も負け越し「悔しい。またやり直します」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260925-OHT1T51216",
+      "publishedAt": "2026-09-25",
+      "publishedAtRaw": "スポーツ報知　9月25日 16時17分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
