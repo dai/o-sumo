@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-25T04:24:59.242198+00:00",
+    "updatedAt": "2026-09-25T06:36:01.453327+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-f-bt-tp1-260925-202609250000483",
-        "title": "隆の勝「左足関節靱帯損傷」で秋場所13日目から休場「約１カ月間の加療を要する」",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260925-202609250000483",
+        "id": "dmenu-docomo-f-bt-tp1-260925-202609250000860",
+        "title": "14日目の幕内後半最後の４番　狼雅−熱海富士、藤ノ川−朝乃山、安青錦−霧島、琴桜−大の里",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260925-202609250000860",
         "publishedAt": "2026-09-25",
-        "publishedAtRaw": "日刊スポーツ　9月25日 13時12分",
+        "publishedAtRaw": "日刊スポーツ　9月25日 15時34分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260925-OHT1T51124",
-        "title": "休場の幕内・隆の勝は「左足関節靱帯損傷で約１か月間の加療を要する」　日本相撲協会が診断書を公表",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260925-OHT1T51124",
+        "id": "dmenu-docomo-sponichi-spngoo-20260925-0267",
+        "title": "元幕内・矢後が引退を発表　中大時代にアマチュア横綱",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260925-0267",
         "publishedAt": "2026-09-25",
-        "publishedAtRaw": "スポーツ報知　9月25日 12時54分",
+        "publishedAtRaw": "スポニチアネックス　9月25日 15時26分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260925-OHT1T51117",
-        "title": "序ノ口はモンゴル出身・城勝雄が優勝　同学年の藤ノ川の活躍に刺激「早く同じところで戦いたい」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260925-OHT1T51117",
+        "id": "dmenu-docomo-hochi-20260925-OHT1T51189",
+        "title": "元幕内・矢後が３２歳で引退　２６日に引退会見…名門・埼玉栄高出身、中大ではアマ横綱",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260925-OHT1T51189",
         "publishedAt": "2026-09-25",
-        "publishedAtRaw": "スポーツ報知　9月25日 12時47分",
+        "publishedAtRaw": "スポーツ報知　9月25日 15時25分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260925-202609250000414",
-        "title": "27歳の黎大丸が引退、多くの声援に「泣きそうになりました」　両膝が限界に達し、第２の人生へ",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260925-202609250000414",
+        "id": "dmenu-docomo-f-bt-tp1-260925-202609250000832",
+        "title": "伊波が７戦全勝で幕下優勝、前夜は「夢之富士の顔がずっと出てきて」あまり眠れずも大一番制す",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260925-202609250000832",
         "publishedAt": "2026-09-25",
-        "publishedAtRaw": "日刊スポーツ　9月25日 12時42分",
+        "publishedAtRaw": "日刊スポーツ　9月25日 15時21分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-nikkangendai-1250099",
-        "title": "痛恨の4敗目…大関とり熱海富士、目安の「33勝」未達確実で今場所昇進おあずけの重大不備",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1250099",
+        "id": "dmenu-docomo-f-bt-tp1-260925-202609250000736",
+        "title": "元幕内の矢後が引退、ひざのケガに泣き「潮時だと思いました」　14日目に引退会見",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260925-202609250000736",
         "publishedAt": "2026-09-25",
-        "publishedAtRaw": "日刊ゲンダイDIGITAL　9月25日 12時20分",
+        "publishedAtRaw": "日刊スポーツ　9月25日 14時54分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-25T04:24:59.251829+00:00",
-  "lastSuccessAt": "2026-09-25T04:24:59.242198+00:00",
+  "lastAttemptAt": "2026-09-25T06:36:01.462596+00:00",
+  "lastSuccessAt": "2026-09-25T06:36:01.453327+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -319,9 +319,13 @@
     "36094333877": {
       "attemptedAt": "2026-09-25T04:24:59.251829+00:00",
       "outcome": "success"
+    },
+    "36103577814": {
+      "attemptedAt": "2026-09-25T06:36:01.462596+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36094333877",
+  "lastRunId": "36103577814",
   "lastPublishedDate": "2026-09-24",
   "lastPublishedSha": "010f4f8ea1c46294e2d4ef95ad98e46e34658806",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
