@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-25T02:28:21.296283+00:00",
+    "updatedAt": "2026-09-25T04:24:59.242198+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-hochi-20260925-OHT1T51078",
-        "title": "幕内・隆の勝が休場  １２日目の琴栄峰との取組で足首を痛める   再出場はせず",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260925-OHT1T51078",
+        "id": "dmenu-docomo-f-bt-tp1-260925-202609250000483",
+        "title": "隆の勝「左足関節靱帯損傷」で秋場所13日目から休場「約１カ月間の加療を要する」",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260925-202609250000483",
         "publishedAt": "2026-09-25",
-        "publishedAtRaw": "スポーツ報知　9月25日 11時13分",
+        "publishedAtRaw": "日刊スポーツ　9月25日 13時12分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-abematimes-10274977",
-        "title": "「合気道かよ」モンゴル出身24歳逸材力士、相手力士“一回転”の衝撃決着「どうやって投げた」「お見事」驚きと賞賛の声",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274977",
+        "id": "dmenu-docomo-hochi-20260925-OHT1T51124",
+        "title": "休場の幕内・隆の勝は「左足関節靱帯損傷で約１か月間の加療を要する」　日本相撲協会が診断書を公表",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260925-OHT1T51124",
         "publishedAt": "2026-09-25",
-        "publishedAtRaw": "ABEMA TIMES　9月25日 10時51分",
+        "publishedAtRaw": "スポーツ報知　9月25日 12時54分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sponichi-spngoo-20260925-0160",
-        "title": "幕内・隆の勝が休場　12日目まで4勝8敗",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260925-0160",
+        "id": "dmenu-docomo-hochi-20260925-OHT1T51117",
+        "title": "序ノ口はモンゴル出身・城勝雄が優勝　同学年の藤ノ川の活躍に刺激「早く同じところで戦いたい」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260925-OHT1T51117",
         "publishedAt": "2026-09-25",
-        "publishedAtRaw": "スポニチアネックス　9月25日 10時50分",
+        "publishedAtRaw": "スポーツ報知　9月25日 12時47分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-abematimes-10274957",
-        "title": "「同体？」「スープレックス」プロレス技のような“豪快決着” 物言いつく際どい一幕に館内ざわめき",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274957",
+        "id": "dmenu-docomo-f-bt-tp1-260925-202609250000414",
+        "title": "27歳の黎大丸が引退、多くの声援に「泣きそうになりました」　両膝が限界に達し、第２の人生へ",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260925-202609250000414",
         "publishedAt": "2026-09-25",
-        "publishedAtRaw": "ABEMA TIMES　9月25日 9時41分",
+        "publishedAtRaw": "日刊スポーツ　9月25日 12時42分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-abematimes-10274955",
-        "title": "「大丈夫か？」力士に“異変”…幕内の取組で予期せぬ事態「負けた瞬間に…」「歩くのも辛そう」ファン・実況アナも心配",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274955",
+        "id": "dmenu-docomo-nikkangendai-1250099",
+        "title": "痛恨の4敗目…大関とり熱海富士、目安の「33勝」未達確実で今場所昇進おあずけの重大不備",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1250099",
         "publishedAt": "2026-09-25",
-        "publishedAtRaw": "ABEMA TIMES　9月25日 9時05分",
+        "publishedAtRaw": "日刊ゲンダイDIGITAL　9月25日 12時20分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-25T02:28:21.306188+00:00",
-  "lastSuccessAt": "2026-09-25T02:28:21.296283+00:00",
+  "lastAttemptAt": "2026-09-25T04:24:59.251829+00:00",
+  "lastSuccessAt": "2026-09-25T04:24:59.242198+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -315,9 +315,13 @@
     "36086378335": {
       "attemptedAt": "2026-09-25T02:28:21.306188+00:00",
       "outcome": "success"
+    },
+    "36094333877": {
+      "attemptedAt": "2026-09-25T04:24:59.251829+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36086378335",
+  "lastRunId": "36094333877",
   "lastPublishedDate": "2026-09-24",
   "lastPublishedSha": "010f4f8ea1c46294e2d4ef95ad98e46e34658806",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
