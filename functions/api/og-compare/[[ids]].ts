@@ -108,3 +108,5 @@ export const onRequestGet = (async (
 
   return matchupRedirect(imagePath);
 }) as unknown as PagesFunction<CompareOgEnv>;
+
+export const onRequestHead = onRequestGet;
