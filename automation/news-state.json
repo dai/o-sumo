@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-25T00:53:46.113716+00:00",
+    "updatedAt": "2026-09-25T02:28:21.296283+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
+        "id": "dmenu-docomo-hochi-20260925-OHT1T51078",
+        "title": "幕内・隆の勝が休場  １２日目の琴栄峰との取組で足首を痛める   再出場はせず",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260925-OHT1T51078",
+        "publishedAt": "2026-09-25",
+        "publishedAtRaw": "スポーツ報知　9月25日 11時13分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-abematimes-10274977",
+        "title": "「合気道かよ」モンゴル出身24歳逸材力士、相手力士“一回転”の衝撃決着「どうやって投げた」「お見事」驚きと賞賛の声",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274977",
+        "publishedAt": "2026-09-25",
+        "publishedAtRaw": "ABEMA TIMES　9月25日 10時51分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-sponichi-spngoo-20260925-0160",
+        "title": "幕内・隆の勝が休場　12日目まで4勝8敗",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260925-0160",
+        "publishedAt": "2026-09-25",
+        "publishedAtRaw": "スポニチアネックス　9月25日 10時50分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-abematimes-10274957",
+        "title": "「同体？」「スープレックス」プロレス技のような“豪快決着” 物言いつく際どい一幕に館内ざわめき",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274957",
+        "publishedAt": "2026-09-25",
+        "publishedAtRaw": "ABEMA TIMES　9月25日 9時41分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
         "id": "dmenu-docomo-abematimes-10274955",
         "title": "「大丈夫か？」力士に“異変”…幕内の取組で予期せぬ事態「負けた瞬間に…」「歩くのも辛そう」ファン・実況アナも心配",
         "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274955",
         "publishedAt": "2026-09-25",
         "publishedAtRaw": "ABEMA TIMES　9月25日 9時05分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_XJ4Y3D4CPZEWXB4DDXNZGCRPOQ",
-        "title": "琴風氏「この相撲じゃ駄目だね。倉吉から100人も来てる。その応援を…」／秋場所",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_XJ4Y3D4CPZEWXB4DDXNZGCRPOQ",
-        "publishedAt": "2026-09-25",
-        "publishedAtRaw": "SANSPO　9月25日 8時00分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_7DCMDJ2MNJFWXNZ2ULDCHCU6OE",
-        "title": "舞の海氏「やめて解説者になってから面白いなと思ったのは…」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_7DCMDJ2MNJFWXNZ2ULDCHCU6OE",
-        "publishedAt": "2026-09-25",
-        "publishedAtRaw": "SANSPO　9月25日 8時00分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-abematimes-10274942",
-        "title": "「お？なんだ」「ひさびさみた」館内どよめく一瞬の“妙技” 相手力士、両手を土俵につく「珍しいな」「技で勝った」ファンも注目",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10274942",
-        "publishedAt": "2026-09-25",
-        "publishedAtRaw": "ABEMA TIMES　9月25日 7時43分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-ans-730665",
-        "title": "大相撲中継で映り「取組に集中できんのよ」　溜席に紛れた「スゴイ髪型」の正体",
-        "url": "https://topics.smt.docomo.ne.jp/article/ans/sports/ans-730665",
-        "publishedAt": "2026-09-25",
-        "publishedAtRaw": "THE ANSWER　9月25日 7時33分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-25T00:53:46.123053+00:00",
-  "lastSuccessAt": "2026-09-25T00:53:46.113716+00:00",
+  "lastAttemptAt": "2026-09-25T02:28:21.306188+00:00",
+  "lastSuccessAt": "2026-09-25T02:28:21.296283+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -311,9 +311,13 @@
     "36079598348": {
       "attemptedAt": "2026-09-25T00:53:46.123053+00:00",
       "outcome": "success"
+    },
+    "36086378335": {
+      "attemptedAt": "2026-09-25T02:28:21.306188+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36079598348",
+  "lastRunId": "36086378335",
   "lastPublishedDate": "2026-09-24",
   "lastPublishedSha": "010f4f8ea1c46294e2d4ef95ad98e46e34658806",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
