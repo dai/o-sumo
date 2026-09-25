@@ -55,7 +55,15 @@ export function resolveShareMetadataForPayload(
     yobidashi: collection === 'yobidashi' ? items : [],
     matchups: collection === 'rikishi' ? shareMatchups(payload) : [],
   });
-  if (resolved) return resolved;
+  if (resolved) {
+    if (resolved.imageUrl) {
+      return {
+        ...resolved,
+        imageUrl: new URL(new URL(resolved.imageUrl).pathname, requestUrl).toString(),
+      };
+    }
+    return resolved;
+  }
 
   const fallback = resolvePageMeta(requestUrl.pathname);
   return {

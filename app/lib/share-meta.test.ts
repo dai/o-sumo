@@ -19,6 +19,7 @@ describe('resolveShareMetaOverride', () => {
       title: '#豊昇龍 vs #大の里｜合口 5−3 | o-sumo',
       description: '合口は豊昇龍 5勝 − 3勝 大の里。見どころ：豊昇龍が2勝リード。体格や得意決まり手も比較できます。',
       socialUrl: 'https://osada.us/compare/?ids=3842,4227',
+      imageUrl: 'https://osada.us/api/og-compare/3842,4227',
     });
   });
 

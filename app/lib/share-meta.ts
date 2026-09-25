@@ -21,6 +21,7 @@ export type ShareMetaOverride = {
   title: string;
   description: string;
   socialUrl: string;
+  imageUrl?: string;
 };
 
 function shareUrl(url: URL): string {
@@ -86,6 +87,7 @@ export function resolveShareMetaOverride(url: URL, data: ShareMetaData): ShareMe
       title: score ? `#${firstName} vs #${secondName}｜合口 ${matchup?.[0]}−${matchup?.[1]} | o-sumo` : `#${firstName} vs #${secondName}｜初顔合わせ | o-sumo`,
       description: `${score ? `合口は${score}。` : ''}見どころ：${highlight}。体格や得意決まり手も比較できます。`,
       socialUrl,
+      imageUrl: new URL(`/api/og-compare/${firstId},${secondId}`, url).toString(),
     };
   }
 

@@ -346,6 +346,78 @@ describe('onRequest SEO routing for sitemap-targeted HTML routes', () => {
     }
   });
 
+  it('rewrites og:image and twitter:image to /api/og-compare/{ids} on /compare/?ids=A,B', async () => {
+    const spy = installHtmlRewriterSpy();
+    try {
+      const rikishiPayload = {
+        rikishi: [
+          { id: 4227, name: '大の里' },
+          { id: 3622, name: '霧島' },
+        ],
+      };
+      const matchupPayload = {
+        matchups: [
+          { rikishi1Id: 3622, rikishi2Id: 4227, rikishi1Wins: 1, rikishi2Wins: 10 },
+        ],
+      };
+      const request = new Request('https://preview.example/compare/?ids=4227,3622', {
+        headers: { Accept: 'text/html' },
+      });
+      const mockFetch = vi.fn().mockImplementation(async (url: URL) => {
+        if (url.pathname === '/api/v1/rikishi.json') {
+          return new Response(JSON.stringify(rikishiPayload), { status: 200 });
+        }
+        if (url.pathname === '/api/v1/rikishi-matchups.json') {
+          return new Response(JSON.stringify(matchupPayload), { status: 200 });
+        }
+        return new Response(null, { status: 404 });
+      });
+      const mockNext = vi.fn().mockResolvedValue(makeHtmlResponse());
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const context: any = {
+        request,
+        env: { ASSETS: { fetch: mockFetch } },
+        next: mockNext,
+      };
+      await onRequest(context);
+
+      expect(spy.rewriters.length).toBeGreaterThanOrEqual(1);
+      const rewriter = spy.rewriters[spy.rewriters.length - 1];
+
+      // Check og:image
+      const ogImageReg = rewriter.registrations.find((r) => r.selector === 'meta[property="og:image"]');
+      expect(ogImageReg?.handlers.element).toBeDefined();
+      const attributes: Record<string, string> = {};
+      const fakeElement = {
+        setAttribute: (name: string, value: string) => {
+          attributes[name] = value;
+        },
+        setInnerContent: () => {},
+        append: () => {},
+      };
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (ogImageReg!.handlers.element as any)(fakeElement);
+      expect(attributes.content).toBe('https://preview.example/api/og-compare/4227,3622');
+
+      // Check twitter:image
+      const twitterImageReg = rewriter.registrations.find((r) => r.selector === 'meta[name="twitter:image"]');
+      expect(twitterImageReg?.handlers.element).toBeDefined();
+      const twitterAttrs: Record<string, string> = {};
+      const fakeTwitterElem = {
+        setAttribute: (name: string, value: string) => {
+          twitterAttrs[name] = value;
+        },
+        setInnerContent: () => {},
+        append: () => {},
+      };
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (twitterImageReg!.handlers.element as any)(fakeTwitterElem);
+      expect(twitterAttrs.content).toBe('https://preview.example/api/og-compare/4227,3622');
+    } finally {
+      spy.restore();
+    }
+  });
+
   it('preserves profile-specific title on /rikishi/{id}/ via the share-collection path', async () => {
     const spy = installHtmlRewriterSpy();
     try {
