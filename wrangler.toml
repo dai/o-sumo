@@ -1,0 +1,50 @@
+# Cloudflare Pages / Workers configuration for o-sumo
+#
+# このファイルは compare ページ OGP の力士個別 (実名入り) 動的生成のために新設。
+# 既存は wrangler.toml なしで Pages の自動検出のみで運用してきたが、KV + R2
+# バインディングが必要になったため、Pages の標準設定と互換性を保ったまま
+# バインディングのみ追加する (build / deploy / 環境変数の扱いは Pages に委ねる)。
+#
+# 関連プラン: https://dash.cloudflare.com/?to=/:account/workers/plans
+# - Workers Paid ($5/月) が必要 (KV / R2 バインディングを使うため)
+# - 無料枠: KV 10万 read/日 + 1,000 write/日 + 1GB / R2 10GB + 100万 Class A 操作/月
+#
+# ダッシュボードでの名前空間/バケット作成手順は docs/COMPARE_OGP_DASHBOARD_SETUP.md
+# を参照。作成後に下の "REPLACE_WITH_*" を実際の ID に置換すること。
+
+name = "o-sumo"
+compatibility_date = "2025-09-25"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "./dist"
+
+# ---------------------------------------------------------------
+# KV namespace bindings
+# ---------------------------------------------------------------
+# COMPARE_OG_CACHE: プリレンダ済み OGP PNG URL のキャッシュ。
+#                   キー: compare/matchup/{hash16} (compareImageKey() で生成)
+#                   値:   /images/matchups/{hash16}.png のような静的パス文字列 (永続)
+#                   投入: scripts/populate-compare-kv.mjs --apply
+#
+# 注) COMPARE_OG_DAILY_COUNTER (id=4e3946ef...) は runtime satori 廃止により未使用。
+#     必要であれば Cloudflare ダッシュボードで名前空間を削除可能。
+[[kv_namespaces]]
+binding = "COMPARE_OG_CACHE"
+id = "a270b80b0c5341b78b99890e113c8867"
+
+# ---------------------------------------------------------------
+# (注) R2 バケット (compare-ogp) は runtime satori 廃止により未使用。
+#      フォントは scripts/fonts/ から build time に読み込む。
+#      必要であれば Cloudflare ダッシュボードでバケットを削除可能。
+# ---------------------------------------------------------------
+
+# ---------------------------------------------------------------
+# Environment variables (Pages → Settings → Environment variables)
+# ---------------------------------------------------------------
+# COMPARE_OG_ENABLED: "false" でフィーチャーフラグ無効化 (緊急時ロールバック用)
+# MINIMAX_API_KEY:    (将来用、現状は未使用。satori + @vercel/og 方式のため不要)
+#
+# 変数設定は Cloudflare Dashboard の Environment variables で行う (下記 docs 参照)。
+# Pages の Secret / Environment variables は wrangler.toml に直接書かない運用規約。
+#
+# [vars]
+# COMPARE_OG_ENABLED = "true"
