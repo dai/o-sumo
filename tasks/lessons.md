@@ -402,3 +402,4 @@ Cloudflare Pages Functions (workerd runtime) で satori + @vercel/og を使い P
 3. KV には URL/パス文字列 (数十バイト) を入れる。バイナリ (PNG, JSON > 数 MB) は R2 か静的ファイルに逃がす。「KV は値 < 25MB, 数 < 100k」前提で割り切る
 4. `scripts/populate-compare-kv.mjs --apply` のように「manifest → `wrangler kv:bulk put`」パターンをスクリプト化しておき、再投入を CLI で再現できるようにする (手作業の wrangler コマンド暗記不要)
 5. フォント等の「重い静的アセット」は build script のソースツリー (`scripts/fonts/`) に置き、R2 runtime fetch の冷気を避ける。R2 は「ユーザーアップロードコンテンツ」専用に留める
+6. 同一リポジトリから複数の Cloudflare Pages プロジェクト (例: `o-sumo` と `o-sumo-blog`) をデプロイしている場合、リポジトリルートに `wrangler.toml` を置くと Pages のビルドシステムが全プロジェクトでそれを強制適用し、`pages_build_output_dir` 競合や不要な `functions/` の誤デプロイが発生する。KV バインディング等の設定は Cloudflare Pages プロジェクト設定 (API / Dashboard) で行い、リポジトリルートに `wrangler.toml` を置かない

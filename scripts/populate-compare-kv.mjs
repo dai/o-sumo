@@ -48,6 +48,7 @@ if (entries.length === 0) {
 }
 
 const KV_BINDING = 'COMPARE_OG_CACHE';
+const KV_NAMESPACE_ID = 'a270b80b0c5341b78b99890e113c8867';
 
 // wrangler 4.x の `kv bulk put` は JSON array を要求する (NDJSON ではない)。
 const jsonArray = `[${entries
@@ -71,7 +72,8 @@ if (!applyMode) {
   console.log(`[apply] pushing ${entries.length} entries via wrangler kv bulk put...`);
   try {
     // --remote で production KV に書き込み。デフォルト (--local) は wrangler のローカルエミュレータ。
-    const cmd = `wrangler kv bulk put --binding ${KV_BINDING} --remote "${tmpFile}"`;
+    // --namespace-id 指定により wrangler.toml への依存なしに直接対象名前空間へ投入可能。
+    const cmd = `wrangler kv bulk put --namespace-id ${KV_NAMESPACE_ID} --remote "${tmpFile}"`;
     console.log(`[cmd] ${cmd}`);
     execSync(cmd, { stdio: 'inherit', cwd: PROJECT_ROOT, shell: true });
     console.log('[done] KV populated');
