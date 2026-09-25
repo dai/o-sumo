@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-25T06:36:01.453327+00:00",
+    "updatedAt": "2026-09-25T08:29:07.210029+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-f-bt-tp1-260925-202609250000860",
-        "title": "14日目の幕内後半最後の４番　狼雅−熱海富士、藤ノ川−朝乃山、安青錦−霧島、琴桜−大の里",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260925-202609250000860",
+        "id": "dmenu-docomo-hochi-20260925-OHT1T51216",
+        "title": "東海大柔道部出身・岡田、２場所ぶり幕下復帰も負け越し「悔しい。またやり直します」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260925-OHT1T51216",
         "publishedAt": "2026-09-25",
-        "publishedAtRaw": "日刊スポーツ　9月25日 15時34分",
+        "publishedAtRaw": "スポーツ報知　9月25日 16時17分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sponichi-spngoo-20260925-0267",
-        "title": "元幕内・矢後が引退を発表　中大時代にアマチュア横綱",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260925-0267",
+        "id": "dmenu-docomo-f-bt-tp1-260925-202609250000948",
+        "title": "琴勝峰は「脳しんとう疑い、頭部外傷」診断書公表　11日目に頭部へ衝撃受け12日目から休場",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260925-202609250000948",
         "publishedAt": "2026-09-25",
-        "publishedAtRaw": "スポニチアネックス　9月25日 15時26分",
+        "publishedAtRaw": "日刊スポーツ　9月25日 16時13分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260925-OHT1T51189",
-        "title": "元幕内・矢後が３２歳で引退　２６日に引退会見…名門・埼玉栄高出身、中大ではアマ横綱",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260925-OHT1T51189",
+        "id": "dmenu-docomo-f-bt-tp1-260925-202609250000943",
+        "title": "輝が流血の２敗目も「顔なんで血が出やすいだけです」ティッシュで右眉上を押さえ取材対応",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260925-202609250000943",
         "publishedAt": "2026-09-25",
-        "publishedAtRaw": "スポーツ報知　9月25日 15時25分",
+        "publishedAtRaw": "日刊スポーツ　9月25日 16時04分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260925-202609250000832",
-        "title": "伊波が７戦全勝で幕下優勝、前夜は「夢之富士の顔がずっと出てきて」あまり眠れずも大一番制す",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260925-202609250000832",
+        "id": "dmenu-docomo-hochi-20260925-OHT1T51199",
+        "title": "秋場所で引退の矢後　最後の取組を白星締め「やりきった」　花道では仲間に迎えられ涙も",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260925-OHT1T51199",
         "publishedAt": "2026-09-25",
-        "publishedAtRaw": "日刊スポーツ　9月25日 15時21分",
+        "publishedAtRaw": "スポーツ報知　9月25日 15時46分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260925-202609250000736",
-        "title": "元幕内の矢後が引退、ひざのケガに泣き「潮時だと思いました」　14日目に引退会見",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260925-202609250000736",
+        "id": "dmenu-docomo-abematimes-10275094",
+        "title": "十両・輝、大流血のアクシデント 館内の歓声が一転、静寂とざわめき 自身初の各段優勝に向け痛い2敗目 嘉陽も敗れ星の差「１」でリード変わらず",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10275094",
         "publishedAt": "2026-09-25",
-        "publishedAtRaw": "日刊スポーツ　9月25日 14時54分",
+        "publishedAtRaw": "ABEMA TIMES　9月25日 15時44分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-25T06:36:01.462596+00:00",
-  "lastSuccessAt": "2026-09-25T06:36:01.453327+00:00",
+  "lastAttemptAt": "2026-09-25T08:29:07.218254+00:00",
+  "lastSuccessAt": "2026-09-25T08:29:07.210029+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -323,9 +323,13 @@
     "36103577814": {
       "attemptedAt": "2026-09-25T06:36:01.462596+00:00",
       "outcome": "success"
+    },
+    "36113148592": {
+      "attemptedAt": "2026-09-25T08:29:07.218254+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36103577814",
+  "lastRunId": "36113148592",
   "lastPublishedDate": "2026-09-24",
   "lastPublishedSha": "010f4f8ea1c46294e2d4ef95ad98e46e34658806",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
