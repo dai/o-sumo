@@ -188,7 +188,7 @@ function shareOverrideToMetadata(metadata: ShareMetaOverride, image: ImageMeta):
     title: metadata.title,
     description: metadata.description,
     canonicalUrl: metadata.socialUrl,
-    imageUrl: image.primary,
+    imageUrl: metadata.imageUrl ?? image.primary,
     imageWidth: image.width,
     imageHeight: image.height,
     imageAlt: image.alt,

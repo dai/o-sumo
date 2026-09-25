@@ -403,3 +403,6 @@ Cloudflare Pages Functions (workerd runtime) で satori + @vercel/og を使い P
 4. `scripts/populate-compare-kv.mjs --apply` のように「manifest → `wrangler kv:bulk put`」パターンをスクリプト化しておき、再投入を CLI で再現できるようにする (手作業の wrangler コマンド暗記不要)
 5. フォント等の「重い静的アセット」は build script のソースツリー (`scripts/fonts/`) に置き、R2 runtime fetch の冷気を避ける。R2 は「ユーザーアップロードコンテンツ」専用に留める
 6. 同一リポジトリから複数の Cloudflare Pages プロジェクト (例: `o-sumo` と `o-sumo-blog`) をデプロイしている場合、リポジトリルートに `wrangler.toml` を置くと Pages のビルドシステムが全プロジェクトでそれを強制適用し、`pages_build_output_dir` 競合や不要な `functions/` の誤デプロイが発生する。KV バインディング等の設定は Cloudflare Pages プロジェクト設定 (API / Dashboard) で行い、リポジトリルートに `wrangler.toml` を置かない
+7. 動的/プリレンダ OGP エンドポイント (`/api/og-compare/{ids}`) を新設しても、HTML を配信する middleware 側で `<meta property="og:image">` / `<meta name="twitter:image">` にその URL を書き換える配線を忘れると、ソーシャルクローラはデフォルト画像をフェッチし続けてしまう。middleware レベルでの OGP URL 動的差し替えと単体テストを必ずセットで実装する
+8. プリレンダ対象の選定で「通算対戦数」のみに頼ると、若手の横綱・大関など現代の看板カードが通算対戦数の少なさ (例: 大の里 vs 霧島は11番で全対戦中228位) から漏れてしまう。現役三役 (横綱・大関・関脇・小結) 同士の全組み合わせを最優先で必ず網羅し、残りを全体対戦数上位で埋めるハイブリッド選定にする
+

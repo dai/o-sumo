@@ -9,7 +9,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { compareImageKey } from '../../og-share';
 
-const { onRequestGet } = await import(
+const { onRequestGet, onRequestHead } = await import(
   '../../../../functions/api/og-compare/[[ids]]'
 );
 
@@ -179,5 +179,23 @@ describe('compare OGP endpoint — KV ミス (未知ペア)', () => {
 
     expect(res.status).toBe(302);
     expect(res.headers.get('X-Compare-Og-Reason')).toBe('cache-miss');
+  });
+
+  it('HEAD リクエストも GET と同様に 302 リダイレクト', async () => {
+    const expectedKey = await compareImageKey([4227, 3622]);
+    const cache = createMockKv({
+      [`compare/matchup/${expectedKey}`]: '/images/matchups/sample.png',
+    });
+
+    const res = await onRequestHead(
+      buildContext({
+        ids: '4227,3622',
+        env: { COMPARE_OG_CACHE: cache },
+      }),
+    );
+
+    expect(res.status).toBe(302);
+    expect(res.headers.get('Location')).toContain('/images/matchups/sample.png');
+    expect(res.headers.get('X-Compare-Og-Cache')).toBe('HIT');
   });
 });
