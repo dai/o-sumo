@@ -32,7 +32,7 @@ const FONT_PATH = path.join(PROJECT_ROOT, 'scripts/fonts/ShipporiMincho-Regular.
 const OUT_DIR = path.join(PROJECT_ROOT, 'public/images/matchups');
 const MANIFEST_PATH = path.join(HERE, 'compare-ogp-matchups-manifest.json');
 
-const TOP_N = Number.parseInt(process.env.MATCHUP_TOP_N ?? '30', 10);
+const TOP_N = Number.parseInt(process.env.MATCHUP_TOP_N ?? '60', 10);
 
 if (!fs.existsSync(FONT_PATH)) {
   console.error(`[FAIL] font not found: ${FONT_PATH}`);
@@ -197,13 +197,55 @@ function vsBadge() {
 }
 
 async function main() {
-  console.log(`[build:matchups] Top ${TOP_N} pairs from ${MATCHUPS_PATH}`);
+  console.log(`[build:matchups] Selecting matchups (sanyaku first, then overall top) up to ${TOP_N} from ${MATCHUPS_PATH}`);
   const data = JSON.parse(fs.readFileSync(MATCHUPS_PATH, 'utf8'));
   const matchups = Array.isArray(data && data.matchups) ? data.matchups : [];
-  const sorted = matchups
+
+  // 1. 三役（横綱、大関、関脇、小結）力士の ID セットを取得
+  const sanyakuIds = new Set();
+  const rikishiFiles = fs.readdirSync(RIKISHI_DIR).filter((f) => f.endsWith('.json'));
+  for (const f of rikishiFiles) {
+    try {
+      const json = JSON.parse(fs.readFileSync(path.join(RIKISHI_DIR, f), 'utf8'));
+      if (json && ['横綱', '大関', '関脇', '小結'].includes(json.currentRank)) {
+        sanyakuIds.add(json.id);
+      }
+    } catch {}
+  }
+
+  // 2. 三役同士の対戦を抽出（対戦数降順）
+  const sanyakuMatchups = matchups
+    .filter((m) => sanyakuIds.has(m.rikishi1Id) && sanyakuIds.has(m.rikishi2Id))
+    .sort((a, b) => (b.rikishi1Wins + b.rikishi2Wins) - (a.rikishi1Wins + a.rikishi2Wins));
+
+  // 3. 通算対戦数上位のカードを抽出（対戦数降順）
+  const overallSorted = matchups
     .slice()
     .sort((a, b) => (b.rikishi1Wins + b.rikishi2Wins) - (a.rikishi1Wins + a.rikishi2Wins));
-  const top = sorted.slice(0, TOP_N);
+
+  // 4. 重複を排除してマージ (三役同士を最優先で必ず含め、TOP_N 件になるまで全体上位を追加)
+  const selectedKeys = new Set();
+  const top = [];
+
+  const addMatchup = (m) => {
+    const min = Math.min(m.rikishi1Id, m.rikishi2Id);
+    const max = Math.max(m.rikishi1Id, m.rikishi2Id);
+    const pairKey = `${min}:${max}`;
+    if (!selectedKeys.has(pairKey)) {
+      selectedKeys.add(pairKey);
+      top.push(m);
+    }
+  };
+
+  for (const m of sanyakuMatchups) {
+    addMatchup(m);
+  }
+  for (const m of overallSorted) {
+    if (top.length >= TOP_N) break;
+    addMatchup(m);
+  }
+
+  console.log(`  Selected ${top.length} matchups (${sanyakuMatchups.length} sanyaku pairs + ${top.length - sanyakuMatchups.length} overall top pairs)`);
 
   fs.mkdirSync(OUT_DIR, { recursive: true });
 

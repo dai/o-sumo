@@ -28,6 +28,27 @@ describe('share metadata response helpers', () => {
     });
   });
 
+  it('emits dynamic imageUrl using requestUrl origin for a known comparison pair', () => {
+    expect(resolveShareMetadataForPayload(
+      new URL('https://preview.example/compare/?ids=3842,4227'),
+      'rikishi',
+      {
+        rikishi: [
+          { id: 3842, name: '豊昇龍' },
+          { id: 4227, name: '大の里' },
+        ],
+        matchups: [
+          { rikishi1Id: 3842, rikishi2Id: 4227, rikishi1Wins: 5, rikishi2Wins: 3 },
+        ],
+      },
+    )).toEqual({
+      title: '#豊昇龍 vs #大の里｜合口 5−3 | o-sumo',
+      description: '合口は豊昇龍 5勝 − 3勝 大の里。見どころ：豊昇龍が2勝リード。体格や得意決まり手も比較できます。',
+      socialUrl: 'https://osada.us/compare/?ids=3842,4227',
+      imageUrl: 'https://preview.example/api/og-compare/3842,4227',
+    });
+  });
+
   it('uses route-specific fallback metadata for an unknown comparison pair', () => {
     expect(resolveShareMetadataForPayload(
       new URL('https://preview.example/compare/?ids=3842,999999'),

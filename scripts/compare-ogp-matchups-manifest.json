@@ -1,10 +1,334 @@
 {
-  "generatedAt": "2026-09-25T04:57:42.499Z",
+  "generatedAt": "2026-09-25T06:55:32.024Z",
   "imageVersion": "1",
-  "topN": 30,
-  "count": 30,
+  "topN": 60,
+  "count": 60,
   "skipped": 0,
   "entries": [
+    {
+      "ids": "3376,3622",
+      "key": "9f0fb8ca69c422f0",
+      "imagePath": "/images/matchups/9f0fb8ca69c422f0.png",
+      "firstId": 3376,
+      "secondId": 3622,
+      "firstWins": 11,
+      "secondWins": 17
+    },
+    {
+      "ids": "3661,3842",
+      "key": "96a5f8441d5d9ddf",
+      "imagePath": "/images/matchups/96a5f8441d5d9ddf.png",
+      "firstId": 3661,
+      "secondId": 3842,
+      "firstWins": 12,
+      "secondWins": 16
+    },
+    {
+      "ids": "3622,3661",
+      "key": "a0fca3dd94af51a5",
+      "imagePath": "/images/matchups/a0fca3dd94af51a5.png",
+      "firstId": 3622,
+      "secondId": 3661,
+      "firstWins": 17,
+      "secondWins": 9
+    },
+    {
+      "ids": "3622,3842",
+      "key": "e7c9a087e4e9243c",
+      "imagePath": "/images/matchups/e7c9a087e4e9243c.png",
+      "firstId": 3622,
+      "secondId": 3842,
+      "firstWins": 11,
+      "secondWins": 13
+    },
+    {
+      "ids": "3376,3661",
+      "key": "ed99a4e4260eb8f6",
+      "imagePath": "/images/matchups/ed99a4e4260eb8f6.png",
+      "firstId": 3376,
+      "secondId": 3661,
+      "firstWins": 9,
+      "secondWins": 13
+    },
+    {
+      "ids": "3376,3842",
+      "key": "c53f85e442c65e39",
+      "imagePath": "/images/matchups/c53f85e442c65e39.png",
+      "firstId": 3376,
+      "secondId": 3842,
+      "firstWins": 6,
+      "secondWins": 15
+    },
+    {
+      "ids": "3376,4055",
+      "key": "0c1fc98e10f16eca",
+      "imagePath": "/images/matchups/0c1fc98e10f16eca.png",
+      "firstId": 3376,
+      "secondId": 4055,
+      "firstWins": 6,
+      "secondWins": 7
+    },
+    {
+      "ids": "3661,4227",
+      "key": "ea872592078b5226",
+      "imagePath": "/images/matchups/ea872592078b5226.png",
+      "firstId": 3661,
+      "secondId": 4227,
+      "firstWins": 5,
+      "secondWins": 8
+    },
+    {
+      "ids": "3622,4055",
+      "key": "6f92b4c88b2721f1",
+      "imagePath": "/images/matchups/6f92b4c88b2721f1.png",
+      "firstId": 3622,
+      "secondId": 4055,
+      "firstWins": 9,
+      "secondWins": 3
+    },
+    {
+      "ids": "3661,4055",
+      "key": "1069e0ede191c053",
+      "imagePath": "/images/matchups/1069e0ede191c053.png",
+      "firstId": 3661,
+      "secondId": 4055,
+      "firstWins": 8,
+      "secondWins": 4
+    },
+    {
+      "ids": "3842,4055",
+      "key": "9fe47ce6ee1d91e8",
+      "imagePath": "/images/matchups/9fe47ce6ee1d91e8.png",
+      "firstId": 3842,
+      "secondId": 4055,
+      "firstWins": 5,
+      "secondWins": 7
+    },
+    {
+      "ids": "3622,4227",
+      "key": "353209b411a635dc",
+      "imagePath": "/images/matchups/353209b411a635dc.png",
+      "firstId": 3622,
+      "secondId": 4227,
+      "firstWins": 1,
+      "secondWins": 10
+    },
+    {
+      "ids": "3376,4227",
+      "key": "a328a087753e5c39",
+      "imagePath": "/images/matchups/a328a087753e5c39.png",
+      "firstId": 3376,
+      "secondId": 4227,
+      "firstWins": 1,
+      "secondWins": 9
+    },
+    {
+      "ids": "3842,4227",
+      "key": "49a73e86dbab56f3",
+      "imagePath": "/images/matchups/49a73e86dbab56f3.png",
+      "firstId": 3842,
+      "secondId": 4227,
+      "firstWins": 8,
+      "secondWins": 1
+    },
+    {
+      "ids": "4055,4227",
+      "key": "61ad9c43249a6682",
+      "imagePath": "/images/matchups/61ad9c43249a6682.png",
+      "firstId": 4055,
+      "secondId": 4227,
+      "firstWins": 3,
+      "secondWins": 6
+    },
+    {
+      "ids": "3622,4187",
+      "key": "46c9011576466448",
+      "imagePath": "/images/matchups/46c9011576466448.png",
+      "firstId": 3622,
+      "secondId": 4187,
+      "firstWins": 4,
+      "secondWins": 3
+    },
+    {
+      "ids": "3661,4230",
+      "key": "25a7d24706ebb2e1",
+      "imagePath": "/images/matchups/25a7d24706ebb2e1.png",
+      "firstId": 3661,
+      "secondId": 4230,
+      "firstWins": 1,
+      "secondWins": 6
+    },
+    {
+      "ids": "3622,4230",
+      "key": "16bffd12c34991b0",
+      "imagePath": "/images/matchups/16bffd12c34991b0.png",
+      "firstId": 3622,
+      "secondId": 4230,
+      "firstWins": 1,
+      "secondWins": 5
+    },
+    {
+      "ids": "3842,4187",
+      "key": "5b18702d4d3a4082",
+      "imagePath": "/images/matchups/5b18702d4d3a4082.png",
+      "firstId": 3842,
+      "secondId": 4187,
+      "firstWins": 4,
+      "secondWins": 2
+    },
+    {
+      "ids": "3842,4230",
+      "key": "1ab09c5df5a12ed3",
+      "imagePath": "/images/matchups/1ab09c5df5a12ed3.png",
+      "firstId": 3842,
+      "secondId": 4230,
+      "firstWins": 1,
+      "secondWins": 5
+    },
+    {
+      "ids": "4187,4227",
+      "key": "2cf13edaea2593b3",
+      "imagePath": "/images/matchups/2cf13edaea2593b3.png",
+      "firstId": 4187,
+      "secondId": 4227,
+      "firstWins": 3,
+      "secondWins": 3
+    },
+    {
+      "ids": "4187,4230",
+      "key": "943d1f9d00dc5855",
+      "imagePath": "/images/matchups/943d1f9d00dc5855.png",
+      "firstId": 4187,
+      "secondId": 4230,
+      "firstWins": 0,
+      "secondWins": 6
+    },
+    {
+      "ids": "3661,4187",
+      "key": "8afdbb11e893abb4",
+      "imagePath": "/images/matchups/8afdbb11e893abb4.png",
+      "firstId": 3661,
+      "secondId": 4187,
+      "firstWins": 3,
+      "secondWins": 2
+    },
+    {
+      "ids": "4055,4191",
+      "key": "6eced89e82fdfe34",
+      "imagePath": "/images/matchups/6eced89e82fdfe34.png",
+      "firstId": 4055,
+      "secondId": 4191,
+      "firstWins": 4,
+      "secondWins": 1
+    },
+    {
+      "ids": "4055,4230",
+      "key": "73248135f6f49d01",
+      "imagePath": "/images/matchups/73248135f6f49d01.png",
+      "firstId": 4055,
+      "secondId": 4230,
+      "firstWins": 2,
+      "secondWins": 3
+    },
+    {
+      "ids": "4227,4230",
+      "key": "7033ca3a77e75541",
+      "imagePath": "/images/matchups/7033ca3a77e75541.png",
+      "firstId": 4227,
+      "secondId": 4230,
+      "firstWins": 4,
+      "secondWins": 1
+    },
+    {
+      "ids": "3376,4230",
+      "key": "db62b0fc44f65e0f",
+      "imagePath": "/images/matchups/db62b0fc44f65e0f.png",
+      "firstId": 3376,
+      "secondId": 4230,
+      "firstWins": 3,
+      "secondWins": 1
+    },
+    {
+      "ids": "3376,4187",
+      "key": "cf4ce7db594b685d",
+      "imagePath": "/images/matchups/cf4ce7db594b685d.png",
+      "firstId": 3376,
+      "secondId": 4187,
+      "firstWins": 2,
+      "secondWins": 1
+    },
+    {
+      "ids": "3376,4191",
+      "key": "55c43c1688ba1ff9",
+      "imagePath": "/images/matchups/55c43c1688ba1ff9.png",
+      "firstId": 3376,
+      "secondId": 4191,
+      "firstWins": 1,
+      "secondWins": 2
+    },
+    {
+      "ids": "3622,4191",
+      "key": "fb5c255b837aae5a",
+      "imagePath": "/images/matchups/fb5c255b837aae5a.png",
+      "firstId": 3622,
+      "secondId": 4191,
+      "firstWins": 3,
+      "secondWins": 0
+    },
+    {
+      "ids": "3661,4191",
+      "key": "bb204acb1916c733",
+      "imagePath": "/images/matchups/bb204acb1916c733.png",
+      "firstId": 3661,
+      "secondId": 4191,
+      "firstWins": 2,
+      "secondWins": 1
+    },
+    {
+      "ids": "4191,4230",
+      "key": "7a5950f50c30966f",
+      "imagePath": "/images/matchups/7a5950f50c30966f.png",
+      "firstId": 4191,
+      "secondId": 4230,
+      "firstWins": 0,
+      "secondWins": 3
+    },
+    {
+      "ids": "3842,4191",
+      "key": "6e743a4854a3a74d",
+      "imagePath": "/images/matchups/6e743a4854a3a74d.png",
+      "firstId": 3842,
+      "secondId": 4191,
+      "firstWins": 0,
+      "secondWins": 2
+    },
+    {
+      "ids": "4055,4187",
+      "key": "0997caf209431912",
+      "imagePath": "/images/matchups/0997caf209431912.png",
+      "firstId": 4055,
+      "secondId": 4187,
+      "firstWins": 1,
+      "secondWins": 1
+    },
+    {
+      "ids": "4191,4227",
+      "key": "6a254a24ccb17885",
+      "imagePath": "/images/matchups/6a254a24ccb17885.png",
+      "firstId": 4191,
+      "secondId": 4227,
+      "firstWins": 2,
+      "secondWins": 0
+    },
+    {
+      "ids": "4187,4191",
+      "key": "f86c89f789371805",
+      "imagePath": "/images/matchups/f86c89f789371805.png",
+      "firstId": 4187,
+      "secondId": 4191,
+      "firstWins": 1,
+      "secondWins": 0
+    },
     {
       "ids": "2629,2775",
       "key": "d60ea6fd6956c9c7",
@@ -105,24 +429,6 @@
       "secondWins": 18
     },
     {
-      "ids": "3376,3622",
-      "key": "9f0fb8ca69c422f0",
-      "imagePath": "/images/matchups/9f0fb8ca69c422f0.png",
-      "firstId": 3376,
-      "secondId": 3622,
-      "firstWins": 11,
-      "secondWins": 17
-    },
-    {
-      "ids": "3661,3842",
-      "key": "96a5f8441d5d9ddf",
-      "imagePath": "/images/matchups/96a5f8441d5d9ddf.png",
-      "firstId": 3661,
-      "secondId": 3842,
-      "firstWins": 12,
-      "secondWins": 16
-    },
-    {
       "ids": "2629,3376",
       "key": "14c067ea891eac0c",
       "imagePath": "/images/matchups/14c067ea891eac0c.png",
@@ -166,15 +472,6 @@
       "secondId": 3842,
       "firstWins": 10,
       "secondWins": 16
-    },
-    {
-      "ids": "3622,3661",
-      "key": "a0fca3dd94af51a5",
-      "imagePath": "/images/matchups/a0fca3dd94af51a5.png",
-      "firstId": 3622,
-      "secondId": 3661,
-      "firstWins": 17,
-      "secondWins": 9
     },
     {
       "ids": "3371,3661",
@@ -247,33 +544,6 @@
       "secondId": 3616,
       "firstWins": 19,
       "secondWins": 5
-    },
-    {
-      "ids": "3594,3622",
-      "key": "d8b71a61b0e17d93",
-      "imagePath": "/images/matchups/d8b71a61b0e17d93.png",
-      "firstId": 3594,
-      "secondId": 3622,
-      "firstWins": 12,
-      "secondWins": 12
-    },
-    {
-      "ids": "3622,3842",
-      "key": "e7c9a087e4e9243c",
-      "imagePath": "/images/matchups/e7c9a087e4e9243c.png",
-      "firstId": 3622,
-      "secondId": 3842,
-      "firstWins": 11,
-      "secondWins": 13
-    },
-    {
-      "ids": "2565,2629",
-      "key": "9c671d7d46825b6b",
-      "imagePath": "/images/matchups/9c671d7d46825b6b.png",
-      "firstId": 2565,
-      "secondId": 2629,
-      "firstWins": 15,
-      "secondWins": 8
     }
   ]
 }
