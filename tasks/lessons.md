@@ -331,3 +331,74 @@ PR head の parent commit (`git log --format=%P -1 HEAD`) と GitHub が表示�
 - `:focus-visible` (W3C Selectors 4) は `:focus` と異なり、キーボード操作や「最後の入力がキーボードだった」状態で発火する。モダンブラウザ (iOS Safari 15+ 含む) では pointer (tap) でも発火するため、hover と focus を「同じ視覚表現」にすると意図しない場面で UX が破綻する。
 - **Why**: `--color-secondary` のような accent 色は hover の "feedback" 用途と focus の "位置表示" 用途で意味が違う。前者は「ユーザーが触った」合図、後者は「いま focus している」合図。背景塗りつぶしは focus には強すぎて、エラーやアクティブ状態と誤認される。`--color-secondary` が light mode で `#c2410c` (sumō orange) と非常に強く見える色のため、誤認リスクが特に高い。
 - **How to apply**: ボタン系要素は (1) `:hover` → background 変化 (デスクトップのみ)、(2) `:focus-visible` → outline リング (background 変化なし、`outline-offset` 最低 2px)、(3) `:active` → 微小な transform/inset shadow (押下フィードバック)、(4) `[aria-busy="true"]` → opacity 低下、を 4 チャネルに分離して CSS を書く。`outline-offset` を 0 にするとリングがボタン枠に被ってギザギザに見える。light / dark 両 theme で同じ分離を忘れずに適用する。
+
+## 2026-09-25 compare OGP 動的生成 (Phase 1-3 実装) で得た教訓
+
+### Bash heredoc + node -e のバックスラッシュエスケープは想像以上に剥がれる
+
+`node -e "..."` で `\d` を渡したつもりでも、Bash のダブルクォート + Node の単一引用文字列リテラル + JS の `\` が段階的に消費され、最終的にファイルへ到達する文字列が想定と一致しないケースが複数回発生した。
+
+修正: heredoc を `<<'EOF'` のように単一引用デリミタで囲み、Node へ渡すスクリプトを temp ファイルに書いてから実行する。中間段階で解釈される `\` の数を数える代わりに、`String.raw` テンプレートや `JSON.stringify` で意図したバイト列をログ出力して検証する。
+
+**How to apply**: Bash → Node 経由で TypeScript / JS ファイルを生成するときは、`cat > file.ts <<'EOF'` で verbatim にスクリプトを貼り、それを Node で実行する。`node -e "..."` は 1 行トリビアルな修正にだけ使う。
+
+### Windows Git Bash の `sed -i` は副作用が見えにくい
+
+`sed -i 's|...|...|' file` を実行したのに、後続の `cat` / `sed -n '...p'` が「変更前の内容」を返すケースがあった (このセッションで 2 回発生)。
+
+原因候補: sed の in-place edit が別ファイルを生成してもとの file がそのまま残る、または PowerShell / Git Bash のリダイレクト挙動により sed の `-i` 出力が破壊される。
+
+**How to apply**: Windows 環境で安全にファイル編集するときは、(1) Edit ツール (Read precondition あり)、(2) Node スクリプトを heredoc で書く、(3) PowerShell の `Set-Content` を使う、のいずれかを優先する。`sed -i` は使わない。
+
+### og:image は必ず絶対 URL で指定する
+
+Twitter / Facebook / LinkedIn / Slack の OGP クローラは og:image に相対 URL を受け付けない。最初に `resolveDynamicCompareOgImageUrl` を `/api/og-compare/{ids}?v=...` の相対 URL で実装したところ、Bot UA テストで「動的画像が生成されない」形で失敗した。
+
+修正: `${requestUrl.origin}/api/og-compare/${idsRaw}?v=...` に変更。既存静的 `OG_COMPARE_DEFAULT` も `${SITE_ORIGIN}` プレフィックス付き絶対 URL なので合わせる。
+
+**How to apply**: og:image / og:url / twitter:image 等の meta 値は常に `new URL(path, requestUrl).toString()` で絶対 URL 化するヘルパを通す。meta 値が相対だと OG Debugger (Facebook / Twitter) でも警告が出る。
+
+### compare ページの動的 og:image は Bot UA のみ有効化する
+
+コスト試算 (KV read 10万/日無料、R2 read 1000万/月無料) では全員に動的生成を配っても枠内だが、Workers の CPU 時間 30,000万 ms/月の消費 + satori の ~200KB バンドル読み込みは Bot クローラの連鎖クロールで爆発するリスクがある。
+
+設計: 通常ブラウザ UA では `context.next()` で静的 og-compare-default.jpg のまま返す → Functions 追加コスト 0。Bot UA (Twitterbot / facebookexternalhit / LinkedInBot / Discordbot / Slackbot / TelegramBot / WhatsApp / Pinterestbot / Applebot) のみ動的生成。
+
+**How to apply**: 動的 OGP のような CPU 重めの生成は Bot UA リストを `const BOT_UA_PATTERNS: RegExp[]` で一元管理し、`isSocialBot(userAgent)` ヘルパで判定する。Googlebot は意図的に除外 (noscript + structured data を尊重するため軽量経路を維持)。
+
+### ランタイム画像生成エンドポイントにはフィーチャーフラグを関数本体の先頭に置く
+
+KV / R2 / Workers いずれかの障害発生時に即時ロールバックできるよう、`env.COMPARE_OG_ENABLED === 'false'` で全リクエストを 302 → 静的 og-compare-default.jpg にフォールバックする経路をエンドポイント先頭で判定する。Cloudflare Pages の Environment Variables から 1 クリックで切り替え可能。
+
+**Why**: satori バンドル (~200KB) や satori 自体の互換性問題で緊急度の高い障害が出る確率はゼロではない。手動でコミット revert → デプロイ (5-10 分) より、Env Var 1 クリック (< 30 秒) で緊急停止できる方が安全。
+
+**How to apply**: ランタイム画像生成エンドポイントには必ずフィーチャーフラグ (`env.XXX_ENABLED === 'false'`) を関数本体の先頭に置く。フラグ判定より前に async な副作用 (KV read など) を入れない。
+
+## 2026-09-25 compare OGP は runtime satori を捨て build-time プリレンダへ全面移行
+
+Cloudflare Pages Functions (workerd runtime) で satori + @vercel/og を使い PNG を動的生成する設計 (Phase 1-3) を実装したが、Cloudflare runtime 制約と satori の Node.js 前提のミスマッチで本番運用に到達できず、build time プリレンダ方式 (Phase 5) に全面的に切り替えた。
+
+### 失敗パターン
+
+1. **WASM fetch 解決**: satori の Yoga Layout 依存がランタイム WASM を URL で fetch するが、workerd の WASM streaming と非互換で `Cannot find module './yoga.wasm'` 系エラー
+2. **Bundle size + Cold Start**: satori + @vercel/og + esbuild で ~200KB。Workers isolate 起動に乗算で効き、bot SLA (~3 秒) に間に合わない
+3. **フォント runtime fetch**: Shippori Mincho WOFF2 (~3MB) を R2 から fetch する経路は cold start + フォントパースで 2-4 秒消費
+4. **KV base64 爆発**: KV に base64 PNG (~200KB × Top N) を入れると 25MB/value 制限と無料枠 (1GB) の両軸で運用上の上限に達する
+
+### 採用方式 (Build-Time Prerender)
+
+`scripts/build-compare-ogp-matchups.mjs` を `npm run build:matchups` で実行 → Top N (=30) ペアの PNG を `public/images/matchups/{hash16}.png` として build artifact に焼いて静的配信する。
+
+- satori + @resvg/resvg-js は Node.js (Vite の外) で動作 → WASM/JSX 問題は発生しない
+- KV には URL パス文字列 (`/images/matchups/{hash16}.png`) のみ格納 → 25MB 制限は無関係、TTL 不要
+- フォントは `scripts/fonts/ShipporiMincho-Regular.woff2` を build time に `wawoff2` で TTF に展開して satori へ渡す
+- Endpoint (`functions/api/og-compare/[[ids]].ts`) は KV ルックアップ + 302 リダイレクトのみの ~120 行 (旧 458 行から 73% 削減)
+
+**Why**: runtime で完全動的生成する設計は Cloudflare runtime の制約 (WASM streaming / bundle size / cold start) と satori の Node.js 前提 (Yoga WASM を URL で fetch / フォントを fs で読む) のミスマッチで運用に乗らない。アクセス上位 N ペアを build artifact に焼いてしまえば、Functions 経路は単純な CDN ルックアップになり、bot クローラへの P99 レイテンシは ~50ms、Workers CPU 消費はゼロ、KV は URL 文字列だけを小さく持つ。
+
+**How to apply**:
+1. Cloudflare Pages Functions で重い処理 (画像生成 / SSR PDF / 複雑な JSX→DOM) を計画するときは、まず最小プロトタイプを 1 件デプロイして cold start / bundle size / 外部 fetch の影響を確認する。プロトタイプが cold start 1 秒を超え bot SLA (3 秒) に収まらなければ build-time プリレンダへ方針転換する
+2. アクセス上位 N% のリソースは build time に焼いて静的に配信する設計を第一候補にする。Functions はキャッシュ層として残し、ミス時は静的にフォールバック
+3. KV には URL/パス文字列 (数十バイト) を入れる。バイナリ (PNG, JSON > 数 MB) は R2 か静的ファイルに逃がす。「KV は値 < 25MB, 数 < 100k」前提で割り切る
+4. `scripts/populate-compare-kv.mjs --apply` のように「manifest → `wrangler kv:bulk put`」パターンをスクリプト化しておき、再投入を CLI で再現できるようにする (手作業の wrangler コマンド暗記不要)
+5. フォント等の「重い静的アセット」は build script のソースツリー (`scripts/fonts/`) に置き、R2 runtime fetch の冷気を避ける。R2 は「ユーザーアップロードコンテンツ」専用に留める
