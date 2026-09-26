@@ -102,6 +102,26 @@ describe('Cloudflare Pages Functions _middleware', () => {
   });
 });
 
+describe('daily Markdown negotiation', () => {
+  it('serves the requested daily asset with Markdown headers', async () => {
+    const fetch = vi.fn().mockResolvedValue(new Response('# 十四日目 取組予定', { headers: { 'Content-Type': 'text/markdown; charset=utf-8' } }));
+    const next = vi.fn();
+    const response = await onRequest({ request: new Request('https://osada.us/20260926-yotei/', { headers: { Accept: 'text/markdown' } }), env: { ASSETS: { fetch } }, next });
+    expect(fetch).toHaveBeenCalledWith(new URL('https://osada.us/20260926-yotei/index.md'));
+    expect(response.headers.get('Content-Type')).toContain('text/markdown');
+    expect(response.headers.get('Vary')).toBe('Accept');
+    expect(await response.text()).toContain('十四日目');
+    expect(next).not.toHaveBeenCalled();
+  });
+
+  it('does not relabel a successful HTML fallback as Markdown', async () => {
+    const next = vi.fn().mockResolvedValue(new Response('<html>fallback</html>', { headers: { 'Content-Type': 'text/html' } }));
+    const response = await onRequest({ request: new Request('https://osada.us/not-a-route/', { headers: { Accept: 'text/markdown' } }), env: { ASSETS: { fetch: vi.fn().mockResolvedValue(new Response('<html>SPA</html>', { headers: { 'Content-Type': 'text/html' } })) } }, next });
+    expect(next).toHaveBeenCalled();
+    expect(response.headers.get('Content-Type')).toBe('text/html');
+  });
+});
+
 describe('rewritePageMetadata (SEO rewriter)', () => {
   it('registers handlers for title, meta tags, og tags, twitter tags, and canonical link', () => {
     const spy = installHtmlRewriterSpy();

@@ -69,13 +69,14 @@ function resolve(target: Target): string {
 
 ## 実装ルール
 
-1. **月キーは `YYYYMM` 形式**（例: `202607`）。`public/api/v1/torikumi.json` の
-   `bashoId` / `resultDays[].pathDate` を参照して動的に決める
-2. **対応月は 2026 年 3 月・5 月・7 月**の 3 つ。未知の月キーは 404
-3. **日別ページ** は `pathDate` (`YYYYMMDD`) 形式
-4. **力士 ID** は正の整数。`rikishi.json` の `id` をそのまま使う
-5. ページには **トレイリングスラッシュ** を含める（Cloudflare Pages の正規化に合わせる）
-6. スクレイピングではなく、まず **`/api/v1/*.json` を叩く** こと
+1. 最初に `https://osada.us/api/v1/torikumi.json` を取得する。`bashoId` は上流の通し番号（例: `637`）であり、月キーではない。
+2. **月キーは `YYYYMM` 形式**。`resultDays[]` または `scheduleDays[]` の有効な `pathDate`（8桁）の先頭6桁から求める。日付がなければ推測せず、サイトマップを調べる。
+3. **対応月を固定しない**。過去場所は `/sitemap.xml` または `/archives/` に存在するURLから選ぶ。現在の JSON API を過去場所のデータとして扱わない。
+4. **日別ページ** は API の `pathDate` をそのまま使う。予定は `scheduleDays` → `yotei`、結果は `resultDays` → `torikumi`。`pending` は未掲載であり、取組なしや休場を意味しない。
+5. 「今日」「昨日」は **Asia/Tokyo（JST）** の日付と `isoDate` を照合する。「千秋楽」は対象配列の `day` が最大の項目を選ぶ。該当日がなければ別の日を今日として返さない。
+6. **力士 ID** は正の整数。四股名から探すときは `/api/v1/rikishi.json` の一覧で ID を解決し、`/rikishi/{id}/` を作る。
+7. ページURLには **トレイリングスラッシュ** を含める。返す前にサイトマップ・APIの日付と整合することを確認する。HTTP 200 だけではSPAのフォールバックと区別できないため、本文の日付・タイトルも確認する。
+8. データそのものを求められたら、まず **公開 JSON API** を使う。出典URLと、結果は `resultUpdatedAt`、予定は `scheduleUpdatedAt` を併記する。
 
 ## よくある失敗
 
@@ -86,5 +87,14 @@ function resolve(target: Target): string {
 
 ## Markdown ネゴシエーション
 
-Markdown で受け取りたい場合は `Accept: text/markdown` を付ける。対応ルートは
-ビルド時に `.md` ファイルとしても配信される。
+`Accept: text/markdown` を付けて取得し、`Content-Type: text/markdown` を確認する。
+対応範囲はホーム・アーカイブ一覧・力士一覧・決まり手・分析・サイト概要、
+および公開データに存在する月別の番付/結果/予定と日別の結果/予定。
+対応ページの `/index.md` も直接取得できる。日別ページには掲載状況・更新時刻・取組を含む。
+力士個別ページなど、生成対象外のルートはHTMLにフォールバックする。
+
+## 利用方針と接続方法
+
+- 公開読み取りは認証・登録・APIキー不要。`robots.txt` は `search=yes, ai-input=yes, ai-train=no`。
+- APIカタログと公開スキルがHTTP経由の入口。MCPサーバーは提供していない。
+- A2Aカードは案内用であり、`/a2a` のタスク操作は未実装。これらのカードの存在をタスク実行対応と解釈しない。

@@ -195,14 +195,14 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 現状で配布している SKILL.md は次の 2 件です（`public/.well-known/agent-skills/` 配下）:
 
 - `osumo-content/SKILL.md` — コンテンツ発見・読み取り API
-- `osumo-discovery/SKILL.md` — `api-catalog` / `mcp-server-card` / `agent-skills` の参照
+- `osumo-discovery/SKILL.md` — APIの日付とサイトマップからページURLを解決（bashoIdは月キーではない）
 
 ビルド時の挙動:
 
 - `vite.config.ts` の `agentSkillsPlugin` がビルド時に SKILL.md を読み込み sha256 を計算して `index.json` を生成します
-- `markdownViewsPlugin` が `scripts/build_markdown_views.ts` を呼び、`Accept: text/markdown` 用の静的 Markdown ビューを `dist/*/index.md` として書き出します（Cloudflare Pages の Free プランのみで動く事前生成方式）
+- `markdownViewsPlugin` が `scripts/build_markdown_views.ts` を呼び、`Accept: text/markdown` 用の静的 Markdown ビューを `dist/*/index.md` として書き出します（Free プランでも動く事前生成方式。月別・日別は既存ルート設定と公開データから生成）
 - `mcpServerCardPlugin` が `package.json` と `server-card.json` の `version` を同期します
-- スキルを増やしたい場合は `public/.well-known/agent-skills/<skill>/SKILL.md` を追加するだけで、index.json は自動更新されます
+- 新しいスキルは `public/.well-known/agent-skills/<skill>/SKILL.md` と `SKILL_MANIFEST` の両方に追加します。ビルドが `dist/.well-known/agent-skills/index.json` を更新します
 
 ブラウザ内の WebMCP は `app/components/WebMcpProvider.tsx` から公開しています。優先順位は W3C Draft の `document.modelContext.registerTool` → ブラウザ実装の `navigator.modelContext.registerTool` → 旧 `navigator.modelContext.provideContext` の 3 段階で、ホストがこれらを提供していない場合は no-op になります。`AbortController.signal` でツール登録をコンポーネント寿命に結び付け、ルート切替時にクリーンアップします。
 

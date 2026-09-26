@@ -35,7 +35,7 @@ const [banzuke, torikumi] = await Promise.all([
 ## 実装ルール
 
 1. `updatedAt` を比較して差分更新を判断する
-2. `resultDays` / `scheduleDays` は常に 15 日分ある前提で扱う
+2. `resultDays` / `scheduleDays` の実際の項目を読む。通常は15日分だが、空配列や未掲載も扱う
 3. `status = "pending"` の日は空状態として扱い、エラーにしない
 4. `winner` は `null` の可能性があるため、必ずフォールバック表示を用意する
 5. `resultUpdatedAt` と `scheduleUpdatedAt` は別管理なので、結果と予定の更新日時を混同しない
@@ -59,3 +59,9 @@ const [banzuke, torikumi] = await Promise.all([
 
 Cloudflare のエッジ既定値のみ。明示的なレート制限はないが、頻繁にポーリングする前に
 `updatedAt` を確認し、変更がない場合はバックオフすること。
+
+## エージェント利用
+
+公開APIは認証・登録・APIキー不要。検索と回答生成時の参照を許可する（`search=yes, ai-input=yes`）。モデルの学習・微調整は許可しない（`ai-train=no`）。出典URLとデータの更新時刻を示す。
+
+`bashoId` は通し番号。月や日付は `resultDays[].pathDate` / `scheduleDays[].pathDate` から読み取る。URLの解決には `osumo-discovery` を参照する。

@@ -204,14 +204,14 @@ The following discovery endpoints are published under `public/.well-known/`:
 Two SKILL.md files are currently published under `public/.well-known/agent-skills/`:
 
 - `osumo-content/SKILL.md` — content discovery and read-only APIs
-- `osumo-discovery/SKILL.md` — references to `api-catalog`, `mcp-server-card`, and `agent-skills`
+- `osumo-discovery/SKILL.md` — resolve page URLs from API dates and the sitemap (bashoId is not YYYYMM)
 
 Build-time behavior:
 
-- `agentSkillsPlugin` in `vite.config.ts` walks the `public/.well-known/agent-skills/` tree at build time, computes sha256 digests, and writes `index.json`
-- `markdownViewsPlugin` runs `scripts/build_markdown_views.ts` to emit static Markdown views (`dist/*/index.md`) for the main HTML routes, served with `Content-Type: text/markdown` and `Vary: Accept` (a pre-rendering approach that works on the Cloudflare Pages Free plan)
+- `agentSkillsPlugin` in `vite.config.ts` reads `SKILL_MANIFEST` and its published SKILL.md files at build time, computes sha256 digests, and writes `index.json`
+- `markdownViewsPlugin` runs `scripts/build_markdown_views.ts` to emit static Markdown views (`dist/*/index.md`) for the main HTML routes plus configured monthly and daily pages, served with `Content-Type: text/markdown` and `Vary: Accept` (a pre-rendering approach that works on the Cloudflare Pages Free plan)
 - `mcpServerCardPlugin` keeps `mcp/server-card.json.serverInfo.version` in sync with `package.json`
-- Adding a new skill: drop `public/.well-known/agent-skills/<skill>/SKILL.md` and the next build will refresh the index automatically
+- Adding a new skill: add `public/.well-known/agent-skills/<skill>/SKILL.md` and register it in `SKILL_MANIFEST`; the next build refreshes `dist/.well-known/agent-skills/index.json` automatically
 
 WebMCP is exposed from `app/components/WebMcpProvider.tsx`. Priority is the W3C Draft `document.modelContext.registerTool`, then `navigator.modelContext.registerTool` for browser implementations, then the legacy `navigator.modelContext.provideContext`. Hosts without any of these get a no-op. An `AbortController.signal` scopes the registration to the component lifetime so route transitions clean up registrations.
 
