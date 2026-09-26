@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-26T08:26:20.549120+00:00",
+    "updatedAt": "2026-09-26T10:19:28.214173+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -17,6 +17,24 @@
       }
     ],
     "items": [
+      {
+        "id": "dmenu-docomo-sponichi-spngoo-20260926-0357",
+        "title": "大の里　土俵際で突き落とされバッタリ…終盤まさかの連敗　解説の春日野親方「もうちょっと神経使うべき」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260926-0357",
+        "publishedAt": "2026-09-26",
+        "publishedAtRaw": "スポニチアネックス　9月26日 18時36分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-f-bt-tp1-260926-202609260001450",
+        "title": "大の里まさかの連敗で安青錦と３敗で並ぶ　元若乃花「すり足ができていない。足浮く」欠点を指摘",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260926-202609260001450",
+        "publishedAt": "2026-09-26",
+        "publishedAtRaw": "日刊スポーツ　9月26日 18時36分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
       {
         "id": "dmenu-docomo-tokyosports-404498",
         "title": "【大相撲】秋場所休場の豊昇龍　１０・１０松本市から秋巡業参加へ　師匠の立浪親方が明かす",
@@ -41,24 +59,6 @@
         "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-202609260093313300",
         "publishedAt": "2026-09-26",
         "publishedAtRaw": "時事通信　9月26日 16時37分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-f-bt-tp1-260926-202609260000975",
-        "title": "41歳の「鉄人」玉鷲が10勝目　十両優勝争い星１つ差　「自分の相撲をとれたら」",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260926-202609260000975",
-        "publishedAt": "2026-09-26",
-        "publishedAtRaw": "日刊スポーツ　9月26日 16時12分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-kyodo_nor-2026092601000717",
-        "title": "元幕内の矢後「やり切った」　引退会見で涙、元アマ横綱",
-        "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026092601000717",
-        "publishedAt": "2026-09-26",
-        "publishedAtRaw": "共同通信　9月26日 15時23分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-26T08:26:20.556916+00:00",
-  "lastSuccessAt": "2026-09-26T08:26:20.549120+00:00",
+  "lastAttemptAt": "2026-09-26T10:19:28.223672+00:00",
+  "lastSuccessAt": "2026-09-26T10:19:28.214173+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -351,9 +351,13 @@
     "36229766901": {
       "attemptedAt": "2026-09-26T08:26:20.556916+00:00",
       "outcome": "success"
+    },
+    "36235431878": {
+      "attemptedAt": "2026-09-26T10:19:28.223672+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36229766901",
+  "lastRunId": "36235431878",
   "lastPublishedDate": "2026-09-25",
   "lastPublishedSha": "75199c6981554bee55f2d99f1c5b39474904998c",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
