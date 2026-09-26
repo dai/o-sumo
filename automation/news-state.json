@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-26T00:52:52.355871+00:00",
+    "updatedAt": "2026-09-26T02:27:37.846024+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -17,6 +17,24 @@
       }
     ],
     "items": [
+      {
+        "id": "dmenu-docomo-abematimes-10275222",
+        "title": "無表情だった力士が「いきなり走った」微笑ましい姿が話題「嬉しそうな小走り」格上を撃破で序ノ口全勝優勝での一コマ",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10275222",
+        "publishedAt": "2026-09-26",
+        "publishedAtRaw": "ABEMA TIMES　9月26日 11時15分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-abematimes-10275214",
+        "title": "「え、いるやん！」霧島、大の里撃破の瞬間に“チラリ”大物が鎮座 熱戦を見守る様子が話題",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10275214",
+        "publishedAt": "2026-09-26",
+        "publishedAtRaw": "ABEMA TIMES　9月26日 10時08分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
       {
         "id": "dmenu-docomo-abematimes-10275201",
         "title": "「身体能力バグってる」驚異の“ソップ型”力士、175キロ超巨漢を片足立ちから“ジャンプ”投げ「片足立ちで」「着地も完璧」",
@@ -41,24 +59,6 @@
         "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_Y627X66Q55BQZMKT7CDJMYJXJE",
         "publishedAt": "2026-09-26",
         "publishedAtRaw": "SANSPO　9月26日 8時00分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-abematimes-10275196",
-        "title": "「声援というか奇声」各段優勝を決める取組で女性の叫び声 熱戦の最中に「初めて聞いた」ファン困惑の一コマ",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10275196",
-        "publishedAt": "2026-09-26",
-        "publishedAtRaw": "ABEMA TIMES　9月26日 7時43分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_YE6436ULCBHVPHUCZXJ72LPYME",
-        "title": "元貴景勝「さっきまで勝つか負けるかで全て決まるっていうときに…」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_YE6436ULCBHVPHUCZXJ72LPYME",
-        "publishedAt": "2026-09-26",
-        "publishedAtRaw": "SANSPO　9月26日 7時30分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-26T00:52:52.365176+00:00",
-  "lastSuccessAt": "2026-09-26T00:52:52.355871+00:00",
+  "lastAttemptAt": "2026-09-26T02:27:37.856062+00:00",
+  "lastSuccessAt": "2026-09-26T02:27:37.846024+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -335,9 +335,13 @@
     "36206444615": {
       "attemptedAt": "2026-09-26T00:52:52.365176+00:00",
       "outcome": "success"
+    },
+    "36211745911": {
+      "attemptedAt": "2026-09-26T02:27:37.856062+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36206444615",
+  "lastRunId": "36211745911",
   "lastPublishedDate": "2026-09-25",
   "lastPublishedSha": "75199c6981554bee55f2d99f1c5b39474904998c",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
