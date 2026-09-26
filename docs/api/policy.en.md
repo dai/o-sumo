@@ -6,18 +6,21 @@
 
 The o-sumo API is operated on a best-effort basis by an individual maintainer. No commercial SLA is provided.
 
+## AI usage
+
+Anonymous read-only access requires no API key. Search and query-time grounding are permitted (`search=yes, ai-input=yes`); training/fine-tuning is not (`ai-train=no`). Cite source URLs and their timestamps. The policy is maintained in `public/robots.txt`; deployment verification is in [agent-ready.md](../agent-ready.md).
+
 ## Update Schedule
 
 Current update flows:
 
-- Daily update (torikumi schedule only): `daily-data-update.yml` is manual-only (`workflow_dispatch`) until the September banzuke is officially published
-- Realtime update (torikumi results only): `realtime-torikumi-direct-update.yml` is manual-only (`workflow_dispatch`) until the September banzuke is officially published
+- Daily update (torikumi schedule only): `daily-data-update.yml` runs at JST 13:00, 15:00, 17:00 and 19:00 (also supports manual dispatch)
+- Realtime update (torikumi results only): `realtime-torikumi-direct-update.yml` is scheduled every 3 minutes during UTC 06:00–09:59 / JST 15:00–18:59 (also supports manual dispatch)
 - News update: run `news-feed-update.yml` every 2 hours from JST 09:05 through 19:05
-- When files change, the workflow creates a PR on the JST-date-keyed branch `automation/news-updates-<YYYY-MM-DD>`. Multiple same-day runs accumulate commits on the same PR (one PR per day).
-- Auto-merge is enabled only on the JST 19:xx run (the final run of the day); the branch is deleted after merge
-- News polling does not rewrite `news.json` when only `updatedAt` would change
+- Updates use the serialized `data-update.yml` workflow and `scripts/ci/run_data_update.py`.
+- News acquisition state is kept on `automation/news-state`; the selected validated snapshot is published to `main` according to `scripts/ci/news_state.py`. See those files for publication and retry rules.
 
-The July basho is final. Keep current `banzuke.json` and `torikumi.json` data on July (`202607`) until the September banzuke is officially published. The next PR validates official data before restoring schedules, removing the closing notice, and switching current data.
+The current JSON APIs serve September 2026. July is an immutable archive. Scheduled runs may be delayed by GitHub Actions; use the payload timestamps and publication status to assess freshness.
 
 See the GitHub Actions workflows for the exact implementation.
 

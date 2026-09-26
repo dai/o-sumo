@@ -20,7 +20,7 @@
 ### `osumo-discovery`
 
 - 場所: `public/.well-known/agent-skills/osumo-discovery/SKILL.md`
-- 目的: discovery サーフェス（`api-catalog`, `mcp-server-card`, `agent-skills`, `web-bot-auth` など）の読み方と参照先
+- 目的: APIの `pathDate` とサイトマップから場所・日別・力士ページのURLを解決し、JSTの日付・掲載状況を確認する
 - 主な対象:
   - `public/.well-known/api-catalog`（RFC 9727 linkset）
   - `public/.well-known/mcp/server-card.json`（SEP-1649）
@@ -28,7 +28,9 @@
   - `public/.well-known/http-message-signatures-directory`（Web Bot Auth）
   - `auth.md`（エージェント登録なしの公開読み取り専用）
 
-新しい Skill を追加する場合は `public/.well-known/agent-skills/<skill>/SKILL.md` を追加するだけで、index.json はビルド時に自動更新されます。
+新しい Skill を追加する場合は `public/.well-known/agent-skills/<skill>/SKILL.md` を追加し、`app/lib/agent-skills.ts` の `SKILL_MANIFEST` に登録します。ビルド時に配信物の index.json と digest が自動更新されます。
+
+公開読み取りは認証不要。`search=yes, ai-input=yes, ai-train=no`。Markdownの対応範囲と検証手順は [agent-ready.md](docs/agent-ready.md) を参照してください。MCPサーバーとA2Aタスク実行は提供していません。
 
 ## 内部 Skill
 

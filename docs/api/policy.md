@@ -4,24 +4,28 @@
 
 o-sumo API は個人運用のベストエフォート提供です。商用 SLA はありません。
 
+## AIによる利用
+
+認証・登録・APIキーなしの公開読み取りを提供します。検索と回答生成時の参照は許可（`search=yes, ai-input=yes`）、学習・微調整は不許可（`ai-train=no`）です。出典URLと更新時刻を示してください。方針は `public/robots.txt` で管理し、配信後の確認は [agent-ready.md](../agent-ready.md) を参照してください。
+
 ## 更新スケジュール
 
 現在の更新フロー:
 
-- 日次更新（取組予定のみ）: `daily-data-update.yml` は九月場所の番付公式公開まで `workflow_dispatch` のみ
-- 高頻度更新（取組結果のみ）: `realtime-torikumi-direct-update.yml` は九月場所の番付公式公開まで `workflow_dispatch` のみ
+- 日次更新（取組予定のみ）: `daily-data-update.yml` は JST 13:00・15:00・17:00・19:00 に起動（手動実行も可能）
+- 高頻度更新（取組結果のみ）: `realtime-torikumi-direct-update.yml` は UTC 06:00–09:59 / JST 15:00–18:59 に3分おきで起動（手動実行も可能）
 - ニュース更新: `news-feed-update.yml` を JST 09:05-19:05 に2時間おきで実行
-- 変更がある場合は JST 日付ベースの `automation/news-updates-<YYYY-MM-DD>` ブランチの PR を作成し、同日内の複数 run は同一PRに commit を追加する（1日1PR）
-- auto-merge は JST 19時台の run のみ有効化し、日の最終更新で PR をマージする。マージ後はブランチを自動削除
-- ニュースは取得結果に差分がない場合、`updatedAt` だけでは `news.json` を書き換えない
+- 更新は `data-update.yml` と `scripts/ci/run_data_update.py` で直列化します。
+- ニュースの取得状態は `automation/news-state` に保持し、`scripts/ci/news_state.py` の判定で選んだ検証済みスナップショットを `main` に公開します。公開時刻・再試行の詳細は実装を参照してください。
 
-七月場所は確定済みです。九月場所の番付が公式公開されるまでは、`banzuke.json` と `torikumi.json` の current data を七月場所 (`202607`) のまま維持します。次のPRで公式データを検証してから、scheduleの復元、終了告知の解除、現行データの切替を行います。
+現在のJSON APIは2026年九月場所を返します。七月場所は不変アーカイブです。GitHub Actionsの起動は遅れることがあるため、データの更新日時と掲載状況で鮮度を判断してください。
 
 詳細は GitHub Actions workflow を参照してください。
 
 結果未更新時の切り分け順:
 
-1. run履歴（Realtime実行漏れの有无）
+1. run履歴（Realtime実行漏れの有無）
+2. runログ（JST時刻、`resultUpdatedAt`、`scheduleUpdatedAt`）
 3. 供給元 API の `judge` 値（勝敗確定有無）
 
 ## 更新日時の責務分離
