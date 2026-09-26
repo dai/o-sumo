@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-26T04:22:44.800245+00:00",
+    "updatedAt": "2026-09-26T06:32:23.871541+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-hochi-20260926-OHT1T51123",
-        "title": "昭和以降２人目の５０歳力士・翔傑が勝ち越し「来場所も頑張ります」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260926-OHT1T51123",
+        "id": "dmenu-docomo-kyodo_nor-2026092601000717",
+        "title": "元幕内の矢後「やり切った」　引退会見で涙、元アマ横綱",
+        "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026092601000717",
         "publishedAt": "2026-09-26",
-        "publishedAtRaw": "スポーツ報知　9月26日 12時54分",
+        "publishedAtRaw": "共同通信　9月26日 15時23分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_CCY6ZM3ZPNHSJBKRTECFOTBNWA",
-        "title": "舞の海氏「大の里、断然有利なんですけども最近の大相撲の優勝争いは…」／秋場所",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_CCY6ZM3ZPNHSJBKRTECFOTBNWA",
+        "id": "dmenu-docomo-hochi-20260926-OHT1T51198",
+        "title": "膝のケガと向き合い続けた９年間　元幕内・矢後が引退会見　「どこまで通用するか分からなかったけど、やり切った」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260926-OHT1T51198",
         "publishedAt": "2026-09-26",
-        "publishedAtRaw": "SANSPO　9月26日 12時35分",
+        "publishedAtRaw": "スポーツ報知　9月26日 15時18分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_BHAVUMGRYRBXFEYTZ44DCRJ5XQ",
-        "title": "舞の海氏「場所ごとにというか、日に日に場内の拍手が大きくなってきて」／秋場所",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_BHAVUMGRYRBXFEYTZ44DCRJ5XQ",
+        "id": "dmenu-docomo-jiji-2026092600293",
+        "title": "矢後「やり切れた」＝元幕内、引退会見―大相撲",
+        "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026092600293",
         "publishedAt": "2026-09-26",
-        "publishedAtRaw": "SANSPO　9月26日 12時32分",
+        "publishedAtRaw": "時事通信　9月26日 15時04分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_LOCFJX5AERBEPETXZTQX5J3OKA",
-        "title": "舞の海氏「かど番になりたくないということで絶対に勝って勝ち越したい」／秋場所",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_LOCFJX5AERBEPETXZTQX5J3OKA",
+        "id": "dmenu-docomo-20260926087",
+        "title": "旭富士６勝１敗で今場所終える、史上最速タイ新十両は確実【大相撲】",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260926087",
         "publishedAt": "2026-09-26",
-        "publishedAtRaw": "SANSPO　9月26日 12時29分",
+        "publishedAtRaw": "デイリースポーツ　9月26日 15時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_HGRMMHWJ3VDOJEIME2GLKQ46WE",
-        "title": "舞の海氏「右四つがっぷりになっても勝てないということで…」／秋場所",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_HGRMMHWJ3VDOJEIME2GLKQ46WE",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_JCNXIZKDFVCBDLNOY66YKJM3T4",
+        "title": "元幕内矢後が引退会見「最後までやり切れた」／秋場所",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_JCNXIZKDFVCBDLNOY66YKJM3T4",
         "publishedAt": "2026-09-26",
-        "publishedAtRaw": "SANSPO　9月26日 12時23分",
+        "publishedAtRaw": "SANSPO　9月26日 15時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-26T04:22:44.808055+00:00",
-  "lastSuccessAt": "2026-09-26T04:22:44.800245+00:00",
+  "lastAttemptAt": "2026-09-26T06:32:23.881775+00:00",
+  "lastSuccessAt": "2026-09-26T06:32:23.871541+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -343,9 +343,13 @@
     "36217641612": {
       "attemptedAt": "2026-09-26T04:22:44.808055+00:00",
       "outcome": "success"
+    },
+    "36224048440": {
+      "attemptedAt": "2026-09-26T06:32:23.881775+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36217641612",
+  "lastRunId": "36224048440",
   "lastPublishedDate": "2026-09-25",
   "lastPublishedSha": "75199c6981554bee55f2d99f1c5b39474904998c",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
