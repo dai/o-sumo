@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-26T02:27:37.846024+00:00",
+    "updatedAt": "2026-09-26T04:22:44.800245+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-abematimes-10275222",
-        "title": "無表情だった力士が「いきなり走った」微笑ましい姿が話題「嬉しそうな小走り」格上を撃破で序ノ口全勝優勝での一コマ",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10275222",
+        "id": "dmenu-docomo-hochi-20260926-OHT1T51123",
+        "title": "昭和以降２人目の５０歳力士・翔傑が勝ち越し「来場所も頑張ります」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260926-OHT1T51123",
         "publishedAt": "2026-09-26",
-        "publishedAtRaw": "ABEMA TIMES　9月26日 11時15分",
+        "publishedAtRaw": "スポーツ報知　9月26日 12時54分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-abematimes-10275214",
-        "title": "「え、いるやん！」霧島、大の里撃破の瞬間に“チラリ”大物が鎮座 熱戦を見守る様子が話題",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10275214",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_CCY6ZM3ZPNHSJBKRTECFOTBNWA",
+        "title": "舞の海氏「大の里、断然有利なんですけども最近の大相撲の優勝争いは…」／秋場所",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_CCY6ZM3ZPNHSJBKRTECFOTBNWA",
         "publishedAt": "2026-09-26",
-        "publishedAtRaw": "ABEMA TIMES　9月26日 10時08分",
+        "publishedAtRaw": "SANSPO　9月26日 12時35分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-abematimes-10275201",
-        "title": "「身体能力バグってる」驚異の“ソップ型”力士、175キロ超巨漢を片足立ちから“ジャンプ”投げ「片足立ちで」「着地も完璧」",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10275201",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_BHAVUMGRYRBXFEYTZ44DCRJ5XQ",
+        "title": "舞の海氏「場所ごとにというか、日に日に場内の拍手が大きくなってきて」／秋場所",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_BHAVUMGRYRBXFEYTZ44DCRJ5XQ",
         "publishedAt": "2026-09-26",
-        "publishedAtRaw": "ABEMA TIMES　9月26日 8時54分",
+        "publishedAtRaw": "SANSPO　9月26日 12時32分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-abematimes-10275197",
-        "title": "「これが力だけではない相撲の魅力」湊川親方、藤ノ川の力を“削いだ”美ノ海の立ち合いを絶賛",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10275197",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_LOCFJX5AERBEPETXZTQX5J3OKA",
+        "title": "舞の海氏「かど番になりたくないということで絶対に勝って勝ち越したい」／秋場所",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_LOCFJX5AERBEPETXZTQX5J3OKA",
         "publishedAt": "2026-09-26",
-        "publishedAtRaw": "ABEMA TIMES　9月26日 8時03分",
+        "publishedAtRaw": "SANSPO　9月26日 12時29分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_Y627X66Q55BQZMKT7CDJMYJXJE",
-        "title": "舞の海氏「9勝であげていいんじゃないか。2桁にこだわらなくてもいい」／秋場所",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_Y627X66Q55BQZMKT7CDJMYJXJE",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_HGRMMHWJ3VDOJEIME2GLKQ46WE",
+        "title": "舞の海氏「右四つがっぷりになっても勝てないということで…」／秋場所",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_HGRMMHWJ3VDOJEIME2GLKQ46WE",
         "publishedAt": "2026-09-26",
-        "publishedAtRaw": "SANSPO　9月26日 8時00分",
+        "publishedAtRaw": "SANSPO　9月26日 12時23分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-26T02:27:37.856062+00:00",
-  "lastSuccessAt": "2026-09-26T02:27:37.846024+00:00",
+  "lastAttemptAt": "2026-09-26T04:22:44.808055+00:00",
+  "lastSuccessAt": "2026-09-26T04:22:44.800245+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -339,9 +339,13 @@
     "36211745911": {
       "attemptedAt": "2026-09-26T02:27:37.856062+00:00",
       "outcome": "success"
+    },
+    "36217641612": {
+      "attemptedAt": "2026-09-26T04:22:44.808055+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36211745911",
+  "lastRunId": "36217641612",
   "lastPublishedDate": "2026-09-25",
   "lastPublishedSha": "75199c6981554bee55f2d99f1c5b39474904998c",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
