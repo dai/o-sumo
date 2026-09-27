@@ -150,12 +150,19 @@ export function getHomeQuickNavItems(
             primary: true,
             badgeKey: 'home.quickNavLiveBadge',
           },
-          {
-            to: paths.schedule,
-            labelKey: 'home.quickNavNextBoutSchedule',
-            subKey: 'home.quickNavTomorrowSub',
-            primary: false,
-          },
+          status.day === 15
+            ? {
+                to: '/analytics/',
+                labelKey: 'home.quickNavSenshurakuAnalytics',
+                subKey: 'home.quickNavSenshurakuAnalyticsSub',
+                primary: false,
+              }
+            : {
+                to: paths.schedule,
+                labelKey: 'home.quickNavNextBoutSchedule',
+                subKey: 'home.quickNavTomorrowSub',
+                primary: false,
+              },
         ]
       : [
           {
@@ -377,7 +384,9 @@ export default function Home() {
             </h2>
             <p className="hero-day-indicator" aria-live="polite">
               {bashoStatus.kind === 'live'
-                ? t('home.heroDayIndicator', { day: bashoStatus.day })
+                ? (bashoStatus.day === 15
+                    ? t('home.heroDayIndicatorSenshuraku')
+                    : t('home.heroDayIndicator', { day: bashoStatus.day }))
                 : bashoStatus.kind === 'upcoming'
                   ? t('home.heroPreBashoStatus')
                   : t('home.heroFinalStatus')}

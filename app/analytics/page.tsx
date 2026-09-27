@@ -1,47 +1,36 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import HomeLink from '../components/HomeLink';
 import PageBreadcrumb from '../components/PageBreadcrumb';
 import { getBashoStatus } from '../lib/basho-status';
 import { CURRENT_RESULT_PATH, CURRENT_SCHEDULE_PATH } from '../lib/archive-basho-data';
-import { makuuchiData, type Rikishi } from '../lib/sumo-data';
+import { makuuchiData, juryo, type Rikishi } from '../lib/sumo-data';
 import { torikumiArchive, torikumiMonthKey, type TorikumiDataSet } from '../lib/torikumi-data';
+import { getBashoResults } from '../lib/basho-results';
 import './page.css';
 
-type DashboardMetric = {
-  key: 'makuuchi' | 'records' | 'undefeated' | 'maxWins';
+export type DashboardMetric = {
+  key: 'makuuchi' | 'juryo' | 'records' | 'undefeated' | 'maxWins';
   value: string;
   note: string;
 };
 
-type TechniqueCount = {
+export type TechniqueCount = {
   name: string;
   count: number;
 };
 
-type ResultsCategory = 'makuuchiYusho' | 'shukun' | 'kanto' | 'gino' | 'juryoYusho';
-
-type ResultsRow = {
-  id: string;
-  category: ResultsCategory;
-  rikishi: string;
-  record: string;
-};
-
-const JULY_2026_BASHO_RESULTS = [
-  { id: 'makuuchi-yusho-aonishiki', category: 'makuuchiYusho', rikishi: '安青錦', record: '12勝3敗' },
-  { id: 'shukun-fujinokawa', category: 'shukun', rikishi: '藤ノ川', record: '8勝7敗' },
-  { id: 'kanto-atamifuji', category: 'kanto', rikishi: '熱海富士', record: '12勝3敗' },
-  { id: 'kanto-kotoeiho', category: 'kanto', rikishi: '琴栄峰', record: '11勝4敗' },
-  { id: 'kanto-takayasu', category: 'kanto', rikishi: '高安', record: '11勝4敗' },
-  { id: 'gino-aonishiki', category: 'gino', rikishi: '安青錦', record: '12勝3敗' },
-  { id: 'juryo-yusho-shonannoumi', category: 'juryoYusho', rikishi: '湘南乃海', record: '11勝4敗' },
-] as const satisfies readonly ResultsRow[];
+export type DivisionKey = 'makuuchi' | 'juryo';
 
 const WIN_RATE_PRECISION = 1;
 
-function allMakuuchiRikishi(): Rikishi[] {
+export function allMakuuchiRikishi(): Rikishi[] {
   return makuuchiData.flatMap((group) => [...group.east, ...group.west]);
+}
+
+export function allJuryoRikishi(): Rikishi[] {
+  return juryo.flatMap((group) => [...group.east, ...group.west]);
 }
 
 function formatWinRate(wins: number, decided: number): string {
@@ -49,15 +38,18 @@ function formatWinRate(wins: number, decided: number): string {
   return `${((wins / decided) * 100).toFixed(WIN_RATE_PRECISION)}%`;
 }
 
-export function buildDashboardMetrics(rikishi: Rikishi[] = allMakuuchiRikishi()): DashboardMetric[] {
+export function buildDashboardMetrics(
+  rikishi: Rikishi[] = allMakuuchiRikishi(),
+  divisionKey: DivisionKey = 'makuuchi',
+): DashboardMetric[] {
   const totalWins = rikishi.reduce((sum, wrestler) => sum + (wrestler.wins ?? 0), 0);
   const totalLosses = rikishi.reduce((sum, wrestler) => sum + (wrestler.losses ?? 0), 0);
   const undefeated = rikishi.filter((wrestler) => (wrestler.wins ?? 0) > 0 && (wrestler.losses ?? 0) === 0);
-  const maxWins = Math.max(...rikishi.map((wrestler) => wrestler.wins ?? 0));
+  const maxWins = rikishi.length > 0 ? Math.max(...rikishi.map((wrestler) => wrestler.wins ?? 0)) : 0;
 
   return [
     {
-      key: 'makuuchi',
+      key: divisionKey,
       value: `${rikishi.length}`,
       note: '',
     },
@@ -85,10 +77,15 @@ export function topRikishiByWins(rikishi: Rikishi[] = allMakuuchiRikishi()): Rik
     .slice(0, 8);
 }
 
-export function topKimarite(archive: TorikumiDataSet = torikumiArchive, limit = 6): TechniqueCount[] {
+export function topKimarite(
+  archive: TorikumiDataSet = torikumiArchive,
+  limit = 6,
+  division: DivisionKey = 'makuuchi',
+): TechniqueCount[] {
   const counts = new Map<string, number>();
   for (const day of archive.resultDays ?? []) {
-    for (const match of day.data.makuuchi.matches) {
+    const divisionMatches = division === 'juryo' ? day.data.juryo.matches : day.data.makuuchi.matches;
+    for (const match of divisionMatches) {
       if (match.kimarite) counts.set(match.kimarite, (counts.get(match.kimarite) ?? 0) + 1);
     }
   }
@@ -101,10 +98,14 @@ export function topKimarite(archive: TorikumiDataSet = torikumiArchive, limit = 
 
 export default function AnalyticsDashboardPage() {
   const { t, i18n } = useTranslation('common');
-  const metrics = buildDashboardMetrics();
-  const leaders = topRikishiByWins();
-  const techniques = topKimarite();
+  const [activeDivision, setActiveDivision] = useState<DivisionKey>('makuuchi');
+
+  const currentRikishi = activeDivision === 'makuuchi' ? allMakuuchiRikishi() : allJuryoRikishi();
+  const metrics = buildDashboardMetrics(currentRikishi, activeDivision);
+  const leaders = topRikishiByWins(currentRikishi);
+  const techniques = topKimarite(torikumiArchive, 6, activeDivision);
   const maxTechniqueCount = Math.max(...techniques.map((technique) => technique.count), 1);
+
   const bashoYear = Number(torikumiMonthKey.slice(0, 4));
   const bashoMonth = Number(torikumiMonthKey.slice(4, 6));
   const englishBashoLabel = `${new Intl.DateTimeFormat('en-US', {
@@ -117,6 +118,13 @@ export default function AnalyticsDashboardPage() {
     : `${torikumiArchive.year}${torikumiArchive.bashoName}`;
   const bashoStatus = getBashoStatus(torikumiArchive);
   const isFinal = bashoStatus.kind === 'final';
+  const isSenshuraku = bashoStatus.day === 15;
+  const showResultsSection = isFinal || isSenshuraku;
+
+  const bashoResults = getBashoResults(torikumiMonthKey);
+  const isAnnounced = bashoResults?.status === 'announced' && (bashoResults.winners.length ?? 0) > 0;
+
+  const divisionLabel = t(`analytics.divisions.${activeDivision}`);
 
   const metricNote = (metric: DashboardMetric): string => {
     if (metric.key === 'records') return t('analytics.metrics.records.note', { rate: metric.note });
@@ -124,7 +132,7 @@ export default function AnalyticsDashboardPage() {
     if (metric.key === 'maxWins') {
       return t(isFinal
         ? 'analytics.metrics.maxWins.finalNote'
-        : 'analytics.metrics.maxWins.note');
+        : 'analytics.metrics.maxWins.note', { division: divisionLabel });
     }
     return t(`analytics.metrics.${metric.key}.note`);
   };
@@ -160,12 +168,22 @@ export default function AnalyticsDashboardPage() {
             { label: t('analytics.crumb') },
           ]}
         />
-        {isFinal && (
+
+        {/* 優勝・三賞セクション（千秋楽または場所終了後） */}
+        {showResultsSection && (
           <section className="analytics-dashboard-panel analytics-results-panel" aria-labelledby="results-heading">
             <div className="analytics-panel-header">
               <h2 id="results-heading">{t('analytics.results.heading', { basho: bashoLabel })}</h2>
-              <p>{t('analytics.results.description')}</p>
+              <p>{isAnnounced ? t('analytics.results.description') : (bashoResults?.announcementNote || t('analytics.results.pendingDescription'))}</p>
             </div>
+
+            {!isAnnounced && (
+              <div className="analytics-pending-badge" style={{ marginBottom: '1rem' }}>
+                <span className="pulse-dot" aria-hidden="true" />
+                {t('analytics.results.pendingTitle')}
+              </div>
+            )}
+
             <table className="analytics-results-table">
               <thead>
                 <tr>
@@ -175,65 +193,107 @@ export default function AnalyticsDashboardPage() {
                 </tr>
               </thead>
               <tbody>
-                {JULY_2026_BASHO_RESULTS.map((row) => (
-                  <tr key={row.id}>
-                    <th scope="row">{t(`analytics.results.category.${row.category}`)}</th>
-                    <td>{row.rikishi}</td>
-                    <td>{row.record}</td>
-                  </tr>
-                ))}
+                {isAnnounced ? (
+                  bashoResults.winners.map((row) => (
+                    <tr key={row.id}>
+                      <th scope="row">{t(`analytics.results.category.${row.category}`)}</th>
+                      <td className="analytics-results-rikishi-cell">
+                        <strong>{row.rikishi}</strong>
+                        {row.note && <span className="analytics-results-note">（{row.note}）</span>}
+                      </td>
+                      <td>{row.record}</td>
+                    </tr>
+                  ))
+                ) : (
+                  (['makuuchiYusho', 'shukun', 'kanto', 'gino', 'juryoYusho'] as const).map((category) => (
+                    <tr key={category}>
+                      <th scope="row">{t(`analytics.results.category.${category}`)}</th>
+                      <td className="analytics-results-rikishi-cell">—</td>
+                      <td>—</td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </section>
         )}
 
-        <section className="analytics-metric-grid" aria-label={t('analytics.metrics.label')}>
-          {metrics.map((metric) => (
-            <article key={metric.key} className="analytics-metric-card">
-              <p className="analytics-metric-label">{t(`analytics.metrics.${metric.key}.label`)}</p>
-              <p className="analytics-metric-value">
-                {metric.key === 'maxWins' ? t('analytics.metrics.maxWins.value', { count: metric.value }) : metric.value}
-              </p>
-              <p className="analytics-metric-note">{metricNote(metric)}</p>
-            </article>
-          ))}
-        </section>
+        {/* 幕内 / 十両 ディビジョン切り替えタブ */}
+        <div className="analytics-division-nav" role="tablist" aria-label={t('analytics.divisionSelect')}>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeDivision === 'makuuchi'}
+            aria-controls="division-panel"
+            className={`analytics-division-tab ${activeDivision === 'makuuchi' ? 'active' : ''}`}
+            onClick={() => setActiveDivision('makuuchi')}
+          >
+            {t('analytics.divisions.makuuchi')}
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeDivision === 'juryo'}
+            aria-controls="division-panel"
+            className={`analytics-division-tab ${activeDivision === 'juryo' ? 'active' : ''}`}
+            onClick={() => setActiveDivision('juryo')}
+          >
+            {t('analytics.divisions.juryo')}
+          </button>
+        </div>
 
-        <section className="analytics-dashboard-panel" aria-labelledby="leaders-heading">
-          <div className="analytics-panel-header">
-            <h2 id="leaders-heading">{t('analytics.leaders.title')}</h2>
-            <p>{t('analytics.leaders.description')}</p>
-          </div>
-          <ol className="analytics-leader-list">
-            {leaders.map((wrestler) => (
-              <li key={wrestler.id} className="analytics-leader-row">
-                <span className="analytics-leader-name">{wrestler.name}</span>
-                <span className="analytics-leader-rank">{wrestler.rank}</span>
-                <strong className="analytics-leader-record">
-                  {t('analytics.leaders.record', { wins: wrestler.wins ?? 0, losses: wrestler.losses ?? 0 })}
-                </strong>
-              </li>
+        <div id="division-panel" role="tabpanel" aria-label={divisionLabel}>
+          <section className="analytics-metric-grid" aria-label={t('analytics.metrics.label')}>
+            {metrics.map((metric) => (
+              <article key={metric.key} className="analytics-metric-card">
+                <p className="analytics-metric-label">{t(`analytics.metrics.${metric.key}.label`)}</p>
+                <p className="analytics-metric-value">
+                  {metric.key === 'maxWins' ? t('analytics.metrics.maxWins.value', { count: metric.value }) : metric.value}
+                </p>
+                <p className="analytics-metric-note">{metricNote(metric)}</p>
+              </article>
             ))}
-          </ol>
-        </section>
+          </section>
 
-        <section className="analytics-dashboard-panel" aria-labelledby="kimarite-heading">
-          <div className="analytics-panel-header">
-            <h2 id="kimarite-heading">{t('analytics.kimarite.title')}</h2>
-            <p>{t('analytics.kimarite.description')}</p>
-          </div>
-          <div className="analytics-technique-list">
-            {techniques.map((technique) => (
-              <div key={technique.name} className="analytics-technique-row">
-                <span>{technique.name}</span>
-                <div className="analytics-technique-track" aria-hidden="true">
-                  <span style={{ width: `${(technique.count / maxTechniqueCount) * 100}%` }} />
+          <section className="analytics-dashboard-panel" aria-labelledby="leaders-heading">
+            <div className="analytics-panel-header">
+              <h2 id="leaders-heading">{t('analytics.leaders.titleDivision', { division: divisionLabel })}</h2>
+              <p>{t('analytics.leaders.description')}</p>
+            </div>
+            <ol className="analytics-leader-list">
+              {leaders.map((wrestler, index) => (
+                <li key={wrestler.id} className="analytics-leader-row">
+                  <span className={`analytics-leader-rank-badge rank-${index + 1}`}>
+                    {index + 1}
+                  </span>
+                  <span className="analytics-leader-name">{wrestler.name}</span>
+                  <span className="analytics-leader-rank">{wrestler.rank}</span>
+                  <strong className="analytics-leader-record">
+                    {t('analytics.leaders.record', { wins: wrestler.wins ?? 0, losses: wrestler.losses ?? 0 })}
+                  </strong>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <section className="analytics-dashboard-panel" aria-labelledby="kimarite-heading">
+            <div className="analytics-panel-header">
+              <h2 id="kimarite-heading">{t('analytics.kimarite.titleDivision', { division: divisionLabel })}</h2>
+              <p>{t('analytics.kimarite.descriptionDivision', { division: divisionLabel })}</p>
+            </div>
+            <div className="analytics-technique-list">
+              {techniques.map((technique) => (
+                <div key={technique.name} className="analytics-technique-row">
+                  <span>{technique.name}</span>
+                  <div className="analytics-technique-track" aria-hidden="true">
+                    <span style={{ width: `${(technique.count / maxTechniqueCount) * 100}%` }} />
+                  </div>
+                  <strong>{technique.count}</strong>
                 </div>
-                <strong>{technique.count}</strong>
-              </div>
-            ))}
-          </div>
-        </section>
+              ))}
+            </div>
+          </section>
+        </div>
       </main>
     </div>
   );

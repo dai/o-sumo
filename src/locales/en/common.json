@@ -1,6 +1,6 @@
 {
   "global": {
-    "officialDirectoryReleaseNotice": "The Reiwa 8 September basho is now supported!",
+    "officialDirectoryReleaseNotice": "It's Senshuraku (the final day)! Thank you everyone for following the basho.",
     "homeLink": "Home",
     "backToHome": "Back to Home",
     "siteNavigation": "Site navigation",
@@ -73,6 +73,8 @@
     "quickNavBanzukeSub": "Banzuke & Scores",
     "quickNavTomorrow": "Tomorrow's Card",
     "quickNavTomorrowSub": "Schedule",
+    "quickNavSenshurakuAnalytics": "Title Race & Analytics",
+    "quickNavSenshurakuAnalyticsSub": "Leaders & Kimarite",
     "quickNavMyRikishi": "My Rikishi",
     "quickNavMyRikishiSub": "Favorites",
     "championshipFinalHeading": "May 2026 Basho Final Results",
@@ -94,6 +96,7 @@
     "footerGithub": "GitHub",
     "heroRikishi": "Rikishi Profiles",
     "heroDayIndicator": "Day {{day}} in progress",
+    "heroDayIndicatorSenshuraku": "Senshuraku (Day 15)",
     "heroPreBashoStatus": "Pre-basho",
     "heroFinalStatus": "Basho complete",
     "heroLastUpdated": "Last updated {{timeJst}} JST",
@@ -112,7 +115,7 @@
     "newsSubsectionSumoNewsSeeAll": "View on dmenu",
     "footerDataCredit": "Data sources: Japan Sumo Association / API: dai/o-sumo",
     "analyticsFeatureLabel": "Grand Sumo Analytics",
-    "analyticsFeatureAvailability": "(Available from Day 8)",
+    "analyticsFeatureAvailability": "(Senshuraku - Title Race & Full Stats)",
     "analyticsFeatureTitle": "Basho Analytics & Kimarite Trends",
     "analyticsFeatureDescription": "Wins, unbeaten wrestlers, special prize contenders, and kimarite trends",
     "analyticsFeatureAction": "View Analytics",
@@ -178,16 +181,25 @@
     "eyebrow": "{{basho}} Analytics",
     "title": "Grand Sumo Analytics",
     "crumb": "Grand Sumo Analytics",
-    "description": "A dashboard for Makuuchi records, the leading rikishi, and kimarite trends.",
+    "description": "A dashboard for Makuuchi and Juryo records, the title race, and kimarite trends.",
     "resultAction": "View results",
     "scheduleAction": "View schedule",
     "pastScheduleAction": "View past schedule",
     "noticeNotFinal": "Analytics will be available after senshuraku.",
+    "divisionSelect": "Select Division",
+    "divisions": {
+      "makuuchi": "Makuuchi",
+      "juryo": "Juryo"
+    },
     "metrics": {
       "label": "Key metrics",
       "makuuchi": {
         "label": "Makuuchi rikishi",
         "note": "Rikishi listed in the current Makuuchi banzuke"
+      },
+      "juryo": {
+        "label": "Juryo rikishi",
+        "note": "Rikishi listed in the current Juryo banzuke"
       },
       "records": {
         "label": "Recorded results",
@@ -200,18 +212,21 @@
       "maxWins": {
         "label": "Leading win total",
         "value": "{{count}} wins",
-        "note": "Current leading line in Makuuchi",
-        "finalNote": "Final highest win total in Makuuchi"
+        "note": "Current leading line in {{division}}",
+        "finalNote": "Final highest win total in {{division}}"
       }
     },
     "leaders": {
       "title": "Win Leaders",
+      "titleDivision": "{{division}} Win Leaders",
       "description": "Rikishi with fewer losses rank higher when win totals are tied.",
       "record": "{{wins}}-{{losses}}"
     },
     "kimarite": {
       "title": "Kimarite Trends",
-      "description": "The most frequent kimarite in published Makuuchi results."
+      "titleDivision": "{{division}} Kimarite Trends",
+      "description": "The most frequent kimarite in published Makuuchi results.",
+      "descriptionDivision": "The most frequent kimarite in published {{division}} results."
     },
     "results": {
       "heading": "{{basho}} Results",
@@ -219,6 +234,8 @@
       "tableHeading": "Category",
       "tableRikishi": "Rikishi",
       "tableRecord": "Record",
+      "pendingTitle": "Awaiting Championship & Prize Announcements",
+      "pendingDescription": "Championship winners and special prizes (Sanshō) for the September 2026 basho will be posted once announced after the final bouts.",
       "category": {
         "makuuchiYusho": "Makuuchi Champion",
         "shukun": "Shukun-sho",
