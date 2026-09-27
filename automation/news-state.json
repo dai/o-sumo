@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-27T01:02:03.715422+00:00",
+    "updatedAt": "2026-09-27T02:32:19.971191+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -17,6 +17,15 @@
       }
     ],
     "items": [
+      {
+        "id": "dmenu-docomo-abematimes-10275291",
+        "title": "「え、ホンモノだ」「お綺麗でびっくり」溜まり席に“知る人ぞ知る”女性の姿 反響広がる",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10275291",
+        "publishedAt": "2026-09-27",
+        "publishedAtRaw": "ABEMA TIMES　9月27日 10時54分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
       {
         "id": "dmenu-docomo-abematimes-10275280",
         "title": "「こんなの泣ける」「見たことない」朝乃山、取組前に“まさか”の所作 負けられない一番であふれた思いにファン感涙",
@@ -54,15 +63,6 @@
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-abematimes-10275260",
-        "title": "「顔どした」「デコ痛々しい」十両力士の土俵入りで驚きの光景 昨日のアクシデントを経て無事登場も心配の声続々",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10275260",
-        "publishedAt": "2026-09-27",
-        "publishedAtRaw": "ABEMA TIMES　9月27日 7時07分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
         "id": "sumo-association-762",
         "title": "令和9年「大相撲カレンダー」販売のご案内",
         "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=762",
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-27T01:02:03.724854+00:00",
-  "lastSuccessAt": "2026-09-27T01:02:03.715422+00:00",
+  "lastAttemptAt": "2026-09-27T02:32:19.980382+00:00",
+  "lastSuccessAt": "2026-09-27T02:32:19.971191+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -359,9 +359,13 @@
     "36284287924": {
       "attemptedAt": "2026-09-27T01:02:03.724854+00:00",
       "outcome": "success"
+    },
+    "36288794876": {
+      "attemptedAt": "2026-09-27T02:32:19.980382+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36284287924",
+  "lastRunId": "36288794876",
   "lastPublishedDate": "2026-09-26",
   "lastPublishedSha": "ac0e53f0ac17d1a28f247707cb4bc3456798f2c1",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
