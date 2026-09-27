@@ -3,15 +3,15 @@ import jaCommon from '../../src/locales/ja/common.json';
 import enCommon from '../../src/locales/en/common.json';
 
 describe('global release notice', () => {
-  it('announces the September basho banzuke update in Japanese', () => {
+  it('announces Senshuraku in Japanese', () => {
     expect(jaCommon.global.officialDirectoryReleaseNotice).toBe(
-      '令和八年九月場所に対応しました！',
+      '千秋楽です、みなさま、おつかれまさでした。',
     );
   });
 
-  it('announces the September basho banzuke update in English', () => {
+  it('announces Senshuraku in English', () => {
     expect(enCommon.global.officialDirectoryReleaseNotice).toBe(
-      'The Reiwa 8 September basho is now supported!',
+      "It's Senshuraku (the final day)! Thank you everyone for following the basho.",
     );
   });
 });

@@ -1,6 +1,6 @@
 {
   "global": {
-    "officialDirectoryReleaseNotice": "令和八年九月場所に対応しました！",
+    "officialDirectoryReleaseNotice": "千秋楽です、みなさま、おつかれまさでした。",
     "homeLink": "ホーム",
     "backToHome": "ホームに戻る",
     "siteNavigation": "サイトナビゲーション",
@@ -73,6 +73,8 @@
     "quickNavBanzukeSub": "番付・成績",
     "quickNavTomorrow": "明日の割",
     "quickNavTomorrowSub": "取組予定",
+    "quickNavSenshurakuAnalytics": "優勝争い・分析",
+    "quickNavSenshurakuAnalyticsSub": "最多勝・決まり手傾向",
     "quickNavMyRikishi": "マイ力士",
     "quickNavMyRikishiSub": "推し力士一覧",
     "championshipFinalHeading": "令和八年五月場所最終結果",
@@ -94,6 +96,7 @@
     "footerGithub": "GitHub",
     "heroRikishi": "力士プロフィール",
     "heroDayIndicator": "現在 {{day}} 日目",
+    "heroDayIndicatorSenshuraku": "千秋楽（15日目）",
     "heroPreBashoStatus": "開幕前",
     "heroFinalStatus": "場所は終了しました",
     "heroLastUpdated": "前回更新 {{timeJst}} JST",
@@ -112,7 +115,7 @@
     "newsSubsectionSumoNewsSeeAll": "dmenu で見る",
     "footerDataCredit": "データ出典: 公益財団法人日本相撲協会 / API: dai/o-sumo",
     "analyticsFeatureLabel": "大相撲アナリティクス",
-    "analyticsFeatureAvailability": "(中日からお使いいただけます)",
+    "analyticsFeatureAvailability": "(千秋楽 優勝争い・全データ集計中)",
     "analyticsFeatureTitle": "場所分析・三賞・決まり手傾向",
     "analyticsFeatureDescription": "勝ち星、無敗力士、三賞候補、決まり手傾向",
     "analyticsFeatureAction": "アナリティクスを見る",
@@ -178,16 +181,25 @@
     "eyebrow": "{{basho}}分析",
     "title": "大相撲アナリティクス",
     "crumb": "大相撲アナリティクス",
-    "description": "幕内の勝敗、上位争い、決まり手傾向をひと目で確認できるダッシュボードです。",
+    "description": "幕内・十両の勝敗、上位争い、決まり手傾向をひと目で確認できるダッシュボードです。",
     "resultAction": "取組結果を見る",
-      "scheduleAction": "取組予定を見る",
-      "pastScheduleAction": "過去の予定を見る",
-      "noticeNotFinal": "千秋楽以降に分析を公開します。",
+    "scheduleAction": "取組予定を見る",
+    "pastScheduleAction": "過去の予定を見る",
+    "noticeNotFinal": "千秋楽以降に分析を公開します。",
+    "divisionSelect": "番付区分の選択",
+    "divisions": {
+      "makuuchi": "幕内",
+      "juryo": "十両"
+    },
     "metrics": {
       "label": "主要指標",
       "makuuchi": {
         "label": "幕内力士",
         "note": "番付データに掲載中の幕内人数"
+      },
+      "juryo": {
+        "label": "十両力士",
+        "note": "番付データに掲載中の十両人数"
       },
       "records": {
         "label": "勝敗入力",
@@ -200,18 +212,21 @@
       "maxWins": {
         "label": "最多勝ライン",
         "value": "{{count}}勝",
-        "note": "幕内の現在トップライン",
-        "finalNote": "幕内の確定最多勝"
+        "note": "{{division}}の現在トップライン",
+        "finalNote": "{{division}}の確定最多勝"
       }
     },
     "leaders": {
       "title": "勝ち星リーダー",
+      "titleDivision": "{{division}} 勝ち星リーダー",
       "description": "同勝数の場合は黒星の少ない力士を上位に表示します。",
       "record": "{{wins}}勝{{losses}}敗"
     },
     "kimarite": {
       "title": "決まり手トレンド",
-      "description": "公開済みの幕内取組結果から頻出の決まり手を集計しています。"
+      "titleDivision": "{{division}} 決まり手トレンド",
+      "description": "公開済みの幕内取組結果から頻出の決まり手を集計しています。",
+      "descriptionDivision": "公開済みの{{division}}取組結果から頻出の決まり手を集計しています。"
     },
     "results": {
       "heading": "{{basho}} 結果",
@@ -219,6 +234,8 @@
       "tableHeading": "区分",
       "tableRikishi": "力士",
       "tableRecord": "成績",
+      "pendingTitle": "千秋楽 表彰発表待ち",
+      "pendingDescription": "令和八年九月場所の幕内最高優勝・十両優勝および三賞は、千秋楽の全取組終了後に日本相撲協会より発表され次第、掲載します。",
       "category": {
         "makuuchiYusho": "幕内最高優勝",
         "shukun": "殊勲賞",

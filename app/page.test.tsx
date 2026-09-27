@@ -184,6 +184,12 @@ describe('Home page', () => {
         expect.objectContaining({ to: '/schedule/', labelKey: 'home.quickNavNextBoutSchedule' }),
       ]),
     );
+    expect(getHomeQuickNavItems({ kind: 'live', startDate: '2026-09-13', endDate: '2026-09-27', day: 15 }, paths, 'ja')).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ to: '/today/', labelKey: 'home.quickNavToday', subKey: 'home.quickNavTodaySub' }),
+        expect.objectContaining({ to: '/analytics/', labelKey: 'home.quickNavSenshurakuAnalytics' }),
+      ]),
+    );
     expect(getHomeQuickNavItems({ kind: 'final', startDate: '2026-09-13', endDate: '2026-09-27', day: null }, paths, 'ja')).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ to: '/results/', labelKey: 'home.quickNavFinalResults' }),
