@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-26T10:19:28.214173+00:00",
+    "updatedAt": "2026-09-27T01:02:03.715422+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-sponichi-spngoo-20260926-0357",
-        "title": "大の里　土俵際で突き落とされバッタリ…終盤まさかの連敗　解説の春日野親方「もうちょっと神経使うべき」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260926-0357",
-        "publishedAt": "2026-09-26",
-        "publishedAtRaw": "スポニチアネックス　9月26日 18時36分",
+        "id": "dmenu-docomo-abematimes-10275280",
+        "title": "「こんなの泣ける」「見たことない」朝乃山、取組前に“まさか”の所作 負けられない一番であふれた思いにファン感涙",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10275280",
+        "publishedAt": "2026-09-27",
+        "publishedAtRaw": "ABEMA TIMES　9月27日 8時31分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260926-202609260001450",
-        "title": "大の里まさかの連敗で安青錦と３敗で並ぶ　元若乃花「すり足ができていない。足浮く」欠点を指摘",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260926-202609260001450",
-        "publishedAt": "2026-09-26",
-        "publishedAtRaw": "日刊スポーツ　9月26日 18時36分",
+        "id": "dmenu-docomo-20260927034",
+        "title": "【解説】逆転負けした大の里は差した方に寄っていかないから　優勝を懸けた安青錦との結びの一番は先に攻めた方がチャンスつかむ",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260927034",
+        "publishedAt": "2026-09-27",
+        "publishedAtRaw": "デイリースポーツ　9月27日 8時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-tokyosports-404498",
-        "title": "【大相撲】秋場所休場の豊昇龍　１０・１０松本市から秋巡業参加へ　師匠の立浪親方が明かす",
-        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-404498",
-        "publishedAt": "2026-09-26",
-        "publishedAtRaw": "東スポWEB　9月26日 17時14分",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_MYJ4ZPJT65GT5NFCDA3Z52ATQI",
+        "title": "花田虎上氏「場所前、関取と稽古してないんですよ。ビックリですよ」／秋場所",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_MYJ4ZPJT65GT5NFCDA3Z52ATQI",
+        "publishedAt": "2026-09-27",
+        "publishedAtRaw": "SANSPO　9月27日 8時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-20260924-567-GYT1T00382",
-        "title": "北の富士さんからの「行司に向いているね」の声かけ忘れられず…３９代木村庄之助、千秋楽で最後の軍配",
-        "url": "https://topics.smt.docomo.ne.jp/article/yomiuri/sports/20260924-567-GYT1T00382",
-        "publishedAt": "2026-09-26",
-        "publishedAtRaw": "読売新聞　9月26日 17時00分",
+        "id": "dmenu-docomo-abematimes-10275267",
+        "title": "「若くなりましたね」元関脇・宝富士、“激変”ぶりに元若乃花が驚き 超フレッシュな警備員姿に「確かに若くなってる」反響続々",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10275267",
+        "publishedAt": "2026-09-27",
+        "publishedAtRaw": "ABEMA TIMES　9月27日 7時15分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-jiji-202609260093313300",
-        "title": "矢後「やり切れた」　大相撲",
-        "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-202609260093313300",
-        "publishedAt": "2026-09-26",
-        "publishedAtRaw": "時事通信　9月26日 16時37分",
+        "id": "dmenu-docomo-abematimes-10275260",
+        "title": "「顔どした」「デコ痛々しい」十両力士の土俵入りで驚きの光景 昨日のアクシデントを経て無事登場も心配の声続々",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10275260",
+        "publishedAt": "2026-09-27",
+        "publishedAtRaw": "ABEMA TIMES　9月27日 7時07分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-26T10:19:28.223672+00:00",
-  "lastSuccessAt": "2026-09-26T10:19:28.214173+00:00",
+  "lastAttemptAt": "2026-09-27T01:02:03.724854+00:00",
+  "lastSuccessAt": "2026-09-27T01:02:03.715422+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -355,9 +355,13 @@
     "36235431878": {
       "attemptedAt": "2026-09-26T10:19:28.223672+00:00",
       "outcome": "success"
+    },
+    "36284287924": {
+      "attemptedAt": "2026-09-27T01:02:03.724854+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36235431878",
+  "lastRunId": "36284287924",
   "lastPublishedDate": "2026-09-26",
   "lastPublishedSha": "ac0e53f0ac17d1a28f247707cb4bc3456798f2c1",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
