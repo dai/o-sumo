@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-27T08:26:33.608293+00:00",
+    "updatedAt": "2026-09-27T10:20:12.408904+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-mainichi-20260925k0000m050098000c",
-        "title": "大の里が6場所ぶり6回目V　安青錦との相星決戦制す　秋場所",
-        "url": "https://topics.smt.docomo.ne.jp/article/mainichi/sports/mainichi-20260925k0000m050098000c",
+        "id": "dmenu-docomo-f-bt-tp1-260927-202609270001424",
+        "title": "九州場所で安青錦は綱とり、熱海富士は大関とりになるのか？　浅香山審判部長の見解は…",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260927-202609270001424",
         "publishedAt": "2026-09-27",
-        "publishedAtRaw": "毎日新聞　9月27日 17時21分",
+        "publishedAtRaw": "日刊スポーツ　9月27日 19時06分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260927-202609270000508",
-        "title": "大の里「相星決戦」制し“最長ブランク”１年ぶりV…左肩痛から復活　安青錦破り３年連続秋制覇",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260927-202609270000508",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_NN2QINT5T5F65FCVT2FSPWTEHM",
+        "title": "琴風氏「いろんな試練が次から次へと襲ってきますよ。ただそれを…」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_NN2QINT5T5F65FCVT2FSPWTEHM",
         "publishedAt": "2026-09-27",
-        "publishedAtRaw": "日刊スポーツ　9月27日 17時21分",
+        "publishedAtRaw": "SANSPO　9月27日 19時04分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260927-OHT1T51142",
-        "title": "大の里が貫禄の秋場所３連覇　安青錦との相星決戦を制す　苦闘乗り越え１年ぶりの賜杯　一人横綱の重責果たす",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260927-OHT1T51142",
+        "id": "dmenu-docomo-tokyosports-404625",
+        "title": "【大相撲】横綱大の里が１年ぶりの復活Ｖ！　表彰式の君が代では〝号泣〟「また優勝できるのかなと…」",
+        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-404625",
         "publishedAt": "2026-09-27",
-        "publishedAtRaw": "スポーツ報知　9月27日 17時21分",
+        "publishedAtRaw": "東スポWEB　9月27日 19時02分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sponichi-spngoo-20260927-0306",
-        "title": "藤ノ川　熱海富士を破り新関脇で11勝、収穫の秋…3大関撃破で敢闘賞を受賞",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260927-0306",
+        "id": "dmenu-docomo-sponichi-spngoo-20260927-0359",
+        "title": "安青錦　千秋楽相星決戦で敗れ11勝　審判部は九州場所での綱獲りに否定的",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260927-0359",
         "publishedAt": "2026-09-27",
-        "publishedAtRaw": "スポニチアネックス　9月27日 17時10分",
+        "publishedAtRaw": "スポニチアネックス　9月27日 19時01分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-dailyshincho-1502538",
-        "title": "横綱はケガを負っても「休まず土俵に立つべき」なのか…歴代横綱の“休場日数”を調べて分かった意外な真実　本場所での“休場ゼロ”ながら27歳で亡くなった横綱も",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailyshincho/sports/dailyshincho-1502538",
+        "id": "dmenu-docomo-f-bt-tp1-260927-202609270001416",
+        "title": "大の里復活Vに師匠の二所ノ関親方もこらえ切れず笑顔「今日ぐらいは褒めてもいいのかな」",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260927-202609270001416",
         "publishedAt": "2026-09-27",
-        "publishedAtRaw": "デイリー新潮　9月27日 17時00分",
+        "publishedAtRaw": "日刊スポーツ　9月27日 19時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-27T08:26:33.616799+00:00",
-  "lastSuccessAt": "2026-09-27T08:26:33.608293+00:00",
+  "lastAttemptAt": "2026-09-27T10:20:12.416939+00:00",
+  "lastSuccessAt": "2026-09-27T10:20:12.408904+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -375,9 +375,13 @@
     "36306197556": {
       "attemptedAt": "2026-09-27T08:26:33.616799+00:00",
       "outcome": "success"
+    },
+    "36312189217": {
+      "attemptedAt": "2026-09-27T10:20:12.416939+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36306197556",
+  "lastRunId": "36312189217",
   "lastPublishedDate": "2026-09-26",
   "lastPublishedSha": "ac0e53f0ac17d1a28f247707cb4bc3456798f2c1",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
