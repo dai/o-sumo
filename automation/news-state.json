@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-27T04:24:48.905203+00:00",
+    "updatedAt": "2026-09-27T06:33:59.387025+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-abematimes-10275291",
-        "title": "「え、ホンモノだ」「お綺麗でびっくり」溜まり席に“知る人ぞ知る”女性の姿 反響広がる",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10275291",
+        "id": "dmenu-docomo-hochi-20260927-OHT1T51168",
+        "title": "西十両１４枚目・錦木が勝って６勝９敗で終える　関取残留微妙な情勢も「幕下落ちても部屋の仕事やる。藤ノ川の付け人もやる」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260927-OHT1T51168",
         "publishedAt": "2026-09-27",
-        "publishedAtRaw": "ABEMA TIMES　9月27日 10時54分",
+        "publishedAtRaw": "スポーツ報知　9月27日 14時45分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-abematimes-10275280",
-        "title": "「こんなの泣ける」「見たことない」朝乃山、取組前に“まさか”の所作 負けられない一番であふれた思いにファン感涙",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10275280",
+        "id": "dmenu-docomo-hochi-20260927-OHT1T51171",
+        "title": "“イケメン力士”幕下・大森が白星締めで５勝２敗「絶対に勝ちたいと思った」　初の九州場所は趣味も満喫予定「釣りしたい」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260927-OHT1T51171",
         "publishedAt": "2026-09-27",
-        "publishedAtRaw": "ABEMA TIMES　9月27日 8時31分",
+        "publishedAtRaw": "スポーツ報知　9月27日 14時43分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-20260927034",
-        "title": "【解説】逆転負けした大の里は差した方に寄っていかないから　優勝を懸けた安青錦との結びの一番は先に攻めた方がチャンスつかむ",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260927034",
+        "id": "dmenu-docomo-f-bt-tp1-260927-202609270000560",
+        "title": "“イケメン”大森白星締め「最後絶対に勝ちたいと」３場所連続５勝も…２敗には課題を３つ挙げる",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260927-202609270000560",
         "publishedAt": "2026-09-27",
-        "publishedAtRaw": "デイリースポーツ　9月27日 8時00分",
+        "publishedAtRaw": "日刊スポーツ　9月27日 14時12分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_MYJ4ZPJT65GT5NFCDA3Z52ATQI",
-        "title": "花田虎上氏「場所前、関取と稽古してないんですよ。ビックリですよ」／秋場所",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_MYJ4ZPJT65GT5NFCDA3Z52ATQI",
+        "id": "dmenu-docomo-f-bt-tp1-260927-202609270000504",
+        "title": "来場所の最重量力士は222.7キロの柏王丸か「特に自覚はなかったです」",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260927-202609270000504",
         "publishedAt": "2026-09-27",
-        "publishedAtRaw": "SANSPO　9月27日 8時00分",
+        "publishedAtRaw": "日刊スポーツ　9月27日 13時50分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-abematimes-10275267",
-        "title": "「若くなりましたね」元関脇・宝富士、“激変”ぶりに元若乃花が驚き 超フレッシュな警備員姿に「確かに若くなってる」反響続々",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10275267",
+        "id": "dmenu-docomo-hochi-20260927-OHT1T51143",
+        "title": "【千秋楽の見所】横綱・大の里と大関・安青錦の相星決戦　結末はいかに",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260927-OHT1T51143",
         "publishedAt": "2026-09-27",
-        "publishedAtRaw": "ABEMA TIMES　9月27日 7時15分",
+        "publishedAtRaw": "スポーツ報知　9月27日 13時44分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-27T04:24:48.914163+00:00",
-  "lastSuccessAt": "2026-09-27T04:24:48.905203+00:00",
+  "lastAttemptAt": "2026-09-27T06:33:59.396364+00:00",
+  "lastSuccessAt": "2026-09-27T06:33:59.387025+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -367,9 +367,13 @@
     "36294221161": {
       "attemptedAt": "2026-09-27T04:24:48.914163+00:00",
       "outcome": "success"
+    },
+    "36300461769": {
+      "attemptedAt": "2026-09-27T06:33:59.396364+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36294221161",
+  "lastRunId": "36300461769",
   "lastPublishedDate": "2026-09-26",
   "lastPublishedSha": "ac0e53f0ac17d1a28f247707cb4bc3456798f2c1",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
