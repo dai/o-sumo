@@ -46,6 +46,14 @@ describe('AnalyticsDashboardPage', () => {
   });
 
   it('renders the pending announcement box and blank table when basho results are pending on final day', () => {
+    vi.spyOn(bashoResultsModule, 'getBashoResults').mockReturnValue({
+      bashoId: '202609',
+      bashoName: '令和八年九月場所',
+      status: 'pending',
+      announcementNote: '本日千秋楽の全取組終了後、表彰決定次第掲載します。',
+      winners: [],
+    });
+
     render(
       <MemoryRouter>
         <AnalyticsDashboardPage />
@@ -88,6 +96,22 @@ describe('AnalyticsDashboardPage', () => {
     expect(screen.getByRole('row', { name: '敢闘賞 熱海富士 11勝4敗' })).toBeInTheDocument();
     expect(screen.getByRole('row', { name: '技能賞 安青錦 11勝4敗' })).toBeInTheDocument();
     expect(screen.getByRole('row', { name: '十両優勝 湘南乃海 12勝3敗' })).toBeInTheDocument();
+  });
+
+  it('renders actual September 2026 basho awards without mock', () => {
+    render(
+      <MemoryRouter>
+        <AnalyticsDashboardPage />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByRole('heading', { level: 2, name: /九月場所 結果/ })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '幕内最高優勝 大の里 12勝3敗' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '殊勲賞 該当なし —' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '敢闘賞 藤ノ川 11勝4敗' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '敢闘賞 美ノ海 10勝5敗' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '技能賞 該当なし —' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '十両優勝 北の若 11勝4敗' })).toBeInTheDocument();
   });
 
   it('switches between Makuuchi and Juryo divisions via tabs', () => {

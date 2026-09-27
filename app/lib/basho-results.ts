@@ -25,15 +25,14 @@ export const BASHO_RESULTS_ARCHIVE: Record<string, BashoResultsData> = {
   '202609': {
     bashoId: '202609',
     bashoName: '令和八年九月場所',
-    status: 'pending',
-    announcementNote: '本日千秋楽の全取組終了後、表彰決定次第掲載します。',
+    status: 'announced',
     winners: [
-      // 発表後に以下形式で記入:
-      // { id: 'makuuchi-yusho', category: 'makuuchiYusho', rikishi: '力士名', record: '○勝○敗' },
-      // { id: 'juryo-yusho', category: 'juryoYusho', rikishi: '力士名', record: '○勝○敗' },
-      // { id: 'shukun', category: 'shukun', rikishi: '力士名', record: '○勝○敗' },
-      // { id: 'kanto', category: 'kanto', rikishi: '力士名', record: '○勝○敗' },
-      // { id: 'gino', category: 'gino', rikishi: '力士名', record: '○勝○敗' },
+      { id: 'makuuchi-yusho-oonosato', category: 'makuuchiYusho', rikishi: '大の里', record: '12勝3敗' },
+      { id: 'shukun-none', category: 'shukun', rikishi: '該当なし', record: '—' },
+      { id: 'kanto-fujinokawa', category: 'kanto', rikishi: '藤ノ川', record: '11勝4敗' },
+      { id: 'kanto-churanoumi', category: 'kanto', rikishi: '美ノ海', record: '10勝5敗' },
+      { id: 'gino-none', category: 'gino', rikishi: '該当なし', record: '—' },
+      { id: 'juryo-yusho-kitanowaka', category: 'juryoYusho', rikishi: '北の若', record: '11勝4敗' },
     ],
   },
   '202607': {
