@@ -20,7 +20,7 @@ The two SKILL.md files currently published under `public/.well-known/agent-skill
 ### `osumo-discovery`
 
 - Location: `public/.well-known/agent-skills/osumo-discovery/SKILL.md`
-- Purpose: how to read the discovery surfaces (`api-catalog`, `mcp-server-card`, `agent-skills`, `web-bot-auth`, etc.)
+- Purpose: resolve basho/day/rikishi page URLs from API pathDate values and the sitemap, with JST dates and publication status
 - Main use cases:
   - `public/.well-known/api-catalog` (RFC 9727 linkset)
   - `public/.well-known/mcp/server-card.json` (SEP-1649)
@@ -28,7 +28,7 @@ The two SKILL.md files currently published under `public/.well-known/agent-skill
   - `public/.well-known/http-message-signatures-directory` (Web Bot Auth)
   - `auth.md` (anonymous, credential-free public access)
 
-To add a new skill, drop `public/.well-known/agent-skills/<skill>/SKILL.md` and the next build will refresh `index.json` automatically.
+To add a skill, create its published SKILL.md and register it in `SKILL_MANIFEST` (`app/lib/agent-skills.ts`). Build output gets a regenerated index and SHA-256 digests.
 
 ## Internal Skill
 

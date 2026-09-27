@@ -20,10 +20,10 @@ Cloudflare DNS zone, not the Pages project.
 | `/.well-known/agent-card.json` | A2A Agent Card (A2A Protocol v1.0.0 §4.4.1). Published for discovery only — `supportedInterfaces` is non-empty (HTTP+JSON pointing at `/a2a`), but the A2A endpoint returns `-32601 Method not found` for every method because o-sumo has no task state. `skills[]` is derived from `SKILL_MANIFEST` (`app/lib/agent-skills.ts`) via `mapSkillEntryToA2aSkill()` at build time, and `version` is synchronized with `package.json` via `vite.config.ts` (`a2aAgentCardPlugin`). See [docs/agent-card.md](agent-card.md) for the discovery posture. |
 | `/.well-known/agent-skills/index.json` | Agent Skills index (RFC v0.2.0). Lists the skills published under `.well-known/agent-skills/`. Generated at build time by `vite.config.ts` (`agentSkillsPlugin`); each entry carries `type: "skill-md"` and `digest: "sha256:{hex}"`. |
 | `/.well-known/agent-skills/osumo-content/SKILL.md` | Skill description for fetching public API content (banzuke, torikumi, rikishi, gyoji, yobidashi). |
-| `/.well-known/agent-skills/osumo-discovery/SKILL.md` | Skill description for navigating the discovery surfaces (`api-catalog`, `mcp-server-card`, `agent-skills`, `web-bot-auth`, etc.). |
+| `/.well-known/agent-skills/osumo-discovery/SKILL.md` | Resolve current/archived basho, daily and rikishi page URLs from API dates and the sitemap. |
 | `/.well-known/http-message-signatures-directory` | Web Bot Auth (IETF WebBotAuth WG) signature directory. Returns a JWKS with at least one Ed25519 public key, signed per RFC 9421 with `tag="http-message-signatures-directory"`. See the dedicated **Web Bot Auth** section below. |
 | `/auth.md` | Top-level Auth.md instructions for metadata-only anonymous public access, including registration and claim information URIs and the no-credential constraint. |
-| `/*.md` (parallel HTML routes) | Static Markdown views served with `Content-Type: text/markdown; charset=utf-8` and `Vary: Accept`. Satisfies the "Markdown for Agents" check. `index.md` files are pre-rendered at build time by `scripts/build_markdown_views.ts`, so the views work on the Cloudflare Pages Free plan. The matching `functions/_middleware.ts` calls `prefersMarkdown()` (`app/lib/content-negotiation.ts`) to evaluate the `Accept` header per RFC 9110 §12.5.1 and rewrites markdown-positive requests to the pre-rendered `index.md` with the correct `Content-Type`. |
+| `/index.md`, `/<route>/index.md` | Static Markdown views served with `Content-Type: text/markdown; charset=utf-8` and `Vary: Accept`. Satisfies the "Markdown for Agents" check. `index.md` files are pre-rendered at build time by `scripts/build_markdown_views.ts`, so the views work on the Cloudflare Pages Free plan. The matching `functions/_middleware.ts` calls `prefersMarkdown()` (`app/lib/content-negotiation.ts`) to evaluate the `Accept` header per RFC 9110 §12.5.1 and rewrites markdown-positive requests to the pre-rendered `index.md` with the correct `Content-Type`. |
 
 Note: `/.well-known/openid-configuration` was removed in 2026-08-10 (404 expected).
 `/.well-known/oauth-authorization-server` is intentionally kept as a
@@ -33,12 +33,48 @@ Lesson #5.
 The agent-skills index is generated at build time by `vite.config.ts` (see
 `agentSkillsPlugin`). The sha256 digests in `index.json` are computed from
 the on-disk SKILL.md files, so changing the skill content automatically
-invalidates the cached digests on the next `npm run build`.
+updates the digests in `dist/.well-known/agent-skills/index.json` on the next `npm run build`.
+The committed public index is a fallback; refresh it from the built index when editing published skills.
 
 The authentication metadata exists for agent discovery, not because o-sumo is
 an authorization server. The anonymous registration declaration is
 documentation-only: agents access the listed resources without credentials,
 and no registration record is stored.
+
+## Content policy and Cloudflare
+
+`public/robots.txt` is the source of the site's policy:
+`Content-Signal: ai-train=no, search=yes, ai-input=yes`.
+Public read-only JSON APIs, skills, and supported Markdown pages need no credentials.
+Agents may use content for search and query-time answers; report the source URL and its update time.
+Do not infer permission to train or fine-tune models.
+
+Change the policy in this repository and deploy it. A dashboard change is not required when
+Cloudflare serves this file unchanged. If the response contains `BEGIN Cloudflare Managed content`,
+review Cloudflare's managed robots.txt configuration and AI Crawl Control so that injected rules
+or bot blocks do not conflict with the intended policy. A robots.txt preference is not an access-control rule.
+See [Cloudflare managed robots.txt](https://developers.cloudflare.com/bots/additional-configurations/managed-robots-txt/).
+
+## Markdown coverage and date resolution
+
+The generator covers home, archives, rikishi index, kimarite, analytics, about, monthly
+banzuke/results/schedules, and daily results/schedules present in the published datasets.
+Monthly and historical dates follow `getAllArchiveRouteConfigs()`; current content is read from
+`public/api/v1/torikumi.json`, and historical content uses the application's immutable snapshots.
+Daily views include the date, status, mode-specific update time, and bouts; pending days explicitly
+state that data is not yet published. Unsupported pages fall back to HTML.
+
+Use `Accept: text/markdown` and verify `Content-Type: text/markdown`. Direct `<route>/index.md`
+assets are also available. Middleware rejects HTML asset fallbacks rather than relabeling them as
+Markdown. Negotiated responses use `Vary: Accept` and `Cache-Control: private, no-cache, no-transform`.
+
+`bashoId` is a numeric upstream ID. Derive YYYYMM from the first valid 8-digit `pathDate` in
+`resultDays` or `scheduleDays`; do not turn an ID such as `637` into a URL. Match today's or
+yesterday's `isoDate` in Asia/Tokyo. Use the sitemap for older months, and do not mistake an HTTP
+200 SPA fallback for proof that a requested date exists.
+
+The HTTP integration is JSON APIs plus skills. Do not advertise the discovery cards as a working
+MCP server or A2A task service. Browser WebMCP, described below, is separate.
 
 ## WebMCP
 
@@ -140,6 +176,10 @@ following checks:
   (removed in 2026-08-10; this is the expected state).
 - `curl -i -H 'Accept: text/markdown' https://osada.us/` — returns
   `Content-Type: text/markdown; charset=utf-8` and a `Vary: Accept` header.
+- `curl -i -H 'Accept: text/markdown' https://osada.us/20260926-yotei/` —
+  returns Markdown for the specified date; also check a result date and a pending day.
+- `curl -fsS https://osada.us/robots.txt` — includes `ai-input=yes` without conflicting rules.
+- Download each SKILL.md listed in the index and compare its SHA-256 with `digest`.
 - `dig +multi _index._agents.osada.us HTTPS` — returns the SVCB record
   with the expected `alpn` and `endpoint` parameters.
 - `dig +dnssec osada.us` — the `ad` flag is set when the resolver
@@ -149,12 +189,11 @@ following checks:
 
 - New SKILL.md files should be added under
   `public/.well-known/agent-skills/<skill-name>/SKILL.md`. The next
-  `npm run build` will regenerate `index.json` with the new entry and a
-  fresh sha256 digest.
-- Adding a new basho (e.g. for a new month) requires updating both
-  `PAST_BASHO` in `app/lib/archives-data.ts` and the basho list in the
-  `scripts/build_markdown_views.ts` markdown generator.
+  add the entry to `SKILL_MANIFEST` in `app/lib/agent-skills.ts`. The next
+  `npm run build` regenerates the output index with fresh SHA-256 digests.
+- Add new basho data to the application archive/route configuration. Markdown derives
+  its monthly routes from that configuration and its daily routes from the datasets.
 - The DNS-AID record and DNSSEC configuration are zone-scoped and live in
   Cloudflare DNS, not in this repository.
 
-Last reviewed: 2026-08-28 (Phase 1 refresh — PR #494, #495, #496).
+Last reviewed: 2026-09-26 (AI input policy, date resolution, daily Markdown coverage).

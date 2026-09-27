@@ -251,11 +251,13 @@ export const onRequest = async (context: any): Promise<Response> => {
     const mdPath = `${basePath}/index.md`;
     const mdResponse = await context.env.ASSETS.fetch(new URL(mdPath, context.request.url));
 
-    if (mdResponse.ok) {
+    // Missing assets may return the SPA shell with status 200. Never label HTML as Markdown.
+    if (mdResponse.ok && /^text\/markdown(?:;|$)/i.test(mdResponse.headers.get('Content-Type') ?? '')) {
       const body = await mdResponse.arrayBuffer();
       const headers = new Headers();
       headers.set('Content-Type', 'text/markdown; charset=utf-8');
       headers.set('Vary', 'Accept');
+      headers.set('Link', `<${mdPath}>; rel="alternate"; type="text/markdown"`);
       // Prevent CDN/browser cache collisions from serving Markdown to HTML visitors
       headers.set('Cache-Control', 'private, no-cache, no-transform');
       if (isHomePage) {

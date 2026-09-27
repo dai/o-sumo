@@ -2,6 +2,16 @@
 
 [日本語版](./changelog.md)
 
+## 2026-09-26
+
+### Agent entry points
+
+- Permit query-time grounding with `ai-input=yes`; retain `ai-train=no`
+- Correct skill month keys, supported-month discovery and JST date resolution; verify build-time digests
+- Generate monthly/daily Markdown from configured datasets, including publication status, mode-specific timestamps and bouts
+- Keep historical banzuke tied to its own snapshot; never relabel HTML asset fallbacks as Markdown
+- Document coverage and the absence of remote MCP/A2A task execution. No JSON API schema changes
+
 ## 2026-08-17
 
 ### Rikishi Comparison And Matchup API

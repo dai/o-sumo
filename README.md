@@ -76,6 +76,32 @@ Skill 公開:
 - `public/.well-known/agent-skills/osumo-discovery/SKILL.md`
 - `skills/osumo-api/SKILL.md`
 
+## AIエージェントから利用する
+
+公開JSON APIと2つの公開スキルを、認証・登録・APIキーなしで利用できます。
+検索と回答生成時の参照を許可し、モデル学習は許可しません（`search=yes, ai-input=yes, ai-train=no`）。
+
+| 目的 | 入口 |
+| --- | --- |
+| APIを見つける | [APIカタログ](https://osada.us/.well-known/api-catalog) |
+| 取得方法・ページURLを調べる | [スキル一覧](https://osada.us/.well-known/agent-skills/index.json) |
+| 認証方針を確認する | [auth.md](https://osada.us/auth.md) |
+| 対応範囲・運用を確認する | [エージェント向けガイド](docs/agent-ready.md) |
+
+`torikumi.json` の `bashoId` は通し番号です。月は `pathDate` の先頭6桁から求め、
+予定・結果は各配列の `status` と更新時刻を確認してください。
+ホーム・主要一覧・月別ページと、公開データに存在する日別予定/結果は
+`Accept: text/markdown` で取得できます。個別人物ページなど未対応ルートはHTMLを返します。
+
+```bash
+curl -fsS https://osada.us/.well-known/agent-skills/index.json
+curl -fsS https://osada.us/api/v1/torikumi.json
+curl -i -H 'Accept: text/markdown' https://osada.us/20260926-yotei/
+```
+
+MCPカードは案内用で、リモートMCPサーバーは提供していません。
+A2Aカードも発見用で、タスク操作は未実装です。対応ブラウザー内のWebMCPとは区別してください。
+
 ## 主な機能
 
 - ホームから `番付 / 取組予定 / 結果 / 力士・行司・呼出名鑑 / マイ力士 / 力士比較 / 場所ステータス分析` に直接遷移

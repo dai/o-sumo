@@ -2,14 +2,16 @@
  * Build Markdown views for the main routes so AI agents that request
  * `Accept: text/markdown` get a meaningful response even before
  * Cloudflare Pages' Markdown-for-Agents negotiation kicks in. This
- * script is invoked by `vite.config.ts` (`agentSkillsPlugin` style)
+ * script is invoked by `vite.config.ts` (`markdownViewsPlugin`)
  * after the main bundle is written.
  *
- * Output: `dist/<route>/index.md` for each route in `ROUTES`.
+ * Output: `dist/<route>/index.md` for the main routes and configured monthly/daily pages.
  */
 import { mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { readdirSync } from 'node:fs';
+import { getAllArchiveRouteConfigs } from '../app/lib/torikumi-routes';
+import { getBanzukeDataByMonthKey } from '../app/lib/archive-basho-data';
+import type { TorikumiArchiveDay, TorikumiDataSet } from '../app/lib/torikumi-data';
 
 interface RikishiRow {
   id: number;
@@ -43,14 +45,22 @@ interface BanzukeDocument {
   juryo: RankGroup[];
 }
 
-interface TorikumiDocument {
-  bashoId: string;
-  bashoName: string;
-  year: string;
-  resultUpdatedAt?: string;
-  scheduleUpdatedAt?: string;
-  resultDays?: ReadonlyArray<{ day: number; isoDate: string; pathDate: string; label: string; status?: string }>;
-  scheduleDays?: ReadonlyArray<{ day: number; isoDate: string; pathDate: string; label: string; status?: string }>;
+type TorikumiDocument = TorikumiDataSet;
+
+/** bashoId is an upstream numeric identifier, never a YYYYMM key. */
+export function currentMonthKey(document: TorikumiDocument): string {
+  const day = [...(document.resultDays ?? []), ...(document.scheduleDays ?? [])]
+    .find((entry) => /^\d{8}$/.test(entry.pathDate));
+  if (!day) throw new Error('Cannot derive current basho month: no valid pathDate');
+  return day.pathDate.slice(0, 6);
+}
+
+function loadTorikumi(publicDir: string, monthKey: string): TorikumiDocument {
+  const live = readJson<TorikumiDocument>(publicDir, 'api/v1/torikumi.json');
+  if (currentMonthKey(live) === monthKey) return live;
+  const archive = getAllArchiveRouteConfigs().find((config) => config.monthKey === monthKey);
+  if (!archive) throw new Error(`Unknown basho: ${monthKey}`);
+  return archive.archive;
 }
 
 const SITE = 'https://osada.us';
@@ -63,10 +73,6 @@ function frontmatter(meta: { title: string; description?: string; canonical?: st
   lines.push(`site: ${JSON.stringify(SITE)}`);
   lines.push('---');
   return lines.join('\n');
-}
-
-function pad(value: number): string {
-  return String(value).padStart(2, '0');
 }
 
 function readJson<T>(publicDir: string, relativePath: string): T {
@@ -85,32 +91,9 @@ function rikishiTable(rows: ReadonlyArray<{ name: string; yomi: string; rank: st
 
 function renderBanzukeMarkdown(publicDir: string, monthKey: string, pathPrefix: string): string {
   const torikumi: TorikumiDocument = readJson<TorikumiDocument>(publicDir, 'api/v1/torikumi.json');
-  const allBanzuke: Record<string, BanzukeDocument> = {};
-
-  // Try the current basho (which the in-memory fixture uses) plus any
-  // embedded per-month snapshots.  We only need a single title string per
-  // month key; fall back to the LIVE basho when a snapshot is absent.
-  try {
-    const live = readJson<BanzukeDocument>(publicDir, 'api/v1/banzuke.json');
-    allBanzuke[monthKey] = live;
-  } catch {
-    // ignore — handled below
-  }
-
-  const document = allBanzuke[monthKey];
-  if (!document) {
-    // Even without a banzuke.json snapshot, we can still describe the
-    // basho using the torikumi metadata.
-    const bashoMeta = torikumi.bashoId === monthKey
-      ? `${torikumi.year} ${torikumi.bashoName}`
-      : `${monthKey} 場所`;
-    return renderMarkdownPage({
-      title: `${bashoMeta} 番付 | o-sumo`,
-      description: `${bashoMeta} の番付を確認できます。`,
-      canonical: `${SITE}/${pathPrefix}-banzuke/`,
-      body: `${bashoMeta} の番付データはこのビューでは未取得です。最新の JSON は ${SITE}/api/v1/banzuke.json を参照してください。`,
-    });
-  }
+  const document: BanzukeDocument = currentMonthKey(torikumi) === monthKey
+    ? readJson<BanzukeDocument>(publicDir, 'api/v1/banzuke.json')
+    : getBanzukeDataByMonthKey(monthKey);
 
   const heading = `${document.year} ${document.bashoName}`;
   const sections: string[] = [];
@@ -143,18 +126,7 @@ function renderTorikumiMarkdown(
   pathPrefix: string,
   mode: 'result' | 'schedule',
 ): string {
-  const torikumi: TorikumiDocument = readJson<TorikumiDocument>(publicDir, 'api/v1/torikumi.json');
-  const liveMonthKey = typeof torikumi.bashoId === 'number'
-    ? torikumi.resultDays?.[0]?.pathDate?.slice(0, 6) ?? String(torikumi.bashoId)
-    : torikumi.bashoId;
-  if (liveMonthKey !== monthKey) {
-    return renderMarkdownPage({
-      title: `${monthKey} ${mode === 'result' ? '取組結果' : '取組予定'} | o-sumo`,
-      description: `${monthKey} の${mode === 'result' ? '取組結果' : '取組予定'}を確認できます。`,
-      canonical: `${SITE}/${pathPrefix}-${mode === 'result' ? 'torikumi' : 'yotei'}/`,
-      body: `${monthKey} の${mode === 'result' ? '取組結果' : '取組予定'}データはこのビューでは未取得です。`,
-    });
-  }
+  const torikumi = loadTorikumi(publicDir, monthKey);
   const heading = `${torikumi.year} ${torikumi.bashoName}`;
   const days = mode === 'result' ? torikumi.resultDays : torikumi.scheduleDays;
   const updatedAt = mode === 'result' ? torikumi.resultUpdatedAt : torikumi.scheduleUpdatedAt;
@@ -173,6 +145,44 @@ function renderTorikumiMarkdown(
         : '### 日別 取組予定\n\n' + (dayLines || '_データなし_'),
     ].filter(Boolean).join('\n'),
   });
+}
+
+function markdownCell(value: string): string {
+  return value.replace(/\|/g, '&#124;').replace(/[\r\n]+/g, ' ');
+}
+
+function renderDayMarkdown(document: TorikumiDocument, day: TorikumiArchiveDay, mode: 'result' | 'schedule'): string {
+  const suffix = mode === 'result' ? 'torikumi' : 'yotei';
+  const title = `${document.year} ${document.bashoName} ${day.label} ${mode === 'result' ? '取組結果' : '取組予定'} | o-sumo`;
+  const updatedAt = mode === 'result' ? document.resultUpdatedAt : document.scheduleUpdatedAt;
+  const body = [
+    `日付: ${day.isoDate}`, `更新: \`${updatedAt}\``, `掲載状況: ${day.status}`,
+    `[場所の一覧](${SITE}/${day.pathDate.slice(0, 6)}-${suffix}/)`,
+  ];
+  if (day.status === 'pending') {
+    body.push(day.statusMessage || '公式発表・更新待ちです。未掲載を休場や取組なしと解釈しないでください。');
+  } else {
+    for (const [key, label] of [['makuuchi', '幕内'], ['juryo', '十両']] as const) {
+      const division = day.data[key];
+      body.push(`## ${label}`);
+      const matches = division?.matches ?? [];
+      if (!matches.length) {
+        body.push('掲載されている取組はありません。');
+        continue;
+      }
+      const header = mode === 'result' ? '| 東 | 西 | 勝者 | 決まり手 |' : '| 東 | 西 |';
+      const separator = mode === 'result' ? '| --- | --- | --- | --- |' : '| --- | --- |';
+      const rows = matches.map((match) => {
+        const pair = `| ${markdownCell(match.eastName)} | ${markdownCell(match.westName)} |`;
+        if (mode === 'schedule') return pair;
+        const winner = match.winner === 'east' ? match.eastName : match.winner === 'west' ? match.westName : '未確定';
+        return `${pair} ${markdownCell(winner)} | ${markdownCell(match.kimarite || '未定')} |`;
+      });
+      body.push([header, separator, ...rows].join('\n'));
+      if (division.absentees?.length) body.push(`休場: ${division.absentees.map((entry) => entry.name).join('、')}`);
+    }
+  }
+  return renderMarkdownPage({ title, canonical: `${SITE}/${day.pathDate}-${suffix}/`, body: body.join('\n\n') });
 }
 
 function renderRikishiMarkdown(publicDir: string): string {
@@ -284,23 +294,21 @@ function renderAnalyticsMarkdown(): string {
   });
 }
 
-function renderArchivesMarkdown(): string {
+function renderArchivesMarkdown(publicDir: string): string {
+  const current = currentMonthKey(readJson<TorikumiDocument>(publicDir, 'api/v1/torikumi.json'));
   return renderMarkdownPage({
     title: '大相撲の場所別アーカイブ | o-sumo',
     description: '大相撲の過去の場所ごとの番付、取組結果、取組予定を閲覧できます。',
     canonical: `${SITE}/archives/`,
     body: [
-      'サポートされている月: 2026年3月場所 / 5月場所 / 7月場所 / 9月場所',
-      '',
-      '- [2026年9月場所（現在）](https://osada.us/202609-torikumi/)',
-      '- [2026年7月場所](https://osada.us/202607-torikumi/)',
-      '- [2026年5月場所](https://osada.us/202605-torikumi/)',
-      '- [2026年3月場所](https://osada.us/202603-torikumi/)',
+      ...getAllArchiveRouteConfigs().reverse().map(({ monthKey }) =>
+        `- [${monthKey} 場所${monthKey === current ? '（現在）' : ''}](${SITE}/${monthKey}-torikumi/)`),
     ].join('\n'),
   });
 }
 
-function renderHomeMarkdown(): string {
+function renderHomeMarkdown(publicDir: string): string {
+  const current = currentMonthKey(readJson<TorikumiDocument>(publicDir, 'api/v1/torikumi.json'));
   return renderMarkdownPage({
     title: 'o-sumo | 大相撲 番付・星取表',
     description: '大相撲の番付・星取表・取組スケジュール・場所結果を網羅したアーカイブ。',
@@ -310,9 +318,9 @@ function renderHomeMarkdown(): string {
       '',
       '### 主要ページ',
       '',
-      '- [番付（直近の場所）](https://osada.us/202609-banzuke/)',
-      '- [取組予定](https://osada.us/202609-yotei/)',
-      '- [取組結果](https://osada.us/202609-torikumi/)',
+      `- [番付（直近の場所）](https://osada.us/${current}-banzuke/)`,
+      `- [取組予定](https://osada.us/${current}-yotei/)`,
+      `- [取組結果](https://osada.us/${current}-torikumi/)`,
       '- [力士一覧](https://osada.us/rikishi/)',
       '- [決まり手](https://osada.us/kimarite/)',
       '- [分析](https://osada.us/analytics/)',
@@ -371,16 +379,16 @@ interface MarkdownRoute {
   content: string;
 }
 
-export function buildMarkdownPages(publicDir: string, outRoot: string): MarkdownRoute[] {
+export function buildMarkdownPages(publicDir: string, _outRoot: string): MarkdownRoute[] {
   const routes: MarkdownRoute[] = [];
 
   routes.push({
     outDir: '',
-    content: renderHomeMarkdown(),
+    content: renderHomeMarkdown(publicDir),
   });
   routes.push({
     outDir: 'archives/',
-    content: renderArchivesMarkdown(),
+    content: renderArchivesMarkdown(publicDir),
   });
   routes.push({
     outDir: 'rikishi/',
@@ -400,7 +408,7 @@ export function buildMarkdownPages(publicDir: string, outRoot: string): Markdown
   });
 
   // Iterate over the supported basho set.
-  for (const monthKey of ['202603', '202605', '202607', '202609']) {
+  for (const { monthKey } of getAllArchiveRouteConfigs()) {
     routes.push({
       outDir: `${monthKey}-banzuke/`,
       content: renderBanzukeMarkdown(publicDir, monthKey, monthKey),
@@ -413,6 +421,23 @@ export function buildMarkdownPages(publicDir: string, outRoot: string): Markdown
       outDir: `${monthKey}-yotei/`,
       content: renderTorikumiMarkdown(publicDir, monthKey, monthKey, 'schedule'),
     });
+  }
+
+  // Generate only dates present in each published dataset, including pending days.
+  for (const { monthKey } of getAllArchiveRouteConfigs()) {
+    const document = loadTorikumi(publicDir, monthKey);
+    for (const mode of ['result', 'schedule'] as const) {
+      const days = mode === 'result' ? document.resultDays : document.scheduleDays;
+      for (const day of days ?? []) {
+        if (!/^\d{8}$/.test(day.pathDate) || !day.pathDate.startsWith(monthKey)) {
+          throw new Error(`Invalid day pathDate: ${day.pathDate} for ${monthKey}`);
+        }
+        routes.push({
+          outDir: `${day.pathDate}-${mode === 'result' ? 'torikumi' : 'yotei'}/`,
+          content: renderDayMarkdown(document, day, mode),
+        });
+      }
+    }
   }
 
   return routes;
@@ -431,7 +456,7 @@ export const MARKDOWN_ROUTES: ReadonlyArray<string> = [
   'kimarite/',
   'analytics/',
   'about/',
-  ...['202603', '202605', '202607', '202609'].flatMap((monthKey) => [
+  ...getAllArchiveRouteConfigs().flatMap(({ monthKey }) => [
     `${monthKey}-banzuke/`,
     `${monthKey}-torikumi/`,
     `${monthKey}-yotei/`,
@@ -475,7 +500,3 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     console.log(`wrote ${path.replace(outRoot, 'dist')}`);
   }
 }
-
-// Suppress unused-import warnings for the readdirSync helper; kept for future
-// expansion when we may scan additional dynamic content.
-void readdirSync;

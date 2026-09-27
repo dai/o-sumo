@@ -78,6 +78,32 @@ Skill publishing:
 - `public/.well-known/agent-skills/osumo-discovery/SKILL.md`
 - `skills/osumo-api/SKILL.md`
 
+## Access for AI agents
+
+The public JSON APIs and two published skills require no registration, account, or API key.
+Search and query-time grounding are permitted; model training is not (`search=yes, ai-input=yes, ai-train=no`).
+
+| Goal | Entry point |
+| --- | --- |
+| Discover APIs | [API catalog](https://osada.us/.well-known/api-catalog) |
+| Learn data access and page URL resolution | [Skills index](https://osada.us/.well-known/agent-skills/index.json) |
+| Check authentication | [auth.md](https://osada.us/auth.md) |
+| Check coverage and operations | [Agent guide](docs/agent-ready.md) |
+
+`torikumi.json.bashoId` is an upstream numeric ID, not YYYYMM. Derive the month from `pathDate`,
+and read the separate schedule/result statuses and timestamps. Home, main indexes, monthly pages,
+and daily schedule/result pages present in the published datasets support `Accept: text/markdown`.
+Unsupported routes, including individual profile pages, fall back to HTML.
+
+```bash
+curl -fsS https://osada.us/.well-known/agent-skills/index.json
+curl -fsS https://osada.us/api/v1/torikumi.json
+curl -i -H 'Accept: text/markdown' https://osada.us/20260926-yotei/
+```
+
+There is no remote MCP server. The MCP card provides alternative entry points; the A2A card
+is discovery-only and task operations are not implemented. Browser-side WebMCP is a separate surface.
+
 ## Key Features
 
 - Direct navigation from the homepage to `Banzuke / Schedule / Results / Rikishi Directory / Gyoji Directory / Yobidashi Directory / My Rikishi / Compare Rikishi / Basho Analytics`
