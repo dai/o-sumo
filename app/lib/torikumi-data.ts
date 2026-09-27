@@ -62,9 +62,9 @@ export const torikumiData: TorikumiDataSet = {
   "bashoId": 637,
   "bashoName": "九月場所",
   "year": "令和八年",
-  "updatedAt": "2026-09-27T15:27:04+09:00",
+  "updatedAt": "2026-09-27T15:27:33+09:00",
   "resultUpdatedAt": "2026-09-27T15:27:04+09:00",
-  "scheduleUpdatedAt": "2026-09-26T19:14:26+09:00",
+  "scheduleUpdatedAt": "2026-09-27T15:27:33+09:00",
   "today": {
     "makuuchi": {
       "day": 15,
@@ -1242,6 +1242,40 @@ export const torikumiData: TorikumiDataSet = {
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/",
           "kimarite": "未定",
           "winner": null
+        },
+        {
+          "division": "十両",
+          "boutNo": 15,
+          "eastName": "きたのわか",
+          "eastYomi": "",
+          "eastEnglish": "",
+          "eastRank": "十両六枚目",
+          "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/",
+          "westName": "かがやき",
+          "westYomi": "",
+          "westEnglish": "",
+          "westRank": "十両十一枚目",
+          "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/",
+          "kimarite": "未定",
+          "winner": null,
+          "isPlayoff": true
+        },
+        {
+          "division": "十両",
+          "boutNo": 16,
+          "eastName": "きたのわか",
+          "eastYomi": "",
+          "eastEnglish": "",
+          "eastRank": "十両六枚目",
+          "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/",
+          "westName": "かよう",
+          "westYomi": "",
+          "westEnglish": "",
+          "westRank": "十両十二枚目",
+          "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/",
+          "kimarite": "未定",
+          "winner": null,
+          "isPlayoff": true
         }
       ],
       "absentees": []
@@ -18918,6 +18952,40 @@ export const torikumiData: TorikumiDataSet = {
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/",
               "kimarite": "未定",
               "winner": null
+            },
+            {
+              "division": "十両",
+              "boutNo": 15,
+              "eastName": "きたのわか",
+              "eastYomi": "",
+              "eastEnglish": "",
+              "eastRank": "十両六枚目",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/",
+              "westName": "かがやき",
+              "westYomi": "",
+              "westEnglish": "",
+              "westRank": "十両十一枚目",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/",
+              "kimarite": "未定",
+              "winner": null,
+              "isPlayoff": true
+            },
+            {
+              "division": "十両",
+              "boutNo": 16,
+              "eastName": "きたのわか",
+              "eastYomi": "",
+              "eastEnglish": "",
+              "eastRank": "十両六枚目",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/",
+              "westName": "かよう",
+              "westYomi": "",
+              "westEnglish": "",
+              "westRank": "十両十二枚目",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/",
+              "kimarite": "未定",
+              "winner": null,
+              "isPlayoff": true
             }
           ],
           "absentees": []
