@@ -124,9 +124,6 @@ export default function AnalyticsDashboardPage() {
   const bashoResults = getBashoResults(torikumiMonthKey);
   const isAnnounced = bashoResults?.status === 'announced' && (bashoResults.winners.length ?? 0) > 0;
 
-  const makuuchiTopLeader = topRikishiByWins(allMakuuchiRikishi())[0];
-  const juryoTopLeader = topRikishiByWins(allJuryoRikishi())[0];
-
   const divisionLabel = t(`analytics.divisions.${activeDivision}`);
 
   const metricNote = (metric: DashboardMetric): string => {
@@ -180,17 +177,24 @@ export default function AnalyticsDashboardPage() {
               <p>{isAnnounced ? t('analytics.results.description') : (bashoResults?.announcementNote || t('analytics.results.pendingDescription'))}</p>
             </div>
 
-            {isAnnounced ? (
-              <table className="analytics-results-table">
-                <thead>
-                  <tr>
-                    <th scope="col">{t('analytics.results.tableHeading')}</th>
-                    <th scope="col">{t('analytics.results.tableRikishi')}</th>
-                    <th scope="col">{t('analytics.results.tableRecord')}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {bashoResults.winners.map((row) => (
+            {!isAnnounced && (
+              <div className="analytics-pending-badge" style={{ marginBottom: '1rem' }}>
+                <span className="pulse-dot" aria-hidden="true" />
+                {t('analytics.results.pendingTitle')}
+              </div>
+            )}
+
+            <table className="analytics-results-table">
+              <thead>
+                <tr>
+                  <th scope="col">{t('analytics.results.tableHeading')}</th>
+                  <th scope="col">{t('analytics.results.tableRikishi')}</th>
+                  <th scope="col">{t('analytics.results.tableRecord')}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {isAnnounced ? (
+                  bashoResults.winners.map((row) => (
                     <tr key={row.id}>
                       <th scope="row">{t(`analytics.results.category.${row.category}`)}</th>
                       <td className="analytics-results-rikishi-cell">
@@ -199,36 +203,18 @@ export default function AnalyticsDashboardPage() {
                       </td>
                       <td>{row.record}</td>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            ) : (
-              <div className="analytics-pending-box">
-                <div className="analytics-pending-badge">
-                  <span className="pulse-dot" aria-hidden="true" />
-                  {t('analytics.results.pendingTitle')}
-                </div>
-                <p className="analytics-pending-text">
-                  {t('analytics.results.pendingDescription')}
-                </p>
-                <div className="analytics-pending-preview">
-                  <div className="analytics-pending-leader-item">
-                    <span className="analytics-pending-leader-division">{t('analytics.divisions.makuuchi')}</span>
-                    <span className="analytics-pending-leader-name">{makuuchiTopLeader?.name ?? '—'}</span>
-                    <span className="analytics-pending-leader-score">
-                      {makuuchiTopLeader ? `${makuuchiTopLeader.wins}勝${makuuchiTopLeader.losses}敗` : ''}
-                    </span>
-                  </div>
-                  <div className="analytics-pending-leader-item">
-                    <span className="analytics-pending-leader-division">{t('analytics.divisions.juryo')}</span>
-                    <span className="analytics-pending-leader-name">{juryoTopLeader?.name ?? '—'}</span>
-                    <span className="analytics-pending-leader-score">
-                      {juryoTopLeader ? `${juryoTopLeader.wins}勝${juryoTopLeader.losses}敗` : ''}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            )}
+                  ))
+                ) : (
+                  (['makuuchiYusho', 'shukun', 'kanto', 'gino', 'juryoYusho'] as const).map((category) => (
+                    <tr key={category}>
+                      <th scope="row">{t(`analytics.results.category.${category}`)}</th>
+                      <td className="analytics-results-rikishi-cell">—</td>
+                      <td>—</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
           </section>
         )}
 

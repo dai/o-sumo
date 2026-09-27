@@ -45,7 +45,7 @@ describe('AnalyticsDashboardPage', () => {
     expect(within(breadcrumb).getByText('大相撲アナリティクス')).toBeInTheDocument();
   });
 
-  it('renders the pending announcement box when basho results are pending on final day', () => {
+  it('renders the pending announcement box and blank table when basho results are pending on final day', () => {
     render(
       <MemoryRouter>
         <AnalyticsDashboardPage />
@@ -54,7 +54,12 @@ describe('AnalyticsDashboardPage', () => {
 
     expect(screen.getByRole('heading', { level: 2, name: /九月場所 結果/ })).toBeInTheDocument();
     expect(screen.getByText('千秋楽 表彰発表待ち')).toBeInTheDocument();
-    expect(screen.getByText(/令和八年九月場所の幕内最高優勝・十両優勝および三賞は/)).toBeInTheDocument();
+    expect(screen.getByText('本日千秋楽の全取組終了後、表彰決定次第掲載します。')).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '幕内最高優勝 — —' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '殊勲賞 — —' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '敢闘賞 — —' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '技能賞 — —' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '十両優勝 — —' })).toBeInTheDocument();
   });
 
   it('renders the finalized champions and special prizes when results are announced', () => {
