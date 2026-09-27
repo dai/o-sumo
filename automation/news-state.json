@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-27T06:33:59.387025+00:00",
+    "updatedAt": "2026-09-27T08:26:33.608293+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-hochi-20260927-OHT1T51168",
-        "title": "西十両１４枚目・錦木が勝って６勝９敗で終える　関取残留微妙な情勢も「幕下落ちても部屋の仕事やる。藤ノ川の付け人もやる」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260927-OHT1T51168",
+        "id": "dmenu-docomo-mainichi-20260925k0000m050098000c",
+        "title": "大の里が6場所ぶり6回目V　安青錦との相星決戦制す　秋場所",
+        "url": "https://topics.smt.docomo.ne.jp/article/mainichi/sports/mainichi-20260925k0000m050098000c",
         "publishedAt": "2026-09-27",
-        "publishedAtRaw": "スポーツ報知　9月27日 14時45分",
+        "publishedAtRaw": "毎日新聞　9月27日 17時21分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260927-OHT1T51171",
-        "title": "“イケメン力士”幕下・大森が白星締めで５勝２敗「絶対に勝ちたいと思った」　初の九州場所は趣味も満喫予定「釣りしたい」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260927-OHT1T51171",
+        "id": "dmenu-docomo-f-bt-tp1-260927-202609270000508",
+        "title": "大の里「相星決戦」制し“最長ブランク”１年ぶりV…左肩痛から復活　安青錦破り３年連続秋制覇",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260927-202609270000508",
         "publishedAt": "2026-09-27",
-        "publishedAtRaw": "スポーツ報知　9月27日 14時43分",
+        "publishedAtRaw": "日刊スポーツ　9月27日 17時21分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260927-202609270000560",
-        "title": "“イケメン”大森白星締め「最後絶対に勝ちたいと」３場所連続５勝も…２敗には課題を３つ挙げる",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260927-202609270000560",
+        "id": "dmenu-docomo-hochi-20260927-OHT1T51142",
+        "title": "大の里が貫禄の秋場所３連覇　安青錦との相星決戦を制す　苦闘乗り越え１年ぶりの賜杯　一人横綱の重責果たす",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260927-OHT1T51142",
         "publishedAt": "2026-09-27",
-        "publishedAtRaw": "日刊スポーツ　9月27日 14時12分",
+        "publishedAtRaw": "スポーツ報知　9月27日 17時21分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260927-202609270000504",
-        "title": "来場所の最重量力士は222.7キロの柏王丸か「特に自覚はなかったです」",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260927-202609270000504",
+        "id": "dmenu-docomo-sponichi-spngoo-20260927-0306",
+        "title": "藤ノ川　熱海富士を破り新関脇で11勝、収穫の秋…3大関撃破で敢闘賞を受賞",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260927-0306",
         "publishedAt": "2026-09-27",
-        "publishedAtRaw": "日刊スポーツ　9月27日 13時50分",
+        "publishedAtRaw": "スポニチアネックス　9月27日 17時10分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260927-OHT1T51143",
-        "title": "【千秋楽の見所】横綱・大の里と大関・安青錦の相星決戦　結末はいかに",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260927-OHT1T51143",
+        "id": "dmenu-docomo-dailyshincho-1502538",
+        "title": "横綱はケガを負っても「休まず土俵に立つべき」なのか…歴代横綱の“休場日数”を調べて分かった意外な真実　本場所での“休場ゼロ”ながら27歳で亡くなった横綱も",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailyshincho/sports/dailyshincho-1502538",
         "publishedAt": "2026-09-27",
-        "publishedAtRaw": "スポーツ報知　9月27日 13時44分",
+        "publishedAtRaw": "デイリー新潮　9月27日 17時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-27T06:33:59.396364+00:00",
-  "lastSuccessAt": "2026-09-27T06:33:59.387025+00:00",
+  "lastAttemptAt": "2026-09-27T08:26:33.616799+00:00",
+  "lastSuccessAt": "2026-09-27T08:26:33.608293+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -371,9 +371,13 @@
     "36300461769": {
       "attemptedAt": "2026-09-27T06:33:59.396364+00:00",
       "outcome": "success"
+    },
+    "36306197556": {
+      "attemptedAt": "2026-09-27T08:26:33.616799+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36300461769",
+  "lastRunId": "36306197556",
   "lastPublishedDate": "2026-09-26",
   "lastPublishedSha": "ac0e53f0ac17d1a28f247707cb4bc3456798f2c1",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
