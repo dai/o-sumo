@@ -34,6 +34,28 @@ describe('PrimaryNavigation', () => {
     expect(within(navigation).getByRole('link', { name: '結果' })).toHaveAttribute('href', '/202603-torikumi/');
   });
 
+  it.each([
+    ['/20260927-torikumi/', '結果', '/202609-torikumi/'],
+    ['/20260927-yotei/', '取組予定', '/202609-yotei/'],
+    ['/20260308-torikumi/', '結果', '/202603-torikumi/'],
+    ['/20260308-yotei/', '取組予定', '/202603-yotei/'],
+  ])('marks the section containing the archive day %s as current', (pathname, label, href) => {
+    renderNavigation(pathname);
+
+    const link = screen.getByRole('link', { name: label });
+    expect(link).toHaveAttribute('href', href);
+    expect(link).toHaveAttribute('aria-current', 'page');
+  });
+
+  it.each(['/20260999-torikumi/', '/20990927-torikumi/', '/20260927-torikumi-extra/'])(
+    'does not mark an unknown archive day %s as current',
+    (pathname) => {
+      renderNavigation(pathname);
+
+      expect(screen.getByRole('link', { name: '結果' })).not.toHaveAttribute('aria-current');
+    },
+  );
+
   it('starts the people directory tray collapsed and names its current page', () => {
     renderNavigation('/rikishi/');
 

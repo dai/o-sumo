@@ -10,6 +10,7 @@ import { torikumiArchive, torikumiMonthKey, type TorikumiArchiveDay } from '../l
 import { extractRikishiIdFromProfileUrl } from '../lib/rikishi-profile';
 import { divisionAnchorId } from '../lib/rikishi-display';
 import { getDayPath } from '../lib/torikumi-routes';
+import { getBashoStatus } from '../lib/basho-status';
 
 import { toRomaji } from '../lib/romaji';
 import './page.css';
@@ -109,9 +110,9 @@ export default function MyRikishiPage() {
   }, []);
 
   const latestScheduleDay = React.useMemo(() => {
-    if (!latestResultDay) return torikumiArchive.scheduleDays?.[0];
-    return torikumiArchive.scheduleDays?.find((d) => d.day === (latestResultDay.day + 1))
-      ?? torikumiArchive.scheduleDays?.filter((d) => d.data.makuuchi.matches.length > 0).slice(-1)[0];
+    if (getBashoStatus(torikumiArchive).kind === 'final') return undefined;
+    if (!latestResultDay || latestResultDay.status !== 'published') return torikumiArchive.scheduleDays?.[0];
+    return torikumiArchive.scheduleDays?.find((d) => d.day === (latestResultDay.day + 1));
   }, [latestResultDay]);
 
   React.useEffect(() => {

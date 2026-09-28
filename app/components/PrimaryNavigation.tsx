@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { getArchiveRouteConfigForPathname } from '../lib/torikumi-routes';
+import { findArchiveDay, getArchiveRouteConfigForPathname, parseTopLevelSlug } from '../lib/torikumi-routes';
 import { useMyRikishi } from '../lib/my-rikishi';
 
 type PrimaryNavigationProps = {
@@ -34,6 +34,10 @@ export default function PrimaryNavigation({ placement = 'header' }: PrimaryNavig
   const { t } = useTranslation('common');
   const { ids: myRikishiIds } = useMyRikishi();
   const archive = getArchiveRouteConfigForPathname(location.pathname);
+  const parsedDay = parseTopLevelSlug(location.pathname.slice(1));
+  const activeBashoPath = parsedDay?.dateKey.length === 8 && findArchiveDay(parsedDay.dateKey, parsedDay.mode)
+    ? parsedDay.mode === 'result' ? archive.resultPath : archive.schedulePath
+    : location.pathname;
   const directoryActive = isDirectoryRoute(location.pathname);
   const [directoryOpen, setDirectoryOpen] = useState(false);
   const directoryTrayRef = useRef<HTMLDivElement>(null);
@@ -83,7 +87,7 @@ export default function PrimaryNavigation({ placement = 'header' }: PrimaryNavig
     <div className={`primary-navigation-shell primary-navigation-shell--${placement}`}>
       <nav className={`primary-navigation primary-navigation--${placement}`} aria-label={t('global.primaryNavigation')}>
         {links.map((link) => {
-          const active = link.to === '/rikishi/' ? directoryActive : isActive(location.pathname, link.to);
+          const active = link.to === '/rikishi/' ? directoryActive : isActive(activeBashoPath, link.to);
           return (
             <Link
               key={link.to}

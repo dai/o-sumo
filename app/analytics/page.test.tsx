@@ -30,7 +30,7 @@ describe('AnalyticsDashboardPage', () => {
 
     expect(screen.getByRole('heading', { level: 1, name: '大相撲アナリティクス' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '取組結果を見る' })).toHaveAttribute('href', '/202609-torikumi/');
-    expect(screen.getByRole('link', { name: '取組予定を見る' })).toHaveAttribute('href', '/202609-yotei/');
+    expect(screen.getByRole('link', { name: '過去の予定を見る' })).toHaveAttribute('href', '/202609-yotei/');
   });
 
   it('exposes a breadcrumb on the analytics page back to home', () => {
