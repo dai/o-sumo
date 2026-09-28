@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-28T06:49:35.224914+00:00",
+    "updatedAt": "2026-09-28T08:36:34.889607+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,6 +18,33 @@
     ],
     "items": [
       {
+        "id": "dmenu-docomo-sanspo-_sports_sumo_6R4SK7T6PRNZBHTMORFA7GN5UU",
+        "title": "大の里「全勝してこそ強い横綱。そこに向けて…」　優勝一夜明けで抱負／秋場所",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_6R4SK7T6PRNZBHTMORFA7GN5UU",
+        "publishedAt": "2026-09-28",
+        "publishedAtRaw": "SANSPO　9月28日 17時17分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-sanspo-_sports_sumo_GSJ4CWA33VHA3C7LC63LOFHGWM",
+        "title": "白鵬氏「もうルートはないですね。今、相撲部屋は…」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_GSJ4CWA33VHA3C7LC63LOFHGWM",
+        "publishedAt": "2026-09-28",
+        "publishedAtRaw": "SANSPO　9月28日 16時30分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-chuspo-1317649",
+        "title": "252キロある角界一の巨体…元幕下出羽ノ城が断髪式「プロレスラーの潮崎豪さんのような髪形にしたい」",
+        "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1317649",
+        "publishedAt": "2026-09-28",
+        "publishedAtRaw": "中日スポーツ　9月28日 16時02分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
         "id": "dmenu-docomo-sanspo-_sports_sumo_5HFLJ2ZIE5DWXKHZGDV7TV4DGA",
         "title": "白鵬氏「日本相撲協会のルールで…」",
         "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_5HFLJ2ZIE5DWXKHZGDV7TV4DGA",
@@ -32,33 +59,6 @@
         "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_7I24PBLYNBL5BBPFQEJMYHDDJ4",
         "publishedAt": "2026-09-28",
         "publishedAtRaw": "産経ニュース　9月28日 15時01分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-nikkangendai-1250665",
-        "title": "大号泣復活Vの横綱大の里も…6場所連続で優勝力士が「12勝」の謎解き",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1250665",
-        "publishedAt": "2026-09-28",
-        "publishedAtRaw": "日刊ゲンダイDIGITAL　9月28日 14時06分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-tokyosports-404733",
-        "title": "【大相撲】横綱大の里　悲願の全勝優勝へ意欲十分「優勝額に『優勝』と『全勝』の違いもある」",
-        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-404733",
-        "publishedAt": "2026-09-28",
-        "publishedAtRaw": "東スポWEB　9月28日 12時38分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-tvasahinews-000536313",
-        "title": "九月場所優勝　横綱・大の里　一夜明け会見",
-        "url": "https://topics.smt.docomo.ne.jp/article/tvasahinews/sports/tvasahinews-000536313",
-        "publishedAt": "2026-09-28",
-        "publishedAtRaw": "テレ朝NEWS　9月28日 12時18分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-28T06:49:35.234115+00:00",
-  "lastSuccessAt": "2026-09-28T06:49:35.224914+00:00",
+  "lastAttemptAt": "2026-09-28T08:36:34.899880+00:00",
+  "lastSuccessAt": "2026-09-28T08:36:34.889607+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -395,9 +395,13 @@
     "36388372853": {
       "attemptedAt": "2026-09-28T06:49:35.234115+00:00",
       "outcome": "success"
+    },
+    "36398353849": {
+      "attemptedAt": "2026-09-28T08:36:34.899880+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36388372853",
+  "lastRunId": "36398353849",
   "lastPublishedDate": "2026-09-27",
   "lastPublishedSha": "7d3da785d36b3e01a684cb489f2e45ea8944e023",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
