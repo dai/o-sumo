@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-27T10:20:12.408904+00:00",
+    "updatedAt": "2026-09-28T01:02:02.201780+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-f-bt-tp1-260927-202609270001424",
-        "title": "九州場所で安青錦は綱とり、熱海富士は大関とりになるのか？　浅香山審判部長の見解は…",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260927-202609270001424",
-        "publishedAt": "2026-09-27",
-        "publishedAtRaw": "日刊スポーツ　9月27日 19時06分",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_HV5WN7RT35FPROKCXL3V4JG7OA",
+        "title": "花田虎上氏「『鼻開いて興奮してよかったね』ってよく言われるんだけど」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_HV5WN7RT35FPROKCXL3V4JG7OA",
+        "publishedAt": "2026-09-28",
+        "publishedAtRaw": "SANSPO　9月28日 8時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_NN2QINT5T5F65FCVT2FSPWTEHM",
-        "title": "琴風氏「いろんな試練が次から次へと襲ってきますよ。ただそれを…」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_NN2QINT5T5F65FCVT2FSPWTEHM",
-        "publishedAt": "2026-09-27",
-        "publishedAtRaw": "SANSPO　9月27日 19時04分",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_IZMUDQYAJBHLJPO6W7PH6CJFIA",
+        "title": "琴風氏「あれ以上の相撲はないですよ。考えられないですよね」／秋場所",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_IZMUDQYAJBHLJPO6W7PH6CJFIA",
+        "publishedAt": "2026-09-28",
+        "publishedAtRaw": "SANSPO　9月28日 8時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-tokyosports-404625",
-        "title": "【大相撲】横綱大の里が１年ぶりの復活Ｖ！　表彰式の君が代では〝号泣〟「また優勝できるのかなと…」",
-        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-404625",
-        "publishedAt": "2026-09-27",
-        "publishedAtRaw": "東スポWEB　9月27日 19時02分",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_YY3OJWCV25HYBCTXWI6UJWP754",
+        "title": "松山千春「先ほど八角、鈴木宗男さんからも連絡がありまして…」／秋場所",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_YY3OJWCV25HYBCTXWI6UJWP754",
+        "publishedAt": "2026-09-28",
+        "publishedAtRaw": "SANSPO　9月28日 8時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sponichi-spngoo-20260927-0359",
-        "title": "安青錦　千秋楽相星決戦で敗れ11勝　審判部は九州場所での綱獲りに否定的",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260927-0359",
-        "publishedAt": "2026-09-27",
-        "publishedAtRaw": "スポニチアネックス　9月27日 19時01分",
+        "id": "dmenu-docomo-20260928047",
+        "title": "６場所ぶりＶ涙の大の里は「新しいルーティンをつくったんだな」　故郷・糸魚川の願い−羽を休める場所に",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260928047",
+        "publishedAt": "2026-09-28",
+        "publishedAtRaw": "デイリースポーツ　9月28日 7時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260927-202609270001416",
-        "title": "大の里復活Vに師匠の二所ノ関親方もこらえ切れず笑顔「今日ぐらいは褒めてもいいのかな」",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260927-202609270001416",
-        "publishedAt": "2026-09-27",
-        "publishedAtRaw": "日刊スポーツ　9月27日 19時00分",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_364WQ6KDY5GPLPLRSFK3OOHM34",
+        "title": "松山千春「他の横綱、大関は何をやってるんでしょうって言いたくなる」／秋場所",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_364WQ6KDY5GPLPLRSFK3OOHM34",
+        "publishedAt": "2026-09-28",
+        "publishedAtRaw": "SANSPO　9月28日 7時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-27T10:20:12.416939+00:00",
-  "lastSuccessAt": "2026-09-27T10:20:12.408904+00:00",
+  "lastAttemptAt": "2026-09-28T01:02:02.210119+00:00",
+  "lastSuccessAt": "2026-09-28T01:02:02.201780+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -379,9 +379,13 @@
     "36312189217": {
       "attemptedAt": "2026-09-27T10:20:12.416939+00:00",
       "outcome": "success"
+    },
+    "36364392905": {
+      "attemptedAt": "2026-09-28T01:02:02.210119+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36312189217",
+  "lastRunId": "36364392905",
   "lastPublishedDate": "2026-09-27",
   "lastPublishedSha": "7d3da785d36b3e01a684cb489f2e45ea8944e023",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
