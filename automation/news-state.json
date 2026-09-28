@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-28T04:28:27.880638+00:00",
+    "updatedAt": "2026-09-28T06:49:35.224914+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,6 +18,33 @@
     ],
     "items": [
       {
+        "id": "dmenu-docomo-sanspo-_sports_sumo_5HFLJ2ZIE5DWXKHZGDV7TV4DGA",
+        "title": "白鵬氏「日本相撲協会のルールで…」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_5HFLJ2ZIE5DWXKHZGDV7TV4DGA",
+        "publishedAt": "2026-09-28",
+        "publishedAtRaw": "SANSPO　9月28日 15時41分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-sankei-_sports_sumo_7I24PBLYNBL5BBPFQEJMYHDDJ4",
+        "title": "大の里、優勝までの1年間は「アスリートとして学べた時間」　一夜明け会見",
+        "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_7I24PBLYNBL5BBPFQEJMYHDDJ4",
+        "publishedAt": "2026-09-28",
+        "publishedAtRaw": "産経ニュース　9月28日 15時01分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-nikkangendai-1250665",
+        "title": "大号泣復活Vの横綱大の里も…6場所連続で優勝力士が「12勝」の謎解き",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1250665",
+        "publishedAt": "2026-09-28",
+        "publishedAtRaw": "日刊ゲンダイDIGITAL　9月28日 14時06分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
         "id": "dmenu-docomo-tokyosports-404733",
         "title": "【大相撲】横綱大の里　悲願の全勝優勝へ意欲十分「優勝額に『優勝』と『全勝』の違いもある」",
         "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-404733",
@@ -27,38 +54,11 @@
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-tokyosports-404728",
-        "title": "【大相撲】横綱大の里　１年ぶり〝復活Ｖ〟の裏に重圧との戦い「夜も寝れないことが多かった」",
-        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-404728",
+        "id": "dmenu-docomo-tvasahinews-000536313",
+        "title": "九月場所優勝　横綱・大の里　一夜明け会見",
+        "url": "https://topics.smt.docomo.ne.jp/article/tvasahinews/sports/tvasahinews-000536313",
         "publishedAt": "2026-09-28",
-        "publishedAtRaw": "東スポWEB　9月28日 12時15分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_4MQBSGSQVRBN5FKGOMD24TFVBU",
-        "title": "舞の海氏「もっと大暴れして存在感を発揮してほしいです。そうすると…」／秋場所",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_4MQBSGSQVRBN5FKGOMD24TFVBU",
-        "publishedAt": "2026-09-28",
-        "publishedAtRaw": "SANSPO　9月28日 12時09分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_7XH7NWAFERDAPG3UAACL4YKIG4",
-        "title": "舞の海氏「完全に治るころには横綱になってるんじゃないんですかね」／秋場所",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_7XH7NWAFERDAPG3UAACL4YKIG4",
-        "publishedAt": "2026-09-28",
-        "publishedAtRaw": "SANSPO　9月28日 12時03分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-jiji-2026092800383",
-        "title": "大の里に達成感＝Ｖから一夜明け―大相撲",
-        "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026092800383",
-        "publishedAt": "2026-09-28",
-        "publishedAtRaw": "時事通信　9月28日 11時42分",
+        "publishedAtRaw": "テレ朝NEWS　9月28日 12時18分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-28T04:28:27.890231+00:00",
-  "lastSuccessAt": "2026-09-28T04:28:27.880638+00:00",
+  "lastAttemptAt": "2026-09-28T06:49:35.234115+00:00",
+  "lastSuccessAt": "2026-09-28T06:49:35.224914+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -391,9 +391,13 @@
     "36377844442": {
       "attemptedAt": "2026-09-28T04:28:27.890231+00:00",
       "outcome": "success"
+    },
+    "36388372853": {
+      "attemptedAt": "2026-09-28T06:49:35.234115+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36377844442",
+  "lastRunId": "36388372853",
   "lastPublishedDate": "2026-09-27",
   "lastPublishedSha": "7d3da785d36b3e01a684cb489f2e45ea8944e023",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
