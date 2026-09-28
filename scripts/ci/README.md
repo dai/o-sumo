@@ -34,10 +34,32 @@ bash scripts/ci/notify_discord.sh failure "Workflow failed" "Run URL: ..."
 
 ワークフローからは `if: failure()` で呼び出す。未設定でも wf は落ちない。
 
-## 九月場所 workflow 運用
+## オフシーズン運用および十一月場所（11月場所）再開手順
 
-- Daily は JST 13/15/17/19時に予定を生成し、PR と auto-merge request を作る。Realtime は JST 13:00-18:50 の10分間隔で結果を検証し `main` へ直接 push する。共通 concurrency は pending run を置換し得るが、反映 SLA や未 merge PR との排他は提供しない。
-- `workflow_summary.py` は生成直後の day/date、部門件数、timestamp を表示する snapshot であり、merge/deploy 証明ではない。失敗時 stderr は旧 JSON の生成成功として表示しない。
-- `push_realtime_update.sh` は最大3回の非 force push。通常 rebase の競合は abort して remote を保持し、新規手動実行を要求する。非競合 rebase 後は payload を再検証する。
-- 9月12日公式公開後は `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main` を実行し、run、PR checks/merge、`main` JSON、本番 JSON を確認する。両部門空は no-op。9月27日最終結果と翌日確認後、cron は別 PR で削除する。
-- `preflight:current-data` は workflow 停止が前提の場所切替専用 gate。場所中 readiness には使わない。不戦は validator の限定例外で、部分取得失敗は既存データを保持する。
+- 2026年9月場所（秋場所）千秋楽（9月27日）終了および翌日確認に伴い、`daily-data-update.yml` と `realtime-torikumi-direct-update.yml` の `schedule` は削除され、オフシーズン中は `workflow_dispatch`（手動実行）のみの運用となります。
+- これによりオフシーズン中の無駄な定期自動実行を抑止し、GitHub Actions の実行リソースを節約します。
+- `news-feed-update.yml` はオフシーズン中も引き続き定期実行（2時間おき）を継続します。
+
+### 十一月場所（2026年11月場所）での再開手順
+
+十一月場所（2026年11月8日初日、取組公開11月6日頃予定）に向け、取組自動更新を再開する際は以下の設定を追加した PR を作成して `main` へマージします。
+
+1. **`daily-data-update.yml`**:
+   `on:` に以下を追加：
+   ```yaml
+   on:
+     schedule:
+       - cron: '0 4,6,8,10 * * *'
+     workflow_dispatch:
+   ```
+2. **`realtime-torikumi-direct-update.yml`**:
+   `on:` に以下を追加：
+   ```yaml
+   on:
+     schedule:
+       - cron: '*/3 6-9 * * *'
+     workflow_dispatch:
+   ```
+3. `python -m unittest scripts.ci.workflow_config_test` を実行し、JST スロット検証がパスすることを確認。
+4. PR を作成してマージ。マージ完了後、GitHub Actions にてスケジュール実行が有効になります。
+

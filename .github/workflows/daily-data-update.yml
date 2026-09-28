@@ -1,7 +1,5 @@
 name: Daily Sumo Data Update
 on:
-  schedule:
-    - cron: '0 4,6,8,10 * * *'
   workflow_dispatch:
 # The caller must grant the permissions requested by the reusable workflow,
 # even when its steps authenticate with GH_PAT.
