@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-28T01:02:02.201780+00:00",
+    "updatedAt": "2026-09-28T02:37:04.783980+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,20 +18,29 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_HV5WN7RT35FPROKCXL3V4JG7OA",
-        "title": "花田虎上氏「『鼻開いて興奮してよかったね』ってよく言われるんだけど」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_HV5WN7RT35FPROKCXL3V4JG7OA",
+        "id": "dmenu-docomo-hochi-20260928-OHT1T51078",
+        "title": "横綱・大の里が涙の６度目Ｖから一夜明け会見「ＮＨＫ生出演終わって風呂入って寝た」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260928-OHT1T51078",
         "publishedAt": "2026-09-28",
-        "publishedAtRaw": "SANSPO　9月28日 8時00分",
+        "publishedAtRaw": "スポーツ報知　9月28日 11時02分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_IZMUDQYAJBHLJPO6W7PH6CJFIA",
-        "title": "琴風氏「あれ以上の相撲はないですよ。考えられないですよね」／秋場所",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_IZMUDQYAJBHLJPO6W7PH6CJFIA",
+        "id": "dmenu-docomo-f-bt-tp1-260928-202609280000410",
+        "title": "大の里「夜も寝られないことが多かった」１年ぶりＶの苦しみ明かす…安青錦との一発勝負にも言及",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260928-202609280000410",
         "publishedAt": "2026-09-28",
-        "publishedAtRaw": "SANSPO　9月28日 8時00分",
+        "publishedAtRaw": "日刊スポーツ　9月28日 11時01分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-20260928064",
+        "title": "復活の大の里「久々に眠れた」１年ぶり優勝から一夜に感慨深げ【大相撲】",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260928064",
+        "publishedAt": "2026-09-28",
+        "publishedAtRaw": "デイリースポーツ　9月28日 11時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -45,20 +54,11 @@
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-20260928047",
-        "title": "６場所ぶりＶ涙の大の里は「新しいルーティンをつくったんだな」　故郷・糸魚川の願い−羽を休める場所に",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260928047",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_HV5WN7RT35FPROKCXL3V4JG7OA",
+        "title": "花田虎上氏「『鼻開いて興奮してよかったね』ってよく言われるんだけど」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_HV5WN7RT35FPROKCXL3V4JG7OA",
         "publishedAt": "2026-09-28",
-        "publishedAtRaw": "デイリースポーツ　9月28日 7時00分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_364WQ6KDY5GPLPLRSFK3OOHM34",
-        "title": "松山千春「他の横綱、大関は何をやってるんでしょうって言いたくなる」／秋場所",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_364WQ6KDY5GPLPLRSFK3OOHM34",
-        "publishedAt": "2026-09-28",
-        "publishedAtRaw": "SANSPO　9月28日 7時00分",
+        "publishedAtRaw": "SANSPO　9月28日 8時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-28T01:02:02.210119+00:00",
-  "lastSuccessAt": "2026-09-28T01:02:02.201780+00:00",
+  "lastAttemptAt": "2026-09-28T02:37:04.793251+00:00",
+  "lastSuccessAt": "2026-09-28T02:37:04.783980+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -383,9 +383,13 @@
     "36364392905": {
       "attemptedAt": "2026-09-28T01:02:02.210119+00:00",
       "outcome": "success"
+    },
+    "36370499812": {
+      "attemptedAt": "2026-09-28T02:37:04.793251+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36364392905",
+  "lastRunId": "36370499812",
   "lastPublishedDate": "2026-09-27",
   "lastPublishedSha": "7d3da785d36b3e01a684cb489f2e45ea8944e023",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
