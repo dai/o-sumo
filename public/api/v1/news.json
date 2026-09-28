@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-27T10:20:12.408904+00:00",
+  "updatedAt": "2026-09-28T10:26:31.873144+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-f-bt-tp1-260927-202609270001424",
-      "title": "九州場所で安青錦は綱とり、熱海富士は大関とりになるのか？　浅香山審判部長の見解は…",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260927-202609270001424",
-      "publishedAt": "2026-09-27",
-      "publishedAtRaw": "日刊スポーツ　9月27日 19時06分",
+      "id": "dmenu-docomo-kyodo_nor-2026092801001421",
+      "title": "大の里Vに「重みと責任」　横審、豊昇龍に万全求める",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026092801001421",
+      "publishedAt": "2026-09-28",
+      "publishedAtRaw": "共同通信　9月28日 19時15分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_NN2QINT5T5F65FCVT2FSPWTEHM",
-      "title": "琴風氏「いろんな試練が次から次へと襲ってきますよ。ただそれを…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_NN2QINT5T5F65FCVT2FSPWTEHM",
-      "publishedAt": "2026-09-27",
-      "publishedAtRaw": "SANSPO　9月27日 19時04分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_FH6SKXFESNIMZAXT7F72PJDYK4",
+      "title": "横審、決議は話題にならず…3場所連続休場となった横綱豊昇龍　横審",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_FH6SKXFESNIMZAXT7F72PJDYK4",
+      "publishedAt": "2026-09-28",
+      "publishedAtRaw": "SANSPO　9月28日 19時02分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-tokyosports-404625",
-      "title": "【大相撲】横綱大の里が１年ぶりの復活Ｖ！　表彰式の君が代では〝号泣〟「また優勝できるのかなと…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-404625",
-      "publishedAt": "2026-09-27",
-      "publishedAtRaw": "東スポWEB　9月27日 19時02分",
+      "id": "dmenu-docomo-sankei-_sports_sumo_VZMK74CBFZO3LBOL3GFDTU6R2E",
+      "title": "横審、優勝の大の里を称賛「綱の責任」　休場の豊昇龍には万全での復帰を望む",
+      "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_VZMK74CBFZO3LBOL3GFDTU6R2E",
+      "publishedAt": "2026-09-28",
+      "publishedAtRaw": "産経ニュース　9月28日 19時01分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20260927-0359",
-      "title": "安青錦　千秋楽相星決戦で敗れ11勝　審判部は九州場所での綱獲りに否定的",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260927-0359",
-      "publishedAt": "2026-09-27",
-      "publishedAtRaw": "スポニチアネックス　9月27日 19時01分",
+      "id": "dmenu-docomo-jiji-2026092800851",
+      "title": "復活Ｖ大の里を評価＝大相撲横審",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026092800851",
+      "publishedAt": "2026-09-28",
+      "publishedAtRaw": "時事通信　9月28日 18時50分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260927-202609270001416",
-      "title": "大の里復活Vに師匠の二所ノ関親方もこらえ切れず笑顔「今日ぐらいは褒めてもいいのかな」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260927-202609270001416",
-      "publishedAt": "2026-09-27",
-      "publishedAtRaw": "日刊スポーツ　9月27日 19時00分",
+      "id": "dmenu-docomo-f-bt-tp1-260928-202609280001257",
+      "title": "３場所連続休場の豊昇龍の“決議”は協議せず　横審委員長「横綱としての姿を見せてほしい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260928-202609280001257",
+      "publishedAt": "2026-09-28",
+      "publishedAtRaw": "日刊スポーツ　9月28日 18時49分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
