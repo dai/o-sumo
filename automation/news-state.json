@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-28T02:37:04.783980+00:00",
+    "updatedAt": "2026-09-28T04:28:27.880638+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-hochi-20260928-OHT1T51078",
-        "title": "横綱・大の里が涙の６度目Ｖから一夜明け会見「ＮＨＫ生出演終わって風呂入って寝た」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260928-OHT1T51078",
+        "id": "dmenu-docomo-tokyosports-404733",
+        "title": "【大相撲】横綱大の里　悲願の全勝優勝へ意欲十分「優勝額に『優勝』と『全勝』の違いもある」",
+        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-404733",
         "publishedAt": "2026-09-28",
-        "publishedAtRaw": "スポーツ報知　9月28日 11時02分",
+        "publishedAtRaw": "東スポWEB　9月28日 12時38分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260928-202609280000410",
-        "title": "大の里「夜も寝られないことが多かった」１年ぶりＶの苦しみ明かす…安青錦との一発勝負にも言及",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260928-202609280000410",
+        "id": "dmenu-docomo-tokyosports-404728",
+        "title": "【大相撲】横綱大の里　１年ぶり〝復活Ｖ〟の裏に重圧との戦い「夜も寝れないことが多かった」",
+        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-404728",
         "publishedAt": "2026-09-28",
-        "publishedAtRaw": "日刊スポーツ　9月28日 11時01分",
+        "publishedAtRaw": "東スポWEB　9月28日 12時15分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-20260928064",
-        "title": "復活の大の里「久々に眠れた」１年ぶり優勝から一夜に感慨深げ【大相撲】",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260928064",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_4MQBSGSQVRBN5FKGOMD24TFVBU",
+        "title": "舞の海氏「もっと大暴れして存在感を発揮してほしいです。そうすると…」／秋場所",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_4MQBSGSQVRBN5FKGOMD24TFVBU",
         "publishedAt": "2026-09-28",
-        "publishedAtRaw": "デイリースポーツ　9月28日 11時00分",
+        "publishedAtRaw": "SANSPO　9月28日 12時09分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_YY3OJWCV25HYBCTXWI6UJWP754",
-        "title": "松山千春「先ほど八角、鈴木宗男さんからも連絡がありまして…」／秋場所",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_YY3OJWCV25HYBCTXWI6UJWP754",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_7XH7NWAFERDAPG3UAACL4YKIG4",
+        "title": "舞の海氏「完全に治るころには横綱になってるんじゃないんですかね」／秋場所",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_7XH7NWAFERDAPG3UAACL4YKIG4",
         "publishedAt": "2026-09-28",
-        "publishedAtRaw": "SANSPO　9月28日 8時00分",
+        "publishedAtRaw": "SANSPO　9月28日 12時03分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_HV5WN7RT35FPROKCXL3V4JG7OA",
-        "title": "花田虎上氏「『鼻開いて興奮してよかったね』ってよく言われるんだけど」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_HV5WN7RT35FPROKCXL3V4JG7OA",
+        "id": "dmenu-docomo-jiji-2026092800383",
+        "title": "大の里に達成感＝Ｖから一夜明け―大相撲",
+        "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026092800383",
         "publishedAt": "2026-09-28",
-        "publishedAtRaw": "SANSPO　9月28日 8時00分",
+        "publishedAtRaw": "時事通信　9月28日 11時42分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-28T02:37:04.793251+00:00",
-  "lastSuccessAt": "2026-09-28T02:37:04.783980+00:00",
+  "lastAttemptAt": "2026-09-28T04:28:27.890231+00:00",
+  "lastSuccessAt": "2026-09-28T04:28:27.880638+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -387,9 +387,13 @@
     "36370499812": {
       "attemptedAt": "2026-09-28T02:37:04.793251+00:00",
       "outcome": "success"
+    },
+    "36377844442": {
+      "attemptedAt": "2026-09-28T04:28:27.890231+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36370499812",
+  "lastRunId": "36377844442",
   "lastPublishedDate": "2026-09-27",
   "lastPublishedSha": "7d3da785d36b3e01a684cb489f2e45ea8944e023",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
