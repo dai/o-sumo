@@ -111,6 +111,10 @@ export function resolvePageMeta(pathname: string): PageMeta {
       title: '力士一覧 | o-sumo',
       description: '大相撲力士のプロフィール、番付、成績を一覧で確認できます。',
     },
+    '/my-rikishi/': {
+      title: 'マイ力士 | o-sumo',
+      description: '気になる力士を端末に保存し、ログインすると端末間で同期できます。',
+    },
     '/compare/': {
       title: '力士比較 | o-sumo',
       description: '幕内・十両力士の合口、体格、得意決まり手、通算成績を比較できます。',

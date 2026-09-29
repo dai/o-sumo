@@ -448,3 +448,30 @@ spec: PR #644 (`docs: analytics live dashboard design (Phase 1–2)`、docs-only
 - 点検範囲: 主要メニュー4項目、名鑑5項目、4場所の番付・結果・予定、日別前後リンクとルート登録を突合。外部リンクの全件検査や運用ジョブの変更は対象外。
 - ビルドには500kB超チャンクと古いBrowserslistデータの警告、テストにはact/localStorage警告があるが、検証は成功。
 - 配置: C:/codex/worktrees/post-basho-navigation/o-sumo、ブランチ codex/post-basho-navigation。PR作成・マージ・本番反映は未実施。
+
+# My Rikishi Preview Cloudflare acceptance (2026-09-29)
+
+- [x] Preview D1 `o-sumo-my-rikishi-preview` に `0001_my_rikishi_auth.sql` を適用
+- [x] Pages Preview に `MY_RIKISHI_DB` をbindingし、既存 `COMPARE_OG_CACHE` を保持
+- [x] Preview専用Google OAuthクライアント、test user、callback URLを設定
+- [x] Preview限定のOAuth値とsession secretを登録（Productionは未変更）
+- [x] stable Preview aliasへ再デプロイ
+- [x] 実ブラウザでログイン、local-to-D1同期、ログアウトを検証
+- [x] PWA navigation fallbackから `/api/` を除外し、OAuth開始時の404を修正
+
+## Review
+
+- Preview URL: `https://codex-my-rikishi-auth-previe.o-sumo.pages.dev`
+- 最新検証deployment: `https://73cdf6d4.o-sumo.pages.dev`
+- migration status: unapplied `[]`
+- anonymous session: HTTP 200、`authenticated: false`
+- OAuth start: GoogleへHTTP 302、redirect URIはstable Preview callbackと一致
+- browser login: Preview画面にGoogle display nameとログアウト操作を表示
+- sync: localのrikishi ID `4227`をD1へ保存（users 1、sessions 1、saved 1）
+- logout: anonymous表示へ戻り、D1はsessions 0、users 1、saved 1
+- PWA回帰テスト: `app/pwa-smoke.test.ts` 9/9 passed
+- full suite: 88 files、681/681 tests passed
+- typecheck: applicationとPages Functionsの両方でpassed
+- Preview verification script: anonymous sessionとOAuth startがpassed
+- build: `npm run build` passed、生成 `sw.js` のnavigation routeに`/^\/api\//` denylistを確認
+- Production gate: Production D1、binding、OAuth、secretは未設定のまま

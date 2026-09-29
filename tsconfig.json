@@ -36,7 +36,8 @@
     "app/**/*.test.tsx"
   ],
   "exclude": [
-    "functions"
+    "functions",
+    "app/lib/__tests__/functions"
   ],
   "references": [
     {

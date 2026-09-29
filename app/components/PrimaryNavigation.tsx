@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { findArchiveDay, getArchiveRouteConfigForPathname, parseTopLevelSlug } from '../lib/torikumi-routes';
 import { useMyRikishi } from '../lib/my-rikishi';
+import AuthControls from './AuthControls';
 
 type PrimaryNavigationProps = {
   placement?: 'header' | 'footer';
@@ -146,6 +147,7 @@ export default function PrimaryNavigation({ placement = 'header' }: PrimaryNavig
               );
             })}
           </nav>
+          <AuthControls />
         </div>
       ) : null}
     </div>

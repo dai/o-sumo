@@ -481,7 +481,16 @@
     "navLabel": "My rikishi",
     "listTitle": "My rikishi",
     "listDescription": "Save the rikishi you want to follow on this device and view them together anytime.",
-    "storageNote": "Your saved rikishi stay in this browser only.",
+    "storageNote": "Sign in to sync across devices. Without sign-in, your saved rikishi stay in this browser.",
+    "auth": {
+      "signIn": "Sign in with Google",
+      "signOut": "Sign out",
+      "checking": "Checking sign-in status.",
+      "localOnly": "You can keep saving on this device without signing in.",
+      "syncing": "Syncing My rikishi.",
+      "syncFailed": "Could not sync.",
+      "localRetained": "Changes on this device are retained."
+    },
     "add": "Add to My rikishi",
     "remove": "Remove from My rikishi",
     "emptyTitle": "No saved rikishi yet",

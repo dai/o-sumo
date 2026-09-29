@@ -44,6 +44,19 @@ function evaluateRedirect(pathname: string): RedirectRule | undefined {
 }
 
 describe('Cloudflare banzuke redirect rules', () => {
+  it('canonicalizes My Rikishi before serving its SPA fallback', () => {
+    expect(evaluateRedirect('/my-rikishi')).toEqual({
+      source: '/my-rikishi',
+      destination: '/my-rikishi/',
+      status: 200,
+    });
+    expect(evaluateRedirect('/my-rikishi/')).toEqual({
+      source: '/my-rikishi/',
+      destination: '/',
+      status: 200,
+    });
+  });
+
   it('canonicalizes compare before serving its SPA fallback', () => {
     expect(evaluateRedirect('/compare')).toEqual({
       source: '/compare',
@@ -162,7 +175,7 @@ describe('Cloudflare banzuke redirect rules', () => {
   it('uses 200 rewrites throughout to avoid Googlebot indexing 301 chains', () => {
     const rules = redirectRules();
 
-    expect(rules).toHaveLength(50);
+    expect(rules).toHaveLength(52);
     expect(rules.every((rule) => rule.status === 200)).toBe(true);
 
     const rootFallbacks = rules.filter((rule) => rule.destination === '/');

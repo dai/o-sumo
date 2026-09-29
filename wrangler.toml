@@ -1,0 +1,10 @@
+# Local Pages + D1 configuration only. The absence of pages_build_output_dir
+# keeps this file out of the Pages deployment configuration path.
+compatibility_date = "2026-03-01"
+
+[[d1_databases]]
+binding = "MY_RIKISHI_DB"
+database_name = "o-sumo-my-rikishi-local"
+database_id = "00000000-0000-0000-0000-000000000001"
+preview_database_id = "MY_RIKISHI_DB"
+migrations_dir = "migrations"
