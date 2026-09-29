@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-29T08:30:30.621697+00:00",
+    "updatedAt": "2026-09-29T10:24:03.200346+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -17,6 +17,24 @@
       }
     ],
     "items": [
+      {
+        "id": "dmenu-docomo-sanspo-_sports_sumo_7DFRKCJZXBFBTPPDL5HIWKXX4Q",
+        "title": "スイッチインタビュー「わかりやすい相撲解説で注目　元大関・貴景勝」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_7DFRKCJZXBFBTPPDL5HIWKXX4Q",
+        "publishedAt": "2026-09-29",
+        "publishedAtRaw": "SANSPO　9月29日 18時30分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-sanspo-_sports_sumo_GWUWNYGBBVGJDL5JDZJP7UC5JM",
+        "title": "元貴景勝「相談できないんすよ、人に」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_GWUWNYGBBVGJDL5JDZJP7UC5JM",
+        "publishedAt": "2026-09-29",
+        "publishedAtRaw": "SANSPO　9月29日 17時30分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
       {
         "id": "dmenu-docomo-sanspo-_sports_sumo_6WDBR4G63BEPPOFSIJH4TNA4AM",
         "title": "元貴景勝「お相撲さんってみんな一緒に見えるわって言われたことがあって」",
@@ -41,24 +59,6 @@
         "url": "https://topics.smt.docomo.ne.jp/article/thedigestweb/sports/thedigestweb-120814",
         "publishedAt": "2026-09-29",
         "publishedAtRaw": "THE DIGEST　9月29日 15時52分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-nikkangendai-1249682",
-        "title": "元関脇嘉風・中村親方〈3〉「稽古は嫌い。それでも土俵で得られる快感のために受け入れていました」【吉田賢vs親方 がっぷり対談】",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1249682",
-        "publishedAt": "2026-09-29",
-        "publishedAtRaw": "日刊ゲンダイDIGITAL　9月29日 10時55分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_BYSQ52MPXJA4LMC6JZ2UGDGUOY",
-        "title": "舞の海氏「もちろんできますね。またやらなくてはいけないですよね」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_BYSQ52MPXJA4LMC6JZ2UGDGUOY",
-        "publishedAt": "2026-09-29",
-        "publishedAtRaw": "SANSPO　9月29日 8時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-29T08:30:30.631922+00:00",
-  "lastSuccessAt": "2026-09-29T08:30:30.621697+00:00",
+  "lastAttemptAt": "2026-09-29T10:24:03.209171+00:00",
+  "lastSuccessAt": "2026-09-29T10:24:03.200346+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -423,9 +423,13 @@
     "36543130862": {
       "attemptedAt": "2026-09-29T08:30:30.631922+00:00",
       "outcome": "success"
+    },
+    "36555297422": {
+      "attemptedAt": "2026-09-29T10:24:03.209171+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36543130862",
+  "lastRunId": "36555297422",
   "lastPublishedDate": "2026-09-28",
   "lastPublishedSha": "ecd6c0a5b1d57d4a915430b1f0b112a5e133a189",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
