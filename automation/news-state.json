@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-28T10:26:31.873144+00:00",
+    "updatedAt": "2026-09-29T00:58:42.578368+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-kyodo_nor-2026092801001421",
-        "title": "大の里Vに「重みと責任」　横審、豊昇龍に万全求める",
-        "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026092801001421",
-        "publishedAt": "2026-09-28",
-        "publishedAtRaw": "共同通信　9月28日 19時15分",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_BYSQ52MPXJA4LMC6JZ2UGDGUOY",
+        "title": "舞の海氏「もちろんできますね。またやらなくてはいけないですよね」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_BYSQ52MPXJA4LMC6JZ2UGDGUOY",
+        "publishedAt": "2026-09-29",
+        "publishedAtRaw": "SANSPO　9月29日 8時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_FH6SKXFESNIMZAXT7F72PJDYK4",
-        "title": "横審、決議は話題にならず…3場所連続休場となった横綱豊昇龍　横審",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_FH6SKXFESNIMZAXT7F72PJDYK4",
-        "publishedAt": "2026-09-28",
-        "publishedAtRaw": "SANSPO　9月28日 19時02分",
+        "id": "dmenu-docomo-abematimes-10275568",
+        "title": "「あぁ、土俵に穴が」「なんか出てきた」大相撲千秋楽、最後の最後に驚きの光景「これは初めて見た」カメラが捉えた貴重な瞬間",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10275568",
+        "publishedAt": "2026-09-29",
+        "publishedAtRaw": "ABEMA TIMES　9月29日 7時17分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sankei-_sports_sumo_VZMK74CBFZO3LBOL3GFDTU6R2E",
-        "title": "横審、優勝の大の里を称賛「綱の責任」　休場の豊昇龍には万全での復帰を望む",
-        "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_VZMK74CBFZO3LBOL3GFDTU6R2E",
-        "publishedAt": "2026-09-28",
-        "publishedAtRaw": "産経ニュース　9月28日 19時01分",
+        "id": "dmenu-docomo-postseven-2133692",
+        "title": "伊勢ヶ濱部屋、両国の25億円「新ビル」に新たな動き　近隣住民が首を傾げる着工直前の“謎の説明会”",
+        "url": "https://topics.smt.docomo.ne.jp/article/postseven/sports/postseven-2133692",
+        "publishedAt": "2026-09-29",
+        "publishedAtRaw": "NEWSポストセブン　9月29日 7時15分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-jiji-2026092800851",
-        "title": "復活Ｖ大の里を評価＝大相撲横審",
-        "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026092800851",
-        "publishedAt": "2026-09-28",
-        "publishedAtRaw": "時事通信　9月28日 18時50分",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_AXBQN3XA5ND33FCMM5WJEWJFNU",
+        "title": "舞の海氏「15日間の中で一番いい相撲、最後の最後に取りましたね」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_AXBQN3XA5ND33FCMM5WJEWJFNU",
+        "publishedAt": "2026-09-29",
+        "publishedAtRaw": "SANSPO　9月29日 7時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260928-202609280001257",
-        "title": "３場所連続休場の豊昇龍の“決議”は協議せず　横審委員長「横綱としての姿を見せてほしい」",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260928-202609280001257",
-        "publishedAt": "2026-09-28",
-        "publishedAtRaw": "日刊スポーツ　9月28日 18時49分",
+        "id": "dmenu-docomo-ans-733077",
+        "title": "「負け越したのに…ええ人やね」　大の里復活→Vパレードに現れた人物に感銘の声「またか！！」",
+        "url": "https://topics.smt.docomo.ne.jp/article/ans/sports/ans-733077",
+        "publishedAt": "2026-09-29",
+        "publishedAtRaw": "THE ANSWER　9月29日 6時13分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-28T10:26:31.884416+00:00",
-  "lastSuccessAt": "2026-09-28T10:26:31.873144+00:00",
+  "lastAttemptAt": "2026-09-29T00:58:42.588104+00:00",
+  "lastSuccessAt": "2026-09-29T00:58:42.578368+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -403,9 +403,13 @@
     "36409704085": {
       "attemptedAt": "2026-09-28T10:26:31.884416+00:00",
       "outcome": "success"
+    },
+    "36505665237": {
+      "attemptedAt": "2026-09-29T00:58:42.588104+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36409704085",
+  "lastRunId": "36505665237",
   "lastPublishedDate": "2026-09-28",
   "lastPublishedSha": "ecd6c0a5b1d57d4a915430b1f0b112a5e133a189",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
