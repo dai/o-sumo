@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-29T06:37:36.845956+00:00",
+    "updatedAt": "2026-09-29T08:30:30.621697+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,6 +18,33 @@
     ],
     "items": [
       {
+        "id": "dmenu-docomo-sanspo-_sports_sumo_6WDBR4G63BEPPOFSIJH4TNA4AM",
+        "title": "元貴景勝「お相撲さんってみんな一緒に見えるわって言われたことがあって」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_6WDBR4G63BEPPOFSIJH4TNA4AM",
+        "publishedAt": "2026-09-29",
+        "publishedAtRaw": "SANSPO　9月29日 16時19分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-sponichi-spngoo-20260929-0239",
+        "title": "金村義明氏　大の里優勝の感動に水差す大相撲の観戦マナーに喝！「つまみ出さなアカン」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260929-0239",
+        "publishedAt": "2026-09-29",
+        "publishedAtRaw": "スポニチアネックス　9月29日 16時03分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-thedigestweb-120814",
+        "title": "「えええっ!?」相撲芸人が元横綱・若乃花から贈られた“粋な品”に反響「そんなお宝を？」「マジですごいっ！」",
+        "url": "https://topics.smt.docomo.ne.jp/article/thedigestweb/sports/thedigestweb-120814",
+        "publishedAt": "2026-09-29",
+        "publishedAtRaw": "THE DIGEST　9月29日 15時52分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
         "id": "dmenu-docomo-nikkangendai-1249682",
         "title": "元関脇嘉風・中村親方〈3〉「稽古は嫌い。それでも土俵で得られる快感のために受け入れていました」【吉田賢vs親方 がっぷり対談】",
         "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1249682",
@@ -32,33 +59,6 @@
         "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_BYSQ52MPXJA4LMC6JZ2UGDGUOY",
         "publishedAt": "2026-09-29",
         "publishedAtRaw": "SANSPO　9月29日 8時00分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-abematimes-10275568",
-        "title": "「あぁ、土俵に穴が」「なんか出てきた」大相撲千秋楽、最後の最後に驚きの光景「これは初めて見た」カメラが捉えた貴重な瞬間",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10275568",
-        "publishedAt": "2026-09-29",
-        "publishedAtRaw": "ABEMA TIMES　9月29日 7時17分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-postseven-2133692",
-        "title": "伊勢ヶ濱部屋、両国の25億円「新ビル」に新たな動き　近隣住民が首を傾げる着工直前の“謎の説明会”",
-        "url": "https://topics.smt.docomo.ne.jp/article/postseven/sports/postseven-2133692",
-        "publishedAt": "2026-09-29",
-        "publishedAtRaw": "NEWSポストセブン　9月29日 7時15分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_AXBQN3XA5ND33FCMM5WJEWJFNU",
-        "title": "舞の海氏「15日間の中で一番いい相撲、最後の最後に取りましたね」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_AXBQN3XA5ND33FCMM5WJEWJFNU",
-        "publishedAt": "2026-09-29",
-        "publishedAtRaw": "SANSPO　9月29日 7時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-29T06:37:36.855510+00:00",
-  "lastSuccessAt": "2026-09-29T06:37:36.845956+00:00",
+  "lastAttemptAt": "2026-09-29T08:30:30.631922+00:00",
+  "lastSuccessAt": "2026-09-29T08:30:30.621697+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -419,9 +419,13 @@
     "36532030150": {
       "attemptedAt": "2026-09-29T06:37:36.855510+00:00",
       "outcome": "success"
+    },
+    "36543130862": {
+      "attemptedAt": "2026-09-29T08:30:30.631922+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36532030150",
+  "lastRunId": "36543130862",
   "lastPublishedDate": "2026-09-28",
   "lastPublishedSha": "ecd6c0a5b1d57d4a915430b1f0b112a5e133a189",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
