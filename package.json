@@ -8,7 +8,7 @@
     "build:matchups": "node scripts/build-compare-ogp-matchups.mjs",
     "preview": "vite preview",
     "pages:build": "npm run build",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.functions.json",
     "test": "vitest run",
     "test:watch": "vitest",
     "preflight:current-data": "python scripts/preflight_current_basho.py",

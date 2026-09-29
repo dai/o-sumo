@@ -9,6 +9,25 @@ This directory contains Cloudflare Pages Functions for o-sumo:
   (`/.well-known/agent-card.json` → `https://osada.us/a2a`).
 - [`.well-known/http-message-signatures-directory.ts`](./.well-known/http-message-signatures-directory.ts)
   — serves the Web Bot Auth signature directory (RFC 9421).
+- [`api/auth/`](./api/auth/) and [`api/my-rikishi.ts`](./api/my-rikishi.ts)
+  — optional Google login and D1-backed My Rikishi synchronization. Anonymous
+  browser storage remains available when no account is used.
+
+## My Rikishi authentication boundary
+
+The authentication Functions require a dedicated D1 binding named
+`MY_RIKISHI_DB`. Do not point this binding at `COMPARE_OG_CACHE` or at an
+unrelated D1 database. Runtime configuration consists of:
+
+- `GOOGLE_CLIENT_ID` and `AUTH_ORIGIN`: environment-specific configuration;
+- `GOOGLE_CLIENT_SECRET` and `AUTH_SESSION_SECRET`: environment-specific secrets;
+- `AUTH_SESSION_TTL_SECONDS`: optional session lifetime, defaulting to 30 days.
+
+OAuth access tokens are used only for the server-side Google userinfo request.
+They are not stored. D1 stores only the SHA-256 hash of the random session token,
+and the browser receives the raw token only as an `HttpOnly`, `Secure`,
+`SameSite=Lax` cookie. Preview and Production must use separate D1 databases and
+OAuth credentials.
 
 ## Markdown for Agents — `_middleware.ts`
 
@@ -91,7 +110,11 @@ TARGET_URL=http://127.0.0.1:3002 node scripts/verify_web_bot_auth_signature.mjs
 
 ```bash
 npm run build
-npx wrangler pages dev ./dist --port 3002
+npx wrangler d1 migrations apply MY_RIKISHI_DB --local
+npx wrangler pages dev ./dist --port 3002 \
+  --binding AUTH_ORIGIN=http://127.0.0.1:3002 \
+  --binding AUTH_SESSION_SECRET=local-development-only
+pwsh ./scripts/verify_my_rikishi_auth.ps1
 curl -H 'Accept: text/markdown' http://127.0.0.1:3002/
 curl -H 'Accept: text/markdown' http://127.0.0.1:3002/rikishi/
 curl -H 'Accept: text/markdown' http://127.0.0.1:3002/20260926-yotei/
@@ -109,9 +132,16 @@ The plain `npm run dev` (Vite dev server) does **not** exercise
 `_middleware.ts` or `a2a/[[path]].ts` because Pages Functions only run on
 the Cloudflare Pages runtime.
 
+The checked-in `wrangler.toml` is deliberately minimal and local-only: it has no
+`pages_build_output_dir`, uses a non-production placeholder ID, and declares a
+`preview_database_id` for Wrangler's local D1 emulator. Do not add a real D1 ID
+to source control. The verification request includes a fake session cookie so
+`/api/auth/session` must execute a D1 query; a missing binding or migration fails
+the check instead of producing a false pass.
+
 ## Deployment
 
 - The `functions/` directory is detected automatically by Cloudflare
   Pages — no `wrangler.toml` or other configuration is required.
-- The Free plan supports Pages Functions, so this works on the same
-  plan as the rest of o-sumo.
+- Production deployment remains gated on the Preview checklist in
+  [`docs/auth/my-rikishi-cloudflare-operations.md`](../docs/auth/my-rikishi-cloudflare-operations.md).

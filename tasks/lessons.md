@@ -1,5 +1,11 @@
 # Lessons
 
+## 2026-09-29 CIと同じNode.js majorでWeb Cryptoを検証する
+
+- Web Cryptoへ渡す`BufferSource`をTypedArrayの`.buffer`へ変換すると、Node.js 20とjsdomの組み合わせでは別realmの`ArrayBuffer`として拒否される場合がある。デコード結果は`Uint8Array`のまま`crypto.subtle.verify`へ渡す。
+- 暗号・Fetch・Web標準APIを追加したときは、手元の最新版Node.jsだけで完了とせず、GitHub Actionsと同じNode.js majorでも対象テストを実行する。
+- セキュリティ境界で例外を`null`へ畳み込む実装は妥当だが、CIだけ失敗した場合は一時的に例外内容を観測し、原因特定後にログを除去する。秘密値はログへ出さない。
+
 ## 2026-08-17 現役力士の改名履歴と同名の別人を混同しない
 
 - 四股名履歴のglobal aliasだけで対戦相手を現役IDへ解決すると、現役力士が後年使った旧名と、それ以前の同名の引退力士を誤って同一視する。active ownershipは同じ場所の`shikonaByPlace`でも一致する場合だけ確定する。
@@ -419,4 +425,3 @@ Cloudflare Pages Functions (workerd runtime) で satori + @vercel/og を使い P
 - 例: `expect(screen.getAllByRole('listitem')).toHaveLength(N)` が 0 を返して失敗する。`hidden: true` を明示すると対象要素を含めて検索する。
 - **Why**: RTL は ARIA accessibility tree を構築するとき、`hidden` 属性で除外された要素を role から外す。role-based クエリ (`getByRole` / `getAllByRole`) は ARIA tree を walk するため、hidden 配下の要素に到達できない。
 - **How to apply**: 折り畳みセクションの子要素を assertion するときは `{ hidden: true }` を付ける。代替策としてテスト前に toggle button を click して expanded 状態にしてから assertion する手もある (ただし toggle 自体のテストが後ろに回ってしまう)。`container.querySelectorAll('.classname')` で DOM 直接クエリに逃げる方法もあるが、role-based を優先して `{ hidden: true }` で書くほうが a11y セマンティクスを維持できる。
-

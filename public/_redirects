@@ -18,6 +18,8 @@
 /kimarite/ / 200
 /compare /compare/ 200
 /compare/ / 200
+/my-rikishi /my-rikishi/ 200
+/my-rikishi/ / 200
 /rikishi /rikishi/ 200
 /rikishi/ / 200
 /rikishi/:id /rikishi/:id/ 200
@@ -54,4 +56,3 @@
 /202609-banduke/ /202609-banzuke/ 200
 /202609-o-sumo /202609-banzuke/ 200
 /202609-o-sumo/ /202609-banzuke/ 200
-

@@ -5,6 +5,7 @@ import type { Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 import { archiveDataManualChunks } from './app/lib/vite-archive-chunk'
+import { shouldCachePublicApi } from './app/lib/api-cache-policy'
 
 function sitemapPlugin(): Plugin {
   let outDir = 'dist'
@@ -156,9 +157,10 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2}'],
+        navigateFallbackDenylist: [/^\/api\//],
         runtimeCaching: [
           {
-            urlPattern: ({ url }) => url.pathname.startsWith('/api/'),
+            urlPattern: ({ url }) => shouldCachePublicApi(url),
             handler: 'NetworkFirst',
             options: {
               cacheName: 'api-cache',

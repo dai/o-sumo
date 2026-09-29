@@ -17,6 +17,8 @@ import WebMcpProvider from './components/WebMcpProvider'
 import PrimaryNavigation from './components/PrimaryNavigation'
 import { getArchiveHubRouteDefinitions } from './lib/torikumi-routes'
 import { bootstrapTheme } from './lib/theme'
+import { AuthSessionProvider } from './lib/auth-session'
+import { MyRikishiProvider } from './lib/my-rikishi'
 import './globals.css'
 
 const BanzukePage = React.lazy(() => import('./banzuke/page'))
@@ -61,9 +63,11 @@ function AppShell() {
 
   return (
     <BrowserRouter>
-      <WebMcpProvider />
-      <CanonicalUrl />
-      <MetaHead>
+      <AuthSessionProvider>
+        <MyRikishiProvider>
+          <WebMcpProvider />
+          <CanonicalUrl />
+          <MetaHead>
         <ScrollToHash />
         <div className="global-notice-banner" role="status" aria-live="polite">
           {t('global.officialDirectoryReleaseNotice')}
@@ -124,7 +128,9 @@ function AppShell() {
             </Routes>
           </Suspense>
         </div>
-      </MetaHead>
+          </MetaHead>
+        </MyRikishiProvider>
+      </AuthSessionProvider>
     </BrowserRouter>
   )
 }
