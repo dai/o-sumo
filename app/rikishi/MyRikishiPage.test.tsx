@@ -164,3 +164,44 @@ describe('rikishi matchup name resolution', () => {
     expect(resolveMatchupName('https://example.com/unknown', 'ほうしょうりゅう', new Map())).toBe('ほうしょうりゅう');
   });
 });
+
+describe('MyRikishiPage matchup history', () => {
+  afterEach(() => {
+    localStorage.clear();
+    vi.unstubAllGlobals();
+  });
+
+  it('omits the matchup history section when fewer than two rikishi are selected', async () => {
+    localStorage.setItem(MY_RIKISHI_STORAGE_KEY, JSON.stringify([4230, 4279]));
+    vi.stubGlobal('fetch', vi.fn(() => Promise.resolve(new Response(JSON.stringify(index), { status: 200 }))));
+    const user = userEvent.setup();
+    render(<MemoryRouter><MyRikishiPage /></MemoryRouter>);
+    const cards = await screen.findAllByRole('article');
+    await user.click(within(cards[0]).getByRole('checkbox', { name: '比較対象に選択' }));
+    expect(screen.queryByRole('heading', { level: 2, name: '場所ごとの対戦履歴' })).not.toBeInTheDocument();
+  });
+
+  it('renders the matchup history section when two rikishi are selected', async () => {
+    localStorage.setItem(MY_RIKISHI_STORAGE_KEY, JSON.stringify([4230, 4279]));
+    vi.stubGlobal('fetch', vi.fn(() => Promise.resolve(new Response(JSON.stringify(index), { status: 200 }))));
+    const user = userEvent.setup();
+    render(<MemoryRouter><MyRikishiPage /></MemoryRouter>);
+    const cards = await screen.findAllByRole('article');
+    await user.click(within(cards[0]).getByRole('checkbox', { name: '比較対象に選択' }));
+    await user.click(within(cards[1]).getByRole('checkbox', { name: '比較対象に選択' }));
+    expect(await screen.findByRole('heading', { level: 2, name: '場所ごとの対戦履歴' })).toBeInTheDocument();
+  });
+
+  it('hides the matchup history section when one of two selected rikishi is deselected', async () => {
+    localStorage.setItem(MY_RIKISHI_STORAGE_KEY, JSON.stringify([4230, 4279, 3842]));
+    vi.stubGlobal('fetch', vi.fn(() => Promise.resolve(new Response(JSON.stringify(index), { status: 200 }))));
+    const user = userEvent.setup();
+    render(<MemoryRouter><MyRikishiPage /></MemoryRouter>);
+    const cards = await screen.findAllByRole('article');
+    await user.click(within(cards[0]).getByRole('checkbox', { name: '比較対象に選択' }));
+    await user.click(within(cards[1]).getByRole('checkbox', { name: '比較対象に選択' }));
+    await screen.findByRole('heading', { level: 2, name: '場所ごとの対戦履歴' });
+    await user.click(within(cards[0]).getByRole('checkbox', { name: '比較対象に選択' }));
+    expect(screen.queryByRole('heading', { level: 2, name: '場所ごとの対戦履歴' })).not.toBeInTheDocument();
+  });
+});

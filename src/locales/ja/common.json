@@ -451,7 +451,6 @@
     "matchCardCurrentBasho": "今場所：{{first}} {{firstWins}}勝{{firstLosses}}敗 ／ {{second}} {{secondWins}}勝{{secondLosses}}敗",
     "matchCardShareTitle": "#{{first}} vs #{{second}} この取組の見どころ",
     "matchCardShareScore": "合口：{{first}} {{firstWins}}勝 − {{secondWins}}勝 {{second}}",
-    "matchCardShareHighlight": "見どころ：{{highlight}}",
     "matchCardShare": "取組カードを共有",
     "matchCardShareImage": "取組カードを画像で共有",
     "matchCardShared": "共有しました",
@@ -505,7 +504,13 @@
     "matchWin": "○ 勝ち",
     "matchLoss": "● 負け",
     "matchDraw": "− 引分/不戦",
-    "matchDetailsLink": "取組詳細を見る"
+    "matchDetailsLink": "取組詳細を見る",
+    "matchupHistory": {
+      "title": "場所ごとの対戦履歴",
+      "toggleOpen": "対戦履歴を表示",
+      "toggleClose": "対戦履歴を隠す",
+      "rowScore": "{{year}}{{bashoName}}：{{nameA}} {{winsA}}勝 − {{winsB}}勝 {{nameB}}"
+    }
   },
   "rikishi": {
     "listTitle": "力士プロフィール",

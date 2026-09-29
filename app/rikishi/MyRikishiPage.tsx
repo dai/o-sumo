@@ -11,6 +11,9 @@ import { extractRikishiIdFromProfileUrl } from '../lib/rikishi-profile';
 import { divisionAnchorId } from '../lib/rikishi-display';
 import { getDayPath } from '../lib/torikumi-routes';
 import { getBashoStatus } from '../lib/basho-status';
+import { getBashoMatchupHistory, type BashoMatchupRecord } from '../lib/rikishi-compare-data';
+
+import BashoMatchupHistory from './BashoMatchupHistory';
 
 import { toRomaji } from '../lib/romaji';
 import './page.css';
@@ -141,6 +144,19 @@ export default function MyRikishiPage() {
     () => new Map(rikishi.map((item) => [item.id, item.name] as const)),
     [rikishi],
   );
+
+  const matchupHistory = React.useMemo<BashoMatchupRecord[]>(() => {
+    if (compareIds.length !== 2) return [];
+    const [idA, idB] = [...compareIds].sort((a, b) => a - b);
+    return getBashoMatchupHistory(idA, idB);
+  }, [compareIds]);
+
+  const selectedProfiles = React.useMemo(() => {
+    if (compareIds.length !== 2) return [];
+    return compareIds
+      .map((id) => savedRikishi.find((item) => item.id === id))
+      .filter((item): item is RikishiIndexItem => Boolean(item));
+  }, [compareIds, savedRikishi]);
 
   React.useEffect(() => {
     setCompareIds((current) => current.filter((id) => ids.includes(id)));
@@ -298,6 +314,13 @@ export default function MyRikishiPage() {
                 );
               })}
             </div>
+            {selectedProfiles.length === 2 ? (
+              <BashoMatchupHistory
+                records={matchupHistory}
+                nameA={selectedProfiles[0].name}
+                nameB={selectedProfiles[1].name}
+              />
+            ) : null}
           </section>
         ) : null}
       </main>

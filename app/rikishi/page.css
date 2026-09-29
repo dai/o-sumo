@@ -1479,6 +1479,73 @@
   font-style: italic;
 }
 
+/* ==== My Rikishi Basho Matchup History ==== */
+.my-rikishi-matchup-history {
+  margin: 1.5rem 0 0;
+  background: var(--surface-container-low);
+  border-radius: 0;
+  padding: 1rem;
+}
+
+.my-rikishi-matchup-history__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+.my-rikishi-matchup-history__toggle[aria-expanded="true"] {
+  color: var(--color-primary);
+}
+
+.my-rikishi-matchup-history__title {
+  font-size: 1.1rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+.my-rikishi-matchup-history__indicator {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.my-rikishi-matchup-history__list {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+}
+
+.my-rikishi-matchup-history__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--color-outline-variant);
+}
+@media (max-width: 640px) {
+  .my-rikishi-matchup-history__item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+}
+
+.my-rikishi-matchup-history__basho {
+  font-weight: 600;
+}
+
+.my-rikishi-matchup-history__score {
+  font-variant-numeric: tabular-nums;
+}
+
 @media (max-width: 640px) {
   .compare-selector__heading,
   .compare-selector__slots {

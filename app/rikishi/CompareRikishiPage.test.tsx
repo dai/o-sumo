@@ -319,4 +319,24 @@ describe('CompareRikishiPage', () => {
     expect(await screen.findByRole('region', { name: 'Aikuchi (Head-to-Head Record)' })).toBeInTheDocument();
     expect(screen.getByRole('region', { name: 'Physical & Stats Comparison' })).toBeInTheDocument();
   });
+
+  it('shares the current-basho record in the share text but omits the legacy 見どころ label', async () => {
+    setupFetchMock();
+    const share = vi.fn().mockResolvedValue(undefined);
+    vi.stubGlobal('navigator', { ...navigator, share });
+    const user = userEvent.setup();
+    render(
+      <MemoryRouter initialEntries={['/compare/?ids=3842,4227']}>
+        <Routes>
+          <Route path="/compare/" element={<CompareRikishiPage />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    await user.click(await screen.findByRole('button', { name: '取組カードを画像で共有' }));
+
+    const sharePayload = share.mock.calls[0][0];
+    expect(sharePayload.text).toContain('今場所：');
+    expect(sharePayload.text).not.toContain('見どころ：');
+  });
 });

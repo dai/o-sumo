@@ -451,7 +451,6 @@
     "matchCardCurrentBasho": "Current basho: {{first}} {{firstWins}}-{{firstLosses}} / {{second}} {{secondWins}}-{{secondLosses}}",
     "matchCardShareTitle": "#{{first}} vs #{{second}}: What to watch",
     "matchCardShareScore": "Aikuchi: {{first}} {{firstWins}}-{{secondWins}} {{second}}",
-    "matchCardShareHighlight": "What to watch: {{highlight}}",
     "matchCardShare": "Share matchup card",
     "matchCardShareImage": "Share matchup card image",
     "matchCardShared": "Shared",
@@ -505,7 +504,13 @@
     "matchWin": "○ Win",
     "matchLoss": "● Loss",
     "matchDraw": "− Draw / Fusen",
-    "matchDetailsLink": "View bout details"
+    "matchDetailsLink": "View bout details",
+    "matchupHistory": {
+      "title": "Basho-by-basho matchup history",
+      "toggleOpen": "Show matchup history",
+      "toggleClose": "Hide matchup history",
+      "rowScore": "{{year}} {{bashoName}}: {{nameA}} {{winsA}} − {{winsB}} {{nameB}}"
+    }
   },
   "rikishi": {
     "listTitle": "Rikishi Profiles",

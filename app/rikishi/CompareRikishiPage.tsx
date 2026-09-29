@@ -509,7 +509,9 @@ function MatchupShareCard({
         second: profileB.name,
       })
     : t('comparison.matchCardFirstMeeting');
-  const text = `${title}\n${score}\n${t('comparison.matchCardShareHighlight', { highlight: highlights.join(' / ') })}\n${t('comparison.shareBannerHashtags')}`;
+  const text = currentBashoHighlight
+    ? `${title}\n${score}\n${currentBashoHighlight}\n${t('comparison.shareBannerHashtags')}`
+    : `${title}\n${score}\n${t('comparison.shareBannerHashtags')}`;
   const url = typeof window === 'undefined'
     ? `${pathname}${search}`
     : `${window.location.origin}${pathname}${search}`;
