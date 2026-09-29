@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-28T10:26:31.873144+00:00",
+  "updatedAt": "2026-09-29T10:24:03.200346+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-kyodo_nor-2026092801001421",
-      "title": "大の里Vに「重みと責任」　横審、豊昇龍に万全求める",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026092801001421",
-      "publishedAt": "2026-09-28",
-      "publishedAtRaw": "共同通信　9月28日 19時15分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_7DFRKCJZXBFBTPPDL5HIWKXX4Q",
+      "title": "スイッチインタビュー「わかりやすい相撲解説で注目　元大関・貴景勝」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_7DFRKCJZXBFBTPPDL5HIWKXX4Q",
+      "publishedAt": "2026-09-29",
+      "publishedAtRaw": "SANSPO　9月29日 18時30分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_FH6SKXFESNIMZAXT7F72PJDYK4",
-      "title": "横審、決議は話題にならず…3場所連続休場となった横綱豊昇龍　横審",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_FH6SKXFESNIMZAXT7F72PJDYK4",
-      "publishedAt": "2026-09-28",
-      "publishedAtRaw": "SANSPO　9月28日 19時02分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_GWUWNYGBBVGJDL5JDZJP7UC5JM",
+      "title": "元貴景勝「相談できないんすよ、人に」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_GWUWNYGBBVGJDL5JDZJP7UC5JM",
+      "publishedAt": "2026-09-29",
+      "publishedAtRaw": "SANSPO　9月29日 17時30分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sankei-_sports_sumo_VZMK74CBFZO3LBOL3GFDTU6R2E",
-      "title": "横審、優勝の大の里を称賛「綱の責任」　休場の豊昇龍には万全での復帰を望む",
-      "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_VZMK74CBFZO3LBOL3GFDTU6R2E",
-      "publishedAt": "2026-09-28",
-      "publishedAtRaw": "産経ニュース　9月28日 19時01分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_6WDBR4G63BEPPOFSIJH4TNA4AM",
+      "title": "元貴景勝「お相撲さんってみんな一緒に見えるわって言われたことがあって」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_6WDBR4G63BEPPOFSIJH4TNA4AM",
+      "publishedAt": "2026-09-29",
+      "publishedAtRaw": "SANSPO　9月29日 16時19分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-jiji-2026092800851",
-      "title": "復活Ｖ大の里を評価＝大相撲横審",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026092800851",
-      "publishedAt": "2026-09-28",
-      "publishedAtRaw": "時事通信　9月28日 18時50分",
+      "id": "dmenu-docomo-sponichi-spngoo-20260929-0239",
+      "title": "金村義明氏　大の里優勝の感動に水差す大相撲の観戦マナーに喝！「つまみ出さなアカン」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260929-0239",
+      "publishedAt": "2026-09-29",
+      "publishedAtRaw": "スポニチアネックス　9月29日 16時03分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-f-bt-tp1-260928-202609280001257",
-      "title": "３場所連続休場の豊昇龍の“決議”は協議せず　横審委員長「横綱としての姿を見せてほしい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260928-202609280001257",
-      "publishedAt": "2026-09-28",
-      "publishedAtRaw": "日刊スポーツ　9月28日 18時49分",
+      "id": "dmenu-docomo-thedigestweb-120814",
+      "title": "「えええっ!?」相撲芸人が元横綱・若乃花から贈られた“粋な品”に反響「そんなお宝を？」「マジですごいっ！」",
+      "url": "https://topics.smt.docomo.ne.jp/article/thedigestweb/sports/thedigestweb-120814",
+      "publishedAt": "2026-09-29",
+      "publishedAtRaw": "THE DIGEST　9月29日 15時52分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
