@@ -423,3 +423,28 @@ spec: PR #644 (`docs: analytics live dashboard design (Phase 1–2)`、docs-only
 2. **a11y id 重複**: 4 セクション (`results-heading` / `metrics aria-label` / `leaders-heading` / `kimarite-heading`) はそれぞれ別の id / aria-label を使用。`results-heading` が non-final 時に render されないため id 重複は発生しない。axe DevTools / Lighthouse の a11y 監査を PR レビュー時に追加推奨。
 3. **CSS class 残置**: `.analytics-pending-panel` は dead state で残置 (Phase 2 再利用)。`tasks/lessons.md` への追記は Phase 2 着手時に実施 (現時点で lessons.md を更新すると Phase 2 着手前の記憶違いになるリスクあり)。
 4. **vi.useFakeTimers leak**: 既存 `afterEach(() => vi.useRealTimers())` (`page.test.tsx` line 20) は維持。フルスイート 596 tests がリグレッションなく通過したことで検証済み。
+
+# 2026-09-28 九月場所終了後のメニュー・リンク点検
+
+## 計画・仕様
+- 目的: 2026-09-28 JST 時点の終了状態と、主要メニュー・リンク先・日本語/英語の案内の整合性を確認し、再現した問題を最小差分で修正する。
+- 設計: 既存の getBashoStatus を共通基準に使う。終了後は結果と受賞者の案内とし、開幕前・開催中の案内を誤って終了扱いしない。
+- 対象: ホーム、主要ナビゲーション、番付、取組予定・結果、アーカイブ、アナリティクス。既に実施済みのワークフロー季節切り替えは維持する。
+- [x] main の変更状況と lessons を確認し、最新 origin/main ベースの専用 worktree / codex/post-basho-navigation を用意する。
+- [x] 公開画面とコードを照合し、メニュー・リンク・終了後表記の不整合を特定する。
+- [x] 確認された問題の回帰テストを追加し、修正前に失敗を確認する。
+- [x] 既存の状態判定を使い、必要な UI と日英文言だけを修正する。
+- [x] 関連テスト、typecheck、全テスト、build、diff check とローカル画面を検証する。
+- [x] レビュー結果と未対応範囲を記録する。
+
+## レビュー
+- 修正: アナリティクス案内を upcoming/live/final で切替（日本語/英語）、確定結果カードの説明を遷移先の日別結果に合わせ、分析ページの予定リンクを終了後は「過去の予定を見る」にする。
+- 修正: 終了した現在場所をアーカイブ先頭へ重複なく掲載。千秋楽 JST 23:59:59 と翌日 00:00 の境界を検証。
+- 修正: 実在する日別結果・予定ページで主要メニューの選択状態を維持。過去場所にも対応し、不正日付や類似URLは選択しない。
+- 修正: マイ力士の終了後の古い取組予定を非表示にし、開幕前の初日予定・開催中の翌日予定を保持。
+- 修正: 終了後の座布団保存日をハイライトの最新公開結果日と一致させる。初日への誤フォールバックを解消。
+- 検証: 全78ファイル672テスト成功。追加テストのreplaceAllを対象TSに対応するreplaceへ直した後、MyRikishiPage 10テストを再実行して成功。typecheck / build / git diff --check 成功。
+- 画面確認: 公開トップとanalyticsで修正前の表示を確認。ローカルで終了後のトップ文言、九月アーカイブ掲載、千秋楽結果ページの aria-current=page を確認。日本語/英語と3状態の文言は自動テストでも検証。
+- 点検範囲: 主要メニュー4項目、名鑑5項目、4場所の番付・結果・予定、日別前後リンクとルート登録を突合。外部リンクの全件検査や運用ジョブの変更は対象外。
+- ビルドには500kB超チャンクと古いBrowserslistデータの警告、テストにはact/localStorage警告があるが、検証は成功。
+- 配置: C:/codex/worktrees/post-basho-navigation/o-sumo、ブランチ codex/post-basho-navigation。PR作成・マージ・本番反映は未実施。

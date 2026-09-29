@@ -1,12 +1,29 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { PAST_BASHO } from '../lib/archives-data';
+import { CURRENT_BASHO_ID, PAST_BASHO } from '../lib/archives-data';
+import { getArchiveRouteConfigByMonthKey, stripTrailingSlash } from '../lib/torikumi-routes';
+import { getBashoStatus } from '../lib/basho-status';
 import HomeLink from '../components/HomeLink';
 import PageBreadcrumb from '../components/PageBreadcrumb';
 import './page.css';
 
 export default function ArchivesPage() {
   const { t } = useTranslation('common');
+  const current = getArchiveRouteConfigByMonthKey(CURRENT_BASHO_ID);
+  const archives = current && getBashoStatus(current.archive).kind === 'final'
+    ? [
+        {
+          id: current.monthKey,
+          year: current.archive.year,
+          name: current.archive.bashoName,
+          data: current.archive,
+          banzukePath: stripTrailingSlash(current.banzukePath),
+          resultPath: stripTrailingSlash(current.resultPath),
+          schedulePath: stripTrailingSlash(current.schedulePath),
+        },
+        ...PAST_BASHO.filter((archive) => archive.id !== current.monthKey),
+      ]
+    : PAST_BASHO;
 
   return (
     <div className="archives-page">
@@ -31,7 +48,7 @@ export default function ArchivesPage() {
           ]}
         />
         <div className="archives-list">
-          {PAST_BASHO.map((archive) => (
+          {archives.map((archive) => (
             <article key={archive.id} className="archive-item">
               <header className="archive-item-header">
                 <h2>{archive.year} {archive.name}</h2>
@@ -50,7 +67,7 @@ export default function ArchivesPage() {
             </article>
           ))}
 
-          {PAST_BASHO.length === 0 && (
+          {archives.length === 0 && (
             <p className="archives-empty">{t('archives.empty')}</p>
           )}
         </div>

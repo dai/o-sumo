@@ -16,6 +16,7 @@ import { PAST_BASHO } from './lib/archives-data';
 import HomeLink from './components/HomeLink';
 import LiveTorikumiCardLink from './components/LiveTorikumiCardLink';
 import { getBashoStatus, type BashoStatus } from './lib/basho-status';
+import { resolveDailyHighlightsTargets } from './lib/daily-highlights-data';
 import NewsSection from './components/NewsSection';
 import { formatBashoTitle, getFinalBashoName } from './lib/basho-meta';
 import KimariteCard from './components/KimariteCard';
@@ -339,7 +340,9 @@ export default function Home() {
 
   // MonomosuSection (独立セクション) 用の派生値。DailyHighlightsSection から分離したため
   // bashoStatus 全体を再評価する必要がある。
-  const featuredBoutDay = bashoStatus.day ?? 1;
+  const featuredBoutDay = bashoStatus.kind === 'final'
+    ? (resolveDailyHighlightsTargets({ archive: torikumiArchive, bashoStatus }).today?.day.day ?? 1)
+    : (bashoStatus.day ?? 1);
   const featuredShareTitle = currentBashoTitle;
   const featuredCustomComment = getRelativeMonomosuText(
     dayDiff,
@@ -460,11 +463,11 @@ export default function Home() {
               <p className="analytics-feature-label">
                 {t('home.analyticsFeatureLabel')}
                 <br />
-                <span>{t('home.analyticsFeatureAvailability')}</span>
+                <span>{t(`home.analyticsFeatureAvailability.${bashoStatus.kind}`)}</span>
               </p>
               <h2 id="analytics-feature-title" className="analytics-feature-title">{t('home.analyticsFeatureTitle')}</h2>
               <p className="analytics-feature-description">
-                {t('home.analyticsFeatureDescription')}
+                {t(bashoStatus.kind === 'final' ? 'home.analyticsFeatureFinalDescription' : 'home.analyticsFeatureDescription')}
               </p>
             </div>
             <Link to="/analytics/" className="analytics-feature-link">

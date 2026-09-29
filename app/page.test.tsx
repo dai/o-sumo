@@ -133,6 +133,27 @@ afterEach(() => {
 });
 
 describe('Home page', () => {
+  it.each([
+    ['ja', '2026-09-11', '開幕後、取組結果に応じて更新', '勝ち星、無敗力士、決まり手傾向'],
+    ['ja', '2026-09-20', '公開済みの取組結果を集計', '勝ち星、無敗力士、決まり手傾向'],
+    ['ja', '2026-09-28', '終了した場所の成績・優勝・三賞', '最終成績、優勝・三賞、決まり手傾向'],
+    ['en', '2026-09-11', 'Updates with bout results after opening day', 'Wins, unbeaten wrestlers, and kimarite trends'],
+    ['en', '2026-09-20', 'Statistics from published bout results', 'Wins, unbeaten wrestlers, and kimarite trends'],
+    ['en', '2026-09-28', 'Completed basho records, champions & special prizes', 'Final records, champions, special prizes, and kimarite trends'],
+  ])('matches analytics copy to %s on %s', async (language, date, availability, description) => {
+    vi.setSystemTime(new Date(`${date}T12:00:00+09:00`));
+    await act(() => i18n.changeLanguage(language));
+    render(<MemoryRouter><Home /></MemoryRouter>);
+    const card = screen.getByRole('region', { name: language === 'ja' ? '場所分析・三賞・決まり手傾向' : 'Basho Analytics & Kimarite Trends' });
+    expect(within(card).getByText(availability)).toBeInTheDocument();
+    expect(within(card).getByText(description)).toBeInTheDocument();
+    if (date === '2026-09-28') {
+      const resultLink = screen.getByRole('link', { name: language === 'ja' ? /確定結果 今場所は終了しました/ : /Final results This basho is complete/i });
+      expect(resultLink).toHaveAttribute('href', '/202609-torikumi/');
+      expect(resultLink).not.toHaveTextContent(/三賞|special prizes/i);
+    }
+  });
+
   it('can restore the legacy Top design by disabling the editorial variant', () => {
     expect(homeContainerClassName(true)).toBe('home-container home-editorial');
     expect(homeContainerClassName(false)).toBe('home-container');

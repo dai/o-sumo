@@ -406,3 +406,17 @@ Cloudflare Pages Functions (workerd runtime) で satori + @vercel/og を使い P
 7. 動的/プリレンダ OGP エンドポイント (`/api/og-compare/{ids}`) を新設しても、HTML を配信する middleware 側で `<meta property="og:image">` / `<meta name="twitter:image">` にその URL を書き換える配線を忘れると、ソーシャルクローラはデフォルト画像をフェッチし続けてしまう。middleware レベルでの OGP URL 動的差し替えと単体テストを必ずセットで実装する
 8. プリレンダ対象の選定で「通算対戦数」のみに頼ると、若手の横綱・大関など現代の看板カードが通算対戦数の少なさ (例: 大の里 vs 霧島は11番で全対戦中228位) から漏れてしまう。現役三役 (横綱・大関・関脇・小結) 同士の全組み合わせを最優先で必ず網羅し、残りを全体対戦数上位で埋めるハイブリッド選定にする
 
+## 2026-09-29 tasks/todo.md 系の mixed-encoding file への Edit は別 PR に切り出す
+
+- 既存 `tasks/todo.md` は CP932/CRLF/LF/NEL が混在する text encoding でコミットされている。Edit ツールは内部で UTF-8/LF 化するため、既存バイト列と差分が出ると `git diff --check` がファイル全行を「変更あり」と見なし、CP932 の全角スペース (0x81 0x40 = U+3000) を trailing whitespace として誤検出する。
+- `git diff --check` の exit 2 を「trailing whitespace 修正タスク」として解いてしまいそうになるが、実態は Edit がファイルの encoding を破壊的に LF 化した副作用。本来は新規機能コミットに docs 追記を混ぜない分離設計の問題。
+- **Why**: `git diff --check` は変更行のみをチェックするため、行末正規化で「全行変更」と認識されると、CP932 側に元々あった全角スペース末端まで誤検出される。PowerShell の `[ \t]+(?=\r?\n)` や Python の `\s+(?=\r?\n|\Z)` でも ASCII whitespace しか strip できず、CP932 の multi-byte space はそのまま残る。
+- **How to apply**: 既存ファイルが mixed encoding の場合 (この repo では `tasks/todo.md` のみ確認)、Edit ではなく `git apply` で patch 経由する。やむを得ず Edit する場合は別 PR / 別コミットにして本体の機能コミットへの混入を避ける。コミット前に `git diff --check` で whitespace 誤検出が出ていないか確認し、出たら CP932 全角スペース由来か否かを hex dump で切り分ける。
+
+## 2026-09-29 RTL の `<div hidden>` 配下要素を getAllByRole で検索するには `{ hidden: true }` が必要
+
+- 折り畳み UI (`<button aria-expanded aria-controls>` + `<div hidden>`) で、デフォルト閉じ (`hidden={!open}`) のとき、配下要素は RTL の `getAllByRole` デフォルト (`hidden: false`) で除外される。
+- 例: `expect(screen.getAllByRole('listitem')).toHaveLength(N)` が 0 を返して失敗する。`hidden: true` を明示すると対象要素を含めて検索する。
+- **Why**: RTL は ARIA accessibility tree を構築するとき、`hidden` 属性で除外された要素を role から外す。role-based クエリ (`getByRole` / `getAllByRole`) は ARIA tree を walk するため、hidden 配下の要素に到達できない。
+- **How to apply**: 折り畳みセクションの子要素を assertion するときは `{ hidden: true }` を付ける。代替策としてテスト前に toggle button を click して expanded 状態にしてから assertion する手もある (ただし toggle 自体のテストが後ろに回ってしまう)。`container.querySelectorAll('.classname')` で DOM 直接クエリに逃げる方法もあるが、role-based を優先して `{ hidden: true }` で書くほうが a11y セマンティクスを維持できる。
+

@@ -156,7 +156,7 @@ export default function AnalyticsDashboardPage() {
         </div>
         <div className="site-header-links-row analytics-dashboard-actions">
           <Link to={`${CURRENT_RESULT_PATH}/`} className="analytics-dashboard-action primary">{t('analytics.resultAction')}</Link>
-          <Link to={`${CURRENT_SCHEDULE_PATH}/`} className="analytics-dashboard-action">{t('analytics.scheduleAction')}</Link>
+          <Link to={`${CURRENT_SCHEDULE_PATH}/`} className="analytics-dashboard-action">{t(isFinal ? 'analytics.pastScheduleAction' : 'analytics.scheduleAction')}</Link>
         </div>
       </header>
 

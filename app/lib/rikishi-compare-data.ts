@@ -1,5 +1,12 @@
 import { makuuchiData, juryo, type Rikishi } from './sumo-data';
-import type { RikishiProfile } from './rikishi-profile';
+import { extractRikishiIdFromProfileUrl, type RikishiProfile } from './rikishi-profile';
+import {
+  torikumiArchive,
+  torikumiMonthKey,
+  type TorikumiArchiveDay,
+  type TorikumiMatch,
+} from './torikumi-data';
+import { PAST_BASHO } from './archives-data';
 import { MARCH2026_TORIKUMI_DATA } from './march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from './may2026-data';
 import { JULY2026_TORIKUMI_DATA } from './july2026-data';
@@ -204,4 +211,116 @@ export function getRecentBouts(shikona: string, limit = 5): RecentBoutResult[] {
   }
 
   return results;
+}
+
+// === Basho-by-basho matchup history ===
+
+export type MatchupBoutWinner = 'a' | 'b' | null;
+
+export interface BashoMatchupBout {
+  day: number;
+  dayLabel: string;
+  pathDate: string;
+  division: '幕内' | '十両';
+  boutNo: number;
+  kimarite: string;
+  winner: MatchupBoutWinner;
+}
+
+export interface BashoMatchupRecord {
+  monthKey: string;
+  year: string;
+  bashoName: string;
+  winsA: number;
+  winsB: number;
+  bouts: BashoMatchupBout[];
+}
+
+export function getBashoMatchupHistory(idA: number, idB: number): BashoMatchupRecord[] {
+  return computeBashoMatchupHistory(idA, idB, buildMatchupBashoEntries());
+}
+
+interface MatchupBashoEntry {
+  monthKey: string;
+  year: string;
+  bashoName: string;
+  resultDays: readonly TorikumiArchiveDay[];
+}
+
+function buildMatchupBashoEntries(): MatchupBashoEntry[] {
+  return [
+    {
+      monthKey: torikumiMonthKey,
+      year: torikumiArchive.year,
+      bashoName: torikumiArchive.bashoName,
+      resultDays: torikumiArchive.resultDays ?? [],
+    },
+    ...PAST_BASHO.map((basho) => ({
+      monthKey: basho.id,
+      year: basho.year,
+      bashoName: basho.name,
+      resultDays: basho.data.resultDays ?? [],
+    })),
+  ];
+}
+
+function resolveMatchupBoutWinner(
+  match: TorikumiMatch,
+  idA: number,
+  idB: number,
+): MatchupBoutWinner | undefined {
+  const eastId = extractRikishiIdFromProfileUrl(match.eastProfileUrl);
+  const westId = extractRikishiIdFromProfileUrl(match.westProfileUrl);
+  if (eastId === null || westId === null) return undefined;
+  let aSide: 'east' | 'west' | null = null;
+  if (eastId === idA && westId === idB) aSide = 'east';
+  else if (eastId === idB && westId === idA) aSide = 'west';
+  if (!aSide) return undefined;
+  if (match.winner === undefined || match.winner === null) return null;
+  return match.winner === aSide ? 'a' : 'b';
+}
+
+/** Exposed for tests to exercise the matcher with synthetic basho data. */
+export function computeBashoMatchupHistory(
+  idA: number,
+  idB: number,
+  entries: readonly MatchupBashoEntry[],
+): BashoMatchupRecord[] {
+  if (idA === idB) return [];
+  const records: BashoMatchupRecord[] = [];
+  for (const entry of entries) {
+    let winsA = 0;
+    let winsB = 0;
+    const bouts: BashoMatchupBout[] = [];
+    for (const day of entry.resultDays) {
+      for (const divisionDay of [day.data.makuuchi, day.data.juryo]) {
+        for (const match of divisionDay.matches) {
+          const winner = resolveMatchupBoutWinner(match, idA, idB);
+          if (winner === undefined) continue;
+          if (winner === 'a') winsA += 1;
+          else if (winner === 'b') winsB += 1;
+          bouts.push({
+            day: day.day,
+            dayLabel: day.label,
+            pathDate: day.pathDate,
+            division: match.division,
+            boutNo: match.boutNo,
+            kimarite: match.kimarite,
+            winner,
+          });
+        }
+      }
+    }
+    if (bouts.length > 0) {
+      records.push({
+        monthKey: entry.monthKey,
+        year: entry.year,
+        bashoName: entry.bashoName,
+        winsA,
+        winsB,
+        bouts,
+      });
+    }
+  }
+  return records;
 }
