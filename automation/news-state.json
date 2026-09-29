@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-29T00:58:42.578368+00:00",
+    "updatedAt": "2026-09-29T02:30:06.623586+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -17,6 +17,15 @@
       }
     ],
     "items": [
+      {
+        "id": "dmenu-docomo-nikkangendai-1249682",
+        "title": "元関脇嘉風・中村親方〈3〉「稽古は嫌い。それでも土俵で得られる快感のために受け入れていました」【吉田賢vs親方 がっぷり対談】",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1249682",
+        "publishedAt": "2026-09-29",
+        "publishedAtRaw": "日刊ゲンダイDIGITAL　9月29日 10時55分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
       {
         "id": "dmenu-docomo-sanspo-_sports_sumo_BYSQ52MPXJA4LMC6JZ2UGDGUOY",
         "title": "舞の海氏「もちろんできますね。またやらなくてはいけないですよね」",
@@ -54,15 +63,6 @@
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-ans-733077",
-        "title": "「負け越したのに…ええ人やね」　大の里復活→Vパレードに現れた人物に感銘の声「またか！！」",
-        "url": "https://topics.smt.docomo.ne.jp/article/ans/sports/ans-733077",
-        "publishedAt": "2026-09-29",
-        "publishedAtRaw": "THE ANSWER　9月29日 6時13分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
         "id": "sumo-association-762",
         "title": "令和9年「大相撲カレンダー」販売のご案内",
         "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=762",
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-29T00:58:42.588104+00:00",
-  "lastSuccessAt": "2026-09-29T00:58:42.578368+00:00",
+  "lastAttemptAt": "2026-09-29T02:30:06.634220+00:00",
+  "lastSuccessAt": "2026-09-29T02:30:06.623586+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -407,9 +407,13 @@
     "36505665237": {
       "attemptedAt": "2026-09-29T00:58:42.588104+00:00",
       "outcome": "success"
+    },
+    "36512867382": {
+      "attemptedAt": "2026-09-29T02:30:06.634220+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36505665237",
+  "lastRunId": "36512867382",
   "lastPublishedDate": "2026-09-28",
   "lastPublishedSha": "ecd6c0a5b1d57d4a915430b1f0b112a5e133a189",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
