@@ -13,11 +13,10 @@ function toBase64Url(bytes: Uint8Array): string {
   return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
 }
 
-function fromBase64Url(value: string): ArrayBuffer {
+function fromBase64Url(value: string): Uint8Array<ArrayBuffer> {
   const base64 = value.replace(/-/g, '+').replace(/_/g, '/').padEnd(Math.ceil(value.length / 4) * 4, '=');
   const binary = atob(base64);
-  const bytes = Uint8Array.from(binary, (character) => character.charCodeAt(0));
-  return bytes.buffer as ArrayBuffer;
+  return Uint8Array.from(binary, (character) => character.charCodeAt(0));
 }
 
 function normalizeReturnTo(returnTo: string): string {
