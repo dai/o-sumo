@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-30T02:32:32.633052+00:00",
+    "updatedAt": "2026-09-30T04:26:28.876886+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,49 +18,58 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-kyodo_nor-2026093001000404",
-        "title": "旭富士、最速6場所で新十両昇進　19歳竜鳳は8場所で",
-        "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026093001000404",
+        "id": "dmenu-docomo-hochi-20260930-OHT1T51111",
+        "title": "１９歳の竜鳳が新十両昇進　兄弟子の春場所は大関・霧島の付け人で「背中がかっこよかった」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260930-OHT1T51111",
         "publishedAt": "2026-09-30",
-        "publishedAtRaw": "共同通信　9月30日 11時14分",
+        "publishedAtRaw": "スポーツ報知　9月30日 13時19分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-20260930056",
-        "title": "現役最重量２５２キロの出羽ノ城が引退「人間関係を大切にすることを教わった」角界に感謝【大相撲】",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260930056",
+        "id": "dmenu-docomo-20260930065",
+        "title": "旭富士が笑顔なきスピード新十両会見「内容は全然ダメ。前に出る相撲ができていない」ろっ骨折れていた【大相撲】",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260930065",
         "publishedAt": "2026-09-30",
-        "publishedAtRaw": "デイリースポーツ　9月30日 11時05分",
+        "publishedAtRaw": "デイリースポーツ　9月30日 12時52分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-nikkangendai-1250830",
-        "title": "元関脇嘉風・中村親方〈4〉「番付は落ちだしたら早いぞ」 黙って見守る尾車親方からかけられたメッセージ【吉田賢vs親方 がっぷり対談】",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1250830",
+        "id": "dmenu-docomo-chuspo-1318563",
+        "title": "元照ノ富士・伊勢ケ浜親方、「日本人以上に相撲を…」 同郷モンゴル出身の弟子・新十両旭富士へ説いた心構え",
+        "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1318563",
         "publishedAt": "2026-09-30",
-        "publishedAtRaw": "日刊ゲンダイDIGITAL　9月30日 10時55分",
+        "publishedAtRaw": "中日スポーツ　9月30日 12時26分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-abematimes-10275825",
-        "title": "横綱・大の里の“規格外”な副賞で付け人に異変 カメラが捉えた“ざわつき”の瞬間「なんでみんな嬉しそうなんだw」ファンほっこり",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10275825",
+        "id": "dmenu-docomo-tokyosports-404986",
+        "title": "【大相撲】〝超有望株〟旭富士が史上最速で十両昇進「目標は横綱になる」　師匠・伊勢ヶ浜親方も精神面を絶賛",
+        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-404986",
         "publishedAt": "2026-09-30",
-        "publishedAtRaw": "ABEMA TIMES　9月30日 10時34分",
+        "publishedAtRaw": "東スポWEB　9月30日 12時22分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260930-202609300000140",
-        "title": "矢後、出羽ノ城、朝阪神、房州山ら９人　日本相撲協会が引退力士発表",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260930-202609300000140",
+        "id": "dmenu-docomo-f-bt-tp1-260930-202609300000321",
+        "title": "旭富士が新十両昇進、師匠が秋場所前の肋骨骨折を明かす「よく勝ち抜いた」九州場所はＶ宣言",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260930-202609300000321",
         "publishedAt": "2026-09-30",
-        "publishedAtRaw": "日刊スポーツ　9月30日 10時28分",
+        "publishedAtRaw": "日刊スポーツ　9月30日 12時20分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "sumo-association-763",
+        "title": "引退のお知らせ",
+        "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=763",
+        "publishedAt": "2026-09-25",
+        "publishedAtRaw": "令和8年9月25日",
+        "sourceId": "sumo-association",
+        "sourceLabel": "日本相撲協会"
       },
       {
         "id": "sumo-association-762",
@@ -79,21 +88,12 @@
         "publishedAtRaw": "令和8年9月3日",
         "sourceId": "sumo-association",
         "sourceLabel": "日本相撲協会"
-      },
-      {
-        "id": "sumo-association-759",
-        "title": "お知らせ",
-        "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=759",
-        "publishedAt": "2026-08-07",
-        "publishedAtRaw": "令和8年8月7日",
-        "sourceId": "sumo-association",
-        "sourceLabel": "日本相撲協会"
       }
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-30T02:32:32.642353+00:00",
-  "lastSuccessAt": "2026-09-30T02:32:32.633052+00:00",
+  "lastAttemptAt": "2026-09-30T04:26:28.886476+00:00",
+  "lastSuccessAt": "2026-09-30T04:26:28.876886+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -435,9 +435,13 @@
     "36660304737": {
       "attemptedAt": "2026-09-30T02:32:32.642353+00:00",
       "outcome": "success"
+    },
+    "36668834833": {
+      "attemptedAt": "2026-09-30T04:26:28.886476+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36660304737",
+  "lastRunId": "36668834833",
   "lastPublishedDate": "2026-09-29",
   "lastPublishedSha": "49f2a5cb951dc4080c6e680a7831b67d50502006",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
