@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-30T06:37:49.432227+00:00",
+    "updatedAt": "2026-09-30T08:31:32.557962+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
+        "id": "dmenu-docomo-20260930091",
+        "title": "元鶴竜の音羽山親方　初めて入門時から育てた新十両誕生「素直にうれしい」竜鳳は「人として力士として尊敬」【大相撲】",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260930091",
+        "publishedAt": "2026-09-30",
+        "publishedAtRaw": "デイリースポーツ　9月30日 16時08分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-sankei-_sports_sumo_K4FMGGEAOJP2XJGS7LAN75IOIQ",
+        "title": "新十両まで所要6場所のスピード出世　旭富士「前に出る相撲ができていない」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_K4FMGGEAOJP2XJGS7LAN75IOIQ",
+        "publishedAt": "2026-09-30",
+        "publishedAtRaw": "産経ニュース　9月30日 16時02分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-hochi-20260929-OHT1T51293",
+        "title": "３６６万円分の懸賞袋を抱えて花道を下がる高安…バブルを迎える令和の角界",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260929-OHT1T51293",
+        "publishedAt": "2026-09-30",
+        "publishedAtRaw": "スポーツ報知　9月30日 16時00分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-jiji-2026093000794",
+        "title": "１９歳竜鳳「一つ一つ」＝大相撲",
+        "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026093000794",
+        "publishedAt": "2026-09-30",
+        "publishedAtRaw": "時事通信　9月30日 15時55分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
         "id": "dmenu-docomo-sponichi-spngoo-20260930-0247",
         "title": "史上最速タイ新十両昇進の旭富士「もっと愛される力士になりたい」　同郷の師匠から心得　目標は「横綱」",
         "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260930-0247",
         "publishedAt": "2026-09-30",
         "publishedAtRaw": "スポニチアネックス　9月30日 14時34分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-f-bt-tp1-260930-202609300000588",
-        "title": "新十両の19歳竜鳳、楽しみは白まわし　音羽山親方も笑顔で「もう買ってこいと言ってます」",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260930-202609300000588",
-        "publishedAt": "2026-09-30",
-        "publishedAtRaw": "日刊スポーツ　9月30日 14時28分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-f-bt-tp1-260930-202609300000515",
-        "title": "19歳竜鳳が新十両「かっこいい背中」付け人で見た霧島の優勝、教わった「楽しんでいけよ」",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260930-202609300000515",
-        "publishedAt": "2026-09-30",
-        "publishedAtRaw": "日刊スポーツ　9月30日 14時02分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-f-bt-tp1-260930-202609300000432",
-        "title": "元照ノ富士の伊勢ケ浜親方、新十両の旭富士に伝えた相撲への向き合い方「愛されるような力士に」",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260930-202609300000432",
-        "publishedAt": "2026-09-30",
-        "publishedAtRaw": "日刊スポーツ　9月30日 13時31分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-hochi-20260930-OHT1T51111",
-        "title": "１９歳の竜鳳が新十両昇進　兄弟子の春場所は大関・霧島の付け人で「背中がかっこよかった」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260930-OHT1T51111",
-        "publishedAt": "2026-09-30",
-        "publishedAtRaw": "スポーツ報知　9月30日 13時19分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-30T06:37:49.441460+00:00",
-  "lastSuccessAt": "2026-09-30T06:37:49.432227+00:00",
+  "lastAttemptAt": "2026-09-30T08:31:32.568145+00:00",
+  "lastSuccessAt": "2026-09-30T08:31:32.557962+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -443,9 +443,13 @@
     "36679207583": {
       "attemptedAt": "2026-09-30T06:37:49.441460+00:00",
       "outcome": "success"
+    },
+    "36690217976": {
+      "attemptedAt": "2026-09-30T08:31:32.568145+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36679207583",
+  "lastRunId": "36690217976",
   "lastPublishedDate": "2026-09-29",
   "lastPublishedSha": "49f2a5cb951dc4080c6e680a7831b67d50502006",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
