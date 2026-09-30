@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-30T08:31:32.557962+00:00",
+    "updatedAt": "2026-09-30T10:24:22.324779+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -17,6 +17,15 @@
       }
     ],
     "items": [
+      {
+        "id": "dmenu-docomo-sanspo-_sports_sumo_N6NS4H2T4BOIHIKMHCNQ67GFRI",
+        "title": "旭富士が所要6場所で新十両昇進　〝先代超え〟のスピード出世「目標は横綱になること」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_N6NS4H2T4BOIHIKMHCNQ67GFRI",
+        "publishedAt": "2026-09-30",
+        "publishedAtRaw": "SANSPO　9月30日 17時43分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
       {
         "id": "dmenu-docomo-20260930091",
         "title": "元鶴竜の音羽山親方　初めて入門時から育てた新十両誕生「素直にうれしい」竜鳳は「人として力士として尊敬」【大相撲】",
@@ -54,15 +63,6 @@
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sponichi-spngoo-20260930-0247",
-        "title": "史上最速タイ新十両昇進の旭富士「もっと愛される力士になりたい」　同郷の師匠から心得　目標は「横綱」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260930-0247",
-        "publishedAt": "2026-09-30",
-        "publishedAtRaw": "スポニチアネックス　9月30日 14時34分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
         "id": "sumo-association-763",
         "title": "引退のお知らせ",
         "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=763",
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-30T08:31:32.568145+00:00",
-  "lastSuccessAt": "2026-09-30T08:31:32.557962+00:00",
+  "lastAttemptAt": "2026-09-30T10:24:22.333026+00:00",
+  "lastSuccessAt": "2026-09-30T10:24:22.324779+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -447,9 +447,13 @@
     "36690217976": {
       "attemptedAt": "2026-09-30T08:31:32.568145+00:00",
       "outcome": "success"
+    },
+    "36702195660": {
+      "attemptedAt": "2026-09-30T10:24:22.333026+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36690217976",
+  "lastRunId": "36702195660",
   "lastPublishedDate": "2026-09-29",
   "lastPublishedSha": "49f2a5cb951dc4080c6e680a7831b67d50502006",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
