@@ -1,5 +1,22 @@
 # GitHub Actions 安全再設計 — 実装 Todo
 
+## 2026-09-30 OAuth state test CI fix
+
+- [x] Confirm CI failure and reproduce equivalent base64url signatures.
+- [x] Replace signature tampering with a significant-bit change.
+- [x] Verify focused/full tests, typecheck, build, and diff checks.
+
+### Review
+
+The old fixture could preserve the decoded HMAC signature when changing
+padding bits. Altering its first character always changes signature bytes.
+Production OAuth behavior is unchanged. Focused tests: 2 passed; full suite:
+90 files / 723 tests passed. Typecheck, build, and diff checks passed.
+In 256 deterministic HMAC samples, the old mutation was accepted 15 times;
+the corrected mutation was rejected in all 256 cases.
+The task document was normalized from CRLF to LF as a separate documentation
+change to comply with the repository text policy.
+
 プラン: `C:\Users\dai\.claude\plans\cached-singing-flask.md`
 
 ## Phase 0: ローカル状態確認

@@ -32,7 +32,10 @@ describe('OAuth state', () => {
 
   it('rejects tampered, expired, missing-cookie, and external return states', async () => {
     const created = await createOAuthState('/my-rikishi/', 'test-secret');
-    const tampered = `${created.state.slice(0, -1)}${created.state.endsWith('a') ? 'b' : 'a'}`;
+    const [payload, signature] = created.state.split('.');
+    // Alter significant signature bits; the last base64url character has padding bits.
+    const tamperedSignature = `${signature.startsWith('A') ? 'B' : 'A'}${signature.slice(1)}`;
+    const tampered = `${payload}.${tamperedSignature}`;
     const request = (state: string, cookie = `${OAUTH_STATE_COOKIE}=${created.nonce}`) => new Request(
       `https://osada.us/api/auth/callback/google?state=${state}`,
       { headers: cookie ? { cookie } : undefined },
