@@ -25,6 +25,7 @@ describe('AuthControls', () => {
     const signIn = await screen.findByRole('link', { name: 'Google でログイン' });
     expect(signIn).toHaveAttribute('href', '/api/auth/google?returnTo=/my-rikishi/');
     expect(screen.getByText('ログインしなくても、この端末には保存できます。')).toBeInTheDocument();
+    expect(screen.getByText('※ パスワード入力は不要です')).toBeInTheDocument();
   });
 
   it('shows the account and signs out without clearing local selections', async () => {

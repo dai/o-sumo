@@ -14,6 +14,7 @@ import { getBashoStatus } from '../lib/basho-status';
 import { getBashoMatchupHistory, type BashoMatchupRecord } from '../lib/rikishi-compare-data';
 
 import BashoMatchupHistory from './BashoMatchupHistory';
+import MyRikishiSigninHelp from './MyRikishiSigninHelp';
 
 import { toRomaji } from '../lib/romaji';
 import './page.css';
@@ -189,6 +190,7 @@ export default function MyRikishiPage() {
         </div>
       </header>
       <main className="rikishi-main">
+        <MyRikishiSigninHelp />
         {status === 'loading' ? <p className="rikishi-status">{t('rikishi.loading')}</p> : null}
         {status === 'error' ? <p className="rikishi-status warning">{t('rikishi.loadError')}</p> : null}
         {status === 'ready' && savedRikishi.length === 0 ? (
