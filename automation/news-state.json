@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-30T01:00:11.198866+00:00",
+    "updatedAt": "2026-09-30T02:32:32.633052+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-sponichi-spngoo-20260930-0136",
-        "title": "旭富士が史上最速タイ所要6場所で新十両昇進　19歳の竜鳳も昇進",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20260930-0136",
+        "id": "dmenu-docomo-kyodo_nor-2026093001000404",
+        "title": "旭富士、最速6場所で新十両昇進　19歳竜鳳は8場所で",
+        "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026093001000404",
         "publishedAt": "2026-09-30",
-        "publishedAtRaw": "スポニチアネックス　9月30日 9時45分",
+        "publishedAtRaw": "共同通信　9月30日 11時14分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260930-OHT1T51049",
-        "title": "横綱のしこ名を継ぐ旭富士が新十両昇進　所要６場所は史上最速タイ",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260930-OHT1T51049",
+        "id": "dmenu-docomo-20260930056",
+        "title": "現役最重量２５２キロの出羽ノ城が引退「人間関係を大切にすることを教わった」角界に感謝【大相撲】",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260930056",
         "publishedAt": "2026-09-30",
-        "publishedAtRaw": "スポーツ報知　9月30日 9時36分",
+        "publishedAtRaw": "デイリースポーツ　9月30日 11時05分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260930-202609290001390",
-        "title": "元中学横綱の19歳竜鳳の新十両昇進が決定　音羽山部屋で大関霧島に続く２人目の関取が誕生",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260930-202609290001390",
+        "id": "dmenu-docomo-nikkangendai-1250830",
+        "title": "元関脇嘉風・中村親方〈4〉「番付は落ちだしたら早いぞ」 黙って見守る尾車親方からかけられたメッセージ【吉田賢vs親方 がっぷり対談】",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1250830",
         "publishedAt": "2026-09-30",
-        "publishedAtRaw": "日刊スポーツ　9月30日 9時26分",
+        "publishedAtRaw": "日刊ゲンダイDIGITAL　9月30日 10時55分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-260930-202609290001347",
-        "title": "旭富士が最速タイの所要6場所で新十両　63代横綱からしこ名を継承した24歳が関取に",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260930-202609290001347",
+        "id": "dmenu-docomo-abematimes-10275825",
+        "title": "横綱・大の里の“規格外”な副賞で付け人に異変 カメラが捉えた“ざわつき”の瞬間「なんでみんな嬉しそうなんだw」ファンほっこり",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10275825",
         "publishedAt": "2026-09-30",
-        "publishedAtRaw": "日刊スポーツ　9月30日 9時26分",
+        "publishedAtRaw": "ABEMA TIMES　9月30日 10時34分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-abematimes-10275743",
-        "title": "「ガタイよすぎ」「元関取かと」大の里、副賞授与式で“まさか”の人物 「カップも大使も横綱級」驚きと感嘆の声も",
-        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10275743",
-        "publishedAt": "2026-09-29",
-        "publishedAtRaw": "ABEMA TIMES　9月29日 20時32分",
+        "id": "dmenu-docomo-f-bt-tp1-260930-202609300000140",
+        "title": "矢後、出羽ノ城、朝阪神、房州山ら９人　日本相撲協会が引退力士発表",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-260930-202609300000140",
+        "publishedAt": "2026-09-30",
+        "publishedAtRaw": "日刊スポーツ　9月30日 10時28分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-30T01:00:11.209200+00:00",
-  "lastSuccessAt": "2026-09-30T01:00:11.198866+00:00",
+  "lastAttemptAt": "2026-09-30T02:32:32.642353+00:00",
+  "lastSuccessAt": "2026-09-30T02:32:32.633052+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -431,9 +431,13 @@
     "36652983344": {
       "attemptedAt": "2026-09-30T01:00:11.209200+00:00",
       "outcome": "success"
+    },
+    "36660304737": {
+      "attemptedAt": "2026-09-30T02:32:32.642353+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36652983344",
+  "lastRunId": "36660304737",
   "lastPublishedDate": "2026-09-29",
   "lastPublishedSha": "49f2a5cb951dc4080c6e680a7831b67d50502006",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
