@@ -481,15 +481,25 @@
     "navLabel": "My rikishi",
     "listTitle": "My rikishi",
     "listDescription": "Save the rikishi you want to follow on this device and view them together anytime.",
-    "storageNote": "Sign in to sync across devices. Without sign-in, your saved rikishi stay in this browser.",
+    "storageNote": "Sign in to sync across devices — o-sumo does not require a separate password. Without sign-in, your saved rikishi stay in this browser.",
     "auth": {
       "signIn": "Sign in with Google",
+      "passwordHint": "No password required.",
       "signOut": "Sign out",
       "checking": "Checking sign-in status.",
       "localOnly": "You can keep saving on this device without signing in.",
       "syncing": "Syncing My rikishi.",
       "syncFailed": "Could not sync.",
-      "localRetained": "Changes on this device are retained."
+      "localRetained": "Changes on this device are retained.",
+      "help": {
+        "title": "About Google sign-in",
+        "toggleOpen": "Learn more",
+        "toggleClose": "Hide",
+        "intro": "You can save rikishi without signing in — your saves stay in this browser. Sign in is optional and only needed to sync across devices.",
+        "passwordless": "o-sumo does not require a separate password. You do not need to set up a new password for o-sumo.",
+        "crossDevice": "When you sign in, your saved rikishi sync across every device you use.",
+        "privacy": "o-sumo does not store or share your Google password."
+      }
     },
     "add": "Add to My rikishi",
     "remove": "Remove from My rikishi",

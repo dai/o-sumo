@@ -475,3 +475,47 @@ spec: PR #644 (`docs: analytics live dashboard design (Phase 1–2)`、docs-only
 - Preview verification script: anonymous sessionとOAuth startがpassed
 - build: `npm run build` passed、生成 `sw.js` のnavigation routeに`/^\/api\//` denylistを確認
 - Production gate: Production D1、binding、OAuth、secretは未設定のまま
+
+# My Rikishi Google サインイン説明コピー追加 (2026-09-30)
+
+## 状況
+- Branch: `docs/my-rikishi-google-signin-help`
+- Base: `origin/main` @ `49f2a5c`
+- スコープ: ユーザー向けドキュメント/UX コピーのみの追加。OAuth scope・サーバーセッション・ストレージ上限には触れない
+
+## 実装内容
+- `app/components/AuthControls.tsx`: 未認証分岐に `passwordHint` 行を追加
+- `app/components/auth-controls.css`: ヒント用 `flex-basis: 100%` ルール追記
+- `app/rikishi/MyRikishiPage.tsx`: `<MyRikishiSigninHelp />` を `<main>` 先頭で描画
+- `app/rikishi/MyRikishiSigninHelp.tsx`（新規）: `BashoMatchupHistory` パターンに倣う折りたたみコンポーネント
+- `app/rikishi/page.css`: `.my-rikishi-signin-help*` ルールを末尾に追加
+- `src/locales/ja/common.json`: `passwordHint` と `help` ブロック追加、`storageNote` を更新
+- `src/locales/en/common.json`: ja と同じ挿入順
+- `app/components/AuthControls.test.tsx`: `passwordHint` アサーション 1 件追加
+
+## 戦略
+- Advisor 推奨 Option C（既存画面 + 折りたたみヘルプ）を採用
+- 「パスワード不要」は "o-sumo 専用" スコープに限定 — Google 側の OAuth 中のパスワード入力とは矛盾しない
+- ディスクロージャーイディオムは `button + aria-expanded` + `hidden` パネル（`BashoMatchupHistory` パターン踏襲）— `<details>` は前例なし + UA デフォルトマーカーとカスタムスタイルが競合するため不採用
+- ヘルプセクションを `<main>` 先頭に配置（`<header>` 内だとスティッキー z-index 50 でスクロール時に重なる問題を回避）
+
+## 検証結果
+- `npm run typecheck`: クリーン
+- 単一ファイル (`AuthControls.test.tsx`): 2/2 passed
+- コンパニオン 3 ファイル (`AuthControls` + `PrimaryNavigation` + `MyRikishiPage`): 31/31 passed
+- フルスイート: 90 files、723/723 tests passed
+- `npm run build`: passed（`dist/` 生成、`MyRikishiPage` chunk が個別に出力されることを確認）
+
+## 受け入れ基準
+- [x] ログアウト状態のサインボタン直下に `passwordHint` が ja/en で表示
+- [x] `storageNote` が両言語で「パスワード不要」節を含む
+- [x] ヘルプトグルが 3 つの箇条書きを展開
+- [x] `npm run typecheck`、`npm run build`、`npm test` すべてクリーン
+- [ ] PR レビュー時のブラウザ ja/en ウォークスルー（言語トグル切替後の生キーフォールバック無し確認）
+- [ ] スクリーンショットを PR 会話に添付
+
+## 範囲外
+- OAuth scope の変更（`openid profile` のまま）
+- サーバーセッション・エンドポイントの変更
+- オペレーター向けドキュメント（`docs/auth/my-rikishi-cloudflare-operations.md`）
+- `public/auth.md`（AI エージェント向けのため対象外）

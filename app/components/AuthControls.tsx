@@ -19,6 +19,7 @@ export default function AuthControls() {
           {t('myRikishi.auth.signIn')}
         </a>
         <span className="auth-controls__status">{t('myRikishi.auth.localOnly')}</span>
+        <p className="auth-controls__hint">{t('myRikishi.auth.passwordHint')}</p>
       </div>
     );
   }
