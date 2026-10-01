@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-10-01T08:32:22.013697+00:00",
+    "updatedAt": "2026-10-01T10:24:19.025595+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,56 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-20261001116",
-        "title": "体重５０キロ台力士で注目の新道が相撲教習所入所「序ノ口で勝ち越したい」九州場所へ闘志【大相撲】",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20261001116",
+        "id": "sumo-association-764",
+        "title": "「大相撲バンコク公演」開催に関するお知らせ",
+        "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=764",
         "publishedAt": "2026-10-01",
-        "publishedAtRaw": "デイリースポーツ　10月1日 17時19分",
+        "publishedAtRaw": "令和8年10月1日",
+        "sourceId": "sumo-association",
+        "sourceLabel": "日本相撲協会"
+      },
+      {
+        "id": "dmenu-docomo-kyodo_nor-2026100101001750",
+        "title": "栄誠、相撲教習所に入所　17歳の英国出身力士",
+        "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100101001750",
+        "publishedAt": "2026-10-01",
+        "publishedAtRaw": "共同通信　10月1日 18時54分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sponichi-spngoo-20261001-0279",
-        "title": "史上3人目の英国出身力士　栄誠が相撲教習所入所式に出席「もっといろんな人と相撲を取りたい」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261001-0279",
+        "id": "dmenu-docomo-tokyosports-405150",
+        "title": "【大相撲】秋巡業の休場力士１２人を発表　秋場所全休の豊昇龍は途中合流へ　炎鵬、御嶽海が補充",
+        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-405150",
         "publishedAt": "2026-10-01",
-        "publishedAtRaw": "スポニチアネックス　10月1日 17時11分",
+        "publishedAtRaw": "東スポWEB　10月1日 18時41分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20261001-OHT1T51196",
-        "title": "大相撲の立行司に４０代木村庄之助、４４代式守伊之助が誕生！",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261001-OHT1T51196",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_NEC5QB25JJJVJLNG5554VZ6YFQ",
+        "title": "式守伊之助が第40代木村庄之助に昇進へ　来年6月にはバンコク公演",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_NEC5QB25JJJVJLNG5554VZ6YFQ",
         "publishedAt": "2026-10-01",
-        "publishedAtRaw": "スポーツ報知　10月1日 15時50分",
+        "publishedAtRaw": "SANSPO　10月1日 18時11分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-kyodo_nor-2026100101001224",
-        "title": "来年6月にバンコク公演　大相撲、海外3年連続",
-        "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100101001224",
+        "id": "dmenu-docomo-jiji-2026100100885",
+        "title": "大相撲、来年６月にバンコク公演",
+        "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026100100885",
         "publishedAt": "2026-10-01",
-        "publishedAtRaw": "共同通信　10月1日 15時43分",
+        "publishedAtRaw": "時事通信　10月1日 18時11分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20261001-OHT1T51203",
-        "title": "相撲規則改訂「相手を倒しながら瞬時早く髪がついたときは負けにならない」削除　１９８０年秋の貴ノ花―高見山などが例",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261001-OHT1T51203",
+        "id": "dmenu-docomo-20261001-567-GYT1T00319",
+        "title": "土俵に丁髷がついたら「無条件で負け」、大相撲で７１年ぶりにルール改定…曖昧だった解釈を統一",
+        "url": "https://topics.smt.docomo.ne.jp/article/yomiuri/sports/20261001-567-GYT1T00319",
         "publishedAt": "2026-10-01",
-        "publishedAtRaw": "スポーツ報知　10月1日 15時33分",
+        "publishedAtRaw": "読売新聞　10月1日 17時58分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -79,21 +88,12 @@
         "publishedAtRaw": "令和8年9月10日",
         "sourceId": "sumo-association",
         "sourceLabel": "日本相撲協会"
-      },
-      {
-        "id": "sumo-association-761",
-        "title": "大相撲九月場所「土俵祭」のご案内",
-        "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=761",
-        "publishedAt": "2026-09-03",
-        "publishedAtRaw": "令和8年9月3日",
-        "sourceId": "sumo-association",
-        "sourceLabel": "日本相撲協会"
       }
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-10-01T08:32:22.022687+00:00",
-  "lastSuccessAt": "2026-10-01T08:32:22.013697+00:00",
+  "lastAttemptAt": "2026-10-01T10:24:19.036232+00:00",
+  "lastSuccessAt": "2026-10-01T10:24:19.025595+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -471,9 +471,13 @@
     "36836913888": {
       "attemptedAt": "2026-10-01T08:32:22.022687+00:00",
       "outcome": "success"
+    },
+    "36848895793": {
+      "attemptedAt": "2026-10-01T10:24:19.036232+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36836913888",
+  "lastRunId": "36848895793",
   "lastPublishedDate": "2026-09-30",
   "lastPublishedSha": "5473e4f49bb585ca41644b668dddde47dc96b79f",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
