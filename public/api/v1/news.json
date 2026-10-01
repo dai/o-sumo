@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-30T10:24:22.324779+00:00",
+  "updatedAt": "2026-10-01T10:24:19.025595+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,56 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_N6NS4H2T4BOIHIKMHCNQ67GFRI",
-      "title": "旭富士が所要6場所で新十両昇進　〝先代超え〟のスピード出世「目標は横綱になること」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_N6NS4H2T4BOIHIKMHCNQ67GFRI",
-      "publishedAt": "2026-09-30",
-      "publishedAtRaw": "SANSPO　9月30日 17時43分",
+      "id": "sumo-association-764",
+      "title": "「大相撲バンコク公演」開催に関するお知らせ",
+      "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=764",
+      "publishedAt": "2026-10-01",
+      "publishedAtRaw": "令和8年10月1日",
+      "sourceId": "sumo-association",
+      "sourceLabel": "日本相撲協会"
+    },
+    {
+      "id": "dmenu-docomo-kyodo_nor-2026100101001750",
+      "title": "栄誠、相撲教習所に入所　17歳の英国出身力士",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100101001750",
+      "publishedAt": "2026-10-01",
+      "publishedAtRaw": "共同通信　10月1日 18時54分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-20260930091",
-      "title": "元鶴竜の音羽山親方　初めて入門時から育てた新十両誕生「素直にうれしい」竜鳳は「人として力士として尊敬」【大相撲】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260930091",
-      "publishedAt": "2026-09-30",
-      "publishedAtRaw": "デイリースポーツ　9月30日 16時08分",
+      "id": "dmenu-docomo-tokyosports-405150",
+      "title": "【大相撲】秋巡業の休場力士１２人を発表　秋場所全休の豊昇龍は途中合流へ　炎鵬、御嶽海が補充",
+      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-405150",
+      "publishedAt": "2026-10-01",
+      "publishedAtRaw": "東スポWEB　10月1日 18時41分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sankei-_sports_sumo_K4FMGGEAOJP2XJGS7LAN75IOIQ",
-      "title": "新十両まで所要6場所のスピード出世　旭富士「前に出る相撲ができていない」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_K4FMGGEAOJP2XJGS7LAN75IOIQ",
-      "publishedAt": "2026-09-30",
-      "publishedAtRaw": "産経ニュース　9月30日 16時02分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_NEC5QB25JJJVJLNG5554VZ6YFQ",
+      "title": "式守伊之助が第40代木村庄之助に昇進へ　来年6月にはバンコク公演",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_NEC5QB25JJJVJLNG5554VZ6YFQ",
+      "publishedAt": "2026-10-01",
+      "publishedAtRaw": "SANSPO　10月1日 18時11分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20260929-OHT1T51293",
-      "title": "３６６万円分の懸賞袋を抱えて花道を下がる高安…バブルを迎える令和の角界",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260929-OHT1T51293",
-      "publishedAt": "2026-09-30",
-      "publishedAtRaw": "スポーツ報知　9月30日 16時00分",
+      "id": "dmenu-docomo-jiji-2026100100885",
+      "title": "大相撲、来年６月にバンコク公演",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026100100885",
+      "publishedAt": "2026-10-01",
+      "publishedAtRaw": "時事通信　10月1日 18時11分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-jiji-2026093000794",
-      "title": "１９歳竜鳳「一つ一つ」＝大相撲",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026093000794",
-      "publishedAt": "2026-09-30",
-      "publishedAtRaw": "時事通信　9月30日 15時55分",
+      "id": "dmenu-docomo-20261001-567-GYT1T00319",
+      "title": "土俵に丁髷がついたら「無条件で負け」、大相撲で７１年ぶりにルール改定…曖昧だった解釈を統一",
+      "url": "https://topics.smt.docomo.ne.jp/article/yomiuri/sports/20261001-567-GYT1T00319",
+      "publishedAt": "2026-10-01",
+      "publishedAtRaw": "読売新聞　10月1日 17時58分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
@@ -75,15 +84,6 @@
       "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=762",
       "publishedAt": "2026-09-10",
       "publishedAtRaw": "令和8年9月10日",
-      "sourceId": "sumo-association",
-      "sourceLabel": "日本相撲協会"
-    },
-    {
-      "id": "sumo-association-761",
-      "title": "大相撲九月場所「土俵祭」のご案内",
-      "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=761",
-      "publishedAt": "2026-09-03",
-      "publishedAtRaw": "令和8年9月3日",
       "sourceId": "sumo-association",
       "sourceLabel": "日本相撲協会"
     }
