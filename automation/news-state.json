@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-09-30T10:24:22.324779+00:00",
+    "updatedAt": "2026-10-01T01:07:32.812790+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_N6NS4H2T4BOIHIKMHCNQ67GFRI",
-        "title": "旭富士が所要6場所で新十両昇進　〝先代超え〟のスピード出世「目標は横綱になること」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_N6NS4H2T4BOIHIKMHCNQ67GFRI",
-        "publishedAt": "2026-09-30",
-        "publishedAtRaw": "SANSPO　9月30日 17時43分",
+        "id": "dmenu-docomo-tokyosports-405072",
+        "title": "【大相撲】旭富士はどれだけ強いのか　桐山親方証言「２、３年たったころにはみんな勝てなくなった」",
+        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-405072",
+        "publishedAt": "2026-10-01",
+        "publishedAtRaw": "東スポWEB　10月1日 6時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-20260930091",
-        "title": "元鶴竜の音羽山親方　初めて入門時から育てた新十両誕生「素直にうれしい」竜鳳は「人として力士として尊敬」【大相撲】",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20260930091",
-        "publishedAt": "2026-09-30",
-        "publishedAtRaw": "デイリースポーツ　9月30日 16時08分",
+        "id": "dmenu-docomo-f-bt-tp1-261001-202609300001212",
+        "title": "旭富士、最速タイ６場所での十両昇進　間近で見た師匠の姿に「僕もそうなりたいなって」",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-261001-202609300001212",
+        "publishedAt": "2026-10-01",
+        "publishedAtRaw": "日刊スポーツ　10月1日 6時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sankei-_sports_sumo_K4FMGGEAOJP2XJGS7LAN75IOIQ",
-        "title": "新十両まで所要6場所のスピード出世　旭富士「前に出る相撲ができていない」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_K4FMGGEAOJP2XJGS7LAN75IOIQ",
-        "publishedAt": "2026-09-30",
-        "publishedAtRaw": "産経ニュース　9月30日 16時02分",
+        "id": "dmenu-docomo-sponichi-spngoo-20261001-0049",
+        "title": "19歳・竜鳳「10代で上がるのは目標の一つだった」　所要8場所で昇進　音羽山部屋初の関取",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261001-0049",
+        "publishedAt": "2026-10-01",
+        "publishedAtRaw": "スポニチアネックス　10月1日 5時27分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20260929-OHT1T51293",
-        "title": "３６６万円分の懸賞袋を抱えて花道を下がる高安…バブルを迎える令和の角界",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20260929-OHT1T51293",
-        "publishedAt": "2026-09-30",
-        "publishedAtRaw": "スポーツ報知　9月30日 16時00分",
+        "id": "dmenu-docomo-sponichi-spngoo-20261001-0048",
+        "title": "旭富士が史上最速タイ所要6場所で新十両昇進　秋場所前に肋骨骨折も怪物級強さ発揮「目標は横綱」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261001-0048",
+        "publishedAt": "2026-10-01",
+        "publishedAtRaw": "スポニチアネックス　10月1日 5時20分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-jiji-2026093000794",
-        "title": "１９歳竜鳳「一つ一つ」＝大相撲",
-        "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026093000794",
-        "publishedAt": "2026-09-30",
-        "publishedAtRaw": "時事通信　9月30日 15時55分",
+        "id": "dmenu-docomo-20261001011",
+        "title": "旭富士　新十両Ｖ宣言　史上最速タイスピード出世も笑顔なし「目標は横綱。もっと愛される力士に」",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20261001011",
+        "publishedAt": "2026-10-01",
+        "publishedAtRaw": "デイリースポーツ　10月1日 5時01分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-09-30T10:24:22.333026+00:00",
-  "lastSuccessAt": "2026-09-30T10:24:22.324779+00:00",
+  "lastAttemptAt": "2026-10-01T01:07:32.821178+00:00",
+  "lastSuccessAt": "2026-10-01T01:07:32.812790+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -451,9 +451,13 @@
     "36702195660": {
       "attemptedAt": "2026-09-30T10:24:22.333026+00:00",
       "outcome": "success"
+    },
+    "36799557921": {
+      "attemptedAt": "2026-10-01T01:07:32.821178+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36702195660",
+  "lastRunId": "36799557921",
   "lastPublishedDate": "2026-09-30",
   "lastPublishedSha": "5473e4f49bb585ca41644b668dddde47dc96b79f",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
