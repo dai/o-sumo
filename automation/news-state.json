@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-10-01T06:38:29.942413+00:00",
+    "updatedAt": "2026-10-01T08:32:22.013697+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-f-bt-tp1-261001-202610010000780",
-        "title": "大相撲71年ぶりルール改定「まげも体の一部」技をかけた側も髪が先に土俵につけば負け",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-261001-202610010000780",
+        "id": "dmenu-docomo-20261001116",
+        "title": "体重５０キロ台力士で注目の新道が相撲教習所入所「序ノ口で勝ち越したい」九州場所へ闘志【大相撲】",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20261001116",
         "publishedAt": "2026-10-01",
-        "publishedAtRaw": "日刊スポーツ　10月1日 15時27分",
+        "publishedAtRaw": "デイリースポーツ　10月1日 17時19分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-261001-202610010000694",
-        "title": "九州場所から伊之助が庄之助に、晃之助が伊之助に昇進　異例の１場所前倒しで決定",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-261001-202610010000694",
+        "id": "dmenu-docomo-sponichi-spngoo-20261001-0279",
+        "title": "史上3人目の英国出身力士　栄誠が相撲教習所入所式に出席「もっといろんな人と相撲を取りたい」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261001-0279",
         "publishedAt": "2026-10-01",
-        "publishedAtRaw": "日刊スポーツ　10月1日 15時24分",
+        "publishedAtRaw": "スポニチアネックス　10月1日 17時11分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-tokyosports-405126",
-        "title": "【大相撲】勝負規定が一部変更　頭髪が土俵につけば〝問答無用〟で負け　藤島親方「まげも体の一部と見て…」",
-        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-405126",
+        "id": "dmenu-docomo-hochi-20261001-OHT1T51196",
+        "title": "大相撲の立行司に４０代木村庄之助、４４代式守伊之助が誕生！",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261001-OHT1T51196",
         "publishedAt": "2026-10-01",
-        "publishedAtRaw": "東スポWEB　10月1日 15時15分",
+        "publishedAtRaw": "スポーツ報知　10月1日 15時50分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-20261001087",
-        "title": "相撲規則が変更「相手を倒しながら、瞬時早く髪がついたら負けにならない」を削除、７１年前の制定から続く補足【大相撲】",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20261001087",
+        "id": "dmenu-docomo-kyodo_nor-2026100101001224",
+        "title": "来年6月にバンコク公演　大相撲、海外3年連続",
+        "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100101001224",
         "publishedAt": "2026-10-01",
-        "publishedAtRaw": "デイリースポーツ　10月1日 15時10分",
+        "publishedAtRaw": "共同通信　10月1日 15時43分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20261001-OHT1T51169",
-        "title": "日本相撲協会、来年６月にバンコク公演の開催を決定　実施方式などは後日発表",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261001-OHT1T51169",
+        "id": "dmenu-docomo-hochi-20261001-OHT1T51203",
+        "title": "相撲規則改訂「相手を倒しながら瞬時早く髪がついたときは負けにならない」削除　１９８０年秋の貴ノ花―高見山などが例",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261001-OHT1T51203",
         "publishedAt": "2026-10-01",
-        "publishedAtRaw": "スポーツ報知　10月1日 14時41分",
+        "publishedAtRaw": "スポーツ報知　10月1日 15時33分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-10-01T06:38:29.952175+00:00",
-  "lastSuccessAt": "2026-10-01T06:38:29.942413+00:00",
+  "lastAttemptAt": "2026-10-01T08:32:22.022687+00:00",
+  "lastSuccessAt": "2026-10-01T08:32:22.013697+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -467,9 +467,13 @@
     "36825838994": {
       "attemptedAt": "2026-10-01T06:38:29.952175+00:00",
       "outcome": "success"
+    },
+    "36836913888": {
+      "attemptedAt": "2026-10-01T08:32:22.022687+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36825838994",
+  "lastRunId": "36836913888",
   "lastPublishedDate": "2026-09-30",
   "lastPublishedSha": "5473e4f49bb585ca41644b668dddde47dc96b79f",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
