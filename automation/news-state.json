@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-10-02T00:57:31.639848+00:00",
+    "updatedAt": "2026-10-02T02:30:48.068317+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -17,6 +17,15 @@
       }
     ],
     "items": [
+      {
+        "id": "dmenu-docomo-nikkangendai-1251788",
+        "title": "新十両・旭富士は“最強の新弟子”の評判通り史上最速タイ昇進…4年半の研修生生活で得た財産",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1251788",
+        "publishedAt": "2026-10-02",
+        "publishedAtRaw": "日刊ゲンダイDIGITAL　10月2日 9時26分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
       {
         "id": "dmenu-docomo-fnn-1123033",
         "title": "「ようやく力士として始まった」師匠が明かす、大の里の苦難の1年と復活の意味",
@@ -63,15 +72,6 @@
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-smartflash-431358",
-        "title": "「この景色だけを見たくて」大の里、6場所ぶり復活優勝でSNS大喝采…逆境支えた「波瑠似」女性との関係は？",
-        "url": "https://topics.smt.docomo.ne.jp/article/smartflash/sports/smartflash-431358",
-        "publishedAt": "2026-10-01",
-        "publishedAtRaw": "SmartFLASH　10月1日 20時43分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
         "id": "sumo-association-763",
         "title": "引退のお知らせ",
         "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=763",
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-10-02T00:57:31.649092+00:00",
-  "lastSuccessAt": "2026-10-02T00:57:31.639848+00:00",
+  "lastAttemptAt": "2026-10-02T02:30:48.077666+00:00",
+  "lastSuccessAt": "2026-10-02T02:30:48.068317+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -479,9 +479,13 @@
     "36948564866": {
       "attemptedAt": "2026-10-02T00:57:31.649092+00:00",
       "outcome": "success"
+    },
+    "36955955645": {
+      "attemptedAt": "2026-10-02T02:30:48.077666+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36948564866",
+  "lastRunId": "36955955645",
   "lastPublishedDate": "2026-10-01",
   "lastPublishedSha": "a8c37497424278e6f0478ece48e4d694e051e5b4",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
