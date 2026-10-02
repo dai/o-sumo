@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-01T10:24:19.025595+00:00",
+  "updatedAt": "2026-10-02T10:23:16.203110+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,6 +16,51 @@
   ],
   "items": [
     {
+      "id": "dmenu-docomo-sanspo-_sports_sumo_YDGPAKGOKJPW7HENIN4T3ZC2H4",
+      "title": "ベテラン記者コラム　大の里の覚悟「全勝してこそ強い横綱」　12勝での優勝が当たり前になった大相撲を変えるか",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_YDGPAKGOKJPW7HENIN4T3ZC2H4",
+      "publishedAt": "2026-10-02",
+      "publishedAtRaw": "SANSPO　10月2日 17時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-nikkangendai-1251788",
+      "title": "新十両・旭富士は“最強の新弟子”の評判通り史上最速タイ昇進…4年半の研修生生活で得た財産",
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1251788",
+      "publishedAt": "2026-10-02",
+      "publishedAtRaw": "日刊ゲンダイDIGITAL　10月2日 9時26分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-fnn-1123033",
+      "title": "「ようやく力士として始まった」師匠が明かす、大の里の苦難の1年と復活の意味",
+      "url": "https://topics.smt.docomo.ne.jp/article/fnn/sports/fnn-1123033",
+      "publishedAt": "2026-10-02",
+      "publishedAtRaw": "FNNプライムオンライン　10月2日 7時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-20261002001",
+      "title": "大相撲７１年ぶり勝負規定を変更　「まげも体の一部」とみなし頭髪が土俵につけば負けに",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20261002001",
+      "publishedAt": "2026-10-02",
+      "publishedAtRaw": "デイリースポーツ　10月2日 5時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
+      "id": "dmenu-docomo-hochi-20261001-OHT1T51511",
+      "title": "ロシア出身の狼雅が年上女性と結婚！「真面目な人。しっかりサポートしてくれる」愛妻の支えを受けて九州場所では自己最高位の更新に挑む",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261001-OHT1T51511",
+      "publishedAt": "2026-10-02",
+      "publishedAtRaw": "スポーツ報知　10月2日 4時00分",
+      "sourceId": "dmenu-docomo",
+      "sourceLabel": "dmenuスポーツ"
+    },
+    {
       "id": "sumo-association-764",
       "title": "「大相撲バンコク公演」開催に関するお知らせ",
       "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=764",
@@ -23,51 +68,6 @@
       "publishedAtRaw": "令和8年10月1日",
       "sourceId": "sumo-association",
       "sourceLabel": "日本相撲協会"
-    },
-    {
-      "id": "dmenu-docomo-kyodo_nor-2026100101001750",
-      "title": "栄誠、相撲教習所に入所　17歳の英国出身力士",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100101001750",
-      "publishedAt": "2026-10-01",
-      "publishedAtRaw": "共同通信　10月1日 18時54分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-tokyosports-405150",
-      "title": "【大相撲】秋巡業の休場力士１２人を発表　秋場所全休の豊昇龍は途中合流へ　炎鵬、御嶽海が補充",
-      "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-405150",
-      "publishedAt": "2026-10-01",
-      "publishedAtRaw": "東スポWEB　10月1日 18時41分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_NEC5QB25JJJVJLNG5554VZ6YFQ",
-      "title": "式守伊之助が第40代木村庄之助に昇進へ　来年6月にはバンコク公演",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_NEC5QB25JJJVJLNG5554VZ6YFQ",
-      "publishedAt": "2026-10-01",
-      "publishedAtRaw": "SANSPO　10月1日 18時11分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-jiji-2026100100885",
-      "title": "大相撲、来年６月にバンコク公演",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026100100885",
-      "publishedAt": "2026-10-01",
-      "publishedAtRaw": "時事通信　10月1日 18時11分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20261001-567-GYT1T00319",
-      "title": "土俵に丁髷がついたら「無条件で負け」、大相撲で７１年ぶりにルール改定…曖昧だった解釈を統一",
-      "url": "https://topics.smt.docomo.ne.jp/article/yomiuri/sports/20261001-567-GYT1T00319",
-      "publishedAt": "2026-10-01",
-      "publishedAtRaw": "読売新聞　10月1日 17時58分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
     },
     {
       "id": "sumo-association-763",
