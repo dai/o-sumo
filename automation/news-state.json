@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-10-01T10:24:19.025595+00:00",
+    "updatedAt": "2026-10-02T00:57:31.639848+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,6 +18,33 @@
     ],
     "items": [
       {
+        "id": "dmenu-docomo-fnn-1123033",
+        "title": "「ようやく力士として始まった」師匠が明かす、大の里の苦難の1年と復活の意味",
+        "url": "https://topics.smt.docomo.ne.jp/article/fnn/sports/fnn-1123033",
+        "publishedAt": "2026-10-02",
+        "publishedAtRaw": "FNNプライムオンライン　10月2日 7時00分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-20261002001",
+        "title": "大相撲７１年ぶり勝負規定を変更　「まげも体の一部」とみなし頭髪が土俵につけば負けに",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20261002001",
+        "publishedAt": "2026-10-02",
+        "publishedAtRaw": "デイリースポーツ　10月2日 5時00分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-hochi-20261001-OHT1T51511",
+        "title": "ロシア出身の狼雅が年上女性と結婚！「真面目な人。しっかりサポートしてくれる」愛妻の支えを受けて九州場所では自己最高位の更新に挑む",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261001-OHT1T51511",
+        "publishedAt": "2026-10-02",
+        "publishedAtRaw": "スポーツ報知　10月2日 4時00分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
         "id": "sumo-association-764",
         "title": "「大相撲バンコク公演」開催に関するお知らせ",
         "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=764",
@@ -27,47 +54,20 @@
         "sourceLabel": "日本相撲協会"
       },
       {
-        "id": "dmenu-docomo-kyodo_nor-2026100101001750",
-        "title": "栄誠、相撲教習所に入所　17歳の英国出身力士",
-        "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100101001750",
+        "id": "dmenu-docomo-abematimes-10276261",
+        "title": "「え、ホンモノだ」「お綺麗でびっくり」大相撲九月場所で話題に 溜まり席に“知る人ぞ知る”女性の姿",
+        "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10276261",
         "publishedAt": "2026-10-01",
-        "publishedAtRaw": "共同通信　10月1日 18時54分",
+        "publishedAtRaw": "ABEMA TIMES　10月1日 22時02分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-tokyosports-405150",
-        "title": "【大相撲】秋巡業の休場力士１２人を発表　秋場所全休の豊昇龍は途中合流へ　炎鵬、御嶽海が補充",
-        "url": "https://topics.smt.docomo.ne.jp/article/tokyosports/sports/tokyosports-405150",
+        "id": "dmenu-docomo-smartflash-431358",
+        "title": "「この景色だけを見たくて」大の里、6場所ぶり復活優勝でSNS大喝采…逆境支えた「波瑠似」女性との関係は？",
+        "url": "https://topics.smt.docomo.ne.jp/article/smartflash/sports/smartflash-431358",
         "publishedAt": "2026-10-01",
-        "publishedAtRaw": "東スポWEB　10月1日 18時41分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_NEC5QB25JJJVJLNG5554VZ6YFQ",
-        "title": "式守伊之助が第40代木村庄之助に昇進へ　来年6月にはバンコク公演",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_NEC5QB25JJJVJLNG5554VZ6YFQ",
-        "publishedAt": "2026-10-01",
-        "publishedAtRaw": "SANSPO　10月1日 18時11分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-jiji-2026100100885",
-        "title": "大相撲、来年６月にバンコク公演",
-        "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026100100885",
-        "publishedAt": "2026-10-01",
-        "publishedAtRaw": "時事通信　10月1日 18時11分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-20261001-567-GYT1T00319",
-        "title": "土俵に丁髷がついたら「無条件で負け」、大相撲で７１年ぶりにルール改定…曖昧だった解釈を統一",
-        "url": "https://topics.smt.docomo.ne.jp/article/yomiuri/sports/20261001-567-GYT1T00319",
-        "publishedAt": "2026-10-01",
-        "publishedAtRaw": "読売新聞　10月1日 17時58分",
+        "publishedAtRaw": "SmartFLASH　10月1日 20時43分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-10-01T10:24:19.036232+00:00",
-  "lastSuccessAt": "2026-10-01T10:24:19.025595+00:00",
+  "lastAttemptAt": "2026-10-02T00:57:31.649092+00:00",
+  "lastSuccessAt": "2026-10-02T00:57:31.639848+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -475,9 +475,13 @@
     "36848895793": {
       "attemptedAt": "2026-10-01T10:24:19.036232+00:00",
       "outcome": "success"
+    },
+    "36948564866": {
+      "attemptedAt": "2026-10-02T00:57:31.649092+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36848895793",
+  "lastRunId": "36948564866",
   "lastPublishedDate": "2026-10-01",
   "lastPublishedSha": "a8c37497424278e6f0478ece48e4d694e051e5b4",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
