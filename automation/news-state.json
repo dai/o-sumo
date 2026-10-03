@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-10-03T08:27:18.044313+00:00",
+    "updatedAt": "2026-10-03T10:20:26.772273+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-hochi-20261003-OHT1T51248",
-        "title": "元幕内・英乃海が断髪式　最後の一番は弟・翔猿と　白星締めも「さすが現役バリバリ。強い」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261003-OHT1T51248",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_CVSYF7L3QREARGARFF4AU37K3U",
+        "title": "スイッチインタビュー「指導や解説として紡ぎ出す言葉には父の存在が大きい」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_CVSYF7L3QREARGARFF4AU37K3U",
         "publishedAt": "2026-10-03",
-        "publishedAtRaw": "スポーツ報知　10月3日 16時50分",
+        "publishedAtRaw": "SANSPO　10月3日 19時09分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-chuspo-1320191",
-        "title": "3場所連続休場の豊昇龍、秋場所後、初めての公の場…報道陣にわずか\"ふた言\"　英乃海の断髪式参加後、足早に帰路に就く",
-        "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1320191",
+        "id": "dmenu-docomo-kyodo_nor-2026100301001089",
+        "title": "元幕内英乃海が断髪式　「相撲をやって良かった」",
+        "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100301001089",
         "publishedAt": "2026-10-03",
-        "publishedAtRaw": "中日スポーツ　10月3日 16時27分",
+        "publishedAtRaw": "共同通信　10月3日 19時02分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_TMBZ2H4GBVDDZKAURFODVWM6UA",
-        "title": "NHKスイッチインタビュー「1月から力士の指導に当たっている湊川」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_TMBZ2H4GBVDDZKAURFODVWM6UA",
+        "id": "dmenu-docomo-hochi-20261003-OHT1T51352",
+        "title": "元幕内・英乃海　新たなヘアスタイルは伊勢ケ浜親方似　断髪式も涙は見せず「多くの方に送り出していただいて本当に幸せです」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261003-OHT1T51352",
         "publishedAt": "2026-10-03",
-        "publishedAtRaw": "SANSPO　10月3日 12時12分",
+        "publishedAtRaw": "スポーツ報知　10月3日 19時01分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-dailyshincho-1505433",
-        "title": "「優勝争いに絡む」は横綱の責任…「大の里」は6場所ぶりVでひと皮剥ける　十両昇格「竜鳳」と史上最強の新弟子にぜひ注目を【音羽山親方の秋場所総括】",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailyshincho/sports/dailyshincho-1505433",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_PXWLND6DJNBT7BRAVRNXJYDX24",
+        "title": "藤井康生氏「前半の取り口からしたらもっと勝てると思ったんですが…」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_PXWLND6DJNBT7BRAVRNXJYDX24",
         "publishedAt": "2026-10-03",
-        "publishedAtRaw": "デイリー新潮　10月3日 12時00分",
+        "publishedAtRaw": "SANSPO　10月3日 19時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-numberweb-872166",
-        "title": "「好取組が多かった」元大関・魁皇が振り返る「メチャクチャしんどい」秋場所…最高の成績・実力でも昇進できないのはなぜ？「怖い顔」の注目力士も",
-        "url": "https://topics.smt.docomo.ne.jp/article/numberweb/sports/numberweb-872166",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_X5GF37ODCVIPBOAGI3MJWQX4SY",
+        "title": "元英乃海、弟・翔猿と最後の取組「何が強いんだろうと思っていたけど…」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_X5GF37ODCVIPBOAGI3MJWQX4SY",
         "publishedAt": "2026-10-03",
-        "publishedAtRaw": "Number Web　10月3日 11時05分",
+        "publishedAtRaw": "SANSPO　10月3日 18時43分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-10-03T08:27:18.054277+00:00",
-  "lastSuccessAt": "2026-10-03T08:27:18.044313+00:00",
+  "lastAttemptAt": "2026-10-03T10:20:26.782198+00:00",
+  "lastSuccessAt": "2026-10-03T10:20:26.772273+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -519,9 +519,13 @@
     "37109740617": {
       "attemptedAt": "2026-10-03T08:27:18.054277+00:00",
       "outcome": "success"
+    },
+    "37116079578": {
+      "attemptedAt": "2026-10-03T10:20:26.782198+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "37109740617",
+  "lastRunId": "37116079578",
   "lastPublishedDate": "2026-10-02",
   "lastPublishedSha": "a31fe624ed19392748efa6f72f9dfd24ce69d063",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
