@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-10-03T06:34:37.087743+00:00",
+    "updatedAt": "2026-10-03T08:27:18.044313+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -17,6 +17,24 @@
       }
     ],
     "items": [
+      {
+        "id": "dmenu-docomo-hochi-20261003-OHT1T51248",
+        "title": "元幕内・英乃海が断髪式　最後の一番は弟・翔猿と　白星締めも「さすが現役バリバリ。強い」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261003-OHT1T51248",
+        "publishedAt": "2026-10-03",
+        "publishedAtRaw": "スポーツ報知　10月3日 16時50分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-chuspo-1320191",
+        "title": "3場所連続休場の豊昇龍、秋場所後、初めての公の場…報道陣にわずか\"ふた言\"　英乃海の断髪式参加後、足早に帰路に就く",
+        "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1320191",
+        "publishedAt": "2026-10-03",
+        "publishedAtRaw": "中日スポーツ　10月3日 16時27分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
       {
         "id": "dmenu-docomo-sanspo-_sports_sumo_TMBZ2H4GBVDDZKAURFODVWM6UA",
         "title": "NHKスイッチインタビュー「1月から力士の指導に当たっている湊川」",
@@ -41,24 +59,6 @@
         "url": "https://topics.smt.docomo.ne.jp/article/numberweb/sports/numberweb-872166",
         "publishedAt": "2026-10-03",
         "publishedAtRaw": "Number Web　10月3日 11時05分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-shueisha-258756",
-        "title": "「腕立て伏せ0回」の少女がリングへ…女子プロレス界に起きた革命『仙女魂』仕掛け人が明かす “スターが生まれる瞬間”と武道館への野望",
-        "url": "https://topics.smt.docomo.ne.jp/article/shueisha/sports/shueisha-258756",
-        "publishedAt": "2026-10-03",
-        "publishedAtRaw": "集英社オンライン　10月3日 11時00分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_CE4TZMVDAFAXVPVMR2ZKV7GM7M",
-        "title": "元貴景勝「現役のときは『頭洗うの大変やな』とか」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_CE4TZMVDAFAXVPVMR2ZKV7GM7M",
-        "publishedAt": "2026-10-03",
-        "publishedAtRaw": "SANSPO　10月3日 6時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-10-03T06:34:37.097503+00:00",
-  "lastSuccessAt": "2026-10-03T06:34:37.087743+00:00",
+  "lastAttemptAt": "2026-10-03T08:27:18.054277+00:00",
+  "lastSuccessAt": "2026-10-03T08:27:18.044313+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -515,9 +515,13 @@
     "37103510077": {
       "attemptedAt": "2026-10-03T06:34:37.097503+00:00",
       "outcome": "success"
+    },
+    "37109740617": {
+      "attemptedAt": "2026-10-03T08:27:18.054277+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "37103510077",
+  "lastRunId": "37109740617",
   "lastPublishedDate": "2026-10-02",
   "lastPublishedSha": "a31fe624ed19392748efa6f72f9dfd24ce69d063",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
