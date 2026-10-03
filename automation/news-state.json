@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-10-03T00:54:42.859100+00:00",
+    "updatedAt": "2026-10-03T02:34:35.781521+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -17,6 +17,24 @@
       }
     ],
     "items": [
+      {
+        "id": "dmenu-docomo-numberweb-872166",
+        "title": "「好取組が多かった」元大関・魁皇が振り返る「メチャクチャしんどい」秋場所…最高の成績・実力でも昇進できないのはなぜ？「怖い顔」の注目力士も",
+        "url": "https://topics.smt.docomo.ne.jp/article/numberweb/sports/numberweb-872166",
+        "publishedAt": "2026-10-03",
+        "publishedAtRaw": "Number Web　10月3日 11時05分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-shueisha-258756",
+        "title": "「腕立て伏せ0回」の少女がリングへ…女子プロレス界に起きた革命『仙女魂』仕掛け人が明かす “スターが生まれる瞬間”と武道館への野望",
+        "url": "https://topics.smt.docomo.ne.jp/article/shueisha/sports/shueisha-258756",
+        "publishedAt": "2026-10-03",
+        "publishedAtRaw": "集英社オンライン　10月3日 11時00分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
       {
         "id": "dmenu-docomo-sanspo-_sports_sumo_CE4TZMVDAFAXVPVMR2ZKV7GM7M",
         "title": "元貴景勝「現役のときは『頭洗うの大変やな』とか」",
@@ -41,24 +59,6 @@
         "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100201001779",
         "publishedAt": "2026-10-02",
         "publishedAtRaw": "共同通信　10月2日 19時18分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_YDGPAKGOKJPW7HENIN4T3ZC2H4",
-        "title": "ベテラン記者コラム　大の里の覚悟「全勝してこそ強い横綱」　12勝での優勝が当たり前になった大相撲を変えるか",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_YDGPAKGOKJPW7HENIN4T3ZC2H4",
-        "publishedAt": "2026-10-02",
-        "publishedAtRaw": "SANSPO　10月2日 17時00分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-nikkangendai-1251788",
-        "title": "新十両・旭富士は“最強の新弟子”の評判通り史上最速タイ昇進…4年半の研修生生活で得た財産",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1251788",
-        "publishedAt": "2026-10-02",
-        "publishedAtRaw": "日刊ゲンダイDIGITAL　10月2日 9時26分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-10-03T00:54:42.869282+00:00",
-  "lastSuccessAt": "2026-10-03T00:54:42.859100+00:00",
+  "lastAttemptAt": "2026-10-03T02:34:35.794598+00:00",
+  "lastSuccessAt": "2026-10-03T02:34:35.781521+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -503,9 +503,13 @@
     "37083998378": {
       "attemptedAt": "2026-10-03T00:54:42.869282+00:00",
       "outcome": "success"
+    },
+    "37090272040": {
+      "attemptedAt": "2026-10-03T02:34:35.794598+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "37083998378",
+  "lastRunId": "37090272040",
   "lastPublishedDate": "2026-10-02",
   "lastPublishedSha": "a31fe624ed19392748efa6f72f9dfd24ce69d063",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
