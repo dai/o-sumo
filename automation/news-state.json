@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-10-03T02:34:35.781521+00:00",
+    "updatedAt": "2026-10-03T04:26:11.838444+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -17,6 +17,24 @@
       }
     ],
     "items": [
+      {
+        "id": "dmenu-docomo-sanspo-_sports_sumo_TMBZ2H4GBVDDZKAURFODVWM6UA",
+        "title": "NHKスイッチインタビュー「1月から力士の指導に当たっている湊川」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_TMBZ2H4GBVDDZKAURFODVWM6UA",
+        "publishedAt": "2026-10-03",
+        "publishedAtRaw": "SANSPO　10月3日 12時12分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-dailyshincho-1505433",
+        "title": "「優勝争いに絡む」は横綱の責任…「大の里」は6場所ぶりVでひと皮剥ける　十両昇格「竜鳳」と史上最強の新弟子にぜひ注目を【音羽山親方の秋場所総括】",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailyshincho/sports/dailyshincho-1505433",
+        "publishedAt": "2026-10-03",
+        "publishedAtRaw": "デイリー新潮　10月3日 12時00分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
       {
         "id": "dmenu-docomo-numberweb-872166",
         "title": "「好取組が多かった」元大関・魁皇が振り返る「メチャクチャしんどい」秋場所…最高の成績・実力でも昇進できないのはなぜ？「怖い顔」の注目力士も",
@@ -41,24 +59,6 @@
         "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_CE4TZMVDAFAXVPVMR2ZKV7GM7M",
         "publishedAt": "2026-10-03",
         "publishedAtRaw": "SANSPO　10月3日 6時00分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_DWENY6YPGFEVXKV6EBQDPNXCFQ",
-        "title": "スイッチインタビュー「湊川：力士たちには令和まで“ちょんまげの世界”で…」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_DWENY6YPGFEVXKV6EBQDPNXCFQ",
-        "publishedAt": "2026-10-03",
-        "publishedAtRaw": "SANSPO　10月3日 5時00分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-kyodo_nor-2026100201001779",
-        "title": "大関琴桜、養護施設に牛肉贈呈　大相撲パリ公演V副賞",
-        "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100201001779",
-        "publishedAt": "2026-10-02",
-        "publishedAtRaw": "共同通信　10月2日 19時18分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-10-03T02:34:35.794598+00:00",
-  "lastSuccessAt": "2026-10-03T02:34:35.781521+00:00",
+  "lastAttemptAt": "2026-10-03T04:26:11.847675+00:00",
+  "lastSuccessAt": "2026-10-03T04:26:11.838444+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -507,9 +507,13 @@
     "37090272040": {
       "attemptedAt": "2026-10-03T02:34:35.794598+00:00",
       "outcome": "success"
+    },
+    "37096520417": {
+      "attemptedAt": "2026-10-03T04:26:11.847675+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "37090272040",
+  "lastRunId": "37096520417",
   "lastPublishedDate": "2026-10-02",
   "lastPublishedSha": "a31fe624ed19392748efa6f72f9dfd24ce69d063",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
