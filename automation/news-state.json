@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-10-02T10:23:16.203110+00:00",
+    "updatedAt": "2026-10-03T00:54:42.859100+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,6 +18,33 @@
     ],
     "items": [
       {
+        "id": "dmenu-docomo-sanspo-_sports_sumo_CE4TZMVDAFAXVPVMR2ZKV7GM7M",
+        "title": "元貴景勝「現役のときは『頭洗うの大変やな』とか」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_CE4TZMVDAFAXVPVMR2ZKV7GM7M",
+        "publishedAt": "2026-10-03",
+        "publishedAtRaw": "SANSPO　10月3日 6時00分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-sanspo-_sports_sumo_DWENY6YPGFEVXKV6EBQDPNXCFQ",
+        "title": "スイッチインタビュー「湊川：力士たちには令和まで“ちょんまげの世界”で…」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_DWENY6YPGFEVXKV6EBQDPNXCFQ",
+        "publishedAt": "2026-10-03",
+        "publishedAtRaw": "SANSPO　10月3日 5時00分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-kyodo_nor-2026100201001779",
+        "title": "大関琴桜、養護施設に牛肉贈呈　大相撲パリ公演V副賞",
+        "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100201001779",
+        "publishedAt": "2026-10-02",
+        "publishedAtRaw": "共同通信　10月2日 19時18分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
         "id": "dmenu-docomo-sanspo-_sports_sumo_YDGPAKGOKJPW7HENIN4T3ZC2H4",
         "title": "ベテラン記者コラム　大の里の覚悟「全勝してこそ強い横綱」　12勝での優勝が当たり前になった大相撲を変えるか",
         "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_YDGPAKGOKJPW7HENIN4T3ZC2H4",
@@ -32,33 +59,6 @@
         "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1251788",
         "publishedAt": "2026-10-02",
         "publishedAtRaw": "日刊ゲンダイDIGITAL　10月2日 9時26分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-fnn-1123033",
-        "title": "「ようやく力士として始まった」師匠が明かす、大の里の苦難の1年と復活の意味",
-        "url": "https://topics.smt.docomo.ne.jp/article/fnn/sports/fnn-1123033",
-        "publishedAt": "2026-10-02",
-        "publishedAtRaw": "FNNプライムオンライン　10月2日 7時00分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-20261002001",
-        "title": "大相撲７１年ぶり勝負規定を変更　「まげも体の一部」とみなし頭髪が土俵につけば負けに",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20261002001",
-        "publishedAt": "2026-10-02",
-        "publishedAtRaw": "デイリースポーツ　10月2日 5時00分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-hochi-20261001-OHT1T51511",
-        "title": "ロシア出身の狼雅が年上女性と結婚！「真面目な人。しっかりサポートしてくれる」愛妻の支えを受けて九州場所では自己最高位の更新に挑む",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261001-OHT1T51511",
-        "publishedAt": "2026-10-02",
-        "publishedAtRaw": "スポーツ報知　10月2日 4時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-10-02T10:23:16.212394+00:00",
-  "lastSuccessAt": "2026-10-02T10:23:16.203110+00:00",
+  "lastAttemptAt": "2026-10-03T00:54:42.869282+00:00",
+  "lastSuccessAt": "2026-10-03T00:54:42.859100+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -499,9 +499,13 @@
     "36995163177": {
       "attemptedAt": "2026-10-02T10:23:16.212394+00:00",
       "outcome": "success"
+    },
+    "37083998378": {
+      "attemptedAt": "2026-10-03T00:54:42.869282+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "36995163177",
+  "lastRunId": "37083998378",
   "lastPublishedDate": "2026-10-02",
   "lastPublishedSha": "a31fe624ed19392748efa6f72f9dfd24ce69d063",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
