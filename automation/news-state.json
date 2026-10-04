@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-10-03T10:20:26.772273+00:00",
+    "updatedAt": "2026-10-04T01:28:34.038083+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_CVSYF7L3QREARGARFF4AU37K3U",
-        "title": "スイッチインタビュー「指導や解説として紡ぎ出す言葉には父の存在が大きい」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_CVSYF7L3QREARGARFF4AU37K3U",
-        "publishedAt": "2026-10-03",
-        "publishedAtRaw": "SANSPO　10月3日 19時09分",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_NB3O3YT5K5HBRPCWFT2YR7XFDQ",
+        "title": "元貴景勝「本当にちょっと泣きそうになった…心震えたっていうか」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_NB3O3YT5K5HBRPCWFT2YR7XFDQ",
+        "publishedAt": "2026-10-04",
+        "publishedAtRaw": "SANSPO　10月4日 7時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-kyodo_nor-2026100301001089",
-        "title": "元幕内英乃海が断髪式　「相撲をやって良かった」",
-        "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100301001089",
-        "publishedAt": "2026-10-03",
-        "publishedAtRaw": "共同通信　10月3日 19時02分",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_UQEKDO6CRJDCLBKC4UVSA7XG74",
+        "title": "元貴景勝「お相撲さんじゃなくなるだけで、こんなにも警戒されてしまう」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_UQEKDO6CRJDCLBKC4UVSA7XG74",
+        "publishedAt": "2026-10-04",
+        "publishedAtRaw": "SANSPO　10月4日 6時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20261003-OHT1T51352",
-        "title": "元幕内・英乃海　新たなヘアスタイルは伊勢ケ浜親方似　断髪式も涙は見せず「多くの方に送り出していただいて本当に幸せです」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261003-OHT1T51352",
-        "publishedAt": "2026-10-03",
-        "publishedAtRaw": "スポーツ報知　10月3日 19時01分",
+        "id": "dmenu-docomo-f-bt-tp1-261004-202610030002676",
+        "title": "関脇藤ノ川「負け越したらかっこ悪いなと思った」秋場所11勝の要因明かす　昇進祝賀会",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-261004-202610030002676",
+        "publishedAt": "2026-10-04",
+        "publishedAtRaw": "日刊スポーツ　10月4日 6時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_PXWLND6DJNBT7BRAVRNXJYDX24",
-        "title": "藤井康生氏「前半の取り口からしたらもっと勝てると思ったんですが…」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_PXWLND6DJNBT7BRAVRNXJYDX24",
-        "publishedAt": "2026-10-03",
-        "publishedAtRaw": "SANSPO　10月3日 19時00分",
+        "id": "dmenu-docomo-sponichi-spngoo-20261004-0024",
+        "title": "元幕内英乃海断髪式に横綱・豊昇龍ら300人　弟・翔猿と最初で最後の取組",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261004-0024",
+        "publishedAt": "2026-10-04",
+        "publishedAtRaw": "スポニチアネックス　10月4日 5時25分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_X5GF37ODCVIPBOAGI3MJWQX4SY",
-        "title": "元英乃海、弟・翔猿と最後の取組「何が強いんだろうと思っていたけど…」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_X5GF37ODCVIPBOAGI3MJWQX4SY",
-        "publishedAt": "2026-10-03",
-        "publishedAtRaw": "SANSPO　10月3日 18時43分",
+        "id": "dmenu-docomo-20261004002",
+        "title": "元英乃海が断髪式　弟・翔猿に寄り切り勝ち！最後の一番に大歓声「相撲をやってきて本当によかった」",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20261004002",
+        "publishedAt": "2026-10-04",
+        "publishedAtRaw": "デイリースポーツ　10月4日 5時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-10-03T10:20:26.782198+00:00",
-  "lastSuccessAt": "2026-10-03T10:20:26.772273+00:00",
+  "lastAttemptAt": "2026-10-04T01:28:34.048645+00:00",
+  "lastSuccessAt": "2026-10-04T01:28:34.038083+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -523,9 +523,13 @@
     "37116079578": {
       "attemptedAt": "2026-10-03T10:20:26.782198+00:00",
       "outcome": "success"
+    },
+    "37168112667": {
+      "attemptedAt": "2026-10-04T01:28:34.048645+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "37116079578",
+  "lastRunId": "37168112667",
   "lastPublishedDate": "2026-10-03",
   "lastPublishedSha": "875781f99e538929dd861a584039c282bdc61c5b",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
