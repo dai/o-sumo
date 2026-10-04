@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-10-04T08:12:48.601757+00:00",
+    "updatedAt": "2026-10-04T11:35:47.747883+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
+        "id": "dmenu-docomo-jiji-2026100400267",
+        "title": "元幕内大翔鵬が断髪式＝大相撲",
+        "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026100400267",
+        "publishedAt": "2026-10-04",
+        "publishedAtRaw": "時事通信　10月4日 18時08分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-kyodo_nor-2026100401000860",
+        "title": "「寂しさはない」涙は見せず　32歳の元幕内大翔鵬が断髪式",
+        "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100401000860",
+        "publishedAt": "2026-10-04",
+        "publishedAtRaw": "共同通信　10月4日 17時53分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-sponichi-spngoo-20261004-0320",
+        "title": "【大相撲】元大翔鵬断髪式　将来の夢は「追手風部屋のタニマチになりたい」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261004-0320",
+        "publishedAt": "2026-10-04",
+        "publishedAtRaw": "スポニチアネックス　10月4日 17時45分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-hochi-20261004-OHT1T51220",
+        "title": "元幕内・大翔鵬が断髪式１９５キロ変わらず「ダイエットしたが体重増えた」　今後は雑貨の通販などを行い「いつかタニマチに」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261004-OHT1T51220",
+        "publishedAt": "2026-10-04",
+        "publishedAtRaw": "スポーツ報知　10月4日 16時52分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
         "id": "dmenu-docomo-sanspo-_sports_sumo_NB3O3YT5K5HBRPCWFT2YR7XFDQ",
         "title": "元貴景勝「本当にちょっと泣きそうになった…心震えたっていうか」",
         "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_NB3O3YT5K5HBRPCWFT2YR7XFDQ",
         "publishedAt": "2026-10-04",
         "publishedAtRaw": "SANSPO　10月4日 7時00分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_UQEKDO6CRJDCLBKC4UVSA7XG74",
-        "title": "元貴景勝「お相撲さんじゃなくなるだけで、こんなにも警戒されてしまう」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_UQEKDO6CRJDCLBKC4UVSA7XG74",
-        "publishedAt": "2026-10-04",
-        "publishedAtRaw": "SANSPO　10月4日 6時00分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-f-bt-tp1-261004-202610030002676",
-        "title": "関脇藤ノ川「負け越したらかっこ悪いなと思った」秋場所11勝の要因明かす　昇進祝賀会",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-261004-202610030002676",
-        "publishedAt": "2026-10-04",
-        "publishedAtRaw": "日刊スポーツ　10月4日 6時00分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-sponichi-spngoo-20261004-0024",
-        "title": "元幕内英乃海断髪式に横綱・豊昇龍ら300人　弟・翔猿と最初で最後の取組",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261004-0024",
-        "publishedAt": "2026-10-04",
-        "publishedAtRaw": "スポニチアネックス　10月4日 5時25分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-20261004002",
-        "title": "元英乃海が断髪式　弟・翔猿に寄り切り勝ち！最後の一番に大歓声「相撲をやってきて本当によかった」",
-        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20261004002",
-        "publishedAt": "2026-10-04",
-        "publishedAtRaw": "デイリースポーツ　10月4日 5時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-10-04T08:12:48.610120+00:00",
-  "lastSuccessAt": "2026-10-04T08:12:48.601757+00:00",
+  "lastAttemptAt": "2026-10-04T11:35:47.757580+00:00",
+  "lastSuccessAt": "2026-10-04T11:35:47.747883+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -539,9 +539,13 @@
     "37188175238": {
       "attemptedAt": "2026-10-04T08:12:48.610120+00:00",
       "outcome": "success"
+    },
+    "37199233629": {
+      "attemptedAt": "2026-10-04T11:35:47.757580+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "37188175238",
+  "lastRunId": "37199233629",
   "lastPublishedDate": "2026-10-03",
   "lastPublishedSha": "875781f99e538929dd861a584039c282bdc61c5b",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
