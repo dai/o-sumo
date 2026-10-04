@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-03T10:20:26.772273+00:00",
+  "updatedAt": "2026-10-04T11:35:47.747883+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_CVSYF7L3QREARGARFF4AU37K3U",
-      "title": "スイッチインタビュー「指導や解説として紡ぎ出す言葉には父の存在が大きい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_CVSYF7L3QREARGARFF4AU37K3U",
-      "publishedAt": "2026-10-03",
-      "publishedAtRaw": "SANSPO　10月3日 19時09分",
+      "id": "dmenu-docomo-jiji-2026100400267",
+      "title": "元幕内大翔鵬が断髪式＝大相撲",
+      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026100400267",
+      "publishedAt": "2026-10-04",
+      "publishedAtRaw": "時事通信　10月4日 18時08分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-kyodo_nor-2026100301001089",
-      "title": "元幕内英乃海が断髪式　「相撲をやって良かった」",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100301001089",
-      "publishedAt": "2026-10-03",
-      "publishedAtRaw": "共同通信　10月3日 19時02分",
+      "id": "dmenu-docomo-kyodo_nor-2026100401000860",
+      "title": "「寂しさはない」涙は見せず　32歳の元幕内大翔鵬が断髪式",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100401000860",
+      "publishedAt": "2026-10-04",
+      "publishedAtRaw": "共同通信　10月4日 17時53分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20261003-OHT1T51352",
-      "title": "元幕内・英乃海　新たなヘアスタイルは伊勢ケ浜親方似　断髪式も涙は見せず「多くの方に送り出していただいて本当に幸せです」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261003-OHT1T51352",
-      "publishedAt": "2026-10-03",
-      "publishedAtRaw": "スポーツ報知　10月3日 19時01分",
+      "id": "dmenu-docomo-sponichi-spngoo-20261004-0320",
+      "title": "【大相撲】元大翔鵬断髪式　将来の夢は「追手風部屋のタニマチになりたい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261004-0320",
+      "publishedAt": "2026-10-04",
+      "publishedAtRaw": "スポニチアネックス　10月4日 17時45分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_PXWLND6DJNBT7BRAVRNXJYDX24",
-      "title": "藤井康生氏「前半の取り口からしたらもっと勝てると思ったんですが…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_PXWLND6DJNBT7BRAVRNXJYDX24",
-      "publishedAt": "2026-10-03",
-      "publishedAtRaw": "SANSPO　10月3日 19時00分",
+      "id": "dmenu-docomo-hochi-20261004-OHT1T51220",
+      "title": "元幕内・大翔鵬が断髪式１９５キロ変わらず「ダイエットしたが体重増えた」　今後は雑貨の通販などを行い「いつかタニマチに」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261004-OHT1T51220",
+      "publishedAt": "2026-10-04",
+      "publishedAtRaw": "スポーツ報知　10月4日 16時52分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_X5GF37ODCVIPBOAGI3MJWQX4SY",
-      "title": "元英乃海、弟・翔猿と最後の取組「何が強いんだろうと思っていたけど…」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_X5GF37ODCVIPBOAGI3MJWQX4SY",
-      "publishedAt": "2026-10-03",
-      "publishedAtRaw": "SANSPO　10月3日 18時43分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_NB3O3YT5K5HBRPCWFT2YR7XFDQ",
+      "title": "元貴景勝「本当にちょっと泣きそうになった…心震えたっていうか」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_NB3O3YT5K5HBRPCWFT2YR7XFDQ",
+      "publishedAt": "2026-10-04",
+      "publishedAtRaw": "SANSPO　10月4日 7時00分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
