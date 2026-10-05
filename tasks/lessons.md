@@ -425,3 +425,7 @@ Cloudflare Pages Functions (workerd runtime) で satori + @vercel/og を使い P
 - 例: `expect(screen.getAllByRole('listitem')).toHaveLength(N)` が 0 を返して失敗する。`hidden: true` を明示すると対象要素を含めて検索する。
 - **Why**: RTL は ARIA accessibility tree を構築するとき、`hidden` 属性で除外された要素を role から外す。role-based クエリ (`getByRole` / `getAllByRole`) は ARIA tree を walk するため、hidden 配下の要素に到達できない。
 - **How to apply**: 折り畳みセクションの子要素を assertion するときは `{ hidden: true }` を付ける。代替策としてテスト前に toggle button を click して expanded 状態にしてから assertion する手もある (ただし toggle 自体のテストが後ろに回ってしまう)。`container.querySelectorAll('.classname')` で DOM 直接クエリに逃げる方法もあるが、role-based を優先して `{ hidden: true }` で書くほうが a11y セマンティクスを維持できる。
+## 2026-10-05 A2A extensions belong under capabilities
+
+- Do not infer Agent Card schema placement from an extension's AP2-specific guidance alone. A2A v1 declares extensions at `capabilities.extensions`; a root-level `extensions` field may be ignored by scanners while still passing a local test that checks only its presence.
+- Test the serialized Agent Card at the exact schema path (`capabilities.extensions`) and verify the deployed well-known JSON when diagnosing discovery audits.

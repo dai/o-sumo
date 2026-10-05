@@ -19,18 +19,18 @@
   "capabilities": {
     "streaming": false,
     "pushNotifications": false,
-    "extendedAgentCard": false
+    "extendedAgentCard": false,
+    "extensions": [
+      {
+        "uri": "https://github.com/google-agentic-commerce/AP2/tree/v0.1.0",
+        "required": true,
+        "params": {
+          "roles": ["merchant"]
+        }
+      }
+    ]
   },
   "defaultInputModes": ["text/plain", "application/json"],
   "defaultOutputModes": ["text/markdown", "application/json", "text/html"],
-  "skills": [],
-  "extensions": [
-    {
-      "uri": "https://github.com/google-agentic-commerce/AP2/tree/v0.1.0",
-      "required": true,
-      "params": {
-        "roles": ["merchant"]
-      }
-    }
-  ]
+  "skills": []
 }

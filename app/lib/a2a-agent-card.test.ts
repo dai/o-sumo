@@ -101,10 +101,10 @@ describe('a2a-agent-card', () => {
     expect(result.examples).toEqual([]);
   });
 
-  it('declares the AP2 (Agent Payments Protocol) extension in extensions[]', () => {
+  it('declares the AP2 (Agent Payments Protocol) extension in capabilities.extensions[]', () => {
     const { card } = buildA2aAgentCard(publicDir, outRoot);
-    expect(Array.isArray(card.extensions)).toBe(true);
-    const extensions = card.extensions ?? [];
+    expect(Array.isArray(card.capabilities.extensions)).toBe(true);
+    const extensions = card.capabilities.extensions ?? [];
     const ap2 = extensions.find(
       (ext) => ext.uri === 'https://github.com/google-agentic-commerce/AP2/tree/v0.1.0',
     );
@@ -118,7 +118,7 @@ describe('a2a-agent-card', () => {
 
   it('AP2 roles are valid AP2 role values', () => {
     const { card } = buildA2aAgentCard(publicDir, outRoot);
-    const extensions = card.extensions ?? [];
+    const extensions = card.capabilities.extensions ?? [];
     const ap2 = extensions.find(
       (ext) => ext.uri === 'https://github.com/google-agentic-commerce/AP2/tree/v0.1.0',
     );
