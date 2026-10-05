@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-10-05T01:03:31.572851+00:00",
+    "updatedAt": "2026-10-05T02:40:06.453334+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -17,6 +17,15 @@
       }
     ],
     "items": [
+      {
+        "id": "dmenu-docomo-chuspo-1320886",
+        "title": "阿炎「あの時、突き押しを見いだしてもらって、今がある」懐かしそうに語り始めた恩師からの『アドバイス』…きっかけは、急にやってくる",
+        "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1320886",
+        "publishedAt": "2026-10-05",
+        "publishedAtRaw": "中日スポーツ　10月5日 9時56分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
       {
         "id": "dmenu-docomo-thedigestweb-121102",
         "title": "「このくらいやらないと(笑)」美女フリーアナが“推し力士”愛全開の大相撲観戦コーデ　「さすが！」「映え映えだよ」",
@@ -54,15 +63,6 @@
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sponichi-spngoo-20261004-0415",
-        "title": "大関・安青錦「来場所はしっかり優勝できるように」　パリ五輪金メダルの出口クリスタさんとトークイベント",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261004-0415",
-        "publishedAt": "2026-10-04",
-        "publishedAtRaw": "スポニチアネックス　10月4日 22時03分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
         "id": "sumo-association-764",
         "title": "「大相撲バンコク公演」開催に関するお知らせ",
         "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=764",
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-10-05T01:03:31.582848+00:00",
-  "lastSuccessAt": "2026-10-05T01:03:31.572851+00:00",
+  "lastAttemptAt": "2026-10-05T02:40:06.463302+00:00",
+  "lastSuccessAt": "2026-10-05T02:40:06.453334+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -547,9 +547,13 @@
     "37249872426": {
       "attemptedAt": "2026-10-05T01:03:31.582848+00:00",
       "outcome": "success"
+    },
+    "37256283153": {
+      "attemptedAt": "2026-10-05T02:40:06.463302+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "37249872426",
+  "lastRunId": "37256283153",
   "lastPublishedDate": "2026-10-04",
   "lastPublishedSha": "e2d83157e82f0b7111a31fa0c495d289a1ebff19",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
