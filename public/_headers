@@ -121,6 +121,12 @@
   Content-Type: application/json
   Link: </.well-known/agent-card.json>; rel="agent-card"
 
+# ACP (Agentic Commerce Protocol) discovery document
+# See: https://agenticcommerce.dev
+/.well-known/acp.json
+  Cache-Control: public, max-age=300
+  Content-Type: application/json
+
 # A2A JSON-RPC endpoint (Cloudflare Pages Function, see functions/a2a/)
 # Implemented as a JSON-RPC 2.0 stub that returns -32601 Method not found
 # for every A2A method — the site has no task state.
