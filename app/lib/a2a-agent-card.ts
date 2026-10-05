@@ -60,6 +60,24 @@ export interface A2aAgentCard {
   defaultInputModes: string[];
   defaultOutputModes: string[];
   skills: A2aAgentSkill[];
+  extensions?: A2aAgentExtension[];
+}
+
+/**
+ * A2A Agent Card extension entry (A2A spec §4.4.1).
+ *
+ * `uri` identifies the extension protocol — for AP2 this is the
+ * `https://github.com/google-agentic-commerce/AP2/tree/v0.1.0` URL.
+ * `params` carries protocol-specific structured values; for AP2 it
+ * includes `roles` (merchant | shopper | credentials-provider | payment-processor).
+ * `required` indicates whether the extension is mandatory for agents
+ * interacting with this card.
+ */
+export interface A2aAgentExtension {
+  uri: string;
+  description?: string;
+  required?: boolean;
+  params?: Record<string, unknown>;
 }
 
 /**
