@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-10-04T11:35:47.747883+00:00",
+    "updatedAt": "2026-10-05T01:03:31.572851+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-jiji-2026100400267",
-        "title": "元幕内大翔鵬が断髪式＝大相撲",
-        "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026100400267",
-        "publishedAt": "2026-10-04",
-        "publishedAtRaw": "時事通信　10月4日 18時08分",
+        "id": "dmenu-docomo-thedigestweb-121102",
+        "title": "「このくらいやらないと(笑)」美女フリーアナが“推し力士”愛全開の大相撲観戦コーデ　「さすが！」「映え映えだよ」",
+        "url": "https://topics.smt.docomo.ne.jp/article/thedigestweb/sports/thedigestweb-121102",
+        "publishedAt": "2026-10-05",
+        "publishedAtRaw": "THE DIGEST　10月5日 4時30分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-kyodo_nor-2026100401000860",
-        "title": "「寂しさはない」涙は見せず　32歳の元幕内大翔鵬が断髪式",
-        "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100401000860",
-        "publishedAt": "2026-10-04",
-        "publishedAtRaw": "共同通信　10月4日 17時53分",
+        "id": "dmenu-docomo-sponichi-spngoo-20261005-0065",
+        "title": "元幕内・大翔鵬　断髪式に130人が出席　今後の夢は「仕事で成功して追手風部屋のタニマチに」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261005-0065",
+        "publishedAt": "2026-10-05",
+        "publishedAtRaw": "スポニチアネックス　10月5日 4時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sponichi-spngoo-20261004-0320",
-        "title": "【大相撲】元大翔鵬断髪式　将来の夢は「追手風部屋のタニマチになりたい」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261004-0320",
+        "id": "dmenu-docomo-f-bt-tp1-261004-202610040002103",
+        "title": "安青錦の食生活は？　金メダリストが勝つ方法は？　出口クリスタさんとの対談で本音と笑い続々",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-261004-202610040002103",
         "publishedAt": "2026-10-04",
-        "publishedAtRaw": "スポニチアネックス　10月4日 17時45分",
+        "publishedAtRaw": "日刊スポーツ　10月4日 22時41分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20261004-OHT1T51220",
-        "title": "元幕内・大翔鵬が断髪式１９５キロ変わらず「ダイエットしたが体重増えた」　今後は雑貨の通販などを行い「いつかタニマチに」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261004-OHT1T51220",
+        "id": "dmenu-docomo-hochi-20261004-OHT1T51373",
+        "title": "安青錦、柔道五輪金・出口クリスタさんとトークイベント　優勝翌日の心境明かす「夜は一番楽しくて、次の日起きたら…」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261004-OHT1T51373",
         "publishedAt": "2026-10-04",
-        "publishedAtRaw": "スポーツ報知　10月4日 16時52分",
+        "publishedAtRaw": "スポーツ報知　10月4日 22時14分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_NB3O3YT5K5HBRPCWFT2YR7XFDQ",
-        "title": "元貴景勝「本当にちょっと泣きそうになった…心震えたっていうか」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_NB3O3YT5K5HBRPCWFT2YR7XFDQ",
+        "id": "dmenu-docomo-sponichi-spngoo-20261004-0415",
+        "title": "大関・安青錦「来場所はしっかり優勝できるように」　パリ五輪金メダルの出口クリスタさんとトークイベント",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261004-0415",
         "publishedAt": "2026-10-04",
-        "publishedAtRaw": "SANSPO　10月4日 7時00分",
+        "publishedAtRaw": "スポニチアネックス　10月4日 22時03分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-10-04T11:35:47.757580+00:00",
-  "lastSuccessAt": "2026-10-04T11:35:47.747883+00:00",
+  "lastAttemptAt": "2026-10-05T01:03:31.582848+00:00",
+  "lastSuccessAt": "2026-10-05T01:03:31.572851+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -543,9 +543,13 @@
     "37199233629": {
       "attemptedAt": "2026-10-04T11:35:47.757580+00:00",
       "outcome": "success"
+    },
+    "37249872426": {
+      "attemptedAt": "2026-10-05T01:03:31.582848+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "37199233629",
+  "lastRunId": "37249872426",
   "lastPublishedDate": "2026-10-04",
   "lastPublishedSha": "e2d83157e82f0b7111a31fa0c495d289a1ebff19",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
