@@ -1,0 +1,11 @@
+{
+  "protocol": {
+    "name": "acp",
+    "version": "2026-04-17"
+  },
+  "api_base_url": "https://osada.us/",
+  "transports": ["http"],
+  "capabilities": {
+    "services": ["public-data"]
+  }
+}
