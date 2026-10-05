@@ -49,6 +49,10 @@ always synchronized with `package.json`. The Function at
 `functions/a2a/[[path]].ts` is detected automatically by Cloudflare Pages
 — no `wrangler.toml` is required.
 
+The AP2 extension is declared under `capabilities.extensions` as required by
+the A2A Agent Card schema. o-sumo advertises the `merchant` role and marks
+the extension as required.
+
 ## Maintenance
 
 - Static fields (name, description, skills, provider, supportedInterfaces)

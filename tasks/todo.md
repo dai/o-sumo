@@ -1,5 +1,17 @@
 # GitHub Actions 安全再設計 — 実装 Todo
 
+## 2026-10-05 AP2 Agent Card extension placement
+
+- [x] Move AP2 declaration from the Agent Card root into `capabilities.extensions`.
+- [x] Update the type, test, and discovery documentation to match the A2A schema.
+- [x] Run the focused Agent Card test and verify the built JSON structure.
+
+### Review
+
+- Focused Agent Card tests: 12 passed; production build succeeded.
+- Generated JSON has only `capabilities.extensions`, with the AP2 URI, `required: true`, and `roles: ["merchant"]`.
+- `git diff --check` passed. Production deployment and Cloudflare rescan remain pending.
+
 ## 2026-09-30 OAuth state test CI fix
 
 - [x] Confirm CI failure and reproduce equivalent base64url signatures.

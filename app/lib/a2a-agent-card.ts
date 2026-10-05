@@ -56,11 +56,11 @@ export interface A2aAgentCard {
     streaming: boolean;
     pushNotifications: boolean;
     extendedAgentCard: boolean;
+    extensions?: A2aAgentExtension[];
   };
   defaultInputModes: string[];
   defaultOutputModes: string[];
   skills: A2aAgentSkill[];
-  extensions?: A2aAgentExtension[];
 }
 
 /**
