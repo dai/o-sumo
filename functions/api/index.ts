@@ -13,6 +13,8 @@
  * fallback.
  */
 
+import { withX402Payment } from '../lib/x402';
+
 const API_DIRECTORY = {
   name: 'o-sumo public API',
   version: '1.0.0',
@@ -36,12 +38,18 @@ const API_DIRECTORY = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const onRequestGet = async (_context: any): Promise<Response> => {
+const handleGetDirectory = async (_context: any): Promise<Response> => {
   return Response.json(API_DIRECTORY, {
     headers: {
       'Cache-Control': 'public, max-age=300',
     },
   });
 };
+
+export const onRequestGet = withX402Payment(handleGetDirectory, {
+  resourcePath: '/api',
+  description: 'o-sumo public API endpoints directory',
+  exampleOutput: API_DIRECTORY,
+});
 
 export const onRequest = onRequestGet;
