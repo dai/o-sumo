@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-10-05T04:30:56.704006+00:00",
+    "updatedAt": "2026-10-05T06:52:17.046563+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-f-bt-tp1-261005-202610050000484",
-        "title": "横綱豊昇龍「右ひざ内側側副靱帯損傷」で秋巡業休場…奉納土俵入りには参加　北の若を補充",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-261005-202610050000484",
+        "id": "dmenu-docomo-f-bt-tp1-261005-202610050000870",
+        "title": "錦富士、心房細動の手術を当面回避へ「やれることをやって」師匠も医師の説明聞き方針決める",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-261005-202610050000870",
         "publishedAt": "2026-10-05",
-        "publishedAtRaw": "日刊スポーツ　10月5日 12時31分",
+        "publishedAtRaw": "日刊スポーツ　10月5日 15時37分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-261005-202610050000433",
-        "title": "大の里と豊昇龍が明治神宮で奉納土俵入り　雨のため社殿内で実施、かしわ手の音が響き渡る",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-261005-202610050000433",
+        "id": "dmenu-docomo-chuspo-1321041",
+        "title": "木村庄之助、北の富士さんへ感謝の思い 「君は行司さんに向いてるね」入門直後に声をかけられ… 「皆が『頑張ってみよう』という気持ちに」【大相撲】",
+        "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1321041",
         "publishedAt": "2026-10-05",
-        "publishedAtRaw": "日刊スポーツ　10月5日 12時18分",
+        "publishedAtRaw": "中日スポーツ　10月5日 15時06分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-chuspo-1320886",
-        "title": "阿炎「あの時、突き押しを見いだしてもらって、今がある」懐かしそうに語り始めた恩師からの『アドバイス』…きっかけは、急にやってくる",
-        "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1320886",
+        "id": "dmenu-docomo-chuspo-1320999",
+        "title": "豊昇龍、3カ月ぶり横綱土俵入り 「体的にホッと」順調な調整を強調、秋巡業は途中参加予定…九州場所で再起見据える【大相撲】",
+        "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1320999",
         "publishedAt": "2026-10-05",
-        "publishedAtRaw": "中日スポーツ　10月5日 9時56分",
+        "publishedAtRaw": "中日スポーツ　10月5日 14時10分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-thedigestweb-121102",
-        "title": "「このくらいやらないと(笑)」美女フリーアナが“推し力士”愛全開の大相撲観戦コーデ　「さすが！」「映え映えだよ」",
-        "url": "https://topics.smt.docomo.ne.jp/article/thedigestweb/sports/thedigestweb-121102",
+        "id": "dmenu-docomo-f-bt-tp1-261005-202610050000689",
+        "title": "豊昇龍「８日の病院の結果次第」で10日の松本から秋巡業合流、土俵入りで「体的にホッとした」",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-261005-202610050000689",
         "publishedAt": "2026-10-05",
-        "publishedAtRaw": "THE DIGEST　10月5日 4時30分",
+        "publishedAtRaw": "日刊スポーツ　10月5日 14時08分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sponichi-spngoo-20261005-0065",
-        "title": "元幕内・大翔鵬　断髪式に130人が出席　今後の夢は「仕事で成功して追手風部屋のタニマチに」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261005-0065",
+        "id": "dmenu-docomo-hochi-20261005-OHT1T51117",
+        "title": "秋場所全休の豊昇龍、全日本力士選士権で横綱土俵入りを披露「僕は大丈夫だよ、という姿を見せられて良かった」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261005-OHT1T51117",
         "publishedAt": "2026-10-05",
-        "publishedAtRaw": "スポニチアネックス　10月5日 4時00分",
+        "publishedAtRaw": "スポーツ報知　10月5日 13時59分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-10-05T04:30:56.713664+00:00",
-  "lastSuccessAt": "2026-10-05T04:30:56.704006+00:00",
+  "lastAttemptAt": "2026-10-05T06:52:17.054765+00:00",
+  "lastSuccessAt": "2026-10-05T06:52:17.046563+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -555,9 +555,13 @@
     "37263844155": {
       "attemptedAt": "2026-10-05T04:30:56.713664+00:00",
       "outcome": "success"
+    },
+    "37274599885": {
+      "attemptedAt": "2026-10-05T06:52:17.054765+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "37263844155",
+  "lastRunId": "37274599885",
   "lastPublishedDate": "2026-10-04",
   "lastPublishedSha": "e2d83157e82f0b7111a31fa0c495d289a1ebff19",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
