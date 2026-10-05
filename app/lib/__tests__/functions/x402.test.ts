@@ -108,6 +108,7 @@ describe('x402 Payment Protocol library', () => {
 
       const headerValue = response.headers.get('Payment-Required');
       expect(headerValue).toBeTruthy();
+      expect(headerValue).not.toContain(',');
       const decodedHeader = JSON.parse(decodeBase64(headerValue!));
       expect(decodedHeader.x402Version).toBe(2);
       expect(decodedHeader.resource.url).toBe('https://osada.us/api');

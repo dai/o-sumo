@@ -536,3 +536,19 @@ spec: PR #644 (`docs: analytics live dashboard design (Phase 1–2)`、docs-only
 - サーバーセッション・エンドポイントの変更
 - オペレーター向けドキュメント（`docs/auth/my-rikishi-cloudflare-operations.md`）
 - `public/auth.md`（AI エージェント向けのため対象外）
+
+## 2026-10-05 x402 header regression
+
+- [x] Reproduce the scanner failure against the deployed `/api` response.
+- [x] Confirm duplicate `Payment-Required` values were comma-joined by Fetch.
+- [x] Emit one canonical `Payment-Required` header and add a regression assertion.
+- [x] Run focused x402 and API route tests.
+
+### Review
+
+The scanner failure was caused by setting both `Payment-Required` and
+`PAYMENT-REQUIRED`; HTTP header names are case-insensitive, so the runtime
+joined the two Base64 values. The fix keeps the canonical header only. Focused
+tests pass: 3 files and 17 tests. Full typecheck remains unverified because
+the isolated worktree dependency installation was interrupted by disk-space
+exhaustion and left unrelated packages incomplete.

@@ -213,7 +213,6 @@ export function createX402PaymentRequiredResponse(
       'Content-Type': 'application/json; charset=utf-8',
       'Cache-Control': 'no-store',
       'Payment-Required': base64Header,
-      'PAYMENT-REQUIRED': base64Header,
     },
   });
 }
