@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-10-05T08:39:46.171561+00:00",
+    "updatedAt": "2026-10-05T10:27:28.100348+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-f-bt-tp1-261005-202610050001122",
-        "title": "若元春、33歳誕生日に全日本力士選士権制覇　優勝の証を落としかけ「あぶねー」",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-261005-202610050001122",
+        "id": "dmenu-docomo-kyodo_nor-2026100501001153",
+        "title": "横綱豊昇龍、久々の土俵入り　右膝手術で秋場所全休",
+        "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100501001153",
         "publishedAt": "2026-10-05",
-        "publishedAtRaw": "日刊スポーツ　10月5日 17時25分",
+        "publishedAtRaw": "共同通信　10月5日 19時16分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sponichi-spngoo-20261005-0256",
-        "title": "若元春　全日本力士選士権で33歳バースデーV「良い誕生日にできた」　歴代優勝者には祖父の師匠の名も",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261005-0256",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_AOCYGUEICRHIZLW3SCJY64RSWQ",
+        "title": "元貴景勝「脇しまんないじゃんみたいな。脇ってどうやってしまんのみたいな」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_AOCYGUEICRHIZLW3SCJY64RSWQ",
         "publishedAt": "2026-10-05",
-        "publishedAtRaw": "スポニチアネックス　10月5日 17時06分",
+        "publishedAtRaw": "SANSPO　10月5日 18時55分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sankei-_sports_sumo_6T24ZOI4NFLV7ODXYGQQTC7CLU",
-        "title": "若元春が初優勝　秋場所全休の豊昇龍が横綱土俵入り　明治神宮力士選士権",
-        "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_6T24ZOI4NFLV7ODXYGQQTC7CLU",
+        "id": "dmenu-docomo-kyodo_nor-2026100501001686",
+        "title": "木村庄之助、行司人生振り返る　65歳で定年「実感が湧かない」",
+        "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100501001686",
         "publishedAt": "2026-10-05",
-        "publishedAtRaw": "産経ニュース　10月5日 16時57分",
+        "publishedAtRaw": "共同通信　10月5日 18時52分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20261005-OHT1T51196",
-        "title": "立行司・木村庄之助が定年会見　「思い出の一番？　特にありません。力士は厳しい稽古を重ねて土俵に上がっている。そういう感情を持ってはいけない」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261005-OHT1T51196",
+        "id": "dmenu-docomo-kyodo_nor-2026100501001510",
+        "title": "平幕若元春が初優勝　全日本力士選士権",
+        "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100501001510",
         "publishedAt": "2026-10-05",
-        "publishedAtRaw": "スポーツ報知　10月5日 16時29分",
+        "publishedAtRaw": "共同通信　10月5日 18時38分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-261005-202610050000836",
-        "title": "39代木村庄之助、最後の花道で花束を受け取らなかった理由　定年会見で明かす",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-261005-202610050000836",
+        "id": "dmenu-docomo-sanspo-_sports_sumo_MKPILTODLNNOTML43LEFBIDP4E",
+        "title": "若元春、33歳の誕生日に初V「僕でいいのか…」／全日本力士選士権",
+        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_MKPILTODLNNOTML43LEFBIDP4E",
         "publishedAt": "2026-10-05",
-        "publishedAtRaw": "日刊スポーツ　10月5日 15時53分",
+        "publishedAtRaw": "SANSPO　10月5日 18時16分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-10-05T08:39:46.181237+00:00",
-  "lastSuccessAt": "2026-10-05T08:39:46.171561+00:00",
+  "lastAttemptAt": "2026-10-05T10:27:28.110245+00:00",
+  "lastSuccessAt": "2026-10-05T10:27:28.100348+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -563,9 +563,13 @@
     "37284999954": {
       "attemptedAt": "2026-10-05T08:39:46.181237+00:00",
       "outcome": "success"
+    },
+    "37296674878": {
+      "attemptedAt": "2026-10-05T10:27:28.110245+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "37284999954",
+  "lastRunId": "37296674878",
   "lastPublishedDate": "2026-10-04",
   "lastPublishedSha": "e2d83157e82f0b7111a31fa0c495d289a1ebff19",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
