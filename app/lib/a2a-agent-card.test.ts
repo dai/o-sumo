@@ -109,7 +109,7 @@ describe('a2a-agent-card', () => {
       (ext) => ext.uri === 'https://github.com/google-agentic-commerce/AP2/tree/v0.1.0',
     );
     expect(ap2).toBeDefined();
-    expect(ap2?.required).toBe(false);
+    expect(ap2?.required).toBe(true);
     const roles = (ap2?.params as { roles?: string[] } | undefined)?.roles;
     expect(Array.isArray(roles)).toBe(true);
     expect(roles).toContain('merchant');
