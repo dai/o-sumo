@@ -22,6 +22,7 @@ Cloudflare DNS zone, not the Pages project.
 | `/.well-known/agent-skills/osumo-content/SKILL.md` | Skill description for fetching public API content (banzuke, torikumi, rikishi, gyoji, yobidashi). |
 | `/.well-known/agent-skills/osumo-discovery/SKILL.md` | Resolve current/archived basho, daily and rikishi page URLs from API dates and the sitemap. |
 | `/.well-known/http-message-signatures-directory` | Web Bot Auth (IETF WebBotAuth WG) signature directory. Returns a JWKS with at least one Ed25519 public key, signed per RFC 9421 with `tag="http-message-signatures-directory"`. See the dedicated **Web Bot Auth** section below. |
+| `/.well-known/acp.json` | ACP (Agentic Commerce Protocol) discovery document. Advertises `protocol.name = "acp"`, `api_base_url`, `transports`, and `capabilities.services`. Served as a static JSON file alongside the other `.well-known/*` endpoints; satisfies `checks.commerce.acp` on isitagentready.com. |
 | `/auth.md` | Top-level Auth.md instructions for metadata-only anonymous public access, including registration and claim information URIs and the no-credential constraint. |
 | `/index.md`, `/<route>/index.md` | Static Markdown views served with `Content-Type: text/markdown; charset=utf-8` and `Vary: Accept`. Satisfies the "Markdown for Agents" check. `index.md` files are pre-rendered at build time by `scripts/build_markdown_views.ts`, so the views work on the Cloudflare Pages Free plan. The matching `functions/_middleware.ts` calls `prefersMarkdown()` (`app/lib/content-negotiation.ts`) to evaluate the `Accept` header per RFC 9110 §12.5.1 and rewrites markdown-positive requests to the pre-rendered `index.md` with the correct `Content-Type`. |
 
@@ -168,6 +169,8 @@ following checks:
 
 - `curl -i https://osada.us/.well-known/agent-skills/index.json` —
   returns 200 with the skills index JSON.
+- `curl -i https://osada.us/.well-known/acp.json` — returns 200 with
+  the ACP discovery JSON (used by `checks.commerce.acp` validators).
 - `curl -i https://osada.us/auth.md` — returns 200 with
   `Content-Type: text/markdown; charset=utf-8`.
 - `curl -i https://osada.us/.well-known/oauth-protected-resource` —
