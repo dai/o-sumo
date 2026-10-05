@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-10-05T06:52:17.046563+00:00",
+    "updatedAt": "2026-10-05T08:39:46.171561+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-f-bt-tp1-261005-202610050000870",
-        "title": "錦富士、心房細動の手術を当面回避へ「やれることをやって」師匠も医師の説明聞き方針決める",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-261005-202610050000870",
+        "id": "dmenu-docomo-f-bt-tp1-261005-202610050001122",
+        "title": "若元春、33歳誕生日に全日本力士選士権制覇　優勝の証を落としかけ「あぶねー」",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-261005-202610050001122",
         "publishedAt": "2026-10-05",
-        "publishedAtRaw": "日刊スポーツ　10月5日 15時37分",
+        "publishedAtRaw": "日刊スポーツ　10月5日 17時25分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-chuspo-1321041",
-        "title": "木村庄之助、北の富士さんへ感謝の思い 「君は行司さんに向いてるね」入門直後に声をかけられ… 「皆が『頑張ってみよう』という気持ちに」【大相撲】",
-        "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1321041",
+        "id": "dmenu-docomo-sponichi-spngoo-20261005-0256",
+        "title": "若元春　全日本力士選士権で33歳バースデーV「良い誕生日にできた」　歴代優勝者には祖父の師匠の名も",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261005-0256",
         "publishedAt": "2026-10-05",
-        "publishedAtRaw": "中日スポーツ　10月5日 15時06分",
+        "publishedAtRaw": "スポニチアネックス　10月5日 17時06分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-chuspo-1320999",
-        "title": "豊昇龍、3カ月ぶり横綱土俵入り 「体的にホッと」順調な調整を強調、秋巡業は途中参加予定…九州場所で再起見据える【大相撲】",
-        "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1320999",
+        "id": "dmenu-docomo-sankei-_sports_sumo_6T24ZOI4NFLV7ODXYGQQTC7CLU",
+        "title": "若元春が初優勝　秋場所全休の豊昇龍が横綱土俵入り　明治神宮力士選士権",
+        "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_6T24ZOI4NFLV7ODXYGQQTC7CLU",
         "publishedAt": "2026-10-05",
-        "publishedAtRaw": "中日スポーツ　10月5日 14時10分",
+        "publishedAtRaw": "産経ニュース　10月5日 16時57分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-f-bt-tp1-261005-202610050000689",
-        "title": "豊昇龍「８日の病院の結果次第」で10日の松本から秋巡業合流、土俵入りで「体的にホッとした」",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-261005-202610050000689",
+        "id": "dmenu-docomo-hochi-20261005-OHT1T51196",
+        "title": "立行司・木村庄之助が定年会見　「思い出の一番？　特にありません。力士は厳しい稽古を重ねて土俵に上がっている。そういう感情を持ってはいけない」",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261005-OHT1T51196",
         "publishedAt": "2026-10-05",
-        "publishedAtRaw": "日刊スポーツ　10月5日 14時08分",
+        "publishedAtRaw": "スポーツ報知　10月5日 16時29分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-hochi-20261005-OHT1T51117",
-        "title": "秋場所全休の豊昇龍、全日本力士選士権で横綱土俵入りを披露「僕は大丈夫だよ、という姿を見せられて良かった」",
-        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261005-OHT1T51117",
+        "id": "dmenu-docomo-f-bt-tp1-261005-202610050000836",
+        "title": "39代木村庄之助、最後の花道で花束を受け取らなかった理由　定年会見で明かす",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkansports/sports/f-bt-tp1-261005-202610050000836",
         "publishedAt": "2026-10-05",
-        "publishedAtRaw": "スポーツ報知　10月5日 13時59分",
+        "publishedAtRaw": "日刊スポーツ　10月5日 15時53分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-10-05T06:52:17.054765+00:00",
-  "lastSuccessAt": "2026-10-05T06:52:17.046563+00:00",
+  "lastAttemptAt": "2026-10-05T08:39:46.181237+00:00",
+  "lastSuccessAt": "2026-10-05T08:39:46.171561+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -559,9 +559,13 @@
     "37274599885": {
       "attemptedAt": "2026-10-05T06:52:17.054765+00:00",
       "outcome": "success"
+    },
+    "37284999954": {
+      "attemptedAt": "2026-10-05T08:39:46.181237+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "37274599885",
+  "lastRunId": "37284999954",
   "lastPublishedDate": "2026-10-04",
   "lastPublishedSha": "e2d83157e82f0b7111a31fa0c495d289a1ebff19",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
