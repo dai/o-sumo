@@ -100,4 +100,32 @@ describe('a2a-agent-card', () => {
     expect(result.tags).toEqual([]);
     expect(result.examples).toEqual([]);
   });
+
+  it('declares the AP2 (Agent Payments Protocol) extension in extensions[]', () => {
+    const { card } = buildA2aAgentCard(publicDir, outRoot);
+    expect(Array.isArray(card.extensions)).toBe(true);
+    const extensions = card.extensions ?? [];
+    const ap2 = extensions.find(
+      (ext) => ext.uri === 'https://github.com/google-agentic-commerce/AP2/tree/v0.1.0',
+    );
+    expect(ap2).toBeDefined();
+    expect(ap2?.required).toBe(false);
+    const roles = (ap2?.params as { roles?: string[] } | undefined)?.roles;
+    expect(Array.isArray(roles)).toBe(true);
+    expect(roles).toContain('merchant');
+    expect(roles?.length).toBeGreaterThan(0);
+  });
+
+  it('AP2 roles are valid AP2 role values', () => {
+    const { card } = buildA2aAgentCard(publicDir, outRoot);
+    const extensions = card.extensions ?? [];
+    const ap2 = extensions.find(
+      (ext) => ext.uri === 'https://github.com/google-agentic-commerce/AP2/tree/v0.1.0',
+    );
+    const roles = (ap2?.params as { roles?: string[] } | undefined)?.roles ?? [];
+    const validRoles = ['merchant', 'shopper', 'credentials-provider', 'payment-processor'];
+    for (const role of roles) {
+      expect(validRoles).toContain(role);
+    }
+  });
 });

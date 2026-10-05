@@ -23,5 +23,14 @@
   },
   "defaultInputModes": ["text/plain", "application/json"],
   "defaultOutputModes": ["text/markdown", "application/json", "text/html"],
-  "skills": []
+  "skills": [],
+  "extensions": [
+    {
+      "uri": "https://github.com/google-agentic-commerce/AP2/tree/v0.1.0",
+      "required": false,
+      "params": {
+        "roles": ["merchant"]
+      }
+    }
+  ]
 }
