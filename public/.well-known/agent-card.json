@@ -27,7 +27,7 @@
   "extensions": [
     {
       "uri": "https://github.com/google-agentic-commerce/AP2/tree/v0.1.0",
-      "required": false,
+      "required": true,
       "params": {
         "roles": ["merchant"]
       }
