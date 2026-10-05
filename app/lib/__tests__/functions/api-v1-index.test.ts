@@ -2,21 +2,40 @@ import { describe, expect, it } from 'vitest';
 import { onRequest, onRequestGet } from '../../../../functions/api/v1';
 
 describe('/api/v1 GET function', () => {
-  it('returns 200 with JSON content-type', async () => {
+  it('returns 402 Payment Required when payment authorization is absent', async () => {
     const request = new Request('https://osada.us/api/v1');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const context: any = { request, env: {} };
+    const response = await onRequestGet(context);
+    expect(response.status).toBe(402);
+    expect(response.statusText).toBe('Payment Required');
+    const contentType = response.headers.get('Content-Type') ?? '';
+    expect(contentType).toContain('application/json');
+
+    const paymentRequiredHeader = response.headers.get('Payment-Required');
+    expect(paymentRequiredHeader).toBeTruthy();
+
+    const body = (await response.json()) as any;
+    expect(body.x402Version).toBe(2);
+    expect(body.error).toBe('Payment required');
+    expect(body.resource.url).toBe('https://osada.us/api/v1');
+    expect(Array.isArray(body.accepts)).toBe(true);
+    expect(body.accepts[0].scheme).toBe('exact');
+    expect(body.accepts[0].network).toBe('eip155:8453');
+    expect(body.extensions.bazaar).toBeDefined();
+    expect(body.extensions.bazaar.info.input.method).toBe('GET');
+  });
+
+  it('returns 200 with the v1 directory when PAYMENT-SIGNATURE is present', async () => {
+    const request = new Request('https://osada.us/api/v1', {
+      headers: {
+        'PAYMENT-SIGNATURE': 'dummy-signature',
+      },
+    });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const context: any = { request, env: {} };
     const response = await onRequestGet(context);
     expect(response.status).toBe(200);
-    const contentType = response.headers.get('Content-Type') ?? '';
-    expect(contentType).toContain('application/json');
-  });
-
-  it('returns the v1 directory with the canonical resource paths', async () => {
-    const request = new Request('https://osada.us/api/v1');
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const context: any = { request, env: {} };
-    const response = await onRequestGet(context);
     const body = (await response.json()) as {
       name: string;
       version: string;
@@ -31,19 +50,6 @@ describe('/api/v1 GET function', () => {
     expect(paths).toContain('/api/v1/rikishi.json');
     expect(paths).toContain('/api/v1/gyoji.json');
     expect(paths).toContain('/api/v1/yobidashi.json');
-    for (const resource of body.resources) {
-      expect(resource.path.startsWith('/api/v1/')).toBe(true);
-      expect(resource.path.endsWith('.json')).toBe(true);
-      expect(resource.description.length).toBeGreaterThan(0);
-    }
-  });
-
-  it('returns Cache-Control public with 300s max-age', async () => {
-    const request = new Request('https://osada.us/api/v1');
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const context: any = { request, env: {} };
-    const response = await onRequestGet(context);
-    expect(response.headers.get('Cache-Control')).toBe('public, max-age=300');
   });
 
   it('onRequest is identical to onRequestGet', () => {

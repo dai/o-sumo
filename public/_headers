@@ -162,3 +162,10 @@
 # ブラウザ表示は 5 分 (一般的な CDN revalidation 間隔)。
 /api/og-compare/*
   Cache-Control: public, max-age=300, s-maxage=86400
+
+# x402 Bazaar discovery resources
+# See: https://docs.x402.org/extensions/bazaar/
+/platform/v2/x402/discovery/resources
+  Cache-Control: public, max-age=300
+  Content-Type: application/json
+  Access-Control-Allow-Origin: *
