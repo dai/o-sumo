@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-04T11:35:47.747883+00:00",
+  "updatedAt": "2026-10-05T10:27:28.100348+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-jiji-2026100400267",
-      "title": "元幕内大翔鵬が断髪式＝大相撲",
-      "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-2026100400267",
-      "publishedAt": "2026-10-04",
-      "publishedAtRaw": "時事通信　10月4日 18時08分",
+      "id": "dmenu-docomo-kyodo_nor-2026100501001153",
+      "title": "横綱豊昇龍、久々の土俵入り　右膝手術で秋場所全休",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100501001153",
+      "publishedAt": "2026-10-05",
+      "publishedAtRaw": "共同通信　10月5日 19時16分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-kyodo_nor-2026100401000860",
-      "title": "「寂しさはない」涙は見せず　32歳の元幕内大翔鵬が断髪式",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100401000860",
-      "publishedAt": "2026-10-04",
-      "publishedAtRaw": "共同通信　10月4日 17時53分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_AOCYGUEICRHIZLW3SCJY64RSWQ",
+      "title": "元貴景勝「脇しまんないじゃんみたいな。脇ってどうやってしまんのみたいな」",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_AOCYGUEICRHIZLW3SCJY64RSWQ",
+      "publishedAt": "2026-10-05",
+      "publishedAtRaw": "SANSPO　10月5日 18時55分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sponichi-spngoo-20261004-0320",
-      "title": "【大相撲】元大翔鵬断髪式　将来の夢は「追手風部屋のタニマチになりたい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261004-0320",
-      "publishedAt": "2026-10-04",
-      "publishedAtRaw": "スポニチアネックス　10月4日 17時45分",
+      "id": "dmenu-docomo-kyodo_nor-2026100501001686",
+      "title": "木村庄之助、行司人生振り返る　65歳で定年「実感が湧かない」",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100501001686",
+      "publishedAt": "2026-10-05",
+      "publishedAtRaw": "共同通信　10月5日 18時52分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-hochi-20261004-OHT1T51220",
-      "title": "元幕内・大翔鵬が断髪式１９５キロ変わらず「ダイエットしたが体重増えた」　今後は雑貨の通販などを行い「いつかタニマチに」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261004-OHT1T51220",
-      "publishedAt": "2026-10-04",
-      "publishedAtRaw": "スポーツ報知　10月4日 16時52分",
+      "id": "dmenu-docomo-kyodo_nor-2026100501001510",
+      "title": "平幕若元春が初優勝　全日本力士選士権",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100501001510",
+      "publishedAt": "2026-10-05",
+      "publishedAtRaw": "共同通信　10月5日 18時38分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_NB3O3YT5K5HBRPCWFT2YR7XFDQ",
-      "title": "元貴景勝「本当にちょっと泣きそうになった…心震えたっていうか」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_NB3O3YT5K5HBRPCWFT2YR7XFDQ",
-      "publishedAt": "2026-10-04",
-      "publishedAtRaw": "SANSPO　10月4日 7時00分",
+      "id": "dmenu-docomo-sanspo-_sports_sumo_MKPILTODLNNOTML43LEFBIDP4E",
+      "title": "若元春、33歳の誕生日に初V「僕でいいのか…」／全日本力士選士権",
+      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_MKPILTODLNNOTML43LEFBIDP4E",
+      "publishedAt": "2026-10-05",
+      "publishedAtRaw": "SANSPO　10月5日 18時16分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
