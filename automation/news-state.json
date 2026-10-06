@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-10-06T06:37:45.532519+00:00",
+    "updatedAt": "2026-10-06T08:29:54.352085+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-nikkangendai-1252625",
-        "title": "関脇・藤ノ川の大関とりに“体重40キロの壁”…幕内平均を大幅に下回る125キロ、両肘にも不安",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1252625",
+        "id": "dmenu-docomo-kyodo_nor-2026100601001099",
+        "title": "復活V大の里「次の場所が大事」　茨城県つくば市で秋巡業始まる",
+        "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100601001099",
         "publishedAt": "2026-10-06",
-        "publishedAtRaw": "日刊ゲンダイDIGITAL　10月6日 10時55分",
+        "publishedAtRaw": "共同通信　10月6日 17時14分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-nikkangendai-1252753",
-        "title": "元関脇嘉風・中村親方〈5〉白髪もめちゃくちゃ増えたし、ストレスで寝られない日もある【吉田賢vs親方 がっぷり対談】",
-        "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1252753",
+        "id": "dmenu-docomo-hochi-20261006-OHT1T51209",
+        "title": "大の里、１年ぶり優勝も九州場所へ切り替え「次の場所が大事。しっかり稽古を積んでいく」…秋巡業始まる",
+        "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261006-OHT1T51209",
         "publishedAt": "2026-10-06",
-        "publishedAtRaw": "日刊ゲンダイDIGITAL　10月6日 9時26分",
+        "publishedAtRaw": "スポーツ報知　10月6日 17時09分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-postseven-2135007",
-        "title": "来場所の“綱取り”が明言されなかった安青錦、最大の問題「大の里に勝てない」をどう乗り越えるか？　杉山邦博氏は「13勝以上のハイレベルな優勝を目指せ」と説く",
-        "url": "https://topics.smt.docomo.ne.jp/article/postseven/sports/postseven-2135007",
+        "id": "dmenu-docomo-20261006084",
+        "title": "一山本ちびっこ相撲“神対応”で沸かす「お客欄に少しでも喜んでもらいたい」【大相撲秋巡業】",
+        "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20261006084",
         "publishedAt": "2026-10-06",
-        "publishedAtRaw": "NEWSポストセブン　10月6日 7時15分",
+        "publishedAtRaw": "デイリースポーツ　10月6日 17時05分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sponichi-spngoo-20261006-0002",
-        "title": "【元横綱・稀勢の里コラム】デビューから半年間の貴重な経験…力士として基礎習得する相撲教習所",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261006-0002",
+        "id": "dmenu-docomo-jiji-202610060093477121",
+        "title": "秋巡業での大の里",
+        "url": "https://topics.smt.docomo.ne.jp/article/jiji/sports/jiji-202610060093477121",
         "publishedAt": "2026-10-06",
-        "publishedAtRaw": "スポニチアネックス　10月6日 7時00分",
+        "publishedAtRaw": "時事通信　10月6日 16時48分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sponichi-spngoo-20261006-0075",
-        "title": "【大相撲】豊昇龍　全日本力士選手権で土俵入り披露　九州場所へ「体的にホッとした」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261006-0075",
+        "id": "dmenu-docomo-sankei-_sports_sumo_IFJO344JBZI4DAE4CTGGEJYATA",
+        "title": "大相撲秋巡業スタート　秋場所で1年ぶりVの大の里「次の場所が大事。しっかり稽古を」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sankei/sports/sankei-_sports_sumo_IFJO344JBZI4DAE4CTGGEJYATA",
         "publishedAt": "2026-10-06",
-        "publishedAtRaw": "スポニチアネックス　10月6日 5時19分",
+        "publishedAtRaw": "産経ニュース　10月6日 16時35分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-10-06T06:37:45.540310+00:00",
-  "lastSuccessAt": "2026-10-06T06:37:45.532519+00:00",
+  "lastAttemptAt": "2026-10-06T08:29:54.361339+00:00",
+  "lastSuccessAt": "2026-10-06T08:29:54.352085+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -583,9 +583,13 @@
     "37424785510": {
       "attemptedAt": "2026-10-06T06:37:45.540310+00:00",
       "outcome": "success"
+    },
+    "37436471201": {
+      "attemptedAt": "2026-10-06T08:29:54.361339+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "37424785510",
+  "lastRunId": "37436471201",
   "lastPublishedDate": "2026-10-05",
   "lastPublishedSha": "78efb3254fc025bf60b23522fe68b379e71062a4",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
