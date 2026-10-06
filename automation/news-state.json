@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-10-05T10:27:28.100348+00:00",
+    "updatedAt": "2026-10-06T00:57:19.813510+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -18,47 +18,47 @@
     ],
     "items": [
       {
-        "id": "dmenu-docomo-kyodo_nor-2026100501001153",
-        "title": "横綱豊昇龍、久々の土俵入り　右膝手術で秋場所全休",
-        "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100501001153",
-        "publishedAt": "2026-10-05",
-        "publishedAtRaw": "共同通信　10月5日 19時16分",
+        "id": "dmenu-docomo-postseven-2135007",
+        "title": "来場所の“綱取り”が明言されなかった安青錦、最大の問題「大の里に勝てない」をどう乗り越えるか？　杉山邦博氏は「13勝以上のハイレベルな優勝を目指せ」と説く",
+        "url": "https://topics.smt.docomo.ne.jp/article/postseven/sports/postseven-2135007",
+        "publishedAt": "2026-10-06",
+        "publishedAtRaw": "NEWSポストセブン　10月6日 7時15分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_AOCYGUEICRHIZLW3SCJY64RSWQ",
-        "title": "元貴景勝「脇しまんないじゃんみたいな。脇ってどうやってしまんのみたいな」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_AOCYGUEICRHIZLW3SCJY64RSWQ",
-        "publishedAt": "2026-10-05",
-        "publishedAtRaw": "SANSPO　10月5日 18時55分",
+        "id": "dmenu-docomo-sponichi-spngoo-20261006-0002",
+        "title": "【元横綱・稀勢の里コラム】デビューから半年間の貴重な経験…力士として基礎習得する相撲教習所",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261006-0002",
+        "publishedAt": "2026-10-06",
+        "publishedAtRaw": "スポニチアネックス　10月6日 7時00分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-kyodo_nor-2026100501001686",
-        "title": "木村庄之助、行司人生振り返る　65歳で定年「実感が湧かない」",
-        "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100501001686",
-        "publishedAt": "2026-10-05",
-        "publishedAtRaw": "共同通信　10月5日 18時52分",
+        "id": "dmenu-docomo-sponichi-spngoo-20261006-0075",
+        "title": "【大相撲】豊昇龍　全日本力士選手権で土俵入り披露　九州場所へ「体的にホッとした」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261006-0075",
+        "publishedAt": "2026-10-06",
+        "publishedAtRaw": "スポニチアネックス　10月6日 5時19分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-kyodo_nor-2026100501001510",
-        "title": "平幕若元春が初優勝　全日本力士選士権",
-        "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100501001510",
-        "publishedAt": "2026-10-05",
-        "publishedAtRaw": "共同通信　10月5日 18時38分",
+        "id": "dmenu-docomo-sponichi-spngoo-20261006-0077",
+        "title": "【大相撲】第39代木村庄之助が定年会見　約半世紀に及ぶ行司人生に終止符「まだ実感がわいてない」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261006-0077",
+        "publishedAt": "2026-10-06",
+        "publishedAtRaw": "スポニチアネックス　10月6日 5時18分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
       {
-        "id": "dmenu-docomo-sanspo-_sports_sumo_MKPILTODLNNOTML43LEFBIDP4E",
-        "title": "若元春、33歳の誕生日に初V「僕でいいのか…」／全日本力士選士権",
-        "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_MKPILTODLNNOTML43LEFBIDP4E",
-        "publishedAt": "2026-10-05",
-        "publishedAtRaw": "SANSPO　10月5日 18時16分",
+        "id": "dmenu-docomo-sponichi-spngoo-20261006-0087",
+        "title": "【大相撲】全日本力士選手権　若元春　33歳バースデーV「いい誕生日にできた」",
+        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261006-0087",
+        "publishedAt": "2026-10-06",
+        "publishedAtRaw": "スポニチアネックス　10月6日 5時17分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-10-05T10:27:28.110245+00:00",
-  "lastSuccessAt": "2026-10-05T10:27:28.100348+00:00",
+  "lastAttemptAt": "2026-10-06T00:57:19.822449+00:00",
+  "lastSuccessAt": "2026-10-06T00:57:19.813510+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -567,9 +567,13 @@
     "37296674878": {
       "attemptedAt": "2026-10-05T10:27:28.110245+00:00",
       "outcome": "success"
+    },
+    "37396660730": {
+      "attemptedAt": "2026-10-06T00:57:19.822449+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "37296674878",
+  "lastRunId": "37396660730",
   "lastPublishedDate": "2026-10-05",
   "lastPublishedSha": "78efb3254fc025bf60b23522fe68b379e71062a4",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
