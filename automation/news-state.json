@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-10-06T00:57:19.813510+00:00",
+    "updatedAt": "2026-10-06T02:32:33.550140+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -17,6 +17,24 @@
       }
     ],
     "items": [
+      {
+        "id": "dmenu-docomo-nikkangendai-1252625",
+        "title": "関脇・藤ノ川の大関とりに“体重40キロの壁”…幕内平均を大幅に下回る125キロ、両肘にも不安",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1252625",
+        "publishedAt": "2026-10-06",
+        "publishedAtRaw": "日刊ゲンダイDIGITAL　10月6日 10時55分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
+      {
+        "id": "dmenu-docomo-nikkangendai-1252753",
+        "title": "元関脇嘉風・中村親方〈5〉白髪もめちゃくちゃ増えたし、ストレスで寝られない日もある【吉田賢vs親方 がっぷり対談】",
+        "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/sports/nikkangendai-1252753",
+        "publishedAt": "2026-10-06",
+        "publishedAtRaw": "日刊ゲンダイDIGITAL　10月6日 9時26分",
+        "sourceId": "dmenu-docomo",
+        "sourceLabel": "dmenuスポーツ"
+      },
       {
         "id": "dmenu-docomo-postseven-2135007",
         "title": "来場所の“綱取り”が明言されなかった安青錦、最大の問題「大の里に勝てない」をどう乗り越えるか？　杉山邦博氏は「13勝以上のハイレベルな優勝を目指せ」と説く",
@@ -41,24 +59,6 @@
         "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261006-0075",
         "publishedAt": "2026-10-06",
         "publishedAtRaw": "スポニチアネックス　10月6日 5時19分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-sponichi-spngoo-20261006-0077",
-        "title": "【大相撲】第39代木村庄之助が定年会見　約半世紀に及ぶ行司人生に終止符「まだ実感がわいてない」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261006-0077",
-        "publishedAt": "2026-10-06",
-        "publishedAtRaw": "スポニチアネックス　10月6日 5時18分",
-        "sourceId": "dmenu-docomo",
-        "sourceLabel": "dmenuスポーツ"
-      },
-      {
-        "id": "dmenu-docomo-sponichi-spngoo-20261006-0087",
-        "title": "【大相撲】全日本力士選手権　若元春　33歳バースデーV「いい誕生日にできた」",
-        "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261006-0087",
-        "publishedAt": "2026-10-06",
-        "publishedAtRaw": "スポニチアネックス　10月6日 5時17分",
         "sourceId": "dmenu-docomo",
         "sourceLabel": "dmenuスポーツ"
       },
@@ -92,8 +92,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-10-06T00:57:19.822449+00:00",
-  "lastSuccessAt": "2026-10-06T00:57:19.813510+00:00",
+  "lastAttemptAt": "2026-10-06T02:32:33.560359+00:00",
+  "lastSuccessAt": "2026-10-06T02:32:33.550140+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -571,9 +571,13 @@
     "37396660730": {
       "attemptedAt": "2026-10-06T00:57:19.822449+00:00",
       "outcome": "success"
+    },
+    "37404617749": {
+      "attemptedAt": "2026-10-06T02:32:33.560359+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "37396660730",
+  "lastRunId": "37404617749",
   "lastPublishedDate": "2026-10-05",
   "lastPublishedSha": "78efb3254fc025bf60b23522fe68b379e71062a4",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
