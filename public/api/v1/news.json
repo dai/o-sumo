@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-05T10:27:28.100348+00:00",
+  "updatedAt": "2026-10-06T10:23:43.349362+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -16,47 +16,47 @@
   ],
   "items": [
     {
-      "id": "dmenu-docomo-kyodo_nor-2026100501001153",
-      "title": "横綱豊昇龍、久々の土俵入り　右膝手術で秋場所全休",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100501001153",
-      "publishedAt": "2026-10-05",
-      "publishedAtRaw": "共同通信　10月5日 19時16分",
+      "id": "dmenu-docomo-sponichi-spngoo-20261006-0293",
+      "title": "【大相撲秋巡業】茨城といえば高安！つくば市巡業でも大きな拍手と声援",
+      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261006-0293",
+      "publishedAt": "2026-10-06",
+      "publishedAtRaw": "スポニチアネックス　10月6日 18時08分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_AOCYGUEICRHIZLW3SCJY64RSWQ",
-      "title": "元貴景勝「脇しまんないじゃんみたいな。脇ってどうやってしまんのみたいな」",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_AOCYGUEICRHIZLW3SCJY64RSWQ",
-      "publishedAt": "2026-10-05",
-      "publishedAtRaw": "SANSPO　10月5日 18時55分",
+      "id": "dmenu-docomo-hochi-20261006-OHT1T51218",
+      "title": "高安、地元から始まった秋巡業へ「体調だけは崩さないように。コツコツやっていきたい」",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261006-OHT1T51218",
+      "publishedAt": "2026-10-06",
+      "publishedAtRaw": "スポーツ報知　10月6日 17時24分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-kyodo_nor-2026100501001686",
-      "title": "木村庄之助、行司人生振り返る　65歳で定年「実感が湧かない」",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100501001686",
-      "publishedAt": "2026-10-05",
-      "publishedAtRaw": "共同通信　10月5日 18時52分",
+      "id": "dmenu-docomo-kyodo_nor-2026100601001099",
+      "title": "復活V大の里「次の場所が大事」　茨城県つくば市で秋巡業始まる",
+      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100601001099",
+      "publishedAt": "2026-10-06",
+      "publishedAtRaw": "共同通信　10月6日 17時14分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-kyodo_nor-2026100501001510",
-      "title": "平幕若元春が初優勝　全日本力士選士権",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100501001510",
-      "publishedAt": "2026-10-05",
-      "publishedAtRaw": "共同通信　10月5日 18時38分",
+      "id": "dmenu-docomo-hochi-20261006-OHT1T51209",
+      "title": "大の里、１年ぶり優勝も九州場所へ切り替え「次の場所が大事。しっかり稽古を積んでいく」…秋巡業始まる",
+      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261006-OHT1T51209",
+      "publishedAt": "2026-10-06",
+      "publishedAtRaw": "スポーツ報知　10月6日 17時09分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
     {
-      "id": "dmenu-docomo-sanspo-_sports_sumo_MKPILTODLNNOTML43LEFBIDP4E",
-      "title": "若元春、33歳の誕生日に初V「僕でいいのか…」／全日本力士選士権",
-      "url": "https://topics.smt.docomo.ne.jp/article/sanspo/sports/sanspo-_sports_sumo_MKPILTODLNNOTML43LEFBIDP4E",
-      "publishedAt": "2026-10-05",
-      "publishedAtRaw": "SANSPO　10月5日 18時16分",
+      "id": "dmenu-docomo-20261006084",
+      "title": "一山本ちびっこ相撲“神対応”で沸かす「お客さんに少しでも喜んでもらいたい」【大相撲秋巡業】",
+      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20261006084",
+      "publishedAt": "2026-10-06",
+      "publishedAtRaw": "デイリースポーツ　10月6日 17時05分",
       "sourceId": "dmenu-docomo",
       "sourceLabel": "dmenuスポーツ"
     },
