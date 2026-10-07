@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-06T10:23:43.349362+00:00",
+  "updatedAt": "2026-10-07T10:24:22.401228+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -10,56 +10,10 @@
     {
       "id": "dmenu-docomo",
       "label": "dmenuスポーツ",
-      "ok": true,
-      "count": 5
+      "ok": false
     }
   ],
   "items": [
-    {
-      "id": "dmenu-docomo-sponichi-spngoo-20261006-0293",
-      "title": "【大相撲秋巡業】茨城といえば高安！つくば市巡業でも大きな拍手と声援",
-      "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261006-0293",
-      "publishedAt": "2026-10-06",
-      "publishedAtRaw": "スポニチアネックス　10月6日 18時08分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20261006-OHT1T51218",
-      "title": "高安、地元から始まった秋巡業へ「体調だけは崩さないように。コツコツやっていきたい」",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261006-OHT1T51218",
-      "publishedAt": "2026-10-06",
-      "publishedAtRaw": "スポーツ報知　10月6日 17時24分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-kyodo_nor-2026100601001099",
-      "title": "復活V大の里「次の場所が大事」　茨城県つくば市で秋巡業始まる",
-      "url": "https://topics.smt.docomo.ne.jp/article/kyodo_nor/sports/kyodo_nor-2026100601001099",
-      "publishedAt": "2026-10-06",
-      "publishedAtRaw": "共同通信　10月6日 17時14分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-hochi-20261006-OHT1T51209",
-      "title": "大の里、１年ぶり優勝も九州場所へ切り替え「次の場所が大事。しっかり稽古を積んでいく」…秋巡業始まる",
-      "url": "https://topics.smt.docomo.ne.jp/article/hochi/sports/hochi-20261006-OHT1T51209",
-      "publishedAt": "2026-10-06",
-      "publishedAtRaw": "スポーツ報知　10月6日 17時09分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
-    {
-      "id": "dmenu-docomo-20261006084",
-      "title": "一山本ちびっこ相撲“神対応”で沸かす「お客さんに少しでも喜んでもらいたい」【大相撲秋巡業】",
-      "url": "https://topics.smt.docomo.ne.jp/article/dailysports/sports/20261006084",
-      "publishedAt": "2026-10-06",
-      "publishedAtRaw": "デイリースポーツ　10月6日 17時05分",
-      "sourceId": "dmenu-docomo",
-      "sourceLabel": "dmenuスポーツ"
-    },
     {
       "id": "sumo-association-764",
       "title": "「大相撲バンコク公演」開催に関するお知らせ",
