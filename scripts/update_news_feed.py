@@ -30,6 +30,7 @@ import argparse
 import html as html_lib
 import json
 import re
+import ssl
 import sys
 from datetime import datetime, timezone
 from html.parser import HTMLParser
@@ -210,12 +211,20 @@ def split_docomo_link_text(text: str) -> tuple[str, str] | None:
     return parts[0].strip(), f"{parts[1].strip()}　{date_text}"
 
 
+# dmenu スポーツ still terminates TLS using the pre-3.7 OpenSSL defaults that
+# force a legacy renegotiation. Python's default ssl context rejects that
+# negotiation with `UNSAFE_LEGACY_RENEGOTIATION_DISABLED`, so opt back in only
+# for outbound fetches performed by this scraper.
+_LEGACY_SSL_CONTEXT = ssl.create_default_context()
+_LEGACY_SSL_CONTEXT.options |= ssl.OP_LEGACY_SERVER_CONNECT
+
+
 def fetch_text(url: str) -> str:
     req = Request(url, headers={"User-Agent": USER_AGENT, "Accept-Language": "ja,en;q=0.8"})
     last_error: Exception | None = None
     for attempt in range(3):
         try:
-            with urlopen(req, timeout=REQUEST_TIMEOUT) as res:
+            with urlopen(req, timeout=REQUEST_TIMEOUT, context=_LEGACY_SSL_CONTEXT) as res:
                 charset = res.headers.get_content_charset() or "utf-8"
                 return res.read().decode(charset)
         except (HTTPError, URLError, TimeoutError) as exc:
