@@ -1303,6 +1303,18 @@
   line-height: 1.7;
 }
 
+.news-outage {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--color-secondary);
+  background: var(--surface-container);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  color: var(--color-dark-text);
+  line-height: 1.7;
+  border-radius: 2px;
+}
+
 /* Past basho section (March 2026) */
 .past-basho-section {
   background: var(--surface-container-low);

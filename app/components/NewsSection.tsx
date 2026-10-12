@@ -35,6 +35,8 @@ type SubsectionProps = {
   seeAllLabel: string;
   seeAllHref: string;
   emptyLabel: string;
+  outageLabel?: string;
+  isOutage?: boolean;
   items: NewsItem[];
   locale: string;
 };
@@ -46,11 +48,14 @@ function NewsSubsection({
   seeAllLabel,
   seeAllHref,
   emptyLabel,
+  outageLabel,
+  isOutage = false,
   items,
   locale,
 }: SubsectionProps) {
   const titleId = `news-subsection-${id}-title`;
   const hasItems = items.length > 0;
+  const showOutage = !hasItems && isOutage && !!outageLabel;
   return (
     <div className="news-subsection" aria-labelledby={titleId}>
           <div className="news-subsection-header">
@@ -91,6 +96,10 @@ function NewsSubsection({
             );
           })}
         </ul>
+      ) : showOutage ? (
+        <p className="news-outage" role="status">
+          {outageLabel}
+        </p>
       ) : (
         <p className="news-empty" role="status">
           {emptyLabel}
@@ -108,6 +117,10 @@ export default function NewsSection() {
   const associationItems = items.filter((item) => item.sourceId === ASSOCIATION_SOURCE_ID);
   const sumoNewsItems = items.filter((item) => item.sourceId === SUMO_NEWS_SOURCE_ID);
 
+  const associationStatus = newsFeed.sources.find((source) => source.id === ASSOCIATION_SOURCE_ID);
+  const dmenuStatus = newsFeed.sources.find((source) => source.id === SUMO_NEWS_SOURCE_ID);
+  const dmenuOutage = !!dmenuStatus && dmenuStatus.ok === false;
+
   return (
     <section className="news-section" aria-labelledby="news-section-title">
           <div className="news-section-header">
@@ -123,6 +136,7 @@ export default function NewsSection() {
         seeAllLabel={t('home.newsSeeAll')}
         seeAllHref={ASSOCIATION_SEE_ALL_URL}
         emptyLabel={t('home.newsEmpty')}
+        isOutage={associationStatus?.ok === false}
         items={associationItems}
         locale={locale}
       />
@@ -134,6 +148,8 @@ export default function NewsSection() {
         seeAllLabel={t('home.newsSubsectionSumoNewsSeeAll')}
         seeAllHref={SUMO_NEWS_SEE_ALL_URL}
         emptyLabel={t('home.newsEmpty')}
+        outageLabel={t('home.newsDmenuOutageNotice')}
+        isOutage={dmenuOutage}
         items={sumoNewsItems}
         locale={locale}
       />
