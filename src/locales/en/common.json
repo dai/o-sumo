@@ -113,6 +113,7 @@
     "newsSubsectionSumoNewsTitle": "Sumo World News",
     "newsSubsectionSumoNewsLead": "Latest 5 from dmenu Sports",
     "newsSubsectionSumoNewsSeeAll": "View on dmenu",
+    "newsDmenuOutageNotice": "dmenu Sports is currently experiencing a system outage. Updates will resume once the service is back.",
     "footerDataCredit": "Data sources: Japan Sumo Association / API: dai/o-sumo",
     "analyticsFeatureLabel": "Grand Sumo Analytics",
     "analyticsFeatureAvailability": {
