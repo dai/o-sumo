@@ -113,6 +113,7 @@
     "newsSubsectionSumoNewsTitle": "相撲界ニュース",
     "newsSubsectionSumoNewsLead": "dmenu スポーツから最新 5 件",
     "newsSubsectionSumoNewsSeeAll": "dmenu で見る",
+    "newsDmenuOutageNotice": "dmenu スポーツでシステム障害が発生しているため、現在ニュースを更新できません。復旧までお待ちください。",
     "footerDataCredit": "データ出典: 公益財団法人日本相撲協会 / API: dai/o-sumo",
     "analyticsFeatureLabel": "大相撲アナリティクス",
     "analyticsFeatureAvailability": {
