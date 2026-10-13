@@ -68,7 +68,7 @@ export default function RikishiProfilePage() {
   const numericId = Number(id);
   const unknownLabel = t('rikishi.unknown');
 
-  React.useEffect(() => {
+  const loadProfile = React.useCallback(() => {
     let active = true;
 
     if (!Number.isInteger(numericId) || numericId <= 0) {
@@ -98,6 +98,11 @@ export default function RikishiProfilePage() {
       active = false;
     };
   }, [numericId]);
+
+  React.useEffect(() => {
+    const cleanup = loadProfile();
+    return cleanup;
+  }, [loadProfile]);
 
   React.useEffect(() => {
     if (!profile) {
@@ -161,8 +166,19 @@ export default function RikishiProfilePage() {
           />
         ) : null}
 
-        {status === 'loading' ? <p className="rikishi-status">{t('rikishi.loading')}</p> : null}
-        {status === 'error' ? <p className="rikishi-status warning">{t('rikishi.loadError')}</p> : null}
+        {status === 'loading' ? (
+          <p className="rikishi-status" role="status" aria-live="polite">
+            {t('rikishi.loading')}
+          </p>
+        ) : null}
+        {status === 'error' ? (
+          <div className="rikishi-status rikishi-status--error" role="alert">
+            <p>{t('rikishi.loadError')}</p>
+            <button type="button" className="rikishi-status__retry" onClick={loadProfile}>
+              {t('global.retry')}
+            </button>
+          </div>
+        ) : null}
         {status === 'not-found' ? (
           <section className="rikishi-status warning">
             <h2>{t('rikishi.notFoundTitle')}</h2>

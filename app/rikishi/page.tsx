@@ -51,7 +51,8 @@ export default function RikishiPage() {
     setSearchParams(updateRikishiSearchParams(searchParams, nextQuery, nextDivision), { replace });
   }, [searchParams, setSearchParams]);
 
-  React.useEffect(() => {
+  const loadIndex = React.useCallback(() => {
+    setStatus('loading');
     let active = true;
 
     fetchRikishiIndex()
@@ -70,6 +71,11 @@ export default function RikishiPage() {
       active = false;
     };
   }, []);
+
+  React.useEffect(() => {
+    const cleanup = loadIndex();
+    return cleanup;
+  }, [loadIndex]);
 
   return (
     <div className="rikishi-page">
@@ -91,8 +97,19 @@ export default function RikishiPage() {
       </header>
 
       <main className="rikishi-main">
-        {status === 'loading' ? <p className="rikishi-status">{t('rikishi.loading')}</p> : null}
-        {status === 'error' ? <p className="rikishi-status warning">{t('rikishi.loadError')}</p> : null}
+        {status === 'loading' ? (
+          <p className="rikishi-status" role="status" aria-live="polite">
+            {t('rikishi.loading')}
+          </p>
+        ) : null}
+        {status === 'error' ? (
+          <div className="rikishi-status rikishi-status--error" role="alert">
+            <p>{t('rikishi.loadError')}</p>
+            <button type="button" className="rikishi-status__retry" onClick={loadIndex}>
+              {t('global.retry')}
+            </button>
+          </div>
+        ) : null}
         {status === 'ready' ? (
           <section className="rikishi-grid-section" aria-label={t('rikishi.listTitle')}>
             <div className="directory-search">

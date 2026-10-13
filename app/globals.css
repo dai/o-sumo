@@ -50,6 +50,39 @@
   --color-loss: #475569;
   --color-draw: #94a3b8;
 
+  /* Compare VS — editorial accents. The matchup card uses a Yūgen-leaning
+     palette; surface these so future components share the same vocabulary
+     instead of inlining literal hex values. */
+  --compare-vs-link: #5f1f1b;
+  --compare-vs-link-hover: #8f2d24;
+  --compare-vs-link-active: #3f1512;
+  --compare-vs-focus: #d7aa5b;
+  --compare-vs-badge-from: #b91c1c;
+  --compare-vs-badge-to: #831843;
+  --compare-vs-badge-shadow: rgba(185, 28, 28, 0.35);
+  --compare-vs-avatar-shadow: rgba(0, 0, 0, 0.08);
+
+  /* Aikuchi (head-to-head) scoreboard */
+  --compare-aikuchi-leader-bg: #fefce8;
+  --compare-aikuchi-leader-border: #facc15;
+  --compare-aikuchi-leader-glow: rgba(250, 204, 21, 0.2);
+  --compare-aikuchi-leader-text: #b45309;
+  --compare-aikuchi-even-pill-bg: #fef08a;
+  --compare-aikuchi-even-pill-text: #854d0e;
+  --compare-aikuchi-meter-a-from: #1d4ed8;
+  --compare-aikuchi-meter-a-to: #3b82f6;
+  --compare-aikuchi-meter-b-from: #ef4444;
+  --compare-aikuchi-meter-b-to: #b91c1c;
+  --compare-aikuchi-soft-shadow: rgba(0, 0, 0, 0.06);
+
+  /* Comparison table header (East/West) */
+  --compare-table-header-bg: #fce7f3;
+  --compare-table-header-border: #f9a8d4;
+
+  /* My-rikishi quick pick accent */
+  --compare-quick-chip-my-border: #f59e0b;
+  --compare-quick-chip-my-text: #b45309;
+
   /* Legacy mappings for compatibility */
   --color-primary-legacy: var(--color-primary-container);
   --color-secondary-legacy: var(--color-tertiary);
@@ -264,6 +297,20 @@ body {
   letter-spacing: 0.5px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* The hakeme (brush-line) texture uses low-opacity ochre and sumi strokes.
+   On the dark Ronin palette those strokes read as faint light lines that
+   fight the midnight surface. Drop the texture entirely in dark mode so
+   the page keeps the calm, slightly grainy feel without the wash reversal. */
+[data-theme='dark'] body {
+  background-image: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    background-attachment: scroll;
+  }
 }
 
 .global-notice-banner {
