@@ -119,7 +119,11 @@ export default function MyRikishiPage() {
     return torikumiArchive.scheduleDays?.find((d) => d.day === (latestResultDay.day + 1));
   }, [latestResultDay]);
 
+  const cancelLoadRef = React.useRef<(() => void) | null>(null);
+
   const loadIndex = React.useCallback(() => {
+    cancelLoadRef.current?.();
+    setStatus('loading');
     let active = true;
     fetchRikishiIndex()
       .then((data) => {
@@ -131,14 +135,17 @@ export default function MyRikishiPage() {
         if (!active) return;
         setStatus('error');
       });
-    return () => {
+    cancelLoadRef.current = () => {
       active = false;
     };
   }, []);
 
   React.useEffect(() => {
-    const cleanup = loadIndex();
-    return cleanup;
+    loadIndex();
+    return () => {
+      cancelLoadRef.current?.();
+      cancelLoadRef.current = null;
+    };
   }, [loadIndex]);
 
   const savedRikishi = React.useMemo(() => {

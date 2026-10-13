@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -14,6 +14,79 @@ const index = {
     { id: 3842, name: '豊昇龍', yomi: 'ほうしょうりゅう', currentRank: '横綱', profileUrl: 'https://example.com/3842' },
   ],
 };
+
+describe('MyRikishiPage retry', () => {
+  afterEach(() => {
+    localStorage.clear();
+    vi.unstubAllGlobals();
+  });
+
+  it('returns to loading when retry is clicked after a load failure', async () => {
+    localStorage.setItem(MY_RIKISHI_STORAGE_KEY, JSON.stringify([3842]));
+    let resolveRetry: ((value: Response) => void) | undefined;
+    const fetchMock = vi.fn()
+      .mockRejectedValueOnce(new Error('network'))
+      .mockImplementationOnce(
+        () => new Promise<Response>((resolve) => {
+          resolveRetry = resolve;
+        }),
+      );
+    vi.stubGlobal('fetch', fetchMock);
+    const user = userEvent.setup();
+
+    render(<MemoryRouter><MyRikishiPage /></MemoryRouter>);
+
+    expect(await screen.findByRole('button', { name: '再試行' })).toBeInTheDocument();
+    expect(screen.getByText('プロフィール情報を読み込めませんでした。')).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: '再試行' }));
+
+    expect(screen.getByText('読み込み中です。')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: '再試行' })).not.toBeInTheDocument();
+
+    resolveRetry?.(new Response(JSON.stringify(index), { status: 200 }));
+    expect(await screen.findByRole('article')).toBeInTheDocument();
+  });
+
+  it('ignores a superseded retry response when retry is clicked twice before settle', async () => {
+    localStorage.setItem(MY_RIKISHI_STORAGE_KEY, JSON.stringify([3842]));
+    let resolveFirstRetry: ((value: Response) => void) | undefined;
+    let resolveSecondRetry: ((value: Response) => void) | undefined;
+    const emptyIndex = { updatedAt: index.updatedAt, rikishi: [] as typeof index.rikishi };
+    const fetchMock = vi.fn()
+      .mockRejectedValueOnce(new Error('network'))
+      .mockImplementationOnce(
+        () => new Promise<Response>((resolve) => {
+          resolveFirstRetry = resolve;
+        }),
+      )
+      .mockImplementationOnce(
+        () => new Promise<Response>((resolve) => {
+          resolveSecondRetry = resolve;
+        }),
+      );
+    vi.stubGlobal('fetch', fetchMock);
+
+    render(<MemoryRouter><MyRikishiPage /></MemoryRouter>);
+    const retry = await screen.findByRole('button', { name: '再試行' });
+    // Batch both clicks inside one act so React has not yet removed the error
+    // UI between them; each fireEvent alone would flush and drop the button.
+    act(() => {
+      fireEvent.click(retry);
+      fireEvent.click(retry);
+    });
+
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+    resolveSecondRetry?.(new Response(JSON.stringify(index), { status: 200 }));
+    expect(await screen.findByRole('article')).toBeInTheDocument();
+
+    resolveFirstRetry?.(new Response(JSON.stringify(emptyIndex), { status: 200 }));
+    await waitFor(() => {
+      expect(screen.getByRole('article')).toBeInTheDocument();
+    });
+    expect(screen.queryByRole('heading', { level: 2, name: 'マイ力士はまだいません' })).not.toBeInTheDocument();
+  });
+});
 
 describe('MyRikishiPage comparison selection', () => {
   afterEach(() => {

@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
@@ -338,5 +338,70 @@ describe('CompareRikishiPage', () => {
     const sharePayload = share.mock.calls[0][0];
     expect(sharePayload.text).toContain('今場所：');
     expect(sharePayload.text).not.toContain('見どころ：');
+  });
+
+  it('retries the index load from the error state', async () => {
+    const fetchMock = vi.fn()
+      .mockRejectedValueOnce(new Error('network'))
+      .mockImplementation((input: RequestInfo | URL) => {
+        const url = String(input);
+        if (url === '/api/v1/rikishi.json') {
+          return Promise.resolve(new Response(JSON.stringify(rikishiIndex), { status: 200 }));
+        }
+        if (url === '/api/v1/rikishi-matchups.json') {
+          return Promise.resolve(new Response(JSON.stringify(matchupsData), { status: 200 }));
+        }
+        return Promise.resolve(new Response('', { status: 404 }));
+      });
+    vi.stubGlobal('fetch', fetchMock);
+    const user = userEvent.setup();
+
+    render(
+      <MemoryRouter initialEntries={['/compare/']}>
+        <Routes>
+          <Route path="/compare/" element={<CompareRikishiPage />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    expect(await screen.findByText('力士一覧を読み込めませんでした。')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: '再試行' }));
+    expect(await screen.findByRole('region', { name: '注目の対戦・クイック選択' })).toBeInTheDocument();
+  });
+
+  it('retries comparison fetches when profile load fails', async () => {
+    let profileAttempts = 0;
+    const fetchMock = vi.fn((input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url === '/api/v1/rikishi.json') {
+        return Promise.resolve(new Response(JSON.stringify(rikishiIndex), { status: 200 }));
+      }
+      if (url === '/api/v1/rikishi-matchups.json') {
+        return Promise.resolve(new Response(JSON.stringify(matchupsData), { status: 200 }));
+      }
+      if (url === '/api/v1/rikishi/3842.json' || url === '/api/v1/rikishi/4227.json') {
+        profileAttempts += 1;
+        if (profileAttempts <= 2) {
+          return Promise.reject(new Error('profile down'));
+        }
+        const id = url.includes('3842') ? 3842 : 4227;
+        return Promise.resolve(new Response(JSON.stringify(profiles[id]), { status: 200 }));
+      }
+      return Promise.resolve(new Response('', { status: 404 }));
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    const user = userEvent.setup();
+
+    render(
+      <MemoryRouter initialEntries={['/compare/?ids=3842,4227']}>
+        <Routes>
+          <Route path="/compare/" element={<CompareRikishiPage />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    expect(await screen.findByText('力士プロフィールを読み込めませんでした。')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: '再試行' }));
+    expect(await screen.findByRole('region', { name: '力士対戦カード' })).toBeInTheDocument();
   });
 });
