@@ -2748,7 +2748,7 @@
   }
 
   .home-editorial .hero-basho-title {
-    font-size: clamp(2.55rem, 14vw, 4rem);
+    font-size: clamp(1.85rem, 9vw, 4rem);
   }
 
   .home-editorial .hero-actions {

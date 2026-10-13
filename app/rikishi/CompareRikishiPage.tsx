@@ -217,6 +217,28 @@ function RikishiCombobox({ slot, items, selectedId, excludedId, draft, onDraftCh
       event.preventDefault();
       setOpen(true);
       setActiveIndex((current) => (candidates.length ? (current <= 0 ? candidates.length - 1 : current - 1) : -1));
+    } else if (event.key === 'Home') {
+      event.preventDefault();
+      setOpen(true);
+      setActiveIndex(candidates.length ? 0 : -1);
+    } else if (event.key === 'End') {
+      event.preventDefault();
+      setOpen(true);
+      setActiveIndex(candidates.length ? candidates.length - 1 : -1);
+    } else if (event.key === 'PageDown') {
+      event.preventDefault();
+      setOpen(true);
+      setActiveIndex((current) => {
+        if (!candidates.length) return -1;
+        return Math.min(current < 0 ? 0 : current + 5, candidates.length - 1);
+      });
+    } else if (event.key === 'PageUp') {
+      event.preventDefault();
+      setOpen(true);
+      setActiveIndex((current) => {
+        if (!candidates.length) return -1;
+        return Math.max(current < 0 ? 0 : current - 5, 0);
+      });
     } else if (event.key === 'Enter' && open && activeIndex >= 0 && candidates[activeIndex]) {
       event.preventDefault();
       selectCandidate(candidates[activeIndex]);
@@ -226,6 +248,18 @@ function RikishiCombobox({ slot, items, selectedId, excludedId, draft, onDraftCh
       setActiveIndex(-1);
     }
   };
+
+  // Keep the keyboard-highlighted candidate visible inside the scrollable
+  // listbox. Without this, PageDown/End can move activeIndex off-screen and
+  // keyboard users lose track of the cursor position.
+  const listboxRef = React.useRef<HTMLUListElement | null>(null);
+  React.useEffect(() => {
+    if (!open || activeIndex < 0 || !listboxRef.current) return;
+    const node = listboxRef.current.querySelector<HTMLLIElement>(
+      `#${CSS.escape(`${inputId}-option-${candidates[activeIndex]?.id}`)}`,
+    );
+    node?.scrollIntoView({ block: 'nearest' });
+  }, [open, activeIndex, candidates, inputId]);
 
   return (
     <div
@@ -265,6 +299,7 @@ function RikishiCombobox({ slot, items, selectedId, excludedId, draft, onDraftCh
       {open ? (
         <ul
           id={listboxId}
+          ref={listboxRef}
           className="compare-combobox__listbox"
           role="listbox"
           aria-label={t('comparison.candidateListLabel', { label })}
@@ -1110,11 +1145,21 @@ export default function CompareRikishiPage() {
             </section>
 
             {/* Status Messages */}
-            {!requestKey ? <p className="rikishi-status">{t('comparison.needMore')}</p> : null}
-            {requestKey && (!currentComparison || currentComparison.profileStatus === 'loading' || currentComparison.matchupStatus === 'loading') ? <p className="rikishi-status">{t('comparison.loading')}</p> : null}
-            {currentComparison?.profileStatus === 'error' ? <p className="rikishi-status warning">{t('comparison.profileError')}</p> : null}
-            {currentComparison?.profileStatus === 'missing' ? <p className="rikishi-status warning">{t('comparison.profileMissing')}</p> : null}
-            {currentComparison?.matchupStatus === 'error' ? <p className="rikishi-status warning">{t('comparison.matchupError')}</p> : null}
+            {!requestKey ? (
+              <p className="rikishi-status" role="status" aria-live="polite">{t('comparison.needMore')}</p>
+            ) : null}
+            {requestKey && (!currentComparison || currentComparison.profileStatus === 'loading' || currentComparison.matchupStatus === 'loading') ? (
+              <p className="rikishi-status" role="status" aria-live="polite">{t('comparison.loading')}</p>
+            ) : null}
+            {currentComparison?.profileStatus === 'error' ? (
+              <p className="rikishi-status rikishi-status--error" role="alert">{t('comparison.profileError')}</p>
+            ) : null}
+            {currentComparison?.profileStatus === 'missing' ? (
+              <p className="rikishi-status rikishi-status--error" role="alert">{t('comparison.profileMissing')}</p>
+            ) : null}
+            {currentComparison?.matchupStatus === 'error' ? (
+              <p className="rikishi-status rikishi-status--error" role="alert">{t('comparison.matchupError')}</p>
+            ) : null}
 
             {/* Compare Content */}
             {tableReady && currentComparison?.profiles ? (

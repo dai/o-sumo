@@ -119,7 +119,7 @@ export default function MyRikishiPage() {
     return torikumiArchive.scheduleDays?.find((d) => d.day === (latestResultDay.day + 1));
   }, [latestResultDay]);
 
-  React.useEffect(() => {
+  const loadIndex = React.useCallback(() => {
     let active = true;
     fetchRikishiIndex()
       .then((data) => {
@@ -135,6 +135,11 @@ export default function MyRikishiPage() {
       active = false;
     };
   }, []);
+
+  React.useEffect(() => {
+    const cleanup = loadIndex();
+    return cleanup;
+  }, [loadIndex]);
 
   const savedRikishi = React.useMemo(() => {
     const byId = new Map(rikishi.map((item) => [item.id, item]));
@@ -191,8 +196,19 @@ export default function MyRikishiPage() {
       </header>
       <main className="rikishi-main">
         <MyRikishiSigninHelp />
-        {status === 'loading' ? <p className="rikishi-status">{t('rikishi.loading')}</p> : null}
-        {status === 'error' ? <p className="rikishi-status warning">{t('rikishi.loadError')}</p> : null}
+        {status === 'loading' ? (
+          <p className="rikishi-status" role="status" aria-live="polite">
+            {t('rikishi.loading')}
+          </p>
+        ) : null}
+        {status === 'error' ? (
+          <div className="rikishi-status rikishi-status--error" role="alert">
+            <p>{t('rikishi.loadError')}</p>
+            <button type="button" className="rikishi-status__retry" onClick={loadIndex}>
+              {t('global.retry')}
+            </button>
+          </div>
+        ) : null}
         {status === 'ready' && savedRikishi.length === 0 ? (
           <section className="rikishi-status my-rikishi-empty">
             <h2>{t('myRikishi.emptyTitle')}</h2>

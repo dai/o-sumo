@@ -35,3 +35,16 @@ i18n
   });
 
 export { i18n };
+
+// Keep the <html lang> attribute in sync with the active i18n language so
+// assistive technologies and browsers know which dictionary to use. Without
+// this, switching between JA/EN keeps the lang="ja" declared in index.html,
+// which breaks screen reader pronunciation and CSS `:lang()` selectors.
+if (typeof document !== 'undefined') {
+  const syncHtmlLang = (lang: string) => {
+    const safeLang = SUPPORTED_LANGS.includes(lang as SupportedLang) ? lang : 'ja';
+    document.documentElement.lang = safeLang;
+  };
+  syncHtmlLang(i18n.language || 'ja');
+  i18n.on('languageChanged', syncHtmlLang);
+}
