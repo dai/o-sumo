@@ -68,17 +68,19 @@ export default function RikishiProfilePage() {
   const numericId = Number(id);
   const unknownLabel = t('rikishi.unknown');
 
+  const cancelLoadRef = React.useRef<(() => void) | null>(null);
+
   const loadProfile = React.useCallback(() => {
-    let active = true;
+    cancelLoadRef.current?.();
 
     if (!Number.isInteger(numericId) || numericId <= 0) {
       setStatus('not-found');
-      return () => {
-        active = false;
-      };
+      cancelLoadRef.current = null;
+      return;
     }
 
     setStatus('loading');
+    let active = true;
     fetchRikishiProfile(numericId)
       .then((data) => {
         if (!active) return;
@@ -94,14 +96,17 @@ export default function RikishiProfilePage() {
         setStatus('error');
       });
 
-    return () => {
+    cancelLoadRef.current = () => {
       active = false;
     };
   }, [numericId]);
 
   React.useEffect(() => {
-    const cleanup = loadProfile();
-    return cleanup;
+    loadProfile();
+    return () => {
+      cancelLoadRef.current?.();
+      cancelLoadRef.current = null;
+    };
   }, [loadProfile]);
 
   React.useEffect(() => {

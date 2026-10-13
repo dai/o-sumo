@@ -51,7 +51,10 @@ export default function RikishiPage() {
     setSearchParams(updateRikishiSearchParams(searchParams, nextQuery, nextDivision), { replace });
   }, [searchParams, setSearchParams]);
 
+  const cancelLoadRef = React.useRef<(() => void) | null>(null);
+
   const loadIndex = React.useCallback(() => {
+    cancelLoadRef.current?.();
     setStatus('loading');
     let active = true;
 
@@ -67,14 +70,17 @@ export default function RikishiPage() {
         setStatus('error');
       });
 
-    return () => {
+    cancelLoadRef.current = () => {
       active = false;
     };
   }, []);
 
   React.useEffect(() => {
-    const cleanup = loadIndex();
-    return cleanup;
+    loadIndex();
+    return () => {
+      cancelLoadRef.current?.();
+      cancelLoadRef.current = null;
+    };
   }, [loadIndex]);
 
   return (

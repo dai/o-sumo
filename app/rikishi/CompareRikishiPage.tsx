@@ -838,6 +838,7 @@ export default function CompareRikishiPage() {
   const [indexResponse, setIndexResponse] = React.useState<RikishiIndexResponse | null>(null);
   const [indexStatus, setIndexStatus] = React.useState<'loading' | 'ready' | 'error'>('loading');
   const [comparison, setComparison] = React.useState<ComparisonState | null>(null);
+  const [comparisonRetry, setComparisonRetry] = React.useState(0);
 
   const { ids: myRikishiIds } = useMyRikishi();
 
@@ -899,7 +900,11 @@ export default function CompareRikishiPage() {
     }
   }, [activeById, rawIds, searchParams, setSearchParams]);
 
-  React.useEffect(() => {
+  const cancelIndexRef = React.useRef<(() => void) | null>(null);
+
+  const loadIndex = React.useCallback(() => {
+    cancelIndexRef.current?.();
+    setIndexStatus('loading');
     let active = true;
     fetchRikishiIndex()
       .then((data) => {
@@ -917,14 +922,25 @@ export default function CompareRikishiPage() {
         if (!active) return;
         setIndexStatus('error');
       });
-    return () => {
+    cancelIndexRef.current = () => {
       active = false;
     };
   }, []);
 
+  React.useEffect(() => {
+    loadIndex();
+    return () => {
+      cancelIndexRef.current?.();
+      cancelIndexRef.current = null;
+    };
+  }, [loadIndex]);
+
   const firstSelectedId = renderedSlots[0];
   const secondSelectedId = renderedSlots[1];
   const requestKey = firstSelectedId && secondSelectedId ? `${firstSelectedId},${secondSelectedId}` : null;
+  const retryComparison = React.useCallback(() => {
+    setComparisonRetry((current) => current + 1);
+  }, []);
 
   React.useEffect(() => {
     if (!firstSelectedId || !secondSelectedId || !indexResponse) {
@@ -960,7 +976,7 @@ export default function CompareRikishiPage() {
     return () => {
       active = false;
     };
-  }, [activeById, firstSelectedId, indexResponse, secondSelectedId]);
+  }, [activeById, comparisonRetry, firstSelectedId, indexResponse, secondSelectedId]);
 
   const onDraftChange = (slot: 0 | 1, value: string, composing: boolean) => {
     const selectedId = slotsRef.current[slot];
@@ -1084,8 +1100,17 @@ export default function CompareRikishiPage() {
           ]}
         />
 
-        {indexStatus === 'loading' ? <p className="rikishi-status">{t('rikishi.loading')}</p> : null}
-        {indexStatus === 'error' ? <p className="rikishi-status warning">{t('comparison.indexError')}</p> : null}
+        {indexStatus === 'loading' ? (
+          <p className="rikishi-status" role="status" aria-live="polite">{t('rikishi.loading')}</p>
+        ) : null}
+        {indexStatus === 'error' ? (
+          <div className="rikishi-status rikishi-status--error" role="alert">
+            <p>{t('comparison.indexError')}</p>
+            <button type="button" className="rikishi-status__retry" onClick={loadIndex}>
+              {t('global.retry')}
+            </button>
+          </div>
+        ) : null}
 
         {indexStatus === 'ready' ? (
           <>
@@ -1152,13 +1177,23 @@ export default function CompareRikishiPage() {
               <p className="rikishi-status" role="status" aria-live="polite">{t('comparison.loading')}</p>
             ) : null}
             {currentComparison?.profileStatus === 'error' ? (
-              <p className="rikishi-status rikishi-status--error" role="alert">{t('comparison.profileError')}</p>
+              <div className="rikishi-status rikishi-status--error" role="alert">
+                <p>{t('comparison.profileError')}</p>
+                <button type="button" className="rikishi-status__retry" onClick={retryComparison}>
+                  {t('global.retry')}
+                </button>
+              </div>
             ) : null}
             {currentComparison?.profileStatus === 'missing' ? (
               <p className="rikishi-status rikishi-status--error" role="alert">{t('comparison.profileMissing')}</p>
             ) : null}
             {currentComparison?.matchupStatus === 'error' ? (
-              <p className="rikishi-status rikishi-status--error" role="alert">{t('comparison.matchupError')}</p>
+              <div className="rikishi-status rikishi-status--error" role="alert">
+                <p>{t('comparison.matchupError')}</p>
+                <button type="button" className="rikishi-status__retry" onClick={retryComparison}>
+                  {t('global.retry')}
+                </button>
+              </div>
             ) : null}
 
             {/* Compare Content */}

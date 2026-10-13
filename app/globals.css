@@ -168,6 +168,35 @@
   --shadow-ambient: 0 28px 56px rgba(236, 177, 255, 0.14);
   --shadow-glow-secondary: 0 0 0 1px rgba(230, 254, 255, 0.45), 0 0 18px rgba(230, 254, 255, 0.24);
   --shadow-glow-tertiary: 0 0 0 1px rgba(236, 177, 255, 0.4), 0 0 18px rgba(236, 177, 255, 0.2);
+
+  /* Compare accents — mute the light-theme yellows/pinks so VS / aikuchi /
+     table chrome sit calmly on Ronin midnight surfaces. */
+  --compare-vs-link: #e6feff;
+  --compare-vs-link-hover: #f3feff;
+  --compare-vs-link-active: #90d9de;
+  --compare-vs-focus: #ecb1ff;
+  --compare-vs-badge-from: #b91c1c;
+  --compare-vs-badge-to: #831843;
+  --compare-vs-badge-shadow: rgba(185, 28, 28, 0.45);
+  --compare-vs-avatar-shadow: rgba(0, 0, 0, 0.35);
+
+  --compare-aikuchi-leader-bg: rgba(254, 214, 91, 0.12);
+  --compare-aikuchi-leader-border: rgba(254, 214, 91, 0.55);
+  --compare-aikuchi-leader-glow: rgba(254, 214, 91, 0.15);
+  --compare-aikuchi-leader-text: #fed65b;
+  --compare-aikuchi-even-pill-bg: rgba(254, 214, 91, 0.2);
+  --compare-aikuchi-even-pill-text: #fed65b;
+  --compare-aikuchi-meter-a-from: #1d4ed8;
+  --compare-aikuchi-meter-a-to: #60a5fa;
+  --compare-aikuchi-meter-b-from: #f87171;
+  --compare-aikuchi-meter-b-to: #b91c1c;
+  --compare-aikuchi-soft-shadow: rgba(0, 0, 0, 0.35);
+
+  --compare-table-header-bg: rgba(236, 177, 255, 0.12);
+  --compare-table-header-border: rgba(236, 177, 255, 0.45);
+
+  --compare-quick-chip-my-border: #fed65b;
+  --compare-quick-chip-my-text: #fed65b;
 }
 
 :root {
