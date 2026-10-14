@@ -1972,7 +1972,10 @@
   .standoff-meter__arena,
   .standoff-meter__gap,
   .kimarite-radar__fill,
-  .bout-trail__cell {
+  .bout-trail__cell,
+  .compare-aikuchi__meter-bar--a,
+  .compare-aikuchi__meter-bar--b,
+  .compare-stat-bar-fill {
     transition: none !important;
   }
 }
