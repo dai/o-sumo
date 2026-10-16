@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-10-16T08:27:42.187623+00:00",
+    "updatedAt": "2026-10-16T10:22:11.008676+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -16,6 +16,15 @@
       }
     ],
     "items": [
+      {
+        "id": "sumo-association-765",
+        "title": "年寄名跡襲名のお知らせ",
+        "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=765",
+        "publishedAt": "2026-10-16",
+        "publishedAtRaw": "令和8年10月16日",
+        "sourceId": "sumo-association",
+        "sourceLabel": "日本相撲協会"
+      },
       {
         "id": "sumo-association-764",
         "title": "「大相撲バンコク公演」開催に関するお知らせ",
@@ -33,21 +42,12 @@
         "publishedAtRaw": "令和8年9月25日",
         "sourceId": "sumo-association",
         "sourceLabel": "日本相撲協会"
-      },
-      {
-        "id": "sumo-association-762",
-        "title": "令和9年「大相撲カレンダー」販売のご案内",
-        "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=762",
-        "publishedAt": "2026-09-10",
-        "publishedAtRaw": "令和8年9月10日",
-        "sourceId": "sumo-association",
-        "sourceLabel": "日本相撲協会"
       }
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-10-16T08:27:42.198597+00:00",
-  "lastSuccessAt": "2026-10-16T08:27:42.187623+00:00",
+  "lastAttemptAt": "2026-10-16T10:22:11.019095+00:00",
+  "lastSuccessAt": "2026-10-16T10:22:11.008676+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -781,9 +781,13 @@
     "38873811298": {
       "attemptedAt": "2026-10-16T08:27:42.198597+00:00",
       "outcome": "success"
+    },
+    "38886741077": {
+      "attemptedAt": "2026-10-16T10:22:11.019095+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "38873811298",
+  "lastRunId": "38886741077",
   "lastPublishedDate": "2026-10-15",
   "lastPublishedSha": "7ff0a0af99fed006a26cb43029f153a28518424b",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
