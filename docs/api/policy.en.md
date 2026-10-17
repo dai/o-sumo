@@ -16,7 +16,7 @@ Current update flows:
 
 - Daily update (torikumi schedule only): `daily-data-update.yml` runs at JST 13:00, 15:00, 17:00 and 19:00 (also supports manual dispatch)
 - Realtime update (torikumi results only): `realtime-torikumi-direct-update.yml` is scheduled every 3 minutes during UTC 06:00–09:59 / JST 15:00–18:59 (also supports manual dispatch)
-- News update: run `news-feed-update.yml` every 2 hours from JST 09:05 through 19:05
+- News update: run `news-feed-update.yml` twice daily at JST 09:05 and 19:05 (publication on the 19:05 run)
 - Updates use the serialized `data-update.yml` workflow and `scripts/ci/run_data_update.py`.
 - News acquisition state is kept on `automation/news-state`; the selected validated snapshot is published to `main` according to `scripts/ci/news_state.py`. See those files for publication and retry rules.
 

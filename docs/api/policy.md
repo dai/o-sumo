@@ -14,7 +14,7 @@ o-sumo API は個人運用のベストエフォート提供です。商用 SLA �
 
 - 日次更新（取組予定のみ）: `daily-data-update.yml` は JST 13:00・15:00・17:00・19:00 に起動（手動実行も可能）
 - 高頻度更新（取組結果のみ）: `realtime-torikumi-direct-update.yml` は UTC 06:00–09:59 / JST 15:00–18:59 に3分おきで起動（手動実行も可能）
-- ニュース更新: `news-feed-update.yml` を JST 09:05-19:05 に2時間おきで実行
+- ニュース更新: `news-feed-update.yml` を JST 09:05・19:05 の1日2回実行（公開は19:05の実行時）
 - 更新は `data-update.yml` と `scripts/ci/run_data_update.py` で直列化します。
 - ニュースの取得状態は `automation/news-state` に保持し、`scripts/ci/news_state.py` の判定で選んだ検証済みスナップショットを `main` に公開します。公開時刻・再試行の詳細は実装を参照してください。
 

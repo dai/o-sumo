@@ -1,7 +1,8 @@
 name: News Feed Update
 on:
   schedule:
-    - cron: '5 0,2,4,6,8 * * *'
+    # Acquire at 09:05 JST; keep the final publication slot separate.
+    - cron: '5 0 * * *'
     - cron: '5 10 * * *'
   workflow_dispatch:
 permissions: {contents: write, checks: read, actions: read}
