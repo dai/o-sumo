@@ -66,7 +66,7 @@ class WorkflowConfigTest(unittest.TestCase):
         workflow = load("news-feed-update.yml")
         self.assertEqual(
             [jst_slots(entry["cron"]) for entry in workflow["on"]["schedule"]],
-            [[(9, 5), (11, 5), (13, 5), (15, 5), (17, 5)], [(19, 5)]],
+            [[(9, 5)], [(19, 5)]],
         )
         self.assertEqual(workflow["jobs"]["update"]["with"]["scope"], "news")
         self.assertEqual(load("data-update.yml")["jobs"]["publish"]["concurrency"]["group"], "osumo-data-writer")

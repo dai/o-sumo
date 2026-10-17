@@ -66,7 +66,7 @@ class NewsStateTest(unittest.TestCase):
             now = BASE + timedelta(hours=hours)
             self.assertTrue(M.select_publication(self.state, "schedule", M.FINAL_SCHEDULE, now))
             self.assertEqual(M.publication_date(self.state), "2026-09-14")
-        self.assertFalse(M.select_publication(self.state, "schedule", "5 0,2,4,6,8 * * *", BASE + timedelta(hours=4)))
+        self.assertFalse(M.select_publication(self.state, "schedule", "5 0 * * *", BASE + timedelta(hours=4)))
 
     def test_manual_day_and_evening(self):
         self.assertFalse(M.select_publication(self.state, "workflow_dispatch", "", BASE))
