@@ -323,7 +323,7 @@ GitHub Actions で取組予定、取組結果、ニュース更新を分けて�
   - 手動実行: GitHub Actions の `Run workflow` または `gh workflow run realtime-torikumi-direct-update.yml -R dai/o-sumo --ref main`
   - ログ: GitHub Actions の Job Summary に step result / committed / event / run URL を集約
 - ニュース更新: `.github/workflows/news-feed-update.yml`
-  - 実行時刻: JST 09:05-19:05、2時間おき
+  - 実行時刻: JST 09:05・19:05 の1日2回（公開は19:05の実行時）
   - 実行内容: 日本相撲協会お知らせ + dmenu スポーツを更新（`python scripts/update_news_feed.py`）
   - 取得結果が変わらない場合は `news.json` を書き換えず、PR 差分を作らない
   - **1日1PR**: JST 日付ベースの `automation/news-updates-<YYYY-MM-DD>` ブランチの PR を作成し、同日内の複数 run は同一 PR に commit を追加する
@@ -393,7 +393,7 @@ GitHub Actions では PR と `main` / `codex/**` / `automation/data-updates` へ
 - 9月12日の公式取組公開後、`gh workflow run daily-data-update.yml -R dai/o-sumo --ref main` を手動実行し、run、PR checks と merge、`main` の JSON、本番 JSON を順に確認します。公開前に両部門が空なら no-op であり、公開成功ではありません。
 - 9月27日の最終結果と翌日の確認後、cron 削除は別 PR で行います。summary は実行時点の snapshot であり、merge や deploy の証明ではありません。
 - `preflight:current-data` は workflow 停止中に行う場所切替専用の安全 gate で、場所中の readiness check ではありません。`不戦` は validator の限定的例外で、取得の部分失敗時は旧データを保持します。
-- ニュース更新だけは JST 09:05-19:05 の2時間おきに継続します。
+- ニュース更新だけは JST 09:05・19:05 の1日2回に継続します。
 - CLI では `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main` / `gh workflow run realtime-torikumi-direct-update.yml -R dai/o-sumo --ref main` / `gh workflow run news-feed-update.yml -R dai/o-sumo --ref main` を使えます。
 - 結果更新 workflow は `--torikumi-only --torikumi-scope result --skip-rikishi-fetch` を使い、取組結果に限定します。
 - 「結果未更新」を確認した場合は、`run履歴` → `runログ（event.schedule, JST, updatedAt系）` → `供給元 judge` の順で切り分けます。

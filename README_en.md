@@ -324,7 +324,7 @@ Workflows:
   - updates torikumi results only (`--torikumi-only --torikumi-scope result --skip-rikishi-fetch --strict-torikumi-fetch`)
   - logs: GitHub Actions job summary aggregates step results, commit state, and the run URL
 - News update: `.github/workflows/news-feed-update.yml`
-  - schedule: every 2 hours from JST 09:05 through 19:05
+  - schedule: twice daily at JST 09:05 and 19:05 (publication on the 19:05 run)
   - updates Japan Sumo Association and dmenu Sports news (`python scripts/update_news_feed.py`)
   - skips rewriting `news.json` when fetched items and source states are unchanged
   - **One PR per day**: the PR is opened on the JST-date-keyed branch `automation/news-updates-<YYYY-MM-DD>`; multiple same-day runs accumulate commits on the same PR
@@ -384,7 +384,7 @@ GitHub Actions runs the following on pull requests and pushes to `main`, `codex/
 - After the official September 12 torikumi publication, run `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main`, watch the run, then inspect PR checks and merge, the JSON on `main`, and production JSON. Empty data for both divisions before publication is a no-op, not successful publication.
 - After the September 27 final results and next-day verification, remove both cron schedules in a separate PR. Summaries are point-in-time snapshots, not merge or deployment proof.
 - `preflight:current-data` is a transition-only safety gate that requires paused workflows, not an in-tournament readiness check. The validator permits only the precise fusen exception and generation preserves old data on partial fetch failure.
-- The news workflow remains scheduled every two hours from JST 09:05 through 19:05.
+- The news workflow remains scheduled twice daily at JST 09:05 and 19:05.
 - Manual runs can be started with `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main`, `gh workflow run realtime-torikumi-direct-update.yml -R dai/o-sumo --ref main`, or `gh workflow run news-feed-update.yml -R dai/o-sumo --ref main`.
 - The realtime workflow uses `--torikumi-only --torikumi-scope result --skip-rikishi-fetch`, so it is limited to torikumi results.
 - If results still look stale, triage in this order: run history -> run logs (`event.schedule`, JST time, updatedAt fields) -> upstream `judge` values.

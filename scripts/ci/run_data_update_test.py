@@ -94,7 +94,7 @@ class NewsOrchestrationTest(unittest.TestCase):
         self.exercise(failed=True, existing=True)
 
     def test_non_final_poll_keeps_stale_public_payload_without_validating_it(self):
-        self.exercise(event_schedule="5 0,2,4,6,8 * * *", stale_public=True)
+        self.exercise(event_schedule="5 0 * * *", stale_public=True)
 
 
 if __name__ == "__main__":
