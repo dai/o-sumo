@@ -30,7 +30,7 @@ export const MCP_SERVER_CARD: McpServerCard = {
   name: 'us.osada/o-sumo',
   version: '1.0.0',
   title: 'o-sumo (大相撲アーカイブ)',
-  description: 'Grand Sumo (大相撲) banzuke, torikumi results, and rikishi profile data.',
+  description: 'Grand Sumo (大相撲) banzuke, torikumi results, rikishi profiles, and AI semantic search.',
   websiteUrl: 'https://osada.us/',
   repository: {
     source: 'github',
@@ -40,6 +40,10 @@ export const MCP_SERVER_CARD: McpServerCard = {
     {
       type: 'streamable-http',
       url: 'https://osada.us/mcp',
+    },
+    {
+      type: 'streamable-http',
+      url: 'https://ask.osada.us/mcp',
     },
   ],
 };

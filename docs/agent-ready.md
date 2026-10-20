@@ -87,14 +87,17 @@ The HTTP integration provides public JSON APIs, skills, and a remote MCP server 
 (with Server Card at `/mcp/server-card`). The A2A endpoint remains discovery-only (Method not found).
 Browser WebMCP, described below, is separate.
 
-## MCP Server
+## MCP Servers
 
-o-sumo operates a stateless, public read-only MCP server at `https://osada.us/mcp` using the
-Streamable HTTP transport:
+o-sumo exposes two complementary Model Context Protocol (MCP) Streamable HTTP endpoints:
 
-- **Server Card**: Served at `/mcp/server-card` per SEP-2127 (`application/mcp-server-card+json`), and mirrored at `/.well-known/mcp/server-card.json` for backward compatibility. Advertised via `/.well-known/ai-catalog.json` with `type: "application/mcp-server-card+json"`.
-- **Endpoint**: `POST https://osada.us/mcp` handles tool calls statelessly (one instance per request, no cross-request session or Durable Objects required).
-- **Security**: Host and Origin headers are validated to prevent DNS rebinding and browser cross-origin abuse. Non-browser MCP clients (CLI, desktop agent runners) send no `Origin` and pass without credentials.
+### 1. Structured Sumo Data Server (`https://osada.us/mcp`)
+
+Stateless, read-only MCP server running on Cloudflare Pages Functions (`@modelcontextprotocol/server`). Ideal for precise, deterministic data queries:
+
+- **Endpoint**: `POST https://osada.us/mcp`
+- **Server Card**: `GET /mcp/server-card` per SEP-2127 (`application/mcp-server-card+json`), mirrored at `/.well-known/mcp/server-card.json`.
+- **Security**: Validates `Host` and `Origin` headers (DNS rebinding / browser cross-origin protection). Non-browser agent runners (CLI, desktop apps) send no `Origin` and pass without credentials.
 - **Tools exposed**:
   1. `search_rikishi` — search by shikona or yomi (returns up to 20 matching rikishi).
   2. `get_rikishi_profile` — get detailed profile and career record by numeric rikishi ID.
@@ -102,6 +105,15 @@ Streamable HTTP transport:
   4. `get_torikumi` — get daily match results or schedule by YYYYMMDD date.
   5. `list_basho` — list current and archived basho available in o-sumo.
 
+### 2. Semantic AI Search Server (`https://ask.osada.us/mcp`)
+
+Cloudflare AI Search managed MCP endpoint. Ideal for natural language, fuzzy, or exploratory queries across articles, profiles, and historical records:
+
+- **Endpoint**: `POST https://ask.osada.us/mcp`
+- **Tool exposed**:
+  1. `search` — natural language semantic / hybrid search returning ranked text chunks and source URLs.
+
+Both endpoints are advertised in the Server Card's `remotes` array and in `/.well-known/ai-catalog.json`.
 ## WebMCP
 
 WebMCP is registered from `app/components/WebMcpProvider.tsx` on app mount.

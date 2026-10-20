@@ -96,12 +96,17 @@ describe('MCP Server Card (SEP-2127)', () => {
     const card = await response.json() as typeof MCP_SERVER_CARD;
     expect(card.$schema).toBe('https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json');
     expect(card.name).toBe('us.osada/o-sumo');
-    expect(card.remotes?.[0]).toEqual({
-      type: 'streamable-http',
-      url: 'https://osada.us/mcp',
-    });
+    expect(card.remotes).toEqual([
+      {
+        type: 'streamable-http',
+        url: 'https://osada.us/mcp',
+      },
+      {
+        type: 'streamable-http',
+        url: 'https://ask.osada.us/mcp',
+      },
+    ]);
   });
-
   it('supports ETag caching with 304 Not Modified', async () => {
     const etag = `"sc-${MCP_SERVER_CARD.version}"`;
     const request = new Request('https://osada.us/mcp/server-card', {

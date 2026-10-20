@@ -21,13 +21,18 @@ describe('mcp-server-card', () => {
     expect(card.websiteUrl).toBe('https://osada.us/');
   });
 
-  it('declares streamable-http remote endpoint at https://osada.us/mcp', () => {
+  it('declares streamable-http remote endpoints for data and AI search', () => {
     const { card } = buildMcpServerCard(publicDir, outRoot);
     expect(card.remotes).toBeDefined();
-    expect(card.remotes?.length).toBeGreaterThan(0);
-    const remote = card.remotes?.[0];
-    expect(remote?.type).toBe('streamable-http');
-    expect(remote?.url).toBe('https://osada.us/mcp');
+    expect(card.remotes?.length).toBe(2);
+    expect(card.remotes?.[0]).toEqual({
+      type: 'streamable-http',
+      url: 'https://osada.us/mcp',
+    });
+    expect(card.remotes?.[1]).toEqual({
+      type: 'streamable-http',
+      url: 'https://ask.osada.us/mcp',
+    });
   });
 
   it('writes the card to dist/.well-known/mcp/server-card.json and dist/mcp/server-card', () => {
