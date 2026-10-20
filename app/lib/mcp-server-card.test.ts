@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { buildMcpServerCard, readPackageVersion } from './mcp-server-card';
 
@@ -7,35 +7,43 @@ describe('mcp-server-card', () => {
   const publicDir = resolve(process.cwd(), 'public');
   const outRoot = resolve(process.cwd(), 'dist');
 
-  it('synchronizes serverInfo.version with package.json', () => {
+  it('synchronizes version with package.json', () => {
     const { card } = buildMcpServerCard(publicDir, outRoot);
-    expect(card.serverInfo.version).toBe(readPackageVersion());
+    expect(card.version).toBe(readPackageVersion());
   });
 
-  it('identifies the server as o-sumo', () => {
+  it('identifies the server in reverse-DNS format', () => {
     const { card } = buildMcpServerCard(publicDir, outRoot);
-    expect(card.serverInfo.name).toBe('o-sumo');
-    expect(card.serverInfo.version).toMatch(/^\d+\.\d+\.\d+/);
-    expect(card.serverInfo.title.length).toBeGreaterThan(0);
-    expect(card.serverInfo.description.length).toBeGreaterThan(0);
+    expect(card.name).toBe('us.osada/o-sumo');
+    expect(card.version).toMatch(/^\d+\.\d+\.\d+/);
+    expect(card.title?.length).toBeGreaterThan(0);
+    expect(card.description.length).toBeGreaterThan(0);
+    expect(card.websiteUrl).toBe('https://osada.us/');
   });
 
-  it('declares no MCP endpoint and no transport', () => {
+  it('declares streamable-http remote endpoints for data and AI search', () => {
     const { card } = buildMcpServerCard(publicDir, outRoot);
-    expect(card.endpoint).toBeNull();
-    expect(card.transport).toBeNull();
+    expect(card.remotes).toBeDefined();
+    expect(card.remotes?.length).toBe(2);
+    expect(card.remotes?.[0]).toEqual({
+      type: 'streamable-http',
+      url: 'https://osada.us/mcp',
+    });
+    expect(card.remotes?.[1]).toEqual({
+      type: 'streamable-http',
+      url: 'https://ask.osada.us/mcp',
+    });
   });
 
-  it('advertises alternative endpoints exclusively under https://osada.us/', () => {
-    const { card } = buildMcpServerCard(publicDir, outRoot);
-    for (const [label, url] of Object.entries(card.alternativeEndpoints)) {
-      expect(url, `alternativeEndpoints.${label}`).toMatch(/^https:\/\/osada\.us\//);
-    }
-  });
-
-  it('writes the card to dist/.well-known/mcp/server-card.json', () => {
+  it('writes the card to dist/.well-known/mcp/server-card.json and dist/mcp/server-card', () => {
     buildMcpServerCard(publicDir, outRoot);
-    const path = resolve(outRoot, '.well-known/mcp/server-card.json');
-    expect(existsSync(path)).toBe(true);
+    const legacyPath = resolve(outRoot, '.well-known/mcp/server-card.json');
+    const canonicalPath = resolve(outRoot, 'mcp/server-card');
+    expect(existsSync(legacyPath)).toBe(true);
+    expect(existsSync(canonicalPath)).toBe(true);
+
+    const legacyContent = readFileSync(legacyPath, 'utf8');
+    const canonicalContent = readFileSync(canonicalPath, 'utf8');
+    expect(legacyContent).toBe(canonicalContent);
   });
 });

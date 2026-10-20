@@ -1,5 +1,13 @@
 # Lessons
 
+## 2026-10-20 `_redirects` の動的ルールが Markdown ビューを404にする
+
+- Cloudflare Pages は **静的アセットが存在していても最初の一致ルールを必ず適用する**（公式仕様: "Redirects are always followed, regardless of whether or not an asset matches"）。したがって `_redirects` の `/:id`・`/*` ルールは `index.md` も捕まえる。
+- 実害: `/rikishi/:id /rikishi/:id/ 200` が `/rikishi/index.md` にマッチし、`/rikishi/index.md/` へリライトされて 404 になる。`Link: rel="alternate"` で広告しているMarkdownビューが死に、`Accept: text/markdown` の交渉もHTMLへ落ちる。
+- Dynamically routed Markdownビューは **`/<route>/index.md /<route>/index.md 200` の固定ルールを動的ルールより上に置く**。固定ルールは Route 名で静的に列挙し、動的プレースホルダには頼らない。
+- 検証は `npx wrangler pages dev dist` で実ファイルを配信させ、**Markdownアセットの直接取得と `Accept: text/markdown` 交渉の両方**を見る。HTMLが200で返るのを「配信成功」と誤認しやすい。
+- ルール本数を固定するテストは、修正で1本増やしただけで壊れる実装詳細の固定。**不変条件（Markdownビューが動的ルールに捕まらないこと）**をテストする。
+
 ## 2026-09-29 CIと同じNode.js majorでWeb Cryptoを検証する
 
 - Web Cryptoへ渡す`BufferSource`をTypedArrayの`.buffer`へ変換すると、Node.js 20とjsdomの組み合わせでは別realmの`ArrayBuffer`として拒否される場合がある。デコード結果は`Uint8Array`のまま`crypto.subtle.verify`へ渡す。

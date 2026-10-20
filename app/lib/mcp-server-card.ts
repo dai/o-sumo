@@ -5,32 +5,36 @@
  * `public/.well-known/mcp/server-card.json` (the source of truth for
  * every static field). At build time, `vite.config.ts`
  * (`mcpServerCardPlugin`) invokes `buildMcpServerCard` so that
- * `serverInfo.version` is always synchronized with the package version.
+ * `version` is always synchronized with the package version.
  */
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
+export interface McpServerCardRemote {
+  type: 'streamable-http' | 'sse';
+  url: string;
+  headers?: Array<{
+    name: string;
+    description?: string;
+    isRequired?: boolean;
+    isSecret?: boolean;
+  }>;
+  supportedProtocolVersions?: string[];
+}
+
 export interface McpServerCard {
   $schema: string;
-  serverInfo: {
-    name: string;
-    version: string;
-    title: string;
-    description: string;
+  name: string;
+  version: string;
+  title?: string;
+  description: string;
+  websiteUrl?: string;
+  repository?: {
+    source: string;
+    url: string;
   };
-  endpoint: string | null;
-  transport: string | null;
-  capabilities: {
-    tools: { listChanged: boolean };
-    resources: { subscribe: boolean; listChanged: boolean };
-    prompts: { listChanged: boolean };
-  };
-  authentication: {
-    required: boolean;
-    schemes: string[];
-  };
-  alternativeEndpoints: Record<string, string>;
-  documentation: string;
+  remotes?: McpServerCardRemote[];
+  _meta?: Record<string, unknown>;
 }
 
 export function readPackageVersion(packageJsonPath: string = resolve(process.cwd(), 'package.json')): string {
@@ -48,13 +52,16 @@ export function buildMcpServerCard(
   // Synchronize the version with package.json.
   const card: McpServerCard = {
     ...template,
-    serverInfo: {
-      ...template.serverInfo,
-      version: packageVersion,
-    },
+    version: packageVersion,
   };
   const target = resolve(outRoot, '.well-known/mcp/server-card.json');
   mkdirSync(resolve(target, '..'), { recursive: true });
   writeFileSync(target, `${JSON.stringify(card, null, 2)}\n`, 'utf8');
+
+  // Also write to dist/mcp/server-card for canonical SEP-2127 location
+  const mcpTarget = resolve(outRoot, 'mcp/server-card');
+  mkdirSync(resolve(mcpTarget, '..'), { recursive: true });
+  writeFileSync(mcpTarget, `${JSON.stringify(card, null, 2)}\n`, 'utf8');
+
   return { written: target, card };
 }

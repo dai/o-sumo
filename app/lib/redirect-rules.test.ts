@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { buildMarkdownPages } from '../../scripts/build_markdown_views';
 
 const redirectsPath = resolve(process.cwd(), 'public', '_redirects');
 const SUPPORTED_MONTH_KEYS = ['202603', '202605', '202607', '202609'] as const;
@@ -175,10 +176,24 @@ describe('Cloudflare banzuke redirect rules', () => {
   it('uses 200 rewrites throughout to avoid Googlebot indexing 301 chains', () => {
     const rules = redirectRules();
 
-    expect(rules).toHaveLength(52);
     expect(rules.every((rule) => rule.status === 200)).toBe(true);
 
     const rootFallbacks = rules.filter((rule) => rule.destination === '/');
     expect(rootFallbacks.length).toBeGreaterThan(0);
+  });
+
+  it('never lets a dynamic rule shadow a Markdown view asset', () => {
+    // Cloudflare applies the first matching rule even when a static asset
+    // exists at the same path, so a Markdown view such as /rikishi/index.md
+    // would 404 if a `/rikishi/:id` or `/rikishi/*` rule matched it first.
+    const pages = buildMarkdownPages(resolve(process.cwd(), 'public'), 'unused');
+    expect(pages.length).toBeGreaterThan(0);
+
+    for (const page of pages) {
+      const assetPath = `/${page.outDir}index.md`;
+      const rule = evaluateRedirect(assetPath);
+
+      expect(rule?.destination ?? assetPath, `${assetPath} must stay a static asset`).toBe(assetPath);
+    }
   });
 });

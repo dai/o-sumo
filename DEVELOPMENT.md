@@ -186,7 +186,7 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 
 - `api-catalog` — RFC 9727 リンクセット（公開 JSON API へのポインタ）
 - `oauth-protected-resource` — RFC 9728 の Protected Resource Metadata（`resource` と `resource_documentation` のみ）
-- `mcp/server-card.json` — MCP Server Card (SEP-1649)。MCP サーバーは提供していないため `endpoint` は null、`serverInfo.version` は `package.json` と同期
+- `mcp/server-card.json` — MCP Server Card (SEP-2127)。サーバーエンドポイント（`/mcp`）と連携し、`version` は `package.json` と同期（`/mcp/server-card` にも正規配置）
 - `agent-skills/index.json` — Agent Skills Discovery RFC v0.2.0 形式のスキル index。sha256 ダイジェストはビルド時に計算
 - `http-message-signatures-directory` — Web Bot Auth (IETF WebBotAuth WG) 署名ディレクトリ。Cloudflare Pages Function (`functions/.well-known/http-message-signatures-directory.ts`) が Ed25519 JWK を JWKS として公開し、RFC 9421 で自己署名します。署名鍵ペアは `scripts/generate_web_bot_auth_keys.mjs` で生成し、`functions/.well-known/_web-bot-auth-keys.ts` にインライン化されます（Pages の Workers ランタイムはリクエスト時に任意の fs を読めないため）
 

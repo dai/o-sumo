@@ -20,6 +20,11 @@
 /compare/ / 200
 /my-rikishi /my-rikishi/ 200
 /my-rikishi/ / 200
+# Markdown view for the rikishi list. Cloudflare applies the first matching
+# rule even when a static asset exists at the same path, so this pin must stay
+# above `/rikishi/:id` and `/rikishi/*` (which would capture `index.md` and
+# rewrite it to a non-existent path).
+/rikishi/index.md /rikishi/index.md 200
 /rikishi /rikishi/ 200
 /rikishi/ / 200
 /rikishi/:id /rikishi/:id/ 200
