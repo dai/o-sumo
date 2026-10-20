@@ -600,7 +600,21 @@ describe('onRequest SEO noscript injection', () => {
       (bodyReg!.handlers.element as any)(fakeBody);
       expect(appended).toContain('2026年9月場所');
       expect(appended).toContain('2026年7月場所');
-      expect(appended).toContain('/202609-banzuke/');
+      expect(appended).toContain('2026年5月場所');
+      expect(appended).toContain('2026年3月場所');
+      expect(appended).toContain('href="/202609-banzuke/"');
+      expect(appended).toContain('href="/202609-torikumi/"');
+      expect(appended).toContain('href="/202609-yotei/"');
+      expect(appended).toContain('href="/202607-banzuke/"');
+      expect(appended).toContain('href="/202607-torikumi/"');
+      expect(appended).toContain('href="/202607-yotei/"');
+      expect(appended).toContain('href="/202605-banzuke/"');
+      expect(appended).toContain('href="/202605-torikumi/"');
+      expect(appended).toContain('href="/202605-yotei/"');
+      expect(appended).toContain('href="/202603-banzuke/"');
+      expect(appended).toContain('href="/202603-torikumi/"');
+      expect(appended).toContain('href="/202603-yotei/"');
+      expect(appended).not.toMatch(/href="\/\d{6}-(banzuke|torikumi|yotei)"(?!\/)/);
     } finally {
       spy.restore();
     }

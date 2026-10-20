@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { buildSeoNoscriptHtml, type SeoNoscriptContext } from './seo-noscript';
+import { getAllArchiveRouteConfigs, getDayPath } from './torikumi-routes';
 
 function makeContext(payloads: Record<string, unknown>): SeoNoscriptContext & { calls: string[] } {
   const calls: string[] = [];
@@ -76,6 +77,41 @@ describe('buildSeoNoscriptHtml', () => {
     expect(html).toContain('2026年9月場所');
     expect(html).toContain('2026年7月場所');
     expect(html).toContain('/202609-banzuke/');
+
+    const configs = getAllArchiveRouteConfigs();
+    expect(configs.length).toBeGreaterThan(0);
+    const hrefs = [...html!.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
+    const expectedHrefs = configs.flatMap((config) => [config.banzukePath, config.resultPath, config.schedulePath]);
+    expect(hrefs).toEqual(expectedHrefs);
+    for (const href of expectedHrefs) {
+      expect(href.endsWith('/')).toBe(true);
+      expect(href).toMatch(/^\/\d{6}-(banzuke|torikumi|yotei)\/$/);
+    }
+    expect(html).not.toMatch(/href="\/\d{6}-(banzuke|torikumi|yotei)"(?!\/)/);
+  });
+
+  it('links every published daily page from each basho torikumi and yotei hub', async () => {
+    const ctx = makeContext({});
+    const missing: string[] = [];
+
+    for (const config of getAllArchiveRouteConfigs()) {
+      for (const mode of ['result', 'schedule'] as const) {
+        const hubPath = mode === 'result' ? config.resultPath : config.schedulePath;
+        const html = await buildSeoNoscriptHtml(hubPath, 'hub', ctx);
+        const days = (mode === 'result' ? config.archive.resultDays : config.archive.scheduleDays) ?? [];
+        const published = days.filter((day) => day.status === 'published');
+        expect(published.length).toBeGreaterThan(0);
+        for (const day of published) {
+          const dayPath = getDayPath(day, mode);
+          expect(dayPath.endsWith('/')).toBe(true);
+          if (!html?.includes(`href="${dayPath}"`)) {
+            missing.push(`${hubPath} -> ${dayPath}`);
+          }
+        }
+      }
+    }
+
+    expect(missing).toEqual([]);
   });
 
   it('renders the rikishi index for /rikishi/', async () => {

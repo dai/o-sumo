@@ -17,6 +17,7 @@ import {
   getArchiveRouteConfigByMonthKey,
   getArchiveRouteConfigForDateKey,
   getArchiveRouteConfigForPathname,
+  getDayPath,
 } from './torikumi-routes';
 
 export interface SeoNoscriptContext {
@@ -209,16 +210,22 @@ function renderKimariteList(): string {
   return sections.join('');
 }
 
+function bashoHeading(monthKey: string): string {
+  return `${monthKey.slice(0, 4)}年${Number(monthKey.slice(4, 6))}月場所`;
+}
+
 function renderArchives(): string {
-  const configs = getAllArchiveRouteConfigs();
-  const links = configs
+  // Same route configs the sitemap uses, so every basho with data is linked.
+  return getAllArchiveRouteConfigs()
     .map((config) => {
-      const year = config.monthKey.slice(0, 4);
-      const month = config.monthKey.slice(4, 6);
-      return `<li><a href="${escapeHtml(config.banzukePath)}">${escapeHtml(`${year}年${Number(month)}月場所`)}</a></li>`;
+      const items = [
+        `<li><a href="${escapeHtml(config.banzukePath)}">番付</a></li>`,
+        `<li><a href="${escapeHtml(config.resultPath)}">取組・星取表</a></li>`,
+        `<li><a href="${escapeHtml(config.schedulePath)}">取組予定</a></li>`,
+      ].join('');
+      return `<section><h2>${escapeHtml(bashoHeading(config.monthKey))}</h2><ul>${items}</ul></section>`;
     })
     .join('');
-  return `<ul>${links}</ul>`;
 }
 
 async function renderRikishiList(ctx: SeoNoscriptContext): Promise<string> {
@@ -317,7 +324,7 @@ async function renderMonthHub(monthKey: string, mode: 'result' | 'schedule', tit
   const items = days
     .map((day) => {
       const statusLabel = day.status === 'pending' ? '（未更新）' : '';
-      return `<li><a href="/${escapeHtml(day.pathDate)}-${mode === 'result' ? 'torikumi' : 'yotei'}/">${escapeHtml(day.label)}（${escapeHtml(day.isoDate)}）${statusLabel}</a></li>`;
+      return `<li><a href="${escapeHtml(getDayPath(day, mode))}">${escapeHtml(day.label)}（${escapeHtml(day.isoDate)}）${statusLabel}</a></li>`;
     })
     .join('');
   const updated = mode === 'result' ? archive.resultUpdatedAt : archive.scheduleUpdatedAt;
