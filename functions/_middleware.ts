@@ -31,6 +31,7 @@ const NON_SPA_PREFIXES = [
   '/images/',
   '/fonts/',
   '/icons/',
+  '/mcp',
 ];
 
 const SPA_TRAILING_SLASH_PATTERN = /\.[a-z0-9]{1,8}$/i;
@@ -199,6 +200,7 @@ export const HOME_LINK_HEADERS = [
   '</.well-known/api-catalog>; rel="api-catalog"',
   '</.well-known/ai-catalog.json>; rel="ai-catalog"',
   '</.well-known/agent-card.json>; rel="describedby"',
+  '</mcp/server-card>; rel="service-desc"',
   '</.well-known/mcp/server-card.json>; rel="service-desc"',
   '</.well-known/agent-skills/index.json>; rel="agent-skills"',
   '</index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"',

@@ -54,3 +54,9 @@ output/playwright/
 
 # Local scratch / CI logs
 .tmp/
+
+# Local review tooling (binary, ~21MB) — not for source control
+crit.exe
+
+# Nested clone of the repo (used as scratch worktree elsewhere)
+o-sumo/

@@ -33,12 +33,14 @@
   },
   "homepage": "https://github.com/dai/o-sumo#readme",
   "dependencies": {
+    "@modelcontextprotocol/server": "^2.3.1",
     "i18next": "^26.0.4",
     "i18next-browser-languagedetector": "^8.2.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-i18next": "^17.0.3",
-    "react-router-dom": "^7.2.0"
+    "react-router-dom": "^7.2.0",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20260702.1",

@@ -20,6 +20,7 @@
   Link: </.well-known/api-catalog>; rel="api-catalog"
   Link: </.well-known/ai-catalog.json>; rel="ai-catalog"
   Link: </.well-known/agent-card.json>; rel="describedby"
+  Link: </mcp/server-card>; rel="service-desc"
   Link: </.well-known/mcp/server-card.json>; rel="service-desc"
   Link: </.well-known/agent-skills/index.json>; rel="agent-skills"
   Link: </auth.md>; rel="auth.md"
@@ -114,6 +115,22 @@
   Cache-Control: public, max-age=300
   Content-Type: application/json
 
+
+# MCP Server Card (SEP-2127)
+/mcp/server-card
+  Cache-Control: public, max-age=3600
+  Content-Type: application/mcp-server-card+json
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, OPTIONS
+  Access-Control-Allow-Headers: Content-Type, Accept, If-None-Match
+  Access-Control-Expose-Headers: ETag
+
+# MCP Endpoint
+/mcp
+  Cache-Control: no-cache, no-transform
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: POST, OPTIONS
+  Access-Control-Allow-Headers: Content-Type, Accept, MCP-Protocol-Version, Mcp-Method, Mcp-Name
 # A2A Agent Card (RFC 8615 well-known URI)
 # See: https://a2a-protocol.org/latest/topics/agent-discovery/
 /.well-known/agent-card.json

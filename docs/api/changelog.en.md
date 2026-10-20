@@ -2,6 +2,15 @@
 
 [日本語版](./changelog.md)
 
+## 2026-10-20
+
+### MCP Server Publication And Markdown Delivery Routing Fix
+
+- Published a Streamable HTTP Model Context Protocol (MCP) server endpoint at `POST /mcp` via Pages Functions, exposing 5 read-only Grand Sumo tools (`search_rikishi`, `get_rikishi_profile`, `get_banzuke`, `get_torikumi`, `list_basho`)
+- Published the SEP-2127 compliant MCP Server Card at canonical `/mcp/server-card` and mirrored at `/.well-known/mcp/server-card.json`; synced AI Catalog entry type to `application/mcp-server-card+json`
+- Implemented Host and Origin validation to protect against DNS rebinding and cross-origin browser abuse; non-browser agent clients connect credential-free
+- Fixed `public/_redirects` dynamic rules (`/rikishi/:id` etc.) shadowing `/rikishi/index.md` into 404s; pinned Markdown views above dynamic rules and added regression invariant tests
+
 ## 2026-09-26
 
 ### Agent entry points

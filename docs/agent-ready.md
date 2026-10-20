@@ -16,7 +16,8 @@ Cloudflare DNS zone, not the Pages project.
 | --- | --- |
 | `/.well-known/api-catalog` | RFC 9727 linkset pointing at the public JSON APIs (banzuke, torikumi, rikishi, gyoji, yobidashi). |
 | `/.well-known/oauth-protected-resource` | RFC 9728 resource metadata identifying the public JSON API and its documentation. Returns `{ resource, resource_documentation }` — it points agents at `/auth.md` for the metadata-only `agent_auth` declaration. The public APIs require no token. |
-| `/.well-known/mcp/server-card.json` | MCP Server Card (SEP-1649). Indicates that no MCP server is hosted, and points agents at the public API catalog and skills index as the alternative discovery surfaces. `serverInfo.version` is synchronized with `package.json` at build time via `vite.config.ts` (`mcpServerCardPlugin`). |
+| `/mcp/server-card`, `/.well-known/mcp/server-card.json` | MCP Server Card (SEP-2127). Advertises the remote Streamable HTTP MCP server at `/mcp`. `version` is synchronized with `package.json` at build time via `vite.config.ts` (`mcpServerCardPlugin`). |
+| `/mcp` | Streamable HTTP Model Context Protocol (MCP) server endpoint. Exposes 5 read-only Grand Sumo tools (`search_rikishi`, `get_rikishi_profile`, `get_banzuke`, `get_torikumi`, `list_basho`). Supports both MCP 2026-07-28 and legacy stateless clients. |
 | `/.well-known/agent-card.json` | A2A Agent Card (A2A Protocol v1.0.0 §4.4.1). Published for discovery only — `supportedInterfaces` is non-empty (HTTP+JSON pointing at `/a2a`), but the A2A endpoint returns `-32601 Method not found` for every method because o-sumo has no task state. `skills[]` is derived from `SKILL_MANIFEST` (`app/lib/agent-skills.ts`) via `mapSkillEntryToA2aSkill()` at build time, and `version` is synchronized with `package.json` via `vite.config.ts` (`a2aAgentCardPlugin`). The `extensions[]` array declares the AP2 (Agent Payments Protocol) extension with `params.roles = ["merchant"]` and `required: true` — merchant agents should mark it as required per the AP2 spec. See [docs/agent-card.md](agent-card.md) for the discovery posture. |
 | `/.well-known/agent-skills/index.json` | Agent Skills index (RFC v0.2.0). Lists the skills published under `.well-known/agent-skills/`. Generated at build time by `vite.config.ts` (`agentSkillsPlugin`); each entry carries `type: "skill-md"` and `digest: "sha256:{hex}"`. |
 | `/.well-known/agent-skills/osumo-content/SKILL.md` | Skill description for fetching public API content (banzuke, torikumi, rikishi, gyoji, yobidashi). |
@@ -71,13 +72,35 @@ Use `Accept: text/markdown` and verify `Content-Type: text/markdown`. Direct `<r
 assets are also available. Middleware rejects HTML asset fallbacks rather than relabeling them as
 Markdown. Negotiated responses use `Vary: Accept` and `Cache-Control: private, no-cache, no-transform`.
 
+Cloudflare applies the first matching `_redirects` rule even when a static asset exists at the same
+path, so a dynamic rule such as `/rikishi/:id` would swallow `/rikishi/index.md` and rewrite it to a
+non-existent path. Every Markdown view under a dynamically routed prefix therefore needs a static
+`/<route>/index.md /<route>/index.md 200` pin above the dynamic rules; `app/lib/redirect-rules.test.ts`
+enforces that invariant for every route in `MARKDOWN_ROUTES`.
+
 `bashoId` is a numeric upstream ID. Derive YYYYMM from the first valid 8-digit `pathDate` in
 `resultDays` or `scheduleDays`; do not turn an ID such as `637` into a URL. Match today's or
 yesterday's `isoDate` in Asia/Tokyo. Use the sitemap for older months, and do not mistake an HTTP
 200 SPA fallback for proof that a requested date exists.
 
-The HTTP integration is JSON APIs plus skills. Do not advertise the discovery cards as a working
-MCP server or A2A task service. Browser WebMCP, described below, is separate.
+The HTTP integration provides public JSON APIs, skills, and a remote MCP server at `/mcp`
+(with Server Card at `/mcp/server-card`). The A2A endpoint remains discovery-only (Method not found).
+Browser WebMCP, described below, is separate.
+
+## MCP Server
+
+o-sumo operates a stateless, public read-only MCP server at `https://osada.us/mcp` using the
+Streamable HTTP transport:
+
+- **Server Card**: Served at `/mcp/server-card` per SEP-2127 (`application/mcp-server-card+json`), and mirrored at `/.well-known/mcp/server-card.json` for backward compatibility. Advertised via `/.well-known/ai-catalog.json` with `type: "application/mcp-server-card+json"`.
+- **Endpoint**: `POST https://osada.us/mcp` handles tool calls statelessly (one instance per request, no cross-request session or Durable Objects required).
+- **Security**: Host and Origin headers are validated to prevent DNS rebinding and browser cross-origin abuse. Non-browser MCP clients (CLI, desktop agent runners) send no `Origin` and pass without credentials.
+- **Tools exposed**:
+  1. `search_rikishi` — search by shikona or yomi (returns up to 20 matching rikishi).
+  2. `get_rikishi_profile` — get detailed profile and career record by numeric rikishi ID.
+  3. `get_banzuke` — get official banzuke rankings (makuuchi and juryo) for current or historical basho.
+  4. `get_torikumi` — get daily match results or schedule by YYYYMMDD date.
+  5. `list_basho` — list current and archived basho available in o-sumo.
 
 ## WebMCP
 

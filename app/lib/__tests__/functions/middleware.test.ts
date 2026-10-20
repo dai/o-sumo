@@ -7,6 +7,7 @@ describe('Cloudflare Pages Functions _middleware', () => {
     expect(HOME_LINK_HEADERS).toContain('</.well-known/api-catalog>; rel="api-catalog"');
     expect(HOME_LINK_HEADERS).toContain('</.well-known/ai-catalog.json>; rel="ai-catalog"');
     expect(HOME_LINK_HEADERS).toContain('</.well-known/agent-card.json>; rel="describedby"');
+    expect(HOME_LINK_HEADERS).toContain('</mcp/server-card>; rel="service-desc"');
     expect(HOME_LINK_HEADERS).toContain('</.well-known/mcp/server-card.json>; rel="service-desc"');
     expect(HOME_LINK_HEADERS).toContain('</.well-known/agent-skills/index.json>; rel="agent-skills"');
     expect(HOME_LINK_HEADERS).toContain('</index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"');

@@ -1,5 +1,14 @@
 # API Changelog
 
+## 2026-10-20
+
+### MCP サーバーの公開と Markdown 配信ルーティング修正
+
+- Streamable HTTP 対応の公式 MCP サーバー（`POST /mcp`）を Pages Functions として公開。`search_rikishi`、`get_rikishi_profile`、`get_banzuke`、`get_torikumi`、`list_basho` の 5 つの読み取り専用ツールを提供
+- SEP-2127 準拠の MCP Server Card を正規の `/mcp/server-card` に公開し、`/.well-known/mcp/server-card.json` にもミラー。`/.well-known/ai-catalog.json` のエントリ type を `application/mcp-server-card+json` に同期
+- DNS rebinding およびブラウザ経由の不正呼び出しを防ぐ Host / Origin 検証（`osada.us` 等）を実装。非ブラウザのエージェントクライアントは認証なしで利用可能
+- `public/_redirects` の動的ルール（`/rikishi/:id` など）が `/rikishi/index.md` をシャドウイングして 404 になる不具合を修正。固定ピンルールを追加し、全 Markdown ビューの配信不変条件テストを追加
+
 ## 2026-09-26
 
 ### エージェント向け入口の整備
