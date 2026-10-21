@@ -46,4 +46,17 @@ describe('auth.md', () => {
     expect(headers).toContain('/*.md\n  Content-Type: text/markdown; charset=utf-8');
     expect(headers).not.toMatch(/^\/auth\.md$/m);
   });
+
+  it('links to the Personal Agent Protocol (Poppy) discovery manifest', () => {
+    // Keeps the public endpoints table and the homepage Link header in lock-step
+    // with the actual /, /auth.md, and /.well-known/poppy.json surface so agents
+    // that read auth.md can hop straight to the Poppy manifest.
+    const poppyRow = '| Personal Agent Protocol | `https://osada.us/.well-known/poppy.json` |';
+    expect(content).toContain(poppyRow);
+
+    const headers = readFileSync(resolve(process.cwd(), 'public/_headers'), 'utf8');
+    expect(headers).toMatch(
+      /Link: <\/\.well-known\/poppy\.json>; rel="poppy"; type="application\/json"/,
+    );
+  });
 });

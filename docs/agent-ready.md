@@ -24,6 +24,7 @@ Cloudflare DNS zone, not the Pages project.
 | `/.well-known/agent-skills/osumo-discovery/SKILL.md` | Resolve current/archived basho, daily and rikishi page URLs from API dates and the sitemap. |
 | `/.well-known/http-message-signatures-directory` | Web Bot Auth (IETF WebBotAuth WG) signature directory. Returns a JWKS with at least one Ed25519 public key, signed per RFC 9421 with `tag="http-message-signatures-directory"`. See the dedicated **Web Bot Auth** section below. |
 | `/.well-known/acp.json` | ACP (Agentic Commerce Protocol) discovery document. Advertises `protocol.name = "acp"`, `api_base_url`, `transports`, and `capabilities.services`. Served as a static JSON file alongside the other `.well-known/*` endpoints; satisfies `checks.commerce.acp` on isitagentready.com. |
+| `/.well-known/poppy.json` | Personal Agent Protocol (Poppy) discovery document. Website-only declaration (`protocol_version: "0.1"`, `organization: { name, domain }`, `web: {}`); `auth` is intentionally absent because o-sumo publishes no agent/API/session surface that requires authorization (spec §3.1 only requires `auth` when one of `agent`, `apis`, `feedback`, or `web.browser_session_endpoint` is present). Served as a static JSON file with `Content-Type: application/json; charset=utf-8` and `Cache-Control: public, max-age=300`. |
 | `/platform/v2/x402/discovery/resources` | x402 Bazaar discovery resources endpoint (SEP/Bazaar extension). Advertises discoverable API resources, pricing, and input/output schemas for autonomous agent commerce. |
 | `/api`, `/api/v1` | Public API directory endpoints protected with x402 payment middleware. Returns HTTP 402 Payment Required with `Payment-Required` base64 header, Base USDC payment requirements, and Bazaar extension when unauthenticated. |
 | `/auth.md` | Top-level Auth.md instructions for metadata-only anonymous public access, including registration and claim information URIs and the no-credential constraint. |
@@ -33,6 +34,13 @@ Note: `/.well-known/openid-configuration` was removed in 2026-08-10 (404 expecte
 `/.well-known/oauth-authorization-server` is intentionally kept as a
 metadata-only discovery surface carrying an `agent_auth` block per
 Lesson #5.
+`/.well-known/poppy.json` is a website-only declaration (no `auth`, no `apis`,
+no `agent`, no `feedback`). The smallest possible Poppy document that the
+spec accepts, chosen deliberately so that Poppy's spec §3.2 obligation (which
+would require `poppy_domains`, `token_endpoint`, `revocation_endpoint`) does
+not bind the site to an OAuth authorization server implementation. See
+`app/lib/poppy-discovery.ts` and the forbidden guard in
+`app/lib/agent-metadata.test.ts` for the locked-in posture.
 
 The agent-skills index is generated at build time by `vite.config.ts` (see
 `agentSkillsPlugin`). The sha256 digests in `index.json` are computed from
@@ -199,6 +207,48 @@ After DNSSEC is enabled, the SVCB record above will be served with the
 `AD` (Authenticated Data) flag by validating resolvers, which is the
 expected signal for DNS-AID consumers.
 
+## WWW → Apex canonicalization (operator-side)
+
+Poppy spec §3 is satisfied when `organization.domain` exactly matches the
+host that served the manifest. Today `https://www.osada.us/` serves the same
+content as `https://osada.us/`, so spec-aware scanners that ignore the leading
+`www.` (such as the isitagentready.com skill) succeed against either host,
+but a strict reader of §3 will treat the two hosts as different providers.
+To remove the ambiguity, canonicalize `www.osada.us` to `osada.us` at the
+edge. This cannot live in `public/_redirects` because Pages redirects are
+path-based only — host-level redirects must be configured in the Cloudflare
+zone.
+
+### Steps in Cloudflare Dashboard
+
+1. Open the `osada.us` zone in Cloudflare and choose **Rules** → **Redirect Rules**.
+2. Click **Create rule**, set:
+   - **Rule name**: `Canonicalize www → apex`
+   - **When**: `Hostname = "www.osada.us"`
+   - **Then**: `URL redirect`
+     - **Type**: Static
+     - **URL**: `https://osada.us${1}` (where `${1}` is the matched path)
+     - **Status code**: `301`
+     - **Preserve query string**: enabled
+3. Save and deploy the rule.
+
+If Redirect Rules is unavailable on the plan, the equivalent legacy
+expression is **Page Rules** → **Add rule** → `*www.osada.us/*` →
+`301` Forwarding URL to `https://osada.us/$1`. The repository cannot see
+which interface the zone uses; record the choice in the zone-side runbook.
+
+### Verifying
+
+- `curl -I https://www.osada.us/.well-known/poppy.json` — returns `301` with
+  `Location: https://osada.us/.well-known/poppy.json`. Follow with `-L` to
+  confirm the apex returns the canonical manifest with `200`.
+- `curl -I https://www.osada.us/` — same pattern; any host-level path under
+  `www.osada.us` should end up at the apex with `301`.
+
+If the redirect is not in place, the existing skill (which ignores `www.`)
+will still mark `checks.discovery.personalAgentProtocol` green, but strict
+implementations will not. Fix the zone rule before that becomes a blocker.
+
 ## Verifying the deployment
 
 After the site is deployed and the DNS record is published, run the
@@ -208,6 +258,10 @@ following checks:
   returns 200 with the skills index JSON.
 - `curl -i https://osada.us/.well-known/acp.json` — returns 200 with
   the ACP discovery JSON (used by `checks.commerce.acp` validators).
+- `curl -i https://osada.us/.well-known/poppy.json` — returns 200 with
+  the Poppy discovery JSON (`protocol_version`, `organization`,
+  `web: {}`; `auth` absent). Used by `checks.discovery.personalAgentProtocol`
+  validators such as isitagentready.com.
 - `curl -i https://osada.us/auth.md` — returns 200 with
   `Content-Type: text/markdown; charset=utf-8`.
 - `curl -i https://osada.us/.well-known/oauth-protected-resource` —
@@ -219,6 +273,11 @@ following checks:
 - `curl -i -H 'Accept: text/markdown' https://osada.us/20260926-yotei/` —
   returns Markdown for the specified date; also check a result date and a pending day.
 - `curl -fsS https://osada.us/robots.txt` — includes `ai-input=yes` without conflicting rules.
+- `curl -IL https://www.osada.us/.well-known/poppy.json` — once the
+  WWW→apex redirect is in place, returns `301` to
+  `https://osada.us/.well-known/poppy.json` followed by `200` of the
+  canonical manifest. See the "WWW → Apex canonicalization (operator-side)"
+  section above.
 - Download each SKILL.md listed in the index and compare its SHA-256 with `digest`.
 - `dig +multi _index._agents.osada.us HTTPS` — returns the SVCB record
   with the expected `alpn` and `endpoint` parameters.

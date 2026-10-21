@@ -188,9 +188,10 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - `oauth-protected-resource` — RFC 9728 の Protected Resource Metadata（`resource` と `resource_documentation` のみ）
 - `mcp/server-card.json` — MCP Server Card (SEP-2127)。サーバーエンドポイント（`/mcp`）と連携し、`version` は `package.json` と同期（`/mcp/server-card` にも正規配置）
 - `agent-skills/index.json` — Agent Skills Discovery RFC v0.2.0 形式のスキル index。sha256 ダイジェストはビルド時に計算
+- `poppy.json` — Personal Agent Protocol 0.1 discovery (`web: {}` のみの最小宣言、`auth` 不在)
 - `http-message-signatures-directory` — Web Bot Auth (IETF WebBotAuth WG) 署名ディレクトリ。Cloudflare Pages Function (`functions/.well-known/http-message-signatures-directory.ts`) が Ed25519 JWK を JWKS として公開し、RFC 9421 で自己署名します。署名鍵ペアは `scripts/generate_web_bot_auth_keys.mjs` で生成し、`functions/.well-known/_web-bot-auth-keys.ts` にインライン化されます（Pages の Workers ランタイムはリクエスト時に任意の fs を読めないため）
 
-`openid-configuration` と `oauth-authorization-server` は 2026-08-10 時点で削除済み（404 が正常）。代わりに `auth.md` で「匿名・資格情報不要の公開読み取り専用」であることを宣言しています。
+`openid-configuration` は 2026-08-10 時点で削除済み（404 が正常）。一方 `oauth-authorization-server` は metadata-only な AS 宣言として残置しています（Lesson #5）。代わりに `auth.md` で「匿名・資格情報不要の公開読み取り専用」であることを宣言しています。
 
 現状で配布している SKILL.md は次の 2 件です（`public/.well-known/agent-skills/` 配下）:
 

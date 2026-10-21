@@ -10,6 +10,7 @@ describe('Cloudflare Pages Functions _middleware', () => {
     expect(HOME_LINK_HEADERS).toContain('</mcp/server-card>; rel="service-desc"');
     expect(HOME_LINK_HEADERS).toContain('</.well-known/mcp/server-card.json>; rel="service-desc"');
     expect(HOME_LINK_HEADERS).toContain('</.well-known/agent-skills/index.json>; rel="agent-skills"');
+    expect(HOME_LINK_HEADERS).toContain('</.well-known/poppy.json>; rel="poppy"; type="application/json"');
     expect(HOME_LINK_HEADERS).toContain('</index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"');
     expect(HOME_LINK_HEADERS).toContain('</auth.md>; rel="auth.md"');
   });

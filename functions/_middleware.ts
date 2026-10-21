@@ -203,6 +203,7 @@ export const HOME_LINK_HEADERS = [
   '</mcp/server-card>; rel="service-desc"',
   '</.well-known/mcp/server-card.json>; rel="service-desc"',
   '</.well-known/agent-skills/index.json>; rel="agent-skills"',
+  '</.well-known/poppy.json>; rel="poppy"; type="application/json"',
   '</index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"',
   '</auth.md>; rel="auth.md"',
 ];
