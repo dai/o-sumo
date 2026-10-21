@@ -52,4 +52,36 @@ describe('agent discovery metadata', () => {
     // intentionally absent so that OIDC-specific checks stay neutral.
     expect(existsSync(resolve(process.cwd(), 'public/.well-known/openid-configuration'))).toBe(false);
   });
+
+  describe('Personal Agent Protocol (Poppy) website-only posture', () => {
+    const poppyPath = resolve(process.cwd(), 'public/.well-known/poppy.json');
+    const poppyExists = existsSync(poppyPath);
+    const poppy = poppyExists
+      ? (JSON.parse(readFileSync(poppyPath, 'utf8')) as Record<string, unknown>)
+      : ({} as Record<string, unknown>);
+
+    it('declares the website-only posture (no auth, no apis, no agent, no feedback)', () => {
+      // Spec §3.1 requires `auth` only when agent / apis / feedback /
+      // web.browser_session_endpoint is present. o-sumo publishes none of
+      // those, so the manifest stays free of any OAuth authorization-server
+      // obligation. Removing one of these expectations is a posture change
+      // and must be discussed in its own PR — see docs/agent-ready.md and
+      // public/auth.md for the established "anonymous public" stance.
+      expect(poppyExists).toBe(true);
+      expect(poppy).not.toHaveProperty('auth');
+      expect(poppy).not.toHaveProperty('apis');
+      expect(poppy).not.toHaveProperty('agent');
+      expect(poppy).not.toHaveProperty('feedback');
+    });
+
+    it('does not bind the AS metadata to Poppy-required OAuth endpoints', () => {
+      // Spec §3.2 would require `poppy_domains`, `token_endpoint`, and
+      // `revocation_endpoint` if the AS metadata were ever wired to Poppy.
+      // Adding any of these is the first step toward implementing an OAuth
+      // authorization server that this project does not ship.
+      expect(asMeta).not.toHaveProperty('poppy_domains');
+      expect(asMeta).not.toHaveProperty('token_endpoint');
+      expect(asMeta).not.toHaveProperty('revocation_endpoint');
+    });
+  });
 });

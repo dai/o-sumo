@@ -58,6 +58,7 @@ agent_auth:
 | API catalog | `https://osada.us/.well-known/api-catalog` |
 | Protected Resource Metadata | `https://osada.us/.well-known/oauth-protected-resource` |
 | Agent Skills | `https://osada.us/.well-known/agent-skills/index.json` |
+| Personal Agent Protocol | `https://osada.us/.well-known/poppy.json` |
 | Signature Directory | `https://osada.us/.well-known/http-message-signatures-directory` |
 | Sitemap | `https://osada.us/sitemap.xml` |
 
@@ -89,4 +90,5 @@ corrections. Do not send credentials or private key material.
 
 - 2026-08-04 — Published anonymous public-access registration metadata.
 - 2026-08-10 — Published Web Bot Auth signature directory.
-- 2026-08-10 — Removed `/.well-known/oauth-authorization-server` and minimized `/.well-known/oauth-protected-resource` to `{ resource, resource_documentation }`. Discovery now flows from PRM to this page directly.
+- 2026-08-10 — Removed `/.well-known/openid-configuration` (404 is now the expected state) and minimized `/.well-known/oauth-protected-resource` to `{ resource, resource_documentation }`. `/.well-known/oauth-authorization-server` is intentionally kept as a metadata-only AS declaration per Lesson #5. Discovery now flows from PRM to this page directly.
+- 2026-10-21 — Published `/.well-known/poppy.json` (Personal Agent Protocol, website-only declaration; `auth` deliberately omitted so no OAuth authorization server is implied).

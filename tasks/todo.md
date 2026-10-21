@@ -564,3 +564,115 @@ joined the two Base64 values. The fix keeps the canonical header only. Focused
 tests pass: 3 files and 17 tests. Full typecheck remains unverified because
 the isolated worktree dependency installation was interrupted by disk-space
 exhaustion and left unrelated packages incomplete.
+
+# Personal Agent Protocol (Poppy) discovery (2026-10-21)
+
+プラン: `C:\Users\dai\.claude\plans\lively-juggling-pancake.md`
+
+## 状況
+- `https://personalagentprotocol.org/docs/spec#3-discovery` の `checks.discovery.personalAgentProtocol` 評価が「manifest not found」
+- 既存の 11 種類の discovery サーフェス群は既に揃っているが、`/.well-known/poppy.json` だけが未配信
+- o-sumo の姿勢は「OAuth AS を実装せず、anonymous public with `auth.md`」(`docs/agent-ready.md`、`public/auth.md`、`tasks/lessons.md` Lesson #5)。これは壊さない。
+
+## スコープ決定 (計画フェーズ)
+- 採用: **`web: {}` のみ宣言**(`auth` 不在 → spec §3.1 の条件付き `auth` 必須に該当せず)
+- 棄却: `apis` / `agent` を入れる案(RFC 8414 完全形が要求され OAuth AS 未実装の姿勢と直接矛盾)
+
+## Phase 1: builder + 静的ファイル
+- [x] `app/lib/poppy-discovery.ts` 新規作成 (`POPPY_PROTOCOL_VERSION = '0.1'`、`buildPoppyDocument()`、`assertPoppyDocument()`、`SITE_ORIGIN` から `organization.domain` 導出、`acp-discovery.ts` の構造を踏襲)
+- [x] `public/.well-known/poppy.json` 新規作成 (builder の出力をそのまま書き写す)
+
+## Phase 2: テスト
+- [x] `app/lib/poppy-discovery.test.ts` 新規作成 (builder/shape/static-file 一致/否定系)
+- [x] `app/lib/agent-metadata.test.ts` に forbidden guard 1 本追加 (poppy に `auth`/`apis`/`agent`/`feedback` がない、`oauth-authorization-server` に `poppy_domains`/`token_endpoint`/`revocation_endpoint` がない)
+- [x] `app/lib/auth-md.test.ts` に `## Public endpoints` 表に poppy.json 行があることの guard を 1 本追加
+
+## Phase 3: `_headers` + middleware
+- [x] `public/_headers` に `/.well-known/poppy.json` ブロック追加 (`Cache-Control: public, max-age=300`、`Content-Type: application/json; charset=utf-8`)
+- [x] `public/_headers` の `/` ブロックの `Link:` 列に `</.well-known/poppy.json>; rel="poppy"; type="application/json"` を追加
+- [x] `functions/_middleware.ts:199-208` の `HOME_LINK_HEADERS` に同じ行を追加
+- [x] `app/lib/__tests__/functions/middleware.test.ts` に 1 行 `toContain` guard を追加
+
+## Phase 4: ドキュメント
+- [x] `docs/agent-ready.md` に `/.well-known/poppy.json` を Discovery surfaces 表に追加 + posture 説明段落
+- [x] `DEVELOPMENT.md` / `DEVELOPMENT_en.md` に 1 行追加
+- [x] `docs/api/changelog.md` / `docs/api/changelog.en.md` に 2026-10-21 リリースノート
+- [x] `public/auth.md` の `## Public endpoints` 表に 1 行 + `## Changelog` 末尾に 1 行(YAML ブロックは凍結)
+- [x] `tasks/lessons.md` に 1 行追加(2026-10-21 最小宣言で `auth` を回避するパターン)
+
+## Phase 6: 残作業の本タスク内取り込み
+- [x] `public/auth.md` Changelog 2026-08-10 行を実状に同期 (`oauth-authorization-server` は metadata-only で残置、`openid-configuration` のみ Removed)
+- [x] `DEVELOPMENT.md` の AI Agent 節も同じ drift を解消(2 件 → 1 件、改行で 2 文に分離)
+- [x] `DEVELOPMENT_en.md` も英訳で同期
+- [x] `docs/agent-ready.md` に "WWW → Apex canonicalization (operator-side)" セクションを新設(Cloudflare Rules → Redirect Rules の手順 + Page Rules フォールバック記載)
+- [x] `docs/agent-ready.md` の "Verifying the deployment" に `curl -IL https://www.osada.us/...` の検証 curl を追加
+- [x] `tasks/lessons.md` に "Changelog の 'Removed' 記述は実ファイル存在と矛盾しないか必ず照合する" を追加(doc drift 検出パターン)
+
+## Phase 7: 検証
+- [x] `npm run typecheck` 通過
+- [x] `npx vitest run app/lib/poppy-discovery.test.ts app/lib/agent-metadata.test.ts app/lib/auth-md.test.ts app/lib/__tests__/functions/middleware.test.ts` 緑 (89 tests pass)
+- [x] `npx vitest run`(全スイート)緑、リグレッションなし (97 files / 802 tests pass)
+- [x] `npm run build` 成功、`dist/.well-known/poppy.json` が生成
+- [x] `git diff --check` クリーン
+- [x] `tasks/todo.md` にレビューセクション記入
+
+## レビュー
+
+### 完了内容
+- **新規ファイル**: 3 件
+  - `public/.well-known/poppy.json` (117 bytes、`web: {}` のみの最小宣言)
+  - `app/lib/poppy-discovery.ts` (typed builder + `assertPoppyDocument` ガード、`acp-discovery.ts` の構造を踏襲)
+  - `app/lib/poppy-discovery.test.ts` (19 アサーション: builder shape / static-file 一致 / 否定系 / `_headers` 統合)
+- **変更ファイル**: 11 件、+137 / -0 (純 additive) → Phase 6 拡張で 11 件のまま(同 4 ファイル / +12 行ほど)/doc drift 修正と `www` 正規化手順が加わる
+
+  **Phase 1-5 由来**:
+  - `app/lib/agent-metadata.test.ts` に `describe('Personal Agent Protocol (Poppy) website-only posture')` ブロック (2 テスト) 追加
+  - `app/lib/auth-md.test.ts` に public endpoints / Link ヘッダ guard (1 テスト) 追加
+  - `app/lib/__tests__/functions/middleware.test.ts` の `HOME_LINK_HEADERS` 検証に 1 行 `toContain` 追加
+  - `functions/_middleware.ts` の `HOME_LINK_HEADERS` に 1 行追加 (production drift 回避)
+  - `public/_headers` に Cache-Control / Content-Type ブロック + `/` の Link 列に 1 行追加
+  - `public/auth.md` の `## Public endpoints` 表 + `## Changelog` 末尾に 1 行ずつ (YAML ブロック凍結)
+  - `docs/agent-ready.md` の Discovery surfaces 表 + posture 段落 + 検証 curl コマンド
+  - `DEVELOPMENT.md` / `DEVELOPMENT_en.md` の AI Agent Readiness 節に 1 行
+  - `docs/api/changelog.md` / `docs/api/changelog.en.md` に 2026-10-21 リリースノート
+  - `tasks/todo.md` / `tasks/lessons.md` に本タスクの記録
+
+  **Phase 6 由来 (本ターンで追加)**:
+  - `public/auth.md` Changelog 2026-08-10 行: "Removed `oauth-authorization-server`" を削除し "Removed `openid-configuration`; `oauth-authorization-server` kept per Lesson #5" に書き換え
+  - `DEVELOPMENT.md` AI Agent 節の "openid-configuration と oauth-authorization-server は削除済み" を `openid-configuration` のみ削除 / `oauth-authorization-server` 残置 (Lesson #5) に分離
+  - `DEVELOPMENT_en.md` 同期(英訳)
+  - `docs/agent-ready.md` に "WWW → Apex canonicalization (operator-side)" セクションを新設(Cloudflare Rules → Redirect Rules の手順と Page Rules フォールバック) + Verifying 節に `curl -IL https://www.osada.us/...` の検証 curl を追加
+  - `tasks/lessons.md` に新 lesson "Changelog の 'Removed' 記述は実ファイル存在と矛盾しないか必ず照合する"(doc drift 検出パターン)を追加
+
+### 検証結果
+| 項目 | 結果 |
+|---|---|
+| `npm run typecheck` | エラーなし |
+| Focused vitest (4 files: poppy / agent-metadata / auth-md / middleware) | 89/89 緑 |
+| Full vitest | **97 files / 802 tests pass** (約 114 秒、リグレッションなし) |
+| `npm run build` | ✓ built in 3.44s、PWA 184 entries precached、`dist/.well-known/poppy.json` 117 bytes 生成 |
+| `git diff --check` | clean |
+
+### 設計上の決定 (実装後の補足)
+- **`assertPoppyDocument` の static file 検証は「toEqual + 個別 throw 試験」の二段構え**: builder 出力と static file が `toEqual` で一致しないと即座に fail。個別の `apis` あり / `www.` プレフィックス / `protocol_version: '0.1.0'` などを個別 `toThrow` でカバーし、guard の網羅性を上げる。
+- **Posture の三重ロック**: `poppy-discovery.test.ts` (shape) + `agent-metadata.test.ts` (forbidden guard) + `auth-md.test.ts` (link 整合)。1 ファイル消しても他が catch。
+- **`vite.config.ts` プラグインを追加しなかった判断**: 全フィールドが固定定数で `package.json` からの導出が無いため、builder 関数 (`poppy-discovery.ts`) が import 時導出を担う。`acp.json` / `ai-catalog.json` と同じ「静的ファイル + 派生しない builder」の流儀。
+- **`HOME_LINK_HEADERS` を `_headers` と二重に書いた理由**: 本番では `_headers` の `/` ブロックが Link を先につけ、middleware のフォールバック (`functions/_middleware.ts:284-287` の `!response.headers.has('Link')` ガード) は発火しない。dev / preview 環境では `_headers` が効かない場合があり、middleware のみが動かす。両者を同期することで production drift を恒久的に防ぐ。
+- **`mode auth absent` を安全側に**: `assertPoppyDocument` の `needsAuth = hasAgent || hasApis || hasFeedback || hasBrowserSession` で `agent.protocols` を含む、`web.browser_session_endpoint` を含む、`feedback` を含む、未来の未知フィールドで `auth` を要求される 4 つの条件を AND-OR でカバー。`auth.direct` などの Poppy 拡張は将来 spec が出たら逐次追加できる形に。
+- **Lesson 追記 (1 件目)**: `tasks/lessons.md` に「Discovery spec の条件付き必須 field を最小宣言で回避する」(2026-10-21) を追加。今後の contribution が `apis` を足してもテストが先に fail する構造を言語化。
+- **`www` 正規化は operator-side のみで完結 (Phase 6)**: `_redirects` は path-only、Pages Function に書けば SPA ルーティングに触れる blast radius 过大。**Cloudflare Rules → Redirect Rules** (`www.osada.us` → `osada.us/${1}`、301) を dashboard で設定する手順を `docs/agent-ready.md` に runbook 化。Page Rules は Free / legacy plan 向けのフォールバック手順として併記。
+- **Doc drift 修正は同 PR 内同時修正 (Phase 6 / Lesson 2 件目)**: `public/auth.md` の Changelog 行が「Removed `oauth-authorization-server`」と書いていたが実ファイルは残置。`agent-metadata.test.ts` が構造を検証している以上、doc は必ず同期が必要。同じ PR で修正すればレビュー時に doc と code の整合が一望できる。Lesson に「Changelog 行は `grep -n "<entity>"` で実ファイル/構造側に同名エントリが存在するかを必ず確認する」を追加。
+- **redirect 設定の確認方法 (Phase 6 / docs)**: ダッシュボード設定後は `curl -IL https://www.osada.us/.well-known/poppy.json` で `301` → `200` の連鎖を確認。spec §3 厳密解釈対応の最低条件。
+
+### 残作業 (本タスク外)
+- **Cloudflare dashboard 設定**: "WWW → Apex canonicalization (operator-side)" の Redirect Rule を zone に追加する作業はユーザー側 (operator-side)。Cloudflare 認証情報 / dashboard 操作権限が必要なため本 PR の範囲外。
+- **`docs/api/changelog.md` 過去 drift**: Phase 6 では `auth.md` と `DEVELOPMENT.md` のみを修正。`docs/api/changelog.md:72` 以前 (2026-08-10 時点) の oauth-as 削除記述も同様に drift している可能性があり、発見したら別 PR で同期。
+
+### リスク mitigation 結果
+1. **OAuth AS 義務の不意な発生**: `agent-metadata.test.ts` の forbidden guard で `poppy_domains` / `token_endpoint` / `revocation_endpoint` を `not.toHaveProperty` で固定。`poppy-discovery.test.ts` の `apis` / `agent.protocols` 追加 throw 試験も同時ロック。
+2. **builder と static file の drift**: `poppy-discovery.test.ts` の `toEqual` で同期。
+3. **`_headers` と `middleware` の production drift**: middleware test の `HOME_LINK_HEADERS` guard + `_headers` の Link 行存在を `poppy-discovery.test.ts` 内の `_headers integration` ブロックで同期検証。
+4. **`auth.md` の YAML ブロック凍結**: `auth-md.test.ts:18-29` の完全一致テストが保護。
+5. **`build` が `poppy.json` を dist に乗せないリスク**: `npm run build` 後 `ls dist/.well-known/poppy.json` で 117 bytes 確認済。
+6. **doc drift の再発 (Phase 6 新規)**: `tasks/lessons.md` に同期パターン lesson を記録。今後の Changelog / Discovery surfaces 行変更時は `agent-metadata.test.ts` の構造 guard と 1:1 で照合するレビュー手順が身につく。
+7. **`www` 正規化未設定**: Cloudflare dashboard 側で Redirect Rule を追加する手順を `docs/agent-ready.md` の operator-side runbook に明記。本 PR は「手順の文書化」と「検証 curl の提供」までを担当。

@@ -23,6 +23,7 @@
   Link: </mcp/server-card>; rel="service-desc"
   Link: </.well-known/mcp/server-card.json>; rel="service-desc"
   Link: </.well-known/agent-skills/index.json>; rel="agent-skills"
+  Link: </.well-known/poppy.json>; rel="poppy"; type="application/json"
   Link: </auth.md>; rel="auth.md"
   Link: </index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
   Vary: Accept
@@ -143,6 +144,14 @@
 /.well-known/acp.json
   Cache-Control: public, max-age=300
   Content-Type: application/json
+
+# Personal Agent Protocol (Poppy) discovery document
+# Website-only declaration: o-sumo publishes no agent/API/session endpoint
+# that requires authorization, so `auth` is intentionally absent.
+# See: https://personalagentprotocol.org/docs/spec#3-discovery
+/.well-known/poppy.json
+  Cache-Control: public, max-age=300
+  Content-Type: application/json; charset=utf-8
 
 # A2A JSON-RPC endpoint (Cloudflare Pages Function, see functions/a2a/)
 # Implemented as a JSON-RPC 2.0 stub that returns -32601 Method not found

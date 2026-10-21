@@ -1,5 +1,21 @@
 # Lessons
 
+## 2026-10-21 Changelog の "Removed" 記述は実ファイル存在と矛盾しないか必ず照合する
+
+- 長い期間を経て `public/.well-known/oauth-authorization-server` を残置したまま、`auth.md` の Changelog と `DEVELOPMENT.md` の AI Agent 節が「Removed」と書いていた (`agent-metadata.test.ts` が構造を検証しているのに doc だけが別世界を記述)。
+- discovery サーフェスの **「存在するが期待されない状態」(404 expected)** と **「存在するが期待される状態」** はテストで区別できる。前者は `expect(existsSync(...)).toBe(false)`、後者はファイル内容の形状 assert。
+- Changelog と AGENT_READY 系の長文ドキュメントは **テストの構造 guard と並んで review されるべき**。特に "Removed" "Disabled" "404 expected" のような強気の記述は、`existsSync` の sibling test と 1:1 で対応させる。
+- **Why**: doc drift は validator が green でも評価者 (人 / 別 spec parser) が混乱する。`spec §3.1 requires X` を読んで実装する人が doc を信じると無駄な OAuth AS 着手を始める。
+- **How to apply**: Changelog 行を足す / 変えるとき、`grep -n "<entity>"` で実ファイル/構造側に同名エントリが存在するかを必ず確認する。Changelog は Git history 側の真実 (事実の記録) と「現在のソースコード上の真実」の両方を同期する責務を負う。乖離が見つかったら同じ PR で同時修正する。
+
+## 2026-10-21 Discovery spec の条件付き必須 field を最小宣言で回避する
+
+- Personal Agent Protocol (Poppy) spec §3.1 は `auth` フィールドを **`agent` / `apis` / `feedback` / `web.browser_session_endpoint` のいずれかが存在するときに限り必須** とする。o-sumo のように OAuth AS を実装しない anonymous public サイトでは、`web: {}` のみで宣言すれば `auth` 自体を導入せずに discovery チェックを満たせる。
+- 最小宣言を採った瞬間、§3.2 の `poppy_domains` / `token_endpoint` / `revocation_endpoint` 義務が**完全に発生しない**。OAuth AS 実装の着手義務ゼロで評価 green。
+- ただし最小宣言は脆い。将来 contribution がうっかり `apis` を 1 行足すと、`assertPoppyDocument` の guard が **投げる前に起動時のテストで失敗** する。`assertPoppyDocument` を builder と組み合わせ、static file の形を builder 出力と `toEqual` で固定し、`agent-metadata.test.ts` で `auth` 不在を `not.toHaveProperty` で明示するのが安全。テストが先、ファイル生成が後。
+- **Why**: 「OAuth AS を実装しない」姿勢と discovery 公開の両立。両方とも一見普通の要件に見えるが、片方を採るともう片方を壊すので、ファイル単体ではなく **schema レベルで読める最小ユニット**として取り扱う。
+- **How to apply**: discovery spec を読むときは "what fields are conditionally required" を最初に洗い出す。`auth` / `authn` / `credentials_required` など spec によってキーワードは違うが、パターンは同じ。最小宣言を選べるなら選ぶ。選べないなら OAuth/Token 実装のスコープを別 PR に切り出す。
+
 ## 2026-10-20 `_redirects` の動的ルールが Markdown ビューを404にする
 
 - Cloudflare Pages は **静的アセットが存在していても最初の一致ルールを必ず適用する**（公式仕様: "Redirects are always followed, regardless of whether or not an asset matches"）。したがって `_redirects` の `/:id`・`/*` ルールは `index.md` も捕まえる。

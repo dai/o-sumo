@@ -1,5 +1,15 @@
 # API Changelog
 
+## 2026-10-21
+
+### Personal Agent Protocol (Poppy) discovery の公開
+
+- `/.well-known/poppy.json` を新設 (`protocol_version: "0.1"`、`organization: { name: "o-sumo", domain: "osada.us" }`、`web: {}`)。Personal Agent Protocol discovery の最小宣言
+- `auth` を意図的に省いている。`agent` / `apis` / `feedback` / `web.browser_session_endpoint` を一切公開しないため、spec §3.1 では `auth` 必須条件に該当しない
+- 型付き builder `app/lib/poppy-discovery.ts` と static ファイルを単一 SoT で結び、`agent-metadata.test.ts` / `poppy-discovery.test.ts` / `auth-md.test.ts` の 3 系統で postrue を lock
+- `_headers` で `Cache-Control: public, max-age=300` と `Content-Type: application/json; charset=utf-8` を付与。ホームページの `Link:` ヘッダに `rel="poppy"` を追加 (静的ファイルとミドルウェアの両方を同期)
+- `auth.md`・`docs/agent-ready.md`・`DEVELOPMENT.md` / `DEVELOPMENT_en.md` に discovery サーフェス 1 行を追加。`oauth-authorization-server` の posture は変えず、OAuth AS 実装の着手義務も発生しない
+
 ## 2026-10-20
 
 ### MCP サーバーの公開と Markdown 配信ルーティング修正

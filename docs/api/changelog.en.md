@@ -2,6 +2,16 @@
 
 [日本語版](./changelog.md)
 
+## 2026-10-21
+
+### Personal Agent Protocol (Poppy) discovery document
+
+- Published `/.well-known/poppy.json` (`protocol_version: "0.1"`, `organization: { name: "o-sumo", domain: "osada.us" }`, `web: {}`). The minimum declaration accepted by the Personal Agent Protocol discovery spec
+- `auth` is intentionally omitted. o-sumo publishes no `agent` / `apis` / `feedback` / `web.browser_session_endpoint`, so spec §3.1 does not trigger the `auth` requirement
+- A typed builder (`app/lib/poppy-discovery.ts`) anchors the static file as a single source of truth; posture is locked by three independent guards in `agent-metadata.test.ts`, `poppy-discovery.test.ts`, and `auth-md.test.ts`
+- `_headers` declares `Cache-Control: public, max-age=300` and `Content-Type: application/json; charset=utf-8`. The homepage `Link:` header advertises `rel="poppy"` (kept in sync between the static file and the Functions middleware)
+- Added the new discovery row to `auth.md`, `docs/agent-ready.md`, and `DEVELOPMENT.md` / `DEVELOPMENT_en.md`. No change to the `oauth-authorization-server` posture; no obligation to implement an OAuth authorization server
+
 ## 2026-10-20
 
 ### MCP Server Publication And Markdown Delivery Routing Fix
