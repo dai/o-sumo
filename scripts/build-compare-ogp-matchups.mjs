@@ -11,7 +11,10 @@
  *   MATCHUP_TOP_N=50 node scripts/build-compare-ogp-matchups.mjs
  *
  * 注意:
- *   - satori は yoga.wasm を内部で呼ぶ。Node 18+ で動作する。
+ *   - satori 0.63 は Taffy レイアウトの WASM をパッケージ内に同梱して Node で読む。
+ *     Cloudflare Workers では動的 WASM が制限されるため、本番の画像生成は
+ *     この build-time スクリプトに置き、Functions は KV リダイレクトだけを行う。
+ *     Workers 上で再生成する場合は satori/standalone と init(layout.wasm) が必要。
  *   - フォントは scripts/fonts/ShipporiMincho-Regular.woff2 から読み込む。
  */
 
