@@ -43,7 +43,7 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260702.1",
+    "@cloudflare/workers-types": "^5.20261023.1",
     "@playwright/test": "^1.64.1",
     "@resvg/resvg-js": "^2.6.2",
     "@testing-library/dom": "^10.4.2",
@@ -68,7 +68,7 @@
     "vite-plugin-pwa": "^2.0.0",
     "vitest": "^5.0.5",
     "wawoff2": "^2.0.1",
-    "wrangler": "^4.69.0"
+    "wrangler": "^4.152.0"
   },
   "type": "module"
 }
