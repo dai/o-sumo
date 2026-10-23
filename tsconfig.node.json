@@ -1,10 +1,13 @@
 {
   "compilerOptions": {
-    "composite": true,
     "skipLibCheck": true,
+    "noEmit": true,
+    "strict": true,
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    // TypeScript 7 defaults `types` to []. `"*"` keeps automatic @types inclusion.
+    "types": ["*"]
   },
   "include": ["vite.config.ts"]
 }

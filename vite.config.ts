@@ -1,10 +1,14 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vitest/config'
 import type { Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
-import { archiveDataManualChunks } from './app/lib/vite-archive-chunk'
+import {
+  HISTORICAL_ARCHIVE_CHUNK,
+  JULY2026_ARCHIVE_CHUNK,
+  archiveChunkGroupTest,
+} from './app/lib/vite-archive-chunk'
 import { shouldCachePublicApi } from './app/lib/api-cache-policy'
 
 function sitemapPlugin(): Plugin {
@@ -181,9 +185,22 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    rollupOptions: {
+    rolldownOptions: {
       output: {
-        manualChunks: archiveDataManualChunks,
+        codeSplitting: {
+          groups: [
+            {
+              name: JULY2026_ARCHIVE_CHUNK,
+              test: archiveChunkGroupTest(JULY2026_ARCHIVE_CHUNK),
+              includeDependenciesRecursively: false,
+            },
+            {
+              name: HISTORICAL_ARCHIVE_CHUNK,
+              test: archiveChunkGroupTest(HISTORICAL_ARCHIVE_CHUNK),
+              includeDependenciesRecursively: false,
+            },
+          ],
+        },
       },
     },
   },

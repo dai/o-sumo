@@ -148,7 +148,8 @@ describe('Home page', () => {
     expect(within(card).getByText(availability)).toBeInTheDocument();
     expect(within(card).getByText(description)).toBeInTheDocument();
     if (date === '2026-09-28') {
-      const resultLink = screen.getByRole('link', { name: language === 'ja' ? /確定結果 今場所は終了しました/ : /Final results This basho is complete/i });
+      // jsdom 30 joins flex-item text in the accessible name without inserting a space.
+      const resultLink = screen.getByRole('link', { name: language === 'ja' ? /確定結果\s*今場所は終了しました/ : /Final results\s*This basho is complete/i });
       expect(resultLink).toHaveAttribute('href', '/202609-torikumi/');
       expect(resultLink).not.toHaveTextContent(/三賞|special prizes/i);
     }
