@@ -9,7 +9,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "skipLibCheck": true,
-    "types": ["@cloudflare/workers-types", "vitest/globals"]
+    // TypeScript 7 resolves Node builtins only when "node" is listed here.
+    "types": ["@cloudflare/workers-types", "vitest/globals", "node"]
   },
   "include": [
     "functions/**/*.ts",
