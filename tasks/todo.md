@@ -1,3 +1,19 @@
+# Home hero agent guide (2026-10-25)
+
+- [x] Add a prominent agent guide section within the home hero, with Japanese and English destinations.
+- [x] Replace the top banner with the requested dated announcement in both locales.
+- [x] Run focused tests, build, and diff checks; review desktop and mobile placement.
+
+## Review
+
+The guide section sits after the hero description and before the existing basho
+action links. Its link uses normal navigation to the static HTML guide and
+switches between `/agents/` and `/agents/en` with the site language. The banner
+uses the requested Japanese copy and a corresponding English translation.
+Focused tests (30), TypeScript typecheck, production build, and `git diff --check`
+passed. The callout uses the existing hero ink and paper colors and wraps on
+small screens without reordering the reading or keyboard sequence.
+
 # Human-readable agent entry points (2026-10-25)
 
 - [x] Confirm the behavior of each machine endpoint and README link.
