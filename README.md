@@ -8,7 +8,7 @@
 
 [English README](./README_en.md)
 
-o-sumo は、大相撲の番付、取組、力士・行司・呼出名鑑を配信する静的 Web アプリです。React 19 + TypeScript + Vite で構築し、Cloudflare Pages から静的サイトと静的 JSON API を公開しています。
+o-sumo は、大相撲の番付、取組、力士・行司・呼出名鑑を配信する Web アプリです。React 19 + TypeScript + Vite で構築し、Cloudflare Pages からサイトと JSON API を公開しています。AI エージェント向けには MCP、WebMCP、Markdown 表示と発見用メタデータを用意しています。
 
 ## ドキュメント一覧
 
@@ -20,6 +20,7 @@ o-sumo は、大相撲の番付、取組、力士・行司・呼出名鑑を配�
 - API 変更履歴: `docs/api/changelog.md` / `docs/api/changelog.en.md`
 - 力士プロフィール・合い口更新手順: `docs/rikishi-profile-refresh-runbook.md`
 - 行司・呼出データ更新手順: `docs/official-profile-refresh-runbook.md`
+- エージェント向けガイド: `docs/agent-ready.md`
 
 ## 概要
 
@@ -78,12 +79,14 @@ Skill 公開:
 
 ## AIエージェントから利用する
 
-公開JSON APIと2つの公開スキルを、認証・登録・APIキーなしで利用できます。
+公開 JSON API、2つの公開スキル、相撲データ用 MCP を、認証・登録・APIキーなしで利用できます。
 検索と回答生成時の参照を許可し、モデル学習は許可しません（`search=yes, ai-input=yes, ai-train=no`）。
 
 | 目的 | 入口 |
 | --- | --- |
 | APIを見つける | [APIカタログ](https://osada.us/.well-known/api-catalog) |
+| 番付・取組・力士データをツールで取得する | [相撲データ用 MCP](https://osada.us/mcp)（[Server Card](https://osada.us/mcp/server-card)） |
+| 記事やプロフィールを自然言語で探す | [AI Search MCP](https://ask.osada.us/mcp) |
 | 取得方法・ページURLを調べる | [スキル一覧](https://osada.us/.well-known/agent-skills/index.json) |
 | 認証方針を確認する | [auth.md](https://osada.us/auth.md) |
 | 対応範囲・運用を確認する | [エージェント向けガイド](docs/agent-ready.md) |
@@ -93,14 +96,21 @@ Skill 公開:
 ホーム・主要一覧・月別ページと、公開データに存在する日別予定/結果は
 `Accept: text/markdown` で取得できます。個別人物ページなど未対応ルートはHTMLを返します。
 
+相撲データ用 MCP は Streamable HTTP の読み取り専用サーバーで、`search_rikishi`、
+`get_rikishi_profile`、`get_banzuke`、`get_torikumi`、`list_basho` を提供します。
+AI Search MCP は自然言語検索用の `search` ツールを提供します。MCP クライアントには
+用途に応じたエンドポイント URL を登録してください。
+
 ```bash
 curl -fsS https://osada.us/.well-known/agent-skills/index.json
+curl -fsS https://osada.us/mcp/server-card
 curl -fsS https://osada.us/api/v1/torikumi.json
 curl -i -H 'Accept: text/markdown' https://osada.us/20260926-yotei/
 ```
 
-MCPカードは案内用で、リモートMCPサーバーは提供していません。
-A2Aカードも発見用で、タスク操作は未実装です。対応ブラウザー内のWebMCPとは区別してください。
+対応ブラウザーでは別途 WebMCP の4ツール（`search_rikishi`、`list_basho`、
+`get_banzuke_for_month`、`get_torikumi_for_day`）をページ内で登録します。これは上記の
+リモート MCP エンドポイントとは別の仕組みです。A2A カードは発見用で、タスク操作は未実装です。
 
 ## 主な機能
 

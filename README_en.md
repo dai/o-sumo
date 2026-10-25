@@ -5,7 +5,7 @@
 
 [日本語 README](./README.md)
 
-o-sumo is a static web app for publishing sumo banzuke, torikumi, and rikishi, gyoji, and yobidashi directories. It is built with React 19, TypeScript, and Vite, and serves both a static site and static JSON APIs from Cloudflare Pages.
+o-sumo is a web app for publishing sumo banzuke, torikumi, and rikishi, gyoji, and yobidashi directories. Built with React 19, TypeScript, and Vite, it serves the site and JSON APIs from Cloudflare Pages. Agents can also use MCP, browser WebMCP, Markdown views, and discovery metadata.
 
 ## Document Index
 
@@ -17,6 +17,7 @@ o-sumo is a static web app for publishing sumo banzuke, torikumi, and rikishi, g
 - API changelog: `docs/api/changelog.md` / `docs/api/changelog.en.md`
 - Rikishi profile and matchup refresh runbook: `docs/rikishi-profile-refresh-runbook.md`
 - Gyoji and yobidashi refresh runbook: `docs/official-profile-refresh-runbook.md`
+- Agent guide: `docs/agent-ready.md`
 
 ## Overview
 
@@ -80,12 +81,14 @@ Skill publishing:
 
 ## Access for AI agents
 
-The public JSON APIs and two published skills require no registration, account, or API key.
+The public JSON APIs, two published skills, and structured sumo data MCP require no registration, account, or API key.
 Search and query-time grounding are permitted; model training is not (`search=yes, ai-input=yes, ai-train=no`).
 
 | Goal | Entry point |
 | --- | --- |
 | Discover APIs | [API catalog](https://osada.us/.well-known/api-catalog) |
+| Query banzuke, torikumi, and rikishi with tools | [Sumo data MCP](https://osada.us/mcp) ([Server Card](https://osada.us/mcp/server-card)) |
+| Search articles and profiles in natural language | [AI Search MCP](https://ask.osada.us/mcp) |
 | Learn data access and page URL resolution | [Skills index](https://osada.us/.well-known/agent-skills/index.json) |
 | Check authentication | [auth.md](https://osada.us/auth.md) |
 | Check coverage and operations | [Agent guide](docs/agent-ready.md) |
@@ -95,14 +98,21 @@ and read the separate schedule/result statuses and timestamps. Home, main indexe
 and daily schedule/result pages present in the published datasets support `Accept: text/markdown`.
 Unsupported routes, including individual profile pages, fall back to HTML.
 
+The read-only sumo data server uses Streamable HTTP and exposes `search_rikishi`,
+`get_rikishi_profile`, `get_banzuke`, `get_torikumi`, and `list_basho`.
+The AI Search endpoint exposes a `search` tool for natural-language queries.
+Configure the appropriate endpoint URL in your MCP client.
+
 ```bash
 curl -fsS https://osada.us/.well-known/agent-skills/index.json
+curl -fsS https://osada.us/mcp/server-card
 curl -fsS https://osada.us/api/v1/torikumi.json
 curl -i -H 'Accept: text/markdown' https://osada.us/20260926-yotei/
 ```
 
-There is no remote MCP server. The MCP card provides alternative entry points; the A2A card
-is discovery-only and task operations are not implemented. Browser-side WebMCP is a separate surface.
+Supported browsers also register four WebMCP tools within the page: `search_rikishi`,
+`list_basho`, `get_banzuke_for_month`, and `get_torikumi_for_day`. This is separate from
+the remote MCP endpoints above. The A2A card is for discovery; task operations are not implemented.
 
 ## Key Features
 
