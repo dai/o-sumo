@@ -402,6 +402,12 @@ export default function Home() {
                   : t('home.heroLiveDescription')}
             </p>
 
+            <section className="hero-agent-guide" aria-label={t('home.agentGuideLabel')}>
+              <a href={i18n.resolvedLanguage === 'en' ? '/agents/en' : '/agents/'} className="hero-agent-guide-link">
+                {t('home.agentGuideLink')} <span aria-hidden="true">→</span>
+              </a>
+            </section>
+
             {/* Smart Hub 4 Quick Navs */}
             <nav className="home-quick-nav hero-actions" aria-label={t('home.heroActionsLabel')}>
               {quickNavItems.map((item) => {

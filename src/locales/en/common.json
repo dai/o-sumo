@@ -1,6 +1,6 @@
 {
   "global": {
-    "officialDirectoryReleaseNotice": "The Reiwa 8 September basho has concluded. See you at the Kyushu basho.",
+    "agentGuideNotice": "20261025: We have organized the site for AI agents.",
     "homeLink": "Home",
     "backToHome": "Back to Home",
     "siteNavigation": "Site navigation",
@@ -54,6 +54,8 @@
     "heroUpcomingDescription": "Review the banzuke and schedule while the first day approaches.",
     "heroFinalDescription": "The {{bashoName}} basho is complete. You can review final bout results, the championship, special prizes, and the banzuke.",
     "heroActionsLabel": "Key links for this basho",
+    "agentGuideLabel": "Agent guide",
+    "agentGuideLink": "Agent guide is here",
     "heroTodayAction": "View today’s bouts",
     "heroStandingsAction": "View results and standings",
     "heroBanzuke": "Banzuke",

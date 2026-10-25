@@ -235,6 +235,7 @@ describe('Home page', () => {
     expect(home).toHaveClass('home-editorial');
     expect(hero).not.toBeNull();
     expect(hero!.querySelector('.hero-editorial-copy')).not.toBeNull();
+    expect(within(hero!).getByRole('link', { name: 'エージェント向け案内はこちら' })).toHaveAttribute('href', '/agents/');
     expect(illustration).not.toBeNull();
     expect(illustration).toHaveAttribute('aria-hidden', 'true');
     // Daily Highlights now occupies the right column of the hero section.

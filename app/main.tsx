@@ -70,7 +70,7 @@ function AppShell() {
           <MetaHead>
         <ScrollToHash />
         <div className="global-notice-banner" role="status" aria-live="polite">
-          {t('global.officialDirectoryReleaseNotice')}
+          {t('global.agentGuideNotice')}
         </div>
         <a className="skip-to-main" href="#main-content">{t('bashoStatus.skipToMain')}</a>
         <div className="top-right-controls">

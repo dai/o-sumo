@@ -1,6 +1,6 @@
 {
   "global": {
-    "officialDirectoryReleaseNotice": "令和八年九月場所は終了しました。九州場所でお会いしましょう。",
+    "agentGuideNotice": "20261025: エージェント向けにサイトを整理しました。",
     "homeLink": "ホーム",
     "backToHome": "ホームに戻る",
     "siteNavigation": "サイトナビゲーション",
@@ -54,6 +54,8 @@
     "heroUpcomingDescription": "番付と日程を確認して、初日へ向けた準備をしましょう。",
     "heroFinalDescription": "今（{{bashoName}}）場所は終了しました。確定した取組結果、優勝・三賞、番付を振り返ることができます。",
     "heroActionsLabel": "今場所の主要な導線",
+    "agentGuideLabel": "エージェント向け案内",
+    "agentGuideLink": "エージェント向け案内はこちら",
     "heroTodayAction": "本日の取組を見る",
     "heroStandingsAction": "結果・星取を見る",
     "heroBanzuke": "番付",
