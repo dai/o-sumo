@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent access | o-sumo</title>
+  <meta name="description" content="A human-readable guide to o-sumo APIs, MCP, WebMCP, and Agent Skills">
+  <style>
+    :root { color-scheme: light dark; font-family: system-ui, sans-serif; line-height: 1.7; }
+    body { max-width: 54rem; margin: auto; padding: 1.5rem; }
+    h1, h2 { line-height: 1.3; }
+    section { border-top: 1px solid #8888; padding: 1rem 0; }
+    code { overflow-wrap: anywhere; }
+    a { color: #2767b0; }
+    @media (prefers-color-scheme: dark) { a { color: #8dbbff; } }
+  </style>
+</head>
+<body>
+  <p><a href="/">o-sumo home</a> · <a href="/agents/" lang="ja">日本語</a></p>
+  <main>
+    <h1>Agent access</h1>
+    <p>Public banzuke, torikumi, and rikishi data are available through read-only JSON APIs and MCP. The public APIs, sumo data MCP, and Agent Skills require no account or API key.</p>
+    <section id="api">
+      <h2>Public JSON APIs</h2>
+      <p>Retrieve <a href="/api/v1/torikumi.json">torikumi data</a> directly, or see the <a href="https://github.com/dai/o-sumo/blob/main/docs/api/v1.en.md">API reference</a> for all endpoints.</p>
+      <p>Machine-readable catalog: <code>https://osada.us/.well-known/api-catalog</code></p>
+    </section>
+    <section id="mcp">
+      <h2>Sumo data MCP</h2>
+      <p>Five tools cover rankings, bouts, rikishi search, profiles, and basho listings. Configure <code>https://osada.us/mcp</code> in an MCP client. This is a Streamable HTTP endpoint, not a browser page.</p>
+      <p><a href="/mcp/server-card">View the Server Card</a></p>
+    </section>
+    <section id="search">
+      <h2>AI Search MCP</h2>
+      <p>The <code>search</code> tool supports natural-language searches of articles and profiles. Configure <code>https://ask.osada.us/mcp</code> in an MCP client. Browser GET requests are not supported.</p>
+    </section>
+    <section id="skills">
+      <h2>Agent Skills and WebMCP</h2>
+      <p>See the <a href="https://github.com/dai/o-sumo/tree/main/public/.well-known/agent-skills">published skill descriptions</a> for data and URL guidance. Supported browsers separately register four WebMCP tools when the site opens.</p>
+      <p>Machine-readable index: <code>https://osada.us/.well-known/agent-skills/index.json</code></p>
+    </section>
+    <section id="policy">
+      <h2>Usage and documentation</h2>
+      <p>Search and query-time answers are permitted; model training is not. See the <a href="https://github.com/dai/o-sumo/blob/main/docs/agent-ready.md">agent guide</a> and <a href="/auth.md">authentication policy</a>. The A2A card is for discovery only; task operations are not implemented.</p>
+    </section>
+  </main>
+</body>
+</html>

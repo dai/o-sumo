@@ -1,5 +1,10 @@
 # Lessons
 
+## 2026-10-25 機械向けエンドポイントを人向けの閲覧リンクにしない
+
+- READMEの案内表からMCP接続先やJSONの発見用URLへ直接リンクすると、ブラウザーでは405や機械向けレスポンスとなり、読むための入口として機能しない。
+- 人向けの表はHTMLの説明ページへリンクし、接続先URLはそのページ内に用途とともに記載する。公開前に表のリンクをブラウザー相当のGETで確認する。
+
 ## 2026-10-21 Changelog の "Removed" 記述は実ファイル存在と矛盾しないか必ず照合する
 
 - 長い期間を経て `public/.well-known/oauth-authorization-server` を残置したまま、`auth.md` の Changelog と `DEVELOPMENT.md` の AI Agent 節が「Removed」と書いていた (`agent-metadata.test.ts` が構造を検証しているのに doc だけが別世界を記述)。

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AIエージェント向け案内 | o-sumo</title>
+  <meta name="description" content="o-sumoの公開データ、MCP、WebMCP、Agent Skillsの使い方">
+  <style>
+    :root { color-scheme: light dark; font-family: system-ui, sans-serif; line-height: 1.7; }
+    body { max-width: 54rem; margin: auto; padding: 1.5rem; }
+    h1, h2 { line-height: 1.3; }
+    section { border-top: 1px solid #8888; padding: 1rem 0; }
+    code { overflow-wrap: anywhere; }
+    a { color: #2767b0; }
+    @media (prefers-color-scheme: dark) { a { color: #8dbbff; } }
+  </style>
+</head>
+<body>
+  <p><a href="/">o-sumo ホーム</a> · <a href="/agents/en" lang="en">English</a></p>
+  <main>
+    <h1>AIエージェント向け案内</h1>
+    <p>番付、取組、力士などの公開データを、JSON APIやMCPから読み取り専用で利用できます。公開JSON API、相撲データ用MCP、Agent Skillsに登録やAPIキーは不要です。</p>
+    <section id="api">
+      <h2>公開JSON API</h2>
+      <p><a href="/api/v1/torikumi.json">取組データ</a>などを直接取得できます。APIの一覧と仕様は<a href="https://github.com/dai/o-sumo/blob/main/docs/api/v1.md">API仕様</a>を参照してください。</p>
+      <p>機械向けの一覧: <code>https://osada.us/.well-known/api-catalog</code></p>
+    </section>
+    <section id="mcp">
+      <h2>相撲データ用MCP</h2>
+      <p>番付、取組、力士検索、プロフィール、場所一覧を取得する5つのツールを提供します。MCPクライアントに <code>https://osada.us/mcp</code> を登録してください。このURLはブラウザーで開くためのページではなく、Streamable HTTPの接続先です。</p>
+      <p><a href="/mcp/server-card">Server Cardを見る</a></p>
+    </section>
+    <section id="search">
+      <h2>AI Search MCP</h2>
+      <p>記事やプロフィールなどを自然言語で探す <code>search</code> ツールです。MCPクライアントに <code>https://ask.osada.us/mcp</code> を登録してください。ブラウザーからのGETは利用できません。</p>
+    </section>
+    <section id="skills">
+      <h2>Agent SkillsとWebMCP</h2>
+      <p>データ取得とページURLの解決方法は<a href="https://github.com/dai/o-sumo/tree/main/public/.well-known/agent-skills">公開スキルの説明</a>を参照してください。対応ブラウザーでは、サイトを開くと別途4つのWebMCPツールを登録します。</p>
+      <p>機械向けの一覧: <code>https://osada.us/.well-known/agent-skills/index.json</code></p>
+    </section>
+    <section id="policy">
+      <h2>利用条件と詳しい説明</h2>
+      <p>検索と回答生成時の参照は許可し、モデル学習は許可しません。<a href="https://github.com/dai/o-sumo/blob/main/docs/agent-ready.md">エージェント向けガイド</a>と<a href="/auth.md">認証方針</a>を参照してください。A2Aカードは発見用で、タスク操作は未実装です。</p>
+    </section>
+  </main>
+</body>
+</html>

@@ -86,12 +86,14 @@ Search and query-time grounding are permitted; model training is not (`search=ye
 
 | Goal | Entry point |
 | --- | --- |
-| Discover APIs | [API catalog](https://osada.us/.well-known/api-catalog) |
-| Query banzuke, torikumi, and rikishi with tools | [Sumo data MCP](https://osada.us/mcp) ([Server Card](https://osada.us/mcp/server-card)) |
-| Search articles and profiles in natural language | [AI Search MCP](https://ask.osada.us/mcp) |
-| Learn data access and page URL resolution | [Skills index](https://osada.us/.well-known/agent-skills/index.json) |
-| Check authentication | [auth.md](https://osada.us/auth.md) |
-| Check coverage and operations | [Agent guide](docs/agent-ready.md) |
+| Discover APIs | [Public JSON API guide](https://osada.us/agents/en#api) |
+| Query banzuke, torikumi, and rikishi with tools | [Sumo data MCP guide](https://osada.us/agents/en#mcp) |
+| Search articles and profiles in natural language | [AI Search MCP guide](https://osada.us/agents/en#search) |
+| Learn data access and page URL resolution | [Agent Skills guide](https://osada.us/agents/en#skills) |
+| Check authentication | [Usage and authentication guide](https://osada.us/agents/en#policy) |
+| Check coverage and operations | [Agent guide](https://github.com/dai/o-sumo/blob/main/docs/agent-ready.md) |
+
+The table links to pages for people. Machine-readable URLs are listed on the guide page.
 
 `torikumi.json.bashoId` is an upstream numeric ID, not YYYYMM. Derive the month from `pathDate`,
 and read the separate schedule/result statuses and timestamps. Home, main indexes, monthly pages,
