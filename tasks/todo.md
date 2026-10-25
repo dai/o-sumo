@@ -1,3 +1,15 @@
+# Human-readable agent entry points (2026-10-25)
+
+- [x] Confirm the behavior of each machine endpoint and README link.
+- [x] Add Japanese and English HTML guides and update both README tables.
+- [x] Verify built assets, anchors, local HTTP responses, and diff checks.
+
+## Review
+
+`npm run build` succeeded. Both guide pages returned HTTP 200 with `text/html`
+through local Cloudflare Pages dev; the canonical paths are `/agents/` and
+`/agents/en`. README anchors match section IDs. `git diff --check` passed.
+
 # README agent access refresh (2026-10-25)
 
 - [x] Compare README descriptions with WebMCP, MCP Server Card, AI Catalog, and implementation.

@@ -84,12 +84,14 @@ Skill 公開:
 
 | 目的 | 入口 |
 | --- | --- |
-| APIを見つける | [APIカタログ](https://osada.us/.well-known/api-catalog) |
-| 番付・取組・力士データをツールで取得する | [相撲データ用 MCP](https://osada.us/mcp)（[Server Card](https://osada.us/mcp/server-card)） |
-| 記事やプロフィールを自然言語で探す | [AI Search MCP](https://ask.osada.us/mcp) |
-| 取得方法・ページURLを調べる | [スキル一覧](https://osada.us/.well-known/agent-skills/index.json) |
-| 認証方針を確認する | [auth.md](https://osada.us/auth.md) |
-| 対応範囲・運用を確認する | [エージェント向けガイド](docs/agent-ready.md) |
+| APIを見つける | [公開JSON APIの案内](https://osada.us/agents/#api) |
+| 番付・取組・力士データをツールで取得する | [相撲データ用MCPの案内](https://osada.us/agents/#mcp) |
+| 記事やプロフィールを自然言語で探す | [AI Search MCPの案内](https://osada.us/agents/#search) |
+| 取得方法・ページURLを調べる | [Agent Skillsの案内](https://osada.us/agents/#skills) |
+| 認証方針を確認する | [利用条件と認証方針](https://osada.us/agents/#policy) |
+| 対応範囲・運用を確認する | [エージェント向けガイド](https://github.com/dai/o-sumo/blob/main/docs/agent-ready.md) |
+
+上の表は人が読むための案内ページです。機械向けのURLは案内ページに記載しています。
 
 `torikumi.json` の `bashoId` は通し番号です。月は `pathDate` の先頭6桁から求め、
 予定・結果は各配列の `status` と更新時刻を確認してください。
