@@ -72,7 +72,12 @@ describe('PWA smoke config', () => {
     const viteConfig = readFileSync(join(process.cwd(), 'vite.config.ts'), 'utf-8');
 
     expect(viteConfig).toContain("registerType: 'autoUpdate'");
-    expect(viteConfig).toContain("navigateFallbackDenylist: [/^\\/api\\//]");
+    expect(viteConfig).toContain('navigateFallbackDenylist: [');
+    expect(viteConfig).toContain('/^\\/api\\//');
+    expect(viteConfig).toContain('/^\\/agents(?:\\/|$)/');
+    expect(viteConfig).toContain('/^\\/mcp(?:\\/|$)/');
+    expect(viteConfig).toContain('/^\\/auth\\.md$/');
+    expect(viteConfig).toContain('/^\\/\\.well-known\\//');
     expect(viteConfig).toContain('urlPattern: ({ url }) => shouldCachePublicApi(url)');
     expect(viteConfig).toContain("handler: 'NetworkFirst'");
     expect(viteConfig).toContain('networkTimeoutSeconds: 3');

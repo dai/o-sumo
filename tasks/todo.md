@@ -1,3 +1,18 @@
+# Agent guide PWA navigation fix (2026-10-25)
+
+- [x] Reproduce the browser-only 404 on `/agents/` and `/auth.md` and identify the navigation fallback.
+- [x] Exclude standalone agent resources from the SPA service worker navigation fallback.
+- [x] Verify tests, generated service worker, build, and diff checks.
+
+## Review
+
+The public server returns the agent HTML and auth Markdown, but an installed PWA
+served the SPA fallback for those navigations and showed its 404 screen. The
+Workbox denylist now covers `/agents`, `/auth.md`, `/mcp`, `/api`, and
+`/.well-known` resources. Focused PWA tests, production build, generated
+service-worker pattern check, and `git diff --check` passed. Existing clients
+receive the fix when their service worker updates after deployment.
+
 # Home hero agent guide (2026-10-25)
 
 - [x] Add a prominent agent guide section within the home hero, with Japanese and English destinations.

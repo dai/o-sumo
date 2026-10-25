@@ -161,7 +161,15 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2}'],
-        navigateFallbackDenylist: [/^\/api\//],
+        // These paths serve standalone HTML, Markdown, or protocol responses.
+        // They must never receive the SPA shell from an installed service worker.
+        navigateFallbackDenylist: [
+          /^\/api\//,
+          /^\/agents(?:\/|$)/,
+          /^\/mcp(?:\/|$)/,
+          /^\/auth\.md$/,
+          /^\/\.well-known\//,
+        ],
         runtimeCaching: [
           {
             urlPattern: ({ url }) => shouldCachePublicApi(url),
