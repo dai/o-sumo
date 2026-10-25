@@ -1,3 +1,17 @@
+# README agent access refresh (2026-10-25)
+
+- [x] Compare README descriptions with WebMCP, MCP Server Card, AI Catalog, and implementation.
+- [x] Update Japanese and English README entry points and usage guidance.
+- [x] Check links, Markdown consistency, and `git diff --check`.
+
+## Review
+
+The Japanese and English READMEs now describe both remote MCP endpoints and their
+distinct tool sets, browser WebMCP, and discovery-only A2A. The Server Card and
+skills index returned HTTP 200. The AI Search MCP endpoint returned HTTP 405
+for GET, consistent with a POST-only MCP transport; no MCP tool call was made.
+`git diff --check` passed; all edited files remain LF.
+
 # GitHub Actions 安全再設計 — 実装 Todo
 
 ## 2026-10-05 AP2 Agent Card extension placement
