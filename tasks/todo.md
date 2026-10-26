@@ -1,3 +1,13 @@
+# My Rikishi Preview verification (2026-10-26)
+
+- [x] Re-run automated Preview checks (anonymous session, OAuth-start redirect).
+- [x] Interactive browser checks: login merge, second-browser sync, logout local fallback.
+- [x] Record results in docs/auth/my-rikishi-cloudflare-operations.md.
+
+## Review
+
+verify_my_rikishi_preview.ps1 passed against the Preview host. Owner-verified in browser: login merged local and remote selections without duplicates, a second browser showed the same synchronized list, and logout left local use available. Production gate remains closed pending a separate explicit confirmation.
+
 # Agent guide PWA navigation fix (2026-10-25)
 
 - [x] Reproduce the browser-only 404 on `/agents/` and `/auth.md` and identify the navigation fallback.
