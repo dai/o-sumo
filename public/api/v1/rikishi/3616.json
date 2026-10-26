@@ -2,18 +2,18 @@
   "id": 3616,
   "name": "宇良",
   "yomi": "うら",
-  "currentRank": "前頭9",
+  "currentRank": "前頭2",
   "birthDate": "平成4年6月22日（34歳）",
-  "height": 176,
-  "weight": 139,
+  "height": 173,
+  "weight": 138,
   "shusshin": "大阪府寝屋川市",
   "debut": "平成二十七年三月場所",
   "careerStats": {
-    "wins": 421,
-    "losses": 320,
+    "wins": 431,
+    "losses": 325,
     "draws": 96
   },
   "photoUrl": "/images/rikishi/3616.png",
   "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/",
-  "updatedAt": "2026-08-31T07:40:28+09:00"
+  "updatedAt": "2026-10-26T15:16:49+09:00"
 }

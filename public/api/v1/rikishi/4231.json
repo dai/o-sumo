@@ -2,18 +2,18 @@
   "id": 4231,
   "name": "阿武剋",
   "yomi": "おうのかつ",
-  "currentRank": "十両3",
+  "currentRank": "十両1",
   "birthDate": "平成12年5月5日（26歳）",
-  "height": 185,
+  "height": 184,
   "weight": 165,
   "shusshin": "モンゴル・ウブス",
   "debut": "令和五年十一月場所",
   "careerStats": {
-    "wins": 122,
-    "losses": 101,
+    "wins": 130,
+    "losses": 108,
     "draws": 8
   },
   "photoUrl": "/images/rikishi/4231.png",
   "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/",
-  "updatedAt": "2026-08-31T07:40:28+09:00"
+  "updatedAt": "2026-10-26T15:16:49+09:00"
 }

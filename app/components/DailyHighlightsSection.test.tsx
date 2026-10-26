@@ -5,6 +5,7 @@ import DailyHighlightsSection from './DailyHighlightsSection';
 import { i18n } from '../lib/i18n';
 import { torikumiArchive, type TorikumiDataSet, type TorikumiArchiveDay } from '../lib/torikumi-data';
 import { JULY2026_TORIKUMI_DATA } from '../lib/july2026-data';
+import { SEPTEMBER2026_TORIKUMI_DATA } from '../lib/september2026-data';
 
 function mockMobileViewport(matches: boolean) {
   Object.defineProperty(window, 'matchMedia', {
@@ -202,7 +203,7 @@ describe('DailyHighlightsSection', () => {
     stubMatchupsFetch({ updatedAt: '2026-09-11T00:00:00+09:00', matchups: [] });
 
     try {
-      renderHighlights(torikumiArchive, '202609', 'upcoming', null, new Date('2026-09-11T06:00:00Z'));
+      renderHighlights(SEPTEMBER2026_TORIKUMI_DATA, '202609', 'upcoming', null, new Date('2026-09-11T06:00:00Z'));
 
       const section = await screen.findByRole('region', { name: '明後日のみどころ' });
       expect(within(section).getByText('明後日のみどころ')).toBeInTheDocument();
@@ -216,7 +217,7 @@ describe('DailyHighlightsSection', () => {
     stubMatchupsFetch({ updatedAt: '2026-09-12T00:00:00+09:00', matchups: [] });
 
     try {
-      renderHighlights(torikumiArchive, '202609', 'upcoming', null, new Date('2026-09-12T01:00:00Z'));
+      renderHighlights(SEPTEMBER2026_TORIKUMI_DATA, '202609', 'upcoming', null, new Date('2026-09-12T01:00:00Z'));
 
       const section = await screen.findByRole('region', { name: '明日のみどころ' });
       expect(within(section).getByText('明日のみどころ')).toBeInTheDocument();
@@ -228,21 +229,22 @@ describe('DailyHighlightsSection', () => {
 
   it('renders tabs for today and tomorrow during live basho when tomorrow schedule is published', async () => {
     stubMatchupsFetch({ updatedAt: '2026-09-13T00:00:00+09:00', matchups: [] });
-    const scheduleDay1 = torikumiArchive.scheduleDays[0];
+    const scheduleDays = SEPTEMBER2026_TORIKUMI_DATA.scheduleDays!;
+    const scheduleDay1 = scheduleDays[0];
     const scheduleDay2 = {
-      ...torikumiArchive.scheduleDays[1],
+      ...scheduleDays[1],
       status: 'published' as const,
       data: {
-        ...torikumiArchive.scheduleDays[1].data,
+        ...scheduleDays[1].data,
         makuuchi: {
-          ...torikumiArchive.scheduleDays[1].data.makuuchi,
+          ...scheduleDays[1].data.makuuchi,
           matches: scheduleDay1.data.makuuchi.matches,
         },
       },
     };
     const liveArchive: TorikumiDataSet = {
-      ...torikumiArchive,
-      scheduleDays: [scheduleDay1, scheduleDay2, ...torikumiArchive.scheduleDays.slice(2)],
+      ...SEPTEMBER2026_TORIKUMI_DATA,
+      scheduleDays: [scheduleDay1, scheduleDay2, ...scheduleDays.slice(2)],
       resultDays: [
         {
           ...scheduleDay1,
@@ -277,14 +279,15 @@ describe('DailyHighlightsSection', () => {
 
   it('renders the today/tomorrow tabs even when the next basho day schedule is still pending', async () => {
     stubMatchupsFetch({ updatedAt: '2026-09-13T00:00:00+09:00', matchups: [] });
-    const scheduleDay1 = torikumiArchive.scheduleDays[0];
+    const scheduleDays = SEPTEMBER2026_TORIKUMI_DATA.scheduleDays!;
+    const scheduleDay1 = scheduleDays[0];
     const scheduleDay2 = {
-      ...torikumiArchive.scheduleDays[1],
+      ...scheduleDays[1],
       status: 'published' as const,
       data: {
-        ...torikumiArchive.scheduleDays[1].data,
+        ...scheduleDays[1].data,
         makuuchi: {
-          ...torikumiArchive.scheduleDays[1].data.makuuchi,
+          ...scheduleDays[1].data.makuuchi,
           matches: scheduleDay1.data.makuuchi.matches,
         },
       },
@@ -295,20 +298,20 @@ describe('DailyHighlightsSection', () => {
     // resolver find a featured bout and skip the "awaiting official bouts"
     // notice — defeating the test's intent.
     const scheduleDay3 = {
-      ...torikumiArchive.scheduleDays[2],
+      ...scheduleDays[2],
       status: 'pending' as const,
       statusMessage: '取組予定未更新',
       data: {
-        ...torikumiArchive.scheduleDays[2].data,
+        ...scheduleDays[2].data,
         makuuchi: {
-          ...torikumiArchive.scheduleDays[2].data.makuuchi,
+          ...scheduleDays[2].data.makuuchi,
           matches: [],
         },
       },
     };
     const liveArchive: TorikumiDataSet = {
-      ...torikumiArchive,
-      scheduleDays: [scheduleDay1, scheduleDay2, scheduleDay3, ...torikumiArchive.scheduleDays.slice(3)],
+      ...SEPTEMBER2026_TORIKUMI_DATA,
+      scheduleDays: [scheduleDay1, scheduleDay2, scheduleDay3, ...scheduleDays.slice(3)],
       resultDays: [
         {
           ...scheduleDay1,
@@ -336,32 +339,33 @@ describe('DailyHighlightsSection', () => {
 
   it('renders the today/tomorrow tabs and the featured bout when the next basho day schedule is already published', async () => {
     stubMatchupsFetch({ updatedAt: '2026-09-13T00:00:00+09:00', matchups: [] });
-    const scheduleDay1 = torikumiArchive.scheduleDays[0];
+    const scheduleDays = SEPTEMBER2026_TORIKUMI_DATA.scheduleDays!;
+    const scheduleDay1 = scheduleDays[0];
     const scheduleDay2 = {
-      ...torikumiArchive.scheduleDays[1],
+      ...scheduleDays[1],
       status: 'published' as const,
       data: {
-        ...torikumiArchive.scheduleDays[1].data,
+        ...scheduleDays[1].data,
         makuuchi: {
-          ...torikumiArchive.scheduleDays[1].data.makuuchi,
+          ...scheduleDays[1].data.makuuchi,
           matches: scheduleDay1.data.makuuchi.matches,
         },
       },
     };
     const scheduleDay3 = {
-      ...torikumiArchive.scheduleDays[2],
+      ...scheduleDays[2],
       status: 'published' as const,
       data: {
-        ...torikumiArchive.scheduleDays[2].data,
+        ...scheduleDays[2].data,
         makuuchi: {
-          ...torikumiArchive.scheduleDays[2].data.makuuchi,
+          ...scheduleDays[2].data.makuuchi,
           matches: scheduleDay1.data.makuuchi.matches,
         },
       },
     };
     const liveArchive: TorikumiDataSet = {
-      ...torikumiArchive,
-      scheduleDays: [scheduleDay1, scheduleDay2, scheduleDay3, ...torikumiArchive.scheduleDays.slice(3)],
+      ...SEPTEMBER2026_TORIKUMI_DATA,
+      scheduleDays: [scheduleDay1, scheduleDay2, scheduleDay3, ...scheduleDays.slice(3)],
       resultDays: [
         {
           ...scheduleDay1,

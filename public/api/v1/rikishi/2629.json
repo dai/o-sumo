@@ -2,18 +2,18 @@
   "id": 2629,
   "name": "玉鷲",
   "yomi": "たまわし",
-  "currentRank": "十両3",
+  "currentRank": "前頭15",
   "birthDate": "昭和59年11月16日（41歳）",
   "height": 189,
-  "weight": 179,
+  "weight": 178,
   "shusshin": "モンゴル・ウランバートル",
   "debut": "平成十六年一月場所",
   "careerStats": {
-    "wins": 906,
-    "losses": 903,
+    "wins": 916,
+    "losses": 908,
     "draws": 2
   },
   "photoUrl": "/images/rikishi/2629.png",
   "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/",
-  "updatedAt": "2026-08-31T07:40:28+09:00"
+  "updatedAt": "2026-10-26T15:16:49+09:00"
 }

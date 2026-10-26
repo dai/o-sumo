@@ -2,18 +2,18 @@
   "id": 4164,
   "name": "白熊",
   "yomi": "しろくま",
-  "currentRank": "十両6",
+  "currentRank": "十両9",
   "birthDate": "平成11年5月25日（27歳）",
   "height": 185,
-  "weight": 160,
+  "weight": 161,
   "shusshin": "福島県須賀川市",
   "debut": "令和四年五月場所",
   "careerStats": {
-    "wins": 172,
-    "losses": 143,
+    "wins": 178,
+    "losses": 152,
     "draws": 4
   },
   "photoUrl": "/images/rikishi/4164.png",
   "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/",
-  "updatedAt": "2026-08-31T07:40:28+09:00"
+  "updatedAt": "2026-10-26T15:16:49+09:00"
 }

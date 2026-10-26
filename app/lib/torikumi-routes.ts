@@ -7,6 +7,7 @@ import {
 import { MARCH2026_TORIKUMI_DATA } from './march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from './may2026-data';
 import { JULY2026_TORIKUMI_DATA } from './july2026-data';
+import { SEPTEMBER2026_TORIKUMI_DATA } from './september2026-data';
 import { updatedAtDateKey } from './updated-at';
 import {
   CURRENT_BANZUKE_PATH,
@@ -108,6 +109,13 @@ const ARCHIVE_ROUTE_CONFIGS: Record<string, ArchiveRouteConfig> = {
     resultPath: withTrailingSlash(JULY2026_RESULT_PATH),
     schedulePath: withTrailingSlash(JULY2026_SCHEDULE_PATH),
     banzukePath: withTrailingSlash(JULY2026_BANZUKE_PATH),
+  },
+  '202609': {
+    monthKey: '202609',
+    archive: normalizeArchive(SEPTEMBER2026_TORIKUMI_DATA),
+    resultPath: withTrailingSlash(SEPTEMBER2026_RESULT_PATH),
+    schedulePath: withTrailingSlash(SEPTEMBER2026_SCHEDULE_PATH),
+    banzukePath: withTrailingSlash(SEPTEMBER2026_BANZUKE_PATH),
   },
 };
 

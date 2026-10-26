@@ -2,18 +2,18 @@
   "id": 3705,
   "name": "平戸海",
   "yomi": "ひらどうみ",
-  "currentRank": "前頭8",
+  "currentRank": "前頭5",
   "birthDate": "平成12年4月20日（26歳）",
   "height": 178,
-  "weight": 141,
+  "weight": 142,
   "shusshin": "長崎県平戸市",
   "debut": "平成二十八年三月場所",
   "careerStats": {
-    "wins": 345,
-    "losses": 306,
+    "wins": 354,
+    "losses": 312,
     "draws": 8
   },
   "photoUrl": "/images/rikishi/3705.png",
   "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/",
-  "updatedAt": "2026-08-31T07:40:28+09:00"
+  "updatedAt": "2026-10-26T15:16:49+09:00"
 }

@@ -2,18 +2,18 @@
   "id": 3969,
   "name": "東白龍",
   "yomi": "とうはくりゅう",
-  "currentRank": "十両9",
+  "currentRank": "十両8",
   "birthDate": "平成8年4月17日（30歳）",
   "height": 182,
-  "weight": 135,
+  "weight": 136,
   "shusshin": "東京都墨田区",
   "debut": "令和元年五月場所",
   "careerStats": {
-    "wins": 275,
-    "losses": 285,
+    "wins": 283,
+    "losses": 292,
     "draws": 13
   },
   "photoUrl": "/images/rikishi/3969.png",
   "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/",
-  "updatedAt": "2026-08-31T07:40:28+09:00"
+  "updatedAt": "2026-10-26T15:16:49+09:00"
 }

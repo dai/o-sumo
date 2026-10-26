@@ -82,6 +82,16 @@
   Link: </202609-yotei/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
   Vary: Accept
 
+/202611-banzuke/
+  Link: </202611-banzuke/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+  Vary: Accept
+/202611-torikumi/
+  Link: </202611-torikumi/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+  Vary: Accept
+/202611-yotei/
+  Link: </202611-yotei/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+  Vary: Accept
+
 # Markdown for Agents: served as text/markdown when requested
 /*.md
   Content-Type: text/markdown; charset=utf-8

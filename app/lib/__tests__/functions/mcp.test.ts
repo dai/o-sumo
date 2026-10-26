@@ -303,7 +303,7 @@ describe('MCP Tools execution', () => {
     });
     expect(res.result?.content?.[0]?.text).toBeDefined();
     const basho = JSON.parse(res.result!.content![0].text) as { current: { id: string }; archive: Array<{ id: string }> };
-    expect(basho.current.id).toBe('202609');
+    expect(basho.current.id).toBe('202611');
     expect(basho.archive.length).toBeGreaterThan(0);
   });
 });

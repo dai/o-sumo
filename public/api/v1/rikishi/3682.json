@@ -2,18 +2,18 @@
   "id": 3682,
   "name": "朝乃山",
   "yomi": "あさのやま",
-  "currentRank": "前頭6",
+  "currentRank": "前頭1",
   "birthDate": "平成6年3月1日（32歳）",
   "height": 188,
-  "weight": 175,
+  "weight": 172,
   "shusshin": "富山県富山市",
   "debut": "平成二十八年三月場所",
   "careerStats": {
-    "wins": 429,
-    "losses": 214,
+    "wins": 439,
+    "losses": 219,
     "draws": 159
   },
   "photoUrl": "/images/rikishi/3682.png",
   "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/",
-  "updatedAt": "2026-08-31T07:40:28+09:00"
+  "updatedAt": "2026-10-26T15:16:49+09:00"
 }

@@ -2,18 +2,18 @@
   "id": 4287,
   "name": "一意",
   "yomi": "かずま",
-  "currentRank": "十両2",
+  "currentRank": "十両4",
   "birthDate": "平成13年11月12日（24歳）",
   "height": 185,
-  "weight": 205,
+  "weight": 202,
   "shusshin": "大阪府大阪市港区",
   "debut": "令和六年七月場所",
   "careerStats": {
-    "wins": 66,
-    "losses": 27,
+    "wins": 72,
+    "losses": 36,
     "draws": 30
   },
   "photoUrl": "/images/rikishi/4287.png",
   "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/",
-  "updatedAt": "2026-08-31T07:40:28+09:00"
+  "updatedAt": "2026-10-26T15:16:49+09:00"
 }

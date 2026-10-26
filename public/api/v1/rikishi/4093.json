@@ -2,18 +2,18 @@
   "id": 4093,
   "name": "藤青雲",
   "yomi": "ふじせいうん",
-  "currentRank": "前頭7",
+  "currentRank": "前頭2",
   "birthDate": "平成9年12月5日（28歳）",
   "height": 185,
-  "weight": 150,
+  "weight": 149,
   "shusshin": "熊本県熊本市西区",
   "debut": "令和三年三月場所",
   "careerStats": {
-    "wins": 193,
-    "losses": 122,
+    "wins": 202,
+    "losses": 128,
     "draws": 29
   },
   "photoUrl": "/images/rikishi/4093.png",
   "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/",
-  "updatedAt": "2026-08-31T07:40:28+09:00"
+  "updatedAt": "2026-10-26T15:16:49+09:00"
 }

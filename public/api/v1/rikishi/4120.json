@@ -2,18 +2,18 @@
   "id": 4120,
   "name": "琴栄峰",
   "yomi": "ことえいほう",
-  "currentRank": "前頭1",
+  "currentRank": "前頭6",
   "birthDate": "平成15年7月8日（23歳）",
   "height": 184,
-  "weight": 142,
+  "weight": 140,
   "shusshin": "千葉県柏市",
   "debut": "令和四年一月場所",
   "careerStats": {
-    "wins": 168,
-    "losses": 108,
+    "wins": 173,
+    "losses": 118,
     "draws": 1
   },
   "photoUrl": "/images/rikishi/4120.png",
   "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/",
-  "updatedAt": "2026-08-31T07:40:28+09:00"
+  "updatedAt": "2026-10-26T15:16:49+09:00"
 }

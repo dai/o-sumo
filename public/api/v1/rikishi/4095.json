@@ -2,18 +2,18 @@
   "id": 4095,
   "name": "日翔志",
   "yomi": "ひとし",
-  "currentRank": "十両11",
+  "currentRank": "十両7",
   "birthDate": "平成9年8月14日（29歳）",
   "height": 182,
   "weight": 158,
   "shusshin": "東京都立川市",
   "debut": "令和三年五月場所",
   "careerStats": {
-    "wins": 154,
-    "losses": 122,
+    "wins": 163,
+    "losses": 128,
     "draws": 21
   },
   "photoUrl": "/images/rikishi/4095.png",
   "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/",
-  "updatedAt": "2026-08-31T07:40:28+09:00"
+  "updatedAt": "2026-10-26T15:16:49+09:00"
 }

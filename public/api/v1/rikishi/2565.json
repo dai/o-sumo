@@ -2,18 +2,18 @@
   "id": 2565,
   "name": "佐田の海",
   "yomi": "さだのうみ",
-  "currentRank": "十両5",
+  "currentRank": "十両11",
   "birthDate": "昭和62年5月11日（39歳）",
-  "height": 183,
-  "weight": 146,
+  "height": 181,
+  "weight": 141,
   "shusshin": "熊本県熊本市東区",
   "debut": "平成十五年三月場所",
   "careerStats": {
-    "wins": 791,
-    "losses": 817,
+    "wins": 794,
+    "losses": 829,
     "draws": 22
   },
   "photoUrl": "/images/rikishi/2565.png",
   "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/",
-  "updatedAt": "2026-08-31T07:40:28+09:00"
+  "updatedAt": "2026-10-26T15:16:49+09:00"
 }

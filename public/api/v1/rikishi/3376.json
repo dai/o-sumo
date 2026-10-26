@@ -2,18 +2,18 @@
   "id": 3376,
   "name": "大栄翔",
   "yomi": "だいえいしょう",
-  "currentRank": "小結",
+  "currentRank": "前頭4",
   "birthDate": "平成5年11月10日（32歳）",
-  "height": 183,
-  "weight": 160,
+  "height": 182,
+  "weight": 163,
   "shusshin": "埼玉県朝霞市",
   "debut": "平成二十四年一月場所",
   "careerStats": {
-    "wins": 641,
-    "losses": 520,
+    "wins": 646,
+    "losses": 530,
     "draws": 17
   },
   "photoUrl": "/images/rikishi/3376.png",
   "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/",
-  "updatedAt": "2026-08-31T07:40:28+09:00"
+  "updatedAt": "2026-10-26T15:16:49+09:00"
 }

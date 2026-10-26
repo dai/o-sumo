@@ -2,18 +2,18 @@
   "id": 2775,
   "name": "高安",
   "yomi": "たかやす",
-  "currentRank": "前頭2",
+  "currentRank": "前頭3",
   "birthDate": "平成2年2月28日（36歳）",
   "height": 188,
   "weight": 173,
   "shusshin": "茨城県土浦市",
   "debut": "平成十七年三月場所",
   "careerStats": {
-    "wins": 830,
-    "losses": 629,
+    "wins": 837,
+    "losses": 637,
     "draws": 167
   },
   "photoUrl": "/images/rikishi/2775.png",
   "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/",
-  "updatedAt": "2026-08-31T07:40:28+09:00"
+  "updatedAt": "2026-10-26T15:16:49+09:00"
 }

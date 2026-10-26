@@ -155,7 +155,7 @@ describe('torikumi route helpers', () => {
     expect(septemberConfig.monthKey).toBe('202609');
     expect(getHubPathForDateKey('20260322', 'result')).toBe('/202603-torikumi/');
     expect(getHubPathForDateKey('20260524', 'schedule')).toBe('/202605-yotei/');
-    expect(getHubPath('result')).toBe('/202609-torikumi/');
+    expect(getHubPath('result')).toBe('/202611-torikumi/');
   });
 
   it('defines canonical and redirect routes for all three July hubs exactly once', () => {

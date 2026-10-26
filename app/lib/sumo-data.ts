@@ -28,26 +28,10 @@ export const makuuchiData: RankGroup[] = [
         "yomi": "おおのさと",
         "rank": "横綱",
         "side": "east",
-        "wins": 12,
-        "losses": 3,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "win"
-        ],
+        "results": [],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/",
         "memo": ""
       }
@@ -61,24 +45,8 @@ export const makuuchiData: RankGroup[] = [
         "side": "west",
         "wins": 0,
         "losses": 0,
-        "draws": 15,
-        "results": [
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw"
-        ],
+        "draws": 0,
+        "results": [],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/",
         "memo": ""
       }
@@ -88,61 +56,29 @@ export const makuuchiData: RankGroup[] = [
     "title": "大関",
     "east": [
       {
-        "id": 3622,
-        "name": "霧島",
-        "yomi": "きりしま",
-        "rank": "大関",
-        "side": "east",
-        "wins": 8,
-        "losses": 7,
-        "draws": 0,
-        "results": [
-          "win",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/",
-        "memo": ""
-      },
-      {
         "id": 4230,
         "name": "安青錦",
         "yomi": "あおにしき",
         "rank": "大関",
         "side": "east",
-        "wins": 11,
-        "losses": 4,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "win",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss"
-        ],
+        "results": [],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4230/",
+        "memo": ""
+      },
+      {
+        "id": 3622,
+        "name": "霧島",
+        "yomi": "きりしま",
+        "rank": "大関",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/",
         "memo": ""
       }
     ],
@@ -153,26 +89,10 @@ export const makuuchiData: RankGroup[] = [
         "yomi": "ことざくら",
         "rank": "大関",
         "side": "west",
-        "wins": 9,
-        "losses": 6,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss"
-        ],
+        "results": [],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3661/",
         "memo": ""
       }
@@ -182,63 +102,31 @@ export const makuuchiData: RankGroup[] = [
     "title": "関脇",
     "east": [
       {
-        "id": 4055,
-        "name": "熱海富士",
-        "yomi": "あたみふじ",
+        "id": 4191,
+        "name": "藤ノ川",
+        "yomi": "ふじのかわ",
         "rank": "関脇",
         "side": "east",
-        "wins": 8,
-        "losses": 7,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "win",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/",
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/",
         "memo": ""
       }
     ],
     "west": [
       {
-        "id": 4191,
-        "name": "藤ノ川",
-        "yomi": "ふじのかわ",
+        "id": 4055,
+        "name": "熱海富士",
+        "yomi": "あたみふじ",
         "rank": "関脇",
         "side": "west",
-        "wins": 11,
-        "losses": 4,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4191/",
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/",
         "memo": ""
       }
     ]
@@ -247,63 +135,31 @@ export const makuuchiData: RankGroup[] = [
     "title": "小結",
     "east": [
       {
-        "id": 4187,
-        "name": "伯乃富士",
-        "yomi": "はくのふじ",
+        "id": 3711,
+        "name": "美ノ海",
+        "yomi": "ちゅらのうみ",
         "rank": "小結",
         "side": "east",
-        "wins": 5,
-        "losses": 10,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/",
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/",
         "memo": ""
       }
     ],
     "west": [
       {
-        "id": 3376,
-        "name": "大栄翔",
-        "yomi": "だいえいしょう",
+        "id": 4279,
+        "name": "義ノ富士",
+        "yomi": "よしのふじ",
         "rank": "小結",
         "side": "west",
-        "wins": 5,
-        "losses": 10,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/",
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/",
         "memo": ""
       }
     ]
@@ -312,31 +168,180 @@ export const makuuchiData: RankGroup[] = [
     "title": "前頭1",
     "east": [
       {
+        "id": 3682,
+        "name": "朝乃山",
+        "yomi": "あさのやま",
+        "rank": "前頭1",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/",
+        "memo": ""
+      }
+    ],
+    "west": [
+      {
+        "id": 4336,
+        "name": "藤凌駕",
+        "yomi": "ふじりょうが",
+        "rank": "前頭1",
+        "side": "west",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/",
+        "memo": ""
+      }
+    ]
+  },
+  {
+    "title": "前頭2",
+    "east": [
+      {
+        "id": 3616,
+        "name": "宇良",
+        "yomi": "うら",
+        "rank": "前頭2",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/",
+        "memo": ""
+      }
+    ],
+    "west": [
+      {
+        "id": 4093,
+        "name": "藤青雲",
+        "yomi": "ふじせいうん",
+        "rank": "前頭2",
+        "side": "west",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/",
+        "memo": ""
+      }
+    ]
+  },
+  {
+    "title": "前頭3",
+    "east": [
+      {
+        "id": 2775,
+        "name": "高安",
+        "yomi": "たかやす",
+        "rank": "前頭3",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/",
+        "memo": ""
+      }
+    ],
+    "west": [
+      {
+        "id": 4187,
+        "name": "伯乃富士",
+        "yomi": "はくのふじ",
+        "rank": "前頭3",
+        "side": "west",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/",
+        "memo": ""
+      }
+    ]
+  },
+  {
+    "title": "前頭4",
+    "east": [
+      {
+        "id": 4171,
+        "name": "尊富士",
+        "yomi": "たけるふじ",
+        "rank": "前頭4",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/",
+        "memo": ""
+      }
+    ],
+    "west": [
+      {
+        "id": 3376,
+        "name": "大栄翔",
+        "yomi": "だいえいしょう",
+        "rank": "前頭4",
+        "side": "west",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/",
+        "memo": ""
+      }
+    ]
+  },
+  {
+    "title": "前頭5",
+    "east": [
+      {
+        "id": 3705,
+        "name": "平戸海",
+        "yomi": "ひらどうみ",
+        "rank": "前頭5",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/",
+        "memo": ""
+      }
+    ],
+    "west": [
+      {
+        "id": 4079,
+        "name": "豪ノ山",
+        "yomi": "ごうのやま",
+        "rank": "前頭5",
+        "side": "west",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/",
+        "memo": ""
+      }
+    ]
+  },
+  {
+    "title": "前頭6",
+    "east": [
+      {
         "id": 3840,
         "name": "琴勝峰",
         "yomi": "ことしょうほう",
-        "rank": "前頭1",
+        "rank": "前頭6",
         "side": "east",
-        "wins": 5,
-        "losses": 7,
-        "draws": 3,
-        "results": [
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "draw",
-          "draw",
-          "draw"
-        ],
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3840/",
         "memo": ""
       }
@@ -346,354 +351,13 @@ export const makuuchiData: RankGroup[] = [
         "id": 4120,
         "name": "琴栄峰",
         "yomi": "ことえいほう",
-        "rank": "前頭1",
+        "rank": "前頭6",
         "side": "west",
-        "wins": 5,
-        "losses": 10,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "win"
-        ],
+        "results": [],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4120/",
-        "memo": ""
-      }
-    ]
-  },
-  {
-    "title": "前頭2",
-    "east": [
-      {
-        "id": 2775,
-        "name": "高安",
-        "yomi": "たかやす",
-        "rank": "前頭2",
-        "side": "east",
-        "wins": 7,
-        "losses": 8,
-        "draws": 0,
-        "results": [
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/",
-        "memo": ""
-      }
-    ],
-    "west": [
-      {
-        "id": 4279,
-        "name": "義ノ富士",
-        "yomi": "よしのふじ",
-        "rank": "前頭2",
-        "side": "west",
-        "wins": 9,
-        "losses": 6,
-        "draws": 0,
-        "results": [
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/",
-        "memo": ""
-      }
-    ]
-  },
-  {
-    "title": "前頭3",
-    "east": [
-      {
-        "id": 4079,
-        "name": "豪ノ山",
-        "yomi": "ごうのやま",
-        "rank": "前頭3",
-        "side": "east",
-        "wins": 6,
-        "losses": 9,
-        "draws": 0,
-        "results": [
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/",
-        "memo": ""
-      }
-    ],
-    "west": [
-      {
-        "id": 3711,
-        "name": "美ノ海",
-        "yomi": "ちゅらのうみ",
-        "rank": "前頭3",
-        "side": "west",
-        "wins": 10,
-        "losses": 5,
-        "draws": 0,
-        "results": [
-          "win",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3711/",
-        "memo": ""
-      }
-    ]
-  },
-  {
-    "title": "前頭4",
-    "east": [
-      {
-        "id": 3265,
-        "name": "隆の勝",
-        "yomi": "たかのしょう",
-        "rank": "前頭4",
-        "side": "east",
-        "wins": 4,
-        "losses": 9,
-        "draws": 2,
-        "results": [
-          "win",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "draw",
-          "draw"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/",
-        "memo": ""
-      }
-    ],
-    "west": [
-      {
-        "id": 4336,
-        "name": "藤凌駕",
-        "yomi": "ふじりょうが",
-        "rank": "前頭4",
-        "side": "west",
-        "wins": 8,
-        "losses": 7,
-        "draws": 0,
-        "results": [
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/",
-        "memo": ""
-      }
-    ]
-  },
-  {
-    "title": "前頭5",
-    "east": [
-      {
-        "id": 3907,
-        "name": "狼雅",
-        "yomi": "ろうが",
-        "rank": "前頭5",
-        "side": "east",
-        "wins": 6,
-        "losses": 9,
-        "draws": 0,
-        "results": [
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/",
-        "memo": ""
-      }
-    ],
-    "west": [
-      {
-        "id": 4108,
-        "name": "欧勝馬",
-        "yomi": "おうしょうま",
-        "rank": "前頭5",
-        "side": "west",
-        "wins": 6,
-        "losses": 9,
-        "draws": 0,
-        "results": [
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/",
-        "memo": ""
-      }
-    ]
-  },
-  {
-    "title": "前頭6",
-    "east": [
-      {
-        "id": 3682,
-        "name": "朝乃山",
-        "yomi": "あさのやま",
-        "rank": "前頭6",
-        "side": "east",
-        "wins": 10,
-        "losses": 5,
-        "draws": 0,
-        "results": [
-          "win",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3682/",
-        "memo": ""
-      }
-    ],
-    "west": [
-      {
-        "id": 3753,
-        "name": "一山本",
-        "yomi": "いちやまもと",
-        "rank": "前頭6",
-        "side": "west",
-        "wins": 4,
-        "losses": 11,
-        "draws": 0,
-        "results": [
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/",
         "memo": ""
       }
     ]
@@ -702,227 +366,16 @@ export const makuuchiData: RankGroup[] = [
     "title": "前頭7",
     "east": [
       {
-        "id": 4093,
-        "name": "藤青雲",
-        "yomi": "ふじせいうん",
+        "id": 3371,
+        "name": "若元春",
+        "yomi": "わかもとはる",
         "rank": "前頭7",
         "side": "east",
-        "wins": 9,
-        "losses": 6,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "win",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4093/",
-        "memo": ""
-      }
-    ],
-    "west": [
-      {
-        "id": 3742,
-        "name": "錦富士",
-        "yomi": "にしきふじ",
-        "rank": "前頭7",
-        "side": "west",
-        "wins": 7,
-        "losses": 8,
-        "draws": 0,
-        "results": [
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/",
-        "memo": ""
-      }
-    ]
-  },
-  {
-    "title": "前頭8",
-    "east": [
-      {
-        "id": 4171,
-        "name": "尊富士",
-        "yomi": "たけるふじ",
-        "rank": "前頭8",
-        "side": "east",
-        "wins": 9,
-        "losses": 6,
-        "draws": 0,
-        "results": [
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/",
-        "memo": ""
-      }
-    ],
-    "west": [
-      {
-        "id": 3705,
-        "name": "平戸海",
-        "yomi": "ひらどうみ",
-        "rank": "前頭8",
-        "side": "west",
-        "wins": 9,
-        "losses": 6,
-        "draws": 0,
-        "results": [
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/",
-        "memo": ""
-      }
-    ]
-  },
-  {
-    "title": "前頭9",
-    "east": [
-      {
-        "id": 3616,
-        "name": "宇良",
-        "yomi": "うら",
-        "rank": "前頭9",
-        "side": "east",
-        "wins": 10,
-        "losses": 5,
-        "draws": 0,
-        "results": [
-          "win",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3616/",
-        "memo": ""
-      }
-    ],
-    "west": [
-      {
-        "id": 3990,
-        "name": "獅司",
-        "yomi": "しし",
-        "rank": "前頭9",
-        "side": "west",
-        "wins": 7,
-        "losses": 8,
-        "draws": 0,
-        "results": [
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/",
-        "memo": ""
-      }
-    ]
-  },
-  {
-    "title": "前頭10",
-    "east": [
-      {
-        "id": 3844,
-        "name": "王鵬",
-        "yomi": "おうほう",
-        "rank": "前頭10",
-        "side": "east",
-        "wins": 7,
-        "losses": 8,
-        "draws": 0,
-        "results": [
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/",
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/",
         "memo": ""
       }
     ],
@@ -931,29 +384,112 @@ export const makuuchiData: RankGroup[] = [
         "id": 4112,
         "name": "金峰山",
         "yomi": "きんぼうざん",
+        "rank": "前頭7",
+        "side": "west",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/",
+        "memo": ""
+      }
+    ]
+  },
+  {
+    "title": "前頭8",
+    "east": [
+      {
+        "id": 3907,
+        "name": "狼雅",
+        "yomi": "ろうが",
+        "rank": "前頭8",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/",
+        "memo": ""
+      }
+    ],
+    "west": [
+      {
+        "id": 3742,
+        "name": "錦富士",
+        "yomi": "にしきふじ",
+        "rank": "前頭8",
+        "side": "west",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3742/",
+        "memo": ""
+      }
+    ]
+  },
+  {
+    "title": "前頭9",
+    "east": [
+      {
+        "id": 4108,
+        "name": "欧勝馬",
+        "yomi": "おうしょうま",
+        "rank": "前頭9",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/",
+        "memo": ""
+      }
+    ],
+    "west": [
+      {
+        "id": 4101,
+        "name": "朝紅龍",
+        "yomi": "あさこうりゅう",
+        "rank": "前頭9",
+        "side": "west",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/",
+        "memo": ""
+      }
+    ]
+  },
+  {
+    "title": "前頭10",
+    "east": [
+      {
+        "id": 3990,
+        "name": "獅司",
+        "yomi": "しし",
+        "rank": "前頭10",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/",
+        "memo": ""
+      }
+    ],
+    "west": [
+      {
+        "id": 3844,
+        "name": "王鵬",
+        "yomi": "おうほう",
         "rank": "前頭10",
         "side": "west",
-        "wins": 9,
-        "losses": 6,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4112/",
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/",
         "memo": ""
       }
     ]
@@ -962,97 +498,16 @@ export const makuuchiData: RankGroup[] = [
     "title": "前頭11",
     "east": [
       {
-        "id": 3371,
-        "name": "若元春",
-        "yomi": "わかもとはる",
+        "id": 3265,
+        "name": "隆の勝",
+        "yomi": "たかのしょう",
         "rank": "前頭11",
-        "side": "east",
-        "wins": 10,
-        "losses": 5,
-        "draws": 0,
-        "results": [
-          "win",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/",
-        "memo": ""
-      }
-    ],
-    "west": [
-      {
-        "id": 3521,
-        "name": "正代",
-        "yomi": "しょうだい",
-        "rank": "前頭11",
-        "side": "west",
-        "wins": 3,
-        "losses": 12,
-        "draws": 0,
-        "results": [
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/",
-        "memo": ""
-      }
-    ]
-  },
-  {
-    "title": "前頭12",
-    "east": [
-      {
-        "id": 3761,
-        "name": "若隆景",
-        "yomi": "わかたかかげ",
-        "rank": "前頭12",
         "side": "east",
         "wins": 0,
         "losses": 0,
-        "draws": 15,
-        "results": [
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/",
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3265/",
         "memo": ""
       }
     ],
@@ -1061,63 +516,31 @@ export const makuuchiData: RankGroup[] = [
         "id": 4175,
         "name": "朝白龍",
         "yomi": "あさはくりゅう",
-        "rank": "前頭12",
+        "rank": "前頭11",
         "side": "west",
-        "wins": 8,
-        "losses": 7,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss"
-        ],
+        "results": [],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4175/",
         "memo": ""
       }
     ]
   },
   {
-    "title": "前頭13",
+    "title": "前頭12",
     "east": [
       {
-        "id": 4101,
-        "name": "朝紅龍",
-        "yomi": "あさこうりゅう",
-        "rank": "前頭13",
+        "id": 3753,
+        "name": "一山本",
+        "yomi": "いちやまもと",
+        "rank": "前頭12",
         "side": "east",
-        "wins": 9,
-        "losses": 6,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "win",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4101/",
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/",
         "memo": ""
       }
     ],
@@ -1126,29 +549,46 @@ export const makuuchiData: RankGroup[] = [
         "id": 3485,
         "name": "阿炎",
         "yomi": "あび",
+        "rank": "前頭12",
+        "side": "west",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/",
+        "memo": ""
+      }
+    ]
+  },
+  {
+    "title": "前頭13",
+    "east": [
+      {
+        "id": 4243,
+        "name": "寿之富士",
+        "yomi": "としのふじ",
+        "rank": "前頭13",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/",
+        "memo": ""
+      }
+    ],
+    "west": [
+      {
+        "id": 4285,
+        "name": "朝翠龍",
+        "yomi": "あさすいりゅう",
         "rank": "前頭13",
         "side": "west",
-        "wins": 8,
-        "losses": 7,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/",
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/",
         "memo": ""
       }
     ]
@@ -1157,63 +597,31 @@ export const makuuchiData: RankGroup[] = [
     "title": "前頭14",
     "east": [
       {
-        "id": 3594,
-        "name": "翔猿",
-        "yomi": "とびざる",
+        "id": 3933,
+        "name": "時疾風",
+        "yomi": "ときはやて",
         "rank": "前頭14",
         "side": "east",
-        "wins": 4,
-        "losses": 11,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/",
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/",
         "memo": ""
       }
     ],
     "west": [
       {
-        "id": 3207,
-        "name": "千代翔馬",
-        "yomi": "ちよしょうま",
+        "id": 3983,
+        "name": "出羽ノ龍",
+        "yomi": "でわのりゅう",
         "rank": "前頭14",
         "side": "west",
-        "wins": 5,
-        "losses": 10,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/",
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/",
         "memo": ""
       }
     ]
@@ -1222,63 +630,31 @@ export const makuuchiData: RankGroup[] = [
     "title": "前頭15",
     "east": [
       {
-        "id": 4285,
-        "name": "朝翠龍",
-        "yomi": "あさすいりゅう",
+        "id": 2629,
+        "name": "玉鷲",
+        "yomi": "たまわし",
         "rank": "前頭15",
         "side": "east",
-        "wins": 8,
-        "losses": 7,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/",
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/",
         "memo": ""
       }
     ],
     "west": [
       {
-        "id": 3933,
-        "name": "時疾風",
-        "yomi": "ときはやて",
+        "id": 3939,
+        "name": "北の若",
+        "yomi": "きたのわか",
         "rank": "前頭15",
         "side": "west",
-        "wins": 8,
-        "losses": 7,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3933/",
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/",
         "memo": ""
       }
     ]
@@ -1287,63 +663,31 @@ export const makuuchiData: RankGroup[] = [
     "title": "前頭16",
     "east": [
       {
-        "id": 4121,
-        "name": "若ノ勝",
-        "yomi": "わかのしょう",
+        "id": 4267,
+        "name": "嵐富士",
+        "yomi": "あらしふじ",
         "rank": "前頭16",
         "side": "east",
         "wins": 0,
         "losses": 0,
-        "draws": 15,
-        "results": [
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw",
-          "draw"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/",
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4267/",
         "memo": ""
       }
     ],
     "west": [
       {
-        "id": 4243,
-        "name": "寿之富士",
-        "yomi": "としのふじ",
+        "id": 4232,
+        "name": "旭海雄",
+        "yomi": "きょくかいゆう",
         "rank": "前頭16",
         "side": "west",
-        "wins": 9,
-        "losses": 6,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4243/",
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/",
         "memo": ""
       }
     ]
@@ -1352,32 +696,16 @@ export const makuuchiData: RankGroup[] = [
     "title": "前頭17",
     "east": [
       {
-        "id": 3553,
-        "name": "湘南乃海",
-        "yomi": "しょうなんのうみ",
+        "id": 4116,
+        "name": "大青山",
+        "yomi": "だいせいざん",
         "rank": "前頭17",
         "side": "east",
-        "wins": 3,
-        "losses": 12,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/",
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/",
         "memo": ""
       }
     ],
@@ -1390,162 +718,16 @@ export const juryo: RankGroup[] = [
     "title": "十両1",
     "east": [
       {
-        "id": 3983,
-        "name": "出羽ノ龍",
-        "yomi": "でわのりゅう",
+        "id": 3207,
+        "name": "千代翔馬",
+        "yomi": "ちよしょうま",
         "rank": "十両1",
         "side": "east",
-        "wins": 10,
-        "losses": 5,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/",
-        "memo": ""
-      }
-    ],
-    "west": [
-      {
-        "id": 4232,
-        "name": "旭海雄",
-        "yomi": "きょくかいゆう",
-        "rank": "十両1",
-        "side": "west",
-        "wins": 8,
-        "losses": 7,
-        "draws": 0,
-        "results": [
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/",
-        "memo": ""
-      }
-    ]
-  },
-  {
-    "title": "十両2",
-    "east": [
-      {
-        "id": 4116,
-        "name": "大青山",
-        "yomi": "だいせいざん",
-        "rank": "十両2",
-        "side": "east",
-        "wins": 8,
-        "losses": 7,
-        "draws": 0,
-        "results": [
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/",
-        "memo": ""
-      }
-    ],
-    "west": [
-      {
-        "id": 4287,
-        "name": "一意",
-        "yomi": "かずま",
-        "rank": "十両2",
-        "side": "west",
-        "wins": 6,
-        "losses": 9,
-        "draws": 0,
-        "results": [
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/",
-        "memo": ""
-      }
-    ]
-  },
-  {
-    "title": "十両3",
-    "east": [
-      {
-        "id": 2629,
-        "name": "玉鷲",
-        "yomi": "たまわし",
-        "rank": "十両3",
-        "side": "east",
-        "wins": 10,
-        "losses": 5,
-        "draws": 0,
-        "results": [
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2629/",
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3207/",
         "memo": ""
       }
     ],
@@ -1554,29 +736,79 @@ export const juryo: RankGroup[] = [
         "id": 4231,
         "name": "阿武剋",
         "yomi": "おうのかつ",
+        "rank": "十両1",
+        "side": "west",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/",
+        "memo": ""
+      }
+    ]
+  },
+  {
+    "title": "十両2",
+    "east": [
+      {
+        "id": 4158,
+        "name": "風賢央",
+        "yomi": "かぜけんおう",
+        "rank": "十両2",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/",
+        "memo": ""
+      }
+    ],
+    "west": [
+      {
+        "id": 3594,
+        "name": "翔猿",
+        "yomi": "とびざる",
+        "rank": "十両2",
+        "side": "west",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3594/",
+        "memo": ""
+      }
+    ]
+  },
+  {
+    "title": "十両3",
+    "east": [
+      {
+        "id": 3255,
+        "name": "輝",
+        "yomi": "かがやき",
+        "rank": "十両3",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/",
+        "memo": ""
+      }
+    ],
+    "west": [
+      {
+        "id": 3521,
+        "name": "正代",
+        "yomi": "しょうだい",
         "rank": "十両3",
         "side": "west",
-        "wins": 8,
-        "losses": 7,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/",
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3521/",
         "memo": ""
       }
     ]
@@ -1585,552 +817,16 @@ export const juryo: RankGroup[] = [
     "title": "十両4",
     "east": [
       {
-        "id": 4158,
-        "name": "風賢央",
-        "yomi": "かぜけんおう",
+        "id": 4287,
+        "name": "一意",
+        "yomi": "かずま",
         "rank": "十両4",
         "side": "east",
-        "wins": 8,
-        "losses": 7,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4158/",
-        "memo": ""
-      }
-    ],
-    "west": [
-      {
-        "id": 3620,
-        "name": "御嶽海",
-        "yomi": "みたけうみ",
-        "rank": "十両4",
-        "side": "west",
-        "wins": 5,
-        "losses": 10,
-        "draws": 0,
-        "results": [
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/",
-        "memo": ""
-      }
-    ]
-  },
-  {
-    "title": "十両5",
-    "east": [
-      {
-        "id": 2565,
-        "name": "佐田の海",
-        "yomi": "さだのうみ",
-        "rank": "十両5",
-        "side": "east",
-        "wins": 3,
-        "losses": 12,
-        "draws": 0,
-        "results": [
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/",
-        "memo": ""
-      }
-    ],
-    "west": [
-      {
-        "id": 4267,
-        "name": "嵐富士",
-        "yomi": "あらしふじ",
-        "rank": "十両5",
-        "side": "west",
-        "wins": 10,
-        "losses": 5,
-        "draws": 0,
-        "results": [
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4267/",
-        "memo": ""
-      }
-    ]
-  },
-  {
-    "title": "十両6",
-    "east": [
-      {
-        "id": 3939,
-        "name": "北の若",
-        "yomi": "きたのわか",
-        "rank": "十両6",
-        "side": "east",
-        "wins": 11,
-        "losses": 4,
-        "draws": 0,
-        "results": [
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3939/",
-        "memo": ""
-      }
-    ],
-    "west": [
-      {
-        "id": 4164,
-        "name": "白熊",
-        "yomi": "しろくま",
-        "rank": "十両6",
-        "side": "west",
-        "wins": 6,
-        "losses": 9,
-        "draws": 0,
-        "results": [
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/",
-        "memo": ""
-      }
-    ]
-  },
-  {
-    "title": "十両7",
-    "east": [
-      {
-        "id": 3743,
-        "name": "翠富士",
-        "yomi": "みどりふじ",
-        "rank": "十両7",
-        "side": "east",
-        "wins": 7,
-        "losses": 8,
-        "draws": 0,
-        "results": [
-          "loss",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/",
-        "memo": ""
-      }
-    ],
-    "west": [
-      {
-        "id": 3818,
-        "name": "友風",
-        "yomi": "ともかぜ",
-        "rank": "十両7",
-        "side": "west",
-        "wins": 5,
-        "losses": 10,
-        "draws": 0,
-        "results": [
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/",
-        "memo": ""
-      }
-    ]
-  },
-  {
-    "title": "十両8",
-    "east": [
-      {
-        "id": 2890,
-        "name": "竜電",
-        "yomi": "りゅうでん",
-        "rank": "十両8",
-        "side": "east",
-        "wins": 9,
-        "losses": 6,
-        "draws": 0,
-        "results": [
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/",
-        "memo": ""
-      }
-    ],
-    "west": [
-      {
-        "id": 4124,
-        "name": "羽出山",
-        "yomi": "はつやま",
-        "rank": "十両8",
-        "side": "west",
-        "wins": 4,
-        "losses": 11,
-        "draws": 0,
-        "results": [
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/",
-        "memo": ""
-      }
-    ]
-  },
-  {
-    "title": "十両9",
-    "east": [
-      {
-        "id": 3803,
-        "name": "炎鵬",
-        "yomi": "えんほう",
-        "rank": "十両9",
-        "side": "east",
-        "wins": 7,
-        "losses": 8,
-        "draws": 0,
-        "results": [
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/",
-        "memo": ""
-      }
-    ],
-    "west": [
-      {
-        "id": 3969,
-        "name": "東白龍",
-        "yomi": "とうはくりゅう",
-        "rank": "十両9",
-        "side": "west",
-        "wins": 8,
-        "losses": 7,
-        "draws": 0,
-        "results": [
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/",
-        "memo": ""
-      }
-    ]
-  },
-  {
-    "title": "十両10",
-    "east": [
-      {
-        "id": 3988,
-        "name": "生田目",
-        "yomi": "なばため",
-        "rank": "十両10",
-        "side": "east",
-        "wins": 9,
-        "losses": 6,
-        "draws": 0,
-        "results": [
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3988/",
-        "memo": ""
-      }
-    ],
-    "west": [
-      {
-        "id": 4142,
-        "name": "丹治",
-        "yomi": "たんじ",
-        "rank": "十両10",
-        "side": "west",
-        "wins": 9,
-        "losses": 6,
-        "draws": 0,
-        "results": [
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4142/",
-        "memo": ""
-      }
-    ]
-  },
-  {
-    "title": "十両11",
-    "east": [
-      {
-        "id": 3255,
-        "name": "輝",
-        "yomi": "かがやき",
-        "rank": "十両11",
-        "side": "east",
-        "wins": 11,
-        "losses": 4,
-        "draws": 0,
-        "results": [
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/",
-        "memo": ""
-      }
-    ],
-    "west": [
-      {
-        "id": 4095,
-        "name": "日翔志",
-        "yomi": "ひとし",
-        "rank": "十両11",
-        "side": "west",
-        "wins": 9,
-        "losses": 6,
-        "draws": 0,
-        "results": [
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/",
-        "memo": ""
-      }
-    ]
-  },
-  {
-    "title": "十両12",
-    "east": [
-      {
-        "id": 3367,
-        "name": "玉正鳳",
-        "yomi": "たましょうほう",
-        "rank": "十両12",
-        "side": "east",
-        "wins": 6,
-        "losses": 9,
-        "draws": 0,
-        "results": [
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/",
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4287/",
         "memo": ""
       }
     ],
@@ -2139,29 +835,277 @@ export const juryo: RankGroup[] = [
         "id": 4165,
         "name": "嘉陽",
         "yomi": "かよう",
+        "rank": "十両4",
+        "side": "west",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/",
+        "memo": ""
+      }
+    ]
+  },
+  {
+    "title": "十両5",
+    "east": [
+      {
+        "id": 2890,
+        "name": "竜電",
+        "yomi": "りゅうでん",
+        "rank": "十両5",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2890/",
+        "memo": ""
+      }
+    ],
+    "west": [
+      {
+        "id": 3761,
+        "name": "若隆景",
+        "yomi": "わかたかかげ",
+        "rank": "十両5",
+        "side": "west",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/",
+        "memo": ""
+      }
+    ]
+  },
+  {
+    "title": "十両6",
+    "east": [
+      {
+        "id": 3553,
+        "name": "湘南乃海",
+        "yomi": "しょうなんのうみ",
+        "rank": "十両6",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3553/",
+        "memo": ""
+      }
+    ],
+    "west": [
+      {
+        "id": 3988,
+        "name": "生田目",
+        "yomi": "なばため",
+        "rank": "十両6",
+        "side": "west",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3988/",
+        "memo": ""
+      }
+    ]
+  },
+  {
+    "title": "十両7",
+    "east": [
+      {
+        "id": 4142,
+        "name": "丹治",
+        "yomi": "たんじ",
+        "rank": "十両7",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4142/",
+        "memo": ""
+      }
+    ],
+    "west": [
+      {
+        "id": 4095,
+        "name": "日翔志",
+        "yomi": "ひとし",
+        "rank": "十両7",
+        "side": "west",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4095/",
+        "memo": ""
+      }
+    ]
+  },
+  {
+    "title": "十両8",
+    "east": [
+      {
+        "id": 3743,
+        "name": "翠富士",
+        "yomi": "みどりふじ",
+        "rank": "十両8",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3743/",
+        "memo": ""
+      }
+    ],
+    "west": [
+      {
+        "id": 3969,
+        "name": "東白龍",
+        "yomi": "とうはくりゅう",
+        "rank": "十両8",
+        "side": "west",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3969/",
+        "memo": ""
+      }
+    ]
+  },
+  {
+    "title": "十両9",
+    "east": [
+      {
+        "id": 3620,
+        "name": "御嶽海",
+        "yomi": "みたけうみ",
+        "rank": "十両9",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3620/",
+        "memo": ""
+      }
+    ],
+    "west": [
+      {
+        "id": 4164,
+        "name": "白熊",
+        "yomi": "しろくま",
+        "rank": "十両9",
+        "side": "west",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4164/",
+        "memo": ""
+      }
+    ]
+  },
+  {
+    "title": "十両10",
+    "east": [
+      {
+        "id": 3803,
+        "name": "炎鵬",
+        "yomi": "えんほう",
+        "rank": "十両10",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3803/",
+        "memo": ""
+      }
+    ],
+    "west": [
+      {
+        "id": 4121,
+        "name": "若ノ勝",
+        "yomi": "わかのしょう",
+        "rank": "十両10",
+        "side": "west",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4121/",
+        "memo": ""
+      }
+    ]
+  },
+  {
+    "title": "十両11",
+    "east": [
+      {
+        "id": 3818,
+        "name": "友風",
+        "yomi": "ともかぜ",
+        "rank": "十両11",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3818/",
+        "memo": ""
+      }
+    ],
+    "west": [
+      {
+        "id": 2565,
+        "name": "佐田の海",
+        "yomi": "さだのうみ",
+        "rank": "十両11",
+        "side": "west",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2565/",
+        "memo": ""
+      }
+    ]
+  },
+  {
+    "title": "十両12",
+    "east": [
+      {
+        "id": 4358,
+        "name": "旭富士",
+        "yomi": "あさひふじ",
+        "rank": "十両12",
+        "side": "east",
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4358/",
+        "memo": ""
+      }
+    ],
+    "west": [
+      {
+        "id": 3367,
+        "name": "玉正鳳",
+        "yomi": "たましょうほう",
         "rank": "十両12",
         "side": "west",
-        "wins": 10,
-        "losses": 5,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "loss"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4165/",
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3367/",
         "memo": ""
       }
     ]
@@ -2175,26 +1119,10 @@ export const juryo: RankGroup[] = [
         "yomi": "めいせい",
         "rank": "十両13",
         "side": "east",
-        "wins": 7,
-        "losses": 8,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "win"
-        ],
+        "results": [],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3337/",
         "memo": ""
       }
@@ -2206,26 +1134,10 @@ export const juryo: RankGroup[] = [
         "yomi": "ときふどう",
         "rank": "十両13",
         "side": "west",
-        "wins": 7,
-        "losses": 8,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "win",
-          "loss",
-          "win",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "win"
-        ],
+        "results": [],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3927/",
         "memo": ""
       }
@@ -2235,63 +1147,31 @@ export const juryo: RankGroup[] = [
     "title": "十両14",
     "east": [
       {
-        "id": 3839,
-        "name": "栃大海",
-        "yomi": "とちたいかい",
+        "id": 4124,
+        "name": "羽出山",
+        "yomi": "はつやま",
         "rank": "十両14",
         "side": "east",
-        "wins": 5,
-        "losses": 10,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "loss",
-          "win",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "loss",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3839/",
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/",
         "memo": ""
       }
     ],
     "west": [
       {
-        "id": 2892,
-        "name": "錦木",
-        "yomi": "にしきぎ",
+        "id": 4356,
+        "name": "竜鳳",
+        "yomi": "りゅうほう",
         "rank": "十両14",
         "side": "west",
-        "wins": 6,
-        "losses": 9,
+        "wins": 0,
+        "losses": 0,
         "draws": 0,
-        "results": [
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "win",
-          "loss",
-          "loss",
-          "win"
-        ],
-        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2892/",
+        "results": [],
+        "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4356/",
         "memo": ""
       }
     ]

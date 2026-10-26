@@ -122,9 +122,9 @@ function createLiveTargetFixture(): { archive: TorikumiDataSet; data: TorikumiDa
 }
 
 beforeEach(async () => {
-  // Keep relative dates stable: the published opening bouts are two days away.
+  // Keep relative dates stable: 2026-11-06 is 2 days before November opening day (2026-11-08).
   vi.useFakeTimers({ toFake: ['Date'] });
-  vi.setSystemTime(new Date('2026-09-11T12:00:00+09:00'));
+  vi.setSystemTime(new Date('2026-11-06T12:00:00+09:00'));
   await act(() => i18n.changeLanguage('ja'));
 });
 
@@ -134,12 +134,12 @@ afterEach(() => {
 
 describe('Home page', () => {
   it.each([
-    ['ja', '2026-09-11', '開幕後、取組結果に応じて更新', '勝ち星、無敗力士、決まり手傾向'],
-    ['ja', '2026-09-20', '公開済みの取組結果を集計', '勝ち星、無敗力士、決まり手傾向'],
-    ['ja', '2026-09-28', '終了した場所の成績・優勝・三賞', '最終成績、優勝・三賞、決まり手傾向'],
-    ['en', '2026-09-11', 'Updates with bout results after opening day', 'Wins, unbeaten wrestlers, and kimarite trends'],
-    ['en', '2026-09-20', 'Statistics from published bout results', 'Wins, unbeaten wrestlers, and kimarite trends'],
-    ['en', '2026-09-28', 'Completed basho records, champions & special prizes', 'Final records, champions, special prizes, and kimarite trends'],
+    ['ja', '2026-11-06', '開幕後、取組結果に応じて更新', '勝ち星、無敗力士、決まり手傾向'],
+    ['ja', '2026-11-15', '公開済みの取組結果を集計', '勝ち星、無敗力士、決まり手傾向'],
+    ['ja', '2026-11-23', '終了した場所の成績・優勝・三賞', '最終成績、優勝・三賞、決まり手傾向'],
+    ['en', '2026-11-06', 'Updates with bout results after opening day', 'Wins, unbeaten wrestlers, and kimarite trends'],
+    ['en', '2026-11-15', 'Statistics from published bout results', 'Wins, unbeaten wrestlers, and kimarite trends'],
+    ['en', '2026-11-23', 'Completed basho records, champions & special prizes', 'Final records, champions, special prizes, and kimarite trends'],
   ])('matches analytics copy to %s on %s', async (language, date, availability, description) => {
     vi.setSystemTime(new Date(`${date}T12:00:00+09:00`));
     await act(() => i18n.changeLanguage(language));
@@ -147,10 +147,10 @@ describe('Home page', () => {
     const card = screen.getByRole('region', { name: language === 'ja' ? '場所分析・三賞・決まり手傾向' : 'Basho Analytics & Kimarite Trends' });
     expect(within(card).getByText(availability)).toBeInTheDocument();
     expect(within(card).getByText(description)).toBeInTheDocument();
-    if (date === '2026-09-28') {
+    if (date === '2026-11-23') {
       // jsdom 30 joins flex-item text in the accessible name without inserting a space.
       const resultLink = screen.getByRole('link', { name: language === 'ja' ? /確定結果\s*今場所は終了しました/ : /Final results\s*This basho is complete/i });
-      expect(resultLink).toHaveAttribute('href', '/202609-torikumi/');
+      expect(resultLink).toHaveAttribute('href', '/202611-torikumi/');
       expect(resultLink).not.toHaveTextContent(/三賞|special prizes/i);
     }
   });
@@ -277,8 +277,8 @@ describe('Home page', () => {
 
     // Get all links
     const allLinks = screen.getAllByRole('link');
-    const banzukeLink = allLinks.find((l) => l.getAttribute('href') === '/202609-banzuke/');
-    const yoteiLink = allLinks.find((l) => l.getAttribute('href') === '/202609-yotei/');
+    const banzukeLink = allLinks.find((l) => l.getAttribute('href') === '/202611-banzuke/');
+    const yoteiLink = allLinks.find((l) => l.getAttribute('href') === '/202611-yotei/');
     const analyticsLink = allLinks.find((l) => l.getAttribute('href') === '/analytics/');
     const currentHeroTitle = `${torikumiArchive.year}${torikumiArchive.bashoName}`;
     const mayBanzukeLink = allLinks.find((l) => l.getAttribute('href') === `${MAY2026_BANZUKE_PATH}/`);
@@ -288,8 +288,8 @@ describe('Home page', () => {
 
     const hero = document.querySelector<HTMLElement>('.hero-section');
     expect(within(hero!).getByRole('heading', { level: 2, name: currentHeroTitle })).toBeInTheDocument();
-    expect(banzukeLink).toHaveAttribute('href', '/202609-banzuke/');
-    expect(yoteiLink).toHaveAttribute('href', '/202609-yotei/');
+    expect(banzukeLink).toHaveAttribute('href', '/202611-banzuke/');
+    expect(yoteiLink).toHaveAttribute('href', '/202611-yotei/');
     expect(analyticsLink).toHaveAttribute('href', '/analytics/');
     expect(firstMayDay).toBeDefined();
     expect(mayBanzukeLink).toHaveAttribute('href', `${MAY2026_BANZUKE_PATH}/`);
@@ -312,7 +312,7 @@ describe('Home page', () => {
 
     expect(screen.queryByLabelText('令和八年五月場所最終結果')).not.toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: `${MAY2026_TORIKUMI_DATA.year}${MAY2026_TORIKUMI_DATA.bashoName}` })).toBeInTheDocument();
-    expect(within(screen.getByLabelText('今場所の主要な導線')).getByRole('link', { name: /星取表|番付/ })).toHaveAttribute('href', '/202609-banzuke/');
+    expect(within(screen.getByLabelText('今場所の主要な導線')).getByRole('link', { name: /星取表|番付/ })).toHaveAttribute('href', '/202611-banzuke/');
   });
 
   it('keeps March 2026 archive guidance on the top page', () => {
@@ -445,8 +445,8 @@ describe('Home page', () => {
     const quickNav = screen.getByLabelText('今場所の主要な導線');
     expect(quickNav).toBeInTheDocument();
     expect(within(quickNav).getByRole('link', { name: /初日の取組/ })).toBeInTheDocument();
-    expect(within(quickNav).getByRole('link', { name: /星取表/ })).toHaveAttribute('href', '/202609-banzuke/');
-    expect(within(quickNav).getByRole('link', { name: /取組予定一覧/ })).toHaveAttribute('href', '/202609-yotei/');
+    expect(within(quickNav).getByRole('link', { name: /星取表/ })).toHaveAttribute('href', '/202611-banzuke/');
+    expect(within(quickNav).getByRole('link', { name: /取組予定一覧/ })).toHaveAttribute('href', '/202611-yotei/');
     expect(within(quickNav).getByRole('link', { name: /マイ力士/ })).toHaveAttribute('href', '/my-rikishi/');
   });
 
@@ -466,7 +466,7 @@ describe('Home page', () => {
     await act(() => i18n.changeLanguage('ja'));
   });
 
-  it('renders the upcoming highlights section with published official bout links and monomosu', () => {
+  it('renders the upcoming highlights section awaiting official bouts and monomosu', () => {
     render(
       <MemoryRouter>
         <Home />
@@ -477,15 +477,12 @@ describe('Home page', () => {
     expect(highlightsSection).not.toBeNull();
     expect(within(highlightsSection!).getByRole('heading', { level: 2, name: '明後日のみどころ' })).toBeInTheDocument();
     expect(within(highlightsSection!).getByText('初日')).toBeInTheDocument();
+    expect(within(highlightsSection!).getByText('公式取組発表待ち')).toBeInTheDocument();
 
     // Monomosu Box (now a sibling section, not inside DailyHighlightsSection)
     const monomosuBox = document.querySelector<HTMLElement>('.monomosu-box');
     expect(monomosuBox).not.toBeNull();
     expect(within(monomosuBox!).getByRole('button', { name: /座布団を投げる/ })).toBeInTheDocument();
-
-    const compareLinks = within(highlightsSection!).getAllByRole('link', { name: /詳しく比較する/ });
-    expect(compareLinks.length).toBeGreaterThanOrEqual(1);
-    expect(within(highlightsSection!).getAllByRole('link', { name: /取組を見る/ }).length).toBeGreaterThanOrEqual(1);
   });
 
   it('translates the daily highlights section when English is selected in upcoming mode', async () => {
@@ -501,8 +498,8 @@ describe('Home page', () => {
     expect(highlightsSection).not.toBeNull();
     expect(within(highlightsSection!).getByRole('heading', { level: 2, name: "Day After Tomorrow's Highlights" })).toBeInTheDocument();
     expect(within(highlightsSection!).getByText('Day 1')).toBeInTheDocument();
+    expect(within(highlightsSection!).getByText('Awaiting Official Bouts')).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: 'VOICE' })).toBeInTheDocument();
-    expect(within(highlightsSection!).getAllByRole('link', { name: /Compare Rikishi/ }).length).toBeGreaterThanOrEqual(1);
 
     await act(() => i18n.changeLanguage('ja'));
   });
