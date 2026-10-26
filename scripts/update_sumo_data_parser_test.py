@@ -1764,7 +1764,10 @@ class WriteApiJsonSkipTest(unittest.TestCase):
                     basho_name="五月場所",
                     write_torikumi_json=True,
                 )
-            after = json.loads((api_dir / "torikumi.json").read_text(encoding="utf-8"))
+            raw = (api_dir / "torikumi.json").read_bytes()
+            self.assertFalse(raw.startswith(b"\xef\xbb\xbf"))
+            self.assertNotIn(b"\r\n", raw)
+            after = json.loads(raw.decode("utf-8"))
             self.assertEqual(after["bashoName"], "五月場所")
             self.assertEqual(after["year"], "令和八年")
             self.assertEqual(after["updatedAt"], "2026-05-11T10:05:00+09:00")

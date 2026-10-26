@@ -79,6 +79,12 @@ describe('PWA smoke config', () => {
     });
   });
 
+  it('declares UTF-8 for public API JSON responses', () => {
+    const headers = readFileSync(join(process.cwd(), 'public/_headers'), 'utf-8');
+
+    expect(headers).toContain('/api/v1/*.json\n  Content-Type: application/json; charset=utf-8');
+  });
+
   it('keeps auto-update strategy and public-API-only runtime caching', () => {
     const viteConfig = readFileSync(join(process.cwd(), 'vite.config.ts'), 'utf-8');
 
