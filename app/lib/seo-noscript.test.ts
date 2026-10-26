@@ -139,20 +139,43 @@ describe('buildSeoNoscriptHtml', () => {
     expect(html).toContain('/yobidashi/1986/');
   });
 
-  it('renders a minimal message for an archived banzuke without JSON data', async () => {
+  it('renders a frozen snapshot for an archived banzuke without JSON data', async () => {
     const ctx = makeContext({}); // no JSON payloads
     const html = await buildSeoNoscriptHtml('/202603-banzuke/', '2026年3月場所 番付 | o-sumo', ctx);
     expect(html).toContain('2026年3月場所 番付 | o-sumo');
-    expect(html).toContain('公式情報');
+    expect(html).toContain('豊昇龍');
+    expect(html).toContain('更新');
+    expect(ctx.calls).toEqual([]);
   });
 
-  it('renders the current basho banzuke for /202609-banzuke/', async () => {
-    const ctx = makeContext({ '/api/v1/banzuke.json': baseBanzuke });
+  it('renders the current November basho banzuke from live JSON', async () => {
+    const currentBanzuke = {
+      ...baseBanzuke,
+      bashoName: '十一月場所',
+      updatedAt: '2026-10-26T15:16:49+09:00',
+      makuuchi: [],
+      juryo: [{
+        title: '十両',
+        east: [{ id: 4356, name: '竜鳳', yomi: 'りゅうほう', rank: '十両14', side: 'east' }],
+        west: [],
+      }],
+    };
+    const ctx = makeContext({ '/api/v1/banzuke.json': currentBanzuke });
+    const html = await buildSeoNoscriptHtml('/202611-banzuke/', '2026年11月場所 番付 | o-sumo', ctx);
+    expect(html).toContain('十両');
+    expect(html).toContain('竜鳳');
+    expect(html).toContain('/rikishi/4356/');
+    expect(html).toContain('更新');
+    expect(ctx.calls).toContain('/api/v1/banzuke.json');
+  });
+
+  it('renders the frozen September banzuke without fetching current JSON', async () => {
+    const ctx = makeContext({});
     const html = await buildSeoNoscriptHtml('/202609-banzuke/', '2026年9月場所 番付 | o-sumo', ctx);
-    expect(html).toContain('横綱');
     expect(html).toContain('大の里');
     expect(html).toContain('/rikishi/4227/');
     expect(html).toContain('更新');
+    expect(ctx.calls).not.toContain('/api/v1/banzuke.json');
   });
 
   it('renders the month hub day list for /202609-yotei/', async () => {
@@ -164,15 +187,19 @@ describe('buildSeoNoscriptHtml', () => {
   });
 
   it('renders the day route with kanji names from banzuke.json for /20260913-yotei/', async () => {
-    const ctx = makeContext({ '/api/v1/banzuke.json': baseBanzuke });
-    // We need a torikumi.json with a day entry for 20260913. The simplest way
-    // is to point fetchJson at banzuke.json for both calls — the buildSeoNoscriptHtml
-    // day route only reads banzuke.json for the live basho, and the day itself
-    // comes from the bundled fixture (202609 scheduleDays[0]).
+    const ctx = makeContext({});
     const html = await buildSeoNoscriptHtml('/20260913-yotei/', '2026年9月場所 初日 取組予定 | o-sumo', ctx);
     expect(html).toContain('<h1>2026年9月場所 初日 取組予定 | o-sumo</h1>');
     // The bundled fixture has actual matches for 初日; verify the day table renders.
     expect(html).toContain('幕内');
+    expect(ctx.calls).not.toContain('/api/v1/banzuke.json');
+  });
+
+  it('fetches current banzuke JSON for a November day route', async () => {
+    const ctx = makeContext({ '/api/v1/banzuke.json': baseBanzuke });
+    const html = await buildSeoNoscriptHtml('/20261108-yotei/', '2026年11月場所 初日 取組予定 | o-sumo', ctx);
+    expect(html).toContain('<h1>2026年11月場所 初日 取組予定 | o-sumo</h1>');
+    expect(ctx.calls).toContain('/api/v1/banzuke.json');
   });
 
   it('renders profile H1 with name for /rikishi/{id}/ when the payload is reused', async () => {

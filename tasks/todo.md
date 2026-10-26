@@ -770,3 +770,9 @@ exhaustion and left unrelated packages incomplete.
 - [x] 日本語・英語の上部バナー文言を十一月場所の番付更新に変更する
 - [x] バナー文言テストと全体検証を実行する
 - [x] 同じ PR にコミットして push する
+
+## PR #698 Copilot 指摘修正 (2026-10-26)
+
+- [x] noscript の現行場所とアーカイブ番付データの分岐を修正する
+- [x] 202611 番付の Cloudflare rewrite と回帰テストを追加する
+- [x] 全体検証、コミット、同じ PR への push、Copilot 指摘の再確認を行う
