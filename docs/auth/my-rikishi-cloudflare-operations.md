@@ -35,6 +35,19 @@ revoked. Production bindings and variables remain unchanged. Account usage
 lookup is permission-limited, so subscription coverage is not claimed from
 unavailable usage data.
 
+Production is configured and verified as of 2026-10-26:
+
+- Production D1 database: `o-sumo-my-rikishi-production`
+- Pages Production binding: `MY_RIKISHI_DB`
+- Production URL: `https://osada.us`
+- Production variables: `AUTH_ORIGIN` (`https://osada.us`), `GOOGLE_CLIENT_ID`
+- Production secrets: `AUTH_SESSION_SECRET`, `GOOGLE_CLIENT_SECRET`
+- Applied migration: `0001_my_rikishi_auth.sql` (applied and tables verified)
+- Existing KV namespace `COMPARE_OG_CACHE` preserved
+- Verification: `scripts/verify_my_rikishi_preview.ps1 -BaseUrl https://osada.us` passed
+  (anonymous session returns `{ authenticated: false }`, OAuth start redirects to Google
+  with exact production callback URL `https://osada.us/api/auth/callback/google` and client ID)
+
 ## Preview setup
 
 1. Create the Preview D1 database and record its returned ID in a private
@@ -95,6 +108,6 @@ logout, and cross-user isolation checks remain for interactive verification.
 Browser verification 2026-10-26 (interactive, by repo owner): login merged
 local and remote selections without duplicates, a second browser showed the
 same synchronized list, and logout left local use available - all passed.
-Production gate: Preview automated and browser checklists are now complete;
-Production D1/OAuth setup still requires a separate explicit confirmation
-before any production mutation.
+Production gate: Preview automated and browser checklists were completed.
+Owner approved production rollout on 2026-10-26. Production D1 database, OAuth,
+and Pages production bindings/secrets were configured and verified.

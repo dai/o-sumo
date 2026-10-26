@@ -1,3 +1,15 @@
+# My Rikishi Production rollout (2026-10-26)
+
+- [x] Owner approved production rollout (gate opened).
+- [x] Verify production D1 database `o-sumo-my-rikishi-production` and applied migration `0001_my_rikishi_auth.sql`.
+- [x] Verify Cloudflare Pages production configuration (`MY_RIKISHI_DB`, `AUTH_ORIGIN`, `GOOGLE_CLIENT_ID`, secrets, preserving `COMPARE_OG_CACHE`).
+- [x] Run automated verification against production host `https://osada.us`.
+- [x] Record production status in `docs/auth/my-rikishi-cloudflare-operations.md`.
+
+## Review
+
+Owner explicitly approved production rollout on 2026-10-26. Verified production D1 database `o-sumo-my-rikishi-production` (migration `0001_my_rikishi_auth.sql` applied, tables `users`, `sessions`, `my_rikishi` verified). Pages production bindings and variables confirmed (`MY_RIKISHI_DB` binding pointing to production D1, `AUTH_ORIGIN` = `https://osada.us`, production Google Client ID and secrets, with existing `COMPARE_OG_CACHE` KV namespace intact). Canonical production deployment succeeded. Automated verification (`pwsh ./scripts/verify_my_rikishi_preview.ps1 -BaseUrl https://osada.us`) passed: anonymous session returned `{ authenticated: false }`, and OAuth initialization redirected (302) to Google with `https://osada.us/api/auth/callback/google`. Operations documentation updated.
+
 # My Rikishi Preview verification (2026-10-26)
 
 - [x] Re-run automated Preview checks (anonymous session, OAuth-start redirect).
