@@ -1,3 +1,16 @@
+# My Rikishi Preview verification (2026-10-26)
+
+- [x] Re-run automated Preview checks (anonymous session, OAuth-start redirect).
+- [x] Interactive browser checks: login merge, second-browser sync, logout local fallback.
+- [x] Record results in docs/auth/my-rikishi-cloudflare-operations.md.
+
+## Review
+
+verify_my_rikishi_preview.ps1 passed against the Preview host. Owner-verified in browser: login merged local and remote selections without duplicates, a second browser showed the same synchronized list, and logout left local use available. Production gate remains closed pending a separate explicit confirmation.
+
+Full suite 2026-10-26 (Task 7 Step 1): `npm test` 97 files / 803 tests all passed; `git diff --check` clean. Initial local `npm run typecheck` (TS2688) and `npm run build` (workbox 2 MiB precache limit) failures were traced to a stale local `node_modules` (pre-major-update TypeScript 5.9 / Vite 7), not to the source: after `npm ci` (TypeScript 7.0.2 / Vite 8.3.5 / Vitest 5.0.5), typecheck, build, and test all pass with no source change.
+
+
 # Agent guide PWA navigation fix (2026-10-25)
 
 - [x] Reproduce the browser-only 404 on `/agents/` and `/auth.md` and identify the navigation fallback.
