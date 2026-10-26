@@ -3,7 +3,12 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import { i18n } from '../lib/i18n';
 import { JULY2026_TORIKUMI_DATA } from '../lib/july2026-data';
-import AnalyticsDashboardPage, { buildDashboardMetrics, topKimarite, topRikishiByWins } from './page';
+import AnalyticsDashboardPage, {
+  AnalyticsResultsTable,
+  buildDashboardMetrics,
+  topKimarite,
+  topRikishiByWins,
+} from './page';
 import * as bashoResultsModule from '../lib/basho-results';
 
 const FINAL_TIME = new Date('2026-11-25T12:00:00+09:00'); // after November basho ends
@@ -98,13 +103,18 @@ describe('AnalyticsDashboardPage', () => {
     expect(screen.getByRole('row', { name: '十両優勝 湘南乃海 12勝3敗' })).toBeInTheDocument();
   });
 
-  it('renders actual September 2026 basho awards without mock when looking at September archive', () => {
-    vi.spyOn(bashoResultsModule, 'getBashoResults').mockImplementation((id) => (
-      bashoResultsModule.BASHO_RESULTS_ARCHIVE[id] ?? null
-    ));
+  it('renders actual September 2026 basho awards from the archive data', () => {
     const sep = bashoResultsModule.BASHO_RESULTS_ARCHIVE['202609'];
     expect(sep).toBeDefined();
-    expect(sep.winners).toHaveLength(6);
+    render(<AnalyticsResultsTable bashoLabel="令和八年九月場所" results={sep} />);
+
+    expect(screen.getByRole('heading', { level: 2, name: /九月場所 結果/ })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '幕内最高優勝 大の里 12勝3敗' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '殊勲賞 該当なし —' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '敢闘賞 藤ノ川 11勝4敗' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '敢闘賞 美ノ海 10勝5敗' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '技能賞 該当なし —' })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '十両優勝 北の若 11勝4敗' })).toBeInTheDocument();
   });
 
   it('switches between Makuuchi and Juryo divisions via tabs', () => {
