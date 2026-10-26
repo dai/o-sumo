@@ -2,7 +2,7 @@
   "id": 3761,
   "name": "若隆景",
   "yomi": "わかたかかげ",
-  "currentRank": "前頭12",
+  "currentRank": "十両5",
   "birthDate": "平成6年12月6日（31歳）",
   "height": 183,
   "weight": 138,
@@ -11,9 +11,9 @@
   "careerStats": {
     "wins": 420,
     "losses": 261,
-    "draws": 87
+    "draws": 102
   },
   "photoUrl": "/images/rikishi/3761.png",
   "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3761/",
-  "updatedAt": "2026-08-31T07:40:28+09:00"
+  "updatedAt": "2026-10-26T15:16:49+09:00"
 }

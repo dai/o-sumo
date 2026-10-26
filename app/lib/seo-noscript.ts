@@ -12,6 +12,7 @@
  */
 
 import { KIMARITE_LIST, type Kimarite } from './kimarite-data';
+import { CURRENT_BASHO_ID, getBanzukeDataByMonthKey } from './archive-basho-data';
 import {
   getAllArchiveRouteConfigs,
   getArchiveRouteConfigByMonthKey,
@@ -269,16 +270,12 @@ async function renderOfficialsList(kind: 'gyoji' | 'yobidashi', ctx: SeoNoscript
 async function renderBanzukeMonth(monthKey: string, title: string, ctx: SeoNoscriptContext): Promise<string | null> {
   const config = getArchiveRouteConfigByMonthKey(monthKey);
   if (!config) return null;
-  // The current basho lives in /api/v1/banzuke.json. Past month snapshots
-  // are not exposed as JSON, so we render a minimal noscript for them.
-  let banzuke: BanzukeDocument | null = null;
-  if (config.monthKey === '202609') {
+  // The current basho is refreshed from /api/v1/banzuke.json. Archived months
+  // use the frozen snapshots bundled with the corresponding route config.
+  let banzuke: BanzukeDocument | null = getBanzukeDataByMonthKey(monthKey);
+  if (config.monthKey === CURRENT_BASHO_ID) {
     const payload = await ctx.fetchJson('/api/v1/banzuke.json');
     if (isBanzukeDocument(payload)) banzuke = payload;
-  } else {
-    // Fall back to a small placeholder for archived basho. The SPA fills
-    // in the full table when JS is enabled.
-    return `<p>${escapeHtml(title)} の番付の詳細は、<a href="https://www.sumo.or.jp/">日本相撲協会</a>の公式情報を参照してください。</p>`;
   }
   if (!banzuke) {
     return `<p>${escapeHtml(title)} の番付データを取得できませんでした。</p>`;
@@ -343,7 +340,7 @@ async function renderDayRoute(dateKey: string, mode: 'result' | 'schedule', titl
   // For the live basho we additionally pull banzuke.json to look up kanji
   // names. Past months already have kanji names in the bundled fixtures.
   let banzukeIndex = new Map<number, { name: string; yomi: string }>();
-  if (config.monthKey === '202609') {
+  if (config.monthKey === CURRENT_BASHO_ID) {
     const payload = await ctx.fetchJson('/api/v1/banzuke.json');
     if (isBanzukeDocument(payload)) banzukeIndex = buildBanzukeRikishiIndex(payload);
   }

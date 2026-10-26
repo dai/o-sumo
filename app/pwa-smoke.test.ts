@@ -25,6 +25,17 @@ describe('PWA smoke config', () => {
     expect(redirects).toContain('/kimarite/ / 200');
   });
 
+  it('rewrites the November 2026 banzuke routes to the SPA', () => {
+    const redirects = readFileSync(join(process.cwd(), 'public/_redirects'), 'utf-8');
+
+    expect(redirects).toContain('/202611-banzuke /202611-banzuke/ 200');
+    expect(redirects).toContain('/202611-banzuke/ / 200');
+    expect(redirects).toContain('/202611-banduke /202611-banzuke/ 200');
+    expect(redirects).toContain('/202611-banduke/ /202611-banzuke/ 200');
+    expect(redirects).toContain('/202611-o-sumo /202611-banzuke/ 200');
+    expect(redirects).toContain('/202611-o-sumo/ /202611-banzuke/ 200');
+  });
+
   it('advertises the API catalog from the homepage response headers', () => {
     const headers = readFileSync(join(process.cwd(), 'public/_headers'), 'utf-8');
 
@@ -66,6 +77,12 @@ describe('PWA smoke config', () => {
         },
       ],
     });
+  });
+
+  it('declares UTF-8 for public API JSON responses', () => {
+    const headers = readFileSync(join(process.cwd(), 'public/_headers'), 'utf-8');
+
+    expect(headers).toContain('/api/v1/*.json\n  Content-Type: application/json; charset=utf-8');
   });
 
   it('keeps auto-update strategy and public-API-only runtime caching', () => {

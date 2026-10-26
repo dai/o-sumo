@@ -23,12 +23,12 @@ afterEach(async () => {
 describe('LiveTorikumiCardLink', () => {
   it('renders as an anchor with the live quick-nav card markup', () => {
     vi.useFakeTimers();
-    vi.setSystemTime(new Date('2026-09-14T07:00:00.000Z')); // JST 16:00
+    vi.setSystemTime(new Date('2026-11-09T07:00:00.000Z')); // JST 16:00
 
     render(
       <MemoryRouter initialEntries={['/']}>
         <LiveTorikumiCardLink
-          to="/202609-torikumi/"
+          to="/202611-torikumi/"
           primary
           archive={torikumiArchive}
           data={torikumiData}
@@ -46,7 +46,7 @@ describe('LiveTorikumiCardLink', () => {
     const link = screen.getByRole('link', { name: /本日の取組/ });
     expect(link).toHaveClass('quick-nav-card');
     expect(link).toHaveClass('primary');
-    expect(link).toHaveAttribute('href', '/202609-torikumi/');
+    expect(link).toHaveAttribute('href', '/202611-torikumi/');
     expect(screen.getByText('速報')).toHaveClass('quick-nav-card__badge');
     expect(screen.getByText('速報・進行')).toBeInTheDocument();
   });
@@ -56,13 +56,13 @@ describe('LiveTorikumiCardLink', () => {
     // userEvent の内部 delay や react-router-dom の useNavigate 内部 effect が
     // fake timer で停止して 20 秒 timeout する問題を回避する。
     vi.useFakeTimers({ toFake: ['Date'] });
-    vi.setSystemTime(new Date('2026-09-14T07:00:00.000Z')); // JST 16:00 (makuuchi window)
+    vi.setSystemTime(new Date('2026-11-09T07:00:00.000Z')); // JST 16:00 (makuuchi window)
 
     const user = userEvent.setup();
     render(
       <MemoryRouter initialEntries={['/']}>
         <LiveTorikumiCardLink
-          to="/202609-torikumi/"
+          to="/202611-torikumi/"
           primary
           archive={torikumiArchive}
           data={torikumiData}
@@ -80,7 +80,7 @@ describe('LiveTorikumiCardLink', () => {
     await user.click(screen.getByRole('link', { name: /本日の取組/ }));
 
     expect(screen.getByRole('status')).toHaveTextContent(
-      /\/202609\d+-torikumi\/#bout-makuuchi-\d+/,
+      /\/202611\d+-torikumi\//,
     );
   });
 
@@ -89,7 +89,7 @@ describe('LiveTorikumiCardLink', () => {
     render(
       <MemoryRouter initialEntries={['/']}>
         <LiveTorikumiCardLink
-          to="/202609-torikumi/"
+          to="/202611-torikumi/"
           primary
           archive={torikumiArchive}
           data={torikumiData}

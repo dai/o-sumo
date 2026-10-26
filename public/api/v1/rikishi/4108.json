@@ -2,18 +2,18 @@
   "id": 4108,
   "name": "欧勝馬",
   "yomi": "おうしょうま",
-  "currentRank": "前頭5",
+  "currentRank": "前頭9",
   "birthDate": "平成9年4月9日（29歳）",
   "height": 190,
-  "weight": 166,
+  "weight": 162,
   "shusshin": "モンゴル・トブ",
   "debut": "令和三年十一月場所",
   "careerStats": {
-    "wins": 207,
-    "losses": 189,
+    "wins": 213,
+    "losses": 198,
     "draws": 7
   },
   "photoUrl": "/images/rikishi/4108.png",
   "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4108/",
-  "updatedAt": "2026-08-31T07:40:28+09:00"
+  "updatedAt": "2026-10-26T15:16:49+09:00"
 }

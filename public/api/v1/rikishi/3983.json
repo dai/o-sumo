@@ -2,18 +2,18 @@
   "id": 3983,
   "name": "出羽ノ龍",
   "yomi": "でわのりゅう",
-  "currentRank": "十両1",
+  "currentRank": "前頭14",
   "birthDate": "平成13年3月7日（25歳）",
   "height": 181,
-  "weight": 156,
+  "weight": 154,
   "shusshin": "モンゴル・ウランバートル",
   "debut": "令和元年十一月場所",
   "careerStats": {
-    "wins": 179,
-    "losses": 116,
+    "wins": 189,
+    "losses": 121,
     "draws": 10
   },
   "photoUrl": "/images/rikishi/3983.png",
   "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3983/",
-  "updatedAt": "2026-08-31T07:40:28+09:00"
+  "updatedAt": "2026-10-26T15:16:49+09:00"
 }

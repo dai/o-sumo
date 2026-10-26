@@ -2,18 +2,18 @@
   "id": 4124,
   "name": "羽出山",
   "yomi": "はつやま",
-  "currentRank": "十両8",
+  "currentRank": "十両14",
   "birthDate": "平成11年11月5日（26歳）",
   "height": 195,
-  "weight": 141,
+  "weight": 134,
   "shusshin": "東京都東村山市",
   "debut": "令和四年三月場所",
   "careerStats": {
-    "wins": 147,
-    "losses": 121,
+    "wins": 151,
+    "losses": 132,
     "draws": 1
   },
   "photoUrl": "/images/rikishi/4124.png",
   "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4124/",
-  "updatedAt": "2026-08-31T07:40:28+09:00"
+  "updatedAt": "2026-10-26T15:16:49+09:00"
 }

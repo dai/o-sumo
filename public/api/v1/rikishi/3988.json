@@ -2,18 +2,18 @@
   "id": 3988,
   "name": "生田目",
   "yomi": "なばため",
-  "currentRank": "十両10",
+  "currentRank": "十両6",
   "birthDate": "平成14年2月22日（24歳）",
   "height": 177,
-  "weight": 168,
+  "weight": 176,
   "shusshin": "栃木県さくら市",
   "debut": "令和二年一月場所",
   "careerStats": {
-    "wins": 164,
-    "losses": 111,
+    "wins": 173,
+    "losses": 117,
     "draws": 39
   },
-  "photoUrl": "https://www.sumo.or.jp/img/common/fb_logo.gif",
+  "photoUrl": "/images/rikishi/3988.png",
   "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3988/",
-  "updatedAt": "2026-08-31T07:40:28+09:00"
+  "updatedAt": "2026-10-26T15:16:49+09:00"
 }

@@ -82,11 +82,27 @@
   Link: </202609-yotei/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
   Vary: Accept
 
+/202611-banzuke/
+  Link: </202611-banzuke/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+  Vary: Accept
+/202611-torikumi/
+  Link: </202611-torikumi/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+  Vary: Accept
+/202611-yotei/
+  Link: </202611-yotei/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+  Vary: Accept
+
 # Markdown for Agents: served as text/markdown when requested
 /*.md
   Content-Type: text/markdown; charset=utf-8
   Cache-Control: private, no-cache, no-transform
   Vary: Accept
+
+# Public API JSON: keep Japanese payloads explicitly UTF-8 for human viewers
+# and clients that do not apply JSON's UTF-8 default reliably.
+/api/v1/*.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=0, must-revalidate
 
 # Agent discovery API catalog
 /.well-known/api-catalog

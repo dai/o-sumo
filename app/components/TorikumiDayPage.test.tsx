@@ -45,7 +45,7 @@ describe('TorikumiDayPage', () => {
 
     const breadcrumb = screen.getByRole('navigation', { name: 'パンくず' });
     expect(within(breadcrumb).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
-    expect(within(breadcrumb).getByRole('link', { name: /九月場所|七月場所|五月場所|三月場所/ })).toHaveAttribute('href', getHubPathForDateKey(firstResultDay.pathDate, 'result'));
+    expect(within(breadcrumb).getByRole('link', { name: /十一月場所|九月場所|七月場所|五月場所|三月場所/ })).toHaveAttribute('href', getHubPathForDateKey(firstResultDay.pathDate, 'result'));
     expect(within(breadcrumb).getByText(/初日|二の丸|.*日目/)).toBeInTheDocument();
   });
 

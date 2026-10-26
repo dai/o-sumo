@@ -3,12 +3,17 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import { i18n } from '../lib/i18n';
 import { JULY2026_TORIKUMI_DATA } from '../lib/july2026-data';
-import AnalyticsDashboardPage, { buildDashboardMetrics, topKimarite, topRikishiByWins } from './page';
+import AnalyticsDashboardPage, {
+  AnalyticsResultsTable,
+  buildDashboardMetrics,
+  topKimarite,
+  topRikishiByWins,
+} from './page';
 import * as bashoResultsModule from '../lib/basho-results';
 
-const FINAL_TIME = new Date('2026-09-30T12:00:00+09:00'); // after September basho ends
-const UPCOMING_TIME = new Date('2026-08-15T12:00:00+09:00'); // before September basho starts
-const LIVE_MID_TIME = new Date('2026-09-18T12:00:00+09:00'); // mid September basho (e.g. Day 6)
+const FINAL_TIME = new Date('2026-11-25T12:00:00+09:00'); // after November basho ends
+const UPCOMING_TIME = new Date('2026-10-26T12:00:00+09:00'); // before November basho starts
+const LIVE_MID_TIME = new Date('2026-11-13T12:00:00+09:00'); // mid November basho (e.g. Day 6)
 
 describe('AnalyticsDashboardPage', () => {
   beforeEach(() => {
@@ -29,8 +34,8 @@ describe('AnalyticsDashboardPage', () => {
     );
 
     expect(screen.getByRole('heading', { level: 1, name: '大相撲アナリティクス' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: '取組結果を見る' })).toHaveAttribute('href', '/202609-torikumi/');
-    expect(screen.getByRole('link', { name: '過去の予定を見る' })).toHaveAttribute('href', '/202609-yotei/');
+    expect(screen.getByRole('link', { name: '取組結果を見る' })).toHaveAttribute('href', '/202611-torikumi/');
+    expect(screen.getByRole('link', { name: '過去の予定を見る' })).toHaveAttribute('href', '/202611-yotei/');
   });
 
   it('exposes a breadcrumb on the analytics page back to home', () => {
@@ -47,8 +52,8 @@ describe('AnalyticsDashboardPage', () => {
 
   it('renders the pending announcement box and blank table when basho results are pending on final day', () => {
     vi.spyOn(bashoResultsModule, 'getBashoResults').mockReturnValue({
-      bashoId: '202609',
-      bashoName: '令和八年九月場所',
+      bashoId: '202611',
+      bashoName: '令和八年十一月場所',
       status: 'pending',
       announcementNote: '本日千秋楽の全取組終了後、表彰決定次第掲載します。',
       winners: [],
@@ -60,7 +65,7 @@ describe('AnalyticsDashboardPage', () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByRole('heading', { level: 2, name: /九月場所 結果/ })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: /十一月場所 結果/ })).toBeInTheDocument();
     expect(screen.getByText('千秋楽 表彰発表待ち')).toBeInTheDocument();
     expect(screen.getByText('本日千秋楽の全取組終了後、表彰決定次第掲載します。')).toBeInTheDocument();
     expect(screen.getByRole('row', { name: '幕内最高優勝 — —' })).toBeInTheDocument();
@@ -72,8 +77,8 @@ describe('AnalyticsDashboardPage', () => {
 
   it('renders the finalized champions and special prizes when results are announced', () => {
     vi.spyOn(bashoResultsModule, 'getBashoResults').mockReturnValue({
-      bashoId: '202609',
-      bashoName: '令和八年九月場所',
+      bashoId: '202611',
+      bashoName: '令和八年十一月場所',
       status: 'announced',
       winners: [
         { id: 'makuuchi-yusho', category: 'makuuchiYusho', rikishi: '大の里', record: '13勝2敗' },
@@ -90,7 +95,7 @@ describe('AnalyticsDashboardPage', () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByRole('heading', { level: 2, name: /九月場所 結果/ })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: /十一月場所 結果/ })).toBeInTheDocument();
     expect(screen.getByRole('row', { name: '幕内最高優勝 大の里 13勝2敗' })).toBeInTheDocument();
     expect(screen.getByRole('row', { name: '殊勲賞 若元春 10勝5敗' })).toBeInTheDocument();
     expect(screen.getByRole('row', { name: '敢闘賞 熱海富士 11勝4敗' })).toBeInTheDocument();
@@ -98,12 +103,10 @@ describe('AnalyticsDashboardPage', () => {
     expect(screen.getByRole('row', { name: '十両優勝 湘南乃海 12勝3敗' })).toBeInTheDocument();
   });
 
-  it('renders actual September 2026 basho awards without mock', () => {
-    render(
-      <MemoryRouter>
-        <AnalyticsDashboardPage />
-      </MemoryRouter>,
-    );
+  it('renders actual September 2026 basho awards from the archive data', () => {
+    const sep = bashoResultsModule.BASHO_RESULTS_ARCHIVE['202609'];
+    expect(sep).toBeDefined();
+    render(<AnalyticsResultsTable bashoLabel="令和八年九月場所" results={sep} />);
 
     expect(screen.getByRole('heading', { level: 2, name: /九月場所 結果/ })).toBeInTheDocument();
     expect(screen.getByRole('row', { name: '幕内最高優勝 大の里 12勝3敗' })).toBeInTheDocument();
@@ -185,7 +188,7 @@ describe('AnalyticsDashboardPage', () => {
     expect(screen.getByRole('heading', { level: 1, name: 'Grand Sumo Analytics' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: 'Makuuchi Win Leaders' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: 'Makuuchi Kimarite Trends' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { level: 2, name: 'September 2026 Basho Results' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: 'November 2026 Basho Results' })).toBeInTheDocument();
 
     await act(() => i18n.changeLanguage('ja'));
   });
@@ -202,7 +205,7 @@ describe('AnalyticsDashboardPage', () => {
     expect(screen.getByRole('region', { name: '主要指標' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /勝ち星リーダー/ })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /決まり手トレンド/ })).toBeInTheDocument();
-    expect(screen.queryByRole('heading', { level: 2, name: /九月場所 結果/ })).not.toBeInTheDocument();
+    expect(screen.queryByRole('heading', { level: 2, name: /十一月場所 結果/ })).not.toBeInTheDocument();
     expect(screen.queryByText('千秋楽以降に分析を公開します。')).not.toBeInTheDocument();
   });
 
@@ -218,7 +221,7 @@ describe('AnalyticsDashboardPage', () => {
     expect(screen.getByRole('region', { name: '主要指標' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /勝ち星リーダー/ })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /決まり手トレンド/ })).toBeInTheDocument();
-    expect(screen.queryByRole('heading', { level: 2, name: /九月場所 結果/ })).not.toBeInTheDocument();
+    expect(screen.queryByRole('heading', { level: 2, name: /十一月場所 結果/ })).not.toBeInTheDocument();
     expect(screen.queryByText('千秋楽以降に分析を公開します。')).not.toBeInTheDocument();
   });
 });

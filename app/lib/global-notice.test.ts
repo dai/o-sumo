@@ -3,15 +3,15 @@ import jaCommon from '../../src/locales/ja/common.json';
 import enCommon from '../../src/locales/en/common.json';
 
 describe('global release notice', () => {
-  it('announces the agent guide update in Japanese', () => {
+  it('announces the November 2026 banzuke update in Japanese', () => {
     expect(jaCommon.global.agentGuideNotice).toBe(
-      '20261025: エージェント向けにサイトを整理しました。',
+      '20261026: 令和8年11月場所の番付を更新しました。',
     );
   });
 
-  it('announces the agent guide update in English', () => {
+  it('announces the November 2026 banzuke update in English', () => {
     expect(enCommon.global.agentGuideNotice).toBe(
-      '20261025: We have organized the site for AI agents.',
+      '20261026: Updated the banzuke for the November 2026 basho.',
     );
   });
 });

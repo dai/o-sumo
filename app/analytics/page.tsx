@@ -7,7 +7,7 @@ import { getBashoStatus } from '../lib/basho-status';
 import { CURRENT_RESULT_PATH, CURRENT_SCHEDULE_PATH } from '../lib/archive-basho-data';
 import { makuuchiData, juryo, type Rikishi } from '../lib/sumo-data';
 import { torikumiArchive, torikumiMonthKey, type TorikumiDataSet } from '../lib/torikumi-data';
-import { getBashoResults } from '../lib/basho-results';
+import { getBashoResults, type BashoResultsData } from '../lib/basho-results';
 import './page.css';
 
 export type DashboardMetric = {
@@ -96,6 +96,65 @@ export function topKimarite(
     .slice(0, limit);
 }
 
+export function AnalyticsResultsTable({
+  bashoLabel,
+  results,
+}: {
+  bashoLabel: string;
+  results: BashoResultsData | null;
+}) {
+  const { t } = useTranslation('common');
+  const isAnnounced = results?.status === 'announced' && results.winners.length > 0;
+
+  return (
+    <section className="analytics-dashboard-panel analytics-results-panel" aria-labelledby="results-heading">
+      <div className="analytics-panel-header">
+        <h2 id="results-heading">{t('analytics.results.heading', { basho: bashoLabel })}</h2>
+        <p>{isAnnounced ? t('analytics.results.description') : (results?.announcementNote || t('analytics.results.pendingDescription'))}</p>
+      </div>
+
+      {!isAnnounced && (
+        <div className="analytics-pending-badge" style={{ marginBottom: '1rem' }}>
+          <span className="pulse-dot" aria-hidden="true" />
+          {t('analytics.results.pendingTitle')}
+        </div>
+      )}
+
+      <table className="analytics-results-table">
+        <thead>
+          <tr>
+            <th scope="col">{t('analytics.results.tableHeading')}</th>
+            <th scope="col">{t('analytics.results.tableRikishi')}</th>
+            <th scope="col">{t('analytics.results.tableRecord')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {isAnnounced ? (
+            results.winners.map((row) => (
+              <tr key={row.id}>
+                <th scope="row">{t(`analytics.results.category.${row.category}`)}</th>
+                <td className="analytics-results-rikishi-cell">
+                  <strong>{row.rikishi}</strong>
+                  {row.note && <span className="analytics-results-note">（{row.note}）</span>}
+                </td>
+                <td>{row.record}</td>
+              </tr>
+            ))
+          ) : (
+            (['makuuchiYusho', 'shukun', 'kanto', 'gino', 'juryoYusho'] as const).map((category) => (
+              <tr key={category}>
+                <th scope="row">{t(`analytics.results.category.${category}`)}</th>
+                <td className="analytics-results-rikishi-cell">—</td>
+                <td>—</td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </section>
+  );
+}
+
 export default function AnalyticsDashboardPage() {
   const { t, i18n } = useTranslation('common');
   const [activeDivision, setActiveDivision] = useState<DivisionKey>('makuuchi');
@@ -122,7 +181,6 @@ export default function AnalyticsDashboardPage() {
   const showResultsSection = isFinal || isSenshuraku;
 
   const bashoResults = getBashoResults(torikumiMonthKey);
-  const isAnnounced = bashoResults?.status === 'announced' && (bashoResults.winners.length ?? 0) > 0;
 
   const divisionLabel = t(`analytics.divisions.${activeDivision}`);
 
@@ -171,51 +229,7 @@ export default function AnalyticsDashboardPage() {
 
         {/* 優勝・三賞セクション（千秋楽または場所終了後） */}
         {showResultsSection && (
-          <section className="analytics-dashboard-panel analytics-results-panel" aria-labelledby="results-heading">
-            <div className="analytics-panel-header">
-              <h2 id="results-heading">{t('analytics.results.heading', { basho: bashoLabel })}</h2>
-              <p>{isAnnounced ? t('analytics.results.description') : (bashoResults?.announcementNote || t('analytics.results.pendingDescription'))}</p>
-            </div>
-
-            {!isAnnounced && (
-              <div className="analytics-pending-badge" style={{ marginBottom: '1rem' }}>
-                <span className="pulse-dot" aria-hidden="true" />
-                {t('analytics.results.pendingTitle')}
-              </div>
-            )}
-
-            <table className="analytics-results-table">
-              <thead>
-                <tr>
-                  <th scope="col">{t('analytics.results.tableHeading')}</th>
-                  <th scope="col">{t('analytics.results.tableRikishi')}</th>
-                  <th scope="col">{t('analytics.results.tableRecord')}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {isAnnounced ? (
-                  bashoResults.winners.map((row) => (
-                    <tr key={row.id}>
-                      <th scope="row">{t(`analytics.results.category.${row.category}`)}</th>
-                      <td className="analytics-results-rikishi-cell">
-                        <strong>{row.rikishi}</strong>
-                        {row.note && <span className="analytics-results-note">（{row.note}）</span>}
-                      </td>
-                      <td>{row.record}</td>
-                    </tr>
-                  ))
-                ) : (
-                  (['makuuchiYusho', 'shukun', 'kanto', 'gino', 'juryoYusho'] as const).map((category) => (
-                    <tr key={category}>
-                      <th scope="row">{t(`analytics.results.category.${category}`)}</th>
-                      <td className="analytics-results-rikishi-cell">—</td>
-                      <td>—</td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </section>
+          <AnalyticsResultsTable bashoLabel={bashoLabel} results={bashoResults} />
         )}
 
         {/* 幕内 / 十両 ディビジョン切り替えタブ */}

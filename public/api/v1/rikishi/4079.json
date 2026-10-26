@@ -2,18 +2,18 @@
   "id": 4079,
   "name": "豪ノ山",
   "yomi": "ごうのやま",
-  "currentRank": "前頭3",
+  "currentRank": "前頭5",
   "birthDate": "平成10年4月7日（28歳）",
   "height": 178,
-  "weight": 156,
+  "weight": 163,
   "shusshin": "大阪府寝屋川市",
   "debut": "令和三年三月場所",
   "careerStats": {
-    "wins": 236,
-    "losses": 193,
+    "wins": 242,
+    "losses": 202,
     "draws": 2
   },
   "photoUrl": "/images/rikishi/4079.png",
   "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4079/",
-  "updatedAt": "2026-08-31T07:40:28+09:00"
+  "updatedAt": "2026-10-26T15:16:49+09:00"
 }

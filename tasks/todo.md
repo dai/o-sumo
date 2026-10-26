@@ -758,3 +758,28 @@ exhaustion and left unrelated packages incomplete.
 5. **`build` が `poppy.json` を dist に乗せないリスク**: `npm run build` 後 `ls dist/.well-known/poppy.json` で 117 bytes 確認済。
 6. **doc drift の再発 (Phase 6 新規)**: `tasks/lessons.md` に同期パターン lesson を記録。今後の Changelog / Discovery surfaces 行変更時は `agent-metadata.test.ts` の構造 guard と 1:1 で照合するレビュー手順が身につく。
 7. **`www` 正規化未設定**: Cloudflare dashboard 側で Redirect Rule を追加する手順を `docs/agent-ready.md` の operator-side runbook に明記。本 PR は「手順の文書化」と「検証 curl の提供」までを担当。
+
+## PR #698 レビュー修正 (2026-10-26)
+
+- [x] 九月場所表彰テストを実際の画面描画アサーションへ戻す
+- [x] PR 本文の新規プロフィール名と ID の対応を修正する
+- [x] 重点テスト、型チェック、ビルド、差分検査、PR チェック状態を確認する
+
+## PR #698 上部バナー更新 (2026-10-26)
+
+- [x] 日本語・英語の上部バナー文言を十一月場所の番付更新に変更する
+- [x] バナー文言テストと全体検証を実行する
+- [x] 同じ PR にコミットして push する
+
+## PR #698 Copilot 指摘修正 (2026-10-26)
+
+- [x] noscript の現行場所とアーカイブ番付データの分岐を修正する
+- [x] 202611 番付の Cloudflare rewrite と回帰テストを追加する
+- [x] 全体検証、コミット、同じ PR への push、Copilot 指摘の再確認を行う
+
+## API JSON 文字コードと更新反映の根本修正 (2026-10-26)
+
+- [x] `/api/v1/*.json` の配信を UTF-8 と明示し、回帰テストを追加する
+- [x] データ更新ワークフローが生成物を検証・commit・pushし、Pagesへ反映する経路を確認する
+- [x] 更新処理と配信設定のテスト、型チェック、ビルド、差分検査を実行する
+- [x] 同じ PR #698 にコミットして push し、CI と公開レスポンスを再確認する

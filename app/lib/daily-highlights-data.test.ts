@@ -8,6 +8,7 @@ import {
 } from './daily-highlights-data';
 import { torikumiArchive, type TorikumiDataSet, type TorikumiArchiveDay } from './torikumi-data';
 import { JULY2026_TORIKUMI_DATA } from './july2026-data';
+import { SEPTEMBER2026_TORIKUMI_DATA } from './september2026-data';
 import { getDayPath } from './torikumi-routes';
 
 describe('daily-highlights-data', () => {
@@ -171,10 +172,10 @@ describe('getDailyHighlights pending state', () => {
   it('resolves relative musubi title dynamically based on dayDiff', () => {
     const sept11 = new Date('2026-09-11T06:00:00Z');
     const target2DaysBefore = resolveDailyHighlightsTarget({
-      archive: torikumiArchive,
+      archive: SEPTEMBER2026_TORIKUMI_DATA,
       bashoStatus: {
         kind: 'upcoming',
-        startDate: torikumiArchive.scheduleDays[0].isoDate,
+        startDate: SEPTEMBER2026_TORIKUMI_DATA.scheduleDays![0].isoDate,
         endDate: '2026-09-27',
         day: null,
       },
@@ -190,10 +191,10 @@ describe('getDailyHighlights pending state', () => {
 
     const sept12 = new Date('2026-09-12T01:00:00Z');
     const target1DayBefore = resolveDailyHighlightsTarget({
-      archive: torikumiArchive,
+      archive: SEPTEMBER2026_TORIKUMI_DATA,
       bashoStatus: {
         kind: 'upcoming',
-        startDate: torikumiArchive.scheduleDays[0].isoDate,
+        startDate: SEPTEMBER2026_TORIKUMI_DATA.scheduleDays![0].isoDate,
         endDate: '2026-09-27',
         day: null,
       },
@@ -209,21 +210,22 @@ describe('getDailyHighlights pending state', () => {
   });
 
   it('resolves both today and tomorrow targets in live mode when tomorrow schedule has matches', () => {
-    const scheduleDay1 = torikumiArchive.scheduleDays[0];
+    const scheduleDays = SEPTEMBER2026_TORIKUMI_DATA.scheduleDays!;
+    const scheduleDay1 = scheduleDays[0];
     const scheduleDay2 = {
-      ...torikumiArchive.scheduleDays[1],
+      ...scheduleDays[1],
       status: 'published' as const,
       data: {
-        ...torikumiArchive.scheduleDays[1].data,
+        ...scheduleDays[1].data,
         makuuchi: {
-          ...torikumiArchive.scheduleDays[1].data.makuuchi,
+          ...scheduleDays[1].data.makuuchi,
           matches: scheduleDay1.data.makuuchi.matches,
         },
       },
     };
     const liveArchive: TorikumiDataSet = {
-      ...torikumiArchive,
-      scheduleDays: [scheduleDay1, scheduleDay2, ...torikumiArchive.scheduleDays.slice(2)],
+      ...SEPTEMBER2026_TORIKUMI_DATA,
+      scheduleDays: [scheduleDay1, scheduleDay2, ...scheduleDays.slice(2)],
       resultDays: [
         {
           ...scheduleDay1,
@@ -251,21 +253,22 @@ describe('getDailyHighlights pending state', () => {
   });
 
   it('still resolves the tomorrow slot in live mode when the next basho day is only pending', () => {
-    const scheduleDay1 = torikumiArchive.scheduleDays[0];
+    const scheduleDays = SEPTEMBER2026_TORIKUMI_DATA.scheduleDays!;
+    const scheduleDay1 = scheduleDays[0];
     const scheduleDay2 = {
-      ...torikumiArchive.scheduleDays[1],
+      ...scheduleDays[1],
       status: 'published' as const,
       data: {
-        ...torikumiArchive.scheduleDays[1].data,
+        ...scheduleDays[1].data,
         makuuchi: {
-          ...torikumiArchive.scheduleDays[1].data.makuuchi,
+          ...scheduleDays[1].data.makuuchi,
           matches: scheduleDay1.data.makuuchi.matches,
         },
       },
     };
     const liveArchive: TorikumiDataSet = {
-      ...torikumiArchive,
-      scheduleDays: [scheduleDay1, scheduleDay2, ...torikumiArchive.scheduleDays.slice(2)],
+      ...SEPTEMBER2026_TORIKUMI_DATA,
+      scheduleDays: [scheduleDay1, scheduleDay2, ...scheduleDays.slice(2)],
       resultDays: [
         {
           ...scheduleDay1,
@@ -293,20 +296,21 @@ describe('getDailyHighlights pending state', () => {
   });
 
   it('keeps tomorrow null in live mode when the next basho day is missing from scheduleDays', () => {
-    const scheduleDay1 = torikumiArchive.scheduleDays[0];
+    const scheduleDays = SEPTEMBER2026_TORIKUMI_DATA.scheduleDays!;
+    const scheduleDay1 = scheduleDays[0];
     const scheduleDay2 = {
-      ...torikumiArchive.scheduleDays[1],
+      ...scheduleDays[1],
       status: 'published' as const,
       data: {
-        ...torikumiArchive.scheduleDays[1].data,
+        ...scheduleDays[1].data,
         makuuchi: {
-          ...torikumiArchive.scheduleDays[1].data.makuuchi,
+          ...scheduleDays[1].data.makuuchi,
           matches: scheduleDay1.data.makuuchi.matches,
         },
       },
     };
     const liveArchive: TorikumiDataSet = {
-      ...torikumiArchive,
+      ...SEPTEMBER2026_TORIKUMI_DATA,
       scheduleDays: [scheduleDay1, scheduleDay2],
       resultDays: [
         {

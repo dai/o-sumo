@@ -560,9 +560,9 @@ describe('onRequest SEO noscript injection', () => {
       expect(appended).toContain('/archives/');
       expect(appended).toContain('/rikishi/');
       expect(appended).toContain('/kimarite/');
-      expect(appended).toContain('/202609-banzuke/');
-      expect(appended).toContain('/202609-yotei/');
-      expect(appended).toContain('/202609-torikumi/');
+      expect(appended).toContain('/202611-banzuke/');
+      expect(appended).toContain('/202611-yotei/');
+      expect(appended).toContain('/202611-torikumi/');
     } finally {
       spy.restore();
     }

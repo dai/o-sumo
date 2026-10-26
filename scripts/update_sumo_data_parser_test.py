@@ -889,15 +889,15 @@ class LoadDivisionRikishiFallbackTest(unittest.TestCase):
         with mock.patch.object(MODULE, "load_banzuke_meta", side_effect=RuntimeError("boom")):
             rikishi = MODULE.load_division_rikishi(1)
 
-        self.assertIn(3761, rikishi)
-        self.assertEqual(rikishi[3761]["name"], "若隆景")
+        self.assertIn(4227, rikishi)
+        self.assertEqual(rikishi[4227]["name"], "大の里")
 
     def test_uses_local_banzuke_when_remote_banzuke_is_empty(self) -> None:
         with mock.patch.object(MODULE, "load_banzuke_meta", return_value={"BanzukeTable": []}):
             rikishi = MODULE.load_division_rikishi(2)
 
-        self.assertIn(3983, rikishi)
-        self.assertEqual(rikishi[3983]["name"], "出羽ノ龍")
+        self.assertIn(3761, rikishi)
+        self.assertEqual(rikishi[3761]["name"], "若隆景")
 
 
 class OfficialBashoScheduleTest(unittest.TestCase):
@@ -1764,7 +1764,10 @@ class WriteApiJsonSkipTest(unittest.TestCase):
                     basho_name="五月場所",
                     write_torikumi_json=True,
                 )
-            after = json.loads((api_dir / "torikumi.json").read_text(encoding="utf-8"))
+            raw = (api_dir / "torikumi.json").read_bytes()
+            self.assertFalse(raw.startswith(b"\xef\xbb\xbf"))
+            self.assertNotIn(b"\r\n", raw)
+            after = json.loads(raw.decode("utf-8"))
             self.assertEqual(after["bashoName"], "五月場所")
             self.assertEqual(after["year"], "令和八年")
             self.assertEqual(after["updatedAt"], "2026-05-11T10:05:00+09:00")

@@ -2,18 +2,18 @@
   "id": 3907,
   "name": "狼雅",
   "yomi": "ろうが",
-  "currentRank": "前頭5",
+  "currentRank": "前頭8",
   "birthDate": "平成11年3月2日（27歳）",
-  "height": 184,
-  "weight": 160,
+  "height": 185,
+  "weight": 159,
   "shusshin": "ロシア・トゥヴァ",
   "debut": "平成三十年十一月場所",
   "careerStats": {
-    "wins": 272,
-    "losses": 215,
+    "wins": 278,
+    "losses": 224,
     "draws": 12
   },
   "photoUrl": "/images/rikishi/3907.png",
   "sourceUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3907/",
-  "updatedAt": "2026-08-31T07:40:28+09:00"
+  "updatedAt": "2026-10-26T15:16:49+09:00"
 }
