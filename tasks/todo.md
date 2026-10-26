@@ -8,6 +8,9 @@
 
 verify_my_rikishi_preview.ps1 passed against the Preview host. Owner-verified in browser: login merged local and remote selections without duplicates, a second browser showed the same synchronized list, and logout left local use available. Production gate remains closed pending a separate explicit confirmation.
 
+Full suite 2026-10-26 (Task 7 Step 1): `npm test` 97 files / 803 tests all passed; `git diff --check` clean. `npm run typecheck` (TS2688) and `npm run build` (workbox 2 MiB precache limit, index chunk 2.27 MB) fail identically on `main` - pre-existing, unrelated to this docs-only branch.
+
+
 # Agent guide PWA navigation fix (2026-10-25)
 
 - [x] Reproduce the browser-only 404 on `/agents/` and `/auth.md` and identify the navigation fallback.
