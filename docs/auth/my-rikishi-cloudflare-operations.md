@@ -84,3 +84,10 @@ disabled. To force sign-out, delete the rows in `sessions`; do not delete users
 or My Rikishi rows unless a separate data-deletion decision has been approved.
 Public pages, public JSON APIs, Markdown responses, A2A, and OGP behavior do not
 depend on the authentication database.
+
+Re-verified 2026-10-26 from branch `nov-2026-init` (automated checks only):
+`scripts/verify_my_rikishi_preview.ps1` passed the anonymous-session check
+(`GET /api/auth/session` returns `{ authenticated: false }`) and the
+OAuth-start check (`GET /api/auth/google?returnTo=/my-rikishi/` returns 302
+to `https://accounts.google.com/`). Browser login, merge, second-browser,
+logout, and cross-user isolation checks remain for interactive verification.
