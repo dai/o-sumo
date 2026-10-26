@@ -782,4 +782,4 @@ exhaustion and left unrelated packages incomplete.
 - [x] `/api/v1/*.json` の配信を UTF-8 と明示し、回帰テストを追加する
 - [x] データ更新ワークフローが生成物を検証・commit・pushし、Pagesへ反映する経路を確認する
 - [x] 更新処理と配信設定のテスト、型チェック、ビルド、差分検査を実行する
-- [ ] 同じ PR #698 にコミットして push し、CI と公開レスポンスを再確認する
+- [x] 同じ PR #698 にコミットして push し、CI と公開レスポンスを再確認する
