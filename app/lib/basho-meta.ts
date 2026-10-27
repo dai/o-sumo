@@ -40,6 +40,25 @@ export function formatGregorianBashoLabel(monthKey: string, lang: string = 'ja')
   return `${year}年${monthNum}月場所`;
 }
 
+/**
+ * Returns the display label for a basho in the given language.
+ * `ja` keeps the Reiwa-era name (`令和八年九月場所`); `en` uses the
+ * `September 2026 Basho` form the analytics dashboard shows.
+ */
+export function formatBashoDisplayLabel(
+  monthKey: string,
+  bashoName: string,
+  lang: string = 'ja',
+): string {
+  if (lang === 'en') {
+    const year = monthKey.slice(0, 4);
+    const rawMonth = monthKey.slice(4, 6);
+    const monthName = MONTH_NAMES_EN[rawMonth] || MONTH_NAMES_EN[String(Number(rawMonth))] || `Month ${rawMonth}`;
+    return `${monthName} ${year} Basho`;
+  }
+  return bashoName;
+}
+
 export function formatBashoTitle(
   info: { year?: string; bashoName?: string; monthKey?: string },
   lang: string = 'ja',

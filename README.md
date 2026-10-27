@@ -43,9 +43,9 @@ o-sumo は、大相撲の番付、取組、力士・行司・呼出名鑑を配�
   - 決まり手: `/kimarite`
   - 場所ステータス分析: `/analytics/`
 - 現行ルート例:
-  - `/202609-banzuke/`
-  - `/202609-torikumi/`
-  - `/20260913-yotei/`
+  - `/202611-banzuke/`
+  - `/202611-torikumi/`
+  - `/20261108-yotei/`
   - `/compare/?ids=3842,4227`
   - `/kimarite`
 - 読みもの: `https://blog.osada.us/`
@@ -107,7 +107,7 @@ AI Search MCP は自然言語検索用の `search` ツールを提供します�
 curl -fsS https://osada.us/.well-known/agent-skills/index.json
 curl -fsS https://osada.us/mcp/server-card
 curl -fsS https://osada.us/api/v1/torikumi.json
-curl -i -H 'Accept: text/markdown' https://osada.us/20260926-yotei/
+curl -i -H 'Accept: text/markdown' https://osada.us/20261108-yotei/
 ```
 
 対応ブラウザーでは別途 WebMCP の4ツール（`search_rikishi`、`list_basho`、
@@ -281,13 +281,13 @@ python scripts/update_official_profiles_test.py
 
 生成内容と公開前の整合確認は `docs/official-profile-refresh-runbook.md` を参照してください。
 
-七月場所は確定済みで、`app/lib/july2026-data.ts` と `app/lib/july2026-banzuke-data.ts` に不変スナップショットを保持しています。現在の `/api/v1/banzuke.json` と `/api/v1/torikumi.json` は九月場所を返し、七月場所はアーカイブとして参照できます。
+九月場所は確定済みで、`app/lib/september2026-data.ts` と `app/lib/september2026-banzuke-data.ts` に不変スナップショットを保持しています。現在の `/api/v1/banzuke.json` と `/api/v1/torikumi.json` は十一月場所を返し、九月場所はアーカイブとして参照できます。
 
-場所切替前の確認は `npm run preflight:current-data` で実行します。公式年間日程と公式番付を取得し、現行の番付・取組、archive、ルート、sitemap、workflow の整合性を読み取り専用で検査します。今回の九月場所切替では `--current-month 202607 --target-month 202609` を使用しました。すべてのゲートが `[OK]` のときだけ `READY`（exit code 0）、公式公開前・取得失敗・不整合がある場合は `BLOCKED`（exit code 1）になります。生成器は実行せず、データ・ルート・sitemap・redirect・workflow は変更しません。
+場所切替前の確認は `npm run preflight:current-data` で実行します。公式年間日程と公式番付を取得し、現行の番付・取組、archive、ルート、sitemap、workflow の整合性を読み取り専用で検査します。今回の十一月場所切替では `--current-month 202609 --target-month 202611` を使用しました。すべてのゲートが `[OK]` のときだけ `READY`（exit code 0）、公式公開前・取得失敗・不整合がある場合は `BLOCKED`（exit code 1）になります。生成器は実行せず、データ・ルート・sitemap・redirect・workflow は変更しません。
 
 別の月を確認するときは `npm run preflight:current-data -- --current-month YYYYMM --target-month YYYYMM` のように npm 経由で `--` 以降に引数を渡してください（npm 8.x 以降）。あるいは `python scripts/preflight_current_basho.py --current-month YYYYMM --target-month YYYYMM` を直接呼び出すこともできます。npm script は固定の既定値のままなので、次回以降の切替時は月引数を毎回指定してください。
 
-次の場所への切替では、現行の九月場所データと七月場所の不変スナップショットを変更せず、`banzuke.json` と `torikumi.json` を新しい場所の確定データへ同時に切り替えます。切替前には、番付・取組・公開JSON・月別ルート・sitemapの整合性を検証します。
+次の場所への切替では、現行の十一月場所データと九月場所の不変スナップショットを変更せず、`banzuke.json` と `torikumi.json` を新しい場所の確定データへ同時に切り替えます。切替前には、番付・取組・公開JSON・月別ルート・sitemapの整合性を検証します。
 
 生成・更新対象:
 
@@ -398,12 +398,12 @@ GitHub Actions では PR と `main` / `codex/**` / `automation/data-updates` へ
 - SPA fallback: `public/_redirects`（アプリルートのみ。`/api/v1/*` は静的 JSON をそのまま配信）
 - 日付ベースの URL を直接開いても `index.html` にフォールバックします
 
-## 九月場所の更新運用
+## 十一月場所の更新運用
 
-- 九月の current API は切替済みです。七月の TypeScript snapshot は不変 archive として維持します。
+- 十一月の current API は切替済みです。九月の TypeScript snapshot は不変 archive として維持します。
 - schedule は workflow を含む変更が既定 branch の `main` に merge された後だけ有効です。共通 lock は未 merge の日次 PR との競合までは防げず、混雑時は実行が遅延または skip され得るため10分以内の反映保証はありません。
-- 9月12日の公式取組公開後、`gh workflow run daily-data-update.yml -R dai/o-sumo --ref main` を手動実行し、run、PR checks と merge、`main` の JSON、本番 JSON を順に確認します。公開前に両部門が空なら no-op であり、公開成功ではありません。
-- 9月27日の最終結果と翌日の確認後、cron 削除は別 PR で行います。summary は実行時点の snapshot であり、merge や deploy の証明ではありません。
+- 11月6日ごろの公式取組発表後、`gh workflow run daily-data-update.yml -R dai/o-sumo --ref main` を手動実行し、run、PR checks と merge、`main` の JSON、本番 JSON を順に確認します。公開前に両部門が空なら no-op であり、公開成功ではありません。
+- 11月22日の最終結果と翌日の確認後、cron 削除は別 PR で行います。summary は実行時点の snapshot であり、merge や deploy の証明ではありません。
 - `preflight:current-data` は workflow 停止中に行う場所切替専用の安全 gate で、場所中の readiness check ではありません。`不戦` は validator の限定的例外で、取得の部分失敗時は旧データを保持します。
 - ニュース更新だけは JST 09:05・19:05 の1日2回に継続します。
 - CLI では `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main` / `gh workflow run realtime-torikumi-direct-update.yml -R dai/o-sumo --ref main` / `gh workflow run news-feed-update.yml -R dai/o-sumo --ref main` を使えます。

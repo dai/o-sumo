@@ -72,7 +72,7 @@ python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule
 
 For the place-by-place rikishi profile refresh procedure, see `docs/rikishi-profile-refresh-runbook.md`.
 
-The July basho is final and has immutable snapshots in `app/lib/july2026-data.ts` and `app/lib/july2026-banzuke-data.ts`. Keep the current July `banzuke.json` and `torikumi.json` until the September banzuke is officially published. The next update PR must validate the official banzuke, torikumi schedule, public JSON, monthly routes, and sitemap together before switching them.
+The September basho is final and has immutable snapshots in `app/lib/september2026-data.ts` and `app/lib/september2026-banzuke-data.ts`. Keep the current September `banzuke.json` and `torikumi.json` until the November banzuke is officially published. The next update PR must validate the official banzuke, torikumi schedule, public JSON, monthly routes, and sitemap together before switching them.
 
 Useful local URLs:
 
@@ -130,13 +130,13 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - One PR per day: the workflow opens a PR on the JST-date-keyed branch `automation/news-updates-<YYYY-MM-DD>`; multiple same-day runs accumulate commits on the same PR
 - Auto-merge is enabled only on the JST 19:xx run via `gh pr merge --auto --squash --delete-branch`; the branch is removed after merge
 
-## Operations After The July 2026 Archive
+## Operations After The September 2026 Archive
 
-- After the conclusion of the September basho, cron schedules for `daily-data-update.yml` and `realtime-torikumi-direct-update.yml` are removed, leaving them operational via `workflow_dispatch` (manual) only. The schedules will be restored ahead of the November 2026 basho.
+- After the conclusion of the November basho, cron schedules for `daily-data-update.yml` and `realtime-torikumi-direct-update.yml` are removed, leaving them operational via `workflow_dispatch` (manual) only. The schedules will be restored ahead of the next basho.
 - `news-feed-update.yml` continues to refresh the news feed every two hours, skipping `news.json` writes when nothing changed.
 - Keep the `public/_headers` cache policy and PWA `registerType: "autoUpdate"` unchanged.
 
-The current APIs are now September while July snapshots remain immutable archives. During the off-season following the September basho, cron schedules are stopped, retaining manual-only runs (workflow_dispatch). Schedules will be restored via PR when official November torikumi is announced (around November 6). Summaries are snapshots, not deployment proof. `preflight:current-data` is a transition-only gate used while workflows are paused. Fusen is a narrow validator exception and partial fetch failures preserve old data.
+The current APIs are now November while September snapshots remain immutable archives. During the off-season following the November basho, cron schedules are stopped, retaining manual-only runs (workflow_dispatch). Schedules will be restored via PR when the next basho's official torikumi is announced. Summaries are snapshots, not deployment proof. `preflight:current-data` is a transition-only gate used while workflows are paused. Fusen is a narrow validator exception and partial fetch failures preserve old data.
 
 ### Tests
 

@@ -99,7 +99,10 @@ export function getTorikumiArchiveByMonthKey(monthKey: string): TorikumiDataSet 
   if (monthKey === '202605') {
     return MAY2026_TORIKUMI_DATA;
   }
-  return torikumiArchive;
+  if (monthKey === CURRENT_BASHO_ID) {
+    return torikumiArchive;
+  }
+  throw new Error(`Unknown basho month key: ${monthKey}`);
 }
 
 export function getBanzukeDataByMonthKey(monthKey: string): ArchiveBanzukeData {
@@ -115,5 +118,8 @@ export function getBanzukeDataByMonthKey(monthKey: string): ArchiveBanzukeData {
   if (monthKey === '202605') {
     return MAY2026_BANZUKE_DATA;
   }
-  return CURRENT_BANZUKE_DATA;
+  if (monthKey === CURRENT_BASHO_ID) {
+    return CURRENT_BANZUKE_DATA;
+  }
+  throw new Error(`Unknown basho month key: ${monthKey}`);
 }

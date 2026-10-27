@@ -117,6 +117,33 @@ describe('AnalyticsDashboardPage', () => {
     expect(screen.getByRole('row', { name: '十両優勝 北の若 11勝4敗' })).toBeInTheDocument();
   });
 
+  it('labels the results heading with the basho the awards belong to, not the current one', async () => {
+    const sep = bashoResultsModule.BASHO_RESULTS_ARCHIVE['202609'];
+    render(<AnalyticsResultsTable bashoLabel="令和八年十一月場所" results={sep} />);
+
+    expect(screen.getByRole('heading', { level: 2, name: /九月場所 結果/ })).toBeInTheDocument();
+
+    await act(() => i18n.changeLanguage('en'));
+    expect(screen.getByRole('heading', { level: 2, name: 'September 2026 Basho Results' })).toBeInTheDocument();
+    await act(() => i18n.changeLanguage('ja'));
+  });
+
+  it('renders the current basho pending results table on the page once the basho ends', () => {
+    const pending = bashoResultsModule.BASHO_RESULTS_ARCHIVE['202611'];
+    expect(pending).toBeDefined();
+    expect(pending.status).toBe('pending');
+
+    render(
+      <MemoryRouter>
+        <AnalyticsDashboardPage />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByRole('heading', { level: 2, name: /十一月場所 結果/ })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: '幕内最高優勝 — —' })).toBeInTheDocument();
+    expect(screen.getByText('千秋楽 表彰発表待ち')).toBeInTheDocument();
+  });
+
   it('switches between Makuuchi and Juryo divisions via tabs', () => {
     render(
       <MemoryRouter>

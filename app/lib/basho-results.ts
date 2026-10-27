@@ -22,6 +22,12 @@ export interface BashoResultsData {
  * winners 配列に受賞者と成績を記入します。
  */
 export const BASHO_RESULTS_ARCHIVE: Record<string, BashoResultsData> = {
+  '202611': {
+    bashoId: '202611',
+    bashoName: '令和八年十一月場所',
+    status: 'pending',
+    winners: [],
+  },
   '202609': {
     bashoId: '202609',
     bashoName: '令和八年九月場所',

@@ -270,7 +270,7 @@ following checks:
   (removed in 2026-08-10; this is the expected state).
 - `curl -i -H 'Accept: text/markdown' https://osada.us/` — returns
   `Content-Type: text/markdown; charset=utf-8` and a `Vary: Accept` header.
-- `curl -i -H 'Accept: text/markdown' https://osada.us/20260926-yotei/` —
+- `curl -i -H 'Accept: text/markdown' https://osada.us/20261108-yotei/` —
   returns Markdown for the specified date; also check a result date and a pending day.
 - `curl -fsS https://osada.us/robots.txt` — includes `ai-input=yes` without conflicting rules.
 - `curl -IL https://www.osada.us/.well-known/poppy.json` — once the

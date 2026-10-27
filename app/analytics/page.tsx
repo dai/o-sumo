@@ -8,6 +8,7 @@ import { CURRENT_RESULT_PATH, CURRENT_SCHEDULE_PATH } from '../lib/archive-basho
 import { makuuchiData, juryo, type Rikishi } from '../lib/sumo-data';
 import { torikumiArchive, torikumiMonthKey, type TorikumiDataSet } from '../lib/torikumi-data';
 import { getBashoResults, type BashoResultsData } from '../lib/basho-results';
+import { formatBashoDisplayLabel } from '../lib/basho-meta';
 import './page.css';
 
 export type DashboardMetric = {
@@ -103,13 +104,18 @@ export function AnalyticsResultsTable({
   bashoLabel: string;
   results: BashoResultsData | null;
 }) {
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
   const isAnnounced = results?.status === 'announced' && results.winners.length > 0;
+  // 見出しは表示している表彰の「場所」の名称に従う。表彰が
+  // 直近に発表済みの場所へフォールバックした場合も、その名称を使う。
+  const headingLabel = results
+    ? formatBashoDisplayLabel(results.bashoId, results.bashoName, i18n.resolvedLanguage)
+    : bashoLabel;
 
   return (
     <section className="analytics-dashboard-panel analytics-results-panel" aria-labelledby="results-heading">
       <div className="analytics-panel-header">
-        <h2 id="results-heading">{t('analytics.results.heading', { basho: bashoLabel })}</h2>
+        <h2 id="results-heading">{t('analytics.results.heading', { basho: headingLabel })}</h2>
         <p>{isAnnounced ? t('analytics.results.description') : (results?.announcementNote || t('analytics.results.pendingDescription'))}</p>
       </div>
 
@@ -178,9 +184,9 @@ export default function AnalyticsDashboardPage() {
   const bashoStatus = getBashoStatus(torikumiArchive);
   const isFinal = bashoStatus.kind === 'final';
   const isSenshuraku = bashoStatus.day === 15;
-  const showResultsSection = isFinal || isSenshuraku;
 
   const bashoResults = getBashoResults(torikumiMonthKey);
+  const showResultsSection = isFinal || isSenshuraku;
 
   const divisionLabel = t(`analytics.divisions.${activeDivision}`);
 
