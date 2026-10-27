@@ -337,9 +337,10 @@ async function renderDayRoute(dateKey: string, mode: 'result' | 'schedule', titl
   if (!day) {
     return `<p>${escapeHtml(title)} の取組データはまだありません。</p>`;
   }
-  // For the live basho we additionally pull banzuke.json to look up kanji
-  // names. Past months already have kanji names in the bundled fixtures.
-  let banzukeIndex = new Map<number, { name: string; yomi: string }>();
+  // Day fixtures only carry hiragana shikona, so the kanji names come from the
+  // banzuke data: the live JSON for the current basho, the frozen snapshot for
+  // archived months.
+  let banzukeIndex = buildBanzukeRikishiIndex(getBanzukeDataByMonthKey(config.monthKey));
   if (config.monthKey === CURRENT_BASHO_ID) {
     const payload = await ctx.fetchJson('/api/v1/banzuke.json');
     if (isBanzukeDocument(payload)) banzukeIndex = buildBanzukeRikishiIndex(payload);

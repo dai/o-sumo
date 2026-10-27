@@ -72,7 +72,7 @@ python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule
 
 場所ごとの力士プロフィール更新手順は `docs/rikishi-profile-refresh-runbook.md` を参照してください。
 
-七月場所は確定済みで、`app/lib/july2026-data.ts` と `app/lib/july2026-banzuke-data.ts` に不変スナップショットを保存しています。九月場所の番付が公式公開されるまでは、現行の `banzuke.json` と `torikumi.json` を七月場所のまま維持します。次の更新PRでは、公式番付・取組日程・公開JSON・月別ルート・sitemapを同時に検証してから切り替えます。
+九月場所は確定済みで、`app/lib/september2026-data.ts` と `app/lib/september2026-banzuke-data.ts` に不変スナップショットを保存しています。十一月場所の番付が公式公開されるまでは、現行の `banzuke.json` と `torikumi.json` を九月場所のまま維持します。次の更新PRでは、公式番付・取組日程・公開JSON・月別ルート・sitemapを同時に検証してから切り替えます。
 
 ローカル確認先:
 
@@ -229,8 +229,8 @@ DNS-AID (SVCB/HTTPS) と DNSSEC の有効化は Cloudflare DNS 側の操作で�
 
 ## 2026年七月場所アーカイブ後の運用
 
-- 9月場所終了に伴い、`daily-data-update.yml` と `realtime-torikumi-direct-update.yml` の cron 定期実行は停止し、`workflow_dispatch`（手動実行）のみの運用となります。11月場所（2026年11月場所）の開催前に再度 cron を有効化します。
+- 11月場所終了に伴い、`daily-data-update.yml` と `realtime-torikumi-direct-update.yml` の cron 定期実行は停止し、`workflow_dispatch`（手動実行）のみの運用となります。 次期場所（2027年1月場所）の開催前に再度 cron を有効化します。
 - `news-feed-update.yml` は引き続き2時間おきのニュース更新を継続し、データに差分がない場合は `news.json` を書き換えない。
 
-九月 current API への切替後も七月 snapshot は不変です。9月場所終了後のオフシーズン期間は cron を停止し、手動実行（workflow_dispatch）のみを保持します。schedule は十一月場所の取組発表（11月6日頃）に合わせて PR で復元します。`preflight:current-data` は workflow を止めて使う切替専用 gate です。不戦は限定例外で、部分取得失敗時は旧データを保持します。
+十一月 current API への切替後も九月 snapshot は不変です。11月場所終了後のオフシーズン期間は cron を停止し、手動実行（workflow_dispatch）のみを保持します。schedule は次期場所の取組発表に合わせて PR で復元します。`preflight:current-data` は workflow を止めて使う切替専用 gate です。不戦は限定例外で、部分取得失敗時は旧データを保持します。
 - Cloudflareのキャッシュ方針とPWAの `registerType: "autoUpdate"` は維持する。

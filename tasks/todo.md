@@ -783,3 +783,15 @@ exhaustion and left unrelated packages incomplete.
 - [x] データ更新ワークフローが生成物を検証・commit・pushし、Pagesへ反映する経路を確認する
 - [x] 更新処理と配信設定のテスト、型チェック、ビルド、差分検査を実行する
 - [x] 同じ PR #698 にコミットして push し、CI と公開レスポンスを再確認する
+
+## PR #698 レビュー指摘の修正 (2026-10-27)
+
+マージ済み PR #698（`052e774b`）のレビューで判明した不具合の修正。
+
+- [ ] i18n の9月文言を十一月場所に差し替える（`analytics.results.pendingDescription` / `highlights.monomosuDefaultText` の ja/en）
+- [ ] アーカイブ日別ページの noscript で漢字名が失われる回帰を修正する（`seo-noscript.ts` の `renderDayRoute`）
+- [ ] `getBanzukeDataByMonthKey` の未知月キー fallback を current ではなく null にする
+- [ ] テストの緩みを撤回する（`seo-noscript.test.ts` の published 日保証 / `analytics/page.test.tsx` の9月実績統合テスト）
+- [ ] ドキュメント4系統（README / DEVELOPMENT ja/en / API policy ja/en / rikishi-profile-refresh-runbook）を十一月場所に同期する
+- [ ] 変更箇所の回帰テストを追加する
+- [ ] 型チェック・全テスト・ビルド・差分検査を実行する

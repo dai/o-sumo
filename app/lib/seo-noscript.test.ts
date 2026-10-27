@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { buildSeoNoscriptHtml, type SeoNoscriptContext } from './seo-noscript';
 import { getAllArchiveRouteConfigs, getDayPath } from './torikumi-routes';
+import { CURRENT_BASHO_ID } from './archive-basho-data';
 
 function makeContext(payloads: Record<string, unknown>): SeoNoscriptContext & { calls: string[] } {
   const calls: string[] = [];
@@ -100,8 +101,12 @@ describe('buildSeoNoscriptHtml', () => {
         const html = await buildSeoNoscriptHtml(hubPath, 'hub', ctx);
         const days = (mode === 'result' ? config.archive.resultDays : config.archive.scheduleDays) ?? [];
         const published = days.filter((day) => day.status === 'published');
-        if (config.monthKey !== '202611') {
+        // 開催前の現行場所だけは未発表の日がnormal。確定済みアーカイブは
+        // published 日が必ず存在する（0 件なら凍結スナップショットが壊れている）。
+        if (config.monthKey !== CURRENT_BASHO_ID) {
           expect(published.length).toBeGreaterThan(0);
+        } else {
+          expect(days.length).toBe(15);
         }
         for (const day of published) {
           const dayPath = getDayPath(day, mode);

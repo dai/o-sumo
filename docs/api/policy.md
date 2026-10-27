@@ -18,7 +18,7 @@ o-sumo API は個人運用のベストエフォート提供です。商用 SLA �
 - 更新は `data-update.yml` と `scripts/ci/run_data_update.py` で直列化します。
 - ニュースの取得状態は `automation/news-state` に保持し、`scripts/ci/news_state.py` の判定で選んだ検証済みスナップショットを `main` に公開します。公開時刻・再試行の詳細は実装を参照してください。
 
-現在のJSON APIは2026年九月場所を返します。七月場所は不変アーカイブです。GitHub Actionsの起動は遅れることがあるため、データの更新日時と掲載状況で鮮度を判断してください。
+現在のJSON APIは2026年十一月場所を返します。九月場所は不変アーカイブです。GitHub Actionsの起動は遅れることがあるため、データの更新日時と掲載状況で鮮度を判断してください。
 
 詳細は GitHub Actions workflow を参照してください。
 
@@ -35,7 +35,7 @@ o-sumo API は個人運用のベストエフォート提供です。商用 SLA �
 - 番付 (`banzuke.json`): 結果更新と同一の `updatedAt`（= `torikumi.json.resultUpdatedAt`）。予定のみの更新では進まない
 - 結果 (`torikumi.json.resultDays` / 取組結果 hub・day): `resultUpdatedAt`
 - 予定 (`torikumi.json.scheduleDays` / 取組予定 hub・day): `scheduleUpdatedAt`
-- 過去場所 (`/202603/`, `/202605/`, `/202607/`): 月別 snapshot 内の `BanzukeData.updatedAt` / `TorikumiData.updatedAt`
+- 過去場所 (`/202603/`, `/202605/`, `/202607/`, `/202609/`): 月別 snapshot 内の `BanzukeData.updatedAt` / `TorikumiData.updatedAt`
 - 力士 index / detail: 各 JSON の `updatedAt`（detail にあれば detail を優先）
 - 行司・呼出 index / detail: 各 JSON の `retrievedAt`
 - ニュース記事: 各記事の `publishedAt`（feed 自体の `updatedAt` は画面表示しない）

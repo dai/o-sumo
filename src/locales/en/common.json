@@ -147,7 +147,7 @@
     "pendingBadge": "Awaiting Official Bouts",
     "pendingBody": "Featured bouts, aikuchi, and comparison links will appear after the official torikumi is published.",
     "monomosuBadge": "VOICE",
-    "monomosuDefaultText": "The championship chase revolves around new Yokozuna Onosato and Hoshoryu. Day 1 is bound to be electric!",
+    "monomosuDefaultText": "The championship chase revolves around Yokozuna Onosato and Hoshoryu. Day 1 is bound to be electric!",
     "monomosuLiveText": "Reading the turning points in today's featured bouts.",
     "monomosuTomorrowText": "Reading the turning points in tomorrow's featured bouts.",
     "monomosuDayAfterTomorrowText": "Reading the turning points in the day after tomorrow's featured bouts.",
@@ -244,7 +244,7 @@
       "tableRikishi": "Rikishi",
       "tableRecord": "Record",
       "pendingTitle": "Awaiting Championship & Prize Announcements",
-      "pendingDescription": "Championship winners and special prizes (Sanshō) for the September 2026 basho will be posted once announced after the final bouts.",
+      "pendingDescription": "Championship winners and special prizes (Sanshō) for the current basho will be posted once announced after the final bouts.",
       "category": {
         "makuuchiYusho": "Makuuchi Champion",
         "shukun": "Shukun-sho",

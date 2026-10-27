@@ -6,7 +6,7 @@ import TorikumiDayPage from './TorikumiDayPage';
 import { MARCH2026_TORIKUMI_DATA } from '../lib/march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from '../lib/may2026-data';
 import { JULY2026_TORIKUMI_DATA } from '../lib/july2026-data';
-import { torikumiArchive, type TorikumiArchiveDay, type TorikumiDataSet } from '../lib/torikumi-data';
+import { torikumiArchive, torikumiMonthKey, type TorikumiArchiveDay, type TorikumiDataSet } from '../lib/torikumi-data';
 import { getBanzukePathForDateKey, getHubPathForDateKey } from '../lib/torikumi-routes';
 import * as torikumiRoutes from '../lib/torikumi-routes';
 import { formatUpdatedAt } from '../lib/updated-at';
@@ -174,14 +174,14 @@ describe('TorikumiDayPage', () => {
     };
 
     vi.spyOn(torikumiRoutes, 'getArchiveRouteConfigForDateKey').mockReturnValue({
-      monthKey: '209912',
+      monthKey: torikumiMonthKey,
       archive: {
         ...torikumiArchive,
         scheduleDays: [futureScheduleDay],
       },
-      resultPath: '/209912-torikumi/',
-      schedulePath: '/209912-yotei/',
-      banzukePath: '/209912-banzuke/',
+      resultPath: `/${torikumiMonthKey}-torikumi/`,
+      schedulePath: `/${torikumiMonthKey}-yotei/`,
+      banzukePath: `/${torikumiMonthKey}-banzuke/`,
     });
 
     renderPage(pendingResultDay, 'result');

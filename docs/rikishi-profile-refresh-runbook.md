@@ -79,14 +79,14 @@ npm run preview -- --host 127.0.0.1
 - `http://127.0.0.1:4173/rikishi/3842`
 - `http://127.0.0.1:4173/compare/?ids=4230,4279`
 - `http://127.0.0.1:4173/api/v1/rikishi-matchups.json`
-- `http://127.0.0.1:4173/202607-banzuke/`
-- `http://127.0.0.1:4173/20260712-yotei`
+- `http://127.0.0.1:4173/202609-banzuke/`
+- `http://127.0.0.1:4173/20260913-yotei`
 
 確認ポイント:
 
 - `/rikishi/3842` の出典欄に、日本相撲協会と MiniMax I2I Generation の両方が表示される
 - `/compare/?ids=4230,4279` に7項目が表示され、合い口が列順に `1-5` / `5-1` となる
-- `/202607-banzuke/` で `public/images/rikishi/{id}.png` の画像が表示される
+- `/202609-banzuke/` で `public/images/rikishi/{id}.png` の画像が表示される
 
 ## 注意
 
