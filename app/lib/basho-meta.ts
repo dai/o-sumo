@@ -103,5 +103,29 @@ export function getFinalBashoName(
   return info.bashoName ?? '';
 }
 
+const BASHO_HASHTAG_EN: Record<string, string> = {
+  '01': 'JanuaryBasho',
+  '03': 'MarchBasho',
+  '05': 'MayBasho',
+  '07': 'JulyBasho',
+  '09': 'SeptemberBasho',
+  '11': 'NovemberBasho',
+};
+
+/**
+ * ハッシュタグに使う場所名を返す。日本語は公開済みの場所名そのまま
+ * （例: 十一月場所）、英語は空白を含まないトークン（例: NovemberBasho）。
+ */
+export function getBashoHashtagToken(
+  monthKey: string,
+  bashoName: string,
+  lang: string = 'ja',
+): string {
+  if (lang === 'en') {
+    return BASHO_HASHTAG_EN[monthKey.slice(4, 6)] ?? 'Basho';
+  }
+  return bashoName.replace(/\s+/g, '') || `${Number(monthKey.slice(4, 6))}月場所`;
+}
+
 export const bashoTitle = `${torikumiArchive.year}${torikumiArchive.bashoName}`;
 export const gregorianBashoLabel = formatGregorianBashoLabel(torikumiMonthKey);

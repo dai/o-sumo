@@ -1,3 +1,37 @@
+# 推しだけ表示フィルター (2026-10-28)
+
+設計書: `tasks/plans/2026-10-28-favorites-filter-design.md`（十一月場所 初日 = 2026-11-08 公開目標）
+
+- [x] 現状調査（既存トグルの実装状況・My Rikishi プロバイダ・i18n・OGP の確認）
+- [x] 絞り込みロジックを純粋関数として切り出す（`app/lib/my-rikishi-filter.ts`）
+- [x] トグルの ON/OFF を localStorage に保持する（既定 OFF、キー `o-sumo:my-rikishi-filter:v1`）
+- [x] 空状態（マイ力士未登録 / 本日の取組に推しなし）と導線を追加する
+- [x] X シェアボタン（Web Intent・投稿文の生成・140字制限）を実装する
+- [x] i18n キー追加（`torikumi.day.*`、ja / en）
+- [x] 単体テスト（絞り込み・投稿文・URL）とコンポーネントテストを追加する
+- [x] テスト / typecheck / build / ブラウザ実地確認
+
+## Review
+
+設計書は「トグル未実装」を前提としていたが、実際には「★ マイ力士のみ」のトグルと結果・予定両方の絞り込みが別 PR で既に本番公開済みだった（`app/components/TorikumiDayPage.tsx`）。そのため今回は重複実装ではなく **設計書の不足分（状態保持・空状態・導線・X シェア）** に絞って実装した。
+
+実装内容:
+
+- `app/lib/my-rikishi-filter.ts`（新規）: `matchInvolvesMyRikishi` / `filterMatchesByMyRikishi` / `filterSectionsByMyRikishi` / `countMyRikishiMatches` / `matchInvolvesAbsent` と、フィルターの ON/OFF を端末に保持する `loadMyRikishiFilterEnabled` / `saveMyRikishiFilterEnabled`。判定は既存の My Rikishi プロバイダの `isSaved` のみを使い、新規 API は追加していない（未ログインでも端末の localStorage だけで動作する）。
+- `app/lib/torikumi-share.ts`（新規）: 投保文の生成（`collectMyRikishiShareEntries` / `buildMyRikishiShareText`）と X の Web Intent URL（`buildXShareUrl`）。休場の力士・成立しなかった組は含めない。列挙は最大 4 番、超過分は「…ほか◯番」。文字数は code point 単位で 140 以内に収める（超過時は列挙数 → ヘッダー → ハッシュタグの順に削る）。
+- `app/components/TorikumiDayPage.tsx`: フィルター状態を localStorage から復元し、マイ力士が 0 件のときはトグルを無効化しつつ「マイ力士（推し）を登録すると絞り込めます。マイ力士を登録する」の導線を出す。ON のときは件数（既存キー `filterMyRikishiCount`）・「全件表示に戻す」・X シェアボタンを表示する。X シェアはトグル ON かつ投稿文に-ableな組が 1 件以上あるときだけ表示し、共有 URL は正規 URL のみ（`?my=1` 等のパラメータは付けない）。
+- 絞り込み済みセクションはページ側で 1 回だけ計算し `TorikumiTable` に渡す形に変更し、表的中の二重絞り込みを廃止した。区切り行（division-divider）の件数は絞り込み後の件数に一致する。
+- 予定ページは部ごとにセクションを持つため、空のときは日単位の文言ではなく `torikumi.day.noMyRikishiMatchesInDivision`（例: 「十両にマイ力士の出場はありません。」）を表示する。
+
+設計書からの差分（いずれも意図した変更）:
+
+1. **表記**: 既存キーの「マイ力士」を維持し、所有者指示により「推しだけ表示」を `<span>` で併記した（アクセシブルネームは「★ マイ力士のみ 推しだけ表示」）。既存テストのセレクタは完全一致だったため正規表現へ変更。
+2. **X シェアボタンの表示条件**: 設計書では「表示中の推しの取組が 1 番以上」だが、表示行には休場（空席）の組も含まれうる。投稿文が空にならないよう、**投稿文にABLEな組**が 1 件以上あるときだけ表示する。
+3. **twitter:card**: `index.html` に `<meta name="twitter:card" content="summary_large_image" />` が既にあり、ミドルウェアも route 依存で書き換えていない（静的な `summary_large_image` のまま）。追加対応は不要。
+4. **F-5 ハイライト**: 既存の `is-my-rikishi-match`（淡い金の背景 + 左の金のバー）はブラウザ実地でも十分視認できることを確認し、CSS は変更していない。トグル OFF でも従来どおり効く。
+
+検証: `npm test` 102 ファイル / 856 テストすべて成功、`npm run typecheck` 成功、`npm run build` 成功。`vite preview` 、実 Chrome（Playwright）で 2026-09-13 の結果ページと予定ページを確認し 25 項目すべて成功（未登録時の無効化と導線／保存した ON 状態の復元／絞り込み後の行と件数／区切り行の件数／ハイライト／X シェア URL と投稿文（42 字・結果形と対戦カード形）／全件表示に戻す／再訪時の保持／モバイル幅 390px の折り返し）。投稿文の例: `令和八年九月場所 初日 / ● 湘南乃海 寄り切り / #大相撲 #九月場所 #o_sumo`。
+
 # My Rikishi Production rollout (2026-10-26)
 
 - [x] Owner approved production rollout (gate opened).
