@@ -393,6 +393,7 @@
       "refreshFailed": "更新に失敗しました",
       "upToDate": "最新です",
       "filterMyRikishiAlias": "推しだけ表示",
+      "filterShowAllAlias": "全件表示へ",
       "filterMyRikishiHint": "マイ力士（推し）を登録すると絞り込めます。",
       "filterMyRikishiRegisterLink": "マイ力士を登録する",
       "showAllMatches": "全件表示に戻す",

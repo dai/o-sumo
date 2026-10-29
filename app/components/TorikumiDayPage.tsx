@@ -685,20 +685,15 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
               disabled={!hasMyRikishi}
             >
               <span>{t('torikumi.day.filterMyRikishi')}</span>
-              <span className="my-rikishi-filter-btn__alias">{t('torikumi.day.filterMyRikishiAlias')}</span>
+              <span className="my-rikishi-filter-btn__alias">
+                {filterEnabled ? t('torikumi.day.filterShowAllAlias') : t('torikumi.day.filterMyRikishiAlias')}
+              </span>
             </button>
             {filterEnabled ? (
               <>
                 <span className="my-rikishi-filter-count">
                   {t('torikumi.day.filterMyRikishiCount', { count: myRikishiMatchCount })}
                 </span>
-                <button
-                  type="button"
-                  className="my-rikishi-filter-reset"
-                  onClick={() => handleFilterToggle(false)}
-                >
-                  {t('torikumi.day.showAllMatches')}
-                </button>
                 {shareEntries.length > 0 ? (
                   <a
                     className="my-rikishi-share-btn"

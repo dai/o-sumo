@@ -1,12 +1,18 @@
+import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuthSession } from '../lib/auth-session';
 import { useMyRikishi } from '../lib/my-rikishi';
 import './auth-controls.css';
 
-export default function AuthControls() {
+export default function AuthControls({ returnTo }: { returnTo?: string } = {}) {
+  const location = useLocation();
   const { t } = useTranslation('common');
   const { status, user, logout } = useAuthSession();
   const { syncing, syncError } = useMyRikishi();
+
+  const currentPath = `${location.pathname}${location.search}${location.hash}`;
+  const effectiveReturnTo = returnTo ?? (currentPath && currentPath !== '/' ? currentPath : '/my-rikishi/');
+  const signInHref = `/api/auth/google?returnTo=${encodeURIComponent(effectiveReturnTo)}`;
 
   if (status === 'loading') {
     return <p className="auth-controls__status" role="status">{t('myRikishi.auth.checking')}</p>;
@@ -15,7 +21,7 @@ export default function AuthControls() {
   if (status !== 'authenticated' || !user) {
     return (
       <div className="auth-controls">
-        <a className="auth-controls__action" href="/api/auth/google?returnTo=/my-rikishi/">
+        <a className="auth-controls__action" href={signInHref}>
           {t('myRikishi.auth.signIn')}
         </a>
         <span className="auth-controls__status">{t('myRikishi.auth.localOnly')}</span>

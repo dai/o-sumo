@@ -255,24 +255,6 @@
   color: var(--color-secondary);
 }
 
-.my-rikishi-filter-reset {
-  border: 1px solid var(--color-outline-variant, #ccc);
-  background: var(--surface-container-lowest);
-  color: var(--color-primary);
-  padding: 0.35rem 0.65rem;
-  font: inherit;
-  font-size: 0.8rem;
-  font-weight: 700;
-  cursor: pointer;
-  border-radius: 0;
-}
-
-.my-rikishi-filter-reset:hover {
-  border-color: var(--color-secondary-light);
-  background: var(--color-primary-container);
-}
-
-.my-rikishi-filter-reset:focus-visible,
 .my-rikishi-share-btn:focus-visible {
   outline: 2px solid var(--color-secondary);
   outline-offset: 2px;

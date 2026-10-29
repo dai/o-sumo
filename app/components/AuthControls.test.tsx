@@ -1,16 +1,19 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { MemoryRouter } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { AuthSessionProvider } from '../lib/auth-session';
 import { MyRikishiProvider } from '../lib/my-rikishi';
 import AuthControls from './AuthControls';
 
-function renderControls(fetcher: typeof fetch) {
+function renderControls(fetcher: typeof fetch, initialEntry: string = '/my-rikishi/') {
   vi.stubGlobal('fetch', fetcher);
   return render(
-    <AuthSessionProvider>
-      <MyRikishiProvider><AuthControls /></MyRikishiProvider>
-    </AuthSessionProvider>,
+    <MemoryRouter initialEntries={[initialEntry]}>
+      <AuthSessionProvider>
+        <MyRikishiProvider><AuthControls /></MyRikishiProvider>
+      </AuthSessionProvider>
+    </MemoryRouter>,
   );
 }
 
@@ -23,9 +26,15 @@ describe('AuthControls', () => {
   it('offers optional Google sign-in while preserving local mode', async () => {
     renderControls(vi.fn().mockResolvedValue(Response.json({ authenticated: false })));
     const signIn = await screen.findByRole('link', { name: 'Google でログイン' });
-    expect(signIn).toHaveAttribute('href', '/api/auth/google?returnTo=/my-rikishi/');
+    expect(signIn).toHaveAttribute('href', '/api/auth/google?returnTo=%2Fmy-rikishi%2F');
     expect(screen.getByText('ログインしなくても、この端末には保存できます。')).toBeInTheDocument();
     expect(screen.getByText('※ パスワード入力は不要です')).toBeInTheDocument();
+  });
+
+  it('preserves the current page in returnTo when signing in from another page', async () => {
+    renderControls(vi.fn().mockResolvedValue(Response.json({ authenticated: false })), '/20260913-torikumi/');
+    const signIn = await screen.findByRole('link', { name: 'Google でログイン' });
+    expect(signIn).toHaveAttribute('href', '/api/auth/google?returnTo=%2F20260913-torikumi%2F');
   });
 
   it('shows the account and signs out without clearing local selections', async () => {
