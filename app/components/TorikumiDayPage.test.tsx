@@ -7,10 +7,11 @@ import { MARCH2026_TORIKUMI_DATA } from '../lib/march2026-torikumi-data';
 import { MAY2026_TORIKUMI_DATA } from '../lib/may2026-data';
 import { JULY2026_TORIKUMI_DATA } from '../lib/july2026-data';
 import { torikumiArchive, torikumiMonthKey, type TorikumiArchiveDay, type TorikumiDataSet } from '../lib/torikumi-data';
-import { getBanzukePathForDateKey, getHubPathForDateKey } from '../lib/torikumi-routes';
+import { getBanzukePathForDateKey, getDayPath, getHubPathForDateKey } from '../lib/torikumi-routes';
 import * as torikumiRoutes from '../lib/torikumi-routes';
 import { formatUpdatedAt } from '../lib/updated-at';
 import { extractRikishiIdFromProfileUrl } from '../lib/rikishi-profile';
+import { toCanonicalUrl } from '../lib/site-url';
 
 function renderPage(day: TorikumiArchiveDay, mode: 'result' | 'schedule' = 'result') {
   return render(
@@ -22,6 +23,8 @@ function renderPage(day: TorikumiArchiveDay, mode: 'result' | 'schedule' = 'resu
 
 afterEach(() => {
   vi.restoreAllMocks();
+  // マイ力士とそのフィルター設定は端末ごとに保持されるため、テスト間では必ず戻す。
+  localStorage.clear();
 });
 
 describe('TorikumiDayPage', () => {
@@ -438,7 +441,7 @@ describe('TorikumiDayPage', () => {
 
     const { container } = renderPage(marchDay!, 'result');
 
-    const filterBtn = screen.getByRole('button', { name: '★ マイ力士のみ' });
+    const filterBtn = screen.getByRole('button', { name: /マイ力士のみ/ });
     expect(filterBtn).toBeInTheDocument();
     expect(filterBtn).not.toHaveClass('active');
 
@@ -453,6 +456,83 @@ describe('TorikumiDayPage', () => {
     expect(myMatchRow).toHaveTextContent('竜電');
 
     localStorage.clear();
+  });
+
+  it('keeps the my-rikishi filter on across visits via local storage', () => {
+    const marchDay = MARCH2026_TORIKUMI_DATA.resultDays?.find((day) => day.data.makuuchi.matches.length > 0);
+    expect(marchDay).toBeDefined();
+
+    const targetId = extractRikishiIdFromProfileUrl(marchDay!.data.makuuchi.matches[0].eastProfileUrl);
+    localStorage.setItem('o-sumo:my-rikishi:v1', JSON.stringify([targetId]));
+    localStorage.setItem('o-sumo:my-rikishi-filter:v1', '1');
+
+    renderPage(marchDay!, 'result');
+
+    expect(screen.getByRole('button', { name: /マイ力士のみ/ })).toHaveClass('active');
+    expect(screen.getByText('マイ力士の取組 1件')).toBeInTheDocument();
+  });
+
+  it('disables the my-rikishi filter and links to the my-rikishi page when nothing is saved', () => {
+    const firstResultDay = torikumiArchive.resultDays[0];
+    renderPage(firstResultDay, 'result');
+
+    expect(screen.getByRole('button', { name: /マイ力士のみ/ })).toBeDisabled();
+    expect(screen.getByText(/マイ力士（推し）を登録すると絞り込めます/)).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'マイ力士を登録する' })).toHaveAttribute('href', '/my-rikishi/');
+  });
+
+  it('offers a way back to all matches when no saved rikishi appears that day', async () => {
+    const user = userEvent.setup();
+    const marchDay = MARCH2026_TORIKUMI_DATA.resultDays?.find((day) => day.data.makuuchi.matches.length > 0);
+    expect(marchDay).toBeDefined();
+
+    // 当日出场しないマイ力士だけ登録しておく
+    localStorage.setItem('o-sumo:my-rikishi:v1', JSON.stringify([999999]));
+
+    renderPage(marchDay!, 'result');
+
+    await user.click(screen.getByRole('button', { name: /マイ力士のみ/ }));
+
+    expect(screen.getByText('本日の取組にマイ力士の出場はありません。')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '全件表示に戻す' })).toBeInTheDocument();
+  });
+
+  it('scopes the empty state to the division on schedule pages', async () => {
+    const user = userEvent.setup();
+    const marchDay = MARCH2026_TORIKUMI_DATA.scheduleDays?.find((day) => day.data.makuuchi.matches.length > 0);
+    expect(marchDay).toBeDefined();
+
+    // 当日出場しないマイ力士だけ登録しておく
+    localStorage.setItem('o-sumo:my-rikishi:v1', JSON.stringify([999999]));
+
+    renderPage(marchDay!, 'schedule');
+
+    await user.click(screen.getByRole('button', { name: /マイ力士のみ/ }));
+
+    expect(screen.getAllByText(/にマイ力士の出場はありません。/).length).toBeGreaterThan(0);
+    expect(screen.queryByText('本日の取組にマイ力士の出場はありません。')).not.toBeInTheDocument();
+  });
+
+  it('shows the X share button only while the my-rikishi filter is on', async () => {
+    const user = userEvent.setup();
+    const marchDay = MARCH2026_TORIKUMI_DATA.resultDays?.find((day) => day.data.makuuchi.matches.length > 0);
+    expect(marchDay).toBeDefined();
+
+    const targetId = extractRikishiIdFromProfileUrl(marchDay!.data.makuuchi.matches[0].eastProfileUrl);
+    localStorage.setItem('o-sumo:my-rikishi:v1', JSON.stringify([targetId]));
+
+    renderPage(marchDay!, 'result');
+
+    expect(screen.queryByRole('link', { name: 'マイ力士の取組をXでシェア' })).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: /マイ力士のみ/ }));
+
+    const shareLink = screen.getByRole('link', { name: 'マイ力士の取組をXでシェア' });
+    const href = shareLink.getAttribute('href') ?? '';
+    expect(href.startsWith('https://twitter.com/intent/tweet?')).toBe(true);
+    // 共有 URL は正規 URL のみ（絞込パラメータは付けない）
+    expect(href).toContain(encodeURIComponent(toCanonicalUrl(getDayPath(marchDay!, 'result'))));
+    expect(href).not.toContain('my=1');
   });
 
   it('renders the manual refresh button inside the day page', () => {

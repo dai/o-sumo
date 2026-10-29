@@ -218,6 +218,87 @@
   color: var(--surface);
 }
 
+.my-rikishi-filter-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.my-rikishi-filter-btn:disabled:hover {
+  background: var(--surface-container-high);
+}
+
+/* 「マイ力士のみ」と「推しだけ表示」を併記する別名 */
+.my-rikishi-filter-btn__alias {
+  font-size: 0.74rem;
+  font-weight: 500;
+  opacity: 0.75;
+}
+
+.my-rikishi-filter-btn.active .my-rikishi-filter-btn__alias {
+  opacity: 0.85;
+}
+
+.my-rikishi-filter-hint {
+  margin: 0.5rem 0 0;
+  font-size: 0.82rem;
+  color: var(--color-primary-muted);
+}
+
+.my-rikishi-filter-hint a {
+  color: var(--color-secondary);
+  font-weight: 700;
+}
+
+.my-rikishi-filter-count {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.my-rikishi-filter-reset {
+  border: 1px solid var(--color-outline-variant, #ccc);
+  background: var(--surface-container-lowest);
+  color: var(--color-primary);
+  padding: 0.35rem 0.65rem;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.my-rikishi-filter-reset:hover {
+  border-color: var(--color-secondary-light);
+  background: var(--color-primary-container);
+}
+
+.my-rikishi-filter-reset:focus-visible,
+.my-rikishi-share-btn:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+/* X シェアボタン（金のアウトライン。押下時のみ塗りを反転させる） */
+.my-rikishi-share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.7rem;
+  border: 2px solid var(--color-secondary);
+  background: transparent;
+  color: var(--color-secondary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.my-rikishi-share-btn:hover {
+  background: var(--color-secondary);
+  color: var(--yokozuna-text);
+}
+
 /* My Rikishi match row highlight (Digital Washi: 0px radius, No-Line) */
 .torikumi-row.is-my-rikishi-match {
   background: color-mix(in srgb, var(--color-secondary-light, #fed65b) 14%, var(--surface-container-lowest));

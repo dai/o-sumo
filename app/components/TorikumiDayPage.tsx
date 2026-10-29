@@ -24,7 +24,23 @@ import '../torikumi/page.css';
 import { formatUpdatedAt } from '../lib/updated-at';
 import { getBanzukeDataByMonthKey, CURRENT_BASHO_ID } from '../lib/archive-basho-data';
 import { useMyRikishi } from '../lib/my-rikishi';
-import { formatBashoTitle } from '../lib/basho-meta';
+import {
+  countMyRikishiMatches,
+  filterSectionsByMyRikishi,
+  loadMyRikishiFilterEnabled,
+  matchInvolvesAbsent,
+  matchInvolvesMyRikishi,
+  saveMyRikishiFilterEnabled,
+  type MyRikishiFilterSection,
+} from '../lib/my-rikishi-filter';
+import {
+  buildMyRikishiShareText,
+  buildXShareUrl,
+  collectMyRikishiShareEntries,
+  type MyRikishiShareLabels,
+} from '../lib/torikumi-share';
+import { toCanonicalUrl } from '../lib/site-url';
+import { formatBashoTitle, getBashoHashtagToken } from '../lib/basho-meta';
 import ManualRefreshButton from './ManualRefreshButton';
 import { captureScrollPosition, SCROLL_RESTORE_EVENT, useScrollRestore } from '../lib/use-scroll-restore';
 import { isTorikumiDataSet } from '../lib/torikumi-data-validate';
@@ -120,15 +136,6 @@ function uniqueAbsentees(dayData: { makuuchi: TorikumiDivisionDay; juryo: Toriku
   });
 }
 
-function matchInvolvesAbsent(match: TorikumiMatch, absenteeIds: Set<number>): boolean {
-  if (match.winner && match.kimarite === '不戦') return false;
-  if (absenteeIds.size === 0) return false;
-  const eastId = extractRikishiIdFromProfileUrl(match.eastProfileUrl);
-  const westId = extractRikishiIdFromProfileUrl(match.westProfileUrl);
-  return (eastId !== null && absenteeIds.has(eastId))
-    || (westId !== null && absenteeIds.has(westId));
-}
-
 function hasAnyMatches(dayData: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay }) {
   return dayData.makuuchi.matches.length > 0 || dayData.juryo.matches.length > 0;
 }
@@ -151,12 +158,6 @@ function getUnifiedResultSections(dayData: { makuuchi: TorikumiDivisionDay; jury
   return BOTTOM_TO_TOP_DIVISIONS
     .map((division) => ({ division, matches: sortMatches(byDivision(dayData, division), 'asc') }))
     .filter((section) => section.matches.length > 0);
-}
-
-function matchInvolvesMyRikishi(match: TorikumiMatch, isSaved: (id: number) => boolean): boolean {
-  const eastId = extractRikishiIdFromProfileUrl(match.eastProfileUrl);
-  const westId = extractRikishiIdFromProfileUrl(match.westProfileUrl);
-  return (eastId !== null && isSaved(eastId)) || (westId !== null && isSaved(westId));
 }
 
 function renderUnifiedResultRows({
@@ -254,6 +255,7 @@ function getVisibleDayData(
 function TorikumiTable({
   title,
   dayData,
+  sections,
   mode,
   sortOrder,
   t,
@@ -266,6 +268,7 @@ function TorikumiTable({
 }: {
   title: string;
   dayData: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay };
+  sections: MyRikishiFilterSection[];
   mode: TorikumiPageMode;
   sortOrder: SortOrder;
   t: ReturnType<typeof useTranslation>['t'];
@@ -277,16 +280,6 @@ function TorikumiTable({
   matchupWinsMap?: MatchupWinsMap;
 }) {
   if (mode === 'result') {
-    let sections = getUnifiedResultSections(dayData);
-    if (myRikishiOnly) {
-      sections = sections
-        .map((sec) => ({
-          ...sec,
-          matches: sec.matches.filter((m) => matchInvolvesMyRikishi(m, isSaved)),
-        }))
-        .filter((sec) => sec.matches.length > 0);
-    }
-
     return (
       <section className="division-section">
         <h2>{title}</h2>
@@ -310,10 +303,8 @@ function TorikumiTable({
       <h2>{title}</h2>
       {BOTTOM_TO_TOP_DIVISIONS.map((division) => {
         const meta = sectionMeta(dayData, division);
-        let matches = sortMatches(byDivision(dayData, division), getDisplaySortOrder(mode, division, sortOrder));
-        if (myRikishiOnly) {
-          matches = matches.filter((m) => matchInvolvesMyRikishi(m, isSaved));
-        }
+        const section = sections.find((candidate) => candidate.division === division);
+        const matches = sortMatches(section?.matches ?? [], getDisplaySortOrder(mode, division, sortOrder));
 
         return (
           <div key={`${title}-${division}`}>
@@ -321,7 +312,7 @@ function TorikumiTable({
             <p className="status-message">{meta.dayHead}</p>
             {myRikishiOnly && matches.length === 0 ? (
               <div className="empty-division-message">
-                {t('torikumi.day.noMyRikishiMatches')}
+                {t('torikumi.day.noMyRikishiMatchesInDivision', { division })}
               </div>
             ) : matches.length === 0 ? (
               <div className="empty-division-message">
@@ -477,8 +468,9 @@ function TorikumiDayBar({
 
 export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay; mode: TorikumiPageMode }) {
   const [sortOrder, setSortOrder] = React.useState<SortOrder>('asc');
-  const [myRikishiOnly, setMyRikishiOnly] = React.useState(false);
-  const { isSaved } = useMyRikishi();
+  // マイ力士（推し）フィルターの ON/OFF は端末に保持する（既定は OFF）。
+  const [myRikishiOnly, setMyRikishiOnly] = React.useState(() => loadMyRikishiFilterEnabled());
+  const { isSaved, ids } = useMyRikishi();
   const { t, i18n } = useTranslation('common');
   const { monthKey, archive: initialArchive, resultPath, schedulePath, banzukePath } = getArchiveForPath(day.pathDate);
   const [liveData, setLiveData] = React.useState<TorikumiDataSet | null>(null);
@@ -553,6 +545,47 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
   }, [visibleDayData]);
   const updatedAt = visibleDay.source === 'schedule' ? archive.scheduleUpdatedAt : mode === 'result' ? archive.resultUpdatedAt : archive.scheduleUpdatedAt;
   const recordMap = React.useMemo(() => createRecordMap(monthKey), [monthKey]);
+
+  // マイ力士（推し）フィルター。マイ力士が未登録のときは絞り込めないため無効扱いにする。
+  const hasMyRikishi = ids.length > 0;
+  const filterEnabled = myRikishiOnly && hasMyRikishi;
+  const allSections = React.useMemo(() => getUnifiedResultSections(visibleDayData), [visibleDayData]);
+  const sections = React.useMemo(
+    () => (filterEnabled ? filterSectionsByMyRikishi(allSections, isSaved) : allSections),
+    [allSections, filterEnabled, isSaved],
+  );
+  const myRikishiMatchCount = React.useMemo(
+    () => (filterEnabled ? countMyRikishiMatches(allSections, isSaved) : 0),
+    [allSections, filterEnabled, isSaved],
+  );
+  const handleFilterToggle = React.useCallback((next: boolean) => {
+    setMyRikishiOnly(next);
+    saveMyRikishiFilterEnabled(next);
+  }, []);
+
+  // X シェア。表示中のマイ力士が関わる取組から投稿文を生成する。
+  const shareEntries = React.useMemo(
+    () => (filterEnabled
+      ? collectMyRikishiShareEntries({ sections, isSaved, absenteeIds })
+      : []),
+    [sections, filterEnabled, isSaved, absenteeIds],
+  );
+  const shareLabels: MyRikishiShareLabels = {
+    resultWin: t('torikumi.day.shareResultWin'),
+    resultLoss: t('torikumi.day.shareResultLoss'),
+    matchup: t('torikumi.day.shareMatchup'),
+    more: t('torikumi.day.shareMore'),
+  };
+  const shareText = buildMyRikishiShareText({
+    entries: shareEntries,
+    header: `${bashoTitle} ${day.label}`,
+    labels: shareLabels,
+    hashtagLine: t('torikumi.day.shareHashtags', {
+      basho: getBashoHashtagToken(monthKey, archive.bashoName, i18n.language.startsWith('en') ? 'en' : 'ja'),
+    }),
+  });
+  // 共有 URL は正規 URL のみ。絞込パラメータは付けない（受け手の端末に推し情報がないため）。
+  const shareHref = buildXShareUrl(shareText, toCanonicalUrl(getDayPath(day, mode)));
 
   const [matchupWinsMap, setMatchupWinsMap] = React.useState<MatchupWinsMap>(() => new Map());
 
@@ -636,16 +669,49 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
           <div className="day-summary-card__info">
             <h2 className="day-summary-card__title">{day.label}の{modeLabel}</h2>
             {day.status === 'pending' ? <span className="status-message warning">{day.statusMessage}</span> : null}
+            {!hasMyRikishi ? (
+              <p className="my-rikishi-filter-hint">
+                {t('torikumi.day.filterMyRikishiHint')}{' '}
+                <Link to="/my-rikishi/">{t('torikumi.day.filterMyRikishiRegisterLink')}</Link>
+              </p>
+            ) : null}
           </div>
           <div className="day-summary-card__actions">
             <button
               type="button"
-              className={`my-rikishi-filter-btn${myRikishiOnly ? ' active' : ''}`}
-              onClick={() => setMyRikishiOnly((current) => !current)}
-              aria-pressed={myRikishiOnly}
+              className={`my-rikishi-filter-btn${filterEnabled ? ' active' : ''}`}
+              onClick={() => handleFilterToggle(!filterEnabled)}
+              aria-pressed={filterEnabled}
+              disabled={!hasMyRikishi}
             >
-              {t('torikumi.day.filterMyRikishi')}
+              <span>{t('torikumi.day.filterMyRikishi')}</span>
+              <span className="my-rikishi-filter-btn__alias">{t('torikumi.day.filterMyRikishiAlias')}</span>
             </button>
+            {filterEnabled ? (
+              <>
+                <span className="my-rikishi-filter-count">
+                  {t('torikumi.day.filterMyRikishiCount', { count: myRikishiMatchCount })}
+                </span>
+                <button
+                  type="button"
+                  className="my-rikishi-filter-reset"
+                  onClick={() => handleFilterToggle(false)}
+                >
+                  {t('torikumi.day.showAllMatches')}
+                </button>
+                {shareEntries.length > 0 ? (
+                  <a
+                    className="my-rikishi-share-btn"
+                    href={shareHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={t('torikumi.day.shareOnXLabel')}
+                  >
+                    {t('torikumi.day.shareOnX')}
+                  </a>
+                ) : null}
+              </>
+            ) : null}
             <nav className="pager-nav pager-nav--inline" aria-label={`${modeLabel}の日別ナビゲーション`}>
               <span>{prevDay ? <Link to={getDayPath(prevDay, mode)}>← {prevDay.label}</Link> : t('torikumi.day.prevDayNone')}</span>
               <span>{nextDay ? <Link to={getDayPath(nextDay, mode)}>{nextDay.label} →</Link> : t('torikumi.day.nextDayNone')}</span>
@@ -662,13 +728,14 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
         <TorikumiTable
           title={`${day.label}の${modeLabel}`}
           dayData={visibleDayData}
+          sections={sections}
           mode={mode}
           sortOrder={sortOrder}
           t={t}
           banzukePath={banzukePath}
           recordMap={recordMap}
           absenteeIds={absenteeIds}
-          myRikishiOnly={myRikishiOnly}
+          myRikishiOnly={filterEnabled}
           isSaved={isSaved}
           matchupWinsMap={matchupWinsMap}
         />
