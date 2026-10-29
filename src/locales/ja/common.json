@@ -391,7 +391,19 @@
       "divisionMatchCount": "{{division}} ({{count}}番)",
       "manualRefresh": "最新に更新",
       "refreshFailed": "更新に失敗しました",
-      "upToDate": "最新です"
+      "upToDate": "最新です",
+      "filterMyRikishiAlias": "推しだけ表示",
+      "filterMyRikishiHint": "マイ力士（推し）を登録すると絞り込めます。",
+      "filterMyRikishiRegisterLink": "マイ力士を登録する",
+      "showAllMatches": "全件表示に戻す",
+      "shareOnX": "Xでシェア",
+      "shareOnXLabel": "マイ力士の取組をXでシェア",
+      "shareResultWin": "○ {{name}} {{kimarite}}",
+      "shareResultLoss": "● {{name}} {{kimarite}}",
+      "shareMatchup": "{{name}} − {{opponent}}",
+      "shareMore": "…ほか{{count}}番",
+      "shareHashtags": "#大相撲 #{{basho}} #o_sumo",
+      "noMyRikishiMatchesInDivision": "{{division}}にマイ力士の出場はありません。"
     }
   },
   "comparison": {
