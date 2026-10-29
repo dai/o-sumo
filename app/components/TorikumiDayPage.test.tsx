@@ -444,11 +444,13 @@ describe('TorikumiDayPage', () => {
     const filterBtn = screen.getByRole('button', { name: /マイ力士のみ/ });
     expect(filterBtn).toBeInTheDocument();
     expect(filterBtn).not.toHaveClass('active');
+    expect(screen.getByText('推しだけ表示')).toBeInTheDocument();
 
     // Click to activate filter
     await user.click(filterBtn);
 
     expect(filterBtn).toHaveClass('active');
+    expect(screen.getByText('全件表示へ')).toBeInTheDocument();
 
     // Check row highlight and target rikishi presence
     const myMatchRow = container.querySelector('.torikumi-row.is-my-rikishi-match');
@@ -469,6 +471,7 @@ describe('TorikumiDayPage', () => {
     renderPage(marchDay!, 'result');
 
     expect(screen.getByRole('button', { name: /マイ力士のみ/ })).toHaveClass('active');
+    expect(screen.getByText('全件表示へ')).toBeInTheDocument();
     expect(screen.getByText('マイ力士の取組 1件')).toBeInTheDocument();
   });
 
@@ -486,15 +489,22 @@ describe('TorikumiDayPage', () => {
     const marchDay = MARCH2026_TORIKUMI_DATA.resultDays?.find((day) => day.data.makuuchi.matches.length > 0);
     expect(marchDay).toBeDefined();
 
-    // 当日出场しないマイ力士だけ登録しておく
+    // 当日出場しないマイ力士だけ登録しておく
     localStorage.setItem('o-sumo:my-rikishi:v1', JSON.stringify([999999]));
 
     renderPage(marchDay!, 'result');
 
-    await user.click(screen.getByRole('button', { name: /マイ力士のみ/ }));
+    const filterBtn = screen.getByRole('button', { name: /マイ力士のみ/ });
+    await user.click(filterBtn);
 
     expect(screen.getByText('本日の取組にマイ力士の出場はありません。')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: '全件表示に戻す' })).toBeInTheDocument();
+    expect(filterBtn).toHaveTextContent('全件表示へ');
+    expect(screen.queryByRole('button', { name: '全件表示に戻す' })).not.toBeInTheDocument();
+
+    // 再度クリックで全件表示に戻れる
+    await user.click(filterBtn);
+    expect(filterBtn).not.toHaveClass('active');
+    expect(screen.queryByText('本日の取組にマイ力士の出場はありません。')).not.toBeInTheDocument();
   });
 
   it('scopes the empty state to the division on schedule pages', async () => {

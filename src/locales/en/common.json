@@ -393,6 +393,7 @@
       "refreshFailed": "Failed to refresh",
       "upToDate": "Up to date",
       "filterMyRikishiAlias": "Favorites only",
+      "filterShowAllAlias": "Show all",
       "filterMyRikishiHint": "Register My rikishi (favorites) to enable filtering.",
       "filterMyRikishiRegisterLink": "Register My rikishi",
       "showAllMatches": "Show all matches",
