@@ -36,6 +36,17 @@ const NON_SPA_PREFIXES = [
 
 const SPA_TRAILING_SLASH_PATTERN = /\.[a-z0-9]{1,8}$/i;
 
+// These paths are retired content. Keep `/archives/` itself available as the
+// current archive hub, and evaluate this before trailing-slash redirects.
+function isGonePath(pathname: string): boolean {
+  return (
+    (pathname.startsWith('/archives/') && pathname !== '/archives/') ||
+    /^\/pinterest-[^/]+\.html$/.test(pathname) ||
+    pathname === '/202603-banduke' ||
+    pathname === '/202603-banduke/'
+  );
+}
+
 const SPA_ROUTE_PATTERNS: RegExp[] = [
   /^\/archives\/?$/,
   /^\/analytics\/?$/,
@@ -70,13 +81,18 @@ async function rikishiIdProfileExists(context: any, id: string, requestUrl: URL)
   }
 }
 
-async function buildNotFoundResponse(context: any, requestUrl: URL): Promise<Response> {
+async function buildErrorResponse(
+  context: any,
+  requestUrl: URL,
+  status: 404 | 410,
+  statusText: 'Not Found' | 'Gone',
+): Promise<Response> {
   try {
     const asset = await context.env.ASSETS.fetch(new URL('/404.html', requestUrl));
     if (asset.ok) {
       return new Response(asset.body, {
-        status: 404,
-        statusText: 'Not Found',
+        status,
+        statusText,
         headers: {
           'Content-Type': 'text/html; charset=utf-8',
           'Cache-Control': 'public, max-age=300, must-revalidate',
@@ -86,9 +102,9 @@ async function buildNotFoundResponse(context: any, requestUrl: URL): Promise<Res
   } catch {
     // fall through to plain-text response below
   }
-  return new Response('Not Found', {
-    status: 404,
-    statusText: 'Not Found',
+  return new Response(statusText, {
+    status,
+    statusText,
     headers: { 'Content-Type': 'text/plain; charset=utf-8' },
   });
 }
@@ -219,6 +235,10 @@ export const onRequest = async (context: any): Promise<Response> => {
   const requestUrl = new URL(context.request.url);
   const pathname = requestUrl.pathname;
 
+  if (isGonePath(pathname)) {
+    return buildErrorResponse(context, requestUrl, 410, 'Gone');
+  }
+
   // Trailing-slash enforcement: rewrite SPA paths to their canonical form.
   // See the `needsTrailingSlash` helper above for the full rationale.
   if (needsTrailingSlash(pathname)) {
@@ -242,7 +262,7 @@ export const onRequest = async (context: any): Promise<Response> => {
     const id = rikishiIdMatch[1];
     const exists = await rikishiIdProfileExists(context, id, requestUrl);
     if (!exists) {
-      return buildNotFoundResponse(context, requestUrl);
+      return buildErrorResponse(context, requestUrl, 404, 'Not Found');
     }
   }
 

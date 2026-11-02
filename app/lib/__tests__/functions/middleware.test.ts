@@ -787,6 +787,74 @@ describe('onRequest trailing-slash enforcement', () => {
   });
 });
 
+describe('onRequest legacy path handling', () => {
+  function makeHtmlResponse(body = '<!DOCTYPE html><html><body></body></html>'): Response {
+    return new Response(body, {
+      status: 200,
+      headers: { 'Content-Type': 'text/html; charset=utf-8' },
+    });
+  }
+
+  function makeContext(
+    request: Request,
+    mockNext: () => Promise<Response>,
+    fetchImpl: (url: URL, init?: RequestInit) => Promise<Response>,
+  ) {
+    return {
+      request,
+      env: { ASSETS: { fetch: fetchImpl } },
+      next: mockNext,
+    };
+  }
+
+  it.each([
+    '/archives/2013/06/xxx.html',
+    '/archives/cat11/',
+    '/pinterest-a28cb.html',
+    '/202603-banduke',
+    '/202603-banduke/',
+  ])('returns 410 for legacy path %s without invoking the next handler', async (pathname) => {
+    const goneHtml = '<!DOCTYPE html><html><body>gone</body></html>';
+    const mockFetch = vi.fn().mockImplementation(async (url: URL) => {
+      if (url.pathname === '/404.html') {
+        return new Response(goneHtml, {
+          status: 200,
+          headers: { 'Content-Type': 'text/html; charset=utf-8' },
+        });
+      }
+      return new Response(null, { status: 404 });
+    });
+    const mockNext = vi.fn();
+    const response = await onRequest(
+      makeContext(
+        new Request(`https://osada.us${pathname}`, { headers: { Accept: 'text/html' } }),
+        mockNext,
+        mockFetch,
+      ),
+    );
+
+    expect(response.status).toBe(410);
+    expect(response.headers.get('Content-Type')).toBe('text/html; charset=utf-8');
+    expect(response.headers.get('Location')).toBeNull();
+    expect(mockNext).not.toHaveBeenCalled();
+    expect(await response.text()).toContain('gone');
+  });
+
+  it('leaves the current /archives/ hub available', async () => {
+    const mockNext = vi.fn().mockResolvedValue(makeHtmlResponse());
+    const response = await onRequest(
+      makeContext(
+        new Request('https://osada.us/archives/', { headers: { Accept: 'text/html' } }),
+        mockNext,
+        vi.fn(),
+      ),
+    );
+
+    expect(response.status).toBe(200);
+    expect(mockNext).toHaveBeenCalledOnce();
+  });
+});
+
 describe('onRequest invalid rikushi ID handling', () => {
   function makeHtmlResponse(body = '<!DOCTYPE html><html><body></body></html>'): Response {
     return new Response(body, {
