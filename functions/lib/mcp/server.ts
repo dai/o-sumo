@@ -22,6 +22,11 @@ export function createDataFetcher(ctx: SumoServerContext): (path: string) => Pro
   };
 }
 
+const READ_ONLY_TOOL_ANNOTATIONS = {
+  readOnlyHint: true,
+  openWorldHint: false,
+} as const;
+
 export function createSumoMcpServer(ctx: SumoServerContext): McpServer {
   const server = new McpServer({
     name: 'us.osada/o-sumo',
@@ -35,6 +40,8 @@ export function createSumoMcpServer(ctx: SumoServerContext): McpServer {
   server.registerTool(
     'search_rikishi',
     {
+      title: 'Search rikishi（力士検索）',
+      annotations: READ_ONLY_TOOL_ANNOTATIONS,
       description: 'Search Grand Sumo rikishi by 四股名 (shikona) or 読み (yomi). Returns up to 20 matching rikishi with their ID, name, reading, current rank, and profile URLs.',
       inputSchema: z.object({
         query: z.string().min(1).describe('Search query for rikishi name or reading (e.g. "大の里", "おおのさと")'),
@@ -51,6 +58,8 @@ export function createSumoMcpServer(ctx: SumoServerContext): McpServer {
   server.registerTool(
     'get_rikishi_profile',
     {
+      title: 'Get rikishi profile（力士プロフィール）',
+      annotations: READ_ONLY_TOOL_ANNOTATIONS,
       description: 'Get detailed profile and career record for a specific rikishi by numeric ID.',
       inputSchema: z.object({
         id: z.number().int().positive().describe('Official rikishi ID (e.g. 4227)'),
@@ -67,6 +76,8 @@ export function createSumoMcpServer(ctx: SumoServerContext): McpServer {
   server.registerTool(
     'get_banzuke',
     {
+      title: 'Get banzuke（番付）',
+      annotations: READ_ONLY_TOOL_ANNOTATIONS,
       description: 'Get official Grand Sumo banzuke (rankings for makuuchi and juryo divisions). Optionally specify monthKey (YYYYMM, e.g. "202609") for historical basho, or omit for the latest basho.',
       inputSchema: z.object({
         monthKey: z.string().regex(/^\d{6}$/).optional().describe('Basho month key in YYYYMM format (e.g. "202609"). Defaults to current basho.'),
@@ -83,6 +94,8 @@ export function createSumoMcpServer(ctx: SumoServerContext): McpServer {
   server.registerTool(
     'get_torikumi',
     {
+      title: 'Get torikumi（取組）',
+      annotations: READ_ONLY_TOOL_ANNOTATIONS,
       description: 'Get torikumi match results or schedule for a specific day (pathDate in YYYYMMDD format).',
       inputSchema: z.object({
         pathDate: z.string().regex(/^\d{8}$/).describe('Date key in YYYYMMDD format (e.g. "20260927")'),
@@ -100,6 +113,8 @@ export function createSumoMcpServer(ctx: SumoServerContext): McpServer {
   server.registerTool(
     'list_basho',
     {
+      title: 'List basho（場所一覧）',
+      annotations: READ_ONLY_TOOL_ANNOTATIONS,
       description: 'List current and archived Grand Sumo basho available in o-sumo, along with their page URLs and API endpoints.',
       inputSchema: z.object({}),
     },
