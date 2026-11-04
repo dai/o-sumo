@@ -1,7 +1,10 @@
 # o-sumo
 
-[![DeepWiki](https://img.shields.io/badge/DeepWiki-dai%2Fo--sumo-blue.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAyCAYAAAAnWDnqAAAAAXNSR0IArs4c6QAAA05JREFUaEPtmUtyEzEQhtWTQyQLHNak2AB7ZnyXZMEjXMGeK/AIi+QuHrMnbChYY7MIh8g01fJoopFb0uhhEqqcbWTp06/uv1saEDv4O3n3dV60RfP947Mm9/SQc0ICFQgzfc4CYZoTPAswgSJCCUJUnAAoRHOAUOcATwbmVLWdGoH//PB8mnKqScAhsD0kYP3j/Yt5LPQe2KvcXmGvRHcDnpxfL2zOYJ1mFwrryWTz0advv1Ut4CJgf5uhDuDj5eUcAUoahrdY/56ebRWeraTjMt/00Sh3UDtjgHtQNHwcRGOC98BJEAEymycmYcWwOprTgcB6VZ5JK5TAJ+fXGLBm3FDAmn6oPPjR4rKCAoJCal2eAiQp2x0vxTPB3ALO2CRkwmDy5WohzBDwSEFKRwPbknEggCPB/imwrycgxX2NzoMCHhPkDwqYMr9tRcP5qNrMZHkVnOjRMWwLCcr8ohBVb1OMjxLwGCvjTikrsBOiA6fNyCrm8V1rP93iVPpwaE+gO0SsWmPiXB+jikdf6SizrT5qKasx5j8ABbHpFTx+vFXp9EnYQmLx02h1QTTrl6eDqxLnGjporxl3NL3agEvXdT0WmEost648sQOYAeJS9Q7bfUVoMGnjo4AZdUMQku50McDcMWcBPvr0SzbTAFDfvJqwLzgxwATnCgnp4wDl6Aa+Ax283gghmj+vj7feE2KBBRMW3FzOpLOADl0Isb5587h/U4gGvkt5v60Z1VLG8BhYjbzRwyQZemwAd6cCR5/XFWLYZRIMpX39AR0tjaGGiGzLVyhse5C9RKC6ai42ppWPKiBagOvaYk8lO7DajerabOZP46Lby5wKjw1HCRx7p9sVMOWGzb/vA1hwiWc6jm3MvQDTogQkiqIhJV0nBQBTU+3okKCFDy9WwferkHjtxib7t3xIUQtHxnIwtx4mpg26/HfwVNVDb4oI9RHmx5WGelRVlrtiw43zboCLaxv46AZeB3IlTkwouebTr1y2NjSpHz68WNFjHvupy3q8TFn3Hos2IAk4Ju5dCo8B3wP7VPr/FGaKiG+T+v+TQqIrOqMTL1VdWV1DdmcbO8KXBz6esmYWYKPwDL5b5FA1a0hwapHiom0r/cKaoqr+27/XcrS5UwSMbQAAAABJRU5ErkJggg==)](https://deepwiki.com/dai/o-sumo)
+Agent readiness status is available [here](https://isitagentready.com/osada.us).
 
+20261104: Consumer MCP distribution is now available. See [here](https://github.com/dai/o-sumo/tree/main/mcp) for details.
+
+[![DeepWiki](https://img.shields.io/badge/DeepWiki-dai%2Fo--sumo-blue.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAyCAYAAAAnWDnqAAAAAXNSR0IArs4c6QAAA05JREFUaEPtmUtyEzEQhtWTQyQLHNak2AB7ZnyXZMEjXMGeK/AIi+QuHrMnbChYY7MIh8g01fJoopFb0uhhEqqcbWTp06/uv1saEDv4O3n3dV60RfP947Mm9/SQc0ICFQgzfc4CYZoTPAswgSJCCUJUnAAoRHOAUOcATwbmVLWdGoH//PB8mnKqScAhsD0kYP3j/Yt5LPQe2KvcXmGvRHcDnpxfL2zOYJ1mFwrryWTz0advv1Ut4CJgf5uhDuDj5eUcAUoahrdY/56ebRWeraTjMt/00Sh3UDtjgHtQNHwcRGOC98BJEAEymycmYcWwOprTgcB6VZ5JK5TAJ+fXGLBm3FDAmn6oPPjR4rKCAoJCal2eAiQp2x0vxTPB3ALO2CRkwmDy5WohzBDwSEFKRwPbknEggCPB/imwrycgxX2NzoMCHhPkDwqYMr9tRcP5qNrMZHkVnOjRMWwLCcr8ohBVb1OMjxLwGCvjTikrsBOiA6fNyCrm8V1rP93iVPpwaE+gO0SsWmPiXB+jikdf6SizrT5qKasx5j8ABbHpFTx+vFXp9EnYQmLx02h1QTTrl6eDqxLnGjporxl3NL3agEvXdT0WmEost648sQOYAeJS9Q7bfUVoMGnjo4AZdUMQku50McDcMWcBPvr0SzbTAFDfvJqwLzgxwATnCgnp4wDl6Aa+Ax283gghmj+vj7feE2KBBRMW3FzOpLOADl0Isb5587h/U4gGvkt5v60Z1VLG8BhYjbzRwyQZemwAd6cCR5/XFWLYZRIMpX39AR0tjaGGiGzLVyhse5C9RKC6ai42ppWPKiBagOvaYk8lO7DajerabOZP46Lby5wKjw1HCRx7p9sVMOWGzb/vA1hwiWc6jm3MvQDTogQkiqIhJV0nBQBTU+3okKCFDy9WwferkHjtxib7t3xIUQtHxnIwtx4mpg26/HfwVNVDb4oI9RHmx5WGelRVlrtiw43zboCLaxv46AZeB3IlTkwouebTr1y2NjSpHz68WNFjHvupy3q8TFn3Hos2IAk4Ju5dCo8B3wP7VPr/FGaKiG+T+v+TQqIrOqMTL1VdWV1DdmcbO8KXBz6esmYWYKPwDL5b5FA1a0hwapHiom0r/cKaoqr+27/XcrS5UwSMbQAAAABJRU5ErkJggg==)](https://deepwiki.com/dai/o-sumo)
 
 [日本語 README](./README.md)
 
@@ -11,6 +14,7 @@ o-sumo is a web app for publishing sumo banzuke, torikumi, and rikishi, gyoji, a
 
 - README: `README.md` / `README_en.md`
 - Development guide: `DEVELOPMENT.md` / `DEVELOPMENT_en.md`
+- MCP integration kit: [`mcp/README.md`](https://github.com/dai/o-sumo/tree/main/mcp)
 - Skills index: `SKILLS.md` / `SKILLS_en.md`
 - API spec: `docs/api/v1.md` / `docs/api/v1.en.md`
 - API policy: `docs/api/policy.md` / `docs/api/policy.en.md`
@@ -40,9 +44,9 @@ o-sumo is a web app for publishing sumo banzuke, torikumi, and rikishi, gyoji, a
   - Kimarite: `/kimarite`
   - Basho analytics: `/analytics/`
 - Current route examples:
-  - `/202609-banzuke/`
-  - `/202609-torikumi/`
-  - `/20260913-yotei/`
+  - `/202611-banzuke/`
+  - `/202611-torikumi/`
+  - `/20261108-yotei/`
   - `/compare/?ids=3842,4227`
   - `/kimarite`
 - Stories: `https://blog.osada.us/`
@@ -87,7 +91,7 @@ Search and query-time grounding are permitted; model training is not (`search=ye
 | Goal | Entry point |
 | --- | --- |
 | Discover APIs | [Public JSON API guide](https://osada.us/agents/en#api) |
-| Query banzuke, torikumi, and rikishi with tools | [Sumo data MCP guide](https://osada.us/agents/en#mcp) |
+| Query banzuke, torikumi, and rikishi with tools | [Sumo data MCP integration kit](https://github.com/dai/o-sumo/tree/main/mcp) |
 | Search articles and profiles in natural language | [AI Search MCP guide](https://osada.us/agents/en#search) |
 | Learn data access and page URL resolution | [Agent Skills guide](https://osada.us/agents/en#skills) |
 | Check authentication | [Usage and authentication guide](https://osada.us/agents/en#policy) |
@@ -100,16 +104,16 @@ and read the separate schedule/result statuses and timestamps. Home, main indexe
 and daily schedule/result pages present in the published datasets support `Accept: text/markdown`.
 Unsupported routes, including individual profile pages, fall back to HTML.
 
-The read-only sumo data server uses Streamable HTTP and exposes `search_rikishi`,
+The read-only sumo data server uses Streamable HTTP (`https://osada.us/mcp`) and exposes `search_rikishi`,
 `get_rikishi_profile`, `get_banzuke`, `get_torikumi`, and `list_basho`.
+Setup guides and configuration files for consumer AI clients (Google Antigravity, Claude, ChatGPT, Grok, and Meta Muse) are available in [github.com/dai/o-sumo/mcp](https://github.com/dai/o-sumo/tree/main/mcp).
 The AI Search endpoint exposes a `search` tool for natural-language queries.
-Configure the appropriate endpoint URL in your MCP client.
 
 ```bash
 curl -fsS https://osada.us/.well-known/agent-skills/index.json
 curl -fsS https://osada.us/mcp/server-card
 curl -fsS https://osada.us/api/v1/torikumi.json
-curl -i -H 'Accept: text/markdown' https://osada.us/20260926-yotei/
+curl -i -H 'Accept: text/markdown' https://osada.us/20261108-yotei/
 ```
 
 Supported browsers also register four WebMCP tools within the page: `search_rikishi`,
@@ -133,7 +137,7 @@ the remote MCP endpoints above. The A2A card is for discovery; task operations a
   - Quick-pick matchup presets (Yokozuna, Ozeki, Sekiwake, Sanyaku rivalries) and one-tap selection for saved My Rikishi pairs
 - Bilingual lists and profiles for 42 active gyoji and 45 active yobidashi, sourced from the official Japan Sumo Association website. Official numeric IDs are used in page and JSON API URLs, and no photographs are published
 - Banzuke pages for makuuchi and juryo rankings and records, with MiniMax I2I Generation processed rikishi profile images and links to rikishi profiles
-- My Rikishi (`/my-rikishi/`) stores up to 10 wrestlers by shikona with navigation count badges, URL synchronisation, and `localStorage` persistence across devices
+- My Rikishi (`/my-rikishi/`) stores up to 10 wrestlers by shikona with navigation count badges, URL synchronisation, `localStorage` persistence, and optional Google sign-in cloud sync across devices. Integrates with the "My Rikishi only" filter (`?filter=favorites`) and X share on daily torikumi pages
 - Basho analytics (`/analytics/`) shows makuuchi yusho, jun-yusho, kanto-sho, gin-o-sho, and juryo yusho for the current basho
 - The `ShareCurrentLink` button copies the current URL to the clipboard (with a manual fallback for non-secure contexts)
 - Monthly hub pages listing all 15 daily pages
@@ -283,13 +287,13 @@ python scripts/update_official_profiles_test.py
 
 See `docs/official-profile-refresh-runbook.md` for generated-file and pre-publish integrity checks.
 
-The July basho is final and retained as immutable snapshots in `app/lib/july2026-data.ts` and `app/lib/july2026-banzuke-data.ts`. The current `/api/v1/banzuke.json` and `/api/v1/torikumi.json` serve September; July remains available as an archive.
+The September basho is final and retained as immutable snapshots in `app/lib/september2026-data.ts` and `app/lib/september2026-banzuke-data.ts`. The current `/api/v1/banzuke.json` and `/api/v1/torikumi.json` serve November; September remains available as an archive.
 
-Run `npm run preflight:current-data` before switching current data. It fetches the official annual schedule and banzuke, then checks current banzuke/torikumi, archives, routes, sitemap, and workflow consistency without writing files. The September 2026 switch used `--current-month 202607 --target-month 202609`. It prints `READY` and exits 0 only when every gate is `[OK]`; official publication/fetch failures and contract mismatches print `BLOCKED` and exit 1. The generator is not run, and data, routes, sitemap, redirects, and workflow schedules are not changed.
+Run `npm run preflight:current-data` before switching current data. It fetches the official annual schedule and banzuke, then checks current banzuke/torikumi, archives, routes, sitemap, and workflow consistency without writing files. The November 2026 switch used `--current-month 202609 --target-month 202611`. It prints `READY` and exits 0 only when every gate is `[OK]`; official publication/fetch failures and contract mismatches print `BLOCKED` and exit 1. The generator is not run, and data, routes, sitemap, redirects, and workflow schedules are not changed.
 
 To check a different basho month, pass arguments after `--` so npm forwards them to the script: `npm run preflight:current-data -- --current-month YYYYMM --target-month YYYYMM` (npm 8+). You can also invoke the script directly: `python scripts/preflight_current_basho.py --current-month YYYYMM --target-month YYYYMM`. The npm script keeps the hard-coded defaults, so subsequent switches must specify the months explicitly.
 
-For the next basho switch, preserve the current September data and the immutable July snapshots, and switch banzuke, torikumi, public JSON, monthly routes, and sitemap together only after validating the new official data.
+For the next basho switch, preserve the current November data and the immutable September snapshots, and switch banzuke, torikumi, public JSON, monthly routes, and sitemap together only after validating the new official data.
 
 Generated outputs:
 
@@ -354,6 +358,16 @@ Setup:
 
 See `scripts/ci/notify_discord.sh` for the embedded payload structure.
 
+## GitHub Mobile + Copilot Workflow
+
+- Prerequisites:
+  - Repository instructions: `.github/copilot-instructions.md`
+- Shortest weekend flow:
+  - Create an Issue in GitHub Mobile and assign it to the Copilot cloud agent
+  - Review the diff and explanation in the Agent session
+  - Verify `test.yml` (`typecheck` / `test` / `build`) passes on the opened PR
+  - Review and merge directly in GitHub Mobile
+
 ## Testing
 
 - test runner: Vitest
@@ -389,18 +403,22 @@ GitHub Actions runs the following on pull requests and pushes to `main`, `codex/
 - SPA fallback file: `public/_redirects` (app routes only; `/api/v1/*` serves static JSON as-is)
 - Direct access to date-based URLs falls back to `index.html`
 
-## September Basho Operations
+## November Basho Operations
 
-- The current APIs have switched to September; keep the July TypeScript snapshots immutable as archives.
+- The current APIs have switched to November; keep the September TypeScript snapshots immutable as archives.
 - Scheduled triggers activate only after this workflow change reaches the default `main` branch. Runs may be delayed or skipped, and the shared concurrency lock does not cover an outstanding Daily PR merge; there is no guaranteed ten-minute publication SLA.
-- After the official September 12 torikumi publication, run `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main`, watch the run, then inspect PR checks and merge, the JSON on `main`, and production JSON. Empty data for both divisions before publication is a no-op, not successful publication.
-- After the September 27 final results and next-day verification, remove both cron schedules in a separate PR. Summaries are point-in-time snapshots, not merge or deployment proof.
+- After the official torikumi publication around November 6, run `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main`, watch the run, then inspect PR checks and merge, the JSON on `main`, and production JSON. Empty data for both divisions before publication is a no-op, not successful publication.
+- After the November 22 final results and next-day verification, remove both cron schedules in a separate PR. Summaries are point-in-time snapshots, not merge or deployment proof.
 - `preflight:current-data` is a transition-only safety gate that requires paused workflows, not an in-tournament readiness check. The validator permits only the precise fusen exception and generation preserves old data on partial fetch failure.
 - The news workflow remains scheduled twice daily at JST 09:05 and 19:05.
 - Manual runs can be started with `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main`, `gh workflow run realtime-torikumi-direct-update.yml -R dai/o-sumo --ref main`, or `gh workflow run news-feed-update.yml -R dai/o-sumo --ref main`.
 - The realtime workflow uses `--torikumi-only --torikumi-scope result --skip-rikishi-fetch`, so it is limited to torikumi results.
 - If results still look stale, triage in this order: run history -> run logs (`event.schedule`, JST time, updatedAt fields) -> upstream `judge` values.
-- Keep the cache policy in `public/_headers` unchanged to control Cloudflare usage.
+- Keep the cache policy in `public/_headers` unchanged to control Cloudflare usage:
+  - `/assets/*`: `public, max-age=31536000, immutable`
+  - `/manifest.webmanifest`: `public, max-age=3600`
+  - `/sw.js`: `public, max-age=0, must-revalidate`
+  - `/`: `public, max-age=300`
 - Keep the PWA Service Worker on `registerType: "autoUpdate"` so updates are applied automatically.
 
 ## Important Files
@@ -437,9 +455,13 @@ GitHub Actions runs the following on pull requests and pushes to `main`, `codex/
 - `app/lib/webmcp.ts`: WebMCP tool definitions (4 tools)
 - `app/lib/july2026-data.ts`: immutable July 2026 (Nagoya) basho snapshot
 - `app/lib/july2026-banzuke-data.ts`: immutable July 2026 banzuke snapshot
+- `app/lib/september2026-data.ts`: immutable September 2026 (Aki) basho snapshot
+- `app/lib/september2026-banzuke-data.ts`: immutable September 2026 banzuke snapshot
 - `app/lib/archive-basho-data.ts`: aggregated past + current basho data
 - `app/lib/blog-build.ts`: static HTML, RSS, and sitemap generation for Stories
 - `app/lib/agent-skills.ts`: Agent Skills Index metadata
+- `functions/mcp/[[path]].ts`: Streamable HTTP MCP server endpoint
+- `mcp/`: multi-platform consumer MCP integration kit
 - `scripts/update_sumo_data.py`: data generation script for banzuke, torikumi, and rikishi profiles
 - `scripts/update_news_feed.py`: news feed generation script
 - `scripts/update_official_profiles.py`: gyoji and yobidashi data generator
@@ -456,5 +478,5 @@ MIT
 
 ## Download
 
-- [May 2026 basho rikishi dictionary `rikishi-202605.txt`](./rikishi-202605.txt)
+- [July 2026 basho rikishi dictionary](https://github.com/dai/shikona)
 - [Dictionary registration guide](https://x.com/daisuke/status/2027263585244889097)

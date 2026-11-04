@@ -1,10 +1,10 @@
 # o-sumo
 
-[![Is Your Site Agent-Ready? 100点達成（コマース以外）](https://pbs.twimg.com/media/HO21kitagAABB1E.png)](https://x.com/daisuke/status/2084522046508396992)
+Agentsの対応状況は[こちら](https://isitagentready.com/osada.us)
+
+20261104: ユーザー向けにmcpによる配信を始めました。詳細は[こちら](https://github.com/dai/o-sumo/tree/main/mcp)をご覧ください。
 
 [![DeepWiki](https://img.shields.io/badge/DeepWiki-dai%2Fo--sumo-blue.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAyCAYAAAAnWDnqAAAAAXNSR0IArs4c6QAAA05JREFUaEPtmUtyEzEQhtWTQyQLHNak2AB7ZnyXZMEjXMGeK/AIi+QuHrMnbChYY7MIh8g01fJoopFb0uhhEqqcbWTp06/uv1saEDv4O3n3dV60RfP947Mm9/SQc0ICFQgzfc4CYZoTPAswgSJCCUJUnAAoRHOAUOcATwbmVLWdGoH//PB8mnKqScAhsD0kYP3j/Yt5LPQe2KvcXmGvRHcDnpxfL2zOYJ1mFwrryWTz0advv1Ut4CJgf5uhDuDj5eUcAUoahrdY/56ebRWeraTjMt/00Sh3UDtjgHtQNHwcRGOC98BJEAEymycmYcWwOprTgcB6VZ5JK5TAJ+fXGLBm3FDAmn6oPPjR4rKCAoJCal2eAiQp2x0vxTPB3ALO2CRkwmDy5WohzBDwSEFKRwPbknEggCPB/imwrycgxX2NzoMCHhPkDwqYMr9tRcP5qNrMZHkVnOjRMWwLCcr8ohBVb1OMjxLwGCvjTikrsBOiA6fNyCrm8V1rP93iVPpwaE+gO0SsWmPiXB+jikdf6SizrT5qKasx5j8ABbHpFTx+vFXp9EnYQmLx02h1QTTrl6eDqxLnGjporxl3NL3agEvXdT0WmEost648sQOYAeJS9Q7bfUVoMGnjo4AZdUMQku50McDcMWcBPvr0SzbTAFDfvJqwLzgxwATnCgnp4wDl6Aa+Ax283gghmj+vj7feE2KBBRMW3FzOpLOADl0Isb5587h/U4gGvkt5v60Z1VLG8BhYjbzRwyQZemwAd6cCR5/XFWLYZRIMpX39AR0tjaGGiGzLVyhse5C9RKC6ai42ppWPKiBagOvaYk8lO7DajerabOZP46Lby5wKjw1HCRx7p9sVMOWGzb/vA1hwiWc6jm3MvQDTogQkiqIhJV0nBQBTU+3okKCFDy9WwferkHjtxib7t3xIUQtHxnIwtx4mpg26/HfwVNVDb4oI9RHmx5WGelRVlrtiw43zboCLaxv46AZeB3IlTkwouebTr1y2NjSpHz68WNFjHvupy3q8TFn3Hos2IAk4Ju5dCo8B3wP7VPr/FGaKiG+T+v+TQqIrOqMTL1VdWV1DdmcbO8KXBz6esmYWYKPwDL5b5FA1a0hwapHiom0r/cKaoqr+27/XcrS5UwSMbQAAAABJRU5ErkJggg==)](https://deepwiki.com/dai/o-sumo)
-
-
 
 [English README](./README_en.md)
 
@@ -14,6 +14,7 @@ o-sumo は、大相撲の番付、取組、力士・行司・呼出名鑑を配�
 
 - README: `README.md` / `README_en.md`
 - 開発ガイド: `DEVELOPMENT.md` / `DEVELOPMENT_en.md`
+- MCP 連携キット: [`mcp/README.md`](https://github.com/dai/o-sumo/tree/main/mcp)
 - Skills 一覧: `SKILLS.md` / `SKILLS_en.md`
 - API 仕様: `docs/api/v1.md` / `docs/api/v1.en.md`
 - API ポリシー: `docs/api/policy.md` / `docs/api/policy.en.md`
@@ -85,7 +86,7 @@ Skill 公開:
 | 目的 | 入口 |
 | --- | --- |
 | APIを見つける | [公開JSON APIの案内](https://osada.us/agents/#api) |
-| 番付・取組・力士データをツールで取得する | [相撲データ用MCPの案内](https://osada.us/agents/#mcp) |
+| 番付・取組・力士データをツールで取得する | [相撲データ用MCP連携キット](https://github.com/dai/o-sumo/tree/main/mcp) |
 | 記事やプロフィールを自然言語で探す | [AI Search MCPの案内](https://osada.us/agents/#search) |
 | 取得方法・ページURLを調べる | [Agent Skillsの案内](https://osada.us/agents/#skills) |
 | 認証方針を確認する | [利用条件と認証方針](https://osada.us/agents/#policy) |
@@ -98,10 +99,10 @@ Skill 公開:
 ホーム・主要一覧・月別ページと、公開データに存在する日別予定/結果は
 `Accept: text/markdown` で取得できます。個別人物ページなど未対応ルートはHTMLを返します。
 
-相撲データ用 MCP は Streamable HTTP の読み取り専用サーバーで、`search_rikishi`、
+相撲データ用 MCP は Streamable HTTP（`https://osada.us/mcp`）の読み取り専用サーバーで、`search_rikishi`、
 `get_rikishi_profile`、`get_banzuke`、`get_torikumi`、`list_basho` を提供します。
-AI Search MCP は自然言語検索用の `search` ツールを提供します。MCP クライアントには
-用途に応じたエンドポイント URL を登録してください。
+各 AI クライアント（Google Antigravity / Claude / ChatGPT / Grok / Meta Muse）向けの導入手順・設定ファイルは [github.com/dai/o-sumo/mcp](https://github.com/dai/o-sumo/tree/main/mcp) を参照してください。
+AI Search MCP は自然言語検索用の `search` ツールを提供します。
 
 ```bash
 curl -fsS https://osada.us/.well-known/agent-skills/index.json
@@ -131,7 +132,7 @@ curl -i -H 'Accept: text/markdown' https://osada.us/20261108-yotei/
   - 注目対戦（横綱・大関・関脇対決等）やマイ力士ペアからのワンタップクイック選択
 - 日本相撲協会公式サイトを出典とする現役行司42名・呼出45名の一覧と個別プロフィールを日英表示。公式数値IDをURLとJSON APIに使用し、写真は掲載しません
 - 番付ページで幕内・十両の番付と成績を表示し、MiniMax I2I Generation で加工した力士プロフィール画像とあわせて力士プロフィールへ遷移
-- マイ力士 (`/my-rikishi/`) で最大10名まで四股名を登録し、ナビゲーション件数バッジ表示、URL 同期と `localStorage` 永続化で端末をまたいで保持
+- マイ力士 (`/my-rikishi/`) で最大10名まで四股名を登録し、ナビゲーション件数バッジ表示、URL 同期・`localStorage` 永続化・Google ログインによるクラウド同期で端末をまたいで保持。日別取組ページの「推しだけ表示」フィルター（`?filter=favorites`）や X シェアと連携
 - 場所ステータス分析 (`/analytics/`) で幕内優勝・三賞・十両優勝を一覧表示
 - 各ページの URL を `ShareCurrentLink` ボタンでクリップボードへコピー（手動フォールバック付き）
 - 月別ハブで 15 日分の日別ページを一覧表示
@@ -450,9 +451,13 @@ GitHub Actions では PR と `main` / `codex/**` / `automation/data-updates` へ
 - `app/lib/webmcp.ts`: WebMCP ツール定義（4 ツール）
 - `app/lib/july2026-data.ts`: 七月場所（名古屋）不変スナップショット
 - `app/lib/july2026-banzuke-data.ts`: 七月場所番付不変スナップショット
+- `app/lib/september2026-data.ts`: 九月場所（秋）不変スナップショット
+- `app/lib/september2026-banzuke-data.ts`: 九月場所番付不変スナップショット
 - `app/lib/archive-basho-data.ts`: 過去場所・現行場所の集約データ
 - `app/lib/blog-build.ts`: 読みものの静的HTML・RSS・sitemap生成
 - `app/lib/agent-skills.ts`: Agent Skills Index メタデータ
+- `functions/mcp/[[path]].ts`: Streamable HTTP MCP サーバーエンドポイント
+- `mcp/`: 各種 AI エージェント・クライアント向け MCP 連携キット
 - `scripts/update_sumo_data.py`: 番付・取組・力士プロファイル生成スクリプト
 - `scripts/update_news_feed.py`: ニュースフィード生成スクリプト
 - `scripts/update_official_profiles.py`: 行司・呼出データ生成スクリプト
