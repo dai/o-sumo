@@ -1,0 +1,133 @@
+openapi: 3.1.0
+info:
+  title: Grand Sumo Archive API (大相撲アーカイブ)
+  description: Access Grand Sumo banzuke, torikumi match results, and rikishi profile data from osada.us.
+  version: 1.0.0
+servers:
+  - url: https://osada.us
+paths:
+  /mcp:
+    post:
+      operationId: invokeSumoMcpTool
+      summary: Invoke a Grand Sumo MCP tool
+      description: |
+        Executes an MCP tool call on the osada.us MCP server.
+        Available tool names in params.name:
+        - "search_rikishi": Search rikishi by name or reading (e.g. {"query": "大の里"}).
+        - "get_rikishi_profile": Retrieve rikishi profile by numeric ID (e.g. {"id": 4227}).
+        - "get_banzuke": Retrieve banzuke rankings (e.g. {"monthKey": "202609"} or empty arguments for current).
+        - "get_torikumi": Retrieve match results or schedule (e.g. {"pathDate": "20260927", "mode": "result"}).
+        - "list_basho": List available tournaments and archives (empty arguments).
+      parameters:
+        - name: Accept
+          in: header
+          required: true
+          schema:
+            type: string
+            default: "application/json, text/event-stream"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - jsonrpc
+                - id
+                - method
+                - params
+              properties:
+                jsonrpc:
+                  type: string
+                  enum: ["2.0"]
+                  default: "2.0"
+                id:
+                  type: integer
+                  default: 1
+                method:
+                  type: string
+                  enum: ["tools/call"]
+                  default: "tools/call"
+                params:
+                  type: object
+                  required:
+                    - name
+                    - arguments
+                  properties:
+                    name:
+                      type: string
+                      description: Tool name to call
+                      enum:
+                        - search_rikishi
+                        - get_rikishi_profile
+                        - get_banzuke
+                        - get_torikumi
+                        - list_basho
+                    arguments:
+                      type: object
+                      description: Tool arguments map
+                      properties:
+                        query:
+                          type: string
+                          description: Rikishi shikona or reading for search_rikishi
+                        id:
+                          type: integer
+                          description: Rikishi numeric ID for get_rikishi_profile
+                        monthKey:
+                          type: string
+                          description: Basho month key YYYYMM for get_banzuke
+                        pathDate:
+                          type: string
+                          description: Date key YYYYMMDD for get_torikumi
+                        mode:
+                          type: string
+                          enum: ["result", "schedule"]
+                          description: Bout mode for get_torikumi
+      responses:
+        '200':
+          description: Tool execution response
+          content:
+            text/event-stream:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    type: integer
+                  result:
+                    type: object
+  /api/v1/banzuke.json:
+    get:
+      operationId: getLatestBanzukeRest
+      summary: Get latest official banzuke (REST)
+      description: Returns the latest official Grand Sumo banzuke data.
+      responses:
+        '200':
+          description: Current banzuke JSON
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/rikishi/{id}.json:
+    get:
+      operationId: getRikishiProfileRest
+      summary: Get rikishi profile by ID (REST)
+      description: Returns the detailed profile of a rikishi given their numeric ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Numeric ID of the rikishi
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Rikishi profile JSON
+          content:
+            application/json:
+              schema:
+                type: object
