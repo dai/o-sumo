@@ -154,6 +154,16 @@ describe('Cloudflare banzuke redirect rules', () => {
       destination: '/',
       status: 200,
     });
+    expect(evaluateRedirect('/privacy')).toEqual({
+      source: '/privacy',
+      destination: '/privacy/',
+      status: 200,
+    });
+    expect(evaluateRedirect('/privacy/')).toEqual({
+      source: '/privacy/',
+      destination: '/',
+      status: 200,
+    });
   });
 
   it.each(['yotei', 'torikumi'])('serves monthly and daily %s routes through the SPA', (kind) => {

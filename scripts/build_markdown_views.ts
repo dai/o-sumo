@@ -325,12 +325,34 @@ function renderHomeMarkdown(publicDir: string): string {
       '- [決まり手](https://osada.us/kimarite/)',
       '- [分析](https://osada.us/analytics/)',
       '- [当サイトについて・プライバシーポリシー](https://osada.us/about/)',
+      '- [プライバシーポリシー](https://osada.us/privacy/)',
       '',
       '### エージェント向けエンドポイント',
       '',
       '- [API カタログ](https://osada.us/.well-known/api-catalog)',
       '- [Agent Skills index](https://osada.us/.well-known/agent-skills/index.json)',
       '- [auth.md](https://osada.us/auth.md)',
+    ].join('\n'),
+  });
+}
+
+function renderPrivacyMarkdown(): string {
+  return renderMarkdownPage({
+    title: 'プライバシーポリシー | o-sumo',
+    description: '縦綱 / o-sumo の MCP サーバーと本サイトは読み取り専用で、ログインは不要です。個人情報は収集しません。',
+    canonical: `${SITE}/privacy/`,
+    body: [
+      '縦綱 / o-sumo の MCP サーバー（https://osada.us/mcp）と本サイト（https://osada.us）は、読み取り専用です。ログインは不要です。個人情報は収集しません。',
+      '',
+      'ホスティングおよび CDN（Cloudflare）は、運用とセキュリティのため、標準的なアクセスログを保持する場合があります。',
+      '',
+      '掲載しているデータは、公開されている大相撲の情報です。',
+      '',
+      '連絡先: [https://github.com/dai/o-sumo/issues](https://github.com/dai/o-sumo/issues)',
+      '',
+      '## English',
+      '',
+      'The 縦綱 / o-sumo MCP server (https://osada.us/mcp) and this site (https://osada.us) are read-only. They need no login and collect no personal information. Hosting and the CDN (Cloudflare) may keep standard access logs for operation and security. The data is public Grand Sumo (大相撲) information. Contact: [https://github.com/dai/o-sumo/issues](https://github.com/dai/o-sumo/issues).',
     ].join('\n'),
   });
 }
@@ -406,6 +428,10 @@ export function buildMarkdownPages(publicDir: string, _outRoot: string): Markdow
     outDir: 'about/',
     content: renderAboutMarkdown(),
   });
+  routes.push({
+    outDir: 'privacy/',
+    content: renderPrivacyMarkdown(),
+  });
 
   // Iterate over the supported basho set.
   for (const { monthKey } of getAllArchiveRouteConfigs()) {
@@ -456,6 +482,7 @@ export const MARKDOWN_ROUTES: ReadonlyArray<string> = [
   'kimarite/',
   'analytics/',
   'about/',
+  'privacy/',
   ...getAllArchiveRouteConfigs().flatMap(({ monthKey }) => [
     `${monthKey}-banzuke/`,
     `${monthKey}-torikumi/`,

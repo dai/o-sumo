@@ -300,6 +300,7 @@ describe('Home page', () => {
     expect(screen.queryByText('連絡先:')).not.toBeInTheDocument();
     expect(within(screen.getByRole('banner')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
     expect(within(screen.getByRole('contentinfo')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
+    expect(within(screen.getByRole('contentinfo')).getByRole('link', { name: 'プライバシーポリシー' })).toHaveAttribute('href', '/privacy/');
     expect(screen.getAllByRole('link', { name: 'GitHub' })[0]).toHaveAttribute('href', 'https://github.com/dai/o-sumo');
   });
 

@@ -249,6 +249,7 @@ describe('onRequest SEO routing for sitemap-targeted HTML routes', () => {
     ['/yobidashi/', '呼出名鑑 | o-sumo'],
     ['/kimarite/', '決まり手一覧 | o-sumo'],
     ['/analytics/', '大相撲データ分析 | o-sumo'],
+    ['/privacy/', 'プライバシーポリシー | o-sumo'],
     // /about/ is tested separately via `resolvePageMeta` so we don't have to
     // hand-type the long Japanese title into this list.
     ['/202609-banzuke/', '2026年9月場所 番付 | o-sumo'],
@@ -690,6 +691,7 @@ describe('onRequest trailing-slash enforcement', () => {
     '/archives',
     '/analytics',
     '/about',
+    '/privacy',
     '/kimarite',
     '/compare',
     '/my-rikishi',
