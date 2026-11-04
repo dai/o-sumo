@@ -59,4 +59,4 @@ output/playwright/
 crit.exe
 
 # Nested clone of the repo (used as scratch worktree elsewhere)
-o-sumo/
+/o-sumo/
