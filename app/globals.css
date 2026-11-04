@@ -410,6 +410,7 @@ p {
 .officials-header,
 .archives-header,
 .about-header,
+.privacy-header,
 .analytics-dashboard-header {
   background-image: var(--site-header-overlay), var(--site-header-bg-image);
   background-size: cover;
@@ -647,6 +648,7 @@ p {
   .officials-header,
   .archives-header,
   .about-header,
+  .privacy-header,
   .analytics-dashboard-header {
     padding-top: 2.8rem;
   }

@@ -51,6 +51,7 @@ const SPA_ROUTE_PATTERNS: RegExp[] = [
   /^\/archives\/?$/,
   /^\/analytics\/?$/,
   /^\/about\/?$/,
+  /^\/privacy\/?$/,
   /^\/kimarite\/?$/,
   /^\/compare\/?$/,
   /^\/my-rikishi\/?$/,

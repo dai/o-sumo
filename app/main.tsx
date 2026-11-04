@@ -32,6 +32,7 @@ const CompareRikishiPage = React.lazy(() => import('./rikishi/CompareRikishiPage
 const KimaritePage = React.lazy(() => import('./kimarite/page'))
 const AnalyticsDashboardPage = React.lazy(() => import('./analytics/page'))
 const AboutPage = React.lazy(() => import('./about/page'))
+const PrivacyPage = React.lazy(() => import('./privacy/page'))
 const NotFoundPage = React.lazy(() => import('./NotFoundPage'))
 const OfficialListPage = React.lazy(async () => {
   const module = await import('./officials/page')
@@ -102,6 +103,8 @@ function AppShell() {
               <Route path="/analytics" element={<HashPreservingRedirect to="/analytics/" />} />
               <Route path="/about/" element={<AboutPage />} />
               <Route path="/about" element={<HashPreservingRedirect to="/about/" />} />
+              <Route path="/privacy/" element={<PrivacyPage />} />
+              <Route path="/privacy" element={<HashPreservingRedirect to="/privacy/" />} />
               <Route
                 path="/rikishi/:id"
                 element={(

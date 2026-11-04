@@ -17,7 +17,7 @@ export interface OfficialSitemapItem {
   id: number;
 }
 
-const FIXED_SITEMAP_PATHS = ['/', '/archives/', '/rikishi/', '/gyoji/', '/yobidashi/', '/kimarite/', '/analytics/', '/about/'] as const;
+const FIXED_SITEMAP_PATHS = ['/', '/archives/', '/rikishi/', '/gyoji/', '/yobidashi/', '/kimarite/', '/analytics/', '/about/', '/privacy/'] as const;
 
 function escapeXml(value: string): string {
   return value

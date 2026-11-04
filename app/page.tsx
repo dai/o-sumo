@@ -528,6 +528,8 @@ export default function Home() {
           {' | '}
           <Link to="/about/">{t('home.footerAbout')}</Link>
           {' | '}
+          <Link to="/privacy/">{t('home.footerPrivacy')}</Link>
+          {' | '}
           <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">{t('home.footerDaisuke')}</a>
           {' | '}
           <a href="https://github.com/dai/o-sumo" target="_blank" rel="noopener noreferrer">{t('home.footerGithub')}</a>
