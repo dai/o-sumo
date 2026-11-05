@@ -28,7 +28,11 @@
     <section id="mcp">
       <h2>相撲データ用MCP</h2>
       <p>番付、取組、力士検索、プロフィール、場所一覧を取得する5つのツールを提供します。MCPクライアントに <code>https://osada.us/mcp</code> を登録してください。このURLはブラウザーで開くためのページではなく、Streamable HTTPの接続先です。</p>
-      <p><a href="/mcp/server-card">Server Cardを見る</a></p>
+      <p><a href="/mcp/server-card">Server Cardを見る</a> · <a href="https://github.com/dai/o-sumo/tree/main/mcp">クライアント連携キット（GitHub）</a></p>
+      <h3>Google Antigravity（AGY）プラグインの直接インストール</h3>
+      <p>Antigravity CLIからGitHubリポジトリを指定して直接インストールできます：</p>
+      <pre><code>agy plugin install https://github.com/dai/o-sumo.git#main:mcp/agy/o-sumo</code></pre>
+      <p>または、配布用ZIPファイル <a href="/agents/o-sumo-plugin.zip"><code>o-sumo-plugin.zip</code></a> をダウンロードして展開し、設定ディレクトリ（<code>~/.gemini/config/plugins/o-sumo/</code>）に配置して再起動することでも導入できます（または <code>agy plugin install ./o-sumo</code> を実行）。</p>
     </section>
     <section id="search">
       <h2>AI Search MCP</h2>

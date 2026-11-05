@@ -28,7 +28,11 @@
     <section id="mcp">
       <h2>Sumo data MCP</h2>
       <p>Five tools cover rankings, bouts, rikishi search, profiles, and basho listings. Configure <code>https://osada.us/mcp</code> in an MCP client. This is a Streamable HTTP endpoint, not a browser page.</p>
-      <p><a href="/mcp/server-card">View the Server Card</a></p>
+      <p><a href="/mcp/server-card">View the Server Card</a> · <a href="https://github.com/dai/o-sumo/tree/main/mcp">Client Integration Kit (GitHub)</a></p>
+      <h3>Direct install for Google Antigravity (AGY) plugin</h3>
+      <p>Install directly from the GitHub repository using the Antigravity CLI:</p>
+      <pre><code>agy plugin install https://github.com/dai/o-sumo.git#main:mcp/agy/o-sumo</code></pre>
+      <p>Alternatively, download the distribution archive <a href="/agents/o-sumo-plugin.zip"><code>o-sumo-plugin.zip</code></a>, extract it into your configuration directory (<code>~/.gemini/config/plugins/o-sumo/</code>), and restart Antigravity (or run <code>agy plugin install ./o-sumo</code>).</p>
     </section>
     <section id="search">
       <h2>AI Search MCP</h2>
