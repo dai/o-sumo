@@ -238,7 +238,7 @@ describe('MCP Tools execution', () => {
           name: string;
           title?: string;
           description: string;
-          annotations?: { readOnlyHint?: boolean; openWorldHint?: boolean };
+          annotations?: { readOnlyHint?: boolean; openWorldHint?: boolean; destructiveHint?: boolean };
         }>;
         content?: Array<{ type: string; text: string }>;
       };
@@ -259,27 +259,27 @@ describe('MCP Tools execution', () => {
       expect.objectContaining({
         name: 'search_rikishi',
         title: 'Search rikishi（力士検索）',
-        annotations: { readOnlyHint: true, openWorldHint: false },
+        annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: false },
       }),
       expect.objectContaining({
         name: 'get_rikishi_profile',
         title: 'Get rikishi profile（力士プロフィール）',
-        annotations: { readOnlyHint: true, openWorldHint: false },
+        annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: false },
       }),
       expect.objectContaining({
         name: 'get_banzuke',
         title: 'Get banzuke（番付）',
-        annotations: { readOnlyHint: true, openWorldHint: false },
+        annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: false },
       }),
       expect.objectContaining({
         name: 'get_torikumi',
         title: 'Get torikumi（取組）',
-        annotations: { readOnlyHint: true, openWorldHint: false },
+        annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: false },
       }),
       expect.objectContaining({
         name: 'list_basho',
         title: 'List basho（場所一覧）',
-        annotations: { readOnlyHint: true, openWorldHint: false },
+        annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: false },
       }),
     ]));
   });
