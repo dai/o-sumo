@@ -14,8 +14,7 @@ Anonymous read-only access requires no API key. Search and query-time grounding 
 
 Current update flows:
 
-- Daily update (torikumi schedule only): `daily-data-update.yml` runs at JST 13:00, 15:00, 17:00 and 19:00 (also supports manual dispatch)
-- Realtime update (torikumi results only): `realtime-torikumi-direct-update.yml` is scheduled every 3 minutes during UTC 06:00–09:59 / JST 15:00–18:59 (also supports manual dispatch)
+- Torikumi schedules and results currently run on manual dispatch. See the [basho scheduling runbook](../../scripts/ci/README.md) for the cron configuration when scheduled updates are enabled.
 - News update: run `news-feed-update.yml` twice daily at JST 09:05 and 19:05 (publication on the 19:05 run)
 - Updates use the serialized `data-update.yml` workflow and `scripts/ci/run_data_update.py`.
 - News acquisition state is kept on `automation/news-state`; the selected validated snapshot is published to `main` according to `scripts/ci/news_state.py`. See those files for publication and retry rules.
@@ -27,7 +26,7 @@ See the GitHub Actions workflows for the exact implementation.
 Stale-result triage order:
 
 1. Run history (check whether realtime runs were executed)
-2. Run logs (`event.schedule`, JST time, `resultUpdatedAt`, `scheduleUpdatedAt`)
+2. Run logs (JST time, `resultUpdatedAt`, `scheduleUpdatedAt`)
 3. Upstream API `judge` values (whether results are settled)
 
 ## Timestamp Ownership
@@ -37,7 +36,7 @@ Stale-result triage order:
 - Banzuke (`banzuke.json`): `updatedAt` is bound to results — equals `torikumi.json.resultUpdatedAt`. It does NOT advance on schedule-only updates
 - Results (`torikumi.json.resultDays`, results hub/day): `resultUpdatedAt`
 - Schedule (`torikumi.json.scheduleDays`, schedule hub/day): `scheduleUpdatedAt`
-- Archives (`/202603/`, `/202605/`, `/202607/`, `/202609/`): each snapshot's `BanzukeData.updatedAt` / `TorikumiData.updatedAt`
+- Archives: each snapshot's `BanzukeData.updatedAt` / `TorikumiData.updatedAt`
 - Rikishi index / detail: each JSON's `updatedAt`. Detail takes precedence over the index when both exist
 - Gyoji / yobidashi index / detail: each JSON's `retrievedAt`
 - News articles: each article's `publishedAt`. The feed's own `updatedAt` is NOT shown in the UI

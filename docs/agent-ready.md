@@ -10,15 +10,17 @@ The application code itself (in `public/.well-known/`, `public/auth.md`, and
 DNSSEC configuration are **not** committed here because they live in the
 Cloudflare DNS zone, not the Pages project.
 
+For setup and example requests, use the public agent guide in [Japanese](https://osada.us/agents/) or [English](https://osada.us/agents/en), or follow the [client setup guide](../mcp/README.md).
+
 ## Discovery surfaces
 
 | Path | Purpose |
 | --- | --- |
 | `/.well-known/api-catalog` | RFC 9727 linkset pointing at the public JSON APIs (banzuke, torikumi, rikishi, gyoji, yobidashi). |
 | `/.well-known/oauth-protected-resource` | RFC 9728 resource metadata identifying the public JSON API and its documentation. Returns `{ resource, resource_documentation }` — it points agents at `/auth.md` for the metadata-only `agent_auth` declaration. The public APIs require no token. |
-| `/mcp/server-card`, `/.well-known/mcp/server-card.json` | MCP Server Card (SEP-2127). Advertises the remote Streamable HTTP MCP server at `/mcp`. `version` is synchronized with `package.json` at build time via `vite.config.ts` (`mcpServerCardPlugin`). |
+| `/mcp/server-card`, `/.well-known/mcp/server-card.json` | MCP Server Card (SEP-2127). Advertises the structured and AI Search MCP endpoints. The Pages Function serves the canonical card. `mcpServerCardPlugin` sets the built mirror’s top-level `version` from `package.json`. |
 | `/mcp` | Streamable HTTP Model Context Protocol (MCP) server endpoint. Exposes 5 read-only Grand Sumo tools (`search_rikishi`, `get_rikishi_profile`, `get_banzuke`, `get_torikumi`, `list_basho`). Supports both MCP 2026-07-28 and legacy stateless clients. |
-| `/.well-known/agent-card.json` | A2A Agent Card (A2A Protocol v1.0.0 §4.4.1). Published for discovery only — `supportedInterfaces` is non-empty (HTTP+JSON pointing at `/a2a`), but the A2A endpoint returns `-32601 Method not found` for every method because o-sumo has no task state. `skills[]` is derived from `SKILL_MANIFEST` (`app/lib/agent-skills.ts`) via `mapSkillEntryToA2aSkill()` at build time, and `version` is synchronized with `package.json` via `vite.config.ts` (`a2aAgentCardPlugin`). The `extensions[]` array declares the AP2 (Agent Payments Protocol) extension with `params.roles = ["merchant"]` and `required: true` — merchant agents should mark it as required per the AP2 spec. See [docs/agent-card.md](agent-card.md) for the discovery posture. |
+| `/.well-known/agent-card.json` | A2A Agent Card (A2A Protocol v1.0.0 §4.4.1). Published for discovery only — `supportedInterfaces` is non-empty (HTTP+JSON pointing at `/a2a`), but the A2A endpoint returns `-32601 Method not found` for every method because o-sumo has no task state. `skills[]` is derived from `SKILL_MANIFEST` (`app/lib/agent-skills.ts`) via `mapSkillEntryToA2aSkill()` at build time, and `version` is synchronized with `package.json` via `vite.config.ts` (`a2aAgentCardPlugin`). The `capabilities.extensions` array declares the AP2 (Agent Payments Protocol) extension with `params.roles = ["merchant"]` and `required: true` — merchant agents should mark it as required per the AP2 spec. See [docs/agent-card.md](agent-card.md) for the discovery posture. |
 | `/.well-known/agent-skills/index.json` | Agent Skills index (RFC v0.2.0). Lists the skills published under `.well-known/agent-skills/`. Generated at build time by `vite.config.ts` (`agentSkillsPlugin`); each entry carries `type: "skill-md"` and `digest: "sha256:{hex}"`. |
 | `/.well-known/agent-skills/osumo-content/SKILL.md` | Skill description for fetching public API content (banzuke, torikumi, rikishi, gyoji, yobidashi). |
 | `/.well-known/agent-skills/osumo-discovery/SKILL.md` | Resolve current/archived basho, daily and rikishi page URLs from API dates and the sitemap. |
@@ -96,6 +98,8 @@ The HTTP integration provides public JSON APIs, skills, and a remote MCP server 
 Browser WebMCP, described below, is separate.
 
 ## MCP Servers
+
+The [MCP Registry manifest](../mcp/server.json) is versioned separately and describes only the structured server. The MCP Server Card advertises both services. Public JSON files under `/api/v1/` are available anonymously. The directory endpoints `/api` and `/api/v1` use x402.
 
 o-sumo exposes two complementary Model Context Protocol (MCP) Streamable HTTP endpoints:
 

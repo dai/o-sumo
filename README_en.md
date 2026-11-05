@@ -2,26 +2,42 @@
 
 Agent readiness status is available [here](https://isitagentready.com/osada.us).
 
-20261104: Consumer MCP distribution is now available. See [here](https://github.com/dai/o-sumo/tree/main/mcp) for details.
-
-[![DeepWiki](https://img.shields.io/badge/DeepWiki-dai%2Fo--sumo-blue.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAyCAYAAAAnWDnqAAAAAXNSR0IArs4c6QAAA05JREFUaEPtmUtyEzEQhtWTQyQLHNak2AB7ZnyXZMEjXMGeK/AIi+QuHrMnbChYY7MIh8g01fJoopFb0uhhEqqcbWTp06/uv1saEDv4O3n3dV60RfP947Mm9/SQc0ICFQgzfc4CYZoTPAswgSJCCUJUnAAoRHOAUOcATwbmVLWdGoH//PB8mnKqScAhsD0kYP3j/Yt5LPQe2KvcXmGvRHcDnpxfL2zOYJ1mFwrryWTz0advv1Ut4CJgf5uhDuDj5eUcAUoahrdY/56ebRWeraTjMt/00Sh3UDtjgHtQNHwcRGOC98BJEAEymycmYcWwOprTgcB6VZ5JK5TAJ+fXGLBm3FDAmn6oPPjR4rKCAoJCal2eAiQp2x0vxTPB3ALO2CRkwmDy5WohzBDwSEFKRwPbknEggCPB/imwrycgxX2NzoMCHhPkDwqYMr9tRcP5qNrMZHkVnOjRMWwLCcr8ohBVb1OMjxLwGCvjTikrsBOiA6fNyCrm8V1rP93iVPpwaE+gO0SsWmPiXB+jikdf6SizrT5qKasx5j8ABbHpFTx+vFXp9EnYQmLx02h1QTTrl6eDqxLnGjporxl3NL3agEvXdT0WmEost648sQOYAeJS9Q7bfUVoMGnjo4AZdUMQku50McDcMWcBPvr0SzbTAFDfvJqwLzgxwATnCgnp4wDl6Aa+Ax283gghmj+vj7feE2KBBRMW3FzOpLOADl0Isb5587h/U4gGvkt5v60Z1VLG8BhYjbzRwyQZemwAd6cCR5/XFWLYZRIMpX39AR0tjaGGiGzLVyhse5C9RKC6ai42ppWPKiBagOvaYk8lO7DajerabOZP46Lby5wKjw1HCRx7p9sVMOWGzb/vA1hwiWc6jm3MvQDTogQkiqIhJV0nBQBTU+3okKCFDy9WwferkHjtxib7t3xIUQtHxnIwtx4mpg26/HfwVNVDb4oI9RHmx5WGelRVlrtiw43zboCLaxv46AZeB3IlTkwouebTr1y2NjSpHz68WNFjHvupy3q8TFn3Hos2IAk4Ju5dCo8B3wP7VPr/FGaKiG+T+v+TQqIrOqMTL1VdWV1DdmcbO8KXBz6esmYWYKPwDL5b5FA1a0hwapHiom0r/cKaoqr+27/XcrS5UwSMbQAAAABJRU5ErkJggg==)](https://deepwiki.com/dai/o-sumo)
-
 [日本語 README](./README.md)
 
 o-sumo is a web app for publishing sumo banzuke, torikumi, and rikishi, gyoji, and yobidashi directories. Built with React 19, TypeScript, and Vite, it serves the site and JSON APIs from Cloudflare Pages. Agents can also use MCP, browser WebMCP, Markdown views, and discovery metadata.
 
+Sumo data has been available to end users through MCP since November 4, 2026. [Setup guide](./mcp/README.md#english)
+
+## Table of Contents
+
+- [Document Index](#document-index)
+- [Overview](#overview)
+- [Access for AI agents](#access-for-ai-agents)
+- [Key Features](#key-features)
+- [Tech Stack](#tech-stack)
+- [Local Development](#local-development)
+- [Data Updates](#data-updates)
+- [Automated Updates](#automated-updates)
+- [Testing](#testing)
+- [Cloudflare Pages](#cloudflare-pages)
+- [November 2026 Basho Operations](#november-2026-basho-operations)
+- [Important Files](#important-files)
+- [Contact](#contact)
+- [License](#license)
+- [Download](#download)
+
 ## Document Index
 
-- README: `README.md` / `README_en.md`
-- Development guide: `DEVELOPMENT.md` / `DEVELOPMENT_en.md`
-- MCP integration kit: [`mcp/README.md`](https://github.com/dai/o-sumo/tree/main/mcp)
-- Skills index: `SKILLS.md` / `SKILLS_en.md`
-- API spec: `docs/api/v1.md` / `docs/api/v1.en.md`
-- API policy: `docs/api/policy.md` / `docs/api/policy.en.md`
-- API changelog: `docs/api/changelog.md` / `docs/api/changelog.en.md`
-- Rikishi profile and matchup refresh runbook: `docs/rikishi-profile-refresh-runbook.md`
-- Gyoji and yobidashi refresh runbook: `docs/official-profile-refresh-runbook.md`
-- Agent guide: `docs/agent-ready.md`
+- README: [README.md](./README.md) / [README_en.md](./README_en.md)
+- Development guide: [DEVELOPMENT.md](./DEVELOPMENT.md) / [DEVELOPMENT_en.md](./DEVELOPMENT_en.md)
+- MCP integration kit: [mcp/README.md](./mcp/README.md)
+- Skills index: [SKILLS.md](./SKILLS.md) / [SKILLS_en.md](./SKILLS_en.md)
+- API spec: [docs/api/v1.md](./docs/api/v1.md) / [docs/api/v1.en.md](./docs/api/v1.en.md)
+- API policy: [docs/api/policy.md](./docs/api/policy.md) / [docs/api/policy.en.md](./docs/api/policy.en.md)
+- API changelog: [docs/api/changelog.md](./docs/api/changelog.md) / [docs/api/changelog.en.md](./docs/api/changelog.en.md)
+- Rikishi profile and matchup refresh runbook: [docs/rikishi-profile-refresh-runbook.md](./docs/rikishi-profile-refresh-runbook.md)
+- Gyoji and yobidashi refresh runbook: [docs/official-profile-refresh-runbook.md](./docs/official-profile-refresh-runbook.md)
+- Agent guide: [docs/agent-ready.md](./docs/agent-ready.md)
 
 ## Overview
 
@@ -31,6 +47,7 @@ o-sumo is a web app for publishing sumo banzuke, torikumi, and rikishi, gyoji, a
   - Rikishi list: `/rikishi`
   - Rikishi profile: `/rikishi/{id}`
   - My Rikishi: `/my-rikishi/`
+  - Privacy policy: `/privacy/`
   - Compare Rikishi: `/compare/?ids={id1},{id2}`
   - Gyoji directory: `/gyoji/`
   - Gyoji profile: `/gyoji/{id}/`
@@ -50,7 +67,7 @@ o-sumo is a web app for publishing sumo banzuke, torikumi, and rikishi, gyoji, a
   - `/compare/?ids=3842,4227`
   - `/kimarite`
 - Stories: `https://blog.osada.us/`
-- The legacy banzuke URL `/{YYYYMM}-o-sumo/` redirects to the current banzuke URL.
+- Supported legacy banzuke URLs such as `/202609-o-sumo/` resolve to the matching monthly banzuke. Retired archive URLs such as `/archives/cat11/` return HTTP 410.
 - Public APIs:
   - `/api/v1/banzuke.json`
   - `/api/v1/torikumi.json`
@@ -85,7 +102,7 @@ Skill publishing:
 
 ## Access for AI agents
 
-The public JSON APIs, two published skills, and structured sumo data MCP require no registration, account, or API key.
+Start with the [English agent guide](https://osada.us/agents/en), then choose your client in the [MCP setup guide](./mcp/README.md#english) or consult the [JSON API reference](./docs/api/v1.en.md). The public JSON API, published skills, and structured MCP require no o-sumo account or API key.
 Search and query-time grounding are permitted; model training is not (`search=yes, ai-input=yes, ai-train=no`).
 
 | Goal | Entry point |
@@ -106,7 +123,7 @@ Unsupported routes, including individual profile pages, fall back to HTML.
 
 The read-only sumo data server uses Streamable HTTP (`https://osada.us/mcp`) and exposes `search_rikishi`,
 `get_rikishi_profile`, `get_banzuke`, `get_torikumi`, and `list_basho`.
-Setup guides and configuration files for consumer AI clients (Google Antigravity, Claude, ChatGPT, Grok, and Meta Muse) are available in [github.com/dai/o-sumo/mcp](https://github.com/dai/o-sumo/tree/main/mcp).
+The [client setup guide](./mcp/README.md#english) lists connection methods and labels developer templates.
 The AI Search endpoint exposes a `search` tool for natural-language queries.
 
 ```bash
@@ -137,7 +154,7 @@ the remote MCP endpoints above. The A2A card is for discovery; task operations a
   - Quick-pick matchup presets (Yokozuna, Ozeki, Sekiwake, Sanyaku rivalries) and one-tap selection for saved My Rikishi pairs
 - Bilingual lists and profiles for 42 active gyoji and 45 active yobidashi, sourced from the official Japan Sumo Association website. Official numeric IDs are used in page and JSON API URLs, and no photographs are published
 - Banzuke pages for makuuchi and juryo rankings and records, with MiniMax I2I Generation processed rikishi profile images and links to rikishi profiles
-- My Rikishi (`/my-rikishi/`) stores up to 10 wrestlers by shikona with navigation count badges, URL synchronisation, `localStorage` persistence, and optional Google sign-in cloud sync across devices. Integrates with the "My Rikishi only" filter (`?filter=favorites`) and X share on daily torikumi pages
+- My Rikishi (`/my-rikishi/`) stores up to 10 wrestlers by shikona with navigation count badges, URL synchronisation, `localStorage` persistence, and optional Google sign-in cloud sync across devices. The “My Rikishi only” filter on daily torikumi pages remembers its setting on the device and lets you share matching bouts on X
 - Basho analytics (`/analytics/`) shows makuuchi yusho, jun-yusho, kanto-sho, gin-o-sho, and juryo yusho for the current basho
 - The `ShareCurrentLink` button copies the current URL to the clipboard (with a manual fallback for non-secure contexts)
 - Monthly hub pages listing all 15 daily pages
@@ -321,7 +338,7 @@ Key validations:
 
 ## Automated Updates
 
-GitHub Actions separates torikumi schedules, results, and news. Daily schedule updates open a PR and request auto-merge after checks; realtime result updates validate and push directly to `main`.
+GitHub Actions runs separate jobs for torikumi schedules, results, and news. All three use the shared `data-update.yml` workflow to validate changes and publish directly to `main`.
 
 Shared helpers under `scripts/ci/`:
 
@@ -333,40 +350,17 @@ Shared helpers under `scripts/ci/`:
 Workflows:
 
 - Daily update: `.github/workflows/daily-data-update.yml`
-  - trigger: JST 13:00, 15:00, 17:00, and 19:00 plus `workflow_dispatch`
+  - current trigger: `workflow_dispatch`
   - updates torikumi schedules only (`--torikumi-only --torikumi-scope schedule`)
 - Realtime results update: `.github/workflows/realtime-torikumi-direct-update.yml`
-  - trigger: every 10 minutes from JST 13:00 through 18:50 plus `workflow_dispatch`
+  - current trigger: `workflow_dispatch`
   - updates torikumi results only (`--torikumi-only --torikumi-scope result --skip-rikishi-fetch --strict-torikumi-fetch`)
   - logs: GitHub Actions job summary aggregates step results, commit state, and the run URL
 - News update: `.github/workflows/news-feed-update.yml`
   - schedule: twice daily at JST 09:05 and 19:05 (publication on the 19:05 run)
   - updates Japan Sumo Association and dmenu Sports news (`python scripts/update_news_feed.py`)
-  - skips rewriting `news.json` when fetched items and source states are unchanged
-  - **One PR per day**: the PR is opened on the JST-date-keyed branch `automation/news-updates-<YYYY-MM-DD>`; multiple same-day runs accumulate commits on the same PR
-  - **Auto-merge**: enabled only on the JST 19:xx run via `gh pr merge --auto --squash --delete-branch`; the branch is removed after merge
-
-### Discord notifications (optional)
-
-Set `DISCORD_WEBHOOK_URL` as a repository secret to send failure notifications to a Discord channel from the three automated workflows. The workflows continue to work normally when the secret is absent.
-
-Setup:
-
-1. In Discord open the target channel → `Edit channel` → `Integrations` → `Webhooks` → `New webhook`, then copy the URL.
-2. Open the GitHub repository → `Settings` → `Secrets and variables` → `Actions` → `New repository secret`.
-3. Name: `DISCORD_WEBHOOK_URL`, Value: the webhook URL from step 1 → `Add secret`.
-
-See `scripts/ci/notify_discord.sh` for the embedded payload structure.
-
-## GitHub Mobile + Copilot Workflow
-
-- Prerequisites:
-  - Repository instructions: `.github/copilot-instructions.md`
-- Shortest weekend flow:
-  - Create an Issue in GitHub Mobile and assign it to the Copilot cloud agent
-  - Review the diff and explanation in the Agent session
-  - Verify `test.yml` (`typecheck` / `test` / `build`) passes on the opened PR
-  - Review and merge directly in GitHub Mobile
+  - skips rewriting `news.json` when the selected feed is unchanged
+  - Fetch state is stored on `automation/news-state`. The validated snapshot selected for publication is committed to `main`.
 
 ## Testing
 
@@ -403,12 +397,12 @@ GitHub Actions runs the following on pull requests and pushes to `main`, `codex/
 - SPA fallback file: `public/_redirects` (app routes only; `/api/v1/*` serves static JSON as-is)
 - Direct access to date-based URLs falls back to `index.html`
 
-## November Basho Operations
+## November 2026 Basho Operations
 
 - The current APIs have switched to November; keep the September TypeScript snapshots immutable as archives.
-- Scheduled triggers activate only after this workflow change reaches the default `main` branch. Runs may be delayed or skipped, and the shared concurrency lock does not cover an outstanding Daily PR merge; there is no guaranteed ten-minute publication SLA.
-- After the official torikumi publication around November 6, run `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main`, watch the run, then inspect PR checks and merge, the JSON on `main`, and production JSON. Empty data for both divisions before publication is a no-op, not successful publication.
-- After the November 22 final results and next-day verification, remove both cron schedules in a separate PR. Summaries are point-in-time snapshots, not merge or deployment proof.
+- Schedule and result workflows currently run on manual dispatch. See the [basho scheduling runbook](./scripts/ci/README.md) for enabling cron on `main`. GitHub Actions runs can be delayed, or skipped.
+- After the official torikumi publication around November 6, run `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main`, watch the run, then verify the published commit, the JSON on `main`, and production JSON. If both divisions are empty before the official announcement, the run ends without publishing new data.
+- If cron is enabled for the basho, remove both schedules in a separate PR after the November 22 final results and next-day verification. Verify the published commit and deployment separately from the workflow summary.
 - `preflight:current-data` is a transition-only safety gate that requires paused workflows, not an in-tournament readiness check. The validator permits only the precise fusen exception and generation preserves old data on partial fetch failure.
 - The news workflow remains scheduled twice daily at JST 09:05 and 19:05.
 - Manual runs can be started with `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main`, `gh workflow run realtime-torikumi-direct-update.yml -R dai/o-sumo --ref main`, or `gh workflow run news-feed-update.yml -R dai/o-sumo --ref main`.

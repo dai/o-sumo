@@ -23,7 +23,7 @@
 - 目的: APIの `pathDate` とサイトマップから場所・日別・力士ページのURLを解決し、JSTの日付・掲載状況を確認する
 - 主な対象:
   - `public/.well-known/api-catalog`（RFC 9727 linkset）
-  - `public/.well-known/mcp/server-card.json`（SEP-1649）
+  - `public/.well-known/mcp/server-card.json`（SEP-2127）
   - `public/.well-known/agent-skills/index.json`（RFC v0.2.0）
   - `public/.well-known/http-message-signatures-directory`（Web Bot Auth）
   - `auth.md`（エージェント登録なしの公開読み取り専用）
