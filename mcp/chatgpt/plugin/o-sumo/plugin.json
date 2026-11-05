@@ -1,0 +1,101 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "o-sumo",
+  "version": "0.1.0",
+  "description": "Read-only Grand Sumo rankings, daily bouts, wrestler profiles, and available tournament archives from osada.us.",
+  "homepage": "https://osada.us",
+  "repository": "https://github.com/dai/o-sumo",
+  "keywords": [
+    "sumo",
+    "rikishi",
+    "banzuke",
+    "torikumi",
+    "大相撲"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "縦綱 Tatezuna — o-sumo",
+        "shortDescription": "Explore Grand Sumo records",
+        "longDescription": "Explore public Grand Sumo information from osada.us. Search wrestlers by Japanese shikona or hiragana reading, retrieve wrestler profiles, view makuuchi and juryo banzuke rankings, look up daily bout results or schedules, and discover available tournament archives. Uses the existing public, read-only MCP server. No API key or account is required. Available dates and fields depend on the published dataset; this is not a live-score guarantee or an official Japan Sumo Association service.",
+        "category": "Entertainment",
+        "defaultPrompt": [
+          "大の里のプロフィールを教えて。",
+          "公開されている最新の幕内・十両の番付を見せて。",
+          "利用できる過去の場所を教えて。"
+        ],
+        "logo": "assets/logo-512.png",
+        "composerIcon": "assets/logo-512.png",
+        "websiteURL": "https://github.com/dai/o-sumo/tree/main/mcp",
+        "supportURL": "https://github.com/dai/o-sumo/issues"
+      },
+      "review": {
+        "prompts": [
+          "大の里のプロフィールを教えて。",
+          "「おおのさと」で力士を探して、見つかった四股名と番付を教えて。",
+          "このサービスで公開されている最新の幕内・十両の番付を見せて。",
+          "2026年9月27日の取組結果を教えて。",
+          "過去の場所には何がある？一覧から一番新しい過去場所の番付も見せて。"
+        ],
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Resolve a wrestler by kanji name, then fetch the returned ID. Public server; no login.",
+              "prompt": "大の里のプロフィールを教えて。",
+              "tools_triggered": "search_rikishi, get_rikishi_profile",
+              "expected_behavior": "Call search_rikishi with query 大の里, then get_rikishi_profile with the matching returned numeric ID. Summarize only returned profile fields; do not invent missing career figures. If unavailable, report the returned error."
+            },
+            {
+              "description": "Exercise hiragana search input. Public server; no login.",
+              "prompt": "「おおのさと」で力士を探して、見つかった四股名と番付を教えて。",
+              "tools_triggered": "search_rikishi",
+              "expected_behavior": "Call search_rikishi with query おおのさと. Report the matching names and currentRank from matches; do not assume the current rank from memory. Explain an empty result or data error."
+            },
+            {
+              "description": "Retrieve the current banzuke without assuming the current calendar month is published.",
+              "prompt": "このサービスで公開されている最新の幕内・十両の番付を見せて。",
+              "tools_triggered": "get_banzuke",
+              "expected_behavior": "Call get_banzuke with monthKey omitted. Identify the basho from the returned data and show makuuchi and juryo rankings. Do not label stale data as live."
+            },
+            {
+              "description": "Retrieve a concrete historical day documented in the source and existing tests.",
+              "prompt": "2026年9月27日の取組結果を教えて。",
+              "tools_triggered": "get_torikumi",
+              "expected_behavior": "Call get_torikumi with pathDate 20260927 and mode result. Show available bouts and outcomes from the response. If no results exist, report that explicitly without fabricating outcomes."
+            },
+            {
+              "description": "Discover supported archives and use an actual returned month key.",
+              "prompt": "過去の場所には何がある？一覧から一番新しい過去場所の番付も見せて。",
+              "tools_triggered": "list_basho, get_banzuke",
+              "expected_behavior": "Call list_basho, select the latest YYYYMM ID in archive, then call get_banzuke with that exact monthKey. Identify the selected basho and summarize the returned rankings. If archive is empty, state that and do not invent a month."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Ticket purchases are unsupported. Explain the read-only sumo-data scope; do not call MCP tools or claim a reservation/payment.",
+              "prompt": "次の本場所のチケットを2枚購入して、支払いも済ませて。"
+            },
+            {
+              "description": "Writes to wrestler records are unsupported. Do not invoke any MCP tool to attempt an edit or claim that a record changed.",
+              "prompt": "大の里のプロフィールの体重を私の指定する数字に書き換えて。"
+            },
+            {
+              "description": "Private wrestler contact data is unsupported. Explain that private phone numbers are unavailable; do not invoke profile/search tools for this purpose.",
+              "prompt": "力士本人の非公開の携帯電話番号を調べて。"
+            }
+          ]
+        }
+      },
+      "publication": {
+        "release_notes": "Initial ChatGPT plugin package for the existing public o-sumo MCP server, with listing assets and five positive plus three negative review cases.",
+        "countries": [],
+        "translations": {
+          "ja-JP": {
+            "description": "osada.us の公開データで、四股名・読み仮名による力士検索、プロフィール、幕内・十両の番付、日別の取組結果・予定、収録済みの過去場所を調べられます。認証不要・読み取り専用です。収録日や項目には限りがあり、リアルタイム更新を保証するものではありません。日本相撲協会の公式サービスではありません。",
+            "subtitle": "力士・番付・取組を調べる大相撲アーカイブ"
+          }
+        }
+      }
+    }
+  }
+}

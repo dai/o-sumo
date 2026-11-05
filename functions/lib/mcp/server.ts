@@ -24,6 +24,7 @@ export function createDataFetcher(ctx: SumoServerContext): (path: string) => Pro
 
 const READ_ONLY_TOOL_ANNOTATIONS = {
   readOnlyHint: true,
+  destructiveHint: false,
   openWorldHint: false,
 } as const;
 
