@@ -72,7 +72,7 @@ python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule
 
 場所ごとの力士プロフィール更新手順は `docs/rikishi-profile-refresh-runbook.md` を参照してください。
 
-九月場所は確定済みで、`app/lib/september2026-data.ts` と `app/lib/september2026-banzuke-data.ts` に不変スナップショットを保存しています。十一月場所の番付が公式公開されるまでは、現行の `banzuke.json` と `torikumi.json` を九月場所のまま維持します。次の更新PRでは、公式番付・取組日程・公開JSON・月別ルート・sitemapを同時に検証してから切り替えます。
+現在の番付と取組のJSONは2026年十一月場所を配信しています。九月場所は不変スナップショットとして保持しています。現行と過去場所の参照方法は[API仕様](./docs/api/v1.md)、切り替え手順は[README](./README.md#令和八年十一月場所の更新運用)を参照してください。
 
 ローカル確認先:
 
@@ -113,22 +113,22 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 ### データ更新
 
 - Workflow: `.github/workflows/daily-data-update.yml`
-- トリガー: JST 13:00 / 15:00 / 17:00 / 19:00 と `workflow_dispatch`
+- 現在のトリガー: `workflow_dispatch`（手動実行）
 - 更新対象: 取組予定のみ（`--torikumi-only --torikumi-scope schedule`）
-- 変更がある場合は PR を作成し、check 通過後の auto-merge を要求
+- 共通の `data-update.yml` が差分を検証し、`main` へ直接公開
 
 - Workflow: `.github/workflows/realtime-torikumi-direct-update.yml`
-- トリガー: JST 13:00-18:50 の10分間隔と `workflow_dispatch`
+- 現在のトリガー: `workflow_dispatch`（手動実行）
 - 更新対象: 取組結果のみ（`--torikumi-only --torikumi-scope result --skip-rikishi-fetch`）
 - 変更がある場合は検証後に `main` へ直接 push。競合時は rebase を中止して手動再実行
 - 実行ログへ `github.event.schedule` / JST現在時刻 / `resultUpdatedAt` / `scheduleUpdatedAt` を出力
 
 - Workflow: `.github/workflows/news-feed-update.yml`
-- 実行時刻: JST 09:05-19:05、2時間おき
+- 実行時刻: JST 09:05と19:05（公開は19:05の実行時）
 - 更新対象: ニュースフィード（`python scripts/update_news_feed.py`）
-- 取得結果が変わらない場合は `news.json` を書き換えず、PR 差分を作らない
-- 1日1PR: `automation/news-updates-<JST YYYY-MM-DD>` ブランチの PR を開き、同日内の複数 run は同一PRに commit を追加する
-- auto-merge は JST 19時台の run のみ有効化（`gh pr merge --auto --squash --delete-branch`）。マージ後はブランチ自動削除
+- 取得状態を `automation/news-state` に保持。フィードに差分がある場合は、公開対象の検証済みスナップショットを `main` へ直接公開
+
+定期実行を有効にする設定は[場所中の定期実行手順](./scripts/ci/README.md)、十一月場所の運用は[README](./README.md#令和八年十一月場所の更新運用)を参照してください。
 
 ### テスト
 
@@ -149,7 +149,7 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - `app/torikumi/page.tsx`: 取組結果 / 予定の一覧ハブ
 - `app/analytics/page.tsx`: 場所ステータス分析（幕内・三賞・十両）ページ
 - `app/rikishi/MyRikishiPage.tsx`: マイ力士の表示と localStorage 同期
-- `app/rikishi/CompareRikishiPage.tsx`: 力士比較ページ（最大3名、`useState` + URL Search Params）
+- `app/rikishi/CompareRikishiPage.tsx`: 力士比較ページ（最大2名、`useState` + URL Search Params）
 - `app/officials/page.tsx`: 行司・呼出の一覧／個別プロフィール
 - `app/components/TorikumiDayPage.tsx`: 日別の取組ページ
 - `app/components/BanzukeTable.tsx`: 番付テーブル
@@ -186,7 +186,7 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 
 - `api-catalog` — RFC 9727 リンクセット（公開 JSON API へのポインタ）
 - `oauth-protected-resource` — RFC 9728 の Protected Resource Metadata（`resource` と `resource_documentation` のみ）
-- `mcp/server-card.json` — MCP Server Card (SEP-2127)。サーバーエンドポイント（`/mcp`）と連携し、`version` は `package.json` と同期（`/mcp/server-card` にも正規配置）
+- `mcp/server-card.json`（`public/.well-known/` からの相対パス）は、相撲データ用と検索用の接続先を示す[MCP Server Card](https://osada.us/mcp/server-card)のミラーです。[レジストリ用マニフェスト](./mcp/server.json)は相撲データ用MCPを別途記述します。
 - `agent-skills/index.json` — Agent Skills Discovery RFC v0.2.0 形式のスキル index。sha256 ダイジェストはビルド時に計算
 - `poppy.json` — Personal Agent Protocol 0.1 discovery (`web: {}` のみの最小宣言、`auth` 不在)
 - `http-message-signatures-directory` — Web Bot Auth (IETF WebBotAuth WG) 署名ディレクトリ。Cloudflare Pages Function (`functions/.well-known/http-message-signatures-directory.ts`) が Ed25519 JWK を JWKS として公開し、RFC 9421 で自己署名します。署名鍵ペアは `scripts/generate_web_bot_auth_keys.mjs` で生成し、`functions/.well-known/_web-bot-auth-keys.ts` にインライン化されます（Pages の Workers ランタイムはリクエスト時に任意の fs を読めないため）
@@ -202,7 +202,7 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 
 - `vite.config.ts` の `agentSkillsPlugin` がビルド時に SKILL.md を読み込み sha256 を計算して `index.json` を生成します
 - `markdownViewsPlugin` が `scripts/build_markdown_views.ts` を呼び、`Accept: text/markdown` 用の静的 Markdown ビューを `dist/*/index.md` として書き出します（Free プランでも動く事前生成方式。月別・日別は既存ルート設定と公開データから生成）
-- `mcpServerCardPlugin` が `package.json` と `server-card.json` の `version` を同期します
+- `mcpServerCardPlugin` は `package.json` のバージョンをビルド後の Server Card ミラーのトップレベル `version` に反映します。`/mcp/server-card` のカードは Pages Function が配信します。
 - 新しいスキルは `public/.well-known/agent-skills/<skill>/SKILL.md` と `SKILL_MANIFEST` の両方に追加します。ビルドが `dist/.well-known/agent-skills/index.json` を更新します
 
 ブラウザ内の WebMCP は `app/components/WebMcpProvider.tsx` から公開しています。優先順位は W3C Draft の `document.modelContext.registerTool` → ブラウザ実装の `navigator.modelContext.registerTool` → 旧 `navigator.modelContext.provideContext` の 3 段階で、ホストがこれらを提供していない場合は no-op になります。`AbortController.signal` でツール登録をコンポーネント寿命に結び付け、ルート切替時にクリーンアップします。
@@ -211,7 +211,7 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 
 - `search_rikishi` — 四股名・読みで `/api/v1/rikishi.json` を部分一致検索（最大 20 件）
 - `list_basho` — 現行場所と過去場所アーカイブの URL 一覧
-- `get_banzuke_for_month` — `YYYYMM` を受けて番付ページ / WebMCP 4 ツール
+- `get_banzuke_for_month` — `YYYYMM` を受けて番付ページと参照可能なJSONのURLを解決
 - `get_torikumi_for_day` — `YYYYMMDD` を受けて日別ページ URL
 
 DNS-AID (SVCB/HTTPS) と DNSSEC の有効化は Cloudflare DNS 側の操作です。手順は `docs/agent-ready.md` を参照してください。
@@ -223,14 +223,6 @@ DNS-AID (SVCB/HTTPS) と DNSSEC の有効化は Cloudflare DNS 側の操作で�
 - 月キー付きルートは `app/lib/torikumi-routes.ts` を基準に扱います
 - 固定の `YYYYMM-*` ルートを増やすのではなく、生成データ由来の月キー解決を使います
 - `public/images/rikishi/*.png` は日本相撲協会プロフィール写真をもとに MiniMax I2I Generation で加工した画像です。再生成時は `MINIMAX_API_KEY` を設定して `python scripts/style_transfer_rikishi.py` を使います
-- `app/lib/my-rikishi.ts` は `localStorage` キー `osumo.myRikishi.v1` を使うので、ログインやサーバー側 state は持ちません
-- `/compare/?ids=…` の `ids` クエリは正の整数 ID だけを最大 3 件まで受理し、重複と非整数値を自動で除外します
+- `app/lib/my-rikishi.ts` は `localStorage` キー `o-sumo:my-rikishi:v1` を使います。Google ログイン時は[マイ力士 API と Cloudflare の設定](./docs/auth/my-rikishi-cloudflare-operations.md)を通じて端末間で同期できます
+- `/compare/?ids=…` の `ids` クエリは正の整数 ID だけを最大 2 件まで受理し、重複と非整数値を自動で除外します
 - `WebMcpProvider` の `AbortController` 経由でツール登録を解除するため、Strict Mode でのマウント／アンマウントでも登録が重複しません
-
-## 2026年七月場所アーカイブ後の運用
-
-- 11月場所終了に伴い、`daily-data-update.yml` と `realtime-torikumi-direct-update.yml` の cron 定期実行は停止し、`workflow_dispatch`（手動実行）のみの運用となります。 次期場所（2027年1月場所）の開催前に再度 cron を有効化します。
-- `news-feed-update.yml` は引き続き2時間おきのニュース更新を継続し、データに差分がない場合は `news.json` を書き換えない。
-
-十一月 current API への切替後も九月 snapshot は不変です。11月場所終了後のオフシーズン期間は cron を停止し、手動実行（workflow_dispatch）のみを保持します。schedule は次期場所の取組発表に合わせて PR で復元します。`preflight:current-data` は workflow を止めて使う切替専用 gate です。不戦は限定例外で、部分取得失敗時は旧データを保持します。
-- Cloudflareのキャッシュ方針とPWAの `registerType: "autoUpdate"` は維持する。

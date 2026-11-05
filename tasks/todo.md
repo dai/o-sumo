@@ -795,3 +795,17 @@ exhaustion and left unrelated packages incomplete.
 - [ ] ドキュメント4系統（README / DEVELOPMENT ja/en / API policy ja/en / rikishi-profile-refresh-runbook）を十一月場所に同期する
 - [ ] 変更箇所の回帰テストを追加する
 - [ ] 型チェック・全テスト・ビルド・差分検査を実行する
+
+# README and public guide sync (2026-11-05)
+
+- [x] Synchronize the Japanese and English READMEs and add linked tables of contents.
+- [x] Update both public agent guides and the client setup kit.
+- [x] Align current API, development, skills, and operations references.
+- [x] Verify rendered links, MCP examples, the plugin archive, and repository checks.
+
+## Review
+
+- Added 15 linked sections to each README and checked 144 relative Markdown links and anchors. Opened both built guides in Chromium at 390 × 844 and verified language switching, the MCP fragment, and the visibility of the connection URL and example heading.
+- Confirmed HTTP 200 for the existing production guide routes, data and discovery links, privacy policy, and ZIP. Production MCP checks covered Onosato (ID 4227), current and September 2026 banzuke, published September 27 results, a pending November 8 schedule, and a missing date. AI Search returned candidate text with source URLs.
+- The built Antigravity ZIP matched all eight source files byte-for-byte. The CLI validator reported zero findings. The GitHub subdirectory install command was left out because it could not be verified. Client installation and in-chat execution were not tested.
+- Passed TypeScript checking, all 870 Vitest tests across 104 files, the production build, four Python workflow configuration tests, and Git whitespace validation.

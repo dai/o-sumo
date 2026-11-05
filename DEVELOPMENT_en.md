@@ -72,7 +72,7 @@ python scripts/update_sumo_data.py --torikumi-only --torikumi-scope schedule
 
 For the place-by-place rikishi profile refresh procedure, see `docs/rikishi-profile-refresh-runbook.md`.
 
-The September basho is final and has immutable snapshots in `app/lib/september2026-data.ts` and `app/lib/september2026-banzuke-data.ts`. Keep the current September `banzuke.json` and `torikumi.json` until the November banzuke is officially published. The next update PR must validate the official banzuke, torikumi schedule, public JSON, monthly routes, and sitemap together before switching them.
+The current banzuke and torikumi JSON now serve November 2026. September remains available in immutable snapshots. See the [API reference](./docs/api/v1.en.md) for current and archived data and the [README](./README_en.md#november-2026-basho-operations) for the transition procedure.
 
 Useful local URLs:
 
@@ -113,30 +113,22 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 ### Data Updates
 
 - Workflow: `.github/workflows/daily-data-update.yml`
-- Trigger: JST 13:00, 15:00, 17:00, and 19:00 plus `workflow_dispatch`
+- Current trigger: `workflow_dispatch` (manual)
 - Scope: torikumi schedule only (`--torikumi-only --torikumi-scope schedule`)
-- If files change, it opens a PR and requests auto-merge after checks
+- The shared `data-update.yml` workflow validates and publishes changes directly to `main`.
 
 - Workflow: `.github/workflows/realtime-torikumi-direct-update.yml`
-- Trigger: every 3 minutes from JST 15:00 through 18:57 (attempt frequency; GitHub Actions may coalesce runs) plus `workflow_dispatch`
+- Current trigger: `workflow_dispatch` (manual)
 - Scope: torikumi results only (`--torikumi-only --torikumi-scope result --skip-rikishi-fetch`)
 - If files change, it validates and pushes directly to `main`; rebase conflicts fail closed for a fresh manual rerun
 - Always logs `github.event.schedule`, current JST time, `resultUpdatedAt`, and `scheduleUpdatedAt`
 
 - Workflow: `.github/workflows/news-feed-update.yml`
-- Schedule: every 2 hours from JST 09:05 through 19:05
+- Schedule: JST 09:05 and 19:05 (publication on the 19:05 run)
 - Scope: news feed (`python scripts/update_news_feed.py`)
-- If fetched items and source states are unchanged, `news.json` is not rewritten and no PR diff is produced
-- One PR per day: the workflow opens a PR on the JST-date-keyed branch `automation/news-updates-<YYYY-MM-DD>`; multiple same-day runs accumulate commits on the same PR
-- Auto-merge is enabled only on the JST 19:xx run via `gh pr merge --auto --squash --delete-branch`; the branch is removed after merge
+- Fetch state is stored on `automation/news-state`. The selected, validated snapshot is published directly to `main` when the feed changes.
 
-## Operations After The September 2026 Archive
-
-- After the conclusion of the November basho, cron schedules for `daily-data-update.yml` and `realtime-torikumi-direct-update.yml` are removed, leaving them operational via `workflow_dispatch` (manual) only. The schedules will be restored ahead of the next basho.
-- `news-feed-update.yml` continues to refresh the news feed every two hours, skipping `news.json` writes when nothing changed.
-- Keep the `public/_headers` cache policy and PWA `registerType: "autoUpdate"` unchanged.
-
-The current APIs are now November while September snapshots remain immutable archives. During the off-season following the November basho, cron schedules are stopped, retaining manual-only runs (workflow_dispatch). Schedules will be restored via PR when the next basho's official torikumi is announced. Summaries are snapshots, not deployment proof. `preflight:current-data` is a transition-only gate used while workflows are paused. Fusen is a narrow validator exception and partial fetch failures preserve old data.
+See the [basho scheduling runbook](./scripts/ci/README.md) for enabling cron and the [README](./README_en.md#november-2026-basho-operations) for the November operating procedure.
 
 ### Tests
 
@@ -157,7 +149,7 @@ The current APIs are now November while September snapshots remain immutable arc
 - `app/torikumi/page.tsx`: result / schedule hub page
 - `app/analytics/page.tsx`: basho analytics (makuuchi awards, special prizes, juryo yusho)
 - `app/rikishi/MyRikishiPage.tsx`: My Rikishi list with localStorage synchronisation
-- `app/rikishi/CompareRikishiPage.tsx`: Compare Rikishi page (up to 3 wrestlers, `useState` + URL Search Params)
+- `app/rikishi/CompareRikishiPage.tsx`: Compare Rikishi page (up to 2 wrestlers, `useState` + URL Search Params)
 - `app/officials/page.tsx`: gyoji and yobidashi lists and profiles
 - `app/components/TorikumiDayPage.tsx`: daily torikumi page
 - `app/components/BanzukeTable.tsx`: banzuke table component
@@ -194,7 +186,7 @@ The following discovery endpoints are published under `public/.well-known/`:
 
 - `api-catalog` — RFC 9727 linkset pointing at the public JSON APIs
 - `oauth-protected-resource` — RFC 9728 Protected Resource metadata (only `resource` and `resource_documentation`)
-- `mcp/server-card.json` — MCP Server Card (SEP-2127). Points to the `/mcp` streamable-http endpoint; `version` stays in sync with `package.json` (also served canonically at `/mcp/server-card`).
+- `mcp/server-card.json` (relative to `public/.well-known/`) mirrors the [MCP Server Card](https://osada.us/mcp/server-card) for the structured and search endpoints. The [registry manifest](./mcp/server.json) describes the structured server separately.
 - `agent-skills/index.json` — Agent Skills Discovery RFC v0.2.0 index. The sha256 digests are computed at build time.
 - `poppy.json` — Personal Agent Protocol 0.1 discovery manifest (website-only declaration; `web: {}` only, no `auth`).
 - `http-message-signatures-directory` — Web Bot Auth (IETF WebBotAuth WG) signature directory. A Cloudflare Pages Function (`functions/.well-known/http-message-signatures-directory.ts`) publishes the JWKS and self-signs the response per RFC 9421 with `tag="http-message-signatures-directory"`. The Ed25519 keypair is generated by `scripts/generate_web_bot_auth_keys.mjs` and inlined into `functions/.well-known/_web-bot-auth-keys.ts` (the Workers runtime cannot read arbitrary files at request time).
@@ -210,7 +202,7 @@ Build-time behavior:
 
 - `agentSkillsPlugin` in `vite.config.ts` reads `SKILL_MANIFEST` and its published SKILL.md files at build time, computes sha256 digests, and writes `index.json`
 - `markdownViewsPlugin` runs `scripts/build_markdown_views.ts` to emit static Markdown views (`dist/*/index.md`) for the main HTML routes plus configured monthly and daily pages, served with `Content-Type: text/markdown` and `Vary: Accept` (a pre-rendering approach that works on the Cloudflare Pages Free plan)
-- `mcpServerCardPlugin` keeps `mcp/server-card.json.serverInfo.version` in sync with `package.json`
+- `mcpServerCardPlugin` writes the built Server Card mirror with the top-level `version` from `package.json`. The Pages Function serves its own card at `/mcp/server-card`.
 - Adding a new skill: add `public/.well-known/agent-skills/<skill>/SKILL.md` and register it in `SKILL_MANIFEST`; the next build refreshes `dist/.well-known/agent-skills/index.json` automatically
 
 WebMCP is exposed from `app/components/WebMcpProvider.tsx`. Priority is the W3C Draft `document.modelContext.registerTool`, then `navigator.modelContext.registerTool` for browser implementations, then the legacy `navigator.modelContext.provideContext`. Hosts without any of these get a no-op. An `AbortController.signal` scopes the registration to the component lifetime so route transitions clean up registrations.
@@ -231,6 +223,6 @@ DNS-AID (SVCB/HTTPS) and DNSSEC are configured in Cloudflare DNS, not in this re
 - Month-key routes should be handled based on `app/lib/torikumi-routes.ts`
 - Do not add fixed `YYYYMM-*` routes; use month-key resolution derived from generated data
 - `public/images/rikishi/*.png` contains images processed with MiniMax I2I Generation from Japan Sumo Association profile photos. To regenerate them, set `MINIMAX_API_KEY` and run `python scripts/style_transfer_rikishi.py`
-- `app/lib/my-rikishi.ts` reads and writes `localStorage` under the `osumo.myRikishi.v1` key. There is no login or server-side state.
-- `/compare/?ids=…` accepts only positive integer IDs, deduplicates them, and caps at 3 entries
+- `app/lib/my-rikishi.ts` reads and writes `localStorage` under the `o-sumo:my-rikishi:v1` key. Google sign-in enables optional cross-device sync through the [My Rikishi API and Cloudflare configuration](./docs/auth/my-rikishi-cloudflare-operations.md).
+- `/compare/?ids=…` accepts only positive integer IDs, deduplicates them, and caps at two entries
 - `WebMcpProvider` registers tools on an `AbortController`, so React Strict Mode mount/unmount cycles do not duplicate registrations
