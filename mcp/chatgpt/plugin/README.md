@@ -30,8 +30,8 @@ The ZIP contains only the portable `o-sumo/` package, with one MCP connection an
 - Five tool schemas inspected. Proposed shared annotations: readOnlyHint=true, destructiveHint=false, openWorldHint=false. Server reads the site's bounded public dataset.
 - Five positive and three negative model-level review cases are in plugin.json. All are **Not run** in ChatGPT.
 - Production initialize check: **Blocked**; this execution environment received HTTP 403. This does not establish a server defect or successful production connection.
-- Existing tests updated to expect the complete annotations. Full repository unit tests have not been run in this environment.
-- Existing privacy page source found at app/privacy/page.tsx, but https://osada.us/privacy/ could not be read by the available web reader. Published policy contents and availability remain unverified.
+- GitHub checks for commit 5e1506d067cb237203ee365ab4f6e33ce0710192 all passed: test, Cloudflare Pages o-sumo and o-sumo-blog. Live production MCP and model-level review cases remain separate, unverified checks.
+- Privacy policy URL confirmed by creator: https://osada.us/privacy/. The public page was read in the connected browser on 2026-11-05 and matches the MCP service. It mentions Cloudflare access logs but does not specify retention timelines or deletion controls; actual practices still need creator confirmation.
 - Website source and public GitHub support page were inspected. The final saved portal listing still needs inspection.
 - No terms-of-service page identified in the inspected tree. Exact published URL and terms decisions are needed.
 - No demo has been recorded, uploaded, or verified.
@@ -63,3 +63,7 @@ Use the development installation in ChatGPT, with unrelated conversations hidden
 Computer control and screenshots are not video recording. If recording cannot be automated in the chosen host, use the device's screen recorder. The recording and real tool results are required; this script is not evidence.
 
 Positive cases cover search/profile chaining, hiragana input, current rankings, dated results and archive discovery. Negative cases cover purchases, record edits and private contact information. Correct intended behavior or fixtures before recording if these cases need adjustment.
+
+## Development update 0.1.1
+
+The existing private development plugin was updated with the confirmed privacyPolicyURL, preserving its identity and visibility. Public upload source remains separate from private account-generated metadata. In the currently selected Personal organization, Platform organization settings shows Individual verification as Start rather than Verified. No identity documents or attestations were submitted. This observation does not prove that no other organization has a verified identity.

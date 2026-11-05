@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "o-sumo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Read-only Grand Sumo rankings, daily bouts, wrestler profiles, and available tournament archives from osada.us.",
   "homepage": "https://osada.us",
   "repository": "https://github.com/dai/o-sumo",
@@ -27,7 +27,8 @@
         "logo": "assets/logo-512.png",
         "composerIcon": "assets/logo-512.png",
         "websiteURL": "https://github.com/dai/o-sumo/tree/main/mcp",
-        "supportURL": "https://github.com/dai/o-sumo/issues"
+        "supportURL": "https://github.com/dai/o-sumo/issues",
+        "privacyPolicyURL": "https://osada.us/privacy/"
       },
       "review": {
         "prompts": [
