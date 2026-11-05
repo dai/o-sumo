@@ -9,9 +9,9 @@ describe('mcp/server.json', () => {
     expect(manifest).toEqual({
       $schema: 'https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json',
       name: 'us.osada/o-sumo',
-      title: '縦綱 Yokozuna — o-sumo',
+      title: '縦綱 Tatezuna — o-sumo',
       description: 'Grand Sumo (大相撲) banzuke, torikumi results, and rikishi profiles from osada.us. Read-only, no auth.',
-      version: '1.0.0',
+      version: '1.0.1',
       websiteUrl: 'https://osada.us',
       repository: {
         url: 'https://github.com/dai/o-sumo',
