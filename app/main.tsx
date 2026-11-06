@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import { registerSW } from 'virtual:pwa-register'
 import { useTranslation } from 'react-i18next'
 import './lib/i18n'
@@ -71,7 +71,9 @@ function AppShell() {
           <MetaHead>
         <ScrollToHash />
         <div className="global-notice-banner" role="status" aria-live="polite">
-          {t('global.agentGuideNotice')}
+          <Link to="/20261108-yotei/" className="global-notice-banner__link">
+            {t('global.agentGuideNotice')}
+          </Link>
         </div>
         <a className="skip-to-main" href="#main-content">{t('bashoStatus.skipToMain')}</a>
         <div className="top-right-controls">

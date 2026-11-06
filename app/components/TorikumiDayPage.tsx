@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { canonicalShikona, divisionAnchorId } from '../lib/rikishi-display';
+import { canonicalEnglish, canonicalShikona, divisionAnchorId } from '../lib/rikishi-display';
 import SortToggle from './SortToggle';
 import { type SortOrder, sortMatches } from '../lib/sorting';
 import { type TorikumiArchiveDay, type TorikumiDataSet, type TorikumiDivisionDay, type TorikumiMatch } from '../lib/torikumi-data';
@@ -57,6 +57,13 @@ function sectionMeta(day: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisi
 
 function displayName(name: string, profileUrl: string): string {
   return canonicalShikona(profileUrl, name);
+}
+
+function formatDayLabel(dayItem: TorikumiArchiveDay, isJa: boolean): string {
+  if (isJa) return dayItem.label;
+  if (dayItem.day === 1) return 'Day 1';
+  if (dayItem.day === 15) return 'Senshuraku (Day 15)';
+  return `Day ${dayItem.day}`;
 }
 
 function formatRecord(record?: { wins: number; losses: number; draws: number }): string {
@@ -213,7 +220,7 @@ function renderUnifiedResultRows({
                 <div className={`cell east rikishi-card ${match.winner === 'east' ? 'winner' : ''}`}>
                   {match.winner === 'east' ? <span className="winner-badge">{t('torikumi.day.winner')}</span> : null}
                   <RikishiMatchName name={match.eastName} profileUrl={match.eastProfileUrl} banzukePath={banzukePath} record={recordMap.get(match.eastProfileUrl)} />
-                  <div className="english">{match.eastEnglish}</div>
+                  <div className="english">{canonicalEnglish(match.eastProfileUrl, match.eastName, match.eastEnglish)}</div>
                 </div>
                 <div className={`cell kimarite kimarite-value ${match.winner ? `winner-${match.winner}` : ''}`}>
                   {winnerLabel(match)}
@@ -221,7 +228,7 @@ function renderUnifiedResultRows({
                 <div className={`cell west rikishi-card ${match.winner === 'west' ? 'winner' : ''}`}>
                   {match.winner === 'west' ? <span className="winner-badge">{t('torikumi.day.winner')}</span> : null}
                   <RikishiMatchName name={match.westName} profileUrl={match.westProfileUrl} banzukePath={banzukePath} record={recordMap.get(match.westProfileUrl)} />
-                  <div className="english">{match.westEnglish}</div>
+                  <div className="english">{canonicalEnglish(match.westProfileUrl, match.westName, match.westEnglish)}</div>
                 </div>
               </div>
             );
@@ -348,7 +355,7 @@ function TorikumiTable({
                     >
                       <div className={`cell east rikishi-card ${match.winner === 'east' ? 'winner' : ''}`}>
                         <RikishiMatchName name={match.eastName} profileUrl={match.eastProfileUrl} banzukePath={banzukePath} record={recordMap.get(match.eastProfileUrl)} />
-                        <div className="english">{match.eastEnglish}</div>
+                        <div className="english">{canonicalEnglish(match.eastProfileUrl, match.eastName, match.eastEnglish)}</div>
                       </div>
                       <div className={`cell kimarite kimarite-value ${match.winner && match.kimarite === '不戦' ? `winner-${match.winner}` : ''}`}>
                         {match.winner ? (
@@ -365,7 +372,7 @@ function TorikumiTable({
                       </div>
                       <div className={`cell west rikishi-card ${match.winner === 'west' ? 'winner' : ''}`}>
                         <RikishiMatchName name={match.westName} profileUrl={match.westProfileUrl} banzukePath={banzukePath} record={recordMap.get(match.westProfileUrl)} />
-                        <div className="english">{match.westEnglish}</div>
+                        <div className="english">{canonicalEnglish(match.westProfileUrl, match.westName, match.westEnglish)}</div>
                       </div>
                     </div>
                   );
@@ -529,10 +536,13 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
   const nextDay = getAdjacentDay(day, mode, 'next');
   const visibleDay = getVisibleDayData(day, archive, mode);
   const visibleDayData = visibleDay.data;
+  const isJa = i18n.language.startsWith('ja');
 
   const modeLabel = mode === 'result'
     ? t('torikumi.day.modeResult')
     : t('torikumi.day.modeSchedule');
+  const dayTitleLabel = isJa ? `${day.label}の${modeLabel.trim()}` : `${formatDayLabel(day, false)}${modeLabel}`;
+  const dayHeadLabel = isJa ? day.dayHead : t('torikumi.day.dayHead', { day: day.day });
   const absentees = uniqueAbsentees(visibleDayData);
   const absenteeIds = React.useMemo(() => {
     const ids = new Set<number>();
@@ -627,7 +637,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
           </nav>
           <div className="site-header-heading-group">
             <h1 className="site-header-title">{bashoTitle}{modeLabel}</h1>
-            <span className="page-subtitle">{day.dayHead}</span>
+            <span className="page-subtitle">{dayHeadLabel}</span>
           </div>
         </div>
         {absentees.length > 0 ? (
@@ -647,7 +657,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
             items={[
               { label: t('global.homeLink'), href: '/' },
               { label: bashoTitle, href: mode === 'result' ? resultPath : schedulePath },
-              { label: day.dayHead },
+              { label: dayHeadLabel },
             ]}
           />
           <nav className="archive-nav" aria-label={`${modeLabel}ページの主要導線`}>
@@ -662,13 +672,21 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
           currentDay={day}
           mode={mode}
           t={t}
-          isJa={i18n.language.startsWith('ja')}
+          isJa={isJa}
         />
 
         <section className="day-summary-card day-summary-card--compact">
           <div className="day-summary-card__info">
-            <h2 className="day-summary-card__title">{day.label}の{modeLabel}</h2>
+            <h2 className="day-summary-card__title">{dayTitleLabel}</h2>
             {day.status === 'pending' ? <span className="status-message warning">{day.statusMessage}</span> : null}
+            {mode === 'result' && visibleDay.source === 'schedule' ? (
+              <aside className="torikumi-fallback-banner" role="status">
+                <p className="torikumi-fallback-banner__text">{t('torikumi.day.fallbackNotice')}</p>
+                <Link to={getDayPath(day, 'schedule')} className="torikumi-fallback-banner__link">
+                  {t('torikumi.day.fallbackSwitchToSchedule')} →
+                </Link>
+              </aside>
+            ) : null}
             {!hasMyRikishi ? (
               <p className="my-rikishi-filter-hint">
                 {t('torikumi.day.filterMyRikishiHint')}{' '}
@@ -677,6 +695,11 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
             ) : null}
           </div>
           <div className="day-summary-card__actions">
+            {visibleDayData.makuuchi.matches.length > 0 && visibleDayData.juryo.matches.length > 0 ? (
+              <a href="#bout-makuuchi-1" className="torikumi-quick-jump">
+                {t('torikumi.day.jumpToMakuuchi')}
+              </a>
+            ) : null}
             <button
               type="button"
               className={`my-rikishi-filter-btn${filterEnabled ? ' active' : ''}`}
@@ -707,9 +730,9 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
                 ) : null}
               </>
             ) : null}
-            <nav className="pager-nav pager-nav--inline" aria-label={`${modeLabel}の日別ナビゲーション`}>
-              <span>{prevDay ? <Link to={getDayPath(prevDay, mode)}>← {prevDay.label}</Link> : t('torikumi.day.prevDayNone')}</span>
-              <span>{nextDay ? <Link to={getDayPath(nextDay, mode)}>{nextDay.label} →</Link> : t('torikumi.day.nextDayNone')}</span>
+            <nav className="pager-nav pager-nav--inline" aria-label={t('torikumi.day.pagerNavAria', { mode: modeLabel.trim() })}>
+              <span>{prevDay ? <Link to={getDayPath(prevDay, mode)}>← {formatDayLabel(prevDay, isJa)}</Link> : t('torikumi.day.prevDayNone')}</span>
+              <span>{nextDay ? <Link to={getDayPath(nextDay, mode)}>{formatDayLabel(nextDay, isJa)} →</Link> : t('torikumi.day.nextDayNone')}</span>
             </nav>
           </div>
         </section>
@@ -721,7 +744,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
         )}
 
         <TorikumiTable
-          title={`${day.label}の${modeLabel}`}
+          title={dayTitleLabel}
           dayData={visibleDayData}
           sections={sections}
           mode={mode}

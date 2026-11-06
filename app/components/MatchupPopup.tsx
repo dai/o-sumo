@@ -53,8 +53,13 @@ export default function MatchupPopup({
   const handleToggle = () => {
     if (!isOpen) {
       updatePlacement();
+      setIsOpen(true);
+    } else if (isMobile) {
+      setIsOpen(false);
+    } else {
+      updatePlacement();
+      setIsOpen(true);
     }
-    setIsOpen((prev) => !prev);
   };
 
   // Close when clicking outside or pressing Escape
