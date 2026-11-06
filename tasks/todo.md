@@ -809,3 +809,14 @@ exhaustion and left unrelated packages incomplete.
 - Confirmed HTTP 200 for the existing production guide routes, data and discovery links, privacy policy, and ZIP. Production MCP checks covered Onosato (ID 4227), current and September 2026 banzuke, published September 27 results, a pending November 8 schedule, and a missing date. AI Search returned candidate text with source URLs.
 - The built Antigravity ZIP matched all eight source files byte-for-byte. The CLI validator reported zero findings. The GitHub subdirectory install command was left out because it could not be verified. Client installation and in-chat execution were not tested.
 - Passed TypeScript checking, all 870 Vitest tests across 104 files, the production build, four Python workflow configuration tests, and Git whitespace validation.
+
+## 初日取組更新・導線UX確認 (2026-11-06)
+
+- [x] PR・CI・本番APIとローカル生成データの一致を検証する。
+- [x] 初日35番の整合性、公開日・未公開日・プロフィール参照を確認する。
+- [x] トップ・告知・予定・結果・日別・力士・アーカイブ導線をデスクトップとモバイルで確認する。
+- [x] 独立したUX評価と技術検査を突き合わせ、重要度と再現手順を記録する。
+
+### Review
+
+PR #712 マージ、本番配信、公式35番との一致を確認。71テストとJSON検証は成功。UXは27/40。モバイルで取組開始y=967px、英語名欠落、結果の予定フォールバック説明不足を優先課題として output/playwright/nov06-ux-review.md に記録。お気に入り登録後、既存PWAキャッシュ、実機・支援技術の網羅検証は未実施。アプリコードは変更していない。

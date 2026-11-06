@@ -3,6 +3,7 @@ import { getDayPath } from './torikumi-routes';
 import { type RankGroup, type Rikishi } from './sumo-data';
 import type { TorikumiArchiveDay } from './torikumi-data';
 import { getBanzukeDataByMonthKey, getTorikumiArchiveByMonthKey } from './archive-basho-data';
+import { toRomaji } from './romaji';
 
 function allRikishi(groups: RankGroup[]): Rikishi[] {
   return groups.flatMap((group) => [...group.east, ...group.west]);
@@ -11,6 +12,7 @@ function allRikishi(groups: RankGroup[]): Rikishi[] {
 const currentBanzuke = getBanzukeDataByMonthKey(torikumiMonthKey);
 const canonicalRikishi = [...allRikishi(currentBanzuke.makuuchi), ...allRikishi(currentBanzuke.juryo)];
 export const canonicalNameMap = new Map(canonicalRikishi.map((rikishi) => [rikishi.profileUrl, rikishi.name] as const));
+export const canonicalYomiMap = new Map(canonicalRikishi.map((rikishi) => [rikishi.profileUrl, rikishi.yomi] as const));
 
 export function divisionAnchorId(division: '幕内' | '十両', boutNo: number): string {
   return `bout-${division === '幕内' ? 'makuuchi' : 'juryo'}-${boutNo}`;
@@ -48,4 +50,15 @@ export function displayShikona(rikishi: Rikishi, profileNameMap: Map<string, str
 
 export function canonicalShikona(profileUrl: string, fallbackName: string): string {
   return canonicalNameMap.get(profileUrl) ?? fallbackName;
+}
+
+export function canonicalEnglish(profileUrl: string, _fallbackName?: string, explicitEnglish?: string): string {
+  if (explicitEnglish && explicitEnglish.trim().length > 0) {
+    return explicitEnglish;
+  }
+  const yomi = canonicalYomiMap.get(profileUrl);
+  if (yomi && yomi.trim().length > 0) {
+    return toRomaji(yomi);
+  }
+  return explicitEnglish || '';
 }

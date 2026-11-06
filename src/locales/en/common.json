@@ -1,6 +1,6 @@
 {
   "global": {
-    "agentGuideNotice": "Updated the Day 1 torikumi schedule for the November 2026 basho.",
+    "agentGuideNotice": "Updated the Day 1 and Day 2 torikumi schedule for the November 2026 basho.",
     "homeLink": "Home",
     "backToHome": "Back to Home",
     "siteNavigation": "Site navigation",
@@ -385,6 +385,10 @@
       "absentBout": "{{division}} bout {{boutNo}} cancelled due to absence",
       "prevDayNone": "← No previous day",
       "nextDayNone": "No next day →",
+      "fallbackNotice": "Bout results are not yet available. Displaying scheduled matchups instead.",
+      "fallbackSwitchToSchedule": "View schedule page for this day",
+      "jumpToMakuuchi": "Jump to Makuuchi ↓",
+      "pagerNavAria": "Daily navigation for {{mode}}",
       "sortLabel": "{{mode}} sort order",
       "footerHome": "Home",
       "footerDaisuke": "Daisuke on X",
@@ -400,6 +404,7 @@
       "showAllMatches": "Show all matches",
       "shareOnX": "Share on X",
       "shareOnXLabel": "Share My rikishi bouts on X",
+      "shareMatchupOnX": "Share head-to-head record for {{eastName}} vs {{westName}} on X",
       "shareResultWin": "○ {{name}} {{kimarite}}",
       "shareResultLoss": "● {{name}} {{kimarite}}",
       "shareMatchup": "{{name}} vs {{opponent}}",
