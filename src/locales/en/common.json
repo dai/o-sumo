@@ -404,6 +404,7 @@
       "showAllMatches": "Show all matches",
       "shareOnX": "Share on X",
       "shareOnXLabel": "Share My rikishi bouts on X",
+      "shareMatchupOnX": "Share head-to-head record for {{eastName}} vs {{westName}} on X",
       "shareResultWin": "○ {{name}} {{kimarite}}",
       "shareResultLoss": "● {{name}} {{kimarite}}",
       "shareMatchup": "{{name}} vs {{opponent}}",

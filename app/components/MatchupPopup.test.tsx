@@ -63,4 +63,34 @@ describe('MatchupPopup', () => {
 
     expect(screen.getByText('初顔合わせ')).toBeInTheDocument();
   });
+
+  it('renders X share button with web intent link when opened', () => {
+    const map = new Map<string, [number, number]>();
+    map.set('4001,4002', [3, 1]);
+
+    render(
+      <MemoryRouter>
+        <MatchupPopup
+          eastId={4001}
+          westId={4002}
+          eastName="大の里"
+          westName="大栄翔"
+          matchupWinsMap={map}
+          bashoTitle="令和八年十一月場所"
+          dayLabel="初日"
+        />
+      </MemoryRouter>
+    );
+
+    const triggerBtn = screen.getByRole('button', { name: '取組予定 - 過去の対戦成績を見る' });
+    fireEvent.click(triggerBtn);
+
+    const shareLink = screen.getByRole('link', { name: /大の里対大栄翔の対戦成績をXでシェア/ });
+    expect(shareLink).toBeInTheDocument();
+    expect(shareLink).toHaveAttribute('target', '_blank');
+    expect(shareLink).toHaveAttribute('rel', 'noopener noreferrer');
+    const href = shareLink.getAttribute('href');
+    expect(href).toContain('https://twitter.com/intent/tweet?');
+    expect(href).toContain('url=https%3A%2F%2Fosada.us%2Fcompare%2F%3Fids%3D4001%2C4002');
+  });
 });

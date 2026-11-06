@@ -272,6 +272,10 @@ function TorikumiTable({
   myRikishiOnly,
   isSaved,
   matchupWinsMap,
+  bashoTitle,
+  dayLabel,
+  monthKey,
+  bashoName,
 }: {
   title: string;
   dayData: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay };
@@ -285,6 +289,10 @@ function TorikumiTable({
   myRikishiOnly: boolean;
   isSaved: (id: number) => boolean;
   matchupWinsMap?: MatchupWinsMap;
+  bashoTitle?: string;
+  dayLabel?: string;
+  monthKey?: string;
+  bashoName?: string;
 }) {
   if (mode === 'result') {
     return (
@@ -367,6 +375,10 @@ function TorikumiTable({
                             eastName={displayName(match.eastName, match.eastProfileUrl)}
                             westName={displayName(match.westName, match.westProfileUrl)}
                             matchupWinsMap={matchupWinsMap ?? new Map()}
+                            bashoTitle={bashoTitle}
+                            dayLabel={dayLabel}
+                            monthKey={monthKey}
+                            bashoName={bashoName}
                           />
                         )}
                       </div>
@@ -756,6 +768,10 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
           myRikishiOnly={filterEnabled}
           isSaved={isSaved}
           matchupWinsMap={matchupWinsMap}
+          bashoTitle={bashoTitle}
+          dayLabel={formatDayLabel(day, isJa)}
+          monthKey={monthKey}
+          bashoName={archive.bashoName}
         />
 
         <div className="torikumi-refresh-mount">

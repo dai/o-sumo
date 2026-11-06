@@ -164,3 +164,59 @@ export function buildMyRikishiShareText({
 export function buildXShareUrl(text: string, url: string): string {
   return `${X_INTENT_URL}?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
 }
+
+/**
+ * 単一番（取組予定ダイアログ等）の対戦成績をX向けにフォーマットする。
+ */
+export function buildBoutMatchupShareText({
+  bashoTitle,
+  dayLabel,
+  eastName,
+  westName,
+  scoreText,
+  isFirstMeeting,
+  hashtagLine,
+  maxLength = SHARE_TEXT_MAX_LENGTH,
+}: {
+  bashoTitle?: string;
+  dayLabel?: string;
+  eastName: string;
+  westName: string;
+  scoreText?: string | null;
+  isFirstMeeting?: boolean;
+  hashtagLine?: string;
+  maxLength?: number;
+}): string {
+  const lines: string[] = [];
+  const header = [bashoTitle, dayLabel].filter(Boolean).join(' ');
+  if (header) lines.push(header);
+
+  lines.push(`${eastName} − ${westName}`);
+
+  if (isFirstMeeting) {
+    lines.push('（初顔合わせ）');
+  } else if (scoreText) {
+    lines.push(`対戦成績: ${scoreText}`);
+  }
+
+  if (hashtagLine) {
+    lines.push(hashtagLine);
+  }
+
+  const fullText = lines.join('\n');
+  if ([...fullText].length <= maxLength) {
+    return fullText;
+  }
+
+  const withoutHashtag = lines.filter((line) => line !== hashtagLine).join('\n');
+  if ([...withoutHashtag].length <= maxLength) {
+    return withoutHashtag;
+  }
+
+  const minimal = lines.filter((line) => line !== hashtagLine && line !== header).join('\n');
+  if ([...minimal].length <= maxLength) {
+    return minimal;
+  }
+
+  return [...minimal].slice(0, maxLength).join('');
+}

@@ -3,6 +3,7 @@ import {
   SHARE_MAX_ENTRIES,
   SHARE_TEXT_MAX_LENGTH,
   X_INTENT_URL,
+  buildBoutMatchupShareText,
   buildMyRikishiShareText,
   buildXShareUrl,
   collectMyRikishiShareEntries,
@@ -202,6 +203,53 @@ describe('torikumi-share', () => {
       expect(url.startsWith(`${X_INTENT_URL}?`)).toBe(true);
       expect(url).toContain('text=%E7%AB%9C%E9%9B%BB%20%E2%88%92%20%E7%90%B4%E6%AB%BB');
       expect(url).toContain('url=https%3A%2F%2Fosada.us%2F20261108-torikumi%2F');
+    });
+  });
+
+  describe('buildBoutMatchupShareText', () => {
+    it('formats a matchup with history and hashtags', () => {
+      const text = buildBoutMatchupShareText({
+        bashoTitle: '令和八年十一月場所',
+        dayLabel: '初日',
+        eastName: '大の里',
+        westName: '豊昇龍',
+        scoreText: '大の里 2勝 - 1勝 豊昇龍 (大の里 1勝リード)',
+        hashtagLine: '#大相撲 #sumo',
+      });
+
+      expect(text).toBe(
+        '令和八年十一月場所 初日\n大の里 − 豊昇龍\n対戦成績: 大の里 2勝 - 1勝 豊昇龍 (大の里 1勝リード)\n#大相撲 #sumo',
+      );
+    });
+
+    it('formats a first meeting matchup', () => {
+      const text = buildBoutMatchupShareText({
+        bashoTitle: '令和八年十一月場所',
+        dayLabel: '初日',
+        eastName: '大青山',
+        westName: '嵐富士',
+        isFirstMeeting: true,
+        hashtagLine: '#大相撲 #sumo',
+      });
+
+      expect(text).toBe(
+        '令和八年十一月場所 初日\n大青山 − 嵐富士\n（初顔合わせ）\n#大相撲 #sumo',
+      );
+    });
+
+    it('falls back to shorter text when length limit is exceeded', () => {
+      const text = buildBoutMatchupShareText({
+        bashoTitle: '令和八年十一月場所',
+        dayLabel: '初日',
+        eastName: '大の里',
+        westName: '豊昇龍',
+        scoreText: '大の里 2勝 - 1勝 豊昇龍',
+        hashtagLine: '#大相撲 #sumo',
+        maxLength: 35,
+      });
+
+      expect([...text].length).toBeLessThanOrEqual(35);
+      expect(text).toContain('大の里 − 豊昇龍');
     });
   });
 });

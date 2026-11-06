@@ -118,13 +118,16 @@ const BASHO_HASHTAG_EN: Record<string, string> = {
  */
 export function getBashoHashtagToken(
   monthKey: string,
-  bashoName: string,
+  bashoName?: string,
   lang: string = 'ja',
 ): string {
   if (lang === 'en') {
     return BASHO_HASHTAG_EN[monthKey.slice(4, 6)] ?? 'Basho';
   }
-  return bashoName.replace(/\s+/g, '') || `${Number(monthKey.slice(4, 6))}月場所`;
+  if (bashoName && bashoName.trim().length > 0) {
+    return bashoName.replace(/\s+/g, '');
+  }
+  return monthKey && monthKey.length >= 6 ? `${Number(monthKey.slice(4, 6))}月場所` : '大相撲';
 }
 
 export const bashoTitle = `${torikumiArchive.year}${torikumiArchive.bashoName}`;

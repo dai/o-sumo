@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import type { MatchupWinsMap } from '../lib/daily-highlights-data';
 import { analyzeAikuchi } from '../lib/rikishi-compare-data';
+import { buildBoutMatchupShareText, buildXShareUrl } from '../lib/torikumi-share';
+import { SITE_ORIGIN } from '../lib/site-url';
+import { getBashoHashtagToken } from '../lib/basho-meta';
 
 export interface MatchupPopupProps {
   eastId: number | null;
@@ -11,6 +14,10 @@ export interface MatchupPopupProps {
   eastName: string;
   westName: string;
   matchupWinsMap: MatchupWinsMap;
+  bashoTitle?: string;
+  dayLabel?: string;
+  monthKey?: string;
+  bashoName?: string;
 }
 
 export default function MatchupPopup({
@@ -19,8 +26,12 @@ export default function MatchupPopup({
   eastName,
   westName,
   matchupWinsMap,
+  bashoTitle,
+  dayLabel,
+  monthKey,
+  bashoName,
 }: MatchupPopupProps) {
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
   const [isOpen, setIsOpen] = React.useState(false);
   const [isPlacementTop, setIsPlacementTop] = React.useState(false);
   const [isMobile, setIsMobile] = React.useState(false);
@@ -122,6 +133,23 @@ export default function MatchupPopup({
 
   const leadBadge = getLeadBadge();
 
+  const shareUrl = `${SITE_ORIGIN}/compare/?ids=${eastId},${westId}`;
+  const scoreText = hasHistory
+    ? `${eastName} ${winsEast}勝 - ${winsWest}勝 ${westName}${leadBadge ? ` (${leadBadge})` : ''}`
+    : null;
+  const hashtag = getBashoHashtagToken(monthKey ?? '', bashoName, i18n.language.startsWith('en') ? 'en' : 'ja');
+  const hashtagLine = t('torikumi.day.shareHashtags', { basho: hashtag });
+  const shareText = buildBoutMatchupShareText({
+    bashoTitle,
+    dayLabel,
+    eastName,
+    westName,
+    scoreText,
+    isFirstMeeting,
+    hashtagLine,
+  });
+  const shareHref = buildXShareUrl(shareText, shareUrl);
+
   const renderContent = (mode: 'popover' | 'sheet') => (
     <div
       className={mode === 'sheet' ? 'torikumi-matchup-sheet' : `torikumi-matchup-popover${isPlacementTop ? ' is-placement-top' : ''}`}
@@ -182,6 +210,19 @@ export default function MatchupPopup({
         >
           {t('torikumi.day.viewMatchupDetails')} →
         </Link>
+        <a
+          href={shareHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${mode === 'sheet' ? 'torikumi-matchup-sheet' : 'torikumi-matchup-popover'}__share`}
+          onClick={() => setIsOpen(false)}
+          aria-label={t('torikumi.day.shareMatchupOnX', { eastName, westName })}
+        >
+          <svg className="x-logo-icon" viewBox="0 0 24 24" aria-hidden="true" width="14" height="14">
+            <path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 24.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+          <span>{t('torikumi.day.shareOnX')}</span>
+        </a>
       </div>
     </div>
   );

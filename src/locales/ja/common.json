@@ -404,6 +404,7 @@
       "showAllMatches": "全件表示に戻す",
       "shareOnX": "Xでシェア",
       "shareOnXLabel": "マイ力士の取組をXでシェア",
+      "shareMatchupOnX": "{{eastName}}対{{westName}}の対戦成績をXでシェア",
       "shareResultWin": "○ {{name}} {{kimarite}}",
       "shareResultLoss": "● {{name}} {{kimarite}}",
       "shareMatchup": "{{name}} − {{opponent}}",
