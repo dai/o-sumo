@@ -249,6 +249,7 @@ describe('TorikumiDayPage', () => {
   it('shows absentees on result pages when provided', () => {
     const resultDayWithAbsentees: TorikumiArchiveDay = {
       ...torikumiArchive.resultDays[0],
+      status: 'published',
       data: {
         ...torikumiArchive.resultDays[0].data,
         makuuchi: {
