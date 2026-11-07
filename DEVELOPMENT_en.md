@@ -132,11 +132,11 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 
 ## Operations After The September 2026 Archive
 
-- After the conclusion of the November basho, cron schedules for `daily-data-update.yml` and `realtime-torikumi-direct-update.yml` are removed, leaving them operational via `workflow_dispatch` (manual) only. The schedules will be restored ahead of the next basho.
+- For the November basho, cron schedules for `daily-data-update.yml` (JST 13/15/17/19) and `realtime-torikumi-direct-update.yml` (every 10 minutes, JST 13:00-18:50) have been resumed; `workflow_dispatch` remains available. They will be stopped again in a separate PR after the basho ends.
 - `news-feed-update.yml` continues to refresh the news feed every two hours, skipping `news.json` writes when nothing changed.
 - Keep the `public/_headers` cache policy and PWA `registerType: "autoUpdate"` unchanged.
 
-The current APIs are now November while September snapshots remain immutable archives. During the off-season following the November basho, cron schedules are stopped, retaining manual-only runs (workflow_dispatch). Schedules will be restored via PR when the next basho's official torikumi is announced. Summaries are snapshots, not deployment proof. `preflight:current-data` is a transition-only gate used while workflows are paused. Fusen is a narrow validator exception and partial fetch failures preserve old data.
+The current APIs are now November while September snapshots remain immutable archives. During the off-season following the November basho, cron schedules are stopped, retaining manual-only runs (workflow_dispatch). Summaries are snapshots, not deployment proof. `preflight:current-data` is a transition-only gate used while workflows are paused. Fusen is a narrow validator exception and partial fetch failures preserve old data.
 
 ### Tests
 

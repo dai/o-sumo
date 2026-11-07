@@ -1,5 +1,9 @@
 # API Changelog
 
+## 2026-11-07
+
+- 十一月場所開催中のデータ更新のため、`daily-data-update.yml`（JST 13/15/17/19時）と `realtime-torikumi-direct-update.yml`（JST 13:00-18:50 の10分間隔）の cron を再開（API スキーマの変更なし）
+
 ## 2026-10-21
 
 ### Personal Agent Protocol (Poppy) discovery の公開

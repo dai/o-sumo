@@ -229,8 +229,8 @@ DNS-AID (SVCB/HTTPS) と DNSSEC の有効化は Cloudflare DNS 側の操作で�
 
 ## 2026年七月場所アーカイブ後の運用
 
-- 11月場所終了に伴い、`daily-data-update.yml` と `realtime-torikumi-direct-update.yml` の cron 定期実行は停止し、`workflow_dispatch`（手動実行）のみの運用となります。 次期場所（2027年1月場所）の開催前に再度 cron を有効化します。
+- 11月場所開催に合わせて、`daily-data-update.yml`（JST 13/15/17/19時）と `realtime-torikumi-direct-update.yml`（JST 13:00-18:50 の10分間隔）の cron 定期実行を再開しました。`workflow_dispatch` も引き続き使えます。場所終了後は別 PR で cron を再度停止します。
 - `news-feed-update.yml` は引き続き2時間おきのニュース更新を継続し、データに差分がない場合は `news.json` を書き換えない。
 
-十一月 current API への切替後も九月 snapshot は不変です。11月場所終了後のオフシーズン期間は cron を停止し、手動実行（workflow_dispatch）のみを保持します。schedule は次期場所の取組発表に合わせて PR で復元します。`preflight:current-data` は workflow を止めて使う切替専用 gate です。不戦は限定例外で、部分取得失敗時は旧データを保持します。
+十一月 current API への切替後も九月 snapshot は不変です。11月場所終了後のオフシーズン期間は cron を停止し、手動実行（workflow_dispatch）のみを保持します。`preflight:current-data` は workflow を止めて使う切替専用 gate です。不戦は限定例外で、部分取得失敗時は旧データを保持します。
 - Cloudflareのキャッシュ方針とPWAの `registerType: "autoUpdate"` は維持する。
