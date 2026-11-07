@@ -20,14 +20,14 @@ function fromBase64Url(value: string): Uint8Array<ArrayBuffer> {
 }
 
 function normalizeReturnTo(returnTo: string): string {
-  if (!returnTo.startsWith('/') || returnTo.startsWith('//')) return '/my-rikishi/';
+  if (!returnTo.startsWith('/') || returnTo.startsWith('//')) return '/';
   try {
     const parsed = new URL(returnTo, 'https://osada.us');
     return parsed.origin === 'https://osada.us'
-      ? `${parsed.pathname}${parsed.search}${parsed.hash}`
-      : '/my-rikishi/';
+      ? `${parsed.pathname}${parsed.search}${parsed.hash}` || '/'
+      : '/';
   } catch {
-    return '/my-rikishi/';
+    return '/';
   }
 }
 

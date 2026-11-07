@@ -11,7 +11,7 @@ export default function AuthControls({ returnTo }: { returnTo?: string } = {}) {
   const { syncing, syncError } = useMyRikishi();
 
   const currentPath = `${location.pathname}${location.search}${location.hash}`;
-  const effectiveReturnTo = returnTo ?? (currentPath && currentPath !== '/' ? currentPath : '/my-rikishi/');
+  const effectiveReturnTo = returnTo ?? (currentPath || '/');
   const signInHref = `/api/auth/google?returnTo=${encodeURIComponent(effectiveReturnTo)}`;
 
   if (status === 'loading') {

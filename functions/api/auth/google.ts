@@ -23,7 +23,7 @@ export const onRequestGet: PagesFunction<GoogleAuthStartEnv> = async ({ request,
     return unavailable();
   }
 
-  const returnTo = new URL(request.url).searchParams.get('returnTo') ?? '/my-rikishi/';
+  const returnTo = new URL(request.url).searchParams.get('returnTo') ?? '/';
   const { state, cookie } = await createOAuthState(returnTo, env.AUTH_SESSION_SECRET);
   const authorizationUrl = new URL('https://accounts.google.com/o/oauth2/v2/auth');
   authorizationUrl.searchParams.set('client_id', env.GOOGLE_CLIENT_ID);

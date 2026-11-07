@@ -37,6 +37,12 @@ describe('AuthControls', () => {
     expect(signIn).toHaveAttribute('href', '/api/auth/google?returnTo=%2F20260913-torikumi%2F');
   });
 
+  it('preserves the root page in returnTo when signing in from homepage', async () => {
+    renderControls(vi.fn().mockResolvedValue(Response.json({ authenticated: false })), '/');
+    const signIn = await screen.findByRole('link', { name: 'Google でログイン' });
+    expect(signIn).toHaveAttribute('href', '/api/auth/google?returnTo=%2F');
+  });
+
   it('shows the account and signs out without clearing local selections', async () => {
     localStorage.setItem('o-sumo:my-rikishi:v1', '[3]');
     const fetchMock = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {

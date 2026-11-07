@@ -44,7 +44,7 @@ describe('Google OAuth routes', () => {
     expect(response.headers.get('Set-Cookie')).toContain(OAUTH_STATE_COOKIE);
   });
 
-  it('rejects callback errors and invalid state without creating a session', async () => {
+  it('redirects callback errors and invalid state without creating a session', async () => {
     const env = {
       GOOGLE_CLIENT_ID: 'client-id',
       GOOGLE_CLIENT_SECRET: 'client-secret',
@@ -56,13 +56,15 @@ describe('Google OAuth routes', () => {
       new Request('https://osada.us/api/auth/callback/google?error=access_denied'),
       env,
     ));
-    expect(providerError.status).toBe(400);
+    expect(providerError.status).toBe(302);
+    expect(providerError.headers.get('Location')).toBe('https://osada.us/?auth_error=access_denied');
 
     const invalid = await callbackGoogle(context(
       new Request('https://osada.us/api/auth/callback/google?code=x&state=invalid'),
       env,
     ));
-    expect(invalid.status).toBe(400);
+    expect(invalid.status).toBe(302);
+    expect(invalid.headers.get('Location')).toBe('https://osada.us/?auth_error=invalid_oauth_callback');
     expect(env.MY_RIKISHI_DB.prepare).not.toHaveBeenCalled();
   });
 

@@ -51,7 +51,7 @@ describe('OAuth state', () => {
     const externalRequest = request(external.state, `${OAUTH_STATE_COOKIE}=${external.nonce}`);
     await expect(consumeOAuthState(externalRequest, 'test-secret')).resolves.toEqual({
       nonce: external.nonce,
-      returnTo: '/my-rikishi/',
+      returnTo: '/',
     });
   });
 });
