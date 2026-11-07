@@ -144,4 +144,15 @@ describe('PrimaryNavigation', () => {
 
     expect(within(screen.getByRole('navigation', { name: '人物名鑑' })).getByRole('link', { name: /マイ力士/ })).toHaveAttribute('href', '/my-rikishi/');
   });
+
+  it('renders auth controls across both directory and non-directory pages', async () => {
+    // 非名鑑ページ（取組予定）でもログインリンクが表示される
+    const { unmount } = renderNavigation('/202603-yotei/');
+    expect(await screen.findByRole('link', { name: 'Google でログイン' })).toBeInTheDocument();
+    unmount();
+
+    // 名鑑ページでもログインリンクが表示される
+    renderNavigation('/rikishi/');
+    expect(await screen.findByRole('link', { name: 'Google でログイン' })).toBeInTheDocument();
+  });
 });

@@ -1,6 +1,7 @@
 .auth-controls {
   display: flex;
   min-height: 40px;
+  width: min(100%, 42rem);
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
