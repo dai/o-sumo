@@ -147,9 +147,9 @@ export default function PrimaryNavigation({ placement = 'header' }: PrimaryNavig
               );
             })}
           </nav>
-          <AuthControls />
         </div>
       ) : null}
+      <AuthControls />
     </div>
   );
 }
