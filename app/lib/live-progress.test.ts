@@ -122,21 +122,31 @@ describe('live-progress', () => {
       eastName: '東十1',
       westName: '西十1',
     });
-    expect(result.pinLabelDesktop).toBe('イマココ（東十1 対 西十1）');
+    expect(result.pinLabelDesktop).toBe('イマココ（🌅 東十1 対 🌇 西十1）');
     expect(result.pinLabelMobile).toBe('イマココ');
   });
 
-  it('prioritizes completed results over time-based estimate', () => {
-    // 14:20 JST (barely started by time), but 3 bouts already completed
-    const data = createDailyData(3, 0);
-    const result = deriveLiveProgress(data, 14 * 60 + 20);
+  it('prioritizes completed results over time-based estimate (both faster and slower pacing)', () => {
+    // 進行が早い場合: 14:20 JST (時刻はまだ始まったばかり) だが 3番終了
+    const fastData = createDailyData(3, 0);
+    const fastResult = deriveLiveProgress(fastData, 14 * 60 + 20);
 
-    expect(result.state).toBe('juryo');
+    expect(fastResult.state).toBe('juryo');
     // 3 out of 4 matches completed = 0.75 progress
-    expect(result.segments[1].progress).toBe(0.75);
-    // next pending bout is boutNo: 4
-    expect(result.currentBout?.boutNo).toBe(4);
-    expect(result.currentBout?.eastName).toBe('東十4');
+    expect(fastResult.segments[1].progress).toBe(0.75);
+    expect(fastResult.currentBout?.boutNo).toBe(4);
+    expect(fastResult.currentBout?.eastName).toBe('東十4');
+
+    // 進行が遅い場合: 15:00 JST (時刻推定なら 45/85 ≈ 53%) だが 1番しか終了していない
+    const slowData = createDailyData(1, 0);
+    slowData.juryo.day = 2;
+    slowData.makuuchi.day = 2;
+    const slowResult = deriveLiveProgress(slowData, 15 * 60);
+
+    expect(slowResult.state).toBe('juryo');
+    // 実績優先なので時刻推定で先行せず、実績の 1/4 = 0.25 に留まる
+    expect(slowResult.segments[1].progress).toBe(0.25);
+    expect(slowResult.currentBout?.boutNo).toBe(2);
   });
 
   it('handles makuuchi window (16:30 JST)', () => {
@@ -152,11 +162,11 @@ describe('live-progress', () => {
     expect(result.currentBout?.division).toBe('幕内');
     expect(result.currentBout?.boutNo).toBe(2);
     expect(result.currentBout?.eastName).toBe('東幕2');
-    expect(result.pinLabelDesktop).toBe('イマココ（東幕2 対 西幕2）');
+    expect(result.pinLabelDesktop).toBe('イマココ（🌅 東幕2 対 🌇 西幕2）');
     expect(result.pinLabelMobile).toBe('イマココ');
   });
 
-  it('handles opening day (day 1) exception schedule (14:05 / 15:30)', () => {
+  it('handles opening day (day 1) exception schedule (14:05 / 15:30) and dynamic ratios (20/29/51)', () => {
     const data = createDailyData(0, 0); // day: 1 (初日)
     const result = deriveLiveProgress(data, 14 * 60 + 10); // 14:10 JST (十両開始後)
 
@@ -164,6 +174,19 @@ describe('live-progress', () => {
     expect(result.schedule.juryoStartMinutes).toBe(14 * 60 + 5);
     expect(result.schedule.makuuchiStartMinutes).toBe(15 * 60 + 30);
     expect(result.state).toBe('juryo');
+    // 初日の動的按分 (20/29/51)
+    expect(result.segments[0].ratioPercent).toBe(20);
+    expect(result.segments[1].ratioPercent).toBe(29);
+    expect(result.segments[2].ratioPercent).toBe(51);
+
+    // 通常日は 20/32/48
+    const regularData = createDailyData(0, 0);
+    regularData.juryo.day = 2;
+    regularData.makuuchi.day = 2;
+    const regularResult = deriveLiveProgress(regularData, 14 * 60 + 20);
+    expect(regularResult.segments[0].ratioPercent).toBe(20);
+    expect(regularResult.segments[1].ratioPercent).toBe(32);
+    expect(regularResult.segments[2].ratioPercent).toBe(48);
   });
 
   it('handles finished state when all makuuchi bouts completed', () => {

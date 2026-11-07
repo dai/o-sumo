@@ -13,6 +13,23 @@ export const MAKUSHITA_RATIO_PERCENT = 20;
 export const JURYO_RATIO_PERCENT = 32;
 export const MAKUUCHI_RATIO_PERCENT = 48;
 
+// 初日（Day 1）例外按分（v6: 初日は十両 14:05〜15:30 (85分) / 幕内 15:30〜18:00 (150分) で按分追従）
+export const DAY1_MAKUSHITA_RATIO_PERCENT = 20;
+export const DAY1_JURYO_RATIO_PERCENT = 29;
+export const DAY1_MAKUUCHI_RATIO_PERCENT = 51;
+
+export function getMeterRatios(isOpeningDay = false): {
+  makushitaRatio: number;
+  juryoRatio: number;
+  makuuchiRatio: number;
+} {
+  return {
+    makushitaRatio: isOpeningDay ? DAY1_MAKUSHITA_RATIO_PERCENT : MAKUSHITA_RATIO_PERCENT,
+    juryoRatio: isOpeningDay ? DAY1_JURYO_RATIO_PERCENT : JURYO_RATIO_PERCENT,
+    makuuchiRatio: isOpeningDay ? DAY1_MAKUUCHI_RATIO_PERCENT : MAKUUCHI_RATIO_PERCENT,
+  };
+}
+
 export function getMeterSchedule(isOpeningDay = false): {
   juryoStartMinutes: number;
   makuuchiStartMinutes: number;
@@ -171,6 +188,9 @@ export function deriveLiveProgress(
   const allMakuuchiFinished = totalMakuuchi > 0 && completedMakuuchi >= totalMakuuchi;
   const isPastClosingTime = nowMinutes >= endMinutes;
 
+  const ratios = getMeterRatios(isOpeningDay);
+  const { makushitaRatio, juryoRatio, makuuchiRatio } = ratios;
+
   // 1. 状態判定
   let state: LiveProgressState = 'before_juryo';
 
@@ -207,15 +227,20 @@ export function deriveLiveProgress(
     juryoProgress = 1;
     activeDivision = 'makuuchi';
 
+    // 実績優先：未完了の一番がある時間帯は実績（確定番数 ÷ 総番数）を基準とする。
+    // まだ実績が無い時間帯（0番完了）のみ時刻線形按分で代替。
+    // 実績がある場合は時刻推定でピンを先に進めず、実績の進行に揃える（進行が遅い日でもピンが先行しない）。
+    const resultRatio = totalMakuuchi > 0 ? completedMakuuchi / totalMakuuchi : 0;
     const timeRatio = clamp(
       (nowMinutes - makuuchiStartMinutes) / (endMinutes - makuuchiStartMinutes),
       0,
       1,
     );
-    const resultRatio = totalMakuuchi > 0 ? completedMakuuchi / totalMakuuchi : 0;
-    makuuchiProgress = clamp(Math.max(resultRatio, timeRatio), 0, 0.99);
+    makuuchiProgress = completedMakuuchi > 0
+      ? clamp(resultRatio, 0, 0.99)
+      : clamp(timeRatio, 0, 0.99);
 
-    pinPercent = MAKUSHITA_RATIO_PERCENT + JURYO_RATIO_PERCENT + makuuchiProgress * MAKUUCHI_RATIO_PERCENT;
+    pinPercent = makushitaRatio + juryoRatio + makuuchiProgress * makuuchiRatio;
 
     // 現在の一番の選定: 未完了の最初の試合、なければ推定
     const pendingMatch = makuuchiMatches.find((m) => !isMatchCompleted(m));
@@ -245,15 +270,17 @@ export function deriveLiveProgress(
     makuuchiProgress = 0;
     activeDivision = 'juryo';
 
+    const resultRatio = totalJuryo > 0 ? completedJuryo / totalJuryo : 0;
     const timeRatio = clamp(
       (nowMinutes - juryoStartMinutes) / (makuuchiStartMinutes - juryoStartMinutes),
       0,
       1,
     );
-    const resultRatio = totalJuryo > 0 ? completedJuryo / totalJuryo : 0;
-    juryoProgress = clamp(Math.max(resultRatio, timeRatio), 0, 0.99);
+    juryoProgress = completedJuryo > 0
+      ? clamp(resultRatio, 0, 0.99)
+      : clamp(timeRatio, 0, 0.99);
 
-    pinPercent = MAKUSHITA_RATIO_PERCENT + juryoProgress * JURYO_RATIO_PERCENT;
+    pinPercent = makushitaRatio + juryoProgress * juryoRatio;
 
     const pendingMatch = juryoMatches.find((m) => !isMatchCompleted(m));
     if (pendingMatch) {
@@ -295,7 +322,7 @@ export function deriveLiveProgress(
       makushitaProgress = 0;
     }
 
-    pinPercent = makushitaProgress * MAKUSHITA_RATIO_PERCENT;
+    pinPercent = makushitaProgress * makushitaRatio;
     currentBout = null;
   }
 
@@ -310,16 +337,16 @@ export function deriveLiveProgress(
     pinLabelDesktop = 'イマココ（幕下取組中）';
     pinLabelMobile = 'イマココ（幕下取組中）';
   } else {
-    pinLabelDesktop = `イマココ（${currentBout.eastName} 対 ${currentBout.westName}）`;
+    pinLabelDesktop = `イマココ（🌅 ${currentBout.eastName} 対 🌇 ${currentBout.westName}）`;
     pinLabelMobile = 'イマココ';
   }
 
   return {
     state,
     segments: [
-      { key: 'makushita', progress: makushitaProgress, ratioPercent: MAKUSHITA_RATIO_PERCENT },
-      { key: 'juryo', progress: juryoProgress, ratioPercent: JURYO_RATIO_PERCENT },
-      { key: 'makuuchi', progress: makuuchiProgress, ratioPercent: MAKUUCHI_RATIO_PERCENT },
+      { key: 'makushita', progress: makushitaProgress, ratioPercent: makushitaRatio },
+      { key: 'juryo', progress: juryoProgress, ratioPercent: juryoRatio },
+      { key: 'makuuchi', progress: makuuchiProgress, ratioPercent: makuuchiRatio },
     ],
     currentBout,
     nowMinutes,

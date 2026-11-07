@@ -2425,18 +2425,20 @@
 .imakoko-meter__pin-anchor {
   position: absolute;
   top: 0;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   white-space: nowrap;
   pointer-events: none;
 }
 
+.imakoko-meter__pin-label-wrapper {
+  display: block;
+}
+
 .imakoko-meter__pin-icon {
+  display: block;
   font-size: 0.52rem;
   color: #fed65b;
   line-height: 1;
+  transform: translateX(-50%);
 }
 
 .imakoko-meter__pin-label {
