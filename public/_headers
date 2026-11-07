@@ -44,6 +44,9 @@
 /about/
   Link: </about/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
   Vary: Accept
+/privacy/
+  Link: </privacy/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
+  Vary: Accept
 /202603-banzuke/
   Link: </202603-banzuke/index.md>; rel="alternate"; type="text/markdown"; title="Markdown version"
   Vary: Accept

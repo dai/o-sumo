@@ -1,0 +1,17 @@
+{
+  "name": "o-sumo",
+  "title": "大相撲アーカイブ (o-sumo)",
+  "description": "Grand Sumo banzuke, torikumi results, and rikishi profile data.",
+  "transport": "streamable-http",
+  "url": "https://osada.us/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "tools": [
+    "search_rikishi",
+    "get_rikishi_profile",
+    "get_banzuke",
+    "get_torikumi",
+    "list_basho"
+  ]
+}

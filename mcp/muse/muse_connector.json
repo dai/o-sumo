@@ -1,0 +1,42 @@
+{
+  "$schema": "https://meta.ai/schemas/connector-v1.json",
+  "id": "us.osada.sumo",
+  "name": "o-sumo",
+  "displayName": "大相撲アーカイブ (Grand Sumo Guide)",
+  "description": "Access official Grand Sumo banzuke, match outcomes, and rikishi career profiles.",
+  "category": "sports_and_reference",
+  "icon": "https://osada.us/images/icon.png",
+  "homepage": "https://osada.us",
+  "endpoint": {
+    "type": "mcp",
+    "protocol": "streamable-http",
+    "url": "https://osada.us/mcp"
+  },
+  "authentication": {
+    "type": "none"
+  },
+  "capabilities": {
+    "tools": [
+      {
+        "name": "search_rikishi",
+        "description": "Search rikishi by name or reading"
+      },
+      {
+        "name": "get_rikishi_profile",
+        "description": "Retrieve career profile by numeric ID"
+      },
+      {
+        "name": "get_banzuke",
+        "description": "Retrieve Makuuchi and Juryo rankings"
+      },
+      {
+        "name": "get_torikumi",
+        "description": "Retrieve daily match results or schedules"
+      },
+      {
+        "name": "list_basho",
+        "description": "List current and archived tournaments"
+      }
+    ]
+  }
+}

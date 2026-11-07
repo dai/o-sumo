@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AIエージェント向け案内 | o-sumo</title>
+  <title>AIで大相撲データを調べる | o-sumo</title>
   <meta name="description" content="o-sumoの公開データ、MCP、WebMCP、Agent Skillsの使い方">
   <style>
     :root { color-scheme: light dark; font-family: system-ui, sans-serif; line-height: 1.7; }
@@ -18,30 +18,36 @@
 <body>
   <p><a href="/">o-sumo ホーム</a> · <a href="/agents/en" lang="en">English</a></p>
   <main>
-    <h1>AIエージェント向け案内</h1>
-    <p>番付、取組、力士などの公開データを、JSON APIやMCPから読み取り専用で利用できます。公開JSON API、相撲データ用MCP、Agent Skillsに登録やAPIキーは不要です。</p>
-    <section id="api">
-      <h2>公開JSON API</h2>
-      <p><a href="/api/v1/torikumi.json">取組データ</a>などを直接取得できます。APIの一覧と仕様は<a href="https://github.com/dai/o-sumo/blob/main/docs/api/v1.md">API仕様</a>を参照してください。</p>
-      <p>機械向けの一覧: <code>https://osada.us/.well-known/api-catalog</code></p>
-    </section>
+    <h1>AIで大相撲データを調べる</h1>
+    <p>番付、取組、力士を調べるなら<a href="#mcp">相撲データ用MCP</a>、記事やプロフィールを探すなら<a href="#search">AI Search MCP</a>を使います。データをプログラムから取得するには<a href="#api">公開JSON API</a>を使えます。</p>
     <section id="mcp">
-      <h2>相撲データ用MCP</h2>
-      <p>番付、取組、力士検索、プロフィール、場所一覧を取得する5つのツールを提供します。MCPクライアントに <code>https://osada.us/mcp</code> を登録してください。このURLはブラウザーで開くためのページではなく、Streamable HTTPの接続先です。</p>
-      <p><a href="/mcp/server-card">Server Cardを見る</a></p>
+      <h2>相撲データ用MCPを使う</h2>
+      <p>リモートMCPに対応したクライアントに <code>https://osada.us/mcp</code> を登録します。接続方式はStreamable HTTPです。読み取り専用で、o-sumoへのログインやAPIキーは不要です。</p>
+      <p><a href="https://github.com/dai/o-sumo/tree/main/mcp#日本語">クライアント別の導入手順</a> · <a href="/agents/o-sumo-plugin.zip">Antigravity用ZIP</a> · <a href="/mcp/server-card">Server Card</a></p>
+      <h3>接続したらチャットで試す</h3>
+      <ul>
+        <li><code>o-sumoで大の里のプロフィールと生涯成績を調べて。</code></li>
+        <li><code>o-sumoで2026年9月場所の幕内番付を調べて。</code></li>
+        <li><code>o-sumoで2026年9月27日の幕内の取組結果を調べて。</code></li>
+      </ul>
+      <p>取組を調べるときは日付と「予定」か「結果」を指定します。未発表の取組は更新待ちと表示されることがあります。未収録の日付ではデータなしが返ります。</p>
     </section>
     <section id="search">
-      <h2>AI Search MCP</h2>
-      <p>記事やプロフィールなどを自然言語で探す <code>search</code> ツールです。MCPクライアントに <code>https://ask.osada.us/mcp</code> を登録してください。ブラウザーからのGETは利用できません。</p>
+      <h2>AI Search MCPで記事を探す</h2>
+      <p><code>https://ask.osada.us/mcp</code> を登録すると、<code>search</code> ツールで記事やプロフィールの候補を探せます。候補の出典を開き、番付や勝敗は相撲データ用MCPで確認してください。</p>
+    </section>
+    <section id="api">
+      <h2>公開JSON API</h2>
+      <p><a href="/api/v1/torikumi.json">取組データのJSON</a> · <a href="https://github.com/dai/o-sumo/blob/main/docs/api/v1.md">API一覧と仕様</a> · <a href="/.well-known/api-catalog">機械向けAPIカタログ</a></p>
     </section>
     <section id="skills">
       <h2>Agent SkillsとWebMCP</h2>
-      <p>データ取得とページURLの解決方法は<a href="https://github.com/dai/o-sumo/tree/main/public/.well-known/agent-skills">公開スキルの説明</a>を参照してください。対応ブラウザーでは、サイトを開くと別途4つのWebMCPツールを登録します。</p>
-      <p>機械向けの一覧: <code>https://osada.us/.well-known/agent-skills/index.json</code></p>
+      <p><a href="/.well-known/agent-skills/index.json">公開Agent Skills</a>には、データの取得方法とページURLの調べ方がまとまっています。対応ブラウザーでo-sumoを開くと、ページ内で4つのWebMCPツールが利用できます。</p>
     </section>
     <section id="policy">
-      <h2>利用条件と詳しい説明</h2>
-      <p>検索と回答生成時の参照は許可し、モデル学習は許可しません。<a href="https://github.com/dai/o-sumo/blob/main/docs/agent-ready.md">エージェント向けガイド</a>と<a href="/auth.md">認証方針</a>を参照してください。A2Aカードは発見用で、タスク操作は未実装です。</p>
+      <h2>利用条件とプライバシー</h2>
+      <p>検索と回答生成時の参照は許可しています。モデルの学習と微調整は許可していません。A2Aカードは発見用です。</p>
+      <p><a href="/privacy/">プライバシーポリシー</a> · <a href="/auth.md">認証方針</a> · <a href="https://github.com/dai/o-sumo/blob/main/docs/agent-ready.md">技術・運用リファレンス</a></p>
     </section>
   </main>
 </body>

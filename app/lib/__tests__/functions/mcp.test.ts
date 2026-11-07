@@ -234,7 +234,12 @@ describe('MCP Tools execution', () => {
     expect(dataLine).toBeDefined();
     return JSON.parse(dataLine!.slice(6)) as {
       result?: {
-        tools?: Array<{ name: string; description: string }>;
+        tools?: Array<{
+          name: string;
+          title?: string;
+          description: string;
+          annotations?: { readOnlyHint?: boolean; openWorldHint?: boolean; destructiveHint?: boolean };
+        }>;
         content?: Array<{ type: string; text: string }>;
       };
       error?: unknown;
@@ -250,6 +255,33 @@ describe('MCP Tools execution', () => {
     expect(toolNames).toContain('get_banzuke');
     expect(toolNames).toContain('get_torikumi');
     expect(toolNames).toContain('list_basho');
+    expect(res.result?.tools).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        name: 'search_rikishi',
+        title: 'Search rikishi（力士検索）',
+        annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: false },
+      }),
+      expect.objectContaining({
+        name: 'get_rikishi_profile',
+        title: 'Get rikishi profile（力士プロフィール）',
+        annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: false },
+      }),
+      expect.objectContaining({
+        name: 'get_banzuke',
+        title: 'Get banzuke（番付）',
+        annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: false },
+      }),
+      expect.objectContaining({
+        name: 'get_torikumi',
+        title: 'Get torikumi（取組）',
+        annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: false },
+      }),
+      expect.objectContaining({
+        name: 'list_basho',
+        title: 'List basho（場所一覧）',
+        annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: false },
+      }),
+    ]));
   });
 
   it('executes search_rikishi and returns matching rikishi', async () => {

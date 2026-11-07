@@ -27,7 +27,7 @@ exchange.
 
 ## What agents should do instead
 
-1. Fetch the public JSON API at <https://osada.us/api/v1/*.json>.
+1. Use the [structured MCP or public JSON API](https://osada.us/agents/en) for data lookups.
 2. Use the skills listed in the card:
    - `osumo-content` — fetch banzuke, torikumi, rikishi, gyoji, and yobidashi JSON
    - `osumo-discovery` — resolve URLs for basho / day / rikishi / gyoji / yobidashi pages and discovery surfaces

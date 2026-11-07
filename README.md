@@ -1,26 +1,43 @@
 # o-sumo
 
-[![Is Your Site Agent-Ready? 100点達成（コマース以外）](https://pbs.twimg.com/media/HO21kitagAABB1E.png)](https://x.com/daisuke/status/2084522046508396992)
-
-[![DeepWiki](https://img.shields.io/badge/DeepWiki-dai%2Fo--sumo-blue.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAyCAYAAAAnWDnqAAAAAXNSR0IArs4c6QAAA05JREFUaEPtmUtyEzEQhtWTQyQLHNak2AB7ZnyXZMEjXMGeK/AIi+QuHrMnbChYY7MIh8g01fJoopFb0uhhEqqcbWTp06/uv1saEDv4O3n3dV60RfP947Mm9/SQc0ICFQgzfc4CYZoTPAswgSJCCUJUnAAoRHOAUOcATwbmVLWdGoH//PB8mnKqScAhsD0kYP3j/Yt5LPQe2KvcXmGvRHcDnpxfL2zOYJ1mFwrryWTz0advv1Ut4CJgf5uhDuDj5eUcAUoahrdY/56ebRWeraTjMt/00Sh3UDtjgHtQNHwcRGOC98BJEAEymycmYcWwOprTgcB6VZ5JK5TAJ+fXGLBm3FDAmn6oPPjR4rKCAoJCal2eAiQp2x0vxTPB3ALO2CRkwmDy5WohzBDwSEFKRwPbknEggCPB/imwrycgxX2NzoMCHhPkDwqYMr9tRcP5qNrMZHkVnOjRMWwLCcr8ohBVb1OMjxLwGCvjTikrsBOiA6fNyCrm8V1rP93iVPpwaE+gO0SsWmPiXB+jikdf6SizrT5qKasx5j8ABbHpFTx+vFXp9EnYQmLx02h1QTTrl6eDqxLnGjporxl3NL3agEvXdT0WmEost648sQOYAeJS9Q7bfUVoMGnjo4AZdUMQku50McDcMWcBPvr0SzbTAFDfvJqwLzgxwATnCgnp4wDl6Aa+Ax283gghmj+vj7feE2KBBRMW3FzOpLOADl0Isb5587h/U4gGvkt5v60Z1VLG8BhYjbzRwyQZemwAd6cCR5/XFWLYZRIMpX39AR0tjaGGiGzLVyhse5C9RKC6ai42ppWPKiBagOvaYk8lO7DajerabOZP46Lby5wKjw1HCRx7p9sVMOWGzb/vA1hwiWc6jm3MvQDTogQkiqIhJV0nBQBTU+3okKCFDy9WwferkHjtxib7t3xIUQtHxnIwtx4mpg26/HfwVNVDb4oI9RHmx5WGelRVlrtiw43zboCLaxv46AZeB3IlTkwouebTr1y2NjSpHz68WNFjHvupy3q8TFn3Hos2IAk4Ju5dCo8B3wP7VPr/FGaKiG+T+v+TQqIrOqMTL1VdWV1DdmcbO8KXBz6esmYWYKPwDL5b5FA1a0hwapHiom0r/cKaoqr+27/XcrS5UwSMbQAAAABJRU5ErkJggg==)](https://deepwiki.com/dai/o-sumo)
-
-
+Agentsの対応状況は[こちら](https://isitagentready.com/osada.us)
 
 [English README](./README_en.md)
 
 o-sumo は、大相撲の番付、取組、力士・行司・呼出名鑑を配信する Web アプリです。React 19 + TypeScript + Vite で構築し、Cloudflare Pages からサイトと JSON API を公開しています。AI エージェント向けには MCP、WebMCP、Markdown 表示と発見用メタデータを用意しています。
 
+2026年11月4日から、エンドユーザー向けに相撲データをMCPで配信しています。[導入手順](./mcp/README.md#日本語)
+
+## 目次
+
+- [ドキュメント一覧](#ドキュメント一覧)
+- [概要](#概要)
+- [AIエージェントから利用する](#aiエージェントから利用する)
+- [主な機能](#主な機能)
+- [技術スタック](#技術スタック)
+- [ローカル開発](#ローカル開発)
+- [データ更新](#データ更新)
+- [自動更新](#自動更新)
+- [テスト](#テスト)
+- [Cloudflare Pages](#cloudflare-pages)
+- [令和八年十一月場所の更新運用](#令和八年十一月場所の更新運用)
+- [主要ファイル](#主要ファイル)
+- [連絡先](#連絡先)
+- [ライセンス](#ライセンス)
+- [ダウンロード](#ダウンロード)
+
 ## ドキュメント一覧
 
-- README: `README.md` / `README_en.md`
-- 開発ガイド: `DEVELOPMENT.md` / `DEVELOPMENT_en.md`
-- Skills 一覧: `SKILLS.md` / `SKILLS_en.md`
-- API 仕様: `docs/api/v1.md` / `docs/api/v1.en.md`
-- API ポリシー: `docs/api/policy.md` / `docs/api/policy.en.md`
-- API 変更履歴: `docs/api/changelog.md` / `docs/api/changelog.en.md`
-- 力士プロフィール・合い口更新手順: `docs/rikishi-profile-refresh-runbook.md`
-- 行司・呼出データ更新手順: `docs/official-profile-refresh-runbook.md`
-- エージェント向けガイド: `docs/agent-ready.md`
+- README: [README.md](./README.md) / [README_en.md](./README_en.md)
+- 開発ガイド: [DEVELOPMENT.md](./DEVELOPMENT.md) / [DEVELOPMENT_en.md](./DEVELOPMENT_en.md)
+- MCP 連携キット: [mcp/README.md](./mcp/README.md)
+- Skills 一覧: [SKILLS.md](./SKILLS.md) / [SKILLS_en.md](./SKILLS_en.md)
+- API 仕様: [docs/api/v1.md](./docs/api/v1.md) / [docs/api/v1.en.md](./docs/api/v1.en.md)
+- API ポリシー: [docs/api/policy.md](./docs/api/policy.md) / [docs/api/policy.en.md](./docs/api/policy.en.md)
+- API 変更履歴: [docs/api/changelog.md](./docs/api/changelog.md) / [docs/api/changelog.en.md](./docs/api/changelog.en.md)
+- 力士プロフィール・合い口更新手順: [docs/rikishi-profile-refresh-runbook.md](./docs/rikishi-profile-refresh-runbook.md)
+- 行司・呼出データ更新手順: [docs/official-profile-refresh-runbook.md](./docs/official-profile-refresh-runbook.md)
+- エージェント向けガイド: [docs/agent-ready.md](./docs/agent-ready.md)
 
 ## 概要
 
@@ -30,6 +47,7 @@ o-sumo は、大相撲の番付、取組、力士・行司・呼出名鑑を配�
   - 力士一覧: `/rikishi`
   - 力士プロフィール: `/rikishi/{id}`
   - マイ力士: `/my-rikishi/`
+  - プライバシーポリシー: `/privacy/`
   - 力士比較: `/compare/?ids={id1},{id2}`
   - 行司名鑑: `/gyoji/`
   - 行司プロフィール: `/gyoji/{id}/`
@@ -49,7 +67,7 @@ o-sumo は、大相撲の番付、取組、力士・行司・呼出名鑑を配�
   - `/compare/?ids=3842,4227`
   - `/kimarite`
 - 読みもの: `https://blog.osada.us/`
-- 旧番付 URL `/{YYYYMM}-o-sumo` は現行の番付 URL にリダイレクトされます。
+- `/202609-o-sumo/` などの対応済み旧番付 URL は、同じ場所の月別番付を表示します。`/archives/cat11/` などの廃止済み URL は HTTP 410 を返します。
 - 公開 API:
   - `/api/v1/banzuke.json`
   - `/api/v1/torikumi.json`
@@ -79,13 +97,13 @@ Skill 公開:
 
 ## AIエージェントから利用する
 
-公開 JSON API、2つの公開スキル、相撲データ用 MCP を、認証・登録・APIキーなしで利用できます。
+[AIエージェント向け利用ガイド](https://osada.us/agents/)から、[クライアント別の導入手順](./mcp/README.md#日本語)と[JSON API仕様](./docs/api/v1.md)を参照できます。公開 JSON API、公開スキル、相撲データ用 MCP は、o-sumo のアカウントや API キーなしで利用できます。
 検索と回答生成時の参照を許可し、モデル学習は許可しません（`search=yes, ai-input=yes, ai-train=no`）。
 
 | 目的 | 入口 |
 | --- | --- |
 | APIを見つける | [公開JSON APIの案内](https://osada.us/agents/#api) |
-| 番付・取組・力士データをツールで取得する | [相撲データ用MCPの案内](https://osada.us/agents/#mcp) |
+| 番付・取組・力士データをツールで取得する | [相撲データ用MCP連携キット](https://github.com/dai/o-sumo/tree/main/mcp) |
 | 記事やプロフィールを自然言語で探す | [AI Search MCPの案内](https://osada.us/agents/#search) |
 | 取得方法・ページURLを調べる | [Agent Skillsの案内](https://osada.us/agents/#skills) |
 | 認証方針を確認する | [利用条件と認証方針](https://osada.us/agents/#policy) |
@@ -98,10 +116,10 @@ Skill 公開:
 ホーム・主要一覧・月別ページと、公開データに存在する日別予定/結果は
 `Accept: text/markdown` で取得できます。個別人物ページなど未対応ルートはHTMLを返します。
 
-相撲データ用 MCP は Streamable HTTP の読み取り専用サーバーで、`search_rikishi`、
+相撲データ用 MCP は Streamable HTTP（`https://osada.us/mcp`）の読み取り専用サーバーで、`search_rikishi`、
 `get_rikishi_profile`、`get_banzuke`、`get_torikumi`、`list_basho` を提供します。
-AI Search MCP は自然言語検索用の `search` ツールを提供します。MCP クライアントには
-用途に応じたエンドポイント URL を登録してください。
+[クライアント別の導入手順](./mcp/README.md#日本語)で、接続方法と開発者向け設定例を確認できます。
+AI Search MCP は自然言語検索用の `search` ツールを提供します。
 
 ```bash
 curl -fsS https://osada.us/.well-known/agent-skills/index.json
@@ -131,7 +149,7 @@ curl -i -H 'Accept: text/markdown' https://osada.us/20261108-yotei/
   - 注目対戦（横綱・大関・関脇対決等）やマイ力士ペアからのワンタップクイック選択
 - 日本相撲協会公式サイトを出典とする現役行司42名・呼出45名の一覧と個別プロフィールを日英表示。公式数値IDをURLとJSON APIに使用し、写真は掲載しません
 - 番付ページで幕内・十両の番付と成績を表示し、MiniMax I2I Generation で加工した力士プロフィール画像とあわせて力士プロフィールへ遷移
-- マイ力士 (`/my-rikishi/`) で最大10名まで四股名を登録し、ナビゲーション件数バッジ表示、URL 同期と `localStorage` 永続化で端末をまたいで保持
+- マイ力士 (`/my-rikishi/`) で最大10名まで四股名を登録し、ナビゲーション件数バッジ表示、URL 同期・`localStorage` 永続化・Google ログインによるクラウド同期で端末をまたいで保持。日別取組ページの「推しだけ表示」は端末に設定を保存し、対象の取組をXで共有できます
 - 場所ステータス分析 (`/analytics/`) で幕内優勝・三賞・十両優勝を一覧表示
 - 各ページの URL を `ShareCurrentLink` ボタンでクリップボードへコピー（手動フォールバック付き）
 - 月別ハブで 15 日分の日別ページを一覧表示
@@ -314,7 +332,7 @@ python scripts/update_official_profiles_test.py
 
 ## 自動更新
 
-GitHub Actions で取組予定、取組結果、ニュース更新を分けています。日次予定更新は PR を作成してテスト通過後の auto-merge を要求し、リアルタイム結果更新は検証後に `main` へ直接 push します。
+GitHub Actions では取組予定、取組結果、ニュースを別々に取得します。いずれも共通の `data-update.yml` で検証し、差分を `main` に直接公開します。
 
 共通スクリプト:
 
@@ -326,42 +344,19 @@ GitHub Actions で取組予定、取組結果、ニュース更新を分けて�
 ワークフロー一覧:
 
 - 日次更新: `.github/workflows/daily-data-update.yml`
-  - トリガー: JST 13:00 / 15:00 / 17:00 / 19:00 と `workflow_dispatch`
+  - 現在のトリガー: `workflow_dispatch`
   - 実行内容: 取組予定のみ更新（`--torikumi-only --torikumi-scope schedule`）
   - 手動実行: GitHub Actions の `Run workflow` または `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main`
 - 結果更新: `.github/workflows/realtime-torikumi-direct-update.yml`
-  - トリガー: JST 13:00-18:50 の10分間隔と `workflow_dispatch`
+  - 現在のトリガー: `workflow_dispatch`
   - 実行内容: 取組結果のみ更新（`--torikumi-only --torikumi-scope result --skip-rikishi-fetch --strict-torikumi-fetch`）
   - 手動実行: GitHub Actions の `Run workflow` または `gh workflow run realtime-torikumi-direct-update.yml -R dai/o-sumo --ref main`
   - ログ: GitHub Actions の Job Summary に step result / committed / event / run URL を集約
 - ニュース更新: `.github/workflows/news-feed-update.yml`
   - 実行時刻: JST 09:05・19:05 の1日2回（公開は19:05の実行時）
   - 実行内容: 日本相撲協会お知らせ + dmenu スポーツを更新（`python scripts/update_news_feed.py`）
-  - 取得結果が変わらない場合は `news.json` を書き換えず、PR 差分を作らない
-  - **1日1PR**: JST 日付ベースの `automation/news-updates-<YYYY-MM-DD>` ブランチの PR を作成し、同日内の複数 run は同一 PR に commit を追加する
-  - **auto-merge**: JST 19時台の run のみ `gh pr merge --auto --squash --delete-branch` を呼び出し、日の最終更新で PR をマージ。ブランチはマージ後に自動削除される
-
-### Discord 通知（任意）
-
-`DISCORD_WEBHOOK_URL` を repo secret に設定すると、3 つのワークフローの失敗時に Discord チャンネルへ通知が飛びます。未設定でも wf はそのまま動きます。
-
-設定手順:
-
-1. Discord の対象チャンネル → `編集` → `連携サービス` → `ウェブフック` を作成、URL をコピー
-2. GitHub のリポジトリページ → `Settings` → `Secrets and variables` → `Actions` → `New repository secret`
-3. Name: `DISCORD_WEBHOOK_URL`、Value: 上でコピーした URL → `Add secret`
-
-通知のペイロードは `scripts/ci/notify_discord.sh` を参照（status / title / detail を受け取り Embed として POST）。
-
-## GitHub Mobile + Copilot 運用
-
-- 事前準備:
-  - リポジトリ指示: `.github/copilot-instructions.md`
-- 週末の最短フロー:
-  - GitHub Mobile で Issue を作成し、Copilot cloud agent に割り当てる
-  - Agent session で差分と説明を確認する
-  - 作成された PR で `test.yml`（`typecheck` / `test` / `build`）通過を確認する
-  - GitHub Mobile 上でレビューして merge する
+  - 公開対象に差分がなければ `news.json` は更新しない
+  - 取得状態は `automation/news-state` に保持し、公開対象として選んだ検証済みスナップショットを `main` にコミットします。
 
 ## テスト
 
@@ -398,12 +393,12 @@ GitHub Actions では PR と `main` / `codex/**` / `automation/data-updates` へ
 - SPA fallback: `public/_redirects`（アプリルートのみ。`/api/v1/*` は静的 JSON をそのまま配信）
 - 日付ベースの URL を直接開いても `index.html` にフォールバックします
 
-## 十一月場所の更新運用
+## 令和八年十一月場所の更新運用
 
 - 十一月の current API は切替済みです。九月の TypeScript snapshot は不変 archive として維持します。
-- schedule は workflow を含む変更が既定 branch の `main` に merge された後だけ有効です。共通 lock は未 merge の日次 PR との競合までは防げず、混雑時は実行が遅延または skip され得るため10分以内の反映保証はありません。
-- 11月6日ごろの公式取組発表後、`gh workflow run daily-data-update.yml -R dai/o-sumo --ref main` を手動実行し、run、PR checks と merge、`main` の JSON、本番 JSON を順に確認します。公開前に両部門が空なら no-op であり、公開成功ではありません。
-- 11月22日の最終結果と翌日の確認後、cron 削除は別 PR で行います。summary は実行時点の snapshot であり、merge や deploy の証明ではありません。
+- 取組予定・結果のワークフローは現在、手動実行です。`main` で定期実行を有効にする手順は[場所中の定期実行手順](./scripts/ci/README.md)を参照してください。GitHub Actions の実行が遅れたり、スキップされたりする場合があります。
+- 11月6日ごろの公式取組発表後、`gh workflow run daily-data-update.yml -R dai/o-sumo --ref main` を手動実行し、実行結果、公開コミット、`main` の JSON、本番 JSON を順に確認します。公式発表前に両部門が空の場合は、公開データを更新せずに終了します。
+- 場所中に定期実行を有効にした場合は、11月22日の最終結果と翌日の確認後に、別 PR で両方の cron を削除します。ワークフローのサマリーに加え、公開コミットと本番反映を確認します。
 - `preflight:current-data` は workflow 停止中に行う場所切替専用の安全 gate で、場所中の readiness check ではありません。`不戦` は validator の限定的例外で、取得の部分失敗時は旧データを保持します。
 - ニュース更新だけは JST 09:05・19:05 の1日2回に継続します。
 - CLI では `gh workflow run daily-data-update.yml -R dai/o-sumo --ref main` / `gh workflow run realtime-torikumi-direct-update.yml -R dai/o-sumo --ref main` / `gh workflow run news-feed-update.yml -R dai/o-sumo --ref main` を使えます。
@@ -450,9 +445,13 @@ GitHub Actions では PR と `main` / `codex/**` / `automation/data-updates` へ
 - `app/lib/webmcp.ts`: WebMCP ツール定義（4 ツール）
 - `app/lib/july2026-data.ts`: 七月場所（名古屋）不変スナップショット
 - `app/lib/july2026-banzuke-data.ts`: 七月場所番付不変スナップショット
+- `app/lib/september2026-data.ts`: 九月場所（秋）不変スナップショット
+- `app/lib/september2026-banzuke-data.ts`: 九月場所番付不変スナップショット
 - `app/lib/archive-basho-data.ts`: 過去場所・現行場所の集約データ
 - `app/lib/blog-build.ts`: 読みものの静的HTML・RSS・sitemap生成
 - `app/lib/agent-skills.ts`: Agent Skills Index メタデータ
+- `functions/mcp/[[path]].ts`: Streamable HTTP MCP サーバーエンドポイント
+- `mcp/`: 各種 AI エージェント・クライアント向け MCP 連携キット
 - `scripts/update_sumo_data.py`: 番付・取組・力士プロファイル生成スクリプト
 - `scripts/update_news_feed.py`: ニュースフィード生成スクリプト
 - `scripts/update_official_profiles.py`: 行司・呼出データ生成スクリプト

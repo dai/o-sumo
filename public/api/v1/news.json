@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T10:14:11.087449+00:00",
+  "updatedAt": "2026-11-06T10:14:19.008481+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
   ],
   "items": [
     {
+      "id": "sumo-association-766",
+      "title": "大相撲十一月場所「土俵祭」のご案内",
+      "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=766",
+      "publishedAt": "2026-11-06",
+      "publishedAtRaw": "令和8年11月6日",
+      "sourceId": "sumo-association",
+      "sourceLabel": "日本相撲協会"
+    },
+    {
       "id": "sumo-association-765",
       "title": "年寄名跡襲名のお知らせ",
       "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=765",
@@ -29,15 +38,6 @@
       "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=764",
       "publishedAt": "2026-10-01",
       "publishedAtRaw": "令和8年10月1日",
-      "sourceId": "sumo-association",
-      "sourceLabel": "日本相撲協会"
-    },
-    {
-      "id": "sumo-association-763",
-      "title": "引退のお知らせ",
-      "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=763",
-      "publishedAt": "2026-09-25",
-      "publishedAtRaw": "令和8年9月25日",
       "sourceId": "sumo-association",
       "sourceLabel": "日本相撲協会"
     }

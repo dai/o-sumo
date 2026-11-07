@@ -4,7 +4,7 @@
 
 ## 2026-11-07
 
-- Resumed cron for `daily-data-update.yml` (JST 13/15/17/19) and `realtime-torikumi-direct-update.yml` (every 10 minutes, JST 13:00-18:50) for the November basho (no API schema changes)
+- Resumed cron for `daily-data-update.yml` (JST 13/15/17/19) and `realtime-torikumi-direct-update.yml` (every 3 minutes, JST 15:00-18:59) for the November basho (no API schema changes)
 
 ## 2026-10-21
 

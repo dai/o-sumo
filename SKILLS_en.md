@@ -23,7 +23,7 @@ The two SKILL.md files currently published under `public/.well-known/agent-skill
 - Purpose: resolve basho/day/rikishi page URLs from API pathDate values and the sitemap, with JST dates and publication status
 - Main use cases:
   - `public/.well-known/api-catalog` (RFC 9727 linkset)
-  - `public/.well-known/mcp/server-card.json` (SEP-1649)
+  - `public/.well-known/mcp/server-card.json` (SEP-2127)
   - `public/.well-known/agent-skills/index.json` (RFC v0.2.0)
   - `public/.well-known/http-message-signatures-directory` (Web Bot Auth)
   - `auth.md` (anonymous, credential-free public access)

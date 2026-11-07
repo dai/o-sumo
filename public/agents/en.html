@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Agent access | o-sumo</title>
+  <title>Look up grand sumo data with AI | o-sumo</title>
   <meta name="description" content="A human-readable guide to o-sumo APIs, MCP, WebMCP, and Agent Skills">
   <style>
     :root { color-scheme: light dark; font-family: system-ui, sans-serif; line-height: 1.7; }
@@ -18,30 +18,36 @@
 <body>
   <p><a href="/">o-sumo home</a> · <a href="/agents/" lang="ja">日本語</a></p>
   <main>
-    <h1>Agent access</h1>
-    <p>Public banzuke, torikumi, and rikishi data are available through read-only JSON APIs and MCP. The public APIs, sumo data MCP, and Agent Skills require no account or API key.</p>
-    <section id="api">
-      <h2>Public JSON APIs</h2>
-      <p>Retrieve <a href="/api/v1/torikumi.json">torikumi data</a> directly, or see the <a href="https://github.com/dai/o-sumo/blob/main/docs/api/v1.en.md">API reference</a> for all endpoints.</p>
-      <p>Machine-readable catalog: <code>https://osada.us/.well-known/api-catalog</code></p>
-    </section>
+    <h1>Look up grand sumo data with AI</h1>
+    <p>Use the <a href="#mcp">sumo data MCP</a> for banzuke, bouts, and rikishi. Use <a href="#search">AI Search MCP</a> to find articles and profiles, or the <a href="#api">public JSON API</a> to fetch data in code.</p>
     <section id="mcp">
-      <h2>Sumo data MCP</h2>
-      <p>Five tools cover rankings, bouts, rikishi search, profiles, and basho listings. Configure <code>https://osada.us/mcp</code> in an MCP client. This is a Streamable HTTP endpoint, not a browser page.</p>
-      <p><a href="/mcp/server-card">View the Server Card</a></p>
+      <h2>Connect to the sumo data MCP</h2>
+      <p>Add <code>https://osada.us/mcp</code> to a client that supports remote MCP. The transport is Streamable HTTP. The server is read-only and requires no o-sumo sign-in or API key.</p>
+      <p><a href="https://github.com/dai/o-sumo/tree/main/mcp#english">Setup by client</a> · <a href="/agents/o-sumo-plugin.zip">Antigravity ZIP</a> · <a href="/mcp/server-card">Server Card</a></p>
+      <h3>Try these requests in chat</h3>
+      <ul>
+        <li><code>Use o-sumo to look up Onosato (大の里) and his career record.</code></li>
+        <li><code>Use o-sumo to look up the makuuchi banzuke for September 2026.</code></li>
+        <li><code>Use o-sumo to look up the makuuchi bout results for September 27, 2026.</code></li>
+      </ul>
+      <p>For bouts, give a date and ask for the schedule or the results. Unpublished bouts can appear as pending. Dates outside the available data return no data.</p>
     </section>
     <section id="search">
-      <h2>AI Search MCP</h2>
-      <p>The <code>search</code> tool supports natural-language searches of articles and profiles. Configure <code>https://ask.osada.us/mcp</code> in an MCP client. Browser GET requests are not supported.</p>
+      <h2>Find articles with AI Search MCP</h2>
+      <p>Add <code>https://ask.osada.us/mcp</code> to find candidate articles and profiles with the <code>search</code> tool. Open the sources it returns and verify rankings and results with the sumo data MCP.</p>
+    </section>
+    <section id="api">
+      <h2>Public JSON API</h2>
+      <p><a href="/api/v1/torikumi.json">Torikumi JSON</a> · <a href="https://github.com/dai/o-sumo/blob/main/docs/api/v1.en.md">API reference</a> · <a href="/.well-known/api-catalog">Machine-readable API catalog</a></p>
     </section>
     <section id="skills">
       <h2>Agent Skills and WebMCP</h2>
-      <p>See the <a href="https://github.com/dai/o-sumo/tree/main/public/.well-known/agent-skills">published skill descriptions</a> for data and URL guidance. Supported browsers separately register four WebMCP tools when the site opens.</p>
-      <p>Machine-readable index: <code>https://osada.us/.well-known/agent-skills/index.json</code></p>
+      <p>The <a href="/.well-known/agent-skills/index.json">published Agent Skills</a> explain how to fetch data and find page URLs. Opening o-sumo in a supported browser makes four in-page WebMCP tools available.</p>
     </section>
     <section id="policy">
-      <h2>Usage and documentation</h2>
-      <p>Search and query-time answers are permitted; model training is not. See the <a href="https://github.com/dai/o-sumo/blob/main/docs/agent-ready.md">agent guide</a> and <a href="/auth.md">authentication policy</a>. The A2A card is for discovery only; task operations are not implemented.</p>
+      <h2>Usage and privacy</h2>
+      <p>Search and use as a source when answering questions are allowed. Model training and fine-tuning are prohibited. The A2A card is for discovery.</p>
+      <p><a href="/privacy/">Privacy policy</a> · <a href="/auth.md">Authentication policy</a> · <a href="https://github.com/dai/o-sumo/blob/main/docs/agent-ready.md">Technical and operations reference</a></p>
     </section>
   </main>
 </body>

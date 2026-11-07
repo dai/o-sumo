@@ -38,7 +38,7 @@ bash scripts/ci/notify_discord.sh failure "Workflow failed" "Run URL: ..."
 
 - 2026年9月場所（秋場所）千秋楽（9月27日）終了および翌日確認に伴い、`daily-data-update.yml` と `realtime-torikumi-direct-update.yml` の `schedule` は削除され、オフシーズン中は `workflow_dispatch`（手動実行）のみの運用となります。
 - これによりオフシーズン中の無駄な定期自動実行を抑止し、GitHub Actions の実行リソースを節約します。
-- `news-feed-update.yml` はオフシーズン中も引き続き定期実行（2時間おき）を継続します。
+- `news-feed-update.yml` はオフシーズン中もJST 09:05と19:05に実行します。ニュースの公開は19:05の実行時です。
 
 ### 十一月場所（2026年11月場所）での再開手順
 

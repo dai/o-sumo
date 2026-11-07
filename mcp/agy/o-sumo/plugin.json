@@ -1,0 +1,17 @@
+{
+  "name": "o-sumo",
+  "displayName": "大相撲アーカイブ (o-sumo)",
+  "description": "Grand Sumo data integration via osada.us MCP server. Search rikishi, look up profiles and career records, view banzuke rankings, torikumi match results, and basho archives.",
+  "logo": "assets/logo.svg",
+  "version": "1.0.0",
+  "author": {
+    "name": "osada.us",
+    "url": "https://osada.us"
+  },
+  "homepage": "https://osada.us",
+  "suggestedPrompts": [
+    "大の里のプロフィールや戦績を教えて",
+    "最新の幕内・十両の番付（ばんづけ）を確認したい",
+    "直近の場所の取組結果や日程を教えて"
+  ]
+}

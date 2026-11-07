@@ -402,12 +402,6 @@ export default function Home() {
                   : t('home.heroLiveDescription')}
             </p>
 
-            <section className="hero-agent-guide" aria-label={t('home.agentGuideLabel')}>
-              <a href={i18n.resolvedLanguage === 'en' ? '/agents/en' : '/agents/'} className="hero-agent-guide-link">
-                {t('home.agentGuideLink')} <span aria-hidden="true">→</span>
-              </a>
-            </section>
-
             {/* Smart Hub 4 Quick Navs */}
             <nav className="home-quick-nav hero-actions" aria-label={t('home.heroActionsLabel')}>
               {quickNavItems.map((item) => {
@@ -446,6 +440,12 @@ export default function Home() {
                 );
               })}
             </nav>
+
+            <section className="hero-agent-guide" aria-label={t('home.agentGuideLabel')}>
+              <a href={i18n.resolvedLanguage === 'en' ? '/agents/en' : '/agents/'} className="hero-agent-guide-link">
+                {t('home.agentGuideLink')} <span aria-hidden="true">→</span>
+              </a>
+            </section>
           </div>
 
           {/* Daily Highlights Section (今日のみどころ・注目取組) */}
@@ -527,6 +527,8 @@ export default function Home() {
           <HomeLink placement="footer" />
           {' | '}
           <Link to="/about/">{t('home.footerAbout')}</Link>
+          {' | '}
+          <Link to="/privacy/">{t('home.footerPrivacy')}</Link>
           {' | '}
           <a href="https://x.com/daisuke" target="_blank" rel="noopener noreferrer">{t('home.footerDaisuke')}</a>
           {' | '}

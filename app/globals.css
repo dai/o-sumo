@@ -352,6 +352,19 @@ body {
   background: linear-gradient(90deg, rgba(115, 92, 0, 0.95) 0%, rgba(31, 51, 72, 0.92) 100%);
 }
 
+.global-notice-banner a,
+.global-notice-banner__link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  display: inline-block;
+}
+
+.global-notice-banner a:hover,
+.global-notice-banner__link:hover {
+  text-decoration-thickness: 2px;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
   font-weight: 700;
@@ -410,6 +423,7 @@ p {
 .officials-header,
 .archives-header,
 .about-header,
+.privacy-header,
 .analytics-dashboard-header {
   background-image: var(--site-header-overlay), var(--site-header-bg-image);
   background-size: cover;
@@ -647,6 +661,7 @@ p {
   .officials-header,
   .archives-header,
   .about-header,
+  .privacy-header,
   .analytics-dashboard-header {
     padding-top: 2.8rem;
   }

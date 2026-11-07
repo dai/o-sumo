@@ -133,6 +133,10 @@ export function resolvePageMeta(pathname: string): PageMeta {
       title: '当サイトについて・プライバシーポリシー | o-sumo',
       description: 'o-sumoのサイト概要、データ出典、免責事項、プライバシーポリシー、広告配信、運営者情報について。',
     },
+    '/privacy/': {
+      title: 'プライバシーポリシー | o-sumo',
+      description: '縦綱 / o-sumo の MCP サーバーと本サイトは読み取り専用で、ログインは不要です。個人情報は収集しません。',
+    },
   };
   const fixedPage = fixedPages[canonicalPath];
   if (fixedPage) return pageMeta(canonicalPath, fixedPage.title, fixedPage.description);

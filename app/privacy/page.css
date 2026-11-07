@@ -1,0 +1,112 @@
+.privacy-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+}
+
+.privacy-header {
+  padding: 0.75rem 1rem;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+.privacy-header-title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--site-header-text);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.privacy-header-description {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--site-header-text);
+  opacity: 0.9;
+}
+
+.privacy-main {
+  flex: 1;
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: clamp(2rem, 4vw, 3.5rem) clamp(1rem, 3vw, 1.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vw, 3rem);
+}
+
+.privacy-section {
+  background: var(--surface-container-lowest);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border: 1px solid var(--color-secondary-light);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.privacy-section-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 2.5vw, 1.65rem);
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: -0.01em;
+  margin: 0 0 0.25rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid var(--color-secondary-light);
+}
+
+.privacy-text {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--color-dark-text);
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.privacy-text a {
+  color: var(--color-secondary);
+  font-weight: 600;
+}
+
+.privacy-text a:hover,
+.privacy-text a:focus-visible {
+  color: var(--color-primary);
+}
+
+.privacy-footer {
+  padding: 2rem;
+  text-align: center;
+  background: var(--surface-container-lowest);
+  border-top: 1px solid var(--color-secondary-light);
+}
+
+.privacy-footer nav {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  color: var(--color-dark-text);
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  justify-content: center;
+}
+
+.privacy-footer a {
+  color: var(--color-secondary);
+  text-decoration: none;
+}
+
+.privacy-footer a:hover,
+.privacy-footer a:focus-visible {
+  color: var(--color-primary);
+  text-decoration: underline;
+  outline: none;
+}

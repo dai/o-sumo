@@ -300,6 +300,7 @@ describe('Home page', () => {
     expect(screen.queryByText('連絡先:')).not.toBeInTheDocument();
     expect(within(screen.getByRole('banner')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
     expect(within(screen.getByRole('contentinfo')).getByRole('link', { name: 'ホーム' })).toHaveAttribute('href', '/');
+    expect(within(screen.getByRole('contentinfo')).getByRole('link', { name: 'プライバシーポリシー' })).toHaveAttribute('href', '/privacy/');
     expect(screen.getAllByRole('link', { name: 'GitHub' })[0]).toHaveAttribute('href', 'https://github.com/dai/o-sumo');
   });
 
@@ -466,7 +467,7 @@ describe('Home page', () => {
     await act(() => i18n.changeLanguage('ja'));
   });
 
-  it('renders the upcoming highlights section awaiting official bouts and monomosu', () => {
+  it('renders the upcoming highlights section with published official bout links and monomosu', () => {
     render(
       <MemoryRouter>
         <Home />
@@ -477,12 +478,15 @@ describe('Home page', () => {
     expect(highlightsSection).not.toBeNull();
     expect(within(highlightsSection!).getByRole('heading', { level: 2, name: '明後日のみどころ' })).toBeInTheDocument();
     expect(within(highlightsSection!).getByText('初日')).toBeInTheDocument();
-    expect(within(highlightsSection!).getByText('公式取組発表待ち')).toBeInTheDocument();
 
     // Monomosu Box (now a sibling section, not inside DailyHighlightsSection)
     const monomosuBox = document.querySelector<HTMLElement>('.monomosu-box');
     expect(monomosuBox).not.toBeNull();
     expect(within(monomosuBox!).getByRole('button', { name: /座布団を投げる/ })).toBeInTheDocument();
+
+    const compareLinks = within(highlightsSection!).getAllByRole('link', { name: /詳しく比較する/ });
+    expect(compareLinks.length).toBeGreaterThanOrEqual(1);
+    expect(within(highlightsSection!).getAllByRole('link', { name: /取組を見る/ }).length).toBeGreaterThanOrEqual(1);
   });
 
   it('translates the daily highlights section when English is selected in upcoming mode', async () => {
@@ -498,8 +502,8 @@ describe('Home page', () => {
     expect(highlightsSection).not.toBeNull();
     expect(within(highlightsSection!).getByRole('heading', { level: 2, name: "Day After Tomorrow's Highlights" })).toBeInTheDocument();
     expect(within(highlightsSection!).getByText('Day 1')).toBeInTheDocument();
-    expect(within(highlightsSection!).getByText('Awaiting Official Bouts')).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: 'VOICE' })).toBeInTheDocument();
+    expect(within(highlightsSection!).getAllByRole('link', { name: /Compare Rikishi/ }).length).toBeGreaterThanOrEqual(1);
 
     await act(() => i18n.changeLanguage('ja'));
   });

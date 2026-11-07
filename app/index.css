@@ -1974,9 +1974,10 @@
 }
 
 .home-editorial .hero-agent-guide {
-  margin: 0 0 2.25rem;
-  padding: 1.15rem 1.4rem;
-  background: var(--home-paper-deep);
+  margin: 1.25rem 0 2.25rem;
+  padding: 1rem 0;
+  background: transparent;
+  border-top: 1px solid var(--home-rule);
 }
 
 .home-editorial .hero-agent-guide-link {
@@ -2147,6 +2148,334 @@
 
 [data-theme='dark'] .quick-nav-card.primary .quick-nav-card__sub {
   color: var(--on-surface-variant, #c4c3be);
+}
+
+/* =========================================================================
+   Live Torikumi Board & Imakoko Meter (Design A: "Golden Gunbai", Ink & Gold)
+   ========================================================================= */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.quick-nav-card.live-torikumi-board {
+  grid-column: 1 / -1;
+  background: var(--home-ink, #1a1c1a);
+  color: var(--home-paper, #faf9f6);
+  padding: clamp(0.85rem, 2vw, 1.35rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-radius: 0;
+}
+
+.quick-nav-card.live-torikumi-board:hover,
+.quick-nav-card.live-torikumi-board:focus-visible {
+  background: #0f1010;
+  color: #ffffff;
+}
+
+[data-theme='dark'] .quick-nav-card.live-torikumi-board {
+  background: var(--surface-container-highest, #282a27);
+}
+
+[data-theme='dark'] .quick-nav-card.live-torikumi-board:hover,
+[data-theme='dark'] .quick-nav-card.live-torikumi-board:focus-visible {
+  background: var(--color-primary, #383a37);
+}
+
+.live-torikumi-board__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.live-torikumi-board__title {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.live-torikumi-board__time {
+  font-size: clamp(0.72rem, 1.4vw, 0.82rem);
+  color: #fed65b;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.live-torikumi-board__current-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.live-torikumi-board__matchup {
+  font-family: var(--font-serif);
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  line-height: 1.3;
+}
+
+.live-torikumi-board__state-label {
+  font-family: var(--font-serif);
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  font-weight: 600;
+  color: var(--home-paper, #faf9f6);
+}
+
+.live-torikumi-board__sub {
+  font-size: 0.72rem;
+  color: var(--home-paper-deep, #eae8e1);
+  opacity: 0.8;
+}
+
+/* 東西表記ルール (D-10) */
+.bout-side {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.bout-emoji {
+  font-size: 0.95em;
+  line-height: 1;
+}
+
+.bout-side-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.1rem 0.25rem;
+  border-radius: 0;
+  letter-spacing: 0.02em;
+}
+
+.bout-side.is-east .bout-side-tag {
+  color: #fca597;
+  background: rgba(186, 58, 42, 0.35);
+  border: 1px solid rgba(186, 58, 42, 0.5);
+}
+
+.bout-side.is-west .bout-side-tag {
+  color: #a8cdfc;
+  background: rgba(43, 83, 125, 0.35);
+  border: 1px solid rgba(43, 83, 125, 0.5);
+}
+
+.bout-vs {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+  margin: 0 0.15rem;
+}
+
+/* =========================================================================
+   Imakoko Meter Timeline
+   ========================================================================= */
+.imakoko-meter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  user-select: none;
+}
+
+/* 1. 時刻列（イベント名付き） */
+.imakoko-meter__times {
+  position: relative;
+  height: 1.1rem;
+  width: 100%;
+  font-size: clamp(0.6rem, 1.2vw, 0.68rem);
+  color: rgba(255, 255, 255, 0.5);
+  font-family: var(--font-sans);
+  line-height: 1;
+}
+
+.imakoko-meter__time-marker {
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+}
+
+.imakoko-meter__time-marker.is-start {
+  left: 0;
+}
+
+.imakoko-meter__time-marker.is-juryo {
+  left: 20%;
+  transform: translateX(-50%);
+}
+
+.imakoko-meter__time-marker.is-makuuchi {
+  left: 52%;
+  transform: translateX(-50%);
+}
+
+.imakoko-meter__time-marker.is-end {
+  right: 0;
+}
+
+/* 2. 部ラベル列 */
+.imakoko-meter__labels {
+  display: flex;
+  width: 100%;
+  font-size: clamp(0.72rem, 1.4vw, 0.82rem);
+  line-height: 1.3;
+  align-items: center;
+}
+
+.imakoko-meter__label {
+  box-sizing: border-box;
+  transition: color 150ms ease, font-weight 150ms ease;
+}
+
+.imakoko-meter__label.is-makushita {
+  flex: 0 0 20%;
+  color: rgba(255, 255, 255, 0.42);
+  font-size: clamp(0.6rem, 1.2vw, 0.68rem);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  border-right: 1px solid rgba(254, 214, 91, 0.35);
+}
+
+.imakoko-meter__label.is-juryo {
+  flex: 0 0 32%;
+  color: rgba(255, 255, 255, 0.72);
+  text-align: center;
+  border-right: 1px solid rgba(254, 214, 91, 0.35);
+}
+
+.imakoko-meter__label.is-makuuchi {
+  flex: 0 0 48%;
+  color: rgba(255, 255, 255, 0.72);
+  text-align: center;
+}
+
+.imakoko-meter__label.is-active {
+  color: #fed65b;
+  font-weight: 700;
+}
+
+/* 3. プログレスバー（トラック、セグメントボーダー、金箔フィル） */
+.imakoko-meter__track {
+  display: flex;
+  width: 100%;
+  height: 8px;
+  background: #090a09;
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.imakoko-meter__segment {
+  height: 100%;
+  position: relative;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.imakoko-meter__segment.is-makushita {
+  flex: 0 0 20%;
+  border-right: 1px solid rgba(254, 214, 91, 0.65);
+}
+
+.imakoko-meter__segment.is-juryo {
+  flex: 0 0 32%;
+  border-right: 1px solid rgba(254, 214, 91, 0.65);
+}
+
+.imakoko-meter__segment.is-makuuchi {
+  flex: 0 0 48%;
+}
+
+.imakoko-meter__fill {
+  height: 100%;
+  background: linear-gradient(90deg, #735c00 0%, #fed65b 100%);
+  border-radius: 0;
+  transition: width 200ms ease-out;
+}
+
+/* 4. ピン＆ラベル列 */
+.imakoko-meter__pin-row {
+  position: relative;
+  height: 1.45rem;
+  width: 100%;
+  margin-top: 0.15rem;
+}
+
+.imakoko-meter__pin-anchor {
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.imakoko-meter__pin-label-wrapper {
+  display: block;
+}
+
+.imakoko-meter__pin-icon {
+  display: block;
+  font-size: 0.52rem;
+  color: #fed65b;
+  line-height: 1;
+  transform: translateX(-50%);
+}
+
+.imakoko-meter__pin-label {
+  font-size: clamp(0.68rem, 1.3vw, 0.76rem);
+  font-weight: 700;
+  color: #fed65b;
+  line-height: 1.2;
+}
+
+.imakoko-meter__pin-label.is-desktop {
+  display: inline;
+}
+
+.imakoko-meter__pin-label.is-mobile {
+  display: none;
+}
+
+@media (max-width: 639px) {
+  .imakoko-meter__pin-label.is-desktop {
+    display: none;
+  }
+  .imakoko-meter__pin-label.is-mobile {
+    display: inline;
+  }
+  .imakoko-meter__time-marker.is-juryo {
+    left: 20%;
+  }
+  .imakoko-meter__time-marker.is-makuuchi {
+    left: 52%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .imakoko-meter__fill,
+  .quick-nav-card.live-torikumi-board {
+    transition: none;
+  }
 }
 
 /* Daily Highlights: Digital Washi, using the same paper and ink vocabulary. */
