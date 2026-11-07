@@ -1,0 +1,334 @@
+import type { TorikumiDailyData, TorikumiDataSet, TorikumiMatch } from './torikumi-data';
+import { canonicalShikona } from './rikishi-display';
+
+export const METER_JURYO_START_MINUTES = 14 * 60 + 15; // 14:15 = 855
+export const METER_MAKUUCHI_START_MINUTES = 15 * 60 + 40; // 15:40 = 940 (v6: 協会公式スケジュール十一月場所に統一)
+export const METER_END_MINUTES = 18 * 60; // 18:00 = 1080
+
+// 初日（Day 1）例外定数（v6: 初日のみ協会公式も早い）
+export const METER_DAY1_JURYO_START_MINUTES = 14 * 60 + 5; // 14:05 = 845
+export const METER_DAY1_MAKUUCHI_START_MINUTES = 15 * 60 + 30; // 15:30 = 930
+
+export const MAKUSHITA_RATIO_PERCENT = 20;
+export const JURYO_RATIO_PERCENT = 32;
+export const MAKUUCHI_RATIO_PERCENT = 48;
+
+export function getMeterSchedule(isOpeningDay = false): {
+  juryoStartMinutes: number;
+  makuuchiStartMinutes: number;
+  endMinutes: number;
+} {
+  return {
+    juryoStartMinutes: isOpeningDay ? METER_DAY1_JURYO_START_MINUTES : METER_JURYO_START_MINUTES,
+    makuuchiStartMinutes: isOpeningDay ? METER_DAY1_MAKUUCHI_START_MINUTES : METER_MAKUUCHI_START_MINUTES,
+    endMinutes: METER_END_MINUTES,
+  };
+}
+
+export function jstMinutesOfDay(now: Date = new Date()): number {
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+    timeZone: 'Asia/Tokyo',
+  }).formatToParts(now);
+  const hour = Number(parts.find((part) => part.type === 'hour')?.value ?? '0');
+  const minute = Number(parts.find((part) => part.type === 'minute')?.value ?? '0');
+  return hour * 60 + minute;
+}
+
+export function jstIsoDateOfDay(now: Date = new Date()): string {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    timeZone: 'Asia/Tokyo',
+  }).formatToParts(now);
+  const year = parts.find((part) => part.type === 'year')?.value ?? '';
+  const month = parts.find((part) => part.type === 'month')?.value ?? '';
+  const day = parts.find((part) => part.type === 'day')?.value ?? '';
+  return `${year}-${month}-${day}`;
+}
+
+export function dayOfDailyData(d: TorikumiDailyData | null | undefined): number | null {
+  if (!d) return null;
+  const makuuchiDay = d.makuuchi?.day;
+  return typeof makuuchiDay === 'number' ? makuuchiDay : null;
+}
+
+export function hasAnyMatches(d: TorikumiDailyData | null | undefined): boolean {
+  return Boolean(d && ((d.makuuchi?.matches?.length ?? 0) > 0 || (d.juryo?.matches?.length ?? 0) > 0));
+}
+
+export function resolveLiveDailyData(
+  archive: TorikumiDataSet,
+  data: TorikumiDataSet,
+  currentIsoDate?: string,
+): TorikumiDailyData | null {
+  const isoDate = currentIsoDate ?? jstIsoDateOfDay();
+  const upcomingScheduleDay = [...(archive.scheduleDays ?? [])]
+    .sort((left, right) => left.isoDate.localeCompare(right.isoDate))
+    .find((day) => day.isoDate >= isoDate);
+
+  if (!upcomingScheduleDay) {
+    return null;
+  }
+
+  const resultDay = archive.resultDays?.find((day) => day.pathDate === upcomingScheduleDay.pathDate);
+  const candidates = [
+    resultDay?.data,
+    upcomingScheduleDay.data,
+    data.today,
+    data.tomorrow,
+  ];
+
+  return (
+    candidates.find((candidate) => (
+      dayOfDailyData(candidate) === upcomingScheduleDay.day && hasAnyMatches(candidate)
+    )) ?? null
+  );
+}
+
+export type LiveProgressState =
+  | 'before_juryo'
+  | 'juryo'
+  | 'makuuchi'
+  | 'finished';
+
+export interface MeterSegmentProgress {
+  key: 'makushita' | 'juryo' | 'makuuchi';
+  progress: number; // 0.0 ~ 1.0
+  ratioPercent: number;
+}
+
+export interface CurrentBoutInfo {
+  division: '幕内' | '十両';
+  boutNo: number;
+  eastName: string;
+  westName: string;
+}
+
+export interface LiveProgressResult {
+  state: LiveProgressState;
+  segments: MeterSegmentProgress[];
+  currentBout: CurrentBoutInfo | null;
+  nowMinutes: number;
+  formattedTime: string;
+  pinPositionPercent: number; // 0 ~ 100
+  pinLabelDesktop: string;
+  pinLabelMobile: string;
+  activeDivision: 'makushita' | 'juryo' | 'makuuchi' | null;
+  isOpeningDay: boolean;
+  schedule: {
+    juryoStartMinutes: number;
+    makuuchiStartMinutes: number;
+    endMinutes: number;
+  };
+}
+
+function clamp(value: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, value));
+}
+
+export function formatTimeJst(minutesOfDay: number): string {
+  const normalized = ((minutesOfDay % 1440) + 1440) % 1440;
+  const hours = Math.floor(normalized / 60);
+  const minutes = normalized % 60;
+  return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+}
+
+export function isMatchCompleted(match: TorikumiMatch): boolean {
+  return Boolean(match.winner || match.kimarite);
+}
+
+function estimateBoutIndex(matchCount: number, elapsedMinutes: number, windowMinutes: number): number {
+  if (matchCount <= 0) return 0;
+  const ratio = clamp(elapsedMinutes / windowMinutes, 0, 0.999);
+  return Math.floor(ratio * matchCount);
+}
+
+export function deriveLiveProgress(
+  dailyData: TorikumiDailyData | null | undefined,
+  nowMinutes: number,
+  options?: { isOpeningDay?: boolean },
+): LiveProgressResult {
+  const formattedTime = formatTimeJst(nowMinutes);
+
+  const dayNumber = dailyData?.makuuchi?.day ?? dailyData?.juryo?.day;
+  const isOpeningDay = options?.isOpeningDay ?? (dayNumber === 1);
+  const schedule = getMeterSchedule(isOpeningDay);
+  const { juryoStartMinutes, makuuchiStartMinutes, endMinutes } = schedule;
+
+  const juryoMatches = dailyData?.juryo?.matches ?? [];
+  const makuuchiMatches = dailyData?.makuuchi?.matches ?? [];
+
+  const completedJuryo = juryoMatches.filter(isMatchCompleted).length;
+  const totalJuryo = juryoMatches.length;
+
+  const completedMakuuchi = makuuchiMatches.filter(isMatchCompleted).length;
+  const totalMakuuchi = makuuchiMatches.length;
+
+  const allMakuuchiFinished = totalMakuuchi > 0 && completedMakuuchi >= totalMakuuchi;
+  const isPastClosingTime = nowMinutes >= endMinutes;
+
+  // 1. 状態判定
+  let state: LiveProgressState = 'before_juryo';
+
+  if (allMakuuchiFinished || isPastClosingTime) {
+    state = 'finished';
+  } else if (
+    nowMinutes >= makuuchiStartMinutes ||
+    (totalJuryo > 0 && completedJuryo >= totalJuryo && completedMakuuchi > 0)
+  ) {
+    state = 'makuuchi';
+  } else if (nowMinutes >= juryoStartMinutes || completedJuryo > 0) {
+    state = 'juryo';
+  } else {
+    state = 'before_juryo';
+  }
+
+  // 2. セグメント進捗とピン位置の計算
+  let makushitaProgress = 0;
+  let juryoProgress = 0;
+  let makuuchiProgress = 0;
+  let pinPercent = 0;
+  let currentBout: CurrentBoutInfo | null = null;
+  let activeDivision: 'makushita' | 'juryo' | 'makuuchi' | null = null;
+
+  if (state === 'finished') {
+    makushitaProgress = 1;
+    juryoProgress = 1;
+    makuuchiProgress = 1;
+    pinPercent = 100;
+    activeDivision = null;
+    currentBout = null;
+  } else if (state === 'makuuchi') {
+    makushitaProgress = 1;
+    juryoProgress = 1;
+    activeDivision = 'makuuchi';
+
+    const timeRatio = clamp(
+      (nowMinutes - makuuchiStartMinutes) / (endMinutes - makuuchiStartMinutes),
+      0,
+      1,
+    );
+    const resultRatio = totalMakuuchi > 0 ? completedMakuuchi / totalMakuuchi : 0;
+    makuuchiProgress = clamp(Math.max(resultRatio, timeRatio), 0, 0.99);
+
+    pinPercent = MAKUSHITA_RATIO_PERCENT + JURYO_RATIO_PERCENT + makuuchiProgress * MAKUUCHI_RATIO_PERCENT;
+
+    // 現在の一番の選定: 未完了の最初の試合、なければ推定
+    const pendingMatch = makuuchiMatches.find((m) => !isMatchCompleted(m));
+    if (pendingMatch) {
+      currentBout = {
+        division: '幕内',
+        boutNo: pendingMatch.boutNo,
+        eastName: canonicalShikona(pendingMatch.eastProfileUrl, pendingMatch.eastName),
+        westName: canonicalShikona(pendingMatch.westProfileUrl, pendingMatch.westName),
+      };
+    } else if (totalMakuuchi > 0) {
+      const idx = estimateBoutIndex(
+        totalMakuuchi,
+        nowMinutes - makuuchiStartMinutes,
+        endMinutes - makuuchiStartMinutes,
+      );
+      const match = makuuchiMatches[idx] ?? makuuchiMatches[totalMakuuchi - 1];
+      currentBout = {
+        division: '幕内',
+        boutNo: match.boutNo,
+        eastName: canonicalShikona(match.eastProfileUrl, match.eastName),
+        westName: canonicalShikona(match.westProfileUrl, match.westName),
+      };
+    }
+  } else if (state === 'juryo') {
+    makushitaProgress = 1;
+    makuuchiProgress = 0;
+    activeDivision = 'juryo';
+
+    const timeRatio = clamp(
+      (nowMinutes - juryoStartMinutes) / (makuuchiStartMinutes - juryoStartMinutes),
+      0,
+      1,
+    );
+    const resultRatio = totalJuryo > 0 ? completedJuryo / totalJuryo : 0;
+    juryoProgress = clamp(Math.max(resultRatio, timeRatio), 0, 0.99);
+
+    pinPercent = MAKUSHITA_RATIO_PERCENT + juryoProgress * JURYO_RATIO_PERCENT;
+
+    const pendingMatch = juryoMatches.find((m) => !isMatchCompleted(m));
+    if (pendingMatch) {
+      currentBout = {
+        division: '十両',
+        boutNo: pendingMatch.boutNo,
+        eastName: canonicalShikona(pendingMatch.eastProfileUrl, pendingMatch.eastName),
+        westName: canonicalShikona(pendingMatch.westProfileUrl, pendingMatch.westName),
+      };
+    } else if (totalJuryo > 0) {
+      const idx = estimateBoutIndex(
+        totalJuryo,
+        nowMinutes - juryoStartMinutes,
+        makuuchiStartMinutes - juryoStartMinutes,
+      );
+      const match = juryoMatches[idx] ?? juryoMatches[totalJuryo - 1];
+      currentBout = {
+        division: '十両',
+        boutNo: match.boutNo,
+        eastName: canonicalShikona(match.eastProfileUrl, match.eastName),
+        westName: canonicalShikona(match.westProfileUrl, match.westName),
+      };
+    }
+  } else {
+    // before_juryo
+    activeDivision = 'makushita';
+    juryoProgress = 0;
+    makuuchiProgress = 0;
+
+    // 幕下帯スロープ: 十両開始の15分前から開始
+    const makushitaRampStart = juryoStartMinutes - 15;
+    if (nowMinutes >= makushitaRampStart) {
+      makushitaProgress = clamp(
+        (nowMinutes - makushitaRampStart) / (juryoStartMinutes - makushitaRampStart),
+        0,
+        0.99,
+      );
+    } else {
+      makushitaProgress = 0;
+    }
+
+    pinPercent = makushitaProgress * MAKUSHITA_RATIO_PERCENT;
+    currentBout = null;
+  }
+
+  // 3. ピンラベル生成
+  let pinLabelDesktop: string;
+  let pinLabelMobile: string;
+
+  if (state === 'finished') {
+    pinLabelDesktop = '本日の取組は終了しました';
+    pinLabelMobile = '本日の取組は終了しました';
+  } else if (state === 'before_juryo' || !currentBout) {
+    pinLabelDesktop = 'イマココ（幕下取組中）';
+    pinLabelMobile = 'イマココ（幕下取組中）';
+  } else {
+    pinLabelDesktop = `イマココ（${currentBout.eastName} 対 ${currentBout.westName}）`;
+    pinLabelMobile = 'イマココ';
+  }
+
+  return {
+    state,
+    segments: [
+      { key: 'makushita', progress: makushitaProgress, ratioPercent: MAKUSHITA_RATIO_PERCENT },
+      { key: 'juryo', progress: juryoProgress, ratioPercent: JURYO_RATIO_PERCENT },
+      { key: 'makuuchi', progress: makuuchiProgress, ratioPercent: MAKUUCHI_RATIO_PERCENT },
+    ],
+    currentBout,
+    nowMinutes,
+    formattedTime,
+    pinPositionPercent: clamp(pinPercent, 0, 100),
+    pinLabelDesktop,
+    pinLabelMobile,
+    activeDivision,
+    isOpeningDay,
+    schedule,
+  };
+}
