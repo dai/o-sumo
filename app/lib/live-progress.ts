@@ -107,6 +107,7 @@ export function resolveLiveDailyData(
 }
 
 export type LiveProgressState =
+  | 'prestart'
   | 'before_juryo'
   | 'juryo'
   | 'makuuchi'
@@ -155,7 +156,7 @@ export function formatTimeJst(minutesOfDay: number): string {
 }
 
 export function isMatchCompleted(match: TorikumiMatch): boolean {
-  return Boolean(match.winner || match.kimarite);
+  return Boolean(match.winner || (match.kimarite && match.kimarite !== '未定'));
 }
 
 function estimateBoutIndex(matchCount: number, elapsedMinutes: number, windowMinutes: number): number {
@@ -192,7 +193,7 @@ export function deriveLiveProgress(
   const { makushitaRatio, juryoRatio, makuuchiRatio } = ratios;
 
   // 1. 状態判定
-  let state: LiveProgressState = 'before_juryo';
+  let state: LiveProgressState = 'prestart';
 
   if (allMakuuchiFinished || isPastClosingTime) {
     state = 'finished';
@@ -204,7 +205,7 @@ export function deriveLiveProgress(
   } else if (nowMinutes >= juryoStartMinutes || completedJuryo > 0) {
     state = 'juryo';
   } else {
-    state = 'before_juryo';
+    state = 'prestart';
   }
 
   // 2. セグメント進捗とピン位置の計算
@@ -305,24 +306,12 @@ export function deriveLiveProgress(
       };
     }
   } else {
-    // before_juryo
-    activeDivision = 'makushita';
+    // prestart / before_juryo: 開始前はピンを 0%（一番左）に固定し、バーは無地
+    activeDivision = null;
+    makushitaProgress = 0;
     juryoProgress = 0;
     makuuchiProgress = 0;
-
-    // 幕下帯スロープ: 十両開始の15分前から開始
-    const makushitaRampStart = juryoStartMinutes - 15;
-    if (nowMinutes >= makushitaRampStart) {
-      makushitaProgress = clamp(
-        (nowMinutes - makushitaRampStart) / (juryoStartMinutes - makushitaRampStart),
-        0,
-        0.99,
-      );
-    } else {
-      makushitaProgress = 0;
-    }
-
-    pinPercent = makushitaProgress * makushitaRatio;
+    pinPercent = 0;
     currentBout = null;
   }
 
@@ -333,9 +322,9 @@ export function deriveLiveProgress(
   if (state === 'finished') {
     pinLabelDesktop = '本日の取組は終了しました';
     pinLabelMobile = '本日の取組は終了しました';
-  } else if (state === 'before_juryo' || !currentBout) {
-    pinLabelDesktop = 'イマココ（幕下取組中）';
-    pinLabelMobile = 'イマココ（幕下取組中）';
+  } else if (state === 'prestart' || !currentBout) {
+    pinLabelDesktop = '取組前';
+    pinLabelMobile = '取組前';
   } else {
     pinLabelDesktop = `イマココ（🌅 ${currentBout.eastName} 対 🌇 ${currentBout.westName}）`;
     pinLabelMobile = 'イマココ';

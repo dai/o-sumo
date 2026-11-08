@@ -3,6 +3,7 @@ import type { TorikumiDailyData, TorikumiMatch } from './torikumi-data';
 import {
   deriveLiveProgress,
   formatTimeJst,
+  isMatchCompleted,
 } from './live-progress';
 
 function createMatch(
@@ -71,17 +72,30 @@ describe('live-progress', () => {
     expect(formatTimeJst(18 * 60)).toBe('18:00');
   });
 
-  it('handles morning time before juryo (10:00 JST)', () => {
+  it('does not treat kimarite "未定" as a completed match', () => {
+    const pendingMatch = createMatch('十両', 1, '東十1', '西十1');
+    pendingMatch.kimarite = '未定';
+    expect(isMatchCompleted(pendingMatch)).toBe(false);
+
+    const wonMatch = createMatch('十両', 1, '東十1', '西十1', 'east');
+    expect(isMatchCompleted(wonMatch)).toBe(true);
+
+    const decidedKimariteMatch = createMatch('十両', 1, '東十1', '西十1');
+    decidedKimariteMatch.kimarite = '寄り切り';
+    expect(isMatchCompleted(decidedKimariteMatch)).toBe(true);
+  });
+
+  it('handles morning time before juryo as prestart (10:00 JST)', () => {
     const data = createDailyData();
     const result = deriveLiveProgress(data, 10 * 60);
 
-    expect(result.state).toBe('before_juryo');
+    expect(result.state).toBe('prestart');
     expect(result.formattedTime).toBe('10:00');
-    expect(result.activeDivision).toBe('makushita');
+    expect(result.activeDivision).toBeNull();
     expect(result.currentBout).toBeNull();
     expect(result.pinPositionPercent).toBe(0);
-    expect(result.pinLabelDesktop).toBe('イマココ（幕下取組中）');
-    expect(result.pinLabelMobile).toBe('イマココ（幕下取組中）');
+    expect(result.pinLabelDesktop).toBe('取組前');
+    expect(result.pinLabelMobile).toBe('取組前');
 
     const [makushita, juryo, makuuchi] = result.segments;
     expect(makushita.progress).toBe(0);
@@ -89,18 +103,37 @@ describe('live-progress', () => {
     expect(makuuchi.progress).toBe(0);
   });
 
-  it('progresses makushita band between 14:00 and 14:15 on regular days', () => {
+  it('keeps prestart state, 0% pin, and empty progress with schedule data where all bouts have kimarite="未定"', () => {
+    const data = createDailyData();
+    data.juryo.matches.forEach((m) => {
+      m.kimarite = '未定';
+      m.winner = null;
+    });
+    data.makuuchi.matches.forEach((m) => {
+      m.kimarite = '未定';
+      m.winner = null;
+    });
+
+    const result = deriveLiveProgress(data, 9 * 60 + 9); // 09:09 JST on Day 1
+    expect(result.state).toBe('prestart');
+    expect(result.pinPositionPercent).toBe(0);
+    expect(result.pinLabelDesktop).toBe('取組前');
+    expect(result.pinLabelMobile).toBe('取組前');
+    expect(result.activeDivision).toBeNull();
+    expect(result.segments.every((s) => s.progress === 0)).toBe(true);
+  });
+
+  it('pins at 0% and stays prestart before juryo start time (14:07 JST on regular day)', () => {
     const data = createDailyData();
     data.makuuchi.day = 2;
     data.juryo.day = 2;
-    const result = deriveLiveProgress(data, 14 * 60 + 7); // ~50% of makushita ramp (14:00 - 14:15)
+    const result = deriveLiveProgress(data, 14 * 60 + 7);
 
-    expect(result.state).toBe('before_juryo');
-    expect(result.activeDivision).toBe('makushita');
-    expect(result.segments[0].progress).toBeGreaterThan(0.4);
-    expect(result.segments[0].progress).toBeLessThan(0.6);
-    expect(result.pinPositionPercent).toBeGreaterThan(8);
-    expect(result.pinPositionPercent).toBeLessThan(12);
+    expect(result.state).toBe('prestart');
+    expect(result.activeDivision).toBeNull();
+    expect(result.pinPositionPercent).toBe(0);
+    expect(result.pinLabelDesktop).toBe('取組前');
+    expect(result.segments.every((s) => s.progress === 0)).toBe(true);
   });
 
   it('handles juryo window (14:30 JST)', () => {

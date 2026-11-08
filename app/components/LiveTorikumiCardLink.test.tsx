@@ -170,4 +170,56 @@ describe('LiveTorikumiCardLink', () => {
     // スクリーンリーダー用テキストが存在すること
     expect(screen.getByText(/幕内の取組/)).toHaveClass('sr-only');
   });
+
+  it('renders prestart state before bouts begin in the morning', () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2026-11-08T00:09:00.000Z')); // JST 09:09 on Day 1
+
+    // スケジュールデータ（kimarite: "未定", winner: null）
+    const scheduleDay = JSON.parse(JSON.stringify(SEPTEMBER2026_TORIKUMI_DATA.scheduleDays![0]));
+    scheduleDay.data.juryo.matches.forEach((m: any) => {
+      m.winner = null;
+      m.kimarite = '未定';
+    });
+    scheduleDay.data.makuuchi.matches.forEach((m: any) => {
+      m.winner = null;
+      m.kimarite = '未定';
+    });
+
+    const morningDataSet = {
+      ...SEPTEMBER2026_TORIKUMI_DATA,
+      resultDays: [],
+      scheduleDays: [scheduleDay],
+      today: scheduleDay.data,
+    };
+
+    const { container } = render(
+      <MemoryRouter initialEntries={['/']}>
+        <LiveTorikumiCardLink
+          to="/20261108-torikumi/"
+          primary
+          archive={morningDataSet}
+          data={morningDataSet}
+          label={
+            <>
+              本日の取組<span className="quick-nav-card__badge">速報</span>
+            </>
+          }
+          sub="速報・進行"
+        />
+      </MemoryRouter>,
+    );
+
+    // 状態ラベルおよびピンラベルが「取組前」であること（「本日の取組は終了しました」は出ない）
+    const stateLabel = container.querySelector('.live-torikumi-board__state-label');
+    expect(stateLabel).toHaveTextContent('取組前');
+    expect(screen.queryByText('本日の取組は終了しました')).not.toBeInTheDocument();
+
+    // デスクトップ用ピンラベルも「取組前」
+    const desktopPinLabel = container.querySelector('.imakoko-meter__pin-label.is-desktop');
+    expect(desktopPinLabel).toHaveTextContent('取組前');
+
+    // スクリーンリーダー用テキストが「取組前です」であること
+    expect(screen.getByText(/取組前です/)).toHaveClass('sr-only');
+  });
 });
