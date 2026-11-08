@@ -134,11 +134,11 @@ export const makuuchiData: RankGroup[] = [
         "yomi": "あたみふじ",
         "rank": "関脇",
         "side": "west",
-        "wins": 0,
+        "wins": 1,
         "losses": 0,
         "draws": 0,
         "results": [
-          null
+          "win"
         ],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4055/",
         "memo": ""
@@ -266,10 +266,10 @@ export const makuuchiData: RankGroup[] = [
         "rank": "前頭3",
         "side": "east",
         "wins": 0,
-        "losses": 0,
+        "losses": 1,
         "draws": 0,
         "results": [
-          null
+          "loss"
         ],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/2775/",
         "memo": ""
@@ -283,10 +283,10 @@ export const makuuchiData: RankGroup[] = [
         "rank": "前頭3",
         "side": "west",
         "wins": 0,
-        "losses": 0,
+        "losses": 1,
         "draws": 0,
         "results": [
-          null
+          "loss"
         ],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4187/",
         "memo": ""
@@ -303,10 +303,10 @@ export const makuuchiData: RankGroup[] = [
         "rank": "前頭4",
         "side": "east",
         "wins": 0,
-        "losses": 0,
+        "losses": 1,
         "draws": 0,
         "results": [
-          null
+          "loss"
         ],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4171/",
         "memo": ""
@@ -319,11 +319,11 @@ export const makuuchiData: RankGroup[] = [
         "yomi": "だいえいしょう",
         "rank": "前頭4",
         "side": "west",
-        "wins": 0,
+        "wins": 1,
         "losses": 0,
         "draws": 0,
         "results": [
-          null
+          "win"
         ],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3376/",
         "memo": ""
@@ -339,11 +339,11 @@ export const makuuchiData: RankGroup[] = [
         "yomi": "ひらどうみ",
         "rank": "前頭5",
         "side": "east",
-        "wins": 0,
+        "wins": 1,
         "losses": 0,
         "draws": 0,
         "results": [
-          null
+          "win"
         ],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3705/",
         "memo": ""
