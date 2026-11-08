@@ -68,8 +68,8 @@ export default function LiveTorikumiCardLink({
   let srText = '';
   if (state === 'finished') {
     srText = t('home.imakokoSrFinished');
-  } else if (state === 'before_juryo' || !currentBout) {
-    srText = t('home.imakokoSrMakushita', { time: formattedTime });
+  } else if (state === 'prestart' || !currentBout) {
+    srText = t('home.imakokoSrPrestart', { time: formattedTime });
   } else {
     srText = t('home.imakokoSrLive', {
       time: formattedTime,
@@ -113,7 +113,7 @@ export default function LiveTorikumiCardLink({
           </div>
         ) : (
           <div className="live-torikumi-board__state-label">
-            {state === 'finished' ? t('home.imakokoFinished') : t('home.imakokoMakushita')}
+            {state === 'finished' ? t('home.imakokoFinished') : t('home.imakokoPrestart')}
           </div>
         )}
         <span className="quick-nav-card__sub live-torikumi-board__sub">{sub}</span>
