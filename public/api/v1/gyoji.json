@@ -1,21 +1,11 @@
 {
-  "retrievedAt": "2026-08-12T00:27:59Z",
+  "retrievedAt": "2026-11-08T12:51:23Z",
   "source": "https://www.sumo.or.jp/IrohaKyokaiMember/gyoji/",
   "officials": [
     {
-      "id": 1986,
+      "id": 1987,
       "name": "木村 庄之助",
       "yomi": "きむら しょうのすけ",
-      "realName": "洞澤 裕司",
-      "rank": "立行司",
-      "rankCode": "tate-gyoji",
-      "affiliation": "九重",
-      "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/1986/"
-    },
-    {
-      "id": 1987,
-      "name": "式守 伊之助",
-      "yomi": "しきもり いのすけ",
       "realName": "森田 善光",
       "rank": "立行司",
       "rankCode": "tate-gyoji",
@@ -24,11 +14,11 @@
     },
     {
       "id": 1988,
-      "name": "木村 晃之助",
-      "yomi": "きむら こうのすけ",
+      "name": "式守 伊之助",
+      "yomi": "しきもり いのすけ",
       "realName": "小島 俊明",
-      "rank": "三役行司",
-      "rankCode": "sanyaku-gyoji",
+      "rank": "立行司",
+      "rankCode": "tate-gyoji",
       "affiliation": "九重",
       "sourceUrl": "https://www.sumo.or.jp/Profile/gyoji/1988/"
     },
