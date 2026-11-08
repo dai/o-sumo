@@ -4,6 +4,7 @@ import {
   deriveLiveProgress,
   formatTimeJst,
   isMatchCompleted,
+  resolveLiveDailyData,
 } from './live-progress';
 
 function createMatch(
@@ -242,5 +243,84 @@ describe('live-progress', () => {
     expect(result.state).toBe('finished');
     expect(result.pinPositionPercent).toBe(100);
     expect(result.segments.every((s) => s.progress === 1)).toBe(true);
+  });
+
+  it('keeps finished state and 100% pin throughout late evening (20:00 and 23:59 JST) on the same date', () => {
+    const data = createDailyData(4, 4);
+
+    const eveningResult = deriveLiveProgress(data, 20 * 60);
+    expect(eveningResult.state).toBe('finished');
+    expect(eveningResult.pinPositionPercent).toBe(100);
+    expect(eveningResult.pinLabelDesktop).toBe('本日の取組は終了しました');
+    expect(eveningResult.pinLabelMobile).toBe('本日の取組は終了しました');
+    expect(eveningResult.segments.every((s) => s.progress === 1)).toBe(true);
+
+    const midnightBeforeResult = deriveLiveProgress(data, 23 * 60 + 59);
+    expect(midnightBeforeResult.state).toBe('finished');
+    expect(midnightBeforeResult.pinPositionPercent).toBe(100);
+    expect(midnightBeforeResult.pinLabelDesktop).toBe('本日の取組は終了しました');
+    expect(midnightBeforeResult.pinLabelMobile).toBe('本日の取組は終了しました');
+    expect(midnightBeforeResult.segments.every((s) => s.progress === 1)).toBe(true);
+  });
+
+  it('switches to next day prestart and 0% pin at 00:00 JST across date change in resolveLiveDailyData', () => {
+    const archive = {
+      year: 2026,
+      bashoName: '十一月場所',
+      scheduleDays: [
+        {
+          day: 1,
+          date: '11月8日',
+          isoDate: '2026-11-08',
+          pathDate: '20261108',
+          label: '初日',
+          data: createDailyData(4, 4),
+        },
+        {
+          day: 2,
+          date: '11月9日',
+          isoDate: '2026-11-09',
+          pathDate: '20261109',
+          label: '2日目',
+          data: (() => {
+            const d = createDailyData(0, 0);
+            d.makuuchi.day = 2;
+            d.juryo.day = 2;
+            return d;
+          })(),
+        },
+      ],
+      resultDays: [
+        {
+          day: 1,
+          date: '11月8日',
+          isoDate: '2026-11-08',
+          pathDate: '20261108',
+          label: '初日',
+          data: createDailyData(4, 4),
+        },
+      ],
+    };
+    const emptyDataSet = {
+      archiveMonths: [],
+      currentMonth: '202611',
+      monthKey: '202611',
+      source: 'test',
+    };
+
+    // 2026-11-08 23:59 JST: 当日の初日データが選択され、finished 状態
+    const day1Data = resolveLiveDailyData(archive as any, emptyDataSet as any, '2026-11-08');
+    expect(day1Data?.makuuchi?.day).toBe(1);
+    const day1Progress = deriveLiveProgress(day1Data, 23 * 60 + 59);
+    expect(day1Progress.state).toBe('finished');
+    expect(day1Progress.pinPositionPercent).toBe(100);
+
+    // 2026-11-09 00:00 JST: 日付変更後は 2日目のデータが選択され、prestart 状態
+    const day2Data = resolveLiveDailyData(archive as any, emptyDataSet as any, '2026-11-09');
+    expect(day2Data?.makuuchi?.day).toBe(2);
+    const day2Progress = deriveLiveProgress(day2Data, 0);
+    expect(day2Progress.state).toBe('prestart');
+    expect(day2Progress.pinPositionPercent).toBe(0);
+    expect(day2Progress.pinLabelDesktop).toBe('取組前');
   });
 });

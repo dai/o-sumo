@@ -43,8 +43,10 @@ describe('ImakokoMeter', () => {
     const pinAnchor = container.querySelector('.imakoko-meter__pin-anchor');
     expect(pinAnchor).toHaveStyle({ left: '76%' });
 
-    // 端クランプラベルラッパー (translateX(-76%))
+    // 端クランプラベルラッパー & ピンアイコン (translateX(-76%))
+    const pinIcon = container.querySelector('.imakoko-meter__pin-icon');
     const labelWrapper = container.querySelector('.imakoko-meter__pin-label-wrapper');
+    expect(pinIcon).toHaveStyle({ transform: 'translateX(-76%)' });
     expect(labelWrapper).toHaveStyle({ transform: 'translateX(-76%)' });
 
     // デスクトップ用ラベルに 🌅 と 🌇 が含まれる
@@ -103,5 +105,39 @@ describe('ImakokoMeter', () => {
     const makuuchiMarker = container.querySelector('.imakoko-meter__time-marker.is-makuuchi');
     expect(juryoMarker).toHaveStyle({ left: '20%' });
     expect(makuuchiMarker).toHaveStyle({ left: '49%' });
+  });
+
+  it('clamps pin icon and label at 100% (finished state) to align with the right edge', () => {
+    const progress: LiveProgressResult = {
+      state: 'finished',
+      segments: [
+        { key: 'makushita', progress: 1, ratioPercent: 20 },
+        { key: 'juryo', progress: 1, ratioPercent: 32 },
+        { key: 'makuuchi', progress: 1, ratioPercent: 48 },
+      ],
+      currentBout: null,
+      nowMinutes: 20 * 60,
+      formattedTime: '20:00',
+      isOpeningDay: false,
+      schedule: {
+        juryoStartMinutes: 14 * 60 + 15,
+        makuuchiStartMinutes: 15 * 60 + 40,
+        endMinutes: 18 * 60,
+      },
+      activeDivision: null,
+      pinPositionPercent: 100,
+      pinLabelDesktop: '本日の取組は終了しました',
+      pinLabelMobile: '本日の取組は終了しました',
+    };
+
+    const { container } = render(<ImakokoMeter progress={progress} />);
+
+    const pinAnchor = container.querySelector('.imakoko-meter__pin-anchor');
+    expect(pinAnchor).toHaveStyle({ left: '100%' });
+
+    const pinIcon = container.querySelector('.imakoko-meter__pin-icon');
+    const labelWrapper = container.querySelector('.imakoko-meter__pin-label-wrapper');
+    expect(pinIcon).toHaveStyle({ transform: 'translateX(-100%)' });
+    expect(labelWrapper).toHaveStyle({ transform: 'translateX(-100%)' });
   });
 });

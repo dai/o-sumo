@@ -16,7 +16,7 @@ export default function ImakokoMeter({ progress }: ImakokoMeterProps) {
   const juryoLabelKey = isOpeningDay ? 'home.imakokoJuryoDohyoIriDay1' : 'home.imakokoJuryoDohyoIri';
   const makuuchiLabelKey = isOpeningDay ? 'home.imakokoMakuuchiDohyoIriDay1' : 'home.imakokoMakuuchiDohyoIri';
 
-  // ラベルが端で見切れないよう、ラベル部分の X 方向トランスフォームを内側にクランプ（D-3）
+  // ラベル・ピンが端で見切れたり突き出さないよう、X 方向トランスフォームを内側にクランプ（D-3）
   // pinPositionPercent: 0% → 0% (左揃え寄り), 50% → -50% (中央揃え), 100% → -100% (右揃え寄り)
   const clampedLabelTranslateX = -Math.max(0, Math.min(100, pinPositionPercent));
 
@@ -101,7 +101,12 @@ export default function ImakokoMeter({ progress }: ImakokoMeterProps) {
           className="imakoko-meter__pin-anchor"
           style={{ left: `${pinPositionPercent}%` }}
         >
-          <span className="imakoko-meter__pin-icon">▲</span>
+          <span
+            className="imakoko-meter__pin-icon"
+            style={{ transform: `translateX(${clampedLabelTranslateX}%)` }}
+          >
+            ▲
+          </span>
           <div
             className="imakoko-meter__pin-label-wrapper"
             style={{ transform: `translateX(${clampedLabelTranslateX}%)` }}

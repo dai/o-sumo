@@ -61,13 +61,6 @@
   box-shadow: var(--shadow-soft);
 }
 
-.rikishi-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 1rem;
-}
-
 .rikishi-name-section {
   flex: 1;
 }
