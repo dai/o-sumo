@@ -190,7 +190,7 @@ describe('TorikumiDayPage', () => {
     renderPage(pendingResultDay, 'result');
 
     expect(screen.getByText('結果未更新')).toBeInTheDocument();
-    expect(screen.getByText(`更新日: ${formatUpdatedAt(torikumiArchive.scheduleUpdatedAt)}`)).toBeInTheDocument();
+    expect(screen.getByText(`最終更新: ${formatUpdatedAt(torikumiArchive.scheduleUpdatedAt)}`)).toBeInTheDocument();
     expect(screen.getAllByRole('row').length).toBeGreaterThan(1);
     expect(screen.queryByText('幕内の取組結果はまだ更新されていません。')).not.toBeInTheDocument();
   });
@@ -214,7 +214,7 @@ describe('TorikumiDayPage', () => {
 
     renderPage(dayWithAbsentees, 'schedule');
 
-    expect(screen.getByText(`更新日: ${formatUpdatedAt(torikumiArchive.scheduleUpdatedAt)}`)).toBeInTheDocument();
+    expect(screen.getByText(`最終更新: ${formatUpdatedAt(torikumiArchive.scheduleUpdatedAt)}`)).toBeInTheDocument();
     expect(screen.getByText('休場者:')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '大の里' })).toHaveAttribute('href', '/rikishi/1/');
     expect(screen.getByRole('link', { name: '青安錦' })).toHaveAttribute('href', '/rikishi/2/');
