@@ -80,7 +80,14 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
           </div>
         ) : null}
         <div className="site-header-meta-row">
-          <p>{t('torikumi.hub.updateDate', { date: formatUpdatedAt(updatedAt) })}</p>
+          {mode === 'schedule' ? (
+            <div className="torikumi-update-meta" role="status">
+              <p>{t('torikumi.hub.lastUpdated', { date: formatUpdatedAt(updatedAt) })}</p>
+              <p className="torikumi-update-meta__source">{t('torikumi.hub.scheduleSource')}</p>
+            </div>
+          ) : (
+            <p>{t('torikumi.hub.updateDate', { date: formatUpdatedAt(updatedAt) })}</p>
+          )}
         </div>
       </header>
 

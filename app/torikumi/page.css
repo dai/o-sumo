@@ -1391,3 +1391,20 @@
   outline: 2px solid var(--color-secondary, #fed65b);
   outline-offset: 2px;
 }
+
+/* Schedule freshness and provenance: keep the update timestamp and source together. */
+.torikumi-update-meta {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.75rem;
+}
+
+.torikumi-update-meta p {
+  margin: 0;
+}
+
+.torikumi-update-meta__source {
+  color: var(--on-surface-variant, #5e5f5b);
+  font-size: 0.82rem;
+}

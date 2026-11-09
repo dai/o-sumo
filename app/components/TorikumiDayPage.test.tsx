@@ -214,7 +214,7 @@ describe('TorikumiDayPage', () => {
 
     renderPage(dayWithAbsentees, 'schedule');
 
-    expect(screen.getByText(`更新日: ${formatUpdatedAt(torikumiArchive.scheduleUpdatedAt)}`)).toBeInTheDocument();
+    expect(screen.getByText(`最終更新: ${formatUpdatedAt(torikumiArchive.scheduleUpdatedAt)}`)).toBeInTheDocument();
     expect(screen.getByText('休場者:')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '大の里' })).toHaveAttribute('href', '/rikishi/1/');
     expect(screen.getByRole('link', { name: '青安錦' })).toHaveAttribute('href', '/rikishi/2/');
@@ -656,5 +656,14 @@ describe('TorikumiDayPage', () => {
       vi.unstubAllGlobals();
     }
   }, 15000);
+  it('shows the schedule update timestamp and data source', () => {
+    const scheduleDay = torikumiArchive.scheduleDays[0];
+
+    renderPage(scheduleDay, 'schedule');
+
+    expect(screen.getByText(`最終更新: ${formatUpdatedAt(torikumiArchive.scheduleUpdatedAt)}`)).toBeInTheDocument();
+    expect(screen.getByText('取組予定は日本相撲協会の発表をもとに更新しています。')).toBeInTheDocument();
+  });
+
 });
 

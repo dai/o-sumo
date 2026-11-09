@@ -658,7 +658,14 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
           </div>
         ) : null}
         <div className="site-header-meta-row">
-          <p>{t('torikumi.day.updateDate', { date: formatUpdatedAt(updatedAt) })}</p>
+          {mode === 'schedule' ? (
+            <div className="torikumi-update-meta" role="status">
+              <p>{t('torikumi.day.lastUpdated', { date: formatUpdatedAt(updatedAt) })}</p>
+              <p className="torikumi-update-meta__source">{t('torikumi.day.scheduleSource')}</p>
+            </div>
+          ) : (
+            <p>{t('torikumi.day.updateDate', { date: formatUpdatedAt(updatedAt) })}</p>
+          )}
         </div>
       </header>
 

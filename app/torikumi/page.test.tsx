@@ -92,7 +92,8 @@ describe('TorikumiHubPage', () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByText(/更新日:/)).toBeInTheDocument();
+    expect(screen.getByText(/最終更新:/)).toBeInTheDocument();
+    expect(screen.getByText('取組予定は日本相撲協会の発表をもとに更新しています。')).toBeInTheDocument();
   });
 
   it('hides absentees on the result hub page', () => {

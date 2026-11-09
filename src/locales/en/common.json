@@ -370,7 +370,9 @@
       "footerHome": "Home",
       "footerBanzuke": "Banzuke",
       "footerDaisuke": "Daisuke on X",
-      "footerGithub": "GitHub"
+      "footerGithub": "GitHub",
+      "lastUpdated": "Last updated: {{date}}",
+      "scheduleSource": "Bout schedules are updated from Japan Sumo Association announcements."
     },
     "day": {
       "modeResult": " Results",
@@ -428,7 +430,9 @@
       "shareMatchup": "{{name}} vs {{opponent}}",
       "shareMore": "…{{count}} more",
       "shareHashtags": "#Sumo #{{basho}} #o_sumo",
-      "noMyRikishiMatchesInDivision": "No My rikishi bouts in {{division}}."
+      "noMyRikishiMatchesInDivision": "No My rikishi bouts in {{division}}.",
+      "lastUpdated": "Last updated: {{date}}",
+      "scheduleSource": "Bout schedules are updated from Japan Sumo Association announcements."
     }
   },
   "comparison": {
