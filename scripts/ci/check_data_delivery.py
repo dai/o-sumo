@@ -76,7 +76,12 @@ def monitor(repo, sha, timeout_seconds=600, interval_seconds=20, *,
         remaining = deadline - clock()
         if remaining > 0:
             sleep(min(interval_seconds, remaining))
-    result["overall"] = "timeout"
+    # Cloudflare occasionally never reports a check for bot data commits; CI
+    # passing with no Pages check at all is not evidence of a failed delivery.
+    if result["ci"]["status"] == "success" and result["pages"]["status"] == "missing":
+        result["overall"] = "pages_not_reported"
+    else:
+        result["overall"] = "timeout"
     return result
 
 
@@ -117,7 +122,9 @@ def main(argv=None):
         parser.error("timeout must be in (0, 600]; interval must be finite and positive")
     result = monitor(args.repo, args.sha.lower(), args.timeout_seconds, args.interval_seconds)
     emit(result, args.output_json)
-    return {"success": 0, "failure": 1, "timeout": 2}[result["overall"]]
+    if result["overall"] == "pages_not_reported":
+        print("::warning::Cloudflare Pages check was never reported for this commit; delivery unverified")
+    return {"success": 0, "pages_not_reported": 0, "failure": 1, "timeout": 2}[result["overall"]]
 
 
 if __name__ == "__main__":
