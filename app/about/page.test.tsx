@@ -14,19 +14,21 @@ describe('AboutPage', () => {
     expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
     expect(screen.getByText(/当サイト（o-sumo）について/)).toBeInTheDocument();
     expect(screen.getByText(/データ出典および免責事項/)).toBeInTheDocument();
-    expect(screen.getByText(/プライバシーポリシー・広告配信・Cookieについて/)).toBeInTheDocument();
+    expect(screen.getByText(/プライバシーと利用規約/)).toBeInTheDocument();
     expect(screen.getByText(/運営者情報・お問い合わせ/)).toBeInTheDocument();
   });
 
-  it('renders AdSense and Analytics disclaimers', () => {
+  it('links to the current bilingual policies without claiming unused ad or analytics services', () => {
     render(
       <MemoryRouter>
         <AboutPage />
       </MemoryRouter>,
     );
 
-    expect(screen.getAllByText(/Google AdSense/).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/Google Analytics/).length).toBeGreaterThan(0);
+    expect(screen.getByRole('link', { name: 'プライバシーポリシー（日本語・英語）' })).toHaveAttribute('href', '/privacy/');
+    expect(screen.getByRole('link', { name: '利用規約（日本語・英語）' })).toHaveAttribute('href', '/terms/');
+    expect(screen.queryByText(/Google AdSense/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Google Analytics/)).not.toBeInTheDocument();
   });
 
   it('renders contact links to X and GitHub', () => {

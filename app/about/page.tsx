@@ -44,18 +44,16 @@ export default function AboutPage() {
           <p className="about-text">{t('about.dataSection.disclaimerText')}</p>
         </section>
 
-        {/* Privacy Policy & AdSense / Analytics */}
+        {/* Privacy and terms */}
         <section className="about-section" aria-labelledby="about-privacy-heading">
           <h2 id="about-privacy-heading" className="about-section-heading">
             {t('about.privacySection.title')}
           </h2>
-
-          <h3 className="about-subsection-heading">{t('about.privacySection.adsTitle')}</h3>
-          <p className="about-text">{t('about.privacySection.adsText')}</p>
-          <p className="about-text">{t('about.privacySection.optoutText')}</p>
-
-          <h3 className="about-subsection-heading">{t('about.privacySection.analyticsTitle')}</h3>
-          <p className="about-text">{t('about.privacySection.analyticsText')}</p>
+          <p className="about-text">{t('about.privacySection.description')}</p>
+          <div className="about-contact-links">
+            <a href="/privacy/" className="about-contact-link">{t('about.privacySection.policyLink')}</a>
+            <a href="/terms/" className="about-contact-link">{t('about.privacySection.termsLink')}</a>
+          </div>
         </section>
 
         {/* Operator Information & Contact */}

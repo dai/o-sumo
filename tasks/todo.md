@@ -810,6 +810,42 @@ exhaustion and left unrelated packages incomplete.
 - The built Antigravity ZIP matched all eight source files byte-for-byte. The CLI validator reported zero findings. The GitHub subdirectory install command was left out because it could not be verified. Client installation and in-chat execution were not tested.
 - Passed TypeScript checking, all 870 Vitest tests across 104 files, the production build, four Python workflow configuration tests, and Git whitespace validation.
 
+## ChatGPT MCP plugin submission preparation (2026-11-09)
+
+- [x] Inspect the existing private plugin metadata and source package without changing its identity or visibility.
+- [x] Compare listing metadata, MCP configuration, assets, and review cases with the current submission preparation requirements.
+- [ ] Resolve the verified publisher identity, published Terms of Service URL, supported countries, and commerce declaration.
+- [ ] Confirm privacy-policy claims against actual logging, retention, sharing, and deletion practices; prepare any needed policy/page changes.
+- [ ] Add the four supported listing URLs and required MCP tool annotations; verify the live server behavior and five positive / three negative cases.
+- [ ] Record, host, and verify a reviewer-accessible demo recording.
+- [ ] Update the separate public package, rebuild and inspect its ZIP and metadata, then resolve portal checks before any review submission.
+
+### Review (initial inspection)
+
+- Existing private plugin: `o-sumo`, version `0.1.1`, private personal scope; no changes or upload performed.
+- Existing package already includes one read-only Streamable HTTP MCP endpoint, one PNG logo, and five positive / three negative cases.
+- Gaps confirmed from package metadata: no `termsOfServiceURL`; no `review.demo_recording_url`; tool review cases remain unrun; production MCP connection and annotation status are not verified here. `publication.countries: []` explicitly means all available countries and needs confirmation before reuse.
+- The local preparation note records prior confirmation of no commerce and all-country targeting, but the verified individual display name is still unknown. Reconfirm commerce and targeting if those facts have changed.
+- Next required publisher input: exact individual name matching the identity intended for Platform verification. Keep the submission ZIP separate from the existing private plugin.
+
+## Privacy policy and Terms of Service refresh (2026-11-09)
+
+- [x] Compare the published privacy copy with current site, OAuth, storage, and MCP implementation.
+- [x] Replace inaccurate privacy statements and add plain-language Japanese and English coverage of actual data flows.
+- [x] Add Japanese and English Terms of Service at a stable public route; link both policies from site navigation metadata, sitemap, and Markdown views.
+- [x] Align the About page's legacy advertising/analytics claims with current implementation.
+- [x] Run focused policy, route, sitemap, and Markdown checks; review all changes for unsupported retention or legal claims.
+- [ ] Confirm the still-unknown operator facts with the user before treating either policy as final for submission.
+
+### Review (draft)
+
+- The former privacy text incorrectly said no personal information was collected. The optional Google account path stores the Google subject identifier and display name, and account sync stores selected rikishi IDs. The refreshed policy describes these separately from the read-only anonymous MCP endpoint.
+- Added `/terms/` in Japanese and English, plus footer/About links, sitemap inclusion, route metadata, and a generated Markdown view.
+- Removed obsolete About-page statements claiming AdSense and Google Analytics are in use. The current source does not load either script; the privacy draft notes Google Fonts requests and provider logs without inventing provider retention periods.
+- Drafts are local and unpublished. The user will confirm contact, deletion, and provider-handling details before these become final submission materials.
+- Validation: 69 focused Vitest tests passed; TypeScript checks passed; production build generated `dist/terms/index.md`, sitemap and route/header entries; whitespace check passed with CRLF recognized for the existing Markdown generator file.
+- Final verification on current `origin/main`: full suite passed (106 files / 897 tests), TypeScript check passed, production build passed. Browser preview confirmed `/privacy/` and `/terms/` titles, Japanese and English sections, and reciprocal footer links on desktop and mobile. The preview logged the expected 404 for `/api/auth/session` because Vite preview does not run the Cloudflare Pages auth function.
+
 ## 初日取組更新・導線UX確認 (2026-11-06)
 
 - [x] PR・CI・本番APIとローカル生成データの一致を検証する。

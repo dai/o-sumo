@@ -42,6 +42,19 @@
   gap: clamp(2rem, 4vw, 3rem);
 }
 
+.privacy-language-section {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vw, 3rem);
+}
+
+.privacy-language-heading {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--color-primary);
+}
+
 .privacy-section {
   background: var(--surface-container-lowest);
   padding: clamp(1.5rem, 3vw, 2.25rem);

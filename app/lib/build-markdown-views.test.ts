@@ -23,6 +23,7 @@ describe('buildMarkdownPages', () => {
     expect(dirs).toContain('analytics/');
     expect(dirs).toContain('about/');
     expect(dirs).toContain('privacy/');
+    expect(dirs).toContain('terms/');
     for (const monthKey of ['202603', '202605', '202607', '202609']) {
       expect(dirs).toContain(`${monthKey}-banzuke/`);
       expect(dirs).toContain(`${monthKey}-torikumi/`);
@@ -74,6 +75,8 @@ describe('Markdown for Agents advertising', () => {
     expect(MARKDOWN_ROUTES).toContain('rikishi/');
     expect(MARKDOWN_ROUTES).toContain('kimarite/');
     expect(MARKDOWN_ROUTES).toContain('analytics/');
+    expect(MARKDOWN_ROUTES).toContain('privacy/');
+    expect(MARKDOWN_ROUTES).toContain('terms/');
     for (const monthKey of ['202603', '202605', '202607', '202609']) {
       expect(MARKDOWN_ROUTES).toContain(`${monthKey}-banzuke/`);
       expect(MARKDOWN_ROUTES).toContain(`${monthKey}-torikumi/`);
