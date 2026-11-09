@@ -79,6 +79,7 @@ describe('sitemap helpers', () => {
     expect(locs).toContain('/analytics/');
     expect(locs).toContain('/about/');
     expect(locs).toContain('/privacy/');
+    expect(locs).toContain('/terms/');
     expect(locs).toContain('/202603-banzuke/');
     expect(locs).toContain('/202603-torikumi/');
     expect(locs).toContain('/202603-yotei/');

@@ -23,7 +23,7 @@ The ZIP contains only the portable `o-sumo/` package, with one MCP connection an
 - Commerce: creator confirmed no payments, purchases or paid features. Confirm the current portal's commerce declaration field before submission.
 - Existing branding reused. Optional dark-mode assets and brand colors omitted unless requested.
 
-## Preparation status (2026-11-05)
+## Preparation status (2026-11-09)
 
 - Inspected source at 75d7540a367c63552bc7111a0f04b02f744975be.
 - Endpoint, transport and no-auth behavior are documented in the source.
@@ -31,16 +31,18 @@ The ZIP contains only the portable `o-sumo/` package, with one MCP connection an
 - Five positive and three negative model-level review cases are in plugin.json. All are **Not run** in ChatGPT.
 - Production initialize check: **Blocked**; this execution environment received HTTP 403. This does not establish a server defect or successful production connection.
 - GitHub checks for commit 5e1506d067cb237203ee365ab4f6e33ce0710192 all passed: test, Cloudflare Pages o-sumo and o-sumo-blog. Live production MCP and model-level review cases remain separate, unverified checks.
-- Privacy policy URL confirmed by creator: https://osada.us/privacy/. The public page was read in the connected browser on 2026-11-05 and matches the MCP service. It mentions Cloudflare access logs but does not specify retention timelines or deletion controls; actual practices still need creator confirmation.
+- The existing privacy page was stale: it said no personal information was collected, although optional Google sign-in stores a Google account identifier and display name, and account synchronization stores selected rikishi IDs. Local site drafts now cover this flow in Japanese and English, browser storage, session cookies, provider logs, deletion requests, and third-party font requests. The public site has not been updated by this work.
+- A Japanese/English Terms of Service draft is now available locally at `/terms/`; the submission URL is not verified until this change is deployed and the page is checked publicly.
+- Current source reviewed here does not include Google Analytics or AdSense scripts; older About-page claims to the contrary have been removed. Verify production delivery again before submission.
 - Website source and public GitHub support page were inspected. The final saved portal listing still needs inspection.
-- No terms-of-service page identified in the inspected tree. Exact published URL and terms decisions are needed.
+- Operator confirmation is still needed for the precise privacy contact route, account/data deletion handling, provider log practices, and final terms wording. Exact verified developer identity remains unconfirmed.
 - No demo has been recorded, uploaded, or verified.
 - No public portal draft uploaded, no review requested, no release published.
 
 ## Next preparation steps
 
 1. Supply the exact individual name to use with developer verification.
-2. Confirm published privacy and terms URLs. Confirm actual logging/retention, sharing, deletion and support practices before revising any policy text. Do not infer hosting log practices from read-only behavior.
+2. Review and confirm the local privacy and terms drafts, including the X contact route and account deletion handling. Deploy them, then verify both public URLs and the production policy content. Provider log retention remains outside the operator's verified view.
 3. Merge/deploy the annotation fix, then verify live tools/list and run the review cases against the connected development plugin.
 4. Rehearse and record the real ChatGPT interactions below; use a reviewer-accessible recording URL. Add that URL to extensions.com.openai.review.demo_recording_url.
 5. Complete missing manifest listing values, rebuild and inspect the ZIP.

@@ -339,20 +339,79 @@ function renderHomeMarkdown(publicDir: string): string {
 function renderPrivacyMarkdown(): string {
   return renderMarkdownPage({
     title: 'プライバシーポリシー | o-sumo',
-    description: '縦綱 / o-sumo の MCP サーバーと本サイトは読み取り専用で、ログインは不要です。個人情報は収集しません。',
+    description: 'ウェブサイトと MCP サーバーで扱う情報、任意の Google ログイン、保存と削除について説明します。',
     canonical: `${SITE}/privacy/`,
     body: [
-      '縦綱 / o-sumo の MCP サーバー（https://osada.us/mcp）と本サイト（https://osada.us）は、読み取り専用です。ログインは不要です。個人情報は収集しません。',
+      'このポリシーは、https://osada.us と https://osada.us/mcp に適用されます。MCP サーバーはアカウント不要の読み取り専用です。',
       '',
-      'ホスティングおよび CDN（Cloudflare）は、運用とセキュリティのため、標準的なアクセスログを保持する場合があります。',
+      '## 取り扱う情報',
       '',
-      '掲載しているデータは、公開されている大相撲の情報です。',
+      'MCP リクエストには検索語や日付が含まれ、公開相撲データを返すために処理されます。MCP のアカウントやユーザー履歴は作成しません。',
+      'ChatGPT などの AI クライアント経由で使う場合、会話とクライアント側アカウント情報はその提供者が取り扱い、o-sumo には MCP 呼び出しに必要な入力が送られます。',
+      'ウェブサイトでは、未ログイン時に保存した力士 ID や表示設定をブラウザーに保存する場合があります。任意の Google ログインでは、一意の Google アカウント識別子と表示名をログイン・同期のために保存します。メールアドレス、パスワード、OAuth アクセストークンは保存しません。同期を有効にすると選択した力士 ID も保存します。',
       '',
-      '連絡先: [https://github.com/dai/o-sumo/issues](https://github.com/dai/o-sumo/issues)',
+      '## Cookie、ログ、外部サービス',
+      '',
+      'Google ログインでは一時的な確認 Cookie とセッション Cookie を使用します。セッションの既定期間は 30 日ですが、運用設定によって異なる場合があります。Cloudflare などのホスティング事業者はリクエストや運用情報を処理する場合がありますが、運営者が確認できないログの保持期間は約束しません。',
+      '確認したソースと配信設定では Google Analytics と Google AdSense のスクリプトは現在組み込まれていません。Google Fonts への接続時には通常のリクエスト情報が Google に送信されることがあります。',
+      '',
+      '## 保存期間と削除',
+      '',
+      'ブラウザー内の情報はブラウザー設定から削除できます。アカウント削除画面はありません。アカウント情報や同期データの削除は運営者へ依頼してください。ログアウトだけでは削除されません。期限切れセッション記録や事業者ログの削除時期は現行実装では定められていません。',
+      '',
+      '## お問い合わせ',
+      '',
+      '個人情報を GitHub の公開 Issue に投稿せず、[X のダイレクトメッセージ](https://x.com/daisuke)でご連絡ください。最終更新日：2026年11月9日。',
+      '',
+      '提供事業者の方針: [Google](https://policies.google.com/privacy) / [Cloudflare](https://www.cloudflare.com/privacypolicy/)',
       '',
       '## English',
       '',
-      'The 縦綱 / o-sumo MCP server (https://osada.us/mcp) and this site (https://osada.us) are read-only. They need no login and collect no personal information. Hosting and the CDN (Cloudflare) may keep standard access logs for operation and security. The data is public Grand Sumo (大相撲) information. Contact: [https://github.com/dai/o-sumo/issues](https://github.com/dai/o-sumo/issues).',
+      'This policy covers https://osada.us and https://osada.us/mcp. The MCP server is read-only and requires no account. MCP requests include inputs such as search terms and dates; they are processed to return public sumo data. No MCP accounts or query histories are created.',
+      'When you use the server through an AI client such as ChatGPT, that provider handles the conversation and its account information. o-sumo receives the inputs needed for MCP tool calls.',
+      'The website may store saved wrestler IDs and display preferences in your browser. Optional Google sign-in stores a unique Google account identifier and display name for sign-in and synchronization. We do not store email addresses, passwords, or OAuth access tokens. Synchronized accounts also store selected wrestler IDs.',
+      'Google sign-in uses temporary verification and session cookies. The default session duration is 30 days, but configuration may change it. Hosting providers such as Cloudflare may process request and operational information; the operator cannot promise a retention period for logs that the operator cannot inspect. Google Analytics and AdSense scripts are not currently included in the source and delivery configuration reviewed. Google Fonts may receive ordinary request information when a font is loaded.',
+      'Browser-stored information can be removed through browser settings. There is no self-service account deletion screen; contact the operator to request deletion of account and synchronized data. Signing out does not delete them. The current implementation does not specify when expired session records or provider logs are deleted.',
+      'For privacy requests, contact the operator by [direct message on X](https://x.com/daisuke). Do not post personal information in a public GitHub issue. Last updated: November 9, 2026.',
+      'Provider policies: [Google](https://policies.google.com/privacy) / [Cloudflare](https://www.cloudflare.com/privacypolicy/).',
+    ].join('\n'),
+  });
+}
+
+function renderTermsMarkdown(): string {
+  return renderMarkdownPage({
+    title: '利用規約 | o-sumo',
+    description: '縦綱 / o-sumo のウェブサイトと MCP サーバーの利用条件。',
+    canonical: `${SITE}/terms/`,
+    body: [
+      '## 適用範囲',
+      '',
+      'この規約は https://osada.us と https://osada.us/mcp に適用されます。利用者は本サービスを利用することでこの規約に同意します。',
+      '',
+      '## サービスと利用上のルール',
+      '',
+      '本サービスは大相撲に関する公開情報の検索・閲覧を提供します。MCP サーバーは読み取り専用で、予約、購入、支払い、プロフィール変更、アカウント操作は行いません。任意の Google ログインで「マイ力士」を同期できます。',
+      '法令を守り、サービスの安全や運営を妨げたり、不正アクセスや過度な負荷を生じさせたりしないでください。自動アクセスは公開された条件と技術的制限に従ってください。',
+      '',
+      '## 情報と外部サービス',
+      '',
+      '公開情報を編集して提供していますが、完全性・正確性・最新性を保証しません。公式情報は日本相撲協会などの公式発表を参照してください。本サービスは日本相撲協会の公式サービスではありません。Google ログインやホスティング事業者の障害や変更により機能が使えない場合があります。',
+      '',
+      '## 変更、停止、免責',
+      '',
+      '保守、安全確保、法令対応、データ供給元や外部サービスの変更のため、サービスを変更または停止することがあります。法令で認められる範囲で、本サービスは現状有姿で提供されます。運営者は、法令上除外できない責任を除き、中断、誤り、欠落、利用による損害について責任を負いません。',
+      '',
+      '## 規約の変更と連絡先',
+      '',
+      '改定内容はこのページに掲載します。規約への質問は [X のダイレクトメッセージ](https://x.com/daisuke) でご連絡ください。',
+      '',
+      '## English: Terms of Service',
+      '',
+      'These terms apply to https://osada.us and https://osada.us/mcp. By using the services, you agree to these terms. The services let you search and view public Grand Sumo information. The MCP server is read-only and does not make reservations or purchases, process payments, change profiles, or perform account operations. Optional Google sign-in can synchronize your My Rikishi list.',
+      'Comply with applicable laws. Do not disrupt service operation or security, attempt unauthorized access, or create excessive load. Automated access must follow published conditions and technical limits.',
+      'Information is compiled from public sources, but completeness, accuracy, and timeliness are not guaranteed. Consult official announcements for authoritative information. These services are not affiliated with or operated by the Japan Sumo Association. Third-party outages or changes may affect availability.',
+      'The operator may change or suspend the services for maintenance, security, legal compliance, or changes to data sources or third-party services. To the extent permitted by applicable law, the services are provided “as is.” The operator is not liable for interruptions, errors, missing data, or losses arising from use, except for liability that cannot lawfully be excluded.',
+      'Revisions will be posted here. For questions, contact the operator by [direct message on X](https://x.com/daisuke).',
     ].join('\n'),
   });
 }
@@ -360,7 +419,7 @@ function renderPrivacyMarkdown(): string {
 function renderAboutMarkdown(): string {
   return renderMarkdownPage({
     title: '当サイトについて・プライバシーポリシー | o-sumo',
-    description: 'o-sumoのサイト概要、データ出典、免責事項、プライバシーポリシー、広告配信、運営者情報について。',
+    description: 'o-sumoのサイト概要、データ出典、免責事項、プライバシーポリシー、利用規約、運営者情報について。',
     canonical: `${SITE}/about/`,
     body: [
       '## 当サイト（o-sumo）について',
@@ -372,10 +431,10 @@ function renderAboutMarkdown(): string {
       '当サイトに掲載されている大相撲のデータは、公益財団法人日本相撲協会の公式発表情報等を参考に個人で集約・分析して提供しています。',
       '当サイトは個人が開発・運営する非公式ファンサイトであり、公益財団法人日本相撲協会とは一切関係ありません。',
       '',
-      '## プライバシーポリシー・広告配信（Google AdSense）について',
+      '## プライバシーポリシーと利用規約',
       '',
-      '当サイトでは、第三者配信事業者であるGoogleによる広告配信サービス「Google AdSense」を利用しています。Googleなどの第三者配信事業者は、Cookieを使用して、ユーザーが当サイトや他のウェブサイトに過去にアクセスした際の情報に基づいて広告を配信します。',
-      'ユーザーは、Googleの広告設定（ https://adssettings.google.com/ ）でパーソナライズ広告を無効にできます。',
+      '- [プライバシーポリシー](https://osada.us/privacy/): Google ログイン、ブラウザー保存、アクセスログ、削除依頼について',
+      '- [利用規約](https://osada.us/terms/): ウェブサイトと MCP サーバーの利用条件',
       '',
       '## 運営者情報',
       '',
@@ -432,6 +491,10 @@ export function buildMarkdownPages(publicDir: string, _outRoot: string): Markdow
     outDir: 'privacy/',
     content: renderPrivacyMarkdown(),
   });
+  routes.push({
+    outDir: 'terms/',
+    content: renderTermsMarkdown(),
+  });
 
   // Iterate over the supported basho set.
   for (const { monthKey } of getAllArchiveRouteConfigs()) {
@@ -483,6 +546,7 @@ export const MARKDOWN_ROUTES: ReadonlyArray<string> = [
   'analytics/',
   'about/',
   'privacy/',
+  'terms/',
   ...getAllArchiveRouteConfigs().flatMap(({ monthKey }) => [
     `${monthKey}-banzuke/`,
     `${monthKey}-torikumi/`,

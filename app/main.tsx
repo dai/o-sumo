@@ -33,6 +33,7 @@ const KimaritePage = React.lazy(() => import('./kimarite/page'))
 const AnalyticsDashboardPage = React.lazy(() => import('./analytics/page'))
 const AboutPage = React.lazy(() => import('./about/page'))
 const PrivacyPage = React.lazy(() => import('./privacy/page'))
+const TermsPage = React.lazy(() => import('./terms/page'))
 const NotFoundPage = React.lazy(() => import('./NotFoundPage'))
 const OfficialListPage = React.lazy(async () => {
   const module = await import('./officials/page')
@@ -107,6 +108,8 @@ function AppShell() {
               <Route path="/about" element={<HashPreservingRedirect to="/about/" />} />
               <Route path="/privacy/" element={<PrivacyPage />} />
               <Route path="/privacy" element={<HashPreservingRedirect to="/privacy/" />} />
+              <Route path="/terms/" element={<TermsPage />} />
+              <Route path="/terms" element={<HashPreservingRedirect to="/terms/" />} />
               <Route
                 path="/rikishi/:id"
                 element={(
