@@ -1171,7 +1171,11 @@ export default function CompareRikishiPage() {
 
             {/* Status Messages */}
             {!requestKey ? (
-              <p className="rikishi-status" role="status" aria-live="polite">{t('comparison.needMore')}</p>
+              <div className="rikishi-status compare-empty-state" role="status" aria-live="polite">
+                <p>{t('comparison.needMore')}</p>
+                <p>{t('comparison.emptyStateHint')}</p>
+                <a className="archive-link" href="#compare-rikishi-1">{t('comparison.emptyStateAction')}</a>
+              </div>
             ) : null}
             {requestKey && (!currentComparison || currentComparison.profileStatus === 'loading' || currentComparison.matchupStatus === 'loading') ? (
               <p className="rikishi-status" role="status" aria-live="polite">{t('comparison.loading')}</p>

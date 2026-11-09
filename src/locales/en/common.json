@@ -513,7 +513,9 @@
     "standoffAriaLabel": "{{nameA}} last {{countA}} bouts, {{winsA}} wins; {{nameB}} last {{countB}} bouts, {{winsB}} wins",
     "heya": "Stable",
     "age": "Birth date & Age",
-    "careerWinRate": "Career Win Rate"
+    "careerWinRate": "Career Win Rate",
+    "emptyStateHint": "Choose one rikishi in each field, or select a featured matchup to compare right away.",
+    "emptyStateAction": "Choose rikishi"
   },
   "sharing": {
     "copyLink": "Copy share link",
