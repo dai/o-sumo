@@ -61,6 +61,11 @@ class DeliveryTests(unittest.TestCase):
         self.assertEqual(result["ci"]["status"], "missing")
         self.assertEqual(elapsed, 5)
 
+    def test_ci_success_with_pages_never_reported_is_not_fatal(self):
+        result, elapsed, _ = self.run_monitor([], [record("Test")])
+        self.assertEqual(result["overall"], "pages_not_reported")
+        self.assertEqual(elapsed, 5)
+
     def test_missing_checks_timeout_is_bounded(self):
         result, elapsed, calls = self.run_monitor([], [])
         self.assertEqual(result["overall"], "timeout")
