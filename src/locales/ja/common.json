@@ -515,7 +515,8 @@
     "age": "生年月日・年齢",
     "careerWinRate": "通算勝率",
     "emptyStateHint": "入力欄から力士を1人ずつ選べます。注目対戦の例を選ぶと、すぐに比較を表示します。",
-    "emptyStateAction": "力士を選ぶ"
+    "emptyStateAction": "力士を選ぶ",
+    "aikuchiLegend": "左右の数字はそれぞれの勝ち数、中央は合計対戦数です。勝率は対戦数に占める勝ち数の割合です。色にかかわらず、数値で比較できます。"
   },
   "sharing": {
     "copyLink": "共有リンクをコピー",

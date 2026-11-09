@@ -2033,3 +2033,12 @@
   font-size: 0.88rem;
   line-height: 1.55;
 }
+
+
+.compare-aikuchi__legend {
+  margin: 0.75rem 0 0;
+  color: var(--on-surface-variant, #5e5f5b);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  text-align: center;
+}

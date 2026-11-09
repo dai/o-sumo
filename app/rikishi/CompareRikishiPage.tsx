@@ -486,6 +486,7 @@ function AikuchiScoreboard({
           />
         </div>
       ) : null}
+      <p className="compare-aikuchi__legend">{t('comparison.aikuchiLegend')}</p>
     </section>
   );
 }

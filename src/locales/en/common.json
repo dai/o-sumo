@@ -515,7 +515,8 @@
     "age": "Birth date & Age",
     "careerWinRate": "Career Win Rate",
     "emptyStateHint": "Choose one rikishi in each field, or select a featured matchup to compare right away.",
-    "emptyStateAction": "Choose rikishi"
+    "emptyStateAction": "Choose rikishi",
+    "aikuchiLegend": "The side numbers are each wrestler’s wins; the center shows total bouts. Win rate is wins divided by total bouts. The numbers remain readable without relying on color."
   },
   "sharing": {
     "copyLink": "Copy share link",
