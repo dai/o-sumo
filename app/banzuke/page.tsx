@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigationType } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import BanzukeTable, { BanzukeLeaderboard } from '../components/BanzukeTable';
 import SortToggle from '../components/SortToggle';
@@ -85,6 +85,25 @@ export default function BanzukePage() {
   const { t, i18n } = useTranslation('common');
   const { isSaved } = useMyRikishi();
   const { query, searchParams, setSearchParams, queryInputProps } = useDirectorySearchQuery();
+  const location = useLocation();
+  const navigationType = useNavigationType();
+
+  React.useEffect(() => {
+    const key = `o-sumo:banzuke-scroll:${location.pathname}`;
+    if (navigationType === 'POP') {
+      try {
+        const saved = JSON.parse(sessionStorage.getItem(key) ?? 'null') as { y?: number; at?: number } | null;
+        if (saved && typeof saved.y === 'number' && Date.now() - (saved.at ?? 0) < 5 * 60 * 1000) {
+          requestAnimationFrame(() => window.scrollTo({ top: saved.y, behavior: 'auto' }));
+          sessionStorage.removeItem(key);
+        }
+      } catch { /* Best-effort when session storage is unavailable. */ }
+    }
+    return () => {
+      try { sessionStorage.setItem(key, JSON.stringify({ y: window.scrollY, at: Date.now() })); }
+      catch { /* Ignore unavailable or full session storage. */ }
+    };
+  }, [location.pathname, navigationType]);
   const sortOrder: SortOrder = searchParams.get('sort') === 'desc' ? 'desc' : 'asc';
   const viewMode: 'banzuke' | 'leaderboard' = searchParams.get('view') === 'leaderboard' ? 'leaderboard' : 'banzuke';
   const myRikishiOnly = searchParams.get('my') === '1';
