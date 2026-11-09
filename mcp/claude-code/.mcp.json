@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "o-sumo": {
+      "type": "http",
+      "url": "https://osada.us/mcp"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "o-sumo",
+  "displayName": "o-sumo",
+  "description": "番付・取組・力士プロフィールを osada.us の読み取り専用 MCP サーバーから検索します。認証・API キーは不要です。",
+  "version": "1.0.0",
+  "author": {
+    "name": "osada.us",
+    "url": "https://osada.us"
+  },
+  "homepage": "https://osada.us",
+  "repository": "https://github.com/dai/o-sumo",
+  "license": "MIT",
+  "keywords": ["sumo", "banzuke", "rikishi", "torikumi", "mcp"],
+  "icon": "./assets/logo-512.png",
+  "documentationUrl": "https://osada.us/agents/",
+  "supportUrl": "https://github.com/dai/o-sumo/issues",
+  "privacyPolicyUrl": "https://osada.us/privacy/"
+}
