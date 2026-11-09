@@ -2,8 +2,8 @@
   "bashoId": 638,
   "bashoName": "十一月場所",
   "year": "令和八年",
-  "updatedAt": "2026-11-09T17:44:52+09:00",
-  "resultUpdatedAt": "2026-11-09T17:44:52+09:00",
+  "updatedAt": "2026-11-09T17:51:24+09:00",
+  "resultUpdatedAt": "2026-11-09T17:51:24+09:00",
   "scheduleUpdatedAt": "2026-11-09T17:05:53+09:00",
   "today": {
     "makuuchi": {
@@ -329,8 +329,8 @@
           "westEnglish": "",
           "westRank": "前頭筆頭",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/",
-          "kimarite": "",
-          "winner": null
+          "kimarite": "寄り切り",
+          "winner": "east"
         },
         {
           "division": "幕内",
@@ -2099,8 +2099,8 @@
               "westEnglish": "",
               "westRank": "前頭筆頭",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4336/",
-              "kimarite": "",
-              "winner": null
+              "kimarite": "寄り切り",
+              "winner": "east"
             },
             {
               "division": "幕内",
