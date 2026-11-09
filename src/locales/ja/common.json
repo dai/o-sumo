@@ -370,7 +370,9 @@
       "footerHome": "ホーム",
       "footerBanzuke": "番付一覧",
       "footerDaisuke": "Daisuke on X",
-      "footerGithub": "GitHub"
+      "footerGithub": "GitHub",
+      "lastUpdated": "最終更新: {{date}}",
+      "scheduleSource": "取組予定は日本相撲協会の発表をもとに更新しています。"
     },
     "day": {
       "modeResult": " 取組結果",
@@ -428,7 +430,9 @@
       "shareMatchup": "{{name}} − {{opponent}}",
       "shareMore": "…ほか{{count}}番",
       "shareHashtags": "#大相撲 #{{basho}} #o_sumo",
-      "noMyRikishiMatchesInDivision": "{{division}}にマイ力士の出場はありません。"
+      "noMyRikishiMatchesInDivision": "{{division}}にマイ力士の出場はありません。",
+      "lastUpdated": "最終更新: {{date}}",
+      "scheduleSource": "取組予定は日本相撲協会の発表をもとに更新しています。"
     }
   },
   "comparison": {

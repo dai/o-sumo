@@ -656,5 +656,14 @@ describe('TorikumiDayPage', () => {
       vi.unstubAllGlobals();
     }
   }, 15000);
+  it('shows the schedule update timestamp and data source', () => {
+    const scheduleDay = torikumiArchive.scheduleDays[0];
+
+    renderPage(scheduleDay, 'schedule');
+
+    expect(screen.getByText(`最終更新: ${formatUpdatedAt(torikumiArchive.scheduleUpdatedAt)}`)).toBeInTheDocument();
+    expect(screen.getByText('取組予定は日本相撲協会の発表をもとに更新しています。')).toBeInTheDocument();
+  });
+
 });
 
