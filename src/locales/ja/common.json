@@ -509,7 +509,9 @@
     "standoffAriaLabel": "{{nameA}} 直近 {{countA}} 番 {{winsA}} 勝、{{nameB}} 直近 {{countB}} 番 {{winsB}} 勝",
     "heya": "所属部屋",
     "age": "生年月日・年齢",
-    "careerWinRate": "通算勝率"
+    "careerWinRate": "通算勝率",
+    "emptyStateHint": "入力欄から力士を1人ずつ選べます。注目対戦の例を選ぶと、すぐに比較を表示します。",
+    "emptyStateAction": "力士を選ぶ"
   },
   "sharing": {
     "copyLink": "共有リンクをコピー",
