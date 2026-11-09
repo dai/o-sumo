@@ -1,0 +1,61 @@
+name: Plugin validate
+
+# Guards the Claude Code marketplace (`.claude-plugin/marketplace.json`) and the
+# o-sumo plugin (`mcp/claude-code`). Runs on pull_request so fork PRs only ever
+# read the repository; no secrets are used.
+on:
+  pull_request:
+    paths:
+      - '.claude-plugin/**'
+      - 'mcp/claude-code/**'
+      - 'scripts/check-claude-plugin.mjs'
+      - 'package.json'
+      - '.github/workflows/plugin-validate.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - '.claude-plugin/**'
+      - 'mcp/claude-code/**'
+      - 'scripts/check-claude-plugin.mjs'
+      - 'package.json'
+      - '.github/workflows/plugin-validate.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      # Repository-level checks: entry/manifest naming, remote MCP shape,
+      # README/license requirements, and directory size limits.
+      - name: Check plugin guard
+        run: node scripts/check-claude-plugin.mjs
+
+      # Schema validation with the same CLI users run locally. Pinned so a new
+      # release cannot change validation results without a commit here.
+      - name: Install Claude Code
+        run: npm install --global @anthropic-ai/claude-code@2.1.319
+
+      - name: Validate plugin
+        run: claude plugin validate ./mcp/claude-code
+
+      - name: Validate marketplace
+        run: claude plugin validate .

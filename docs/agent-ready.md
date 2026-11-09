@@ -116,6 +116,7 @@ Stateless, read-only MCP server running on Cloudflare Pages Functions (`@modelco
   3. `get_banzuke` — get official banzuke rankings (makuuchi and juryo) for current or historical basho.
   4. `get_torikumi` — get daily match results or schedule by YYYYMMDD date.
   5. `list_basho` — list current and archived basho available in o-sumo.
+- **Claude Code**: install the plugin with `claude plugin marketplace add dai/o-sumo` and `claude plugin install o-sumo@osada`. See [the plugin README](../mcp/claude-code/README.md).
 
 ### 2. Semantic AI Search Server (`https://ask.osada.us/mcp`)
 

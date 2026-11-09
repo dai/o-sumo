@@ -15,6 +15,7 @@
     "verify:delivery-flow": "pwsh ./scripts/verify_delivery_flow.ps1",
     "blog:generate": "tsx scripts/build_blog.ts",
     "blog:build": "tsx scripts/build_blog.ts",
+    "plugin:check": "node scripts/check-claude-plugin.mjs",
     "test:e2e": "playwright test"
   },
   "repository": {

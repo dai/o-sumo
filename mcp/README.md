@@ -10,6 +10,7 @@
 | --- | --- |
 | Google Antigravity | [配布ZIPからプラグインを導入](./agy/README.md#日本語) |
 | Claude | [カスタムコネクターとして登録](./claude/README.md#日本語) |
+| Claude Code | [プラグインマーケットプレイスから導入](./claude-code/README.md#日本語) |
 | ChatGPT | [カスタムMCPサーバーを登録できる条件と手順](./chatgpt/README.md#日本語) |
 | Grok | [カスタムコネクターとして登録](./grok/README.md#日本語) |
 | Meta Muse | [開発・提出用の設定例](./muse/README.md#日本語) |
@@ -24,6 +25,7 @@ To look up banzuke, bouts, and rikishi, add `https://osada.us/mcp` to a client t
 | --- | --- |
 | Google Antigravity | [Install the plugin from the ZIP](./agy/README.md#english) |
 | Claude | [Add a custom connector](./claude/README.md#english) |
+| Claude Code | [Install from the plugin marketplace](./claude-code/README.md#english) |
 | ChatGPT | [Check access and add a custom MCP server](./chatgpt/README.md#english) |
 | Grok | [Add a custom connector](./grok/README.md#english) |
 | Meta Muse | [Developer and submission example](./muse/README.md#english) |
