@@ -1,5 +1,6 @@
 import { McpServer } from '@modelcontextprotocol/server';
 import { z } from 'zod';
+import { MCP_SERVER_DESCRIPTION, MCP_SERVER_TITLE, MCP_SERVER_VERSION } from './server-card';
 import { searchRikishi, getRikishiProfile, getBanzuke, getTorikumi, listBasho } from './tools';
 
 export interface SumoServerContext {
@@ -31,9 +32,9 @@ const READ_ONLY_TOOL_ANNOTATIONS = {
 export function createSumoMcpServer(ctx: SumoServerContext): McpServer {
   const server = new McpServer({
     name: 'us.osada/o-sumo',
-    version: '1.0.0',
-    title: 'o-sumo (大相撲アーカイブ)',
-    description: 'Grand Sumo banzuke, torikumi results, and rikishi profile data.',
+    version: MCP_SERVER_VERSION,
+    title: MCP_SERVER_TITLE,
+    description: MCP_SERVER_DESCRIPTION,
   });
 
   const fetcher = createDataFetcher(ctx);

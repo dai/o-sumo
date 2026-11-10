@@ -1,6 +1,6 @@
 {
   "name": "o-sumo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "大相撲、 All about the OO-SUMO.",
   "scripts": {
     "dev": "vite dev --port 3001",
