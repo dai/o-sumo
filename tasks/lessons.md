@@ -1,5 +1,12 @@
 # Lessons
 
+## 2026-11-10 Cloudflare Pages は遅れて完成した古いビルドでも本番に昇格させる
+
+- PR #727 のマージコミット 348f47e の本番ビルドが約 3 時間遅れて完成し、より新しいコミットのビルドを押しのけて本番になった。データは main に揃っていたのに、本番は 16:43 JST のデータへ巻き戻った。
+- 本番デプロイ一覧の先頭は「最新コミット」ではなく「最後に作られたデプロイ」。`wrangler pages deployment list --environment production` の Source 列が main 先頭と一致しているかで確認する。
+- `Cloudflare Pages: o-sumo` チェックの success はそのコミットのビルド成功を示すだけで、本番がそのビルドを配信している保証にはならない。公開確認は `osada.us/api/v1/torikumi.json` の `updatedAt` と main のファイル値の比較で行う。
+- 復旧は main への新しい push（空コミットでよい）で新しい本番ビルドを作らせれば足りる。
+
 ## 2026-10-25 PWAの案内ページはService Worker経由でも確認する
 
 - サーバーが静的HTMLを200で返しても、インストール済みPWAのService WorkerがナビゲーションをSPAのトップHTMLに差し替えると、クライアント側では404になる。
