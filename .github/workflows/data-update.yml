@@ -35,7 +35,7 @@ jobs:
           EVENT_SCHEDULE: ${{ inputs.event_schedule }}
         run: python -m scripts.ci.run_data_update --scope "$UPDATE_SCOPE" --event-schedule "$EVENT_SCHEDULE"
       - name: Notify failure
-        if: failure()
+        if: failure() && secrets.DISCORD_WEBHOOK_URL != ''
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
@@ -69,7 +69,7 @@ jobs:
         if: needs.publish.outputs.pushed != 'true'
         run: python -m scripts.ci.check_data_delivery --production-only --production-url "$PRODUCTION_URL" --timeout-seconds 300
       - name: Notify failure
-        if: failure()
+        if: failure() && secrets.DISCORD_WEBHOOK_URL != ''
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
