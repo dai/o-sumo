@@ -149,6 +149,8 @@ describe('PrimaryNavigation', () => {
     // 非名鑑ページ（取組予定）でもログインリンクが表示される
     const { unmount } = renderNavigation('/202603-yotei/');
     expect(await screen.findByRole('link', { name: 'Google でログイン' })).toBeInTheDocument();
+    expect(screen.queryByText('ログインしなくても、この端末には保存できます。')).not.toBeInTheDocument();
+    expect(screen.queryByText('※ パスワード入力は不要です')).not.toBeInTheDocument();
     unmount();
 
     // 名鑑ページでもログインリンクが表示される

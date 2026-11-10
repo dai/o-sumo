@@ -32,7 +32,8 @@ export default function ThemeToggle() {
     setTheme(updatedTheme)
   }
 
-  const ariaLabel = isDark ? t('themeToggle.ariaLabelDark') : t('themeToggle.ariaLabelLight')
+  const visibleLabel = isDark ? 'DARK' : 'LIGHT'
+  const ariaLabel = `${visibleLabel} ${isDark ? t('themeToggle.ariaLabelDark') : t('themeToggle.ariaLabelLight')}`
 
   return (
     <button
@@ -46,7 +47,7 @@ export default function ThemeToggle() {
       <span className="theme-toggle-track" aria-hidden="true">
         <span className="theme-toggle-thumb" />
       </span>
-      <span className="theme-toggle-label">{isDark ? 'DARK' : 'LIGHT'}</span>
+      <span className="theme-toggle-label">{visibleLabel}</span>
     </button>
   )
 }

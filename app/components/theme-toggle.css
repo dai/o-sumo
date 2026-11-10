@@ -126,12 +126,8 @@
 }
 
 .language-toggle-btn.is-active {
-  background: var(--color-primary-container);
+  background: var(--color-primary);
   color: var(--color-on-primary);
-}
-
-[data-theme='dark'] .language-toggle-btn.is-active {
-  color: var(--color-primary);
 }
 
 [data-theme='dark'] .theme-toggle {

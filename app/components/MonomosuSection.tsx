@@ -104,7 +104,7 @@ export default function MonomosuSection({
             className={`monomosu-zabuton-btn ${isThrowing ? 'is-throwing' : ''}`}
             onClick={handleThrowZabuton}
             title={t('highlights.zabutonAction')}
-            aria-label={`${t('highlights.zabutonDeviceAction')} (${zabutonCount})`}
+            aria-label={`${t('highlights.zabutonDeviceCount', { count: zabutonCount })} ${t('highlights.zabutonDeviceAction')} (${zabutonCount})`}
           >
             <span className="monomosu-zabuton-label">
               {t('highlights.zabutonDeviceCount', { count: zabutonCount })}

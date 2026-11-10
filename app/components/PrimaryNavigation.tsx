@@ -149,7 +149,7 @@ export default function PrimaryNavigation({ placement = 'header' }: PrimaryNavig
           </nav>
         </div>
       ) : null}
-      <AuthControls />
+      <AuthControls variant="compact" />
     </div>
   );
 }

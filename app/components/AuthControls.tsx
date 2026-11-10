@@ -4,11 +4,17 @@ import { useAuthSession } from '../lib/auth-session';
 import { useMyRikishi } from '../lib/my-rikishi';
 import './auth-controls.css';
 
-export default function AuthControls({ returnTo }: { returnTo?: string } = {}) {
+type AuthControlsProps = {
+  returnTo?: string;
+  variant?: 'default' | 'compact';
+};
+
+export default function AuthControls({ returnTo, variant = 'default' }: AuthControlsProps = {}) {
   const location = useLocation();
   const { t } = useTranslation('common');
   const { status, user, logout } = useAuthSession();
   const { syncing, syncError } = useMyRikishi();
+  const compact = variant === 'compact';
 
   const currentPath = `${location.pathname}${location.search}${location.hash}`;
   const effectiveReturnTo = returnTo ?? (currentPath || '/');
@@ -20,18 +26,18 @@ export default function AuthControls({ returnTo }: { returnTo?: string } = {}) {
 
   if (status !== 'authenticated' || !user) {
     return (
-      <div className="auth-controls">
+      <div className={`auth-controls${compact ? ' auth-controls--compact' : ''}`}>
         <a className="auth-controls__action" href={signInHref}>
           {t('myRikishi.auth.signIn')}
         </a>
-        <span className="auth-controls__status">{t('myRikishi.auth.localOnly')}</span>
-        <p className="auth-controls__hint">{t('myRikishi.auth.passwordHint')}</p>
+        {compact ? null : <span className="auth-controls__status">{t('myRikishi.auth.localOnly')}</span>}
+        {compact ? null : <p className="auth-controls__hint">{t('myRikishi.auth.passwordHint')}</p>}
       </div>
     );
   }
 
   return (
-    <div className="auth-controls">
+    <div className={`auth-controls${compact ? ' auth-controls--compact' : ''}`}>
       <span className="auth-controls__account">{user.displayName}</span>
       <button className="auth-controls__action" type="button" onClick={() => void logout()}>
         {t('myRikishi.auth.signOut')}

@@ -27,10 +27,10 @@ export default function LanguageToggle() {
           className={`language-toggle-btn${resolvedLang === lang ? ' is-active' : ''}`}
           onClick={() => handleSwitch(lang)}
           aria-pressed={resolvedLang === lang}
-          aria-label={t('languageToggle.optionLabel', {
+          aria-label={`${LANG_CODES[lang]} ${t('languageToggle.optionLabel', {
             language: LANG_NAMES[lang],
             state: t(resolvedLang === lang ? 'languageToggle.selected' : 'languageToggle.notSelected'),
-          })}
+          })}`}
           title={LANG_NAMES[lang]}
         >
           {LANG_CODES[lang]}
