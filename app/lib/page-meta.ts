@@ -1,4 +1,5 @@
 import { formatBashoTitle } from './basho-meta';
+import { formatDayHead } from './relative-date';
 import { normalizeCanonicalPath, SITE_ORIGIN, toCanonicalUrl } from './site-url';
 import { findArchiveDay, getArchiveRouteConfigByMonthKey, type ArchiveRouteConfig } from './torikumi-routes';
 
@@ -353,7 +354,7 @@ function classifyPage(pathname: string, meta: PageMeta): { crumbs: Crumb[]; enti
       crumbs: [
         HOME_CRUMB,
         { name: bashoCrumbTitle(config), path: mode === 'result' ? config.resultPath : config.schedulePath },
-        { name: archiveDay.dayHead },
+        { name: formatDayHead(archiveDay.dayHead, 'ja') },
       ],
       entity: { type: 'sports-event', isoDate: archiveDay.isoDate, month },
     };

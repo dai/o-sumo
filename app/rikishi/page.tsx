@@ -35,7 +35,7 @@ function updateRikishiSearchParams(
 }
 
 export default function RikishiPage() {
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
   const { query, searchParams, setSearchParams, queryInputProps } = useDirectorySearchQuery();
   const [rikishi, setRikishi] = React.useState<RikishiIndexItem[]>([]);
   const [updatedAt, setUpdatedAt] = React.useState('');
@@ -97,7 +97,7 @@ export default function RikishiPage() {
         </div>
         {updatedAt ? (
           <div className="site-header-meta-row">
-            <p>{t('rikishi.updatedAt', { date: formatUpdatedAt(updatedAt) })}</p>
+            <p>{t('rikishi.updatedAt', { date: formatUpdatedAt(updatedAt, i18n.language) })}</p>
           </div>
         ) : null}
       </header>

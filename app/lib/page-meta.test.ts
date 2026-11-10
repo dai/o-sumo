@@ -176,7 +176,7 @@ describe('buildPageJsonLd', () => {
     expect(crumbNames(jsonLdFor('/20261109-torikumi/'))).toEqual([
       'ホーム',
       '令和八年十一月場所',
-      '二日目： 令和8年11月9日(月)',
+      '二日目： 2026年11月9日(月)',
     ]);
 
     const banzuke = nodesOfType(jsonLdFor('/202603-banzuke/'), 'BreadcrumbList')[0];

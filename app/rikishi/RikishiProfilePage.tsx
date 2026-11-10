@@ -65,7 +65,7 @@ function formatCareerRecord(profile: RikishiProfile): {
 
 export default function RikishiProfilePage() {
   const { id } = useParams<{ id: string }>();
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
   const [profile, setProfile] = React.useState<RikishiProfile | null>(null);
   const [sameRank, setSameRank] = React.useState<RikishiIndexItem[]>([]);
   const [status, setStatus] = React.useState<'loading' | 'ready' | 'not-found' | 'error'>('loading');
@@ -159,7 +159,7 @@ export default function RikishiProfilePage() {
         </div>
         {profile?.updatedAt ? (
           <div className="site-header-meta-row">
-            <p>{t('rikishi.updatedAt', { date: formatUpdatedAt(profile.updatedAt) })}</p>
+            <p>{t('rikishi.updatedAt', { date: formatUpdatedAt(profile.updatedAt, i18n.language) })}</p>
           </div>
         ) : null}
       </header>
@@ -295,7 +295,7 @@ export default function RikishiProfilePage() {
               {isLocalRikishiImagePath(profile.photoUrl) ? (
                 <p>{t('rikishi.imageSourceDescription')}</p>
               ) : null}
-              <p>{t('rikishi.updatedAt', { date: formatUpdatedAt(profile.updatedAt) })}</p>
+              <p>{t('rikishi.updatedAt', { date: formatUpdatedAt(profile.updatedAt, i18n.language) })}</p>
             </section>
           </article>
         ) : null}

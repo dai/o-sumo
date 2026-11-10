@@ -180,7 +180,7 @@ describe('Home page', () => {
 
     expect(getHomeQuickNavItems({ kind: 'upcoming', startDate: '2026-09-13', endDate: '2026-09-27', day: null }, paths, 'ja')).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ to: '/results/', labelKey: 'home.quickNavOpeningBout', subKey: 'home.quickNavOpeningBoutSub', date: '9月13日' }),
+        expect.objectContaining({ to: '/results/', labelKey: 'home.quickNavOpeningBout', subKey: 'home.quickNavOpeningBoutSub', date: '2026年9月13日' }),
         expect.objectContaining({ to: '/schedule/', labelKey: 'home.quickNavScheduleList' }),
       ]),
     );
@@ -195,7 +195,7 @@ describe('Home page', () => {
           to: '/schedule/',
           labelKey: 'home.quickNavOpeningBout',
           subKey: 'home.quickNavOpeningBoutPublishedSub',
-          date: '9月13日',
+          date: '2026年9月13日',
           relative: '明後日',
         }),
       ]),
@@ -215,7 +215,7 @@ describe('Home page', () => {
     expect(getHomeQuickNavItems({ kind: 'final', startDate: '2026-09-13', endDate: '2026-09-27', day: null }, paths, 'ja')).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ to: '/results/', labelKey: 'home.quickNavFinalResults' }),
-        expect.objectContaining({ to: '/schedule/', labelKey: 'home.quickNavPastSchedule', date: '9月27日' }),
+        expect.objectContaining({ to: '/schedule/', labelKey: 'home.quickNavPastSchedule', date: '2026年9月27日' }),
       ]),
     );
   });
@@ -561,7 +561,7 @@ describe('Home page', () => {
     // items collapses to a single pause note instead of a second empty frame.
     expect(screen.getAllByText('新しいニュースはありません')).toHaveLength(1);
     expect(
-      screen.getByText('ニュース取得を一時停止中・最終取得 2026-06-30 00:00'),
+      screen.getByText('ニュース取得を一時停止中・最終取得 2026年6月30日 00:00 JST'),
     ).toBeInTheDocument();
     expect(
       screen.queryByRole('heading', { level: 3, name: '相撲界ニュース' }),

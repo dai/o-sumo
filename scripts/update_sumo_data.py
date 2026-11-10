@@ -178,6 +178,9 @@ def normalize_day_head(raw: str) -> str:
 
 
 def extract_actual_date(day_head: str, fallback_year: int | None = None) -> date:
+    gregorian = re.search(r"(\d{4})年(\d{1,2})月(\d{1,2})日", day_head)
+    if gregorian:
+        return date(int(gregorian.group(1)), int(gregorian.group(2)), int(gregorian.group(3)))
     match = re.search(r"(?:令和(\d+)年)?(\d+)月(\d+)日", day_head)
     if not match:
         raise ValueError(f"日付抽出失敗: {day_head}")
@@ -263,14 +266,10 @@ def safe_int(raw: object, default: int) -> int:
         return default
 
 
-def reiwa_year_text(gregorian_year: int) -> str:
-    return f"令和{gregorian_year - 2018}年"
-
-
 def build_day_head(day: int, actual_date: date) -> str:
     return (
         f"{DAY_LABEL.get(day, f'{day}日目')}： "
-        f"{reiwa_year_text(actual_date.year)}{actual_date.month}月{actual_date.day}日"
+        f"{actual_date.year}年{actual_date.month}月{actual_date.day}日"
         f"({WEEKDAY_JA[actual_date.weekday()]})"
     )
 

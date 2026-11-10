@@ -10,7 +10,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
     "makuuchi": {
       "day": 1,
       "dayName": "取組日 初日",
-      "dayHead": "初日： 令和8年3月8日(日)",
+      "dayHead": "初日： 2026年3月8日(日)",
       "division": "幕内",
       "matches": [
         {
@@ -354,7 +354,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
     "juryo": {
       "day": 1,
       "dayName": "取組日 初日",
-      "dayHead": "初日： 令和8年3月8日(日)",
+      "dayHead": "初日： 2026年3月8日(日)",
       "division": "十両",
       "matches": [
         {
@@ -588,7 +588,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
     "makuuchi": {
       "day": 2,
       "dayName": "取組日 二日目",
-      "dayHead": "二日目： 令和8年3月9日(月)",
+      "dayHead": "二日目： 2026年3月9日(月)",
       "division": "幕内",
       "matches": [
         {
@@ -932,7 +932,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
     "juryo": {
       "day": 2,
       "dayName": "取組日 二日目",
-      "dayHead": "二日目： 令和8年3月9日(月)",
+      "dayHead": "二日目： 2026年3月9日(月)",
       "division": "十両",
       "matches": [
         {
@@ -1168,14 +1168,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-08",
       "pathDate": "20260308",
       "label": "初日",
-      "dayHead": "初日： 令和8年3月8日(日)",
+      "dayHead": "初日： 2026年3月8日(日)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 1,
           "dayName": "取組日 初日",
-          "dayHead": "初日： 令和8年3月8日(日)",
+          "dayHead": "初日： 2026年3月8日(日)",
           "division": "幕内",
           "matches": [
             {
@@ -1519,7 +1519,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 1,
           "dayName": "取組日 初日",
-          "dayHead": "初日： 令和8年3月8日(日)",
+          "dayHead": "初日： 2026年3月8日(日)",
           "division": "十両",
           "matches": [
             {
@@ -1755,14 +1755,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-09",
       "pathDate": "20260309",
       "label": "二日目",
-      "dayHead": "二日目： 令和8年3月9日(月)",
+      "dayHead": "二日目： 2026年3月9日(月)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 2,
           "dayName": "取組日 二日目",
-          "dayHead": "二日目： 令和8年3月9日(月)",
+          "dayHead": "二日目： 2026年3月9日(月)",
           "division": "幕内",
           "matches": [
             {
@@ -2106,7 +2106,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 2,
           "dayName": "取組日 二日目",
-          "dayHead": "二日目： 令和8年3月9日(月)",
+          "dayHead": "二日目： 2026年3月9日(月)",
           "division": "十両",
           "matches": [
             {
@@ -2342,14 +2342,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-10",
       "pathDate": "20260310",
       "label": "三日目",
-      "dayHead": "三日目： 令和8年3月10日(火)",
+      "dayHead": "三日目： 2026年3月10日(火)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 3,
           "dayName": "取組日 三日目",
-          "dayHead": "三日目： 令和8年3月10日(火)",
+          "dayHead": "三日目： 2026年3月10日(火)",
           "division": "幕内",
           "matches": [
             {
@@ -2677,7 +2677,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 3,
           "dayName": "取組日 三日目",
-          "dayHead": "三日目： 令和8年3月10日(火)",
+          "dayHead": "三日目： 2026年3月10日(火)",
           "division": "十両",
           "matches": [
             {
@@ -2913,14 +2913,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-11",
       "pathDate": "20260311",
       "label": "四日目",
-      "dayHead": "四日目： 令和8年3月11日(水)",
+      "dayHead": "四日目： 2026年3月11日(水)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 4,
           "dayName": "取組日 四日目",
-          "dayHead": "四日目： 令和8年3月11日(水)",
+          "dayHead": "四日目： 2026年3月11日(水)",
           "division": "幕内",
           "matches": [
             {
@@ -3232,7 +3232,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 4,
           "dayName": "取組日 四日目",
-          "dayHead": "四日目： 令和8年3月11日(水)",
+          "dayHead": "四日目： 2026年3月11日(水)",
           "division": "十両",
           "matches": [
             {
@@ -3468,14 +3468,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-12",
       "pathDate": "20260312",
       "label": "五日目",
-      "dayHead": "五日目： 令和8年3月12日(木)",
+      "dayHead": "五日目： 2026年3月12日(木)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 5,
           "dayName": "取組日 五日目",
-          "dayHead": "五日目： 令和8年3月12日(木)",
+          "dayHead": "五日目： 2026年3月12日(木)",
           "division": "幕内",
           "matches": [
             {
@@ -3787,7 +3787,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 5,
           "dayName": "取組日 五日目",
-          "dayHead": "五日目： 令和8年3月12日(木)",
+          "dayHead": "五日目： 2026年3月12日(木)",
           "division": "十両",
           "matches": [
             {
@@ -4023,14 +4023,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-13",
       "pathDate": "20260313",
       "label": "六日目",
-      "dayHead": "六日目： 令和8年3月13日(金)",
+      "dayHead": "六日目： 2026年3月13日(金)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 6,
           "dayName": "取組日 六日目",
-          "dayHead": "六日目： 令和8年3月13日(金)",
+          "dayHead": "六日目： 2026年3月13日(金)",
           "division": "幕内",
           "matches": [
             {
@@ -4342,7 +4342,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 6,
           "dayName": "取組日 六日目",
-          "dayHead": "六日目： 令和8年3月13日(金)",
+          "dayHead": "六日目： 2026年3月13日(金)",
           "division": "十両",
           "matches": [
             {
@@ -4578,14 +4578,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-14",
       "pathDate": "20260314",
       "label": "七日目",
-      "dayHead": "七日目： 令和8年3月14日(土)",
+      "dayHead": "七日目： 2026年3月14日(土)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 7,
           "dayName": "取組日 七日目",
-          "dayHead": "七日目： 令和8年3月14日(土)",
+          "dayHead": "七日目： 2026年3月14日(土)",
           "division": "幕内",
           "matches": [
             {
@@ -4913,7 +4913,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 7,
           "dayName": "取組日 七日目",
-          "dayHead": "七日目： 令和8年3月14日(土)",
+          "dayHead": "七日目： 2026年3月14日(土)",
           "division": "十両",
           "matches": [
             {
@@ -5149,14 +5149,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-15",
       "pathDate": "20260315",
       "label": "中日",
-      "dayHead": "中日： 令和8年3月15日(日)",
+      "dayHead": "中日： 2026年3月15日(日)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 8,
           "dayName": "取組日 中日",
-          "dayHead": "中日： 令和8年3月15日(日)",
+          "dayHead": "中日： 2026年3月15日(日)",
           "division": "幕内",
           "matches": [
             {
@@ -5484,7 +5484,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 8,
           "dayName": "取組日 中日",
-          "dayHead": "中日： 令和8年3月15日(日)",
+          "dayHead": "中日： 2026年3月15日(日)",
           "division": "十両",
           "matches": [
             {
@@ -5720,14 +5720,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-16",
       "pathDate": "20260316",
       "label": "九日目",
-      "dayHead": "九日目： 令和8年3月16日(月)",
+      "dayHead": "九日目： 2026年3月16日(月)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 9,
           "dayName": "取組日 九日目",
-          "dayHead": "九日目： 令和8年3月16日(月)",
+          "dayHead": "九日目： 2026年3月16日(月)",
           "division": "幕内",
           "matches": [
             {
@@ -6055,7 +6055,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 9,
           "dayName": "取組日 九日目",
-          "dayHead": "九日目： 令和8年3月16日(月)",
+          "dayHead": "九日目： 2026年3月16日(月)",
           "division": "十両",
           "matches": [
             {
@@ -6291,14 +6291,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-17",
       "pathDate": "20260317",
       "label": "十日目",
-      "dayHead": "十日目： 令和8年3月17日(火)",
+      "dayHead": "十日目： 2026年3月17日(火)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 10,
           "dayName": "取組日 十日目",
-          "dayHead": "十日目： 令和8年3月17日(火)",
+          "dayHead": "十日目： 2026年3月17日(火)",
           "division": "幕内",
           "matches": [
             {
@@ -6626,7 +6626,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 10,
           "dayName": "取組日 十日目",
-          "dayHead": "十日目： 令和8年3月17日(火)",
+          "dayHead": "十日目： 2026年3月17日(火)",
           "division": "十両",
           "matches": [
             {
@@ -6862,14 +6862,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-18",
       "pathDate": "20260318",
       "label": "十一日目",
-      "dayHead": "十一日目： 令和8年3月18日(水)",
+      "dayHead": "十一日目： 2026年3月18日(水)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 11,
           "dayName": "取組日 十一日目",
-          "dayHead": "十一日目： 令和8年3月18日(水)",
+          "dayHead": "十一日目： 2026年3月18日(水)",
           "division": "幕内",
           "matches": [
             {
@@ -7197,7 +7197,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 11,
           "dayName": "取組日 十一日目",
-          "dayHead": "十一日目： 令和8年3月18日(水)",
+          "dayHead": "十一日目： 2026年3月18日(水)",
           "division": "十両",
           "matches": [
             {
@@ -7433,14 +7433,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-19",
       "pathDate": "20260319",
       "label": "十二日目",
-      "dayHead": "十二日目： 令和8年3月19日(木)",
+      "dayHead": "十二日目： 2026年3月19日(木)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 12,
           "dayName": "取組日 十二日目",
-          "dayHead": "十二日目： 令和8年3月19日(木)",
+          "dayHead": "十二日目： 2026年3月19日(木)",
           "division": "幕内",
           "matches": [
             {
@@ -7768,7 +7768,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 12,
           "dayName": "取組日 十二日目",
-          "dayHead": "十二日目： 令和8年3月19日(木)",
+          "dayHead": "十二日目： 2026年3月19日(木)",
           "division": "十両",
           "matches": [
             {
@@ -7988,14 +7988,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-20",
       "pathDate": "20260320",
       "label": "十三日目",
-      "dayHead": "十三日目： 令和8年3月20日(金)",
+      "dayHead": "十三日目： 2026年3月20日(金)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 13,
           "dayName": "取組日 十三日目",
-          "dayHead": "十三日目： 令和8年3月20日(金)",
+          "dayHead": "十三日目： 2026年3月20日(金)",
           "division": "幕内",
           "matches": [
             {
@@ -8323,7 +8323,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 13,
           "dayName": "取組日 十三日目",
-          "dayHead": "十三日目： 令和8年3月20日(金)",
+          "dayHead": "十三日目： 2026年3月20日(金)",
           "division": "十両",
           "matches": [
             {
@@ -8559,14 +8559,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-21",
       "pathDate": "20260321",
       "label": "十四日目",
-      "dayHead": "十四日目： 令和8年3月21日(土)",
+      "dayHead": "十四日目： 2026年3月21日(土)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 14,
           "dayName": "取組日 十四日目",
-          "dayHead": "十四日目： 令和8年3月21日(土)",
+          "dayHead": "十四日目： 2026年3月21日(土)",
           "division": "幕内",
           "matches": [
             {
@@ -8894,7 +8894,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 14,
           "dayName": "取組日 十四日目",
-          "dayHead": "十四日目： 令和8年3月21日(土)",
+          "dayHead": "十四日目： 2026年3月21日(土)",
           "division": "十両",
           "matches": [
             {
@@ -9130,14 +9130,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-22",
       "pathDate": "20260322",
       "label": "千秋楽",
-      "dayHead": "千秋楽： 令和8年3月22日(日)",
+      "dayHead": "千秋楽： 2026年3月22日(日)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 15,
           "dayName": "取組日 千秋楽",
-          "dayHead": "千秋楽： 令和8年3月22日(日)",
+          "dayHead": "千秋楽： 2026年3月22日(日)",
           "division": "幕内",
           "matches": [
             {
@@ -9449,7 +9449,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 15,
           "dayName": "取組日 千秋楽",
-          "dayHead": "千秋楽： 令和8年3月22日(日)",
+          "dayHead": "千秋楽： 2026年3月22日(日)",
           "division": "十両",
           "matches": [
             {
@@ -9703,14 +9703,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-08",
       "pathDate": "20260308",
       "label": "初日",
-      "dayHead": "初日： 令和8年3月8日(日)",
+      "dayHead": "初日： 2026年3月8日(日)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 1,
           "dayName": "取組日 初日",
-          "dayHead": "初日： 令和8年3月8日(日)",
+          "dayHead": "初日： 2026年3月8日(日)",
           "division": "幕内",
           "matches": [
             {
@@ -10054,7 +10054,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 1,
           "dayName": "取組日 初日",
-          "dayHead": "初日： 令和8年3月8日(日)",
+          "dayHead": "初日： 2026年3月8日(日)",
           "division": "十両",
           "matches": [
             {
@@ -10290,14 +10290,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-09",
       "pathDate": "20260309",
       "label": "二日目",
-      "dayHead": "二日目： 令和8年3月9日(月)",
+      "dayHead": "二日目： 2026年3月9日(月)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 2,
           "dayName": "取組日 二日目",
-          "dayHead": "二日目： 令和8年3月9日(月)",
+          "dayHead": "二日目： 2026年3月9日(月)",
           "division": "幕内",
           "matches": [
             {
@@ -10641,7 +10641,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 2,
           "dayName": "取組日 二日目",
-          "dayHead": "二日目： 令和8年3月9日(月)",
+          "dayHead": "二日目： 2026年3月9日(月)",
           "division": "十両",
           "matches": [
             {
@@ -10877,14 +10877,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-10",
       "pathDate": "20260310",
       "label": "三日目",
-      "dayHead": "三日目： 令和8年3月10日(火)",
+      "dayHead": "三日目： 2026年3月10日(火)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 3,
           "dayName": "取組日 三日目",
-          "dayHead": "三日目： 令和8年3月10日(火)",
+          "dayHead": "三日目： 2026年3月10日(火)",
           "division": "幕内",
           "matches": [
             {
@@ -11212,7 +11212,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 3,
           "dayName": "取組日 三日目",
-          "dayHead": "三日目： 令和8年3月10日(火)",
+          "dayHead": "三日目： 2026年3月10日(火)",
           "division": "十両",
           "matches": [
             {
@@ -11448,14 +11448,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-11",
       "pathDate": "20260311",
       "label": "四日目",
-      "dayHead": "四日目： 令和8年3月11日(水)",
+      "dayHead": "四日目： 2026年3月11日(水)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 4,
           "dayName": "取組日 四日目",
-          "dayHead": "四日目： 令和8年3月11日(水)",
+          "dayHead": "四日目： 2026年3月11日(水)",
           "division": "幕内",
           "matches": [
             {
@@ -11767,7 +11767,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 4,
           "dayName": "取組日 四日目",
-          "dayHead": "四日目： 令和8年3月11日(水)",
+          "dayHead": "四日目： 2026年3月11日(水)",
           "division": "十両",
           "matches": [
             {
@@ -12003,14 +12003,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-12",
       "pathDate": "20260312",
       "label": "五日目",
-      "dayHead": "五日目： 令和8年3月12日(木)",
+      "dayHead": "五日目： 2026年3月12日(木)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 5,
           "dayName": "取組日 五日目",
-          "dayHead": "五日目： 令和8年3月12日(木)",
+          "dayHead": "五日目： 2026年3月12日(木)",
           "division": "幕内",
           "matches": [
             {
@@ -12322,7 +12322,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 5,
           "dayName": "取組日 五日目",
-          "dayHead": "五日目： 令和8年3月12日(木)",
+          "dayHead": "五日目： 2026年3月12日(木)",
           "division": "十両",
           "matches": [
             {
@@ -12558,14 +12558,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-13",
       "pathDate": "20260313",
       "label": "六日目",
-      "dayHead": "六日目： 令和8年3月13日(金)",
+      "dayHead": "六日目： 2026年3月13日(金)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 6,
           "dayName": "取組日 六日目",
-          "dayHead": "六日目： 令和8年3月13日(金)",
+          "dayHead": "六日目： 2026年3月13日(金)",
           "division": "幕内",
           "matches": [
             {
@@ -12877,7 +12877,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 6,
           "dayName": "取組日 六日目",
-          "dayHead": "六日目： 令和8年3月13日(金)",
+          "dayHead": "六日目： 2026年3月13日(金)",
           "division": "十両",
           "matches": [
             {
@@ -13113,14 +13113,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-14",
       "pathDate": "20260314",
       "label": "七日目",
-      "dayHead": "七日目： 令和8年3月14日(土)",
+      "dayHead": "七日目： 2026年3月14日(土)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 7,
           "dayName": "取組日 七日目",
-          "dayHead": "七日目： 令和8年3月14日(土)",
+          "dayHead": "七日目： 2026年3月14日(土)",
           "division": "幕内",
           "matches": [
             {
@@ -13448,7 +13448,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 7,
           "dayName": "取組日 七日目",
-          "dayHead": "七日目： 令和8年3月14日(土)",
+          "dayHead": "七日目： 2026年3月14日(土)",
           "division": "十両",
           "matches": [
             {
@@ -13684,14 +13684,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-15",
       "pathDate": "20260315",
       "label": "中日",
-      "dayHead": "中日： 令和8年3月15日(日)",
+      "dayHead": "中日： 2026年3月15日(日)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 8,
           "dayName": "取組日 中日",
-          "dayHead": "中日： 令和8年3月15日(日)",
+          "dayHead": "中日： 2026年3月15日(日)",
           "division": "幕内",
           "matches": [
             {
@@ -14019,7 +14019,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 8,
           "dayName": "取組日 中日",
-          "dayHead": "中日： 令和8年3月15日(日)",
+          "dayHead": "中日： 2026年3月15日(日)",
           "division": "十両",
           "matches": [
             {
@@ -14255,14 +14255,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-16",
       "pathDate": "20260316",
       "label": "九日目",
-      "dayHead": "九日目： 令和8年3月16日(月)",
+      "dayHead": "九日目： 2026年3月16日(月)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 9,
           "dayName": "取組日 九日目",
-          "dayHead": "九日目： 令和8年3月16日(月)",
+          "dayHead": "九日目： 2026年3月16日(月)",
           "division": "幕内",
           "matches": [
             {
@@ -14590,7 +14590,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 9,
           "dayName": "取組日 九日目",
-          "dayHead": "九日目： 令和8年3月16日(月)",
+          "dayHead": "九日目： 2026年3月16日(月)",
           "division": "十両",
           "matches": [
             {
@@ -14826,14 +14826,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-17",
       "pathDate": "20260317",
       "label": "十日目",
-      "dayHead": "十日目： 令和8年3月17日(火)",
+      "dayHead": "十日目： 2026年3月17日(火)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 10,
           "dayName": "取組日 十日目",
-          "dayHead": "十日目： 令和8年3月17日(火)",
+          "dayHead": "十日目： 2026年3月17日(火)",
           "division": "幕内",
           "matches": [
             {
@@ -15161,7 +15161,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 10,
           "dayName": "取組日 十日目",
-          "dayHead": "十日目： 令和8年3月17日(火)",
+          "dayHead": "十日目： 2026年3月17日(火)",
           "division": "十両",
           "matches": [
             {
@@ -15397,14 +15397,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-18",
       "pathDate": "20260318",
       "label": "十一日目",
-      "dayHead": "十一日目： 令和8年3月18日(水)",
+      "dayHead": "十一日目： 2026年3月18日(水)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 11,
           "dayName": "取組日 十一日目",
-          "dayHead": "十一日目： 令和8年3月18日(水)",
+          "dayHead": "十一日目： 2026年3月18日(水)",
           "division": "幕内",
           "matches": [
             {
@@ -15732,7 +15732,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 11,
           "dayName": "取組日 十一日目",
-          "dayHead": "十一日目： 令和8年3月18日(水)",
+          "dayHead": "十一日目： 2026年3月18日(水)",
           "division": "十両",
           "matches": [
             {
@@ -15968,14 +15968,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-19",
       "pathDate": "20260319",
       "label": "十二日目",
-      "dayHead": "十二日目： 令和8年3月19日(木)",
+      "dayHead": "十二日目： 2026年3月19日(木)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 12,
           "dayName": "取組日 十二日目",
-          "dayHead": "十二日目： 令和8年3月19日(木)",
+          "dayHead": "十二日目： 2026年3月19日(木)",
           "division": "幕内",
           "matches": [
             {
@@ -16303,7 +16303,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 12,
           "dayName": "取組日 十二日目",
-          "dayHead": "十二日目： 令和8年3月19日(木)",
+          "dayHead": "十二日目： 2026年3月19日(木)",
           "division": "十両",
           "matches": [
             {
@@ -16523,14 +16523,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-20",
       "pathDate": "20260320",
       "label": "十三日目",
-      "dayHead": "十三日目： 令和8年3月20日(金)",
+      "dayHead": "十三日目： 2026年3月20日(金)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 13,
           "dayName": "取組日 十三日目",
-          "dayHead": "十三日目： 令和8年3月20日(金)",
+          "dayHead": "十三日目： 2026年3月20日(金)",
           "division": "幕内",
           "matches": [
             {
@@ -16858,7 +16858,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 13,
           "dayName": "取組日 十三日目",
-          "dayHead": "十三日目： 令和8年3月20日(金)",
+          "dayHead": "十三日目： 2026年3月20日(金)",
           "division": "十両",
           "matches": [
             {
@@ -17094,14 +17094,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-21",
       "pathDate": "20260321",
       "label": "十四日目",
-      "dayHead": "十四日目： 令和8年3月21日(土)",
+      "dayHead": "十四日目： 2026年3月21日(土)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 14,
           "dayName": "取組日 十四日目",
-          "dayHead": "十四日目： 令和8年3月21日(土)",
+          "dayHead": "十四日目： 2026年3月21日(土)",
           "division": "幕内",
           "matches": [
             {
@@ -17429,7 +17429,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 14,
           "dayName": "取組日 十四日目",
-          "dayHead": "十四日目： 令和8年3月21日(土)",
+          "dayHead": "十四日目： 2026年3月21日(土)",
           "division": "十両",
           "matches": [
             {
@@ -17665,14 +17665,14 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
       "isoDate": "2026-03-22",
       "pathDate": "20260322",
       "label": "千秋楽",
-      "dayHead": "千秋楽： 令和8年3月22日(日)",
+      "dayHead": "千秋楽： 2026年3月22日(日)",
       "status": "published",
       "statusMessage": null,
       "data": {
         "makuuchi": {
           "day": 15,
           "dayName": "取組日 千秋楽",
-          "dayHead": "千秋楽： 令和8年3月22日(日)",
+          "dayHead": "千秋楽： 2026年3月22日(日)",
           "division": "幕内",
           "matches": [
             {
@@ -17984,7 +17984,7 @@ export const MARCH2026_TORIKUMI_DATA: TorikumiDataSet = {
         "juryo": {
           "day": 15,
           "dayName": "取組日 千秋楽",
-          "dayHead": "千秋楽： 令和8年3月22日(日)",
+          "dayHead": "千秋楽： 2026年3月22日(日)",
           "division": "十両",
           "matches": [
             {
