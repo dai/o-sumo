@@ -1304,15 +1304,14 @@
 }
 
 .news-outage {
-  margin: 0;
-  padding: 0.75rem 1rem;
-  border-left: 3px solid var(--color-secondary);
-  background: var(--surface-container);
+  margin: 1.25rem 0 0;
+  padding: 0;
+  border: 0;
+  background: none;
   font-family: var(--font-sans);
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   color: var(--color-dark-text);
   line-height: 1.7;
-  border-radius: 2px;
 }
 
 /* Past basho section (March 2026) */
