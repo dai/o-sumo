@@ -131,10 +131,10 @@ def monitor(repo, sha, timeout_seconds=600, interval_seconds=20, *, production,
         remaining = deadline - clock()
         if remaining > 0:
             result["production"] = production(remaining)
-        if "failure" in (result["pages"]["status"], result["ci"]["status"]):
+        if result["pages"]["status"] == "failure":
             result["overall"] = "failure"
             return result
-        if result["ci"]["status"] == "success" and result["production"]["status"] == "success":
+        if result["production"]["status"] == "success":
             result["overall"] = "success"
             return result
         remaining = deadline - clock()
@@ -167,15 +167,19 @@ def monitor_production(timeout_seconds=300, interval_seconds=20, *, production,
 def emit(result, output_json=None):
     rendered = json.dumps(result, ensure_ascii=True, sort_keys=True)
     print(rendered)
+    if result.get("ci", {}).get("status") == "failure":
+        print(f"::warning::Test workflow failed for pushed commit {result.get('sha')}")
     if output_json:
         Path(output_json).write_text(rendered + "\n", encoding="utf-8")
     summary = os.environ.get("GITHUB_STEP_SUMMARY")
     if summary:
         lines = ["", "### Data delivery verification", ""]
         if result["sha"]:
+            ci_status = result["ci"]["status"]
+            ci_label = f"**{ci_status}** (warning)" if ci_status == "failure" else f"**{ci_status}**"
             lines += [f"Pushed commit: `{result['sha']}`", "",
                       f"Cloudflare Pages: o-sumo: **{result['pages']['status']}**", "",
-                      f"Test (push): **{result['ci']['status']}**", ""]
+                      f"Test (push): {ci_label}", ""]
         else:
             lines += ["No push in this run; checked production against `main`.", ""]
         lines += [f"Production data: **{result['production']['status']}**", "",

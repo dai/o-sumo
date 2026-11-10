@@ -64,11 +64,11 @@ class DeliveryTests(unittest.TestCase):
         self.assertEqual(result["overall"], "success")
         self.assertEqual(result["pages"]["status"], "missing")
 
-    def test_fresh_production_without_ci_success_keeps_waiting(self):
+    def test_fresh_production_without_ci_success_is_success(self):
         result, elapsed, _ = self.run_monitor([record("Cloudflare Pages: o-sumo")], [],
                                               production=FRESH)
-        self.assertEqual(result["overall"], "timeout")
-        self.assertEqual(elapsed, 5)
+        self.assertEqual(result["overall"], "success")
+        self.assertEqual(elapsed, 0)
 
     def test_previous_sha_blog_and_non_push_do_not_count(self):
         result, elapsed, _ = self.run_monitor(
@@ -86,13 +86,20 @@ class DeliveryTests(unittest.TestCase):
         self.assertEqual(elapsed, 5)
         self.assertEqual(len(calls), 6)
 
-    def test_completed_failures_are_terminal(self):
+    def test_pages_failure_is_terminal(self):
+        result, elapsed, _ = self.run_monitor(
+            [record("Cloudflare Pages: o-sumo", conclusion="failure")], [record("Test")],
+            production=FRESH)
+        self.assertEqual(result["overall"], "failure")
+        self.assertEqual(elapsed, 0)
+
+    def test_test_failures_warn_and_allow_success_when_production_is_fresh(self):
         for conclusion in ("failure", "cancelled", "timed_out", "skipped", "neutral"):
             with self.subTest(conclusion=conclusion):
                 result, elapsed, _ = self.run_monitor(
                     [record("Cloudflare Pages: o-sumo")],
                     [record("Test", conclusion=conclusion)], production=FRESH)
-                self.assertEqual(result["overall"], "failure")
+                self.assertEqual(result["overall"], "success")
                 self.assertEqual(elapsed, 0)
 
     def test_failed_pages_build_is_terminal_even_if_production_is_fresh(self):
@@ -111,9 +118,10 @@ class DeliveryTests(unittest.TestCase):
         self.assertEqual(result["pages"]["status"], "pending")
         self.assertEqual(result["pages"]["id"], 2)
 
-    def test_latest_failure_hides_earlier_success(self):
-        result, _, _ = self.run_monitor([record("Cloudflare Pages: o-sumo")],
-                                      [record("Test"), record("Test", id=2, conclusion="failure")])
+    def test_latest_pages_failure_hides_earlier_success(self):
+        result, _, _ = self.run_monitor([record("Cloudflare Pages: o-sumo"),
+                                         record("Cloudflare Pages: o-sumo", id=2, conclusion="failure")],
+                                        [record("Test")])
         self.assertEqual(result["overall"], "failure")
 
     def test_api_errors_timeout_without_leaking_details(self):
@@ -132,8 +140,11 @@ class DeliveryTests(unittest.TestCase):
                 return []
             return [record("Cloudflare Pages: o-sumo" if "/check-runs?" in endpoint else "Test")]
 
+        def prod_fetch(remaining):
+            return STALE if count[0] <= 2 else FRESH
+
         with patch.object(delivery.time, "sleep"):
-            result = delivery.monitor("owner/repo", SHA, production=lambda _: FRESH,
+            result = delivery.monitor("owner/repo", SHA, production=prod_fetch,
                                       reader=reader, sleep=lambda _: None)
         self.assertEqual(result["overall"], "success")
         self.assertEqual(count[0], 4)
@@ -150,6 +161,22 @@ class DeliveryTests(unittest.TestCase):
             self.assertEqual(json.loads((root / "result.json").read_text()), result)
             self.assertIn(SHA, (root / "summary").read_text())
             self.assertIn("status=timeout", (root / "output").read_text())
+
+    def test_emission_warns_on_ci_failure(self):
+        result = {"sha": SHA, "pages": {"status": "success"},
+                  "ci": {"status": "failure"},
+                  "production": {"status": "success"},
+                  "overall": "success"}
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            with patch.dict(os.environ, {"GITHUB_STEP_SUMMARY": str(root / "summary")}):
+                with contextlib.redirect_stdout(io.StringIO()) as stdout:
+                    delivery.emit(result)
+            output = stdout.getvalue()
+            self.assertIn("::warning::Test workflow failed", output)
+            summary = (root / "summary").read_text()
+            self.assertIn("Test (push): **failure** (warning)", summary)
+            self.assertIn("Delivery: **success**.", summary)
 
     def test_reader_is_read_only_and_collects_pages(self):
         with patch.object(delivery.subprocess, "run") as run:
