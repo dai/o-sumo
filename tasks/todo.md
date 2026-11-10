@@ -238,7 +238,7 @@ change to comply with the repository text policy.
 - `<header>` (GreetingSection の card-header) を `<div>` に変更して重複 banner role を回避 (testing-library getByRole('banner') の strict mode 衝突)
 
 ### 残作業 (別 PR で計画)
-- **PR B**: 来場者コメント機能。`codex-instruction.md` の Cloudflare Workers 無料枠運用制約と整合させるため、giscus (blog.osada.us) / localStorage / Cloudflare KV の選択肢から設計比較が必要
+- **PR B**: 来場者コメント機能。Cloudflare Workers の無料枠運用制約（既存の Paid / Pages 運用を壊さない、高頻度ポーリングで従量を増やさない）と整合させるため、giscus (blog.osada.us) / localStorage / Cloudflare KV の選択肢から設計比較が必要
 
 # Actions failure repair (2026-09-17)
 
@@ -311,7 +311,7 @@ change to comply with the repository text policy.
 # Torikumi Manual Refresh (2026-09-18)
 
 プラン: `C:\Users\dai\.claude\plans\cozy-wondering-volcano.md`
-設計: `tasks\plans\2026-09-18-torikumi-ux-design.md`
+設計: 取組予定ページのスティッキ手動更新とスクロール位置保持
 
 ## ブランチ
 - [x] `feat/torikumi-manual-refresh` を origin/main から新規作成 + push

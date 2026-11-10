@@ -1,7 +1,5 @@
 # 調査・復旧記録：二日目結果ページの更新停止（2026-11-10）
 
-指示書: `tasks/plans/2026-11-10-day2-results-stall.md`
-
 ## 結論
 
 - データ生成・取得・GitHub Actions はすべて正常だった。main の `public/api/v1/torikumi.json` は 17:57 JST（6898dbf）の時点で二日目の全 35 番（幕内 21／十両 14）の結果を持っていた。

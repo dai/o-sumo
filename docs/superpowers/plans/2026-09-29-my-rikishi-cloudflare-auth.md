@@ -8,7 +8,7 @@
 
 **Tech Stack:** React 19, TypeScript, Vite, Cloudflare Pages Functions, Cloudflare D1, Cloudflare KV only for the existing OGP cache, Google OAuth 2.0, Web Crypto API, Vitest, Playwright, and the `cf` CLI.
 
-**Spec:** `C:\dai\GitHub\o-sumo\tasks\plans\2026-09-my-rikishi-auth-provider-options.md`
+**Spec:** Optional Google OAuth and Cloudflare D1 sync, with anonymous localStorage preserved. The provider comparison that selected this approach is already reflected in the constraints below.
 
 ## Global Constraints
 

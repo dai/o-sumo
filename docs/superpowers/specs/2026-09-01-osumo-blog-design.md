@@ -91,7 +91,7 @@ PR #625 で追加された`BlogUpdatesSection` (ホームの「読みもの」�
 
 `app/lib/blog-build.ts` の `renderArticle` 関数で `<div id="giscus-comments"></div>` を return link の前に追加し、`documentHtml` の `</body>` 直前に `<script src="https://giscus.app/client.js">` を静的埋め込みする。`data-repo-id` と `data-category-id` は giscus.app で取得した値を blog-build.ts の定数として運用する。本 PR 時点で実 ID を採用済 (`GISCUS_REPO_ID = 'R_kgDORaEFlg'`, `GISCUS_CATEGORY_ID = 'DIC_kwDORaEFls4DFyWu'`)。将来カテゴリを作り直した場合は同定数を差し替える。
 
-スパム対策は GitHub Discussions のネイティブ moderation (ピン留め / lock / 削除) に委譲する。Paid プラン移行や高頻度ポーリング (`codex-instruction.md` 絶対制約 #2, #3) とは独立した静的埋め込み実装とし、`functions/` および Cloudflare Workers には一切触らない。
+スパム対策は GitHub Discussions のネイティブ moderation (ピン留め / lock / 削除) に委譲する。既存の Cloudflare Workers Paid と Pages の運用を壊す変更や、従量課金を増やす高頻度ポーリングとは独立した静的埋め込み実装とし、`functions/` および Cloudflare Workers には一切触らない。
 
 ## Initial article
 
