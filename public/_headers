@@ -120,6 +120,10 @@
   Content-Type: application/json; charset=utf-8
   Cache-Control: public, max-age=0, must-revalidate
 
+/api/v1/archive/*.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=86400
+
 # Agent discovery API catalog
 /.well-known/api-catalog
   Cache-Control: public, max-age=300

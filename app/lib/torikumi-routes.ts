@@ -1,20 +1,20 @@
-import {
-  banzukePath,
-  torikumiMonthKey,
-  type TorikumiArchiveDay,
-  type TorikumiDataSet,
-} from './torikumi-data';
-import { MARCH2026_TORIKUMI_DATA } from './march2026-torikumi-data';
-import { MAY2026_TORIKUMI_DATA } from './may2026-data';
-import { JULY2026_TORIKUMI_DATA } from './july2026-data';
-import { SEPTEMBER2026_TORIKUMI_DATA } from './september2026-data';
-import { updatedAtDateKey } from './updated-at';
+import { getLoadedArchiveDocument } from './archive-client';
+import { ARCHIVE_ROUTE_INDEX } from './archive-route-index.generated';
+import type { ArchiveDayIndex, ArchiveRouteIndexEntry } from './archive-types';
 import {
   CURRENT_BANZUKE_PATH,
   CURRENT_RESULT_PATH,
   CURRENT_SCHEDULE_PATH,
-  getTorikumiArchiveByMonthKey,
-} from './archive-basho-data';
+} from './current-basho';
+import { updatedAtDateKey } from './updated-at';
+import {
+  banzukePath,
+  torikumiArchive,
+  torikumiMonthKey,
+  type TorikumiArchiveDay,
+  type TorikumiDataSet,
+  type TorikumiDivisionDay,
+} from './torikumi-data';
 
 export type TorikumiPageMode = 'result' | 'schedule';
 
@@ -88,57 +88,85 @@ function normalizeArchive(archive: TorikumiDataSet): TorikumiDataSet {
   };
 }
 
-const ARCHIVE_ROUTE_CONFIGS: Record<string, ArchiveRouteConfig> = {
-  '202603': {
-    monthKey: '202603',
-    archive: normalizeArchive(MARCH2026_TORIKUMI_DATA),
-    resultPath: withTrailingSlash(MARCH2026_RESULT_PATH),
-    schedulePath: withTrailingSlash(MARCH2026_SCHEDULE_PATH),
-    banzukePath: withTrailingSlash(MARCH2026_BANZUKE_PATH),
-  },
-  '202605': {
-    monthKey: '202605',
-    archive: normalizeArchive(MAY2026_TORIKUMI_DATA),
-    resultPath: withTrailingSlash(MAY2026_RESULT_PATH),
-    schedulePath: withTrailingSlash(MAY2026_SCHEDULE_PATH),
-    banzukePath: withTrailingSlash(MAY2026_BANZUKE_PATH),
-  },
-  '202607': {
-    monthKey: '202607',
-    archive: normalizeArchive(JULY2026_TORIKUMI_DATA),
-    resultPath: withTrailingSlash(JULY2026_RESULT_PATH),
-    schedulePath: withTrailingSlash(JULY2026_SCHEDULE_PATH),
-    banzukePath: withTrailingSlash(JULY2026_BANZUKE_PATH),
-  },
-  '202609': {
-    monthKey: '202609',
-    archive: normalizeArchive(SEPTEMBER2026_TORIKUMI_DATA),
-    resultPath: withTrailingSlash(SEPTEMBER2026_RESULT_PATH),
-    schedulePath: withTrailingSlash(SEPTEMBER2026_SCHEDULE_PATH),
-    banzukePath: withTrailingSlash(SEPTEMBER2026_BANZUKE_PATH),
-  },
-};
+function emptyDivision(day: number, dayHead: string, division: '幕内' | '十両'): TorikumiDivisionDay {
+  return {
+    day,
+    dayName: '',
+    dayHead,
+    division,
+    matches: [],
+  };
+}
 
-if (!ARCHIVE_ROUTE_CONFIGS[torikumiMonthKey]) {
-  ARCHIVE_ROUTE_CONFIGS[torikumiMonthKey] = {
+function dayFromIndex(day: ArchiveDayIndex): TorikumiArchiveDay {
+  return {
+    day: day.day,
+    isoDate: day.isoDate,
+    pathDate: day.pathDate,
+    label: day.label,
+    dayHead: day.dayHead,
+    status: day.status,
+    statusMessage: day.statusMessage,
+    data: {
+      makuuchi: emptyDivision(day.day, day.dayHead, '幕内'),
+      juryo: emptyDivision(day.day, day.dayHead, '十両'),
+    },
+  };
+}
+
+function shellArchive(entry: ArchiveRouteIndexEntry): TorikumiDataSet {
+  return {
+    bashoName: entry.bashoName,
+    year: entry.year,
+    updatedAt: entry.updatedAt,
+    resultUpdatedAt: entry.resultUpdatedAt,
+    scheduleUpdatedAt: entry.scheduleUpdatedAt,
+    resultDays: entry.resultDays.map(dayFromIndex),
+    scheduleDays: entry.scheduleDays.map(dayFromIndex),
+  };
+}
+
+function routePaths(monthKey: string): Pick<ArchiveRouteConfig, 'resultPath' | 'schedulePath' | 'banzukePath'> {
+  return {
+    resultPath: withTrailingSlash(`/${monthKey}-torikumi`),
+    schedulePath: withTrailingSlash(`/${monthKey}-yotei`),
+    banzukePath: withTrailingSlash(`/${monthKey}-banzuke`),
+  };
+}
+
+function currentRouteConfig(): ArchiveRouteConfig {
+  return {
     monthKey: torikumiMonthKey,
-    archive: normalizeArchive(getTorikumiArchiveByMonthKey(torikumiMonthKey)),
+    archive: normalizeArchive(getLoadedArchiveDocument(torikumiMonthKey)?.torikumi ?? torikumiArchive),
     resultPath: withTrailingSlash(CURRENT_RESULT_PATH),
     schedulePath: withTrailingSlash(CURRENT_SCHEDULE_PATH),
     banzukePath: withTrailingSlash(CURRENT_BANZUKE_PATH),
   };
 }
 
+function pastRouteConfig(entry: ArchiveRouteIndexEntry): ArchiveRouteConfig {
+  const loaded = getLoadedArchiveDocument(entry.monthKey)?.torikumi;
+  return {
+    monthKey: entry.monthKey,
+    archive: normalizeArchive(loaded ?? shellArchive(entry)),
+    ...routePaths(entry.monthKey),
+  };
+}
+
 function getDefaultArchiveRouteConfig(): ArchiveRouteConfig {
-  return ARCHIVE_ROUTE_CONFIGS[torikumiMonthKey] ?? ARCHIVE_ROUTE_CONFIGS['202603'];
+  return currentRouteConfig();
 }
 
 export function getArchiveRouteConfigByMonthKey(monthKey: string): ArchiveRouteConfig | undefined {
-  return ARCHIVE_ROUTE_CONFIGS[monthKey];
+  if (monthKey === torikumiMonthKey) return currentRouteConfig();
+  const entry = ARCHIVE_ROUTE_INDEX.find((item) => item.monthKey === monthKey);
+  if (!entry) return undefined;
+  return pastRouteConfig(entry);
 }
 
 export function getAllArchiveRouteConfigs(): ArchiveRouteConfig[] {
-  return Object.values(ARCHIVE_ROUTE_CONFIGS).sort((left, right) => left.monthKey.localeCompare(right.monthKey));
+  return [currentRouteConfig(), ...ARCHIVE_ROUTE_INDEX.map(pastRouteConfig)]
+    .sort((left, right) => left.monthKey.localeCompare(right.monthKey));
 }
 
 export function getArchiveHubRouteDefinitions(

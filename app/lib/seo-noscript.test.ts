@@ -1,7 +1,9 @@
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { buildSeoNoscriptHtml, type SeoNoscriptContext } from './seo-noscript';
 import { getAllArchiveRouteConfigs, getDayPath } from './torikumi-routes';
-import { CURRENT_BASHO_ID } from './archive-basho-data';
+import { CURRENT_BASHO_ID } from './current-basho';
 
 function makeContext(payloads: Record<string, unknown>): SeoNoscriptContext & { calls: string[] } {
   const calls: string[] = [];
@@ -10,6 +12,10 @@ function makeContext(payloads: Record<string, unknown>): SeoNoscriptContext & { 
     fetchJson: async (path: string) => {
       calls.push(path);
       if (path in payloads) return payloads[path];
+      if (path.startsWith('/api/v1/archive/')) {
+        const filePath = join(process.cwd(), 'public', path.slice(1));
+        if (existsSync(filePath)) return JSON.parse(readFileSync(filePath, 'utf8'));
+      }
       return null;
     },
   };
@@ -144,13 +150,14 @@ describe('buildSeoNoscriptHtml', () => {
     expect(html).toContain('/yobidashi/1986/');
   });
 
-  it('renders a frozen snapshot for an archived banzuke without JSON data', async () => {
-    const ctx = makeContext({}); // no JSON payloads
+  it('renders a frozen snapshot for an archived banzuke from archive JSON', async () => {
+    const ctx = makeContext({});
     const html = await buildSeoNoscriptHtml('/202603-banzuke/', '2026年3月場所 番付 | o-sumo', ctx);
     expect(html).toContain('2026年3月場所 番付 | o-sumo');
     expect(html).toContain('豊昇龍');
     expect(html).toContain('更新');
-    expect(ctx.calls).toEqual([]);
+    expect(ctx.calls).not.toContain('/api/v1/banzuke.json');
+    expect(ctx.calls).toContain('/api/v1/archive/202603.json');
   });
 
   it('renders the current November basho banzuke from live JSON', async () => {
@@ -181,6 +188,7 @@ describe('buildSeoNoscriptHtml', () => {
     expect(html).toContain('/rikishi/4227/');
     expect(html).toContain('更新');
     expect(ctx.calls).not.toContain('/api/v1/banzuke.json');
+    expect(ctx.calls).toContain('/api/v1/archive/202609.json');
   });
 
   it('renders the month hub day list for /202609-yotei/', async () => {
@@ -198,6 +206,7 @@ describe('buildSeoNoscriptHtml', () => {
     // The bundled fixture has actual matches for 初日; verify the day table renders.
     expect(html).toContain('幕内');
     expect(ctx.calls).not.toContain('/api/v1/banzuke.json');
+    expect(ctx.calls).toContain('/api/v1/archive/202609.json');
   });
 
   it('fetches current banzuke JSON for a November day route', async () => {

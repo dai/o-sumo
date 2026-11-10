@@ -7,6 +7,7 @@
     "siteNavigation": "サイトナビゲーション",
     "primaryNavigation": "主要ナビゲーション",
     "pageLoading": "ページを読み込んでいます…",
+    "archiveLoadError": "過去場所のデータを読み込めませんでした。",
     "retry": "再試行",
     "directoryNavigation": "人物名鑑",
     "nav": {

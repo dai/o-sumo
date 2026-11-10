@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getRecentBouts, type RecentBoutResult } from '../lib/rikishi-compare-data';
+import { usePastArchivesReady } from '../lib/use-archive-document';
 
 export interface StandoffMeterProps {
   /** First rikishi display name (East slot) */
@@ -19,8 +20,15 @@ export interface StandoffMeterProps {
 export function StandoffMeter({ nameA, nameB, limit = 5 }: StandoffMeterProps) {
   const { t } = useTranslation('common');
 
-  const boutsA = useMemo<RecentBoutResult[]>(() => getRecentBouts(nameA, limit), [nameA, limit]);
-  const boutsB = useMemo<RecentBoutResult[]>(() => getRecentBouts(nameB, limit), [nameB, limit]);
+  const pastArchivesReady = usePastArchivesReady();
+  const boutsA = useMemo<RecentBoutResult[]>(
+    () => (pastArchivesReady ? getRecentBouts(nameA, limit) : []),
+    [pastArchivesReady, nameA, limit],
+  );
+  const boutsB = useMemo<RecentBoutResult[]>(
+    () => (pastArchivesReady ? getRecentBouts(nameB, limit) : []),
+    [pastArchivesReady, nameB, limit],
+  );
 
   if (boutsA.length === 0 && boutsB.length === 0) return null;
 

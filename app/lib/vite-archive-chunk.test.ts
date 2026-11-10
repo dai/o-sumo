@@ -1,29 +1,29 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { JULY2026_ARCHIVE_CHUNK, archiveChunkGroupTest, archiveDataManualChunks } from './vite-archive-chunk';
+import { PAST_ARCHIVE_MONTH_KEYS } from './archive-months';
+import { ARCHIVE_ROUTE_INDEX } from './archive-route-index.generated';
 
-describe('Vite archive chunking', () => {
-  it('places the immutable July snapshots in their own chunk across path separators', () => {
-    expect(archiveDataManualChunks('/workspace/app/lib/july2026-data.ts')).toBe(JULY2026_ARCHIVE_CHUNK);
-    expect(archiveDataManualChunks('/workspace/app/lib/july2026-data.js')).toBe(JULY2026_ARCHIVE_CHUNK);
-    expect(archiveDataManualChunks('/workspace/app/lib/july2026-data.js?v=1')).toBe(JULY2026_ARCHIVE_CHUNK);
-    expect(archiveDataManualChunks('C:\\workspace\\app\\lib\\july2026-banzuke-data.ts')).toBe(JULY2026_ARCHIVE_CHUNK);
-    expect(archiveDataManualChunks('/workspace/app/lib/torikumi-data.ts')).toBeUndefined();
+describe('archive JSON split', () => {
+  it('emits one JSON file per past basho and a small generated route index', () => {
+    expect(ARCHIVE_ROUTE_INDEX.map((entry) => entry.monthKey)).toEqual([...PAST_ARCHIVE_MONTH_KEYS]);
+    for (const monthKey of PAST_ARCHIVE_MONTH_KEYS) {
+      const path = resolve(process.cwd(), 'public/api/v1/archive', `${monthKey}.json`);
+      expect(existsSync(path)).toBe(true);
+      const document = JSON.parse(readFileSync(path, 'utf8')) as { monthKey: string; torikumi?: { resultDays?: unknown[] } };
+      expect(document.monthKey).toBe(monthKey);
+      expect((document.torikumi?.resultDays ?? []).length).toBeGreaterThan(0);
+    }
+    expect(ARCHIVE_ROUTE_INDEX[0]?.resultDays[0]).not.toHaveProperty('data');
   });
 
-  it('connects the archive chunk function to the Rolldown build configuration', () => {
+  it('writes archive JSON during the Vite build and keeps it out of the SW precache glob', () => {
     const viteConfig = readFileSync(resolve(process.cwd(), 'vite.config.ts'), 'utf8');
 
-    expect(viteConfig).toContain('archiveChunkGroupTest');
-    expect(viteConfig).toContain('codeSplitting:');
-    expect(viteConfig).toContain('test: archiveChunkGroupTest(JULY2026_ARCHIVE_CHUNK)');
-    expect(viteConfig).toContain('test: archiveChunkGroupTest(HISTORICAL_ARCHIVE_CHUNK)');
-  });
-
-  it('keeps each archive group limited to the modules the chunk function names', () => {
-    const july = archiveChunkGroupTest(JULY2026_ARCHIVE_CHUNK);
-    expect(july('/workspace/app/lib/july2026-data.ts')).toBe(true);
-    expect(july('/workspace/app/lib/may2026-data.ts')).toBe(false);
+    expect(viteConfig).toContain('archiveJsonPlugin');
+    expect(viteConfig).toContain('writeArchiveArtifacts');
+    expect(viteConfig).toContain("'api/v1/archive/**'");
+    expect(viteConfig).not.toContain('archiveChunkGroupTest');
+    expect(viteConfig).not.toContain('codeSplitting:');
   });
 });

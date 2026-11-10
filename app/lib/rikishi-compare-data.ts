@@ -4,12 +4,11 @@ import {
   torikumiArchive,
   torikumiMonthKey,
   type TorikumiArchiveDay,
+  type TorikumiDataSet,
   type TorikumiMatch,
 } from './torikumi-data';
+import { getLoadedArchiveDocument } from './archive-client';
 import { PAST_BASHO } from './archives-data';
-import { MARCH2026_TORIKUMI_DATA } from './march2026-torikumi-data';
-import { MAY2026_TORIKUMI_DATA } from './may2026-data';
-import { JULY2026_TORIKUMI_DATA } from './july2026-data';
 
 export interface FeaturedMatchupPreset {
   id: string;
@@ -141,10 +140,24 @@ export interface KimariteCount {
   count: number;
 }
 
+const KIMARITE_HISTORY_MONTHS = ['202607', '202605', '202603'] as const;
+
+function loadedTorikumi(monthKeys: readonly string[]): TorikumiDataSet[] | null {
+  const datasets: TorikumiDataSet[] = [];
+  for (const monthKey of monthKeys) {
+    const torikumi = getLoadedArchiveDocument(monthKey)?.torikumi;
+    if (!torikumi) return null;
+    datasets.push(torikumi);
+  }
+  return datasets;
+}
+
 export function getRikishiKimariteStats(shikona: string, limit = 4): KimariteCount[] {
   if (!shikona) return [];
   const counts = new Map<string, number>();
-  const datasets = [JULY2026_TORIKUMI_DATA, MAY2026_TORIKUMI_DATA, MARCH2026_TORIKUMI_DATA];
+  // July → May → March only. September is a separate snapshot and was never part of this tally.
+  const datasets = loadedTorikumi(KIMARITE_HISTORY_MONTHS);
+  if (!datasets) return [];
 
   for (const archive of datasets) {
     for (const day of archive.resultDays ?? []) {
@@ -189,7 +202,8 @@ export interface RecentBoutResult {
 export function getRecentBouts(shikona: string, limit = 5): RecentBoutResult[] {
   if (!shikona || limit <= 0) return [];
   const results: RecentBoutResult[] = [];
-  const datasets = [JULY2026_TORIKUMI_DATA, MAY2026_TORIKUMI_DATA, MARCH2026_TORIKUMI_DATA];
+  const datasets = loadedTorikumi(KIMARITE_HISTORY_MONTHS);
+  if (!datasets) return [];
 
   for (const archive of datasets) {
     const days = [...(archive.resultDays ?? [])].reverse();
@@ -248,19 +262,25 @@ interface MatchupBashoEntry {
 }
 
 function buildMatchupBashoEntries(): MatchupBashoEntry[] {
-  return [
-    {
-      monthKey: torikumiMonthKey,
-      year: torikumiArchive.year,
-      bashoName: torikumiArchive.bashoName,
-      resultDays: torikumiArchive.resultDays ?? [],
-    },
-    ...PAST_BASHO.map((basho) => ({
+  const current = getLoadedArchiveDocument(torikumiMonthKey)?.torikumi ?? torikumiArchive;
+  const past = PAST_BASHO.flatMap((basho) => {
+    const torikumi = getLoadedArchiveDocument(basho.id)?.torikumi;
+    if (!torikumi) return [];
+    return [{
       monthKey: basho.id,
       year: basho.year,
       bashoName: basho.name,
-      resultDays: basho.data.resultDays ?? [],
-    })),
+      resultDays: torikumi.resultDays ?? [],
+    }];
+  });
+  return [
+    {
+      monthKey: torikumiMonthKey,
+      year: current.year,
+      bashoName: current.bashoName,
+      resultDays: current.resultDays ?? [],
+    },
+    ...past,
   ];
 }
 

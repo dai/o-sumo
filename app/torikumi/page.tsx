@@ -9,6 +9,7 @@ import {
   getDayPath,
   type TorikumiPageMode,
 } from '../lib/torikumi-routes';
+import { ArchivePending, useArchiveDocument } from '../lib/use-archive-document';
 import HomeLink from '../components/HomeLink';
 import { getBashoStatus } from '../lib/basho-status';
 import AbsenteesNotice, { type AbsenteeEntry } from '../components/AbsenteesNotice';
@@ -17,11 +18,13 @@ import './page.css';
 import { formatUpdatedAt } from '../lib/updated-at';
 import { formatBashoTitle } from '../lib/basho-meta';
 
-function useArchive(): { archive: TorikumiDataSet; resultPath: string; schedulePath: string; banzukePath: string } {
+function useArchive() {
   const location = useLocation();
   const config = getArchiveRouteConfigForPathname(location.pathname);
+  const archiveState = useArchiveDocument(config.monthKey);
   return {
-    archive: config.archive,
+    archive: archiveState.document?.torikumi ?? config.archive,
+    archiveState,
     resultPath: config.resultPath,
     schedulePath: config.schedulePath,
     banzukePath: config.banzukePath,
@@ -49,7 +52,10 @@ export function findLatestAbsentees(archive: TorikumiDataSet): AbsenteeEntry[] {
 
 export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
   const [sortOrder, setSortOrder] = React.useState<SortOrder>('asc');
-  const { archive, resultPath, schedulePath, banzukePath } = useArchive();
+  const { archive, archiveState, resultPath, schedulePath, banzukePath } = useArchive();
+  if (archiveState.loading || archiveState.error || !archiveState.document) {
+    return <ArchivePending error={archiveState.error} onRetry={archiveState.reload} />;
+  }
   const sourceDays = mode === 'result' ? archive.resultDays : archive.scheduleDays;
   const days = sortArchiveDays(sourceDays ?? [], sortOrder);
   const absentees = mode === 'schedule' ? findLatestAbsentees(archive) : [];

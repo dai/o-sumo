@@ -3,10 +3,10 @@ import {
   CURRENT_BASHO_ID,
   CURRENT_RESULT_PATH,
   CURRENT_SCHEDULE_PATH,
-  getBanzukeDataByMonthKey,
-  getTorikumiArchiveByMonthKey,
-} from '../../../app/lib/archive-basho-data';
+} from '../../../app/lib/current-basho';
 import { PAST_BASHO } from '../../../app/lib/archives-data';
+import { archiveJsonPath, isArchiveDocument } from '../../../app/lib/archive-types';
+import type { TorikumiDataSet } from '../../../app/lib/torikumi-data';
 
 export interface RikishiSearchItem {
   id: number;
@@ -83,13 +83,11 @@ export async function getBanzuke(
       error: `Unsupported monthKey: ${monthKey}. Supported basho: ${supportedIds.join(', ')}.`,
     };
   }
-  try {
-    return getBanzukeDataByMonthKey(monthKey);
-  } catch (error) {
-    return {
-      error: `Failed to load banzuke data for ${monthKey}: ${error instanceof Error ? error.message : String(error)}`,
-    };
+  const payload = await fetcher(archiveJsonPath(monthKey));
+  if (!isArchiveDocument(payload, monthKey)) {
+    return { error: `Failed to load banzuke data for ${monthKey}.` };
   }
+  return payload.banzuke;
 }
 
 export async function getTorikumi(
@@ -107,15 +105,13 @@ export async function getTorikumi(
     return day;
   }
   const monthKey = pathDate.slice(0, 6);
-  const archive = PAST_BASHO.find((b) => b.id === monthKey);
-  if (archive) {
-    try {
-      const archiveData = getTorikumiArchiveByMonthKey(monthKey);
+  if (PAST_BASHO.some((b) => b.id === monthKey)) {
+    const payload = await fetcher(archiveJsonPath(monthKey));
+    if (isArchiveDocument(payload, monthKey)) {
+      const archiveData = payload.torikumi as TorikumiDataSet;
       const aDays = mode === 'schedule' ? archiveData.scheduleDays : archiveData.resultDays;
       const aDay = aDays?.find((d) => d.pathDate === pathDate);
       if (aDay) return aDay;
-    } catch {
-      // ignore
     }
   }
   return { error: `No ${mode} data found for date ${pathDate}.` };

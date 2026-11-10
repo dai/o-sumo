@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom/vitest';
 import { i18n } from '../lib/i18n';
+import { primeCommittedArchives } from './prime-archives';
 // Force Japanese in tests so assertions on hardcoded Japanese text pass
 i18n.changeLanguage('ja');
 
@@ -49,3 +50,5 @@ if (typeof window.localStorage?.clear !== 'function') {
     },
   });
 }
+
+primeCommittedArchives();
