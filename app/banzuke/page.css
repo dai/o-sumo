@@ -259,3 +259,207 @@
 }
 
 /* PageBreadcrumb styles live in app/components/page-breadcrumb.css. */
+
+/* Hoshitori legend sits above the tables at every width. The table itself is unchanged on desktop. */
+.hoshitori-legend {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0 0 1.25rem;
+  padding: 0.45rem 0.7rem;
+  list-style: none;
+  background: var(--surface-container-low);
+  color: var(--color-dark-text);
+  font-size: 0.82rem;
+  line-height: 1.2;
+  overflow: hidden;
+}
+
+.hoshitori-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  white-space: nowrap;
+}
+
+.hoshitori-legend__mark {
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.hoshitori-legend__mark--win,
+.hoshitori-legend__mark--fusenWin {
+  color: var(--color-win);
+}
+
+.hoshitori-legend__mark--loss,
+.hoshitori-legend__mark--fusenLoss {
+  color: var(--color-loss);
+}
+
+.hoshitori-legend__mark--rest {
+  color: var(--color-draw);
+}
+
+/* The expand control exists for the phone layout only. Desktop keeps the original card. */
+.rikishi-expand {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .page-main {
+    padding: 1rem 0.65rem;
+  }
+
+  .global-notice-banner__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  .page-breadcrumb__item a,
+  .page-footer a,
+  .page-header .site-home-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    box-sizing: border-box;
+  }
+
+  .banzuke-discovery .banzuke-mode-btn,
+  .banzuke-discovery .banzuke-filter-btn,
+  .banzuke-discovery .sort-toggle-button,
+  .banzuke-discovery .directory-anchors a,
+  .banzuke-discovery .share-current-link__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .rank-section {
+    padding: 0.65rem 0.4rem;
+  }
+
+  .banzuke-list {
+    gap: 0.85rem;
+  }
+
+  .banzuke-table th,
+  .banzuke-table td {
+    padding: 0.3rem 0.25rem;
+  }
+
+  .banzuke-table .rikishi-cell {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 0.35rem;
+    row-gap: 0.35rem;
+    min-height: 44px;
+    padding: 0 1.45rem 0 0.4rem;
+    text-align: start;
+  }
+
+  .banzuke-table .rikishi-cell:hover,
+  .banzuke-table .rikishi-cell:focus-within {
+    transform: none;
+  }
+
+  .banzuke-table .rikishi-name-link {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    min-width: 44px;
+    min-height: 44px;
+    overflow: hidden;
+  }
+
+  .banzuke-table .rikishi-name {
+    overflow: hidden;
+    font-size: 0.88rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .banzuke-table .rikishi-record {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    font-weight: 800;
+    font-size: 0.78rem;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .banzuke-table .rikishi-expand:focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: -2px;
+  }
+
+  .banzuke-table .rikishi-expand {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--color-primary);
+    cursor: pointer;
+  }
+
+  .rikishi-expand__icon {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg) translateY(-1px);
+  }
+
+  .banzuke-table .rikishi-cell.is-expanded .rikishi-expand__icon {
+    transform: rotate(225deg) translateY(-1px);
+  }
+
+  .banzuke-table .rikishi-cell:not(.is-expanded) .rikishi-fold {
+    display: none;
+  }
+
+  .banzuke-table .rikishi-cell.is-expanded .rikishi-fold {
+    grid-column: 1 / -1;
+    justify-self: center;
+    text-align: center;
+  }
+
+  .banzuke-table .rikishi-meta .profile-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .banzuke-table .rikishi-cell.is-expanded .hoshi-link,
+  .banzuke-table .rikishi-cell.is-expanded .hoshi {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    font-size: 1rem;
+  }
+}
