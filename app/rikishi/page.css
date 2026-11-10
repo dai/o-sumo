@@ -135,6 +135,141 @@
   gap: 1.25rem;
 }
 
+.rikishi-profile-skeleton {
+  padding: 0.85rem 1rem;
+  background: var(--surface-container-lowest);
+  box-shadow: var(--shadow-soft);
+}
+
+.rikishi-profile-skeleton__hero {
+  display: grid;
+  grid-template-columns: 128px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+}
+
+.rikishi-profile-skeleton__photo {
+  width: 128px;
+  height: 128px;
+  background: var(--surface-container-high);
+  box-shadow: inset 0 0 0 1px var(--color-border);
+}
+
+.rikishi-profile-skeleton__copy {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.rikishi-profile-skeleton__rank,
+.rikishi-profile-skeleton__name {
+  height: 0.85rem;
+  background: linear-gradient(
+    90deg,
+    var(--surface-container-high),
+    var(--surface-container-low),
+    var(--surface-container-high)
+  );
+  background-size: 200% 100%;
+  animation: rikishi-skeleton-shimmer 1.2s ease-in-out infinite;
+}
+
+.rikishi-profile-skeleton__rank {
+  width: 4.5rem;
+}
+
+.rikishi-profile-skeleton__name {
+  width: min(12rem, 80%);
+  height: 1.6rem;
+}
+
+@keyframes rikishi-skeleton-shimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rikishi-profile-skeleton__rank,
+  .rikishi-profile-skeleton__name {
+    animation: none;
+  }
+}
+
+.rikishi-current-basho {
+  padding: 1.25rem 1.5rem;
+  background: var(--surface-container-lowest);
+  box-shadow: var(--shadow-soft);
+}
+
+.rikishi-current-basho h2,
+.rikishi-current-basho__results-title {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-serif);
+  color: var(--color-primary);
+}
+
+.rikishi-current-basho h2 {
+  font-size: 1.15rem;
+}
+
+.rikishi-current-basho__results-title {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.rikishi-current-basho__basho {
+  margin: 0 0 0.85rem;
+  color: var(--color-secondary);
+  font-weight: 700;
+}
+
+.rikishi-current-basho__today,
+.rikishi-current-basho__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.85rem;
+  align-items: baseline;
+}
+
+.rikishi-current-basho__today {
+  padding: 0.85rem 1rem;
+  background: var(--surface-container-low);
+}
+
+.rikishi-current-basho__label {
+  color: var(--color-secondary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.rikishi-current-basho__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.rikishi-current-basho__row {
+  padding: 0.45rem 0.15rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.rikishi-current-basho a {
+  color: var(--color-secondary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.rikishi-current-basho a:hover {
+  text-decoration: underline;
+}
+
+.rikishi-current-basho__kimarite {
+  color: var(--color-muted);
+}
+
 .rikishi-profile-hero {
   display: grid;
   grid-template-columns: 128px minmax(0, 1fr);
@@ -292,9 +427,14 @@
   }
 
   .rikishi-profile-photo,
-  .rikishi-profile-photo-placeholder {
+  .rikishi-profile-photo-placeholder,
+  .rikishi-profile-skeleton__photo {
     width: 96px;
     height: 96px;
+  }
+
+  .rikishi-profile-skeleton__hero {
+    grid-template-columns: 1fr;
   }
 }
 

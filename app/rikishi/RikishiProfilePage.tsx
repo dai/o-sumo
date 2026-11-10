@@ -18,7 +18,7 @@ import { isLocalRikishiImagePath } from '../lib/rikishi-avatar';
 import { toRomaji } from '../lib/romaji';
 import { formatUpdatedAt } from '../lib/updated-at';
 import { SITE_ORIGIN } from '../lib/site-url';
-import { BoutTrail } from './BoutTrail';
+import { BoutTrail, CurrentBashoBouts } from './BoutTrail';
 import { KimariteRadar } from './KimariteRadar';
 import './page.css';
 
@@ -48,12 +48,16 @@ function formatCareerRecord(profile: RikishiProfile): {
 } {
   const wins = profile.careerStats.wins;
   const losses = profile.careerStats.losses;
-  const draws = profile.careerStats.draws;
-  const bouts = wins + losses + draws;
-  const decided = wins + losses;
-  const winRatePercent = decided > 0 ? Math.round((wins / decided) * 100) : 0;
+  // The profile parser stores the Kyokai 休 count in careerStats.draws
+  // ("401勝235敗34休"), not draws (分).
+  const absences = profile.careerStats.draws;
+  const bouts = wins + losses;
+  const winRatePercent = bouts > 0 ? Math.round((wins / bouts) * 100) : 0;
+  const record = absences > 0
+    ? `${wins}勝 ${losses}敗 ${absences}休`
+    : `${wins}勝 ${losses}敗`;
   return {
-    record: `${wins}勝 ${losses}敗 ${draws}分`,
+    record,
     bouts,
     winRatePercent,
   };
@@ -80,6 +84,7 @@ export default function RikishiProfilePage() {
     }
 
     setStatus('loading');
+    setProfile(null);
     let active = true;
     fetchRikishiProfile(numericId)
       .then((data) => {
@@ -172,9 +177,22 @@ export default function RikishiProfilePage() {
         ) : null}
 
         {status === 'loading' ? (
-          <p className="rikishi-status" role="status" aria-live="polite">
-            {t('rikishi.loading')}
-          </p>
+          <div
+            className="rikishi-profile-skeleton"
+            role="status"
+            aria-live="polite"
+            aria-busy="true"
+            aria-label={t('rikishi.loading')}
+          >
+            <span className="sr-only">{t('rikishi.loading')}</span>
+            <div className="rikishi-profile-skeleton__hero" aria-hidden="true">
+              <div className="rikishi-profile-skeleton__photo" />
+              <div className="rikishi-profile-skeleton__copy">
+                <div className="rikishi-profile-skeleton__rank" />
+                <div className="rikishi-profile-skeleton__name" />
+              </div>
+            </div>
+          </div>
         ) : null}
         {status === 'error' ? (
           <div className="rikishi-status rikishi-status--error" role="alert">
@@ -218,6 +236,8 @@ export default function RikishiProfilePage() {
                 </div>
               </div>
             </div>
+
+            <CurrentBashoBouts id={profile.id} name={profile.name} yomi={profile.yomi} />
 
             {career ? (
               <section className="rikishi-profile-career" aria-labelledby="rikishi-career-title">

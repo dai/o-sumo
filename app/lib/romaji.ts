@@ -42,6 +42,19 @@ const capitalizeWords = (text: string): string =>
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 
+/**
+ * Spell a reading the way the Nihon Sumo Kyokai prints "Ring Name" on
+ * https://www.sumo.or.jp/EnSumoDataRikishi/profile/{id}/ (checked against
+ * the November 2026 makuuchi and juryo roster). Long o and u written with
+ * う are omitted (おおのさと → Onosato, ほうしょうりゅう → Hoshoryu), except
+ * the う that begins うみ (さだのうみ → Sadanoumi).
+ */
+const isOmittedLengthener = (romajiSoFar: string, nextKana: string): boolean => {
+  if (nextKana === 'み') return false;
+  const previous = romajiSoFar.length > 0 ? romajiSoFar.charAt(romajiSoFar.length - 1) : '';
+  return previous === 'o' || previous === 'u';
+};
+
 export const toRomaji = (kana: string): string => {
   const normalized = toHiragana(kana.trim());
   let out = '';
@@ -50,6 +63,11 @@ export const toRomaji = (kana: string): string => {
     const current = normalized[i];
     const next = normalized[i + 1] ?? '';
     const pair = `${current}${next}`;
+
+    if (current === ' ') {
+      out += ' ';
+      continue;
+    }
 
     if (DIGRAPH_MAP[pair]) {
       out += DIGRAPH_MAP[pair];
@@ -67,6 +85,16 @@ export const toRomaji = (kana: string): string => {
     if (current === 'ー') {
       const lastVowel = out.match(/[aeiou](?!.*[aeiou])/);
       out += lastVowel ? lastVowel[0] : '';
+      continue;
+    }
+
+    if (current === 'お' && next === 'お') {
+      out += 'o';
+      i += 1;
+      continue;
+    }
+
+    if (current === 'う' && isOmittedLengthener(out, next)) {
       continue;
     }
 
