@@ -303,8 +303,8 @@ describe('sitemap lastmod', () => {
     expect(urls.find((url) => url.loc === `${SITE_ORIGIN}/202603-banzuke/`)?.lastmod).toBe('2026-03-24');
     expect(urls.find((url) => url.loc === `${SITE_ORIGIN}/202603-torikumi/`)?.lastmod).toBe('2026-04-18');
     expect(urls.find((url) => url.loc === `${SITE_ORIGIN}/202603-yotei/`)?.lastmod).toBe('2026-04-18');
-    expect(urls.find((url) => url.loc === `${SITE_ORIGIN}/20261109-torikumi/`)?.lastmod).toBe('2026-11-09T17:57:42+09:00');
-    expect(urls.find((url) => url.loc === `${SITE_ORIGIN}/20261109-yotei/`)?.lastmod).toBe('2026-11-09T17:05:53+09:00');
+    expect(urls.find((url) => url.loc === `${SITE_ORIGIN}/20261109-torikumi/`)?.lastmod).toBe(torikumiArchive.resultUpdatedAt);
+    expect(urls.find((url) => url.loc === `${SITE_ORIGIN}/20261109-yotei/`)?.lastmod).toBe(torikumiArchive.scheduleUpdatedAt);
     expect(urls.find((url) => url.loc === `${SITE_ORIGIN}/${torikumiMonthKey}-banzuke/`)?.lastmod).toBe(torikumiArchive.resultUpdatedAt);
   });
 
