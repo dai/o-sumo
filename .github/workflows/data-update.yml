@@ -43,23 +43,31 @@ jobs:
   delivery:
     # Defense in depth: publish already gates on main, but reaffirm here in
     # case this workflow is invoked through other paths in the future.
-    if: github.ref == 'refs/heads/main' && needs.publish.outputs.pushed == 'true'
+    # Runs without a push too: an older Cloudflare build that finishes late
+    # can take over production after the last verified push.
+    if: github.ref == 'refs/heads/main'
     needs: publish
     runs-on: ubuntu-latest
     timeout-minutes: 12
+    env:
+      PRODUCTION_URL: https://osada.us
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ needs.publish.outputs.commit_sha }}
+          ref: ${{ needs.publish.outputs.pushed == 'true' && needs.publish.outputs.commit_sha || 'main' }}
           fetch-depth: 1
           token: ${{ secrets.GH_PAT }}
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with: {python-version: '3.11'}
       - name: Verify delivery
+        if: needs.publish.outputs.pushed == 'true'
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
           PUBLISHED_SHA: ${{ needs.publish.outputs.commit_sha }}
-        run: python -m scripts.ci.check_data_delivery --repo "$GITHUB_REPOSITORY" --sha "$PUBLISHED_SHA" --timeout-seconds 600
+        run: python -m scripts.ci.check_data_delivery --repo "$GITHUB_REPOSITORY" --sha "$PUBLISHED_SHA" --production-url "$PRODUCTION_URL" --timeout-seconds 600
+      - name: Verify production freshness
+        if: needs.publish.outputs.pushed != 'true'
+        run: python -m scripts.ci.check_data_delivery --production-only --production-url "$PRODUCTION_URL" --timeout-seconds 300
       - name: Notify failure
         if: failure()
         env:

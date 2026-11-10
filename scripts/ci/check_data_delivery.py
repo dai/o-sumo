@@ -1,13 +1,22 @@
 #!/usr/bin/env python3
-"""Read-only, exact-commit production delivery verification (stdlib + gh)."""
+"""Read-only production delivery verification (stdlib + gh)."""
 
 import argparse
+from datetime import datetime
 import json
 import os
 from pathlib import Path
 import re
 import subprocess
 import time
+import urllib.request
+
+PRODUCTION_FILES = (
+    "public/api/v1/torikumi.json",
+    "public/api/v1/banzuke.json",
+    "public/api/v1/news.json",
+)
+REQUEST_TIMEOUT_SECONDS = 15
 
 
 def github_reader(endpoint, timeout_seconds):
@@ -19,6 +28,50 @@ def github_reader(endpoint, timeout_seconds):
     pages = json.loads(result.stdout)
     key = "check_runs" if "/check-runs?" in endpoint else "workflow_runs"
     return [record for page in pages for record in page[key]]
+
+
+def production_reader(url, timeout_seconds):
+    request = urllib.request.Request(url, headers={
+        "Accept": "application/json", "Cache-Control": "no-cache",
+        "User-Agent": "o-sumo-delivery-check",
+    })
+    with urllib.request.urlopen(request, timeout=timeout_seconds) as response:
+        return json.loads(response.read().decode("utf-8"))
+
+
+def expected_versions(root):
+    """Map each published JSON file in the checkout to its updatedAt."""
+    versions = {}
+    for path in PRODUCTION_FILES:
+        file = Path(root) / path
+        if not file.is_file():
+            continue
+        value = json.loads(file.read_text(encoding="utf-8")).get("updatedAt")
+        if isinstance(value, str) and value:
+            versions[path] = value
+    return versions
+
+
+def production_status(base_url, expected, nonce, timeout_seconds, *, fetch=production_reader):
+    """Production is fresh when every file serves the expected updatedAt or newer."""
+    if not expected:
+        return {"status": "unavailable", "reason": "no_expected_versions"}
+    files = {}
+    for path, want in expected.items():
+        url = f"{base_url.rstrip('/')}/{path.removeprefix('public/')}?delivery={nonce}"
+        try:
+            served = fetch(url, min(timeout_seconds, REQUEST_TIMEOUT_SECONDS)).get("updatedAt")
+            fresh = (isinstance(served, str)
+                     and datetime.fromisoformat(served) >= datetime.fromisoformat(want))
+        except (OSError, ValueError, TypeError, AttributeError):
+            # Do not report exception text: it is not needed to act on the result.
+            files[path] = {"status": "unavailable", "expected": want}
+            continue
+        files[path] = {"status": "fresh" if fresh else "stale", "expected": want, "served": served}
+    statuses = {entry["status"] for entry in files.values()}
+    status = ("unavailable" if "unavailable" in statuses
+              else "stale" if "stale" in statuses else "success")
+    return {"status": status, "files": files}
 
 
 def latest_status(records, sha, name, *, workflow=False):
@@ -41,13 +94,22 @@ def latest_status(records, sha, name, *, workflow=False):
             "conclusion": conclusion, "state": record.get("status")}
 
 
-def monitor(repo, sha, timeout_seconds=600, interval_seconds=20, *,
-            reader=github_reader, clock=time.monotonic, sleep=time.sleep):
+def _validate_budget(timeout_seconds, interval_seconds):
     if not 0 < timeout_seconds <= 600 or interval_seconds <= 0:
         raise ValueError("timeout must be in (0, 600]; interval must be positive")
+
+
+def monitor(repo, sha, timeout_seconds=600, interval_seconds=20, *, production,
+            reader=github_reader, clock=time.monotonic, sleep=time.sleep):
+    """Wait until the push CI passes and production serves the pushed data.
+
+    A successful Cloudflare Pages check only proves that commit was built: an
+    older build finishing later can still own the production alias.
+    """
+    _validate_budget(timeout_seconds, interval_seconds)
     deadline = clock() + timeout_seconds
-    result = {"sha": sha, "pages": {"status": "missing"},
-              "ci": {"status": "missing"}, "overall": "pending"}
+    result = {"sha": sha, "pages": {"status": "missing"}, "ci": {"status": "missing"},
+              "production": {"status": "missing"}, "overall": "pending"}
     endpoints = (
         ("pages", f"repos/{repo}/commits/{sha}/check-runs?filter=all&per_page=100",
          "Cloudflare Pages: o-sumo", False),
@@ -66,22 +128,39 @@ def monitor(repo, sha, timeout_seconds=600, interval_seconds=20, *,
             except (subprocess.SubprocessError, OSError, ValueError, KeyError, TypeError):
                 # Do not report exception text: upstream output can contain secrets.
                 result[key] = {"status": "unavailable", "reason": "api_read_failed"}
-        statuses = [result[key]["status"] for key in ("pages", "ci")]
-        if "failure" in statuses:
+        remaining = deadline - clock()
+        if remaining > 0:
+            result["production"] = production(remaining)
+        if "failure" in (result["pages"]["status"], result["ci"]["status"]):
             result["overall"] = "failure"
             return result
-        if statuses == ["success", "success"]:
+        if result["ci"]["status"] == "success" and result["production"]["status"] == "success":
             result["overall"] = "success"
             return result
         remaining = deadline - clock()
         if remaining > 0:
             sleep(min(interval_seconds, remaining))
-    # Cloudflare occasionally never reports a check for bot data commits; CI
-    # passing with no Pages check at all is not evidence of a failed delivery.
-    if result["ci"]["status"] == "success" and result["pages"]["status"] == "missing":
-        result["overall"] = "pages_not_reported"
-    else:
-        result["overall"] = "timeout"
+    result["overall"] = ("production_stale" if result["ci"]["status"] == "success"
+                         and result["production"]["status"] == "stale" else "timeout")
+    return result
+
+
+def monitor_production(timeout_seconds=300, interval_seconds=20, *, production,
+                       clock=time.monotonic, sleep=time.sleep):
+    """Wait until production serves the checked-out data (no push in this run)."""
+    _validate_budget(timeout_seconds, interval_seconds)
+    deadline = clock() + timeout_seconds
+    result = {"sha": None, "production": {"status": "missing"}, "overall": "pending"}
+    while clock() < deadline:
+        result["production"] = production(deadline - clock())
+        if result["production"]["status"] == "success":
+            result["overall"] = "success"
+            return result
+        remaining = deadline - clock()
+        if remaining > 0:
+            sleep(min(interval_seconds, remaining))
+    result["overall"] = ("production_stale" if result["production"]["status"] == "stale"
+                         else "timeout")
     return result
 
 
@@ -92,39 +171,59 @@ def emit(result, output_json=None):
         Path(output_json).write_text(rendered + "\n", encoding="utf-8")
     summary = os.environ.get("GITHUB_STEP_SUMMARY")
     if summary:
+        lines = ["", "### Data delivery verification", ""]
+        if result["sha"]:
+            lines += [f"Pushed commit: `{result['sha']}`", "",
+                      f"Cloudflare Pages: o-sumo: **{result['pages']['status']}**", "",
+                      f"Test (push): **{result['ci']['status']}**", ""]
+        else:
+            lines += ["No push in this run; checked production against `main`.", ""]
+        lines += [f"Production data: **{result['production']['status']}**", "",
+                  f"Delivery: **{result['overall']}**.", ""]
         with open(summary, "a", encoding="utf-8") as handle:
-            handle.write(f"\n### Data delivery verification\n\n"
-                         f"Pushed commit: `{result['sha']}`\n\n"
-                         f"Cloudflare Pages: o-sumo: **{result['pages']['status']}**\n\n"
-                         f"Test (push): **{result['ci']['status']}**\n\n"
-                         f"Delivery: **{result['overall']}**. A push alone does not prove publication.\n")
+            handle.write("\n".join(lines))
     output = os.environ.get("GITHUB_OUTPUT")
     if output:
         with open(output, "a", encoding="utf-8") as handle:
             handle.write(f"status={result['overall']}\n"
-                         f"pages_status={result['pages']['status']}\n"
-                         f"ci_status={result['ci']['status']}\n")
+                         f"production_status={result['production']['status']}\n")
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--repo", required=True)
-    parser.add_argument("--sha", required=True)
+    parser.add_argument("--repo")
+    parser.add_argument("--sha")
+    parser.add_argument("--production-url", required=True)
+    parser.add_argument("--production-only", action="store_true",
+                        help="skip commit checks; verify production serves the checkout's data")
+    parser.add_argument("--data-root", default=".")
     parser.add_argument("--timeout-seconds", type=float, default=600)
     parser.add_argument("--interval-seconds", type=float, default=20)
     parser.add_argument("--output-json")
     args = parser.parse_args(argv)
-    if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", args.repo):
-        parser.error("--repo must be owner/repo")
-    if not re.fullmatch(r"[0-9a-fA-F]{40}", args.sha):
-        parser.error("--sha must be a full 40-character commit SHA")
+    if not args.production_only:
+        if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", args.repo or ""):
+            parser.error("--repo must be owner/repo")
+        if not re.fullmatch(r"[0-9a-fA-F]{40}", args.sha or ""):
+            parser.error("--sha must be a full 40-character commit SHA")
+    if not re.fullmatch(r"https://[A-Za-z0-9.-]+/?", args.production_url):
+        parser.error("--production-url must be an https origin")
     if not 0 < args.timeout_seconds <= 600 or not 0 < args.interval_seconds < float("inf"):
         parser.error("timeout must be in (0, 600]; interval must be finite and positive")
-    result = monitor(args.repo, args.sha.lower(), args.timeout_seconds, args.interval_seconds)
+    expected = expected_versions(args.data_root)
+
+    def production(timeout_seconds):
+        return production_status(args.production_url, expected, str(time.time_ns()),
+                                 timeout_seconds)
+
+    if args.production_only:
+        result = monitor_production(args.timeout_seconds, args.interval_seconds,
+                                    production=production)
+    else:
+        result = monitor(args.repo, args.sha.lower(), args.timeout_seconds,
+                         args.interval_seconds, production=production)
     emit(result, args.output_json)
-    if result["overall"] == "pages_not_reported":
-        print("::warning::Cloudflare Pages check was never reported for this commit; delivery unverified")
-    return {"success": 0, "pages_not_reported": 0, "failure": 1, "timeout": 2}[result["overall"]]
+    return {"success": 0, "failure": 1, "production_stale": 1, "timeout": 2}[result["overall"]]
 
 
 if __name__ == "__main__":

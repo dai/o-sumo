@@ -15,6 +15,8 @@ except ImportError:
 
 
 SHA = "a" * 40
+FRESH = {"status": "success"}
+STALE = {"status": "stale"}
 
 
 def record(name, **overrides):
@@ -24,7 +26,7 @@ def record(name, **overrides):
 
 
 class DeliveryTests(unittest.TestCase):
-    def run_monitor(self, pages=None, ci=None, error=False):
+    def run_monitor(self, pages=None, ci=None, error=False, production=STALE):
         elapsed = [0]
         calls = []
 
@@ -38,18 +40,35 @@ class DeliveryTests(unittest.TestCase):
         def sleep(seconds):
             elapsed[0] += seconds
 
-        result = delivery.monitor("owner/repo", SHA, 5, 2, reader=reader,
-                                  clock=lambda: elapsed[0], sleep=sleep)
+        result = delivery.monitor("owner/repo", SHA, 5, 2, production=lambda _: production,
+                                  reader=reader, clock=lambda: elapsed[0], sleep=sleep)
         return result, elapsed[0], calls
 
-    def test_success_requires_both_exact_commit_checks(self):
+    def test_success_requires_ci_and_fresh_production(self):
         result, elapsed, calls = self.run_monitor(
-            [record("Cloudflare Pages: o-sumo")], [record("Test")])
+            [record("Cloudflare Pages: o-sumo")], [record("Test")], production=FRESH)
         self.assertEqual(result["overall"], "success")
         self.assertEqual(result["sha"], SHA)
         self.assertEqual(elapsed, 0)
         self.assertEqual(len(calls), 2)
         self.assertIn("event=push", calls[1])
+
+    def test_pages_success_alone_does_not_prove_publication(self):
+        result, elapsed, _ = self.run_monitor(
+            [record("Cloudflare Pages: o-sumo")], [record("Test")], production=STALE)
+        self.assertEqual(result["overall"], "production_stale")
+        self.assertEqual(elapsed, 5)
+
+    def test_pages_never_reported_but_production_fresh_is_success(self):
+        result, _, _ = self.run_monitor([], [record("Test")], production=FRESH)
+        self.assertEqual(result["overall"], "success")
+        self.assertEqual(result["pages"]["status"], "missing")
+
+    def test_fresh_production_without_ci_success_keeps_waiting(self):
+        result, elapsed, _ = self.run_monitor([record("Cloudflare Pages: o-sumo")], [],
+                                              production=FRESH)
+        self.assertEqual(result["overall"], "timeout")
+        self.assertEqual(elapsed, 5)
 
     def test_previous_sha_blog_and_non_push_do_not_count(self):
         result, elapsed, _ = self.run_monitor(
@@ -59,11 +78,6 @@ class DeliveryTests(unittest.TestCase):
         self.assertEqual(result["overall"], "timeout")
         self.assertEqual(result["pages"]["status"], "missing")
         self.assertEqual(result["ci"]["status"], "missing")
-        self.assertEqual(elapsed, 5)
-
-    def test_ci_success_with_pages_never_reported_is_not_fatal(self):
-        result, elapsed, _ = self.run_monitor([], [record("Test")])
-        self.assertEqual(result["overall"], "pages_not_reported")
         self.assertEqual(elapsed, 5)
 
     def test_missing_checks_timeout_is_bounded(self):
@@ -77,9 +91,15 @@ class DeliveryTests(unittest.TestCase):
             with self.subTest(conclusion=conclusion):
                 result, elapsed, _ = self.run_monitor(
                     [record("Cloudflare Pages: o-sumo")],
-                    [record("Test", conclusion=conclusion)])
+                    [record("Test", conclusion=conclusion)], production=FRESH)
                 self.assertEqual(result["overall"], "failure")
                 self.assertEqual(elapsed, 0)
+
+    def test_failed_pages_build_is_terminal_even_if_production_is_fresh(self):
+        result, _, _ = self.run_monitor(
+            [record("Cloudflare Pages: o-sumo", conclusion="failure")], [record("Test")],
+            production=FRESH)
+        self.assertEqual(result["overall"], "failure")
 
     def test_queued_rerun_hides_earlier_success(self):
         result, _, _ = self.run_monitor(
@@ -87,7 +107,7 @@ class DeliveryTests(unittest.TestCase):
              record("Cloudflare Pages: o-sumo", id=2, started_at=None,
                     created_at="2026-09-15T00:01:00Z", status="queued", conclusion=None)],
             [record("Test")])
-        self.assertEqual(result["overall"], "timeout")
+        self.assertEqual(result["overall"], "production_stale")
         self.assertEqual(result["pages"]["status"], "pending")
         self.assertEqual(result["pages"]["id"], 2)
 
@@ -113,7 +133,8 @@ class DeliveryTests(unittest.TestCase):
             return [record("Cloudflare Pages: o-sumo" if "/check-runs?" in endpoint else "Test")]
 
         with patch.object(delivery.time, "sleep"):
-            result = delivery.monitor("owner/repo", SHA, reader=reader, sleep=lambda _: None)
+            result = delivery.monitor("owner/repo", SHA, production=lambda _: FRESH,
+                                      reader=reader, sleep=lambda _: None)
         self.assertEqual(result["overall"], "success")
         self.assertEqual(count[0], 4)
 
@@ -138,6 +159,107 @@ class DeliveryTests(unittest.TestCase):
                              [{"id": 1}, {"id": 2}])
             self.assertEqual(run.call_args.args[0][0:5], ["gh", "api", "--method", "GET", "--paginate"])
             self.assertEqual(run.call_args.kwargs["timeout"], 7)
+
+
+class ProductionTests(unittest.TestCase):
+    EXPECTED = {"public/api/v1/torikumi.json": "2026-11-09T17:57:42+09:00",
+                "public/api/v1/news.json": "2026-11-09T19:14:07+09:00"}
+
+    def status(self, served, expected=None):
+        urls = []
+
+        def fetch(url, timeout):
+            urls.append(url)
+            self.assertGreater(timeout, 0)
+            value = served[url.split("?")[0].rsplit("/", 1)[1]]
+            if isinstance(value, Exception):
+                raise value
+            return {"updatedAt": value}
+
+        result = delivery.production_status("https://example.test/", self.EXPECTED if expected is None
+                                            else expected, "n1", 10, fetch=fetch)
+        return result, urls
+
+    def test_matching_or_newer_production_is_fresh(self):
+        result, urls = self.status({"torikumi.json": "2026-11-09T17:57:42+09:00",
+                                    "news.json": "2026-11-10T09:31:00+09:00"})
+        self.assertEqual(result["status"], "success")
+        self.assertEqual(urls, ["https://example.test/api/v1/torikumi.json?delivery=n1",
+                                "https://example.test/api/v1/news.json?delivery=n1"])
+
+    def test_timezones_are_compared_as_instants(self):
+        result, _ = self.status({"torikumi.json": "2026-11-09T08:57:42Z",
+                                 "news.json": "2026-11-09T10:14:07Z"})
+        self.assertEqual(result["status"], "success")
+
+    def test_rolled_back_production_is_stale(self):
+        result, _ = self.status({"torikumi.json": "2026-11-09T16:43:25+09:00",
+                                 "news.json": "2026-11-09T19:14:07+09:00"})
+        self.assertEqual(result["status"], "stale")
+        self.assertEqual(result["files"]["public/api/v1/torikumi.json"]["served"],
+                         "2026-11-09T16:43:25+09:00")
+        self.assertEqual(result["files"]["public/api/v1/news.json"]["status"], "fresh")
+
+    def test_fetch_errors_are_unavailable_without_details(self):
+        result, _ = self.status({"torikumi.json": OSError("SECRET"),
+                                 "news.json": "2026-11-09T19:14:07+09:00"})
+        self.assertEqual(result["status"], "unavailable")
+        self.assertNotIn("SECRET", json.dumps(result))
+
+    def test_missing_served_timestamp_is_stale(self):
+        result, _ = self.status({"torikumi.json": None, "news.json": "2026-11-09T19:14:07+09:00"})
+        self.assertEqual(result["status"], "stale")
+
+    def test_nothing_to_compare_is_unavailable(self):
+        result, urls = self.status({}, expected={})
+        self.assertEqual(result["status"], "unavailable")
+        self.assertEqual(urls, [])
+
+    def test_expected_versions_read_published_files(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "public/api/v1").mkdir(parents=True)
+            (root / "public/api/v1/torikumi.json").write_text(
+                json.dumps({"updatedAt": "2026-11-09T17:57:42+09:00"}), encoding="utf-8")
+            (root / "public/api/v1/banzuke.json").write_text(json.dumps({}), encoding="utf-8")
+            self.assertEqual(delivery.expected_versions(root),
+                             {"public/api/v1/torikumi.json": "2026-11-09T17:57:42+09:00"})
+
+    def test_production_only_waits_then_reports_stale(self):
+        elapsed = [0]
+
+        def sleep(seconds):
+            elapsed[0] += seconds
+
+        result = delivery.monitor_production(5, 2, production=lambda _: STALE,
+                                             clock=lambda: elapsed[0], sleep=sleep)
+        self.assertEqual(result["overall"], "production_stale")
+        self.assertEqual(elapsed, [5])
+
+    def test_production_only_succeeds_when_caught_up(self):
+        answers = iter([STALE, FRESH])
+        result = delivery.monitor_production(5, 2, production=lambda _: next(answers),
+                                             clock=lambda: 0, sleep=lambda _: None)
+        self.assertEqual(result["overall"], "success")
+
+    def test_stale_production_exits_nonzero(self):
+        with patch.object(delivery, "monitor_production", return_value={
+                "sha": None, "production": STALE, "overall": "production_stale"}), \
+                patch.object(delivery, "expected_versions", return_value=self.EXPECTED), \
+                contextlib.redirect_stdout(io.StringIO()):
+            code = delivery.main(["--production-only", "--production-url", "https://example.test"])
+        self.assertEqual(code, 1)
+
+    def test_production_only_emission_omits_checks(self):
+        result = {"sha": None, "production": STALE, "overall": "production_stale"}
+        with tempfile.TemporaryDirectory() as directory:
+            summary = Path(directory) / "summary"
+            with patch.dict(os.environ, {"GITHUB_STEP_SUMMARY": str(summary)}), \
+                    contextlib.redirect_stdout(io.StringIO()):
+                delivery.emit(result)
+            text = summary.read_text()
+        self.assertIn("Production data: **stale**", text)
+        self.assertNotIn("Cloudflare Pages", text)
 
 
 if __name__ == "__main__":
