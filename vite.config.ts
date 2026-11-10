@@ -168,6 +168,9 @@ export default defineConfig({
           'images/matchups/**',
           'images/og-*',
           'images/twitter-header.png',
+          // Subset webfonts are loaded from CSS. Precaching every weight
+          // would spend most of the 3MB shell budget on fonts.
+          'fonts/**',
         ],
         // These paths serve standalone HTML, Markdown, or protocol responses.
         // They must never receive the SPA shell from an installed service worker.
