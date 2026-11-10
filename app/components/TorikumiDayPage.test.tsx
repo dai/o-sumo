@@ -60,11 +60,12 @@ describe('TorikumiDayPage', () => {
     expect(marchScheduleDay).toBeDefined();
     renderPage(marchScheduleDay!, 'schedule');
 
-    const before = screen.getAllByRole('row').slice(0, 2).map((row) => row.textContent);
+    const rowText = () => Array.from(document.querySelectorAll('.torikumi-row')).slice(0, 2).map((row) => row.textContent);
+    const before = rowText();
 
     await user.click(screen.getByRole('button', { name: '降順' }));
 
-    const after = screen.getAllByRole('row').slice(0, 2).map((row) => row.textContent);
+    const after = rowText();
     // Verify order changed (content before and after should be different)
     expect(before[0]).not.toBe(after[0]);
   });
@@ -215,7 +216,8 @@ describe('TorikumiDayPage', () => {
     renderPage(dayWithAbsentees, 'schedule');
 
     expect(screen.getByText(`最終更新: ${formatUpdatedAt(torikumiArchive.scheduleUpdatedAt)}`)).toBeInTheDocument();
-    expect(screen.getByText('休場者:')).toBeInTheDocument();
+    expect(screen.getByText('幕内 休場:')).toBeInTheDocument();
+    expect(screen.getByText('十両 休場:')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '大の里' })).toHaveAttribute('href', '/rikishi/1/');
     expect(screen.getByRole('link', { name: '青安錦' })).toHaveAttribute('href', '/rikishi/2/');
   });
@@ -227,7 +229,8 @@ describe('TorikumiDayPage', () => {
     renderPage(openingDay!, 'schedule');
 
     const header = within(screen.getByRole('banner'));
-    expect(header.getByText('休場者:')).toBeInTheDocument();
+    expect(header.getByText('幕内 休場:')).toBeInTheDocument();
+    expect(header.getByText('十両 休場:')).toBeInTheDocument();
     expect(header.getByRole('link', { name: '若隆景' })).toHaveAttribute('href', '/rikishi/3761/');
     expect(header.getByRole('link', { name: '白鷹山' })).toHaveAttribute('href', '/rikishi/3334/');
   });
@@ -239,7 +242,8 @@ describe('TorikumiDayPage', () => {
     renderPage(day14!, 'schedule');
 
     const header = within(screen.getByRole('banner'));
-    expect(header.getByText('休場者:')).toBeInTheDocument();
+    expect(header.getByText('幕内 休場:')).toBeInTheDocument();
+    expect(header.getByText('十両 休場:')).toBeInTheDocument();
     expect(header.getByRole('link', { name: '若隆景' })).toHaveAttribute('href', '/rikishi/3761/');
     expect(header.getByRole('link', { name: '若ノ勝' })).toHaveAttribute('href', '/rikishi/4121/');
     expect(header.getByRole('link', { name: '白鷹山' })).toHaveAttribute('href', '/rikishi/3334/');
@@ -265,7 +269,8 @@ describe('TorikumiDayPage', () => {
 
     renderPage(resultDayWithAbsentees, 'result');
 
-    expect(screen.getByText('休場者:')).toBeInTheDocument();
+    expect(screen.getByText('幕内 休場:')).toBeInTheDocument();
+    expect(screen.getByText('十両 休場:')).toBeInTheDocument();
   });
 
   it('replaces matches involving an absentee with an absent placeholder row', () => {
@@ -326,7 +331,8 @@ describe('TorikumiDayPage', () => {
 
     renderPage(dayWithFusen, 'result');
 
-    expect(screen.getByText('休場者:')).toBeInTheDocument();
+    expect(screen.getByText('幕内 休場:')).toBeInTheDocument();
+    expect(screen.queryByText('十両 休場:')).not.toBeInTheDocument();
     expect(screen.getByText(/不戦（/)).toBeInTheDocument();
     expect(document.querySelectorAll('.torikumi-row-absent')).toHaveLength(0);
   });
@@ -663,6 +669,116 @@ describe('TorikumiDayPage', () => {
 
     expect(screen.getByText(`最終更新: ${formatUpdatedAt(torikumiArchive.scheduleUpdatedAt)}`)).toBeInTheDocument();
     expect(screen.getByText('取組予定は日本相撲協会の発表をもとに更新しています。')).toBeInTheDocument();
+  });
+
+  it('uses the schedule heading on a result route when no bout has a winner', () => {
+    const base = torikumiArchive.resultDays[0];
+    const clear = <T extends { matches: Array<{ winner?: 'east' | 'west' | null; kimarite: string }> }>(division: T): T => ({
+      ...division,
+      matches: division.matches.map((match) => ({ ...match, winner: null, kimarite: '未定' })),
+    });
+    const day: TorikumiArchiveDay = {
+      ...base,
+      status: 'published',
+      statusMessage: null,
+      data: {
+        makuuchi: clear(base.data.makuuchi),
+        juryo: clear(base.data.juryo),
+      },
+    };
+
+    renderPage(day, 'result');
+
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('取組予定');
+    expect(screen.getByRole('heading', { level: 1 })).not.toHaveTextContent('取組結果');
+    expect(document.querySelector('.day-summary-card__title')).toHaveTextContent('初日の取組予定');
+    expect(screen.getByText(`更新日: ${formatUpdatedAt(torikumiArchive.scheduleUpdatedAt)}`)).toBeInTheDocument();
+  });
+
+  it('omits the undecided kimarite string when a bout has no winner', () => {
+    const base = torikumiArchive.resultDays[0];
+    const [first, ...rest] = base.data.makuuchi.matches;
+    const day: TorikumiArchiveDay = {
+      ...base,
+      data: {
+        ...base.data,
+        makuuchi: {
+          ...base.data.makuuchi,
+          matches: [{ ...first, winner: null, kimarite: '未定' }, ...rest],
+        },
+      },
+    };
+
+    renderPage(day, 'result');
+
+    expect(screen.queryByText('未定')).not.toBeInTheDocument();
+    expect(screen.getByLabelText('結果待ち')).toHaveTextContent('—');
+    expect(screen.getByRole('heading', { level: 1, name: /取組結果/ })).toBeInTheDocument();
+  });
+
+  it('labels juryo absentees and omits the makuuchi label when only juryo is out', () => {
+    const day2 = torikumiArchive.resultDays.find((day) => day.pathDate === '20261109');
+    expect(day2).toBeDefined();
+
+    renderPage(day2!, 'result');
+
+    const header = within(screen.getByRole('banner'));
+    expect(header.getByText('十両 休場:')).toBeInTheDocument();
+    expect(header.queryByText('幕内 休場:')).not.toBeInTheDocument();
+    expect(header.getByRole('link', { name: '日翔志' })).toBeInTheDocument();
+    expect(header.getByRole('link', { name: '白熊' })).toBeInTheDocument();
+  });
+
+  it('gives every result-table row an ARIA cell or header child', () => {
+    renderPage(torikumiArchive.resultDays[0], 'result');
+
+    const table = screen.getByRole('table');
+    const rows = within(table).getAllByRole('row');
+    expect(rows.length).toBeGreaterThan(1);
+    for (const row of rows) {
+      const owned = [
+        ...within(row).queryAllByRole('cell'),
+        ...within(row).queryAllByRole('columnheader'),
+        ...within(row).queryAllByRole('rowheader'),
+      ];
+      expect(owned.length).toBeGreaterThan(0);
+    }
+    expect(within(table).getAllByRole('rowheader').length).toBeGreaterThan(0);
+  });
+
+  it('places the refresh button in the same row as the pending notice', () => {
+    const pendingDay: TorikumiArchiveDay = {
+      day: 15,
+      isoDate: '2026-03-22',
+      pathDate: '20260322',
+      label: '千秋楽',
+      dayHead: '千秋楽： 令和8年3月22日(日)',
+      status: 'pending',
+      statusMessage: '結果未更新',
+      data: {
+        makuuchi: {
+          day: 15,
+          dayName: '取組日 千秋楽',
+          dayHead: '千秋楽： 令和8年3月22日(日)',
+          division: '幕内',
+          matches: [],
+        },
+        juryo: {
+          day: 15,
+          dayName: '取組日 千秋楽',
+          dayHead: '千秋楽： 令和8年3月22日(日)',
+          division: '十両',
+          matches: [],
+        },
+      },
+    };
+
+    renderPage(pendingDay, 'result');
+
+    const notice = screen.getByText('結果未更新');
+    const button = screen.getByRole('button', { name: '最新に更新' });
+    expect(notice.parentElement).toBe(button.parentElement);
+    expect(notice.parentElement).toHaveClass('torikumi-status-row');
   });
 
 });

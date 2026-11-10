@@ -1,6 +1,7 @@
 {
   "global": {
-    "agentGuideNotice": "Updated the Day 1 and Day 2 torikumi schedule for the November 2026 basho.",
+    "noticeUpdated": "Updated the {{day}} torikumi results for the {{basho}}.",
+    "noticePartial": "{{day}} results (partial)",
     "homeLink": "Home",
     "backToHome": "Back to Home",
     "siteNavigation": "Site navigation",
@@ -351,7 +352,9 @@
   "torikumi": {
     "shared": {
       "absenteesLabel": "Absentees:",
-      "absentees": "Absentees: {{names}}"
+      "absentees": "Absentees: {{names}}",
+      "absenteesMakuuchi": "Makuuchi absentees:",
+      "absenteesJuryo": "Juryo absentees:"
     },
     "hub": {
       "resultListTitle": "Results",
@@ -393,6 +396,7 @@
       "updateDate": "Updated: {{date}}",
       "kimariteResult": "Winning Technique",
       "kimariteSchedule": "Scheduled",
+      "kimaritePending": "Pending",
       "winner": "WIN",
       "matchScheduled": "Scheduled match",
       "viewMatchupDetails": "View Head-to-Head",

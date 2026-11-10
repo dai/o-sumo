@@ -672,6 +672,11 @@
   font-size: 0.78rem;
 }
 
+.kimarite-pending {
+  color: var(--on-surface-variant, #6f6f6a);
+  font-weight: 500;
+}
+
 .kimarite-value {
   background: var(--surface-container-low);
   display: flex;
@@ -1292,17 +1297,23 @@
   color: #ffffff;
 }
 
-/* Manual refresh button follows the viewport while reading a torikumi day page. */
-.torikumi-refresh-mount {
-  min-height: 0;
+/* The refresh control shares a wrapping row with the pending-result notice. */
+.torikumi-status-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.torikumi-status-row .status-message {
   margin: 0;
+  padding: 0.45rem 0.75rem;
 }
 
 .torikumi-refresh-btn {
-  position: fixed;
-  right: 1rem;
-  bottom: calc(0.85rem + env(safe-area-inset-bottom, 0px));
-  max-width: calc(100vw - 2rem);
+  position: static;
+  max-width: 100%;
   border: none;
   border-radius: 0;
   background: var(--color-primary);
@@ -1311,7 +1322,6 @@
   font-weight: 600;
   font-family: var(--font-serif);
   cursor: pointer;
-  z-index: 100;
   transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease,
     transform 150ms ease;
   display: inline-flex;
