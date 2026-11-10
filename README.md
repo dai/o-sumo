@@ -339,7 +339,6 @@ GitHub Actions では取組予定、取組結果、ニュースを別々に取�
 - `scripts/ci/run_torikumi_generator.sh` — 最大 2 回リトライで `update_sumo_data.py` を実行
 - `scripts/ci/validate_torikumi.py` — `public/api/v1/torikumi.json` の構造検証
 - `scripts/ci/validate_news.py` — `public/api/v1/news.json` の構造検証
-- `scripts/ci/notify_discord.sh` — `DISCORD_WEBHOOK_URL` が設定されていれば Discord に失敗通知
 
 ワークフロー一覧:
 

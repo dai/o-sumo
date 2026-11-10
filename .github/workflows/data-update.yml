@@ -6,7 +6,6 @@ on:
       event_schedule: {required: false, default: '', type: string}
     secrets:
       GH_PAT: {required: true}
-      DISCORD_WEBHOOK_URL: {required: false}
 # Reusable workflow owns the write surface (push via GH_PAT) and needs to read
 # check + actions results for delivery verification.
 permissions: {contents: write, checks: read, actions: read}
@@ -34,12 +33,6 @@ jobs:
           UPDATE_SCOPE: ${{ inputs.scope }}
           EVENT_SCHEDULE: ${{ inputs.event_schedule }}
         run: python -m scripts.ci.run_data_update --scope "$UPDATE_SCOPE" --event-schedule "$EVENT_SCHEDULE"
-      - name: Notify failure
-        if: failure() && secrets.DISCORD_WEBHOOK_URL != ''
-        env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        run: bash scripts/ci/notify_discord.sh failure 'Serialized data publication failed' "$RUN_URL" || echo '::warning::notify_discord failed'
   delivery:
     # Defense in depth: publish already gates on main, but reaffirm here in
     # case this workflow is invoked through other paths in the future.
@@ -68,9 +61,3 @@ jobs:
       - name: Verify production freshness
         if: needs.publish.outputs.pushed != 'true'
         run: python -m scripts.ci.check_data_delivery --production-only --production-url "$PRODUCTION_URL" --timeout-seconds 300
-      - name: Notify failure
-        if: failure() && secrets.DISCORD_WEBHOOK_URL != ''
-        env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        run: bash scripts/ci/notify_discord.sh failure 'Serialized data delivery verification failed' "$RUN_URL" || echo '::warning::notify_discord failed'

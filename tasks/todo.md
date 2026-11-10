@@ -253,7 +253,7 @@ change to comply with the repository text policy.
 - Root cause: `record_attempt` raised on stale/future-dated candidate, propagating as CalledProcessError through `state_publish`. News publish (and downstream main publish) never reached git commit.
 - Fix: candidate invalid → counted as "failure" attempt (consecutiveFailures++), durable state preserved, `select_publication` circuit breaker (>=3 failures) handles suppression.
 - Daily torikumi run 35199436940 (validator rejected fusen/absentee overlap for rikushi 3988 in day=5) was a data-driven failure that auto-healed on next upstream refresh — no validator change needed.
-- Discord notification `curl: (6) Could not resolve host` is a secondary noise — `notify_discord.sh` uses `|| echo '::warning::'`, not blocking. Worth a separate investigation later (DNS for `DISCORD_WEBHOOK_URL` host).
+- Discord notification removed (2026-11-10; unused).
 
 - PR #628 (`fix(ci): treat stale or future-dated news candidates as failed attempts`) を 2026-09-17 に squash merge (CI: Cloudflare Pages x 2 + test 緑)。origin/main HEAD `a964d477`、local main merge commit `e0ec985` (Co-Authored-By 付与)、branch `fix/news-state-graceful-skip` 削除済。
 - 修正点: PR #628 head (82956bf) の tree には本来 4 files (news_state.py / news_state_test.py / tasks/lessons.md / tasks/todo.md) のはずが、`app/lib/sumo-data.ts` / `app/lib/torikumi-data.ts` / `public/api/v1/banzuke.json` / `public/api/v1/torikumi.json` の data ファイル 4 つも混入していた (過去の cherry-pick 時に working tree dirty だった)。`gh pr merge 628 --squash` が main HEAD (5fc7951) と conflict (両 branch が tasks/lessons.md / tasks/todo.md に同一 news_state section を追加) したため、PR branch を df6d856 + news_state.py + news_state_test.py のみの clean な commit (`e0ffbc7`) に作り直して force-push してから merge。
