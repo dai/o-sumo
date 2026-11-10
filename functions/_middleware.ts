@@ -38,13 +38,25 @@ const SPA_TRAILING_SLASH_PATTERN = /\.[a-z0-9]{1,8}$/i;
 
 // These paths are retired content. Keep `/archives/` itself available as the
 // current archive hub, and evaluate this before trailing-slash redirects.
+// `/archives/index.md` is the Markdown alternate advertised from `/archives/`
+// in `public/_headers` and listed in MARKDOWN_ROUTES, so it stays reachable.
 function isGonePath(pathname: string): boolean {
   return (
-    (pathname.startsWith('/archives/') && pathname !== '/archives/') ||
+    (pathname.startsWith('/archives/') &&
+      pathname !== '/archives/' &&
+      pathname !== '/archives/index.md') ||
     /^\/pinterest-[^/]+\.html$/.test(pathname) ||
     pathname === '/202603-banduke' ||
     pathname === '/202603-banduke/'
   );
+}
+
+// Crawlers request paths with empty segments (`/rikishi//`, `/terms//`).
+// Collapse them before the 410 and trailing-slash checks so the canonical
+// target is what gets classified. Link builders in `app/` do not emit `//`.
+function collapseDuplicateSlashes(pathname: string): string | null {
+  if (!pathname.includes('//')) return null;
+  return pathname.replace(/\/{2,}/g, '/');
 }
 
 const SPA_ROUTE_PATTERNS: RegExp[] = [
@@ -236,6 +248,17 @@ function ensureHomeLinkHeaders(headers: Headers) {
 export const onRequest = async (context: any): Promise<Response> => {
   const requestUrl = new URL(context.request.url);
   const pathname = requestUrl.pathname;
+
+  const collapsedPath = collapseDuplicateSlashes(pathname);
+  if (collapsedPath) {
+    return new Response(null, {
+      status: 301,
+      headers: {
+        Location: `${collapsedPath}${requestUrl.search}`,
+        'Cache-Control': 'public, max-age=3600',
+      },
+    });
+  }
 
   if (isGonePath(pathname)) {
     return buildErrorResponse(context, requestUrl, 410, 'Gone');

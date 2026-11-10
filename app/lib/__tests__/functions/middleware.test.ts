@@ -789,6 +789,59 @@ describe('onRequest trailing-slash enforcement', () => {
   });
 });
 
+describe('onRequest duplicate-slash canonicalization', () => {
+  function makeContext(request: Request, mockNext: ReturnType<typeof vi.fn>) {
+    return {
+      request,
+      env: { ASSETS: { fetch: vi.fn() } },
+      next: mockNext,
+    };
+  }
+
+  it.each([
+    ['/rikishi//', '/rikishi/'],
+    ['/rikishi/4358//', '/rikishi/4358/'],
+    ['/terms//', '/terms/'],
+    ['/rikishi///4358//', '/rikishi/4358/'],
+    ['//terms//', '/terms/'],
+  ])('returns 301 from %s to %s without invoking the next handler', async (pathname, location) => {
+    const mockNext = vi.fn();
+    const response = await onRequest(
+      makeContext(new Request(`https://osada.us${pathname}`, { headers: { Accept: 'text/html' } }), mockNext),
+    );
+
+    expect(response.status).toBe(301);
+    expect(response.headers.get('Location')).toBe(location);
+    expect(response.headers.get('Cache-Control')).toBe('public, max-age=3600');
+    expect(mockNext).not.toHaveBeenCalled();
+  });
+
+  it('preserves the query string on the collapsed path', async () => {
+    const mockNext = vi.fn();
+    const response = await onRequest(
+      makeContext(
+        new Request('https://osada.us/rikishi/4358//?tab=1', { headers: { Accept: 'text/html' } }),
+        mockNext,
+      ),
+    );
+
+    expect(response.status).toBe(301);
+    expect(response.headers.get('Location')).toBe('/rikishi/4358/?tab=1');
+    expect(mockNext).not.toHaveBeenCalled();
+  });
+
+  it('collapses /archives//index.md before the 410 check', async () => {
+    const mockNext = vi.fn();
+    const response = await onRequest(
+      makeContext(new Request('https://osada.us/archives//index.md'), mockNext),
+    );
+
+    expect(response.status).toBe(301);
+    expect(response.headers.get('Location')).toBe('/archives/index.md');
+    expect(mockNext).not.toHaveBeenCalled();
+  });
+});
+
 describe('onRequest legacy path handling', () => {
   function makeHtmlResponse(body = '<!DOCTYPE html><html><body></body></html>'): Response {
     return new Response(body, {
@@ -812,6 +865,8 @@ describe('onRequest legacy path handling', () => {
   it.each([
     '/archives/2013/06/xxx.html',
     '/archives/cat11/',
+    '/archives/foo',
+    '/archives/index.md/',
     '/pinterest-a28cb.html',
     '/202603-banduke',
     '/202603-banduke/',
@@ -853,6 +908,28 @@ describe('onRequest legacy path handling', () => {
     );
 
     expect(response.status).toBe(200);
+    expect(mockNext).toHaveBeenCalledOnce();
+  });
+
+  it('serves /archives/index.md instead of returning 410', async () => {
+    const markdown = '# アーカイブ';
+    const mockNext = vi.fn().mockResolvedValue(
+      new Response(markdown, {
+        status: 200,
+        headers: { 'Content-Type': 'text/markdown; charset=utf-8' },
+      }),
+    );
+    const response = await onRequest(
+      makeContext(
+        new Request('https://osada.us/archives/index.md', { headers: { Accept: 'text/html' } }),
+        mockNext,
+        vi.fn(),
+      ),
+    );
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get('Content-Type')).toBe('text/markdown; charset=utf-8');
+    expect(await response.text()).toBe(markdown);
     expect(mockNext).toHaveBeenCalledOnce();
   });
 });
