@@ -166,7 +166,7 @@ describe('PWA smoke config', () => {
     expect(viteConfig).toContain("'images/og-*'");
     expect(viteConfig).toContain("'images/twitter-header.png'");
     expect(viteConfig).toContain("'fonts/**'");
-    expect(viteConfig).toContain('/\\/images\\/rikishi\\//');
+    expect(viteConfig).toContain('/^\\/images\\/rikishi\\/\\d+(?:-\\d+)?\\.(?:png|jpe?g|webp|avif|svg)$/i');
     expect(viteConfig).toContain("handler: 'CacheFirst'");
     expect(viteConfig).toContain("cacheName: 'rikishi-images'");
     expect(viteConfig).toContain('maxEntries: 200');
@@ -187,6 +187,8 @@ describe('PWA smoke config', () => {
       return sum + statSync(join(process.cwd(), 'dist', relativeUrl)).size;
     }, 0);
 
+    expect(serviceWorker).not.toContain('shouldCacheRikishiImage');
+    expect(serviceWorker).toContain('webp|avif');
     expect(serviceWorker).not.toContain('images/rikishi');
     expect(urls.some((url) => url.includes('images/rikishi/'))).toBe(false);
     expect(urls.some((url) => url.includes('images/matchups/'))).toBe(false);

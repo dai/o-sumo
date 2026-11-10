@@ -15,6 +15,7 @@ import {
   type RikishiProfile,
 } from '../lib/rikishi-profile';
 import { isLocalRikishiImagePath } from '../lib/rikishi-avatar';
+import RikishiPortrait from '../components/RikishiPortrait';
 import { toRomaji } from '../lib/romaji';
 import { formatUpdatedAt } from '../lib/updated-at';
 import { SITE_ORIGIN } from '../lib/site-url';
@@ -214,7 +215,20 @@ export default function RikishiProfilePage() {
           <article className="rikishi-profile-detail">
             <div className="rikishi-profile-hero">
               {profile.photoUrl ? (
-                <img className="rikishi-profile-photo" src={profile.photoUrl} alt="" aria-hidden="true" loading="lazy" />
+                isLocalRikishiImagePath(profile.photoUrl) ? (
+                  <RikishiPortrait id={profile.id} slot="profile" className="rikishi-profile-photo" />
+                ) : (
+                  <img
+                    className="rikishi-profile-photo"
+                    src={profile.photoUrl}
+                    alt=""
+                    aria-hidden="true"
+                    width={128}
+                    height={128}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )
               ) : (
                 <div className="rikishi-profile-photo-placeholder" aria-hidden="true">{profile.name.slice(0, 1)}</div>
               )}

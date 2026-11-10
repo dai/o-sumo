@@ -36,13 +36,21 @@ Each image is based on a source profile photo and processed into a consistent il
 
 ## 使用方法 / Usage
 
-画像は `/images/rikishi/{id}.png` の形式で参照されます。
-力士のJSON データ (`/api/v1/rikishi/{id}.json`) の `photoUrl` フィールドがこのパスを指します。
-`/rikishi/{id}` と `/{YYYYMM}-banzuke/` はこのローカル画像を優先表示します。
+原本は `/images/rikishi/{id}.png` です。ページ配信は同じ ID の 96 / 192 / 384px WebP と AVIF（`{id}-{width}.webp` / `{id}-{width}.avif`）を `srcset` で選びます。
+力士のJSON データ (`/api/v1/rikishi/{id}.json`) の `photoUrl` フィールドは原本 PNG を指します。
+`/rikishi/{id}` と `/{YYYYMM}-banzuke/` はローカル画像を優先表示します。
 
-Images are referenced as `/images/rikishi/{id}.png`.
-The `photoUrl` field in each rikishi's JSON data (`/api/v1/rikishi/{id}.json`) points to this path.
-Both `/rikishi/{id}` and `/{YYYYMM}-banzuke/` prefer this local image path.
+The original file is `/images/rikishi/{id}.png`. Pages deliver 96 / 192 / 384px WebP and AVIF variants (`{id}-{width}.webp` / `{id}-{width}.avif`) through `srcset`.
+The `photoUrl` field in each rikishi's JSON data (`/api/v1/rikishi/{id}.json`) still points at the PNG original.
+Both `/rikishi/{id}` and `/{YYYYMM}-banzuke/` prefer this local image.
+
+PNG を追加・差し替えたあとは配信サイズを作り直します。
+
+Regenerate the delivery sizes after adding or replacing a PNG:
+
+```bash
+npm run images:rikishi
+```
 
 ## ライセンス / License
 
