@@ -44,6 +44,13 @@
   color: var(--color-secondary);
 }
 
+.auth-controls--compact {
+  width: auto;
+  min-height: 0;
+  padding: 0;
+  background: transparent;
+}
+
 @media (max-width: 480px) {
   .auth-controls {
     align-items: stretch;
@@ -56,6 +63,11 @@
     min-height: 44px;
     align-items: center;
     justify-content: center;
+  }
+
+  .auth-controls--compact {
+    flex-direction: row;
+    align-items: center;
   }
 
   .auth-controls__hint {

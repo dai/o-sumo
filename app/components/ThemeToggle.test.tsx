@@ -16,6 +16,12 @@ describe('ThemeToggle', () => {
     expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'false')
   })
 
+  it('starts the accessible name with the visible theme label', () => {
+    render(<ThemeToggle />)
+
+    expect(screen.getByRole('button', { name: /^LIGHT\b/ })).toHaveTextContent('LIGHT')
+  })
+
   it('toggles theme, updates root dataset, and persists selection', async () => {
     const user = userEvent.setup()
     render(<ThemeToggle />)

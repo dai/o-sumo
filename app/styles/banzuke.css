@@ -189,7 +189,7 @@
 
 .hoshi.draw {
   background: var(--surface-container-high);
-  color: var(--color-draw);
+  color: #334155;
 }
 
 .hoshi.empty {
@@ -300,6 +300,11 @@
 
 .rikishi-name-link:hover .rikishi-name {
   color: var(--color-secondary-dim);
+}
+
+.page-container .page-footer a,
+.banzuke-discovery .directory-anchors a {
+  color: #9f2f21;
 }
 
 .profile-link {

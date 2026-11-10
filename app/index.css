@@ -1746,7 +1746,7 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-dark-text);
-  opacity: 0.55;
+  opacity: 1;
   margin: clamp(1.25rem, 3vw, 1.75rem) 0 0;
   text-align: right;
   font-variant-numeric: tabular-nums;
@@ -1804,8 +1804,8 @@
   --home-paper-deep: #e8decb;
   --home-ink: #24211e;
   --home-muted: #665f57;
-  --home-red: #c33f2d;
-  --home-red-dark: #9f2f21;
+  --home-red: #9f2f21;
+  --home-red-dark: #7a2419;
   --home-rule: #cfc3af;
   background: var(--home-paper);
   color: var(--home-ink);
@@ -2348,7 +2348,7 @@
 
 .imakoko-meter__label.is-makushita {
   flex: 0 0 20%;
-  color: rgba(255, 255, 255, 0.42);
+  color: rgba(255, 255, 255, 0.78);
   font-size: clamp(0.6rem, 1.2vw, 0.68rem);
   white-space: nowrap;
   overflow: hidden;
@@ -2823,7 +2823,7 @@
 
 .home-editorial .analytics-feature-label {
   margin-bottom: 0.7rem;
-  color: var(--color-secondary);
+  color: var(--home-red);
   font-size: 0.82rem;
   letter-spacing: 0.04em;
 }

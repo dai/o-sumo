@@ -35,7 +35,7 @@ describe('Home final recap reactions', () => {
     localStorage.setItem(finalKey, '7');
     render(<MemoryRouter><Home /></MemoryRouter>);
 
-    fireEvent.click(screen.getByRole('button', { name: 'この端末で座布団を投げる (7)' }));
+    fireEvent.click(screen.getByRole('button', { name: /^この端末の座布団 7枚/ }));
 
     expect(localStorage.getItem(finalKey)).toBe('8');
     expect(localStorage.getItem(openingKey)).toBe('2');
@@ -49,7 +49,7 @@ describe('Home final recap reactions', () => {
     localStorage.setItem(recapKey, '4');
     render(<MemoryRouter><Home /></MemoryRouter>);
 
-    fireEvent.click(screen.getByRole('button', { name: 'この端末で座布団を投げる (4)' }));
+    fireEvent.click(screen.getByRole('button', { name: /^この端末の座布団 4枚/ }));
 
     expect(localStorage.getItem(recapKey)).toBe('5');
     expect(localStorage.getItem(`osumo_daily_zabuton_count:${torikumiMonthKey}:1`)).toBeNull();

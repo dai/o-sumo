@@ -6,12 +6,16 @@ import { AuthSessionProvider } from '../lib/auth-session';
 import { MyRikishiProvider } from '../lib/my-rikishi';
 import AuthControls from './AuthControls';
 
-function renderControls(fetcher: typeof fetch, initialEntry: string = '/my-rikishi/') {
+function renderControls(
+  fetcher: typeof fetch,
+  initialEntry: string = '/my-rikishi/',
+  variant?: 'compact',
+) {
   vi.stubGlobal('fetch', fetcher);
   return render(
     <MemoryRouter initialEntries={[initialEntry]}>
       <AuthSessionProvider>
-        <MyRikishiProvider><AuthControls /></MyRikishiProvider>
+        <MyRikishiProvider><AuthControls variant={variant} /></MyRikishiProvider>
       </AuthSessionProvider>
     </MemoryRouter>,
   );
@@ -35,6 +39,14 @@ describe('AuthControls', () => {
     renderControls(vi.fn().mockResolvedValue(Response.json({ authenticated: false })), '/20260913-torikumi/');
     const signIn = await screen.findByRole('link', { name: 'Google でログイン' });
     expect(signIn).toHaveAttribute('href', '/api/auth/google?returnTo=%2F20260913-torikumi%2F');
+  });
+
+  it('does not render the sign-in explanation in the compact variant', async () => {
+    renderControls(vi.fn().mockResolvedValue(Response.json({ authenticated: false })), '/', 'compact');
+    const signIn = await screen.findByRole('link', { name: 'Google でログイン' });
+    expect(signIn).toHaveAttribute('href', '/api/auth/google?returnTo=%2F');
+    expect(screen.queryByText('ログインしなくても、この端末には保存できます。')).not.toBeInTheDocument();
+    expect(screen.queryByText('※ パスワード入力は不要です')).not.toBeInTheDocument();
   });
 
   it('preserves the root page in returnTo when signing in from homepage', async () => {
