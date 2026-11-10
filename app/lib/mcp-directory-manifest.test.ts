@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
@@ -20,12 +20,12 @@ describe('mcp/server.json', () => {
       },
       icons: [
         {
-          src: 'https://raw.githubusercontent.com/dai/o-sumo/main/mcp/agy/o-sumo/assets/logo-512.png',
+          src: 'https://raw.githubusercontent.com/dai/o-sumo/main/mcp/assets/logo-512.png',
           mimeType: 'image/png',
           sizes: ['512x512'],
         },
         {
-          src: 'https://raw.githubusercontent.com/dai/o-sumo/main/mcp/agy/o-sumo/assets/logo-plate.svg',
+          src: 'https://raw.githubusercontent.com/dai/o-sumo/main/mcp/assets/logo-plate.svg',
           mimeType: 'image/svg+xml',
           sizes: ['any'],
         },
@@ -37,5 +37,13 @@ describe('mcp/server.json', () => {
         },
       ],
     });
+
+    const icons = (manifest as { icons: { src: string }[] }).icons;
+    for (const icon of icons) {
+      const relativePath = new URL(icon.src).pathname.replace(/^\/dai\/o-sumo\/(?:main|HEAD)\//, '');
+      expect(existsSync(resolve(process.cwd(), relativePath)), icon.src).toBe(true);
+      expect(relativePath.startsWith('mcp/agy/'), icon.src).toBe(false);
+      expect(relativePath.startsWith('mcp/muse/'), icon.src).toBe(false);
+    }
   });
 });
