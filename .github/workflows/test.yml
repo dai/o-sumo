@@ -9,6 +9,12 @@ on:
       - main
       - codex/**
       - automation/data-updates
+    paths-ignore:
+      - 'app/lib/torikumi-data.ts'
+      - 'app/lib/sumo-data.ts'
+      - 'public/api/v1/torikumi.json'
+      - 'public/api/v1/banzuke.json'
+      - 'public/api/v1/news.json'
 
 # Tests only need to read source. No write, no PR comment, no deploy surface.
 permissions:
