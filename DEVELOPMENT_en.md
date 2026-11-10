@@ -128,6 +128,8 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - Scope: news feed (`python scripts/update_news_feed.py`)
 - Fetch state is stored on `automation/news-state`. The selected, validated snapshot is published directly to `main` when the feed changes.
 
+All three workflows verify delivery in the `delivery` job of `data-update.yml`. After a push, it waits for the commit's Test run to pass and for production `torikumi.json`, `banzuke.json`, and `news.json` to serve an `updatedAt` at least as new as the published one. A successful Cloudflare Pages check alone does not count as published. Runs without a push still check that production has caught up with `main` and fail with a notification when it has not.
+
 See the [basho scheduling runbook](./scripts/ci/README.md) for enabling cron and the [README](./README_en.md#november-2026-basho-operations) for the November operating procedure.
 
 ### Tests

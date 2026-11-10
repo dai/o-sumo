@@ -6,6 +6,7 @@
 - 本番デプロイ一覧の先頭は「最新コミット」ではなく「最後に作られたデプロイ」。`wrangler pages deployment list --environment production` の Source 列が main 先頭と一致しているかで確認する。
 - `Cloudflare Pages: o-sumo` チェックの success はそのコミットのビルド成功を示すだけで、本番がそのビルドを配信している保証にはならない。公開確認は `osada.us/api/v1/torikumi.json` の `updatedAt` と main のファイル値の比較で行う。
 - 復旧は main への新しい push（空コミットでよい）で新しい本番ビルドを作らせれば足りる。
+- 検証のタイムアウトを「上流が報告しないことがある」として成功扱いに変えない。タイムアウトは遅延の前兆のことがある。成功にしてよいのは、本番の内容など別の根拠で配信を確認できたときだけ。
 
 ## 2026-10-25 PWAの案内ページはService Worker経由でも確認する
 

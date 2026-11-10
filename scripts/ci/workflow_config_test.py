@@ -71,6 +71,15 @@ class WorkflowConfigTest(unittest.TestCase):
         self.assertEqual(workflow["jobs"]["update"]["with"]["scope"], "news")
         self.assertEqual(load("data-update.yml")["jobs"]["publish"]["concurrency"]["group"], "osumo-data-writer")
 
+    def test_delivery_checks_production_with_and_without_push(self):
+        delivery = load("data-update.yml")["jobs"]["delivery"]
+        self.assertNotIn("pushed", delivery["if"])
+        runs = {step.get("name"): step for step in delivery["steps"]}
+        self.assertIn("--production-url", runs["Verify delivery"]["run"])
+        self.assertIn("--production-only", runs["Verify production freshness"]["run"])
+        self.assertEqual(runs["Verify production freshness"]["if"],
+                         "needs.publish.outputs.pushed != 'true'")
+
 
 if __name__ == "__main__":
     unittest.main()

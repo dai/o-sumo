@@ -128,6 +128,8 @@ npx wrangler pages deploy dist --project-name o-sumo --branch main
 - 更新対象: ニュースフィード（`python scripts/update_news_feed.py`）
 - 取得状態を `automation/news-state` に保持。フィードに差分がある場合は、公開対象の検証済みスナップショットを `main` へ直接公開
 
+3 つの Workflow はいずれも、公開後に `data-update.yml` の `delivery` ジョブで配信を確認します。push した場合は、そのコミットの Test 成功に加えて、本番の `torikumi.json`・`banzuke.json`・`news.json` の `updatedAt` が公開した値以上になるまで待ちます。Cloudflare Pages のチェック成功だけでは公開済みとみなしません。push がない実行でも、本番が `main` のデータに追いついているかを確認し、遅れていれば失敗として通知します。
+
 定期実行を有効にする設定は[場所中の定期実行手順](./scripts/ci/README.md)、十一月場所の運用は[README](./README.md#令和八年十一月場所の更新運用)を参照してください。
 
 ### テスト
