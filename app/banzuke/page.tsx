@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation, useNavigationType } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import BanzukeTable, { BanzukeLeaderboard } from '../components/BanzukeTable';
+import BanzukeTable, { BanzukeLeaderboard, HoshitoriLegend } from '../components/BanzukeTable';
 import SortToggle from '../components/SortToggle';
 import ShareCurrentLink from '../components/ShareCurrentLink';
 import PageBreadcrumb from '../components/PageBreadcrumb';
@@ -226,6 +226,8 @@ export default function BanzukePage() {
           <SortToggle value={sortOrder} onChange={(nextSortOrder) => setDiscoveryState(query, nextSortOrder, false)} label={t('banzuke.sortLabel')} />
           <ShareCurrentLink />
         </section>
+
+        <HoshitoriLegend />
 
         {viewMode === 'leaderboard' ? (
           <>

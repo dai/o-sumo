@@ -97,6 +97,14 @@ describe('BanzukePage', () => {
     expect(container.querySelectorAll('.hoshi')[3]).toHaveClass('empty');
     expect(container.querySelectorAll('.hoshi')[3]).toHaveTextContent('・');
 
+    const cell = container.querySelector('.rikishi-cell');
+    expect(cell?.querySelector('.rikishi-name')).toHaveTextContent('東力士');
+    expect(cell?.querySelector('.rikishi-record')).toHaveTextContent('1勝1敗1休');
+    expect(cell?.querySelector('.hoshitori-section')).toHaveClass('rikishi-fold');
+    expect(cell?.querySelector('.rikishi-photo-link')).toHaveClass('rikishi-fold');
+    expect(cell?.querySelector('.rikishi-expand')).toHaveAttribute('aria-expanded', 'false');
+    expect(cell?.querySelector('.rikishi-expand')).toHaveAccessibleName('東力士 星取表');
+
     const photo = container.querySelector('.rikishi-photo');
     expect(photo).not.toBeNull();
     expect(photo?.getAttribute('src')).toBe('/images/rikishi/1.png');
@@ -257,6 +265,24 @@ describe('BanzukePage', () => {
     expect(screen.getByRole('button', { name: '勝敗順' })).toHaveClass('active');
     expect(screen.getByRole('table', { name: '幕内の勝敗順成績表' })).toBeInTheDocument();
     expect(screen.getByText('幕内 勝敗順')).toBeInTheDocument();
+  });
+
+  it('shows a one-line hoshitori legend above the banzuke tables', () => {
+    render(
+      <MemoryRouter>
+        <BanzukePage />
+      </MemoryRouter>,
+    );
+
+    const legend = screen.getByRole('list', { name: '星取表' });
+    expect(legend).toHaveClass('hoshitori-legend');
+    for (const mark of ['○', '●', '□', '■', '休']) {
+      expect(legend).toHaveTextContent(mark);
+    }
+    expect(legend.querySelectorAll('li')).toHaveLength(5);
+
+    const table = screen.getByRole('table', { name: '横綱の東西番付表' });
+    expect(legend.compareDocumentPosition(table) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
   it('filters rikishi when my-rikishi-only toggle is active', async () => {

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import type { RankGroup, Rikishi } from '../lib/sumo-data';
@@ -22,6 +22,31 @@ interface BanzukeTableProps {
 
 const profileNameMap = canonicalNameMap;
 
+type LegendKind = 'win' | 'loss' | 'fusenWin' | 'fusenLoss' | 'rest';
+
+export function HoshitoriLegend() {
+  const { t, i18n } = useTranslation('common');
+  const english = i18n.language.toLowerCase().startsWith('en');
+  const items: Array<{ kind: LegendKind; mark: string; label: string }> = [
+    { kind: 'win', mark: '○', label: t('banzuke.win') },
+    { kind: 'loss', mark: '●', label: t('banzuke.loss') },
+    { kind: 'fusenWin', mark: '□', label: english ? 'Fusen W' : '不戦勝' },
+    { kind: 'fusenLoss', mark: '■', label: english ? 'Fusen L' : '不戦敗' },
+    { kind: 'rest', mark: '−', label: t('banzuke.absenceShort') },
+  ];
+
+  return (
+    <ul className="hoshitori-legend" aria-label={t('banzuke.hoshitoriLabel')}>
+      {items.map((item) => (
+        <li key={item.kind} className="hoshitori-legend__item">
+          <span className={`hoshitori-legend__mark hoshitori-legend__mark--${item.kind}`} aria-hidden="true">{item.mark}</span>
+          <span>{item.label}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 const Hoshitori = ({ rikishi, resultLinkMap }: { rikishi: Rikishi; resultLinkMap: Map<string, string> }) => {
   const { t } = useTranslation('common');
   const results = rikishi.results ?? [];
@@ -32,7 +57,7 @@ const Hoshitori = ({ rikishi, resultLinkMap }: { rikishi: Rikishi; resultLinkMap
   });
 
   return (
-    <div className="hoshitori-section">
+    <div className="hoshitori-section rikishi-fold">
       <div className="record-label">{t('banzuke.hoshitoriLabel')}</div>
       <div className="hoshitori-container">
         {days.map((result, index) => {
@@ -85,10 +110,11 @@ const RikishiCell = ({ rikishi, resultLinkMap }: { rikishi: Rikishi; resultLinkM
     })
     : basicRikishiPlaceholderDataUrl(name);
   const photoUrl = localRikishiImagePath(rikishi.id);
+  const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className={`rikishi-cell${isMyRikishi ? ' is-my-rikishi' : ''}`} id={`rikishi-${rikishi.id}`}>
-      <Link to={rikishiProfilePath(rikishi.id)} className="rikishi-photo-link" aria-label={`${name}のo-sumoプロフィールを開く`}>
+    <div className={`rikishi-cell${isMyRikishi ? ' is-my-rikishi' : ''}${expanded ? ' is-expanded' : ''}`} id={`rikishi-${rikishi.id}`}>
+      <Link to={rikishiProfilePath(rikishi.id)} className="rikishi-photo-link rikishi-fold" aria-label={`${name}のo-sumoプロフィールを開く`}>
         <img
           className="rikishi-photo"
           src={photoUrl}
@@ -113,13 +139,22 @@ const RikishiCell = ({ rikishi, resultLinkMap }: { rikishi: Rikishi; resultLinkM
           ) : null}
         </div>
       </Link>
-      <div className="rikishi-en">({toRomaji(rikishi.yomi)})</div>
-      <div className="record">{recordText}</div>
-      <div className="record">
+      <div className="rikishi-en rikishi-fold">({toRomaji(rikishi.yomi)})</div>
+      <div className="record rikishi-record">{recordText}</div>
+      <div className="record rikishi-meta rikishi-fold">
         <Link to={rikishiProfilePath(rikishi.id)} className="profile-link">{t('banzuke.profileLink')}</Link>
         {rikishi.memo ? ` / ${rikishi.memo}` : ''}
       </div>
       <Hoshitori rikishi={rikishi} resultLinkMap={resultLinkMap} />
+      <button
+        type="button"
+        className="rikishi-expand"
+        aria-expanded={expanded}
+        aria-label={`${name} ${t('banzuke.hoshitoriLabel')}`}
+        onClick={() => setExpanded((value) => !value)}
+      >
+        <span className="rikishi-expand__icon" aria-hidden="true" />
+      </button>
     </div>
   );
 };
