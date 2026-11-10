@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { resolvePageMeta, type ImageMeta } from './page-meta';
+import { buildPageJsonLd, resolvePageMeta, type ImageMeta, type PageMeta } from './page-meta';
 
 const IMAGE_VERSION = '20260913';
 
@@ -87,5 +87,158 @@ describe('resolvePageMeta', () => {
   it('picks the compare OGP image for /compare/ routes', () => {
     expect(resolvePageMeta('/compare/').image).toEqual(COMPARE_IMAGE);
     expect(resolvePageMeta('/compare/?ids=3842,4227').image).toEqual(COMPARE_IMAGE);
+  });
+});
+
+const JSON_LD_ROUTES = [
+  '/',
+  '/archives/',
+  '/rikishi/',
+  '/rikishi/4227/',
+  '/my-rikishi/',
+  '/compare/',
+  '/gyoji/',
+  '/gyoji/1987/',
+  '/yobidashi/',
+  '/yobidashi/1935/',
+  '/kimarite/',
+  '/analytics/',
+  '/about/',
+  '/privacy/',
+  '/terms/',
+  '/202603-banzuke/',
+  '/202603-torikumi/',
+  '/202603-yotei/',
+  '/20260310-yotei/',
+  '/20260712-torikumi/',
+  '/20261109-torikumi/',
+  '/20261109-yotei/',
+  '/unknown/',
+] as const;
+
+type JsonLdNode = Record<string, unknown>;
+
+function jsonLdFor(pathname: string, override?: Partial<Pick<PageMeta, 'title' | 'description'>>) {
+  const meta = { ...resolvePageMeta(pathname), ...override };
+  const serialized = JSON.stringify(buildPageJsonLd(pathname, meta));
+  return JSON.parse(serialized) as { '@context': string; '@graph': JsonLdNode[] };
+}
+
+function nodesOfType(doc: { '@graph': JsonLdNode[] }, type: string): JsonLdNode[] {
+  return doc['@graph'].filter((node) => node['@type'] === type);
+}
+
+function crumbNames(doc: { '@graph': JsonLdNode[] }): string[] {
+  const list = nodesOfType(doc, 'BreadcrumbList')[0];
+  const items = list?.itemListElement as Array<{ name: string; position: number; item: string }>;
+  return items.map((item) => item.name);
+}
+
+describe('buildPageJsonLd', () => {
+  it.each(JSON_LD_ROUTES)('emits JSON-LD that JSON.parse accepts for %s', (pathname) => {
+    const doc = jsonLdFor(pathname);
+
+    expect(doc['@context']).toBe('https://schema.org');
+    expect(nodesOfType(doc, 'WebSite')).toHaveLength(1);
+    expect(nodesOfType(doc, 'BreadcrumbList')).toHaveLength(1);
+    expect(JSON.stringify(doc)).not.toContain('SearchAction');
+    const website = nodesOfType(doc, 'WebSite')[0];
+    expect(website).toMatchObject({
+      name: 'o-sumo',
+      url: 'https://osada.us/',
+    });
+    expect(website).not.toHaveProperty('potentialAction');
+  });
+
+  it('adds SearchAction only when a search URL template is supplied', () => {
+    const doc = JSON.parse(JSON.stringify(buildPageJsonLd('/', resolvePageMeta('/'), {
+      searchUrl: 'https://osada.us/search/?q={search_term_string}',
+    }))) as { '@graph': JsonLdNode[] };
+    const website = nodesOfType(doc, 'WebSite')[0];
+
+    expect(website.potentialAction).toEqual({
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://osada.us/search/?q={search_term_string}',
+      },
+      'query-input': 'required name=search_term_string',
+    });
+  });
+
+  it('matches the visible breadcrumb hierarchy on fixed and basho pages', () => {
+    expect(crumbNames(jsonLdFor('/archives/'))).toEqual(['ホーム', 'アーカイブ']);
+    expect(crumbNames(jsonLdFor('/kimarite/'))).toEqual(['ホーム', '決まり手']);
+    expect(crumbNames(jsonLdFor('/analytics/'))).toEqual(['ホーム', '大相撲アナリティクス']);
+    expect(crumbNames(jsonLdFor('/compare/'))).toEqual(['ホーム', '力士プロフィール', '力士比較']);
+    expect(crumbNames(jsonLdFor('/202603-banzuke/'))).toEqual(['ホーム', '番付', '令和八年三月場所']);
+    expect(crumbNames(jsonLdFor('/202603-torikumi/'))).toEqual(['ホーム', '取組', '令和八年三月場所']);
+    expect(crumbNames(jsonLdFor('/20261109-torikumi/'))).toEqual([
+      'ホーム',
+      '令和八年十一月場所',
+      '二日目： 令和8年11月9日(月)',
+    ]);
+
+    const banzuke = nodesOfType(jsonLdFor('/202603-banzuke/'), 'BreadcrumbList')[0];
+    const items = banzuke.itemListElement as Array<{ position: number; item: string }>;
+    expect(items.map((item) => item.item)).toEqual([
+      'https://osada.us/',
+      'https://osada.us/archives/',
+      'https://osada.us/202603-banzuke/',
+    ]);
+    expect(items.map((item) => item.position)).toEqual([1, 2, 3]);
+  });
+
+  it('describes a November day as a SportsEvent at 福岡国際センター', () => {
+    const doc = jsonLdFor('/20261109-torikumi/');
+    const event = nodesOfType(doc, 'SportsEvent')[0];
+
+    expect(nodesOfType(doc, 'Person')).toHaveLength(0);
+    expect(event).toMatchObject({
+      name: '2026年11月場所 二日目 取組・星取表',
+      startDate: '2026-11-09',
+      url: 'https://osada.us/20261109-torikumi/',
+      location: {
+        '@type': 'Place',
+        name: '福岡国際センター',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: '福岡市',
+          addressCountry: 'JP',
+        },
+      },
+    });
+  });
+
+  it('uses the March basho venue for a March day page', () => {
+    const doc = jsonLdFor('/20260310-yotei/');
+    expect(nodesOfType(doc, 'SportsEvent')[0]).toMatchObject({
+      name: '2026年3月場所 三日目 取組予定',
+      startDate: '2026-03-10',
+      location: { '@type': 'Place', name: 'エディオンアリーナ大阪' },
+    });
+    expect(nodesOfType(jsonLdFor('/202603-torikumi/'), 'SportsEvent')).toHaveLength(0);
+  });
+
+  it('describes a loaded rikishi profile as a Person and keeps the list page as a trail only', () => {
+    const generic = jsonLdFor('/rikishi/4227/');
+    expect(nodesOfType(generic, 'Person')[0]).toMatchObject({
+      name: '力士',
+      jobTitle: '力士',
+      url: 'https://osada.us/rikishi/4227/',
+    });
+    expect(crumbNames(generic)).toEqual(['ホーム', '力士プロフィール', '力士プロフィール']);
+
+    const loaded = jsonLdFor('/rikishi/4227/', {
+      title: '大の里 | 力士プロフィール | o-sumo',
+      description: '大の里の大相撲力士プロフィール。番付、成績、出身地などを紹介します。',
+    });
+    expect(nodesOfType(loaded, 'Person')[0]).toMatchObject({
+      name: '大の里',
+      description: '大の里の大相撲力士プロフィール。番付、成績、出身地などを紹介します。',
+      url: 'https://osada.us/rikishi/4227/',
+    });
+    expect(crumbNames(loaded)).toEqual(['ホーム', '力士プロフィール', '大の里']);
+    expect(nodesOfType(jsonLdFor('/rikishi/'), 'Person')).toHaveLength(0);
   });
 });

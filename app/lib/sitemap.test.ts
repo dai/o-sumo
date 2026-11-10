@@ -2,6 +2,7 @@ import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'nod
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { getBanzukeDataByMonthKey, getTorikumiArchiveByMonthKey } from './archive-basho-data';
 import { torikumiArchive, torikumiMonthKey } from './torikumi-data';
 import { getSitemapEntries, renderSitemapXml } from './sitemap';
 import { SITE_ORIGIN } from './site-url';
@@ -254,5 +255,72 @@ describe('sitemap helpers', () => {
     expect(locs.some((loc) => loc.includes('404'))).toBe(false);
     expect(locs.some((loc) => loc.includes('-banduke'))).toBe(false);
     expect(locs.some((loc) => loc.includes('-o-sumo'))).toBe(false);
+  });
+
+  it('keeps March 2026 sitemap URLs because the archive has real banzuke and torikumi data', () => {
+    const banzuke = getBanzukeDataByMonthKey('202603');
+    const torikumi = getTorikumiArchiveByMonthKey('202603');
+    const names = banzuke.makuuchi.flatMap((group) => [...group.east, ...group.west].map((rikishi) => rikishi.name));
+    const publishedResult = (torikumi.resultDays ?? []).find((day) => day.status === 'published');
+    const locs = getSitemapEntries().map((entry) => entry.loc);
+
+    expect(names).toContain('豊昇龍');
+    expect(publishedResult).toBeDefined();
+    expect(locs).toContain('/202603-banzuke/');
+    expect(locs).toContain('/202603-torikumi/');
+    expect(locs).toContain('/202603-yotei/');
+    expect(locs).toContain(`/${publishedResult!.pathDate}-torikumi/`);
+  });
+});
+
+const SITEMAP_BUILD_DATE = '2026-11-10';
+const W3C_LASTMOD = /^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2}))?$/;
+
+function sitemapUrls(xml: string): Array<{ loc: string; lastmod: string | undefined }> {
+  return Array.from(xml.matchAll(/<url>([\s\S]*?)<\/url>/g), (match) => ({
+    loc: match[1].match(/<loc>([^<]+)<\/loc>/)?.[1] ?? '',
+    lastmod: match[1].match(/<lastmod>([^<]+)<\/lastmod>/)?.[1],
+  }));
+}
+
+describe('sitemap lastmod', () => {
+  it('writes a W3C lastmod for every URL, using the build date on fixed pages', () => {
+    const xml = renderSitemapXml(undefined, [], [], [], { buildDate: SITEMAP_BUILD_DATE });
+    const urls = sitemapUrls(xml);
+
+    expect(urls.length).toBeGreaterThan(0);
+    expect(urls.filter((url) => url.lastmod).length).toBe(urls.length);
+    expect(urls.every((url) => W3C_LASTMOD.test(url.lastmod ?? ''))).toBe(true);
+    expect(urls.find((url) => url.loc === `${SITE_ORIGIN}/`)?.lastmod).toBe(SITEMAP_BUILD_DATE);
+    expect(urls.find((url) => url.loc === `${SITE_ORIGIN}/about/`)?.lastmod).toBe(SITEMAP_BUILD_DATE);
+    expect(urls.find((url) => url.loc === `${SITE_ORIGIN}/gyoji/`)?.lastmod).toBe(SITEMAP_BUILD_DATE);
+  });
+
+  it('uses each basho banzuke, result, and schedule update date', () => {
+    const xml = renderSitemapXml(undefined, [], [], [], { buildDate: SITEMAP_BUILD_DATE });
+    const urls = sitemapUrls(xml);
+
+    expect(urls.find((url) => url.loc === `${SITE_ORIGIN}/202603-banzuke/`)?.lastmod).toBe('2026-03-24');
+    expect(urls.find((url) => url.loc === `${SITE_ORIGIN}/202603-torikumi/`)?.lastmod).toBe('2026-04-18');
+    expect(urls.find((url) => url.loc === `${SITE_ORIGIN}/202603-yotei/`)?.lastmod).toBe('2026-04-18');
+    expect(urls.find((url) => url.loc === `${SITE_ORIGIN}/20261109-torikumi/`)?.lastmod).toBe('2026-11-09T17:57:42+09:00');
+    expect(urls.find((url) => url.loc === `${SITE_ORIGIN}/20261109-yotei/`)?.lastmod).toBe('2026-11-09T17:05:53+09:00');
+    expect(urls.find((url) => url.loc === `${SITE_ORIGIN}/${torikumiMonthKey}-banzuke/`)?.lastmod).toBe(torikumiArchive.resultUpdatedAt);
+  });
+
+  it('uses a rikishi profile updatedAt and the build date when the profile file is missing', () => {
+    const xml = renderSitemapXml([], [{ id: 4227 }, { id: 101 }], [], [], { buildDate: SITEMAP_BUILD_DATE });
+    const urls = sitemapUrls(xml);
+
+    expect(urls.find((url) => url.loc === `${SITE_ORIGIN}/rikishi/4227/`)?.lastmod).toBe('2026-10-26T15:16:49+09:00');
+    expect(urls.find((url) => url.loc === `${SITE_ORIGIN}/rikishi/101/`)?.lastmod).toBe(SITEMAP_BUILD_DATE);
+  });
+
+  it('uses an official profile retrievedAt when the profile JSON exists', () => {
+    const xml = renderSitemapXml([], [], [{ id: 1987 }, { id: 1986 }], [], { buildDate: SITEMAP_BUILD_DATE });
+    const urls = sitemapUrls(xml);
+
+    expect(urls.find((url) => url.loc === `${SITE_ORIGIN}/gyoji/1987/`)?.lastmod).toBe('2026-11-08T12:51:23Z');
+    expect(urls.find((url) => url.loc === `${SITE_ORIGIN}/gyoji/1986/`)?.lastmod).toBe(SITEMAP_BUILD_DATE);
   });
 });

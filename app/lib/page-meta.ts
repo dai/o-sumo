@@ -1,5 +1,6 @@
+import { formatBashoTitle } from './basho-meta';
 import { normalizeCanonicalPath, SITE_ORIGIN, toCanonicalUrl } from './site-url';
-import { findArchiveDay, getArchiveRouteConfigByMonthKey } from './torikumi-routes';
+import { findArchiveDay, getArchiveRouteConfigByMonthKey, type ArchiveRouteConfig } from './torikumi-routes';
 
 export type ImageMeta = {
   primary: string;
@@ -198,3 +199,284 @@ export function resolvePageMeta(pathname: string): PageMeta {
 }
 
 export { OG_DEFAULT_SHARE, OG_DEFAULT_TWITTER, OG_RIKISHI_DEFAULT, OG_COMPARE_DEFAULT, IMAGE_VERSION };
+
+export interface JsonLdNode {
+  '@type': string;
+  [key: string]: unknown;
+}
+
+export interface PageJsonLd {
+  '@context': 'https://schema.org';
+  '@graph': JsonLdNode[];
+}
+
+export interface PageJsonLdOptions {
+  /** Site search URL template. SearchAction is omitted when this is empty. */
+  searchUrl?: string | null;
+}
+
+interface Crumb {
+  name: string;
+  path?: string;
+}
+
+type PageEntity =
+  | { type: 'none' }
+  | { type: 'person'; name: string }
+  | { type: 'sports-event'; isoDate: string; month: string };
+
+const HOME_CRUMB: Crumb = { name: 'ホーム', path: '/' };
+
+const FIXED_PATHS = [
+  '/archives/',
+  '/rikishi/',
+  '/my-rikishi/',
+  '/compare/',
+  '/gyoji/',
+  '/yobidashi/',
+  '/kimarite/',
+  '/analytics/',
+  '/about/',
+  '/privacy/',
+  '/terms/',
+] as const;
+
+type FixedPath = (typeof FIXED_PATHS)[number];
+
+/**
+ * Honbasho venues for the 2026 calendar. November (九州場所) is 福岡国際センター.
+ * July moved to IGアリーナ from the 2025 basho.
+ */
+const HONBASHO_VENUE: Record<string, { name: string; addressLocality: string }> = {
+  '01': { name: '国技館', addressLocality: '墨田区' },
+  '03': { name: 'エディオンアリーナ大阪', addressLocality: '大阪市' },
+  '05': { name: '国技館', addressLocality: '墨田区' },
+  '07': { name: 'IGアリーナ', addressLocality: '名古屋市' },
+  '09': { name: '国技館', addressLocality: '墨田区' },
+  '11': { name: '福岡国際センター', addressLocality: '福岡市' },
+};
+
+function isFixedPath(path: string): path is FixedPath {
+  return (FIXED_PATHS as readonly string[]).includes(path);
+}
+
+function fixedCrumbs(path: FixedPath): Crumb[] {
+  switch (path) {
+    case '/archives/':
+      return [HOME_CRUMB, { name: 'アーカイブ' }];
+    case '/rikishi/':
+      return [HOME_CRUMB, { name: '力士プロフィール' }];
+    case '/my-rikishi/':
+      return [HOME_CRUMB, { name: 'マイ力士' }];
+    case '/compare/':
+      return [HOME_CRUMB, { name: '力士プロフィール', path: '/rikishi/' }, { name: '力士比較' }];
+    case '/gyoji/':
+      return [HOME_CRUMB, { name: '行司名鑑' }];
+    case '/yobidashi/':
+      return [HOME_CRUMB, { name: '呼出名鑑' }];
+    case '/kimarite/':
+      return [HOME_CRUMB, { name: '決まり手' }];
+    case '/analytics/':
+      return [HOME_CRUMB, { name: '大相撲アナリティクス' }];
+    case '/about/':
+      return [HOME_CRUMB, { name: '当サイトについて・プライバシーポリシー' }];
+    case '/privacy/':
+      return [HOME_CRUMB, { name: 'プライバシーポリシー' }];
+    case '/terms/':
+      return [HOME_CRUMB, { name: '利用規約' }];
+    default: {
+      const exhaustive: never = path;
+      return exhaustive;
+    }
+  }
+}
+
+function bashoCrumbTitle(config: ArchiveRouteConfig): string {
+  return formatBashoTitle({
+    year: config.archive.year,
+    bashoName: config.archive.bashoName,
+    monthKey: config.monthKey,
+  });
+}
+
+function profileName(title: string): string | null {
+  const parts = title.split(' | ');
+  if (parts.length === 3 && parts[2] === 'o-sumo' && /プロフィール|profile/i.test(parts[1])) {
+    const name = parts[0].trim();
+    return name.length > 0 ? name : null;
+  }
+  return null;
+}
+
+function notFoundShape(): { crumbs: Crumb[]; entity: PageEntity } {
+  return {
+    crumbs: [HOME_CRUMB, { name: 'ページが見つかりません' }],
+    entity: { type: 'none' },
+  };
+}
+
+function classifyPage(pathname: string, meta: PageMeta): { crumbs: Crumb[]; entity: PageEntity } {
+  if (meta.isNotFound) return notFoundShape();
+
+  const path = normalizeCanonicalPath(pathname);
+  if (path === '/') return { crumbs: [HOME_CRUMB], entity: { type: 'none' } };
+  if (isFixedPath(path)) return { crumbs: fixedCrumbs(path), entity: { type: 'none' } };
+
+  const banzukeMatch = path.match(/^\/(\d{4})(\d{2})-banzuke\/$/);
+  if (banzukeMatch) {
+    const config = getArchiveRouteConfigByMonthKey(`${banzukeMatch[1]}${banzukeMatch[2]}`);
+    if (!config) return notFoundShape();
+    return {
+      crumbs: [HOME_CRUMB, { name: '番付', path: '/archives/' }, { name: bashoCrumbTitle(config) }],
+      entity: { type: 'none' },
+    };
+  }
+
+  const hubMatch = path.match(/^\/(\d{4})(\d{2})-(torikumi|yotei)\/$/);
+  if (hubMatch) {
+    const config = getArchiveRouteConfigByMonthKey(`${hubMatch[1]}${hubMatch[2]}`);
+    if (!config) return notFoundShape();
+    return {
+      crumbs: [HOME_CRUMB, { name: '取組', path: '/archives/' }, { name: bashoCrumbTitle(config) }],
+      entity: { type: 'none' },
+    };
+  }
+
+  const dayMatch = path.match(/^\/(\d{4})(\d{2})(\d{2})-(torikumi|yotei)\/$/);
+  if (dayMatch) {
+    const [, year, month, day, modeSlug] = dayMatch;
+    const mode = modeSlug === 'torikumi' ? 'result' : 'schedule';
+    const config = getArchiveRouteConfigByMonthKey(`${year}${month}`);
+    const archiveDay = findArchiveDay(`${year}${month}${day}`, mode);
+    if (!config || !archiveDay) return notFoundShape();
+    return {
+      crumbs: [
+        HOME_CRUMB,
+        { name: bashoCrumbTitle(config), path: mode === 'result' ? config.resultPath : config.schedulePath },
+        { name: archiveDay.dayHead },
+      ],
+      entity: { type: 'sports-event', isoDate: archiveDay.isoDate, month },
+    };
+  }
+
+  const officialMatch = path.match(/^\/(gyoji|yobidashi)\/[1-9]\d*\/$/);
+  if (officialMatch) {
+    const role = officialMatch[1] === 'yobidashi' ? 'yobidashi' : 'gyoji';
+    const listLabel = role === 'gyoji' ? '行司名鑑' : '呼出名鑑';
+    const generic = role === 'gyoji' ? '行司プロフィール' : '呼出プロフィール';
+    return {
+      crumbs: [HOME_CRUMB, { name: listLabel, path: `/${role}/` }, { name: profileName(meta.title) ?? generic }],
+      entity: { type: 'none' },
+    };
+  }
+
+  if (/^\/rikishi\/[^/]+\/$/.test(path)) {
+    const name = profileName(meta.title);
+    return {
+      crumbs: [HOME_CRUMB, { name: '力士プロフィール', path: '/rikishi/' }, { name: name ?? '力士プロフィール' }],
+      entity: { type: 'person', name: name ?? '力士' },
+    };
+  }
+
+  return notFoundShape();
+}
+
+function websiteNode(searchUrl?: string | null): JsonLdNode {
+  const node: JsonLdNode = {
+    '@type': 'WebSite',
+    '@id': `${SITE_ORIGIN}/#website`,
+    name: 'o-sumo',
+    url: `${SITE_ORIGIN}/`,
+    description: HOME_META.description,
+    inLanguage: 'ja',
+  };
+  if (searchUrl) {
+    node.potentialAction = {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: searchUrl,
+      },
+      'query-input': 'required name=search_term_string',
+    };
+  }
+  return node;
+}
+
+function breadcrumbNode(crumbs: Crumb[], currentUrl: string): JsonLdNode {
+  return {
+    '@type': 'BreadcrumbList',
+    itemListElement: crumbs.map((crumb, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: crumb.name,
+      item: index === crumbs.length - 1 ? currentUrl : toCanonicalUrl(crumb.path ?? '/'),
+    })),
+  };
+}
+
+function venueForMonth(month: string): { name: string; addressLocality: string } {
+  return HONBASHO_VENUE[month] ?? HONBASHO_VENUE['01'];
+}
+
+function sportsEventNode(meta: PageMeta, isoDate: string, month: string): JsonLdNode {
+  const venue = venueForMonth(month);
+  return {
+    '@type': 'SportsEvent',
+    name: meta.title.replace(/ \| o-sumo$/, ''),
+    description: meta.description,
+    startDate: isoDate,
+    endDate: isoDate,
+    url: meta.canonicalUrl,
+    image: [meta.image.primary],
+    sport: '大相撲',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    location: {
+      '@type': 'Place',
+      name: venue.name,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: venue.addressLocality,
+        addressCountry: 'JP',
+      },
+    },
+  };
+}
+
+function personNode(meta: PageMeta, name: string): JsonLdNode {
+  return {
+    '@type': 'Person',
+    name,
+    jobTitle: '力士',
+    description: meta.description,
+    url: meta.canonicalUrl,
+  };
+}
+
+export function buildPageJsonLd(pathname: string, meta: PageMeta, options: PageJsonLdOptions = {}): PageJsonLd {
+  const { crumbs, entity } = classifyPage(pathname, meta);
+  const graph: JsonLdNode[] = [
+    websiteNode(options.searchUrl),
+    breadcrumbNode(crumbs, meta.canonicalUrl),
+  ];
+
+  switch (entity.type) {
+    case 'none':
+      break;
+    case 'person':
+      graph.push(personNode(meta, entity.name));
+      break;
+    case 'sports-event':
+      graph.push(sportsEventNode(meta, entity.isoDate, entity.month));
+      break;
+    default: {
+      const exhaustive: never = entity;
+      throw new Error(`Unhandled JSON-LD entity: ${JSON.stringify(exhaustive)}`);
+    }
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': graph,
+  };
+}
