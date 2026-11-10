@@ -7,6 +7,41 @@ const SUMO_NEWS_SOURCE_ID = 'dmenu-docomo';
 const ASSOCIATION_SEE_ALL_URL = 'https://www.sumo.or.jp/IrohaKyokaiInformation/wrap/';
 const SUMO_NEWS_SEE_ALL_URL = 'https://sumo.sports.smt.docomo.ne.jp/news/';
 
+function formatFetchedAt(iso: string): string {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return '';
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    hourCycle: 'h23',
+    timeZone: 'Asia/Tokyo',
+  }).formatToParts(d);
+  const value = (type: Intl.DateTimeFormatPartTypes) =>
+    parts.find((part) => part.type === type)?.value ?? '';
+  const year = value('year');
+  const month = value('month');
+  const day = value('day');
+  const hour = value('hour');
+  const minute = value('minute');
+  if (!year || !month || !day || !hour || !minute) return '';
+  return `${year}-${month}-${day} ${hour}:${minute}`;
+}
+
+function externalNewsPausedNote(updatedAt: string, locale: string): string {
+  const fetchedAt = formatFetchedAt(updatedAt);
+  if (locale.startsWith('ja')) {
+    return fetchedAt
+      ? `ニュース取得を一時停止中・最終取得 ${fetchedAt}`
+      : 'ニュース取得を一時停止中';
+  }
+  return fetchedAt
+    ? `News updates paused · last fetched ${fetchedAt}`
+    : 'News updates paused';
+}
+
 function formatPublishedAt(iso: string | null, raw: string | undefined, locale: string): string {
   if (iso) {
     const d = new Date(iso);
@@ -35,8 +70,6 @@ type SubsectionProps = {
   seeAllLabel: string;
   seeAllHref: string;
   emptyLabel: string;
-  outageLabel?: string;
-  isOutage?: boolean;
   items: NewsItem[];
   locale: string;
 };
@@ -48,14 +81,11 @@ function NewsSubsection({
   seeAllLabel,
   seeAllHref,
   emptyLabel,
-  outageLabel,
-  isOutage = false,
   items,
   locale,
 }: SubsectionProps) {
   const titleId = `news-subsection-${id}-title`;
   const hasItems = items.length > 0;
-  const showOutage = !hasItems && isOutage && !!outageLabel;
   return (
     <div className="news-subsection" aria-labelledby={titleId}>
           <div className="news-subsection-header">
@@ -96,10 +126,6 @@ function NewsSubsection({
             );
           })}
         </ul>
-      ) : showOutage ? (
-        <p className="news-outage" role="status">
-          {outageLabel}
-        </p>
       ) : (
         <p className="news-empty" role="status">
           {emptyLabel}
@@ -117,10 +143,6 @@ export default function NewsSection() {
   const associationItems = items.filter((item) => item.sourceId === ASSOCIATION_SOURCE_ID);
   const sumoNewsItems = items.filter((item) => item.sourceId === SUMO_NEWS_SOURCE_ID);
 
-  const associationStatus = newsFeed.sources.find((source) => source.id === ASSOCIATION_SOURCE_ID);
-  const dmenuStatus = newsFeed.sources.find((source) => source.id === SUMO_NEWS_SOURCE_ID);
-  const dmenuOutage = !!dmenuStatus && dmenuStatus.ok === false;
-
   return (
     <section className="news-section" aria-labelledby="news-section-title">
           <div className="news-section-header">
@@ -136,23 +158,26 @@ export default function NewsSection() {
         seeAllLabel={t('home.newsSeeAll')}
         seeAllHref={ASSOCIATION_SEE_ALL_URL}
         emptyLabel={t('home.newsEmpty')}
-        isOutage={associationStatus?.ok === false}
         items={associationItems}
         locale={locale}
       />
 
-      <NewsSubsection
-        id="sumo-news"
-        title={t('home.newsSubsectionSumoNewsTitle')}
-        lead={t('home.newsSubsectionSumoNewsLead')}
-        seeAllLabel={t('home.newsSubsectionSumoNewsSeeAll')}
-        seeAllHref={SUMO_NEWS_SEE_ALL_URL}
-        emptyLabel={t('home.newsEmpty')}
-        outageLabel={t('home.newsDmenuOutageNotice')}
-        isOutage={dmenuOutage}
-        items={sumoNewsItems}
-        locale={locale}
-      />
+      {sumoNewsItems.length > 0 ? (
+        <NewsSubsection
+          id="sumo-news"
+          title={t('home.newsSubsectionSumoNewsTitle')}
+          lead={t('home.newsSubsectionSumoNewsLead')}
+          seeAllLabel={t('home.newsSubsectionSumoNewsSeeAll')}
+          seeAllHref={SUMO_NEWS_SEE_ALL_URL}
+          emptyLabel={t('home.newsEmpty')}
+          items={sumoNewsItems}
+          locale={locale}
+        />
+      ) : (
+        <p className="news-outage" role="status">
+          {externalNewsPausedNote(newsFeed.updatedAt, locale)}
+        </p>
+      )}
     </section>
   );
 }

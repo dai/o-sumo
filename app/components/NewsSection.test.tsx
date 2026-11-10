@@ -171,20 +171,29 @@ describe('NewsSection', () => {
     ).toBeInTheDocument();
   });
 
-  it('shows the empty state in both subsections when the feed is empty', async () => {
+  it('keeps the association empty state and pauses external news when the feed is empty', async () => {
     mockNewsFeed.items = [];
+    mockNewsFeed.updatedAt = '2026-06-30T00:00:00+09:00';
     const { default: NewsSection } = await import('./NewsSection');
     const { container } = render(<NewsSection />);
 
     const subsections = container.querySelectorAll('.news-subsection');
-    expect(subsections).toHaveLength(2);
+    expect(subsections).toHaveLength(1);
 
+    expect(
+      within(subsections[0] as HTMLElement).getByRole('heading', { level: 3, name: '相撲協会' }),
+    ).toBeInTheDocument();
     expect(
       within(subsections[0] as HTMLElement).getByRole('status'),
     ).toHaveTextContent('新しいニュースはありません');
     expect(
-      within(subsections[1] as HTMLElement).getByRole('status'),
-    ).toHaveTextContent('新しいニュースはありません');
+      screen.queryByRole('heading', { level: 3, name: '相撲界ニュース' }),
+    ).not.toBeInTheDocument();
+    expect(container.querySelectorAll('.news-empty')).toHaveLength(1);
+    expect(container.querySelector('.news-outage')).toHaveTextContent(
+      'ニュース取得を一時停止中・最終取得 2026-06-30 00:00',
+    );
+    expect(container.querySelector('.news-outage')?.closest('.news-subsection')).toBeNull();
 
     expect(container.querySelectorAll('.news-subsection-see-all')).toHaveLength(0);
   });
@@ -196,7 +205,8 @@ describe('NewsSection', () => {
     expect(container.querySelectorAll('.news-item-source')).toHaveLength(0);
   });
 
-  it('surfaces a dmenu outage notice in the sumo-news subsection when dmenu reports ok=false', async () => {
+  it('外部 0 件 → 見出し＋空枠を描画しない、注記 1 行のみ', async () => {
+    mockNewsFeed.updatedAt = '2026-06-30T00:00:00+09:00';
     mockNewsFeed.items = [...ASSOCIATION_ITEMS];
     mockNewsFeed.sources = [
       { id: 'sumo-association', label: '日本相撲協会', ok: true, count: 2 },
@@ -206,24 +216,30 @@ describe('NewsSection', () => {
     const { default: NewsSection } = await import('./NewsSection');
     const { container } = render(<NewsSection />);
 
-    const subsections = container.querySelectorAll('.news-subsection');
-    expect(subsections).toHaveLength(2);
-
-    const associationSubsection = subsections[0] as HTMLElement;
     expect(
-      within(associationSubsection).getByRole('link', { name: 'もっと見る' }),
-    ).toBeInTheDocument();
-    expect(associationSubsection.querySelector('.news-outage')).not.toBeInTheDocument();
+      screen.queryByRole('heading', { level: 3, name: '相撲界ニュース' }),
+    ).not.toBeInTheDocument();
+    expect(screen.queryByText('dmenu スポーツから最新 5 件')).not.toBeInTheDocument();
+    expect(container.querySelectorAll('.news-subsection')).toHaveLength(1);
+    expect(container.querySelector('.news-empty')).not.toBeInTheDocument();
+    expect(container.querySelector('.news-list')).toBeInTheDocument();
 
-    const sumoNewsSubsection = subsections[1] as HTMLElement;
-    expect(sumoNewsSubsection.querySelector('.news-list')).not.toBeInTheDocument();
-    expect(sumoNewsSubsection.querySelector('.news-empty')).not.toBeInTheDocument();
-    const outage = sumoNewsSubsection.querySelector('.news-outage');
-    expect(outage).not.toBeNull();
-    expect(outage).toHaveTextContent(
-      'dmenu スポーツでシステム障害が発生しているため、現在ニュースを更新できません。復旧までお待ちください。',
+    const note = screen.getByRole('status');
+    expect(note).toHaveClass('news-outage');
+    expect(note.closest('.news-subsection')).toBeNull();
+    expect(note.childElementCount).toBe(0);
+    expect(note).toHaveTextContent(
+      'ニュース取得を一時停止中・最終取得 2026-06-30 00:00',
     );
-    expect(sumoNewsSubsection.querySelector('.news-subsection-see-all')).not.toBeInTheDocument();
+    expect(note.textContent).not.toMatch(/\n/);
+
+    expect(
+      screen.getByRole('heading', { level: 3, name: '相撲協会' }),
+    ).toBeInTheDocument();
+    expect(screen.getByText('七月場所に関するお知らせ')).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: 'もっと見る' }),
+    ).toBeInTheDocument();
   });
 
   it('does not show the dmenu outage notice when dmenu has items even if ok=false is stale', async () => {
@@ -238,6 +254,9 @@ describe('NewsSection', () => {
 
     const sumoNewsSubsection = container.querySelectorAll('.news-subsection')[1] as HTMLElement;
     expect(sumoNewsSubsection.querySelector('.news-list')).toBeInTheDocument();
-    expect(sumoNewsSubsection.querySelector('.news-outage')).not.toBeInTheDocument();
+    expect(container.querySelector('.news-outage')).not.toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { level: 3, name: '相撲界ニュース' }),
+    ).toBeInTheDocument();
   });
 });

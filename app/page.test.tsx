@@ -557,9 +557,15 @@ describe('Home page', () => {
       </MemoryRouter>,
     );
 
-    // The committed stub keeps the news list empty so the home page should
-    // surface the empty-state copy (one per subsection) rather than crashing.
-    expect(screen.getAllByText('新しいニュースはありません')).toHaveLength(2);
+    // Association notices keep their empty state. External news with zero
+    // items collapses to a single pause note instead of a second empty frame.
+    expect(screen.getAllByText('新しいニュースはありません')).toHaveLength(1);
+    expect(
+      screen.getByText('ニュース取得を一時停止中・最終取得 2026-06-30 00:00'),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole('heading', { level: 3, name: '相撲界ニュース' }),
+    ).not.toBeInTheDocument();
     expect(document.querySelector('.news-list')).not.toBeInTheDocument();
     expect(document.querySelector('.news-section-see-all')).not.toBeInTheDocument();
     expect(document.querySelectorAll('.news-subsection-see-all')).toHaveLength(0);
