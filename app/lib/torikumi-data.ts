@@ -62,8 +62,8 @@ export const torikumiData: TorikumiDataSet = {
   "bashoId": 638,
   "bashoName": "十一月場所",
   "year": "令和八年",
-  "updatedAt": "2026-11-10T15:48:51+09:00",
-  "resultUpdatedAt": "2026-11-10T15:48:51+09:00",
+  "updatedAt": "2026-11-10T16:15:58+09:00",
+  "resultUpdatedAt": "2026-11-10T16:15:58+09:00",
   "scheduleUpdatedAt": "2026-11-10T15:06:15+09:00",
   "today": {
     "makuuchi": {
@@ -85,8 +85,8 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "前頭十六枚目",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/",
-          "kimarite": "",
-          "winner": null
+          "kimarite": "つき手",
+          "winner": "west"
         },
         {
           "division": "幕内",
@@ -101,8 +101,8 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "前頭十七枚目",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/",
-          "kimarite": "",
-          "winner": null
+          "kimarite": "押し出し",
+          "winner": "east"
         },
         {
           "division": "幕内",
@@ -2219,8 +2219,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "",
               "westRank": "前頭十六枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4232/",
-              "kimarite": "",
-              "winner": null
+              "kimarite": "つき手",
+              "winner": "west"
             },
             {
               "division": "幕内",
@@ -2235,8 +2235,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "",
               "westRank": "前頭十七枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4116/",
-              "kimarite": "",
-              "winner": null
+              "kimarite": "押し出し",
+              "winner": "east"
             },
             {
               "division": "幕内",
