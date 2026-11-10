@@ -13,7 +13,7 @@ cached under scripts/fonts/.cache/ and are not committed.
 Requires fontTools with Brotli support and the repo's tsx binary:
 
     pip install 'fonttools[woff]' brotli
-    python3 scripts/fonts/build_webfonts.py
+    npm run fonts:subset
 """
 
 from __future__ import annotations

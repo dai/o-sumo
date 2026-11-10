@@ -45,6 +45,9 @@ npm run preview
 
 # データ再生成
 python scripts/update_sumo_data.py
+
+# 表示文字を足したあとの自前フォント再生成（app/webfont.test.ts が落ちたらこれ）
+npm run fonts:subset
 ```
 
 ## 今日のみどころの状態プレビュー
