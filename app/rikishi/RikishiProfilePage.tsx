@@ -15,6 +15,7 @@ import {
   type RikishiProfile,
 } from '../lib/rikishi-profile';
 import { isLocalRikishiImagePath } from '../lib/rikishi-avatar';
+import RikishiPortrait from '../components/RikishiPortrait';
 import { toRomaji } from '../lib/romaji';
 import { formatUpdatedAt } from '../lib/updated-at';
 import { SITE_ORIGIN } from '../lib/site-url';
@@ -65,7 +66,7 @@ function formatCareerRecord(profile: RikishiProfile): {
 
 export default function RikishiProfilePage() {
   const { id } = useParams<{ id: string }>();
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
   const [profile, setProfile] = React.useState<RikishiProfile | null>(null);
   const [sameRank, setSameRank] = React.useState<RikishiIndexItem[]>([]);
   const [status, setStatus] = React.useState<'loading' | 'ready' | 'not-found' | 'error'>('loading');
@@ -159,7 +160,7 @@ export default function RikishiProfilePage() {
         </div>
         {profile?.updatedAt ? (
           <div className="site-header-meta-row">
-            <p>{t('rikishi.updatedAt', { date: formatUpdatedAt(profile.updatedAt) })}</p>
+            <p>{t('rikishi.updatedAt', { date: formatUpdatedAt(profile.updatedAt, i18n.language) })}</p>
           </div>
         ) : null}
       </header>
@@ -214,7 +215,20 @@ export default function RikishiProfilePage() {
           <article className="rikishi-profile-detail">
             <div className="rikishi-profile-hero">
               {profile.photoUrl ? (
-                <img className="rikishi-profile-photo" src={profile.photoUrl} alt="" aria-hidden="true" loading="lazy" />
+                isLocalRikishiImagePath(profile.photoUrl) ? (
+                  <RikishiPortrait id={profile.id} slot="profile" className="rikishi-profile-photo" />
+                ) : (
+                  <img
+                    className="rikishi-profile-photo"
+                    src={profile.photoUrl}
+                    alt=""
+                    aria-hidden="true"
+                    width={128}
+                    height={128}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )
               ) : (
                 <div className="rikishi-profile-photo-placeholder" aria-hidden="true">{profile.name.slice(0, 1)}</div>
               )}
@@ -295,7 +309,7 @@ export default function RikishiProfilePage() {
               {isLocalRikishiImagePath(profile.photoUrl) ? (
                 <p>{t('rikishi.imageSourceDescription')}</p>
               ) : null}
-              <p>{t('rikishi.updatedAt', { date: formatUpdatedAt(profile.updatedAt) })}</p>
+              <p>{t('rikishi.updatedAt', { date: formatUpdatedAt(profile.updatedAt, i18n.language) })}</p>
             </section>
           </article>
         ) : null}

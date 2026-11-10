@@ -45,6 +45,9 @@ npm run preview
 
 # データ再生成
 python scripts/update_sumo_data.py
+
+# 表示文字を足したあとの自前フォント再生成（app/webfont.test.ts が落ちたらこれ）
+npm run fonts:subset
 ```
 
 ## 今日のみどころの状態プレビュー
@@ -224,7 +227,7 @@ DNS-AID (SVCB/HTTPS) と DNSSEC の有効化は Cloudflare DNS 側の操作で�
 - `public/_redirects` で SPA fallback を設定しています（アプリルートのみ。`/api/v1/*` は静的 JSON をそのまま配信）
 - 月キー付きルートは `app/lib/torikumi-routes.ts` を基準に扱います
 - 固定の `YYYYMM-*` ルートを増やすのではなく、生成データ由来の月キー解決を使います
-- `public/images/rikishi/*.png` は日本相撲協会プロフィール写真をもとに MiniMax I2I Generation で加工した画像です。再生成時は `MINIMAX_API_KEY` を設定して `python scripts/style_transfer_rikishi.py` を使います
+- `public/images/rikishi/*.png` は日本相撲協会プロフィール写真をもとに MiniMax I2I Generation で加工した画像です。再生成時は `MINIMAX_API_KEY` を設定して `python scripts/style_transfer_rikishi.py` を使います。PNG を足したら `npm run images:rikishi` で 96/192/384px の WebP と AVIF を書き出します
 - `app/lib/my-rikishi.ts` は `localStorage` キー `o-sumo:my-rikishi:v1` を使います。Google ログイン時は[マイ力士 API と Cloudflare の設定](./docs/auth/my-rikishi-cloudflare-operations.md)を通じて端末間で同期できます
 - `/compare/?ids=…` の `ids` クエリは正の整数 ID だけを最大 2 件まで受理し、重複と非整数値を自動で除外します
 - `WebMcpProvider` の `AbortController` 経由でツール登録を解除するため、Strict Mode でのマウント／アンマウントでも登録が重複しません

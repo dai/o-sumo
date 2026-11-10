@@ -15,7 +15,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-13",
         "pathDate": "20260913",
         "label": "初日",
-        "dayHead": "初日： 令和8年9月13日(日)",
+        "dayHead": "初日： 2026年9月13日(日)",
         "status": "published",
         "statusMessage": null
       },
@@ -24,7 +24,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-14",
         "pathDate": "20260914",
         "label": "二日目",
-        "dayHead": "二日目： 令和8年9月14日(月)",
+        "dayHead": "二日目： 2026年9月14日(月)",
         "status": "published",
         "statusMessage": null
       },
@@ -33,7 +33,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-15",
         "pathDate": "20260915",
         "label": "三日目",
-        "dayHead": "三日目： 令和8年9月15日(火)",
+        "dayHead": "三日目： 2026年9月15日(火)",
         "status": "published",
         "statusMessage": null
       },
@@ -42,7 +42,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-16",
         "pathDate": "20260916",
         "label": "四日目",
-        "dayHead": "四日目： 令和8年9月16日(水)",
+        "dayHead": "四日目： 2026年9月16日(水)",
         "status": "published",
         "statusMessage": null
       },
@@ -51,7 +51,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-17",
         "pathDate": "20260917",
         "label": "五日目",
-        "dayHead": "五日目： 令和8年9月17日(木)",
+        "dayHead": "五日目： 2026年9月17日(木)",
         "status": "published",
         "statusMessage": null
       },
@@ -60,7 +60,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-18",
         "pathDate": "20260918",
         "label": "六日目",
-        "dayHead": "六日目： 令和8年9月18日(金)",
+        "dayHead": "六日目： 2026年9月18日(金)",
         "status": "published",
         "statusMessage": null
       },
@@ -69,7 +69,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-19",
         "pathDate": "20260919",
         "label": "七日目",
-        "dayHead": "七日目： 令和8年9月19日(土)",
+        "dayHead": "七日目： 2026年9月19日(土)",
         "status": "published",
         "statusMessage": null
       },
@@ -78,7 +78,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-20",
         "pathDate": "20260920",
         "label": "中日",
-        "dayHead": "中日： 令和8年9月20日(日)",
+        "dayHead": "中日： 2026年9月20日(日)",
         "status": "published",
         "statusMessage": null
       },
@@ -87,7 +87,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-21",
         "pathDate": "20260921",
         "label": "九日目",
-        "dayHead": "九日目： 令和8年9月21日(月)",
+        "dayHead": "九日目： 2026年9月21日(月)",
         "status": "published",
         "statusMessage": null
       },
@@ -96,7 +96,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-22",
         "pathDate": "20260922",
         "label": "十日目",
-        "dayHead": "十日目： 令和8年9月22日(火)",
+        "dayHead": "十日目： 2026年9月22日(火)",
         "status": "published",
         "statusMessage": null
       },
@@ -105,7 +105,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-23",
         "pathDate": "20260923",
         "label": "十一日目",
-        "dayHead": "十一日目： 令和8年9月23日(水)",
+        "dayHead": "十一日目： 2026年9月23日(水)",
         "status": "published",
         "statusMessage": null
       },
@@ -114,7 +114,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-24",
         "pathDate": "20260924",
         "label": "十二日目",
-        "dayHead": "十二日目： 令和8年9月24日(木)",
+        "dayHead": "十二日目： 2026年9月24日(木)",
         "status": "published",
         "statusMessage": null
       },
@@ -123,7 +123,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-25",
         "pathDate": "20260925",
         "label": "十三日目",
-        "dayHead": "十三日目： 令和8年9月25日(金)",
+        "dayHead": "十三日目： 2026年9月25日(金)",
         "status": "published",
         "statusMessage": null
       },
@@ -132,7 +132,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-26",
         "pathDate": "20260926",
         "label": "十四日目",
-        "dayHead": "十四日目： 令和8年9月26日(土)",
+        "dayHead": "十四日目： 2026年9月26日(土)",
         "status": "published",
         "statusMessage": null
       },
@@ -141,7 +141,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-27",
         "pathDate": "20260927",
         "label": "千秋楽",
-        "dayHead": "千秋楽： 令和8年9月27日(日)",
+        "dayHead": "千秋楽： 2026年9月27日(日)",
         "status": "published",
         "statusMessage": null
       }
@@ -152,7 +152,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-13",
         "pathDate": "20260913",
         "label": "初日",
-        "dayHead": "初日： 令和8年9月13日(日)",
+        "dayHead": "初日： 2026年9月13日(日)",
         "status": "published",
         "statusMessage": null
       },
@@ -161,7 +161,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-14",
         "pathDate": "20260914",
         "label": "二日目",
-        "dayHead": "二日目： 令和8年9月14日(月)",
+        "dayHead": "二日目： 2026年9月14日(月)",
         "status": "published",
         "statusMessage": null
       },
@@ -170,7 +170,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-15",
         "pathDate": "20260915",
         "label": "三日目",
-        "dayHead": "三日目： 令和8年9月15日(火)",
+        "dayHead": "三日目： 2026年9月15日(火)",
         "status": "published",
         "statusMessage": null
       },
@@ -179,7 +179,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-16",
         "pathDate": "20260916",
         "label": "四日目",
-        "dayHead": "四日目： 令和8年9月16日(水)",
+        "dayHead": "四日目： 2026年9月16日(水)",
         "status": "published",
         "statusMessage": null
       },
@@ -188,7 +188,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-17",
         "pathDate": "20260917",
         "label": "五日目",
-        "dayHead": "五日目： 令和8年9月17日(木)",
+        "dayHead": "五日目： 2026年9月17日(木)",
         "status": "published",
         "statusMessage": null
       },
@@ -197,7 +197,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-18",
         "pathDate": "20260918",
         "label": "六日目",
-        "dayHead": "六日目： 令和8年9月18日(金)",
+        "dayHead": "六日目： 2026年9月18日(金)",
         "status": "published",
         "statusMessage": null
       },
@@ -206,7 +206,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-19",
         "pathDate": "20260919",
         "label": "七日目",
-        "dayHead": "七日目： 令和8年9月19日(土)",
+        "dayHead": "七日目： 2026年9月19日(土)",
         "status": "published",
         "statusMessage": null
       },
@@ -215,7 +215,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-20",
         "pathDate": "20260920",
         "label": "中日",
-        "dayHead": "中日： 令和8年9月20日(日)",
+        "dayHead": "中日： 2026年9月20日(日)",
         "status": "published",
         "statusMessage": null
       },
@@ -224,7 +224,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-21",
         "pathDate": "20260921",
         "label": "九日目",
-        "dayHead": "九日目： 令和8年9月21日(月)",
+        "dayHead": "九日目： 2026年9月21日(月)",
         "status": "published",
         "statusMessage": null
       },
@@ -233,7 +233,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-22",
         "pathDate": "20260922",
         "label": "十日目",
-        "dayHead": "十日目： 令和8年9月22日(火)",
+        "dayHead": "十日目： 2026年9月22日(火)",
         "status": "published",
         "statusMessage": null
       },
@@ -242,7 +242,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-23",
         "pathDate": "20260923",
         "label": "十一日目",
-        "dayHead": "十一日目： 令和8年9月23日(水)",
+        "dayHead": "十一日目： 2026年9月23日(水)",
         "status": "published",
         "statusMessage": null
       },
@@ -251,7 +251,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-24",
         "pathDate": "20260924",
         "label": "十二日目",
-        "dayHead": "十二日目： 令和8年9月24日(木)",
+        "dayHead": "十二日目： 2026年9月24日(木)",
         "status": "published",
         "statusMessage": null
       },
@@ -260,7 +260,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-25",
         "pathDate": "20260925",
         "label": "十三日目",
-        "dayHead": "十三日目： 令和8年9月25日(金)",
+        "dayHead": "十三日目： 2026年9月25日(金)",
         "status": "published",
         "statusMessage": null
       },
@@ -269,7 +269,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-26",
         "pathDate": "20260926",
         "label": "十四日目",
-        "dayHead": "十四日目： 令和8年9月26日(土)",
+        "dayHead": "十四日目： 2026年9月26日(土)",
         "status": "published",
         "statusMessage": null
       },
@@ -278,7 +278,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-09-27",
         "pathDate": "20260927",
         "label": "千秋楽",
-        "dayHead": "千秋楽： 令和8年9月27日(日)",
+        "dayHead": "千秋楽： 2026年9月27日(日)",
         "status": "published",
         "statusMessage": null
       }
@@ -297,7 +297,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-12",
         "pathDate": "20260712",
         "label": "初日",
-        "dayHead": "初日： 令和8年7月12日(日)",
+        "dayHead": "初日： 2026年7月12日(日)",
         "status": "published",
         "statusMessage": null
       },
@@ -306,7 +306,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-13",
         "pathDate": "20260713",
         "label": "二日目",
-        "dayHead": "二日目： 令和8年7月13日(月)",
+        "dayHead": "二日目： 2026年7月13日(月)",
         "status": "published",
         "statusMessage": null
       },
@@ -315,7 +315,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-14",
         "pathDate": "20260714",
         "label": "三日目",
-        "dayHead": "三日目： 令和8年7月14日(火)",
+        "dayHead": "三日目： 2026年7月14日(火)",
         "status": "published",
         "statusMessage": null
       },
@@ -324,7 +324,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-15",
         "pathDate": "20260715",
         "label": "四日目",
-        "dayHead": "四日目： 令和8年7月15日(水)",
+        "dayHead": "四日目： 2026年7月15日(水)",
         "status": "published",
         "statusMessage": null
       },
@@ -333,7 +333,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-16",
         "pathDate": "20260716",
         "label": "五日目",
-        "dayHead": "五日目： 令和8年7月16日(木)",
+        "dayHead": "五日目： 2026年7月16日(木)",
         "status": "published",
         "statusMessage": null
       },
@@ -342,7 +342,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-17",
         "pathDate": "20260717",
         "label": "六日目",
-        "dayHead": "六日目： 令和8年7月17日(金)",
+        "dayHead": "六日目： 2026年7月17日(金)",
         "status": "published",
         "statusMessage": null
       },
@@ -351,7 +351,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-18",
         "pathDate": "20260718",
         "label": "七日目",
-        "dayHead": "七日目： 令和8年7月18日(土)",
+        "dayHead": "七日目： 2026年7月18日(土)",
         "status": "published",
         "statusMessage": null
       },
@@ -360,7 +360,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-19",
         "pathDate": "20260719",
         "label": "中日",
-        "dayHead": "中日： 令和8年7月19日(日)",
+        "dayHead": "中日： 2026年7月19日(日)",
         "status": "published",
         "statusMessage": null
       },
@@ -369,7 +369,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-20",
         "pathDate": "20260720",
         "label": "九日目",
-        "dayHead": "九日目： 令和8年7月20日(月)",
+        "dayHead": "九日目： 2026年7月20日(月)",
         "status": "published",
         "statusMessage": null
       },
@@ -378,7 +378,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-21",
         "pathDate": "20260721",
         "label": "十日目",
-        "dayHead": "十日目： 令和8年7月21日(火)",
+        "dayHead": "十日目： 2026年7月21日(火)",
         "status": "published",
         "statusMessage": null
       },
@@ -387,7 +387,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-22",
         "pathDate": "20260722",
         "label": "十一日目",
-        "dayHead": "十一日目： 令和8年7月22日(水)",
+        "dayHead": "十一日目： 2026年7月22日(水)",
         "status": "published",
         "statusMessage": null
       },
@@ -396,7 +396,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-23",
         "pathDate": "20260723",
         "label": "十二日目",
-        "dayHead": "十二日目： 令和8年7月23日(木)",
+        "dayHead": "十二日目： 2026年7月23日(木)",
         "status": "published",
         "statusMessage": null
       },
@@ -405,7 +405,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-24",
         "pathDate": "20260724",
         "label": "十三日目",
-        "dayHead": "十三日目： 令和8年7月24日(金)",
+        "dayHead": "十三日目： 2026年7月24日(金)",
         "status": "published",
         "statusMessage": null
       },
@@ -414,7 +414,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-25",
         "pathDate": "20260725",
         "label": "十四日目",
-        "dayHead": "十四日目： 令和8年7月25日(土)",
+        "dayHead": "十四日目： 2026年7月25日(土)",
         "status": "published",
         "statusMessage": null
       },
@@ -423,7 +423,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-26",
         "pathDate": "20260726",
         "label": "千秋楽",
-        "dayHead": "千秋楽： 令和8年7月26日(日)",
+        "dayHead": "千秋楽： 2026年7月26日(日)",
         "status": "published",
         "statusMessage": null
       }
@@ -434,7 +434,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-12",
         "pathDate": "20260712",
         "label": "初日",
-        "dayHead": "初日： 令和8年7月12日(日)",
+        "dayHead": "初日： 2026年7月12日(日)",
         "status": "published",
         "statusMessage": null
       },
@@ -443,7 +443,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-13",
         "pathDate": "20260713",
         "label": "二日目",
-        "dayHead": "二日目： 令和8年7月13日(月)",
+        "dayHead": "二日目： 2026年7月13日(月)",
         "status": "published",
         "statusMessage": null
       },
@@ -452,7 +452,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-14",
         "pathDate": "20260714",
         "label": "三日目",
-        "dayHead": "三日目： 令和8年7月14日(火)",
+        "dayHead": "三日目： 2026年7月14日(火)",
         "status": "published",
         "statusMessage": null
       },
@@ -461,7 +461,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-15",
         "pathDate": "20260715",
         "label": "四日目",
-        "dayHead": "四日目： 令和8年7月15日(水)",
+        "dayHead": "四日目： 2026年7月15日(水)",
         "status": "published",
         "statusMessage": null
       },
@@ -470,7 +470,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-16",
         "pathDate": "20260716",
         "label": "五日目",
-        "dayHead": "五日目： 令和8年7月16日(木)",
+        "dayHead": "五日目： 2026年7月16日(木)",
         "status": "published",
         "statusMessage": null
       },
@@ -479,7 +479,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-17",
         "pathDate": "20260717",
         "label": "六日目",
-        "dayHead": "六日目： 令和8年7月17日(金)",
+        "dayHead": "六日目： 2026年7月17日(金)",
         "status": "published",
         "statusMessage": null
       },
@@ -488,7 +488,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-18",
         "pathDate": "20260718",
         "label": "七日目",
-        "dayHead": "七日目： 令和8年7月18日(土)",
+        "dayHead": "七日目： 2026年7月18日(土)",
         "status": "published",
         "statusMessage": null
       },
@@ -497,7 +497,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-19",
         "pathDate": "20260719",
         "label": "中日",
-        "dayHead": "中日： 令和8年7月19日(日)",
+        "dayHead": "中日： 2026年7月19日(日)",
         "status": "published",
         "statusMessage": null
       },
@@ -506,7 +506,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-20",
         "pathDate": "20260720",
         "label": "九日目",
-        "dayHead": "九日目： 令和8年7月20日(月)",
+        "dayHead": "九日目： 2026年7月20日(月)",
         "status": "published",
         "statusMessage": null
       },
@@ -515,7 +515,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-21",
         "pathDate": "20260721",
         "label": "十日目",
-        "dayHead": "十日目： 令和8年7月21日(火)",
+        "dayHead": "十日目： 2026年7月21日(火)",
         "status": "published",
         "statusMessage": null
       },
@@ -524,7 +524,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-22",
         "pathDate": "20260722",
         "label": "十一日目",
-        "dayHead": "十一日目： 令和8年7月22日(水)",
+        "dayHead": "十一日目： 2026年7月22日(水)",
         "status": "published",
         "statusMessage": null
       },
@@ -533,7 +533,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-23",
         "pathDate": "20260723",
         "label": "十二日目",
-        "dayHead": "十二日目： 令和8年7月23日(木)",
+        "dayHead": "十二日目： 2026年7月23日(木)",
         "status": "published",
         "statusMessage": null
       },
@@ -542,7 +542,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-24",
         "pathDate": "20260724",
         "label": "十三日目",
-        "dayHead": "十三日目： 令和8年7月24日(金)",
+        "dayHead": "十三日目： 2026年7月24日(金)",
         "status": "published",
         "statusMessage": null
       },
@@ -551,7 +551,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-25",
         "pathDate": "20260725",
         "label": "十四日目",
-        "dayHead": "十四日目： 令和8年7月25日(土)",
+        "dayHead": "十四日目： 2026年7月25日(土)",
         "status": "published",
         "statusMessage": null
       },
@@ -560,7 +560,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-07-26",
         "pathDate": "20260726",
         "label": "千秋楽",
-        "dayHead": "千秋楽： 令和8年7月26日(日)",
+        "dayHead": "千秋楽： 2026年7月26日(日)",
         "status": "published",
         "statusMessage": null
       }
@@ -579,7 +579,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-10",
         "pathDate": "20260510",
         "label": "初日",
-        "dayHead": "初日： 令和8年5月10日(日)",
+        "dayHead": "初日： 2026年5月10日(日)",
         "status": "published",
         "statusMessage": null
       },
@@ -588,7 +588,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-11",
         "pathDate": "20260511",
         "label": "二日目",
-        "dayHead": "二日目： 令和8年5月11日(月)",
+        "dayHead": "二日目： 2026年5月11日(月)",
         "status": "published",
         "statusMessage": null
       },
@@ -597,7 +597,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-12",
         "pathDate": "20260512",
         "label": "三日目",
-        "dayHead": "三日目： 令和8年5月12日(火)",
+        "dayHead": "三日目： 2026年5月12日(火)",
         "status": "published",
         "statusMessage": null
       },
@@ -606,7 +606,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-13",
         "pathDate": "20260513",
         "label": "四日目",
-        "dayHead": "四日目： 令和8年5月13日(水)",
+        "dayHead": "四日目： 2026年5月13日(水)",
         "status": "published",
         "statusMessage": null
       },
@@ -615,7 +615,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-14",
         "pathDate": "20260514",
         "label": "五日目",
-        "dayHead": "五日目： 令和8年5月14日(木)",
+        "dayHead": "五日目： 2026年5月14日(木)",
         "status": "published",
         "statusMessage": null
       },
@@ -624,7 +624,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-15",
         "pathDate": "20260515",
         "label": "六日目",
-        "dayHead": "六日目： 令和8年5月15日(金)",
+        "dayHead": "六日目： 2026年5月15日(金)",
         "status": "published",
         "statusMessage": null
       },
@@ -633,7 +633,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-16",
         "pathDate": "20260516",
         "label": "七日目",
-        "dayHead": "七日目： 令和8年5月16日(土)",
+        "dayHead": "七日目： 2026年5月16日(土)",
         "status": "published",
         "statusMessage": null
       },
@@ -642,7 +642,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-17",
         "pathDate": "20260517",
         "label": "中日",
-        "dayHead": "中日： 令和8年5月17日(日)",
+        "dayHead": "中日： 2026年5月17日(日)",
         "status": "published",
         "statusMessage": null
       },
@@ -651,7 +651,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-18",
         "pathDate": "20260518",
         "label": "九日目",
-        "dayHead": "九日目： 令和8年5月18日(月)",
+        "dayHead": "九日目： 2026年5月18日(月)",
         "status": "published",
         "statusMessage": null
       },
@@ -660,7 +660,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-19",
         "pathDate": "20260519",
         "label": "十日目",
-        "dayHead": "十日目： 令和8年5月19日(火)",
+        "dayHead": "十日目： 2026年5月19日(火)",
         "status": "published",
         "statusMessage": null
       },
@@ -669,7 +669,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-20",
         "pathDate": "20260520",
         "label": "十一日目",
-        "dayHead": "十一日目： 令和8年5月20日(水)",
+        "dayHead": "十一日目： 2026年5月20日(水)",
         "status": "published",
         "statusMessage": null
       },
@@ -678,7 +678,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-21",
         "pathDate": "20260521",
         "label": "十二日目",
-        "dayHead": "十二日目： 令和8年5月21日(木)",
+        "dayHead": "十二日目： 2026年5月21日(木)",
         "status": "published",
         "statusMessage": null
       },
@@ -687,7 +687,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-22",
         "pathDate": "20260522",
         "label": "十三日目",
-        "dayHead": "十三日目： 令和8年5月22日(金)",
+        "dayHead": "十三日目： 2026年5月22日(金)",
         "status": "published",
         "statusMessage": null
       },
@@ -696,7 +696,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-23",
         "pathDate": "20260523",
         "label": "十四日目",
-        "dayHead": "十四日目： 令和8年5月23日(土)",
+        "dayHead": "十四日目： 2026年5月23日(土)",
         "status": "published",
         "statusMessage": null
       },
@@ -705,7 +705,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-24",
         "pathDate": "20260524",
         "label": "千秋楽",
-        "dayHead": "千秋楽： 令和8年5月24日(日)",
+        "dayHead": "千秋楽： 2026年5月24日(日)",
         "status": "published",
         "statusMessage": null
       }
@@ -716,7 +716,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-10",
         "pathDate": "20260510",
         "label": "初日",
-        "dayHead": "初日： 令和8年5月10日(日)",
+        "dayHead": "初日： 2026年5月10日(日)",
         "status": "published",
         "statusMessage": null
       },
@@ -725,7 +725,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-11",
         "pathDate": "20260511",
         "label": "二日目",
-        "dayHead": "二日目： 令和8年5月11日(月)",
+        "dayHead": "二日目： 2026年5月11日(月)",
         "status": "published",
         "statusMessage": null
       },
@@ -734,7 +734,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-12",
         "pathDate": "20260512",
         "label": "三日目",
-        "dayHead": "三日目： 令和8年5月12日(火)",
+        "dayHead": "三日目： 2026年5月12日(火)",
         "status": "published",
         "statusMessage": null
       },
@@ -743,7 +743,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-13",
         "pathDate": "20260513",
         "label": "四日目",
-        "dayHead": "四日目： 令和8年5月13日(水)",
+        "dayHead": "四日目： 2026年5月13日(水)",
         "status": "published",
         "statusMessage": null
       },
@@ -752,7 +752,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-14",
         "pathDate": "20260514",
         "label": "五日目",
-        "dayHead": "五日目： 令和8年5月14日(木)",
+        "dayHead": "五日目： 2026年5月14日(木)",
         "status": "published",
         "statusMessage": null
       },
@@ -761,7 +761,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-15",
         "pathDate": "20260515",
         "label": "六日目",
-        "dayHead": "六日目： 令和8年5月15日(金)",
+        "dayHead": "六日目： 2026年5月15日(金)",
         "status": "published",
         "statusMessage": null
       },
@@ -770,7 +770,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-16",
         "pathDate": "20260516",
         "label": "七日目",
-        "dayHead": "七日目： 令和8年5月16日(土)",
+        "dayHead": "七日目： 2026年5月16日(土)",
         "status": "published",
         "statusMessage": null
       },
@@ -779,7 +779,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-17",
         "pathDate": "20260517",
         "label": "中日",
-        "dayHead": "中日： 令和8年5月17日(日)",
+        "dayHead": "中日： 2026年5月17日(日)",
         "status": "published",
         "statusMessage": null
       },
@@ -788,7 +788,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-18",
         "pathDate": "20260518",
         "label": "九日目",
-        "dayHead": "九日目： 令和8年5月18日(月)",
+        "dayHead": "九日目： 2026年5月18日(月)",
         "status": "published",
         "statusMessage": null
       },
@@ -797,7 +797,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-19",
         "pathDate": "20260519",
         "label": "十日目",
-        "dayHead": "十日目： 令和8年5月19日(火)",
+        "dayHead": "十日目： 2026年5月19日(火)",
         "status": "published",
         "statusMessage": null
       },
@@ -806,7 +806,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-20",
         "pathDate": "20260520",
         "label": "十一日目",
-        "dayHead": "十一日目： 令和8年5月20日(水)",
+        "dayHead": "十一日目： 2026年5月20日(水)",
         "status": "published",
         "statusMessage": null
       },
@@ -815,7 +815,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-21",
         "pathDate": "20260521",
         "label": "十二日目",
-        "dayHead": "十二日目： 令和8年5月21日(木)",
+        "dayHead": "十二日目： 2026年5月21日(木)",
         "status": "published",
         "statusMessage": null
       },
@@ -824,7 +824,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-22",
         "pathDate": "20260522",
         "label": "十三日目",
-        "dayHead": "十三日目： 令和8年5月22日(金)",
+        "dayHead": "十三日目： 2026年5月22日(金)",
         "status": "published",
         "statusMessage": null
       },
@@ -833,7 +833,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-23",
         "pathDate": "20260523",
         "label": "十四日目",
-        "dayHead": "十四日目： 令和8年5月23日(土)",
+        "dayHead": "十四日目： 2026年5月23日(土)",
         "status": "published",
         "statusMessage": null
       },
@@ -842,7 +842,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-05-24",
         "pathDate": "20260524",
         "label": "千秋楽",
-        "dayHead": "千秋楽： 令和8年5月24日(日)",
+        "dayHead": "千秋楽： 2026年5月24日(日)",
         "status": "published",
         "statusMessage": null
       }
@@ -861,7 +861,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-08",
         "pathDate": "20260308",
         "label": "初日",
-        "dayHead": "初日： 令和8年3月8日(日)",
+        "dayHead": "初日： 2026年3月8日(日)",
         "status": "published",
         "statusMessage": null
       },
@@ -870,7 +870,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-09",
         "pathDate": "20260309",
         "label": "二日目",
-        "dayHead": "二日目： 令和8年3月9日(月)",
+        "dayHead": "二日目： 2026年3月9日(月)",
         "status": "published",
         "statusMessage": null
       },
@@ -879,7 +879,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-10",
         "pathDate": "20260310",
         "label": "三日目",
-        "dayHead": "三日目： 令和8年3月10日(火)",
+        "dayHead": "三日目： 2026年3月10日(火)",
         "status": "published",
         "statusMessage": null
       },
@@ -888,7 +888,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-11",
         "pathDate": "20260311",
         "label": "四日目",
-        "dayHead": "四日目： 令和8年3月11日(水)",
+        "dayHead": "四日目： 2026年3月11日(水)",
         "status": "published",
         "statusMessage": null
       },
@@ -897,7 +897,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-12",
         "pathDate": "20260312",
         "label": "五日目",
-        "dayHead": "五日目： 令和8年3月12日(木)",
+        "dayHead": "五日目： 2026年3月12日(木)",
         "status": "published",
         "statusMessage": null
       },
@@ -906,7 +906,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-13",
         "pathDate": "20260313",
         "label": "六日目",
-        "dayHead": "六日目： 令和8年3月13日(金)",
+        "dayHead": "六日目： 2026年3月13日(金)",
         "status": "published",
         "statusMessage": null
       },
@@ -915,7 +915,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-14",
         "pathDate": "20260314",
         "label": "七日目",
-        "dayHead": "七日目： 令和8年3月14日(土)",
+        "dayHead": "七日目： 2026年3月14日(土)",
         "status": "published",
         "statusMessage": null
       },
@@ -924,7 +924,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-15",
         "pathDate": "20260315",
         "label": "中日",
-        "dayHead": "中日： 令和8年3月15日(日)",
+        "dayHead": "中日： 2026年3月15日(日)",
         "status": "published",
         "statusMessage": null
       },
@@ -933,7 +933,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-16",
         "pathDate": "20260316",
         "label": "九日目",
-        "dayHead": "九日目： 令和8年3月16日(月)",
+        "dayHead": "九日目： 2026年3月16日(月)",
         "status": "published",
         "statusMessage": null
       },
@@ -942,7 +942,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-17",
         "pathDate": "20260317",
         "label": "十日目",
-        "dayHead": "十日目： 令和8年3月17日(火)",
+        "dayHead": "十日目： 2026年3月17日(火)",
         "status": "published",
         "statusMessage": null
       },
@@ -951,7 +951,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-18",
         "pathDate": "20260318",
         "label": "十一日目",
-        "dayHead": "十一日目： 令和8年3月18日(水)",
+        "dayHead": "十一日目： 2026年3月18日(水)",
         "status": "published",
         "statusMessage": null
       },
@@ -960,7 +960,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-19",
         "pathDate": "20260319",
         "label": "十二日目",
-        "dayHead": "十二日目： 令和8年3月19日(木)",
+        "dayHead": "十二日目： 2026年3月19日(木)",
         "status": "published",
         "statusMessage": null
       },
@@ -969,7 +969,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-20",
         "pathDate": "20260320",
         "label": "十三日目",
-        "dayHead": "十三日目： 令和8年3月20日(金)",
+        "dayHead": "十三日目： 2026年3月20日(金)",
         "status": "published",
         "statusMessage": null
       },
@@ -978,7 +978,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-21",
         "pathDate": "20260321",
         "label": "十四日目",
-        "dayHead": "十四日目： 令和8年3月21日(土)",
+        "dayHead": "十四日目： 2026年3月21日(土)",
         "status": "published",
         "statusMessage": null
       },
@@ -987,7 +987,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-22",
         "pathDate": "20260322",
         "label": "千秋楽",
-        "dayHead": "千秋楽： 令和8年3月22日(日)",
+        "dayHead": "千秋楽： 2026年3月22日(日)",
         "status": "published",
         "statusMessage": null
       }
@@ -998,7 +998,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-08",
         "pathDate": "20260308",
         "label": "初日",
-        "dayHead": "初日： 令和8年3月8日(日)",
+        "dayHead": "初日： 2026年3月8日(日)",
         "status": "published",
         "statusMessage": null
       },
@@ -1007,7 +1007,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-09",
         "pathDate": "20260309",
         "label": "二日目",
-        "dayHead": "二日目： 令和8年3月9日(月)",
+        "dayHead": "二日目： 2026年3月9日(月)",
         "status": "published",
         "statusMessage": null
       },
@@ -1016,7 +1016,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-10",
         "pathDate": "20260310",
         "label": "三日目",
-        "dayHead": "三日目： 令和8年3月10日(火)",
+        "dayHead": "三日目： 2026年3月10日(火)",
         "status": "published",
         "statusMessage": null
       },
@@ -1025,7 +1025,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-11",
         "pathDate": "20260311",
         "label": "四日目",
-        "dayHead": "四日目： 令和8年3月11日(水)",
+        "dayHead": "四日目： 2026年3月11日(水)",
         "status": "published",
         "statusMessage": null
       },
@@ -1034,7 +1034,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-12",
         "pathDate": "20260312",
         "label": "五日目",
-        "dayHead": "五日目： 令和8年3月12日(木)",
+        "dayHead": "五日目： 2026年3月12日(木)",
         "status": "published",
         "statusMessage": null
       },
@@ -1043,7 +1043,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-13",
         "pathDate": "20260313",
         "label": "六日目",
-        "dayHead": "六日目： 令和8年3月13日(金)",
+        "dayHead": "六日目： 2026年3月13日(金)",
         "status": "published",
         "statusMessage": null
       },
@@ -1052,7 +1052,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-14",
         "pathDate": "20260314",
         "label": "七日目",
-        "dayHead": "七日目： 令和8年3月14日(土)",
+        "dayHead": "七日目： 2026年3月14日(土)",
         "status": "published",
         "statusMessage": null
       },
@@ -1061,7 +1061,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-15",
         "pathDate": "20260315",
         "label": "中日",
-        "dayHead": "中日： 令和8年3月15日(日)",
+        "dayHead": "中日： 2026年3月15日(日)",
         "status": "published",
         "statusMessage": null
       },
@@ -1070,7 +1070,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-16",
         "pathDate": "20260316",
         "label": "九日目",
-        "dayHead": "九日目： 令和8年3月16日(月)",
+        "dayHead": "九日目： 2026年3月16日(月)",
         "status": "published",
         "statusMessage": null
       },
@@ -1079,7 +1079,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-17",
         "pathDate": "20260317",
         "label": "十日目",
-        "dayHead": "十日目： 令和8年3月17日(火)",
+        "dayHead": "十日目： 2026年3月17日(火)",
         "status": "published",
         "statusMessage": null
       },
@@ -1088,7 +1088,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-18",
         "pathDate": "20260318",
         "label": "十一日目",
-        "dayHead": "十一日目： 令和8年3月18日(水)",
+        "dayHead": "十一日目： 2026年3月18日(水)",
         "status": "published",
         "statusMessage": null
       },
@@ -1097,7 +1097,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-19",
         "pathDate": "20260319",
         "label": "十二日目",
-        "dayHead": "十二日目： 令和8年3月19日(木)",
+        "dayHead": "十二日目： 2026年3月19日(木)",
         "status": "published",
         "statusMessage": null
       },
@@ -1106,7 +1106,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-20",
         "pathDate": "20260320",
         "label": "十三日目",
-        "dayHead": "十三日目： 令和8年3月20日(金)",
+        "dayHead": "十三日目： 2026年3月20日(金)",
         "status": "published",
         "statusMessage": null
       },
@@ -1115,7 +1115,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-21",
         "pathDate": "20260321",
         "label": "十四日目",
-        "dayHead": "十四日目： 令和8年3月21日(土)",
+        "dayHead": "十四日目： 2026年3月21日(土)",
         "status": "published",
         "statusMessage": null
       },
@@ -1124,7 +1124,7 @@ export const ARCHIVE_ROUTE_INDEX: ArchiveRouteIndexEntry[] = [
         "isoDate": "2026-03-22",
         "pathDate": "20260322",
         "label": "千秋楽",
-        "dayHead": "千秋楽： 令和8年3月22日(日)",
+        "dayHead": "千秋楽： 2026年3月22日(日)",
         "status": "published",
         "statusMessage": null
       }

@@ -152,8 +152,7 @@ describe('LiveTorikumiCardLink', () => {
     const link = screen.getByRole('link', { name: /本日の取組/ });
     expect(link).toHaveClass('live-torikumi-board');
 
-    // 「16:20 現在」が表示されていること
-    expect(screen.getByText('16:20 現在')).toHaveClass('live-torikumi-board__time');
+    expect(screen.getByText('16:20 JST 現在')).toHaveClass('live-torikumi-board__time');
 
     // 東西の絵文字とラベル（🌅 東 / 🌇 西）が含まれること
     expect(screen.getByText('東')).toHaveClass('bout-side-tag');

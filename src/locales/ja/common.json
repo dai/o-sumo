@@ -19,7 +19,21 @@
       "rikishi": "力士",
       "gyoji": "行司",
       "yobidashi": "呼出",
-      "about": "当サイトについて"
+      "about": "当サイトについて",
+      "torikumi": "取組",
+      "kimarite": "決まり手",
+      "analytics": "分析",
+      "archives": "アーカイブ"
+    },
+    "search": {
+      "open": "力士を検索",
+      "title": "力士名検索",
+      "label": "力士名",
+      "placeholder": "例: 大の里",
+      "empty": "該当する力士はいません",
+      "loading": "力士名を読み込んでいます",
+      "error": "力士名を読み込めませんでした",
+      "close": "閉じる"
     }
   },
   "pwa": {

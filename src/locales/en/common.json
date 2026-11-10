@@ -19,7 +19,21 @@
       "rikishi": "Rikishi",
       "gyoji": "Gyoji",
       "yobidashi": "Yobidashi",
-      "about": "About"
+      "about": "About",
+      "torikumi": "Bouts",
+      "kimarite": "Kimarite",
+      "analytics": "Analytics",
+      "archives": "Archives"
+    },
+    "search": {
+      "open": "Search rikishi",
+      "title": "Search rikishi",
+      "label": "Rikishi name",
+      "placeholder": "Example: Onosato",
+      "empty": "No matching rikishi",
+      "loading": "Loading rikishi names",
+      "error": "Could not load rikishi names",
+      "close": "Close"
     }
   },
   "pwa": {

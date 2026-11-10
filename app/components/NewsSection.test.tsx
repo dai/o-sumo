@@ -191,7 +191,7 @@ describe('NewsSection', () => {
     ).not.toBeInTheDocument();
     expect(container.querySelectorAll('.news-empty')).toHaveLength(1);
     expect(container.querySelector('.news-outage')).toHaveTextContent(
-      'ニュース取得を一時停止中・最終取得 2026-06-30 00:00',
+      'ニュース取得を一時停止中・最終取得 2026年6月30日 00:00 JST',
     );
     expect(container.querySelector('.news-outage')?.closest('.news-subsection')).toBeNull();
 
@@ -229,7 +229,7 @@ describe('NewsSection', () => {
     expect(note.closest('.news-subsection')).toBeNull();
     expect(note.childElementCount).toBe(0);
     expect(note).toHaveTextContent(
-      'ニュース取得を一時停止中・最終取得 2026-06-30 00:00',
+      'ニュース取得を一時停止中・最終取得 2026年6月30日 00:00 JST',
     );
     expect(note.textContent).not.toMatch(/\n/);
 

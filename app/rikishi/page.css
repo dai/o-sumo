@@ -280,6 +280,10 @@
   box-shadow: var(--shadow-soft);
 }
 
+.rikishi-profile-hero picture {
+  display: contents;
+}
+
 .rikishi-profile-photo,
 .rikishi-profile-photo-placeholder {
   width: 128px;

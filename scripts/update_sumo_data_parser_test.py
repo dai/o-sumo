@@ -147,6 +147,18 @@ def _official_makuuchi_payload_with_mixed_bout() -> dict:
     }
 
 
+class DayHeadFormatTest(unittest.TestCase):
+    def test_build_day_head_uses_gregorian_calendar_date(self) -> None:
+        self.assertEqual(
+            MODULE.build_day_head(2, date(2026, 11, 9)),
+            "二日目： 2026年11月9日(月)",
+        )
+
+    def test_extract_actual_date_accepts_gregorian_and_reiwa(self) -> None:
+        self.assertEqual(MODULE.extract_actual_date("二日目： 2026年11月9日(月)"), date(2026, 11, 9))
+        self.assertEqual(MODULE.extract_actual_date("二日目： 令和8年11月9日(月)"), date(2026, 11, 9))
+
+
 class ParseProfileHtmlTest(unittest.TestCase):
     def test_parses_shikona_history_and_settled_bout_history(self) -> None:
         html = _profile_history_html(

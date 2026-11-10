@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import RikishiPage from './page';
 import RikishiProfilePage from './RikishiProfilePage';
+import { responsiveRikishiImage } from '../lib/rikishi-avatar';
 
 const rikishiIndex = {
   updatedAt: '2026-04-27T08:15:00+09:00',
@@ -107,7 +108,7 @@ describe('Rikishi pages', () => {
     expect(screen.getByText('読み込み中です。')).toBeInTheDocument();
     expect(await screen.findByRole('link', { name: /豊昇龍/ })).toHaveAttribute('href', '/rikishi/3842/');
     expect(screen.getByRole('link', { name: /欠損山/ })).toHaveAttribute('href', '/rikishi/9999/');
-    expect(screen.getByText('更新日: 2026.04.27 08:15 JST')).toBeInTheDocument();
+    expect(screen.getByText('更新日: 2026年4月27日 08:15 JST')).toBeInTheDocument();
   });
 
   it('keeps Japanese IME composition local until the text is confirmed', async () => {
@@ -168,6 +169,15 @@ describe('Rikishi pages', () => {
     expect(
       screen.getByText('掲載画像は日本相撲協会プロフィール写真をもとに MiniMax I2I Generation で加工したプロフィールイラストです。'),
     ).toBeInTheDocument();
+    const photo = document.querySelector('.rikishi-profile-photo');
+    const expected = responsiveRikishiImage(3842, 'profile');
+    expect(photo).toHaveAttribute('src', expected.src);
+    expect(photo).toHaveAttribute('width', String(expected.width));
+    expect(photo).toHaveAttribute('height', String(expected.height));
+    expect(photo).toHaveAttribute('loading', 'lazy');
+    expect(photo).toHaveAttribute('decoding', 'async');
+    expect(photo?.parentElement?.querySelector('source[type="image/avif"]')).toHaveAttribute('srcset', expected.avifSrcSet);
+    expect(photo?.parentElement?.querySelector('source[type="image/webp"]')).toHaveAttribute('sizes', expected.sizes);
 
     await user.click(screen.getByRole('button', { name: 'リンクをコピー' }));
 

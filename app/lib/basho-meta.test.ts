@@ -6,6 +6,13 @@ describe('formatBashoTitle', () => {
     expect(formatBashoTitle({ year: '令和八年', bashoName: '七月場所' }, 'ja')).toBe('令和八年七月場所');
   });
 
+  it('normalizes arabic Reiwa numerals to kanji', () => {
+    expect(formatBashoTitle({ year: '令和8年', bashoName: '11月場所' }, 'ja')).toBe('令和八年十一月場所');
+    expect(formatBashoTitle({ year: '令和8年', bashoName: '十一月場所', monthKey: '202611' }, 'ja'))
+      .toBe('令和八年十一月場所');
+    expect(formatBashoTitle({ monthKey: '201905' }, 'ja')).toBe('令和元年五月場所');
+  });
+
   it('renders the English title from monthKey when available', () => {
     expect(formatBashoTitle({ year: '令和八年', bashoName: '七月場所', monthKey: '202607' }, 'en'))
       .toBe('July 2026 Tournament');

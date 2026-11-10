@@ -21,6 +21,7 @@ import HomeLink from './HomeLink';
 import AbsenteesNotice from './AbsenteesNotice';
 import PageBreadcrumb from './PageBreadcrumb';
 import '../torikumi/page.css';
+import { formatDayHead } from '../lib/relative-date';
 import { formatUpdatedAt } from '../lib/updated-at';
 import { CURRENT_BASHO_ID } from '../lib/current-basho';
 import { useArchiveDocument } from '../lib/use-archive-document';
@@ -289,6 +290,7 @@ function TorikumiTable({
   dayLabel,
   monthKey,
   bashoName,
+  language = 'ja',
 }: {
   title: string;
   dayData: { makuuchi: TorikumiDivisionDay; juryo: TorikumiDivisionDay };
@@ -306,6 +308,7 @@ function TorikumiTable({
   dayLabel?: string;
   monthKey?: string;
   bashoName?: string;
+  language?: string;
 }) {
   if (mode === 'result') {
     return (
@@ -337,7 +340,7 @@ function TorikumiTable({
         return (
           <div key={`${title}-${division}`}>
             <h3>{t('torikumi.day.divisionMatchCount', { division, count: matches.length })}</h3>
-            <p className="status-message">{meta.dayHead}</p>
+            <p className="status-message">{formatDayHead(meta.dayHead, language)}</p>
             {myRikishiOnly && matches.length === 0 ? (
               <div className="empty-division-message">
                 {t('torikumi.day.noMyRikishiMatchesInDivision', { division })}
@@ -569,7 +572,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
     ? t('torikumi.day.modeSchedule')
     : t('torikumi.day.modeResult');
   const dayTitleLabel = isJa ? `${day.label}の${modeLabel.trim()}` : `${formatDayLabel(day, false)}${modeLabel}`;
-  const dayHeadLabel = isJa ? day.dayHead : t('torikumi.day.dayHead', { day: day.day });
+  const dayHeadLabel = isJa ? formatDayHead(day.dayHead, 'ja') : t('torikumi.day.dayHead', { day: day.day });
   const absentees = uniqueAbsentees(visibleDayData);
   const absenteeIds = React.useMemo(() => {
     const ids = new Set<number>();
@@ -678,11 +681,11 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
         <div className="site-header-meta-row">
           {mode === 'schedule' ? (
             <div className="torikumi-update-meta" role="status">
-              <p>{t('torikumi.day.lastUpdated', { date: formatUpdatedAt(updatedAt) })}</p>
+              <p>{t('torikumi.day.lastUpdated', { date: formatUpdatedAt(updatedAt, i18n.language) })}</p>
               <p className="torikumi-update-meta__source">{t('torikumi.day.scheduleSource')}</p>
             </div>
           ) : (
-            <p>{t('torikumi.day.updateDate', { date: formatUpdatedAt(updatedAt) })}</p>
+            <p>{t('torikumi.day.updateDate', { date: formatUpdatedAt(updatedAt, i18n.language) })}</p>
           )}
         </div>
       </header>
@@ -800,6 +803,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
           dayLabel={formatDayLabel(day, isJa)}
           monthKey={monthKey}
           bashoName={archive.bashoName}
+          language={i18n.language}
         />
 
       </main>

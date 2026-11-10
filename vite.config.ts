@@ -222,7 +222,9 @@ export default defineConfig({
             },
           },
           {
-            urlPattern: /\/images\/rikishi\//,
+            // Inline the matcher so generateSW serializes a self-contained
+            // function. PNG originals plus the generated WebP and AVIF sizes.
+            urlPattern: ({ url }) => /^\/images\/rikishi\/\d+(?:-\d+)?\.(?:png|jpe?g|webp|avif|svg)$/i.test(url.pathname),
             handler: 'CacheFirst',
             options: {
               cacheName: 'rikishi-images',

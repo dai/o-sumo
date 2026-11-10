@@ -75,6 +75,9 @@ describe('self-hosted webfonts', () => {
       if (!coverage.has(code) && !unsupported.has(code)) missing.push(`U+${code}`);
     }
 
-    expect(missing).toEqual([]);
+    expect(
+      missing,
+      `${missing.join(', ')} are missing from the webfont subset. Regenerate it with: npm run fonts:subset`,
+    ).toEqual([]);
   });
 });

@@ -14,6 +14,7 @@
 import { KIMARITE_LIST, type Kimarite } from './kimarite-data';
 import { CURRENT_BASHO_ID } from './current-basho';
 import { archiveJsonPath, isArchiveDocument, type ArchiveDocument } from './archive-types';
+import { formatUpdatedAt } from './updated-at';
 import {
   getAllArchiveRouteConfigs,
   getArchiveRouteConfigByMonthKey,
@@ -181,7 +182,7 @@ function wrapNoscript(innerHtml: string): string {
 
 function renderUpdated(updatedAt: string | undefined): string {
   if (!updatedAt) return '';
-  return `<p class="seo-noscript-updated">更新: <time>${escapeHtml(updatedAt)}</time></p>`;
+  return `<p class="seo-noscript-updated">更新: <time datetime="${escapeHtml(updatedAt)}">${escapeHtml(formatUpdatedAt(updatedAt))}</time></p>`;
 }
 
 function renderKimariteList(): string {
@@ -256,7 +257,7 @@ async function renderRikishiList(ctx: SeoNoscriptContext): Promise<string> {
       .join('');
     sections.push(`<section><h2>${escapeHtml(rank)}</h2><ul>${items}</ul></section>`);
   }
-  return `<p class="seo-noscript-updated">更新: <time>${escapeHtml(payload.updatedAt)}</time></p>${sections.join('')}`;
+  return `<p class="seo-noscript-updated">更新: <time datetime="${escapeHtml(payload.updatedAt)}">${escapeHtml(formatUpdatedAt(payload.updatedAt))}</time></p>${sections.join('')}`;
 }
 
 async function renderOfficialsList(kind: 'gyoji' | 'yobidashi', ctx: SeoNoscriptContext): Promise<string> {

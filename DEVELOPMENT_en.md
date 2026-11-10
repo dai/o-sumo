@@ -45,6 +45,9 @@ npm run preview
 
 # Regenerate data
 python scripts/update_sumo_data.py
+
+# Rebuild self-hosted webfonts after adding displayed text (when app/webfont.test.ts fails)
+npm run fonts:subset
 ```
 
 ## Previewing Daily Highlights states
@@ -224,7 +227,7 @@ DNS-AID (SVCB/HTTPS) and DNSSEC are configured in Cloudflare DNS, not in this re
 - `public/_redirects` configures SPA fallback (app routes only; `/api/v1/*` serves static JSON as-is)
 - Month-key routes should be handled based on `app/lib/torikumi-routes.ts`
 - Do not add fixed `YYYYMM-*` routes; use month-key resolution derived from generated data
-- `public/images/rikishi/*.png` contains images processed with MiniMax I2I Generation from Japan Sumo Association profile photos. To regenerate them, set `MINIMAX_API_KEY` and run `python scripts/style_transfer_rikishi.py`
+- `public/images/rikishi/*.png` contains images processed with MiniMax I2I Generation from Japan Sumo Association profile photos. To regenerate them, set `MINIMAX_API_KEY` and run `python scripts/style_transfer_rikishi.py`. After adding a PNG, run `npm run images:rikishi` to write 96/192/384px WebP and AVIF variants
 - `app/lib/my-rikishi.ts` reads and writes `localStorage` under the `o-sumo:my-rikishi:v1` key. Google sign-in enables optional cross-device sync through the [My Rikishi API and Cloudflare configuration](./docs/auth/my-rikishi-cloudflare-operations.md).
 - `/compare/?ids=…` accepts only positive integer IDs, deduplicates them, and caps at two entries
 - `WebMcpProvider` registers tools on an `AbortController`, so React Strict Mode mount/unmount cycles do not duplicate registrations
