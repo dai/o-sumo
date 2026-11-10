@@ -55,6 +55,9 @@ output/playwright/
 # Local scratch / CI logs
 .tmp/
 
+# OFL sources downloaded by scripts/fonts/build_webfonts.py
+scripts/fonts/.cache/
+
 # Local review tooling (binary, ~21MB) — not for source control
 crit.exe
 
