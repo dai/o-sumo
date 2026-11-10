@@ -1,7 +1,7 @@
 {
   "bashoName": "十一月場所",
   "year": "令和八年",
-  "updatedAt": "2026-11-10T17:37:49+09:00",
+  "updatedAt": "2026-11-10T17:44:11+09:00",
   "makuuchi": [
     {
       "title": "横綱",
@@ -71,12 +71,12 @@
           "rank": "大関",
           "side": "east",
           "wins": 2,
-          "losses": 0,
+          "losses": 1,
           "draws": 0,
           "results": [
             "win",
             "win",
-            null
+            "loss"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3622/",
           "memo": ""
@@ -171,13 +171,13 @@
           "yomi": "よしのふじ",
           "rank": "小結",
           "side": "west",
-          "wins": 1,
+          "wins": 2,
           "losses": 1,
           "draws": 0,
           "results": [
             "win",
             "loss",
-            null
+            "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4279/",
           "memo": ""
