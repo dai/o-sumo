@@ -23,8 +23,8 @@ status="${1:-failure}"
 title="${2:-GitHub Actions notification}"
 detail="${3:-}"
 
-if [ -z "${DISCORD_WEBHOOK_URL:-}" ]; then
-  echo "::notice::DISCORD_WEBHOOK_URL is not set; Discord alerts are DISABLED for this run. Failure notifications will only appear in the GitHub Actions log."
+if [ -z "${DISCORD_WEBHOOK_URL:-}" ] || [[ "${DISCORD_WEBHOOK_URL}" =~ ^[[:space:]]*$ ]]; then
+  echo "::notice::DISCORD_WEBHOOK_URL is not set; Discord alerts are skipped for this run. Failure notifications will only appear in the GitHub Actions log."
   echo "DISCORD_ALERTS_DISABLED_REASON=missing-DISCORD_WEBHOOK_URL-secret"
   exit 0
 fi
@@ -55,10 +55,13 @@ payload=$(jq -n \
 
 echo "Posting notification to Discord..."
 # -m 10 で全体タイムアウト, --fail で 4xx/5xx を fail として扱う
-curl --silent --show-error --fail-with-body \
+if ! curl --silent --show-error --fail-with-body \
   -H 'Content-Type: application/json' \
   -m 10 \
   -d "${payload}" \
-  "${DISCORD_WEBHOOK_URL}"
+  "${DISCORD_WEBHOOK_URL}"; then
+  echo "::notice::Failed to send Discord notification; skipping."
+  exit 0
+fi
 
 echo "Discord notification sent."

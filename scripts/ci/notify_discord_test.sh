@@ -62,10 +62,15 @@ invoke_notify() {
   return 0
 }
 
-# 1. Webhook unset -> exit 0, no curl invocation.
+# 1. Webhook unset or whitespace -> exit 0, no curl invocation.
 invoke_notify 0 "" failure "hello"
 if [ -e "$root/log/curl-payload.json" ]; then
-  echo "curl should not have been invoked" >&2
+  echo "curl should not have been invoked for unset webhook" >&2
+  exit 1
+fi
+invoke_notify 0 "   " failure "hello whitespace"
+if [ -e "$root/log/curl-payload.json" ]; then
+  echo "curl should not have been invoked for whitespace webhook" >&2
   exit 1
 fi
 
@@ -105,7 +110,7 @@ if [ -e "$stub_log" ]; then
   exit 1
 fi
 
-# 5. curl failure -> exit non-zero so caller can detect (caller must swallow).
+# 5. curl failure -> exit 0, skips notification with notice.
 set +e
 env -i PATH="$root/stub-bin:/usr/bin:/bin" HOME="$HOME" \
   "DISCORD_WEBHOOK_URL=https://discord.example/webhook" \
@@ -114,13 +119,18 @@ env -i PATH="$root/stub-bin:/usr/bin:/bin" HOME="$HOME" \
   bash "$script" success "y" >"$root/log/out" 2>"$root/log/err"
 curl_status=$?
 set -e
-if [ "$curl_status" -eq 0 ]; then
-  echo "expected non-zero exit on curl failure" >&2
+if [ "$curl_status" -ne 0 ]; then
+  echo "expected exit 0 on curl failure (skipped notification), got $curl_status" >&2
   exit 1
 fi
 if [ ! -e "$stub_log" ]; then
   echo "expected curl to have been invoked even on failure" >&2
   exit 1
 fi
+grep -q "Failed to send Discord notification; skipping" "$root/log/out" || {
+  echo "expected notice in log" >&2
+  cat "$root/log/out" >&2
+  exit 1
+}
 
 echo "notify_discord.sh shell contract: OK"
