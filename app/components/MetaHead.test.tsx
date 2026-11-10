@@ -47,7 +47,14 @@ afterEach(() => {
   vi.unstubAllGlobals();
   document.title = '';
   document.head.querySelectorAll(managedMetaSelectors.join(',')).forEach((element) => element.remove());
+  document.head.querySelectorAll('script[type="application/ld+json"]').forEach((element) => element.remove());
 });
+
+function jsonLdDocument(): { '@graph': Array<Record<string, unknown>> } {
+  const script = document.head.querySelector<HTMLScriptElement>('script[type="application/ld+json"]');
+  expect(script?.textContent).toBeTruthy();
+  return JSON.parse(script!.textContent!) as { '@graph': Array<Record<string, unknown>> };
+}
 
 function contentOf(selector: string): string | null {
   return document.head.querySelector<HTMLMetaElement>(selector)?.content ?? null;
@@ -174,6 +181,48 @@ describe('MetaHead', () => {
       expect(contentOf('meta[name="description"]')).not.toContain('木村 庄之助');
       expect(contentOf('meta[property="og:title"]')).not.toContain('木村 庄之助');
       expect(contentOf('meta[name="twitter:title"]')).not.toContain('木村 庄之助');
+    });
+  });
+
+  it('injects one parseable JSON-LD script for a torikumi day', async () => {
+    render(
+      <MemoryRouter initialEntries={['/20261109-torikumi/']}>
+        <MetaHead />
+      </MemoryRouter>,
+    );
+
+    await waitFor(() => {
+      const doc = jsonLdDocument();
+      const event = doc['@graph'].find((node) => node['@type'] === 'SportsEvent');
+      expect(event).toMatchObject({
+        startDate: '2026-11-09',
+        location: { name: '福岡国際センター' },
+      });
+      expect(document.head.querySelectorAll('script[type="application/ld+json"]')).toHaveLength(1);
+    });
+  });
+
+  it('updates the rikishi Person node when profile metadata arrives', async () => {
+    function LoadedRikishiMetadata() {
+      usePageMetaOverride({
+        pathname: '/rikishi/4227/',
+        title: '大の里 | 力士プロフィール | o-sumo',
+        description: '大の里の大相撲力士プロフィール。番付、成績、出身地などを紹介します。',
+      });
+      return null;
+    }
+
+    render(
+      <MemoryRouter initialEntries={['/rikishi/4227/']}>
+        <MetaHead>
+          <LoadedRikishiMetadata />
+        </MetaHead>
+      </MemoryRouter>,
+    );
+
+    await waitFor(() => {
+      const person = jsonLdDocument()['@graph'].find((node) => node['@type'] === 'Person');
+      expect(person).toMatchObject({ name: '大の里', url: 'https://osada.us/rikishi/4227/' });
     });
   });
 });

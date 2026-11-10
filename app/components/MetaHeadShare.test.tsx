@@ -7,6 +7,7 @@ afterEach(() => {
   cleanup();
   document.title = '';
   document.head.querySelectorAll('meta[property="og:title"], meta[property="og:url"], meta[name="twitter:title"]').forEach((element) => element.remove());
+  document.head.querySelectorAll('script[type="application/ld+json"]').forEach((element) => element.remove());
 });
 
 function ComparisonMetadata() {

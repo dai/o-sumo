@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, type Dispatch, type PropsWithChildren, type SetStateAction } from 'react';
 import { useLocation } from 'react-router-dom';
-import { resolvePageMeta, type PageMeta } from '../lib/page-meta';
+import { buildPageJsonLd, resolvePageMeta, type PageMeta } from '../lib/page-meta';
 import { normalizeCanonicalPath } from '../lib/site-url';
 
 type MetaAttribute = 'name' | 'property';
@@ -33,6 +33,17 @@ const META_FIELDS = [
   { attribute: 'name', key: 'twitter:image', content: (meta) => meta.image.primary },
   { attribute: 'name', key: 'twitter:image:alt', content: (meta) => meta.image.alt },
 ] as const satisfies readonly MetaFieldDefinition[];
+
+const JSON_LD_ELEMENT_ID = 'page-jsonld';
+
+function reconcileJsonLd(pathname: string, meta: PageMeta) {
+  const existing = document.getElementById(JSON_LD_ELEMENT_ID);
+  const element = existing instanceof HTMLScriptElement ? existing : document.createElement('script');
+  element.id = JSON_LD_ELEMENT_ID;
+  element.type = 'application/ld+json';
+  element.textContent = JSON.stringify(buildPageJsonLd(pathname, meta));
+  if (!element.isConnected) document.head.append(element);
+}
 
 function reconcileMeta(attribute: MetaAttribute, value: string, content: string) {
   const selector = `meta[${attribute}="${value}"]`;
@@ -71,6 +82,7 @@ export default function MetaHead({ children }: PropsWithChildren) {
     META_FIELDS.forEach(({ attribute, key, content }) => {
       reconcileMeta(attribute, key, content(meta, socialUrl));
     });
+    reconcileJsonLd(pathname, meta);
   }, [pathname, override]);
 
   return <PageMetaOverrideContext.Provider value={setOverride}>{children}</PageMetaOverrideContext.Provider>;
