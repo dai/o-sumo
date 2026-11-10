@@ -27,6 +27,7 @@ import {
   getRikishiKimariteStats,
   FEATURED_MATCHUP_PRESETS,
 } from '../lib/rikishi-compare-data';
+import { usePastArchivesReady } from '../lib/use-archive-document';
 import { generatedRikishiAvatarDataUrl } from '../lib/rikishi-avatar';
 import { StandoffMeter } from './StandoffMeter';
 import './page.css';
@@ -776,9 +777,16 @@ function StatComparisonBars({ profiles }: { profiles: [RikishiProfile, RikishiPr
 // -------------------------------------------------------------
 function KimariteComparison({ profiles }: { profiles: [RikishiProfile, RikishiProfile] }) {
   const { t } = useTranslation('common');
+  const pastArchivesReady = usePastArchivesReady();
   const [profileA, profileB] = profiles;
-  const statsA = React.useMemo(() => getRikishiKimariteStats(profileA.name, 4), [profileA.name]);
-  const statsB = React.useMemo(() => getRikishiKimariteStats(profileB.name, 4), [profileB.name]);
+  const statsA = React.useMemo(
+    () => (pastArchivesReady ? getRikishiKimariteStats(profileA.name, 4) : []),
+    [pastArchivesReady, profileA.name],
+  );
+  const statsB = React.useMemo(
+    () => (pastArchivesReady ? getRikishiKimariteStats(profileB.name, 4) : []),
+    [pastArchivesReady, profileB.name],
+  );
 
   return (
     <section className="compare-kimarite-card" aria-labelledby="kimarite-comp-title">

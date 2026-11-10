@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import HomeLink from '../components/HomeLink';
 import PageBreadcrumb from '../components/PageBreadcrumb';
 import { getBashoStatus } from '../lib/basho-status';
-import { CURRENT_RESULT_PATH, CURRENT_SCHEDULE_PATH } from '../lib/archive-basho-data';
+import { CURRENT_RESULT_PATH, CURRENT_SCHEDULE_PATH } from '../lib/current-basho';
 import { makuuchiData, juryo, type Rikishi } from '../lib/sumo-data';
 import { torikumiArchive, torikumiMonthKey, type TorikumiDataSet } from '../lib/torikumi-data';
 import { getBashoResults, type BashoResultsData } from '../lib/basho-results';

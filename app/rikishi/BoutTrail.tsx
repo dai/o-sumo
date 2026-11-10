@@ -5,6 +5,7 @@ import { getBashoStatus } from '../lib/basho-status';
 import { formatBashoTitle } from '../lib/basho-meta';
 import { canonicalShikona, divisionAnchorId } from '../lib/rikishi-display';
 import { extractRikishiIdFromProfileUrl, rikishiProfilePath } from '../lib/rikishi-profile';
+import { usePastArchivesReady } from '../lib/use-archive-document';
 import { getRecentBouts, type RecentBoutResult } from '../lib/rikishi-compare-data';
 import {
   torikumiData,
@@ -27,7 +28,8 @@ export interface BoutTrailProps {
  */
 export function BoutTrail({ shikona, limit = 15 }: BoutTrailProps) {
   const { t } = useTranslation('common');
-  const bouts = getRecentBouts(shikona, limit);
+  const pastArchivesReady = usePastArchivesReady();
+  const bouts = pastArchivesReady ? getRecentBouts(shikona, limit) : [];
   if (bouts.length === 0) return null;
 
   const wins = bouts.filter((b: RecentBoutResult) => b.outcome === 'win').length;

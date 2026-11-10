@@ -132,6 +132,7 @@ describe('PWA smoke config', () => {
     const headers = readFileSync(join(process.cwd(), 'public/_headers'), 'utf-8');
 
     expect(headers).toContain('/api/v1/*.json\n  Content-Type: application/json; charset=utf-8');
+    expect(headers).toContain('/api/v1/archive/*.json\n  Content-Type: application/json; charset=utf-8');
   });
 
   it('keeps auto-update strategy and public API runtime caching', () => {
@@ -166,6 +167,7 @@ describe('PWA smoke config', () => {
     expect(viteConfig).toContain("'images/og-*'");
     expect(viteConfig).toContain("'images/twitter-header.png'");
     expect(viteConfig).toContain("'fonts/**'");
+    expect(viteConfig).toContain("'api/v1/archive/**'");
     expect(viteConfig).toContain('/^\\/images\\/rikishi\\/\\d+(?:-\\d+)?\\.(?:png|jpe?g|webp|avif|svg)$/i');
     expect(viteConfig).toContain("handler: 'CacheFirst'");
     expect(viteConfig).toContain("cacheName: 'rikishi-images'");

@@ -1,58 +1,24 @@
-// Archive basho places - ordered from newest to oldest
-import type { TorikumiDataSet } from './torikumi-data';
-import { MARCH2026_TORIKUMI_DATA } from './march2026-torikumi-data';
-import { MAY2026_TORIKUMI_DATA } from './may2026-data';
-import { JULY2026_TORIKUMI_DATA } from './july2026-data';
-import { SEPTEMBER2026_TORIKUMI_DATA } from './september2026-data';
-import { CURRENT_BASHO_ID } from './archive-basho-data';
+// Archive basho places - ordered from newest to oldest.
+// Payloads live in /api/v1/archive/{id}.json. This list is only the links.
+import { ARCHIVE_ROUTE_INDEX } from './archive-route-index.generated';
+import { CURRENT_BASHO_ID } from './current-basho';
 
 export interface ArchiveBasho {
-  id: string; // e.g., '202603'
+  id: string;
   year: string;
   name: string;
-  data: TorikumiDataSet;
   resultPath: string;
   schedulePath: string;
   banzukePath: string;
 }
 
-export const PAST_BASHO: ArchiveBasho[] = [
-  {
-    id: '202609',
-    year: '令和八年',
-    name: '九月場所',
-    data: SEPTEMBER2026_TORIKUMI_DATA,
-    resultPath: '/202609-torikumi',
-    schedulePath: '/202609-yotei',
-    banzukePath: '/202609-banzuke',
-  },
-  {
-    id: '202607',
-    year: '令和八年',
-    name: '七月場所',
-    data: JULY2026_TORIKUMI_DATA,
-    resultPath: '/202607-torikumi',
-    schedulePath: '/202607-yotei',
-    banzukePath: '/202607-banzuke',
-  },
-  {
-    id: '202605',
-    year: '令和八年',
-    name: '五月場所',
-    data: MAY2026_TORIKUMI_DATA,
-    resultPath: '/202605-torikumi',
-    schedulePath: '/202605-yotei',
-    banzukePath: '/202605-banzuke',
-  },
-  {
-    id: '202603',
-    year: '令和八年',
-    name: '三月場所',
-    data: MARCH2026_TORIKUMI_DATA,
-    resultPath: '/202603-torikumi',
-    schedulePath: '/202603-yotei',
-    banzukePath: '/202603-banzuke',
-  },
-];
+export const PAST_BASHO: ArchiveBasho[] = ARCHIVE_ROUTE_INDEX.map((entry) => ({
+  id: entry.monthKey,
+  year: entry.year,
+  name: entry.bashoName,
+  resultPath: `/${entry.monthKey}-torikumi`,
+  schedulePath: `/${entry.monthKey}-yotei`,
+  banzukePath: `/${entry.monthKey}-banzuke`,
+}));
 
 export { CURRENT_BASHO_ID };

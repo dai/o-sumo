@@ -4,11 +4,6 @@ import { defineConfig } from 'vitest/config'
 import type { Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
-import {
-  HISTORICAL_ARCHIVE_CHUNK,
-  JULY2026_ARCHIVE_CHUNK,
-  archiveChunkGroupTest,
-} from './app/lib/vite-archive-chunk'
 import { shouldCachePublicApi } from './app/lib/api-cache-policy'
 
 function sitemapPlugin(): Plugin {
@@ -104,6 +99,32 @@ function a2aAgentCardPlugin(): Plugin {
   }
 }
 
+function archiveJsonPlugin(): Plugin {
+  let root = process.cwd()
+
+  const write = () => {
+    return import('./scripts/build_archive_json').then(({ writeArchiveArtifacts }) => {
+      writeArchiveArtifacts({
+        publicDir: resolve(root, 'public'),
+        indexPath: resolve(root, 'app/lib/archive-route-index.generated.ts'),
+      })
+    })
+  }
+
+  return {
+    name: 'generate-archive-json',
+    configResolved(config) {
+      root = config.root
+    },
+    async buildStart() {
+      await write()
+    },
+    async configureServer() {
+      await write()
+    },
+  }
+}
+
 function markdownViewsPlugin(): Plugin {
   let outDir = 'dist'
   let publicDir = 'public'
@@ -125,6 +146,7 @@ function markdownViewsPlugin(): Plugin {
 export default defineConfig({
   plugins: [
     react(),
+    archiveJsonPlugin(),
     sitemapPlugin(),
     agentSkillsPlugin(),
     mcpServerCardPlugin(),
@@ -171,6 +193,8 @@ export default defineConfig({
           // Subset webfonts are loaded from CSS. Precaching every weight
           // would spend most of the 3MB shell budget on fonts.
           'fonts/**',
+          // Past basho JSON is fetched at runtime, never precached.
+          'api/v1/archive/**',
         ],
         // These paths serve standalone HTML, Markdown, or protocol responses.
         // They must never receive the SPA shell from an installed service worker.
@@ -220,24 +244,6 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    rolldownOptions: {
-      output: {
-        codeSplitting: {
-          groups: [
-            {
-              name: JULY2026_ARCHIVE_CHUNK,
-              test: archiveChunkGroupTest(JULY2026_ARCHIVE_CHUNK),
-              includeDependenciesRecursively: false,
-            },
-            {
-              name: HISTORICAL_ARCHIVE_CHUNK,
-              test: archiveChunkGroupTest(HISTORICAL_ARCHIVE_CHUNK),
-              includeDependenciesRecursively: false,
-            },
-          ],
-        },
-      },
-    },
   },
   server: {
     port: 3001,

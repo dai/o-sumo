@@ -12,6 +12,7 @@
     "typecheck": "tsc --noEmit && tsc -p tsconfig.node.json --noEmit && tsc -p tsconfig.functions.json",
     "test": "vitest run",
     "test:watch": "vitest",
+    "archive:generate": "tsx scripts/build_archive_json.ts",
     "preflight:current-data": "python scripts/preflight_current_basho.py",
     "fonts:subset": "python3 scripts/fonts/build_webfonts.py",
     "verify:delivery-flow": "pwsh ./scripts/verify_delivery_flow.ps1",

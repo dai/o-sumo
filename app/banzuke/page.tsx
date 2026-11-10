@@ -11,7 +11,7 @@ import HomeLink from '../components/HomeLink';
 import './page.css';
 import { formatGregorianBashoLabel, formatBashoTitle } from '../lib/basho-meta';
 import { formatUpdatedAt } from '../lib/updated-at';
-import { getBanzukeDataByMonthKey } from '../lib/archive-basho-data';
+import { ArchivePending, useArchiveDocument } from '../lib/use-archive-document';
 import type { RankGroup, Rikishi } from '../lib/sumo-data';
 import { matchesSearch } from '../lib/search';
 import { toRomaji } from '../lib/romaji';
@@ -37,19 +37,23 @@ function useBanzukeContext(lang: string = 'ja') {
   const location = useLocation();
   const routeConfig = getArchiveRouteConfigForPathname(location.pathname);
   const monthKey = routeConfig.monthKey;
-  const banzuke = getBanzukeDataByMonthKey(monthKey);
+  const archiveState = useArchiveDocument(monthKey);
+  const banzuke = archiveState.document?.banzuke;
 
   return {
     monthKey,
-    bashoTitle: formatBashoTitle({ year: banzuke.year, bashoName: banzuke.bashoName, monthKey }, lang),
+    archiveState,
+    bashoTitle: banzuke
+      ? formatBashoTitle({ year: banzuke.year, bashoName: banzuke.bashoName, monthKey }, lang)
+      : formatBashoTitle({ year: routeConfig.archive.year, bashoName: routeConfig.archive.bashoName, monthKey }, lang),
     gregorianBashoLabel: formatGregorianBashoLabel(monthKey, lang),
     banzukePath: routeConfig.banzukePath,
     resultPath: routeConfig.resultPath,
     schedulePath: routeConfig.schedulePath,
-    archive: routeConfig.archive,
-    updatedAt: banzuke.updatedAt,
-    makuuchi: banzuke.makuuchi,
-    juryo: banzuke.juryo,
+    archive: archiveState.document?.torikumi ?? routeConfig.archive,
+    updatedAt: banzuke?.updatedAt ?? routeConfig.archive.updatedAt,
+    makuuchi: banzuke?.makuuchi ?? [],
+    juryo: banzuke?.juryo ?? [],
   };
 }
 
@@ -132,7 +136,18 @@ export default function BanzukePage() {
     setSearchParams(next, { replace: false });
   };
 
-  const { bashoTitle, gregorianBashoLabel, monthKey, updatedAt, makuuchi, juryo: juryoRanks } = useBanzukeContext(i18n.language);
+  const {
+    bashoTitle,
+    gregorianBashoLabel,
+    monthKey,
+    updatedAt,
+    makuuchi,
+    juryo: juryoRanks,
+    archiveState,
+  } = useBanzukeContext(i18n.language);
+  if (archiveState.loading || archiveState.error || !archiveState.document) {
+    return <ArchivePending error={archiveState.error} onRetry={archiveState.reload} />;
+  }
   const sortedMakuuchi = sortRankGroups(makuuchi, sortOrder);
   const sortedJuryo = sortRankGroups(juryoRanks, sortOrder);
   const filteredMakuuchi = filterRankGroups(sortedMakuuchi, query);

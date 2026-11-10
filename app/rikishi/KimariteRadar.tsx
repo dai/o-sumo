@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getRikishiKimariteStats } from '../lib/rikishi-compare-data';
+import { usePastArchivesReady } from '../lib/use-archive-document';
 
 export interface KimariteRadarProps {
   shikona: string;
@@ -15,7 +16,11 @@ export interface KimariteRadarProps {
  */
 export function KimariteRadar({ shikona, limit = 4 }: KimariteRadarProps) {
   const { t } = useTranslation('common');
-  const stats = useMemo(() => getRikishiKimariteStats(shikona, limit), [shikona, limit]);
+  const pastArchivesReady = usePastArchivesReady();
+  const stats = useMemo(
+    () => (pastArchivesReady ? getRikishiKimariteStats(shikona, limit) : []),
+    [pastArchivesReady, shikona, limit],
+  );
   if (stats.length === 0) return null;
   const max = Math.max(...stats.map((s) => s.count));
 

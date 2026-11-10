@@ -5,13 +5,14 @@ import HomeLink from '../components/HomeLink';
 import MyRikishiToggle from '../components/MyRikishiToggle';
 import { useMyRikishi } from '../lib/my-rikishi';
 import { fetchRikishiIndex, rikishiProfilePath, type RikishiIndexItem } from '../lib/rikishi-profile';
-import { getBanzukeDataByMonthKey } from '../lib/archive-basho-data';
+import { getLoadedBanzuke } from '../lib/archive-client';
 import { torikumiArchive, torikumiMonthKey, type TorikumiArchiveDay } from '../lib/torikumi-data';
 import { extractRikishiIdFromProfileUrl } from '../lib/rikishi-profile';
 import { divisionAnchorId } from '../lib/rikishi-display';
 import { getDayPath } from '../lib/torikumi-routes';
 import { getBashoStatus } from '../lib/basho-status';
 import { getBashoMatchupHistory, type BashoMatchupRecord } from '../lib/rikishi-compare-data';
+import { usePastArchivesReady } from '../lib/use-archive-document';
 
 import BashoMatchupHistory from './BashoMatchupHistory';
 import MyRikishiSigninHelp from './MyRikishiSigninHelp';
@@ -91,7 +92,7 @@ export default function MyRikishiPage() {
   const banzukeRecordMap = React.useMemo(() => {
     const map = new Map<number, { wins: number; losses: number; draws: number; rank: string }>();
     try {
-      const banzuke = getBanzukeDataByMonthKey(torikumiMonthKey);
+      const banzuke = getLoadedBanzuke(torikumiMonthKey);
       [...banzuke.makuuchi, ...banzuke.juryo].forEach((group) => {
         [...group.east, ...group.west].forEach((r) => {
           map.set(r.id, {
@@ -158,11 +159,12 @@ export default function MyRikishiPage() {
     [rikishi],
   );
 
+  const pastArchivesReady = usePastArchivesReady();
   const matchupHistory = React.useMemo<BashoMatchupRecord[]>(() => {
-    if (compareIds.length !== 2) return [];
+    if (!pastArchivesReady || compareIds.length !== 2) return [];
     const [idA, idB] = [...compareIds].sort((a, b) => a - b);
     return getBashoMatchupHistory(idA, idB);
-  }, [compareIds]);
+  }, [pastArchivesReady, compareIds]);
 
   const selectedProfiles = React.useMemo(() => {
     if (compareIds.length !== 2) return [];

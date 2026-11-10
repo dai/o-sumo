@@ -12,8 +12,9 @@
  */
 
 import { KIMARITE_LIST, type Kimarite } from './kimarite-data';
+import { CURRENT_BASHO_ID } from './current-basho';
+import { archiveJsonPath, isArchiveDocument, type ArchiveDocument } from './archive-types';
 import { formatUpdatedAt } from './updated-at';
-import { CURRENT_BASHO_ID, getBanzukeDataByMonthKey } from './archive-basho-data';
 import {
   getAllArchiveRouteConfigs,
   getArchiveRouteConfigByMonthKey,
@@ -268,15 +269,21 @@ async function renderOfficialsList(kind: 'gyoji' | 'yobidashi', ctx: SeoNoscript
   return `<p class="seo-noscript-updated">更新: <time>${escapeHtml(payload.retrievedAt)}</time></p><ul>${items}</ul>`;
 }
 
+async function loadPastArchive(monthKey: string, ctx: SeoNoscriptContext): Promise<ArchiveDocument | null> {
+  const payload = await ctx.fetchJson(archiveJsonPath(monthKey));
+  return isArchiveDocument(payload, monthKey) ? payload : null;
+}
+
 async function renderBanzukeMonth(monthKey: string, title: string, ctx: SeoNoscriptContext): Promise<string | null> {
   const config = getArchiveRouteConfigByMonthKey(monthKey);
   if (!config) return null;
-  // The current basho is refreshed from /api/v1/banzuke.json. Archived months
-  // use the frozen snapshots bundled with the corresponding route config.
-  let banzuke: BanzukeDocument | null = getBanzukeDataByMonthKey(monthKey);
+  let banzuke: BanzukeDocument | null = null;
   if (config.monthKey === CURRENT_BASHO_ID) {
     const payload = await ctx.fetchJson('/api/v1/banzuke.json');
     if (isBanzukeDocument(payload)) banzuke = payload;
+  } else {
+    const archive = await loadPastArchive(monthKey, ctx);
+    if (archive) banzuke = archive.banzuke;
   }
   if (!banzuke) {
     return `<p>${escapeHtml(title)} の番付データを取得できませんでした。</p>`;
@@ -311,10 +318,11 @@ interface LiveTorikumiDay {
   data: DayData;
 }
 
-async function renderMonthHub(monthKey: string, mode: 'result' | 'schedule', title: string, _ctx: SeoNoscriptContext): Promise<string | null> {
+async function renderMonthHub(monthKey: string, mode: 'result' | 'schedule', title: string, ctx: SeoNoscriptContext): Promise<string | null> {
   const config = getArchiveRouteConfigByMonthKey(monthKey);
   if (!config) return null;
-  const archive = config.archive;
+  const loaded = monthKey === CURRENT_BASHO_ID ? null : await loadPastArchive(monthKey, ctx);
+  const archive = loaded?.torikumi ?? config.archive;
   const days = mode === 'result' ? archive.resultDays ?? [] : archive.scheduleDays ?? [];
   if (days.length === 0) {
     return `<p>${escapeHtml(title)} の日別データはまだありません。</p>`;
@@ -332,7 +340,8 @@ async function renderMonthHub(monthKey: string, mode: 'result' | 'schedule', tit
 async function renderDayRoute(dateKey: string, mode: 'result' | 'schedule', title: string, ctx: SeoNoscriptContext): Promise<string | null> {
   const config = getArchiveRouteConfigForDateKey(dateKey);
   if (!config) return null;
-  const archive = config.archive;
+  const loaded = config.monthKey === CURRENT_BASHO_ID ? null : await loadPastArchive(config.monthKey, ctx);
+  const archive = loaded?.torikumi ?? config.archive;
   const archiveDays = mode === 'result' ? archive.resultDays ?? [] : archive.scheduleDays ?? [];
   const day = archiveDays.find((entry) => entry.pathDate === dateKey) as LiveTorikumiDay | undefined;
   if (!day) {
@@ -341,7 +350,7 @@ async function renderDayRoute(dateKey: string, mode: 'result' | 'schedule', titl
   // Day fixtures only carry hiragana shikona, so the kanji names come from the
   // banzuke data: the live JSON for the current basho, the frozen snapshot for
   // archived months.
-  let banzukeIndex = buildBanzukeRikishiIndex(getBanzukeDataByMonthKey(config.monthKey));
+  let banzukeIndex = loaded ? buildBanzukeRikishiIndex(loaded.banzuke) : new Map();
   if (config.monthKey === CURRENT_BASHO_ID) {
     const payload = await ctx.fetchJson('/api/v1/banzuke.json');
     if (isBanzukeDocument(payload)) banzukeIndex = buildBanzukeRikishiIndex(payload);

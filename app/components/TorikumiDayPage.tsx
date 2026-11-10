@@ -23,7 +23,9 @@ import PageBreadcrumb from './PageBreadcrumb';
 import '../torikumi/page.css';
 import { formatDayHead } from '../lib/relative-date';
 import { formatUpdatedAt } from '../lib/updated-at';
-import { getBanzukeDataByMonthKey, CURRENT_BASHO_ID } from '../lib/archive-basho-data';
+import { CURRENT_BASHO_ID } from '../lib/current-basho';
+import { useArchiveDocument } from '../lib/use-archive-document';
+import type { ArchiveBanzukeDocument } from '../lib/archive-types';
 import { useMyRikishi } from '../lib/my-rikishi';
 import {
   countMyRikishiMatches,
@@ -72,8 +74,7 @@ function formatRecord(record?: { wins: number; losses: number; draws: number }):
   return `（${record.wins}勝${record.losses}敗${record.draws > 0 ? `${record.draws}休` : ''}）`;
 }
 
-function createRecordMap(monthKey: string): Map<string, { wins: number; losses: number; draws: number }> {
-  const banzuke = getBanzukeDataByMonthKey(monthKey);
+function createRecordMap(banzuke: ArchiveBanzukeDocument): Map<string, { wins: number; losses: number; draws: number }> {
   const groups = [...banzuke.makuuchi, ...banzuke.juryo];
   const map = new Map<string, { wins: number; losses: number; draws: number }>();
   groups.forEach((group) => {
@@ -507,6 +508,7 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
   const { isSaved, ids } = useMyRikishi();
   const { t, i18n } = useTranslation('common');
   const { monthKey, archive: initialArchive, resultPath, schedulePath, banzukePath } = getArchiveForPath(day.pathDate);
+  const archiveState = useArchiveDocument(monthKey);
   const [liveData, setLiveData] = React.useState<TorikumiDataSet | null>(null);
   const archive = liveData ?? initialArchive;
   const { pathname } = useLocation();
@@ -582,7 +584,10 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
     return ids;
   }, [visibleDayData]);
   const updatedAt = showingSchedule ? archive.scheduleUpdatedAt : archive.resultUpdatedAt;
-  const recordMap = React.useMemo(() => createRecordMap(monthKey), [monthKey]);
+  const recordMap = React.useMemo(
+    () => (archiveState.document ? createRecordMap(archiveState.document.banzuke) : new Map()),
+    [archiveState.document],
+  );
 
   // マイ力士（推し）フィルター。マイ力士が未登録のときは絞り込めないため無効扱いにする。
   const hasMyRikishi = ids.length > 0;

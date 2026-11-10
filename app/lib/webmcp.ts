@@ -11,7 +11,7 @@
  */
 import { fetchRikishiIndex, rikishiProfilePath, type RikishiIndexItem } from './rikishi-profile';
 import { PAST_BASHO } from './archives-data';
-import { CURRENT_BANZUKE_PATH, CURRENT_BASHO_ID, CURRENT_RESULT_PATH, CURRENT_SCHEDULE_PATH } from './archive-basho-data';
+import { CURRENT_BANZUKE_PATH, CURRENT_BASHO_ID, CURRENT_RESULT_PATH, CURRENT_SCHEDULE_PATH } from './current-basho';
 
 export interface WebMcpToolAnnotations {
   readOnlyHint?: boolean;

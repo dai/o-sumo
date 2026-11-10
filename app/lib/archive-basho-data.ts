@@ -1,4 +1,5 @@
-import { torikumiArchive, torikumiMonthKey, type TorikumiDataSet } from './torikumi-data';
+import { CURRENT_BASHO_ID } from './current-basho';
+import { torikumiArchive, type TorikumiDataSet } from './torikumi-data';
 import { juryo, makuuchiData, type RankGroup } from './sumo-data';
 import {
   MARCH2026_BASHO_NAME,
@@ -81,10 +82,7 @@ const SEPTEMBER2026_BANZUKE_DATA: ArchiveBanzukeData = {
   juryo: SEPTEMBER2026_JURYO_DATA,
 };
 
-export const CURRENT_BASHO_ID = torikumiMonthKey;
-export const CURRENT_RESULT_PATH = `/${CURRENT_BASHO_ID}-torikumi`;
-export const CURRENT_SCHEDULE_PATH = `/${CURRENT_BASHO_ID}-yotei`;
-export const CURRENT_BANZUKE_PATH = `/${CURRENT_BASHO_ID}-banzuke`;
+export { CURRENT_BANZUKE_PATH, CURRENT_BASHO_ID, CURRENT_RESULT_PATH, CURRENT_SCHEDULE_PATH } from './current-basho';
 
 export function getTorikumiArchiveByMonthKey(monthKey: string): TorikumiDataSet {
   if (monthKey === '202609') {
