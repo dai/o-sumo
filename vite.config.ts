@@ -161,6 +161,14 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2}'],
+        // These images dominate the first-visit precache. Rikishi portraits are
+        // cached at runtime, when a page requests them.
+        globIgnores: [
+          'images/rikishi/**',
+          'images/matchups/**',
+          'images/og-*',
+          'images/twitter-header.png',
+        ],
         // These paths serve standalone HTML, Markdown, or protocol responses.
         // They must never receive the SPA shell from an installed service worker.
         navigateFallbackDenylist: [
@@ -180,6 +188,20 @@ export default defineConfig({
               expiration: {
                 maxEntries: 100,
                 maxAgeSeconds: 900,
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+          {
+            urlPattern: /\/images\/rikishi\//,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'rikishi-images',
+              expiration: {
+                maxEntries: 200,
+                maxAgeSeconds: 60 * 60 * 24 * 30,
               },
               cacheableResponse: {
                 statuses: [0, 200],
