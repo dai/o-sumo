@@ -12,6 +12,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "preflight:current-data": "python scripts/preflight_current_basho.py",
+    "fonts:subset": "python3 scripts/fonts/build_webfonts.py",
     "verify:delivery-flow": "pwsh ./scripts/verify_delivery_flow.ps1",
     "blog:generate": "tsx scripts/build_blog.ts",
     "blog:build": "tsx scripts/build_blog.ts",

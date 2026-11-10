@@ -45,6 +45,9 @@ npm run preview
 
 # Regenerate data
 python scripts/update_sumo_data.py
+
+# Rebuild self-hosted webfonts after adding displayed text (when app/webfont.test.ts fails)
+npm run fonts:subset
 ```
 
 ## Previewing Daily Highlights states
