@@ -54,7 +54,6 @@
     "@types/node": "^26.6.6",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
-    "@vercel/og": "^1.0.3",
     "@vitejs/plugin-react": "^6.1.2",
     "esbuild": "^0.28.2",
     "gray-matter": "^4.0.3",
