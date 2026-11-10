@@ -4,38 +4,217 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#1a3a52">
+  <meta name="description" content="お探しのページは見つかりませんでした。o-sumoの最新取組表や番付一覧をご確認ください。">
   <title>404 - ページが見つかりません</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700;8..60,800&display=swap">
+  <script>
+    (function () {
+      var theme = 'light';
+      try {
+        var stored = localStorage.getItem('o-sumo-theme');
+        if (stored === 'light' || stored === 'dark') theme = stored;
+        else if (window.matchMedia('(prefers-color-scheme: dark)').matches) theme = 'dark';
+      } catch (e) {}
+      document.documentElement.setAttribute('data-theme', theme);
+      var themeColor = document.querySelector('meta[name="theme-color"]');
+      if (themeColor) themeColor.setAttribute('content', theme === 'dark' ? '#111319' : '#1a3a52');
+    })();
+  </script>
   <style>
+    :root {
+      --ink: #1a1a1a;
+      --surface: #fdfaf5;
+      --primary: #1d3a5f;
+      --secondary: #c2410c;
+      --muted: #5f6368;
+      --nav-bg: rgba(255, 255, 255, 0.82);
+      --nav-text: #1d3a5f;
+      --nav-hover: rgba(236, 234, 229, 0.72);
+      --header-text: #f5efde;
+      --header-muted: #eadfbe;
+      --focus: #0c5a8a;
+      --texture: url("data:image/svg+xml,%3Csvg width='96' height='96' viewBox='0 0 96 96' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 18h96M0 42h96M0 66h96M0 90h96' stroke='%23b58b5f' stroke-opacity='.18' stroke-width='1'/%3E%3Cpath d='M8 0v96M40 0v96M72 0v96' stroke='%231a1a1a' stroke-opacity='.045' stroke-width='1'/%3E%3C/svg%3E");
+    }
+
+    [data-theme='dark'] {
+      --ink: #c1c6d9;
+      --surface: #111319;
+      --primary: #c1c6d9;
+      --secondary: #e6feff;
+      --muted: #97a1bc;
+      --nav-bg: rgba(22, 26, 35, 0.82);
+      --nav-text: #c1c6d9;
+      --nav-hover: rgba(36, 43, 58, 0.72);
+      --focus: #e6feff;
+      --texture: none;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; border-radius: 0; }
+
+    html { font-size: 16px; }
+
     body {
-      font-family: system-ui, -apple-system, sans-serif;
-      display: flex;
-      flex-direction: column;
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Source Serif 4', 'Shippori Mincho', 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+      background-color: var(--surface);
+      background-image: var(--texture);
+      background-attachment: fixed;
+      color: var(--ink);
+      line-height: 1.8;
+      letter-spacing: 0.5px;
+    }
+
+    .skip-to-main {
+      position: fixed;
+      z-index: 30;
+      top: 0.75rem;
+      left: 0.75rem;
+      transform: translateY(-180%);
+      padding: 0.65rem 0.9rem;
+      background: var(--primary);
+      color: var(--surface);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .skip-to-main:focus { transform: translateY(0); }
+
+    .page-header {
+      background-image:
+        linear-gradient(120deg, rgba(13, 14, 18, 0.88) 0%, rgba(13, 14, 18, 0.78) 42%, rgba(13, 14, 18, 0.9) 100%),
+        url('/images/header-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      color: var(--header-text);
+      padding: 2.8rem 1rem 1.25rem;
+      text-align: center;
+      box-shadow: 0 12px 28px rgba(31, 51, 72, 0.12);
+    }
+
+    .site-home-link {
+      position: absolute;
+      top: 0.65rem;
+      left: 0.85rem;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      width: 26px;
+      height: 26px;
+      padding: 0.35rem;
+      box-sizing: content-box;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 50%;
+    }
+
+    .site-home-link img {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .kicker,
+    .page-header p {
       margin: 0;
-      background-color: #f9fafb;
-      color: #111827;
+      color: var(--header-muted);
+      font-size: 1rem;
+    }
+
+    .kicker {
+      letter-spacing: 0.18em;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0.35rem 0 0.45rem;
+      font-family: 'Source Serif 4', 'Shippori Mincho', 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      line-height: 1.25;
+      color: var(--header-text);
+    }
+
+    .not-found-main {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: 2rem 1rem 3rem;
       text-align: center;
-      padding: 1rem;
     }
-    h1 { font-size: 4rem; margin: 0; color: #e11d48; }
-    p { font-size: 1.125rem; color: #4b5563; margin-top: 0.5rem; }
-    a {
-      margin-top: 1.5rem;
-      padding: 0.6rem 1.2rem;
-      background-color: #2563eb;
-      color: white;
+
+    .not-found-main p {
+      margin: 0 0 1.25rem;
+      color: var(--ink);
+    }
+
+    .primary-navigation {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      width: min(100%, 42rem);
+      margin: 0 auto;
+      min-height: 45px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(18px);
+    }
+
+    .primary-navigation a {
+      display: inline-flex;
+      min-height: 45px;
+      align-items: center;
+      justify-content: center;
+      padding: 0.35rem 0.5rem;
+      color: var(--nav-text);
+      font-size: 0.82rem;
+      font-weight: 600;
+      line-height: 1.15;
+      text-align: center;
       text-decoration: none;
-      border-radius: 6px;
-      font-weight: 500;
     }
-    a:hover { background-color: #1d4ed8; }
+
+    .primary-navigation a:hover,
+    .primary-navigation a:focus-visible {
+      background: var(--nav-hover);
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 1.25rem; }
+      .primary-navigation a { font-size: 0.78rem; padding-inline: 0.2rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body { background-attachment: scroll; }
+    }
   </style>
 </head>
 <body>
-  <h1>404</h1>
-  <p>お探しのページは削除されたか、URLが変更された可能性があります。</p>
-  <a href="/">トップページへ戻る</a>
+  <a class="skip-to-main" href="#main-content">本文へスキップ</a>
+  <header class="page-header">
+    <a class="site-home-link" href="/" aria-label="ホーム">
+      <img src="/favicon.svg" alt="" width="26" height="26">
+    </a>
+    <p class="kicker">404</p>
+    <h1>ページが見つかりません</h1>
+    <p>お探しのページは削除されたか、URLが変更された可能性があります。</p>
+  </header>
+  <main id="main-content" class="not-found-main" tabindex="-1">
+    <p>下記のリンクから最新の大相撲情報をご覧ください。</p>
+    <nav class="primary-navigation" aria-label="主要ナビゲーション">
+      <a href="/">ホーム</a>
+      <a href="/202611-banzuke/">番付</a>
+      <a href="/202611-torikumi/">取組</a>
+      <a href="/rikishi/">力士</a>
+    </nav>
+  </main>
 </body>
 </html>
