@@ -25,15 +25,6 @@ python scripts/ci/validate_torikumi.py
 python scripts/ci/validate_news.py
 ```
 
-### `notify_discord.sh`
-Discord Webhook に通知を POST する。`DISCORD_WEBHOOK_URL` が未設定なら no-op。
-
-```bash
-bash scripts/ci/notify_discord.sh failure "Workflow failed" "Run URL: ..."
-```
-
-ワークフローからは `if: failure()` で呼び出す。未設定でも wf は落ちない。
-
 ## オフシーズン運用および十一月場所（11月場所）再開手順
 
 - 2026年9月場所（秋場所）千秋楽（9月27日）終了および翌日確認に伴い、`daily-data-update.yml` と `realtime-torikumi-direct-update.yml` の `schedule` は削除され、オフシーズン中は `workflow_dispatch`（手動実行）のみの運用となります。

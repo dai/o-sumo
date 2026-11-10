@@ -345,7 +345,6 @@ Shared helpers under `scripts/ci/`:
 - `run_torikumi_generator.sh` — runs `update_sumo_data.py` with up to two retries
 - `validate_torikumi.py` — schema check for `public/api/v1/torikumi.json`
 - `validate_news.py` — schema check for `public/api/v1/news.json`
-- `notify_discord.sh` — posts a Discord notification when `DISCORD_WEBHOOK_URL` is configured
 
 Workflows:
 
