@@ -27,7 +27,7 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GH_PAT }}
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
-        with: {python-version: '3.11'}
+        with: {python-version: '3.12'}
       - id: update
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
@@ -58,7 +58,7 @@ jobs:
           fetch-depth: 1
           token: ${{ secrets.GH_PAT }}
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
-        with: {python-version: '3.11'}
+        with: {python-version: '3.12'}
       - name: Verify delivery
         if: needs.publish.outputs.pushed == 'true'
         env:
