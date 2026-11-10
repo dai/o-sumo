@@ -25,12 +25,17 @@ export interface McpServerCard {
   _meta?: Record<string, unknown>;
 }
 
+export const MCP_SERVER_VERSION = '1.0.1';
+export const MCP_SERVER_TITLE = 'o-sumo (大相撲アーカイブ)';
+export const MCP_SERVER_DESCRIPTION =
+  'Grand Sumo (大相撲) banzuke, torikumi results, rikishi profiles, and AI semantic search.';
+
 export const MCP_SERVER_CARD: McpServerCard = {
   $schema: 'https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json',
   name: 'us.osada/o-sumo',
-  version: '1.0.0',
-  title: 'o-sumo (大相撲アーカイブ)',
-  description: 'Grand Sumo (大相撲) banzuke, torikumi results, rikishi profiles, and AI semantic search.',
+  version: MCP_SERVER_VERSION,
+  title: MCP_SERVER_TITLE,
+  description: MCP_SERVER_DESCRIPTION,
   websiteUrl: 'https://osada.us/',
   repository: {
     source: 'github',
