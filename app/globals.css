@@ -1188,6 +1188,158 @@ th {
   outline: none;
 }
 
+.primary-navigation-bar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.25rem;
+  width: min(100%, 52rem);
+  max-width: 100%;
+}
+
+.primary-navigation-shell--header .primary-navigation-bar {
+  background: color-mix(in srgb, var(--surface-container-lowest) 82%, transparent);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+.primary-navigation-shell--header .primary-navigation {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  width: auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.primary-navigation__search {
+  display: inline-flex;
+  flex: 0 0 45px;
+  width: 45px;
+  height: 45px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  color: var(--color-primary);
+  background: transparent;
+  cursor: pointer;
+}
+
+.primary-navigation__search svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+
+.primary-navigation__search:hover,
+.primary-navigation__search:focus-visible,
+.primary-navigation__search.is-active {
+  color: var(--color-dark-text);
+  background: color-mix(in srgb, var(--surface-container-high) 58%, transparent);
+}
+
+.primary-navigation__search:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: -2px;
+}
+
+.rikishi-search-backdrop {
+  position: fixed;
+  z-index: 400;
+  inset: 0;
+  display: grid;
+  align-items: start;
+  justify-items: center;
+  padding: 12vh 1rem 1rem;
+  background: color-mix(in srgb, var(--color-dark-text) 35%, transparent);
+}
+
+.rikishi-search-dialog {
+  width: min(100%, 28rem);
+  max-height: min(80vh, 36rem);
+  overflow: auto;
+  padding: 1rem;
+  background: var(--surface-container-lowest);
+  color: var(--color-dark-text);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+}
+
+.rikishi-search-dialog__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.rikishi-search-dialog__header h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.rikishi-search-dialog__close,
+.rikishi-search-dialog__field input {
+  font: inherit;
+}
+
+.rikishi-search-dialog__close {
+  min-height: 44px;
+  padding: 0.35rem 0.7rem;
+  border: 0;
+  background: var(--surface-container-high);
+  color: var(--color-primary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.rikishi-search-dialog__field input {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--color-border);
+  background: var(--surface-container-lowest);
+  color: var(--color-dark-text);
+}
+
+.rikishi-search-dialog__results {
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rikishi-search-dialog__result {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.35rem 0.15rem;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.rikishi-search-dialog__result:hover,
+.rikishi-search-dialog__result:focus-visible {
+  text-decoration: none;
+  background: color-mix(in srgb, var(--surface-container-high) 72%, transparent);
+}
+
+.rikishi-search-dialog__meta,
+.rikishi-search-dialog__status {
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+.rikishi-search-dialog__status {
+  margin: 0.75rem 0 0;
+}
+
 @media (max-width: 768px) {
   .primary-navigation-shell {
     padding-inline: 0.4rem;
@@ -1203,6 +1355,16 @@ th {
     white-space: normal;
   }
 
+}
+
+@media (max-width: 840px) {
+  .primary-navigation-shell--header .primary-navigation-bar {
+    width: 100%;
+  }
+
+  .primary-navigation-shell--header .primary-navigation {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1308,7 +1470,7 @@ th {
 
 .directory-navigation-tray {
   position: relative;
-  width: min(100%, 42rem);
+  width: min(100%, 52rem);
 }
 
 .directory-navigation-trigger {
