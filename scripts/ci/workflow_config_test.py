@@ -80,6 +80,18 @@ class WorkflowConfigTest(unittest.TestCase):
         self.assertEqual(runs["Verify production freshness"]["if"],
                          "needs.publish.outputs.pushed != 'true'")
 
+    def test_test_workflow_ignores_data_only_pushes(self):
+        test_workflow = load("test.yml")
+        paths_ignore = set(test_workflow["on"]["push"].get("paths-ignore", []))
+        expected_data_paths = {
+            "app/lib/torikumi-data.ts",
+            "app/lib/sumo-data.ts",
+            "public/api/v1/torikumi.json",
+            "public/api/v1/banzuke.json",
+            "public/api/v1/news.json",
+        }
+        self.assertTrue(expected_data_paths.issubset(paths_ignore))
+
 
 if __name__ == "__main__":
     unittest.main()
