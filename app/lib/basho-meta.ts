@@ -1,3 +1,4 @@
+import { formatWarekiBashoName, normalizeWarekiBashoTitle } from './relative-date';
 import { torikumiArchive, torikumiMonthKey } from './torikumi-data';
 
 const MONTH_NAMES_EN: Record<string, string> = {
@@ -75,7 +76,15 @@ export function formatBashoTitle(
     }
     return `${info.year || ''} ${info.bashoName || ''}`.trim();
   }
-  return `${info.year || ''}${info.bashoName || ''}`;
+  const monthKey = info.monthKey ?? '';
+  if (monthKey.length >= 6) {
+    const year = Number(monthKey.slice(0, 4));
+    const month = Number(monthKey.slice(4, 6));
+    if (year >= 2019 && month >= 1 && month <= 12) {
+      return formatWarekiBashoName(year, month);
+    }
+  }
+  return normalizeWarekiBashoTitle(info.year || '', info.bashoName || '');
 }
 
 /**

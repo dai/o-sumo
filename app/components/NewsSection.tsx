@@ -1,37 +1,20 @@
 import { useTranslation } from 'react-i18next';
 import { newsFeed } from '../lib/news-data';
 import type { NewsItem } from '../lib/news-data';
+import { formatDisplayTimestamp, formatInstantDate } from '../lib/relative-date';
 
 const ASSOCIATION_SOURCE_ID = 'sumo-association';
 const SUMO_NEWS_SOURCE_ID = 'dmenu-docomo';
 const ASSOCIATION_SEE_ALL_URL = 'https://www.sumo.or.jp/IrohaKyokaiInformation/wrap/';
 const SUMO_NEWS_SEE_ALL_URL = 'https://sumo.sports.smt.docomo.ne.jp/news/';
 
-function formatFetchedAt(iso: string): string {
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return '';
-  const parts = new Intl.DateTimeFormat('en-GB', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    hourCycle: 'h23',
-    timeZone: 'Asia/Tokyo',
-  }).formatToParts(d);
-  const value = (type: Intl.DateTimeFormatPartTypes) =>
-    parts.find((part) => part.type === type)?.value ?? '';
-  const year = value('year');
-  const month = value('month');
-  const day = value('day');
-  const hour = value('hour');
-  const minute = value('minute');
-  if (!year || !month || !day || !hour || !minute) return '';
-  return `${year}-${month}-${day} ${hour}:${minute}`;
+function formatFetchedAt(iso: string, locale: string): string {
+  const formatted = formatDisplayTimestamp(iso, locale);
+  return formatted === iso ? '' : formatted;
 }
 
 function externalNewsPausedNote(updatedAt: string, locale: string): string {
-  const fetchedAt = formatFetchedAt(updatedAt);
+  const fetchedAt = formatFetchedAt(updatedAt, locale);
   if (locale.startsWith('ja')) {
     return fetchedAt
       ? `ニュース取得を一時停止中・最終取得 ${fetchedAt}`
@@ -44,21 +27,8 @@ function externalNewsPausedNote(updatedAt: string, locale: string): string {
 
 function formatPublishedAt(iso: string | null, raw: string | undefined, locale: string): string {
   if (iso) {
-    const d = new Date(iso);
-    if (!Number.isNaN(d.getTime())) {
-      if (locale.startsWith('ja')) {
-        const yyyy = d.getFullYear();
-        const mo = String(d.getMonth() + 1).padStart(2, '0');
-        const da = String(d.getDate()).padStart(2, '0');
-        return `${yyyy}-${mo}-${da}`;
-      }
-      return new Intl.DateTimeFormat('en-GB', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        timeZone: 'Asia/Tokyo',
-      }).format(d);
-    }
+    const formatted = formatInstantDate(iso, locale);
+    if (formatted !== iso) return formatted;
   }
   return raw ?? '';
 }

@@ -166,7 +166,7 @@ export default function BanzukePage() {
           <p className="page-description">{t('banzuke.pageDescription', { gregorianBasho: gregorianBashoLabel })}</p>
         </div>
         <div className="site-header-meta-row">
-          <p className="page-description">{t('banzuke.updatedAt', { date: formatUpdatedAt(updatedAt) })}</p>
+          <p className="page-description">{t('banzuke.updatedAt', { date: formatUpdatedAt(updatedAt, i18n.language) })}</p>
         </div>
       </header>
 

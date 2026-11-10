@@ -1,10 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import { getLatestBlogPost } from '../lib/blog-data';
+import { formatDisplayDate } from '../lib/relative-date';
 
 const BLOG_INDEX_URL = 'https://blog.osada.us/';
 
 export default function GreetingSection() {
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
   const latest = getLatestBlogPost();
   if (!latest) return null;
   return (
@@ -23,7 +24,7 @@ export default function GreetingSection() {
             {t('greeting.editorLabel', { author: latest.author })}
           </span>
           <time className="greeting-date" dateTime={latest.publishedAt}>
-            {t('greeting.publishedOn', { date: latest.publishedAt })}
+            {t('greeting.publishedOn', { date: formatDisplayDate(latest.publishedAt, i18n.language) })}
           </time>
         </div>
         <h4 className="greeting-card-title">

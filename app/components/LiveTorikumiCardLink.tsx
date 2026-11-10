@@ -10,6 +10,7 @@ import {
   jstMinutesOfDay,
   resolveLiveDailyData,
 } from '../lib/live-progress';
+import { formatJstClock } from '../lib/relative-date';
 import ImakokoMeter from './ImakokoMeter';
 
 export interface LiveTorikumiCardLinkProps {
@@ -46,7 +47,8 @@ export default function LiveTorikumiCardLink({
 
   const dailyData = resolveLiveDailyData(archive, data);
   const progress = deriveLiveProgress(dailyData, currentMinutes);
-  const { currentBout, state, formattedTime } = progress;
+  const { currentBout, state, formattedTime: progressTime } = progress;
+  const formattedTime = formatJstClock(progressTime);
 
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     if (

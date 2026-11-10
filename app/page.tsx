@@ -23,7 +23,7 @@ import KimariteCard from './components/KimariteCard';
 import DailyHighlightsSection from './components/DailyHighlightsSection';
 import MonomosuSection from './components/MonomosuSection';
 import { divisionAnchorId } from './lib/rikishi-display';
-import { getCalendarDayDiffJst, getRelativeDateLabel, getRelativeMonomosuText } from './lib/relative-date';
+import { formatDisplayDate, getCalendarDayDiffJst, getRelativeDateLabel, getRelativeMonomosuText } from './lib/relative-date';
 import './index.css';
 
 const LIVE_START_MINUTES = 13 * 60;
@@ -98,11 +98,7 @@ export function getHomeHeroActions(status: BashoStatus, paths: HomeHeroPaths): H
 
 function formatHomeDate(isoDate: string | null, language: string): string | undefined {
   if (!isoDate) return undefined;
-  return new Intl.DateTimeFormat(language === 'ja' ? 'ja-JP' : 'en-US', {
-    timeZone: 'UTC',
-    month: 'long',
-    day: 'numeric',
-  }).format(new Date(`${isoDate}T00:00:00Z`));
+  return formatDisplayDate(isoDate, language);
 }
 
 export function getHomeQuickNavItems(

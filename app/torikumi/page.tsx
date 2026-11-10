@@ -14,6 +14,7 @@ import { getBashoStatus } from '../lib/basho-status';
 import AbsenteesNotice, { type AbsenteeEntry } from '../components/AbsenteesNotice';
 import PageBreadcrumb from '../components/PageBreadcrumb';
 import './page.css';
+import { formatDayHead } from '../lib/relative-date';
 import { formatUpdatedAt } from '../lib/updated-at';
 import { formatBashoTitle } from '../lib/basho-meta';
 
@@ -82,11 +83,11 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
         <div className="site-header-meta-row">
           {mode === 'schedule' ? (
             <div className="torikumi-update-meta" role="status">
-              <p>{t('torikumi.hub.lastUpdated', { date: formatUpdatedAt(updatedAt) })}</p>
+              <p>{t('torikumi.hub.lastUpdated', { date: formatUpdatedAt(updatedAt, i18n.language) })}</p>
               <p className="torikumi-update-meta__source">{t('torikumi.hub.scheduleSource')}</p>
             </div>
           ) : (
-            <p>{t('torikumi.hub.updateDate', { date: formatUpdatedAt(updatedAt) })}</p>
+            <p>{t('torikumi.hub.updateDate', { date: formatUpdatedAt(updatedAt, i18n.language) })}</p>
           )}
         </div>
       </header>
@@ -140,7 +141,7 @@ export default function TorikumiHubPage({ mode }: { mode: TorikumiPageMode }) {
               >
                 <div className="archive-card-date">{day.pathDate}</div>
                 <h3>{day.label}</h3>
-                <p>{day.dayHead}</p>
+                <p>{formatDayHead(day.dayHead, i18n.language)}</p>
                 <p className={`archive-status${day.status === 'pending' ? ' pending' : ''}`}>
                   {day.statusMessage ?? t('torikumi.hub.statusPublished')}
                 </p>
