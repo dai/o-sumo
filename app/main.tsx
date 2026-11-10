@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { registerSW } from 'virtual:pwa-register'
 import { useTranslation } from 'react-i18next'
 import './lib/i18n'
@@ -15,6 +15,7 @@ import TrailingSlashRoute from './components/TrailingSlashRoute'
 import HashPreservingRedirect from './components/HashPreservingRedirect'
 import WebMcpProvider from './components/WebMcpProvider'
 import PrimaryNavigation from './components/PrimaryNavigation'
+import GlobalNoticeBanner from './components/GlobalNoticeBanner'
 import { getArchiveHubRouteDefinitions } from './lib/torikumi-routes'
 import { bootstrapTheme } from './lib/theme'
 import { AuthSessionProvider } from './lib/auth-session'
@@ -71,11 +72,7 @@ function AppShell() {
           <CanonicalUrl />
           <MetaHead>
         <ScrollToHash />
-        <div className="global-notice-banner" role="status" aria-live="polite">
-          <Link to="/20261108-yotei/" className="global-notice-banner__link">
-            {t('global.agentGuideNotice')}
-          </Link>
-        </div>
+        <GlobalNoticeBanner />
         <a className="skip-to-main" href="#main-content">{t('bashoStatus.skipToMain')}</a>
         <div className="top-right-controls">
           <ThemeToggle />

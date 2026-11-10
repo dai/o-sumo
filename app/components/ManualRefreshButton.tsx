@@ -17,7 +17,7 @@ const UPTODATE_RESET_MS = 2000;
 const ERROR_RESET_MS = 3000;
 
 /**
- * Viewport-following "最新に更新" button for torikumi day pages. Drives an async refresh
+ * "最新に更新" button for torikumi day pages. Drives an async refresh
  * provided by the parent (which captures scroll, fetches /api/v1/torikumi.json
  * with cache: 'no-store', and dispatches the torikumi-updated event). The
  * button itself owns the status state machine, ARIA wiring, and the

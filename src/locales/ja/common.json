@@ -1,6 +1,7 @@
 {
   "global": {
-    "agentGuideNotice": "令和八年十一月場所の初日・二日目取組を更新しました",
+    "noticeUpdated": "{{basho}}の{{day}}取組を更新しました",
+    "noticePartial": "{{day}} 結果（一部）",
     "homeLink": "ホーム",
     "backToHome": "ホームに戻る",
     "siteNavigation": "サイトナビゲーション",
@@ -351,7 +352,9 @@
   "torikumi": {
     "shared": {
       "absenteesLabel": "休場者:",
-      "absentees": "休場者: {{names}}"
+      "absentees": "休場者: {{names}}",
+      "absenteesMakuuchi": "幕内 休場:",
+      "absenteesJuryo": "十両 休場:"
     },
     "hub": {
       "resultListTitle": "結果一覧",
@@ -393,6 +396,7 @@
       "updateDate": "更新日: {{date}}",
       "kimariteResult": "決まり手",
       "kimariteSchedule": "予定",
+      "kimaritePending": "結果待ち",
       "winner": "勝",
       "matchScheduled": "取組予定",
       "viewMatchupDetails": "対戦成績・合口を見る",
