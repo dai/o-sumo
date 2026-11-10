@@ -8,9 +8,9 @@ import { toRomaji } from '../lib/romaji';
 import {
   basicRikishiPlaceholderDataUrl,
   generatedRikishiAvatarDataUrl,
-  localRikishiImagePath,
   shouldGenerateRikishiAvatar,
 } from '../lib/rikishi-avatar';
+import RikishiPortrait from './RikishiPortrait';
 import '../styles/banzuke.css';
 
 import { useMyRikishi } from '../lib/my-rikishi';
@@ -109,24 +109,16 @@ const RikishiCell = ({ rikishi, resultLinkMap }: { rikishi: Rikishi; resultLinkM
       side: rikishi.side,
     })
     : basicRikishiPlaceholderDataUrl(name);
-  const photoUrl = localRikishiImagePath(rikishi.id);
   const [expanded, setExpanded] = useState(false);
 
   return (
     <div className={`rikishi-cell${isMyRikishi ? ' is-my-rikishi' : ''}${expanded ? ' is-expanded' : ''}`} id={`rikishi-${rikishi.id}`}>
       <Link to={rikishiProfilePath(rikishi.id)} className="rikishi-photo-link rikishi-fold" aria-label={`${name}のo-sumoプロフィールを開く`}>
-        <img
+        <RikishiPortrait
+          id={rikishi.id}
+          slot="banzuke"
           className="rikishi-photo"
-          src={photoUrl}
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            if (!target.src.includes('data:image')) {
-              target.src = fallbackPhotoUrl;
-            }
-          }}
+          fallbackSrc={fallbackPhotoUrl}
         />
       </Link>
       <Link to={rikishiProfilePath(rikishi.id)} className="rikishi-name-link">

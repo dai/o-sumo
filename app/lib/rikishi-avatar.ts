@@ -9,12 +9,88 @@ interface AvatarPolicyInput {
   name: string;
 }
 
+export const RIKISHI_IMAGE_WIDTHS = [96, 192, 384] as const;
+
+export type RikishiImageSlot = 'banzuke' | 'profile';
+
+export interface ResponsiveRikishiImage {
+  src: string;
+  avifSrcSet: string;
+  webpSrcSet: string;
+  sizes: string;
+  width: number;
+  height: number;
+}
+
+interface RikishiImageLayout {
+  sizes: string;
+  width: number;
+  height: number;
+}
+
+const BANZUKE_IMAGE_LAYOUT: RikishiImageLayout = {
+  // .rikishi-photo is 48px / 56px / ~104px (112px link minus padding).
+  sizes: '(max-width: 480px) 48px, (max-width: 768px) 56px, 104px',
+  width: 112,
+  height: 112,
+};
+
+const PROFILE_IMAGE_LAYOUT: RikishiImageLayout = {
+  // .rikishi-profile-photo is 96px below 720px and 128px otherwise.
+  sizes: '(max-width: 720px) 96px, 128px',
+  width: 128,
+  height: 128,
+};
+
 export function localRikishiImagePath(id: number | string): string {
   return `/images/rikishi/${id}.png`;
 }
 
+export function rikishiImageVariantPath(
+  id: number | string,
+  width: number,
+  format: 'webp' | 'avif',
+): string {
+  return `/images/rikishi/${id}-${width}.${format}`;
+}
+
+function imageLayout(slot: RikishiImageSlot): RikishiImageLayout {
+  switch (slot) {
+    case 'banzuke':
+      return BANZUKE_IMAGE_LAYOUT;
+    case 'profile':
+      return PROFILE_IMAGE_LAYOUT;
+    default: {
+      const unknown: never = slot;
+      throw new Error(`Unknown rikishi image slot: ${String(unknown)}`);
+    }
+  }
+}
+
+function srcSetFor(id: number | string, format: 'webp' | 'avif'): string {
+  return RIKISHI_IMAGE_WIDTHS
+    .map((width) => `${rikishiImageVariantPath(id, width, format)} ${width}w`)
+    .join(', ');
+}
+
+/** Sized WebP/AVIF candidates. `src` is the smallest WebP for older srcset clients. */
+export function responsiveRikishiImage(
+  id: number | string,
+  slot: RikishiImageSlot,
+): ResponsiveRikishiImage {
+  const layout = imageLayout(slot);
+  return {
+    src: rikishiImageVariantPath(id, RIKISHI_IMAGE_WIDTHS[0], 'webp'),
+    avifSrcSet: srcSetFor(id, 'avif'),
+    webpSrcSet: srcSetFor(id, 'webp'),
+    sizes: layout.sizes,
+    width: layout.width,
+    height: layout.height,
+  };
+}
+
 export function isLocalRikishiImagePath(photoUrl: string): boolean {
-  return /^\/images\/rikishi\/\d+\.(png|jpg|svg)$/.test(photoUrl);
+  return /^\/images\/rikishi\/\d+(?:-\d+)?\.(?:png|jpe?g|webp|avif|svg)$/.test(photoUrl);
 }
 
 function hashSeed({ id, name, side }: AvatarSeed): number {

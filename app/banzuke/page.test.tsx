@@ -6,6 +6,7 @@ import BanzukeTable from '../components/BanzukeTable';
 import type { RankGroup } from '../lib/sumo-data';
 import { torikumiArchive } from '../lib/torikumi-data';
 import { formatUpdatedAt } from '../lib/updated-at';
+import { responsiveRikishiImage } from '../lib/rikishi-avatar';
 import { MAY2026_TORIKUMI_DATA } from '../lib/may2026-data';
 
 function LocationSearchProbe() {
@@ -106,8 +107,18 @@ describe('BanzukePage', () => {
     expect(cell?.querySelector('.rikishi-expand')).toHaveAccessibleName('東力士 星取表');
 
     const photo = container.querySelector('.rikishi-photo');
+    const expected = responsiveRikishiImage(1, 'banzuke');
     expect(photo).not.toBeNull();
-    expect(photo?.getAttribute('src')).toBe('/images/rikishi/1.png');
+    expect(photo).toHaveAttribute('src', expected.src);
+    expect(photo).toHaveAttribute('width', String(expected.width));
+    expect(photo).toHaveAttribute('height', String(expected.height));
+    expect(photo).toHaveAttribute('loading', 'lazy');
+    expect(photo).toHaveAttribute('decoding', 'async');
+    const picture = photo?.parentElement;
+    expect(picture?.tagName).toBe('PICTURE');
+    expect(picture?.querySelector('source[type="image/avif"]')).toHaveAttribute('srcset', expected.avifSrcSet);
+    expect(picture?.querySelector('source[type="image/avif"]')).toHaveAttribute('sizes', expected.sizes);
+    expect(picture?.querySelector('source[type="image/webp"]')).toHaveAttribute('srcset', expected.webpSrcSet);
 
     fireEvent.error(photo as HTMLImageElement);
     expect(photo?.getAttribute('src')?.startsWith('data:image/svg+xml;charset=UTF-8,')).toBe(true);

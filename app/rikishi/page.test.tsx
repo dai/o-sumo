@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import RikishiPage from './page';
 import RikishiProfilePage from './RikishiProfilePage';
+import { responsiveRikishiImage } from '../lib/rikishi-avatar';
 
 const rikishiIndex = {
   updatedAt: '2026-04-27T08:15:00+09:00',
@@ -168,6 +169,15 @@ describe('Rikishi pages', () => {
     expect(
       screen.getByText('掲載画像は日本相撲協会プロフィール写真をもとに MiniMax I2I Generation で加工したプロフィールイラストです。'),
     ).toBeInTheDocument();
+    const photo = document.querySelector('.rikishi-profile-photo');
+    const expected = responsiveRikishiImage(3842, 'profile');
+    expect(photo).toHaveAttribute('src', expected.src);
+    expect(photo).toHaveAttribute('width', String(expected.width));
+    expect(photo).toHaveAttribute('height', String(expected.height));
+    expect(photo).toHaveAttribute('loading', 'lazy');
+    expect(photo).toHaveAttribute('decoding', 'async');
+    expect(photo?.parentElement?.querySelector('source[type="image/avif"]')).toHaveAttribute('srcset', expected.avifSrcSet);
+    expect(photo?.parentElement?.querySelector('source[type="image/webp"]')).toHaveAttribute('sizes', expected.sizes);
 
     await user.click(screen.getByRole('button', { name: 'リンクをコピー' }));
 

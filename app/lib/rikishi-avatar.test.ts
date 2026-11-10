@@ -3,6 +3,7 @@ import {
   generatedRikishiAvatarDataUrl,
   isLocalRikishiImagePath,
   localRikishiImagePath,
+  responsiveRikishiImage,
   shouldGenerateRikishiAvatar,
 } from './rikishi-avatar';
 
@@ -51,7 +52,33 @@ describe('generatedRikishiAvatarDataUrl', () => {
 
   it('detects locally managed rikishi image paths', () => {
     expect(isLocalRikishiImagePath('/images/rikishi/3842.png')).toBe(true);
+    expect(isLocalRikishiImagePath('/images/rikishi/3842-96.webp')).toBe(true);
+    expect(isLocalRikishiImagePath('/images/rikishi/3842-192.avif')).toBe(true);
     expect(isLocalRikishiImagePath('https://example.com/profile.jpg')).toBe(false);
     expect(isLocalRikishiImagePath('')).toBe(false);
+  });
+
+  it('builds 96, 192, and 384 px srcsets for the banzuke slot', () => {
+    const image = responsiveRikishiImage(3842, 'banzuke');
+
+    expect(image.src).toBe('/images/rikishi/3842-96.webp');
+    expect(image.avifSrcSet).toBe(
+      '/images/rikishi/3842-96.avif 96w, /images/rikishi/3842-192.avif 192w, /images/rikishi/3842-384.avif 384w',
+    );
+    expect(image.webpSrcSet).toBe(
+      '/images/rikishi/3842-96.webp 96w, /images/rikishi/3842-192.webp 192w, /images/rikishi/3842-384.webp 384w',
+    );
+    expect(image.sizes).toBe('(max-width: 480px) 48px, (max-width: 768px) 56px, 104px');
+    expect(image.width).toBe(112);
+    expect(image.height).toBe(112);
+  });
+
+  it('uses the profile photo box for the profile slot', () => {
+    const image = responsiveRikishiImage('4227', 'profile');
+
+    expect(image.sizes).toBe('(max-width: 720px) 96px, 128px');
+    expect(image.width).toBe(128);
+    expect(image.height).toBe(128);
+    expect(image.src).toBe('/images/rikishi/4227-96.webp');
   });
 });
