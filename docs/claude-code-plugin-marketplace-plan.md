@@ -30,7 +30,7 @@
 
 ### なぜこの形か
 
-- 既存の `mcp/<client>/` 構成（claude / chatgpt / grok / agy / muse）と一貫する
+- 既存の `mcp/<client>/` 構成（claude / chatgpt / grok）と一貫する
 - 追加リポジトリが不要で、MCP の URL や説明文の更新箇所が1か所で済む
 - サイト本体と同じリリース単位で更新できる
 
@@ -283,7 +283,6 @@ claude mcp add --transport http o-sumo https://osada.us/mcp
 | `mcp/server.json` | 1.0.1 |
 | MCP `serverInfo.version` | 1.0.0 |
 | `mcp/server-card` の `version` | 1.0.0 |
-| `mcp/agy/o-sumo/plugin.json` | 1.0.0 |
 | **新プラグイン `mcp/claude-code`** | **1.0.0** |
 
 方針:
