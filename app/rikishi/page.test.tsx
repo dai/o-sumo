@@ -91,6 +91,7 @@ function LocationSearchProbe() {
 
 describe('Rikishi pages', () => {
   afterEach(() => {
+    vi.useRealTimers();
     vi.unstubAllGlobals();
   });
 
@@ -155,7 +156,7 @@ describe('Rikishi pages', () => {
     );
 
     expect(await screen.findByRole('heading', { level: 1, name: '豊昇龍' })).toBeInTheDocument();
-    expect(screen.getByText('横綱 / Houshouryuu')).toBeInTheDocument();
+    expect(screen.getByText('横綱 / Hoshoryu')).toBeInTheDocument();
     expect(screen.getByText('平成11年5月22日（26歳）')).toBeInTheDocument();
     expect(screen.getByText('188cm')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '相撲協会プロフィールを見る' })).toHaveAttribute(
@@ -187,9 +188,54 @@ describe('Rikishi pages', () => {
 
     await screen.findByRole('heading', { level: 1, name: '豊昇龍' });
     const region = await screen.findByRole('region', { name: '通算成績' });
-    expect(within(region).getByText('401勝 235敗 34分')).toBeInTheDocument();
+    expect(within(region).getByText('401勝 235敗 34休')).toBeInTheDocument();
+    expect(within(region).queryByText(/分/)).not.toBeInTheDocument();
     expect(within(region).getByText('勝率 63%')).toBeInTheDocument();
-    expect(within(region).getByText('出場 670')).toBeInTheDocument();
+    expect(within(region).getByText('出場 636')).toBeInTheDocument();
+  });
+
+  it('shows a name, rank, and photo skeleton while the profile is loading', () => {
+    vi.stubGlobal('fetch', () => new Promise(() => {}));
+
+    render(
+      <MemoryRouter initialEntries={['/rikishi/4227']}>
+        <Routes>
+          <Route path="/rikishi/:id" element={<RikishiProfilePage />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    const status = screen.getByRole('status', { name: '読み込み中です。' });
+    expect(status.querySelector('.rikishi-profile-skeleton__photo')).toBeInTheDocument();
+    expect(status.querySelector('.rikishi-profile-skeleton__rank')).toBeInTheDocument();
+    expect(status.querySelector('.rikishi-profile-skeleton__name')).toBeInTheDocument();
+  });
+
+  it('renders this basho’s bouts from torikumi data', async () => {
+    vi.useFakeTimers({ toFake: ['Date'] });
+    vi.setSystemTime(new Date('2026-11-10T03:00:00Z'));
+    mockFetch();
+
+    render(
+      <MemoryRouter initialEntries={['/rikishi/4227']}>
+        <Routes>
+          <Route path="/rikishi/:id" element={<RikishiProfilePage />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    const region = await screen.findByRole('region', { name: '今場所の取組' });
+    expect(within(region).getByText('令和八年十一月場所')).toBeInTheDocument();
+    expect(within(region).getByText('今日の相手')).toBeInTheDocument();
+    expect(within(region).getByRole('link', { name: /朝乃山/ })).toBeInTheDocument();
+    expect(within(region).getByText('取組予定')).toBeInTheDocument();
+    expect(within(region).getByText('これまでの結果')).toBeInTheDocument();
+    expect(within(region).getByRole('link', { name: /義ノ富士/ })).toBeInTheDocument();
+    expect(within(region).getByRole('link', { name: /藤凌駕/ })).toBeInTheDocument();
+    expect(within(region).getByText('突き落とし')).toBeInTheDocument();
+    expect(within(region).getByText('寄り切り')).toBeInTheDocument();
+    expect(within(region).queryByText('未定')).not.toBeInTheDocument();
+    expect(screen.getByText('横綱 / Onosato')).toBeInTheDocument();
   });
 
   it('lists same-rank rikishi from the public index', async () => {
