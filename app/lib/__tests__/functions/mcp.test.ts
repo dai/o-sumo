@@ -128,7 +128,7 @@ describe('MCP Server Card (SEP-2127)', () => {
     expect(response.headers.get('Access-Control-Allow-Methods')).toContain('POST');
   });
 
-  it('responds with 405 Method Not Allowed to GET /mcp per MCP spec', async () => {
+  it('responds with 405 Method Not Allowed to GET /mcp per MCP spec when Accept is not text/html', async () => {
     const request = new Request('https://osada.us/mcp', {
       method: 'GET',
       headers: { Host: 'osada.us' },
@@ -136,6 +136,62 @@ describe('MCP Server Card (SEP-2127)', () => {
 
     const response = await onRequestGet({ request, params: { path: [] } });
     expect(response.status).toBe(405);
+    const body = await response.json() as { error?: { message?: string } };
+    expect(body.error?.message).toMatch(/Method not allowed/i);
+  });
+
+  it('responds with 405 Method Not Allowed to GET /mcp when Accept is application/json', async () => {
+    const request = new Request('https://osada.us/mcp', {
+      method: 'GET',
+      headers: { Host: 'osada.us', Accept: 'application/json' },
+    });
+
+    const response = await onRequestGet({ request, params: { path: [] } });
+    expect(response.status).toBe(405);
+  });
+
+  it('serves human-friendly HTML landing page to GET /mcp when Accept contains text/html', async () => {
+    const request = new Request('https://osada.us/mcp', {
+      method: 'GET',
+      headers: {
+        Host: 'osada.us',
+        Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+      },
+    });
+
+    const response = await onRequestGet({ request, params: { path: [] } });
+    expect(response.status).toBe(200);
+    expect(response.headers.get('Content-Type')).toBe('text/html; charset=utf-8');
+    expect(response.headers.get('Access-Control-Allow-Origin')).toBe('*');
+
+    const html = await response.text();
+    // 1. サーバー概要
+    expect(html).toContain('o-sumo MCP サーバー');
+    expect(html).toContain('大相撲');
+    expect(html).toContain('読み取り専用');
+    expect(html).toContain('認証不要');
+
+    // 2. 接続 URL & コピー欄
+    expect(html).toContain('https://osada.us/mcp');
+    expect(html).toContain('copyEndpoint');
+    expect(html).toContain('URLをコピー');
+
+    // 3. 5 tools
+    expect(html).toContain('search_rikishi');
+    expect(html).toContain('get_rikishi_profile');
+    expect(html).toContain('get_banzuke');
+    expect(html).toContain('get_torikumi');
+    expect(html).toContain('list_basho');
+
+    // 4. 追加手順 (Claude, ChatGPT, Cursor, Muse)
+    expect(html).toContain('Claude');
+    expect(html).toContain('ChatGPT');
+    expect(html).toContain('Cursor');
+    expect(html).toContain('Muse');
+
+    // 5. 関連リンク
+    expect(html).toContain('https://osada.us/');
+    expect(html).toContain('https://osada.us/terms/');
   });
 });
 

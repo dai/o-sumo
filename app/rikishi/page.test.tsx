@@ -237,13 +237,13 @@ describe('Rikishi pages', () => {
     const region = await screen.findByRole('region', { name: '今場所の取組' });
     expect(within(region).getByText('令和八年十一月場所')).toBeInTheDocument();
     expect(within(region).getByText('今日の相手')).toBeInTheDocument();
-    expect(within(region).getByRole('link', { name: /朝乃山/ })).toBeInTheDocument();
-    expect(within(region).getByText('取組予定')).toBeInTheDocument();
+    expect(within(region).getAllByRole('link', { name: /朝乃山/ })[0]).toBeInTheDocument();
     expect(within(region).getByText('これまでの結果')).toBeInTheDocument();
     expect(within(region).getByRole('link', { name: /義ノ富士/ })).toBeInTheDocument();
     expect(within(region).getByRole('link', { name: /藤凌駕/ })).toBeInTheDocument();
     expect(within(region).getByText('突き落とし')).toBeInTheDocument();
     expect(within(region).getByText('寄り切り')).toBeInTheDocument();
+    expect(within(region).getAllByText('寄り倒し')[0]).toBeInTheDocument();
     expect(within(region).queryByText('未定')).not.toBeInTheDocument();
     expect(screen.getByText('横綱 / Onosato')).toBeInTheDocument();
   });

@@ -5,6 +5,7 @@ import {
 } from '@modelcontextprotocol/server';
 import { createSumoMcpServer, type SumoServerContext } from '../lib/mcp/server';
 import { MCP_SERVER_CARD } from '../lib/mcp/server-card';
+import { renderMcpLandingHtml } from '../lib/mcp/landing';
 
 export const corsHeaders: Record<string, string> = {
   'Access-Control-Allow-Origin': '*',
@@ -59,6 +60,16 @@ export const onRequestGet = async (context: McpPagesContext): Promise<Response> 
     headers.set('Cache-Control', 'public, max-age=3600');
     headers.set('ETag', etag);
     return new Response(body, { status: 200, headers });
+  }
+
+  // HTML landing page for browser GET requests expecting text/html at /mcp
+  const acceptHeader = request.headers.get('Accept') || '';
+  if (acceptHeader.includes('text/html') && (pathParam === '' || pathParam === '/')) {
+    const html = renderMcpLandingHtml();
+    const headers = new Headers(corsHeaders);
+    headers.set('Content-Type', 'text/html; charset=utf-8');
+    headers.set('Cache-Control', 'public, max-age=3600');
+    return new Response(html, { status: 200, headers });
   }
 
   // GET /mcp is handled by the MCP handler (returns 405 Method Not Allowed per MCP spec)
