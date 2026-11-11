@@ -954,13 +954,13 @@ export const juryo: RankGroup[] = [
         "rank": "十両1",
         "side": "west",
         "wins": 1,
-        "losses": 2,
+        "losses": 3,
         "draws": 0,
         "results": [
           "win",
           "loss",
           "loss",
-          null
+          "loss"
         ],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4231/",
         "memo": ""
@@ -1019,14 +1019,14 @@ export const juryo: RankGroup[] = [
         "yomi": "かがやき",
         "rank": "十両3",
         "side": "east",
-        "wins": 2,
+        "wins": 3,
         "losses": 1,
         "draws": 0,
         "results": [
           "win",
           "win",
           "loss",
-          null
+          "win"
         ],
         "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3255/",
         "memo": ""
