@@ -1,7 +1,7 @@
 {
   "bashoName": "十一月場所",
   "year": "令和八年",
-  "updatedAt": "2026-11-12T16:22:41+09:00",
+  "updatedAt": "2026-11-12T16:29:19+09:00",
   "makuuchi": [
     {
       "title": "横綱",
@@ -706,7 +706,7 @@
           "yomi": "いちやまもと",
           "rank": "前頭12",
           "side": "east",
-          "wins": 2,
+          "wins": 3,
           "losses": 2,
           "draws": 0,
           "results": [
@@ -714,7 +714,7 @@
             "win",
             "loss",
             "win",
-            null
+            "win"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3753/",
           "memo": ""
@@ -773,14 +773,14 @@
           "rank": "前頭13",
           "side": "west",
           "wins": 2,
-          "losses": 2,
+          "losses": 3,
           "draws": 0,
           "results": [
             "win",
             "loss",
             "win",
             "loss",
-            null
+            "loss"
           ],
           "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4285/",
           "memo": ""
