@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-14T10:12:23.816627+00:00",
+  "updatedAt": "2026-11-15T10:12:53.227465+00:00",
   "sources": [
     {
       "id": "sumo-association",
@@ -15,6 +15,15 @@
   ],
   "items": [
     {
+      "id": "sumo-association-767",
+      "title": "訃報",
+      "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=767",
+      "publishedAt": "2026-11-14",
+      "publishedAtRaw": "令和8年11月14日",
+      "sourceId": "sumo-association",
+      "sourceLabel": "日本相撲協会"
+    },
+    {
       "id": "sumo-association-766",
       "title": "大相撲十一月場所「土俵祭」のご案内",
       "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=766",
@@ -29,15 +38,6 @@
       "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=765",
       "publishedAt": "2026-10-16",
       "publishedAtRaw": "令和8年10月16日",
-      "sourceId": "sumo-association",
-      "sourceLabel": "日本相撲協会"
-    },
-    {
-      "id": "sumo-association-764",
-      "title": "「大相撲バンコク公演」開催に関するお知らせ",
-      "url": "https://www.sumo.or.jp/IrohaKyokaiInformation/detail?id=764",
-      "publishedAt": "2026-10-01",
-      "publishedAtRaw": "令和8年10月1日",
       "sourceId": "sumo-association",
       "sourceLabel": "日本相撲協会"
     }
