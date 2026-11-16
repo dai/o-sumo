@@ -18,6 +18,7 @@ export type PageMeta = {
   imageUrl: string;
   image: ImageMeta;
   type: 'website';
+  robots?: string;
   isNotFound?: boolean;
 };
 
@@ -86,7 +87,7 @@ function bashoLabel(year: string, month: string): string {
   return `${year}年${Number(month)}月場所`;
 }
 
-function pageMeta(pathname: string, title: string, description: string): PageMeta {
+function pageMeta(pathname: string, title: string, description: string, robots?: string): PageMeta {
   const canonicalPath = normalizeCanonicalPath(pathname);
   const image = resolveImageMeta(canonicalPath);
   return {
@@ -96,6 +97,7 @@ function pageMeta(pathname: string, title: string, description: string): PageMet
     imageUrl: image.primary,
     image,
     type: 'website',
+    ...(robots ? { robots } : {}),
   };
 }
 
@@ -104,7 +106,7 @@ export function resolvePageMeta(pathname: string): PageMeta {
 
   if (canonicalPath === '/') return homeMeta();
 
-  const fixedPages: Record<string, { title: string; description: string }> = {
+  const fixedPages: Record<string, { title: string; description: string; robots?: string }> = {
     '/archives/': {
       title: '大相撲の場所別アーカイブ | o-sumo',
       description: '大相撲の過去の場所ごとの番付、取組結果、取組予定を閲覧できます。',
@@ -116,6 +118,7 @@ export function resolvePageMeta(pathname: string): PageMeta {
     '/my-rikishi/': {
       title: 'マイ力士 | o-sumo',
       description: '気になる力士を端末に保存し、ログインすると端末間で同期できます。',
+      robots: 'noindex',
     },
     '/compare/': {
       title: '力士比較 | o-sumo',
@@ -145,7 +148,7 @@ export function resolvePageMeta(pathname: string): PageMeta {
     },
   };
   const fixedPage = fixedPages[canonicalPath];
-  if (fixedPage) return pageMeta(canonicalPath, fixedPage.title, fixedPage.description);
+  if (fixedPage) return pageMeta(canonicalPath, fixedPage.title, fixedPage.description, fixedPage.robots);
 
   const banzukeMatch = canonicalPath.match(/^\/(\d{4})(\d{2})-banzuke\/$/);
   if (banzukeMatch) {

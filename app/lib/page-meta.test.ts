@@ -71,6 +71,9 @@ describe('resolvePageMeta', () => {
     if (canonicalPath === '/404') {
       expected.isNotFound = true;
     }
+    if (canonicalPath === '/my-rikishi/') {
+      expected.robots = 'noindex';
+    }
     expect(resolvePageMeta(pathname)).toEqual(expected);
   });
 

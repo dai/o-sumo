@@ -312,6 +312,41 @@ describe('onRequest SEO routing for sitemap-targeted HTML routes', () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (titleRegistration!.handlers.element as any)(fakeTitleElement);
       expect(capturedTitle).toBe('o-sumo | 大相撲 番付・星取表');
+      expect(response.headers.get('X-Robots-Tag')).toBeNull();
+      const headRegistrations = spy.rewriters[0].registrations.filter((r) => r.selector === 'head');
+      const appendedHtml: string[] = [];
+      for (const reg of headRegistrations) {
+        (reg.handlers.element as (el: { append: (html: string) => void }) => void)({
+          append: (html: string) => appendedHtml.push(html),
+        });
+      }
+      expect(appendedHtml.some((html) => html.includes('name="robots"'))).toBe(false);
+    } finally {
+      spy.restore();
+    }
+  });
+
+  it('adds noindex meta tag and X-Robots-Tag header only on /my-rikishi/', async () => {
+    const spy = installHtmlRewriterSpy();
+    try {
+      const request = new Request('https://osada.us/my-rikishi/', {
+        headers: { Accept: 'text/html' },
+      });
+      const mockNext = vi.fn().mockResolvedValue(makeHtmlResponse());
+      const response = await onRequest(makeContext(request, mockNext));
+
+      expect(mockNext).toHaveBeenCalled();
+      expect(response.status).toBe(200);
+      expect(response.headers.get('X-Robots-Tag')).toBe('noindex');
+      expect(spy.rewriters).toHaveLength(1);
+      const headRegistrations = spy.rewriters[0].registrations.filter((r) => r.selector === 'head');
+      const appendedHtml: string[] = [];
+      for (const reg of headRegistrations) {
+        (reg.handlers.element as (el: { append: (html: string) => void }) => void)({
+          append: (html: string) => appendedHtml.push(html),
+        });
+      }
+      expect(appendedHtml).toContain('<meta name="robots" content="noindex" />');
     } finally {
       spy.restore();
     }
