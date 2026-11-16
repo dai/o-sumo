@@ -169,6 +169,7 @@ interface PageMetadataForRewrite {
   imageWidth: number;
   imageHeight: number;
   imageAlt: string;
+  robots?: string;
 }
 
 export function rewritePageMetadata(response: Response, metadata: PageMetadataForRewrite) {
@@ -204,6 +205,13 @@ export function rewritePageMetadataWithNoscript(
       element: (element: any) =>
         element.append(`<link rel="canonical" href="${canonicalHref}" data-o-sumo-seo="canonical" />`, { html: true }),
     });
+  if (metadata.robots) {
+    const robotsContent = escapeHtmlAttribute(metadata.robots);
+    rewriter.on('head', {
+      element: (element: any) =>
+        element.append(`<meta name="robots" content="${robotsContent}" />`, { html: true }),
+    });
+  }
   if (noscriptHtml) {
     rewriter.on('body', {
       element: (element: any) => element.append(noscriptHtml, { html: true }),
@@ -211,6 +219,9 @@ export function rewritePageMetadataWithNoscript(
   }
   const transformed = rewriter.transform(response);
   const headers = prepareShareMetadataHeaders(transformed.headers);
+  if (metadata.robots) {
+    headers.set('X-Robots-Tag', metadata.robots);
+  }
   return new Response(transformed.body, { status: transformed.status, statusText: transformed.statusText, headers });
 }
 
@@ -352,6 +363,7 @@ export const onRequest = async (context: any): Promise<Response> => {
           imageWidth: pageMeta.image.width,
           imageHeight: pageMeta.image.height,
           imageAlt: pageMeta.image.alt,
+          ...(pageMeta.robots ? { robots: pageMeta.robots } : {}),
         },
         noscriptHtml,
       );

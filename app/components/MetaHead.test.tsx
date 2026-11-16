@@ -47,6 +47,7 @@ afterEach(() => {
   vi.unstubAllGlobals();
   document.title = '';
   document.head.querySelectorAll(managedMetaSelectors.join(',')).forEach((element) => element.remove());
+  document.head.querySelectorAll('meta[name="robots"]').forEach((element) => element.remove());
   document.head.querySelectorAll('script[type="application/ld+json"]').forEach((element) => element.remove());
 });
 
@@ -223,6 +224,29 @@ describe('MetaHead', () => {
     await waitFor(() => {
       const person = jsonLdDocument()['@graph'].find((node) => node['@type'] === 'Person');
       expect(person).toMatchObject({ name: '大の里', url: 'https://osada.us/rikishi/4227/' });
+    });
+  });
+
+  it('sets noindex robots meta on /my-rikishi/ and removes it when navigating away', async () => {
+    const user = userEvent.setup();
+    render(
+      <MemoryRouter initialEntries={['/my-rikishi/']}>
+        <MetaHead>
+          <Link to="/">ホーム</Link>
+        </MetaHead>
+      </MemoryRouter>,
+    );
+
+    await waitFor(() => {
+      expect(document.title).toBe('マイ力士 | o-sumo');
+      expect(contentOf('meta[name="robots"]')).toBe('noindex');
+    });
+
+    await user.click(screen.getByRole('link', { name: 'ホーム' }));
+
+    await waitFor(() => {
+      expect(document.title).toBe('o-sumo | 大相撲 番付・星取表');
+      expect(document.head.querySelector('meta[name="robots"]')).toBeNull();
     });
   });
 });

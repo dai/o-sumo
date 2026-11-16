@@ -56,6 +56,11 @@ function reconcileMeta(attribute: MetaAttribute, value: string, content: string)
   elements.slice(1).forEach((duplicate) => duplicate.remove());
 }
 
+function removeMeta(attribute: MetaAttribute, value: string) {
+  const selector = `meta[${attribute}="${value}"]`;
+  document.head.querySelectorAll<HTMLMetaElement>(selector).forEach((element) => element.remove());
+}
+
 export function usePageMetaOverride(override: PageMetaOverride | null) {
   const setOverride = useContext(PageMetaOverrideContext);
 
@@ -82,6 +87,11 @@ export default function MetaHead({ children }: PropsWithChildren) {
     META_FIELDS.forEach(({ attribute, key, content }) => {
       reconcileMeta(attribute, key, content(meta, socialUrl));
     });
+    if (meta.robots) {
+      reconcileMeta('name', 'robots', meta.robots);
+    } else if (!meta.isNotFound) {
+      removeMeta('name', 'robots');
+    }
     reconcileJsonLd(pathname, meta);
   }, [pathname, override]);
 
