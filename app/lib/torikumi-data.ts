@@ -62,8 +62,8 @@ export const torikumiData: TorikumiDataSet = {
   "bashoId": 638,
   "bashoName": "十一月場所",
   "year": "令和八年",
-  "updatedAt": "2026-11-18T16:24:04+09:00",
-  "resultUpdatedAt": "2026-11-18T16:24:04+09:00",
+  "updatedAt": "2026-11-18T16:30:13+09:00",
+  "resultUpdatedAt": "2026-11-18T16:30:13+09:00",
   "scheduleUpdatedAt": "2026-11-18T15:05:59+09:00",
   "today": {
     "makuuchi": {
@@ -133,8 +133,8 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "前頭十枚目",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/",
-          "kimarite": "",
-          "winner": null
+          "kimarite": "上手捻り",
+          "winner": "west"
         },
         {
           "division": "幕内",
@@ -149,8 +149,8 @@ export const torikumiData: TorikumiDataSet = {
           "westEnglish": "",
           "westRank": "前頭十二枚目",
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/",
-          "kimarite": "",
-          "winner": null
+          "kimarite": "不戦",
+          "winner": "west"
         },
         {
           "division": "幕内",
@@ -409,7 +409,13 @@ export const torikumiData: TorikumiDataSet = {
           "winner": null
         }
       ],
-      "absentees": []
+      "absentees": [
+        {
+          "id": 3990,
+          "name": "獅司",
+          "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+        }
+      ]
     },
     "juryo": {
       "day": 11,
@@ -6962,8 +6968,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "",
               "westRank": "前頭十枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3844/",
-              "kimarite": "",
-              "winner": null
+              "kimarite": "上手捻り",
+              "winner": "west"
             },
             {
               "division": "幕内",
@@ -6978,8 +6984,8 @@ export const torikumiData: TorikumiDataSet = {
               "westEnglish": "",
               "westRank": "前頭十二枚目",
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3485/",
-              "kimarite": "",
-              "winner": null
+              "kimarite": "不戦",
+              "winner": "west"
             },
             {
               "division": "幕内",
@@ -7238,7 +7244,13 @@ export const torikumiData: TorikumiDataSet = {
               "winner": null
             }
           ],
-          "absentees": []
+          "absentees": [
+            {
+              "id": 3990,
+              "name": "獅司",
+              "profileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3990/"
+            }
+          ]
         },
         "juryo": {
           "day": 11,
