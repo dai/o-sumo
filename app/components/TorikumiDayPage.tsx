@@ -47,6 +47,10 @@ import { formatBashoTitle, getBashoHashtagToken } from '../lib/basho-meta';
 import ManualRefreshButton from './ManualRefreshButton';
 import { captureScrollPosition, SCROLL_RESTORE_EVENT, useScrollRestore } from '../lib/use-scroll-restore';
 import { isTorikumiDataSet } from '../lib/torikumi-data-validate';
+import YushoArasoiSection from './YushoArasoiSection';
+import { computeYushoArasoi } from '../lib/yusho-arasoi';
+import { torikumiMonthKey } from '../lib/torikumi-data';
+import { makuuchiData } from '../lib/sumo-data';
 
 const BOTTOM_TO_TOP_DIVISIONS: Array<'幕内' | '十両'> = ['十両', '幕内'];
 
@@ -588,6 +592,17 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
     () => (archiveState.document ? createRecordMap(archiveState.document.banzuke) : new Map()),
     [archiveState.document],
   );
+  const yushoSummary = React.useMemo(() => {
+    if (mode !== 'result') return null;
+    const makuuchiBanzuke = archiveState.document?.banzuke.makuuchi
+      ?? (monthKey === torikumiMonthKey ? makuuchiData : undefined);
+    return computeYushoArasoi({
+      archive,
+      targetDay: day.day,
+      makuuchiBanzuke,
+      visibleDayData,
+    });
+  }, [mode, archive, day.day, archiveState.document, monthKey, visibleDayData]);
 
   // マイ力士（推し）フィルター。マイ力士が未登録のときは絞り込めないため無効扱いにする。
   const hasMyRikishi = ids.length > 0;
@@ -785,6 +800,10 @@ export default function TorikumiDayPage({ day, mode }: { day: TorikumiArchiveDay
             <SortToggle value={sortOrder} onChange={setSortOrder} label={t('torikumi.day.sortLabel', { mode: modeLabel })} />
           </section>
         )}
+
+        {yushoSummary ? (
+          <YushoArasoiSection summary={yushoSummary} banzukePath={banzukePath} />
+        ) : null}
 
         <TorikumiTable
           title={dayTitleLabel}

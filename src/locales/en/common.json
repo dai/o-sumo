@@ -453,6 +453,29 @@
       "noMyRikishiMatchesInDivision": "No My rikishi bouts in {{division}}.",
       "lastUpdated": "Last updated: {{date}}",
       "scheduleSource": "Bout schedules are updated from Japan Sumo Association announcements."
+    },
+    "yusho": {
+      "title": "Championship Race",
+      "decidedBadge": "Champion Decided",
+      "decidedSummary": "{{name}} ({{wins}}-{{losses}}) has clinched the Makuuchi championship.",
+      "decidedPlayoffSummary": "{{name}} ({{wins}}-{{losses}}) won the playoff to clinch the Makuuchi championship.",
+      "contendersTitle": "Leading Group",
+      "leaderLabel": "Leader",
+      "diffLabel": "-{{diff}}",
+      "record": "{{wins}}-{{losses}}",
+      "featuredTitle": "Today's Key Bouts",
+      "directMatchupBadge": "Head-to-Head",
+      "matchupsTitle": "Direct Matchups Among Leaders",
+      "unplayedLabel": "Remaining ({{count}})",
+      "leaderClashBadge": "Leaders Clash",
+      "playedLabel": "Completed ({{count}})",
+      "playedLine": "{{day}}: {{winner}} def. {{loser}} ({{kimarite}})",
+      "conditionsTitle": "Clinching Scenarios",
+      "condLeaderSingleSelf": "{{name}} ({{wins}}-{{losses}}): Winning out reaches {{maxWins}}-{{losses}} and controls their own destiny.",
+      "condLeaderSingle": "{{name}} ({{wins}}-{{losses}}): Winning out reaches {{maxWins}}-{{losses}}.",
+      "condLeaderTiedDirect": "{{names}} ({{wins}}-{{losses}}): Winning out reaches {{maxWins}}-{{losses}}; their upcoming head-to-head bout is pivotal.",
+      "condLeaderTied": "{{names}} ({{wins}}-{{losses}}): Tied; winning out reaches {{maxWins}}-{{losses}}, leading to a playoff if still tied.",
+      "condChaser": "{{names}} ({{wins}}-{{losses}}): Must win out ({{maxWins}}-{{losses}}) and need the leader(s) to finish with at least {{totalLosses}} losses ({{addLosses}} more) to catch up (playoff if tied)."
     }
   },
   "comparison": {
