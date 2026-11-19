@@ -781,5 +781,29 @@ describe('TorikumiDayPage', () => {
     expect(notice.parentElement).toHaveClass('torikumi-status-row');
   });
 
+  it('renders the yusho-arasoi block on day 11+ result pages and hides it on day 10 or schedule pages', () => {
+    const day10 = torikumiArchive.resultDays.find((d) => d.day === 10);
+    const day11 = torikumiArchive.resultDays.find((d) => d.day === 11);
+    expect(day10).toBeDefined();
+    expect(day11).toBeDefined();
+
+    const { unmount: unmountDay10 } = renderPage(day10!, 'result');
+    expect(screen.queryByRole('heading', { level: 2, name: '優勝争い' })).not.toBeInTheDocument();
+    unmountDay10();
+
+    const { unmount: unmountSchedule } = renderPage(day11!, 'schedule');
+    expect(screen.queryByRole('heading', { level: 2, name: '優勝争い' })).not.toBeInTheDocument();
+    unmountSchedule();
+
+    renderPage(day11!, 'result');
+    const yushoHeading = screen.getByRole('heading', { level: 2, name: '優勝争い' });
+    expect(yushoHeading).toBeInTheDocument();
+    const yushoSection = yushoHeading.closest('section');
+    expect(yushoSection).not.toBeNull();
+    expect(within(yushoSection!).getByText('首位グループ')).toBeInTheDocument();
+    expect(within(yushoSection!).getByText('本日の注目対戦')).toBeInTheDocument();
+    expect(within(yushoSection!).getByText('優勝条件')).toBeInTheDocument();
+  });
+
 });
 
