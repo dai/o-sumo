@@ -1582,6 +1582,11 @@ a.yusho-contender-name:hover {
 .yusho-cell-name {
   font-family: var(--font-serif);
   font-weight: 700;
+  white-space: nowrap;
+}
+
+.yusho-cell-condition {
+  min-width: 16rem;
 }
 
 .yusho-no-bout {
@@ -1810,44 +1815,6 @@ a.yusho-matrix-head-name:hover {
   .yusho-table th,
   .yusho-table td {
     padding: 0.35rem 0.4rem;
-  }
-
-  .yusho-conditions-table thead {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-  }
-
-  .yusho-conditions-table,
-  .yusho-conditions-table tbody,
-  .yusho-conditions-table tr,
-  .yusho-conditions-table td {
-    display: block;
-    width: 100%;
-  }
-
-  .yusho-conditions-table tr {
-    padding: 0.4rem 0;
-  }
-
-  .yusho-conditions-table td {
-    border-bottom: none;
-    padding: 0.12rem 0.55rem;
-  }
-
-  .yusho-conditions-table td::before {
-    content: attr(data-label);
-    display: block;
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: var(--on-surface-variant, #5e5f5b);
-  }
-
-  .yusho-conditions-table td.yusho-cell-fate:empty {
-    display: none;
   }
 }
 

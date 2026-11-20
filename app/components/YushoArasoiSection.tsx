@@ -79,10 +79,10 @@ function ContendersTable({
     <table className="yusho-table yusho-contenders-table" aria-label={t('torikumi.yusho.contendersTitle')}>
       <thead>
         <tr>
-          <th scope="col">{t('torikumi.yusho.contTableDiff')}</th>
+          <th scope="col" className="yusho-cell-diff">{t('torikumi.yusho.contTableDiff')}</th>
           <th scope="col">{t('torikumi.yusho.contTableRikishi')}</th>
           <th scope="col">{t('torikumi.yusho.contTableRecord')}</th>
-          <th scope="col">{t('torikumi.yusho.contTableRemaining')}</th>
+          <th scope="col" className="yusho-cell-num">{t('torikumi.yusho.contTableRemaining')}</th>
           <th scope="col">{opponentHeader}</th>
         </tr>
       </thead>
@@ -378,7 +378,7 @@ function ConditionsTable({
         <tr>
           <th scope="col">{t('torikumi.yusho.condTableRikishi')}</th>
           <th scope="col">{t('torikumi.yusho.condTableRecord')}</th>
-          <th scope="col">{t('torikumi.yusho.condTableRemaining')}</th>
+          <th scope="col" className="yusho-cell-num">{t('torikumi.yusho.condTableRemaining')}</th>
           <th scope="col">{t('torikumi.yusho.condTableWinLose')}</th>
           <th scope="col">{t('torikumi.yusho.condTableCondition')}</th>
           <th scope="col">{t('torikumi.yusho.condTableFate')}</th>
@@ -387,16 +387,16 @@ function ConditionsTable({
       <tbody>
         {summary.conditionRows.map((row) => (
           <tr key={row.profileUrl}>
-            <td className="yusho-cell-name" data-label={t('torikumi.yusho.condTableRikishi')}>
+            <td className="yusho-cell-name">
               <RikishiLink banzukePath={banzukePath} id={row.id} name={row.name} className="yusho-contender-name" />
             </td>
-            <td className="yusho-cell-record" data-label={t('torikumi.yusho.condTableRecord')}>
+            <td className="yusho-cell-record">
               {t('torikumi.yusho.record', { wins: row.wins, losses: row.losses })}
             </td>
-            <td className="yusho-cell-num" data-label={t('torikumi.yusho.condTableRemaining')}>
+            <td className="yusho-cell-num">
               {row.remainingBouts}
             </td>
-            <td className="yusho-cell-record" data-label={t('torikumi.yusho.condTableWinLose')}>
+            <td className="yusho-cell-record">
               {row.todaySimulation
                 ? `${t('torikumi.yusho.record', {
                     wins: row.todaySimulation.win.wins,
@@ -407,10 +407,10 @@ function ConditionsTable({
                   })}`
                 : '—'}
             </td>
-            <td className="yusho-cell-condition" data-label={t('torikumi.yusho.condTableCondition')}>
+            <td className="yusho-cell-condition">
               <ConditionMain row={row} t={t} isJa={isJa} />
             </td>
-            <td className="yusho-cell-fate" data-label={t('torikumi.yusho.condTableFate')}>
+            <td className="yusho-cell-fate">
               <ConditionFate row={row} t={t} />
             </td>
           </tr>
