@@ -1524,6 +1524,156 @@ a.yusho-contender-name:hover {
   white-space: nowrap;
 }
 
+.yusho-arasoi-basis {
+  margin-left: auto;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--on-surface-variant, #5e5f5b);
+  white-space: nowrap;
+}
+
+.yusho-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  background: var(--surface-container-low);
+  color: var(--on-surface, #2d2d2a);
+}
+
+.yusho-contenders-table {
+  margin-top: 0.6rem;
+}
+
+.yusho-table th,
+.yusho-table td {
+  padding: 0.42rem 0.55rem;
+  border-bottom: 1px solid var(--color-outline-variant, rgba(0, 0, 0, 0.08));
+  text-align: left;
+  vertical-align: top;
+}
+
+.yusho-table thead th {
+  background: var(--surface-container-high);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--on-surface-variant, #5e5f5b);
+  white-space: nowrap;
+}
+
+.yusho-table tbody tr:last-child th,
+.yusho-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.yusho-table tbody tr.is-leader {
+  background: color-mix(in srgb, var(--color-secondary-light, #fed65b) 16%, var(--surface-container-low));
+}
+
+.yusho-cell-diff,
+.yusho-cell-num {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.yusho-cell-record {
+  white-space: nowrap;
+}
+
+.yusho-cell-name {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.yusho-cell-condition {
+  min-width: 16rem;
+}
+
+.yusho-no-bout {
+  font-family: var(--font-sans, sans-serif);
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: var(--on-surface-variant, #5e5f5b);
+}
+
+.yusho-cond-line {
+  display: block;
+}
+
+.yusho-cond-line + .yusho-cond-line {
+  margin-top: 0.25rem;
+}
+
+.yusho-cell-fate {
+  white-space: nowrap;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.yusho-clash-line {
+  margin: 0.6rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--on-surface, #2d2d2a);
+}
+
+.yusho-matrix-scroll {
+  overflow-x: auto;
+}
+
+.yusho-matrix {
+  table-layout: fixed;
+  min-width: 100%;
+}
+
+.yusho-matrix th,
+.yusho-matrix td {
+  text-align: center;
+}
+
+.yusho-matrix thead th,
+.yusho-matrix tbody th {
+  font-size: 0.78rem;
+}
+
+.yusho-matrix-cell {
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.yusho-matrix-cell.is-self {
+  color: var(--on-surface-variant, #5e5f5b);
+}
+
+.yusho-matrix-cell.is-win {
+  font-weight: 700;
+}
+
+.yusho-matrix-cell.is-scheduled {
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.yusho-matrix-head-name {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+a.yusho-matrix-head-name:hover {
+  text-decoration: underline;
+  color: var(--color-secondary);
+}
+
+.yusho-matrix-corner {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--on-surface-variant, #5e5f5b);
+  white-space: nowrap;
+}
+
 .yusho-featured-bouts {
   list-style: none;
   margin: 0;
@@ -1631,12 +1781,22 @@ a.yusho-contender-name:hover {
 [data-theme='dark'] .yusho-contender-record,
 [data-theme='dark'] .yusho-unplayed-chip,
 [data-theme='dark'] .yusho-played-item,
-[data-theme='dark'] .yusho-condition-item {
+[data-theme='dark'] .yusho-condition-item,
+[data-theme='dark'] .yusho-table,
+[data-theme='dark'] .yusho-clash-line {
   color: var(--on-surface, #e2e2df);
 }
 
-[data-theme='dark'] .yusho-matchups-label {
+[data-theme='dark'] .yusho-matchups-label,
+[data-theme='dark'] .yusho-arasoi-basis,
+[data-theme='dark'] .yusho-no-bout,
+[data-theme='dark'] .yusho-matrix-corner,
+[data-theme='dark'] .yusho-matrix-cell.is-self {
   color: var(--on-surface-variant, #a9aba6);
+}
+
+[data-theme='dark'] .yusho-table thead th {
+  color: var(--on-surface-variant, #c4c6c1);
 }
 
 @media (max-width: 640px) {
@@ -1646,6 +1806,15 @@ a.yusho-contender-name:hover {
 
   .yusho-featured-kimarite {
     margin-left: 0;
+  }
+
+  .yusho-table {
+    font-size: 0.78rem;
+  }
+
+  .yusho-table th,
+  .yusho-table td {
+    padding: 0.35rem 0.4rem;
   }
 }
 
