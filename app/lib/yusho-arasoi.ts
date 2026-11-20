@@ -3,6 +3,11 @@ import type { TorikumiArchiveDay, TorikumiDataSet, TorikumiMatch } from './torik
 import { canonicalShikona } from './rikishi-display';
 import { extractRikishiIdFromProfileUrl } from './rikishi-profile';
 
+export interface YushoDayOpponent {
+  name: string;
+  profileUrl: string;
+}
+
 export interface YushoContender {
   profileUrl: string;
   id: number | null;
@@ -13,6 +18,8 @@ export interface YushoContender {
   maxPossibleWins: number;
   diffFromLeader: number;
   banzukeOrder: number;
+  /** そのページの日の対戦相手。取組がない日は null、相手未定の場合は name が空文字。 */
+  dayOpponent: YushoDayOpponent | null;
 }
 
 export interface YushoFeaturedBout {
@@ -28,57 +35,97 @@ export interface YushoFeaturedBout {
   kimarite: string;
 }
 
-export interface YushoPlayedMatchup {
-  day: number;
-  dayLabel: string;
+export type YushoConditionDetail =
+  | {
+      kind: 'leaderClinch';
+      /** 他の全員の最大を上回る勝ち数。 */
+      clinchTargetWins: number;
+      /** その到達に必要なあと何勝か（0 の場合は既に確定圏内）。 */
+      clinchWinsNeeded: number;
+      /** あと1敗した場合の到達勝ち数（= MAX_i - 1）。 */
+      tieFinishWins: number;
+      /** 全勝で tieFinishWins に届く他力士（空の場合は2行目を出さない）。 */
+      tieTierNames: string[];
+    }
+  | {
+      kind: 'coLeader';
+      coLeaderNames: string[];
+      directClashNames: string[];
+    }
+  | { kind: 'chaserSweep' }
+  | { kind: 'chaserEqual' }
+  | {
+      kind: 'chaser';
+      /** 同点のために必要な首位の通算敗数。 */
+      tieTotalLosses: number;
+      /** 同点のために必要な首位のあと何敗か。 */
+      tieAdditionalLosses: number;
+      belowWins: number;
+      belowLosses: number;
+    }
+  | { kind: 'playoffOnly' }
+  | { kind: 'eliminated' };
+
+export interface YushoConditionRow {
+  profileUrl: string;
+  id: number | null;
+  name: string;
+  wins: number;
+  losses: number;
+  remainingBouts: number;
+  maxPossibleWins: number;
+  maxLosses: number;
+  topName: string;
+  leaderWins: number;
+  detail: YushoConditionDetail;
+}
+
+export interface YushoHeadToHeadCell {
+  aProfileUrl: string;
+  aName: string;
+  bProfileUrl: string;
+  bName: string;
+  played: {
+    winnerProfileUrl: string;
+    day: number;
+    dayLabel: string;
+    kimarite: string;
+  } | null;
+  /** そのページの日に組まれている未対戦。なければ null。 */
+  scheduledDay: number | null;
+  scheduledDayLabel: string | null;
+}
+
+export interface YushoClashSide {
+  name: string;
+  profileUrl: string;
+  wins: number;
+  losses: number;
+  remainingBouts: number;
+}
+
+export interface YushoClashOutline {
+  east: YushoClashSide;
+  west: YushoClashSide;
+  leaderWins: number;
+  othersBestWins: number;
+  boutNo: number;
+}
+
+export type YushoClashRelation = 'sole' | 'tied' | 'chasing';
+export type YushoClashLoserFate = 'playoff-only' | 'eliminated' | null;
+
+export interface YushoClashOutcome {
   winnerName: string;
-  winnerProfileUrl: string;
+  winnerWins: number;
+  winnerLosses: number;
   loserName: string;
-  loserProfileUrl: string;
-  kimarite: string;
+  loserWins: number;
+  loserLosses: number;
+  relation: YushoClashRelation;
+  gap: number;
+  loserFate: YushoClashLoserFate;
 }
-
-export interface YushoUnplayedMatchup {
-  rikishiA: { name: string; profileUrl: string };
-  rikishiB: { name: string; profileUrl: string };
-  isLeaderClash: boolean;
-}
-
-export type YushoConditionLine =
-  | {
-      kind: 'decided';
-      championName: string;
-      wins: number;
-      losses: number;
-      viaPlayoff: boolean;
-    }
-  | {
-      kind: 'leaderSingle';
-      name: string;
-      wins: number;
-      losses: number;
-      maxWins: number;
-      isSelfDetermined: boolean;
-      hasUnplayedWithChasers: boolean;
-    }
-  | {
-      kind: 'leaderTied';
-      names: string[];
-      wins: number;
-      losses: number;
-      maxWins: number;
-      hasUnplayedDirectClash: boolean;
-    }
-  | {
-      kind: 'chaserGroup';
-      names: string[];
-      wins: number;
-      losses: number;
-      maxWins: number;
-      needLeaderTotalLosses: number;
-      needLeaderAdditionalLosses: number;
-      playoffAtMaxWins: boolean;
-    };
 
 export interface YushoArasoiSummary {
   targetDay: number;
@@ -92,11 +139,18 @@ export interface YushoArasoiSummary {
     losses: number;
     viaPlayoff: boolean;
   } | null;
+  /** 集計が依拠する最新結果の日。そのページの日に結果があればその日、なければ直前の結果日。 */
+  basisDay: number;
+  basisDayLabel: string;
+  targetDayLabel: string;
+  basisIsoDate: string | null;
+  /** そのページの日（カレンダー日付つき見出し用）。 */
+  pageIsoDate: string | null;
   contenders: YushoContender[];
   featuredBouts: YushoFeaturedBout[];
-  unplayedMatchups: YushoUnplayedMatchup[];
-  playedMatchups: YushoPlayedMatchup[];
-  conditions: YushoConditionLine[];
+  headToHead: YushoHeadToHeadCell[];
+  conditionRows: YushoConditionRow[];
+  clashOutlines: YushoClashOutline[];
 }
 
 const DEFAULT_TOTAL_DAYS = 15;
@@ -126,6 +180,172 @@ function formatDayLabelJa(day: number): string {
   if (day === 1) return '初日';
   if (day === 15) return '千秋楽';
   return `${day}日目`;
+}
+
+export type FeaturedHeadingRel = 'today' | 'yesterday' | 'tomorrow' | 'past' | 'future';
+
+function parseIsoDateParts(iso: string): { year: number; month: number; day: number } | null {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso);
+  if (!match) return null;
+  return { year: Number(match[1]), month: Number(match[2]), day: Number(match[3]) };
+}
+
+/**
+ * 注目対戦見出しの相対区分を純粋に判定する。pageIsoDate がページの日、
+ * todayIsoDate が閲覧日（JST の YYYY-MM-DD）。テストでは両方を固定できる。
+ */
+export function getFeaturedHeadingRel(pageIsoDate: string, todayIsoDate: string): FeaturedHeadingRel {
+  const page = parseIsoDateParts(pageIsoDate);
+  const today = parseIsoDateParts(todayIsoDate);
+  if (!page || !today) return 'past';
+  const diffDays = Math.round(
+    (Date.UTC(page.year, page.month - 1, page.day) - Date.UTC(today.year, today.month - 1, today.day)) / 86_400_000,
+  );
+  if (diffDays === 0) return 'today';
+  if (diffDays === -1) return 'yesterday';
+  if (diffDays === 1) return 'tomorrow';
+  return diffDays < 0 ? 'past' : 'future';
+}
+
+const EN_MONTH_NAMES = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+] as const;
+
+/** YYYY-MM-DD → 11月19日 / November 19。見出しの日付部分用。 */
+export function formatMonthDay(isoDate: string, lang = 'ja'): string {
+  const parts = parseIsoDateParts(isoDate);
+  if (!parts) return isoDate;
+  if (lang.toLowerCase().startsWith('en')) {
+    return `${EN_MONTH_NAMES[parts.month - 1] ?? parts.month} ${parts.day}`;
+  }
+  return `${parts.month}月${parts.day}日`;
+}
+
+/**
+ * 優勝条件表の行を集計値から機械的に作る。各力士について到達・前提・脱落を判定する。
+ * standings は勝ち星降順（首位が先頭）を想定するが、先頭以外でも動作する。
+ */
+export function buildConditionRows(standings: YushoContender[], totalDays: number): YushoConditionRow[] {
+  if (standings.length === 0) return [];
+  const leaderWins = Math.max(...standings.map((s) => s.wins));
+  const leaders = standings.filter((s) => s.wins === leaderWins);
+  const leaderMaxWins = Math.max(...leaders.map((s) => s.maxPossibleWins));
+  const topName = leaders[0].name;
+  const leaderLosses = leaders[0].losses;
+
+  return standings.map((item) => {
+    const base = {
+      profileUrl: item.profileUrl,
+      id: item.id,
+      name: item.name,
+      wins: item.wins,
+      losses: item.losses,
+      remainingBouts: item.remainingBouts,
+      maxPossibleWins: item.maxPossibleWins,
+      maxLosses: totalDays - item.maxPossibleWins,
+      topName,
+      leaderWins,
+    };
+
+    if (item.wins === leaderWins && leaders.length === 1) {
+      const maxOtherMax = Math.max(...standings.filter((s) => s !== item).map((s) => s.maxPossibleWins), -1);
+      const clinchTargetWins = maxOtherMax + 1;
+      const tieFinishWins = item.maxPossibleWins - 1;
+      const tieTierNames =
+        tieFinishWins >= item.wins
+          ? standings
+              .filter((s) => s !== item && s.maxPossibleWins === tieFinishWins)
+              .map((s) => s.name)
+          : [];
+      return {
+        ...base,
+        detail: {
+          kind: 'leaderClinch',
+          clinchTargetWins,
+          clinchWinsNeeded: Math.max(0, clinchTargetWins - item.wins),
+          tieFinishWins,
+          tieTierNames,
+        } as YushoConditionDetail,
+      };
+    }
+
+    if (item.wins === leaderWins) {
+      const coLeaderNames = leaders.filter((s) => s !== item).map((s) => s.name);
+      return {
+        ...base,
+        detail: { kind: 'coLeader', coLeaderNames, directClashNames: [] } as YushoConditionDetail,
+      };
+    }
+
+    if (item.maxPossibleWins < leaderWins) {
+      return { ...base, detail: { kind: 'eliminated' } as YushoConditionDetail };
+    }
+    if (item.maxPossibleWins === leaderWins) {
+      return { ...base, detail: { kind: 'playoffOnly' } as YushoConditionDetail };
+    }
+    if (item.maxPossibleWins > leaderMaxWins) {
+      return { ...base, detail: { kind: 'chaserSweep' } as YushoConditionDetail };
+    }
+    if (item.maxPossibleWins === leaderMaxWins) {
+      return { ...base, detail: { kind: 'chaserEqual' } as YushoConditionDetail };
+    }
+    const tieTotalLosses = totalDays - item.maxPossibleWins;
+    return {
+      ...base,
+      detail: {
+        kind: 'chaser',
+        tieTotalLosses,
+        tieAdditionalLosses: tieTotalLosses - leaderLosses,
+        belowWins: item.maxPossibleWins - 1,
+        belowLosses: totalDays - (item.maxPossibleWins - 1),
+      } as YushoConditionDetail,
+    };
+  });
+}
+
+/**
+ * 直接対決の片側が勝った場合の両者の成績と首位関係を計算する。
+ * othersBestWins は対戦2人以外の最高勝ち星。
+ */
+export function describeClashOutcome(
+  side: YushoClashSide,
+  other: YushoClashSide,
+  othersBestWins: number,
+): YushoClashOutcome {
+  const winnerWins = side.wins + 1;
+  const winnerLosses = side.losses;
+  const loserWins = other.wins;
+  const loserLosses = other.losses + 1;
+  const topExcludingWinner = Math.max(loserWins, othersBestWins);
+  const relation: YushoClashRelation =
+    winnerWins > topExcludingWinner ? 'sole' : winnerWins === topExcludingWinner ? 'tied' : 'chasing';
+  const gap = Math.max(0, topExcludingWinner - winnerWins);
+  const loserMaxAfter = loserWins + Math.max(0, other.remainingBouts - 1);
+  const newTop = Math.max(winnerWins, othersBestWins);
+  const loserFate: YushoClashLoserFate =
+    loserMaxAfter < newTop ? 'eliminated' : loserMaxAfter === newTop ? 'playoff-only' : null;
+  return {
+    winnerName: side.name,
+    winnerWins,
+    winnerLosses,
+    loserName: other.name,
+    loserWins,
+    loserLosses,
+    relation,
+    gap,
+    loserFate,
+  };
 }
 
 function getTargetDayObject(
@@ -218,7 +438,10 @@ export function computeYushoArasoi({
     .sort((a, b) => a.day - b.day);
 
   let playoffWinner: { name: string; profileUrl: string } | null = null;
-  const playedMap = new Map<string, YushoPlayedMatchup>();
+  const playedMap = new Map<
+    string,
+    { day: number; dayLabel: string; winnerProfileUrl: string; kimarite: string }
+  >();
 
   for (const dayItem of resultDays) {
     const matches = dayItem.day === targetDay && visibleDayData
@@ -258,10 +481,7 @@ export function computeYushoArasoi({
         playedMap.set(pairKey, {
           day: dayItem.day,
           dayLabel: formatDayLabelJa(dayItem.day),
-          winnerName: winnerIsEast ? east.name : west.name,
           winnerProfileUrl: winnerIsEast ? match.eastProfileUrl : match.westProfileUrl,
-          loserName: winnerIsEast ? west.name : east.name,
-          loserProfileUrl: winnerIsEast ? match.westProfileUrl : match.eastProfileUrl,
           kimarite: match.kimarite,
         });
       }
@@ -289,6 +509,21 @@ export function computeYushoArasoi({
 
   const remainingDaysAfterTarget = Math.max(0, totalDays - targetDay);
 
+  // そのページの日の対戦相手（両側から引けるよう両方向に登録）
+  const dayOpponentMap = new Map<string, YushoDayOpponent>();
+  for (const match of currentMatches) {
+    if (match.isPlayoff) continue;
+    if (isAbsentMatch(match, currentAbsenteeIds)) continue;
+    dayOpponentMap.set(match.eastProfileUrl, {
+      name: match.westName ? canonicalShikona(match.westProfileUrl, match.westName) : '',
+      profileUrl: match.westProfileUrl,
+    });
+    dayOpponentMap.set(match.westProfileUrl, {
+      name: match.eastName ? canonicalShikona(match.eastProfileUrl, match.eastName) : '',
+      profileUrl: match.eastProfileUrl,
+    });
+  }
+
   const allStandings: YushoContender[] = Array.from(records.entries()).map(([profileUrl, rec]) => {
     const remainingBouts = remainingDaysAfterTarget + (hasPendingBoutToday.has(profileUrl) ? 1 : 0);
     return {
@@ -301,6 +536,7 @@ export function computeYushoArasoi({
       maxPossibleWins: rec.wins + remainingBouts,
       diffFromLeader: 0,
       banzukeOrder: banzukeOrderMap.get(profileUrl) ?? Number.MAX_SAFE_INTEGER,
+      dayOpponent: dayOpponentMap.get(profileUrl) ?? null,
     };
   });
 
@@ -411,102 +647,116 @@ export function computeYushoArasoi({
     return a.boutNo - b.boutNo;
   });
 
-  // 首位グループ内の直接対決（対戦済み / 未対戦）
-  const playedMatchups: YushoPlayedMatchup[] = [];
-  const unplayedMatchups: YushoUnplayedMatchup[] = [];
+  // そのページの日に組まれている首位グループ同士の対戦キー
+  const scheduledPairKeys = new Set<string>();
+  for (const match of currentMatches) {
+    if (match.isPlayoff) continue;
+    if (isAbsentMatch(match, currentAbsenteeIds)) continue;
+    if (match.winner) continue;
+    scheduledPairKeys.add([match.eastProfileUrl, match.westProfileUrl].sort().join('|'));
+  }
 
+  // 首位グループ内の直接対決を正方マトリクス用のセル列に変換
+  const headToHead: YushoHeadToHeadCell[] = [];
   for (let i = 0; i < contenders.length; i++) {
     for (let j = i + 1; j < contenders.length; j++) {
       const a = contenders[i];
       const b = contenders[j];
       const pairKey = [a.profileUrl, b.profileUrl].sort().join('|');
       const played = playedMap.get(pairKey);
-      if (played) {
-        playedMatchups.push(played);
-      } else {
-        unplayedMatchups.push({
-          rikishiA: { name: a.name, profileUrl: a.profileUrl },
-          rikishiB: { name: b.name, profileUrl: b.profileUrl },
-          isLeaderClash: a.wins === leaderWins && b.wins === leaderWins,
-        });
+      headToHead.push({
+        aProfileUrl: a.profileUrl,
+        aName: a.name,
+        bProfileUrl: b.profileUrl,
+        bName: b.name,
+        played: played
+          ? {
+              winnerProfileUrl: played.winnerProfileUrl,
+              day: played.day,
+              dayLabel: played.dayLabel,
+              kimarite: played.kimarite,
+            }
+          : null,
+        scheduledDay: !played && scheduledPairKeys.has(pairKey) ? targetDay : null,
+        scheduledDayLabel: !played && scheduledPairKeys.has(pairKey) ? formatDayLabelJa(targetDay) : null,
+      });
+    }
+  }
+
+  // 優勝条件表の行を機械的に構築（首位の複数人並走時は未対戦の直接対決名を補う）
+  const conditionRows = buildConditionRows(contenders, totalDays);
+  const leaderProfiles = new Set(contenders.filter((c) => c.wins === leaderWins).map((c) => c.profileUrl));
+  if (leaderProfiles.size > 1) {
+    for (const row of conditionRows) {
+      if (row.detail.kind !== 'coLeader') continue;
+      const names: string[] = [];
+      for (const cell of headToHead) {
+        if (cell.played) continue;
+        const involvesRow =
+          cell.aProfileUrl === row.profileUrl || cell.bProfileUrl === row.profileUrl;
+        if (!involvesRow) continue;
+        const otherUrl = cell.aProfileUrl === row.profileUrl ? cell.bProfileUrl : cell.aProfileUrl;
+        if (!leaderProfiles.has(otherUrl)) continue;
+        names.push(cell.aProfileUrl === row.profileUrl ? cell.bName : cell.aName);
       }
-    }
-  }
-  playedMatchups.sort((a, b) => a.day - b.day);
-
-  // 優勝条件の短文を機械的に構築
-  const conditions: YushoConditionLine[] = [];
-  if (isDecided && champion) {
-    conditions.push({
-      kind: 'decided',
-      championName: champion.name,
-      wins: champion.wins,
-      losses: champion.losses,
-      viaPlayoff: champion.viaPlayoff,
-    });
-  } else {
-    const leaders = contenders.filter((c) => c.wins === leaderWins);
-    const chasers = contenders.filter((c) => c.wins < leaderWins);
-    const leaderMaxWins = leaders[0]?.maxPossibleWins ?? leaderWins;
-    const maxChaserPossibleWins = chasers.reduce((max, c) => Math.max(max, c.maxPossibleWins), -1);
-
-    if (leaders.length === 1) {
-      const leader = leaders[0];
-      const isSelfDetermined = leader.maxPossibleWins > maxChaserPossibleWins;
-      const hasUnplayedWithChasers = chasers.some((c) =>
-        unplayedMatchups.some(
-          (u) =>
-            (u.rikishiA.profileUrl === leader.profileUrl && u.rikishiB.profileUrl === c.profileUrl) ||
-            (u.rikishiB.profileUrl === leader.profileUrl && u.rikishiA.profileUrl === c.profileUrl),
-        ),
-      );
-      conditions.push({
-        kind: 'leaderSingle',
-        name: leader.name,
-        wins: leader.wins,
-        losses: leader.losses,
-        maxWins: leader.maxPossibleWins,
-        isSelfDetermined,
-        hasUnplayedWithChasers,
-      });
-    } else if (leaders.length > 1) {
-      const hasUnplayedDirectClash = unplayedMatchups.some((u) => u.isLeaderClash);
-      conditions.push({
-        kind: 'leaderTied',
-        names: leaders.map((l) => l.name),
-        wins: leaders[0].wins,
-        losses: leaders[0].losses,
-        maxWins: leaderMaxWins,
-        hasUnplayedDirectClash,
-      });
-    }
-
-    // 追う側を勝ち星ごとにグルーピング
-    const chaserWinLevels = Array.from(new Set(chasers.map((c) => c.wins))).sort((a, b) => b - a);
-    const leaderCurrentLosses = leaders[0]?.losses ?? 0;
-    for (const w of chaserWinLevels) {
-      const group = chasers.filter((c) => c.wins === w);
-      const rep = group[0];
-      const chaserMaxWins = rep.maxPossibleWins;
-      if (chaserMaxWins < leaderWins) continue;
-
-      const needAdditionalLossesForTie = Math.max(0, leaderMaxWins - chaserMaxWins);
-      const needTotalLossesForTie = leaderCurrentLosses + needAdditionalLossesForTie;
-      conditions.push({
-        kind: 'chaserGroup',
-        names: group.map((g) => g.name),
-        wins: rep.wins,
-        losses: rep.losses,
-        maxWins: chaserMaxWins,
-        needLeaderTotalLosses: needTotalLossesForTie,
-        needLeaderAdditionalLosses: needAdditionalLossesForTie,
-        playoffAtMaxWins: chaserMaxWins <= leaderMaxWins,
-      });
+      row.detail.directClashNames = names;
     }
   }
 
-  // 未使用警告回避のため contenderMap 参照が必要なら使う（不要なら削除）
-  void contenderMap;
+  // 直接対決がある日の追加行（残り3日以下 = 終盤のみ）。勝敗未定の直接対決が対象。
+  const clashOutlines: YushoClashOutline[] = [];
+  if (totalDays - targetDay <= 2) {
+    for (const bout of featuredBouts) {
+      if (!bout.isDirectMatchup || bout.winner) continue;
+      const east = contenderMap.get(bout.eastProfileUrl);
+      const west = contenderMap.get(bout.westProfileUrl);
+      if (!east || !west) continue;
+      const othersBestWins = contenders
+        .filter((c) => c.profileUrl !== east.profileUrl && c.profileUrl !== west.profileUrl)
+        .reduce((max, c) => Math.max(max, c.wins), 0);
+      clashOutlines.push({
+        east: {
+          name: east.name,
+          profileUrl: east.profileUrl,
+          wins: east.wins,
+          losses: east.losses,
+          remainingBouts: east.remainingBouts,
+        },
+        west: {
+          name: west.name,
+          profileUrl: west.profileUrl,
+          wins: west.wins,
+          losses: west.losses,
+          remainingBouts: west.remainingBouts,
+        },
+        leaderWins,
+        othersBestWins,
+        boutNo: bout.boutNo,
+      });
+    }
+    clashOutlines.sort((a, b) => a.boutNo - b.boutNo);
+  }
+
+  // 集計時点：そのページの日に結果があればその日、なければ直前の結果日
+  const currentDecidedCount = currentMatches.filter((m) => !m.isPlayoff && m.winner).length;
+  const latestPublishedBelow = (archive.resultDays ?? [])
+    .filter((d) => d.day < targetDay && d.status === 'published')
+    .reduce((max, d) => Math.max(max, d.day), -1);
+  const basisDay =
+    currentDecidedCount > 0 || latestPublishedBelow < 0 ? targetDay : latestPublishedBelow;
+  const isoOfDay = (day: number): string | null => {
+    const found =
+      (archive.resultDays ?? []).find((d) => d.day === day) ??
+      (archive.scheduleDays ?? []).find((d) => d.day === day);
+    return found?.isoDate ?? null;
+  };
+  // 見出し・時点表示の日付はページと揃えるためアーカイブの日ラベルを使う
+  const labelOfDay = (day: number): string => {
+    const found =
+      (archive.resultDays ?? []).find((d) => d.day === day) ??
+      (archive.scheduleDays ?? []).find((d) => d.day === day);
+    return found?.label ?? formatDayLabelJa(day);
+  };
 
   return {
     targetDay,
@@ -514,10 +764,15 @@ export function computeYushoArasoi({
     remainingDaysAfterTarget,
     isDecided,
     champion,
+    basisDay,
+    basisDayLabel: labelOfDay(basisDay),
+    targetDayLabel: labelOfDay(targetDay),
+    basisIsoDate: isoOfDay(basisDay),
+    pageIsoDate: isoOfDay(targetDay),
     contenders,
     featuredBouts,
-    unplayedMatchups,
-    playedMatchups,
-    conditions,
+    headToHead,
+    conditionRows,
+    clashOutlines,
   };
 }
