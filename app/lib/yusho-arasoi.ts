@@ -8,6 +8,11 @@ export interface YushoDayOpponent {
   profileUrl: string;
 }
 
+export interface YushoTodaySimulation {
+  win: { wins: number; losses: number };
+  lose: { wins: number; losses: number };
+}
+
 export interface YushoContender {
   profileUrl: string;
   id: number | null;
@@ -20,6 +25,8 @@ export interface YushoContender {
   banzukeOrder: number;
   /** そのページの日の対戦相手。取組がない日は null、相手未定の場合は name が空文字。 */
   dayOpponent: YushoDayOpponent | null;
+  /** 対象日の取組が未確定の場合の勝ち/負けシミュレーション。確定済み・取組なしは null。 */
+  todaySimulation?: YushoTodaySimulation | null;
 }
 
 export interface YushoFeaturedBout {
@@ -75,6 +82,7 @@ export interface YushoConditionRow {
   remainingBouts: number;
   maxPossibleWins: number;
   maxLosses: number;
+  todaySimulation: YushoTodaySimulation | null;
   topName: string;
   leaderWins: number;
   detail: YushoConditionDetail;
@@ -254,6 +262,7 @@ export function buildConditionRows(standings: YushoContender[], totalDays: numbe
       remainingBouts: item.remainingBouts,
       maxPossibleWins: item.maxPossibleWins,
       maxLosses: totalDays - item.maxPossibleWins,
+      todaySimulation: item.todaySimulation ?? null,
       topName,
       leaderWins,
     };
@@ -525,7 +534,14 @@ export function computeYushoArasoi({
   }
 
   const allStandings: YushoContender[] = Array.from(records.entries()).map(([profileUrl, rec]) => {
-    const remainingBouts = remainingDaysAfterTarget + (hasPendingBoutToday.has(profileUrl) ? 1 : 0);
+    const pendingToday = hasPendingBoutToday.has(profileUrl);
+    const remainingBouts = remainingDaysAfterTarget + (pendingToday ? 1 : 0);
+    const todaySimulation: YushoTodaySimulation | null = pendingToday
+      ? {
+          win: { wins: rec.wins + 1, losses: rec.losses },
+          lose: { wins: rec.wins, losses: rec.losses + 1 },
+        }
+      : null;
     return {
       profileUrl,
       id: extractRikishiIdFromProfileUrl(profileUrl),
@@ -537,6 +553,7 @@ export function computeYushoArasoi({
       diffFromLeader: 0,
       banzukeOrder: banzukeOrderMap.get(profileUrl) ?? Number.MAX_SAFE_INTEGER,
       dayOpponent: dayOpponentMap.get(profileUrl) ?? null,
+      todaySimulation,
     };
   });
 

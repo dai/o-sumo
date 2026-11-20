@@ -295,6 +295,16 @@ describe('computeYushoArasoi', () => {
 
     // 優勝条件表の行
     const rowOf = (name: string) => summary!.conditionRows.find((r) => r.name === name)!;
+    expect(rowOf('若元春').todaySimulation).toEqual({
+      win: { wins: 12, losses: 1 },
+      lose: { wins: 11, losses: 2 },
+    });
+    for (const name of ['大の里', '熱海富士', '金峰山'] as const) {
+      expect(rowOf(name).todaySimulation).toEqual({
+        win: { wins: 11, losses: 2 },
+        lose: { wins: 10, losses: 3 },
+      });
+    }
     expect(rowOf('若元春').detail).toMatchObject({
       kind: 'leaderClinch',
       clinchTargetWins: 14,
@@ -364,6 +374,62 @@ describe('computeYushoArasoi', () => {
     expect(waka.dayOpponent).toMatchObject({
       profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/4279/',
     });
+    // 全取組確定済みの日は全員 todaySimulation が null
+    for (const row of summary!.conditionRows) {
+      expect(row.todaySimulation).toBeNull();
+    }
+  });
+
+  it('generates todaySimulation only for contenders with pending bouts today', () => {
+    const { archive, day13Data } = buildDay12FinalSnapshot();
+    const atamiUrl = 'https://www.sumo.or.jp/ResultRikishiData/profile/4055/';
+    const kinbozanUrl = 'https://www.sumo.or.jp/ResultRikishiData/profile/4112/';
+
+    // 十三日目のうち:
+    // - 若元春 vs 大の里: 未確定（そのまま）
+    // - 熱海富士: 確定済み（不戦勝などで勝者が付いている）
+    // - 金峰山: 当日取組なし（マッチ一覧から除外）
+    const customDay13: TorikumiArchiveDay['data'] = {
+      ...day13Data,
+      makuuchi: {
+        ...day13Data.makuuchi,
+        matches: day13Data.makuuchi.matches
+          .filter((m) => m.eastProfileUrl !== kinbozanUrl && m.westProfileUrl !== kinbozanUrl)
+          .map((m) => {
+            if (m.eastProfileUrl === atamiUrl || m.westProfileUrl === atamiUrl) {
+              return {
+                ...m,
+                winner: (m.eastProfileUrl === atamiUrl ? 'east' : 'west') as 'east' | 'west',
+                kimarite: '不戦勝',
+              };
+            }
+            return m;
+          }),
+      },
+    };
+
+    const summary = computeYushoArasoi({
+      archive,
+      targetDay: 13,
+      makuuchiBanzuke: makuuchiData,
+      visibleDayData: customDay13,
+    });
+
+    expect(summary).not.toBeNull();
+    const rowOf = (name: string) => summary!.conditionRows.find((r) => r.name === name)!;
+    // 未確定: 勝ち/負けペア
+    expect(rowOf('若元春').todaySimulation).toEqual({
+      win: { wins: 12, losses: 1 },
+      lose: { wins: 11, losses: 2 },
+    });
+    expect(rowOf('大の里').todaySimulation).toEqual({
+      win: { wins: 11, losses: 2 },
+      lose: { wins: 10, losses: 3 },
+    });
+    // 確定済み（不戦勝含む）: null
+    expect(rowOf('熱海富士').todaySimulation).toBeNull();
+    // 当日取組なし: null
+    expect(rowOf('金峰山').todaySimulation).toBeNull();
   });
 
   it('marks championship as decided when the leader cannot be caught', () => {

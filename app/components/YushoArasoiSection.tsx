@@ -83,7 +83,6 @@ function ContendersTable({
           <th scope="col">{t('torikumi.yusho.contTableRikishi')}</th>
           <th scope="col">{t('torikumi.yusho.contTableRecord')}</th>
           <th scope="col">{t('torikumi.yusho.contTableRemaining')}</th>
-          <th scope="col">{t('torikumi.yusho.contTableMax')}</th>
           <th scope="col">{opponentHeader}</th>
         </tr>
       </thead>
@@ -104,9 +103,6 @@ function ContendersTable({
               {t('torikumi.yusho.record', { wins: contender.wins, losses: contender.losses })}
             </td>
             <td className="yusho-cell-num">{contender.remainingBouts}</td>
-            <td className="yusho-cell-record">
-              {t('torikumi.yusho.record', { wins: contender.maxPossibleWins, losses: contender.losses })}
-            </td>
             <td className="yusho-cell-name">
               {contender.dayOpponent ? (
                 contender.dayOpponent.name ? (
@@ -383,7 +379,7 @@ function ConditionsTable({
           <th scope="col">{t('torikumi.yusho.condTableRikishi')}</th>
           <th scope="col">{t('torikumi.yusho.condTableRecord')}</th>
           <th scope="col">{t('torikumi.yusho.condTableRemaining')}</th>
-          <th scope="col">{t('torikumi.yusho.condTableMax')}</th>
+          <th scope="col">{t('torikumi.yusho.condTableWinLose')}</th>
           <th scope="col">{t('torikumi.yusho.condTableCondition')}</th>
           <th scope="col">{t('torikumi.yusho.condTableFate')}</th>
         </tr>
@@ -400,8 +396,16 @@ function ConditionsTable({
             <td className="yusho-cell-num" data-label={t('torikumi.yusho.condTableRemaining')}>
               {row.remainingBouts}
             </td>
-            <td className="yusho-cell-record" data-label={t('torikumi.yusho.condTableMax')}>
-              {t('torikumi.yusho.record', { wins: row.maxPossibleWins, losses: row.losses })}
+            <td className="yusho-cell-record" data-label={t('torikumi.yusho.condTableWinLose')}>
+              {row.todaySimulation
+                ? `${t('torikumi.yusho.record', {
+                    wins: row.todaySimulation.win.wins,
+                    losses: row.todaySimulation.win.losses,
+                  })}/${t('torikumi.yusho.record', {
+                    wins: row.todaySimulation.lose.wins,
+                    losses: row.todaySimulation.lose.losses,
+                  })}`
+                : '—'}
             </td>
             <td className="yusho-cell-condition" data-label={t('torikumi.yusho.condTableCondition')}>
               <ConditionMain row={row} t={t} isJa={isJa} />
