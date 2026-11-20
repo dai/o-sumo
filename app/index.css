@@ -1973,13 +1973,25 @@
 }
 
 .home-editorial .hero-agent-guide {
-  margin: 1.25rem 0 2.25rem;
+  margin: 1.25rem 0 0;
   padding: 1rem 0;
   background: transparent;
   border-top: 1px solid var(--home-rule);
 }
 
-.home-editorial .hero-agent-guide-link {
+.home-editorial .hero-agent-guide:last-child {
+  margin-bottom: 2.25rem;
+}
+
+.home-editorial .hero-yusho-guide {
+  margin: 0 0 2.25rem;
+  padding: 1rem 0;
+  background: transparent;
+  border-top: 1px solid var(--home-rule);
+}
+
+.home-editorial .hero-agent-guide-link,
+.home-editorial .hero-yusho-guide-link {
   display: inline-flex;
   align-items: center;
   gap: 0.7rem;
@@ -1992,7 +2004,9 @@
 }
 
 .home-editorial .hero-agent-guide-link:hover,
-.home-editorial .hero-agent-guide-link:focus-visible {
+.home-editorial .hero-agent-guide-link:focus-visible,
+.home-editorial .hero-yusho-guide-link:hover,
+.home-editorial .hero-yusho-guide-link:focus-visible {
   color: var(--home-red-dark);
 }
 

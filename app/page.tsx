@@ -8,6 +8,7 @@ import {
   torikumiArchive,
   torikumiData,
   torikumiMonthKey,
+  type TorikumiArchiveDay,
   type TorikumiDataSet,
   type TorikumiDailyData,
 } from './lib/torikumi-data';
@@ -24,6 +25,7 @@ import DailyHighlightsSection from './components/DailyHighlightsSection';
 import MonomosuSection from './components/MonomosuSection';
 import { divisionAnchorId } from './lib/rikishi-display';
 import { formatDisplayDate, getCalendarDayDiffJst, getRelativeDateLabel, getRelativeMonomosuText } from './lib/relative-date';
+import { shouldShowYushoArasoi, YUSHO_ARASOI_ANCHOR_ID } from './lib/yusho-arasoi';
 import './index.css';
 
 const LIVE_START_MINUTES = 13 * 60;
@@ -309,6 +311,54 @@ export function buildLiveTorikumiTarget(
   };
 }
 
+/**
+ * Resolves the result day URL anchored to the Yusho Arasoi (championship race)
+ * section when the current or completed basho has an active championship race
+ * block (day 11 onward). Returns `null` before day 11 so no broken anchor is
+ * rendered on the home page.
+ */
+export function buildYushoArasoiTarget(
+  archive: TorikumiDataSet,
+  now: Date = new Date(),
+): string | null {
+  const status = getBashoStatus(archive, now);
+  if (status.kind === 'upcoming') {
+    return null;
+  }
+
+  const resultDays = archive.resultDays ?? [];
+  if (status.kind === 'live') {
+    let targetDay: TorikumiArchiveDay | undefined;
+    if (status.day !== null) {
+      targetDay = resultDays.find((day) => day.day === status.day);
+    } else {
+      const currentIsoDate = jstIsoDateOfDay(now);
+      const upcomingSchedule = [...(archive.scheduleDays ?? [])]
+        .sort((left, right) => left.isoDate.localeCompare(right.isoDate))
+        .find((day) => day.isoDate >= currentIsoDate);
+      if (upcomingSchedule) {
+        targetDay = resultDays.find((day) => day.pathDate === upcomingSchedule.pathDate);
+      }
+    }
+    if (!targetDay || !shouldShowYushoArasoi(archive, targetDay.day)) {
+      return null;
+    }
+    return `${getDayPath(targetDay, 'result')}#${YUSHO_ARASOI_ANCHOR_ID}`;
+  }
+
+  const latestFinalDay = [...resultDays]
+    .sort((left, right) => right.day - left.day)
+    .find((day) => (
+      day.status === 'published'
+      && day.data.makuuchi.matches.length > 0
+      && shouldShowYushoArasoi(archive, day.day)
+    ));
+  if (!latestFinalDay) {
+    return null;
+  }
+  return `${getDayPath(latestFinalDay, 'result')}#${YUSHO_ARASOI_ANCHOR_ID}`;
+}
+
 export default function Home() {
   const { t, i18n } = useTranslation('common');
   const currentBashoTitle = formatBashoTitle(
@@ -322,6 +372,7 @@ export default function Home() {
   const currentBanzukePath = getBanzukePathForMonthKey(torikumiMonthKey);
   const bashoStatus = getBashoStatus(torikumiArchive);
   const liveTorikumiTarget = buildLiveTorikumiTarget(torikumiArchive, torikumiData);
+  const yushoArasoiTarget = buildYushoArasoiTarget(torikumiArchive);
   const featuredTorikumiTarget = bashoStatus.kind === 'final'
     ? { href: `${CURRENT_RESULT_PATH}/`, description: t('home.finalResultsDescription') }
     : liveTorikumiTarget;
@@ -442,6 +493,14 @@ export default function Home() {
                 {t('home.agentGuideLink')} <span aria-hidden="true">→</span>
               </a>
             </section>
+
+            {yushoArasoiTarget ? (
+              <section className="hero-yusho-guide" aria-label={t('home.yushoGuideLabel')}>
+                <Link to={yushoArasoiTarget} className="hero-yusho-guide-link">
+                  {t('home.yushoGuideLink')} <span aria-hidden="true">→</span>
+                </Link>
+              </section>
+            ) : null}
           </div>
 
           {/* Daily Highlights Section (今日のみどころ・注目取組) */}

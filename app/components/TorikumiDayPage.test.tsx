@@ -800,6 +800,7 @@ describe('TorikumiDayPage', () => {
     expect(yushoHeading).toBeInTheDocument();
     const yushoSection = yushoHeading.closest('section');
     expect(yushoSection).not.toBeNull();
+    expect(yushoSection).toHaveAttribute('id', 'yusho-arasoi');
     expect(within(yushoSection!).getByText('首位グループ')).toBeInTheDocument();
     expect(within(yushoSection!).getByRole('heading', { level: 3, name: /の注目対戦/ })).toBeInTheDocument();
     expect(within(yushoSection!).getByRole('heading', { level: 3, name: '優勝条件' })).toBeInTheDocument();
