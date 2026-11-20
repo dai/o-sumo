@@ -166,4 +166,27 @@ describe('YushoArasoiSection', () => {
     renderSection(day11Summary(), '2026-11-18');
     expect(screen.queryByText(/が勝てば/)).not.toBeInTheDocument();
   });
+
+  it('exposes the #yusho-arasoi anchor on both active and decided sections', () => {
+    const active = day11Summary();
+    const { unmount } = renderSection(active, '2026-11-18');
+    const activeSection = screen.getByRole('heading', { level: 2, name: '優勝争い' }).closest('section');
+    expect(activeSection).toHaveAttribute('id', 'yusho-arasoi');
+    unmount();
+
+    const decided: YushoArasoiSummary = {
+      ...active,
+      isDecided: true,
+      champion: {
+        name: '若元春',
+        profileUrl: 'https://www.sumo.or.jp/ResultRikishiData/profile/3371/',
+        wins: 14,
+        losses: 1,
+        viaPlayoff: false,
+      },
+    };
+    renderSection(decided, '2026-11-22');
+    const decidedSection = screen.getByRole('heading', { level: 2, name: '優勝争い' }).closest('section');
+    expect(decidedSection).toHaveAttribute('id', 'yusho-arasoi');
+  });
 });

@@ -165,6 +165,8 @@ const DEFAULT_TOTAL_DAYS = 15;
 const MAX_CONTENDERS = 6;
 const SHOW_WITHIN_REMAINING_DAYS = 6;
 
+export const YUSHO_ARASOI_ANCHOR_ID = 'yusho-arasoi';
+
 function buildBanzukeOrderMap(makuuchiGroups?: RankGroup[]): Map<string, number> {
   const order = new Map<string, number>();
   if (!makuuchiGroups) return order;

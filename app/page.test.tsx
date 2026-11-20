@@ -21,6 +21,7 @@ import {
 } from './lib/torikumi-data';
 import Home, {
   buildLiveTorikumiTarget,
+  buildYushoArasoiTarget,
   homeContainerClassName,
   getHomeHeroActions,
   getHomeQuickNavItems,
@@ -569,6 +570,56 @@ describe('Home page', () => {
     expect(document.querySelector('.news-list')).not.toBeInTheDocument();
     expect(document.querySelector('.news-section-see-all')).not.toBeInTheDocument();
     expect(document.querySelectorAll('.news-subsection-see-all')).toHaveLength(0);
+  });
+
+  it('resolves the yusho-arasoi target URL for day 11+ and final basho, and hides before day 11', () => {
+    expect(buildYushoArasoiTarget(torikumiArchive, new Date('2026-11-06T12:00:00+09:00'))).toBeNull();
+    expect(buildYushoArasoiTarget(torikumiArchive, new Date('2026-11-15T12:00:00+09:00'))).toBeNull();
+    expect(buildYushoArasoiTarget(torikumiArchive, new Date('2026-11-20T12:00:00+09:00'))).toBe(
+      '/20261120-torikumi/#yusho-arasoi',
+    );
+    expect(buildYushoArasoiTarget(JULY2026_TORIKUMI_DATA, new Date('2026-07-27T12:00:00+09:00'))).toBe(
+      '/20260726-torikumi/#yusho-arasoi',
+    );
+  });
+
+  it('renders the yusho-arasoi corner link below the agent guide on day 11+ and hides it before day 11', async () => {
+    const { unmount } = render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+    expect(screen.queryByRole('link', { name: /優勝戦線確認コーナーはこちら/ })).not.toBeInTheDocument();
+    unmount();
+
+    vi.setSystemTime(new Date('2026-11-20T12:00:00+09:00'));
+    const { unmount: unmountDay13 } = render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+    const hero = document.querySelector<HTMLElement>('.hero-section');
+    const agentGuide = hero!.querySelector<HTMLElement>('.hero-agent-guide');
+    const yushoGuide = hero!.querySelector<HTMLElement>('.hero-yusho-guide');
+    expect(agentGuide).not.toBeNull();
+    expect(yushoGuide).not.toBeNull();
+    expect(agentGuide!.compareDocumentPosition(yushoGuide!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(within(yushoGuide!).getByRole('link', { name: /優勝戦線確認コーナーはこちら/ })).toHaveAttribute(
+      'href',
+      '/20261120-torikumi/#yusho-arasoi',
+    );
+    unmountDay13();
+
+    await act(() => i18n.changeLanguage('en'));
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+    expect(screen.getByRole('link', { name: /Championship race corner is here/ })).toHaveAttribute(
+      'href',
+      '/20261120-torikumi/#yusho-arasoi',
+    );
   });
 
 });

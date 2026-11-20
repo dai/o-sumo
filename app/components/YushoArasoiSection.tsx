@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { divisionAnchorId } from '../lib/rikishi-display';
 import { banzukeRikishiPath, extractRikishiIdFromProfileUrl } from '../lib/rikishi-profile';
 import {
+  YUSHO_ARASOI_ANCHOR_ID,
   describeClashOutcome,
   formatMonthDay,
   getFeaturedHeadingRel,
@@ -469,7 +470,11 @@ export default function YushoArasoiSection({
 
   if (summary.isDecided && summary.champion) {
     return (
-      <section className="division-section yusho-arasoi-section yusho-arasoi-section--decided" aria-label={t('torikumi.yusho.title')}>
+      <section
+        id={YUSHO_ARASOI_ANCHOR_ID}
+        className="division-section yusho-arasoi-section yusho-arasoi-section--decided"
+        aria-label={t('torikumi.yusho.title')}
+      >
         <div className="yusho-arasoi-header">
           <h2>{t('torikumi.yusho.title')}</h2>
           <BasisLine summary={summary} t={t} basisLabel={basisLabel} targetLabel={targetLabel} />
@@ -492,7 +497,11 @@ export default function YushoArasoiSection({
   }
 
   return (
-    <section className="division-section yusho-arasoi-section" aria-label={t('torikumi.yusho.title')}>
+    <section
+      id={YUSHO_ARASOI_ANCHOR_ID}
+      className="division-section yusho-arasoi-section"
+      aria-label={t('torikumi.yusho.title')}
+    >
       <div className="yusho-arasoi-header">
         <h2>{t('torikumi.yusho.title')}</h2>
         <BasisLine summary={summary} t={t} basisLabel={basisLabel} targetLabel={targetLabel} />

@@ -1422,6 +1422,7 @@
 /* Yusho Arasoi (Championship Race) block */
 .yusho-arasoi-section {
   margin-bottom: 1.25rem;
+  scroll-margin-top: 14rem;
 }
 
 .yusho-arasoi-header {
