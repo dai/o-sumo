@@ -62,9 +62,9 @@ export const torikumiData: TorikumiDataSet = {
   "bashoId": 638,
   "bashoName": "十一月場所",
   "year": "令和八年",
-  "updatedAt": "2026-11-22T17:42:40+09:00",
+  "updatedAt": "2026-11-22T19:03:41+09:00",
   "resultUpdatedAt": "2026-11-22T17:42:40+09:00",
-  "scheduleUpdatedAt": "2026-11-21T19:03:40+09:00",
+  "scheduleUpdatedAt": "2026-11-22T19:03:41+09:00",
   "today": {
     "makuuchi": {
       "day": 15,
@@ -989,6 +989,23 @@ export const torikumiData: TorikumiDataSet = {
           "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/",
           "kimarite": "未定",
           "winner": null
+        },
+        {
+          "division": "幕内",
+          "boutNo": 21,
+          "eastName": "おおのさと",
+          "eastYomi": "",
+          "eastEnglish": "",
+          "eastRank": "横綱",
+          "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/",
+          "westName": "わかもとはる",
+          "westYomi": "",
+          "westEnglish": "",
+          "westRank": "前頭七枚目",
+          "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/",
+          "kimarite": "未定",
+          "winner": null,
+          "isPlayoff": true
         }
       ],
       "absentees": [
@@ -18702,6 +18719,23 @@ export const torikumiData: TorikumiDataSet = {
               "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3842/",
               "kimarite": "未定",
               "winner": null
+            },
+            {
+              "division": "幕内",
+              "boutNo": 21,
+              "eastName": "おおのさと",
+              "eastYomi": "",
+              "eastEnglish": "",
+              "eastRank": "横綱",
+              "eastProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/4227/",
+              "westName": "わかもとはる",
+              "westYomi": "",
+              "westEnglish": "",
+              "westRank": "前頭七枚目",
+              "westProfileUrl": "https://www.sumo.or.jp/ResultRikishiData/profile/3371/",
+              "kimarite": "未定",
+              "winner": null,
+              "isPlayoff": true
             }
           ],
           "absentees": [
