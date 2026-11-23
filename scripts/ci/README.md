@@ -25,6 +25,10 @@ python scripts/ci/validate_torikumi.py
 python scripts/ci/validate_news.py
 ```
 
+### `scripts/fonts/check_webfont_coverage.py`
+`scripts/ci/run_data_update.py` の `validate` フェーズ末尾で自動実行され、更新データに `scripts/fonts/coverage.txt` 未収録の文字が含まれていないかを検査する（`main` が `app/webfont.test.ts` 落ちのまま公開されるのを防ぐ）。
+不足文字でブロックされた場合は、ローカルで `npm run fonts:subset` を実行し、再生成されたフォント一式を PR で反映する。
+
 ## オフシーズン運用および十一月場所（11月場所）再開手順
 
 - 2026年9月場所（秋場所）千秋楽（9月27日）終了および翌日確認に伴い、`daily-data-update.yml` と `realtime-torikumi-direct-update.yml` の `schedule` は削除され、オフシーズン中は `workflow_dispatch`（手動実行）のみの運用となります。

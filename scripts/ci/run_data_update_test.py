@@ -37,7 +37,7 @@ class NewsOrchestrationTest(unittest.TestCase):
                     candidate = {**baseline, "updatedAt": clock[0].isoformat()}
                     (path / ".news-candidate.json").write_text(json.dumps(candidate), encoding="utf-8")
                     clock[0] += timedelta(seconds=1)
-                elif "validate_news.py" in args:
+                elif "validate_news.py" in args or "check_webfont_coverage.py" in args:
                     raise AssertionError("stale public payload was validated during a non-final poll")
                 else:
                     validate_state(json.loads(state_path.read_text(encoding="utf-8")))
@@ -95,6 +95,35 @@ class NewsOrchestrationTest(unittest.TestCase):
 
     def test_non_final_poll_keeps_stale_public_payload_without_validating_it(self):
         self.exercise(event_schedule="5 0 * * *", stale_public=True)
+
+    def test_schedule_scope_validates_torikumi_and_webfont_coverage(self):
+        called = []
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+
+            def run(path, *args):
+                called.append(args)
+
+            def publish(repository, *, generate, validate, branch, **kwargs):
+                generate(root)
+                validate(root)
+                return PublishResult(True, "b" * 40, 1)
+
+            with patch.object(M, "ROOT", root), \
+                 patch.object(M, "run", side_effect=run), \
+                 patch.object(M, "publish", side_effect=publish), \
+                 patch.dict(M.os.environ, {}, clear=True), \
+                 patch.object(M.sys, "argv", ["run_data_update", "--scope", "schedule"]):
+                self.assertEqual(M.main(), 0)
+
+        self.assertEqual(
+            [args[1:] for args in called],
+            [
+                ("scripts/ci/run_torikumi_generator.sh", "--torikumi-only", "--torikumi-scope", "schedule", "--skip-rikishi-fetch", "--strict-torikumi-fetch"),
+                ("scripts/ci/validate_torikumi.py",),
+                ("scripts/fonts/check_webfont_coverage.py",),
+            ],
+        )
 
 
 if __name__ == "__main__":

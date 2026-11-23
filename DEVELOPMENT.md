@@ -46,9 +46,15 @@ npm run preview
 # データ再生成
 python scripts/update_sumo_data.py
 
-# 表示文字を足したあとの自前フォント再生成（app/webfont.test.ts が落ちたらこれ）
+# 自前フォントのカバレッジ確認（表示文字の不足チェック）
+npm run fonts:check
+
+# 表示文字を足したあとの自前フォント再生成（fonts:check / app/webfont.test.ts が落ちたらこれ）
 npm run fonts:subset
 ```
+
+> **完了条件（UI文言の追加・データ更新の共通ルール）**:
+> UI 文言・ブログ記事・各種 JSON データを更新したときは、PR 作成前（または更新コミット前）に必ず `npm run fonts:check`（または `npm test`）を実行してください。不足文字が検出された場合は、同じ PR／同じ更新内で `npm run fonts:subset` を実行し、`public/fonts/*.woff2` と `scripts/fonts/coverage.txt` / `unsupported.txt` の再生成差分も含めてください。
 
 ## 今日のみどころの状態プレビュー
 

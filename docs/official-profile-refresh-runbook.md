@@ -90,9 +90,11 @@ Get-Content -Raw public/api/v1/gyoji/1986.json | ConvertFrom-Json |
 
 ## アプリとsitemapの検証
 
-1. focused test、型検査、全テスト、ビルドを順に実行します。
+1. webfont カバレッジ検査、focused test、型検査、全テスト、ビルドを順に実行します。`npm run fonts:check` で不足文字が検出された場合は `npm run fonts:subset` を実行し、再生成されたフォント差分（`public/fonts/*.woff2`、`scripts/fonts/coverage.txt`、`scripts/fonts/unsupported.txt`）も同じ PR に含めます。
 
 ```bash
+npm run fonts:check
+# 不足文字が出た場合のみ実行: npm run fonts:subset
 npm test -- --run app/lib/official-profile.test.ts app/officials/page.test.tsx app/components/MetaHead.test.tsx app/lib/page-meta.test.ts app/lib/sitemap.test.ts app/lib/redirect-rules.test.ts
 npm run typecheck
 npm test
