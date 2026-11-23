@@ -181,7 +181,7 @@ describe('MyRikishiPage schedule links', () => {
     render(<MemoryRouter><MyRikishiPage /></MemoryRouter>);
 
     const card = await screen.findByRole('article');
-    expect(within(card).getByText(/勝ち/)).toBeInTheDocument();
+    expect(within(card).getByText('○ 勝ち')).toBeInTheDocument();
     const links = within(card).getAllByRole('link', { name: /詳細を見る/ });
     expect(links).toHaveLength(1);
     expect(links[0]).toHaveAttribute('href', resultHref);
