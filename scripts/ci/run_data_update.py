@@ -72,6 +72,7 @@ def main() -> int:
             # stale-data threshold between final publication slots.
             if should_publish:
                 run(path, sys.executable, "scripts/ci/validate_news.py")
+                run(path, sys.executable, "scripts/fonts/check_webfont_coverage.py")
         message = "chore: publish news feed"
     else:
         allowed = TORIKUMI
@@ -79,6 +80,7 @@ def main() -> int:
             run(path, "bash", "scripts/ci/run_torikumi_generator.sh", "--torikumi-only", "--torikumi-scope", args.scope, "--skip-rikishi-fetch", "--strict-torikumi-fetch")
         def validate(path: Path) -> None:
             run(path, sys.executable, "scripts/ci/validate_torikumi.py")
+            run(path, sys.executable, "scripts/fonts/check_webfont_coverage.py")
         message = f"chore: publish torikumi {args.scope}"
     result = publish(ROOT, generate=generate, validate=validate, allowed_paths=allowed, message=message, branch="main", max_attempts=3)
     if args.scope == "news" and should_publish:

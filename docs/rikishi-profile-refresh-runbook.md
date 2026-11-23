@@ -57,11 +57,13 @@ if ($representative.rikishi1Wins -ne 1 -or $representative.rikishi2Wins -ne 5) {
 
 代表値は固定仕様ではなく、生成時点の公式プロフィール履歴を点検するための目印です。公式履歴が更新されて値が変わった場合は、双方のプロフィール原文とパーサーテストを確認してから文書例を更新します。
 
-6. 生成器とアプリの検証を実行します。
+6. 生成器とアプリの検証を実行します。`npm run fonts:check` で不足文字が検出された場合は `npm run fonts:subset` を実行し、再生成されたフォント差分（`public/fonts/*.woff2`、`scripts/fonts/coverage.txt`、`scripts/fonts/unsupported.txt`）も同じ PR に含めます。
 
 ```bash
 python scripts/update_sumo_data_parser_test.py
 python scripts/update_sumo_data_torikumi_logic_test.py
+npm run fonts:check
+# 不足文字が出た場合のみ実行: npm run fonts:subset
 npm run typecheck
 npm test
 npm run build

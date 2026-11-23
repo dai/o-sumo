@@ -46,9 +46,15 @@ npm run preview
 # Regenerate data
 python scripts/update_sumo_data.py
 
-# Rebuild self-hosted webfonts after adding displayed text (when app/webfont.test.ts fails)
+# Check self-hosted webfont coverage for newly added displayed characters
+npm run fonts:check
+
+# Rebuild self-hosted webfonts after adding displayed text (when fonts:check or app/webfont.test.ts fails)
 npm run fonts:subset
 ```
+
+> **Definition of Done (UI copy changes and data updates)**:
+> Whenever you add UI copy, blog posts, or generated JSON data, run `npm run fonts:check` (or `npm test`) before opening a PR or committing the update. If missing glyphs are reported, run `npm run fonts:subset` and include the regenerated `public/fonts/*.woff2` and `scripts/fonts/coverage.txt` / `unsupported.txt` in the same PR.
 
 ## Previewing Daily Highlights states
 

@@ -29,7 +29,10 @@ from fontTools.ttLib import TTFont
 ROOT = Path(__file__).resolve().parents[2]
 CACHE = Path(__file__).resolve().parent / '.cache'
 PUBLIC_FONTS = ROOT / 'public' / 'fonts'
-TSX = ROOT / 'node_modules' / '.bin' / 'tsx'
+TSX_CANDIDATES = (
+    ROOT / 'node_modules' / '.bin' / 'tsx.cmd',
+    ROOT / 'node_modules' / '.bin' / 'tsx',
+)
 PRINT_CHARSET = Path(__file__).resolve().parent / 'print-charset.ts'
 
 SHIPPORI_WEIGHTS = {
@@ -76,9 +79,13 @@ def pyftsubset_bin() -> str:
     found = shutil.which('pyftsubset')
     if found:
         return found
-    local = Path.home() / '.local' / 'bin' / 'pyftsubset'
-    if local.exists():
-        return str(local)
+    for candidate in (
+        ROOT / '.venv' / 'Scripts' / 'pyftsubset.exe',
+        ROOT / '.venv' / 'bin' / 'pyftsubset',
+        Path.home() / '.local' / 'bin' / 'pyftsubset',
+    ):
+        if candidate.exists():
+            return str(candidate)
     raise SystemExit('pyftsubset is not installed (pip install "fonttools[woff]" brotli)')
 
 
@@ -107,10 +114,15 @@ def subset(source: Path, destination: Path, characters: set[int], layout_feature
     text_file.unlink(missing_ok=True)
 
 
+def tsx_bin() -> Path:
+    for candidate in TSX_CANDIDATES:
+        if candidate.exists():
+            return candidate
+    raise SystemExit(f'missing {TSX_CANDIDATES[1]}; run npm ci first')
+
+
 def collect_displayed_codes() -> set[int]:
-    if not TSX.exists():
-        raise SystemExit(f'missing {TSX}; run npm ci first')
-    output = subprocess.check_output([str(TSX), str(PRINT_CHARSET)], cwd=ROOT)
+    output = subprocess.check_output([str(tsx_bin()), str(PRINT_CHARSET)], cwd=ROOT)
     return {ord(character) for character in output.decode('utf-8')}
 
 
