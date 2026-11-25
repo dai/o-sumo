@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "latestGood": {
-    "updatedAt": "2026-11-25T00:33:47.934572+00:00",
+    "updatedAt": "2026-11-25T10:15:44.162774+00:00",
     "sources": [
       {
         "id": "sumo-association",
@@ -46,8 +46,8 @@
     ],
     "lastFailureStreak": 0
   },
-  "lastAttemptAt": "2026-11-25T00:33:47.942727+00:00",
-  "lastSuccessAt": "2026-11-25T00:33:47.934572+00:00",
+  "lastAttemptAt": "2026-11-25T10:15:44.171084+00:00",
+  "lastSuccessAt": "2026-11-25T10:15:44.162774+00:00",
   "consecutiveFailures": 0,
   "processedRuns": {
     "35048162526": {
@@ -1113,9 +1113,13 @@
     "45519009289": {
       "attemptedAt": "2026-11-25T00:33:47.942727+00:00",
       "outcome": "success"
+    },
+    "45593236426": {
+      "attemptedAt": "2026-11-25T10:15:44.171084+00:00",
+      "outcome": "success"
     }
   },
-  "lastRunId": "45519009289",
+  "lastRunId": "45593236426",
   "lastPublishedDate": "2026-11-24",
   "lastPublishedSha": "5be98171ac24d5c7c09c50e3d2e2ac484c41be28",
   "initializedAt": "2026-09-16T02:29:25.410449+00:00"
