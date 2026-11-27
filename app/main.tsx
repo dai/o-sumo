@@ -16,6 +16,7 @@ import HashPreservingRedirect from './components/HashPreservingRedirect'
 import WebMcpProvider from './components/WebMcpProvider'
 import PrimaryNavigation from './components/PrimaryNavigation'
 import GlobalNoticeBanner from './components/GlobalNoticeBanner'
+import AiSearchChatBubble from './components/AiSearchChatBubble'
 import { getArchiveHubRouteDefinitions } from './lib/torikumi-routes'
 import { bootstrapTheme } from './lib/theme'
 import { AuthSessionProvider } from './lib/auth-session'
@@ -133,6 +134,7 @@ function AppShell() {
             </Routes>
           </Suspense>
         </div>
+        <AiSearchChatBubble />
           </MetaHead>
         </MyRikishiProvider>
       </AuthSessionProvider>

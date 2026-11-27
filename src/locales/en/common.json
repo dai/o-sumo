@@ -34,6 +34,33 @@
       "loading": "Loading rikishi names",
       "error": "Could not load rikishi names",
       "close": "Close"
+    },
+    "aiChat": {
+      "chatTitle": "Ask o-sumo",
+      "placeholder": "Ask about rikishi, banzuke, or past bouts",
+      "chatInputAriaLabel": "Ask a question",
+      "sendButtonLabel": "Send",
+      "sendButtonAriaLabel": "Send message",
+      "chatEmptyTitle": "Ask about rikishi and banzuke",
+      "chatEmptyDescription": "Answers are based on o-sumo profiles, banzuke standings, and past tournament records. For today's live bout results, please check the Today's Bouts page.",
+      "openChatAriaLabel": "Open AI search chat",
+      "clearHistoryAriaLabel": "Clear history",
+      "minimizeAriaLabel": "Minimize",
+      "closeAriaLabel": "Close",
+      "userAvatar": "You",
+      "assistantAvatar": "AI",
+      "errorPrefix": "Error:",
+      "unknownError": "Failed to get a response.",
+      "justNow": "Just now",
+      "minuteAgo": "{n} minute ago",
+      "minutesAgo": "{n} minutes ago",
+      "hourAgo": "{n} hour ago",
+      "hoursAgo": "{n} hours ago",
+      "loadingMessages": [
+        "Searching...",
+        "Checking rikishi and banzuke records...",
+        "Putting the answer together..."
+      ]
     }
   },
   "pwa": {
