@@ -34,6 +34,33 @@
       "loading": "力士名を読み込んでいます",
       "error": "力士名を読み込めませんでした",
       "close": "閉じる"
+    },
+    "aiChat": {
+      "chatTitle": "o-sumo に質問",
+      "placeholder": "力士や番付・過去の取組について聞いてみる",
+      "chatInputAriaLabel": "質問を入力",
+      "sendButtonLabel": "送信",
+      "sendButtonAriaLabel": "質問を送信",
+      "chatEmptyTitle": "力士や番付について質問できます",
+      "chatEmptyDescription": "サイト内の力士プロフィール・番付・過去の取組記録から回答します。当日の取組結果など最新情報は「本日の取組」ページをご確認ください。",
+      "openChatAriaLabel": "AI検索チャットを開く",
+      "clearHistoryAriaLabel": "会話履歴を消去",
+      "minimizeAriaLabel": "最小化",
+      "closeAriaLabel": "閉じる",
+      "userAvatar": "私",
+      "assistantAvatar": "AI",
+      "errorPrefix": "エラー:",
+      "unknownError": "回答の取得に失敗しました。",
+      "justNow": "たった今",
+      "minuteAgo": "{n}分前",
+      "minutesAgo": "{n}分前",
+      "hourAgo": "{n}時間前",
+      "hoursAgo": "{n}時間前",
+      "loadingMessages": [
+        "検索しています…",
+        "力士や番付の記録を確認しています…",
+        "回答をまとめています…"
+      ]
     }
   },
   "pwa": {

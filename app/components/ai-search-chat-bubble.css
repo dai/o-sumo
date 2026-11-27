@@ -1,0 +1,83 @@
+/* Cloudflare AI Search chat bubble styling aligned with Digital Washi (light)
+   and Ronin (dark) design tokens. Declared on the host element selector so
+   custom properties override the Shadow DOM :host defaults. */
+chat-bubble-snippet.ai-search-chat-bubble {
+  /* Placement & layering: above sticky headers (50) and primary nav (60),
+     below top-right controls (320), rikishi search modal (400), and matchup sheets (9999). */
+  --chat-bubble-position: fixed;
+  --chat-bubble-button-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  --chat-bubble-button-right: 20px;
+  --chat-bubble-button-z-index: 310;
+  --chat-bubble-button-size: 56px;
+  --chat-bubble-button-radius: 50%;
+  --chat-bubble-button-icon-size: 26px;
+  --chat-bubble-button-icon-color: #ffffff;
+  --chat-bubble-button-shadow: var(--shadow-soft);
+  --chat-bubble-window-shadow: var(--shadow-ambient);
+
+  /* Typography & sharp Japanese-modern window geometry (0px corners inside window) */
+  --search-snippet-font-family: var(--font-sans);
+  --search-snippet-border-radius: 0px;
+  --search-snippet-border-width: 1px;
+  --search-snippet-input-height: 62px;
+
+  /* Light theme (Digital Washi) */
+  --search-snippet-primary-color: var(--color-primary);
+  --search-snippet-primary-hover: #2c5282;
+  --search-snippet-background: var(--surface-container-lowest);
+  --search-snippet-surface: var(--surface-container-low);
+  --search-snippet-text-color: var(--color-dark-text);
+  --search-snippet-text-secondary: var(--color-muted);
+  --search-snippet-border-color: var(--color-border);
+  --search-snippet-hover-background: var(--surface-container-high);
+  --search-snippet-focus-ring: var(--color-focus-outline);
+  --search-snippet-error-color: #b91c1c;
+  --search-snippet-error-background: #fef2f2;
+
+  /* Message bubbles */
+  --search-snippet-user-message-bg: var(--color-primary);
+  --search-snippet-user-message-text: var(--color-on-primary);
+  --search-snippet-assistant-message-bg: var(--surface-container-low);
+  --search-snippet-assistant-message-text: var(--color-dark-text);
+  --search-snippet-system-message-bg: var(--color-primary-container);
+  --search-snippet-system-message-text: var(--color-primary);
+}
+
+[data-theme='dark'] chat-bubble-snippet.ai-search-chat-bubble {
+  /* Dark theme (Ronin): deep teal keeps >=4.5:1 contrast both behind white
+     button/avatar text and as inline link text on dark surfaces. */
+  --search-snippet-primary-color: #0e7490;
+  --search-snippet-primary-hover: #155e75;
+  --chat-bubble-button-icon-color: #e6feff;
+  --search-snippet-background: var(--surface-container-lowest);
+  --search-snippet-surface: var(--surface-container-low);
+  --search-snippet-text-color: var(--color-dark-text);
+  --search-snippet-text-secondary: var(--color-muted);
+  --search-snippet-border-color: var(--color-border);
+  --search-snippet-hover-background: var(--surface-container-high);
+  --search-snippet-focus-ring: var(--color-focus-outline);
+  --search-snippet-error-color: #fca5a5;
+  --search-snippet-error-background: #451a1a;
+
+  --search-snippet-user-message-bg: var(--color-primary-container);
+  --search-snippet-user-message-text: #e6feff;
+  --search-snippet-assistant-message-bg: var(--surface-container-high);
+  --search-snippet-assistant-message-text: var(--color-dark-text);
+  --search-snippet-system-message-bg: var(--color-tertiary-container);
+  --search-snippet-system-message-text: var(--color-tertiary);
+}
+
+@media (max-width: 768px) {
+  chat-bubble-snippet.ai-search-chat-bubble {
+    --chat-bubble-button-size: 50px;
+    --chat-bubble-button-icon-size: 22px;
+    --chat-bubble-button-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    --chat-bubble-button-right: 14px;
+  }
+
+  /* Leave clearance below page footers so the floating bubble does not cover
+     bottom-right links when scrolled to the bottom on narrow viewports. */
+  body {
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+  }
+}
