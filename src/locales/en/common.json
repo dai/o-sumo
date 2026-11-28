@@ -34,6 +34,23 @@
       "loading": "Loading rikishi names",
       "error": "Could not load rikishi names",
       "close": "Close"
+    },
+    "siteSearch": {
+      "open": "Open site search",
+      "buttonLabel": "Site search",
+      "placeholder": "Search the site (e.g. Onosato)",
+      "resultsAriaLabel": "Search results",
+      "emptyDescription": "Type a keyword. For today's bout results, see the torikumi pages.",
+      "noResultsTitle": "No results",
+      "noResultsDescription": "No pages match \"{query}\".",
+      "resultsCount": "{n} result",
+      "resultsCountPlural": "{n} results",
+      "resultsCountZero": "0 results",
+      "navigateHint": "navigate",
+      "selectHint": "open",
+      "closeHint": "close",
+      "loading": "Loading",
+      "errorPrefix": "Error:"
     }
   },
   "pwa": {

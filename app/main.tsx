@@ -8,6 +8,7 @@ import { i18n } from './lib/i18n'
 import HomePage from './page'
 import ThemeToggle from './components/ThemeToggle'
 import LanguageToggle from './components/LanguageToggle'
+import SiteSearch from './components/SiteSearch'
 import ScrollToHash from './components/ScrollToHash'
 import CanonicalUrl from './components/CanonicalUrl'
 import MetaHead from './components/MetaHead'
@@ -75,6 +76,7 @@ function AppShell() {
         <GlobalNoticeBanner />
         <a className="skip-to-main" href="#main-content">{t('bashoStatus.skipToMain')}</a>
         <div className="top-right-controls">
+          <SiteSearch />
           <ThemeToggle />
           <LanguageToggle />
         </div>
