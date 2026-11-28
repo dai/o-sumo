@@ -38,6 +38,7 @@
   },
   "homepage": "https://github.com/dai/o-sumo#readme",
   "dependencies": {
+    "@cloudflare/ai-search-snippet": "^0.0.43",
     "@modelcontextprotocol/server": "^2.4.0",
     "i18next": "^27.2.2",
     "i18next-browser-languagedetector": "^8.3.1",

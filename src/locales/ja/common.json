@@ -34,6 +34,23 @@
       "loading": "力士名を読み込んでいます",
       "error": "力士名を読み込めませんでした",
       "close": "閉じる"
+    },
+    "siteSearch": {
+      "open": "サイト内検索を開く",
+      "buttonLabel": "サイト内検索",
+      "placeholder": "サイト内を検索（例: 大の里）",
+      "resultsAriaLabel": "検索結果",
+      "emptyDescription": "キーワードを入力してください。当日の取組結果は取組ページでご確認ください。",
+      "noResultsTitle": "見つかりませんでした",
+      "noResultsDescription": "「{query}」に一致するページはありません。",
+      "resultsCount": "{n} 件",
+      "resultsCountPlural": "{n} 件",
+      "resultsCountZero": "0 件",
+      "navigateHint": "移動",
+      "selectHint": "開く",
+      "closeHint": "閉じる",
+      "loading": "読み込み中",
+      "errorPrefix": "エラー:"
     }
   },
   "pwa": {
